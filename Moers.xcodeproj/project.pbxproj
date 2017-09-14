@@ -22,6 +22,14 @@
 		DF1A49691F6AAB7000E9108B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF1A496C1F6AAB7000E9108B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF1A496E1F6AAB7000E9108B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DF1A49751F6AB52E00E9108B /* DeckPresentingAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckPresentingAnimationController.swift; sourceTree = "<group>"; };
+		DF1A49761F6AB52E00E9108B /* DeckPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckPresentationController.swift; sourceTree = "<group>"; };
+		DF1A49771F6AB52E00E9108B /* DeckTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckTransitioningDelegate.swift; sourceTree = "<group>"; };
+		DF1A49781F6AB52F00E9108B /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
+		DF1A49791F6AB52F00E9108B /* ManualLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualLayout.swift; sourceTree = "<group>"; };
+		DF1A497A1F6AB52F00E9108B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DF1A497B1F6AB52F00E9108B /* DeckDismissingAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckDismissingAnimationController.swift; sourceTree = "<group>"; };
+		DF1A497C1F6AB52F00E9108B /* DeckSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckSegue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +62,7 @@
 		DF1A49611F6AAB7000E9108B /* Moers */ = {
 			isa = PBXGroup;
 			children = (
+				DF1A49741F6AB4FB00E9108B /* DeckTransition */,
 				DF1A49621F6AAB7000E9108B /* AppDelegate.swift */,
 				DF1A49641F6AAB7000E9108B /* ViewController.swift */,
 				DF1A49661F6AAB7000E9108B /* Main.storyboard */,
@@ -62,6 +71,21 @@
 				DF1A496E1F6AAB7000E9108B /* Info.plist */,
 			);
 			path = Moers;
+			sourceTree = "<group>";
+		};
+		DF1A49741F6AB4FB00E9108B /* DeckTransition */ = {
+			isa = PBXGroup;
+			children = (
+				DF1A497A1F6AB52F00E9108B /* Constants.swift */,
+				DF1A497B1F6AB52F00E9108B /* DeckDismissingAnimationController.swift */,
+				DF1A49761F6AB52E00E9108B /* DeckPresentationController.swift */,
+				DF1A49751F6AB52E00E9108B /* DeckPresentingAnimationController.swift */,
+				DF1A497C1F6AB52F00E9108B /* DeckSegue.swift */,
+				DF1A49771F6AB52E00E9108B /* DeckTransitioningDelegate.swift */,
+				DF1A49791F6AB52F00E9108B /* ManualLayout.swift */,
+				DF1A49781F6AB52F00E9108B /* RoundedView.swift */,
+			);
+			path = DeckTransition;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
