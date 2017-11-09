@@ -7,29 +7,87 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF02B75D1FAFC037004B8B3E /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02B75C1FAFC037004B8B3E /* FilterTableViewCell.swift */; };
+		DF02B7611FB035BB004B8B3E /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF02B7601FB035BB004B8B3E /* Settings.plist */; };
+		DF02B7631FB0BAE9004B8B3E /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02B7621FB0BAE9004B8B3E /* Branch.swift */; };
+		DF02B7651FB0BBD8004B8B3E /* SwiftyConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF02B7641FB0BBD8004B8B3E /* SwiftyConfiguration.framework */; };
+		DF08361D1F6C198400A1B8A5 /* ShopAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF08361C1F6C198400A1B8A5 /* ShopAnnotationView.swift */; };
 		DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A49621F6AAB7000E9108B /* AppDelegate.swift */; };
-		DF1A49651F6AAB7000E9108B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A49641F6AAB7000E9108B /* ViewController.swift */; };
 		DF1A49681F6AAB7000E9108B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49661F6AAB7000E9108B /* Main.storyboard */; };
 		DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49691F6AAB7000E9108B /* Assets.xcassets */; };
 		DF1A496D1F6AAB7000E9108B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF1A496B1F6AAB7000E9108B /* LaunchScreen.storyboard */; };
+		DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */; };
+		DF5135B91F71A4C4002A8977 /* DetailParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5135B81F71A4C4002A8977 /* DetailParkingViewController.swift */; };
+		DF5135BB1F71A7B3002A8977 /* DetailShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5135BA1F71A7B3002A8977 /* DetailShopViewController.swift */; };
+		DF632B401F6E721B0022FA8E /* ParkingLot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B3F1F6E721B0022FA8E /* ParkingLot.swift */; };
+		DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */; };
+		DF632B441F6E90140022FA8E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B431F6E90140022FA8E /* DetailViewController.swift */; };
+		DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B451F6EA0370022FA8E /* DesignableButton.swift */; };
+		DF632B481F6EA6AA0022FA8E /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B471F6EA6AA0022FA8E /* DesignableView.swift */; };
+		DF8254061F7711180069D751 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8254051F7711170069D751 /* Camera.swift */; };
+		DF8254081F7712880069D751 /* CSwiftV.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8254071F7712870069D751 /* CSwiftV.swift */; };
+		DFAEF0611F6AE87000EF25F5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAEF0601F6AE87000EF25F5 /* MapViewController.swift */; };
+		DFAEF0631F6AE89200EF25F5 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAEF0621F6AE89200EF25F5 /* ContentViewController.swift */; };
+		DFB5ECCF1F79ADDA00B2B464 /* DetailCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB5ECCE1F79ADDA00B2B464 /* DetailCameraViewController.swift */; };
+		DFB5ECD11F79B01800B2B464 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB5ECD01F79B01800B2B464 /* CameraViewController.swift */; };
+		DFB618581FAE144000C98EB6 /* Pulley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB618571FAE144000C98EB6 /* Pulley.framework */; };
+		DFB6185B1FAE2CC800C98EB6 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6185A1FAE2CC800C98EB6 /* NavigationViewController.swift */; };
+		DFB92D5E1F6B0B0900669F73 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D5D1F6B0B0900669F73 /* API.swift */; };
+		DFB92D601F6B0B3F00669F73 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D5F1F6B0B3F00669F73 /* Shop.swift */; };
+		DFB92D621F6B0B7A00669F73 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D611F6B0B7A00669F73 /* Location.swift */; };
+		DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D631F6B109C00669F73 /* Extensions.swift */; };
+		DFB92D691F6B96E400669F73 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D681F6B96E400669F73 /* ClusterAnnotationView.swift */; };
+		DFC1CC641F75960A00C1D269 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1CC631F75960A00C1D269 /* SelectionViewController.swift */; };
+		DFC1CC671F76664700C1D269 /* ShopIconDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1CC661F76664700C1D269 /* ShopIconDrawer.swift */; };
+		DFC3DE821F6C65FE0049638B /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC3DE811F6C65FE0049638B /* SearchResultTableViewCell.swift */; };
+		DFC5464E1F8007FB00EB3F7E /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC5464D1F8007FB00EB3F7E /* SearchResult.swift */; };
+		DFD129731FAF0C1B001900CF /* BranchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD129721FAF0C1B001900CF /* BranchTableViewCell.swift */; };
+		DFD129761FAF12D2001900CF /* BranchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */; };
+		DFFB775B1FB37E0A00073863 /* InfoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFFB775A1FB37E0A00073863 /* InfoKit.framework */; };
+		DFFB77601FB38A5A00073863 /* Branches.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFFB775F1FB38A5A00073863 /* Branches.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DF02B75C1FAFC037004B8B3E /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
+		DF02B7601FB035BB004B8B3E /* Settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
+		DF02B7621FB0BAE9004B8B3E /* Branch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
+		DF02B7641FB0BBD8004B8B3E /* SwiftyConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyConfiguration.framework; path = Carthage/Build/iOS/SwiftyConfiguration.framework; sourceTree = "<group>"; };
+		DF08361C1F6C198400A1B8A5 /* ShopAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAnnotationView.swift; sourceTree = "<group>"; };
 		DF1A495F1F6AAB7000E9108B /* Moers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1A49621F6AAB7000E9108B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DF1A49641F6AAB7000E9108B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DF1A49671F6AAB7000E9108B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DF1A49691F6AAB7000E9108B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF1A496C1F6AAB7000E9108B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF1A496E1F6AAB7000E9108B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DF1A49751F6AB52E00E9108B /* DeckPresentingAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckPresentingAnimationController.swift; sourceTree = "<group>"; };
-		DF1A49761F6AB52E00E9108B /* DeckPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckPresentationController.swift; sourceTree = "<group>"; };
-		DF1A49771F6AB52E00E9108B /* DeckTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckTransitioningDelegate.swift; sourceTree = "<group>"; };
-		DF1A49781F6AB52F00E9108B /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
-		DF1A49791F6AB52F00E9108B /* ManualLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualLayout.swift; sourceTree = "<group>"; };
-		DF1A497A1F6AB52F00E9108B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		DF1A497B1F6AB52F00E9108B /* DeckDismissingAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckDismissingAnimationController.swift; sourceTree = "<group>"; };
-		DF1A497C1F6AB52F00E9108B /* DeckSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckSegue.swift; sourceTree = "<group>"; };
+		DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnnotationView.swift; sourceTree = "<group>"; };
+		DF5135B81F71A4C4002A8977 /* DetailParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailParkingViewController.swift; sourceTree = "<group>"; };
+		DF5135BA1F71A7B3002A8977 /* DetailShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailShopViewController.swift; sourceTree = "<group>"; };
+		DF632B3F1F6E721B0022FA8E /* ParkingLot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLot.swift; sourceTree = "<group>"; };
+		DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLotAnnotationView.swift; sourceTree = "<group>"; };
+		DF632B431F6E90140022FA8E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		DF632B451F6EA0370022FA8E /* DesignableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
+		DF632B471F6EA6AA0022FA8E /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
+		DF8254051F7711170069D751 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		DF8254071F7712870069D751 /* CSwiftV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSwiftV.swift; sourceTree = "<group>"; };
+		DFAEF0601F6AE87000EF25F5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		DFAEF0621F6AE89200EF25F5 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		DFB5ECCE1F79ADDA00B2B464 /* DetailCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCameraViewController.swift; sourceTree = "<group>"; };
+		DFB5ECD01F79B01800B2B464 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		DFB618571FAE144000C98EB6 /* Pulley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pulley.framework; path = Carthage/Build/iOS/Pulley.framework; sourceTree = "<group>"; };
+		DFB6185A1FAE2CC800C98EB6 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NavigationViewController.swift; path = Pulley/NavigationViewController.swift; sourceTree = "<group>"; };
+		DFB92D5D1F6B0B0900669F73 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		DFB92D5F1F6B0B3F00669F73 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
+		DFB92D611F6B0B7A00669F73 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		DFB92D631F6B109C00669F73 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		DFB92D681F6B96E400669F73 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
+		DFC1CC631F75960A00C1D269 /* SelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionViewController.swift; sourceTree = "<group>"; };
+		DFC1CC661F76664700C1D269 /* ShopIconDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopIconDrawer.swift; sourceTree = "<group>"; };
+		DFC3DE811F6C65FE0049638B /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		DFC5464D1F8007FB00EB3F7E /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		DFD129721FAF0C1B001900CF /* BranchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchTableViewCell.swift; sourceTree = "<group>"; };
+		DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCollectionViewCell.swift; sourceTree = "<group>"; };
+		DFFB775A1FB37E0A00073863 /* InfoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InfoKit.framework; path = Carthage/Build/iOS/InfoKit.framework; sourceTree = "<group>"; };
+		DFFB775F1FB38A5A00073863 /* Branches.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Branches.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +95,39 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFB618581FAE144000C98EB6 /* Pulley.framework in Frameworks */,
+				DF02B7651FB0BBD8004B8B3E /* SwiftyConfiguration.framework in Frameworks */,
+				DFFB775B1FB37E0A00073863 /* InfoKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF02B75A1FAFBFE3004B8B3E /* UITableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				DFD129721FAF0C1B001900CF /* BranchTableViewCell.swift */,
+				DFC3DE811F6C65FE0049638B /* SearchResultTableViewCell.swift */,
+				DF02B75C1FAFC037004B8B3E /* FilterTableViewCell.swift */,
+			);
+			path = UITableViewCells;
+			sourceTree = "<group>";
+		};
+		DF02B75B1FAFBFF6004B8B3E /* UICollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */,
+			);
+			path = UICollectionViewCells;
+			sourceTree = "<group>";
+		};
 		DF1A49561F6AAB7000E9108B = {
 			isa = PBXGroup;
 			children = (
 				DF1A49611F6AAB7000E9108B /* Moers */,
 				DF1A49601F6AAB7000E9108B /* Products */,
+				DF1A497D1F6ABD7100E9108B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,30 +142,100 @@
 		DF1A49611F6AAB7000E9108B /* Moers */ = {
 			isa = PBXGroup;
 			children = (
-				DF1A49741F6AB4FB00E9108B /* DeckTransition */,
 				DF1A49621F6AAB7000E9108B /* AppDelegate.swift */,
-				DF1A49641F6AAB7000E9108B /* ViewController.swift */,
+				DF1A49841F6AC40000E9108B /* Model */,
+				DF1A49831F6AC3FB00E9108B /* View */,
+				DF1A49821F6AC3A100E9108B /* Controller */,
+				DFD129741FAF0DE9001900CF /* Networking */,
+				DFB92D631F6B109C00669F73 /* Extensions.swift */,
 				DF1A49661F6AAB7000E9108B /* Main.storyboard */,
 				DF1A49691F6AAB7000E9108B /* Assets.xcassets */,
 				DF1A496B1F6AAB7000E9108B /* LaunchScreen.storyboard */,
 				DF1A496E1F6AAB7000E9108B /* Info.plist */,
+				DF02B7601FB035BB004B8B3E /* Settings.plist */,
+				DFFB775F1FB38A5A00073863 /* Branches.plist */,
 			);
 			path = Moers;
 			sourceTree = "<group>";
 		};
-		DF1A49741F6AB4FB00E9108B /* DeckTransition */ = {
+		DF1A497D1F6ABD7100E9108B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DF1A497A1F6AB52F00E9108B /* Constants.swift */,
-				DF1A497B1F6AB52F00E9108B /* DeckDismissingAnimationController.swift */,
-				DF1A49761F6AB52E00E9108B /* DeckPresentationController.swift */,
-				DF1A49751F6AB52E00E9108B /* DeckPresentingAnimationController.swift */,
-				DF1A497C1F6AB52F00E9108B /* DeckSegue.swift */,
-				DF1A49771F6AB52E00E9108B /* DeckTransitioningDelegate.swift */,
-				DF1A49791F6AB52F00E9108B /* ManualLayout.swift */,
-				DF1A49781F6AB52F00E9108B /* RoundedView.swift */,
+				DFFB775A1FB37E0A00073863 /* InfoKit.framework */,
+				DF02B7641FB0BBD8004B8B3E /* SwiftyConfiguration.framework */,
+				DFB618571FAE144000C98EB6 /* Pulley.framework */,
 			);
-			path = DeckTransition;
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DF1A49821F6AC3A100E9108B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DFB6185A1FAE2CC800C98EB6 /* NavigationViewController.swift */,
+				DFAEF0601F6AE87000EF25F5 /* MapViewController.swift */,
+				DFAEF0621F6AE89200EF25F5 /* ContentViewController.swift */,
+				DFC1CC631F75960A00C1D269 /* SelectionViewController.swift */,
+				DFC1CC651F75962E00C1D269 /* Detail */,
+				DFB5ECD01F79B01800B2B464 /* CameraViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DF1A49831F6AC3FB00E9108B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DF02B75A1FAFBFE3004B8B3E /* UITableViewCells */,
+				DF02B75B1FAFBFF6004B8B3E /* UICollectionViewCells */,
+				DF1EC3EC1F78C4E40090809A /* AnnotationView */,
+				DF632B451F6EA0370022FA8E /* DesignableButton.swift */,
+				DF632B471F6EA6AA0022FA8E /* DesignableView.swift */,
+				DFC1CC661F76664700C1D269 /* ShopIconDrawer.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DF1A49841F6AC40000E9108B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DF632B3F1F6E721B0022FA8E /* ParkingLot.swift */,
+				DFB92D5F1F6B0B3F00669F73 /* Shop.swift */,
+				DFB92D611F6B0B7A00669F73 /* Location.swift */,
+				DF8254051F7711170069D751 /* Camera.swift */,
+				DFC5464D1F8007FB00EB3F7E /* SearchResult.swift */,
+				DF02B7621FB0BAE9004B8B3E /* Branch.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DF1EC3EC1F78C4E40090809A /* AnnotationView */ = {
+			isa = PBXGroup;
+			children = (
+				DFB92D681F6B96E400669F73 /* ClusterAnnotationView.swift */,
+				DF08361C1F6C198400A1B8A5 /* ShopAnnotationView.swift */,
+				DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */,
+				DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */,
+			);
+			path = AnnotationView;
+			sourceTree = "<group>";
+		};
+		DFC1CC651F75962E00C1D269 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				DF632B431F6E90140022FA8E /* DetailViewController.swift */,
+				DF5135B81F71A4C4002A8977 /* DetailParkingViewController.swift */,
+				DF5135BA1F71A7B3002A8977 /* DetailShopViewController.swift */,
+				DFB5ECCE1F79ADDA00B2B464 /* DetailCameraViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		DFD129741FAF0DE9001900CF /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				DFB92D5D1F6B0B0900669F73 /* API.swift */,
+				DF8254071F7712870069D751 /* CSwiftV.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -98,6 +248,7 @@
 				DF1A495B1F6AAB7000E9108B /* Sources */,
 				DF1A495C1F6AAB7000E9108B /* Frameworks */,
 				DF1A495D1F6AAB7000E9108B /* Resources */,
+				DFB618591FAE144D00C98EB6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -148,6 +299,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF1A496D1F6AAB7000E9108B /* LaunchScreen.storyboard in Resources */,
+				DF02B7611FB035BB004B8B3E /* Settings.plist in Resources */,
+				DFFB77601FB38A5A00073863 /* Branches.plist in Resources */,
 				DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */,
 				DF1A49681F6AAB7000E9108B /* Main.storyboard in Resources */,
 			);
@@ -155,13 +308,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		DFB618591FAE144D00C98EB6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Pulley.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyConfiguration.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/InfoKit.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DF1A495B1F6AAB7000E9108B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF1A49651F6AAB7000E9108B /* ViewController.swift in Sources */,
+				DF632B441F6E90140022FA8E /* DetailViewController.swift in Sources */,
+				DFB6185B1FAE2CC800C98EB6 /* NavigationViewController.swift in Sources */,
+				DF5135B91F71A4C4002A8977 /* DetailParkingViewController.swift in Sources */,
+				DFAEF0611F6AE87000EF25F5 /* MapViewController.swift in Sources */,
+				DFB92D621F6B0B7A00669F73 /* Location.swift in Sources */,
+				DFC1CC641F75960A00C1D269 /* SelectionViewController.swift in Sources */,
+				DFD129761FAF12D2001900CF /* BranchCollectionViewCell.swift in Sources */,
+				DF02B7631FB0BAE9004B8B3E /* Branch.swift in Sources */,
+				DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */,
+				DF8254061F7711180069D751 /* Camera.swift in Sources */,
 				DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */,
+				DF632B481F6EA6AA0022FA8E /* DesignableView.swift in Sources */,
+				DFB92D601F6B0B3F00669F73 /* Shop.swift in Sources */,
+				DF02B75D1FAFC037004B8B3E /* FilterTableViewCell.swift in Sources */,
+				DF08361D1F6C198400A1B8A5 /* ShopAnnotationView.swift in Sources */,
+				DFB92D5E1F6B0B0900669F73 /* API.swift in Sources */,
+				DF8254081F7712880069D751 /* CSwiftV.swift in Sources */,
+				DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */,
+				DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */,
+				DFB5ECD11F79B01800B2B464 /* CameraViewController.swift in Sources */,
+				DFB5ECCF1F79ADDA00B2B464 /* DetailCameraViewController.swift in Sources */,
+				DFC5464E1F8007FB00EB3F7E /* SearchResult.swift in Sources */,
+				DFC3DE821F6C65FE0049638B /* SearchResultTableViewCell.swift in Sources */,
+				DF632B401F6E721B0022FA8E /* ParkingLot.swift in Sources */,
+				DFC1CC671F76664700C1D269 /* ShopIconDrawer.swift in Sources */,
+				DFAEF0631F6AE89200EF25F5 /* ContentViewController.swift in Sources */,
+				DFB92D691F6B96E400669F73 /* ClusterAnnotationView.swift in Sources */,
+				DF5135BB1F71A7B3002A8977 /* DetailShopViewController.swift in Sources */,
+				DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */,
+				DFD129731FAF0C1B001900CF /* BranchTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,10 +499,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TX3HU8833D;
+				DEVELOPMENT_TEAM = 93C29USLP6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Moers/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lambdadigamma.Moers;
+				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -314,10 +518,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TX3HU8833D;
+				DEVELOPMENT_TEAM = 93C29USLP6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Moers/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lambdadigamma.Moers;
+				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

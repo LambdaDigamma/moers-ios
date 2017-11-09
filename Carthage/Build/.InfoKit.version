@@ -1,0 +1,9 @@
+{
+  "commitish" : "0.0.2",
+  "iOS" : [
+    {
+      "name" : "InfoKit",
+      "hash" : "babc241abc59c70f615469d0c15fd0955355a55282046ba29537877c11e7cae5"
+    }
+  ]
+}

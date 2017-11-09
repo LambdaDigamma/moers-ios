@@ -1,0 +1,9 @@
+{
+  "commitish" : "2.0.0",
+  "iOS" : [
+    {
+      "name" : "SwiftyConfiguration",
+      "hash" : "9154791c9e50d8656f07f0305eff7837cd4c45cd50515182a07a508feab06daf"
+    }
+  ]
+}

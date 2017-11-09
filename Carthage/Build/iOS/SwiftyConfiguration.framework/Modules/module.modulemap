@@ -1,0 +1,11 @@
+framework module SwiftyConfiguration {
+  umbrella header "SwiftyConfiguration.h"
+
+  export *
+  module * { export * }
+}
+
+module SwiftyConfiguration.Swift {
+    header "SwiftyConfiguration-Swift.h"
+    requires objc
+}

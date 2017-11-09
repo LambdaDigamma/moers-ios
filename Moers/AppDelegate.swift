@@ -12,9 +12,39 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let appearance = UINavigationBar.appearance()
+        
+        appearance.barTintColor = UIColor(red: 0.85, green: 0.12, blue: 0.09, alpha: 1.0)
+        appearance.isOpaque = false
+        appearance.isTranslucent = false
+        appearance.tintColor = UIColor.white
+        appearance.barStyle = .black
+        
+        print("Test")
+        
+        print(StoreManager.firstLaunch)
+        
+        if StoreManager.firstLaunch {
+            
+            print("First launch")
+            
+            let plistPath = Bundle.main.path(forResource: "Settings", ofType: "plist")!
+            
+            let dic = NSMutableDictionary()
+            
+            dic.addEntries(from: ["branches": Dictionary<String, Bool>()])
+            
+            print(dic)
+            
+            dic.write(to: URL(fileURLWithPath: plistPath), atomically: false)
+            
+            StoreManager.firstLaunch = false
+            
+        }
+        
         return true
     }
 
@@ -43,3 +73,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+struct StoreManager {
+    static var firstLaunch: Bool {
+        get { return !UserDefaults.standard.bool(forKey: "firstLaunch") }
+        set { UserDefaults.standard.set(newValue, forKey: "firstLaunch") }
+    }
+}
