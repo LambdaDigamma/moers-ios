@@ -99,7 +99,7 @@ extension SelectionViewController: UITableViewDelegate, UITableViewDataSource {
             let drawerDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
             
             drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
-            drawer.setDrawerPosition(position: .collapsed, animated: true)
+            drawer.setDrawerPosition(position: .partiallyRevealed, animated: true)
             
             drawerDetail.selectedLocation = clusteredLocations[indexPath.row]
             

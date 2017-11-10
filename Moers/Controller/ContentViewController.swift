@@ -115,7 +115,6 @@ class ContentViewController: UIViewController {
     fileprivate let sectionInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     fileprivate let cellWidth: CGFloat = 100
     fileprivate let cellHeight: CGFloat = 80
-    fileprivate var isBranchSelectionShown = true
     
     fileprivate func resetNavBar() {
         
@@ -348,6 +347,10 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        if let drawerVC = self.parent as? PulleyViewController {
+            drawerVC.setDrawerPosition(position: .open, animated: true)
+        }
+        
         selectedBranch = branches[indexPath.row]
         
         searchStyle = .branchSearch
@@ -377,8 +380,6 @@ extension ContentViewController: UISearchBarDelegate {
         if let drawerVC = self.parent as? PulleyViewController {
             drawerVC.setDrawerPosition(position: .open, animated: true)
         }
-        
-        
         
     }
     
