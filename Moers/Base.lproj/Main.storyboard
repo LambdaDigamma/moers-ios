@@ -989,9 +989,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="fCA-G9-0qD" kind="popoverPresentation" identifier="viewCamera" popoverAnchorView="eUF-D4-jRo" id="poN-5L-N7H">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
+                                    <action selector="viewCamera:" destination="3AZ-hT-3dZ" eventType="touchUpInside" id="5e6-hk-9hf"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1013,7 +1011,7 @@
         <!--Camera View Controller-->
         <scene sceneID="cni-O0-IXH">
             <objects>
-                <viewController id="fCA-G9-0qD" customClass="CameraViewController" customModule="Moers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CameraViewController" id="fCA-G9-0qD" customClass="CameraViewController" customModule="Moers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q6k-e5-vdr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1026,28 +1024,11 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ev-Od-Rpo">
-                                <rect key="frame" x="16" y="28" width="30" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="2tQ-x4-CTa"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="L4Q-S7-EwO"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="◀︎">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="back:" destination="fCA-G9-0qD" eventType="touchUpInside" id="aRA-xU-lE0"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="2ev-Od-Rpo" firstAttribute="leading" secondItem="fsZ-Ph-t7e" secondAttribute="leading" constant="16" id="3Ck-xr-em4"/>
-                            <constraint firstItem="2ev-Od-Rpo" firstAttribute="top" secondItem="fsZ-Ph-t7e" secondAttribute="top" constant="8" id="Qx3-Rt-yqw"/>
                             <constraint firstItem="LXb-cC-QWL" firstAttribute="top" secondItem="fsZ-Ph-t7e" secondAttribute="top" id="fyh-BG-hf4"/>
                             <constraint firstItem="LXb-cC-QWL" firstAttribute="trailing" secondItem="fsZ-Ph-t7e" secondAttribute="trailing" id="l4T-V4-KXI"/>
-                            <constraint firstItem="fsZ-Ph-t7e" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="2ev-Od-Rpo" secondAttribute="trailing" constant="800" id="qfT-Sd-l6a"/>
                             <constraint firstItem="LXb-cC-QWL" firstAttribute="leading" secondItem="fsZ-Ph-t7e" secondAttribute="leading" id="roH-vX-D13"/>
                             <constraint firstItem="LXb-cC-QWL" firstAttribute="bottom" secondItem="fsZ-Ph-t7e" secondAttribute="bottom" id="vLi-iE-1DR"/>
                         </constraints>
@@ -1059,7 +1040,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BgT-GB-9kC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3208.8000000000002" y="1547.6761619190406"/>
+            <point key="canvasLocation" x="3241" y="1548"/>
         </scene>
         <!--Selection View Controller-->
         <scene sceneID="h1a-i9-7qX">

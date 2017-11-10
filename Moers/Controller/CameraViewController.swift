@@ -15,15 +15,9 @@ class CameraViewController: UIViewController {
     
     @IBOutlet weak var webView: WKWebView!
     
-    @IBAction func back(_ sender: UIButton) {
-        
-        self.dismiss(animated: true, completion: nil)
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         guard let panoID = panoID else { return }
         
         guard let url = URL(string: "http://360moers.de/tour.html?s=pano\(panoID)&skipintro&html5=only") else { return }
@@ -39,7 +33,7 @@ class CameraViewController: UIViewController {
     }
     
     override var prefersStatusBarHidden: Bool {
-        return true
+        return false
     }
     
 }
