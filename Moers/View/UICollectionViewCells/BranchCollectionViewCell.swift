@@ -14,5 +14,11 @@ class BranchCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var buttonView: DesignableView!
     
+    func layout() {
+        
+        self.buttonView.layer.cornerRadius = 31
+        self.buttonView.clipsToBounds = true
+        
+    }
     
 }

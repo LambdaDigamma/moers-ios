@@ -15,3 +15,4 @@ protocol Location {
     var name: String { get set }
     
 }
+

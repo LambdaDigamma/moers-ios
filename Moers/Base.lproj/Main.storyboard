@@ -224,37 +224,33 @@
                                                             <rect key="frame" x="15" y="11" width="345" height="113"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="yDz-Jv-OLe">
-                                                                <size key="itemSize" width="80" height="100"/>
+                                                                <size key="itemSize" width="90" height="90"/>
                                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                             <cells>
                                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="branchCell" id="faF-D0-icI" customClass="BranchCollectionViewCell" customModule="Moers" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="16.5" width="60" height="80"/>
+                                                                    <rect key="frame" x="0.0" y="11.5" width="90" height="90"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="80"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Q3-lr-SBl">
-                                                                                <rect key="frame" x="14.5" y="62" width="31" height="14.5"/>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="headTruncation" numberOfLines="0" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Q3-lr-SBl">
+                                                                                <rect key="frame" x="0.0" y="66" width="90" height="22"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="22" id="LIr-N2-Uah"/>
+                                                                                </constraints>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="translator" translatesAutoresizingMaskIntoConstraints="NO" id="Adu-28-TZV">
-                                                                                <rect key="frame" x="8" y="8" width="44" height="44"/>
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="height" constant="44" id="A4C-FG-Lka"/>
-                                                                                    <constraint firstAttribute="width" constant="44" id="MR0-DP-Ztv"/>
-                                                                                </constraints>
-                                                                            </imageView>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dtO-uK-VPb" customClass="DesignableView" customModule="Moers" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                                                <rect key="frame" x="14" y="0.0" width="62" height="62"/>
                                                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" secondItem="dtO-uK-VPb" secondAttribute="height" multiplier="1:1" id="bcd-RT-rCa"/>
+                                                                                    <constraint firstAttribute="width" secondItem="dtO-uK-VPb" secondAttribute="height" multiplier="1:1" id="uZs-Ie-PPJ"/>
                                                                                 </constraints>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -262,21 +258,24 @@
                                                                                     </userDefinedRuntimeAttribute>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </view>
+                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="translator" translatesAutoresizingMaskIntoConstraints="NO" id="Adu-28-TZV">
+                                                                                <rect key="frame" x="14" y="0.0" width="62" height="62"/>
+                                                                            </imageView>
                                                                         </subviews>
                                                                     </view>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="trailing" secondItem="dtO-uK-VPb" secondAttribute="trailing" id="08v-mC-QrT"/>
-                                                                        <constraint firstItem="dtO-uK-VPb" firstAttribute="leading" secondItem="faF-D0-icI" secondAttribute="leading" id="0oS-3b-eTN"/>
-                                                                        <constraint firstItem="2Q3-lr-SBl" firstAttribute="top" secondItem="dtO-uK-VPb" secondAttribute="bottom" constant="2" id="84w-I8-oUV"/>
-                                                                        <constraint firstItem="2Q3-lr-SBl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="faF-D0-icI" secondAttribute="leadingMargin" id="AbG-Ez-b27"/>
-                                                                        <constraint firstItem="Adu-28-TZV" firstAttribute="centerX" secondItem="faF-D0-icI" secondAttribute="centerX" id="L0i-sV-ByA"/>
-                                                                        <constraint firstItem="dtO-uK-VPb" firstAttribute="centerX" secondItem="faF-D0-icI" secondAttribute="centerX" id="bXD-Su-D7I"/>
-                                                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="2Q3-lr-SBl" secondAttribute="trailing" id="dkA-S0-An0"/>
-                                                                        <constraint firstItem="dtO-uK-VPb" firstAttribute="top" secondItem="faF-D0-icI" secondAttribute="top" id="g46-Xg-kxu"/>
-                                                                        <constraint firstItem="Adu-28-TZV" firstAttribute="top" secondItem="faF-D0-icI" secondAttribute="topMargin" id="pTY-6g-N1n"/>
-                                                                        <constraint firstItem="2Q3-lr-SBl" firstAttribute="centerX" secondItem="faF-D0-icI" secondAttribute="centerX" id="waW-07-Z7C"/>
+                                                                        <constraint firstItem="2Q3-lr-SBl" firstAttribute="top" secondItem="dtO-uK-VPb" secondAttribute="bottom" constant="4" id="Czj-b6-xqd"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="2Q3-lr-SBl" secondAttribute="trailing" id="Lwp-d8-DOe"/>
+                                                                        <constraint firstItem="Adu-28-TZV" firstAttribute="width" secondItem="dtO-uK-VPb" secondAttribute="width" id="RWU-zx-4iG"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="2Q3-lr-SBl" secondAttribute="bottom" constant="2" id="SPw-Lz-fO2"/>
+                                                                        <constraint firstItem="2Q3-lr-SBl" firstAttribute="leading" secondItem="faF-D0-icI" secondAttribute="leading" id="Trk-PL-zS8"/>
+                                                                        <constraint firstItem="Adu-28-TZV" firstAttribute="centerY" secondItem="dtO-uK-VPb" secondAttribute="centerY" id="dHT-ab-itr"/>
+                                                                        <constraint firstItem="Adu-28-TZV" firstAttribute="centerX" secondItem="dtO-uK-VPb" secondAttribute="centerX" id="eoO-wp-ikj"/>
+                                                                        <constraint firstItem="dtO-uK-VPb" firstAttribute="top" secondItem="faF-D0-icI" secondAttribute="top" id="mKR-5p-3F7"/>
+                                                                        <constraint firstItem="dtO-uK-VPb" firstAttribute="centerX" secondItem="faF-D0-icI" secondAttribute="centerX" id="nkE-Vb-Sfd"/>
+                                                                        <constraint firstItem="Adu-28-TZV" firstAttribute="height" secondItem="dtO-uK-VPb" secondAttribute="height" id="qmg-ra-oeG"/>
                                                                     </constraints>
-                                                                    <size key="customSize" width="60" height="80"/>
+                                                                    <size key="customSize" width="90" height="90"/>
                                                                     <connections>
                                                                         <outlet property="buttonView" destination="dtO-uK-VPb" id="QVy-R4-Ee0"/>
                                                                         <outlet property="imageView" destination="Adu-28-TZV" id="6c6-mU-0rW"/>

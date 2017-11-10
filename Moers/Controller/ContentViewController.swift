@@ -17,6 +17,18 @@ public struct CellIdentifier {
     
 }
 
+// textSearch
+// branchSearch
+// none
+
+public enum SearchStyle {
+    
+    case none
+    case branchSearch
+    case textSearch
+    
+}
+
 class ContentViewController: UIViewController {
 
     @IBOutlet weak var gripperView: UIView!
@@ -31,11 +43,33 @@ class ContentViewController: UIViewController {
     var filteredLocations: [Location] = []
     var branches: [Branch] = []
     
+    var selectedBranch: Branch? = nil
+    
+    public var searchStyle: SearchStyle = SearchStyle.none
+    
     var datasource: [Location] {
         
-        if searchBar.text == "" {
+        if searchBar.text == "" && searchStyle == .none {
             
-            return locations
+            return locations.sorted { t1, t2 in
+                
+                if t1 is Shop && t2 is Shop {
+                    return t1.name < t2.name
+                } else if t1 is ParkingLot && t2 is ParkingLot {
+                    return t1.name < t2.name
+                } else if t1 is Camera && t2 is Camera {
+                    return t1.name < t2.name
+                } else if t1 is Shop && !(t2 is Shop) {
+                    return true
+                } else if t1 is ParkingLot && t2 is Shop {
+                    return false
+                } else if t1 is ParkingLot && t2 is Camera {
+                    return true
+                } else {
+                    return false
+                }
+                
+            }
             
         } else {
             
@@ -77,10 +111,22 @@ class ContentViewController: UIViewController {
         }
     }
     
-    fileprivate let itemsPerRow: CGFloat = 4
+    fileprivate let itemsPerRow: CGFloat = 3
     fileprivate let sectionInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    fileprivate let cellWidth: CGFloat = 60
+    fileprivate let cellWidth: CGFloat = 100
+    fileprivate let cellHeight: CGFloat = 80
     fileprivate var isBranchSelectionShown = true
+    
+    fileprivate func resetNavBar() {
+        
+        navigationController?.navigationBar.barTintColor = UIColor(red: 0.85, green: 0.12, blue: 0.09, alpha: 1.0)
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        
+        if let statusBar = UIApplication.shared.value(forKey: "statusBar") as? UIView {
+            statusBar.alpha = 1
+        }
+        
+    }
     
 }
 
@@ -91,35 +137,47 @@ extension ContentViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return datasource.count + 1
+        
+        if searchStyle == SearchStyle.textSearch {
+            
+            return datasource.count
+            
+        } else {
+            
+            return datasource.count + 1
+            
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 0 {
+        if searchStyle == .none && indexPath.row == 0 {
             
-            if isBranchSelectionShown == true {
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.branchCell, for: indexPath) as! BranchTableViewCell
+            
+            cell.selectionStyle = .none
+            
+            return cell
+            
+        } else if searchStyle == .branchSearch && indexPath.row == 0 {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.filterCell, for: indexPath) as! FilterTableViewCell
+            
+            cell.selectionStyle = .none
+            
+            guard let branch = selectedBranch else { fatalError("Error while selecting branch!") }
+            
+            cell.branchLabel.text = branch.name
+            cell.onButtonClick = { cell in
                 
-                let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.branchCell, for: indexPath) as! BranchTableViewCell
+                self.searchStyle = .none
                 
-                return cell
-                
-            } else {
-                
-                let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.filterCell, for: indexPath) as! FilterTableViewCell
-                
-                cell.branchLabel.text = "Bäckerei"
-                cell.onButtonClick = { cell in
-                    
-                    self.isBranchSelectionShown = true
-                    
-                    tableView.reloadData()
-                    
-                }
-                
-                return cell
+                tableView.reloadData()
                 
             }
+            
+            return cell
             
         } else {
             
@@ -173,19 +231,25 @@ extension ContentViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let drawer = self.parent as? PulleyViewController {
-            let drawerDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        if indexPath.row != 0 {
             
-            drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
-            drawer.setDrawerPosition(position: .collapsed, animated: true)
+            resetNavBar()
             
-            drawerDetail.selectedLocation = datasource[indexPath.row - 1]
-            
-            if let mapController = drawer.primaryContentViewController as? MapViewController {
+            if let drawer = self.parent as? PulleyViewController {
+                let drawerDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
                 
-                let coordinate = self.datasource[indexPath.row - 1].location.coordinate
+                drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
+                drawer.setDrawerPosition(position: .collapsed, animated: true)
                 
-                mapController.map.setCenter(coordinate, animated: true)
+                drawerDetail.selectedLocation = datasource[indexPath.row - 1]
+                
+                if let mapController = drawer.primaryContentViewController as? MapViewController {
+                    
+                    let coordinate = self.datasource[indexPath.row - 1].location.coordinate
+                    
+                    mapController.map.setCenter(coordinate, animated: true)
+                    
+                }
                 
             }
             
@@ -195,17 +259,13 @@ extension ContentViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if indexPath.row == 0 {
+        if searchStyle == .none && indexPath.row == 0 {
             
-            if isBranchSelectionShown == true {
-                
-                return 190
-                
-            } else {
-                
-                return 50
-                
-            }
+            return (2 * cellHeight) + 40
+            
+        } else if searchStyle == .branchSearch && indexPath.row == 0 {
+            
+            return 50
             
         } else {
             
@@ -243,12 +303,28 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         cell.titleLabel.text = branches[indexPath.row].name
         
+        cell.layout()
+        
+        cell.buttonView.backgroundColor = UIColor(red: 0.996, green: 0.592, blue: 0.153, alpha: 1.00)
+        
+        cell.imageView.image = nil
+        
         return cell
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        guard let branchCell = cell as? BranchCollectionViewCell else { return }
+        
+        branchCell.buttonView.layer.cornerRadius = branchCell.buttonView.frame.size.width / 2
+        
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: cellWidth, height: 80)
+        return CGSize(width: cellWidth, height: cellHeight)
         
     }
     
@@ -266,14 +342,27 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let cell = collectionView.cellForItem(at: indexPath) as? BranchCollectionViewCell else { return }
+        selectedBranch = branches[indexPath.row]
         
-        cell.buttonView.layer.borderWidth = 3.5
-        cell.buttonView.layer.borderColor = UIColor.white.cgColor
+        searchStyle = .branchSearch
         
-        isBranchSelectionShown = false
+        filteredLocations = locations.filter { (location) -> Bool in
+            
+            guard let shop = location as? Shop else { return false }
+            
+            if shop.branch == branches[indexPath.row].name {
+                return true
+            } else {
+                return false
+            }
+            
+        }
         
         tableView.reloadData()
         
@@ -288,6 +377,8 @@ extension ContentViewController: UISearchBarDelegate {
         if let drawerVC = self.parent as? PulleyViewController {
             drawerVC.setDrawerPosition(position: .open, animated: true)
         }
+        
+        
         
     }
     
@@ -387,7 +478,7 @@ extension ContentViewController: UISearchBarDelegate {
         
         if searchText != "" {
             
-            isBranchSelectionShown = false
+            searchStyle = .none
             
         }
         
@@ -409,7 +500,7 @@ extension ContentViewController: APIDelegate {
             
             self.branches = self.api.loadBranches()
             
-            print(self.branches)
+            self.branches.sort(by: { $0.name < $1.name })
             
             self.tableView.reloadData()
             
@@ -488,12 +579,7 @@ extension ContentViewController: PulleyDrawerViewControllerDelegate {
             
         } else {
             
-            navigationController?.navigationBar.barTintColor = UIColor(red: 0.85, green: 0.12, blue: 0.09, alpha: 1.0)
-            navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-            
-            if let statusBar = UIApplication.shared.value(forKey: "statusBar") as? UIView {
-                statusBar.alpha = 1
-            }
+            resetNavBar()
             
         }
         
