@@ -30,12 +30,18 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func close(_ sender: UIButton) {
         
-        print("close")
-        
         if let drawer = self.parent as? PulleyViewController {
             let drawerDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ContentViewController") as! ContentViewController
             
-            print("drawer")
+            guard let vc = child else { return }
+            
+            vc.removeFromParentViewController()
+            
+            self.dismiss(animated: false) {
+                
+                
+                
+            }
             
             drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
             drawer.setDrawerPosition(position: .collapsed, animated: false)
@@ -101,11 +107,21 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate {
                 
                 morphDetailCamera()
                 
+            } else if let bikeCharger = selectedLocation as? BikeChargingStation {
+                
+                nameLabel.text = bikeCharger.title
+                subtitleLabel.text = "E-Bike Ladestation"
+                imageView.image = nil
+                
+                morphDetailBikeCharger()
+                
             }
             
         }
         
     }
+    
+    weak var child: UIViewController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -151,7 +167,6 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    
     private func morphDetailParking() {
         
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -188,7 +203,21 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
+    private func morphDetailBikeCharger() {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        let viewController = storyboard.instantiateViewController(withIdentifier: "DetailBikeChargingStationViewController") as! DetailBikeChargingStationViewController
+        
+        self.add(asChildViewController: viewController)
+        
+        viewController.selectedBikeChargingStation = selectedLocation as? BikeChargingStation
+        
+    }
+    
     private func add(asChildViewController viewController: UIViewController) {
+        
+        child = viewController
         
         addChildViewController(viewController)
         

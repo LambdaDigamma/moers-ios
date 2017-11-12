@@ -84,12 +84,15 @@ class ContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("Content Did Load")
+        
         gripperView.layer.cornerRadius = 2.5
         
         api.delegate = self
         api.loadShop()
         api.loadParkingLots()
         api.loadCameras()
+        api.loadBikeChargingStations()
         
         branches = api.loadBranches()
         
@@ -219,6 +222,11 @@ extension ContentViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.subtitleLabel.text = "360° Kamera"
                 
                 cell.searchImageView.image = #imageLiteral(resourceName: "camera")
+                
+            } else if let bikeCharger = datasource[indexPath.row - 1] as? BikeChargingStation {
+                
+                cell.titleLabel.text = bikeCharger.title
+                cell.subtitleLabel.text = "E-Bike Ladestation"
                 
             }
             
@@ -524,6 +532,18 @@ extension ContentViewController: APIDelegate {
     func didReceiveCameras(cameras: [Camera]) {
         
         self.locations.append(contentsOf: cameras as [Location])
+        
+        DispatchQueue.main.async {
+            
+            self.tableView.reloadData()
+            
+        }
+        
+    }
+    
+    func didReceiveBikeChargers(chargers: [BikeChargingStation]) {
+        
+        self.locations.append(contentsOf: chargers as [Location])
         
         DispatchQueue.main.async {
             

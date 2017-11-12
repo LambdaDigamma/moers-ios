@@ -107,14 +107,14 @@ class Shop: NSObject, MKAnnotation, Location {
     var quater: String
     var street: String
     var houseNumber: String
-    var postcode: Int
+    var postcode: String
     var place: String
     var url: URL?
     var phone: URL?
     var branch: String
     var openingTimes: OpeningHours
     
-    init(name: String, quater: String, street: String, houseNumber: String, postcode: Int, place: String, url: URL?, phone: URL?, location: CLLocation, branch: String, openingTimes: OpeningHours) {
+    init(name: String, quater: String, street: String, houseNumber: String, postcode: String, place: String, url: URL?, phone: URL?, location: CLLocation, branch: String, openingTimes: OpeningHours) {
         
         self.location = location
         self.name = name

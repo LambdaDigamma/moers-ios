@@ -116,6 +116,9 @@ class DetailShopViewController: UIViewController {
                 
             }
             
+            streetLabel.text = "\(shop.street) \(shop.houseNumber)"
+            postCodeLabel.text = "\(shop.postcode) Moers"
+            
         }
         
     }

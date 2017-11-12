@@ -16,6 +16,7 @@ struct AnnotationIdentifier {
     static let shop = "shop"
     static let parkingLot = "parkingLot"
     static let camera = "camera"
+    static let bikeChargingStation = "bikeCharger"
     
 }
 
@@ -51,6 +52,7 @@ class MapViewController: UIViewController {
         api.loadShop()
         api.loadParkingLots()
         api.loadCameras()
+        api.loadBikeChargingStations()
         
     }
     
@@ -89,6 +91,18 @@ extension MapViewController: APIDelegate {
         DispatchQueue.main.async {
             
             self.map.addAnnotations(cameras)
+            
+        }
+        
+    }
+    
+    func didReceiveBikeChargers(chargers: [BikeChargingStation]) {
+        
+        self.locations.append(contentsOf: chargers as [Location])
+        
+        DispatchQueue.main.async {
+            
+            self.map.addAnnotations(chargers)
             
         }
         
@@ -151,6 +165,20 @@ extension MapViewController: MKMapViewDelegate {
             if view == nil { view = CameraAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.camera) }
             
             view?.annotation = camera
+            
+            view?.collisionMode = .circle
+            view?.clusteringIdentifier = AnnotationIdentifier.cluster
+            view?.displayPriority = .defaultHigh
+            
+            return view
+            
+        } else if let bikeCharger = annotation as? BikeChargingStation {
+            
+            var view = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationIdentifier.bikeChargingStation) as? MKMarkerAnnotationView
+            
+            if view == nil { view = BikeChargingStationAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.bikeChargingStation) }
+            
+            view?.annotation = bikeCharger
             
             view?.collisionMode = .circle
             view?.clusteringIdentifier = AnnotationIdentifier.cluster

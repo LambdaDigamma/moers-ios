@@ -19,6 +19,8 @@ protocol APIDelegate {
     
     func didReceiveCameras(cameras: [Camera])
     
+    func didReceiveBikeChargers(chargers: [BikeChargingStation])
+    
 }
 
 class API: NSObject, XMLParserDelegate {
@@ -65,7 +67,7 @@ class API: NSObject, XMLParserDelegate {
                                 var quarter = String()
                                 var street = String()
                                 var houseNumber = String()
-                                var postcode = Int()
+                                var postcode = String()
                                 var place = String()
                                 var webAddress = URL(string: "")
                                 var phone = URL(string: "")
@@ -98,7 +100,7 @@ class API: NSObject, XMLParserDelegate {
                                         
                                     }
                                     
-                                    if let plz = properties["PLZ"] as? Int {
+                                    if let plz = properties["PLZ"] as? String {
                                         
                                         postcode = plz
                                         
@@ -357,7 +359,7 @@ class API: NSObject, XMLParserDelegate {
                                 
                                 dict.write(toFile: path!, atomically: false)
                                 
-                                let dictTest = NSDictionary(contentsOfFile: path!)
+//                                let dictTest = NSDictionary(contentsOfFile: path!)
                                 
                                 
                             }
@@ -428,7 +430,61 @@ class API: NSObject, XMLParserDelegate {
                 
                 delegate?.didReceiveCameras(cameras: cameras)
                 
-            } catch let err as NSError{
+            } catch let err as NSError {
+                print(err.localizedDescription)
+            }
+            
+        }
+        
+    }
+    
+    func loadBikeChargingStations() {
+        
+        let bikeChargingURL = URL(string: "https://www.offenesdatenportal.de/dataset/16cf7d90-dbbb-4ce1-aeec-762dfb49b973/resource/4a3b89d7-3301-45bf-97f6-9ba06b23256f/download/e-bike-ladestationen-neu.csv")
+        
+        if let url = bikeChargingURL {
+            
+            do {
+                
+                let content = try String(contentsOf: url, encoding: String.Encoding.utf8)
+                
+                let csv = CSwiftV(with: content, separator: ";", headers: nil)
+                
+                var chargers: [BikeChargingStation] = []
+                
+                guard let rows = csv.keyedRows else { return }
+                
+                for row in rows {
+                    
+                    if let lat = row["slat"]?.doubleValue, let lng = row["slng"]?.doubleValue {
+                        
+                        let loc = CLLocation(latitude: lat, longitude: lng)
+                        
+                        var phone: URL? = nil
+                        
+                        if let tel = row["Tel"] {
+                            
+                            if let phoneUrl = URL(string: "telprompt://4902841" + tel) {
+                                
+                                phone = phoneUrl
+                                
+                            }
+                            
+                        }
+                        
+                        let openingHours = BikeChargingStation.OpeningHours(monday: row["Mo"] ?? "", tuesday: row["Di"] ?? "", wednesday: row["Mi"] ?? "", thursday: row["Do"] ?? "", friday: row["Fr"] ?? "", saturday: row["Sa"] ?? "", sunday: row["So"] ?? "", feastday: row["Feiertag"] ?? "")
+                        
+                        let charger = BikeChargingStation(name: row["Name"]!, location: loc, postcode: row["PLZ"]!, place: row["Ort"]!, street: row["Strasse"]!, openingHours: openingHours, phone: phone)
+                        
+                        chargers.append(charger)
+                        
+                    }
+                    
+                }
+                
+                delegate?.didReceiveBikeChargers(chargers: chargers)
+                
+            } catch let err {
                 print(err.localizedDescription)
             }
             
