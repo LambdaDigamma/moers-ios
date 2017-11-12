@@ -10,6 +10,15 @@ import UIKit
 import MapKit
 import Pulley
 
+struct DetailContentHeight {
+    
+    static let shop: CGFloat = 550
+    static let parkingLot: CGFloat = 220
+    static let camera: CGFloat = 80
+    static let bikeCharger: CGFloat = 520
+    
+}
+
 class DetailViewController: UIViewController, CLLocationManagerDelegate {
     
     let locationManager: CLLocationManager = {
@@ -23,7 +32,7 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     
-    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var contentView: UIScrollView!
     
     @IBOutlet weak var routeButton: DesignableButton!
     @IBOutlet weak var closeButton: UIButton!
@@ -221,8 +230,25 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate {
         
         addChildViewController(viewController)
         
+        
+        var height: CGFloat = 700
+        
+        guard let loc = selectedLocation else { return }
+        
+        if loc is Shop {
+            height = DetailContentHeight.shop
+        } else if loc is ParkingLot {
+            height = DetailContentHeight.parkingLot
+        } else if loc is Camera {
+            height = DetailContentHeight.camera
+        } else if loc is BikeChargingStation {
+            height = DetailContentHeight.bikeCharger
+        }
+        
         // Add Child View as Subview
+        contentView.contentSize = CGSize(width: contentView.bounds.width, height: height)
         contentView.addSubview(viewController.view)
+        contentView.isUserInteractionEnabled = true
         
         // Configure Child View
         viewController.view.frame = contentView.bounds
