@@ -1,7 +1,7 @@
 # Pulley
 A library to imitate the drawer in Maps for iOS 10/11. The master branch follows the latest currently released version of Swift. If you need an older version of Swift, you can specify it's version (e.g. 1.0.x) in your Podfile or use the code on the branch for that version. Older branches are unsupported.
 
-**ATTENTION:** Pulley 2.0 introduced some small breaking changes for people upgrading from 1.x. Please scroll down to the iOS 11 / Safe Areas section of the README for more information. Apologies for the inconvenience.
+**ATTENTION:** Pulley 2.2 introduced some small breaking changes for people upgrading from 1.x, or in some cases 2.1.x. Please scroll down to the iOS 11 / Safe Areas section of the README for more information. Apologies for the inconvenience.
 
 ### Introduction
 Pulley is an easy to use drawer library meant to imitate the drawer in iOS 10/11's Maps app. It exposes a simple API that allows you to use any UIViewController subclass as the drawer content or the primary content.
@@ -9,6 +9,8 @@ Pulley is an easy to use drawer library meant to imitate the drawer in iOS 10/11
 **Here's a preview (apologies for the potato gif):**
 
 ![Pulley Preview](http://i.imgur.com/bmEWqy7.gif)
+
+![Pulley iPad Preview](https://i.imgur.com/HwsdMSO.png)
 
 ### Installation
 
@@ -19,7 +21,7 @@ Pulley is an easy to use drawer library meant to imitate the drawer in iOS 10/11
 `github "52inc/Pulley"`
 
 ##### Manual Installation
-Simply copy the 2 files in the PulleyLib folder into your project.
+Simply copy the files in the PulleyLib folder into your project.
 
 ### How To use
 
@@ -42,19 +44,19 @@ If you would like to customize the height of the "Collapsed" or "Partially Revea
 
 Pulley supports loading view controllers programmatically. In order to use Pulley programmatically, please consider the following code snippet:
 
-`````
+```swift
 let mainContentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PrimaryContentViewController")
 
 let drawerContentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("DrawerContentViewController")
 
 let pulleyController = PulleyViewController(contentViewController: mainContentVC, drawerViewController: drawerContentVC)
+```
 
-`````
 ### API
 
 **Important:** The background of the internal drawer view is clear. If your view controller's view is also clear then you'll see the shadow rendering below where the view is. I'd recommend giving your view a color or using a UIVisualEffectView to make sure you don't see the shadow. You can set the shadow opacity to 0.0 if you want the shadow to be hidden.
 
-**Important:** Drawer Content views are made 20pt too long in order to account for the bounce animation. Make sure your drawer content view is aware that the bottom 20pts will be offscreen.
+**Important:** Drawer Content views are made **20pt too long** in order to account for the bounce animation. Make sure your drawer content view is aware that the bottom 20pts will be offscreen.
 
 #### iOS 11, Safe Areas, and the iPhone X
 Pulley has support for safe areas and the iPhone X. The sample project includes full support for this, and does a couple of UI tricks to make things look better. These are documented throughout the sample project.
@@ -87,27 +89,25 @@ You'll likely need to change out the contents of the drawer or the primary view 
 
 **Changing the Primary Content View Controller:**
 
-`````
+```swift
 if let drawer = self.parentViewController as? PulleyViewController
 {
     let primaryContent = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PrimaryContentViewController")
 
     drawer.setPrimaryContentViewController(primaryContent, animated: true)
 }      
-
-`````
+```
 
 **Changing the Drawer Content View Controller:**
 
-`````
+```swift
 if let drawer = self.parentViewController as? PulleyViewController
 {
     let drawerContent = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("DrawerContentViewController")
 
     drawer.setDrawerContentViewController(drawerContent, animated: false)
 }      
-
-`````
+```
 
 #### Customizing the drawer
 
@@ -125,3 +125,4 @@ if let drawer = self.parentViewController as? PulleyViewController
 12. The Swift Interface for `PulleyViewController` is documented in case you want to see real documentation instead of a numbered list of useful things.
 13. You can set the initial drawer position by using the initialDrawerPosition property on the `PulleyViewController`.
 14. Most settings for the `PulleyViewController` are exposed in Interface Builder. Select the `PulleyViewController` View Controller (not the view) to access them via IBInspectable.
+15. By default, Pulley will only use the 'bottomDrawer' display mode (to preserve backwards compatibility). If you want to use the iPad / iPhone landscape modes, you can use 'leftSide' for the display mode. If you want it to automatically switch like Maps.app on iOS, you can set the display mode to 'automatic'.

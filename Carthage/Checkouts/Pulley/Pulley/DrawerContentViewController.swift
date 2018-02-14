@@ -14,6 +14,10 @@ class DrawerContentViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var gripperView: UIView!
+    @IBOutlet var topSeparatorView: UIView!
+    @IBOutlet var bottomSeperatorView: UIView!
+    
+    @IBOutlet var gripperTopConstraint: NSLayoutConstraint!
     
     // We adjust our 'header' based on the bottom safe area using this constraint
     @IBOutlet var headerSectionHeightConstraint: NSLayoutConstraint!
@@ -32,6 +36,19 @@ class DrawerContentViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         gripperView.layer.cornerRadius = 2.5
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // You must wait until viewWillAppear -or- later in the view controller lifecycle in order to get a reference to Pulley via self.parent for customization.
+    
+        // UIFeedbackGenerator is only available iOS 10+. Since Pulley works back to iOS 9, the .feedbackGenerator property is "Any" and managed internally as a feedback generator.
+        if #available(iOS 10.0, *)
+        {
+            let feedbackGenerator = UISelectionFeedbackGenerator()
+            (self.parent as? PulleyViewController)?.feedbackGenerator = feedbackGenerator
+        }
     }
 }
 
@@ -76,12 +93,30 @@ extension DrawerContentViewController: PulleyDrawerViewControllerDelegate {
         
         // Handle tableview scrolling / searchbar editing
         
-        tableView.isScrollEnabled = drawer.drawerPosition == .open
+        tableView.isScrollEnabled = drawer.drawerPosition == .open || drawer.currentDisplayMode == .leftSide
         
         if drawer.drawerPosition != .open
         {
             searchBar.resignFirstResponder()
         }
+        
+        if drawer.currentDisplayMode == .leftSide
+        {
+            topSeparatorView.isHidden = drawer.drawerPosition == .collapsed
+            bottomSeperatorView.isHidden = drawer.drawerPosition == .collapsed
+        }
+        else
+        {
+            topSeparatorView.isHidden = false
+            bottomSeperatorView.isHidden = true
+        }
+    }
+    
+    /// This function is called when the current drawer display mode changes. Make UI customizations here.
+    func drawerDisplayModeDidChange(drawer: PulleyViewController) {
+        
+        print("Drawer: \(drawer.currentDisplayMode)")
+        gripperTopConstraint.isActive = drawer.currentDisplayMode == .bottomDrawer
     }
 }
 
@@ -97,10 +132,6 @@ extension DrawerContentViewController: UISearchBarDelegate {
 }
 
 extension DrawerContentViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 50

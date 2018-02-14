@@ -446,7 +446,7 @@ class API: NSObject, XMLParserDelegate {
             
             do {
                 
-                let content = try String(contentsOf: url, encoding: String.Encoding.utf8)
+                let content = try String(contentsOf: url, encoding: String.Encoding.ascii)
                 
                 let csv = CSwiftV(with: content, separator: ";", headers: nil)
                 
@@ -464,7 +464,7 @@ class API: NSObject, XMLParserDelegate {
                         
                         if let tel = row["Tel"] {
                             
-                            if let phoneUrl = URL(string: "telprompt://4902841" + tel) {
+                            if let phoneUrl = URL(string: "telprompt://49" + tel.replacingOccurrences(of: "/", with: "")) { // telprompt://4902841
                                 
                                 phone = phoneUrl
                                 
