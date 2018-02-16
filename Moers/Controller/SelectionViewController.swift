@@ -87,6 +87,13 @@ extension SelectionViewController: UITableViewDelegate, UITableViewDataSource {
             
             cell.searchImageView.image = #imageLiteral(resourceName: "camera")
             
+        } else if let ebike = clusteredLocations[indexPath.row] as? BikeChargingStation {
+            
+            cell.titleLabel.text = ebike.title
+            cell.subtitleLabel.text = "EBike Ladestation"
+            
+            cell.searchImageView.image = #imageLiteral(resourceName: "ebike")
+            
         }
         
         return cell

@@ -23,7 +23,7 @@ class DetailParkingViewController: UIViewController {
             
             slotsLabel.text = "\(parkingLot.slots)"
             freeLabel.text = "\(parkingLot.free)"
-            statusLabel.text = "\(parkingLot.status.rawValue) ↘︎"
+            statusLabel.text = "\(parkingLot.status.rawValue)"
             streetLabel.text = parkingLot.address
             
         }

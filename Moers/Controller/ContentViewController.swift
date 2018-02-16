@@ -38,6 +38,7 @@ class ContentViewController: UIViewController {
     @IBOutlet var separatorHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerSectionHeightConstraint: NSLayoutConstraint!
     
+    
     var locations: [Location] = []
     
     var filteredLocations: [Location] = []
@@ -228,6 +229,8 @@ extension ContentViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.titleLabel.text = bikeCharger.title
                 cell.subtitleLabel.text = "E-Bike Ladestation"
                 
+                cell.searchImageView.image = #imageLiteral(resourceName: "ebike")
+                
             }
             
             return cell
@@ -325,6 +328,9 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
         guard let branchCell = cell as? BranchCollectionViewCell else { return }
         
         branchCell.buttonView.layer.cornerRadius = branchCell.buttonView.frame.size.width / 2
+        branchCell.buttonView.backgroundColor = UIColor(red: 0xFF, green: 0xF5, blue: 0x00, alpha: 1)//UIColor(red: 1.00, green: 0.80, blue: 0.00, alpha: 1.0)
+        branchCell.buttonView.layer.borderColor = UIColor.black.cgColor
+        branchCell.buttonView.layer.borderWidth = 1
         
         
     }
@@ -494,6 +500,12 @@ extension ContentViewController: UISearchBarDelegate {
         filteredLocations = locs
         
         tableView.reloadData()
+        
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.resignFirstResponder()
         
     }
     

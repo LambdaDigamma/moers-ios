@@ -97,7 +97,7 @@ class ShopIconDrawer {
         //            case "Druck und Beschriftungen": return UIImage(named: "vorlageShop")!
         case "Musikinstrumente": return UIImage(named: "music")!
         //            case "Versicherung": return UIImage(named: "vorlageShop")!
-        default: return nil
+        default: return UIImage()
             
         }
         

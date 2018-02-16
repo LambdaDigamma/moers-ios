@@ -1,9 +1,0 @@
-{
-  "commitish" : "1.0.4",
-  "iOS" : [
-    {
-      "hash" : "d480a8e8db43979c44424b25bed3025fbfa1cef47c958933adac74889df70604",
-      "name" : "DeckTransition"
-    }
-  ]
-}

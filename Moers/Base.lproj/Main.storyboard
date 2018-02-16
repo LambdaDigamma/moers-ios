@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="owo-dS-ICI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14092" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="owo-dS-ICI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14081.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -48,7 +48,9 @@
                         <viewLayoutGuide key="safeArea" id="6yN-k0-vwz"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="ljJ-7e-Pam"/>
-                    <navigationItem key="navigationItem" title="Karte" id="W0E-Cm-RyL"/>
+                    <navigationItem key="navigationItem" title="Karte" id="W0E-Cm-RyL">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="nJR-9h-b7W"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="drawerContentContainerView" destination="HYw-ZO-B8z" id="aXP-N4-SLw"/>
                         <outlet property="primaryContentContainerView" destination="Tq8-B4-V7A" id="826-WA-dmh"/>
