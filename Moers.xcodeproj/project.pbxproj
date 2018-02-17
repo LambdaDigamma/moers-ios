@@ -37,6 +37,13 @@
 		DFB6185B1FAE2CC800C98EB6 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6185A1FAE2CC800C98EB6 /* NavigationViewController.swift */; };
 		DFB64DB120377AEE00173A80 /* MoersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB64DB020377AEE00173A80 /* MoersUITests.swift */; };
 		DFB64DB920377B7600173A80 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB64DB820377B7600173A80 /* SnapshotHelper.swift */; };
+		DFB64DC12038826F00173A80 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DBA2038826C00173A80 /* FirebaseCoreDiagnostics.framework */; };
+		DFB64DC22038826F00173A80 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DBB2038826D00173A80 /* FirebaseInstanceID.framework */; };
+		DFB64DC32038826F00173A80 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DBC2038826D00173A80 /* GoogleToolboxForMac.framework */; };
+		DFB64DC42038826F00173A80 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DBD2038826E00173A80 /* FirebaseAnalytics.framework */; };
+		DFB64DC52038826F00173A80 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DBE2038826E00173A80 /* FirebaseCore.framework */; };
+		DFB64DC62038826F00173A80 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DBF2038826F00173A80 /* nanopb.framework */; };
+		DFB64DC72038826F00173A80 /* FirebaseNanoPB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DC02038826F00173A80 /* FirebaseNanoPB.framework */; };
 		DFB92D5E1F6B0B0900669F73 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D5D1F6B0B0900669F73 /* API.swift */; };
 		DFB92D601F6B0B3F00669F73 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D5F1F6B0B3F00669F73 /* Shop.swift */; };
 		DFB92D621F6B0B7A00669F73 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D611F6B0B7A00669F73 /* Location.swift */; };
@@ -98,6 +105,15 @@
 		DFB64DB020377AEE00173A80 /* MoersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoersUITests.swift; sourceTree = "<group>"; };
 		DFB64DB220377AEE00173A80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DFB64DB820377B7600173A80 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
+		DFB64DBA2038826C00173A80 /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
+		DFB64DBB2038826D00173A80 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		DFB64DBC2038826D00173A80 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = "<group>"; };
+		DFB64DBD2038826E00173A80 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		DFB64DBE2038826E00173A80 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = "<group>"; };
+		DFB64DBF2038826F00173A80 /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = nanopb.framework; sourceTree = "<group>"; };
+		DFB64DC02038826F00173A80 /* FirebaseNanoPB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseNanoPB.framework; sourceTree = "<group>"; };
+		DFB64DC9203883D200173A80 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		DFB64DCA2038845300173A80 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
 		DFB92D5D1F6B0B0900669F73 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		DFB92D5F1F6B0B3F00669F73 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		DFB92D611F6B0B7A00669F73 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -120,6 +136,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFB618581FAE144000C98EB6 /* Pulley.framework in Frameworks */,
+				DFB64DC12038826F00173A80 /* FirebaseCoreDiagnostics.framework in Frameworks */,
+				DFB64DC22038826F00173A80 /* FirebaseInstanceID.framework in Frameworks */,
+				DFB64DC32038826F00173A80 /* GoogleToolboxForMac.framework in Frameworks */,
+				DFB64DC62038826F00173A80 /* nanopb.framework in Frameworks */,
+				DFB64DC52038826F00173A80 /* FirebaseCore.framework in Frameworks */,
+				DFB64DC42038826F00173A80 /* FirebaseAnalytics.framework in Frameworks */,
+				DFB64DC72038826F00173A80 /* FirebaseNanoPB.framework in Frameworks */,
 				DF02B7651FB0BBD8004B8B3E /* SwiftyConfiguration.framework in Frameworks */,
 				DFFB775B1FB37E0A00073863 /* InfoKit.framework in Frameworks */,
 			);
@@ -188,6 +211,15 @@
 				DF02B7601FB035BB004B8B3E /* Settings.plist */,
 				DFFB775F1FB38A5A00073863 /* Branches.plist */,
 				DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */,
+				DFB64DC9203883D200173A80 /* module.modulemap */,
+				DFB64DCA2038845300173A80 /* Firebase.h */,
+				DFB64DBD2038826E00173A80 /* FirebaseAnalytics.framework */,
+				DFB64DBE2038826E00173A80 /* FirebaseCore.framework */,
+				DFB64DBA2038826C00173A80 /* FirebaseCoreDiagnostics.framework */,
+				DFB64DBB2038826D00173A80 /* FirebaseInstanceID.framework */,
+				DFB64DC02038826F00173A80 /* FirebaseNanoPB.framework */,
+				DFB64DBC2038826D00173A80 /* GoogleToolboxForMac.framework */,
+				DFB64DBF2038826F00173A80 /* nanopb.framework */,
 			);
 			path = Moers;
 			sourceTree = "<group>";
@@ -607,10 +639,12 @@
 				);
 				INFOPLIST_FILE = Moers/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -629,10 +663,12 @@
 				);
 				INFOPLIST_FILE = Moers/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
