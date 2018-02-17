@@ -1,0 +1,90 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+before_all do
+  ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+end
+
+default_platform(:ios)
+
+platform :ios do
+
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
+
+    increment_build_number
+
+    build_app(scheme: "Moers")
+    upload_to_testflight
+
+
+    slack(
+      message: "Mein Moers Beta successfully released!",
+      channel: "#mein-moers",
+      payload: {
+        "Build Date" => Time.new.to_s,
+        "Built by" => "Fastlane",
+      }
+    )
+
+  end
+
+  desc "Creating a code signing certificate and provisioning profile"
+  lane :provisioning do 
+    
+    produce(
+      app_name: 'Mein Moers',
+      language: 'German',
+      app_version: '1',
+      sku: 'de.okfn.moers-festival.001'
+    )
+
+    cert
+
+    sigh(force: true)
+
+  end
+
+  desc "Take screenshots"
+  lane :screenshot do
+    snapshot
+  end
+
+  desc "Create ipa"
+  lane :build do
+    increment_build_number
+    gym
+  end
+
+  desc "Upload to App Store"
+  lane :upload do
+    deliver
+  end
+
+  desc "Provision, take screenshots, build and upload to App Store"
+  lane :do_everything do
+    provisioning
+    screenshot
+    build
+    upload
+  end
+
+  error do |lane, exception|
+    
+    slack(
+      message: exception.message,
+      channel: "#mein-moers",
+      success: false
+    )
+
+  end
+
+end

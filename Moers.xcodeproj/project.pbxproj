@@ -35,6 +35,8 @@
 		DFB5ECD11F79B01800B2B464 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB5ECD01F79B01800B2B464 /* CameraViewController.swift */; };
 		DFB618581FAE144000C98EB6 /* Pulley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB618571FAE144000C98EB6 /* Pulley.framework */; };
 		DFB6185B1FAE2CC800C98EB6 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6185A1FAE2CC800C98EB6 /* NavigationViewController.swift */; };
+		DFB64DB120377AEE00173A80 /* MoersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB64DB020377AEE00173A80 /* MoersUITests.swift */; };
+		DFB64DB920377B7600173A80 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB64DB820377B7600173A80 /* SnapshotHelper.swift */; };
 		DFB92D5E1F6B0B0900669F73 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D5D1F6B0B0900669F73 /* API.swift */; };
 		DFB92D601F6B0B3F00669F73 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D5F1F6B0B3F00669F73 /* Shop.swift */; };
 		DFB92D621F6B0B7A00669F73 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D611F6B0B7A00669F73 /* Location.swift */; };
@@ -50,6 +52,16 @@
 		DFFB775B1FB37E0A00073863 /* InfoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFFB775A1FB37E0A00073863 /* InfoKit.framework */; };
 		DFFB77601FB38A5A00073863 /* Branches.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFFB775F1FB38A5A00073863 /* Branches.plist */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DFB64DB320377AEE00173A80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF1A49571F6AAB7000E9108B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DF1A495E1F6AAB7000E9108B;
+			remoteInfo = Moers;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		DF02B75C1FAFC037004B8B3E /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
@@ -82,6 +94,10 @@
 		DFB5ECD01F79B01800B2B464 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		DFB618571FAE144000C98EB6 /* Pulley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pulley.framework; path = Carthage/Build/iOS/Pulley.framework; sourceTree = "<group>"; };
 		DFB6185A1FAE2CC800C98EB6 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NavigationViewController.swift; path = Pulley/NavigationViewController.swift; sourceTree = "<group>"; };
+		DFB64DAE20377AEE00173A80 /* MoersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFB64DB020377AEE00173A80 /* MoersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoersUITests.swift; sourceTree = "<group>"; };
+		DFB64DB220377AEE00173A80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DFB64DB820377B7600173A80 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		DFB92D5D1F6B0B0900669F73 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		DFB92D5F1F6B0B3F00669F73 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		DFB92D611F6B0B7A00669F73 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -106,6 +122,13 @@
 				DFB618581FAE144000C98EB6 /* Pulley.framework in Frameworks */,
 				DF02B7651FB0BBD8004B8B3E /* SwiftyConfiguration.framework in Frameworks */,
 				DFFB775B1FB37E0A00073863 /* InfoKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFB64DAB20377AEE00173A80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				DF1A49611F6AAB7000E9108B /* Moers */,
+				DFB64DAF20377AEE00173A80 /* MoersUITests */,
 				DF1A49601F6AAB7000E9108B /* Products */,
 				DF1A497D1F6ABD7100E9108B /* Frameworks */,
 			);
@@ -143,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				DF1A495F1F6AAB7000E9108B /* Moers.app */,
+				DFB64DAE20377AEE00173A80 /* MoersUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -229,6 +254,16 @@
 			path = AnnotationView;
 			sourceTree = "<group>";
 		};
+		DFB64DAF20377AEE00173A80 /* MoersUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DFB64DB020377AEE00173A80 /* MoersUITests.swift */,
+				DFB64DB820377B7600173A80 /* SnapshotHelper.swift */,
+				DFB64DB220377AEE00173A80 /* Info.plist */,
+			);
+			path = MoersUITests;
+			sourceTree = "<group>";
+		};
 		DFC1CC651F75962E00C1D269 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,19 +306,42 @@
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DFB64DAD20377AEE00173A80 /* MoersUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFB64DB720377AEE00173A80 /* Build configuration list for PBXNativeTarget "MoersUITests" */;
+			buildPhases = (
+				DFB64DAA20377AEE00173A80 /* Sources */,
+				DFB64DAB20377AEE00173A80 /* Frameworks */,
+				DFB64DAC20377AEE00173A80 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DFB64DB420377AEE00173A80 /* PBXTargetDependency */,
+			);
+			name = MoersUITests;
+			productName = MoersUITests;
+			productReference = DFB64DAE20377AEE00173A80 /* MoersUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		DF1A49571F6AAB7000E9108B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0900;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Lennart Fischer";
 				TargetAttributes = {
 					DF1A495E1F6AAB7000E9108B = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+					};
+					DFB64DAD20377AEE00173A80 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DF1A495E1F6AAB7000E9108B;
 					};
 				};
 			};
@@ -301,6 +359,7 @@
 			projectRoot = "";
 			targets = (
 				DF1A495E1F6AAB7000E9108B /* Moers */,
+				DFB64DAD20377AEE00173A80 /* MoersUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -316,6 +375,13 @@
 				DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */,
 				DF1A49681F6AAB7000E9108B /* Main.storyboard in Resources */,
 				DFF5DDCB20094A920075A2F4 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFB64DAC20377AEE00173A80 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,7 +447,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DFB64DAA20377AEE00173A80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFB64DB120377AEE00173A80 /* MoersUITests.swift in Sources */,
+				DFB64DB920377B7600173A80 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DFB64DB420377AEE00173A80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DF1A495E1F6AAB7000E9108B /* Moers */;
+			targetProxy = DFB64DB320377AEE00173A80 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DF1A49661F6AAB7000E9108B /* Main.storyboard */ = {
@@ -515,6 +598,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -527,6 +611,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -535,6 +620,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -547,6 +633,39 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		DFB64DB520377AEE00173A80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 93C29USLP6;
+				INFOPLIST_FILE = MoersUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Moers;
+			};
+			name = Debug;
+		};
+		DFB64DB620377AEE00173A80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 93C29USLP6;
+				INFOPLIST_FILE = MoersUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Moers;
 			};
 			name = Release;
 		};
@@ -567,6 +686,15 @@
 			buildConfigurations = (
 				DF1A49721F6AAB7000E9108B /* Debug */,
 				DF1A49731F6AAB7000E9108B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DFB64DB720377AEE00173A80 /* Build configuration list for PBXNativeTarget "MoersUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFB64DB520377AEE00173A80 /* Debug */,
+				DFB64DB620377AEE00173A80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
