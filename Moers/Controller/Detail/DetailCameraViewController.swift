@@ -7,12 +7,19 @@
 //
 
 import UIKit
+import Crashlytics
 
 class DetailCameraViewController: UIViewController {
     
     var selectedCamera: Camera? {
         
-        didSet {}
+        didSet {
+            
+            guard let camera = selectedCamera else { return }
+            
+            Answers.logCustomEvent(withName: "Detail - Camera", customAttributes: ["name": camera.name, "panoID": camera.panoID])
+            
+        }
         
     }
     

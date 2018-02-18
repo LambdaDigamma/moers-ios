@@ -44,6 +44,9 @@
 		DFB64DC52038826F00173A80 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DBE2038826E00173A80 /* FirebaseCore.framework */; };
 		DFB64DC62038826F00173A80 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DBF2038826F00173A80 /* nanopb.framework */; };
 		DFB64DC72038826F00173A80 /* FirebaseNanoPB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DC02038826F00173A80 /* FirebaseNanoPB.framework */; };
+		DFB64DCE20389FDC00173A80 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DCC20389FDB00173A80 /* Crashlytics.framework */; };
+		DFB64DCF20389FDC00173A80 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DCD20389FDB00173A80 /* Fabric.framework */; };
+		DFB64DD12038F94600173A80 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB64DD02038F94600173A80 /* InfoViewController.swift */; };
 		DFB92D5E1F6B0B0900669F73 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D5D1F6B0B0900669F73 /* API.swift */; };
 		DFB92D601F6B0B3F00669F73 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D5F1F6B0B3F00669F73 /* Shop.swift */; };
 		DFB92D621F6B0B7A00669F73 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D611F6B0B7A00669F73 /* Location.swift */; };
@@ -114,6 +117,9 @@
 		DFB64DC02038826F00173A80 /* FirebaseNanoPB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseNanoPB.framework; sourceTree = "<group>"; };
 		DFB64DC9203883D200173A80 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		DFB64DCA2038845300173A80 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
+		DFB64DCC20389FDB00173A80 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
+		DFB64DCD20389FDB00173A80 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		DFB64DD02038F94600173A80 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		DFB92D5D1F6B0B0900669F73 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		DFB92D5F1F6B0B3F00669F73 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		DFB92D611F6B0B7A00669F73 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -145,6 +151,8 @@
 				DFB64DC72038826F00173A80 /* FirebaseNanoPB.framework in Frameworks */,
 				DF02B7651FB0BBD8004B8B3E /* SwiftyConfiguration.framework in Frameworks */,
 				DFFB775B1FB37E0A00073863 /* InfoKit.framework in Frameworks */,
+				DFB64DCE20389FDC00173A80 /* Crashlytics.framework in Frameworks */,
+				DFB64DCF20389FDC00173A80 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +228,8 @@
 				DFB64DC02038826F00173A80 /* FirebaseNanoPB.framework */,
 				DFB64DBC2038826D00173A80 /* GoogleToolboxForMac.framework */,
 				DFB64DBF2038826F00173A80 /* nanopb.framework */,
+				DFB64DCC20389FDB00173A80 /* Crashlytics.framework */,
+				DFB64DCD20389FDB00173A80 /* Fabric.framework */,
 			);
 			path = Moers;
 			sourceTree = "<group>";
@@ -243,6 +253,7 @@
 				DFC1CC631F75960A00C1D269 /* SelectionViewController.swift */,
 				DFC1CC651F75962E00C1D269 /* Detail */,
 				DFB5ECD01F79B01800B2B464 /* CameraViewController.swift */,
+				DFB64DD02038F94600173A80 /* InfoViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -326,6 +337,7 @@
 			buildPhases = (
 				DF1A495B1F6AAB7000E9108B /* Sources */,
 				DF1A495C1F6AAB7000E9108B /* Frameworks */,
+				DFB64DCB20389FB400173A80 /* ShellScript */,
 				DF1A495D1F6AAB7000E9108B /* Resources */,
 				DFB618591FAE144D00C98EB6 /* ShellScript */,
 			);
@@ -436,6 +448,19 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
+		DFB64DCB20389FB400173A80 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 6e61a3c3f5bc5d05f481ed66aaf5de017625b1fa 3dcc7cd7bf8672a813d5a1ae8b02151d6cd8682f9e59ecfcc9513d1ad5e55186";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -451,6 +476,7 @@
 				DFB92D621F6B0B7A00669F73 /* Location.swift in Sources */,
 				DFC1CC641F75960A00C1D269 /* SelectionViewController.swift in Sources */,
 				DFD129761FAF12D2001900CF /* BranchCollectionViewCell.swift in Sources */,
+				DFB64DD12038F94600173A80 /* InfoViewController.swift in Sources */,
 				DF02B7631FB0BAE9004B8B3E /* Branch.swift in Sources */,
 				DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */,
 				DF8254061F7711180069D751 /* Camera.swift in Sources */,
@@ -636,6 +662,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/Moers",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Moers/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -660,6 +687,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/Moers",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Moers/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

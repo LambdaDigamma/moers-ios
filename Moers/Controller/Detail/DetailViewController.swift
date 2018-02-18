@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import Pulley
+import Crashlytics
 
 struct DetailContentHeight {
     
@@ -62,6 +63,20 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func navigateViaMeps(_ sender: UIButton) {
         
         guard let location = selectedLocation else { return }
+        
+        var type = ""
+        
+        if location is Shop {
+            type = "Shop"
+        } else if location is ParkingLot {
+            type = "Parking Lot"
+        } else if location is Camera {
+            type = "Camera"
+        } else if location is BikeChargingStation {
+            type = "E-Bike Charger"
+        }
+        
+        Answers.logCustomEvent(withName: "Navigation", customAttributes: ["type": type, "name": location.name])
         
         let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: location.location.coordinate, addressDictionary: nil))
         mapItem.name = "\(location.name)"

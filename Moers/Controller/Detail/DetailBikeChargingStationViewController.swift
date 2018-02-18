@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class DetailBikeChargingStationViewController: UIViewController {
 
@@ -73,6 +74,8 @@ class DetailBikeChargingStationViewController: UIViewController {
             
             streetLabel.text = "\(charger.street)"
             placeLabel.text = "\(charger.postcode) Moers"
+            
+            Answers.logCustomEvent(withName: "Detail - E-Bike Charger", customAttributes: ["name": charger.name])
             
         }
         

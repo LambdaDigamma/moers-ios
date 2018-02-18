@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14092" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="owo-dS-ICI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="owo-dS-ICI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14081.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -12,6 +12,138 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Über-->
+        <scene sceneID="xCH-4V-j1u">
+            <objects>
+                <viewController id="x3P-8U-5lr" customClass="InfoViewController" customModule="Moers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FN7-d5-ySj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entwickelt mit " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRY-LA-Jun">
+                                <rect key="frame" x="56.5" y="626" width="114.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cfn" translatesAutoresizingMaskIntoConstraints="NO" id="pVW-zu-Ph7">
+                                <rect key="frame" x="16" y="80" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="8RO-QE-ZLJ"/>
+                                    <constraint firstAttribute="width" secondItem="pVW-zu-Ph7" secondAttribute="height" multiplier="1:1" id="Zz4-DU-Kps"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CodeForNiederrhein" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJC-1y-hmd">
+                                <rect key="frame" x="94" y="80" width="265" height="26"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="86q-f0-RfX">
+                                <rect key="frame" x="16" y="166" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="86q-f0-RfX" secondAttribute="height" multiplier="1:1" id="Pcf-Wm-f1M"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lennart Fischer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMs-2R-6lj">
+                                <rect key="frame" x="94" y="166" width="265" height="26"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="0XY-4d-G0T">
+                                <rect key="frame" x="171" y="626" width="33" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="33" id="Cys-Mk-gxC"/>
+                                    <constraint firstAttribute="height" constant="21" id="SGh-FB-Vsj"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in Moers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehx-h9-XY2">
+                                <rect key="frame" x="204" y="626" width="67.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Twitter: twitter.com/lambdadigamma" translatesAutoresizingMaskIntoConstraints="NO" id="kfi-OY-EFg">
+                                <rect key="frame" x="90" y="192" width="269" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="FdU-Mg-0zu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="url"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES" lookupSuggestion="YES"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Twitter: twitter.com/codefornrn Website: codeforniederrhein.de" translatesAutoresizingMaskIntoConstraints="NO" id="D8w-KH-B3Y">
+                                <rect key="frame" x="90" y="106" width="269" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="EYf-ZK-Yao"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="url"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES" lookupSuggestion="YES"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qlL-Ti-JpU">
+                                <rect key="frame" x="10" y="244" width="349" height="362"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Diese App ist ein Projekt der Gruppe CodeForNiederrhein und wurde von Lennart Fischer entwickelt. Die Daten stammen aus dem OpenData-Portal der Stadt Moers (offenesdatenportal.de) und die 360° Panoramen werden von der Moerser Firma Telepano (telepano.de) zur Verfügung gestellt.  Sie vermissen Ihr Geschäft in dieser App, Daten sind nicht aktuell oder wollen Feedback geben? Kein Problem: Schreiben Sie einfach eine Email an moersapp@lambdadigamma.com!  Alle Angaben zu Daten sind ohne Gewähr.</string>
+                                        <attributes>
+                                            <font key="NSFont" size="14" name=".SFNSText"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES" lookupSuggestion="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="86q-f0-RfX" firstAttribute="leading" secondItem="tnV-La-Mlg" secondAttribute="leading" constant="16" id="2XC-0M-371"/>
+                            <constraint firstItem="0XY-4d-G0T" firstAttribute="leading" secondItem="KRY-LA-Jun" secondAttribute="trailing" id="4qa-92-XKn"/>
+                            <constraint firstItem="ehx-h9-XY2" firstAttribute="leading" secondItem="0XY-4d-G0T" secondAttribute="trailing" id="8hS-4p-ApO"/>
+                            <constraint firstItem="qMs-2R-6lj" firstAttribute="leading" secondItem="86q-f0-RfX" secondAttribute="trailing" constant="8" id="ACf-dV-7or"/>
+                            <constraint firstItem="D8w-KH-B3Y" firstAttribute="top" secondItem="MJC-1y-hmd" secondAttribute="bottom" id="AL6-2A-MrP"/>
+                            <constraint firstItem="tnV-La-Mlg" firstAttribute="trailing" secondItem="qlL-Ti-JpU" secondAttribute="trailing" constant="16" id="DIA-Uh-Lei"/>
+                            <constraint firstItem="qlL-Ti-JpU" firstAttribute="leading" secondItem="tnV-La-Mlg" secondAttribute="leading" constant="10" id="GCm-Ic-Tgd"/>
+                            <constraint firstItem="tnV-La-Mlg" firstAttribute="bottom" secondItem="0XY-4d-G0T" secondAttribute="bottom" constant="20" id="GWb-yn-50w"/>
+                            <constraint firstItem="tnV-La-Mlg" firstAttribute="trailing" secondItem="kfi-OY-EFg" secondAttribute="trailing" constant="16" id="H3l-6k-CtE"/>
+                            <constraint firstItem="tnV-La-Mlg" firstAttribute="trailing" secondItem="qMs-2R-6lj" secondAttribute="trailing" constant="16" id="IX0-0I-Wbz"/>
+                            <constraint firstItem="MJC-1y-hmd" firstAttribute="top" secondItem="tnV-La-Mlg" secondAttribute="top" constant="16" id="KEw-1N-2nO"/>
+                            <constraint firstItem="pVW-zu-Ph7" firstAttribute="leading" secondItem="tnV-La-Mlg" secondAttribute="leading" constant="16" id="L8i-Z7-Rlv"/>
+                            <constraint firstItem="kfi-OY-EFg" firstAttribute="top" secondItem="qMs-2R-6lj" secondAttribute="bottom" id="NlQ-Qd-7vY"/>
+                            <constraint firstItem="tnV-La-Mlg" firstAttribute="bottom" secondItem="ehx-h9-XY2" secondAttribute="bottom" constant="20" id="Q6h-OV-Dv5"/>
+                            <constraint firstItem="0XY-4d-G0T" firstAttribute="centerX" secondItem="FN7-d5-ySj" secondAttribute="centerX" id="R8n-r4-qvz"/>
+                            <constraint firstItem="KRY-LA-Jun" firstAttribute="top" secondItem="qlL-Ti-JpU" secondAttribute="bottom" constant="20" id="U58-5U-cbH"/>
+                            <constraint firstItem="qMs-2R-6lj" firstAttribute="top" secondItem="86q-f0-RfX" secondAttribute="top" id="UMu-Re-dws"/>
+                            <constraint firstItem="qlL-Ti-JpU" firstAttribute="top" secondItem="86q-f0-RfX" secondAttribute="bottom" constant="8" id="X9s-lx-4V5"/>
+                            <constraint firstItem="pVW-zu-Ph7" firstAttribute="top" secondItem="tnV-La-Mlg" secondAttribute="top" constant="16" id="edr-D2-TT5"/>
+                            <constraint firstItem="MJC-1y-hmd" firstAttribute="leading" secondItem="pVW-zu-Ph7" secondAttribute="trailing" constant="8" id="g34-9f-obf"/>
+                            <constraint firstItem="tnV-La-Mlg" firstAttribute="trailing" secondItem="MJC-1y-hmd" secondAttribute="trailing" constant="16" id="hDc-8I-fLe"/>
+                            <constraint firstItem="kfi-OY-EFg" firstAttribute="leading" secondItem="86q-f0-RfX" secondAttribute="trailing" constant="4" id="hZG-AR-FpU"/>
+                            <constraint firstItem="tnV-La-Mlg" firstAttribute="trailing" secondItem="D8w-KH-B3Y" secondAttribute="trailing" constant="16" id="mw3-BH-dsi"/>
+                            <constraint firstItem="86q-f0-RfX" firstAttribute="top" secondItem="pVW-zu-Ph7" secondAttribute="bottom" constant="16" id="s8e-Jm-5gF"/>
+                            <constraint firstItem="86q-f0-RfX" firstAttribute="width" secondItem="pVW-zu-Ph7" secondAttribute="width" id="sBk-7K-mcw"/>
+                            <constraint firstItem="tnV-La-Mlg" firstAttribute="bottom" secondItem="KRY-LA-Jun" secondAttribute="bottom" constant="20" id="v3b-If-Flr"/>
+                            <constraint firstItem="D8w-KH-B3Y" firstAttribute="leading" secondItem="pVW-zu-Ph7" secondAttribute="trailing" constant="4" id="vxZ-xb-dMQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tnV-La-Mlg"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Über" id="sAm-tK-Bsv">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="TZb-Wn-qtL">
+                            <connections>
+                                <action selector="composeMail:" destination="x3P-8U-5lr" id="jFN-2h-aL4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wLM-nf-KLc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="46.326836581709152"/>
+        </scene>
         <!--Pully View Controller-->
         <scene sceneID="6QP-qy-8x2">
             <objects>
@@ -49,7 +181,12 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="ljJ-7e-Pam"/>
                     <navigationItem key="navigationItem" title="Karte" id="W0E-Cm-RyL">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="nJR-9h-b7W"/>
+                        <barButtonItem key="rightBarButtonItem" image="information" style="plain" id="nJR-9h-b7W">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="x3P-8U-5lr" kind="show" id="54i-hy-0V1"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="drawerContentContainerView" destination="HYw-ZO-B8z" id="aXP-N4-SLw"/>
@@ -1482,8 +1619,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="avatar" width="500" height="500"/>
+        <image name="cfn" width="521" height="600"/>
         <image name="close" width="100" height="100"/>
         <image name="filter" width="64" height="64"/>
+        <image name="information" width="22" height="22"/>
+        <image name="like" width="64" height="64"/>
         <image name="translator" width="98" height="98"/>
     </resources>
 </document>

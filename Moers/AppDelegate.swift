@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        Fabric.with([Crashlytics.self, Answers.self])
         
         FirebaseApp.configure()
         FirebaseConfiguration.shared.analyticsConfiguration.setAnalyticsCollectionEnabled(true)
@@ -26,10 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appearance.isTranslucent = false
         appearance.tintColor = UIColor.white
         appearance.barStyle = .black
-        
-        print("Test")
-        
-        print(StoreManager.firstLaunch)
         
         if StoreManager.firstLaunch {
             

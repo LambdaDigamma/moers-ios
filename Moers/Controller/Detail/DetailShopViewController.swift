@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class DetailShopViewController: UIViewController {
 
@@ -31,6 +32,8 @@ class DetailShopViewController: UIViewController {
     @IBAction func call(_ sender: DesignableButton) {
         
         guard let shop = selectedShop else { return }
+        
+        Answers.logCustomEvent(withName: "Call Shop", customAttributes: ["name": shop.name, "branch": shop.branch])
         
         if let url = shop.phone, UIApplication.shared.canOpenURL(url) {
             
@@ -71,6 +74,8 @@ class DetailShopViewController: UIViewController {
             }
             
             guard let shop = selectedShop else { return }
+            
+            Answers.logCustomEvent(withName: "Open Shop Website", customAttributes: ["name": shop.name, "branch": shop.branch])
             
             mondayLabel.text = shop.openingTimes.createOpeningString(from: .monday)
             tuesdayLabel.text = shop.openingTimes.createOpeningString(from: .tuesday)
@@ -118,6 +123,8 @@ class DetailShopViewController: UIViewController {
             
             streetLabel.text = "\(shop.street) \(shop.houseNumber)"
             postCodeLabel.text = "\(shop.postcode) Moers"
+            
+            Answers.logCustomEvent(withName: "Detail - Shop", customAttributes: ["name": shop.name, "branch": shop.branch])
             
         }
         

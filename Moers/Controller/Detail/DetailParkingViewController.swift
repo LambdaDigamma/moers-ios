@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class DetailParkingViewController: UIViewController {
 
@@ -25,6 +26,8 @@ class DetailParkingViewController: UIViewController {
             freeLabel.text = "\(parkingLot.free)"
             statusLabel.text = "\(parkingLot.status.rawValue)"
             streetLabel.text = parkingLot.address
+            
+            Answers.logCustomEvent(withName: "Detail - Parking Lot", customAttributes: ["name": parkingLot.name, "free": parkingLot.free, "status": parkingLot.status.rawValue])
             
         }
         

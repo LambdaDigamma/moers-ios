@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import Pulley
+import Crashlytics
 
 struct AnnotationIdentifier {
     
@@ -197,6 +198,8 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
         if !(view.annotation is MKClusterAnnotation) && !(view.annotation is MKUserLocation) {
+            
+            Answers.logCustomEvent(withName: "Map Selection", customAttributes: ["name": (view.annotation as! Location).name])
             
             if let drawer = self.parent as? PulleyViewController {
                 let drawerDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController

@@ -8,6 +8,8 @@
 
 import UIKit
 import Pulley
+import Crashlytics
+import MapKit
 
 public struct CellIdentifier {
     
@@ -241,6 +243,12 @@ extension ContentViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        if searchBar.text != "" {
+            
+            Answers.logSearch(withQuery: searchBar.text, customAttributes: nil)
+            
+        }
+        
         if indexPath.row != 0 {
             
             resetNavBar()
@@ -257,7 +265,11 @@ extension ContentViewController: UITableViewDelegate, UITableViewDataSource {
                     
                     let coordinate = self.datasource[indexPath.row - 1].location.coordinate
                     
+                    let annotation = self.datasource[indexPath.row - 1] as! MKAnnotation
+                    
+                    mapController.map.selectAnnotation(annotation, animated: true)
                     mapController.map.setCenter(coordinate, animated: true)
+                    mapController.map.camera.altitude = 0.5
                     
                 }
                 
@@ -366,6 +378,12 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
         
         selectedBranch = branches[indexPath.row]
+        
+        if let branch = selectedBranch {
+            
+            Answers.logCustomEvent(withName: "Branch", customAttributes: ["name": branch.name])
+            
+        }
         
         searchStyle = .branchSearch
         
@@ -504,6 +522,8 @@ extension ContentViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        Answers.logSearch(withQuery: searchBar.text, customAttributes: nil)
         
         searchBar.resignFirstResponder()
         
