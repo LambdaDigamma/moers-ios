@@ -21,7 +21,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entwickelt mit " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRY-LA-Jun">
-                                <rect key="frame" x="56.5" y="626" width="114.5" height="21"/>
+                                <rect key="frame" x="16" y="626" width="155" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -59,7 +59,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in Moers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehx-h9-XY2">
-                                <rect key="frame" x="204" y="626" width="67.5" height="21"/>
+                                <rect key="frame" x="204" y="626" width="155" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -117,8 +117,10 @@
                             <constraint firstItem="kfi-OY-EFg" firstAttribute="top" secondItem="qMs-2R-6lj" secondAttribute="bottom" id="NlQ-Qd-7vY"/>
                             <constraint firstItem="tnV-La-Mlg" firstAttribute="bottom" secondItem="ehx-h9-XY2" secondAttribute="bottom" constant="20" id="Q6h-OV-Dv5"/>
                             <constraint firstItem="0XY-4d-G0T" firstAttribute="centerX" secondItem="FN7-d5-ySj" secondAttribute="centerX" id="R8n-r4-qvz"/>
+                            <constraint firstItem="tnV-La-Mlg" firstAttribute="trailing" secondItem="ehx-h9-XY2" secondAttribute="trailing" constant="16" id="RWy-F2-txF"/>
                             <constraint firstItem="KRY-LA-Jun" firstAttribute="top" secondItem="qlL-Ti-JpU" secondAttribute="bottom" constant="20" id="U58-5U-cbH"/>
                             <constraint firstItem="qMs-2R-6lj" firstAttribute="top" secondItem="86q-f0-RfX" secondAttribute="top" id="UMu-Re-dws"/>
+                            <constraint firstItem="KRY-LA-Jun" firstAttribute="leading" secondItem="tnV-La-Mlg" secondAttribute="leading" constant="16" id="Usk-aN-vmw"/>
                             <constraint firstItem="qlL-Ti-JpU" firstAttribute="top" secondItem="86q-f0-RfX" secondAttribute="bottom" constant="8" id="X9s-lx-4V5"/>
                             <constraint firstItem="pVW-zu-Ph7" firstAttribute="top" secondItem="tnV-La-Mlg" secondAttribute="top" constant="16" id="edr-D2-TT5"/>
                             <constraint firstItem="MJC-1y-hmd" firstAttribute="leading" secondItem="pVW-zu-Ph7" secondAttribute="trailing" constant="8" id="g34-9f-obf"/>
@@ -181,7 +183,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="ljJ-7e-Pam"/>
                     <navigationItem key="navigationItem" title="Karte" id="W0E-Cm-RyL">
-                        <barButtonItem key="rightBarButtonItem" image="information" style="plain" id="nJR-9h-b7W">
+                        <barButtonItem key="rightBarButtonItem" image="information" id="nJR-9h-b7W">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="x3P-8U-5lr" kind="show" id="54i-hy-0V1"/>
