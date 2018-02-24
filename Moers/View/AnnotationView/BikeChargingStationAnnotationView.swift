@@ -27,8 +27,7 @@ class BikeChargingStationAnnotationView: MKMarkerAnnotationView {
                 
                 clusteringIdentifier = "location"
                 markerTintColor = UIColor(red: 0.365, green: 0.780, blue: 0.973, alpha: 1.00)
-                glyphTintColor = UIColor.white
-                glyphText = ""
+                glyphImage = #imageLiteral(resourceName: "bicycle")
                 
                 displayPriority = .defaultHigh
                 

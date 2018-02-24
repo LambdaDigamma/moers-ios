@@ -135,7 +135,7 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate {
                 
                 nameLabel.text = bikeCharger.title
                 subtitleLabel.text = "E-Bike Ladestation"
-                imageView.image = nil
+                imageView.image = #imageLiteral(resourceName: "ebike")
                 
                 morphDetailBikeCharger()
                 

@@ -17,8 +17,11 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
             
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["moersapp@lambdadigamma.com"])
+            mail.setToRecipients(["meinmoers@lambdadigamma.com"])
             mail.setSubject("Rückmeldung zur Moers-App")
+            
+            mail.navigationBar.tintColor = UIColor.white
+            mail.navigationBar.barStyle = .black
             
             present(mail, animated: true)
             
@@ -41,6 +44,12 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        self.dismiss(animated: true, completion: nil)
         
     }
     

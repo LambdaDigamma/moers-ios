@@ -40,7 +40,6 @@ class ContentViewController: UIViewController {
     @IBOutlet var separatorHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerSectionHeightConstraint: NSLayoutConstraint!
     
-    
     var locations: [Location] = []
     
     var filteredLocations: [Location] = []
@@ -82,22 +81,14 @@ class ContentViewController: UIViewController {
         
     }
     
-    var api = API()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print("Content Did Load")
         
         gripperView.layer.cornerRadius = 2.5
         
-        api.delegate = self
-        api.loadShop()
-        api.loadParkingLots()
-        api.loadCameras()
-        api.loadBikeChargingStations()
+        API.shared.delegate = self
         
-        branches = api.loadBranches()
+        self.populateData()
         
     }
     
@@ -129,6 +120,27 @@ class ContentViewController: UIViewController {
         
         if let statusBar = UIApplication.shared.value(forKey: "statusBar") as? UIView {
             statusBar.alpha = 1
+        }
+        
+    }
+    
+    private func populateData() {
+        
+        self.locations = []
+        
+        self.locations.append(contentsOf: API.shared.cachedShops as [Location])
+        self.locations.append(contentsOf: API.shared.cachedParkingLots as [Location])
+        self.locations.append(contentsOf: API.shared.cachedCameras as [Location])
+        self.locations.append(contentsOf: API.shared.cachedBikeCharger as [Location])
+        
+        DispatchQueue.main.async {
+            
+            self.branches = API.shared.loadBranches()
+            
+            self.branches.sort(by: { $0.name < $1.name })
+            
+            self.tableView.reloadData()
+            
         }
         
     }
@@ -201,7 +213,7 @@ extension ContentViewController: UITableViewDelegate, UITableViewDataSource {
                     
                     if let img = UIImage.imageResize(imageObj: image, size: CGSize(width: cell.searchImageView.bounds.width / 2, height: cell.searchImageView.bounds.height / 2), scaleFactor: 0.75) {
                         
-                        cell.searchImageView.backgroundColor = UIColor(red: 0xFF, green: 0xF5, blue: 0x00, alpha: 1)
+                        cell.searchImageView.backgroundColor = AppColor.yellow //UIColor(red: 0xFF, green: 0xF5, blue: 0x00, alpha: 1)i
                         cell.searchImageView.image = img
                         cell.searchImageView.contentMode = .scaleAspectFit
                         cell.searchImageView.layer.borderColor = UIColor.black.cgColor
@@ -279,6 +291,16 @@ extension ContentViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        
+        if let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell, let _ = datasource[indexPath.row - 1] as? Shop {
+            
+            cell.searchImageView.backgroundColor = AppColor.yellow
+            
+        }
+        
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if searchStyle == .none && indexPath.row == 0 {
@@ -327,7 +349,7 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         cell.layout()
         
-        cell.buttonView.backgroundColor = UIColor(red: 0.996, green: 0.592, blue: 0.153, alpha: 1.00)
+        cell.buttonView.backgroundColor = AppColor.yellow
         
         cell.imageView.image = nil
         
@@ -339,8 +361,8 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         guard let branchCell = cell as? BranchCollectionViewCell else { return }
         
-        branchCell.buttonView.layer.cornerRadius = branchCell.buttonView.frame.size.width / 2
-        branchCell.buttonView.backgroundColor = UIColor(red: 0xFF, green: 0xF5, blue: 0x00, alpha: 1)//UIColor(red: 1.00, green: 0.80, blue: 0.00, alpha: 1.0)
+        branchCell.buttonView.layer.cornerRadius = 52 / 2
+        branchCell.buttonView.backgroundColor = AppColor.yellow
         branchCell.buttonView.layer.borderColor = UIColor.black.cgColor
         branchCell.buttonView.layer.borderWidth = 1
         
@@ -539,7 +561,7 @@ extension ContentViewController: APIDelegate {
         
         DispatchQueue.main.async {
             
-            self.branches = self.api.loadBranches()
+            self.branches = API.shared.loadBranches()
             
             self.branches.sort(by: { $0.name < $1.name })
             

@@ -27,11 +27,9 @@ class CameraAnnotationView: MKMarkerAnnotationView {
             if let _ = newValue as? Camera {
                 
                 clusteringIdentifier = "location"
-                markerTintColor = UIColor(red:0.30, green:0.85, blue:0.39, alpha:1.0) //UIColor(red: 0.188, green: 0.486, blue: 0.208, alpha: 1.00)
+                markerTintColor = UIColor(red: 0.30, green: 0.85, blue: 0.39, alpha: 1.0) //UIColor(red: 0.188, green: 0.486, blue: 0.208, alpha: 1.00)
                 glyphTintColor = UIColor.white
-                glyphText = ""
-                
-//                glyphImage = #imageLiteral(resourceName: "photo")
+                glyphText = "360°"
                 displayPriority = .defaultHigh
                 
             }

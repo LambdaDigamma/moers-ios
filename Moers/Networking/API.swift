@@ -27,16 +27,21 @@ class API: NSObject, XMLParserDelegate {
 
     var delegate: APIDelegate?
     
+    static let shared = API()
+    
     private var session = URLSession.shared
-    
     private var xmlBuffer = String()
-    
     private var valueBuffer: [String: AnyObject]? = [:]
     
     private var parkingLots: [ParkingLot] = []
     private var branches: [Branch] = []
     
-    override init() {
+    public var cachedShops: [Shop] = []
+    public var cachedParkingLots: [ParkingLot] = []
+    public var cachedCameras: [Camera] = []
+    public var cachedBikeCharger: [BikeChargingStation] = []
+    
+    override private init() {
         
         session = URLSession.shared
         
@@ -359,10 +364,9 @@ class API: NSObject, XMLParserDelegate {
                                 
                                 dict.write(toFile: path!, atomically: false)
                                 
-//                                let dictTest = NSDictionary(contentsOfFile: path!)
-                                
-                                
                             }
+                            
+                            self.cachedShops = shops
                             
                             self.delegate?.didReceiveShops(shops: shops)
                             
@@ -428,7 +432,8 @@ class API: NSObject, XMLParserDelegate {
                     
                 }
                 
-                delegate?.didReceiveCameras(cameras: cameras)
+                self.cachedCameras = cameras
+                self.delegate?.didReceiveCameras(cameras: cameras)
                 
             } catch let err as NSError {
                 print(err.localizedDescription)
@@ -482,7 +487,8 @@ class API: NSObject, XMLParserDelegate {
                     
                 }
                 
-                delegate?.didReceiveBikeChargers(chargers: chargers)
+                self.cachedBikeCharger = chargers
+                self.delegate?.didReceiveBikeChargers(chargers: chargers)
                 
             } catch let err {
                 print(err.localizedDescription)
@@ -536,7 +542,8 @@ class API: NSObject, XMLParserDelegate {
     
     func parserDidEndDocument(_ parser: XMLParser) {
         
-        delegate?.didReceiveParkingLots(parkingLots: parkingLots)
+        self.cachedParkingLots = parkingLots
+        self.delegate?.didReceiveParkingLots(parkingLots: parkingLots)
         
         parser.delegate = nil
         

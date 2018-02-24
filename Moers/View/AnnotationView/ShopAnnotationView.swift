@@ -24,25 +24,13 @@ class ShopAnnotationView: MKMarkerAnnotationView {
         
         willSet {
             
-            if let shop = newValue as? Shop {
-                
-                clusteringIdentifier = "location"
-                markerTintColor = UIColor(red: 1.00, green: 0.80, blue: 0.00, alpha: 1.0)
-                glyphTintColor = UIColor.black
-                glyphText = ""
-                
-                /*if let image = ShopIconDrawer.annotationImage(from: shop.branch) {
-                    
-                    glyphImage = image
-                    
-                } else {
-                    glyphText = "€"
-                    
-                }*/
-                
-                displayPriority = .defaultHigh
-                
-            }
+            clusteringIdentifier = "location"
+            markerTintColor = AppColor.yellow //UIColor(red: 1.00, green: 0.80, blue: 0.00, alpha: 1.0)
+            glyphTintColor = UIColor.black
+            glyphImage = #imageLiteral(resourceName: "shopping-cart")
+            
+            displayPriority = .defaultHigh
+            
             
         }
         

@@ -122,6 +122,16 @@ extension SelectionViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        
+        if let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell, let _ = clusteredLocations[indexPath.row - 1] as? Shop {
+            
+            cell.searchImageView.backgroundColor = AppColor.yellow
+            
+        }
+        
+    }
+    
 }
 
 extension SelectionViewController: PulleyDrawerViewControllerDelegate {

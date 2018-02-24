@@ -47,13 +47,20 @@ class MapViewController: UIViewController {
         map.showsPointsOfInterest = false
         map.mapType = .standard
         
-        let api = API()
+        API.shared.delegate = self
         
-        api.delegate = self
-        api.loadShop()
-        api.loadParkingLots()
-        api.loadCameras()
-        api.loadBikeChargingStations()
+        populateData()
+        
+    }
+    
+    private func populateData() {
+        
+        self.locations.append(contentsOf: API.shared.cachedShops as [Location])
+        self.locations.append(contentsOf: API.shared.cachedParkingLots as [Location])
+        self.locations.append(contentsOf: API.shared.cachedCameras as [Location])
+        self.locations.append(contentsOf: API.shared.cachedBikeCharger as [Location])
+        
+        self.map.addAnnotations(locations as! [MKAnnotation])
         
     }
     
@@ -160,7 +167,7 @@ extension MapViewController: MKMapViewDelegate {
             return view
             
         } else if let camera = annotation as? Camera {
-          
+            
             var view = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationIdentifier.camera) as? MKMarkerAnnotationView
             
             if view == nil { view = CameraAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.camera) }
@@ -202,10 +209,11 @@ extension MapViewController: MKMapViewDelegate {
             Answers.logCustomEvent(withName: "Map Selection", customAttributes: ["name": (view.annotation as! Location).name])
             
             if let drawer = self.parent as? PulleyViewController {
+                
                 let drawerDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
                 
                 drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
-                drawer.setDrawerPosition(position: .collapsed, animated: true)
+                drawer.setDrawerPosition(position: .partiallyRevealed, animated: true)
                 
                 drawerDetail.selectedLocation = view.annotation as? Location
                 
@@ -221,7 +229,7 @@ extension MapViewController: MKMapViewDelegate {
                 let drawerDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SelectionViewController") as! SelectionViewController
                 
                 drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
-                drawer.setDrawerPosition(position: .collapsed, animated: true)
+                drawer.setDrawerPosition(position: .partiallyRevealed, animated: true)
                 
                 guard let annotation = view.annotation as? MKClusterAnnotation else { return }
                 

@@ -29,8 +29,7 @@ class ParkingLotAnnotationView: MKMarkerAnnotationView {
                 clusteringIdentifier = "location"
                 markerTintColor = UIColor(red: 0.00, green: 0.48, blue: 1.00, alpha: 1.0)
                 glyphTintColor = UIColor.white
-                glyphText = ""
-//                glyphText = "P"
+                glyphText = "P"
                 displayPriority = .defaultHigh
                 
             }

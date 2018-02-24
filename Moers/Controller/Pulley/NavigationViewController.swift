@@ -13,6 +13,11 @@ class NavigationViewController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        API.shared.loadShop()
+        API.shared.loadParkingLots()
+        API.shared.loadCameras()
+        API.shared.loadBikeChargingStations()
+        
     }
     
 }

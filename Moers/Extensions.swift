@@ -55,6 +55,12 @@ extension UIColor {
     }
 }
 
+struct AppColor {
+    
+    static let yellow = UIColor(red: 0xFF, green: 0xEB, blue: 0x3B)// UIColor(red: 0xFF, green: 0xEA, blue: 0x00, alpha: 1)
+    
+}
+
 extension UIColor {
     
     func darkerColor() -> UIColor {
