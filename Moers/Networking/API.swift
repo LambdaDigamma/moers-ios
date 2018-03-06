@@ -49,7 +49,7 @@ class API: NSObject, XMLParserDelegate {
     
     func loadShop() {
         
-        let url = URL(string: "http://download.moers.de/Laden/laden.json")
+        let url = URL(string: "https://meinmoers.lambdadigamma.com/shops.json")
         
         if let requestURL = url {
             let request = URLRequest(url: requestURL)
