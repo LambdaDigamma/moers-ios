@@ -450,6 +450,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Pulley.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyConfiguration.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/InfoKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Gestalt.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/BulletinBoard.framework",
 			);
 			outputPaths = (
 			);
