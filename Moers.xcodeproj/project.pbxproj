@@ -13,6 +13,7 @@
 		DF02B7651FB0BBD8004B8B3E /* SwiftyConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF02B7641FB0BBD8004B8B3E /* SwiftyConfiguration.framework */; };
 		DF08361D1F6C198400A1B8A5 /* ShopAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF08361C1F6C198400A1B8A5 /* ShopAnnotationView.swift */; };
 		DF0CB48F2082A8DB00CC0AA8 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB48E2082A8DB00CC0AA8 /* AppConfig.swift */; };
+		DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */; };
 		DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A49621F6AAB7000E9108B /* AppDelegate.swift */; };
 		DF1A49681F6AAB7000E9108B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49661F6AAB7000E9108B /* Main.storyboard */; };
 		DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49691F6AAB7000E9108B /* Assets.xcassets */; };
@@ -81,6 +82,7 @@
 		DF02B7641FB0BBD8004B8B3E /* SwiftyConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyConfiguration.framework; path = Carthage/Build/iOS/SwiftyConfiguration.framework; sourceTree = "<group>"; };
 		DF08361C1F6C198400A1B8A5 /* ShopAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAnnotationView.swift; sourceTree = "<group>"; };
 		DF0CB48E2082A8DB00CC0AA8 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
 		DF1A495F1F6AAB7000E9108B /* Moers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1A49621F6AAB7000E9108B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF1A49671F6AAB7000E9108B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				DFC1CC651F75962E00C1D269 /* Detail */,
 				DFB5ECD01F79B01800B2B464 /* CameraViewController.swift */,
 				DFB64DD02038F94600173A80 /* InfoViewController.swift */,
+				DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				DF02B75D1FAFC037004B8B3E /* FilterTableViewCell.swift in Sources */,
 				DF08361D1F6C198400A1B8A5 /* ShopAnnotationView.swift in Sources */,
 				DFB92D5E1F6B0B0900669F73 /* API.swift in Sources */,
+				DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */,
 				DF8254081F7712880069D751 /* CSwiftV.swift in Sources */,
 				DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */,
 				DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */,
