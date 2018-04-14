@@ -49,6 +49,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let applicationController = ApplicationController()
+        
+        window!.rootViewController = applicationController
+        window!.makeKeyAndVisible()
+        
         return true
     }
 
