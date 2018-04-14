@@ -252,6 +252,7 @@
 		DF1A49821F6AC3A100E9108B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */,
 				DFB6185A1FAE2CC800C98EB6 /* NavigationViewController.swift */,
 				DFAEF0601F6AE87000EF25F5 /* MapViewController.swift */,
 				DFAEF0621F6AE89200EF25F5 /* ContentViewController.swift */,
@@ -259,7 +260,6 @@
 				DFC1CC651F75962E00C1D269 /* Detail */,
 				DFB5ECD01F79B01800B2B464 /* CameraViewController.swift */,
 				DFB64DD02038F94600173A80 /* InfoViewController.swift */,
-				DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
