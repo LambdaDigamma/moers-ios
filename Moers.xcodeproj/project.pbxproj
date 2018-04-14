@@ -15,6 +15,7 @@
 		DF0CB48F2082A8DB00CC0AA8 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB48E2082A8DB00CC0AA8 /* AppConfig.swift */; };
 		DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */; };
 		DF0CB4932082AB5600CC0AA8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4922082AB5600CC0AA8 /* Theme.swift */; };
+		DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4952082AFD000CC0AA8 /* FirstLaunchManager.swift */; };
 		DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A49621F6AAB7000E9108B /* AppDelegate.swift */; };
 		DF1A49681F6AAB7000E9108B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49661F6AAB7000E9108B /* Main.storyboard */; };
 		DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49691F6AAB7000E9108B /* Assets.xcassets */; };
@@ -85,6 +86,7 @@
 		DF0CB48E2082A8DB00CC0AA8 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
 		DF0CB4922082AB5600CC0AA8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		DF0CB4952082AFD000CC0AA8 /* FirstLaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchManager.swift; sourceTree = "<group>"; };
 		DF1A495F1F6AAB7000E9108B /* Moers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1A49621F6AAB7000E9108B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF1A49671F6AAB7000E9108B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -190,6 +192,14 @@
 			path = UICollectionViewCells;
 			sourceTree = "<group>";
 		};
+		DF0CB4942082AFA300CC0AA8 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				DF0CB4952082AFD000CC0AA8 /* FirstLaunchManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		DF1A49561F6AAB7000E9108B = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +228,7 @@
 				DF1A49831F6AC3FB00E9108B /* View */,
 				DF1A49821F6AC3A100E9108B /* Controller */,
 				DFD129741FAF0DE9001900CF /* Networking */,
+				DF0CB4942082AFA300CC0AA8 /* Manager */,
 				DFB92D631F6B109C00669F73 /* Extensions.swift */,
 				DF1A49661F6AAB7000E9108B /* Main.storyboard */,
 				DF1A49691F6AAB7000E9108B /* Assets.xcassets */,
@@ -500,6 +511,7 @@
 				DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */,
 				DF8254081F7712880069D751 /* CSwiftV.swift in Sources */,
 				DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */,
+				DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */,
 				DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */,
 				DFB5ECD11F79B01800B2B464 /* CameraViewController.swift in Sources */,
 				DFB5ECCF1F79ADDA00B2B464 /* DetailCameraViewController.swift in Sources */,
