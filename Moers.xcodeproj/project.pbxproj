@@ -12,6 +12,7 @@
 		DF02B7631FB0BAE9004B8B3E /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02B7621FB0BAE9004B8B3E /* Branch.swift */; };
 		DF02B7651FB0BBD8004B8B3E /* SwiftyConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF02B7641FB0BBD8004B8B3E /* SwiftyConfiguration.framework */; };
 		DF08361D1F6C198400A1B8A5 /* ShopAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF08361C1F6C198400A1B8A5 /* ShopAnnotationView.swift */; };
+		DF0CB48F2082A8DB00CC0AA8 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB48E2082A8DB00CC0AA8 /* AppConfig.swift */; };
 		DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A49621F6AAB7000E9108B /* AppDelegate.swift */; };
 		DF1A49681F6AAB7000E9108B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49661F6AAB7000E9108B /* Main.storyboard */; };
 		DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49691F6AAB7000E9108B /* Assets.xcassets */; };
@@ -79,6 +80,7 @@
 		DF02B7621FB0BAE9004B8B3E /* Branch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
 		DF02B7641FB0BBD8004B8B3E /* SwiftyConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyConfiguration.framework; path = Carthage/Build/iOS/SwiftyConfiguration.framework; sourceTree = "<group>"; };
 		DF08361C1F6C198400A1B8A5 /* ShopAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAnnotationView.swift; sourceTree = "<group>"; };
+		DF0CB48E2082A8DB00CC0AA8 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		DF1A495F1F6AAB7000E9108B /* Moers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1A49621F6AAB7000E9108B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF1A49671F6AAB7000E9108B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				DF1A49621F6AAB7000E9108B /* AppDelegate.swift */,
+				DF0CB48E2082A8DB00CC0AA8 /* AppConfig.swift */,
 				DF1A49841F6AC40000E9108B /* Model */,
 				DF1A49831F6AC3FB00E9108B /* View */,
 				DF1A49821F6AC3A100E9108B /* Controller */,
@@ -499,6 +502,7 @@
 				DFC1CC671F76664700C1D269 /* ShopIconDrawer.swift in Sources */,
 				DFAEF0631F6AE89200EF25F5 /* ContentViewController.swift in Sources */,
 				DFB92D691F6B96E400669F73 /* ClusterAnnotationView.swift in Sources */,
+				DF0CB48F2082A8DB00CC0AA8 /* AppConfig.swift in Sources */,
 				DF5135BB1F71A7B3002A8977 /* DetailShopViewController.swift in Sources */,
 				DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */,
 				DFD129731FAF0C1B001900CF /* BranchTableViewCell.swift in Sources */,
