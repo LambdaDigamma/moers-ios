@@ -16,6 +16,7 @@
 		DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */; };
 		DF0CB4932082AB5600CC0AA8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4922082AB5600CC0AA8 /* Theme.swift */; };
 		DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4952082AFD000CC0AA8 /* FirstLaunchManager.swift */; };
+		DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */; };
 		DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A49621F6AAB7000E9108B /* AppDelegate.swift */; };
 		DF1A49681F6AAB7000E9108B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49661F6AAB7000E9108B /* Main.storyboard */; };
 		DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49691F6AAB7000E9108B /* Assets.xcassets */; };
@@ -87,6 +88,7 @@
 		DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
 		DF0CB4922082AB5600CC0AA8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		DF0CB4952082AFD000CC0AA8 /* FirstLaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchManager.swift; sourceTree = "<group>"; };
+		DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		DF1A495F1F6AAB7000E9108B /* Moers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1A49621F6AAB7000E9108B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF1A49671F6AAB7000E9108B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */,
+				DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */,
 				DFB6185A1FAE2CC800C98EB6 /* NavigationViewController.swift */,
 				DFAEF0601F6AE87000EF25F5 /* MapViewController.swift */,
 				DFAEF0621F6AE89200EF25F5 /* ContentViewController.swift */,
@@ -517,6 +520,7 @@
 				DFB5ECCF1F79ADDA00B2B464 /* DetailCameraViewController.swift in Sources */,
 				DFC5464E1F8007FB00EB3F7E /* SearchResult.swift in Sources */,
 				DF0CB4932082AB5600CC0AA8 /* Theme.swift in Sources */,
+				DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */,
 				DFC3DE821F6C65FE0049638B /* SearchResultTableViewCell.swift in Sources */,
 				DF626AF91FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift in Sources */,
 				DF626AF71FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift in Sources */,
