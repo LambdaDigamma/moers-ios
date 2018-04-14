@@ -1,3 +1,5 @@
 github "52inc/Pulley"
 github "ykyouhei/SwiftyConfiguration"
 github "nmdias/InfoKit"
+github "regexident/Gestalt"
+github "alexaubry/BulletinBoard" "master"

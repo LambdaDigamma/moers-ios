@@ -1,3 +1,5 @@
-github "52inc/Pulley" "2.2.7"
+github "52inc/Pulley" "2.3.2"
+github "alexaubry/BulletinBoard" "b9c4e6fb8bdd4ad5690e7d2f91ab56e01a8e299d"
 github "nmdias/InfoKit" "0.0.2"
+github "regexident/Gestalt" "1.1.0"
 github "ykyouhei/SwiftyConfiguration" "2.0.0"

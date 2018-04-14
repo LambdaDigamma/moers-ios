@@ -334,6 +334,7 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
         didSet {
             if self.isViewLoaded
             {
+                drawerShadowView.layer.shadowOpacity = shadowOpacity
                 self.view.setNeedsLayout()
             }
         }
@@ -344,6 +345,7 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
         didSet {
             if self.isViewLoaded
             {
+                drawerShadowView.layer.shadowRadius = shadowRadius
                 self.view.setNeedsLayout()
             }
         }
@@ -370,6 +372,7 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
         }
     }
     
+    /// The drawer scrollview's delaysContentTouches setting
     @IBInspectable public var delaysContentTouches: Bool = true {
         didSet {
             if self.isViewLoaded
@@ -379,6 +382,7 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
         }
     }
     
+    /// The drawer scrollview's canCancelContentTouches setting
     @IBInspectable public var canCancelContentTouches: Bool = true {
         didSet {
             if self.isViewLoaded
@@ -725,7 +729,7 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
             drawerContentContainer.frame = CGRect(x: 0, y: drawerScrollView.bounds.height - lowestStop, width: drawerScrollView.bounds.width, height: drawerScrollView.bounds.height + bounceOverflowMargin)
             drawerBackgroundVisualEffectView?.frame = drawerContentContainer.frame
             drawerShadowView.frame = drawerContentContainer.frame
-            drawerScrollView.contentSize = CGSize(width: drawerScrollView.bounds.width, height: (drawerScrollView.bounds.height - lowestStop) + drawerScrollView.bounds.height - safeAreaBottomInset)
+            drawerScrollView.contentSize = CGSize(width: drawerScrollView.bounds.width, height: (drawerScrollView.bounds.height - lowestStop) + drawerScrollView.bounds.height - safeAreaBottomInset + (bounceOverflowMargin - 5.0))
             
             // Update rounding mask and shadows
             let borderPath = UIBezierPath(roundedRect: drawerContentContainer.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: drawerCornerRadius, height: drawerCornerRadius)).cgPath
@@ -889,6 +893,48 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
         }
     }
     
+    /// Bounce the drawer to get user attention. Note: Only works in .bottomDrawer display mode and when the drawer is in .collapsed or .partiallyRevealed position.
+    ///
+    /// - Parameters:
+    ///   - bounceHeight: The height to bounce
+    ///   - speedMultiplier: The multiplier to apply to the default speed of the animation. Note, default speed is 0.75.
+    public func bounceDrawer(bounceHeight: CGFloat = 50.0, speedMultiplier: Double = 0.75) {
+        
+        guard drawerPosition == .collapsed || drawerPosition == .partiallyRevealed else {
+            print("Pulley: Error: You can only bounce the drawer when it's in the collapsed or partially revealed position.")
+            return
+        }
+        
+        guard currentDisplayMode == .bottomDrawer else {
+            print("Pulley: Error: You can only bounce the drawer when it's in the .bottomDrawer display mode.")
+            return
+        }
+        
+        let drawerStartingBounds = drawerScrollView.bounds
+        
+        // Adapted from https://www.cocoanetics.com/2012/06/lets-bounce/
+        let factors: [CGFloat] = [0, 32, 60, 83, 100, 114, 124, 128, 128, 124, 114, 100, 83, 60, 32,
+            0, 24, 42, 54, 62, 64, 62, 54, 42, 24, 0, 18, 28, 32, 28, 18, 0]
+        
+        var values = [CGFloat]()
+        
+        for factor in factors
+        {
+            let positionOffset = (factor / 128.0) * bounceHeight
+            values.append(drawerStartingBounds.origin.y + positionOffset)
+        }
+        
+        let animation = CAKeyframeAnimation(keyPath: "bounds.origin.y")
+        animation.repeatCount = 1
+        animation.duration = (32.0/30.0) * speedMultiplier
+        animation.fillMode = kCAFillModeForwards
+        animation.values = values
+        animation.isRemovedOnCompletion = true
+        animation.autoreverses = false
+        
+        drawerScrollView.layer.add(animation, forKey: "bounceAnimation")
+    }
+    
     /**
      Get a frame for moving backgroundDimmingView according to drawer position.
      
@@ -1004,7 +1050,7 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
         
         triggerFeedbackGenerator()
         
-        if animated
+        if animated && self.view.window != nil
         {
             isAnimatingDrawerPosition = true
             UIView.animate(withDuration: animationDuration, delay: animationDelay, usingSpringWithDamping: animationSpringDamping, initialSpringVelocity: animationSpringInitialVelocity, options: animationOptions, animations: { [weak self] () -> Void in
@@ -1457,7 +1503,7 @@ extension PulleyViewController: UIScrollViewDelegate {
             
             let lowestStop = drawerStops.min() ?? 0
             
-            if (scrollView.contentOffset.y - getBottomSafeArea()) > partialRevealHeight - lowestStop
+            if (scrollView.contentOffset.y - getBottomSafeArea()) > partialRevealHeight - lowestStop && supportedPositions.contains(.open)
             {
                 // Calculate percentage between partial and full reveal
                 let fullRevealHeight = (self.drawerScrollView.bounds.height)
