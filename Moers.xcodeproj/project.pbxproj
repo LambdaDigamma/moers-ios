@@ -492,6 +492,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/InfoKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Gestalt.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BulletinBoard.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ESTabBarController.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/pop.framework",
 			);
 			outputPaths = (
 			);
