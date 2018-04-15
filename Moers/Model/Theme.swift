@@ -14,6 +14,7 @@ struct Theme: ThemeProtocol {
     let color: UIColor
     let backgroundColor: UIColor
     let accentColor: UIColor
+    let decentColor: UIColor
     let navigationColor: UIColor
     let seperatorColor: UIColor
     let statusBarStyle: UIStatusBarStyle
@@ -24,6 +25,7 @@ struct Theme: ThemeProtocol {
     static let light = Theme(color: UIColor.black,
                              backgroundColor: UIColor(red: 0.980, green: 0.980, blue: 0.980, alpha: 1.00),
                              accentColor: UIColor.blue,
+                             decentColor: UIColor(red: 0x7F, green: 0x7F, blue: 0x7F),
                              navigationColor: UIColor.white,
                              seperatorColor: UIColor.lightGray,
                              statusBarStyle: .default)
@@ -31,6 +33,7 @@ struct Theme: ThemeProtocol {
     static let dark = Theme(color: UIColor.white,
                             backgroundColor: darkGray,
                             accentColor: yellow,
+                            decentColor: UIColor(red: 0x7F, green: 0x7F, blue: 0x7F),
                             navigationColor: UIColor.black,
                             seperatorColor: UIColor(red: 0.149, green: 0.196, blue: 0.220, alpha: 1.00),
                             statusBarStyle: .lightContent)
