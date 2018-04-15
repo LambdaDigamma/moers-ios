@@ -5,3 +5,11 @@
   Created by Lennart Fischer on 15.04.18.
   Copyright © 2018 Lennart Fischer. All rights reserved.
 */
+"OnboardingDescription" = "Mein Moers ist eine sinnvolle Ergänzung zu dieser App. \nSuche Geschäfte & Parkplätze mit Live-Daten und bewege Dich mit interaktiven 360° Panoramen durch die Stadt!";
+"OnboardingFirstPageActionButtonTitle" = "Fortfahren";
+"OnboardingNotificationPageTitle" = "Push-Mitteilungen";
+"OnboardingNotificationPageDescription" = "Erhalte Push Notifications um auf dem Laufenden zu bleiben.";
+"OnboardingNotificationPageActionButtonTitle" = "Erhalten";
+"OnboardingNotificationPageAlternativeButtonTitle" = "Nicht jetzt";
+"CompletionPageTitle" = "Einrichtung abgeschlossen";
+"CompletionPageActionButtonTitle" = "Los geht's!";

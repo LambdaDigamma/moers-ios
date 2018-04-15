@@ -5,3 +5,12 @@
   Created by Lennart Fischer on 15.04.18.
   Copyright © 2018 Lennart Fischer. All rights reserved.
 */
+
+"OnboardingDescription" = "Discover Moers";
+"OnboardingFirstPageActionButtonTitle" = "Continue";
+"OnboardingNotificationPageTitle" = "Push Notifications";
+"OnboardingNotificationPageDescription" = "Receive push notifications to keep up to date.";
+"OnboardingNotificationPageActionButtonTitle" = "Subscribe";
+"OnboardingNotificationPageAlternativeButtonTitle" = "Not now";
+"CompletionPageTitle" = "Setup completed";
+"CompletionPageActionButtonTitle" = "Get started";
