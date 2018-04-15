@@ -32,7 +32,8 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     
     lazy var mapViewController: UIViewController = {
         
-        let mapViewController = UIViewController()
+        
+        let mapViewController = MainViewController()
         
         mapViewController.navigationItem.title = String.localized("MapTabItem")
         
