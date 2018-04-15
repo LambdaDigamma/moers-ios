@@ -14,12 +14,16 @@ class ApplicationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        ThemeManager.default.theme = Theme.light
+        ThemeManager.default.theme = Theme.dark
         ThemeManager.default.animated = true
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
             UIApplication.shared.statusBarStyle = theme.statusBarStyle
             themeable.view.backgroundColor = theme.backgroundColor
         }
+        
+        let tabBarController = TabBarController()
+        
+        (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = tabBarController
         
     }
 
