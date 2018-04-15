@@ -17,6 +17,7 @@
 		DF0CB4932082AB5600CC0AA8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4922082AB5600CC0AA8 /* Theme.swift */; };
 		DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4952082AFD000CC0AA8 /* FirstLaunchManager.swift */; };
 		DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */; };
+		DF0CB49B2082B65000CC0AA8 /* BulletinDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB49A2082B65000CC0AA8 /* BulletinDataSource.swift */; };
 		DF0CB49D2082B78C00CC0AA8 /* PermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB49C2082B78C00CC0AA8 /* PermissionsManager.swift */; };
 		DF0CB49F2082B90900CC0AA8 /* FeedbackGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB49E2082B90900CC0AA8 /* FeedbackGenerators.swift */; };
 		DF0CB4A12082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4A02082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift */; };
@@ -93,6 +94,7 @@
 		DF0CB4922082AB5600CC0AA8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		DF0CB4952082AFD000CC0AA8 /* FirstLaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchManager.swift; sourceTree = "<group>"; };
 		DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		DF0CB49A2082B65000CC0AA8 /* BulletinDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinDataSource.swift; sourceTree = "<group>"; };
 		DF0CB49C2082B78C00CC0AA8 /* PermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsManager.swift; sourceTree = "<group>"; };
 		DF0CB49E2082B90900CC0AA8 /* FeedbackGenerators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackGenerators.swift; sourceTree = "<group>"; };
 		DF0CB4A02082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackPageBulletinItem.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 		DF0CB4992082B63500CC0AA8 /* BulletinBoard */ = {
 			isa = PBXGroup;
 			children = (
+				DF0CB49A2082B65000CC0AA8 /* BulletinDataSource.swift */,
 				DF0CB4A02082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift */,
 			);
 			path = BulletinBoard;
@@ -539,6 +542,7 @@
 				DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */,
 				DF8254081F7712880069D751 /* CSwiftV.swift in Sources */,
 				DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */,
+				DF0CB49B2082B65000CC0AA8 /* BulletinDataSource.swift in Sources */,
 				DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */,
 				DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */,
 				DFB5ECD11F79B01800B2B464 /* CameraViewController.swift in Sources */,
