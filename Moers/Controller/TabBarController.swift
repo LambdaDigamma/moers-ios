@@ -52,7 +52,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         let otherViewController = UIViewController()
         
-        otherViewController.navigationItem.title = "Dashboard"
+        otherViewController.navigationItem.title = "Other"
         
         let navigationController = UINavigationController()
         navigationController.viewControllers = [otherViewController]
@@ -114,6 +114,25 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         if firstLaunch.isFirstLaunch || !BulletinDataSource.userDidCompleteSetup {
             
 //            showBulletin()
+            
+        }
+        
+    }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        super.tabBar(tabBar, didSelect: item)
+        
+        if let item = item as? ESTabBarItem {
+            
+            if item.contentView is MapItemContentView {
+                
+                viewControllers?[1].tabBarItem = ESTabBarItem(MapItemContentView(), title: nil, image: #imageLiteral(resourceName: "search"), selectedImage: #imageLiteral(resourceName: "search"))
+                
+            } else {
+                
+                viewControllers?[1].tabBarItem = ESTabBarItem(MapItemContentView(), title: nil, image: #imageLiteral(resourceName: "map_marker"), selectedImage: #imageLiteral(resourceName: "map_marker"))
+                
+            }
             
         }
         
