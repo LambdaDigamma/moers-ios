@@ -17,12 +17,12 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         let dashboardViewController = UIViewController()
         
-        dashboardViewController.navigationItem.title = "Dashboard"
+        dashboardViewController.navigationItem.title = String.localized("DashboardTabItem")
         
         let navigationController = UINavigationController()
         navigationController.viewControllers = [dashboardViewController]
         
-        let dashboardTabItem = ESTabBarItem(ItemBounceContentView(), title: "Dashboard", image: #imageLiteral(resourceName: "dashboard"), selectedImage: #imageLiteral(resourceName: "dashboard"))
+        let dashboardTabItem = ESTabBarItem(ItemBounceContentView(), title: String.localized("DashboardTabItem"), image: #imageLiteral(resourceName: "dashboard"), selectedImage: #imageLiteral(resourceName: "dashboard"))
         
         navigationController.tabBarItem = dashboardTabItem
         
@@ -52,12 +52,12 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         let otherViewController = UIViewController()
         
-        otherViewController.navigationItem.title = "Other"
+        otherViewController.navigationItem.title = String.localized("OtherTabItem")
         
         let navigationController = UINavigationController()
         navigationController.viewControllers = [otherViewController]
         
-        let otherTabItem = ESTabBarItem(ItemBounceContentView(), title: "Other", image: #imageLiteral(resourceName: "list"), selectedImage: #imageLiteral(resourceName: "list"))
+        let otherTabItem = ESTabBarItem(ItemBounceContentView(), title: String.localized("OtherTabItem"), image: #imageLiteral(resourceName: "list"), selectedImage: #imageLiteral(resourceName: "list"))
         
         navigationController.tabBarItem = otherTabItem
         
