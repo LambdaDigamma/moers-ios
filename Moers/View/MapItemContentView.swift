@@ -73,6 +73,7 @@ class MapItemContentView: ESTabBarItemContentView {
         
         self.imageView.layer.borderWidth = 3.0
         self.imageView.layer.cornerRadius = 35
+        self.imageView.clipsToBounds = true
         self.insets = UIEdgeInsetsMake(-32, 0, 0, 0)
         let transform = CGAffineTransform.identity
         self.imageView.transform = transform
@@ -81,7 +82,7 @@ class MapItemContentView: ESTabBarItemContentView {
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
 
             themeable.imageView.backgroundColor = theme.accentColor
-            themeable.imageView.layer.borderColor = theme.backgroundColor.cgColor
+            themeable.imageView.layer.borderColor = theme.navigationColor.cgColor
             themeable.textColor = theme.decentColor
             themeable.iconColor = theme.navigationColor
             themeable.highlightIconColor = theme.navigationColor
