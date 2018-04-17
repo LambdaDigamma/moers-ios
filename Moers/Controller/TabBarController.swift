@@ -148,6 +148,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             themeable.view.backgroundColor = theme.backgroundColor
             themeable.tabBar.tintColor = theme.accentColor
             themeable.tabBar.barTintColor = theme.navigationColor
+            themeable.tabBar.isTranslucent = false
             themeable.bulletinManager.backgroundColor = theme.backgroundColor
             themeable.bulletinManager.hidesHomeIndicator = false
             themeable.bulletinManager.cardPadding = .compact
