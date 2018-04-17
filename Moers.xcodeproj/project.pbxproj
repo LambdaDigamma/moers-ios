@@ -24,6 +24,8 @@
 		DF0CB4A52082BE0F00CC0AA8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */; };
 		DF0CB4AB208357A800CC0AA8 /* MapItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4AA208357A800CC0AA8 /* MapItemContentView.swift */; };
 		DF0CB4AD20838FD100CC0AA8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4AC20838FD100CC0AA8 /* MainViewController.swift */; };
+		DF0CB4AF2085B65200CC0AA8 /* RebuildMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4AE2085B65200CC0AA8 /* RebuildMapViewController.swift */; };
+		DF0CB4B12085B66600CC0AA8 /* RebuildContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4B02085B66600CC0AA8 /* RebuildContentViewController.swift */; };
 		DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A49621F6AAB7000E9108B /* AppDelegate.swift */; };
 		DF1A49681F6AAB7000E9108B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49661F6AAB7000E9108B /* Main.storyboard */; };
 		DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49691F6AAB7000E9108B /* Assets.xcassets */; };
@@ -104,6 +106,8 @@
 		DF0CB4A92082BE4100CC0AA8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DF0CB4AA208357A800CC0AA8 /* MapItemContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItemContentView.swift; sourceTree = "<group>"; };
 		DF0CB4AC20838FD100CC0AA8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		DF0CB4AE2085B65200CC0AA8 /* RebuildMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildMapViewController.swift; sourceTree = "<group>"; };
+		DF0CB4B02085B66600CC0AA8 /* RebuildContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildContentViewController.swift; sourceTree = "<group>"; };
 		DF1A495F1F6AAB7000E9108B /* Moers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1A49621F6AAB7000E9108B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF1A49671F6AAB7000E9108B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -296,6 +300,8 @@
 				DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */,
 				DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */,
 				DF0CB4AC20838FD100CC0AA8 /* MainViewController.swift */,
+				DF0CB4AE2085B65200CC0AA8 /* RebuildMapViewController.swift */,
+				DF0CB4B02085B66600CC0AA8 /* RebuildContentViewController.swift */,
 				DFB6185A1FAE2CC800C98EB6 /* NavigationViewController.swift */,
 				DFAEF0601F6AE87000EF25F5 /* MapViewController.swift */,
 				DFAEF0621F6AE89200EF25F5 /* ContentViewController.swift */,
@@ -540,6 +546,7 @@
 				DFB64DD12038F94600173A80 /* InfoViewController.swift in Sources */,
 				DF02B7631FB0BAE9004B8B3E /* Branch.swift in Sources */,
 				DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */,
+				DF0CB4B12085B66600CC0AA8 /* RebuildContentViewController.swift in Sources */,
 				DF8254061F7711180069D751 /* Camera.swift in Sources */,
 				DF0CB49D2082B78C00CC0AA8 /* PermissionsManager.swift in Sources */,
 				DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */,
@@ -558,6 +565,7 @@
 				DFB5ECD11F79B01800B2B464 /* CameraViewController.swift in Sources */,
 				DFB5ECCF1F79ADDA00B2B464 /* DetailCameraViewController.swift in Sources */,
 				DFC5464E1F8007FB00EB3F7E /* SearchResult.swift in Sources */,
+				DF0CB4AF2085B65200CC0AA8 /* RebuildMapViewController.swift in Sources */,
 				DF0CB4932082AB5600CC0AA8 /* Theme.swift in Sources */,
 				DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */,
 				DFC3DE821F6C65FE0049638B /* SearchResultTableViewCell.swift in Sources */,

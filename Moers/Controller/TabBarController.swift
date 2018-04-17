@@ -32,13 +32,15 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     
     lazy var mapViewController: UIViewController = {
         
+        let mapViewController = RebuildMapViewController()
+        let contentViewController = RebuildContentViewController()
         
-        let mapViewController = MainViewController()
+        let mainViewController = MainViewController(contentViewController: mapViewController, drawerViewController: contentViewController)
         
-        mapViewController.navigationItem.title = String.localized("MapTabItem")
+        mainViewController.navigationItem.title = String.localized("MapTabItem")
         
         let navigationController = UINavigationController()
-        navigationController.viewControllers = [mapViewController]
+        navigationController.viewControllers = [mainViewController]
         
         let mapTabItem = ESTabBarItem(MapItemContentView(), title: nil, image: #imageLiteral(resourceName: "map_marker"), selectedImage: #imageLiteral(resourceName: "map_marker"))
         
