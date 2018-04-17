@@ -23,14 +23,6 @@ public struct CellIdentifier {
 // branchSearch
 // none
 
-public enum SearchStyle {
-    
-    case none
-    case branchSearch
-    case textSearch
-    
-}
-
 class ContentViewController: UIViewController {
 
     @IBOutlet weak var gripperView: UIView!

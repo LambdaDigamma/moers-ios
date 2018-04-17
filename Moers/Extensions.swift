@@ -67,6 +67,14 @@ struct AppColor {
     
 }
 
+extension UISearchBar {
+    
+    var textField: UITextField? {
+        return self.value(forKey: "searchField") as? UITextField
+    }
+    
+}
+
 extension UIColor {
     
     func darkerColor() -> UIColor {

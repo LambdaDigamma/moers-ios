@@ -16,7 +16,7 @@ struct Theme: ThemeProtocol {
     let accentColor: UIColor
     let decentColor: UIColor
     let navigationColor: UIColor
-    let seperatorColor: UIColor
+    let separatorColor: UIColor
     let statusBarStyle: UIStatusBarStyle
     
     static private let darkGray = UIColor(red: 0.137, green: 0.122, blue: 0.125, alpha: 1.00)
@@ -27,7 +27,7 @@ struct Theme: ThemeProtocol {
                              accentColor: UIColor.blue,
                              decentColor: UIColor(red: 0x7F, green: 0x7F, blue: 0x7F),
                              navigationColor: UIColor.white,
-                             seperatorColor: UIColor.lightGray,
+                             separatorColor: UIColor.lightGray,
                              statusBarStyle: .default)
     
     static let dark = Theme(color: UIColor.white,
@@ -35,7 +35,7 @@ struct Theme: ThemeProtocol {
                             accentColor: yellow,
                             decentColor: UIColor(red: 0x7F, green: 0x7F, blue: 0x7F),
                             navigationColor: UIColor.black,
-                            seperatorColor: UIColor(red: 0.149, green: 0.196, blue: 0.220, alpha: 1.00),
+                            separatorColor: UIColor(red: 0.149, green: 0.196, blue: 0.220, alpha: 1.00),
                             statusBarStyle: .lightContent)
     
 }
