@@ -34,6 +34,8 @@
 		DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */; };
 		DF5135B91F71A4C4002A8977 /* DetailParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5135B81F71A4C4002A8977 /* DetailParkingViewController.swift */; };
 		DF5135BB1F71A7B3002A8977 /* DetailShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5135BA1F71A7B3002A8977 /* DetailShopViewController.swift */; };
+		DF524CAA2087421800D88599 /* RebuildBranchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524CA92087421800D88599 /* RebuildBranchTableViewCell.swift */; };
+		DF524CAC2087443D00D88599 /* RebuildBranchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524CAB2087443D00D88599 /* RebuildBranchCollectionViewCell.swift */; };
 		DF626AF51FB745E300BFDA67 /* BikeChargingStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */; };
 		DF626AF71FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */; };
 		DF626AF91FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF81FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift */; };
@@ -119,6 +121,8 @@
 		DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnnotationView.swift; sourceTree = "<group>"; };
 		DF5135B81F71A4C4002A8977 /* DetailParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailParkingViewController.swift; sourceTree = "<group>"; };
 		DF5135BA1F71A7B3002A8977 /* DetailShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailShopViewController.swift; sourceTree = "<group>"; };
+		DF524CA92087421800D88599 /* RebuildBranchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildBranchTableViewCell.swift; sourceTree = "<group>"; };
+		DF524CAB2087443D00D88599 /* RebuildBranchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildBranchCollectionViewCell.swift; sourceTree = "<group>"; };
 		DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeChargingStation.swift; sourceTree = "<group>"; };
 		DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeChargingStationAnnotationView.swift; sourceTree = "<group>"; };
 		DF626AF81FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBikeChargingStationViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +208,7 @@
 				DFC3DE811F6C65FE0049638B /* SearchResultTableViewCell.swift */,
 				DF02B75C1FAFC037004B8B3E /* FilterTableViewCell.swift */,
 				DF0CB4B22087092F00CC0AA8 /* RebuildSearchResultTableViewCell.swift */,
+				DF524CA92087421800D88599 /* RebuildBranchTableViewCell.swift */,
 			);
 			path = UITableViewCells;
 			sourceTree = "<group>";
@@ -212,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */,
+				DF524CAB2087443D00D88599 /* RebuildBranchCollectionViewCell.swift */,
 			);
 			path = UICollectionViewCells;
 			sourceTree = "<group>";
@@ -537,6 +543,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF524CAC2087443D00D88599 /* RebuildBranchCollectionViewCell.swift in Sources */,
 				DF0CB4A12082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift in Sources */,
 				DF632B441F6E90140022FA8E /* DetailViewController.swift in Sources */,
 				DFB6185B1FAE2CC800C98EB6 /* NavigationViewController.swift in Sources */,
@@ -563,6 +570,7 @@
 				DF8254081F7712880069D751 /* CSwiftV.swift in Sources */,
 				DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */,
 				DF0CB4AD20838FD100CC0AA8 /* MainViewController.swift in Sources */,
+				DF524CAA2087421800D88599 /* RebuildBranchTableViewCell.swift in Sources */,
 				DF0CB49B2082B65000CC0AA8 /* BulletinDataSource.swift in Sources */,
 				DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */,
 				DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */,

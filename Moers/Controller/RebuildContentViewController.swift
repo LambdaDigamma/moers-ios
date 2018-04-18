@@ -83,6 +83,7 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         tableView.delegate = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(RebuildSearchResultTableViewCell.self, forCellReuseIdentifier: CellIdentifier.searchResultCell)
+        tableView.register(RebuildBranchTableViewCell.self, forCellReuseIdentifier: CellIdentifier.branchCell)
         
         return tableView
         
@@ -247,11 +248,9 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         
         if searchStyle == .none && indexPath.row == 0 {
             
-//            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.branchCell, for: indexPath) as! BranchTableViewCell
-//
-//            cell.selectionStyle = .none
-            
-            let cell = UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.branchCell, for: indexPath) as! RebuildBranchTableViewCell
+
+            cell.selectionStyle = .none
             
             return cell
             
