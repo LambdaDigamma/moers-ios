@@ -506,6 +506,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/BulletinBoard.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ESTabBarController.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/pop.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/EventBus.framework",
 			);
 			outputPaths = (
 			);
