@@ -26,6 +26,7 @@
 		DF0CB4AD20838FD100CC0AA8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4AC20838FD100CC0AA8 /* MainViewController.swift */; };
 		DF0CB4AF2085B65200CC0AA8 /* RebuildMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4AE2085B65200CC0AA8 /* RebuildMapViewController.swift */; };
 		DF0CB4B12085B66600CC0AA8 /* RebuildContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4B02085B66600CC0AA8 /* RebuildContentViewController.swift */; };
+		DF0CB4B32087092F00CC0AA8 /* RebuildSearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4B22087092F00CC0AA8 /* RebuildSearchResultTableViewCell.swift */; };
 		DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A49621F6AAB7000E9108B /* AppDelegate.swift */; };
 		DF1A49681F6AAB7000E9108B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49661F6AAB7000E9108B /* Main.storyboard */; };
 		DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49691F6AAB7000E9108B /* Assets.xcassets */; };
@@ -108,6 +109,7 @@
 		DF0CB4AC20838FD100CC0AA8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		DF0CB4AE2085B65200CC0AA8 /* RebuildMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildMapViewController.swift; sourceTree = "<group>"; };
 		DF0CB4B02085B66600CC0AA8 /* RebuildContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildContentViewController.swift; sourceTree = "<group>"; };
+		DF0CB4B22087092F00CC0AA8 /* RebuildSearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildSearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		DF1A495F1F6AAB7000E9108B /* Moers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1A49621F6AAB7000E9108B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF1A49671F6AAB7000E9108B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				DFD129721FAF0C1B001900CF /* BranchTableViewCell.swift */,
 				DFC3DE811F6C65FE0049638B /* SearchResultTableViewCell.swift */,
 				DF02B75C1FAFC037004B8B3E /* FilterTableViewCell.swift */,
+				DF0CB4B22087092F00CC0AA8 /* RebuildSearchResultTableViewCell.swift */,
 			);
 			path = UITableViewCells;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				DFB5ECD11F79B01800B2B464 /* CameraViewController.swift in Sources */,
 				DFB5ECCF1F79ADDA00B2B464 /* DetailCameraViewController.swift in Sources */,
 				DFC5464E1F8007FB00EB3F7E /* SearchResult.swift in Sources */,
+				DF0CB4B32087092F00CC0AA8 /* RebuildSearchResultTableViewCell.swift in Sources */,
 				DF0CB4AF2085B65200CC0AA8 /* RebuildMapViewController.swift in Sources */,
 				DF0CB4932082AB5600CC0AA8 /* Theme.swift in Sources */,
 				DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */,
