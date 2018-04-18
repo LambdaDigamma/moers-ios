@@ -19,7 +19,7 @@ public enum SearchStyle {
     
 }
 
-class RebuildContentViewController: UIViewController, PulleyDrawerViewControllerDelegate, UISearchBarDelegate {
+class RebuildContentViewController: UIViewController, PulleyDrawerViewControllerDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - UI
     
@@ -56,6 +56,7 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         searchBar.isTranslucent = true
         searchBar.backgroundColor = UIColor.clear
         searchBar.placeholder = String.localized("SearchBarPrompt")
+        searchBar.delegate = self
         
         return searchBar
         
@@ -77,7 +78,10 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         
         let tableView = UITableView()
         
+        tableView.dataSource = self
+        tableView.delegate = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(RebuildSearchResultTableViewCell.self, forCellReuseIdentifier: CellIdentifier.searchResultCell)
         
         return tableView
         
@@ -92,6 +96,11 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         }
     }
     
+    private let itemsPerRow: CGFloat = 3
+    private let sectionInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    private let cellWidth: CGFloat = 100
+    private let cellHeight: CGFloat = 80
+    
     // MARK: - Data
     
     private var locations: [Location] = []
@@ -100,10 +109,39 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
     private var selectedBranch: Branch?
     public var searchStyle = SearchStyle.none
     
+    var datasource: [Location] {
+        
+        if searchBar.text == "" && searchStyle == .none {
+            return locations.sorted { t1, t2 in
+                if t1 is Shop && t2 is Shop {
+                    return t1.name < t2.name
+                } else if t1 is ParkingLot && t2 is ParkingLot {
+                    return t1.name < t2.name
+                } else if t1 is Camera && t2 is Camera {
+                    return t1.name < t2.name
+                } else if t1 is Shop && !(t2 is Shop) {
+                    return true
+                } else if t1 is ParkingLot && t2 is Shop {
+                    return false
+                } else if t1 is ParkingLot && t2 is Camera {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        } else {
+            return filteredLocations
+        }
+        
+    }
+    
     // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.largeTitleDisplayMode = .never
+        self.navigationController?.navigationBar.prefersLargeTitles = false
         
         self.view.addSubview(headerView)
         self.headerView.addSubview(searchBar)
@@ -113,6 +151,10 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         
         self.setupConstraints()
         self.setupTheming()
+        
+        API.shared.delegate = self
+        
+        self.populateData()
 
     }
     
@@ -167,8 +209,152 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         
     }
     
+    private func populateData() {
+        
+        self.locations = []
+        
+        self.locations.append(contentsOf: API.shared.cachedShops as [Location])
+        self.locations.append(contentsOf: API.shared.cachedParkingLots as [Location])
+        self.locations.append(contentsOf: API.shared.cachedCameras as [Location])
+        self.locations.append(contentsOf: API.shared.cachedBikeCharger as [Location])
+        
+        DispatchQueue.main.async {
+            
+            self.branches = API.shared.loadBranches()
+            
+            self.branches.sort(by: { $0.name < $1.name })
+            
+            self.tableView.reloadData()
+            
+        }
+        
+    }
+    
     // MARK: - UITableViewDataSource
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if searchStyle == SearchStyle.textSearch {
+            return datasource.count
+        } else {
+            return datasource.count + 1
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if searchStyle == .none && indexPath.row == 0 {
+            
+//            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.branchCell, for: indexPath) as! BranchTableViewCell
+//
+//            cell.selectionStyle = .none
+            
+            let cell = UITableViewCell()
+            
+            return cell
+            
+        } else if searchStyle == .branchSearch && indexPath.row == 0 {
+            
+            let cell = UITableViewCell()
+            
+//            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.filterCell, for: indexPath) as! FilterTableViewCell
+            
+//            cell.selectionStyle = .none
+//
+//            guard let branch = selectedBranch else { fatalError("Error while selecting branch!") }
+//
+//            cell.branchLabel.text = branch.name
+//            cell.onButtonClick = { cell in
+//
+//                self.searchStyle = .none
+//
+//                tableView.reloadData()
+//
+//            }
+            
+            return cell
+            
+        } else {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! RebuildSearchResultTableViewCell
+            
+            cell.searchImageView.backgroundColor = UIColor.clear
+            cell.searchImageView.image = nil
+            cell.searchImageView.layer.borderWidth = 0
+            
+            if let shop = datasource[indexPath.row - 1] as? Shop {
+                
+                cell.titleLabel.text = shop.title
+                cell.subtitleLabel.text = shop.subtitle
+                
+                if let image = ShopIconDrawer.annotationImage(from: shop.branch) {
+                    
+                    if let img = UIImage.imageResize(imageObj: image, size: CGSize(width: cell.searchImageView.bounds.width / 2, height: cell.searchImageView.bounds.height / 2), scaleFactor: 0.75) {
+                        
+                        cell.searchImageView.backgroundColor = AppColor.yellow //UIColor(red: 0xFF, green: 0xF5, blue: 0x00, alpha: 1)i
+                        cell.searchImageView.image = img
+                        cell.searchImageView.contentMode = .scaleAspectFit
+                        cell.searchImageView.layer.borderColor = UIColor.black.cgColor
+                        cell.searchImageView.layer.borderWidth = 1
+                        cell.searchImageView.layer.cornerRadius = 7
+                        
+                    }
+                    
+                }
+                
+            } else if let parkingLot = datasource[indexPath.row - 1] as? ParkingLot {
+                
+                cell.titleLabel.text = parkingLot.title
+                cell.subtitleLabel.text = parkingLot.subtitle
+                
+                cell.searchImageView.image = #imageLiteral(resourceName: "parkingLot")
+                
+            } else if let camera = datasource[indexPath.row - 1] as? Camera {
+                
+                cell.titleLabel.text = camera.title
+                cell.subtitleLabel.text = "360° Kamera"
+                
+                cell.searchImageView.image = #imageLiteral(resourceName: "camera")
+                
+            } else if let bikeCharger = datasource[indexPath.row - 1] as? BikeChargingStation {
+                
+                cell.titleLabel.text = bikeCharger.title
+                cell.subtitleLabel.text = "E-Bike Ladestation"
+                
+                cell.searchImageView.image = #imageLiteral(resourceName: "ebike")
+                
+            }
+            
+            return cell
+            
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if searchStyle == .none && indexPath.row == 0 {
+            
+            return (2 * cellHeight) + 40
+            
+        } else if searchStyle == .branchSearch && indexPath.row == 0 {
+            
+            return 50
+            
+        } else {
+            
+            return 81
+            
+        }
+        
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        
+        searchBar.resignFirstResponder()
+        
+    }
     
     // MARK: - UISearchBarDelegate
     
@@ -322,6 +508,62 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         
         if drawer.drawerPosition != .open {
             searchBar.resignFirstResponder()
+        }
+        
+    }
+    
+}
+
+extension RebuildContentViewController: APIDelegate {
+    
+    func didReceiveShops(shops: [Shop]) {
+        
+        self.locations.append(contentsOf: shops as [Location])
+        
+        DispatchQueue.main.async {
+            
+            self.branches = API.shared.loadBranches()
+            
+            self.branches.sort(by: { $0.name < $1.name })
+            
+            self.tableView.reloadData()
+            
+        }
+        
+    }
+    
+    func didReceiveParkingLots(parkingLots: [ParkingLot]) {
+        
+        self.locations.append(contentsOf: parkingLots as [Location])
+        
+        DispatchQueue.main.async {
+            
+            self.tableView.reloadData()
+            
+        }
+        
+    }
+    
+    func didReceiveCameras(cameras: [Camera]) {
+        
+        self.locations.append(contentsOf: cameras as [Location])
+        
+        DispatchQueue.main.async {
+            
+            self.tableView.reloadData()
+            
+        }
+        
+    }
+    
+    func didReceiveBikeChargers(chargers: [BikeChargingStation]) {
+        
+        self.locations.append(contentsOf: chargers as [Location])
+        
+        DispatchQueue.main.async {
+            
+            self.tableView.reloadData()
+            
         }
         
     }
