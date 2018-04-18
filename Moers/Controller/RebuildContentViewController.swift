@@ -10,6 +10,7 @@ import UIKit
 import Gestalt
 import Pulley
 import Crashlytics
+import MapKit
 
 public enum SearchStyle {
     
@@ -345,6 +346,54 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         } else {
             
             return 81
+            
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        
+        if let cell = tableView.cellForRow(at: indexPath) as? RebuildSearchResultTableViewCell, let _ = datasource[indexPath.row - 1] as? Shop {
+            
+            cell.searchImageView.backgroundColor = AppColor.yellow
+            
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if searchBar.text != "" {
+            
+            Answers.logSearch(withQuery: searchBar.text, customAttributes: nil)
+            
+        }
+        
+        if indexPath.row != 0 {
+            
+            // TODO: Rebuild DetailViewController
+            
+            if let drawer = self.parent as? PulleyViewController {
+                let drawerDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+                
+                drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
+                drawer.setDrawerPosition(position: .collapsed, animated: true)
+                
+                drawerDetail.selectedLocation = datasource[indexPath.row - 1]
+                
+                if let mapController = drawer.primaryContentViewController as? MapViewController {
+                    
+                    let coordinate = self.datasource[indexPath.row - 1].location.coordinate
+                    
+                    let annotation = self.datasource[indexPath.row - 1] as! MKAnnotation
+                    
+                    mapController.map.selectAnnotation(annotation, animated: true)
+                    mapController.map.setCenter(coordinate, animated: true)
+                    mapController.map.camera.altitude = 0.5
+                    
+                }
+                
+            }
             
         }
         
