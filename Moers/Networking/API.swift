@@ -498,6 +498,49 @@ class API: NSObject, XMLParserDelegate {
         
     }
     
+    func loadRubbishCollectionStreets() {
+        
+        let url = URL(string: "https://meinmoers.lambdadigamma.com/abfallkalender-strassenverzeichnis.csv")
+        
+        if let url = url {
+            
+            do {
+                
+                let content = try String(contentsOf: url, encoding: String.Encoding.utf8)
+                
+                let csv = CSwiftV(with: content, separator: ";", headers: ["Straße", "Restabfall", "Biotonne", "Papiertonne", "Gelber Sack", "Grünschnitt", "Kehrtag"])
+                
+                var streets: [RubbishCollectionStreet] = []
+                
+                var rows = csv.keyedRows!
+                rows.remove(at: 0)
+                
+                for row in rows {
+                    
+                    let street = RubbishCollectionStreet(street: row["Straße"] ?? "",
+                                                         residualWaste: Int(row["Restabfall"] ?? "")!,
+                                                         organicWaste: Int(row["Biotonne"] ?? "")!,
+                                                         paperWaste: Int(row["Papiertonne"] ?? "")!,
+                                                         yellowBag: Int(row["Gelber Sack"] ?? "")!,
+                                                         greenWaste: Int(row["Grünschnitt"] ?? "")!,
+                                                         sweeperDay: row["Kehrtag"] ?? "")
+                    
+                    streets.append(street)
+                    
+                }
+                
+//                self.cachedCameras = cameras
+//                self.delegate?.didReceiveCameras(cameras: cameras)
+                
+            } catch let err as NSError {
+                print(err.localizedDescription)
+            }
+            
+        }
+        
+        
+    }
+    
     func loadBranches() -> [Branch] {
         
         return self.branches
