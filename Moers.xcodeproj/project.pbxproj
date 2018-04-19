@@ -77,6 +77,7 @@
 		DFD129731FAF0C1B001900CF /* BranchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD129721FAF0C1B001900CF /* BranchTableViewCell.swift */; };
 		DFD129761FAF12D2001900CF /* BranchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */; };
 		DFF4E15B20892CFB007C24E3 /* RubbishManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF4E15A20892CFB007C24E3 /* RubbishManager.swift */; };
+		DFF4E15D20893694007C24E3 /* RubbishCollectionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF4E15C20893694007C24E3 /* RubbishCollectionDate.swift */; };
 		DFF5DDCB20094A920075A2F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */; };
 		DFFB775B1FB37E0A00073863 /* InfoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFFB775A1FB37E0A00073863 /* InfoKit.framework */; };
 		DFFB77601FB38A5A00073863 /* Branches.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFFB775F1FB38A5A00073863 /* Branches.plist */; };
@@ -170,6 +171,7 @@
 		DFD129721FAF0C1B001900CF /* BranchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchTableViewCell.swift; sourceTree = "<group>"; };
 		DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCollectionViewCell.swift; sourceTree = "<group>"; };
 		DFF4E15A20892CFB007C24E3 /* RubbishManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishManager.swift; sourceTree = "<group>"; };
+		DFF4E15C20893694007C24E3 /* RubbishCollectionDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionDate.swift; sourceTree = "<group>"; };
 		DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DFFB775A1FB37E0A00073863 /* InfoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InfoKit.framework; path = Carthage/Build/iOS/InfoKit.framework; sourceTree = "<group>"; };
 		DFFB775F1FB38A5A00073863 /* Branches.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Branches.plist; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */,
 				DF0CB4922082AB5600CC0AA8 /* Theme.swift */,
 				DF524CAD20885A7700D88599 /* RubbishCollectionStreet.swift */,
+				DFF4E15C20893694007C24E3 /* RubbishCollectionDate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF524CAC2087443D00D88599 /* RebuildBranchCollectionViewCell.swift in Sources */,
+				DFF4E15D20893694007C24E3 /* RubbishCollectionDate.swift in Sources */,
 				DF0CB4A12082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift in Sources */,
 				DF632B441F6E90140022FA8E /* DetailViewController.swift in Sources */,
 				DFB6185B1FAE2CC800C98EB6 /* NavigationViewController.swift in Sources */,
