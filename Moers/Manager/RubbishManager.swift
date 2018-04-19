@@ -13,6 +13,7 @@ class RubbishManager {
     static let shared = RubbishManager()
     
     private let rubbishStreetURL = URL(string: "https://meinmoers.lambdadigamma.com/abfallkalender-strassenverzeichnis.csv")
+    private let rubbishDateURL = URL(string: "https://www.offenesdatenportal.de/dataset/fe92e461-9db4-4d12-ba58-8d4439084e90/resource/04c58f79-e903-46d4-afc9-d546f4474543/download/abfallkalender--abfuhrtermine-2018.csv")
     
     public func loadRubbishCollectionStreets() {
         
@@ -44,6 +45,45 @@ class RubbishManager {
                 }
                 
             } catch let err as NSError {
+                print(err.localizedDescription)
+            }
+            
+        }
+        
+    }
+    
+    public func loadRubbishCollectionDate() {
+        
+        if let url = rubbishDateURL {
+            
+            do {
+                
+                let content = try String(contentsOf: url, encoding: String.Encoding.ascii)
+                
+                let csv = CSwiftV(with: content, separator: ";", headers: ["id", "datum", "rest_woche", "restabfall", "biotonne", "papiertonne", "gelber_sack", "gruenschnitt", "schadstoff", "del"])
+                
+                var dates: [RubbishCollectionDate] = []
+                
+                var rows = csv.keyedRows!
+                rows.remove(at: 0)
+                
+                for row in rows {
+                    
+                    let date = RubbishCollectionDate(id: Int(row["id"] ?? "")!,
+                                                     date: row["datum"] ?? "",
+                                                     residualWaste: Int(row["restabfall"] ?? ""),
+                                                     organicWaste: Int(row["biotonne"] ?? ""),
+                                                     paperWaste: Int(row["papiertonne"] ?? ""),
+                                                     yellowBag: Int(row["gelber_sack"] ?? ""),
+                                                     greenWaste: Int(row["gruenschnitt"] ?? ""))
+                    
+                    dates.append(date)
+                    
+                }
+                
+                print(dates)
+                
+            } catch let err {
                 print(err.localizedDescription)
             }
             
