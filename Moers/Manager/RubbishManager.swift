@@ -15,7 +15,7 @@ class RubbishManager {
     private let rubbishStreetURL = URL(string: "https://meinmoers.lambdadigamma.com/abfallkalender-strassenverzeichnis.csv")
     private let rubbishDateURL = URL(string: "https://www.offenesdatenportal.de/dataset/fe92e461-9db4-4d12-ba58-8d4439084e90/resource/04c58f79-e903-46d4-afc9-d546f4474543/download/abfallkalender--abfuhrtermine-2018.csv")
     
-    public func loadRubbishCollectionStreets() {
+    public func loadRubbishCollectionStreets(completion: @escaping ([RubbishCollectionStreet]) -> Void) {
         
         if let url = rubbishStreetURL {
             
@@ -44,6 +44,8 @@ class RubbishManager {
                     
                 }
                 
+                completion(streets)
+                
             } catch let err as NSError {
                 print(err.localizedDescription)
             }
@@ -52,7 +54,7 @@ class RubbishManager {
         
     }
     
-    public func loadRubbishCollectionDate() {
+    public func loadRubbishCollectionDate(completion: @escaping ([RubbishCollectionDate]) -> Void) {
         
         if let url = rubbishDateURL {
             
@@ -81,7 +83,7 @@ class RubbishManager {
                     
                 }
                 
-                print(dates)
+                completion(dates)
                 
             } catch let err {
                 print(err.localizedDescription)
@@ -100,6 +102,39 @@ class RubbishManager {
         self.yellowBag = street.yellowBag
         self.greenWaste = street.greenWaste
         self.sweeperDay = street.sweeperDay
+        
+    }
+    
+    public func loadItems(completion: @escaping ([RubbishCollectionItem]) -> Void, all: Bool = false) {
+        
+        loadRubbishCollectionDate { (dates) in
+            
+            let residual = dates.filter { $0.residualWaste == self.residualWaste && $0.residualWaste != nil }.map { RubbishCollectionItem(date: $0.date, type: .residual) }
+            let organic = dates.filter { $0.organicWaste == self.organicWaste && $0.organicWaste != nil }.map { RubbishCollectionItem(date: $0.date, type: .organic) }
+            let paper = dates.filter { $0.paperWaste == self.paperWaste && $0.paperWaste != nil }.map { RubbishCollectionItem(date: $0.date, type: .paper) }
+            let yellow = dates.filter { $0.yellowBag == self.yellowBag && $0.yellowBag != nil }.map { RubbishCollectionItem(date: $0.date, type: .yellow) }
+            let green = dates.filter { $0.greenWaste == self.greenWaste && $0.greenWaste != nil }.map { RubbishCollectionItem(date: $0.date, type: .green) }
+            
+            var items = residual + organic + paper + yellow + green
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+            
+            items.sort(by: { dateFormatter.date(from: $0.date)! < dateFormatter.date(from: $1.date)! })
+            
+            if !all {
+                
+                let today = Date()
+                
+                let futureItems = items.filter { dateFormatter.date(from: $0.date)! > today }
+                
+                completion(futureItems)
+                
+            } else {
+                completion(items)
+            }
+            
+        }
         
     }
     
