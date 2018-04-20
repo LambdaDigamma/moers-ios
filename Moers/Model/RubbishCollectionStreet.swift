@@ -8,6 +8,14 @@
 
 import Foundation
 
+enum RubbishWasteType: String {
+    case residual = "Restabfall"
+    case organic = "Biotonne"
+    case paper = "Papiertonne"
+    case yellow = "Gelber Sack"
+    case green = "Grünschnitt"
+}
+
 struct RubbishCollectionStreet {
     
     var street: String
