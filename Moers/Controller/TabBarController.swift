@@ -15,7 +15,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
 
     lazy var dashboardViewController: UIViewController = {
         
-        let dashboardViewController = UIViewController()
+        let dashboardViewController = DashboardViewController()
         
         dashboardViewController.navigationItem.title = String.localized("DashboardTabItem")
         
