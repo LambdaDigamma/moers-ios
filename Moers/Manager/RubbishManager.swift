@@ -129,7 +129,7 @@ class RubbishManager {
     
     private var residualWaste: Int? {
         get { return UserDefaults.standard.integer(forKey: "RubbishResidualWaste") }
-        set { UserDefaults.standard.set(newValue, forKey: "RubbishStreet") }
+        set { UserDefaults.standard.set(newValue, forKey: "RubbishResidualWaste") }
     }
     
     private var organicWaste: Int? {
