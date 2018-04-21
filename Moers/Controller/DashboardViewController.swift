@@ -37,17 +37,22 @@ class DashboardViewController: UIViewController {
         
     }()
     
+    var itemView1 = RubbishCollectionItemView()
+    var itemView2 = RubbishCollectionItemView()
+    var itemView3 = RubbishCollectionItemView()
+    
     lazy var rubbishList: UIStackView = {
-        
-        let stackView = UIStackView()
-        
+
+        let stackView = UIStackView(arrangedSubviews: [itemView1, itemView2, itemView3])
+
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
         stackView.spacing = 5
-        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+
         return stackView
-        
+
     }()
     
     // MARK: - UIViewController Lifecycle
@@ -62,17 +67,24 @@ class DashboardViewController: UIViewController {
         self.setupConstraints()
         self.setupTheming()
         
+        RubbishManager.shared.loadItems(completion: { (items) in
+            
+            self.itemView1.rubbishCollectionItem = items[0]
+            self.itemView2.rubbishCollectionItem = items[1]
+            self.itemView3.rubbishCollectionItem = items[2]
+            
+        })
+        
     }
     
     // MARK: - Private Methods
     
     private func setupConstraints() {
         
-        let constraints = [rubbishCollectionHeaderLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20),
+        let constraints = [rubbishCollectionHeaderLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 8),
                            rubbishCollectionHeaderLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 14),
-                           rubbishCollectionHeaderLabel.rightAnchor.constraint(equalTo: moreRubbishButton.leftAnchor, constant: 8),
-                           moreRubbishButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20),
-                           moreRubbishButton.leftAnchor.constraint(equalTo: rubbishCollectionHeaderLabel.rightAnchor, constant: -8),
+                           rubbishCollectionHeaderLabel.rightAnchor.constraint(equalTo: moreRubbishButton.leftAnchor, constant: -8),
+                           moreRubbishButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 8),
                            moreRubbishButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -14),
                            moreRubbishButton.widthAnchor.constraint(equalToConstant: 40),
                            moreRubbishButton.heightAnchor.constraint(equalToConstant: 20),
@@ -89,7 +101,7 @@ class DashboardViewController: UIViewController {
         
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
             
-            themeable.view.backgroundColor = theme.navigationColor
+            themeable.view.backgroundColor = theme.backgroundColor
             themeable.rubbishCollectionHeaderLabel.textColor = theme.color
             themeable.moreRubbishButton.setTitleColor(theme.color, for: .normal)
             
