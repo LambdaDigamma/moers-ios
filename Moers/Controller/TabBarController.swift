@@ -115,7 +115,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         if firstLaunch.isFirstLaunch || !BulletinDataSource.userDidCompleteSetup {
             
-//            showBulletin()
+            showBulletin()
             
         }
         
@@ -198,6 +198,10 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     @objc func setupDidComplete() {
         
         BulletinDataSource.userDidCompleteSetup = true
+        
+        guard let dashboardVC = dashboardViewController.childViewControllers.first as? DashboardViewController else { return }
+        
+        dashboardVC.loadData()
         
     }
     
