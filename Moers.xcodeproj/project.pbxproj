@@ -34,6 +34,7 @@
 		DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */; };
 		DF4BD1BE208A72C5003ECF41 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */; };
 		DF4BD1C0208B7CBA003ECF41 /* RubbishCollectionItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1BF208B7CBA003ECF41 /* RubbishCollectionItemView.swift */; };
+		DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C3208C64F1003ECF41 /* PickerView.swift */; };
 		DF5135B91F71A4C4002A8977 /* DetailParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5135B81F71A4C4002A8977 /* DetailParkingViewController.swift */; };
 		DF5135BB1F71A7B3002A8977 /* DetailShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5135BA1F71A7B3002A8977 /* DetailShopViewController.swift */; };
 		DF524CAA2087421800D88599 /* RebuildBranchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524CA92087421800D88599 /* RebuildBranchTableViewCell.swift */; };
@@ -127,6 +128,7 @@
 		DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnnotationView.swift; sourceTree = "<group>"; };
 		DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		DF4BD1BF208B7CBA003ECF41 /* RubbishCollectionItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionItemView.swift; sourceTree = "<group>"; };
+		DF4BD1C3208C64F1003ECF41 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		DF5135B81F71A4C4002A8977 /* DetailParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailParkingViewController.swift; sourceTree = "<group>"; };
 		DF5135BA1F71A7B3002A8977 /* DetailShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailShopViewController.swift; sourceTree = "<group>"; };
 		DF524CA92087421800D88599 /* RebuildBranchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildBranchTableViewCell.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				DF0CB49E2082B90900CC0AA8 /* FeedbackGenerators.swift */,
 				DF0CB4AA208357A800CC0AA8 /* MapItemContentView.swift */,
 				DF4BD1BF208B7CBA003ECF41 /* RubbishCollectionItemView.swift */,
+				DF4BD1C3208C64F1003ECF41 /* PickerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -561,6 +564,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */,
 				DF524CAC2087443D00D88599 /* RebuildBranchCollectionViewCell.swift in Sources */,
 				DFF4E15D20893694007C24E3 /* RubbishCollectionDate.swift in Sources */,
 				DF0CB4A12082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift in Sources */,
