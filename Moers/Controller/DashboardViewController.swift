@@ -67,13 +67,7 @@ class DashboardViewController: UIViewController {
         self.setupConstraints()
         self.setupTheming()
         
-        RubbishManager.shared.loadItems(completion: { (items) in
-            
-            self.itemView1.rubbishCollectionItem = items[0]
-            self.itemView2.rubbishCollectionItem = items[1]
-            self.itemView3.rubbishCollectionItem = items[2]
-            
-        })
+        self.loadData()
         
     }
     
@@ -109,4 +103,19 @@ class DashboardViewController: UIViewController {
         
     }
 
+    public func loadData() {
+        
+        RubbishManager.shared.loadItems(completion: { (items) in
+            
+            if items.count >= 1 {
+                self.itemView1.rubbishCollectionItem = items[0]
+            } else if items.count >= 2 {
+                self.itemView2.rubbishCollectionItem = items[1]
+            } else if items.count >= 3 {
+                self.itemView3.rubbishCollectionItem = items[2]
+            }
+        })
+        
+    }
+    
 }
