@@ -55,7 +55,7 @@ enum BulletinDataSource {
             item.manager?.displayNextItem()
         }
         
-        page.nextItem = makeCompletionPage()
+        page.nextItem = makeRubbishStreetPage()
         
         return page
         
@@ -85,6 +85,40 @@ enum BulletinDataSource {
             
             item.manager?.dismissBulletin(animated: true)
         }
+        
+        return page
+        
+    }
+    
+    static func makeRubbishStreetPage() -> PageBulletinItem {
+        
+        let page = RubbishStreetPickerItem(title: String.localized("RubbishCollectionPageTitle"))
+        page.appearance = makeAppearance()
+        page.descriptionText = String.localized("RubbishCollectionPageDescription")
+        page.image = #imageLiteral(resourceName: "yellowWaste")
+        page.actionButtonTitle = String.localized("RubbishCollectionPageActionButtonTitle")
+        page.alternativeButtonTitle = String.localized("RubbishCollectionPageAlternativeButtonTitle")
+        
+        page.isDismissable = false
+        
+        page.actionHandler = { item in
+            
+            guard let item = item as? RubbishStreetPickerItem else { return }
+            
+            let selectedStreet = item.streets[item.picker.currentSelectedRow]
+            
+            RubbishManager.shared.register(selectedStreet)
+                
+            item.manager?.displayNextItem()
+            
+        }
+        
+        page.alternativeHandler = { item in
+            item.manager?.displayNextItem()
+        }
+        
+        
+        page.nextItem = makeCompletionPage()
         
         return page
         
