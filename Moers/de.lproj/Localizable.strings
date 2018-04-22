@@ -8,7 +8,7 @@
 "DashboardTabItem" = "Dashboard";
 "MapTabItem" = "Karte";
 "OtherTabItem" = "Sonstiges";
-"OnboardingDescription" = "Mein Moers ist eine sinnvolle Ergänzung zu dieser App. \nSuche Geschäfte & Parkplätze mit Live-Daten und bewege Dich mit interaktiven 360° Panoramen durch die Stadt!";
+"OnboardingDescription" = "Suche Geschäfte & Parkplätze mit Live-Daten und bewege Dich mit interaktiven 360° Panoramen durch die Stadt!";
 "OnboardingFirstPageActionButtonTitle" = "Fortfahren";
 "OnboardingNotificationPageTitle" = "Push-Mitteilungen";
 "OnboardingNotificationPageDescription" = "Erhalte Push Notifications um auf dem Laufenden zu bleiben.";
@@ -17,5 +17,9 @@
 "CompletionPageTitle" = "Einrichtung abgeschlossen";
 "CompletionPageActionButtonTitle" = "Los geht's!";
 "SearchBarPrompt" = "Wohin willst du?";
-"DashboardTitleRubbishCollection" = "Abfallkalender";
+"DashboardTitleRubbishCollection" = "Nächste Abholtermine";
 "DashboardMoreRubbish" = "Mehr";
+"RubbishCollectionPageTitle" = "Abfuhrkalender";
+"RubbishCollectionPageDescription" = "Mein Moers kann dir die Abfuhrtermine der Müllabfuhr zeigen und dich daran erinnern, diese herauszustellen.";
+"RubbishCollectionPageActionButtonTitle" = "Fortfahren";
+"RubbishCollectionPageAlternativeButtonTitle" = "Nicht jetzt";

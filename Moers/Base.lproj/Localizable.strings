@@ -19,3 +19,7 @@
 "SearchBarPrompt" = "Where do you want to go?";
 "DashboardTitleRubbishCollection" = "Waste Schedule";
 "DashboardMoreRubbish" = "More";
+"RubbishCollectionPageTitle" = "Pick-up Schedule";
+"RubbishCollectionPageDescription" = "Mein Moers can show you the collection dates of the garbage collection and remind you to expose them.";
+"RubbishCollectionPageActionButtonTitle" = "Fortfahren";
+"RubbishCollectionPageAlternativeButtonTitle" = "Not now";
