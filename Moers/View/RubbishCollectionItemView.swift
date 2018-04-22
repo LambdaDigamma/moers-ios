@@ -17,7 +17,6 @@ class RubbishCollectionItemView: UIView {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 12)
-        label.text = "26.04.2018"
         label.textAlignment = .center
         
         return label
@@ -26,7 +25,7 @@ class RubbishCollectionItemView: UIView {
     
     lazy var imageView: UIImageView = {
         
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "greenWaste"))
+        let imageView = UIImageView()
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -41,8 +40,9 @@ class RubbishCollectionItemView: UIView {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.text = "Biotonne"
         label.textAlignment = .center
+        label.minimumScaleFactor = 0.5
+        label.adjustsFontSizeToFitWidth = true
         
         return label
         
