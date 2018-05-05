@@ -256,22 +256,20 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
             
         } else if searchStyle == .branchSearch && indexPath.row == 0 {
             
-            let cell = UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.filterCell, for: indexPath) as! RebuildFilterTableViewCell
             
-//            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.filterCell, for: indexPath) as! FilterTableViewCell
-            
-//            cell.selectionStyle = .none
-//
-//            guard let branch = selectedBranch else { fatalError("Error while selecting branch!") }
-//
-//            cell.branchLabel.text = branch.name
-//            cell.onButtonClick = { cell in
-//
-//                self.searchStyle = .none
-//
-//                tableView.reloadData()
-//
-//            }
+            cell.selectionStyle = .none
+
+            guard let branch = selectedBranch else { fatalError("Error while selecting branch!") }
+
+            cell.branchLabel.text = branch.name
+            cell.onButtonClick = { cell in
+
+                self.searchStyle = .none
+
+                tableView.reloadData()
+
+            }
             
             return cell
             
@@ -403,6 +401,18 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         searchBar.resignFirstResponder()
         
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+//        guard let tableViewCell = cell as? BranchTableViewCell else { return }
+//
+//        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
+        
+    }
+    
+    // MARK: - UICollectionView
+    
+    
     
     // MARK: - UISearchBarDelegate
     

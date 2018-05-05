@@ -36,8 +36,10 @@
 		DF4BD1C0208B7CBA003ECF41 /* RubbishCollectionItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1BF208B7CBA003ECF41 /* RubbishCollectionItemView.swift */; };
 		DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */; };
 		DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C3208C64F1003ECF41 /* PickerView.swift */; };
+		DF4BD1C6208CF76C003ECF41 /* RubbishReminderBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C5208CF76C003ECF41 /* RubbishReminderBulletinItem.swift */; };
 		DF5135B91F71A4C4002A8977 /* DetailParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5135B81F71A4C4002A8977 /* DetailParkingViewController.swift */; };
 		DF5135BB1F71A7B3002A8977 /* DetailShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5135BA1F71A7B3002A8977 /* DetailShopViewController.swift */; };
+		DF524CA8208741FF00D88599 /* RebuildFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524CA7208741FF00D88599 /* RebuildFilterTableViewCell.swift */; };
 		DF524CAA2087421800D88599 /* RebuildBranchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524CA92087421800D88599 /* RebuildBranchTableViewCell.swift */; };
 		DF524CAC2087443D00D88599 /* RebuildBranchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524CAB2087443D00D88599 /* RebuildBranchCollectionViewCell.swift */; };
 		DF524CAE20885A7700D88599 /* RubbishCollectionStreet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524CAD20885A7700D88599 /* RubbishCollectionStreet.swift */; };
@@ -131,8 +133,10 @@
 		DF4BD1BF208B7CBA003ECF41 /* RubbishCollectionItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionItemView.swift; sourceTree = "<group>"; };
 		DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishStreetPickerItem.swift; sourceTree = "<group>"; };
 		DF4BD1C3208C64F1003ECF41 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		DF4BD1C5208CF76C003ECF41 /* RubbishReminderBulletinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishReminderBulletinItem.swift; sourceTree = "<group>"; };
 		DF5135B81F71A4C4002A8977 /* DetailParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailParkingViewController.swift; sourceTree = "<group>"; };
 		DF5135BA1F71A7B3002A8977 /* DetailShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailShopViewController.swift; sourceTree = "<group>"; };
+		DF524CA7208741FF00D88599 /* RebuildFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildFilterTableViewCell.swift; sourceTree = "<group>"; };
 		DF524CA92087421800D88599 /* RebuildBranchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildBranchTableViewCell.swift; sourceTree = "<group>"; };
 		DF524CAB2087443D00D88599 /* RebuildBranchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildBranchCollectionViewCell.swift; sourceTree = "<group>"; };
 		DF524CAD20885A7700D88599 /* RubbishCollectionStreet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionStreet.swift; sourceTree = "<group>"; };
@@ -225,6 +229,7 @@
 				DF02B75C1FAFC037004B8B3E /* FilterTableViewCell.swift */,
 				DF0CB4B22087092F00CC0AA8 /* RebuildSearchResultTableViewCell.swift */,
 				DF524CA92087421800D88599 /* RebuildBranchTableViewCell.swift */,
+				DF524CA7208741FF00D88599 /* RebuildFilterTableViewCell.swift */,
 			);
 			path = UITableViewCells;
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 				DF0CB49A2082B65000CC0AA8 /* BulletinDataSource.swift */,
 				DF0CB4A02082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift */,
 				DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */,
+				DF4BD1C5208CF76C003ECF41 /* RubbishReminderBulletinItem.swift */,
 			);
 			path = BulletinBoard;
 			sourceTree = "<group>";
@@ -580,6 +586,7 @@
 				DFB92D621F6B0B7A00669F73 /* Location.swift in Sources */,
 				DFC1CC641F75960A00C1D269 /* SelectionViewController.swift in Sources */,
 				DFD129761FAF12D2001900CF /* BranchCollectionViewCell.swift in Sources */,
+				DF4BD1C6208CF76C003ECF41 /* RubbishReminderBulletinItem.swift in Sources */,
 				DFB64DD12038F94600173A80 /* InfoViewController.swift in Sources */,
 				DF02B7631FB0BAE9004B8B3E /* Branch.swift in Sources */,
 				DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */,
@@ -623,6 +630,7 @@
 				DF0CB48F2082A8DB00CC0AA8 /* AppConfig.swift in Sources */,
 				DF5135BB1F71A7B3002A8977 /* DetailShopViewController.swift in Sources */,
 				DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */,
+				DF524CA8208741FF00D88599 /* RebuildFilterTableViewCell.swift in Sources */,
 				DF0CB49F2082B90900CC0AA8 /* FeedbackGenerators.swift in Sources */,
 				DFD129731FAF0C1B001900CF /* BranchTableViewCell.swift in Sources */,
 			);

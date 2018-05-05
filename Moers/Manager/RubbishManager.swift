@@ -157,6 +157,11 @@ class RubbishManager {
         
     }
     
+    public var remindersEnabled: Bool? {
+        get { return UserDefaults.standard.bool(forKey: "RubbishRemindersEnabled") }
+        set { UserDefaults.standard.set(newValue, forKey: "RubbishRemindersEnabled") }
+    }
+    
     private var street: String? {
         get { return UserDefaults.standard.string(forKey: "RubbishStreet") }
         set { UserDefaults.standard.set(newValue, forKey: "RubbishStreet") }

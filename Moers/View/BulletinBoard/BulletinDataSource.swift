@@ -108,7 +108,37 @@ enum BulletinDataSource {
             let selectedStreet = item.streets[item.picker.currentSelectedRow]
             
             RubbishManager.shared.register(selectedStreet)
-                
+            
+            page.nextItem = makeRubbishReminderPage()
+            
+            item.manager?.displayNextItem()
+            
+        }
+        
+        page.alternativeHandler = { item in
+            page.nextItem = makeCompletionPage()
+            item.manager?.displayNextItem()
+        }
+        
+        return page
+        
+    }
+    
+    static func makeRubbishReminderPage() -> PageBulletinItem {
+        
+        let page = RubbishReminderBulletinItem(title: String.localized("RubbishCollectionReminderPageTitle"))
+        page.appearance = makeAppearance()
+        page.descriptionText = String.localized("RubbishCollectionReminderPageDescription")
+        page.image = #imageLiteral(resourceName: "NotificationPrompt")
+        page.actionButtonTitle = String.localized("RubbishCollectionReminderPageActionButtonTitle")
+        page.alternativeButtonTitle = String.localized("RubbishCollectionReminderPageAlternativeButtonTitle")
+        
+        page.isDismissable = false
+        
+        page.actionHandler = { item in
+            
+            // TODO: Here
+            
             item.manager?.displayNextItem()
             
         }
