@@ -30,6 +30,14 @@ struct Theme: ThemeProtocol {
                              separatorColor: UIColor.lightGray,
                              statusBarStyle: .default)
     
+    static let lightJulius = Theme(color: UIColor(red: 0x2C, green: 0x28, blue: 0x29),
+                                   backgroundColor: UIColor(hexString: "#000000")!,
+                                   accentColor: UIColor(red: 0x2C, green: 0x28, blue: 0x29),
+                                   decentColor: UIColor(red: 0x83, green: 0x83, blue: 0x83),
+                                   navigationColor: UIColor(red: 0xDC, green: 0x39, blue: 0x32),
+                                   separatorColor: UIColor(red: 0.149, green: 0.196, blue: 0.220, alpha: 1.00),
+                                   statusBarStyle: .default)
+    
     static let dark = Theme(color: UIColor.white,
                             backgroundColor: darkGray,
                             accentColor: yellow,
