@@ -23,3 +23,7 @@
 "RubbishCollectionPageDescription" = "Mein Moers kann dir die Abfuhrtermine der Müllabfuhr zeigen und dich daran erinnern, diese herauszustellen.";
 "RubbishCollectionPageActionButtonTitle" = "Fortfahren";
 "RubbishCollectionPageAlternativeButtonTitle" = "Nicht jetzt";
+"RubbishCollectionReminderPageTitle" = "Abfuhr-Benachrichtigungen";
+"RubbishCollectionReminderPageDescription" = "Mein Moers kann dir dich am Vortag zu einer bestimmen Uhrzeit daran erinnern, deine Mülltonnen rechtzeitig an die Straße zu stellen.";
+"RubbishCollectionReminderPageActionButtonTitle" = "Einstellen";
+"RubbishCollectionReminderPageAlternativeButtonTitle" = "Nicht jetzt";

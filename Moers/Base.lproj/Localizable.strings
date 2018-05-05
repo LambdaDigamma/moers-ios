@@ -23,3 +23,7 @@
 "RubbishCollectionPageDescription" = "Mein Moers can show you the collection dates of the garbage collection and remind you to expose them.";
 "RubbishCollectionPageActionButtonTitle" = "Fortfahren";
 "RubbishCollectionPageAlternativeButtonTitle" = "Not now";
+"RubbishCollectionReminderPageTitle" = "Pick-up notifications";
+"RubbishCollectionReminderPageDescription" = "Mein Moers can remind you to put your trash cans on the street in time.";
+"RubbishCollectionReminderPageActionButtonTitle" = "Setup";
+"RubbishCollectionReminderPageAlternativeButtonTitle" = "Not now";
