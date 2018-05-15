@@ -83,9 +83,38 @@ extension UIColor {
     
 }
 
+extension Date {
+    
+    func format(format: String) -> String {
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.locale = Locale(identifier: "DE_de")
+        dateFormatter.dateFormat = format
+        let date = dateFormatter.string(from: self)
+        
+        return date
+        
+    }
+    
+    static func from(_ dateString: String, withFormat format: String) -> Date? {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.locale = Locale(identifier: "DE_de")
+        
+        let date = dateFormatter.date(from: dateString)
+        
+        return date
+        
+    }
+    
+}
+
+
 struct AppColor {
     
-    static let yellow = UIColor(red: 0xFF, green: 0xEB, blue: 0x3B)// UIColor(red: 0xFF, green: 0xEA, blue: 0x00, alpha: 1)
+    static let yellow = UIColor(red: 0xFF, green: 0xEB, blue: 0x3B)
     
 }
 
@@ -99,57 +128,24 @@ extension UISearchBar {
 
 extension UIColor {
     
-    func darkerColor() -> UIColor {
-        let amount: CGFloat = 0.9
-        let rgba = UnsafeMutablePointer<CGFloat>.allocate(capacity: 4)
-        
-        self.getRed(&rgba[0], green: &rgba[1], blue: &rgba[2], alpha: &rgba[3])
-        let darkerColor = UIColor(red: amount * rgba[0], green: amount * rgba[1], blue: amount * rgba[2], alpha: rgba[3])
-        
-        rgba.deinitialize()
-        rgba.deallocate(capacity: 4)
-        return darkerColor
+    func lighter(by percentage: CGFloat = 30.0) -> UIColor? {
+        return self.adjust(by: abs(percentage))
     }
     
-}
-
-extension PXColor {
-    
-    func lighter(amount : CGFloat = 0.25) -> PXColor {
-        return hueColorWithBrightnessAmount(amount: 1 + amount)
+    func darker(by percentage: CGFloat = 30.0) -> UIColor? {
+        return self.adjust(by: -1 * abs(percentage))
     }
     
-    func darker(amount : CGFloat = 0.25) -> PXColor {
-        return hueColorWithBrightnessAmount(amount: 1 - amount)
-    }
-    
-    private func hueColorWithBrightnessAmount(amount: CGFloat) -> PXColor {
-        var hue         : CGFloat = 0
-        var saturation  : CGFloat = 0
-        var brightness  : CGFloat = 0
-        var alpha       : CGFloat = 0
-        
-        #if os(iOS)
-            
-            if getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
-                return PXColor( hue: hue,
-                                saturation: saturation,
-                                brightness: brightness * amount,
-                                alpha: alpha )
-            } else {
-                return self
-            }
-            
-        #else
-            
-            getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
-            return PXColor( hue: hue,
-                            saturation: saturation,
-                            brightness: brightness * amount,
-                            alpha: alpha )
-            
-        #endif
-        
+    func adjust(by percentage: CGFloat = 30.0) -> UIColor? {
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        if self.getRed(&r, green: &g, blue: &b, alpha: &a) {
+            return UIColor(red: min(r + percentage / 100, 1.0),
+                           green: min(g + percentage / 100, 1.0),
+                           blue: min(b + percentage / 100, 1.0),
+                           alpha: a)
+        } else {
+            return nil
+        }
     }
     
 }
