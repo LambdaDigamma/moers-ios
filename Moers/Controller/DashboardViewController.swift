@@ -8,66 +8,98 @@
 
 import UIKit
 import Gestalt
+import UserNotifications
 
 class DashboardViewController: UIViewController {
 
     // MARK: - UI
     
-    lazy var rubbishCollectionHeaderLabel: UILabel = {
+    lazy var scrollView: UIScrollView = {
         
-        let label = UILabel()
+        let scrollView = UIScrollView()
         
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.text = String.localized("DashboardTitleRubbishCollection")
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsVerticalScrollIndicator = false
         
-        return label
-        
-    }()
-    
-    lazy var moreRubbishButton: UIButton = {
-        
-        let button = UIButton()
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        button.setTitle(String.localized("DashboardMoreRubbish"), for: .normal)
-        
-        return button
+        return scrollView
         
     }()
     
-    var itemView1 = RubbishCollectionItemView()
-    var itemView2 = RubbishCollectionItemView()
-    var itemView3 = RubbishCollectionItemView()
+    lazy var contentView: UIView = {
+        
+        let view = UIView()
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+        
+    }()
     
-    lazy var rubbishList: UIStackView = {
-
-        let stackView = UIStackView(arrangedSubviews: [itemView1, itemView2, itemView3])
-
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
+    lazy var cardStackView: UIStackView = {
+        
+        let stackView = UIStackView()
+        
+        stackView.axis = .vertical
+        stackView.distribution = .fill
         stackView.alignment = .fill
-        stackView.spacing = 5
+        stackView.spacing = 16
         stackView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         return stackView
-
+        
     }()
+    
+    lazy var notificationCardView: DashboardNotificationCardView = {
+        
+        let cardView = DashboardNotificationCardView()
+        
+        cardView.translatesAutoresizingMaskIntoConstraints = false
+        cardView.titleLabel.text = "Was weiß ich"
+        cardView.subtitleLabel.text = "Morgen um 16 Uhr..."
+        
+        return cardView
+        
+    }()
+    
+    lazy var rubbishCardView: DashboardRubbishCardView = {
+        
+        let cardView = DashboardRubbishCardView()
+        
+        cardView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return cardView
+        
+    }()
+    
+    var cards: [CardView] {
+        return [rubbishCardView]
+    }
     
     // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.addSubview(rubbishCollectionHeaderLabel)
-        self.view.addSubview(moreRubbishButton)
-        self.view.addSubview(rubbishList)
+        self.view.addSubview(scrollView)
+        self.scrollView.addSubview(cardStackView)
         
+        self.setupCards(cards)
         self.setupConstraints()
         self.setupTheming()
         
-        self.loadData()
+        let queue = OperationQueue()
+        
+        queue.addOperation {
+            if AppConfig.shared.loadData {
+                self.loadData()
+            }
+        }
+        
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
+            
+            print(requests)
+            
+        }
         
     }
     
@@ -75,17 +107,15 @@ class DashboardViewController: UIViewController {
     
     private func setupConstraints() {
         
-        let constraints = [rubbishCollectionHeaderLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 8),
-                           rubbishCollectionHeaderLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 14),
-                           rubbishCollectionHeaderLabel.rightAnchor.constraint(equalTo: moreRubbishButton.leftAnchor, constant: -8),
-                           moreRubbishButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 8),
-                           moreRubbishButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -14),
-                           moreRubbishButton.widthAnchor.constraint(equalToConstant: 40),
-                           moreRubbishButton.heightAnchor.constraint(equalToConstant: 20),
-                           rubbishList.topAnchor.constraint(equalTo: moreRubbishButton.bottomAnchor, constant: 8),
-                           rubbishList.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 14),
-                           rubbishList.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -14),
-                           rubbishList.heightAnchor.constraint(equalToConstant: 120)]
+        let constraints = [scrollView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0),
+                           scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
+                           scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
+                           scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0),
+                           cardStackView.leftAnchor.constraint(equalTo: self.scrollView.leftAnchor, constant: 16),
+                           cardStackView.rightAnchor.constraint(equalTo: self.scrollView.rightAnchor, constant: -16),
+                           cardStackView.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 16),
+                           cardStackView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor, constant: -16),
+                           cardStackView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -32)]
         
         NSLayoutConstraint.activate(constraints)
         
@@ -96,8 +126,7 @@ class DashboardViewController: UIViewController {
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
             
             themeable.view.backgroundColor = theme.backgroundColor
-            themeable.rubbishCollectionHeaderLabel.textColor = theme.color
-            themeable.moreRubbishButton.setTitleColor(theme.color, for: .normal)
+            themeable.cards.forEach { $0.backgroundColor = theme.cardBackgroundColor }
             
         }
         
@@ -107,14 +136,28 @@ class DashboardViewController: UIViewController {
         
         RubbishManager.shared.loadItems(completion: { (items) in
             
-            if items.count >= 1 {
-                self.itemView1.rubbishCollectionItem = items[0]
-            } else if items.count >= 2 {
-                self.itemView2.rubbishCollectionItem = items[1]
-            } else if items.count >= 3 {
-                self.itemView3.rubbishCollectionItem = items[2]
+            OperationQueue.main.addOperation {
+                
+                if items.count >= 3 {
+                    self.rubbishCardView.itemView1.rubbishCollectionItem = items[0]
+                    self.rubbishCardView.itemView2.rubbishCollectionItem = items[1]
+                    self.rubbishCardView.itemView3.rubbishCollectionItem = items[2]
+                } else if items.count >= 2 {
+                    self.rubbishCardView.itemView1.rubbishCollectionItem = items[0]
+                    self.rubbishCardView.itemView2.rubbishCollectionItem = items[1]
+                } else if items.count >= 1 {
+                    self.rubbishCardView.itemView1.rubbishCollectionItem = items[0]
+                }
+                
             }
+            
         })
+        
+    }
+    
+    public func setupCards(_ cards: [CardView]) {
+        
+        cards.forEach { cardStackView.addArrangedSubview($0) }
         
     }
     
