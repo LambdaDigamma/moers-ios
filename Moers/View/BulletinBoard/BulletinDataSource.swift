@@ -137,7 +137,10 @@ enum BulletinDataSource {
         
         page.actionHandler = { item in
             
-            // TODO: Here
+            let hour = Calendar.current.component(.hour, from: page.picker.date)
+            let minutes = Calendar.current.component(.minute, from: page.picker.date)
+            
+            RubbishManager.shared.registerNotifications(at: hour, minute: minutes)
             
             item.manager?.displayNextItem()
             
