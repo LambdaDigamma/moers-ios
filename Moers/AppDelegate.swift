@@ -23,14 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         FirebaseConfiguration.shared.analyticsConfiguration.setAnalyticsCollectionEnabled(true)
         
-        let appearance = UINavigationBar.appearance()
-        
-        appearance.barTintColor = UIColor(red: 0.85, green: 0.12, blue: 0.09, alpha: 1.0)
-        appearance.isOpaque = false
-        appearance.isTranslucent = false
-        appearance.tintColor = UIColor.white
-        appearance.barStyle = .black
-        
         if StoreManager.firstLaunch {
             
             print("First launch")
