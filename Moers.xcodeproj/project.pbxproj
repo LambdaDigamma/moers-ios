@@ -82,8 +82,11 @@
 		DFC5464E1F8007FB00EB3F7E /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC5464D1F8007FB00EB3F7E /* SearchResult.swift */; };
 		DFD129731FAF0C1B001900CF /* BranchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD129721FAF0C1B001900CF /* BranchTableViewCell.swift */; };
 		DFD129761FAF12D2001900CF /* BranchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */; };
+		DFD728AC20A880C6005FA9F1 /* RebuildDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD728AB20A880C6005FA9F1 /* RebuildDetailViewController.swift */; };
 		DFD7ACAF20A4486B00D49BE2 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACAE20A4486B00D49BE2 /* CardView.swift */; };
 		DFD7ACB220A44C5A00D49BE2 /* RebuildSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACB120A44C5A00D49BE2 /* RebuildSelectionViewController.swift */; };
+		DFD7ACB620A6BFD500D49BE2 /* TitleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACB520A6BFD500D49BE2 /* TitleCardView.swift */; };
+		DFD7ACC120A842F400D49BE2 /* DateCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACC020A842F400D49BE2 /* DateCardView.swift */; };
 		DFF4E15B20892CFB007C24E3 /* RubbishManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF4E15A20892CFB007C24E3 /* RubbishManager.swift */; };
 		DFF4E15D20893694007C24E3 /* RubbishCollectionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF4E15C20893694007C24E3 /* RubbishCollectionDate.swift */; };
 		DFF4E15F2089ABCA007C24E3 /* RubbishCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF4E15E2089ABCA007C24E3 /* RubbishCollectionItem.swift */; };
@@ -188,6 +191,8 @@
 		DFD728AB20A880C6005FA9F1 /* RebuildDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildDetailViewController.swift; sourceTree = "<group>"; };
 		DFD7ACAE20A4486B00D49BE2 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		DFD7ACB120A44C5A00D49BE2 /* RebuildSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildSelectionViewController.swift; sourceTree = "<group>"; };
+		DFD7ACB520A6BFD500D49BE2 /* TitleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCardView.swift; sourceTree = "<group>"; };
+		DFD7ACC020A842F400D49BE2 /* DateCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCardView.swift; sourceTree = "<group>"; };
 		DFF4E15A20892CFB007C24E3 /* RubbishManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishManager.swift; sourceTree = "<group>"; };
 		DFF4E15C20893694007C24E3 /* RubbishCollectionDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionDate.swift; sourceTree = "<group>"; };
 		DFF4E15E2089ABCA007C24E3 /* RubbishCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionItem.swift; sourceTree = "<group>"; };
@@ -445,7 +450,9 @@
 		DFD7ACBB20A794D700D49BE2 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
+				DFD7ACC020A842F400D49BE2 /* DateCardView.swift */,
 				DFD7ACAE20A4486B00D49BE2 /* CardView.swift */,
+				DFD7ACB520A6BFD500D49BE2 /* TitleCardView.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -625,6 +632,7 @@
 				DFB92D601F6B0B3F00669F73 /* Shop.swift in Sources */,
 				DF02B75D1FAFC037004B8B3E /* FilterTableViewCell.swift in Sources */,
 				DF08361D1F6C198400A1B8A5 /* ShopAnnotationView.swift in Sources */,
+				DFD7ACB620A6BFD500D49BE2 /* TitleCardView.swift in Sources */,
 				DFB92D5E1F6B0B0900669F73 /* API.swift in Sources */,
 				DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */,
 				DF8254081F7712880069D751 /* CSwiftV.swift in Sources */,
@@ -648,6 +656,7 @@
 				DFD7ACB220A44C5A00D49BE2 /* RebuildSelectionViewController.swift in Sources */,
 				DF626AF71FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift in Sources */,
 				DF632B401F6E721B0022FA8E /* ParkingLot.swift in Sources */,
+				DFD7ACC120A842F400D49BE2 /* DateCardView.swift in Sources */,
 				DFC1CC671F76664700C1D269 /* ShopIconDrawer.swift in Sources */,
 				DFAEF0631F6AE89200EF25F5 /* ContentViewController.swift in Sources */,
 				DFB92D691F6B96E400669F73 /* ClusterAnnotationView.swift in Sources */,
