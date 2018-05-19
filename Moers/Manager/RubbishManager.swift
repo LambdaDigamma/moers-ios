@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 class RubbishManager {
     
@@ -14,6 +15,7 @@ class RubbishManager {
     
     private let rubbishStreetURL = URL(string: "https://meinmoers.lambdadigamma.com/abfallkalender-strassenverzeichnis.csv")
     private let rubbishDateURL = URL(string: "https://www.offenesdatenportal.de/dataset/fe92e461-9db4-4d12-ba58-8d4439084e90/resource/04c58f79-e903-46d4-afc9-d546f4474543/download/abfallkalender--abfuhrtermine-2018.csv")
+    private var requests: [UNNotificationRequest] = []
     
     public func loadRubbishCollectionStreets(completion: @escaping ([RubbishCollectionStreet]) -> Void) {
         
@@ -155,6 +157,132 @@ class RubbishManager {
                                        greenWaste: greenWaste,
                                        sweeperDay: sweeperDay ?? "")
         
+    }
+    
+    public func registerNotifications(at hour: Int, minute: Int) {
+        
+        self.reminderHour = hour
+        self.reminderMinute = minute
+        
+        self.invalidateRubbishReminderNotifications()
+        
+        let queue = OperationQueue()
+        
+        queue.addOperation {
+            
+            self.loadItems(completion: { (items) in
+                
+                for item in items {
+                
+                    let notificationContent = UNMutableNotificationContent()
+                    
+                    notificationContent.badge = 1
+                    notificationContent.title = "Abfuhrkalender"
+                    notificationContent.subtitle = "Morgen wird abgeholt: \(item.type.rawValue)"
+                    
+                    print(item.date)
+                    
+                    if let date = Date.from(item.date, withFormat: "dd.MM.yyyy") {
+                        
+                        let calendar = Calendar.current
+                        
+                        var dateComponents = DateComponents()
+                        
+                        dateComponents.day = calendar.component(.day, from: date) - 1
+                        dateComponents.month = calendar.component(.month, from: date)
+                        dateComponents.year = calendar.component(.year, from: date)
+                        dateComponents.hour = self.reminderHour ?? 20
+                        dateComponents.minute = self.reminderMinute ?? 0
+                        dateComponents.second = 0
+                        
+                        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                        
+                        let request = UNNotificationRequest(identifier: "RubbishReminder", content: notificationContent, trigger: trigger)
+                        
+                        self.requests.append(request)
+                        
+                    }
+                    
+                }
+                
+                if let request = self.requests.popLast() {
+                    self.scheduleNotification(request: request, completion: self.scheduleCompletion)
+                }
+                
+            })
+            
+        }
+        
+    }
+    
+    public func scheduleCompletion() {
+        
+        if let request = requests.popLast() {
+            
+            self.scheduleNotification(request: request, completion: scheduleCompletion)
+            
+        }
+        
+    }
+    
+    public func scheduleNotification(request: UNNotificationRequest, completion: @escaping () -> Void) {
+        
+        let center = UNUserNotificationCenter.current()
+        
+        center.add(request, withCompletionHandler: { (error) in
+            
+            completion()
+            
+            guard let error = error else { return }
+            
+            print(error.localizedDescription)
+            
+        })
+        
+    }
+    
+    public func invalidateRubbishReminderNotifications() {
+        
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        
+    }
+    
+    public func registerTestNotification() {
+        
+        let date = Date()
+        
+        let item = RubbishCollectionItem(date: date.format(format: "dd.MM.yyyy"), type: .paper)
+        
+        let notificationContent = UNMutableNotificationContent()
+        
+        notificationContent.badge = 1
+        notificationContent.title = "Abfuhrkalender"
+        notificationContent.subtitle = "Morgen wird abgeholt: \(item.type.rawValue)"
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: "RubbishReminder", content: notificationContent, trigger: trigger)
+        
+        let center = UNUserNotificationCenter.current()
+        
+        center.add(request, withCompletionHandler: { (error) in
+            
+            guard let error = error else { return }
+            
+            print(error.localizedDescription)
+            
+        })
+        
+    }
+    
+    public var reminderHour: Int? {
+        get { return UserDefaults.standard.integer(forKey: "RubbishReminderHour") }
+        set { UserDefaults.standard.set(newValue, forKey: "RubbishReminderHour") }
+    }
+    
+    public var reminderMinute: Int? {
+        get { return UserDefaults.standard.integer(forKey: "RubbishReminderMinute") }
+        set { UserDefaults.standard.set(newValue, forKey: "RubbishReminderMinute") }
     }
     
     public var remindersEnabled: Bool? {
