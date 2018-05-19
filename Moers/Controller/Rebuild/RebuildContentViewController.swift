@@ -198,9 +198,9 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
             
-            themeable.view.backgroundColor = theme.navigationColor
+            themeable.view.backgroundColor = theme.navigationBarColor
             themeable.searchBar.barTintColor = theme.accentColor
-            themeable.searchBar.backgroundColor = theme.navigationColor
+            themeable.searchBar.backgroundColor = theme.navigationBarColor
             themeable.searchBar.tintColor = theme.accentColor
             themeable.searchBar.textField?.textColor = theme.color
             themeable.separatorView.backgroundColor = theme.separatorColor

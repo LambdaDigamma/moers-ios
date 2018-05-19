@@ -147,8 +147,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             UIApplication.shared.statusBarStyle = theme.statusBarStyle
             themeable.view.backgroundColor = theme.backgroundColor
             themeable.tabBar.tintColor = theme.accentColor
-            themeable.tabBar.barTintColor = theme.navigationColor
-            themeable.tabBar.isTranslucent = false
+            themeable.tabBar.barTintColor = theme.navigationBarColor
             themeable.bulletinManager.backgroundColor = theme.backgroundColor
             themeable.bulletinManager.hidesHomeIndicator = false
             themeable.bulletinManager.cardPadding = .compact
@@ -159,11 +158,12 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
                     
                     guard let nav = navigationController as? UINavigationController else { return }
                     
-                    nav.navigationBar.barTintColor = theme.navigationColor
+                    nav.navigationBar.barTintColor = theme.navigationBarColor
                     nav.navigationBar.tintColor = theme.accentColor
                     nav.navigationBar.prefersLargeTitles = true
                     nav.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: theme.accentColor]
                     nav.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: theme.accentColor]
+                    nav.navigationBar.isTranslucent = true
                     
                     if theme.statusBarStyle == .lightContent {
                         

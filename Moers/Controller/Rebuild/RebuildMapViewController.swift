@@ -40,17 +40,25 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
 
         self.view.addSubview(map)
         
-        API.shared.loadShop()
-        API.shared.loadCameras()
-        API.shared.loadParkingLots()
-        API.shared.loadBikeChargingStations()
-
+        let queue = OperationQueue()
+        
+        queue.addOperation {
+            
+            API.shared.delegate = self
+            
+            // TODO: !
+            
+//            API.shared.loadShop()
+//            API.shared.loadCameras()
+//            API.shared.loadParkingLots()
+//            API.shared.loadBikeChargingStations()
+            
+            self.populateData()
+            
+        }
+        
         self.setupConstraints()
         self.setupMap()
-        
-        API.shared.delegate = self
-        
-        populateData()
         
     }
     

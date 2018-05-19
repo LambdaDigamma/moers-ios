@@ -82,10 +82,10 @@ class MapItemContentView: ESTabBarItemContentView {
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
 
             themeable.imageView.backgroundColor = theme.accentColor
-            themeable.imageView.layer.borderColor = theme.navigationColor.cgColor
+            themeable.imageView.layer.borderColor = theme.navigationBarColor.cgColor
             themeable.textColor = theme.decentColor
-            themeable.iconColor = theme.navigationColor
-            themeable.highlightIconColor = theme.navigationColor
+            themeable.iconColor = theme.navigationBarColor
+            themeable.highlightIconColor = theme.navigationBarColor
             themeable.highlightTextColor = theme.accentColor
             themeable.backdropColor = .clear
             
