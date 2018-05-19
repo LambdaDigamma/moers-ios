@@ -25,10 +25,14 @@ class RubbishStreetPickerItem: PageBulletinItem, PickerViewDelegate, PickerViewD
         picker.delegate = self
         picker.dataSource = self
         
-        RubbishManager.shared.loadRubbishCollectionStreets { (streets) in
+        if AppConfig.shared.loadData {
             
-            self.streets = streets
-            self.picker.reloadPickerView()
+            RubbishManager.shared.loadRubbishCollectionStreets { (streets) in
+                
+                self.streets = streets
+                self.picker.reloadPickerView()
+                
+            }
             
         }
         

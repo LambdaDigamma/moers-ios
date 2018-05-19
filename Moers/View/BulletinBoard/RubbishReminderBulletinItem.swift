@@ -17,7 +17,10 @@ class RubbishReminderBulletinItem: PageBulletinItem {
     override init(title: String) {
         super.init(title: title)
         
+        let date = Calendar.current.date(bySettingHour: 20, minute: 00, second: 00, of: Date())
+        
         picker.datePickerMode = .time
+        picker.date = date ?? Date()
         picker.locale = Locale.current
         
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
