@@ -32,6 +32,7 @@
 		DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49691F6AAB7000E9108B /* Assets.xcassets */; };
 		DF1A496D1F6AAB7000E9108B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF1A496B1F6AAB7000E9108B /* LaunchScreen.storyboard */; };
 		DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */; };
+		DF29FB4D20B1954B00741A63 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */; };
 		DF4BD1BE208A72C5003ECF41 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */; };
 		DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */; };
 		DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C3208C64F1003ECF41 /* PickerView.swift */; };
@@ -55,6 +56,8 @@
 		DFAEF0611F6AE87000EF25F5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAEF0601F6AE87000EF25F5 /* MapViewController.swift */; };
 		DFAEF0631F6AE89200EF25F5 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAEF0621F6AE89200EF25F5 /* ContentViewController.swift */; };
 		DFB4D76720B03B9000C8D179 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D76620B03B9000C8D179 /* OtherViewController.swift */; };
+		DFB4D76920B062BE00C8D179 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D76820B062BE00C8D179 /* SettingsViewController.swift */; };
+		DFB4D76B20B064CA00C8D179 /* StaticTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D76A20B064CA00C8D179 /* StaticTableView.swift */; };
 		DFB5ECCF1F79ADDA00B2B464 /* DetailCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB5ECCE1F79ADDA00B2B464 /* DetailCameraViewController.swift */; };
 		DFB5ECD11F79B01800B2B464 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB5ECD01F79B01800B2B464 /* CameraViewController.swift */; };
 		DFB618581FAE144000C98EB6 /* Pulley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB618571FAE144000C98EB6 /* Pulley.framework */; };
@@ -137,6 +140,7 @@
 		DF1A496C1F6AAB7000E9108B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF1A496E1F6AAB7000E9108B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnnotationView.swift; sourceTree = "<group>"; };
+		DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishStreetPickerItem.swift; sourceTree = "<group>"; };
 		DF4BD1C3208C64F1003ECF41 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 		DFAEF0601F6AE87000EF25F5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DFAEF0621F6AE89200EF25F5 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		DFB4D76620B03B9000C8D179 /* OtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
+		DFB4D76820B062BE00C8D179 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		DFB4D76A20B064CA00C8D179 /* StaticTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableView.swift; sourceTree = "<group>"; };
 		DFB5ECCE1F79ADDA00B2B464 /* DetailCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCameraViewController.swift; sourceTree = "<group>"; };
 		DFB5ECD01F79B01800B2B464 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		DFB618571FAE144000C98EB6 /* Pulley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pulley.framework; path = Carthage/Build/iOS/Pulley.framework; sourceTree = "<group>"; };
@@ -351,6 +357,8 @@
 				DF0CB4AC20838FD100CC0AA8 /* MainViewController.swift */,
 				DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */,
 				DFB4D76620B03B9000C8D179 /* OtherViewController.swift */,
+				DFB4D76820B062BE00C8D179 /* SettingsViewController.swift */,
+				DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */,
 				DFD7ACB020A44C0D00D49BE2 /* Rebuild */,
 				DFB6185A1FAE2CC800C98EB6 /* NavigationViewController.swift */,
 				DFAEF0601F6AE87000EF25F5 /* MapViewController.swift */,
@@ -396,6 +404,7 @@
 				DF524CAD20885A7700D88599 /* RubbishCollectionStreet.swift */,
 				DFF4E15C20893694007C24E3 /* RubbishCollectionDate.swift */,
 				DFF4E15E2089ABCA007C24E3 /* RubbishCollectionItem.swift */,
+				DFB4D76A20B064CA00C8D179 /* StaticTableView.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -619,6 +628,7 @@
 				DF0CB4A12082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift in Sources */,
 				DF632B441F6E90140022FA8E /* DetailViewController.swift in Sources */,
 				DFB6185B1FAE2CC800C98EB6 /* NavigationViewController.swift in Sources */,
+				DF29FB4D20B1954B00741A63 /* ThemeViewController.swift in Sources */,
 				DF5135B91F71A4C4002A8977 /* DetailParkingViewController.swift in Sources */,
 				DF0CB4AB208357A800CC0AA8 /* MapItemContentView.swift in Sources */,
 				DFAEF0611F6AE87000EF25F5 /* MapViewController.swift in Sources */,
@@ -661,6 +671,7 @@
 				DFC5464E1F8007FB00EB3F7E /* SearchResult.swift in Sources */,
 				DF0CB4B32087092F00CC0AA8 /* RebuildSearchResultTableViewCell.swift in Sources */,
 				DF0CB4AF2085B65200CC0AA8 /* RebuildMapViewController.swift in Sources */,
+				DFB4D76B20B064CA00C8D179 /* StaticTableView.swift in Sources */,
 				DF0CB4932082AB5600CC0AA8 /* Theme.swift in Sources */,
 				DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */,
 				DFC3DE821F6C65FE0049638B /* SearchResultTableViewCell.swift in Sources */,

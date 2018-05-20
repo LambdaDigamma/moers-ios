@@ -27,3 +27,5 @@
 "RubbishCollectionReminderPageDescription" = "Mein Moers kann dir dich am Vortag zu einer bestimmen Uhrzeit daran erinnern, deine Mülltonnen rechtzeitig an die Straße zu stellen.";
 "RubbishCollectionReminderPageActionButtonTitle" = "Einstellen";
 "RubbishCollectionReminderPageAlternativeButtonTitle" = "Nicht jetzt";
+"SettingsTitle" = "Einstellungen";
+"ThemeTitle" = "Theme";

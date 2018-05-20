@@ -27,3 +27,5 @@
 "RubbishCollectionReminderPageDescription" = "Mein Moers can remind you to put your trash cans on the street in time.";
 "RubbishCollectionReminderPageActionButtonTitle" = "Setup";
 "RubbishCollectionReminderPageAlternativeButtonTitle" = "Not now";
+"SettingsTitle" = "Settings";
+"ThemeTitle" = "Theme";
