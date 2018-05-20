@@ -150,6 +150,24 @@ extension UIColor {
     
 }
 
+extension UIViewController {
+    var safeTopAnchor: NSLayoutYAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return view.safeAreaLayoutGuide.topAnchor
+        } else {
+            return topLayoutGuide.topAnchor
+        }
+    }
+    
+    var safeBottomAnchor: NSLayoutYAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return view.safeAreaLayoutGuide.bottomAnchor
+        } else {
+            return bottomLayoutGuide.topAnchor
+        }
+    }
+}
+
 extension UIImage {
     
     class func imageResize(imageObj: UIImage, size: CGSize, scaleFactor: CGFloat) -> UIImage? {
