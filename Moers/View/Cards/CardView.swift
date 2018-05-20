@@ -104,15 +104,24 @@ class CardView: UIView {
         
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
             
-            self.cornerRadius = 12.0
+            themeable.cornerRadius = 12.0
+            themeable.backgroundColor = theme.cardBackgroundColor
             
             if theme.cardShadow {
                 
-                self.clipsToBounds = false
-                self.shadowColor = UIColor.lightGray
-                self.shadowOpacity = 0.6
-                self.shadowRadius = 10.0
-                self.shadowOffset = CGSize(width: 0, height: 0)
+                themeable.clipsToBounds = false
+                themeable.shadowColor = UIColor.lightGray
+                themeable.shadowOpacity = 0.6
+                themeable.shadowRadius = 10.0
+                themeable.shadowOffset = CGSize(width: 0, height: 0)
+                
+            } else {
+                
+                themeable.clipsToBounds = false
+                themeable.shadowColor = UIColor.lightGray
+                themeable.shadowOpacity = 0.0
+                themeable.shadowRadius = 0.0
+                themeable.shadowOffset = CGSize(width: 0, height: 0)
                 
             }
             
