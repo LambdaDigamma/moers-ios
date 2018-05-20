@@ -52,7 +52,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     
     lazy var otherViewController: UIViewController = {
         
-        let otherViewController = UIViewController()
+        let otherViewController = OtherViewController()
         
         otherViewController.navigationItem.title = String.localized("OtherTabItem")
         
