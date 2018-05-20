@@ -85,12 +85,6 @@ class DashboardViewController: UIViewController {
             }
         }
         
-        UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
-            
-            print(requests)
-            
-        }
-        
     }
     
     // MARK: - Private Methods
