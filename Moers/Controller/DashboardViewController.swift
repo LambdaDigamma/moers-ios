@@ -25,16 +25,6 @@ class DashboardViewController: UIViewController {
         
     }()
     
-    lazy var contentView: UIView = {
-        
-        let view = UIView()
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return view
-        
-    }()
-    
     lazy var cardStackView: UIStackView = {
         
         let stackView = UIStackView()
