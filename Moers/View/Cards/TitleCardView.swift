@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Gestalt
 
 class TitleCardView: CardView {
 
@@ -27,6 +28,7 @@ class TitleCardView: CardView {
         self.addSubview(titleLabel)
         
         self.setupConstraints()
+        self.setupTheming()
         
     }
     
@@ -42,6 +44,16 @@ class TitleCardView: CardView {
                            titleLabel.heightAnchor.constraint(equalToConstant: 26)]
         
         NSLayoutConstraint.activate(constraints)
+        
+    }
+    
+    private func setupTheming() {
+        
+        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
+            
+            themeable.titleLabel.textColor = theme.color
+            
+        }
         
     }
     
