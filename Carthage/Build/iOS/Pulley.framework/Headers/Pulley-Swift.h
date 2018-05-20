@@ -164,6 +164,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #endif
 #if __has_feature(modules)
 @import CoreGraphics;
+@import ObjectiveC;
 @import UIKit;
 @import Foundation;
 #endif
@@ -200,6 +201,48 @@ SWIFT_PROTOCOL("_TtP6Pulley14PulleyDelegate_")
 - (void)drawerDisplayModeDidChangeWithDrawer:(PulleyViewController * _Nonnull)drawer;
 @end
 
+@class PulleyPosition;
+
+/// View controllers in the drawer can implement this to receive changes in state or provide values for the different drawer positions.
+SWIFT_PROTOCOL("_TtP6Pulley34PulleyDrawerViewControllerDelegate_")
+@protocol PulleyDrawerViewControllerDelegate <PulleyDelegate>
+@optional
+/// Provide the collapsed drawer height for Pulley. Pulley does NOT automatically handle safe areas for you, however: bottom safe area is provided for your convenience in computing a value to return.
+- (CGFloat)collapsedDrawerHeightWithBottomSafeArea:(CGFloat)bottomSafeArea SWIFT_WARN_UNUSED_RESULT;
+/// Provide the partialReveal drawer height for Pulley. Pulley does NOT automatically handle safe areas for you, however: bottom safe area is provided for your convenience in computing a value to return.
+- (CGFloat)partialRevealDrawerHeightWithBottomSafeArea:(CGFloat)bottomSafeArea SWIFT_WARN_UNUSED_RESULT;
+/// Return the support drawer positions for your drawer.
+- (NSArray<PulleyPosition *> * _Nonnull)supportedDrawerPositions SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+/// Represents a Pulley drawer position.
+/// <ul>
+///   <li>
+///     collapsed:         When the drawer is in its smallest form, at the bottom of the screen.
+///   </li>
+///   <li>
+///     partiallyRevealed: When the drawer is partially revealed.
+///   </li>
+///   <li>
+///     open:              When the drawer is fully open.
+///   </li>
+///   <li>
+///     closed:            When the drawer is off-screen at the bottom of the view. Note: Users cannot close or reopen the drawer on their own. You must set this programatically
+///   </li>
+/// </ul>
+SWIFT_CLASS("_TtC6Pulley14PulleyPosition")
+@interface PulleyPosition : NSObject
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
+@end
+
+
+/// View controllers that are the main content can implement this to receive changes in state.
+SWIFT_PROTOCOL("_TtP6Pulley38PulleyPrimaryContentControllerDelegate_")
+@protocol PulleyPrimaryContentControllerDelegate <PulleyDelegate>
+@end
+
 @class UIView;
 @class UIColor;
 @class NSCoder;
@@ -207,7 +250,7 @@ SWIFT_PROTOCOL("_TtP6Pulley14PulleyDelegate_")
 @class NSBundle;
 
 SWIFT_CLASS("_TtC6Pulley20PulleyViewController")
-@interface PulleyViewController : UIViewController
+@interface PulleyViewController : UIViewController <PulleyDrawerViewControllerDelegate>
 /// When using with Interface Builder only! Connect a containing view to this outlet.
 @property (nonatomic, strong) IBOutlet UIView * _Null_unspecified primaryContentContainerView;
 /// When using with Interface Builder only! Connect a containing view to this outlet.
@@ -262,6 +305,9 @@ SWIFT_CLASS("_TtC6Pulley20PulleyViewController")
 @property (nonatomic, readonly, strong) UIViewController * _Nullable childViewControllerForStatusBarStyle;
 @property (nonatomic, readonly, strong) UIViewController * _Nullable childViewControllerForStatusBarHidden;
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator> _Nonnull)coordinator;
+- (CGFloat)collapsedDrawerHeightWithBottomSafeArea:(CGFloat)bottomSafeArea SWIFT_WARN_UNUSED_RESULT;
+- (CGFloat)partialRevealDrawerHeightWithBottomSafeArea:(CGFloat)bottomSafeArea SWIFT_WARN_UNUSED_RESULT;
+- (NSArray<PulleyPosition *> * _Nonnull)supportedDrawerPositions SWIFT_WARN_UNUSED_RESULT;
 - (void)drawerPositionDidChangeWithDrawer:(PulleyViewController * _Nonnull)drawer bottomSafeArea:(CGFloat)bottomSafeArea;
 - (void)makeUIAdjustmentsForFullscreenWithProgress:(CGFloat)progress bottomSafeArea:(CGFloat)bottomSafeArea;
 - (void)drawerChangedDistanceFromBottomWithDrawer:(PulleyViewController * _Nonnull)drawer distance:(CGFloat)distance bottomSafeArea:(CGFloat)bottomSafeArea;
@@ -273,11 +319,12 @@ SWIFT_CLASS("_TtC6Pulley20PulleyViewController")
 @class UIScrollView;
 
 @interface PulleyViewController (SWIFT_EXTENSION(Pulley)) <UIScrollViewDelegate>
-- (void)scrollViewWillBeginDragging:(UIScrollView * _Nonnull)scrollView;
 - (void)scrollViewDidEndDragging:(UIScrollView * _Nonnull)scrollView willDecelerate:(BOOL)decelerate;
 - (void)scrollViewWillEndDragging:(UIScrollView * _Nonnull)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(CGPoint * _Nonnull)targetContentOffset;
 - (void)scrollViewDidScroll:(UIScrollView * _Nonnull)scrollView;
 @end
+
+
 
 
 
