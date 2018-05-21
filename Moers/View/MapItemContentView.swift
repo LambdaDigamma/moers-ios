@@ -18,12 +18,12 @@ class BasicItemContentView: ESTabBarItemContentView {
         
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
             
-            themeable.highlightTextColor = theme.accentColor
-            themeable.highlightIconColor = theme.accentColor
-            themeable.tintColor = theme.accentColor
-            themeable.textColor = theme.decentColor
-            themeable.iconColor = theme.decentColor
             themeable.backdropColor = UIColor.clear
+            themeable.highlightBackdropColor = UIColor.clear
+            themeable.iconColor = theme.decentColor
+            themeable.textColor = theme.decentColor
+            themeable.highlightIconColor = theme.accentColor
+            themeable.highlightTextColor = theme.accentColor
             
         }
         
