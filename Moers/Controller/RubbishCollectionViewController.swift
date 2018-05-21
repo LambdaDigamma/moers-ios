@@ -7,29 +7,152 @@
 //
 
 import UIKit
+import Gestalt
 
 class RubbishCollectionViewController: UIViewController {
 
+    private let identifier = "rubbishCollectionItem"
+    private let headerIdentifier = "monthHeader"
+    
+    lazy var tableView: UITableView = {
+        
+        let tableView = UITableView()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.register(RubbishCollectionItemTableViewCell.self, forCellReuseIdentifier: identifier)
+        tableView.register(MonthHeaderView.self, forHeaderFooterViewReuseIdentifier: headerIdentifier)
+        
+        return tableView
+        
+    }()
+    
+    var items: [RubbishCollectionItem] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        self.title = String.localized("RubbishCollectionTitle")
+        self.view.addSubview(tableView)
+        
+        self.setupConstraints()
+        self.setupTheming()
+        self.loadData()
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func setupConstraints() {
+        
+        let constraints = [tableView.topAnchor.constraint(equalTo: self.safeTopAnchor),
+                           tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+                           tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+                           tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)]
+        
+        NSLayoutConstraint.activate(constraints)
+        
     }
-    */
 
+    private func setupTheming() {
+        
+        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
+            
+            themeable.view.backgroundColor = theme.backgroundColor
+            themeable.tableView.backgroundColor = theme.backgroundColor
+            themeable.tableView.separatorColor = theme.decentColor
+            
+        }
+        
+    }
+    
+    private func loadData() {
+        
+        RubbishManager.shared.loadItems(completion: { (items) in
+            
+            OperationQueue.main.addOperation {
+                
+                self.items = items
+                self.tableView.reloadData()
+                
+            }
+            
+        })
+        
+    }
+    
+    // MARK: - Data Handling
+    
+    private var numberOfSections: Int {
+        
+        let set = Set(items.map { component(.month, from: Date.from($0.date, withFormat: "dd.MM.yyyy") ?? Date()) })
+        
+        return set.count
+        
+    }
+    
+    private func items(for section: Int) -> [RubbishCollectionItem] {
+        
+        let currentMonth = component(.month, from: Date())
+        
+        return items.filter { component(.month, from: Date.from($0.date, withFormat: "dd.MM.yyyy")!) - currentMonth == section }
+        
+    }
+    
+    private func component(_ component: Calendar.Component, from date: Date) -> Int {
+        
+        let calendar = Calendar.current
+        let comp = calendar.component(component, from: date)
+        
+        return comp
+        
+    }
+    
+}
+
+extension RubbishCollectionViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+}
+
+extension RubbishCollectionViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return numberOfSections
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return items(for: section).count
+        
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerIdentifier) as! MonthHeaderView
+        
+        let currentMonth = component(.month, from: Date())
+        
+        let sectionMonth = currentMonth + section
+        
+        headerView.titleLabel.text = Date.from("\(sectionMonth)", withFormat: "M")?.format(format: "MMMM")
+        
+        return headerView
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! RubbishCollectionItemTableViewCell
+        
+        cell.item = items(for: indexPath.section)[indexPath.row]
+        
+        return cell
+        
+    }
+    
 }
