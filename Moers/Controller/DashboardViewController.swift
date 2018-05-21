@@ -56,6 +56,7 @@ class DashboardViewController: UIViewController {
         let cardView = DashboardRubbishCardView()
         
         cardView.translatesAutoresizingMaskIntoConstraints = false
+        cardView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showRubbishCollectionViewController)))
         
         return cardView
         
@@ -139,9 +140,16 @@ class DashboardViewController: UIViewController {
         
     }
     
-    public func setupCards(_ cards: [CardView]) {
+    private func setupCards(_ cards: [CardView]) {
         
         cards.forEach { cardStackView.addArrangedSubview($0) }
+        
+    }
+    
+    @objc private func showRubbishCollectionViewController() {
+        
+        let rubbishCollectionViewController = RubbishCollectionViewController()
+        self.navigationController?.pushViewController(rubbishCollectionViewController, animated: true)
         
     }
     
