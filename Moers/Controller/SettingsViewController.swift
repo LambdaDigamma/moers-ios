@@ -61,9 +61,9 @@ class SettingsViewController: UIViewController {
 
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themable, theme) in
+        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
             
-            themable.view.backgroundColor = theme.backgroundColor
+            themeable.view.backgroundColor = theme.backgroundColor
             
         }
         
