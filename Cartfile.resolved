@@ -1,4 +1,5 @@
 github "52inc/Pulley" "2.4.0"
+github "Haneke/HanekeSwift" "v0.11.1"
 github "alexaubry/BulletinBoard" "b9c4e6fb8bdd4ad5690e7d2f91ab56e01a8e299d"
 github "eggswift/ESTabBarController" "2.6.2"
 github "facebook/pop" "1.0.10"

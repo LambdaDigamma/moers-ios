@@ -6,3 +6,4 @@ github "alexaubry/BulletinBoard" "master"
 github "eggswift/ESTabBarController"
 github "facebook/pop" ~> 1.0.10
 github "regexident/EventBus"
+github "Haneke/HanekeSwift"
