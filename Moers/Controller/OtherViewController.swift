@@ -34,7 +34,8 @@ class OtherViewController: UIViewController {
     lazy var data: [Section] = {
         
         return [Section(title: "",
-                        rows: [Row(title: String.localized("SettingsTitle"), action: showSettings)])]
+                        rows: [Row(title: String.localized("SettingsTitle"), action: showSettings),
+                               Row(title: String.localized("AboutTitle"), action: showAbout)])]
         
     }()
     
@@ -62,6 +63,10 @@ class OtherViewController: UIViewController {
     
     private func showSettings() {
         push(viewController: SettingsViewController.self)
+    }
+    
+    private func showAbout() {
+        push(viewController: AboutViewController.self)
     }
     
     private func push(viewController: UIViewController.Type) {
