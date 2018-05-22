@@ -97,6 +97,7 @@
 		DFDD3F6E20B22230005602E3 /* RubbishCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F6D20B22230005602E3 /* RubbishCollectionViewController.swift */; };
 		DFDD3F7020B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F6F20B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift */; };
 		DFDD3F7220B2E525005602E3 /* MonthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F7120B2E525005602E3 /* MonthHeaderView.swift */; };
+		DFDD3F7420B2F30A005602E3 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */; };
 		DFF4E15B20892CFB007C24E3 /* RubbishManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF4E15A20892CFB007C24E3 /* RubbishManager.swift */; };
 		DFF4E15D20893694007C24E3 /* RubbishCollectionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF4E15C20893694007C24E3 /* RubbishCollectionDate.swift */; };
 		DFF4E15F2089ABCA007C24E3 /* RubbishCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF4E15E2089ABCA007C24E3 /* RubbishCollectionItem.swift */; };
@@ -213,6 +214,7 @@
 		DFDD3F6D20B22230005602E3 /* RubbishCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionViewController.swift; sourceTree = "<group>"; };
 		DFDD3F6F20B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionItemTableViewCell.swift; sourceTree = "<group>"; };
 		DFDD3F7120B2E525005602E3 /* MonthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthHeaderView.swift; sourceTree = "<group>"; };
+		DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		DFF4E15A20892CFB007C24E3 /* RubbishManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishManager.swift; sourceTree = "<group>"; };
 		DFF4E15C20893694007C24E3 /* RubbishCollectionDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionDate.swift; sourceTree = "<group>"; };
 		DFF4E15E2089ABCA007C24E3 /* RubbishCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionItem.swift; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 				DFB4D76620B03B9000C8D179 /* OtherViewController.swift */,
 				DFB4D76820B062BE00C8D179 /* SettingsViewController.swift */,
 				DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */,
+				DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */,
 				DFD7ACB020A44C0D00D49BE2 /* Rebuild */,
 				DFB6185A1FAE2CC800C98EB6 /* NavigationViewController.swift */,
 				DFAEF0601F6AE87000EF25F5 /* MapViewController.swift */,
@@ -658,6 +661,7 @@
 				DF4BD1BE208A72C5003ECF41 /* DashboardViewController.swift in Sources */,
 				DF0CB4B12085B66600CC0AA8 /* RebuildContentViewController.swift in Sources */,
 				DF8254061F7711180069D751 /* Camera.swift in Sources */,
+				DFDD3F7420B2F30A005602E3 /* AboutViewController.swift in Sources */,
 				DF0CB49D2082B78C00CC0AA8 /* PermissionsManager.swift in Sources */,
 				DFB4D76920B062BE00C8D179 /* SettingsViewController.swift in Sources */,
 				DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */,
