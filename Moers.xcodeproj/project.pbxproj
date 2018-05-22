@@ -54,6 +54,7 @@
 		DF632B481F6EA6AA0022FA8E /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B471F6EA6AA0022FA8E /* DesignableView.swift */; };
 		DF8254061F7711180069D751 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8254051F7711170069D751 /* Camera.swift */; };
 		DF8254081F7712880069D751 /* CSwiftV.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8254071F7712870069D751 /* CSwiftV.swift */; };
+		DFA9EEF920B35AED008590EA /* PetrolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EEF820B35AED008590EA /* PetrolManager.swift */; };
 		DFA9EEFB20B35EB8008590EA /* PetrolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EEFA20B35EB8008590EA /* PetrolType.swift */; };
 		DFA9EEFD20B3602E008590EA /* PetrolSorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EEFC20B3602E008590EA /* PetrolSorting.swift */; };
 		DFA9EEFF20B36A86008590EA /* PetrolStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EEFE20B36A86008590EA /* PetrolStation.swift */; };
@@ -174,6 +175,7 @@
 		DF632B471F6EA6AA0022FA8E /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		DF8254051F7711170069D751 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		DF8254071F7712870069D751 /* CSwiftV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSwiftV.swift; sourceTree = "<group>"; };
+		DFA9EEF820B35AED008590EA /* PetrolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolManager.swift; sourceTree = "<group>"; };
 		DFA9EEFA20B35EB8008590EA /* PetrolType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolType.swift; sourceTree = "<group>"; };
 		DFA9EEFC20B3602E008590EA /* PetrolSorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolSorting.swift; sourceTree = "<group>"; };
 		DFA9EEFE20B36A86008590EA /* PetrolStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolStation.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				DF0CB4952082AFD000CC0AA8 /* FirstLaunchManager.swift */,
 				DF0CB49C2082B78C00CC0AA8 /* PermissionsManager.swift */,
 				DFF4E15A20892CFB007C24E3 /* RubbishManager.swift */,
+				DFA9EEF820B35AED008590EA /* PetrolManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -704,6 +707,7 @@
 				DFB92D5E1F6B0B0900669F73 /* API.swift in Sources */,
 				DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */,
 				DF8254081F7712880069D751 /* CSwiftV.swift in Sources */,
+				DFA9EEF920B35AED008590EA /* PetrolManager.swift in Sources */,
 				DFB4D76720B03B9000C8D179 /* OtherViewController.swift in Sources */,
 				DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */,
 				DF0CB4AD20838FD100CC0AA8 /* MainViewController.swift in Sources */,
