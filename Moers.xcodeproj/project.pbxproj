@@ -180,6 +180,7 @@
 		DFA9EEFC20B3602E008590EA /* PetrolSorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolSorting.swift; sourceTree = "<group>"; };
 		DFA9EEFE20B36A86008590EA /* PetrolStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolStation.swift; sourceTree = "<group>"; };
 		DFA9EF0020B36CEF008590EA /* PetrolRequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolRequestResponse.swift; sourceTree = "<group>"; };
+		DFA9EF0220B40C16008590EA /* Moers.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Moers.gpx; sourceTree = "<group>"; };
 		DFA9EF0320B468E3008590EA /* PetrolPriceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolPriceResponse.swift; sourceTree = "<group>"; };
 		DFA9EF0520B46A8A008590EA /* PetrolDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolDetailResponse.swift; sourceTree = "<group>"; };
 		DFA9EF0720B46C0C008590EA /* PetrolStationTimeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolStationTimeEntry.swift; sourceTree = "<group>"; };
@@ -355,6 +356,7 @@
 				DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */,
 				DFB64DC9203883D200173A80 /* module.modulemap */,
 				DFB64DCA2038845300173A80 /* Firebase.h */,
+				DFA9EF0220B40C16008590EA /* Moers.gpx */,
 				DFB64DBD2038826E00173A80 /* FirebaseAnalytics.framework */,
 				DFB64DBE2038826E00173A80 /* FirebaseCore.framework */,
 				DFB64DBA2038826C00173A80 /* FirebaseCoreDiagnostics.framework */,
