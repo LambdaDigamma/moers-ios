@@ -89,6 +89,55 @@ class CardView: UIView {
         }
     }
     
+    private lazy var blurView: UIVisualEffectView = {
+        
+        let effect = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurView = UIVisualEffectView(effect: effect)
+        
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        blurView.layer.cornerRadius = self.cornerRadius
+        blurView.clipsToBounds = true
+        
+        return blurView
+        
+    }()
+    
+    private lazy var titleLabel: UILabel = {
+        
+        let label = UILabel()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        
+        return label
+        
+    }()
+    
+    private lazy var messageLabel: UILabel = {
+        
+        let label = UILabel()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.medium)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        
+        return label
+        
+    }()
+    
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        return activityIndicator
+        
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -106,6 +155,10 @@ class CardView: UIView {
             
             themeable.cornerRadius = 12.0
             themeable.backgroundColor = theme.cardBackgroundColor
+            themeable.blurView.effect = theme.statusBarStyle == .default ? UIBlurEffect(style: .light) : UIBlurEffect(style: .dark)
+            themeable.activityIndicator.activityIndicatorViewStyle = theme.statusBarStyle == .default ? .gray : .white
+            themeable.messageLabel.textColor = theme.color
+            themeable.titleLabel.textColor = theme.color
             
             if theme.cardShadow {
                 
@@ -126,6 +179,67 @@ class CardView: UIView {
             }
             
         }
+        
+    }
+    
+    public func showError(withTitle title: String, message: String) {
+        
+        self.addSubview(blurView)
+        self.addSubview(messageLabel)
+        self.addSubview(titleLabel)
+        
+        self.titleLabel.text = title
+        self.messageLabel.text = message
+        
+        let constraints = [blurView.topAnchor.constraint(equalTo: self.topAnchor),
+                           blurView.leftAnchor.constraint(equalTo: self.leftAnchor),
+                           blurView.rightAnchor.constraint(equalTo: self.rightAnchor),
+                           blurView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+                           messageLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                           messageLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                           messageLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
+                           messageLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+                           titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
+                           titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+                           titleLabel.bottomAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -8)]
+        
+        NSLayoutConstraint.activate(constraints)
+        
+    }
+    
+    public func dismissError() {
+        
+        self.blurView.removeFromSuperview()
+        self.titleLabel.removeFromSuperview()
+        self.messageLabel.removeFromSuperview()
+        
+    }
+    
+    public func startLoading() {
+        
+        self.addSubview(blurView)
+        self.addSubview(activityIndicator)
+        
+        let constraints = [blurView.topAnchor.constraint(equalTo: self.topAnchor),
+                           blurView.leftAnchor.constraint(equalTo: self.leftAnchor),
+                           blurView.rightAnchor.constraint(equalTo: self.rightAnchor),
+                           blurView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+                           activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                           activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor)]
+        
+        NSLayoutConstraint.activate(constraints)
+        
+        activityIndicator.startAnimating()
+        
+    }
+    
+    public func stopLoading() {
+        
+        self.activityIndicator.hidesWhenStopped = true
+        self.activityIndicator.stopAnimating()
+        
+        self.activityIndicator.removeFromSuperview()
+        self.blurView.removeFromSuperview()
         
     }
     
