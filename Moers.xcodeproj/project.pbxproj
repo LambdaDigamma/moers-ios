@@ -62,6 +62,8 @@
 		DFA9EF0420B468E3008590EA /* PetrolPriceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0320B468E3008590EA /* PetrolPriceResponse.swift */; };
 		DFA9EF0620B46A8A008590EA /* PetrolDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0520B46A8A008590EA /* PetrolDetailResponse.swift */; };
 		DFA9EF0820B46C0C008590EA /* PetrolStationTimeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0720B46C0C008590EA /* PetrolStationTimeEntry.swift */; };
+		DFA9EF0F20B58351008590EA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0E20B58351008590EA /* LocationManager.swift */; };
+		DFA9EF1120B595D7008590EA /* GeocodingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF1020B595D7008590EA /* GeocodingManager.swift */; };
 		DFAEF0611F6AE87000EF25F5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAEF0601F6AE87000EF25F5 /* MapViewController.swift */; };
 		DFAEF0631F6AE89200EF25F5 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAEF0621F6AE89200EF25F5 /* ContentViewController.swift */; };
 		DFB4D76720B03B9000C8D179 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D76620B03B9000C8D179 /* OtherViewController.swift */; };
@@ -184,6 +186,8 @@
 		DFA9EF0320B468E3008590EA /* PetrolPriceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolPriceResponse.swift; sourceTree = "<group>"; };
 		DFA9EF0520B46A8A008590EA /* PetrolDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolDetailResponse.swift; sourceTree = "<group>"; };
 		DFA9EF0720B46C0C008590EA /* PetrolStationTimeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolStationTimeEntry.swift; sourceTree = "<group>"; };
+		DFA9EF0E20B58351008590EA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		DFA9EF1020B595D7008590EA /* GeocodingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingManager.swift; sourceTree = "<group>"; };
 		DFAEF0601F6AE87000EF25F5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DFAEF0621F6AE89200EF25F5 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		DFB4D76620B03B9000C8D179 /* OtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
@@ -301,6 +305,8 @@
 				DF0CB49C2082B78C00CC0AA8 /* PermissionsManager.swift */,
 				DFF4E15A20892CFB007C24E3 /* RubbishManager.swift */,
 				DFA9EEF820B35AED008590EA /* PetrolManager.swift */,
+				DFA9EF0E20B58351008590EA /* LocationManager.swift */,
+				DFA9EF1020B595D7008590EA /* GeocodingManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -700,6 +706,7 @@
 				DF632B481F6EA6AA0022FA8E /* DesignableView.swift in Sources */,
 				DFA9EF0820B46C0C008590EA /* PetrolStationTimeEntry.swift in Sources */,
 				DFF4E15B20892CFB007C24E3 /* RubbishManager.swift in Sources */,
+				DFA9EF0F20B58351008590EA /* LocationManager.swift in Sources */,
 				DFB92D601F6B0B3F00669F73 /* Shop.swift in Sources */,
 				DF02B75D1FAFC037004B8B3E /* FilterTableViewCell.swift in Sources */,
 				DFA9EF0620B46A8A008590EA /* PetrolDetailResponse.swift in Sources */,
@@ -720,6 +727,7 @@
 				DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */,
 				DFB5ECD11F79B01800B2B464 /* CameraViewController.swift in Sources */,
 				DFB5ECCF1F79ADDA00B2B464 /* DetailCameraViewController.swift in Sources */,
+				DFA9EF1120B595D7008590EA /* GeocodingManager.swift in Sources */,
 				DFD7ACAF20A4486B00D49BE2 /* CardView.swift in Sources */,
 				DFC5464E1F8007FB00EB3F7E /* SearchResult.swift in Sources */,
 				DF0CB4B32087092F00CC0AA8 /* RebuildSearchResultTableViewCell.swift in Sources */,
