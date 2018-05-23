@@ -62,6 +62,7 @@
 		DFA9EF0420B468E3008590EA /* PetrolPriceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0320B468E3008590EA /* PetrolPriceResponse.swift */; };
 		DFA9EF0620B46A8A008590EA /* PetrolDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0520B46A8A008590EA /* PetrolDetailResponse.swift */; };
 		DFA9EF0820B46C0C008590EA /* PetrolStationTimeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0720B46C0C008590EA /* PetrolStationTimeEntry.swift */; };
+		DFA9EF0A20B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0920B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift */; };
 		DFA9EF0C20B56BA8008590EA /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0B20B56BA8008590EA /* UIImage+Extensions.swift */; };
 		DFA9EF0F20B58351008590EA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0E20B58351008590EA /* LocationManager.swift */; };
 		DFA9EF1120B595D7008590EA /* GeocodingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF1020B595D7008590EA /* GeocodingManager.swift */; };
@@ -187,6 +188,7 @@
 		DFA9EF0320B468E3008590EA /* PetrolPriceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolPriceResponse.swift; sourceTree = "<group>"; };
 		DFA9EF0520B46A8A008590EA /* PetrolDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolDetailResponse.swift; sourceTree = "<group>"; };
 		DFA9EF0720B46C0C008590EA /* PetrolStationTimeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolStationTimeEntry.swift; sourceTree = "<group>"; };
+		DFA9EF0920B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardAveragePetrolPriceCardView.swift; sourceTree = "<group>"; };
 		DFA9EF0B20B56BA8008590EA /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DFA9EF0E20B58351008590EA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		DFA9EF1020B595D7008590EA /* GeocodingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingManager.swift; sourceTree = "<group>"; };
@@ -529,6 +531,7 @@
 				DFD7ACB320A6BCA000D49BE2 /* DashboardRubbishCardView.swift */,
 				DFD7ACBC20A795AF00D49BE2 /* DashboardNotificationCardView.swift */,
 				DF29FB4E20B19BE600741A63 /* ThemeCardView.swift */,
+				DFA9EF0920B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -762,6 +765,7 @@
 				DFF4E15F2089ABCA007C24E3 /* RubbishCollectionItem.swift in Sources */,
 				DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */,
 				DF0CB48F2082A8DB00CC0AA8 /* AppConfig.swift in Sources */,
+				DFA9EF0A20B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift in Sources */,
 				DF5135BB1F71A7B3002A8977 /* DetailShopViewController.swift in Sources */,
 				DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */,
 				DF524CA8208741FF00D88599 /* RebuildFilterTableViewCell.swift in Sources */,
