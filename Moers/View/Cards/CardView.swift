@@ -138,6 +138,19 @@ class CardView: UIView {
         
     }()
     
+    private lazy var errorContainer: UIStackView = {
+        
+        let stackView = UIStackView()
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .fill
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        
+        return stackView
+        
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -185,8 +198,10 @@ class CardView: UIView {
     public func showError(withTitle title: String, message: String) {
         
         self.addSubview(blurView)
-        self.addSubview(messageLabel)
-        self.addSubview(titleLabel)
+        self.addSubview(errorContainer)
+        
+        self.errorContainer.addArrangedSubview(titleLabel)
+        self.errorContainer.addArrangedSubview(messageLabel)
         
         self.titleLabel.text = title
         self.messageLabel.text = message
@@ -195,13 +210,10 @@ class CardView: UIView {
                            blurView.leftAnchor.constraint(equalTo: self.leftAnchor),
                            blurView.rightAnchor.constraint(equalTo: self.rightAnchor),
                            blurView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-                           messageLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                           messageLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-                           messageLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-                           messageLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-                           titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-                           titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-                           titleLabel.bottomAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -8)]
+                           errorContainer.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                           errorContainer.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                           errorContainer.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
+                           errorContainer.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16)]
         
         NSLayoutConstraint.activate(constraints)
         
