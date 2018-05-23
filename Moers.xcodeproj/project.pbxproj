@@ -62,6 +62,7 @@
 		DFA9EF0420B468E3008590EA /* PetrolPriceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0320B468E3008590EA /* PetrolPriceResponse.swift */; };
 		DFA9EF0620B46A8A008590EA /* PetrolDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0520B46A8A008590EA /* PetrolDetailResponse.swift */; };
 		DFA9EF0820B46C0C008590EA /* PetrolStationTimeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0720B46C0C008590EA /* PetrolStationTimeEntry.swift */; };
+		DFA9EF0C20B56BA8008590EA /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0B20B56BA8008590EA /* UIImage+Extensions.swift */; };
 		DFA9EF0F20B58351008590EA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0E20B58351008590EA /* LocationManager.swift */; };
 		DFA9EF1120B595D7008590EA /* GeocodingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF1020B595D7008590EA /* GeocodingManager.swift */; };
 		DFAEF0611F6AE87000EF25F5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAEF0601F6AE87000EF25F5 /* MapViewController.swift */; };
@@ -186,6 +187,7 @@
 		DFA9EF0320B468E3008590EA /* PetrolPriceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolPriceResponse.swift; sourceTree = "<group>"; };
 		DFA9EF0520B46A8A008590EA /* PetrolDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolDetailResponse.swift; sourceTree = "<group>"; };
 		DFA9EF0720B46C0C008590EA /* PetrolStationTimeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolStationTimeEntry.swift; sourceTree = "<group>"; };
+		DFA9EF0B20B56BA8008590EA /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DFA9EF0E20B58351008590EA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		DFA9EF1020B595D7008590EA /* GeocodingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingManager.swift; sourceTree = "<group>"; };
 		DFAEF0601F6AE87000EF25F5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				DF1A49821F6AC3A100E9108B /* Controller */,
 				DFD129741FAF0DE9001900CF /* Networking */,
 				DF0CB4942082AFA300CC0AA8 /* Manager */,
+				DFA9EF0D20B56BB2008590EA /* Extensions */,
 				DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */,
 				DFB92D631F6B109C00669F73 /* Extensions.swift */,
 				DF1A49661F6AAB7000E9108B /* Main.storyboard */,
@@ -465,6 +468,14 @@
 				DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */,
 			);
 			path = AnnotationView;
+			sourceTree = "<group>";
+		};
+		DFA9EF0D20B56BB2008590EA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DFA9EF0B20B56BA8008590EA /* UIImage+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		DFB64DAF20377AEE00173A80 /* MoersUITests */ = {
@@ -728,6 +739,7 @@
 				DFB5ECD11F79B01800B2B464 /* CameraViewController.swift in Sources */,
 				DFB5ECCF1F79ADDA00B2B464 /* DetailCameraViewController.swift in Sources */,
 				DFA9EF1120B595D7008590EA /* GeocodingManager.swift in Sources */,
+				DFA9EF0C20B56BA8008590EA /* UIImage+Extensions.swift in Sources */,
 				DFD7ACAF20A4486B00D49BE2 /* CardView.swift in Sources */,
 				DFC5464E1F8007FB00EB3F7E /* SearchResult.swift in Sources */,
 				DF0CB4B32087092F00CC0AA8 /* RebuildSearchResultTableViewCell.swift in Sources */,
