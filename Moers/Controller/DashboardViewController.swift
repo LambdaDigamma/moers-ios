@@ -9,8 +9,10 @@
 import UIKit
 import Gestalt
 import UserNotifications
+import CoreLocation
+import MapKit
 
-class DashboardViewController: UIViewController {
+class DashboardViewController: UIViewController, LocationManagerDelegate, PetrolManagerDelegate {
 
     // MARK: - UI
     
@@ -62,8 +64,20 @@ class DashboardViewController: UIViewController {
         
     }()
     
+    lazy var averagePetrolCardView: DashboardAveragePetrolPriceCardView = {
+        
+        let cardView = DashboardAveragePetrolPriceCardView()
+        
+        cardView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return cardView
+        
+    }()
+    
+    let locationManager = LocationManager()
+    
     var cards: [CardView] {
-        return [rubbishCardView]
+        return [averagePetrolCardView, rubbishCardView]
     }
     
     // MARK: - UIViewController Lifecycle
@@ -78,6 +92,8 @@ class DashboardViewController: UIViewController {
         self.setupConstraints()
         self.setupTheming()
         
+        self.rubbishCardView.startLoading()
+        
         let queue = OperationQueue()
         
         queue.addOperation {
@@ -85,6 +101,28 @@ class DashboardViewController: UIViewController {
                 self.loadData()
             }
         }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.locationManager.delegate = self
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if self.locationManager.authorizationStatus != .denied {
+            self.locationManager.requestCurrentLocation()
+            self.averagePetrolCardView.startLoading()
+        } else {
+            self.averagePetrolCardView.showError(withTitle: "Berechtigung fehlt", message: "Die App darf nicht auf deinen aktuellen Standort zugreifen, um aktuelle Spritpreise zu berechnen.")
+        }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.locationManager.stopMonitoring()
         
     }
     
@@ -123,6 +161,8 @@ class DashboardViewController: UIViewController {
             
             OperationQueue.main.addOperation {
                 
+                self.rubbishCardView.stopLoading()
+                
                 if items.count >= 3 {
                     self.rubbishCardView.itemView1.rubbishCollectionItem = items[0]
                     self.rubbishCardView.itemView2.rubbishCollectionItem = items[1]
@@ -150,6 +190,64 @@ class DashboardViewController: UIViewController {
         
         let rubbishCollectionViewController = RubbishCollectionViewController()
         self.navigationController?.pushViewController(rubbishCollectionViewController, animated: true)
+        
+    }
+    
+    // MARK: - LocationManagerDelegate
+    
+    func didReceiveCurrentLocation(location: CLLocation) {
+        
+        GeocodingManager.shared.city(from: location) { (city) in
+            
+            self.averagePetrolCardView.locationLabel.text = city
+            
+        }
+        
+        GeocodingManager.shared.countryCode(from: location) { (countryCode) in
+            
+            if countryCode != "DE" {
+                
+                self.averagePetrolCardView.showError(withTitle: "Spritinformationen", message: "Nur in Deutschland verfügbar")
+                
+            } else {
+                
+                PetrolManager.shared.delegate = self
+                PetrolManager.shared.sendRequest(coordiante: location.coordinate, radius: 10.0, sorting: .distance, type: .diesel)
+                
+            }
+            
+        }
+        
+    }
+    
+    func didFailWithError(error: Error) {
+        
+        
+        
+    }
+    
+    // MARK: - PetrolManagerDelegate
+    
+    func didReceivePetrolStations(stations: [PetrolStation]) {
+        
+        DispatchQueue.main.async {
+            
+            let openStations = stations.filter { $0.isOpen }
+            
+            self.averagePetrolCardView.stopLoading()
+            self.averagePetrolCardView.numberOfStations = openStations.count
+            
+            let sum = openStations.reduce(0) { (result, item) in
+                
+                return result + (item.price ?? 0)
+                
+            }
+            
+            let averagePrice = sum / Double(openStations.count)
+            
+            self.averagePetrolCardView.price = averagePrice
+            
+        }
         
     }
     
