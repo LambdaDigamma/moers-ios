@@ -16,8 +16,8 @@ struct PetrolStation: Codable {
     var brand: String
     var street: String
     var place: String
-    var houseNumber: String
-    var postCode: Int
+    var houseNumber: String?
+    var postCode: Int?
     var lat: Double
     var lng: Double
     var dist: Double?
@@ -30,7 +30,7 @@ struct PetrolStation: Codable {
     var openingTimes: [PetrolStationTimeEntry]? = nil
     var overrides: [String]? = nil
     var state: String? = nil
-    
+
     var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: lat, longitude: lng)
     }
