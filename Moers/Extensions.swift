@@ -83,35 +83,6 @@ extension UIColor {
     
 }
 
-extension Date {
-    
-    func format(format: String) -> String {
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.locale = Locale(identifier: "DE_de")
-        dateFormatter.dateFormat = format
-        let date = dateFormatter.string(from: self)
-        
-        return date
-        
-    }
-    
-    static func from(_ dateString: String, withFormat format: String) -> Date? {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        dateFormatter.locale = Locale(identifier: "DE_de")
-        
-        let date = dateFormatter.date(from: dateString)
-        
-        return date
-        
-    }
-    
-}
-
-
 struct AppColor {
     
     static let yellow = UIColor(red: 0xFF, green: 0xEB, blue: 0x3B)
