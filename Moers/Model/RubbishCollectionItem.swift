@@ -13,4 +13,8 @@ struct RubbishCollectionItem {
     let date: String
     let type: RubbishWasteType
     
+    var parsedDate: Date {
+        return Date.from(date, withFormat: "dd.MM.yyyy") ?? Date()
+    }
+    
 }

@@ -86,7 +86,7 @@ class RubbishCollectionViewController: UIViewController {
     
     private var numberOfSections: Int {
         
-        let set = Set(items.map { component(.month, from: Date.from($0.date, withFormat: "dd.MM.yyyy") ?? Date()) })
+        let set = Set(items.map { Date.component(.month, from: Date.from($0.date, withFormat: "dd.MM.yyyy") ?? Date()) })
         
         return set.count
         
@@ -94,18 +94,9 @@ class RubbishCollectionViewController: UIViewController {
     
     private func items(for section: Int) -> [RubbishCollectionItem] {
         
-        let currentMonth = component(.month, from: Date())
+        let currentMonth = Date.component(.month, from: Date())
         
-        return items.filter { component(.month, from: Date.from($0.date, withFormat: "dd.MM.yyyy")!) - currentMonth == section }
-        
-    }
-    
-    private func component(_ component: Calendar.Component, from date: Date) -> Int {
-        
-        let calendar = Calendar.current
-        let comp = calendar.component(component, from: date)
-        
-        return comp
+        return items.filter { Date.component(.month, from: Date.from($0.date, withFormat: "dd.MM.yyyy")!) - currentMonth == section }
         
     }
     
@@ -135,7 +126,7 @@ extension RubbishCollectionViewController: UITableViewDataSource {
         
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerIdentifier) as! MonthHeaderView
         
-        let currentMonth = component(.month, from: Date())
+        let currentMonth = Date.component(.month, from: Date())
         
         let sectionMonth = currentMonth + section
         

@@ -51,7 +51,7 @@ class RubbishCollectionView: UIView {
             
             guard let item = rubbishCollectionItem else { return }
             
-            dateLabel.text = item.date
+            dateLabel.text = item.parsedDate.beautify()
             typeLabel.text = item.type.rawValue
             
             switch item.type {
