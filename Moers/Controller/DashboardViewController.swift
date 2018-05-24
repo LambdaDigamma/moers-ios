@@ -92,30 +92,14 @@ class DashboardViewController: UIViewController, LocationManagerDelegate, Petrol
         self.setupConstraints()
         self.setupTheming()
         
-        self.rubbishCardView.startLoading()
-        
-        let queue = OperationQueue()
-        
-        queue.addOperation {
-            if AppConfig.shared.loadData {
-                self.loadData()
-            }
-        }
+        self.loadData()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.locationManager.delegate = self
-        self.locationManager.requestWhenInUseAuthorization()
-        
-        if self.locationManager.authorizationStatus != .denied {
-            self.locationManager.requestCurrentLocation()
-            self.averagePetrolCardView.startLoading()
-        } else {
-            self.averagePetrolCardView.showError(withTitle: "Berechtigung fehlt", message: "Die App darf nicht auf deinen aktuellen Standort zugreifen, um aktuelle Spritpreise zu berechnen.")
-        }
+        self.loadPetrolData()
         
     }
     
@@ -123,6 +107,8 @@ class DashboardViewController: UIViewController, LocationManagerDelegate, Petrol
         super.viewWillDisappear(animated)
         
         self.locationManager.stopMonitoring()
+        self.averagePetrolCardView.stopLoading()
+        self.rubbishCardView.stopLoading()
         
     }
     
@@ -157,26 +143,58 @@ class DashboardViewController: UIViewController, LocationManagerDelegate, Petrol
 
     public func loadData() {
         
-        RubbishManager.shared.loadItems(completion: { (items) in
+        self.rubbishCardView.startLoading()
+        
+        let queue = OperationQueue()
+        
+        queue.addOperation {
+            if AppConfig.shared.loadData {
+                self.loadRubbishData()
+            }
+        }
+        
+    }
+    
+    private func loadRubbishData() {
+        
+        if RubbishManager.shared.isEnabled {
             
-            OperationQueue.main.addOperation {
+            RubbishManager.shared.loadItems(completion: { (items) in
                 
-                self.rubbishCardView.stopLoading()
-                
-                if items.count >= 3 {
-                    self.rubbishCardView.itemView1.rubbishCollectionItem = items[0]
-                    self.rubbishCardView.itemView2.rubbishCollectionItem = items[1]
-                    self.rubbishCardView.itemView3.rubbishCollectionItem = items[2]
-                } else if items.count >= 2 {
-                    self.rubbishCardView.itemView1.rubbishCollectionItem = items[0]
-                    self.rubbishCardView.itemView2.rubbishCollectionItem = items[1]
-                } else if items.count >= 1 {
-                    self.rubbishCardView.itemView1.rubbishCollectionItem = items[0]
+                OperationQueue.main.addOperation {
+                    
+                    self.rubbishCardView.stopLoading()
+                    
+                    if items.count >= 3 {
+                        self.rubbishCardView.itemView1.rubbishCollectionItem = items[0]
+                        self.rubbishCardView.itemView2.rubbishCollectionItem = items[1]
+                        self.rubbishCardView.itemView3.rubbishCollectionItem = items[2]
+                    } else if items.count >= 2 {
+                        self.rubbishCardView.itemView1.rubbishCollectionItem = items[0]
+                        self.rubbishCardView.itemView2.rubbishCollectionItem = items[1]
+                    } else if items.count >= 1 {
+                        self.rubbishCardView.itemView1.rubbishCollectionItem = items[0]
+                    }
+                    
                 }
                 
-            }
+            })
             
-        })
+        }
+        
+    }
+    
+    private func loadPetrolData() {
+        
+        self.locationManager.delegate = self
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if self.locationManager.authorizationStatus != .denied {
+            self.locationManager.requestCurrentLocation()
+            self.averagePetrolCardView.startLoading()
+        } else {
+            self.averagePetrolCardView.showError(withTitle: "Berechtigung fehlt", message: "Die App darf nicht auf deinen aktuellen Standort zugreifen, um aktuelle Spritpreise zu berechnen.")
+        }
         
     }
     
