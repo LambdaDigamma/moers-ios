@@ -119,16 +119,13 @@ class RubbishManager {
             
             var items = residual + organic + paper + yellow + green
             
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd.MM.yyyy"
-            
-            items.sort(by: { dateFormatter.date(from: $0.date)! < dateFormatter.date(from: $1.date)! })
+            items.sort(by: { $0.parsedDate < $1.parsedDate })
             
             if !all {
                 
                 let today = Date()
                 
-                let futureItems = items.filter { dateFormatter.date(from: $0.date)! > today }
+                let futureItems = items.filter { $0.parsedDate > today || $0.parsedDate.isToday }
                 
                 completion(futureItems)
                 
