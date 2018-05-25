@@ -33,3 +33,7 @@
 "AboutTitle" = "About";
 "Today" = "Today";
 "Tomorrow" = "Tomorrow";
+"OnboardingLocationPageTitle" = "Standortbestimmung";
+"OnboardingNotificationPageDescription" = "";
+"Allow" = "Allow";
+"Later" = "Later";
