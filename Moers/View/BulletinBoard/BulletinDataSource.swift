@@ -39,15 +39,41 @@ enum BulletinDataSource {
         let page = FeedbackPageBulletinItem(title: String.localized("OnboardingNotificationPageTitle"))
         page.image = #imageLiteral(resourceName: "NotificationPrompt")
         page.imageAccessibilityLabel = "Notifications Icon"
-        page.appearance = makeAppearance()
         page.descriptionText = String.localized("OnboardingNotificationPageDescription")
         page.actionButtonTitle = String.localized("OnboardingNotificationPageActionButtonTitle")
         page.alternativeButtonTitle = String.localized("OnboardingNotificationPageAlternativeButtonTitle")
-        
+        page.appearance = makeAppearance()
         page.isDismissable = false
         
         page.actionHandler = { item in
             PermissionsManager.shared.requestRemoteNotifications()
+            item.manager?.displayNextItem()
+        }
+        
+        page.alternativeHandler = { item in
+            item.manager?.displayNextItem()
+        }
+        
+        page.nextItem = makeLocationPage()
+        
+        return page
+        
+    }
+    
+    static func makeLocationPage() -> FeedbackPageBulletinItem {
+        
+        let page = FeedbackPageBulletinItem(title: String.localized("OnboardingLocationPageTitle"))
+        
+        page.image = #imageLiteral(resourceName: "LocationPrompt")
+        page.imageAccessibilityLabel = "Location Icon"
+        page.descriptionText = String.localized("OnboardingNotificationPageDescription")
+        page.actionButtonTitle = String.localized("Allow")
+        page.alternativeButtonTitle = String.localized("Later")
+        page.appearance = makeAppearance()
+        page.isDismissable = false
+        
+        page.actionHandler = { item in
+            LocationManager.shared.requestWhenInUseAuthorization()
             item.manager?.displayNextItem()
         }
         

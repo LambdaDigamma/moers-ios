@@ -447,17 +447,9 @@
 				DF02B7621FB0BAE9004B8B3E /* Branch.swift */,
 				DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */,
 				DF0CB4922082AB5600CC0AA8 /* Theme.swift */,
-				DF524CAD20885A7700D88599 /* RubbishCollectionStreet.swift */,
-				DFF4E15C20893694007C24E3 /* RubbishCollectionDate.swift */,
-				DFF4E15E2089ABCA007C24E3 /* RubbishCollectionItem.swift */,
+				DF3AEF6C20B768E4006A4192 /* Rubbish */,
+				DF3AEF6B20B768C2006A4192 /* Petrol */,
 				DFB4D76A20B064CA00C8D179 /* StaticTableView.swift */,
-				DFA9EEFA20B35EB8008590EA /* PetrolType.swift */,
-				DFA9EEFC20B3602E008590EA /* PetrolSorting.swift */,
-				DFA9EEFE20B36A86008590EA /* PetrolStation.swift */,
-				DFA9EF0020B36CEF008590EA /* PetrolRequestResponse.swift */,
-				DFA9EF0320B468E3008590EA /* PetrolPriceResponse.swift */,
-				DFA9EF0520B46A8A008590EA /* PetrolDetailResponse.swift */,
-				DFA9EF0720B46C0C008590EA /* PetrolStationTimeEntry.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -472,6 +464,30 @@
 				DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */,
 			);
 			path = AnnotationView;
+			sourceTree = "<group>";
+		};
+		DF3AEF6B20B768C2006A4192 /* Petrol */ = {
+			isa = PBXGroup;
+			children = (
+				DFA9EEFA20B35EB8008590EA /* PetrolType.swift */,
+				DFA9EEFC20B3602E008590EA /* PetrolSorting.swift */,
+				DFA9EEFE20B36A86008590EA /* PetrolStation.swift */,
+				DFA9EF0020B36CEF008590EA /* PetrolRequestResponse.swift */,
+				DFA9EF0320B468E3008590EA /* PetrolPriceResponse.swift */,
+				DFA9EF0520B46A8A008590EA /* PetrolDetailResponse.swift */,
+				DFA9EF0720B46C0C008590EA /* PetrolStationTimeEntry.swift */,
+			);
+			path = Petrol;
+			sourceTree = "<group>";
+		};
+		DF3AEF6C20B768E4006A4192 /* Rubbish */ = {
+			isa = PBXGroup;
+			children = (
+				DF524CAD20885A7700D88599 /* RubbishCollectionStreet.swift */,
+				DFF4E15C20893694007C24E3 /* RubbishCollectionDate.swift */,
+				DFF4E15E2089ABCA007C24E3 /* RubbishCollectionItem.swift */,
+			);
+			path = Rubbish;
 			sourceTree = "<group>";
 		};
 		DFA9EF0D20B56BB2008590EA /* Extensions */ = {
