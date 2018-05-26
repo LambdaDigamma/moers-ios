@@ -32,8 +32,11 @@
 		DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49691F6AAB7000E9108B /* Assets.xcassets */; };
 		DF1A496D1F6AAB7000E9108B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF1A496B1F6AAB7000E9108B /* LaunchScreen.storyboard */; };
 		DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */; };
+		DF21B2FE20B9D8A900478A33 /* Licenses.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF21B2FD20B9D8A900478A33 /* Licenses.plist */; };
 		DF29FB4D20B1954B00741A63 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */; };
 		DF29FB4F20B19BE600741A63 /* ThemeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29FB4E20B19BE600741A63 /* ThemeCardView.swift */; };
+		DF2D6DA320B88BFA00176614 /* Licence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DA220B88BFA00176614 /* Licence.swift */; };
+		DF2D6DA520B88E1700176614 /* LicencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DA420B88E1700176614 /* LicencesViewController.swift */; };
 		DF4BD1BE208A72C5003ECF41 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */; };
 		DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */; };
 		DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C3208C64F1003ECF41 /* PickerView.swift */; };
@@ -158,8 +161,11 @@
 		DF1A496C1F6AAB7000E9108B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF1A496E1F6AAB7000E9108B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnnotationView.swift; sourceTree = "<group>"; };
+		DF21B2FD20B9D8A900478A33 /* Licenses.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Licenses.plist; sourceTree = SOURCE_ROOT; };
 		DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		DF29FB4E20B19BE600741A63 /* ThemeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCardView.swift; sourceTree = "<group>"; };
+		DF2D6DA220B88BFA00176614 /* Licence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Licence.swift; sourceTree = "<group>"; };
+		DF2D6DA420B88E1700176614 /* LicencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicencesViewController.swift; sourceTree = "<group>"; };
 		DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishStreetPickerItem.swift; sourceTree = "<group>"; };
 		DF4BD1C3208C64F1003ECF41 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
@@ -370,6 +376,7 @@
 				DFB64DC9203883D200173A80 /* module.modulemap */,
 				DFB64DCA2038845300173A80 /* Firebase.h */,
 				DFA9EF0220B40C16008590EA /* Moers.gpx */,
+				DF21B2FD20B9D8A900478A33 /* Licenses.plist */,
 				DFB64DBD2038826E00173A80 /* FirebaseAnalytics.framework */,
 				DFB64DBE2038826E00173A80 /* FirebaseCore.framework */,
 				DFB64DBA2038826C00173A80 /* FirebaseCoreDiagnostics.framework */,
@@ -405,6 +412,7 @@
 				DFB4D76820B062BE00C8D179 /* SettingsViewController.swift */,
 				DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */,
 				DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */,
+				DF2D6DA420B88E1700176614 /* LicencesViewController.swift */,
 				DFD7ACB020A44C0D00D49BE2 /* Rebuild */,
 				DFB6185A1FAE2CC800C98EB6 /* NavigationViewController.swift */,
 				DFAEF0601F6AE87000EF25F5 /* MapViewController.swift */,
@@ -450,6 +458,7 @@
 				DF3AEF6C20B768E4006A4192 /* Rubbish */,
 				DF3AEF6B20B768C2006A4192 /* Petrol */,
 				DFB4D76A20B064CA00C8D179 /* StaticTableView.swift */,
+				DF2D6DA220B88BFA00176614 /* Licence.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -647,6 +656,7 @@
 				DF0CB4A52082BE0F00CC0AA8 /* Localizable.strings in Resources */,
 				DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */,
 				DF1A49681F6AAB7000E9108B /* Main.storyboard in Resources */,
+				DF21B2FE20B9D8A900478A33 /* Licenses.plist in Resources */,
 				DFF5DDCB20094A920075A2F4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -721,10 +731,12 @@
 				DFB92D621F6B0B7A00669F73 /* Location.swift in Sources */,
 				DFC1CC641F75960A00C1D269 /* SelectionViewController.swift in Sources */,
 				DFD129761FAF12D2001900CF /* BranchCollectionViewCell.swift in Sources */,
+				DF2D6DA520B88E1700176614 /* LicencesViewController.swift in Sources */,
 				DFD7ACBA20A6C6BC00D49BE2 /* RubbishCollectionView.swift in Sources */,
 				DF4BD1C6208CF76C003ECF41 /* RubbishReminderBulletinItem.swift in Sources */,
 				DFB64DD12038F94600173A80 /* InfoViewController.swift in Sources */,
 				DF02B7631FB0BAE9004B8B3E /* Branch.swift in Sources */,
+				DF2D6DA320B88BFA00176614 /* Licence.swift in Sources */,
 				DFD7ACBD20A795AF00D49BE2 /* DashboardNotificationCardView.swift in Sources */,
 				DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */,
 				DF4BD1BE208A72C5003ECF41 /* DashboardViewController.swift in Sources */,
