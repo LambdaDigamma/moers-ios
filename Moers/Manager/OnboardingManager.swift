@@ -1,20 +1,22 @@
 //
-//  BulletinDataSource.swift
+//  OnboardingManager.swift
 //  Moers
 //
-//  Created by Lennart Fischer on 15.04.18.
+//  Created by Lennart Fischer on 25.05.18.
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import BulletinBoard
 import Gestalt
 
-enum BulletinDataSource {
+struct OnboardingManager {
     
-    // MARK: - Page
+    static var shared = OnboardingManager()
     
-    static func makeIntroPage() -> PageBulletinItem {
+    // MARK: - Pages
+    
+    func makeIntroPage() -> PageBulletinItem {
         
         let page = FeedbackPageBulletinItem(title: "Mein \(AppConfig.shared.name)")
         page.image = #imageLiteral(resourceName: "MoersAppIcon")
@@ -28,13 +30,29 @@ enum BulletinDataSource {
             item.manager?.displayNextItem()
         }
         
+        page.nextItem = makeUserTypePage()
+        
+        return page
+        
+    }
+    
+    func makeUserTypePage() -> PageBulletinItem {
+        
+        
+        let page = UserTypeSelectorBulletinPage(title: String.localized("OnboardingUserTypeSelectorPageTitle"))
+        
+        page.appearance = makeAppearance()
+        page.descriptionText = String.localized("OnboardingUserTypeSelectorPageDescription")
+        page.actionButtonTitle = String.localized("OnboardingUserTypeSelectorPageActionButtonTitle")
+        page.isDismissable = false
+        
         page.nextItem = makeNotitificationsPage()
         
         return page
         
     }
     
-    static func makeNotitificationsPage() -> FeedbackPageBulletinItem {
+    func makeNotitificationsPage() -> FeedbackPageBulletinItem {
         
         let page = FeedbackPageBulletinItem(title: String.localized("OnboardingNotificationPageTitle"))
         page.image = #imageLiteral(resourceName: "NotificationPrompt")
@@ -60,7 +78,7 @@ enum BulletinDataSource {
         
     }
     
-    static func makeLocationPage() -> FeedbackPageBulletinItem {
+    func makeLocationPage() -> FeedbackPageBulletinItem {
         
         let page = FeedbackPageBulletinItem(title: String.localized("OnboardingLocationPageTitle"))
         
@@ -73,50 +91,34 @@ enum BulletinDataSource {
         page.isDismissable = false
         
         page.actionHandler = { item in
-            LocationManager.shared.requestWhenInUseAuthorization()
-            item.manager?.displayNextItem()
+            
+            LocationManager.shared.requestWhenInUseAuthorization(completion: {
+                
+                if UserManager.shared.user.type == .citizen {
+                    page.nextItem = self.makeRubbishStreetPage()
+                } else {
+                    page.nextItem = self.makeCompletionPage()
+                }
+                
+                item.manager?.displayNextItem()
+                
+            })
+            
         }
         
         page.alternativeHandler = { item in
-            item.manager?.displayNextItem()
-        }
-        
-        page.nextItem = makeRubbishStreetPage()
-        
-        return page
-        
-    }
-    
-    static func makeCompletionPage() -> PageBulletinItem {
-        
-        let page = PageBulletinItem(title: String.localized("CompletionPageTitle"))
-        page.image = #imageLiteral(resourceName: "IntroCompletion")
-        page.imageAccessibilityLabel = "Checkmark"
-        page.appearance = makeAppearance()
-        page.appearance.actionButtonColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
-        page.appearance.imageViewTintColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
-        page.appearance.actionButtonTitleColor = .white
-        page.alternativeButton?.isHidden = true
-        
-        page.descriptionText = ""
-        page.actionButtonTitle = String.localized("CompletionPageActionButtonTitle")
-        
-        page.isDismissable = true
-        
-        page.dismissalHandler = { item in
-            NotificationCenter.default.post(name: .SetupDidComplete, object: item)
-        }
-        
-        page.actionHandler = { item in
             
-            item.manager?.dismissBulletin(animated: true)
+            page.nextItem = self.makeCompletionPage()
+            
+            item.manager?.displayNextItem()
+            
         }
         
         return page
         
     }
     
-    static func makeRubbishStreetPage() -> PageBulletinItem {
+    func makeRubbishStreetPage() -> PageBulletinItem {
         
         let page = RubbishStreetPickerItem(title: String.localized("RubbishCollectionPageTitle"))
         page.appearance = makeAppearance()
@@ -135,14 +137,14 @@ enum BulletinDataSource {
             
             RubbishManager.shared.register(selectedStreet)
             
-            page.nextItem = makeRubbishReminderPage()
+            page.nextItem = self.makeRubbishReminderPage()
             
             item.manager?.displayNextItem()
             
         }
         
         page.alternativeHandler = { item in
-            page.nextItem = makeCompletionPage()
+            page.nextItem = self.makeCompletionPage()
             item.manager?.displayNextItem()
         }
         
@@ -150,7 +152,7 @@ enum BulletinDataSource {
         
     }
     
-    static func makeRubbishReminderPage() -> PageBulletinItem {
+    func makeRubbishReminderPage() -> PageBulletinItem {
         
         let page = RubbishReminderBulletinItem(title: String.localized("RubbishCollectionReminderPageTitle"))
         page.appearance = makeAppearance()
@@ -183,7 +185,35 @@ enum BulletinDataSource {
         
     }
     
-    static var userDidCompleteSetup: Bool {
+    func makeCompletionPage() -> PageBulletinItem {
+        
+        let page = PageBulletinItem(title: String.localized("CompletionPageTitle"))
+        page.image = #imageLiteral(resourceName: "IntroCompletion")
+        page.imageAccessibilityLabel = "Checkmark"
+        page.appearance = makeAppearance()
+        page.appearance.actionButtonColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
+        page.appearance.imageViewTintColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
+        page.appearance.actionButtonTitleColor = .white
+        page.alternativeButton?.isHidden = true
+        
+        page.descriptionText = ""
+        page.actionButtonTitle = String.localized("CompletionPageActionButtonTitle")
+        
+        page.isDismissable = true
+        
+        page.dismissalHandler = { item in
+            NotificationCenter.default.post(name: .SetupDidComplete, object: item)
+        }
+        
+        page.actionHandler = { item in
+            item.manager?.dismissBulletin(animated: true)
+        }
+        
+        return page
+        
+    }
+    
+    var userDidCompleteSetup: Bool {
         get {
             return UserDefaults.standard.bool(forKey: "UserDidCompleteSetup")
         }
@@ -194,9 +224,9 @@ enum BulletinDataSource {
     
 }
 
-extension BulletinDataSource {
+extension OnboardingManager {
     
-    static func makeAppearance() -> BulletinAppearance {
+    func makeAppearance() -> BulletinAppearance {
         
         let appearance = BulletinAppearance()
         

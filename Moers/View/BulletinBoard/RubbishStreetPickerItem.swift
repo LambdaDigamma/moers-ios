@@ -9,8 +9,9 @@
 import UIKit
 import BulletinBoard
 import Gestalt
+import CoreLocation
 
-class RubbishStreetPickerItem: PageBulletinItem, PickerViewDelegate, PickerViewDataSource {
+class RubbishStreetPickerItem: PageBulletinItem, PickerViewDelegate, PickerViewDataSource, LocationManagerDelegate {
 
     lazy var picker = PickerView()
     
@@ -31,6 +32,8 @@ class RubbishStreetPickerItem: PageBulletinItem, PickerViewDelegate, PickerViewD
                 
                 self.streets = streets
                 self.picker.reloadPickerView()
+                
+                self.getLocationStreet()
                 
             }
             
@@ -54,6 +57,17 @@ class RubbishStreetPickerItem: PageBulletinItem, PickerViewDelegate, PickerViewD
         descriptionLabel?.adjustsFontSizeToFitWidth = true
         
         return [picker]
+    }
+    
+    private func getLocationStreet() {
+        
+        if LocationManager.shared.authorizationStatus == .authorizedWhenInUse {
+            
+            LocationManager.shared.delegate = self
+            LocationManager.shared.requestCurrentLocation()
+            
+        }
+        
     }
     
     func pickerViewNumberOfRows(_ pickerView: PickerView) -> Int {
@@ -82,6 +96,27 @@ class RubbishStreetPickerItem: PageBulletinItem, PickerViewDelegate, PickerViewD
             label.textColor = decentColor
         }
         
+    }
+    
+    func didReceiveCurrentLocation(location: CLLocation) {
+        
+        GeocodingManager.shared.street(from: location) { (street) in
+            
+            guard let street = street else { return }
+            
+            if let street = self.streets.filter({ $0.street.contains(street) }).first {
+                
+                self.picker.selectRow(self.streets.index(where: { $0.street == street.street }) ?? 0, animated: true)
+                self.picker.adjustCurrentSelectedAfterOrientationChanges()
+                
+            }
+            
+        }
+        
+    }
+    
+    func didFailWithError(error: Error) {
+        print(error.localizedDescription)
     }
     
 }

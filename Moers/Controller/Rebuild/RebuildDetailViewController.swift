@@ -14,7 +14,6 @@ class RebuildDetailViewController: UIViewController {
 
     lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
-        manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
         return manager
     }()

@@ -17,7 +17,6 @@
 		DF0CB4932082AB5600CC0AA8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4922082AB5600CC0AA8 /* Theme.swift */; };
 		DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4952082AFD000CC0AA8 /* FirstLaunchManager.swift */; };
 		DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */; };
-		DF0CB49B2082B65000CC0AA8 /* BulletinDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB49A2082B65000CC0AA8 /* BulletinDataSource.swift */; };
 		DF0CB49D2082B78C00CC0AA8 /* PermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB49C2082B78C00CC0AA8 /* PermissionsManager.swift */; };
 		DF0CB49F2082B90900CC0AA8 /* FeedbackGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB49E2082B90900CC0AA8 /* FeedbackGenerators.swift */; };
 		DF0CB4A12082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4A02082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift */; };
@@ -39,6 +38,8 @@
 		DF2D6DA520B88E1700176614 /* LicencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DA420B88E1700176614 /* LicencesViewController.swift */; };
 		DF2D6DA720B8983400176614 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DA620B8983400176614 /* UserManager.swift */; };
 		DF2D6DA920B899DD00176614 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DA820B899DD00176614 /* User.swift */; };
+		DF2D6DAB20B8A02B00176614 /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DAA20B8A02B00176614 /* OnboardingManager.swift */; };
+		DF2D6DAD20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DAC20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift */; };
 		DF4BD1BE208A72C5003ECF41 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */; };
 		DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */; };
 		DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C3208C64F1003ECF41 /* PickerView.swift */; };
@@ -145,7 +146,6 @@
 		DF0CB4922082AB5600CC0AA8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		DF0CB4952082AFD000CC0AA8 /* FirstLaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchManager.swift; sourceTree = "<group>"; };
 		DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		DF0CB49A2082B65000CC0AA8 /* BulletinDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinDataSource.swift; sourceTree = "<group>"; };
 		DF0CB49C2082B78C00CC0AA8 /* PermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsManager.swift; sourceTree = "<group>"; };
 		DF0CB49E2082B90900CC0AA8 /* FeedbackGenerators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackGenerators.swift; sourceTree = "<group>"; };
 		DF0CB4A02082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackPageBulletinItem.swift; sourceTree = "<group>"; };
@@ -170,6 +170,8 @@
 		DF2D6DA420B88E1700176614 /* LicencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicencesViewController.swift; sourceTree = "<group>"; };
 		DF2D6DA620B8983400176614 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		DF2D6DA820B899DD00176614 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DF2D6DAA20B8A02B00176614 /* OnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
+		DF2D6DAC20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeSelectorBulletinPage.swift; sourceTree = "<group>"; };
 		DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishStreetPickerItem.swift; sourceTree = "<group>"; };
 		DF4BD1C3208C64F1003ECF41 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				DFA9EF0E20B58351008590EA /* LocationManager.swift */,
 				DFA9EF1020B595D7008590EA /* GeocodingManager.swift */,
 				DF2D6DA620B8983400176614 /* UserManager.swift */,
+				DF2D6DAA20B8A02B00176614 /* OnboardingManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -331,10 +334,10 @@
 		DF0CB4992082B63500CC0AA8 /* BulletinBoard */ = {
 			isa = PBXGroup;
 			children = (
-				DF0CB49A2082B65000CC0AA8 /* BulletinDataSource.swift */,
 				DF0CB4A02082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift */,
 				DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */,
 				DF4BD1C5208CF76C003ECF41 /* RubbishReminderBulletinItem.swift */,
+				DF2D6DAC20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift */,
 			);
 			path = BulletinBoard;
 			sourceTree = "<group>";
@@ -728,6 +731,7 @@
 				DF0CB4A12082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift in Sources */,
 				DF632B441F6E90140022FA8E /* DetailViewController.swift in Sources */,
 				DFB6185B1FAE2CC800C98EB6 /* NavigationViewController.swift in Sources */,
+				DF2D6DAD20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift in Sources */,
 				DFDD3F7220B2E525005602E3 /* MonthHeaderView.swift in Sources */,
 				DF29FB4D20B1954B00741A63 /* ThemeViewController.swift in Sources */,
 				DF5135B91F71A4C4002A8977 /* DetailParkingViewController.swift in Sources */,
@@ -773,7 +777,6 @@
 				DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */,
 				DF0CB4AD20838FD100CC0AA8 /* MainViewController.swift in Sources */,
 				DF524CAA2087421800D88599 /* RebuildBranchTableViewCell.swift in Sources */,
-				DF0CB49B2082B65000CC0AA8 /* BulletinDataSource.swift in Sources */,
 				DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */,
 				DFD7ACB420A6BCA000D49BE2 /* DashboardRubbishCardView.swift in Sources */,
 				DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */,
@@ -795,6 +798,7 @@
 				DFA9EF0120B36CEF008590EA /* PetrolRequestResponse.swift in Sources */,
 				DF626AF91FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift in Sources */,
 				DFD7ACB220A44C5A00D49BE2 /* RebuildSelectionViewController.swift in Sources */,
+				DF2D6DAB20B8A02B00176614 /* OnboardingManager.swift in Sources */,
 				DF626AF71FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift in Sources */,
 				DF2D6DA720B8983400176614 /* UserManager.swift in Sources */,
 				DF632B401F6E721B0022FA8E /* ParkingLot.swift in Sources */,

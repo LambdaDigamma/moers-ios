@@ -68,7 +68,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     }()
     
     lazy var bulletinManager: BulletinManager = {
-        let introPage = BulletinDataSource.makeIntroPage()
+        let introPage = OnboardingManager.shared.makeIntroPage()
         return BulletinManager(rootItem: introPage)
     }()
     
@@ -113,7 +113,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if firstLaunch.isFirstLaunch || !BulletinDataSource.userDidCompleteSetup {
+        if firstLaunch.isFirstLaunch || !OnboardingManager.shared.userDidCompleteSetup {
             
             showBulletin()
             
@@ -197,11 +197,12 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     
     @objc func setupDidComplete() {
         
-        BulletinDataSource.userDidCompleteSetup = true
+        OnboardingManager.shared.userDidCompleteSetup = true
         
         guard let dashboardVC = dashboardViewController.childViewControllers.first as? DashboardViewController else { return }
         
-        dashboardVC.loadData()
+        dashboardVC.loadPetrolData()
+        dashboardVC.loadRubbishData()
         
     }
     

@@ -26,7 +26,6 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
     
     let locationManager: CLLocationManager = {
         let manager = CLLocationManager()
-        manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
         return manager
     }()

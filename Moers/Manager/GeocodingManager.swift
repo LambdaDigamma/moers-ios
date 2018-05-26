@@ -58,4 +58,26 @@ struct GeocodingManager {
         
     }
     
+    func street(from location: CLLocation, withCompletion completion: @escaping ((String?) -> ())) {
+        
+        let geocoder = CLGeocoder()
+        
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            
+            if let placemark = placemarks?.first {
+                
+                let street = placemark.thoroughfare
+                
+                completion(street)
+                
+            } else {
+                
+                completion(nil)
+                
+            }
+            
+        }
+        
+    }
+    
 }

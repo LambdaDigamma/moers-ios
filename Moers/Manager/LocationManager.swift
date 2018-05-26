@@ -19,8 +19,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     static let shared: LocationManager = LocationManager()
     
-    private let locationManager = CLLocationManager()
     public var delegate: LocationManagerDelegate? = nil
+    private let locationManager = CLLocationManager()
+    private var authorizationCompletion: (() -> Void)?
     
     override init() {
         
@@ -66,7 +67,15 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         
     }
     
-    public func requestWhenInUseAuthorization() {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+        authorizationCompletion?()
+        
+    }
+    
+    public func requestWhenInUseAuthorization(completion: (() -> Void)?) {
+        
+        self.authorizationCompletion = completion
         
         if authorizationStatus == .notDetermined {
             locationManager.requestWhenInUseAuthorization()

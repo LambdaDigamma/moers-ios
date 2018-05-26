@@ -37,3 +37,13 @@
 "OnboardingNotificationPageDescription" = "";
 "Allow" = "Allow";
 "Later" = "Later";
+"PrivacyPolicy" = "Privacy Policy";
+"Legal" = "Legal";
+"Licences" = "Licences";
+"UIAdjustments" = "User Interface";
+"Tourist" = "Tourist";
+"Citizen" = "Citizen";
+"OnboardingUserTypeSelectorPageTitle" = "User";
+"OnboardingUserTypeSelectorPageDescription" = "Are you a visitor or citizen to the city of Moers?";
+"OnboardingUserTypeSelectorPageActionButtonTitle" = "Continue";
+"SettingsRubbishCollectionTitle" = "Pick-up Schedule";

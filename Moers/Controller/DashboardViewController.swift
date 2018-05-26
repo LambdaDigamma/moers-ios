@@ -11,6 +11,7 @@ import Gestalt
 import UserNotifications
 import CoreLocation
 import MapKit
+import Reachability
 
 class DashboardViewController: UIViewController, LocationManagerDelegate, PetrolManagerDelegate {
 
@@ -141,6 +142,30 @@ class DashboardViewController: UIViewController, LocationManagerDelegate, Petrol
         
     }
 
+    private func setupReachability() {
+        
+        guard let reachability = Reachability() else { return }
+        
+        reachability.whenReachable = { reachability in
+            
+            if reachability.connection == .cellular {
+                
+            } else if reachability.connection == .wifi {
+                
+            }
+            
+        }
+        
+        reachability.whenUnreachable = { _ in
+            
+            
+            
+        }
+        
+        
+        
+    }
+    
     public func loadData() {
         
         self.rubbishCardView.startLoading()
@@ -155,7 +180,7 @@ class DashboardViewController: UIViewController, LocationManagerDelegate, Petrol
         
     }
     
-    private func loadRubbishData() {
+    public func loadRubbishData() {
         
         if RubbishManager.shared.isEnabled {
             
@@ -180,17 +205,26 @@ class DashboardViewController: UIViewController, LocationManagerDelegate, Petrol
                 
             })
             
+        } else {
+            
+            OperationQueue.main.addOperation {
+                
+                self.rubbishCardView.stopLoading()
+                self.rubbishCardView.showError(withTitle: "Abfallkalender deaktiviert", message: "Du kannst den Abfallkalender in den Einstellungen aktivieren.")
+                
+            }
+            
         }
         
     }
     
-    private func loadPetrolData() {
+    public func loadPetrolData() {
         
         self.locationManager.delegate = self
-        self.locationManager.requestWhenInUseAuthorization()
         
         if self.locationManager.authorizationStatus != .denied {
             self.locationManager.requestCurrentLocation()
+            self.averagePetrolCardView.dismissError()
             self.averagePetrolCardView.startLoading()
         } else {
             self.averagePetrolCardView.showError(withTitle: "Berechtigung fehlt", message: "Die App darf nicht auf deinen aktuellen Standort zugreifen, um aktuelle Spritpreise zu berechnen.")
