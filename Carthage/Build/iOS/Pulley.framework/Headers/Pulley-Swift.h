@@ -289,6 +289,8 @@ SWIFT_CLASS("_TtC6Pulley20PulleyViewController")
 @property (nonatomic) CGFloat animationSpringDamping;
 /// The spring’s initial velocity for setting the drawer position
 @property (nonatomic) CGFloat animationSpringInitialVelocity;
+/// This setting allows you to enable/disable Pulley automatically insetting the drawer on the left/right when in ‘bottomDrawer’ display mode in a horizontal orientation on a device with a ‘notch’ or other left/right obscurement.
+@property (nonatomic) BOOL adjustDrawerHorizontalInsetToSafeArea;
 /// Initialize the drawer controller from Interface Builder.
 /// note:
 /// Usage notes: Make 2 container views in Interface Builder and connect their outlets to -primaryContentContainerView and -drawerContentContainerView. Then use embed segues to place your content/drawer view controllers into the appropriate container.
