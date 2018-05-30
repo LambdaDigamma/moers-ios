@@ -61,6 +61,7 @@
 		DF632B481F6EA6AA0022FA8E /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B471F6EA6AA0022FA8E /* DesignableView.swift */; };
 		DF8254061F7711180069D751 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8254051F7711170069D751 /* Camera.swift */; };
 		DF8254081F7712880069D751 /* CSwiftV.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8254071F7712870069D751 /* CSwiftV.swift */; };
+		DFA96A6320BD8A390009B279 /* AveragePetrolPriceComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA96A6220BD8A390009B279 /* AveragePetrolPriceComponent.swift */; };
 		DFA9EEF920B35AED008590EA /* PetrolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EEF820B35AED008590EA /* PetrolManager.swift */; };
 		DFA9EEFB20B35EB8008590EA /* PetrolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EEFA20B35EB8008590EA /* PetrolType.swift */; };
 		DFA9EEFD20B3602E008590EA /* PetrolSorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EEFC20B3602E008590EA /* PetrolSorting.swift */; };
@@ -118,6 +119,8 @@
 		DFDD3F7020B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F6F20B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift */; };
 		DFDD3F7220B2E525005602E3 /* MonthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F7120B2E525005602E3 /* MonthHeaderView.swift */; };
 		DFDD3F7420B2F30A005602E3 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */; };
+		DFEE2E0A20BB117A00A130CB /* BaseComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEE2E0920BB117A00A130CB /* BaseComponent.swift */; };
+		DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */; };
 		DFF4E15B20892CFB007C24E3 /* RubbishManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF4E15A20892CFB007C24E3 /* RubbishManager.swift */; };
 		DFF4E15D20893694007C24E3 /* RubbishCollectionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF4E15C20893694007C24E3 /* RubbishCollectionDate.swift */; };
 		DFF4E15F2089ABCA007C24E3 /* RubbishCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF4E15E2089ABCA007C24E3 /* RubbishCollectionItem.swift */; };
@@ -194,6 +197,7 @@
 		DF632B471F6EA6AA0022FA8E /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		DF8254051F7711170069D751 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		DF8254071F7712870069D751 /* CSwiftV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSwiftV.swift; sourceTree = "<group>"; };
+		DFA96A6220BD8A390009B279 /* AveragePetrolPriceComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AveragePetrolPriceComponent.swift; sourceTree = "<group>"; };
 		DFA9EEF820B35AED008590EA /* PetrolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolManager.swift; sourceTree = "<group>"; };
 		DFA9EEFA20B35EB8008590EA /* PetrolType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolType.swift; sourceTree = "<group>"; };
 		DFA9EEFC20B3602E008590EA /* PetrolSorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolSorting.swift; sourceTree = "<group>"; };
@@ -256,6 +260,8 @@
 		DFDD3F6F20B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionItemTableViewCell.swift; sourceTree = "<group>"; };
 		DFDD3F7120B2E525005602E3 /* MonthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthHeaderView.swift; sourceTree = "<group>"; };
 		DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		DFEE2E0920BB117A00A130CB /* BaseComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseComponent.swift; sourceTree = "<group>"; };
+		DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionComponent.swift; sourceTree = "<group>"; };
 		DFF4E15A20892CFB007C24E3 /* RubbishManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishManager.swift; sourceTree = "<group>"; };
 		DFF4E15C20893694007C24E3 /* RubbishCollectionDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionDate.swift; sourceTree = "<group>"; };
 		DFF4E15E2089ABCA007C24E3 /* RubbishCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionItem.swift; sourceTree = "<group>"; };
@@ -371,6 +377,7 @@
 				DF0CB48E2082A8DB00CC0AA8 /* AppConfig.swift */,
 				DF1A49841F6AC40000E9108B /* Model */,
 				DF1A49831F6AC3FB00E9108B /* View */,
+				DF21B30120BAEB7800478A33 /* Components */,
 				DF1A49821F6AC3A100E9108B /* Controller */,
 				DFD129741FAF0DE9001900CF /* Networking */,
 				DF0CB4942082AFA300CC0AA8 /* Manager */,
@@ -485,6 +492,16 @@
 				DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */,
 			);
 			path = AnnotationView;
+			sourceTree = "<group>";
+		};
+		DF21B30120BAEB7800478A33 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				DFEE2E0920BB117A00A130CB /* BaseComponent.swift */,
+				DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */,
+				DFA96A6220BD8A390009B279 /* AveragePetrolPriceComponent.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		DF3AEF6B20B768C2006A4192 /* Petrol */ = {
@@ -735,11 +752,13 @@
 				DF632B441F6E90140022FA8E /* DetailViewController.swift in Sources */,
 				DFB6185B1FAE2CC800C98EB6 /* NavigationViewController.swift in Sources */,
 				DF2D6DAD20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift in Sources */,
+				DFA96A6320BD8A390009B279 /* AveragePetrolPriceComponent.swift in Sources */,
 				DF21B30020BA0DB400478A33 /* SwitchTableViewCell.swift in Sources */,
 				DFDD3F7220B2E525005602E3 /* MonthHeaderView.swift in Sources */,
 				DF29FB4D20B1954B00741A63 /* ThemeViewController.swift in Sources */,
 				DF5135B91F71A4C4002A8977 /* DetailParkingViewController.swift in Sources */,
 				DF0CB4AB208357A800CC0AA8 /* MapItemContentView.swift in Sources */,
+				DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */,
 				DFA9EEFD20B3602E008590EA /* PetrolSorting.swift in Sources */,
 				DFAEF0611F6AE87000EF25F5 /* MapViewController.swift in Sources */,
 				DF626AF51FB745E300BFDA67 /* BikeChargingStation.swift in Sources */,
@@ -747,6 +766,7 @@
 				DFC1CC641F75960A00C1D269 /* SelectionViewController.swift in Sources */,
 				DFD129761FAF12D2001900CF /* BranchCollectionViewCell.swift in Sources */,
 				DF2D6DA520B88E1700176614 /* LicencesViewController.swift in Sources */,
+				DFEE2E0A20BB117A00A130CB /* BaseComponent.swift in Sources */,
 				DFD7ACBA20A6C6BC00D49BE2 /* RubbishCollectionView.swift in Sources */,
 				DF4BD1C6208CF76C003ECF41 /* RubbishReminderBulletinItem.swift in Sources */,
 				DFB64DD12038F94600173A80 /* InfoViewController.swift in Sources */,

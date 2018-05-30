@@ -53,6 +53,7 @@ class DashboardRubbishCardView: TitleCardView {
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
             
             themeable.titleLabel.textColor = theme.color
+            themeable.backgroundColor = theme.cardBackgroundColor
             
         }
         

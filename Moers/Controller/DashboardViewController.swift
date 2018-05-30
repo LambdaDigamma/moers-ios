@@ -13,7 +13,7 @@ import CoreLocation
 import MapKit
 import Reachability
 
-class DashboardViewController: UIViewController, LocationManagerDelegate, PetrolManagerDelegate {
+class DashboardViewController: UIViewController {
 
     // MARK: - UI
     
@@ -42,44 +42,7 @@ class DashboardViewController: UIViewController, LocationManagerDelegate, Petrol
         
     }()
     
-    lazy var notificationCardView: DashboardNotificationCardView = {
-        
-        let cardView = DashboardNotificationCardView()
-        
-        cardView.translatesAutoresizingMaskIntoConstraints = false
-        cardView.titleLabel.text = "Was weiß ich"
-        cardView.subtitleLabel.text = "Morgen um 16 Uhr..."
-        
-        return cardView
-        
-    }()
-    
-    lazy var rubbishCardView: DashboardRubbishCardView = {
-        
-        let cardView = DashboardRubbishCardView()
-        
-        cardView.translatesAutoresizingMaskIntoConstraints = false
-        cardView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showRubbishCollectionViewController)))
-        
-        return cardView
-        
-    }()
-    
-    lazy var averagePetrolCardView: DashboardAveragePetrolPriceCardView = {
-        
-        let cardView = DashboardAveragePetrolPriceCardView()
-        
-        cardView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return cardView
-        
-    }()
-    
-    let locationManager = LocationManager()
-    
-    var cards: [CardView] {
-        return [averagePetrolCardView, rubbishCardView]
-    }
+    var components: [BaseComponent] = []
     
     // MARK: - UIViewController Lifecycle
     
@@ -89,27 +52,27 @@ class DashboardViewController: UIViewController, LocationManagerDelegate, Petrol
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(cardStackView)
         
-        self.setupCards(cards)
+        let rubbishComponent = RubbishCollectionComponent(viewController: self)
+        let petrolComponent = AveragePetrolPriceComponent(viewController: self)
+        
+        self.registerComponents(components: [petrolComponent, rubbishComponent])
+        
         self.setupConstraints()
         self.setupTheming()
         
-        self.loadData()
-        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        self.loadPetrolData()
+        self.triggerUpdate()
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        self.locationManager.stopMonitoring()
-        self.averagePetrolCardView.stopLoading()
-        self.rubbishCardView.stopLoading()
+        components.forEach { $0.invalidate() }
         
     }
     
@@ -136,7 +99,6 @@ class DashboardViewController: UIViewController, LocationManagerDelegate, Petrol
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
             
             themeable.view.backgroundColor = theme.backgroundColor
-            themeable.cards.forEach { $0.backgroundColor = theme.cardBackgroundColor }
             
         }
         
@@ -166,140 +128,20 @@ class DashboardViewController: UIViewController, LocationManagerDelegate, Petrol
         
     }
     
-    public func loadData() {
+    private func registerComponents(components: [BaseComponent]) {
         
-        self.rubbishCardView.startLoading()
+        self.components = components
         
-        let queue = OperationQueue()
-        
-        queue.addOperation {
-            if AppConfig.shared.loadData {
-                self.loadRubbishData()
-            }
+        components.forEach {
+            $0.view.translatesAutoresizingMaskIntoConstraints = false
+            cardStackView.addArrangedSubview($0.view)
         }
         
     }
     
-    public func loadRubbishData() {
+    public func triggerUpdate() {
         
-        if RubbishManager.shared.isEnabled {
-            
-            RubbishManager.shared.loadItems(completion: { (items) in
-                
-                OperationQueue.main.addOperation {
-                    
-                    self.rubbishCardView.stopLoading()
-                    
-                    if items.count >= 3 {
-                        self.rubbishCardView.itemView1.rubbishCollectionItem = items[0]
-                        self.rubbishCardView.itemView2.rubbishCollectionItem = items[1]
-                        self.rubbishCardView.itemView3.rubbishCollectionItem = items[2]
-                    } else if items.count >= 2 {
-                        self.rubbishCardView.itemView1.rubbishCollectionItem = items[0]
-                        self.rubbishCardView.itemView2.rubbishCollectionItem = items[1]
-                    } else if items.count >= 1 {
-                        self.rubbishCardView.itemView1.rubbishCollectionItem = items[0]
-                    }
-                    
-                }
-                
-            })
-            
-        } else {
-            
-            OperationQueue.main.addOperation {
-                
-                self.rubbishCardView.stopLoading()
-                self.rubbishCardView.showError(withTitle: "Abfallkalender deaktiviert", message: "Du kannst den Abfallkalender in den Einstellungen aktivieren.")
-                
-            }
-            
-        }
-        
-    }
-    
-    public func loadPetrolData() {
-        
-        self.locationManager.delegate = self
-        
-        if self.locationManager.authorizationStatus != .denied {
-            self.locationManager.requestCurrentLocation()
-            self.averagePetrolCardView.dismissError()
-            self.averagePetrolCardView.startLoading()
-        } else {
-            self.averagePetrolCardView.showError(withTitle: "Berechtigung fehlt", message: "Die App darf nicht auf deinen aktuellen Standort zugreifen, um aktuelle Spritpreise zu berechnen.")
-        }
-        
-    }
-    
-    private func setupCards(_ cards: [CardView]) {
-        
-        cards.forEach { cardStackView.addArrangedSubview($0) }
-        
-    }
-    
-    @objc private func showRubbishCollectionViewController() {
-        
-        let rubbishCollectionViewController = RubbishCollectionViewController()
-        self.navigationController?.pushViewController(rubbishCollectionViewController, animated: true)
-        
-    }
-    
-    // MARK: - LocationManagerDelegate
-    
-    func didReceiveCurrentLocation(location: CLLocation) {
-        
-        GeocodingManager.shared.city(from: location) { (city) in
-            
-            self.averagePetrolCardView.locationLabel.text = city
-            
-        }
-        
-        GeocodingManager.shared.countryCode(from: location) { (countryCode) in
-            
-            if countryCode != "DE" {
-                
-                self.averagePetrolCardView.showError(withTitle: "Spritinformationen", message: "Nur in Deutschland verfügbar")
-                
-            } else {
-                
-                PetrolManager.shared.delegate = self
-                PetrolManager.shared.sendRequest(coordiante: location.coordinate, radius: 10.0, sorting: .distance, type: .diesel)
-                
-            }
-            
-        }
-        
-    }
-    
-    func didFailWithError(error: Error) {
-        
-        
-        
-    }
-    
-    // MARK: - PetrolManagerDelegate
-    
-    func didReceivePetrolStations(stations: [PetrolStation]) {
-        
-        DispatchQueue.main.async {
-            
-            let openStations = stations.filter { $0.isOpen }
-            
-            self.averagePetrolCardView.stopLoading()
-            self.averagePetrolCardView.numberOfStations = openStations.count
-            
-            let sum = openStations.reduce(0) { (result, item) in
-                
-                return result + (item.price ?? 0)
-                
-            }
-            
-            let averagePrice = sum / Double(openStations.count)
-            
-            self.averagePetrolCardView.price = averagePrice
-            
-        }
+        components.forEach { $0.update() }
         
     }
     
