@@ -13,7 +13,17 @@ struct Section {
     let rows: [Row]
 }
 
-struct Row {
+protocol Row {
+    var title: String { get set }
+}
+
+struct NavigationRow: Row {
     var title: String
     var action: (() -> ())?
+}
+
+struct SwitchRow: Row {
+    var title: String
+    var switchOn: Bool
+    var action: ((Bool) -> ())?
 }
