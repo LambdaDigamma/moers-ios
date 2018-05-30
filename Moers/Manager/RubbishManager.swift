@@ -156,9 +156,9 @@ class RubbishManager {
         
     }
     
-    var isEnabled: Bool {
-        return self.street != nil
-    }
+//    var isEnabled: Bool {
+//        return self.street != nil
+//    }
     
     public func registerNotifications(at hour: Int, minute: Int) {
         
@@ -274,6 +274,11 @@ class RubbishManager {
             
         })
         
+    }
+    
+    public var isEnabled: Bool {
+        get { return UserDefaults.standard.bool(forKey: "RubbishEnabled") }
+        set { UserDefaults.standard.set(newValue, forKey: "RubbishEnabled") }
     }
     
     public var reminderHour: Int? {

@@ -34,11 +34,11 @@ class OtherViewController: UIViewController {
     lazy var data: [Section] = {
         
         return [Section(title: String.localized("SettingsTitle"),
-                        rows: [Row(title: String.localized("SettingsTitle"), action: showSettings)]),
+                        rows: [NavigationRow(title: String.localized("SettingsTitle"), action: showSettings)]),
                 Section(title: String.localized("Legal"),
-                        rows: [Row(title: String.localized("AboutTitle"), action: showAbout),
-                               Row(title: String.localized("PrivacyPolicy"), action: showPrivacy),
-                               Row(title: String.localized("Licences"), action: showLicences)])]
+                        rows: [NavigationRow(title: String.localized("AboutTitle"), action: showAbout),
+                               NavigationRow(title: String.localized("PrivacyPolicy"), action: showPrivacy),
+                               NavigationRow(title: String.localized("Licences"), action: showLicences)])]
         
     }()
     
@@ -129,7 +129,9 @@ extension OtherViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        data[indexPath.section].rows[indexPath.row].action?()
+        guard let navigationRow = data[indexPath.section].rows[indexPath.row] as? NavigationRow else { return }
+        
+        navigationRow.action?()
         
     }
     
