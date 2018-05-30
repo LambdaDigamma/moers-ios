@@ -32,6 +32,7 @@
 		DF1A496D1F6AAB7000E9108B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF1A496B1F6AAB7000E9108B /* LaunchScreen.storyboard */; };
 		DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */; };
 		DF21B2FE20B9D8A900478A33 /* Licenses.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF21B2FD20B9D8A900478A33 /* Licenses.plist */; };
+		DF21B30020BA0DB400478A33 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF21B2FF20BA0DB400478A33 /* SwitchTableViewCell.swift */; };
 		DF29FB4D20B1954B00741A63 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */; };
 		DF29FB4F20B19BE600741A63 /* ThemeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29FB4E20B19BE600741A63 /* ThemeCardView.swift */; };
 		DF2D6DA320B88BFA00176614 /* Licence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DA220B88BFA00176614 /* Licence.swift */; };
@@ -164,6 +165,7 @@
 		DF1A496E1F6AAB7000E9108B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnnotationView.swift; sourceTree = "<group>"; };
 		DF21B2FD20B9D8A900478A33 /* Licenses.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Licenses.plist; sourceTree = SOURCE_ROOT; };
+		DF21B2FF20BA0DB400478A33 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		DF29FB4E20B19BE600741A63 /* ThemeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCardView.swift; sourceTree = "<group>"; };
 		DF2D6DA220B88BFA00176614 /* Licence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Licence.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				DF524CA7208741FF00D88599 /* RebuildFilterTableViewCell.swift */,
 				DFDD3F6F20B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift */,
 				DFDD3F7120B2E525005602E3 /* MonthHeaderView.swift */,
+				DF21B2FF20BA0DB400478A33 /* SwitchTableViewCell.swift */,
 			);
 			path = UITableViewCells;
 			sourceTree = "<group>";
@@ -732,6 +735,7 @@
 				DF632B441F6E90140022FA8E /* DetailViewController.swift in Sources */,
 				DFB6185B1FAE2CC800C98EB6 /* NavigationViewController.swift in Sources */,
 				DF2D6DAD20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift in Sources */,
+				DF21B30020BA0DB400478A33 /* SwitchTableViewCell.swift in Sources */,
 				DFDD3F7220B2E525005602E3 /* MonthHeaderView.swift in Sources */,
 				DF29FB4D20B1954B00741A63 /* ThemeViewController.swift in Sources */,
 				DF5135B91F71A4C4002A8977 /* DetailParkingViewController.swift in Sources */,
