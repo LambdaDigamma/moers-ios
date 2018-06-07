@@ -8,6 +8,7 @@
 
 import UIKit
 import Gestalt
+import BulletinBoard
 
 class SettingsViewController: UIViewController {
 
@@ -33,14 +34,46 @@ class SettingsViewController: UIViewController {
         
     }()
     
-    lazy var data: [Section] = {
+    var data: [Section] {
+        
+        let hour = RubbishManager.shared.reminderHour
+        let minute = RubbishManager.shared.reminderMinute
+        
+        var rubbishReminder: String
+        
+        if let hour = hour, let minute = minute, let enabled = RubbishManager.shared.remindersEnabled, enabled {
+            
+            var hourString = ""
+            var minuteString = ""
+            
+            if hour < 10 {
+                hourString += "0\(hour)"
+            } else {
+                hourString += "\(hour)"
+            }
+            
+            if minute < 10 {
+                minuteString += "0\(minute)"
+            } else {
+                minuteString += "\(minute)"
+            }
+            
+            rubbishReminder = "Erinnerung: \(hourString):\(minuteString)"
+            
+        } else {
+            rubbishReminder = "Erinnerung: nicht aktiviert"
+        }
         
         return [Section(title: String.localized("UIAdjustments"),
                         rows: [NavigationRow(title: String.localized("ThemeTitle"), action: showThemes)]),
                 Section(title: String.localized("SettingsRubbishCollectionTitle"),
-                        rows: [SwitchRow(title: "Aktiviert", switchOn: RubbishManager.shared.isEnabled ?? false, action: triggerRubbishCollection)])]
+                        rows: [SwitchRow(title: "Aktiviert", switchOn: RubbishManager.shared.isEnabled, action: triggerRubbishCollection),
+                               NavigationRow(title: "Straße: \(RubbishManager.shared.rubbishStreet?.street ?? "nicht ausgewählt")", action: showRubbishStreet),
+                               NavigationRow(title: rubbishReminder, action: showRubbishReminder)]
+            )
+        ]
         
-    }()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +108,91 @@ class SettingsViewController: UIViewController {
     
     private func showThemes() {
         push(viewController: ThemeViewController.self)
+    }
+    
+    private func showRubbishStreet() {
+        
+        let streetPage = OnboardingManager.shared.makeRubbishStreetPage()
+        let manager = BulletinManager(rootItem: streetPage)
+        
+        ThemeManager.default.apply(theme: Theme.self, to: manager) { themeable, theme in
+            
+            themeable.backgroundColor = theme.backgroundColor
+            themeable.hidesHomeIndicator = false
+            themeable.cardPadding = .compact
+            
+        }
+        
+        manager.backgroundViewStyle = .dimmed
+        manager.statusBarAppearance = .hidden
+        manager.prepareAndPresent(above: self)
+        
+        streetPage.actionHandler = { item in
+            
+            guard let item = item as? RubbishStreetPickerItem else { return }
+            
+            let selectedStreet = item.streets[item.picker.currentSelectedRow]
+            
+            RubbishManager.shared.register(selectedStreet)
+            
+            self.tableView.reloadData()
+            
+            manager.dismissBulletin(animated: true)
+            
+        }
+        
+        streetPage.alternativeHandler = { item in
+            manager.dismissBulletin(animated: true)
+        }
+        
+    }
+    
+    private func showRubbishReminder() {
+        
+        let reminderPage = OnboardingManager.shared.makeRubbishReminderPage()
+        let manager = BulletinManager(rootItem: reminderPage)
+        
+        ThemeManager.default.apply(theme: Theme.self, to: manager) { themeable, theme in
+            
+            themeable.backgroundColor = theme.backgroundColor
+            themeable.hidesHomeIndicator = false
+            themeable.cardPadding = .compact
+            
+        }
+        
+        manager.backgroundViewStyle = .dimmed
+        manager.statusBarAppearance = .hidden
+        manager.prepareAndPresent(above: self)
+        
+        reminderPage.alternativeButtonTitle = "Deaktivieren"
+        
+        reminderPage.actionHandler = { item in
+            
+            guard let page = item as? RubbishReminderBulletinItem else { return }
+            
+            let hour = Calendar.current.component(.hour, from: page.picker.date)
+            let minutes = Calendar.current.component(.minute, from: page.picker.date)
+            
+            RubbishManager.shared.registerNotifications(at: hour, minute: minutes)
+            
+            self.tableView.reloadData()
+            
+            manager.dismissBulletin(animated: true)
+            
+        }
+        
+        reminderPage.alternativeHandler = { item in
+            
+            RubbishManager.shared.remindersEnabled = false
+            RubbishManager.shared.reminderHour = 20
+            RubbishManager.shared.reminderMinute = 0
+            
+            self.tableView.reloadData()
+            
+            manager.dismissBulletin(animated: true)
+            
+        }
+        
     }
     
     private func push(viewController: UIViewController.Type) {

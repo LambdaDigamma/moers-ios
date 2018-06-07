@@ -121,6 +121,7 @@ class ThemeViewController: UIViewController {
         guard let theme = themeCardView.theme else { return }
 
         ThemeManager.default.theme = theme
+        UserManager.shared.theme = theme
         
     }
 

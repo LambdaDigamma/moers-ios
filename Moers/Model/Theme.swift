@@ -11,6 +11,7 @@ import Gestalt
 
 struct Theme: ThemeProtocol {
     
+    let identifier: String
     let color: UIColor
     let backgroundColor: UIColor
     let navigationBarColor: UIColor
@@ -25,6 +26,8 @@ struct Theme: ThemeProtocol {
     static private let darkGray = UIColor(red: 0.137, green: 0.122, blue: 0.125, alpha: 1.00)
     static private let yellow = UIColor(red: 1.000, green: 0.949, blue: 0.200, alpha: 1.00)
     
+    static public let all: [Theme] = [lightning, dark]
+    
 //    static let light = Theme(color: UIColor.black,
 //                             backgroundColor: UIColor(red: 0.980, green: 0.980, blue: 0.980, alpha: 1.00),
 //                             navigationBarColor: UIColor.white,
@@ -35,7 +38,8 @@ struct Theme: ThemeProtocol {
 //                             statusBarStyle: .default,
 //                             cardShadow: true)
     
-    static let lightning = Theme(color: UIColor.black,
+    static let lightning = Theme(identifier: "Lightning",
+                                 color: UIColor.black,
                                  backgroundColor: UIColor.white,
                                  navigationBarColor: UIColor.white,
                                  tabBarColor: UIColor.white,
@@ -56,7 +60,8 @@ struct Theme: ThemeProtocol {
 //                                   statusBarStyle: .default,
 //                                   cardShadow: true)
     
-    static let dark = Theme(color: UIColor.white,
+    static let dark = Theme(identifier: "Dark",
+                            color: UIColor.white,
                             backgroundColor: darkGray,
                             navigationBarColor: UIColor.black,
                             tabBarColor: UIColor.black,

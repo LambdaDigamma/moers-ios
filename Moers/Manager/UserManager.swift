@@ -36,4 +36,19 @@ struct UserManager {
         
     }
     
+    public var theme: Theme {
+        get {
+            
+            let identifier = UserDefaults.standard.string(forKey: "Theme") ?? Theme.lightning.identifier
+            
+            let theme = Theme.all.filter { $0.identifier == identifier }.first ?? Theme.lightning
+            
+            return theme
+            
+        }
+        set {
+            UserDefaults.standard.set(newValue.identifier, forKey: "Theme")
+        }
+    }
+    
 }

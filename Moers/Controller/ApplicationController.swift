@@ -14,7 +14,7 @@ class ApplicationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        ThemeManager.default.theme = Theme.lightning
+        ThemeManager.default.theme = UserManager.shared.theme
         ThemeManager.default.animated = true
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
             UIApplication.shared.statusBarStyle = theme.statusBarStyle

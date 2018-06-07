@@ -144,6 +144,11 @@ struct OnboardingManager {
         }
         
         page.alternativeHandler = { item in
+            
+            RubbishManager.shared.remindersEnabled = false
+            RubbishManager.shared.reminderHour = 20
+            RubbishManager.shared.reminderMinute = 0
+            
             page.nextItem = self.makeCompletionPage()
             item.manager?.displayNextItem()
         }

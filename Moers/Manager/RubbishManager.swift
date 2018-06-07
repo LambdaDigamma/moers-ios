@@ -156,14 +156,11 @@ class RubbishManager {
         
     }
     
-//    var isEnabled: Bool {
-//        return self.street != nil
-//    }
-    
     public func registerNotifications(at hour: Int, minute: Int) {
         
         self.reminderHour = hour
         self.reminderMinute = minute
+        self.remindersEnabled = true
         
         self.invalidateRubbishReminderNotifications()
         
