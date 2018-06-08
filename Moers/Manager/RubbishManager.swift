@@ -170,6 +170,8 @@ class RubbishManager {
             
             self.loadItems(completion: { (items) in
                 
+                // Build Rubbish Collection Notification Requests
+                
                 for item in items {
                 
                     let notificationContent = UNMutableNotificationContent()
@@ -178,34 +180,32 @@ class RubbishManager {
                     notificationContent.title = "Abfuhrkalender"
                     notificationContent.subtitle = "Morgen wird abgeholt: \(item.type.rawValue)"
                     
-                    print(item.date)
+                    let date = item.parsedDate
+                        
+                    let calendar = Calendar.current
                     
-                    if let date = Date.from(item.date, withFormat: "dd.MM.yyyy") {
-                        
-                        let calendar = Calendar.current
-                        
-                        var dateComponents = DateComponents()
-                        
-                        dateComponents.day = calendar.component(.day, from: date) - 1
-                        dateComponents.month = calendar.component(.month, from: date)
-                        dateComponents.year = calendar.component(.year, from: date)
-                        dateComponents.hour = self.reminderHour ?? 20
-                        dateComponents.minute = self.reminderMinute ?? 0
-                        dateComponents.second = 0
-                        
-                        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-                        
-                        let request = UNNotificationRequest(identifier: "RubbishReminder", content: notificationContent, trigger: trigger)
-                        
-                        self.requests.append(request)
-                        
-                    }
+                    var dateComponents = DateComponents()
+                    
+                    dateComponents.day = calendar.component(.day, from: date) - 1
+                    dateComponents.month = calendar.component(.month, from: date)
+                    dateComponents.year = calendar.component(.year, from: date)
+                    dateComponents.hour = self.reminderHour ?? 20
+                    dateComponents.minute = self.reminderMinute ?? 0
+                    dateComponents.second = 0
+                    
+                    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                    
+                    let identifier = "RubbishReminder-\(dateComponents.day ?? 0)-\(dateComponents.month ?? 0)-\(dateComponents.year ?? 0)-\(item.type.rawValue)"
+                    
+                    let request = UNNotificationRequest(identifier: identifier, content: notificationContent, trigger: trigger)
+                    
+                    self.requests.append(request)
                     
                 }
                 
-                if let request = self.requests.popLast() {
-                    self.scheduleNotification(request: request, completion: self.scheduleCompletion)
-                }
+                // Recursively schedule all Notifications
+                
+                self.scheduleNextNotification()
                 
             })
             
@@ -213,11 +213,19 @@ class RubbishManager {
         
     }
     
-    public func scheduleCompletion() {
+    public func scheduleNextNotification() {
         
         if let request = requests.popLast() {
             
-            self.scheduleNotification(request: request, completion: scheduleCompletion)
+            self.scheduleNotification(request: request, completion: scheduleNextNotification)
+            
+        } else  {
+            
+            UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
+                
+                print("Scheduled \(requests.count) notifications")
+                
+            }
             
         }
         
@@ -229,11 +237,11 @@ class RubbishManager {
         
         center.add(request, withCompletionHandler: { (error) in
             
-            completion()
-            
-            guard let error = error else { return }
-            
-            print(error.localizedDescription)
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                completion()
+            }
             
         })
         
