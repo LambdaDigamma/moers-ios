@@ -13,7 +13,7 @@ import CoreLocation
 import MapKit
 import Reachability
 
-class DashboardViewController: UIViewController {
+class DashboardViewController: CardCollectionViewController {
 
     // MARK: - UI
     
@@ -49,16 +49,10 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.addSubview(scrollView)
-        self.scrollView.addSubview(cardStackView)
-        
         let rubbishComponent = RubbishCollectionComponent(viewController: self)
         let petrolComponent = AveragePetrolPriceComponent(viewController: self)
         
         self.registerComponents(components: [petrolComponent, rubbishComponent])
-        
-        self.setupConstraints()
-        self.setupTheming()
         
     }
     
@@ -94,16 +88,6 @@ class DashboardViewController: UIViewController {
         
     }
     
-    private func setupTheming() {
-        
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            
-        }
-        
-    }
-
     private func setupReachability() {
         
         guard let reachability = Reachability() else { return }
@@ -124,18 +108,13 @@ class DashboardViewController: UIViewController {
             
         }
         
-        
-        
     }
     
     private func registerComponents(components: [BaseComponent]) {
         
         self.components = components
         
-        components.forEach {
-            $0.view.translatesAutoresizingMaskIntoConstraints = false
-            cardStackView.addArrangedSubview($0.view)
-        }
+        registerCardViews(components.map { $0.view })
         
     }
     
