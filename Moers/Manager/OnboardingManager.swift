@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import BulletinBoard
+import BLTNBoard
 import Gestalt
 
 struct OnboardingManager {
@@ -16,7 +16,7 @@ struct OnboardingManager {
     
     // MARK: - Pages
     
-    func makeIntroPage() -> PageBulletinItem {
+    func makeIntroPage() -> BLTNPageItem {
         
         let page = FeedbackPageBulletinItem(title: "Mein \(AppConfig.shared.name)")
         page.image = #imageLiteral(resourceName: "MoersAppIcon")
@@ -30,13 +30,13 @@ struct OnboardingManager {
             item.manager?.displayNextItem()
         }
         
-        page.nextItem = makeUserTypePage()
+        page.next = makeUserTypePage()
         
         return page
         
     }
     
-    func makeUserTypePage() -> PageBulletinItem {
+    func makeUserTypePage() -> BLTNPageItem {
         
         
         let page = UserTypeSelectorBulletinPage(title: String.localized("OnboardingUserTypeSelectorPageTitle"))
@@ -46,7 +46,7 @@ struct OnboardingManager {
         page.actionButtonTitle = String.localized("OnboardingUserTypeSelectorPageActionButtonTitle")
         page.isDismissable = false
         
-        page.nextItem = makeNotitificationsPage()
+        page.next = makeNotitificationsPage()
         
         return page
         
@@ -72,7 +72,7 @@ struct OnboardingManager {
             item.manager?.displayNextItem()
         }
         
-        page.nextItem = makeLocationPage()
+        page.next = makeLocationPage()
         
         return page
         
@@ -95,9 +95,9 @@ struct OnboardingManager {
             LocationManager.shared.requestWhenInUseAuthorization(completion: {
                 
                 if UserManager.shared.user.type == .citizen {
-                    page.nextItem = self.makeRubbishStreetPage()
+                    page.next = self.makeRubbishStreetPage()
                 } else {
-                    page.nextItem = self.makeCompletionPage()
+                    page.next = self.makeCompletionPage()
                 }
                 
                 item.manager?.displayNextItem()
@@ -108,7 +108,7 @@ struct OnboardingManager {
         
         page.alternativeHandler = { item in
             
-            page.nextItem = self.makeCompletionPage()
+            page.next = self.makeCompletionPage()
             
             item.manager?.displayNextItem()
             
@@ -118,7 +118,7 @@ struct OnboardingManager {
         
     }
     
-    func makeRubbishStreetPage() -> PageBulletinItem {
+    func makeRubbishStreetPage() -> BLTNPageItem {
         
         let page = RubbishStreetPickerItem(title: String.localized("RubbishCollectionPageTitle"))
         page.appearance = makeAppearance()
@@ -137,7 +137,7 @@ struct OnboardingManager {
             
             RubbishManager.shared.register(selectedStreet)
             
-            page.nextItem = self.makeRubbishReminderPage()
+            page.next = self.makeRubbishReminderPage()
             
             item.manager?.displayNextItem()
             
@@ -149,7 +149,7 @@ struct OnboardingManager {
             RubbishManager.shared.reminderHour = 20
             RubbishManager.shared.reminderMinute = 0
             
-            page.nextItem = self.makeCompletionPage()
+            page.next = self.makeCompletionPage()
             item.manager?.displayNextItem()
         }
         
@@ -157,7 +157,7 @@ struct OnboardingManager {
         
     }
     
-    func makeRubbishReminderPage() -> PageBulletinItem {
+    func makeRubbishReminderPage() -> BLTNPageItem {
         
         let page = RubbishReminderBulletinItem(title: String.localized("RubbishCollectionReminderPageTitle"))
         page.appearance = makeAppearance()
@@ -184,15 +184,15 @@ struct OnboardingManager {
         }
         
         
-        page.nextItem = makeCompletionPage()
+        page.next = makeCompletionPage()
         
         return page
         
     }
     
-    func makeCompletionPage() -> PageBulletinItem {
+    func makeCompletionPage() -> BLTNPageItem {
         
-        let page = PageBulletinItem(title: String.localized("CompletionPageTitle"))
+        let page = BLTNPageItem(title: String.localized("CompletionPageTitle"))
         page.image = #imageLiteral(resourceName: "IntroCompletion")
         page.imageAccessibilityLabel = "Checkmark"
         page.appearance = makeAppearance()
@@ -231,9 +231,9 @@ struct OnboardingManager {
 
 extension OnboardingManager {
     
-    func makeAppearance() -> BulletinAppearance {
+    func makeAppearance() -> BLTNItemAppearance {
         
-        let appearance = BulletinAppearance()
+        let appearance = BLTNItemAppearance()
         
         ThemeManager.default.apply(theme: Theme.self, to: appearance) { themeable, theme in
             
@@ -241,7 +241,7 @@ extension OnboardingManager {
             themeable.descriptionTextColor = theme.color
             themeable.actionButtonColor = theme.accentColor
             themeable.actionButtonTitleColor = theme.backgroundColor
-            themeable.alternativeButtonColor = theme.color
+            themeable.alternativeButtonTitleColor = theme.color
             
         }
         

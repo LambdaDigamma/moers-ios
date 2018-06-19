@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import BulletinBoard
+import BLTNBoard
 import Gestalt
 
-class RubbishReminderBulletinItem: PageBulletinItem {
+class RubbishReminderBulletinItem: BLTNPageItem {
     
     lazy var picker = UIDatePicker()
     
@@ -33,7 +33,7 @@ class RubbishReminderBulletinItem: PageBulletinItem {
         
     }
     
-    override func viewsUnderDescription(_ interfaceBuilder: BulletinInterfaceBuilder) -> [UIView]? {
+    override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.heightAnchor.constraint(equalToConstant: 150).isActive = true

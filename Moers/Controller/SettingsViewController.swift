@@ -8,7 +8,7 @@
 
 import UIKit
 import Gestalt
-import BulletinBoard
+import BLTNBoard
 
 class SettingsViewController: UIViewController {
 
@@ -113,19 +113,19 @@ class SettingsViewController: UIViewController {
     private func showRubbishStreet() {
         
         let streetPage = OnboardingManager.shared.makeRubbishStreetPage()
-        let manager = BulletinManager(rootItem: streetPage)
+        let manager = BLTNItemManager(rootItem: streetPage)
         
         ThemeManager.default.apply(theme: Theme.self, to: manager) { themeable, theme in
             
             themeable.backgroundColor = theme.backgroundColor
             themeable.hidesHomeIndicator = false
-            themeable.cardPadding = .compact
+            themeable.edgeSpacing = .compact
             
         }
         
         manager.backgroundViewStyle = .dimmed
         manager.statusBarAppearance = .hidden
-        manager.prepareAndPresent(above: self)
+        manager.showBulletin(above: self)
         
         streetPage.actionHandler = { item in
             
@@ -150,19 +150,19 @@ class SettingsViewController: UIViewController {
     private func showRubbishReminder() {
         
         let reminderPage = OnboardingManager.shared.makeRubbishReminderPage()
-        let manager = BulletinManager(rootItem: reminderPage)
+        let manager = BLTNItemManager(rootItem: reminderPage)
         
         ThemeManager.default.apply(theme: Theme.self, to: manager) { themeable, theme in
             
             themeable.backgroundColor = theme.backgroundColor
             themeable.hidesHomeIndicator = false
-            themeable.cardPadding = .compact
+            themeable.edgeSpacing = .compact
             
         }
         
         manager.backgroundViewStyle = .dimmed
         manager.statusBarAppearance = .hidden
-        manager.prepareAndPresent(above: self)
+        manager.showBulletin(above: self)
         
         reminderPage.alternativeButtonTitle = "Deaktivieren"
         

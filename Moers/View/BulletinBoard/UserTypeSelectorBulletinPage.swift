@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import BulletinBoard
+import BLTNBoard
 import Gestalt
 
 class UserTypeSelectorBulletinPage: FeedbackPageBulletinItem {
@@ -24,7 +24,7 @@ class UserTypeSelectorBulletinPage: FeedbackPageBulletinItem {
         citizenButton?.removeTarget(self, action: nil, for: .touchUpInside)
     }
     
-    override func viewsUnderDescription(_ interfaceBuilder: BulletinInterfaceBuilder) -> [UIView]? {
+    override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         
         let optionStack = interfaceBuilder.makeGroupStack(spacing: 16)
         

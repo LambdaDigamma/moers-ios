@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import BulletinBoard
+import BLTNBoard
 import Gestalt
 import ESTabBarController
 
@@ -67,15 +67,14 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
     }()
     
-    lazy var bulletinManager: BulletinManager = {
+    lazy var bulletinManager: BLTNItemManager = {
         let introPage = OnboardingManager.shared.makeIntroPage()
-        return BulletinManager(rootItem: introPage)
+        return BLTNItemManager(rootItem: introPage)
     }()
     
     private var firstLaunch: FirstLaunch
     
     init() {
-        
 //        #if DEBUG
 //        self.firstLaunch = FirstLaunch.alwaysFirst()
 //        #else
@@ -150,7 +149,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             themeable.tabBar.barTintColor = theme.navigationBarColor
             themeable.bulletinManager.backgroundColor = theme.backgroundColor
             themeable.bulletinManager.hidesHomeIndicator = false
-            themeable.bulletinManager.cardPadding = .compact
+            themeable.bulletinManager.edgeSpacing = .compact
             
             if let viewControllers = themeable.viewControllers {
                 
@@ -191,7 +190,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         bulletinManager.backgroundViewStyle = .dimmed
         bulletinManager.statusBarAppearance = .hidden
-        bulletinManager.prepareAndPresent(above: self)
+        bulletinManager.showBulletin(above: self)
         
     }
     

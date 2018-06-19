@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import BulletinBoard
+import BLTNBoard
 
-class FeedbackPageBulletinItem: PageBulletinItem {
+class FeedbackPageBulletinItem: BLTNPageItem {
     
     private let feedbackGenerator = SelectionFeedbackGenerator()
     

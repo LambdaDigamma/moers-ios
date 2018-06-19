@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import BulletinBoard
+import BLTNBoard
 import Gestalt
 import CoreLocation
 
-class RubbishStreetPickerItem: PageBulletinItem, PickerViewDelegate, PickerViewDataSource, LocationManagerDelegate {
+class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataSource, LocationManagerDelegate {
 
     lazy var picker = PickerView()
     
@@ -49,7 +49,7 @@ class RubbishStreetPickerItem: PageBulletinItem, PickerViewDelegate, PickerViewD
         
     }
     
-    override func viewsUnderDescription(_ interfaceBuilder: BulletinInterfaceBuilder) -> [UIView]? {
+    override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.heightAnchor.constraint(equalToConstant: 150).isActive = true
@@ -57,6 +57,7 @@ class RubbishStreetPickerItem: PageBulletinItem, PickerViewDelegate, PickerViewD
         descriptionLabel?.adjustsFontSizeToFitWidth = true
         
         return [picker]
+        
     }
     
     private func getLocationStreet() {
