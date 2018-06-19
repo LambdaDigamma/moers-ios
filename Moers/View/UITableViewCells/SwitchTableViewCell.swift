@@ -37,8 +37,8 @@ class SwitchTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.addSubview(switchControl)
-        self.addSubview(descriptionLabel)
+        self.contentView.addSubview(switchControl)
+        self.contentView.addSubview(descriptionLabel)
         
         self.setupConstraints()
         self.setupTheming()
@@ -51,13 +51,15 @@ class SwitchTableViewCell: UITableViewCell {
     
     private func setupConstraints() {
         
-        let constraints = [descriptionLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
-                           descriptionLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
+        let margins = contentView.layoutMarginsGuide
+        
+        let constraints = [descriptionLabel.topAnchor.constraint(equalTo: margins.topAnchor),
+                           descriptionLabel.leftAnchor.constraint(equalTo: margins.leftAnchor),
                            descriptionLabel.rightAnchor.constraint(equalTo: switchControl.leftAnchor, constant: -8),
-                           descriptionLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
-                           switchControl.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
-                           switchControl.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-                           switchControl.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8)]
+                           descriptionLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
+                           switchControl.topAnchor.constraint(equalTo: margins.topAnchor),
+                           switchControl.rightAnchor.constraint(equalTo: margins.rightAnchor),
+                           switchControl.bottomAnchor.constraint(equalTo: margins.bottomAnchor)]
         
         NSLayoutConstraint.activate(constraints)
         
