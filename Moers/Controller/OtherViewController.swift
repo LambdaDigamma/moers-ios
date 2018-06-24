@@ -12,6 +12,7 @@ import Gestalt
 class OtherViewController: UIViewController {
 
     private let standardCellIdentifier = "standard"
+    private let accountCellIdentifier = "account"
     
     lazy var tableView: UITableView = {
         
@@ -20,6 +21,7 @@ class OtherViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: standardCellIdentifier)
+        tableView.register(AccountTableViewCell.self, forCellReuseIdentifier: accountCellIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         ThemeManager.default.apply(theme: Theme.self, to: tableView) { themeable, theme in
@@ -33,7 +35,9 @@ class OtherViewController: UIViewController {
     
     lazy var data: [Section] = {
         
-        return [Section(title: String.localized("SettingsTitle"),
+        return [Section(title: "",
+                        rows: [AccountRow(title: "Account", action: showAccount)]),
+                Section(title: String.localized("SettingsTitle"),
                         rows: [NavigationRow(title: String.localized("SettingsTitle"), action: showSettings)]),
                 Section(title: String.localized("Legal"),
                         rows: [NavigationRow(title: String.localized("AboutTitle"), action: showAbout),
@@ -51,6 +55,13 @@ class OtherViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+        
+    }
+    
     private func setupConstraints() {
         
         let constraints = [tableView.topAnchor.constraint(equalTo: self.safeTopAnchor),
@@ -63,6 +74,19 @@ class OtherViewController: UIViewController {
     }
 
     // MARK: - Row Action
+    
+    private func showAccount() {
+        
+        if API.shared.token == nil {
+            
+            self.present(LoginViewController(), animated: true, completion: nil)
+            
+        } else {
+            
+            
+        }
+        
+    }
     
     private func showSettings() {
         push(viewController: SettingsViewController.self)
@@ -111,11 +135,28 @@ extension OtherViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: standardCellIdentifier)!
+        var cell: UITableViewCell
         
-        cell.textLabel?.text = data[indexPath.section].rows[indexPath.row].title
+        if let navigationRow = data[indexPath.section].rows[indexPath.row] as? NavigationRow {
+            
+            cell = tableView.dequeueReusableCell(withIdentifier: standardCellIdentifier)!
+            
+            cell.textLabel?.text = navigationRow.title
+            
+            cell.accessoryType = .disclosureIndicator
+            
+        } else {
+            
+            let _ = data[indexPath.section].rows[indexPath.row] as? AccountRow
+            
+            let accountCell = tableView.dequeueReusableCell(withIdentifier: accountCellIdentifier) as! AccountTableViewCell
+            
+            accountCell.update()
+            
+            cell = accountCell
+            
+        }
         
-        cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none
         
         ThemeManager.default.apply(theme: Theme.self, to: cell) { themeable, theme in
@@ -129,9 +170,15 @@ extension OtherViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let navigationRow = data[indexPath.section].rows[indexPath.row] as? NavigationRow else { return }
-        
-        navigationRow.action?()
+        if let accountRow = data[indexPath.section].rows[indexPath.row] as? AccountRow {
+            
+            accountRow.action?()
+            
+        } else if let navigationRow = data[indexPath.section].rows[indexPath.row] as? NavigationRow {
+            
+            navigationRow.action?()
+            
+        }
         
     }
     
