@@ -41,6 +41,7 @@
 		DF2D6DA920B899DD00176614 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DA820B899DD00176614 /* User.swift */; };
 		DF2D6DAB20B8A02B00176614 /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DAA20B8A02B00176614 /* OnboardingManager.swift */; };
 		DF2D6DAD20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DAC20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift */; };
+		DF3555B020DE599900B88DA3 /* UserRanking.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3555AF20DE599900B88DA3 /* UserRanking.swift */; };
 		DF3555B420DE730D00B88DA3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3555B320DE730D00B88DA3 /* LoginViewController.swift */; };
 		DF3555B620DE752900B88DA3 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3555B520DE752900B88DA3 /* AccountTableViewCell.swift */; };
 		DF4BD1BE208A72C5003ECF41 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */; };
@@ -114,6 +115,7 @@
 		DFC1CC671F76664700C1D269 /* ShopIconDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1CC661F76664700C1D269 /* ShopIconDrawer.swift */; };
 		DFC3DE821F6C65FE0049638B /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC3DE811F6C65FE0049638B /* SearchResultTableViewCell.swift */; };
 		DFC5464E1F8007FB00EB3F7E /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC5464D1F8007FB00EB3F7E /* SearchResult.swift */; };
+		DFCB431B20DFF23900E7AD3F /* RankingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431A20DFF23900E7AD3F /* RankingManager.swift */; };
 		DFD129731FAF0C1B001900CF /* BranchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD129721FAF0C1B001900CF /* BranchTableViewCell.swift */; };
 		DFD129761FAF12D2001900CF /* BranchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */; };
 		DFD728AC20A880C6005FA9F1 /* RebuildDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD728AB20A880C6005FA9F1 /* RebuildDetailViewController.swift */; };
@@ -187,6 +189,7 @@
 		DF2D6DA820B899DD00176614 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DF2D6DAA20B8A02B00176614 /* OnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
 		DF2D6DAC20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeSelectorBulletinPage.swift; sourceTree = "<group>"; };
+		DF3555AF20DE599900B88DA3 /* UserRanking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRanking.swift; sourceTree = "<group>"; };
 		DF3555B320DE730D00B88DA3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DF3555B520DE752900B88DA3 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -265,6 +268,7 @@
 		DFC1CC661F76664700C1D269 /* ShopIconDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopIconDrawer.swift; sourceTree = "<group>"; };
 		DFC3DE811F6C65FE0049638B /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		DFC5464D1F8007FB00EB3F7E /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		DFCB431A20DFF23900E7AD3F /* RankingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingManager.swift; sourceTree = "<group>"; };
 		DFD129721FAF0C1B001900CF /* BranchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchTableViewCell.swift; sourceTree = "<group>"; };
 		DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCollectionViewCell.swift; sourceTree = "<group>"; };
 		DFD728AB20A880C6005FA9F1 /* RebuildDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildDetailViewController.swift; sourceTree = "<group>"; };
@@ -359,6 +363,7 @@
 				DFA9EF1020B595D7008590EA /* GeocodingManager.swift */,
 				DF2D6DA620B8983400176614 /* UserManager.swift */,
 				DF2D6DAA20B8A02B00176614 /* OnboardingManager.swift */,
+				DFCB431A20DFF23900E7AD3F /* RankingManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -507,6 +512,7 @@
 				DF3AEF6B20B768C2006A4192 /* Petrol */,
 				DFB4D76A20B064CA00C8D179 /* StaticTableView.swift */,
 				DF2D6DA220B88BFA00176614 /* Licence.swift */,
+				DF3555AF20DE599900B88DA3 /* UserRanking.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -782,6 +788,7 @@
 				DFF4E15D20893694007C24E3 /* RubbishCollectionDate.swift in Sources */,
 				DF0CB4A12082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift in Sources */,
 				DF632B441F6E90140022FA8E /* DetailViewController.swift in Sources */,
+				DF3555B020DE599900B88DA3 /* UserRanking.swift in Sources */,
 				DFB6185B1FAE2CC800C98EB6 /* NavigationViewController.swift in Sources */,
 				DF2D6DAD20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift in Sources */,
 				DFA96A6320BD8A390009B279 /* AveragePetrolPriceComponent.swift in Sources */,
@@ -819,6 +826,7 @@
 				DF0CB49D2082B78C00CC0AA8 /* PermissionsManager.swift in Sources */,
 				DFB4D76920B062BE00C8D179 /* SettingsViewController.swift in Sources */,
 				DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */,
+				DFCB431B20DFF23900E7AD3F /* RankingManager.swift in Sources */,
 				DF524CAE20885A7700D88599 /* RubbishCollectionStreet.swift in Sources */,
 				DFDD3F7020B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift in Sources */,
 				DF632B481F6EA6AA0022FA8E /* DesignableView.swift in Sources */,
