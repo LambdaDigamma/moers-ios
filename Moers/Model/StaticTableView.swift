@@ -22,6 +22,11 @@ struct NavigationRow: Row {
     var action: (() -> ())?
 }
 
+struct AccountRow: Row {
+    var title: String
+    var action: (() -> ())?
+}
+
 struct SwitchRow: Row {
     var title: String
     var switchOn: Bool
