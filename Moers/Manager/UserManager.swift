@@ -13,6 +13,9 @@ struct UserManager {
     static var shared = UserManager()
     
     private let kUserType = "userType"
+    private let kUserName = "userName"
+    private let kUserID = "userID"
+    private let kDescription = "userDescription"
     
     var user: User {
         return loadUser()
@@ -21,16 +24,22 @@ struct UserManager {
     func register(_ user: User) {
         
         UserDefaults.standard.set(user.type.rawValue, forKey: kUserType)
+        UserDefaults.standard.set(user.name, forKey: kUserName)
+        UserDefaults.standard.set(user.id, forKey: kUserID)
+        UserDefaults.standard.set(user.description, forKey: kDescription)
         
     }
     
     private func loadUser() -> User {
         
         let userTypeString = UserDefaults.standard.string(forKey: kUserType) ?? "tourist"
+        let userName = UserDefaults.standard.string(forKey: kUserName)
+        let userID = UserDefaults.standard.integer(forKey: kUserID)
+        let userDescription = UserDefaults.standard.string(forKey: kDescription)
         
         let userType = User.UserType(rawValue: userTypeString) ?? .tourist
         
-        let user = User(type: userType)
+        let user = User(type: userType, id: userID, name: userName, description: userDescription)
         
         return user
         

@@ -11,6 +11,9 @@ import Foundation
 struct User {
     
     var type: UserType
+    var id: Int?
+    var name: String?
+    var description: String?
     
     enum UserType: String {
         case tourist = "tourist"

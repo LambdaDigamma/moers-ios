@@ -138,7 +138,7 @@ class UserTypeSelectorBulletinPage: FeedbackPageBulletinItem {
     
     private func register() {
         
-        let user = User(type: selectedType)
+        let user = User(type: selectedType, id: nil, name: nil, description: nil)
         
         UserManager.shared.register(user)
         

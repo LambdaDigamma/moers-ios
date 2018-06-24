@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import SwiftyConfiguration
 import InfoKit
+import Reachability
 
 protocol APIDelegate {
     
@@ -23,11 +24,21 @@ protocol APIDelegate {
     
 }
 
+enum APIError: Error {
+    case noConnection
+    case noData
+    case noToken
+}
+
 class API: NSObject, XMLParserDelegate {
 
     var delegate: APIDelegate?
     
     static let shared = API()
+    
+    private let baseURL = "http://localhost:8080/api/"
+    private let tokenURL = "http://localhost:8080/oauth/token/"
+    private let reachability = Reachability()!
     
     private var session = URLSession.shared
     private var xmlBuffer = String()
@@ -42,8 +53,128 @@ class API: NSObject, XMLParserDelegate {
     public var cachedBikeCharger: [BikeChargingStation] = []
     
     override private init() {
-        
         session = URLSession.shared
+    }
+    
+    public func login(email: String, password: String, completion: @escaping ((Error?) -> Void)) {
+        
+        let params = ["grant_type": "password",
+                      "client_id": "2",
+                      "client_secret": "wSb5nhPK8664NJcXapWWv7q5upQfwfJ7IvCqJAa7",
+                      "username": email,
+                      "password": password,
+                      "scope": "*"]
+        
+        if reachability.connection != .none {
+            
+            guard let url = URL(string: tokenURL) else {
+                completion(APIError.noConnection)
+                return
+            }
+            
+            var request = URLRequest(url: url)
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            request.httpMethod = "POST"
+            
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+            } catch let error {
+                print(error.localizedDescription)
+            }
+            
+            let task = session.dataTask(with: request) { (data, response, error) in
+                
+                guard error == nil else {
+                    completion(error)
+                    return
+                }
+                
+                guard let data = data else {
+                    completion(APIError.noData)
+                    return
+                }
+                
+                do {
+                    
+                    guard let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else { completion(APIError.noData); return }
+                    
+                    guard let _ = json["token_type"] as? String else { completion(APIError.noData); return }
+                    guard let _ = json["expires_in"] as? Int else { completion(APIError.noData); return }
+                    guard let accessToken = json["access_token"] as? String else { completion(APIError.noData); return }
+                    guard let refreshToken = json["refresh_token"] as? String else { completion(APIError.noData); return }
+                    
+                    self.token = accessToken
+                    self.refreshToken = refreshToken
+                    
+                    completion(nil)
+                    
+                } catch {
+                    completion(error)
+                }
+                
+            }
+            
+            task.resume()
+            
+        } else {
+            completion(APIError.noConnection)
+        }
+        
+    }
+    
+    public func getUser(completion: @escaping ((Error?, User?) -> Void)) {
+        
+        if reachability.connection != .none {
+            
+            guard let token = token else { completion(APIError.noToken, nil); return }
+            
+            guard let url = URL(string: baseURL + "user") else {
+                completion(APIError.noConnection, nil)
+                return
+            }
+            
+            var request = URLRequest(url: url)
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            
+            let task = session.dataTask(with: request) { (data, response, error) in
+                
+                guard error == nil else {
+                    completion(error, nil)
+                    return
+                }
+                
+                guard let data = data else {
+                    completion(APIError.noData, nil)
+                    return
+                }
+                
+                do {
+                    
+                    guard let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else { completion(APIError.noData, nil); return }
+                    
+                    print(json)
+                    
+                    var storedUser = UserManager.shared.user
+                    
+                    storedUser.name = json["name"] as? String
+                    storedUser.id = json["id"] as? Int
+                    storedUser.description = json["description"] as? String
+                    
+                    completion(nil, storedUser)
+                    
+                } catch {
+                    completion(error, nil)
+                }
+                
+            }
+            
+            task.resume()
+            
+        } else {
+            completion(APIError.noConnection, nil)
+        }
         
     }
     
@@ -545,6 +676,27 @@ class API: NSObject, XMLParserDelegate {
         
         return self.branches
         
+    }
+    
+    private let kToken = "token"
+    private let kRefreshToken = "refreshToken"
+    
+    var token: String? {
+        get {
+            return UserDefaults.standard.string(forKey: kToken)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: kToken)
+        }
+    }
+    
+    var refreshToken: String? {
+        get {
+            return UserDefaults.standard.string(forKey: kRefreshToken)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: kRefreshToken)
+        }
     }
     
     // --------------------------------------------------------------------------------
