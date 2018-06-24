@@ -20,6 +20,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     static let shared: LocationManager = LocationManager()
     
     public var delegate: LocationManagerDelegate? = nil
+    public var lastLocation: CLLocation?
     private let locationManager = CLLocationManager()
     private var authorizationCompletion: (() -> Void)?
     
@@ -52,6 +53,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let location = locations.first {
+            self.lastLocation = location
             self.delegate?.didReceiveCurrentLocation(location: location)
         } else {
             print("No Locations received")
