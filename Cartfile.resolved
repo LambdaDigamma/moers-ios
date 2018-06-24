@@ -1,3 +1,5 @@
+binary "https://ton.twimg.com/syndication/twitterkit/ios/TwitterCore.json" "3.1.0"
+binary "https://ton.twimg.com/syndication/twitterkit/ios/TwitterKit.json" "3.3.0"
 github "52inc/Pulley" "2.4.2"
 github "Haneke/HanekeSwift" "v0.11.1"
 github "alexaubry/BulletinBoard" "db62747228ba4a3d2e58c15c718c3deeaf15af6e"

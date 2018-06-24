@@ -119,6 +119,7 @@
 		DFC3DE821F6C65FE0049638B /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC3DE811F6C65FE0049638B /* SearchResultTableViewCell.swift */; };
 		DFC5464E1F8007FB00EB3F7E /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC5464D1F8007FB00EB3F7E /* SearchResult.swift */; };
 		DFCB431B20DFF23900E7AD3F /* RankingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431A20DFF23900E7AD3F /* RankingManager.swift */; };
+		DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431C20E0283000E7AD3F /* NewsViewController.swift */; };
 		DFD129731FAF0C1B001900CF /* BranchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD129721FAF0C1B001900CF /* BranchTableViewCell.swift */; };
 		DFD129761FAF12D2001900CF /* BranchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */; };
 		DFD728AC20A880C6005FA9F1 /* RebuildDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD728AB20A880C6005FA9F1 /* RebuildDetailViewController.swift */; };
@@ -275,6 +276,7 @@
 		DFC3DE811F6C65FE0049638B /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		DFC5464D1F8007FB00EB3F7E /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		DFCB431A20DFF23900E7AD3F /* RankingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingManager.swift; sourceTree = "<group>"; };
+		DFCB431C20E0283000E7AD3F /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		DFD129721FAF0C1B001900CF /* BranchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchTableViewCell.swift; sourceTree = "<group>"; };
 		DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCollectionViewCell.swift; sourceTree = "<group>"; };
 		DFD728AB20A880C6005FA9F1 /* RebuildDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildDetailViewController.swift; sourceTree = "<group>"; };
@@ -460,6 +462,7 @@
 				DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */,
 				DF0CB4AC20838FD100CC0AA8 /* MainViewController.swift */,
 				DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */,
+				DFCB431C20E0283000E7AD3F /* NewsViewController.swift */,
 				DFDD3F6D20B22230005602E3 /* RubbishCollectionViewController.swift */,
 				DF95197E20C8B6F3001D13DC /* PetrolStationViewController.swift */,
 				DFDF929820DE47E10068D1DF /* LeaderboardViewController.swift */,
@@ -763,6 +766,9 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BetterSegmentedControl.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TextFieldEffects.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/TwitterCore.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/TwitterKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/TwitterShareExtensionUI.framework",
 			);
 			outputPaths = (
 			);
@@ -796,6 +802,7 @@
 				DF524CAC2087443D00D88599 /* RebuildBranchCollectionViewCell.swift in Sources */,
 				DFF4E15D20893694007C24E3 /* RubbishCollectionDate.swift in Sources */,
 				DF0CB4A12082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift in Sources */,
+				DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */,
 				DF632B441F6E90140022FA8E /* DetailViewController.swift in Sources */,
 				DF3555B020DE599900B88DA3 /* UserRanking.swift in Sources */,
 				DFB6185B1FAE2CC800C98EB6 /* NavigationViewController.swift in Sources */,

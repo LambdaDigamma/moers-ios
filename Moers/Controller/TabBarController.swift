@@ -32,7 +32,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     
     lazy var newsViewController: UIViewController = {
         
-        let newsViewController = UIViewController()
+        let newsViewController = NewsViewController()
         
         let navigationController = UINavigationController()
         navigationController.viewControllers = [newsViewController]
