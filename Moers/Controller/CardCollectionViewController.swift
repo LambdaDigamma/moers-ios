@@ -102,19 +102,21 @@ extension CardCollectionViewController: UICollectionViewDelegate {
     var numberOfColumns: Int {
         
         if UIDevice.current.orientation.isPortrait {
+
             switch UIDevice.current.userInterfaceIdiom {
             case .pad:
                 return 2
             default:
                 return 1
             }
+            
         } else {
             
             switch UIDevice.current.userInterfaceIdiom {
             case .pad:
                 return 3
             case .phone:
-                return 2
+                return 1
             default:
                 return 1
             }
