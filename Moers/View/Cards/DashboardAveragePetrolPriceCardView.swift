@@ -109,6 +109,8 @@ class DashboardAveragePetrolPriceCardView: CardView {
     public var numberOfStations: Int = 0 {
         didSet {
             infoLabel.text = "\(numberOfStations) Tankstellen in Ihrer näheren Umgebung haben geöffnet"
+            setNeedsDisplay()
+            setNeedsLayout()
         }
     }
     
@@ -158,7 +160,10 @@ class DashboardAveragePetrolPriceCardView: CardView {
                            infoLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 8),
                            infoLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
                            infoLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+                           infoLabel.heightAnchor.constraint(equalToConstant: 36),
                            infoLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)]
+        
+        constraints.forEach { $0.priority = UILayoutPriority.required }
         
         NSLayoutConstraint.activate(constraints)
         
