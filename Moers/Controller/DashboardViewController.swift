@@ -14,33 +14,6 @@ import MapKit
 import Reachability
 
 class DashboardViewController: CardCollectionViewController {
-
-    // MARK: - UI
-    
-    lazy var scrollView: UIScrollView = {
-        
-        let scrollView = UIScrollView()
-        
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.showsVerticalScrollIndicator = false
-        
-        return scrollView
-        
-    }()
-    
-    lazy var cardStackView: UIStackView = {
-        
-        let stackView = UIStackView()
-        
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.alignment = .fill
-        stackView.spacing = 16
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return stackView
-        
-    }()
     
     var components: [BaseComponent] = []
     
@@ -71,22 +44,6 @@ class DashboardViewController: CardCollectionViewController {
     }
     
     // MARK: - Private Methods
-    
-    private func setupConstraints() {
-        
-        let constraints = [scrollView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0),
-                           scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
-                           scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-                           scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0),
-                           cardStackView.leftAnchor.constraint(equalTo: self.scrollView.leftAnchor, constant: 16),
-                           cardStackView.rightAnchor.constraint(equalTo: self.scrollView.rightAnchor, constant: -16),
-                           cardStackView.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 16),
-                           cardStackView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor, constant: -16),
-                           cardStackView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -32)]
-        
-        NSLayoutConstraint.activate(constraints)
-        
-    }
     
     private func setupReachability() {
         
