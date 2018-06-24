@@ -125,6 +125,7 @@
 		DFDD3F7020B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F6F20B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift */; };
 		DFDD3F7220B2E525005602E3 /* MonthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F7120B2E525005602E3 /* MonthHeaderView.swift */; };
 		DFDD3F7420B2F30A005602E3 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */; };
+		DFDF929920DE47E10068D1DF /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDF929820DE47E10068D1DF /* LeaderboardViewController.swift */; };
 		DFEE2E0A20BB117A00A130CB /* BaseComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEE2E0920BB117A00A130CB /* BaseComponent.swift */; };
 		DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */; };
 		DFF4E15B20892CFB007C24E3 /* RubbishManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF4E15A20892CFB007C24E3 /* RubbishManager.swift */; };
@@ -272,6 +273,7 @@
 		DFDD3F6F20B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionItemTableViewCell.swift; sourceTree = "<group>"; };
 		DFDD3F7120B2E525005602E3 /* MonthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthHeaderView.swift; sourceTree = "<group>"; };
 		DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		DFDF929820DE47E10068D1DF /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		DFEE2E0920BB117A00A130CB /* BaseComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseComponent.swift; sourceTree = "<group>"; };
 		DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionComponent.swift; sourceTree = "<group>"; };
 		DFF4E15A20892CFB007C24E3 /* RubbishManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishManager.swift; sourceTree = "<group>"; };
@@ -441,6 +443,7 @@
 				DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */,
 				DFDD3F6D20B22230005602E3 /* RubbishCollectionViewController.swift */,
 				DF95197E20C8B6F3001D13DC /* PetrolStationViewController.swift */,
+				DFDF929820DE47E10068D1DF /* LeaderboardViewController.swift */,
 				DFB4D76620B03B9000C8D179 /* OtherViewController.swift */,
 				DFB4D76820B062BE00C8D179 /* SettingsViewController.swift */,
 				DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */,
@@ -831,6 +834,7 @@
 				DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */,
 				DFB5ECD11F79B01800B2B464 /* CameraViewController.swift in Sources */,
 				DFB5ECCF1F79ADDA00B2B464 /* DetailCameraViewController.swift in Sources */,
+				DFDF929920DE47E10068D1DF /* LeaderboardViewController.swift in Sources */,
 				DFA9EF1120B595D7008590EA /* GeocodingManager.swift in Sources */,
 				DFA9EF0C20B56BA8008590EA /* UIImage+Extensions.swift in Sources */,
 				DFD7ACAF20A4486B00D49BE2 /* CardView.swift in Sources */,

@@ -30,6 +30,21 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
     }()
     
+    lazy var newsViewController: UIViewController = {
+        
+        let newsViewController = UIViewController()
+        
+        let navigationController = UINavigationController()
+        navigationController.viewControllers = [newsViewController]
+        
+        let newsTabItem = ESTabBarItem(ItemBounceContentView(), title: String.localized("NewsTitle"), image: #imageLiteral(resourceName: "news"), selectedImage: #imageLiteral(resourceName: "news"))
+        
+        navigationController.tabBarItem = newsTabItem
+        
+        return navigationController
+        
+    }()
+    
     lazy var mapViewController: UIViewController = {
         
         let mapViewController = RebuildMapViewController()
@@ -45,6 +60,21 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         let mapTabItem = ESTabBarItem(MapItemContentView(), title: nil, image: #imageLiteral(resourceName: "map_marker"), selectedImage: #imageLiteral(resourceName: "map_marker"))
         
         navigationController.tabBarItem = mapTabItem
+        
+        return navigationController
+        
+    }()
+    
+    lazy var leaderboardViewController: UIViewController = {
+        
+        let leaderboardViewController = LeaderboardViewController()
+        
+        let navigationController = UINavigationController()
+        navigationController.viewControllers = [leaderboardViewController]
+        
+        let leaderboardTabItem = ESTabBarItem(ItemBounceContentView(), title: String.localized("LeaderboardTitle"), image: #imageLiteral(resourceName: "trophy"), selectedImage: #imageLiteral(resourceName: "trophy"))
+        
+        navigationController.tabBarItem = leaderboardTabItem
         
         return navigationController
         
@@ -103,7 +133,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.viewControllers = [dashboardViewController, mapViewController, otherViewController]
+        self.viewControllers = [dashboardViewController, newsViewController, mapViewController, leaderboardViewController, otherViewController]
         
         setupTheming()
         
@@ -127,11 +157,11 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             
             if item.contentView is MapItemContentView {
                 
-                viewControllers?[1].tabBarItem = ESTabBarItem(MapItemContentView(), title: nil, image: #imageLiteral(resourceName: "search"), selectedImage: #imageLiteral(resourceName: "search"))
+                viewControllers?[2].tabBarItem = ESTabBarItem(MapItemContentView(), title: nil, image: #imageLiteral(resourceName: "search"), selectedImage: #imageLiteral(resourceName: "search"))
                 
             } else {
                 
-                viewControllers?[1].tabBarItem = ESTabBarItem(MapItemContentView(), title: nil, image: #imageLiteral(resourceName: "map_marker"), selectedImage: #imageLiteral(resourceName: "map_marker"))
+                viewControllers?[2].tabBarItem = ESTabBarItem(MapItemContentView(), title: nil, image: #imageLiteral(resourceName: "map_marker"), selectedImage: #imageLiteral(resourceName: "map_marker"))
                 
             }
             
