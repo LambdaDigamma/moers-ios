@@ -42,6 +42,7 @@
 		DF2D6DAB20B8A02B00176614 /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DAA20B8A02B00176614 /* OnboardingManager.swift */; };
 		DF2D6DAD20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DAC20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift */; };
 		DF3555B420DE730D00B88DA3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3555B320DE730D00B88DA3 /* LoginViewController.swift */; };
+		DF3555B620DE752900B88DA3 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3555B520DE752900B88DA3 /* AccountTableViewCell.swift */; };
 		DF4BD1BE208A72C5003ECF41 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */; };
 		DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */; };
 		DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C3208C64F1003ECF41 /* PickerView.swift */; };
@@ -186,6 +187,7 @@
 		DF2D6DAA20B8A02B00176614 /* OnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
 		DF2D6DAC20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeSelectorBulletinPage.swift; sourceTree = "<group>"; };
 		DF3555B320DE730D00B88DA3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DF3555B520DE752900B88DA3 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishStreetPickerItem.swift; sourceTree = "<group>"; };
 		DF4BD1C3208C64F1003ECF41 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				DFDD3F6F20B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift */,
 				DFDD3F7120B2E525005602E3 /* MonthHeaderView.swift */,
 				DF21B2FF20BA0DB400478A33 /* SwitchTableViewCell.swift */,
+				DF3555B520DE752900B88DA3 /* AccountTableViewCell.swift */,
 			);
 			path = UITableViewCells;
 			sourceTree = "<group>";
@@ -824,6 +827,7 @@
 				DF08361D1F6C198400A1B8A5 /* ShopAnnotationView.swift in Sources */,
 				DFD7ACB620A6BFD500D49BE2 /* TitleCardView.swift in Sources */,
 				DFA9EEFB20B35EB8008590EA /* PetrolType.swift in Sources */,
+				DF3555B620DE752900B88DA3 /* AccountTableViewCell.swift in Sources */,
 				DFB92D5E1F6B0B0900669F73 /* API.swift in Sources */,
 				DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */,
 				DF8254081F7712880069D751 /* CSwiftV.swift in Sources */,
