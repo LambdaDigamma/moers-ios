@@ -34,6 +34,18 @@ class CardCollectionViewController: UIViewController, UICollectionViewDataSource
         
     }()
     
+    public var isPullToRefreshEnabled = false {
+        didSet {
+            if isPullToRefreshEnabled {
+                let refreshControl = UIRefreshControl()
+                refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
+                collectionView.refreshControl = refreshControl
+            } else {
+                collectionView.refreshControl = nil
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -49,6 +61,8 @@ class CardCollectionViewController: UIViewController, UICollectionViewDataSource
     public func registerCardViews(_ cardViews: [UIView]) {
         
         self.views = cardViews
+        
+        self.collectionView.reloadData()
         
     }
     
@@ -74,6 +88,10 @@ class CardCollectionViewController: UIViewController, UICollectionViewDataSource
         
     }
 
+    @objc public func refresh() {
+        
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return views.count
     }
