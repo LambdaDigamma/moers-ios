@@ -5,7 +5,7 @@
   Created by Lennart Fischer on 15.04.18.
   Copyright © 2018 Lennart Fischer. All rights reserved.
 */
-"DashboardTabItem" = "Dashboard";
+"DashboardTabItem" = "Übersicht";
 "MapTabItem" = "Karte";
 "OtherTabItem" = "Sonstiges";
 "OnboardingDescription" = "Suche Geschäfte & Parkplätze mit Live-Daten und bewege Dich mit interaktiven 360° Panoramen durch die Stadt!";
@@ -47,3 +47,5 @@
 "OnboardingUserTypeSelectorPageDescription" = "Bist Du Besucher oder Bürger der Stadt Moers?";
 "OnboardingUserTypeSelectorPageActionButtonTitle" = "Fortfahren";
 "SettingsRubbishCollectionTitle" = "Abfuhrkalender";
+"LeaderboardTitle" = "Bestenliste";
+"NewsTitle" = "Neuigkeiten";
