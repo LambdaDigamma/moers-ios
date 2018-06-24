@@ -728,12 +728,14 @@
 				"$(SRCROOT)/Carthage/Build/iOS/EventBus.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Haneke.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/BetterSegmentedControl.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/TextFieldEffects.framework",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		DFB64DCB20389FB400173A80 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -746,7 +748,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 6e61a3c3f5bc5d05f481ed66aaf5de017625b1fa 3dcc7cd7bf8672a813d5a1ae8b02151d6cd8682f9e59ecfcc9513d1ad5e55186";
+			shellScript = "./Fabric.framework/run 6e61a3c3f5bc5d05f481ed66aaf5de017625b1fa 3dcc7cd7bf8672a813d5a1ae8b02151d6cd8682f9e59ecfcc9513d1ad5e55186\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -8,3 +8,5 @@ github "facebook/pop" ~> 1.0.10
 github "regexident/EventBus"
 github "Haneke/HanekeSwift"
 github "ashleymills/Reachability.swift"
+github "gmarm/BetterSegmentedControl" ~> 0.9
+github "raulriera/TextFieldEffects"
