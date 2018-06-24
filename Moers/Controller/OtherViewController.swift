@@ -83,6 +83,7 @@ class OtherViewController: UIViewController {
             
         } else {
             
+            self.navigationController?.pushViewController(AccountViewController(), animated: true)
             
         }
         
