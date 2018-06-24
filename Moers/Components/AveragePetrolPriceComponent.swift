@@ -31,6 +31,9 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
         LocationManager.shared.delegate = self
         PetrolManager.shared.delegate = self
         
+        self.averagePetrolCardView.isUserInteractionEnabled = true
+        self.averagePetrolCardView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showPetrolStationViewController)))
+        
         self.update()
         
     }
@@ -54,6 +57,14 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
         self.locationManager.stopMonitoring()
         self.averagePetrolCardView.stopLoading()
         
+    }
+    
+    @objc private func showPetrolStationViewController() {
+        
+        let petrolStationViewController = PetrolStationViewController()
+        
+        viewController?.navigationController?.pushViewController(petrolStationViewController, animated: true)
+
     }
     
     // MARK: - LocationManagerDelegate

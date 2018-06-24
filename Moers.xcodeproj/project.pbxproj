@@ -61,6 +61,7 @@
 		DF632B481F6EA6AA0022FA8E /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B471F6EA6AA0022FA8E /* DesignableView.swift */; };
 		DF8254061F7711180069D751 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8254051F7711170069D751 /* Camera.swift */; };
 		DF8254081F7712880069D751 /* CSwiftV.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8254071F7712870069D751 /* CSwiftV.swift */; };
+		DF855C2420C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF855C2320C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift */; };
 		DF855C2620C9E37400B7F7C7 /* CardCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF855C2520C9E37400B7F7C7 /* CardCollectionViewController.swift */; };
 		DF855C2820C9EADD00B7F7C7 /* WrapperCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF855C2720C9EADD00B7F7C7 /* WrapperCardCollectionViewCell.swift */; };
 		DF8963D420CB0886008A0EDD /* WaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8963D320CB0886008A0EDD /* WaterfallLayout.swift */; };
@@ -201,6 +202,7 @@
 		DF632B471F6EA6AA0022FA8E /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		DF8254051F7711170069D751 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		DF8254071F7712870069D751 /* CSwiftV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSwiftV.swift; sourceTree = "<group>"; };
+		DF855C2320C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolStationCollectionViewCell.swift; sourceTree = "<group>"; };
 		DF855C2520C9E37400B7F7C7 /* CardCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewController.swift; sourceTree = "<group>"; };
 		DF855C2720C9EADD00B7F7C7 /* WrapperCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapperCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		DF8963D320CB0886008A0EDD /* WaterfallLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterfallLayout.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 		DF02B75B1FAFBFF6004B8B3E /* UICollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				DF855C2320C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift */,
 				DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */,
 				DF524CAB2087443D00D88599 /* RebuildBranchCollectionViewCell.swift */,
 				DF855C2720C9EADD00B7F7C7 /* WrapperCardCollectionViewCell.swift */,
@@ -789,6 +792,7 @@
 				DF2D6DA320B88BFA00176614 /* Licence.swift in Sources */,
 				DFD7ACBD20A795AF00D49BE2 /* DashboardNotificationCardView.swift in Sources */,
 				DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */,
+				DF855C2420C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift in Sources */,
 				DF4BD1BE208A72C5003ECF41 /* DashboardViewController.swift in Sources */,
 				DF0CB4B12085B66600CC0AA8 /* RebuildContentViewController.swift in Sources */,
 				DF855C2820C9EADD00B7F7C7 /* WrapperCardCollectionViewCell.swift in Sources */,
