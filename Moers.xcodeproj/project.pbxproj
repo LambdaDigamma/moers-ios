@@ -122,6 +122,7 @@
 		DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431C20E0283000E7AD3F /* NewsViewController.swift */; };
 		DFCB431F20E02D0300E7AD3F /* TwitterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431E20E02D0300E7AD3F /* TwitterManager.swift */; };
 		DFCB432120E0344800E7AD3F /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFCB432020E0344700E7AD3F /* TwitterKit.framework */; };
+		DFCB432320E038AB00E7AD3F /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB432220E038AB00E7AD3F /* TweetTableViewCell.swift */; };
 		DFD129731FAF0C1B001900CF /* BranchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD129721FAF0C1B001900CF /* BranchTableViewCell.swift */; };
 		DFD129761FAF12D2001900CF /* BranchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */; };
 		DFD728AC20A880C6005FA9F1 /* RebuildDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD728AB20A880C6005FA9F1 /* RebuildDetailViewController.swift */; };
@@ -281,6 +282,7 @@
 		DFCB431C20E0283000E7AD3F /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		DFCB431E20E02D0300E7AD3F /* TwitterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterManager.swift; sourceTree = "<group>"; };
 		DFCB432020E0344700E7AD3F /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Carthage/Build/iOS/TwitterKit.framework; sourceTree = "<group>"; };
+		DFCB432220E038AB00E7AD3F /* TweetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 		DFD129721FAF0C1B001900CF /* BranchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchTableViewCell.swift; sourceTree = "<group>"; };
 		DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCollectionViewCell.swift; sourceTree = "<group>"; };
 		DFD728AB20A880C6005FA9F1 /* RebuildDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildDetailViewController.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				DF21B2FF20BA0DB400478A33 /* SwitchTableViewCell.swift */,
 				DF3555B120DE66F800B88DA3 /* LeaderboardRankingTableViewCell.swift */,
 				DF3555B520DE752900B88DA3 /* AccountTableViewCell.swift */,
+				DFCB432220E038AB00E7AD3F /* TweetTableViewCell.swift */,
 			);
 			path = UITableViewCells;
 			sourceTree = "<group>";
@@ -870,6 +873,7 @@
 				DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */,
 				DF8254081F7712880069D751 /* CSwiftV.swift in Sources */,
 				DFA9EEF920B35AED008590EA /* PetrolManager.swift in Sources */,
+				DFCB432320E038AB00E7AD3F /* TweetTableViewCell.swift in Sources */,
 				DF855C2620C9E37400B7F7C7 /* CardCollectionViewController.swift in Sources */,
 				DFB4D76720B03B9000C8D179 /* OtherViewController.swift in Sources */,
 				DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */,
