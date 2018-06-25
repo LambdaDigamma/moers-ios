@@ -123,6 +123,7 @@
 		DFCB431F20E02D0300E7AD3F /* TwitterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431E20E02D0300E7AD3F /* TwitterManager.swift */; };
 		DFCB432120E0344800E7AD3F /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFCB432020E0344700E7AD3F /* TwitterKit.framework */; };
 		DFCB432320E038AB00E7AD3F /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB432220E038AB00E7AD3F /* TweetTableViewCell.swift */; };
+		DFCB432520E0E7CF00E7AD3F /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB432420E0E7CF00E7AD3F /* CommunityViewController.swift */; };
 		DFD129731FAF0C1B001900CF /* BranchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD129721FAF0C1B001900CF /* BranchTableViewCell.swift */; };
 		DFD129761FAF12D2001900CF /* BranchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */; };
 		DFD728AC20A880C6005FA9F1 /* RebuildDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD728AB20A880C6005FA9F1 /* RebuildDetailViewController.swift */; };
@@ -283,6 +284,7 @@
 		DFCB431E20E02D0300E7AD3F /* TwitterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterManager.swift; sourceTree = "<group>"; };
 		DFCB432020E0344700E7AD3F /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Carthage/Build/iOS/TwitterKit.framework; sourceTree = "<group>"; };
 		DFCB432220E038AB00E7AD3F /* TweetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
+		DFCB432420E0E7CF00E7AD3F /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		DFD129721FAF0C1B001900CF /* BranchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchTableViewCell.swift; sourceTree = "<group>"; };
 		DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCollectionViewCell.swift; sourceTree = "<group>"; };
 		DFD728AB20A880C6005FA9F1 /* RebuildDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildDetailViewController.swift; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 				DFB64DD02038F94600173A80 /* InfoViewController.swift */,
 				DF3555B320DE730D00B88DA3 /* LoginViewController.swift */,
 				DFA17DF520DFDA6200BBD838 /* AccountViewController.swift */,
+				DFCB432420E0E7CF00E7AD3F /* CommunityViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -872,6 +875,7 @@
 				DFB92D5E1F6B0B0900669F73 /* API.swift in Sources */,
 				DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */,
 				DF8254081F7712880069D751 /* CSwiftV.swift in Sources */,
+				DFCB432520E0E7CF00E7AD3F /* CommunityViewController.swift in Sources */,
 				DFA9EEF920B35AED008590EA /* PetrolManager.swift in Sources */,
 				DFCB432320E038AB00E7AD3F /* TweetTableViewCell.swift in Sources */,
 				DF855C2620C9E37400B7F7C7 /* CardCollectionViewController.swift in Sources */,
