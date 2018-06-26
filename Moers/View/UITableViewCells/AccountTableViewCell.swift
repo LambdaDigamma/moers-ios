@@ -105,11 +105,12 @@ class AccountTableViewCell: UITableViewCell {
         
         ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
             
-            if UserManager.shared.user.id != nil {
+            if UserManager.shared.user.id == nil {
                 themeable.nameLabel.textColor = theme.accentColor
                 themeable.avatarImageView.image = #imageLiteral(resourceName: "user").tinted(color: theme.color.darker(by: 10)!)
             } else {
                 themeable.nameLabel.textColor = theme.color
+                themeable.avatarImageView.image = #imageLiteral(resourceName: "user").tinted(color: theme.color.darker(by: 10)!)
             }
             
             themeable.descriptionLabel.textColor = theme.color
