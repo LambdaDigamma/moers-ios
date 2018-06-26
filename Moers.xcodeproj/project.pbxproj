@@ -475,29 +475,18 @@
 			children = (
 				DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */,
 				DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */,
+				DF461CB220E223E200600C0E /* Dashboard */,
+				DF461CB320E223F600600C0E /* News */,
+				DF461CB420E2240A00600C0E /* Map */,
+				DF461CB620E2242400600C0E /* Community */,
+				DF461CB520E2241400600C0E /* Other */,
 				DF0CB4AC20838FD100CC0AA8 /* MainViewController.swift */,
-				DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */,
-				DFCB431C20E0283000E7AD3F /* NewsViewController.swift */,
-				DFDD3F6D20B22230005602E3 /* RubbishCollectionViewController.swift */,
-				DF95197E20C8B6F3001D13DC /* PetrolStationViewController.swift */,
-				DFDF929820DE47E10068D1DF /* LeaderboardViewController.swift */,
-				DFB4D76620B03B9000C8D179 /* OtherViewController.swift */,
-				DFB4D76820B062BE00C8D179 /* SettingsViewController.swift */,
-				DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */,
-				DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */,
-				DF2D6DA420B88E1700176614 /* LicencesViewController.swift */,
 				DF855C2520C9E37400B7F7C7 /* CardCollectionViewController.swift */,
-				DFD7ACB020A44C0D00D49BE2 /* Rebuild */,
 				DFB6185A1FAE2CC800C98EB6 /* NavigationViewController.swift */,
 				DFAEF0601F6AE87000EF25F5 /* MapViewController.swift */,
 				DFAEF0621F6AE89200EF25F5 /* ContentViewController.swift */,
 				DFC1CC631F75960A00C1D269 /* SelectionViewController.swift */,
-				DFC1CC651F75962E00C1D269 /* Detail */,
-				DFB5ECD01F79B01800B2B464 /* CameraViewController.swift */,
 				DFB64DD02038F94600173A80 /* InfoViewController.swift */,
-				DF3555B320DE730D00B88DA3 /* LoginViewController.swift */,
-				DFA17DF520DFDA6200BBD838 /* AccountViewController.swift */,
-				DFCB432420E0E7CF00E7AD3F /* CommunityViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -589,6 +578,57 @@
 				DFF4E15E2089ABCA007C24E3 /* RubbishCollectionItem.swift */,
 			);
 			path = Rubbish;
+			sourceTree = "<group>";
+		};
+		DF461CB220E223E200600C0E /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */,
+				DFDD3F6D20B22230005602E3 /* RubbishCollectionViewController.swift */,
+				DF95197E20C8B6F3001D13DC /* PetrolStationViewController.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		DF461CB320E223F600600C0E /* News */ = {
+			isa = PBXGroup;
+			children = (
+				DFCB431C20E0283000E7AD3F /* NewsViewController.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		DF461CB420E2240A00600C0E /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				DFB5ECD01F79B01800B2B464 /* CameraViewController.swift */,
+				DFD7ACB020A44C0D00D49BE2 /* Rebuild */,
+				DFC1CC651F75962E00C1D269 /* Detail */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		DF461CB520E2241400600C0E /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				DFB4D76620B03B9000C8D179 /* OtherViewController.swift */,
+				DF3555B320DE730D00B88DA3 /* LoginViewController.swift */,
+				DFA17DF520DFDA6200BBD838 /* AccountViewController.swift */,
+				DFB4D76820B062BE00C8D179 /* SettingsViewController.swift */,
+				DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */,
+				DF2D6DA420B88E1700176614 /* LicencesViewController.swift */,
+				DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		DF461CB620E2242400600C0E /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				DFCB432420E0E7CF00E7AD3F /* CommunityViewController.swift */,
+				DFDF929820DE47E10068D1DF /* LeaderboardViewController.swift */,
+			);
+			path = Community;
 			sourceTree = "<group>";
 		};
 		DFA9EF0D20B56BB2008590EA /* Extensions */ = {

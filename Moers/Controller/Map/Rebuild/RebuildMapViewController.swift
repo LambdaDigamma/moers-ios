@@ -32,7 +32,7 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
     
     private var locations: [Location] = []
     
-    // MARK: - UIViewController Lifecycler
+    // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,10 +47,10 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
             
             // TODO: !
             
-//            API.shared.loadShop()
-//            API.shared.loadCameras()
-//            API.shared.loadParkingLots()
-//            API.shared.loadBikeChargingStations()
+            API.shared.loadShop()
+            API.shared.loadCameras()
+            API.shared.loadParkingLots()
+            API.shared.loadBikeChargingStations()
             
             self.populateData()
             
