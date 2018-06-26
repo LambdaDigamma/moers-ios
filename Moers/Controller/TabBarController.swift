@@ -65,6 +65,21 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
     }()
     
+    lazy var communityViewController: UIViewController = {
+        
+        let leaderboardViewController = CommunityViewController()
+        
+        let navigationController = UINavigationController()
+        navigationController.viewControllers = [leaderboardViewController]
+        
+        let communityTabItem = ESTabBarItem(ItemBounceContentView(), title: "Community", image: #imageLiteral(resourceName: "people"), selectedImage: #imageLiteral(resourceName: "people"))
+        
+        navigationController.tabBarItem = communityTabItem
+        
+        return navigationController
+        
+    }()
+    
     lazy var leaderboardViewController: UIViewController = {
         
         let leaderboardViewController = LeaderboardViewController()
@@ -133,7 +148,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.viewControllers = [dashboardViewController, newsViewController, mapViewController, leaderboardViewController, otherViewController]
+        self.viewControllers = [dashboardViewController, newsViewController, mapViewController, communityViewController, otherViewController]
         
         setupTheming()
         
