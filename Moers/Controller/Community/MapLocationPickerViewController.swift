@@ -61,10 +61,6 @@ class MapLocationPickerViewController: UIViewController {
         promptLabel.text = "Bewege das Fadenkreuz auf das Geschäft auf der Karte!"
         promptLabel.numberOfLines = 0
         promptLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.semibold)
-        promptLabel.topInset = 8
-        promptLabel.leftInset = 8
-        promptLabel.rightInset = 8
-        promptLabel.bottomInset = 8
         promptLabel.layer.cornerRadius = 8
         promptLabel.clipsToBounds = true
         streetLabel.backgroundColor = UIColor.gray
@@ -72,10 +68,6 @@ class MapLocationPickerViewController: UIViewController {
         streetLabel.textAlignment = .center
         streetLabel.numberOfLines = 0
         streetLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.semibold)
-        streetLabel.topInset = 8
-        streetLabel.leftInset = 8
-        streetLabel.rightInset = 8
-        streetLabel.bottomInset = 8
         streetLabel.layer.cornerRadius = 8
         streetLabel.clipsToBounds = true
         checkButton.setImage(#imageLiteral(resourceName: "checkmark").withRenderingMode(.alwaysTemplate), for: .normal)
