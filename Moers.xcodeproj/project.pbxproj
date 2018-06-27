@@ -49,6 +49,9 @@
 		DF3555B620DE752900B88DA3 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3555B520DE752900B88DA3 /* AccountTableViewCell.swift */; };
 		DF3EE0C220E37E4900CA9279 /* FTLinearActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C020E37E4800CA9279 /* FTLinearActivityIndicator.swift */; };
 		DF3EE0C320E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C120E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift */; };
+		DF3EE0C520E382EC00CA9279 /* MapLocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */; };
+		DF3EE0C720E38A6B00CA9279 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C620E38A6B00CA9279 /* PaddingLabel.swift */; };
+		DF461CBA20E226DE00600C0E /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF461CB920E226DE00600C0E /* ViewFactory.swift */; };
 		DF4BD1BE208A72C5003ECF41 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */; };
 		DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */; };
 		DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C3208C64F1003ECF41 /* PickerView.swift */; };
@@ -208,6 +211,9 @@
 		DF3555B520DE752900B88DA3 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		DF3EE0C020E37E4800CA9279 /* FTLinearActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLinearActivityIndicator.swift; sourceTree = "<group>"; };
 		DF3EE0C120E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+LinearNetworkActivityIndicator.swift"; sourceTree = "<group>"; };
+		DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocationPickerViewController.swift; sourceTree = "<group>"; };
+		DF3EE0C620E38A6B00CA9279 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		DF461CB920E226DE00600C0E /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
 		DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishStreetPickerItem.swift; sourceTree = "<group>"; };
 		DF4BD1C3208C64F1003ECF41 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
@@ -513,8 +519,10 @@
 				DF8963D320CB0886008A0EDD /* WaterfallLayout.swift */,
 				DF3555AB20DE4D5300B88DA3 /* PodestView.swift */,
 				DF3555AD20DE594F00B88DA3 /* LeaderboardRankingView.swift */,
+				DF461CB920E226DE00600C0E /* ViewFactory.swift */,
 				DF3EE0C020E37E4800CA9279 /* FTLinearActivityIndicator.swift */,
 				DF3EE0C120E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift */,
+				DF3EE0C620E38A6B00CA9279 /* PaddingLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -633,6 +641,7 @@
 			children = (
 				DFCB432420E0E7CF00E7AD3F /* CommunityViewController.swift */,
 				DFDF929820DE47E10068D1DF /* LeaderboardViewController.swift */,
+				DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -909,6 +918,7 @@
 				DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */,
 				DFCB431B20DFF23900E7AD3F /* RankingManager.swift in Sources */,
 				DF524CAE20885A7700D88599 /* RubbishCollectionStreet.swift in Sources */,
+				DF461CBA20E226DE00600C0E /* ViewFactory.swift in Sources */,
 				DFDD3F7020B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift in Sources */,
 				DF632B481F6EA6AA0022FA8E /* DesignableView.swift in Sources */,
 				DFA9EF0820B46C0C008590EA /* PetrolStationTimeEntry.swift in Sources */,
@@ -948,6 +958,7 @@
 				DFC5464E1F8007FB00EB3F7E /* SearchResult.swift in Sources */,
 				DF0CB4B32087092F00CC0AA8 /* RebuildSearchResultTableViewCell.swift in Sources */,
 				DFDD3F6E20B22230005602E3 /* RubbishCollectionViewController.swift in Sources */,
+				DF3EE0C720E38A6B00CA9279 /* PaddingLabel.swift in Sources */,
 				DF2D6DA920B899DD00176614 /* User.swift in Sources */,
 				DF0CB4AF2085B65200CC0AA8 /* RebuildMapViewController.swift in Sources */,
 				DFB4D76B20B064CA00C8D179 /* StaticTableView.swift in Sources */,
@@ -967,6 +978,7 @@
 				DFC1CC671F76664700C1D269 /* ShopIconDrawer.swift in Sources */,
 				DFAEF0631F6AE89200EF25F5 /* ContentViewController.swift in Sources */,
 				DFB92D691F6B96E400669F73 /* ClusterAnnotationView.swift in Sources */,
+				DF3EE0C520E382EC00CA9279 /* MapLocationPickerViewController.swift in Sources */,
 				DFF4E15F2089ABCA007C24E3 /* RubbishCollectionItem.swift in Sources */,
 				DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */,
 				DF0CB48F2082A8DB00CC0AA8 /* AppConfig.swift in Sources */,
