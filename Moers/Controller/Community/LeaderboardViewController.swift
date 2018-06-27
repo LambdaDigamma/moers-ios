@@ -95,6 +95,8 @@ class LeaderboardViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
         self.loadRankings()
         
     }
@@ -127,6 +129,7 @@ class LeaderboardViewController: UIViewController {
             
             DispatchQueue.main.async {
                 self.userRankingView.ranking = ranking
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
             
         }

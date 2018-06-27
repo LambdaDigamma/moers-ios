@@ -63,6 +63,8 @@ class RubbishCollectionComponent: BaseComponent {
         
         self.rubbishCardView.startLoading()
         
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
         let queue = OperationQueue()
         
         queue.addOperation {
@@ -78,6 +80,8 @@ class RubbishCollectionComponent: BaseComponent {
             RubbishManager.shared.loadItems(completion: { (items) in
                 
                 OperationQueue.main.addOperation {
+                    
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     
                     self.rubbishCardView.stopLoading()
                     

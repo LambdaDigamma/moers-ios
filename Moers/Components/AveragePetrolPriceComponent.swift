@@ -85,6 +85,8 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
                 
             } else {
                 
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                
                 PetrolManager.shared.delegate = self
                 PetrolManager.shared.sendRequest(coordiante: location.coordinate, radius: 10.0, sorting: .distance, type: .diesel)
                 
@@ -105,6 +107,8 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
     func didReceivePetrolStations(stations: [PetrolStation]) {
         
         DispatchQueue.main.async {
+            
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             let openStations = stations.filter { $0.isOpen }
             
