@@ -47,6 +47,8 @@
 		DF3555B220DE66F800B88DA3 /* LeaderboardRankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3555B120DE66F800B88DA3 /* LeaderboardRankingTableViewCell.swift */; };
 		DF3555B420DE730D00B88DA3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3555B320DE730D00B88DA3 /* LoginViewController.swift */; };
 		DF3555B620DE752900B88DA3 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3555B520DE752900B88DA3 /* AccountTableViewCell.swift */; };
+		DF3EE0C220E37E4900CA9279 /* FTLinearActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C020E37E4800CA9279 /* FTLinearActivityIndicator.swift */; };
+		DF3EE0C320E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C120E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift */; };
 		DF4BD1BE208A72C5003ECF41 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */; };
 		DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */; };
 		DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C3208C64F1003ECF41 /* PickerView.swift */; };
@@ -204,6 +206,8 @@
 		DF3555B120DE66F800B88DA3 /* LeaderboardRankingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardRankingTableViewCell.swift; sourceTree = "<group>"; };
 		DF3555B320DE730D00B88DA3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DF3555B520DE752900B88DA3 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
+		DF3EE0C020E37E4800CA9279 /* FTLinearActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLinearActivityIndicator.swift; sourceTree = "<group>"; };
+		DF3EE0C120E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+LinearNetworkActivityIndicator.swift"; sourceTree = "<group>"; };
 		DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishStreetPickerItem.swift; sourceTree = "<group>"; };
 		DF4BD1C3208C64F1003ECF41 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
@@ -509,6 +513,8 @@
 				DF8963D320CB0886008A0EDD /* WaterfallLayout.swift */,
 				DF3555AB20DE4D5300B88DA3 /* PodestView.swift */,
 				DF3555AD20DE594F00B88DA3 /* LeaderboardRankingView.swift */,
+				DF3EE0C020E37E4800CA9279 /* FTLinearActivityIndicator.swift */,
+				DF3EE0C120E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -866,6 +872,7 @@
 				DF2D6DAD20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift in Sources */,
 				DF3555AC20DE4D5300B88DA3 /* PodestView.swift in Sources */,
 				DFA96A6320BD8A390009B279 /* AveragePetrolPriceComponent.swift in Sources */,
+				DF3EE0C320E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift in Sources */,
 				DF21B30020BA0DB400478A33 /* SwitchTableViewCell.swift in Sources */,
 				DFDD3F7220B2E525005602E3 /* MonthHeaderView.swift in Sources */,
 				DF29FB4D20B1954B00741A63 /* ThemeViewController.swift in Sources */,
@@ -915,6 +922,7 @@
 				DFA9EEFB20B35EB8008590EA /* PetrolType.swift in Sources */,
 				DF3555B220DE66F800B88DA3 /* LeaderboardRankingTableViewCell.swift in Sources */,
 				DF3555B620DE752900B88DA3 /* AccountTableViewCell.swift in Sources */,
+				DF3EE0C220E37E4900CA9279 /* FTLinearActivityIndicator.swift in Sources */,
 				DFB92D5E1F6B0B0900669F73 /* API.swift in Sources */,
 				DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */,
 				DF8254081F7712880069D751 /* CSwiftV.swift in Sources */,
