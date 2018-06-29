@@ -21,6 +21,10 @@ struct UserManager {
         return loadUser()
     }
     
+    var loggedIn: Bool {
+        return UserDefaults.standard.integer(forKey: kUserID) != 0 && UserDefaults.standard.string(forKey: kUserName) == nil
+    }
+    
     func register(_ user: User) {
         
         UserDefaults.standard.set(user.type.rawValue, forKey: kUserType)
