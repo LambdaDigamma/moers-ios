@@ -55,7 +55,17 @@ struct TwitterManager {
 
                 }
 
-                self.delegate?.receivedTweets(tweets: tweets)
+                let ids = tweets.map { $0.tweetID }
+                
+                self.client.loadTweets(withIDs: ids, completion: { (tweets, error) in
+                    
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                    
+                    self.delegate?.receivedTweets(tweets: tweets ?? [])
+                    
+                })
                 
             } catch let jsonError as NSError {
                 print("json error: \(jsonError.localizedDescription)")
