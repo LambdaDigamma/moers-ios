@@ -17,7 +17,6 @@ class TweetTableViewCell: UITableViewCell, TWTRTweetViewDelegate {
         let tweetView = TWTRTweetView(tweet: nil, style: TWTRTweetViewStyle.compact)
         
         tweetView.translatesAutoresizingMaskIntoConstraints = false
-        tweetView.theme = .dark
         tweetView.delegate = self
         
         return tweetView
@@ -29,10 +28,11 @@ class TweetTableViewCell: UITableViewCell, TWTRTweetViewDelegate {
         
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
             themeable.backgroundColor = theme.backgroundColor
+            themeable.tweetView.theme = theme.statusBarStyle == .lightContent ? .dark : .light
             themeable.tweetView.backgroundColor = theme.backgroundColor
         }
         
-        self.addSubview(tweetView)
+        self.contentView.addSubview(tweetView)
         
         initializeConstraints()
         
@@ -44,10 +44,12 @@ class TweetTableViewCell: UITableViewCell, TWTRTweetViewDelegate {
     
     private func initializeConstraints() {
         
-        let constraints = [tweetView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0),
-                           tweetView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
-                           tweetView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
-                           tweetView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)]
+        let margins = contentView.layoutMarginsGuide
+        
+        let constraints = [tweetView.leftAnchor.constraint(equalTo: margins.leftAnchor, constant: 0),
+                           tweetView.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: 0),
+                           tweetView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 0),
+                           tweetView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: 0)]
         
         NSLayoutConstraint.activate(constraints)
         
