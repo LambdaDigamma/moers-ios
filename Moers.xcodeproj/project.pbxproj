@@ -840,6 +840,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/TwitterCore.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TwitterKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TwitterShareExtensionUI.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MMWormhole.framework",
 			);
 			outputPaths = (
 			);
