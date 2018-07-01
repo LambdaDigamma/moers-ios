@@ -14,6 +14,16 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>Watch (Notification).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>Watch.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>DFB64DAD20377AEE00173A80</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DFF8F2B820E6DC32001A9EBB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
