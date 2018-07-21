@@ -154,6 +154,18 @@ extension OtherViewController: UITableViewDataSource, UITableViewDelegate {
             
             accountCell.update()
             
+            API.shared.getUser { (error, user) in
+                
+                guard let user = user else { return }
+                
+                UserManager.shared.register(user)
+                
+                OperationQueue.main.addOperation {
+                    accountCell.update()
+                }
+                
+            }
+            
             cell = accountCell
             
         }

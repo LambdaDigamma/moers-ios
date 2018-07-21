@@ -71,9 +71,9 @@ class AccountTableViewCell: UITableViewCell {
         
         let user = UserManager.shared.user
         
-        if let name = user.name, let description = user.description {
+        if let name = user.name {
             nameLabel.text = name
-            descriptionLabel.text = description
+            descriptionLabel.text = user.description ?? ""
         } else {
             nameLabel.text = "Login or Sign up"
             descriptionLabel.text = "Access more advanced features"
