@@ -24,28 +24,9 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
 
     // MARK: - UI
     
-    lazy var headerView: UIView = {
-        
-        let view = UIView()
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.clear
-        
-        return view
-        
-    }()
-    
-    lazy var gripperView: UIView = {
-        
-        let view = UIView()
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 2.5
-        view.backgroundColor = UIColor.lightGray
-        
-        return view
-        
-    }()
+    lazy var headerView: UIView = { ViewFactory.blankView() }()
+    lazy var gripperView: UIView = { ViewFactory.blankView() }()
+    lazy var separatorView: UIView = { ViewFactory.blankView() }()
     
     lazy var searchBar: UISearchBar = {
         
@@ -60,18 +41,6 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         searchBar.delegate = self
         
         return searchBar
-        
-    }()
-    
-    lazy var separatorView: UIView = {
-        
-        let view = UIView()
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.lightGray
-        view.alpha = 0.75
-        
-        return view
         
     }()
     
@@ -102,6 +71,8 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
     private let sectionInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     private let cellWidth: CGFloat = 100
     private let cellHeight: CGFloat = 80
+    private var normalColor = UIColor.clear
+    private var highlightedColor = UIColor.clear
     
     // MARK: - Data
     
@@ -142,6 +113,18 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setupUI()
+        
+        API.shared.delegate = self
+        
+        self.populateData()
+
+    }
+    
+    // MARK: - Private Methods
+    
+    private func setupUI() {
+        
         self.navigationItem.largeTitleDisplayMode = .never
         self.navigationController?.navigationBar.prefersLargeTitles = false
         
@@ -151,16 +134,16 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         self.headerView.addSubview(separatorView)
         self.view.addSubview(tableView)
         
+        self.headerView.backgroundColor = UIColor.clear
+        self.gripperView.layer.cornerRadius = 2.5
+        self.gripperView.backgroundColor = UIColor.lightGray
+        self.separatorView.backgroundColor = UIColor.lightGray
+        self.separatorView.alpha = 0.75
+        
         self.setupConstraints()
         self.setupTheming()
         
-        API.shared.delegate = self
-        
-        self.populateData()
-
     }
-    
-    // MARK: - Private Methods
     
     private func setupConstraints() {
         
@@ -198,14 +181,16 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
             
-            themeable.view.backgroundColor = theme.navigationBarColor
+            themeable.view.backgroundColor = theme.backgroundColor
             themeable.searchBar.barTintColor = theme.accentColor
-            themeable.searchBar.backgroundColor = theme.navigationBarColor
+            themeable.searchBar.backgroundColor = theme.backgroundColor
             themeable.searchBar.tintColor = theme.accentColor
             themeable.searchBar.textField?.textColor = theme.color
             themeable.separatorView.backgroundColor = theme.separatorColor
             themeable.tableView.backgroundColor = theme.backgroundColor
             themeable.tableView.separatorColor = theme.separatorColor
+            themeable.normalColor = theme.backgroundColor
+            themeable.highlightedColor = theme.backgroundColor.darker(by: 10)!
             
         }
         
@@ -260,7 +245,7 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
             
             cell.selectionStyle = .none
 
-            guard let branch = selectedBranch else { fatalError("Error while selecting branch!") }
+            guard let branch = selectedBranch else { return cell }
 
             cell.branchLabel.text = branch.name
             cell.onButtonClick = { cell in
@@ -350,11 +335,23 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         
+        guard let cell = tableView.cellForRow(at: indexPath) as? RebuildSearchResultTableViewCell else { return }
+        
+        cell.backgroundColor = highlightedColor
+        
         if let cell = tableView.cellForRow(at: indexPath) as? RebuildSearchResultTableViewCell, let _ = datasource[indexPath.row - 1] as? Shop {
             
             cell.searchImageView.backgroundColor = AppColor.yellow
             
         }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? RebuildSearchResultTableViewCell else { return }
+        
+        cell.backgroundColor = normalColor
         
     }
     
@@ -371,14 +368,15 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
             // TODO: Rebuild DetailViewController
             
             if let drawer = self.parent as? PulleyViewController {
-                let drawerDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+                
+                let drawerDetail = RebuildDetailViewController()
                 
                 drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
                 drawer.setDrawerPosition(position: .collapsed, animated: true)
                 
                 drawerDetail.selectedLocation = datasource[indexPath.row - 1]
                 
-                if let mapController = drawer.primaryContentViewController as? MapViewController {
+                if let mapController = drawer.primaryContentViewController as? RebuildMapViewController {
                     
                     let coordinate = self.datasource[indexPath.row - 1].location.coordinate
                     
@@ -556,11 +554,7 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         
         drawerBottomSafeArea = bottomSafeArea
         
-        if drawer.drawerPosition == .collapsed {
-            headerHeightConstraint?.constant = 68.0 + drawerBottomSafeArea
-        } else {
-            headerHeightConstraint?.constant = 68.0
-        }
+        headerHeightConstraint?.constant = 68.0
         
         tableView.isScrollEnabled = drawer.drawerPosition == .open
         

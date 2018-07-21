@@ -26,7 +26,9 @@ class RebuildSearchResultTableViewCell: UITableViewCell {
         let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         
         return label
         
@@ -37,8 +39,7 @@ class RebuildSearchResultTableViewCell: UITableViewCell {
         let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "HelveticaNeue-Medium", size: 17)
-        label.textColor = UIColor.darkGray
+        label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         
         return label
         
@@ -47,17 +48,14 @@ class RebuildSearchResultTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            themeable.backgroundColor = theme.backgroundColor
-            themeable.titleLabel.textColor = theme.color
-            themeable.subtitleLabel.textColor = theme.decentColor
-        }
-        
-        self.addSubview(titleLabel)
-        self.addSubview(subtitleLabel)
-        self.addSubview(searchImageView)
+        self.contentView.addSubview(titleLabel)
+        self.contentView.addSubview(subtitleLabel)
+        self.contentView.addSubview(searchImageView)
         
         self.setupConstraints()
+        self.setupTheming()
+        
+        self.selectionStyle = .none
         
     }
     
@@ -67,18 +65,32 @@ class RebuildSearchResultTableViewCell: UITableViewCell {
     
     private func setupConstraints() {
         
-        let constraints = [searchImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8),
-                           searchImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
-                           searchImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
+        let margins = contentView.layoutMarginsGuide
+        
+        let constraints = [searchImageView.leftAnchor.constraint(equalTo: margins.leftAnchor, constant: 0),
+                           searchImageView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
+                           searchImageView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0),
                            searchImageView.widthAnchor.constraint(equalTo: searchImageView.heightAnchor),
-                           titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
+                           titleLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
                            titleLabel.leftAnchor.constraint(equalTo: searchImageView.rightAnchor, constant: 8),
-                           titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8),
-                           subtitleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
+                           titleLabel.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: 0),
+                           subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
                            subtitleLabel.leftAnchor.constraint(equalTo: searchImageView.rightAnchor, constant: 8),
-                           subtitleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 8)]
+                           subtitleLabel.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: 0)]
         
         NSLayoutConstraint.activate(constraints)
+        
+    }
+    
+    private func setupTheming() {
+        
+        self.accessoryType = .disclosureIndicator
+        
+        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
+            themeable.backgroundColor = theme.backgroundColor
+            themeable.titleLabel.textColor = theme.color
+            themeable.subtitleLabel.textColor = theme.decentColor
+        }
         
     }
     

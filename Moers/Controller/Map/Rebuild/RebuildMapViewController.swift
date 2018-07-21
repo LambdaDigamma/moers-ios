@@ -42,12 +42,27 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
         let queue = OperationQueue()
         
         queue.addOperation {
+        
+            ShopManager.shared.get(completion: { (error, stores) in
+                
+                if let error = error {
+                    print(error)
+                }
+                
+                guard let stores = stores else { return }
+                
+                self.locations.append(contentsOf: stores)
+                
+                DispatchQueue.main.async {
+                    
+                    self.map.addAnnotations(stores)
+                    
+                }
+                
+            })
             
             API.shared.delegate = self
             
-            // TODO: !
-            
-            API.shared.loadShop()
             API.shared.loadCameras()
             API.shared.loadParkingLots()
             API.shared.loadBikeChargingStations()
@@ -55,6 +70,27 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
             self.populateData()
             
         }
+        
+        
+        
+        
+        
+//        let queue = OperationQueue()
+//
+//        queue.addOperation {
+//
+//
+//
+//            // TODO: !
+//
+//            API.shared.loadShop()
+//            API.shared.loadCameras()
+//            API.shared.loadParkingLots()
+//            API.shared.loadBikeChargingStations()
+//
+//            self.populateData()
+//
+//        }
         
         self.setupConstraints()
         self.setupMap()
@@ -81,13 +117,13 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
             
             return view
             
-        } else if let shop = annotation as? Shop {
+        } else if let store = annotation as? Store {
             
             var view = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationIdentifier.shop) as? MKMarkerAnnotationView
             
             if view == nil { view = ShopAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.shop) }
             
-            view?.annotation = shop
+            view?.annotation = store
             
             view?.collisionMode = .circle
             view?.clusteringIdentifier = AnnotationIdentifier.cluster
@@ -147,7 +183,7 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
-        if !(view.annotation is MKClusterAnnotation) && !(view.annotation is MKUserLocation) {
+        /*if !(view.annotation is MKClusterAnnotation) && !(view.annotation is MKUserLocation) {
             
             Answers.logCustomEvent(withName: "Map Selection", customAttributes: ["name": (view.annotation as! Location).name])
             
@@ -186,7 +222,7 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
             
             mapView.setCenter(coordinate, animated: true)
             
-        }
+        }*/
         
     }
     

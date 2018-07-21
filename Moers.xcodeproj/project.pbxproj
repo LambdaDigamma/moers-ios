@@ -65,6 +65,7 @@
 		DF626AF51FB745E300BFDA67 /* BikeChargingStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */; };
 		DF626AF71FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */; };
 		DF626AF91FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF81FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift */; };
+		DF6279792100CDE400F81A70 /* RebuildDetailParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6279782100CDE400F81A70 /* RebuildDetailParkingViewController.swift */; };
 		DF632B401F6E721B0022FA8E /* ParkingLot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B3F1F6E721B0022FA8E /* ParkingLot.swift */; };
 		DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */; };
 		DF632B441F6E90140022FA8E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B431F6E90140022FA8E /* DetailViewController.swift */; };
@@ -291,6 +292,7 @@
 		DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeChargingStation.swift; sourceTree = "<group>"; };
 		DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeChargingStationAnnotationView.swift; sourceTree = "<group>"; };
 		DF626AF81FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBikeChargingStationViewController.swift; sourceTree = "<group>"; };
+		DF6279782100CDE400F81A70 /* RebuildDetailParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildDetailParkingViewController.swift; sourceTree = "<group>"; };
 		DF632B3F1F6E721B0022FA8E /* ParkingLot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLot.swift; sourceTree = "<group>"; };
 		DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLotAnnotationView.swift; sourceTree = "<group>"; };
 		DF632B431F6E90140022FA8E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -739,6 +741,14 @@
 			path = Community;
 			sourceTree = "<group>";
 		};
+		DF6279772100CDC300F81A70 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				DF6279782100CDE400F81A70 /* RebuildDetailParkingViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		DFA9EF0D20B56BB2008590EA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -795,6 +805,7 @@
 				DF0CB4B02085B66600CC0AA8 /* RebuildContentViewController.swift */,
 				DFD7ACB120A44C5A00D49BE2 /* RebuildSelectionViewController.swift */,
 				DFD728AB20A880C6005FA9F1 /* RebuildDetailViewController.swift */,
+				DF6279772100CDC300F81A70 /* Detail */,
 			);
 			path = Rebuild;
 			sourceTree = "<group>";
@@ -1170,6 +1181,7 @@
 				DF0CB4B32087092F00CC0AA8 /* RebuildSearchResultTableViewCell.swift in Sources */,
 				DFDD3F6E20B22230005602E3 /* RubbishCollectionViewController.swift in Sources */,
 				DF3EE0C720E38A6B00CA9279 /* PaddingLabel.swift in Sources */,
+				DF6279792100CDE400F81A70 /* RebuildDetailParkingViewController.swift in Sources */,
 				DF2D6DA920B899DD00176614 /* User.swift in Sources */,
 				DF0CB4AF2085B65200CC0AA8 /* RebuildMapViewController.swift in Sources */,
 				DFB4D76B20B064CA00C8D179 /* StaticTableView.swift in Sources */,
