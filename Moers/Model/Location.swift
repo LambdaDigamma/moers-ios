@@ -11,8 +11,8 @@ import CoreLocation
 
 protocol Location {
     
-    var location: CLLocation { get set }
-    var name: String { get set }
+    var location: CLLocation { get }
+    var name: String { get }
     
 }
 
