@@ -1,0 +1,51 @@
+/* 
+  Localizable.strings
+  Moers
+
+  Created by Lennart Fischer on 15.04.18.
+  Copyright © 2018 Lennart Fischer. All rights reserved.
+*/
+"DashboardTabItem" = "Dashboard";
+"MapTabItem" = "Map";
+"OtherTabItem" = "Other";
+"OnboardingDescription" = "Discover Moers";
+"OnboardingFirstPageActionButtonTitle" = "Continue";
+"OnboardingNotificationPageTitle" = "Push Notifications";
+"OnboardingNotificationPageDescription" = "Receive push notifications to keep up to date.";
+"OnboardingNotificationPageActionButtonTitle" = "Subscribe";
+"OnboardingNotificationPageAlternativeButtonTitle" = "Not now";
+"CompletionPageTitle" = "Setup completed";
+"CompletionPageActionButtonTitle" = "Get started";
+"SearchBarPrompt" = "Where do you want to go?";
+"DashboardTitleRubbishCollection" = "Waste Schedule";
+"DashboardMoreRubbish" = "More";
+"RubbishCollectionPageTitle" = "Pick-up Schedule";
+"RubbishCollectionPageDescription" = "Mein Moers can show you the collection dates of the garbage collection and remind you to expose them.";
+"RubbishCollectionPageActionButtonTitle" = "Fortfahren";
+"RubbishCollectionPageAlternativeButtonTitle" = "Not now";
+"RubbishCollectionReminderPageTitle" = "Pick-up notifications";
+"RubbishCollectionReminderPageDescription" = "Mein Moers can remind you to put your trash cans on the street in time.";
+"RubbishCollectionReminderPageActionButtonTitle" = "Setup";
+"RubbishCollectionReminderPageAlternativeButtonTitle" = "Not now";
+"SettingsTitle" = "Settings";
+"ThemeTitle" = "Theme";
+"RubbishCollectionTitle" = "Pick-up Schedule";
+"AboutTitle" = "About";
+"Today" = "Today";
+"Tomorrow" = "Tomorrow";
+"OnboardingLocationPageTitle" = "Standortbestimmung";
+"OnboardingNotificationPageDescription" = "";
+"Allow" = "Allow";
+"Later" = "Later";
+"PrivacyPolicy" = "Privacy Policy";
+"Legal" = "Legal";
+"Licences" = "Licences";
+"UIAdjustments" = "User Interface";
+"Tourist" = "Tourist";
+"Citizen" = "Citizen";
+"OnboardingUserTypeSelectorPageTitle" = "User";
+"OnboardingUserTypeSelectorPageDescription" = "Are you a visitor or citizen to the city of Moers?";
+"OnboardingUserTypeSelectorPageActionButtonTitle" = "Continue";
+"SettingsRubbishCollectionTitle" = "Pick-up Schedule";
+"LeaderboardTitle" = "Leaderboard";
+"NewsTitle" = "News";

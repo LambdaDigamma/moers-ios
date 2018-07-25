@@ -10,11 +10,15 @@ import UIKit
 import Firebase
 import Fabric
 import Crashlytics
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    private let consumerKey = "7BHM9u39iH74aongQw0zN82wl"
+    private let consumerSecret = "wJ1m2Prh2zsHJdcDyUnMkkZVQv07IIVPB3SuzAghiewcfQ888b"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -23,13 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         FirebaseConfiguration.shared.analyticsConfiguration.setAnalyticsCollectionEnabled(true)
         
-        let appearance = UINavigationBar.appearance()
-        
-        appearance.barTintColor = UIColor(red: 0.85, green: 0.12, blue: 0.09, alpha: 1.0)
-        appearance.isOpaque = false
-        appearance.isTranslucent = false
-        appearance.tintColor = UIColor.white
-        appearance.barStyle = .black
+        TWTRTwitter.sharedInstance().start(withConsumerKey: consumerKey, consumerSecret: consumerSecret)
         
         if StoreManager.firstLaunch {
             
@@ -47,6 +45,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             StoreManager.firstLaunch = false
             
+        }
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let applicationController = ApplicationController()
+        
+        window!.rootViewController = applicationController
+        window!.makeKeyAndVisible()
+        
+        OperationQueue.main.addOperation {
+            UIApplication.configureLinearNetworkActivityIndicatorIfNeeded()
         }
         
         return true

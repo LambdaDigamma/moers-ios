@@ -12,6 +12,9 @@ import CoreLocation
 struct AppConfig {
     
     let name: String
-    let coordinate: CLLocationDegrees
+    let coordinate: CLLocationCoordinate2D
+    let loadData: Bool
+    
+    static let shared = AppConfig(name: "Moers", coordinate: CLLocationCoordinate2D(latitude: 51.451667, longitude: 6.626389), loadData: true)
     
 }

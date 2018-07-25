@@ -47,7 +47,7 @@ class DrawerContentViewController: UIViewController {
         if #available(iOS 10.0, *)
         {
             let feedbackGenerator = UISelectionFeedbackGenerator()
-            (self.parent as? PulleyViewController)?.feedbackGenerator = feedbackGenerator
+            self.pulleyViewController?.feedbackGenerator = feedbackGenerator
         }
     }
     
@@ -61,7 +61,7 @@ class DrawerContentViewController: UIViewController {
     @objc fileprivate func bounceDrawer() {
         
         // We can 'bounce' the drawer to show users that the drawer needs their attention. There are optional parameters you can pass this method to control the bounce height and speed.
-        (self.parent as? PulleyViewController)?.bounceDrawer()
+        self.pulleyViewController?.bounceDrawer()
     }
 }
 
@@ -83,7 +83,7 @@ extension DrawerContentViewController: PulleyDrawerViewControllerDelegate {
         return PulleyPosition.all // You can specify the drawer positions you support. This is the same as: [.open, .partiallyRevealed, .collapsed, .closed]
     }
     
-    // This function is called by Pulley anytime the size, drawer position, etc. changes. It's best to customize your VC UI based on the bottomSafeArea here (if needed).
+    // This function is called by Pulley anytime the size, drawer position, etc. changes. It's best to customize your VC UI based on the bottomSafeArea here (if needed). Note: You might also find the `pulleySafeAreaInsets` property on Pulley useful to get Pulley's current safe area insets in a backwards compatible (with iOS < 11) way. If you need this information for use in your layout, you can also access it directly by using `drawerDistanceFromBottom` at any time.
     func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat)
     {
         // We want to know about the safe area to customize our UI. Our UI customization logic is in the didSet for this variable.
@@ -136,11 +136,7 @@ extension DrawerContentViewController: PulleyDrawerViewControllerDelegate {
 extension DrawerContentViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        
-        if let drawerVC = self.parent as? PulleyViewController
-        {
-            drawerVC.setDrawerPosition(position: .open, animated: true)
-        }
+        pulleyViewController?.setDrawerPosition(position: .open, animated: true)
     }
 }
 
@@ -163,15 +159,12 @@ extension DrawerContentViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        if let drawer = self.parent as? PulleyViewController
-        {
-            let primaryContent = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PrimaryTransitionTargetViewController")
 
-            drawer.setDrawerPosition(position: .collapsed, animated: true)
+        let primaryContent = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PrimaryTransitionTargetViewController")
 
-            drawer.setPrimaryContentViewController(controller: primaryContent, animated: false)
-        }
+        pulleyViewController?.setDrawerPosition(position: .collapsed, animated: true)
+
+        pulleyViewController?.setPrimaryContentViewController(controller: primaryContent, animated: false)
     }
 }
 

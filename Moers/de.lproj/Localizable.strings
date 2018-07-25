@@ -1,0 +1,51 @@
+/* 
+  Localizable.strings
+  Moers
+
+  Created by Lennart Fischer on 15.04.18.
+  Copyright © 2018 Lennart Fischer. All rights reserved.
+*/
+"DashboardTabItem" = "Übersicht";
+"MapTabItem" = "Karte";
+"OtherTabItem" = "Sonstiges";
+"OnboardingDescription" = "Suche Geschäfte & Parkplätze mit Live-Daten und bewege Dich mit interaktiven 360° Panoramen durch die Stadt!";
+"OnboardingFirstPageActionButtonTitle" = "Fortfahren";
+"OnboardingNotificationPageTitle" = "Push-Mitteilungen";
+"OnboardingNotificationPageDescription" = "Erhalte Push Notifications um auf dem Laufenden zu bleiben.";
+"OnboardingNotificationPageActionButtonTitle" = "Erhalten";
+"OnboardingNotificationPageAlternativeButtonTitle" = "Nicht jetzt";
+"CompletionPageTitle" = "Einrichtung abgeschlossen";
+"CompletionPageActionButtonTitle" = "Los geht's!";
+"SearchBarPrompt" = "Wohin willst du?";
+"DashboardTitleRubbishCollection" = "Nächste Leerungen";
+"DashboardMoreRubbish" = "Mehr";
+"RubbishCollectionPageTitle" = "Abfuhrkalender";
+"RubbishCollectionPageDescription" = "Mein Moers kann Dir die Abfuhrtermine der Müllabfuhr zeigen und Dich daran erinnern, diese herauszustellen.";
+"RubbishCollectionPageActionButtonTitle" = "Fortfahren";
+"RubbishCollectionPageAlternativeButtonTitle" = "Nicht jetzt";
+"RubbishCollectionReminderPageTitle" = "Abfuhr-Benachrichtigungen";
+"RubbishCollectionReminderPageDescription" = "Mein Moers kann Dich am Vortag zu einer bestimmen Uhrzeit daran erinnern, Deine Mülltonnen rechtzeitig an die Straße zu stellen.";
+"RubbishCollectionReminderPageActionButtonTitle" = "Einstellen";
+"RubbishCollectionReminderPageAlternativeButtonTitle" = "Nicht jetzt";
+"SettingsTitle" = "Einstellungen";
+"ThemeTitle" = "Theme";
+"RubbishCollectionTitle" = "Leerungen";
+"AboutTitle" = "Über";
+"Today" = "Heute";
+"Tomorrow" = "Morgen";
+"OnboardingLocationPageTitle" = "Standortbestimmung";
+"OnboardingLocationPageDescription" = "";
+"Allow" = "Erlauben";
+"Later" = "Später";
+"PrivacyPolicy" = "Datenschutzerklärung";
+"Legal" = "Rechtliches";
+"Licences" = "Lizenzen";
+"UIAdjustments" = "Benutzeroberfläche";
+"Tourist" = "Besucher";
+"Citizen" = "Bürger";
+"OnboardingUserTypeSelectorPageTitle" = "Benutzer";
+"OnboardingUserTypeSelectorPageDescription" = "Bist Du Besucher oder Bürger der Stadt Moers?";
+"OnboardingUserTypeSelectorPageActionButtonTitle" = "Fortfahren";
+"SettingsRubbishCollectionTitle" = "Abfuhrkalender";
+"LeaderboardTitle" = "Bestenliste";
+"NewsTitle" = "Neuigkeiten";

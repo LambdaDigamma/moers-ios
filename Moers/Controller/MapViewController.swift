@@ -29,7 +29,6 @@ class MapViewController: UIViewController {
     
     let locationManager: CLLocationManager = {
         let manager = CLLocationManager()
-        manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
         return manager
     }()

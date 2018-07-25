@@ -20,22 +20,6 @@ import Foundation
     
 #endif
 
-extension String {
-    
-    var doubleValue: Double {
-        
-        get {
-            
-            let s: NSString = self as NSString
-            
-            return s.doubleValue
-            
-        }
-        
-    }
-    
-}
-
 extension UIColor {
     
     convenience init(red: Int, green: Int, blue: Int) {
@@ -53,67 +37,100 @@ extension UIColor {
             blue: rgb & 0xFF
         )
     }
+    
+    convenience init?(hexString: String) {
+        var chars = Array(hexString.hasPrefix("#") ? hexString.dropFirst() : hexString[...])
+        let red, green, blue, alpha: CGFloat
+        switch chars.count {
+        case 3:
+            chars = chars.flatMap { [$0, $0] }
+            fallthrough
+        case 6:
+            chars = ["F","F"] + chars
+            fallthrough
+        case 8:
+            alpha = CGFloat(strtoul(String(chars[0...1]), nil, 16)) / 255
+            red   = CGFloat(strtoul(String(chars[2...3]), nil, 16)) / 255
+            green = CGFloat(strtoul(String(chars[4...5]), nil, 16)) / 255
+            blue  = CGFloat(strtoul(String(chars[6...7]), nil, 16)) / 255
+        default:
+            return nil
+        }
+        self.init(red: red, green: green, blue:  blue, alpha: alpha)
+    }
+    
 }
 
 struct AppColor {
     
-    static let yellow = UIColor(red: 0xFF, green: 0xEB, blue: 0x3B)// UIColor(red: 0xFF, green: 0xEA, blue: 0x00, alpha: 1)
+    static let yellow = UIColor(red: 0xFF, green: 0xEB, blue: 0x3B)
+    
+}
+
+extension UISearchBar {
+    
+    var textField: UITextField? {
+        return self.value(forKey: "searchField") as? UITextField
+    }
     
 }
 
 extension UIColor {
     
-    func darkerColor() -> UIColor {
-        let amount: CGFloat = 0.9
-        let rgba = UnsafeMutablePointer<CGFloat>.allocate(capacity: 4)
-        
-        self.getRed(&rgba[0], green: &rgba[1], blue: &rgba[2], alpha: &rgba[3])
-        let darkerColor = UIColor(red: amount * rgba[0], green: amount * rgba[1], blue: amount * rgba[2], alpha: rgba[3])
-        
-        rgba.deinitialize()
-        rgba.deallocate(capacity: 4)
-        return darkerColor
+    func lighter(by percentage: CGFloat = 30.0) -> UIColor? {
+        return self.adjust(by: abs(percentage))
+    }
+    
+    func darker(by percentage: CGFloat = 30.0) -> UIColor? {
+        return self.adjust(by: -1 * abs(percentage))
+    }
+    
+    func adjust(by percentage: CGFloat = 30.0) -> UIColor? {
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        if self.getRed(&r, green: &g, blue: &b, alpha: &a) {
+            return UIColor(red: min(r + percentage / 100, 1.0),
+                           green: min(g + percentage / 100, 1.0),
+                           blue: min(b + percentage / 100, 1.0),
+                           alpha: a)
+        } else {
+            return nil
+        }
     }
     
 }
 
-extension PXColor {
+extension UIViewController {
     
-    func lighter(amount : CGFloat = 0.25) -> PXColor {
-        return hueColorWithBrightnessAmount(amount: 1 + amount)
+    var safeTopAnchor: NSLayoutYAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return view.safeAreaLayoutGuide.topAnchor
+        } else {
+            return topLayoutGuide.topAnchor
+        }
     }
     
-    func darker(amount : CGFloat = 0.25) -> PXColor {
-        return hueColorWithBrightnessAmount(amount: 1 - amount)
+    var safeBottomAnchor: NSLayoutYAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return view.safeAreaLayoutGuide.bottomAnchor
+        } else {
+            return bottomLayoutGuide.topAnchor
+        }
     }
     
-    private func hueColorWithBrightnessAmount(amount: CGFloat) -> PXColor {
-        var hue         : CGFloat = 0
-        var saturation  : CGFloat = 0
-        var brightness  : CGFloat = 0
-        var alpha       : CGFloat = 0
-        
-        #if os(iOS)
-            
-            if getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
-                return PXColor( hue: hue,
-                                saturation: saturation,
-                                brightness: brightness * amount,
-                                alpha: alpha )
-            } else {
-                return self
-            }
-            
-        #else
-            
-            getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
-            return PXColor( hue: hue,
-                            saturation: saturation,
-                            brightness: brightness * amount,
-                            alpha: alpha )
-            
-        #endif
-        
+    var safeLeftAnchor: NSLayoutXAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return view.safeAreaLayoutGuide.leftAnchor
+        } else {
+            return view.leftAnchor
+        }
+    }
+    
+    var safeRightAnchor: NSLayoutXAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return view.safeAreaLayoutGuide.rightAnchor
+        } else {
+            return view.rightAnchor
+        }
     }
     
 }
@@ -132,101 +149,6 @@ extension UIImage {
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext() // !!!
         return scaledImage
-    }
-    
-}
-
-public extension String {
-    
-    func score(_ word: String, fuzziness: Double? = nil) -> Double
-    {
-        // If the string is equal to the word, perfect match.
-        if self == word {
-            return 1
-        }
-        
-        //if it's not a perfect match and is empty return 0
-        if word.isEmpty || self.isEmpty {
-            return 0
-        }
-        
-        var
-        runningScore = 0.0,
-        charScore = 0.0,
-        finalScore = 0.0,
-        string = self,
-        lString = string.lowercased(),
-        strLength = string.count,
-        lWord = word.lowercased(),
-        wordLength = word.count,
-        idxOf: String.Index!,
-        startAt = lString.startIndex,
-        fuzzies = 1.0,
-        fuzzyFactor = 0.0,
-        fuzzinessIsNil = true
-        
-        // Cache fuzzyFactor for speed increase
-        if let fuzziness = fuzziness {
-            fuzzyFactor = 1 - fuzziness
-            fuzzinessIsNil = false
-        }
-        
-        for i in 0 ..< wordLength {
-            // Find next first case-insensitive match of word's i-th character.
-            // The search in "string" begins at "startAt".
-            if let range = lString.range(
-                of: String(lWord[lWord.index(lWord.startIndex, offsetBy: i)] as Character),
-                options: NSString.CompareOptions.caseInsensitive,
-                range: Range<String.Index>(startAt..<lString.endIndex),
-                locale: nil
-                ) {
-                // start index of word's i-th character in string.
-                idxOf = range.lowerBound
-                if startAt == idxOf {
-                    // Consecutive letter & start-of-string Bonus
-                    charScore = 0.7
-                }
-                else {
-                    charScore = 0.1
-                    
-                    // Acronym Bonus
-                    // Weighing Logic: Typing the first character of an acronym is as if you
-                    // preceded it with two perfect character matches.
-                    if string[string.index(idxOf, offsetBy: -1)] == " " {
-                        charScore += 0.8
-                    }
-                }
-            }
-            else {
-                // Character not found.
-                if fuzzinessIsNil {
-                    // Fuzziness is nil. Return 0.
-                    return 0
-                }
-                else {
-                    fuzzies += fuzzyFactor
-                    continue
-                }
-            }
-            
-            // Same case bonus.
-            if (string[idxOf] == word[word.index(word.startIndex, offsetBy: i)]) {
-                charScore += 0.1
-            }
-            
-            // Update scores and startAt position for next round of indexOf
-            runningScore += charScore
-            startAt = string.index(idxOf, offsetBy: 1)
-        }
-        
-        // Reduce penalty for longer strings.
-        finalScore = 0.5 * (runningScore / Double(strLength) + runningScore / Double(wordLength)) / fuzzies
-        
-        if (lWord[lWord.startIndex] == lString[lString.startIndex]) && (finalScore < 0.85) {
-            finalScore += 0.15
-        }
-        
-        return finalScore
     }
     
 }

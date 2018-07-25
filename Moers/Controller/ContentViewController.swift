@@ -23,14 +23,6 @@ public struct CellIdentifier {
 // branchSearch
 // none
 
-public enum SearchStyle {
-    
-    case none
-    case branchSearch
-    case textSearch
-    
-}
-
 class ContentViewController: UIViewController {
 
     @IBOutlet weak var gripperView: UIView!
@@ -643,20 +635,7 @@ extension ContentViewController: PulleyDrawerViewControllerDelegate {
     
     func makeUIAdjustmentsForFullscreen(progress: CGFloat, bottomSafeArea: CGFloat) {
         
-        if progress != 0 {
-            
-            navigationController?.navigationBar.barTintColor = UIColor(red: 0.85, green: 0.12, blue: 0.09, alpha: 1.0).darker(amount: progress / 3)
-            navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white.darker(amount: progress / 3)]
-            
-            if let statusBar = UIApplication.shared.value(forKey: "statusBar") as? UIView {
-                statusBar.alpha = 1 - (progress / 3)
-            }
-            
-        } else {
-            
-            resetNavBar()
-            
-        }
+        
         
     }
     

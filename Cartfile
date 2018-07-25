@@ -3,3 +3,13 @@ github "ykyouhei/SwiftyConfiguration"
 github "nmdias/InfoKit"
 github "regexident/Gestalt"
 github "alexaubry/BulletinBoard" "master"
+github "eggswift/ESTabBarController"
+github "facebook/pop" ~> 1.0.10
+github "regexident/EventBus"
+github "Haneke/HanekeSwift"
+github "ashleymills/Reachability.swift"
+github "gmarm/BetterSegmentedControl" ~> 0.9
+github "raulriera/TextFieldEffects"
+binary "https://ton.twimg.com/syndication/twitterkit/ios/TwitterKit.json"
+binary "https://ton.twimg.com/syndication/twitterkit/ios/TwitterCore.json"
+github "mutualmobile/MMWormhole"
