@@ -49,12 +49,19 @@ class CommunityViewController: UIViewController, UICollectionViewDataSource {
         self.title = "Community"
         
         self.panels = [CommunityDashboardPanel(title: String.localized("LeaderboardTitle"), image: #imageLiteral(resourceName: "trophy").withRenderingMode(.alwaysTemplate), action: showLeaderboard),
-                       CommunityDashboardPanel(title: "Geschäft hinzufügen", image: #imageLiteral(resourceName: "shop").withRenderingMode(.alwaysTemplate), action: nil)]
+                       CommunityDashboardPanel(title: "Geschäft hinzufügen", image: #imageLiteral(resourceName: "shop").withRenderingMode(.alwaysTemplate), action: showAddShop)]
         
         self.view.addSubview(collectionView)
         
         self.setupConstraints()
         self.setupTheming()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         
     }
     
@@ -82,7 +89,17 @@ class CommunityViewController: UIViewController, UICollectionViewDataSource {
     
     private func showLeaderboard() {
         
-        push(viewController: LeaderboardViewController.self)
+        if UserManager.shared.loggedIn {
+            push(viewController: LeaderboardViewController.self)
+        } else {
+            self.present(LoginViewController(), animated: true, completion: nil)
+        }
+        
+    }
+    
+    private func showAddShop() {
+        
+        push(viewController: AddShopViewController.self)
         
     }
     
@@ -143,26 +160,10 @@ extension CommunityViewController: UICollectionViewDelegateFlowLayout {
     
     var numberOfColumns: Int {
         
-        if UIDevice.current.orientation.isPortrait {
-            
-            switch UIDevice.current.userInterfaceIdiom {
-            case .pad:
-                return 4
-            default:
-                return 2
-            }
-            
+        if view.traitCollection.horizontalSizeClass == .compact {
+            return 2
         } else {
-            
-            switch UIDevice.current.userInterfaceIdiom {
-            case .pad:
-                return 6
-            case .phone:
-                return 2
-            default:
-                return 2
-            }
-            
+            return 4
         }
         
     }
