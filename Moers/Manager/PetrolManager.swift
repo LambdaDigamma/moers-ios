@@ -25,6 +25,13 @@ class PetrolManager {
     private let apiKey = "0dfdfad3-7385-ef47-2ff6-ec0477872677"
     private let baseURL = "https://creativecommons.tankerkoenig.de/"
     
+    public var cachedStations: [PetrolStation]?
+    
+    public var petrolType: PetrolType {
+        get { return PetrolType(rawValue: UserDefaults.standard.string(forKey: "PetrolType") ?? "") ?? .diesel }
+        set { UserDefaults.standard.set(newValue.rawValue, forKey: "PetrolType") }
+    }
+    
     public func sendRequest(coordiante: CLLocationCoordinate2D, radius: Double, sorting: PetrolSorting, type: PetrolType) {
         
         if radius > 25.0 {
@@ -60,6 +67,8 @@ class PetrolManager {
                 if response.isValid {
                     
                     guard let stations = response.stations else { return }
+                    
+                    self.cachedStations = stations
                     
                     self.delegate?.didReceivePetrolStations(stations: stations)
                     
