@@ -100,6 +100,7 @@ extension UIColor {
 }
 
 extension UIViewController {
+    
     var safeTopAnchor: NSLayoutYAxisAnchor {
         if #available(iOS 11.0, *) {
             return view.safeAreaLayoutGuide.topAnchor
@@ -115,6 +116,23 @@ extension UIViewController {
             return bottomLayoutGuide.topAnchor
         }
     }
+    
+    var safeLeftAnchor: NSLayoutXAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return view.safeAreaLayoutGuide.leftAnchor
+        } else {
+            return view.leftAnchor
+        }
+    }
+    
+    var safeRightAnchor: NSLayoutXAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return view.safeAreaLayoutGuide.rightAnchor
+        } else {
+            return view.rightAnchor
+        }
+    }
+    
 }
 
 extension UIImage {
