@@ -47,6 +47,13 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        contentView.subviews.forEach({ $0.removeFromSuperview() })
+        
+    }
+    
     // MARK: - Private Methods
     
     private func setupUI() {
@@ -70,6 +77,7 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
         routeButton.layer.cornerRadius = 8
         routeButton.clipsToBounds = true
         routeButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        routeButton.addTarget(self, action: #selector(navigateViaMaps), for: .touchUpInside)
         
     }
     
@@ -94,7 +102,7 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
                            subtitleLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 8),
                            subtitleLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
                            subtitleLabel.heightAnchor.constraint(equalToConstant: 21),
-                           routeButton.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 16),
+                           routeButton.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 32),
                            routeButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
                            routeButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
                            routeButton.heightAnchor.constraint(equalToConstant: 50),
@@ -117,14 +125,14 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
             themeable.closeButton.tintColor = theme.decentColor
             themeable.subtitleLabel.textColor = theme.decentColor
             themeable.routeButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
-            themeable.routeButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .selected)
+            themeable.routeButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .highlighted)
             themeable.routeButton.setTitleColor(theme.backgroundColor, for: .normal)
             
         }
         
     }
     
-    private func navigateViaMaps() {
+    @objc private func navigateViaMaps() {
         
         guard let location = selectedLocation else { return }
         
@@ -151,18 +159,25 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
     
     @objc private func close() {
         
-        if let drawer = self.parent as? PulleyViewController {
+        if let drawer = self.parent as? MainViewController {
             
-            let contentDrawer = RebuildContentViewController()
+            guard let contentDrawer = drawer.contentViewController else { return }
+            guard let mapDrawer = drawer.mapViewController else { return }
             
             guard let vc = child else { return }
+            
+            contentView.subviews.forEach({ $0.removeFromSuperview() })
             
             vc.removeFromParentViewController()
             
             self.dismiss(animated: false, completion: nil)
             
-            drawer.setDrawerContentViewController(controller: contentDrawer, animated: false)
-            drawer.setDrawerPosition(position: .collapsed, animated: false)
+            drawer.setDrawerContentViewController(controller: contentDrawer, animated: true)
+            drawer.setDrawerPosition(position: .collapsed, animated: true)
+            
+            if let annotation = selectedLocation as? MKAnnotation {
+                mapDrawer.map.deselectAnnotation(annotation, animated: true)
+            }
             
         }
         
@@ -194,7 +209,7 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
                 
             }
             
-            
+            morphDetailShop()
             
         } else if let parkingLot = selectedLocation as? ParkingLot {
             
@@ -209,6 +224,8 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
             nameLabel.text = camera.title
             subtitleLabel.text = "360° Kamera"
             imageView.image = #imageLiteral(resourceName: "camera")
+            
+            morphDetailCamera()
             
         }
         
@@ -235,15 +252,13 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
         
         directions.calculateETA { (response, error) -> Void in
             
-            if error == nil {
-                
-                if let estimate = response {
-                    
-                    self.routeButton.setTitle("Route (\(Int(floor(estimate.expectedTravelTime / 60))) min)", for: .normal)
-                    
-                }
-                
+            if let error = error {
+                print(error.localizedDescription)
             }
+            
+            guard let estimate = response else { return }
+            
+            self.routeButton.setTitle("Route (\(Int(floor(estimate.expectedTravelTime / 60))) min)", for: .normal)
             
         }
         
@@ -258,6 +273,26 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
         self.add(asChildViewController: viewController)
         
         viewController.selectedParkingLot = selectedLocation as? ParkingLot
+        
+    }
+    
+    private func morphDetailCamera() {
+        
+        let viewController = RebuildDetailCameraViewController()
+        
+        self.add(asChildViewController: viewController)
+        
+        viewController.selectedCamera = selectedLocation as? Camera
+        
+    }
+    
+    private func morphDetailShop() {
+        
+        let viewController = RebuildDetailShopViewController()
+        
+        self.add(asChildViewController: viewController)
+        
+        viewController.selectedShop = selectedLocation as? Store
         
     }
     
@@ -299,7 +334,7 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
 extension RebuildDetailViewController: PulleyDrawerViewControllerDelegate {
     
     func collapsedDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
-        return 154.0
+        return 130.0 + (bottomSafeArea - 49)
     }
     
     func partialRevealDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {

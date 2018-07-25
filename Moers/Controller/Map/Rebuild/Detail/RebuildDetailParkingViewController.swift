@@ -22,7 +22,6 @@ class RebuildDetailParkingViewController: UIViewController {
     lazy var middleSeparator: UIView = { ViewFactory.blankView() }()
     lazy var addressHeaderLabel: UILabel = { ViewFactory.label() }()
     lazy var addressLabel: UILabel = { ViewFactory.label() }()
-    lazy var bottomSeparator: UIView = { ViewFactory.blankView() }()
     
     var selectedParkingLot: ParkingLot? { didSet { setupParkingLot(selectedParkingLot) } }
     
@@ -52,7 +51,6 @@ class RebuildDetailParkingViewController: UIViewController {
         self.view.addSubview(middleSeparator)
         self.view.addSubview(addressHeaderLabel)
         self.view.addSubview(addressLabel)
-//        self.view.addSubview(bottomSeparator)
         
         self.slotsHeaderLabel.text = "Plätze"
         self.totalHeaderLabel.text = "Gesamt:"
@@ -62,7 +60,6 @@ class RebuildDetailParkingViewController: UIViewController {
         
         self.topSeparator.alpha = 0.5
         self.middleSeparator.alpha = 0.5
-        self.bottomSeparator.alpha = 0.5
         self.slotsHeaderLabel.font = UIFont.boldSystemFont(ofSize: 17)
         self.addressHeaderLabel.font = UIFont.boldSystemFont(ofSize: 17)
         
@@ -74,7 +71,6 @@ class RebuildDetailParkingViewController: UIViewController {
             
             themeable.topSeparator.backgroundColor = theme.decentColor
             themeable.middleSeparator.backgroundColor = theme.decentColor
-            themeable.bottomSeparator.backgroundColor = theme.decentColor
             themeable.slotsHeaderLabel.textColor = theme.color
             themeable.totalHeaderLabel.textColor = theme.color
             themeable.totalLabel.textColor = theme.color

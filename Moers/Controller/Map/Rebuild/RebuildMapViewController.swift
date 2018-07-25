@@ -37,63 +37,8 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.addSubview(map)
-        
-        let queue = OperationQueue()
-        
-        queue.addOperation {
-        
-            ShopManager.shared.get(completion: { (error, stores) in
-                
-                if let error = error {
-                    print(error)
-                }
-                
-                guard let stores = stores else { return }
-                
-                self.locations.append(contentsOf: stores)
-                
-                DispatchQueue.main.async {
-                    
-                    self.map.addAnnotations(stores)
-                    
-                }
-                
-            })
-            
-            API.shared.delegate = self
-            
-            API.shared.loadCameras()
-            API.shared.loadParkingLots()
-            API.shared.loadBikeChargingStations()
-            
-            self.populateData()
-            
-        }
-        
-        
-        
-        
-        
-//        let queue = OperationQueue()
-//
-//        queue.addOperation {
-//
-//
-//
-//            // TODO: !
-//
-//            API.shared.loadShop()
-//            API.shared.loadCameras()
-//            API.shared.loadParkingLots()
-//            API.shared.loadBikeChargingStations()
-//
-//            self.populateData()
-//
-//        }
-        
+        self.setupUI()
         self.setupConstraints()
-        self.setupMap()
         
     }
     
@@ -112,7 +57,6 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
             if view == nil { view = ClusterAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.cluster) }
             
             view?.annotation = cluster
-            
             view?.collisionMode = .circle
             
             return view
@@ -124,7 +68,6 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
             if view == nil { view = ShopAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.shop) }
             
             view?.annotation = store
-            
             view?.collisionMode = .circle
             view?.clusteringIdentifier = AnnotationIdentifier.cluster
             view?.displayPriority = .defaultHigh
@@ -138,7 +81,6 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
             if view == nil { view = ParkingLotAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.parkingLot) }
             
             view?.annotation = parkingLot
-            
             view?.collisionMode = .circle
             view?.clusteringIdentifier = AnnotationIdentifier.cluster
             view?.displayPriority = .defaultHigh
@@ -152,7 +94,6 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
             if view == nil { view = CameraAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.camera) }
             
             view?.annotation = camera
-            
             view?.collisionMode = .circle
             view?.clusteringIdentifier = AnnotationIdentifier.cluster
             view?.displayPriority = .defaultHigh
@@ -166,7 +107,6 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
             if view == nil { view = BikeChargingStationAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.bikeChargingStation) }
             
             view?.annotation = bikeCharger
-            
             view?.collisionMode = .circle
             view?.clusteringIdentifier = AnnotationIdentifier.cluster
             view?.displayPriority = .defaultHigh
@@ -174,22 +114,20 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
             return view
             
         } else {
-            
             return nil
-            
         }
         
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
-        /*if !(view.annotation is MKClusterAnnotation) && !(view.annotation is MKUserLocation) {
+        if !(view.annotation is MKClusterAnnotation) && !(view.annotation is MKUserLocation) {
             
             Answers.logCustomEvent(withName: "Map Selection", customAttributes: ["name": (view.annotation as! Location).name])
             
-            if let drawer = self.parent as? PulleyViewController {
+            if let drawer = self.parent as? MainViewController {
                 
-                let drawerDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+                guard let drawerDetail = drawer.detailViewController else { return }
                 
                 drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
                 drawer.setDrawerPosition(position: .partiallyRevealed, animated: true)
@@ -222,14 +160,15 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
             
             mapView.setCenter(coordinate, animated: true)
             
-        }*/
+        }
         
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         
-        if let drawer = self.parent as? PulleyViewController {
-            let drawerDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ContentViewController") as! ContentViewController
+        if let drawer = self.parent as? MainViewController {
+            
+            guard let drawerDetail = drawer.contentViewController else { return }
             
             drawer.setDrawerContentViewController(controller: drawerDetail, animated: true)
             drawer.setDrawerPosition(position: .collapsed, animated: true)
@@ -240,11 +179,13 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
     
     // MARK: - Private Methods
     
-    private func setupMap() {
+    private func setupUI() {
         
-        let moersRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.451667, longitude: 6.626389), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
+        self.view.addSubview(map)
         
-        map.setRegion(moersRegion, animated: true)
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.451667, longitude: 6.626389), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
+        
+        map.setRegion(region, animated: true)
         map.showsUserLocation = true
         map.showsBuildings = false
         map.showsPointsOfInterest = false
@@ -274,53 +215,88 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
         
     }
     
-    // MARK: - PulleyPrimaryContentControllerDelegate
+}
+
+extension RebuildMapViewController: ShopDatasource {
     
-    func makeUIAdjustmentsForFullscreen(progress: CGFloat) {
+    func didReceiveShops(_ shops: [Store]) {
         
-    }
-    
-    func drawerChangedDistanceFromBottom(drawer: PulleyViewController, distance: CGFloat) {
+        self.locations.append(contentsOf: shops as [Store])
+        
+        DispatchQueue.main.async {
+            self.map.addAnnotations(shops)
+        }
         
     }
     
 }
 
+extension RebuildMapViewController: ParkingLotDatasource {
+    
+    func didReceiveParkingLots(_ parkingLots: [ParkingLot]) {
+        
+        self.locations.append(contentsOf: parkingLots as [ParkingLot])
+        
+        DispatchQueue.main.async {
+            self.map.addAnnotations(parkingLots)
+        }
+        
+    }
+    
+}
+
+extension RebuildMapViewController: CameraDatasource {
+    
+    func didReceiveCameras(_ cameras: [Camera]) {
+        
+        self.locations.append(contentsOf: cameras as [Camera])
+        
+        DispatchQueue.main.async {
+            self.map.addAnnotations(cameras)
+        }
+        
+    }
+    
+}
+
+
+
+
 extension RebuildMapViewController: APIDelegate {
     
     func didReceiveShops(shops: [Shop]) {
         
-        self.locations.append(contentsOf: shops as [Location])
-        
-        DispatchQueue.main.async {
-            
-            self.map.addAnnotations(shops)
-            
-        }
+//        self.locations.append(contentsOf: shops as [Location])
+//
+//        DispatchQueue.main.async {
+//
+//            self.map.addAnnotations(shops)
+//
+//        }
         
     }
     
     func didReceiveParkingLots(parkingLots: [ParkingLot]) {
         
-        self.locations.append(contentsOf: parkingLots as [Location] )
-        
-        DispatchQueue.main.async {
-            
-            self.map.addAnnotations(parkingLots)
-            
-        }
+//        self.locations.append(contentsOf: parkingLots as [Location] )
+//
+//        DispatchQueue.main.async {
+//
+//            self.map.addAnnotations(parkingLots)
+//
+//        }
         
     }
     
     func didReceiveCameras(cameras: [Camera]) {
         
-        self.locations.append(contentsOf: cameras as [Location])
-        
-        DispatchQueue.main.async {
-            
-            self.map.addAnnotations(cameras)
-            
-        }
+//        self.locations.append(contentsOf: cameras as [Location])
+//
+//        DispatchQueue.main.async {
+//
+//            self.map.addAnnotations(cameras)
+//
+//        }
         
     }
     

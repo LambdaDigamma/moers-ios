@@ -156,8 +156,8 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         headerHeightConstraint?.isActive = true
         
         let constraints = [headerView.topAnchor.constraint(equalTo: self.view.topAnchor),
-                           headerView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-                           headerView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+                           headerView.leftAnchor.constraint(equalTo: self.safeLeftAnchor),
+                           headerView.rightAnchor.constraint(equalTo: self.safeRightAnchor),
                            gripperView.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 5),
                            gripperView.widthAnchor.constraint(equalToConstant: 36),
                            gripperView.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
@@ -191,6 +191,7 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
             themeable.tableView.separatorColor = theme.separatorColor
             themeable.normalColor = theme.backgroundColor
             themeable.highlightedColor = theme.backgroundColor.darker(by: 10)!
+            themeable.searchBar.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
             
         }
         
@@ -198,7 +199,7 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
     
     private func populateData() {
         
-        self.locations = []
+        /*self.locations = []
         
         self.locations.append(contentsOf: API.shared.cachedShops as [Location])
         self.locations.append(contentsOf: API.shared.cachedParkingLots as [Location])
@@ -214,6 +215,20 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
             self.tableView.reloadData()
             
         }
+        
+        ShopManager.shared.get(completion: { (error, stores) in
+            
+            guard let stores = stores else { return }
+            
+            self.locations.append(contentsOf: stores as [Location])
+            
+            DispatchQueue.main.async {
+                
+                self.tableView.reloadData()
+                
+            }
+            
+        })*/
         
     }
     
@@ -266,7 +281,7 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
             cell.searchImageView.image = nil
             cell.searchImageView.layer.borderWidth = 0
             
-            if let shop = datasource[indexPath.row - 1] as? Shop {
+            if let shop = datasource[indexPath.row - 1] as? Store {
                 
                 cell.titleLabel.text = shop.title
                 cell.subtitleLabel.text = shop.subtitle
@@ -365,26 +380,14 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         
         if indexPath.row != 0 {
             
-            // TODO: Rebuild DetailViewController
-            
-            if let drawer = self.parent as? PulleyViewController {
-                
-                let drawerDetail = RebuildDetailViewController()
-                
-                drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
-                drawer.setDrawerPosition(position: .collapsed, animated: true)
-                
-                drawerDetail.selectedLocation = datasource[indexPath.row - 1]
+            if let drawer = self.parent as? MainViewController {
                 
                 if let mapController = drawer.primaryContentViewController as? RebuildMapViewController {
-                    
-                    let coordinate = self.datasource[indexPath.row - 1].location.coordinate
                     
                     let annotation = self.datasource[indexPath.row - 1] as! MKAnnotation
                     
                     mapController.map.selectAnnotation(annotation, animated: true)
-                    mapController.map.setCenter(coordinate, animated: true)
-                    mapController.map.camera.altitude = 0.5
+                    mapController.map.camera.altitude = 1000
                     
                 }
                 
@@ -416,7 +419,7 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
-        if let drawerVC = self.parent as? PulleyViewController {
+        if let drawerVC = self.parent as? MainViewController {
             drawerVC.setDrawerPosition(position: .open, animated: true)
         }
         
@@ -566,17 +569,13 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
     
 }
 
-extension RebuildContentViewController: APIDelegate {
+extension RebuildContentViewController: ShopDatasource {
     
-    func didReceiveShops(shops: [Shop]) {
+    func didReceiveShops(_ shops: [Store]) {
         
         self.locations.append(contentsOf: shops as [Location])
         
         DispatchQueue.main.async {
-            
-            self.branches = API.shared.loadBranches()
-            
-            self.branches.sort(by: { $0.name < $1.name })
             
             self.tableView.reloadData()
             
@@ -584,7 +583,11 @@ extension RebuildContentViewController: APIDelegate {
         
     }
     
-    func didReceiveParkingLots(parkingLots: [ParkingLot]) {
+}
+
+extension RebuildContentViewController: ParkingLotDatasource {
+    
+    func didReceiveParkingLots(_ parkingLots: [ParkingLot]) {
         
         self.locations.append(contentsOf: parkingLots as [Location])
         
@@ -596,7 +599,11 @@ extension RebuildContentViewController: APIDelegate {
         
     }
     
-    func didReceiveCameras(cameras: [Camera]) {
+}
+
+extension RebuildContentViewController: CameraDatasource {
+    
+    func didReceiveCameras(_ cameras: [Camera]) {
         
         self.locations.append(contentsOf: cameras as [Location])
         
@@ -605,6 +612,50 @@ extension RebuildContentViewController: APIDelegate {
             self.tableView.reloadData()
             
         }
+        
+    }
+    
+}
+
+extension RebuildContentViewController: APIDelegate {
+    
+    func didReceiveShops(shops: [Shop]) {
+        
+        /*self.locations.append(contentsOf: shops as [Location])
+        
+        DispatchQueue.main.async {
+            
+            self.branches = API.shared.loadBranches()
+            
+            self.branches.sort(by: { $0.name < $1.name })
+            
+            self.tableView.reloadData()
+            
+        }*/
+        
+    }
+    
+    func didReceiveParkingLots(parkingLots: [ParkingLot]) {
+        
+        /*self.locations.append(contentsOf: parkingLots as [Location])
+        
+        DispatchQueue.main.async {
+            
+            self.tableView.reloadData()
+            
+        }*/
+        
+    }
+    
+    func didReceiveCameras(cameras: [Camera]) {
+        
+        /*self.locations.append(contentsOf: cameras as [Location])
+        
+        DispatchQueue.main.async {
+            
+            self.tableView.reloadData()
+            
+        }*/
         
     }
     
