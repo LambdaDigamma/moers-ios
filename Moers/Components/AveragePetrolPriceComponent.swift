@@ -88,7 +88,7 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
                 
                 PetrolManager.shared.delegate = self
-                PetrolManager.shared.sendRequest(coordiante: location.coordinate, radius: 10.0, sorting: .distance, type: .diesel)
+                PetrolManager.shared.sendRequest(coordiante: location.coordinate, radius: 5, sorting: .distance, type: .diesel)
                 
             }
             
@@ -110,7 +110,7 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
             
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
-            let openStations = stations.filter { $0.isOpen }
+            let openStations = stations.filter { $0.isOpen && $0.price != nil }
             
             self.averagePetrolCardView.stopLoading()
             self.averagePetrolCardView.numberOfStations = openStations.count
