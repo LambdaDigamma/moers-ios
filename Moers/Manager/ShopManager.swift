@@ -62,11 +62,11 @@ struct ShopManager {
     private func buildRequest(with url: String) throws -> URLRequest {
         
         guard let url = URL(string: url) else { throw APIError.unavailableURL }
-        guard let token = token else { throw APIError.noToken }
+//        guard let token = token else { throw APIError.noToken }
         
         var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+//        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
         return request
         
