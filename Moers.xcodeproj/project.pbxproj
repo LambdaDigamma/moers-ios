@@ -41,6 +41,7 @@
 		DF2D6DA920B899DD00176614 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DA820B899DD00176614 /* User.swift */; };
 		DF2D6DAB20B8A02B00176614 /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DAA20B8A02B00176614 /* OnboardingManager.swift */; };
 		DF2D6DAD20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DAC20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift */; };
+		DF32F6732104D11400BCF80F /* ParkingLotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32F6722104D11400BCF80F /* ParkingLotManager.swift */; };
 		DF3555AC20DE4D5300B88DA3 /* PodestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3555AB20DE4D5300B88DA3 /* PodestView.swift */; };
 		DF3555AE20DE594F00B88DA3 /* LeaderboardRankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3555AD20DE594F00B88DA3 /* LeaderboardRankingView.swift */; };
 		DF3555B020DE599900B88DA3 /* UserRanking.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3555AF20DE599900B88DA3 /* UserRanking.swift */; };
@@ -56,6 +57,7 @@
 		DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */; };
 		DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C3208C64F1003ECF41 /* PickerView.swift */; };
 		DF4BD1C6208CF76C003ECF41 /* RubbishReminderBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C5208CF76C003ECF41 /* RubbishReminderBulletinItem.swift */; };
+		DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D89562104A6F0008609A1 /* Datasources.swift */; };
 		DF5135B91F71A4C4002A8977 /* DetailParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5135B81F71A4C4002A8977 /* DetailParkingViewController.swift */; };
 		DF5135BB1F71A7B3002A8977 /* DetailShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5135BA1F71A7B3002A8977 /* DetailShopViewController.swift */; };
 		DF524CA8208741FF00D88599 /* RebuildFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524CA7208741FF00D88599 /* RebuildFilterTableViewCell.swift */; };
@@ -268,6 +270,7 @@
 		DF2D6DA820B899DD00176614 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DF2D6DAA20B8A02B00176614 /* OnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
 		DF2D6DAC20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeSelectorBulletinPage.swift; sourceTree = "<group>"; };
+		DF32F6722104D11400BCF80F /* ParkingLotManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLotManager.swift; sourceTree = "<group>"; };
 		DF3555AB20DE4D5300B88DA3 /* PodestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodestView.swift; sourceTree = "<group>"; };
 		DF3555AD20DE594F00B88DA3 /* LeaderboardRankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardRankingView.swift; sourceTree = "<group>"; };
 		DF3555AF20DE599900B88DA3 /* UserRanking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRanking.swift; sourceTree = "<group>"; };
@@ -488,6 +491,7 @@
 				DFCB431A20DFF23900E7AD3F /* RankingManager.swift */,
 				DFCB431E20E02D0300E7AD3F /* TwitterManager.swift */,
 				DFF9B2D820FE177E007FE158 /* ShopManager.swift */,
+				DF32F6722104D11400BCF80F /* ParkingLotManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1113,6 +1117,7 @@
 				DFA17DF620DFDA6200BBD838 /* AccountViewController.swift in Sources */,
 				DF0CB4AB208357A800CC0AA8 /* MapItemContentView.swift in Sources */,
 				DFAEF40620E6E671001B0756 /* String+Extensions.swift in Sources */,
+				DF32F6732104D11400BCF80F /* ParkingLotManager.swift in Sources */,
 				DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */,
 				DFA9EEFD20B3602E008590EA /* PetrolSorting.swift in Sources */,
 				DFA17DF420DEF9DE00BBD838 /* UIButton+Extensions.swift in Sources */,
