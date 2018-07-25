@@ -178,7 +178,7 @@ class RubbishManager {
                     
                     notificationContent.badge = 1
                     notificationContent.title = "Abfuhrkalender"
-                    notificationContent.subtitle = "Morgen wird abgeholt: \(item.type.rawValue)"
+                    notificationContent.body = "Morgen wird abgeholt: \(item.type.rawValue)"
                     
                     let date = item.parsedDate
                         
