@@ -61,7 +61,7 @@ class API: NSObject, XMLParserDelegate {
         
         let params = ["grant_type": "password",
                       "client_id": "2",
-                      "client_secret": "wSb5nhPK8664NJcXapWWv7q5upQfwfJ7IvCqJAa7",
+                      "client_secret": "2l564wXWihfjFzJoqES6P1gRtQtDnL5yr8XxBRV6",
                       "username": email,
                       "password": password,
                       "scope": "*"]

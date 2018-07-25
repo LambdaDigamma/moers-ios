@@ -10,9 +10,9 @@ import WatchKit
 import Foundation
 
 
-class PetrolPriceInterfaceController: WKInterfaceController, LocationManagerDelegate, PetrolManagerDelegate {
+class PetrolPriceInterfaceController: WKInterfaceController/*, LocationManagerDelegate*/, PetrolManagerDelegate {
     
-    let locationManager = LocationManager()
+//    let locationManager = LocationManager()
     
     @IBOutlet var placeLabel: WKInterfaceLabel!
     @IBOutlet var priceLabel: WKInterfaceLabel!
@@ -34,13 +34,13 @@ class PetrolPriceInterfaceController: WKInterfaceController, LocationManagerDele
     override func willActivate() {
         super.willActivate()
         
-        self.locationManager.delegate = self
-        self.locationManager.requestWhenInUseAuthorization {
-            self.locationManager.requestCurrentLocation()
-        }
-        self.locationManager.requestCurrentLocation()
-        
-        print(locationManager.authorizationStatus == .authorizedWhenInUse)
+//        self.locationManager.delegate = self
+//        self.locationManager.requestWhenInUseAuthorization {
+//            self.locationManager.requestCurrentLocation()
+//        }
+//        self.locationManager.requestCurrentLocation()
+//
+//        print(locationManager.authorizationStatus == .authorizedWhenInUse)
         
     }
 

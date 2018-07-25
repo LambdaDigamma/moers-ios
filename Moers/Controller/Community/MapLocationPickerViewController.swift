@@ -39,7 +39,6 @@ class MapLocationPickerViewController: UIViewController {
         
         self.setupConstraints()
         self.setupUI()
-        self.setupTheming()
         
     }
     
