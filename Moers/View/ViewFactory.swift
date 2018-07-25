@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import TextFieldEffects
+import WebKit
 
 struct ViewFactory {
     
@@ -101,6 +102,26 @@ struct ViewFactory {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         return stackView
+        
+    }
+    
+    static func webView() -> WKWebView {
+
+        let webView = WKWebView()
+        
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return webView
+
+    }
+    
+    static func cardView() -> CardView {
+        
+        let cardView = CardView()
+        
+        cardView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return cardView
         
     }
     
