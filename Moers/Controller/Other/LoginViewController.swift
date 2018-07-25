@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.regular)
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt"
+        label.text = "Werde Teil der Community und bekomme Zugriff auf erweiterte Funktionen!"
         
         return label
         
