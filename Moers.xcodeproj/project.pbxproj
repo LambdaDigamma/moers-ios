@@ -57,6 +57,8 @@
 		DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */; };
 		DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C3208C64F1003ECF41 /* PickerView.swift */; };
 		DF4BD1C6208CF76C003ECF41 /* RubbishReminderBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C5208CF76C003ECF41 /* RubbishReminderBulletinItem.swift */; };
+		DF4D8953210388D5008609A1 /* RebuildCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D8952210388D5008609A1 /* RebuildCameraViewController.swift */; };
+		DF4D8955210476AB008609A1 /* RebuildDetailShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D8954210476AB008609A1 /* RebuildDetailShopViewController.swift */; };
 		DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D89562104A6F0008609A1 /* Datasources.swift */; };
 		DF4D89592104C298008609A1 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D89582104C298008609A1 /* CameraManager.swift */; };
 		DF5135B91F71A4C4002A8977 /* DetailParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5135B81F71A4C4002A8977 /* DetailParkingViewController.swift */; };
@@ -131,6 +133,7 @@
 		DFB64DCE20389FDC00173A80 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DCC20389FDB00173A80 /* Crashlytics.framework */; };
 		DFB64DCF20389FDC00173A80 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DCD20389FDB00173A80 /* Fabric.framework */; };
 		DFB64DD12038F94600173A80 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB64DD02038F94600173A80 /* InfoViewController.swift */; };
+		DFB6A0BF21033C7800D5C12B /* RebuildDetailCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6A0BE21033C7800D5C12B /* RebuildDetailCameraViewController.swift */; };
 		DFB92D5E1F6B0B0900669F73 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D5D1F6B0B0900669F73 /* API.swift */; };
 		DFB92D601F6B0B3F00669F73 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D5F1F6B0B3F00669F73 /* Shop.swift */; };
 		DFB92D621F6B0B7A00669F73 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D611F6B0B7A00669F73 /* Location.swift */; };
@@ -287,6 +290,8 @@
 		DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishStreetPickerItem.swift; sourceTree = "<group>"; };
 		DF4BD1C3208C64F1003ECF41 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		DF4BD1C5208CF76C003ECF41 /* RubbishReminderBulletinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishReminderBulletinItem.swift; sourceTree = "<group>"; };
+		DF4D8952210388D5008609A1 /* RebuildCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildCameraViewController.swift; sourceTree = "<group>"; };
+		DF4D8954210476AB008609A1 /* RebuildDetailShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildDetailShopViewController.swift; sourceTree = "<group>"; };
 		DF4D89562104A6F0008609A1 /* Datasources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datasources.swift; sourceTree = "<group>"; };
 		DF4D89582104C298008609A1 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		DF5135B81F71A4C4002A8977 /* DetailParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailParkingViewController.swift; sourceTree = "<group>"; };
@@ -357,6 +362,7 @@
 		DFB64DCC20389FDB00173A80 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		DFB64DCD20389FDB00173A80 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
 		DFB64DD02038F94600173A80 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		DFB6A0BE21033C7800D5C12B /* RebuildDetailCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildDetailCameraViewController.swift; sourceTree = "<group>"; };
 		DFB92D5D1F6B0B0900669F73 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		DFB92D5F1F6B0B3F00669F73 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		DFB92D611F6B0B7A00669F73 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -754,6 +760,8 @@
 			isa = PBXGroup;
 			children = (
 				DF6279782100CDE400F81A70 /* RebuildDetailParkingViewController.swift */,
+				DFB6A0BE21033C7800D5C12B /* RebuildDetailCameraViewController.swift */,
+				DF4D8954210476AB008609A1 /* RebuildDetailShopViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -815,6 +823,7 @@
 				DFD7ACB120A44C5A00D49BE2 /* RebuildSelectionViewController.swift */,
 				DFD728AB20A880C6005FA9F1 /* RebuildDetailViewController.swift */,
 				DF6279772100CDC300F81A70 /* Detail */,
+				DF4D8952210388D5008609A1 /* RebuildCameraViewController.swift */,
 			);
 			path = Rebuild;
 			sourceTree = "<group>";
@@ -1128,6 +1137,7 @@
 				DF626AF51FB745E300BFDA67 /* BikeChargingStation.swift in Sources */,
 				DFB92D621F6B0B7A00669F73 /* Location.swift in Sources */,
 				DFC1CC641F75960A00C1D269 /* SelectionViewController.swift in Sources */,
+				DF4D8955210476AB008609A1 /* RebuildDetailShopViewController.swift in Sources */,
 				DFD129761FAF12D2001900CF /* BranchCollectionViewCell.swift in Sources */,
 				DF2D6DA520B88E1700176614 /* LicencesViewController.swift in Sources */,
 				DF95197F20C8B6F3001D13DC /* PetrolStationViewController.swift in Sources */,
@@ -1196,6 +1206,7 @@
 				DF2D6DA920B899DD00176614 /* User.swift in Sources */,
 				DF0CB4AF2085B65200CC0AA8 /* RebuildMapViewController.swift in Sources */,
 				DFB4D76B20B064CA00C8D179 /* StaticTableView.swift in Sources */,
+				DFB6A0BF21033C7800D5C12B /* RebuildDetailCameraViewController.swift in Sources */,
 				DF0CB4932082AB5600CC0AA8 /* Theme.swift in Sources */,
 				DF29FB4F20B19BE600741A63 /* ThemeCardView.swift in Sources */,
 				DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */,
@@ -1208,6 +1219,7 @@
 				DF4D89592104C298008609A1 /* CameraManager.swift in Sources */,
 				DF8963D420CB0886008A0EDD /* WaterfallLayout.swift in Sources */,
 				DF2D6DA720B8983400176614 /* UserManager.swift in Sources */,
+				DF4D8953210388D5008609A1 /* RebuildCameraViewController.swift in Sources */,
 				DF632B401F6E721B0022FA8E /* ParkingLot.swift in Sources */,
 				DFD7ACC120A842F400D49BE2 /* DateCardView.swift in Sources */,
 				DFC1CC671F76664700C1D269 /* ShopIconDrawer.swift in Sources */,

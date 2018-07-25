@@ -8,36 +8,74 @@
 
 import UIKit
 import Gestalt
+import CoreLocation
 
-class PetrolStationViewController: CardCollectionViewController, PetrolManagerDelegate {
+class PetrolStationViewController: CardCollectionViewController {
 
     private let identifier = "petrolStation"
     
     private var stations: [PetrolStation] = []
+    private var averagePrice: Double = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.setupUI()
+        self.setupConstraints()
+        self.setupTheming()
+        self.loadData()
+        
+    }
+    
+    // MARK: - Private Methods
+    
+    private func loadData() {
+        
+        self.stations = PetrolManager.shared.cachedStations ?? []
+        
+        self.stations = stations.sorted { p1, p2 in
+            if p1.isOpen == p2.isOpen {
+                return (p1.price ?? 10) < (p2.price ?? 10)
+            }
+            return p1.isOpen && !p2.isOpen
+        }
+        
+        let openStations = stations.filter { $0.isOpen && $0.price != nil }
+        
+        let sum = openStations.reduce(0) { (result, item) in
+            
+            return result + (item.price ?? 0)
+            
+        }
+        
+        self.averagePrice = sum / Double(openStations.count)
+        
+    }
+    
+    private func reloadData() {
+        
+        OperationQueue.main.addOperation {
+            
+            LocationManager.shared.getCurrentLocation { (location, error) in
+                
+                guard let coordinate = location?.coordinate else { return }
+                
+                PetrolManager.shared.delegate = self
+                PetrolManager.shared.sendRequest(coordiante: coordinate, radius: 5, sorting: .distance, type: PetrolManager.shared.petrolType)
+                
+            }
+            
+        }
+        
+    }
+    
+    private func setupUI() {
+        
         self.title = "Tankstellen"
         
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-        
-        self.setupConstraints()
-        self.setupTheming()
-        
-        guard let coordinate = LocationManager.shared.lastLocation?.coordinate else { return }
-        
-        PetrolManager.shared.delegate = self
-        PetrolManager.shared.sendRequest(coordiante: coordinate, radius: 10, sorting: .distance, type: .diesel)
-        
-    }
-    
-    func didReceivePetrolStations(stations: [PetrolStation]) {
-        
-        self.stations = stations
-        
-        collectionView.reloadData()
+        self.collectionView.register(PetrolStationCollectionViewCell.self, forCellWithReuseIdentifier: identifier)
         
     }
     
@@ -62,7 +100,8 @@ class PetrolStationViewController: CardCollectionViewController, PetrolManagerDe
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! PetrolStationCollectionViewCell
         
-        cell.backgroundColor = UIColor.white
+        cell.averagePrice = averagePrice
+        cell.petrolStation = stations[indexPath.item]
         
         return cell
         
@@ -70,8 +109,28 @@ class PetrolStationViewController: CardCollectionViewController, PetrolManagerDe
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 4
+        return self.stations.count
         
     }
 
+}
+
+extension PetrolStationViewController: PetrolManagerDelegate {
+    
+    func didReceivePetrolStations(stations: [PetrolStation]) {
+        
+        self.stations = stations.sorted(by: { (p1, p2) -> Bool in
+            p1.isOpen == p2.isOpen
+        }).reversed()
+        
+        print(stations)
+        
+        DispatchQueue.main.async {
+            
+            self.collectionView.reloadData()
+            
+        }
+        
+    }
+    
 }
