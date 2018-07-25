@@ -23,6 +23,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     public var lastLocation: CLLocation?
     private let locationManager = CLLocationManager()
     private var authorizationCompletion: (() -> Void)?
+    private var completion: ((CLLocation?, Error?) -> Void)?
     
     override init() {
         
@@ -36,6 +37,22 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     var authorizationStatus: CLAuthorizationStatus {
         return CLLocationManager.authorizationStatus()
+    }
+    
+    func getCurrentLocation(completion: @escaping ((CLLocation?, Error?) -> Void)) {
+        
+        self.locationManager.requestLocation()
+        
+        if let location = lastLocation {
+            completion(location, nil)
+        }
+        
+        if let location = self.locationManager.location {
+            completion(location, nil)
+        }
+        
+        self.completion = completion
+        
     }
     
     func requestCurrentLocation() {
@@ -55,6 +72,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         if let location = locations.first {
             self.lastLocation = location
             self.delegate?.didReceiveCurrentLocation(location: location)
+            self.completion?(location, nil)
         } else {
             print("No Locations received")
         }
