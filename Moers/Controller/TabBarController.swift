@@ -172,11 +172,31 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             
             if item.contentView is MapItemContentView {
                 
-                viewControllers?[2].tabBarItem = ESTabBarItem(MapItemContentView(), title: nil, image: #imageLiteral(resourceName: "search"), selectedImage: #imageLiteral(resourceName: "search"))
+                let tabBarItem = ESTabBarItem(MapItemContentView(), title: nil, image: #imageLiteral(resourceName: "search"), selectedImage: #imageLiteral(resourceName: "search"))
+                
+                tabBarItem.contentView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(search)))
+                
+                self.shouldHijackHandler = {
+                    tabbarController, viewController, index in
+                    
+                    return index == 2
+                    
+                }
+                
+                self.didHijackHandler = {
+                    tabbarController, viewController, index in
+                    
+                    self.search()
+                    
+                }
+                
+                viewControllers?[2].tabBarItem = tabBarItem
                 
             } else {
                 
                 viewControllers?[2].tabBarItem = ESTabBarItem(MapItemContentView(), title: nil, image: #imageLiteral(resourceName: "map_marker"), selectedImage: #imageLiteral(resourceName: "map_marker"))
+                
+                self.shouldHijackHandler = nil
                 
             }
             
@@ -246,6 +266,15 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         guard let dashboardVC = dashboardViewController.childViewControllers.first as? DashboardViewController else { return }
         
         dashboardVC.triggerUpdate()
+        
+    }
+    
+    @objc func search() {
+        
+        guard let mainViewController = mapViewController.childViewControllers.first as? MainViewController else { return }
+        
+        mainViewController.setDrawerPosition(position: .open, animated: true)
+        mainViewController.contentViewController.searchBar.becomeFirstResponder()
         
     }
     
