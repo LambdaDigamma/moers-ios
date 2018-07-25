@@ -16,10 +16,12 @@ class ThemeCardView: TitleCardView {
             
             guard let theme = theme else { return }
             
-            colorList.addArrangedSubview(buildColorView(color: theme.navigationBarColor))
-            colorList.addArrangedSubview(buildColorView(color: theme.backgroundColor))
-            colorList.addArrangedSubview(buildColorView(color: theme.accentColor))
-            colorList.addArrangedSubview(buildColorView(color: theme.decentColor))
+            titleLabel.text = theme.identifier
+
+            colorList.arrangedSubviews[0].backgroundColor = theme.navigationBarColor
+            colorList.arrangedSubviews[1].backgroundColor = theme.backgroundColor
+            colorList.arrangedSubviews[2].backgroundColor = theme.accentColor
+            colorList.arrangedSubviews[3].backgroundColor = theme.decentColor
             
         }
     }
@@ -43,6 +45,11 @@ class ThemeCardView: TitleCardView {
         
         self.addSubview(colorList)
         
+        colorList.addArrangedSubview(buildColorView(color: UIColor.white))
+        colorList.addArrangedSubview(buildColorView(color: UIColor.white))
+        colorList.addArrangedSubview(buildColorView(color: UIColor.white))
+        colorList.addArrangedSubview(buildColorView(color: UIColor.white))
+        
         self.setupConstraints()
         
     }
@@ -56,7 +63,6 @@ class ThemeCardView: TitleCardView {
         let constraints = [colorList.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
                            colorList.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
                            colorList.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-                           colorList.heightAnchor.constraint(equalToConstant: 30),
                            colorList.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)]
         
         NSLayoutConstraint.activate(constraints)
