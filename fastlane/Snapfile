@@ -2,15 +2,15 @@
 
 # A list of devices you want to take the screenshots from
 devices([
-  "iPhone 6",
-  "iPhone 6 Plus",
-  "iPhone 5s",
-  "iPhone X"
+  "iPhone 8 Plus",
+  "iPhone X",
+  "iPad Pro (12.9-inch)"
 ])
 
 # A list of supported languages
 languages([
-  "de-DE"
+  "de-DE",
+  "en-US"
 ])
 
 # The name of the scheme which contains the UI Tests
