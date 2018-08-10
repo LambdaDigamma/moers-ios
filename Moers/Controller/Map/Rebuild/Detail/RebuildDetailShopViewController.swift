@@ -53,8 +53,8 @@ class RebuildDetailShopViewController: UIViewController {
         self.view.addSubview(callButton)
         self.view.addSubview(websiteButton)
         
-        self.callButton.setTitle("Anrufen", for: .normal)
-        self.websiteButton.setTitle("Website", for: .normal)
+        self.callButton.setTitle(String.localized("CallAction"), for: .normal)
+        self.websiteButton.setTitle(String.localized("WebsiteAction"), for: .normal)
         self.callButton.layer.cornerRadius = 8
         self.websiteButton.layer.cornerRadius = 8
         self.callButton.clipsToBounds = true

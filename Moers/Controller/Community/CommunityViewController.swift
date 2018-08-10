@@ -46,10 +46,10 @@ class CommunityViewController: UIViewController, UICollectionViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Community"
+        self.title = String.localized("CommunityTitle")
         
         self.panels = [CommunityDashboardPanel(title: String.localized("LeaderboardTitle"), image: #imageLiteral(resourceName: "trophy").withRenderingMode(.alwaysTemplate), action: showLeaderboard),
-                       CommunityDashboardPanel(title: "Geschäft hinzufügen", image: #imageLiteral(resourceName: "shop").withRenderingMode(.alwaysTemplate), action: showAddShop)]
+                       CommunityDashboardPanel(title: String.localized("AddStoreTitle"), image: #imageLiteral(resourceName: "shop").withRenderingMode(.alwaysTemplate), action: showAddShop)]
         
         self.view.addSubview(collectionView)
         

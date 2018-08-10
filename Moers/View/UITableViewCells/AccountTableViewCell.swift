@@ -75,8 +75,8 @@ class AccountTableViewCell: UITableViewCell {
             nameLabel.text = name
             descriptionLabel.text = user.description ?? ""
         } else {
-            nameLabel.text = "Login or Sign up"
-            descriptionLabel.text = "Access more advanced features"
+            nameLabel.text = String.localized("LoginCellTitle")
+            descriptionLabel.text = String.localized("LoginCellDescription")
         }
         
     }

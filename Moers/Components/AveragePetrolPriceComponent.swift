@@ -47,7 +47,7 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
             self.averagePetrolCardView.dismissError()
             self.averagePetrolCardView.startLoading()
         } else {
-            self.averagePetrolCardView.showError(withTitle: "Berechtigung fehlt", message: "Die App darf nicht auf deinen aktuellen Standort zugreifen, um aktuelle Spritpreise zu berechnen.")
+            self.averagePetrolCardView.showError(withTitle: String.localized("PetrolErrorPermissionTitle"), message: String.localized("PetrolErrorPermissionMessage"))
         }
         
     }
@@ -81,7 +81,7 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
             
             if countryCode != "DE" {
                 
-                self.averagePetrolCardView.showError(withTitle: "Spritinformationen", message: "Nur in Deutschland verfügbar")
+                self.averagePetrolCardView.showError(withTitle: String.localized("PetrolErrorLocationTitle"), message: String.localized("PetrolErrorLocationMessage"))
                 
             } else {
                 

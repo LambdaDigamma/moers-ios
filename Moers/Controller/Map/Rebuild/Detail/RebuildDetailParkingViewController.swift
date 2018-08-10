@@ -52,11 +52,11 @@ class RebuildDetailParkingViewController: UIViewController {
         self.view.addSubview(addressHeaderLabel)
         self.view.addSubview(addressLabel)
         
-        self.slotsHeaderLabel.text = "Plätze"
-        self.totalHeaderLabel.text = "Gesamt:"
-        self.freeHeaderLabel.text = "Frei:"
-        self.statusHeaderLabel.text = "Trend:"
-        self.addressHeaderLabel.text = "Adresse"
+        self.slotsHeaderLabel.text = String.localized("SlotsHeader")
+        self.totalHeaderLabel.text = String.localized("TotalHeader")
+        self.freeHeaderLabel.text = String.localized("FreeHeader")
+        self.statusHeaderLabel.text = String.localized("StatusHeader")
+        self.addressHeaderLabel.text = String.localized("AddressHeader")
         
         self.topSeparator.alpha = 0.5
         self.middleSeparator.alpha = 0.5
@@ -133,8 +133,19 @@ class RebuildDetailParkingViewController: UIViewController {
         
         totalLabel.text = "\(parkingLot.slots)"
         freeLabel.text = "\(parkingLot.free)"
-        statusLabel.text = "\(parkingLot.status.rawValue)"
+        statusLabel.text = localizedStatus(status: parkingLot.status)
         addressLabel.text = parkingLot.address
+        
+    }
+    
+    private func localizedStatus(status: Status) -> String {
+        
+        switch status {
+        case .ascends: return String.localized("ParkingLotAscends")
+        case .descends: return String.localized("ParkingLotDescends")
+        case .unchanged: return String.localized("ParkingLotUnchanged")
+        case .undocumented: return String.localized("ParkingLotUndocumented")
+        }
         
     }
     

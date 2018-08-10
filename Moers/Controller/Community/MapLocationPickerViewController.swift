@@ -57,7 +57,7 @@ class MapLocationPickerViewController: UIViewController {
         promptLabel.backgroundColor = UIColor.darkGray
         promptLabel.textColor = UIColor.white
         promptLabel.textAlignment = .center
-        promptLabel.text = "Bewege das Fadenkreuz auf das Geschäft auf der Karte!"
+        promptLabel.text = String.localized("PickerPromptText")
         promptLabel.numberOfLines = 0
         promptLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.semibold)
         promptLabel.layer.cornerRadius = 8

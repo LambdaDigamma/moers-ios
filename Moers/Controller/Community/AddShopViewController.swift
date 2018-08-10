@@ -43,7 +43,7 @@ class AddShopViewController: UIViewController, MapLocationPickerViewControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Hinzufügen"
+        self.title = String.localized("AddTitle")
         
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(contentView)
@@ -78,6 +78,8 @@ class AddShopViewController: UIViewController, MapLocationPickerViewControllerDe
     }
     
     private func setupUI() {
+        
+        // TODO: Add Localization
         
         self.generalHeaderLabel.text = "ALLGEMEINES"
         self.nameTextField.placeholder = "Name"

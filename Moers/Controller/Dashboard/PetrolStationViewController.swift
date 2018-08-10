@@ -71,7 +71,7 @@ class PetrolStationViewController: CardCollectionViewController {
     
     private func setupUI() {
         
-        self.title = "Tankstellen"
+        self.title = String.localized("PetrolStationsTitle")
         
         self.collectionView.dataSource = self
         self.collectionView.delegate = self

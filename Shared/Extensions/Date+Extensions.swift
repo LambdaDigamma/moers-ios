@@ -14,7 +14,7 @@ extension Date {
         
         let dateFormatter = DateFormatter()
         
-        dateFormatter.locale = Locale(identifier: "DE_de")
+        dateFormatter.locale = Locale.autoupdatingCurrent
         dateFormatter.dateFormat = format
         let date = dateFormatter.string(from: self)
         

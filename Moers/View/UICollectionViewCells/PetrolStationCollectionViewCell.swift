@@ -45,9 +45,18 @@ class PetrolStationCollectionViewCell: UICollectionViewCell {
             distance = String(format:"%.1fkm", dist)
         }
         
-        self.nameLabel.text = petrolStation.name.capitalized(with: Locale.autoupdatingCurrent).replacingOccurrences(of: "_", with: " ")
-        self.brandLabel.text = petrolStation.brand + (petrolStation.isOpen ? " • geöffnet" : " • geschlossen")
-        self.addressLabel.text = "\(petrolStation.street.capitalized(with: Locale.autoupdatingCurrent)) \(petrolStation.houseNumber ?? "")"
+        let name = petrolStation.name
+                                .capitalized(with: Locale.autoupdatingCurrent)
+                                .replacingOccurrences(of: "_", with: " ")
+        
+        let brand = petrolStation.brand + " • " +
+                    (petrolStation.isOpen ? String.localized("LocalityOpen") : String.localized("LocalityClosed"))
+        
+        let address = petrolStation.street.capitalized(with: Locale.autoupdatingCurrent) + " " + (petrolStation.houseNumber ?? "")
+        
+        self.nameLabel.text = name
+        self.brandLabel.text = brand
+        self.addressLabel.text = address
         self.routeButton.setTitle("Route (\(distance))", for: .normal)
         
         if let price = petrolStation.price {

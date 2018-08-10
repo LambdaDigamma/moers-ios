@@ -29,7 +29,7 @@ class DashboardAveragePetrolPriceCardView: CardView {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.medium)
-        label.text = "Aktueller Ort"
+        label.text = String.localized("CurrentLocation")
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.70
         
@@ -79,9 +79,11 @@ class DashboardAveragePetrolPriceCardView: CardView {
         
         let label = UILabel()
         
+        let type = String.localized("PetrolDescription") + " " + PetrolManager.shared.petrolType.rawValue
+        
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.medium)
-        label.text = "pro L Diesel".uppercased()
+        label.text = type.uppercased()
         
         return label
         
@@ -93,7 +95,7 @@ class DashboardAveragePetrolPriceCardView: CardView {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14)
-        label.text = "8 Tankstellen in Ihrer näheren Umgebung haben geöffnet"
+        label.text = "8 \(String.localized("DashboardPetrolStationInfo"))"
         label.numberOfLines = 0
         
         return label
@@ -108,7 +110,7 @@ class DashboardAveragePetrolPriceCardView: CardView {
     
     public var numberOfStations: Int = 0 {
         didSet {
-            infoLabel.text = "\(numberOfStations) Tankstellen in Ihrer näheren Umgebung haben geöffnet"
+            infoLabel.text = "\(numberOfStations) \(String.localized("DashboardPetrolStationInfo"))"
             setNeedsDisplay()
             setNeedsLayout()
         }

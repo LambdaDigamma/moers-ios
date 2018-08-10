@@ -19,7 +19,7 @@ class LoginViewController: UIViewController {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 32, weight: UIFont.Weight.bold)
-        label.text = "Login"
+        label.text = String.localized("LoginTitle")
         label.textAlignment = .center
         
         return label
@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
     
     lazy var typeSwitch: BetterSegmentedControl = {
         
-        let typeSwitch = BetterSegmentedControl(frame: .zero, titles: ["Login", "Sign Up"], index: 0, options: nil)
+        let typeSwitch = BetterSegmentedControl(frame: .zero, titles: [String.localized("LoginTitle"), String.localized("SignUpTitle")], index: 0, options: nil)
         
         typeSwitch.translatesAutoresizingMaskIntoConstraints = false
         typeSwitch.addTarget(self, action: #selector(switchedType(control:)), for: .valueChanged)
@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.regular)
         label.textAlignment = .center
-        label.numberOfLines = 0
+        label.numberOfLines = 0 // TODO: Add Localization
         label.text = "Werde Teil der Community und bekomme Zugriff auf erweiterte Funktionen!"
         
         return label
@@ -57,7 +57,7 @@ class LoginViewController: UIViewController {
         
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.delegate = self
-        textField.placeholder = "Email"
+        textField.placeholder = String.localized("MailText")
         textField.keyboardType = .emailAddress
         textField.autocapitalizationType = .none
         textField.autocorrectionType = .no
@@ -73,7 +73,7 @@ class LoginViewController: UIViewController {
         
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.delegate = self
-        textField.placeholder = "Password"
+        textField.placeholder = String.localized("PasswordText")
         textField.isSecureTextEntry = true
         textField.autocapitalizationType = .none
         textField.autocorrectionType = .no
@@ -88,7 +88,7 @@ class LoginViewController: UIViewController {
         let button = UIButton(type: UIButtonType.custom)
         
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("LOGIN", for: .normal)
+        button.setTitle(String.localized("LoginTitle").uppercased(), for: .normal)
         button.layer.cornerRadius = 50 / 2
         button.clipsToBounds = true
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.bold)
@@ -145,11 +145,11 @@ class LoginViewController: UIViewController {
     @objc private func switchedType(control: BetterSegmentedControl) {
         
         if control.index == 0 {
-            typeLabel.text = "Login"
-            actionButton.setTitle("LOGIN", for: .normal)
+            typeLabel.text = String.localized("LoginTitle")
+            actionButton.setTitle(String.localized("LoginTitle").uppercased(), for: .normal)
         } else {
-            typeLabel.text = "Sign Up"
-            actionButton.setTitle("SIGN UP", for: .normal)
+            typeLabel.text = String.localized("SignUpTitle")
+            actionButton.setTitle(String.localized("SignUpTitle").uppercased(), for: .normal)
         }
         
     }

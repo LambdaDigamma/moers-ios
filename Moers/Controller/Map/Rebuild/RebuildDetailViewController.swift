@@ -214,7 +214,7 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
         } else if let parkingLot = selectedLocation as? ParkingLot {
             
             nameLabel.text = parkingLot.name
-            subtitleLabel.text = "Parkplatz"
+            subtitleLabel.text = String.localized("ParkingLot")
             imageView.image = #imageLiteral(resourceName: "parkingLot")
             
             morphDetailParking()
@@ -222,7 +222,7 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
         } else if let camera = selectedLocation as? Camera {
             
             nameLabel.text = camera.title
-            subtitleLabel.text = "360° Kamera"
+            subtitleLabel.text = String.localized("Camera")
             imageView.image = #imageLiteral(resourceName: "camera")
             
             morphDetailCamera()

@@ -58,17 +58,17 @@ class SettingsViewController: UIViewController {
                 minuteString += "\(minute)"
             }
             
-            rubbishReminder = "Erinnerung: \(hourString):\(minuteString)"
+            rubbishReminder = String.localized("ReminderText") + ": \(hourString):\(minuteString)"
             
         } else {
-            rubbishReminder = "Erinnerung: nicht aktiviert"
+            rubbishReminder = String.localized("ReminderText") + ": " + String.localized("NotActivated")
         }
         
         return [Section(title: String.localized("UIAdjustments"),
                         rows: [NavigationRow(title: String.localized("ThemeTitle"), action: showThemes)]),
                 Section(title: String.localized("SettingsRubbishCollectionTitle"),
-                        rows: [SwitchRow(title: "Aktiviert", switchOn: RubbishManager.shared.isEnabled, action: triggerRubbishCollection),
-                               NavigationRow(title: "Straße: \(RubbishManager.shared.rubbishStreet?.street ?? "nicht ausgewählt")", action: showRubbishStreet),
+                        rows: [SwitchRow(title: String.localized("Activated"), switchOn: RubbishManager.shared.isEnabled, action: triggerRubbishCollection),
+                               NavigationRow(title: String.localized("Street") + ": \(RubbishManager.shared.rubbishStreet?.street ?? "nicht ausgewählt")", action: showRubbishStreet),
                                NavigationRow(title: rubbishReminder, action: showRubbishReminder)]
             )
         ]

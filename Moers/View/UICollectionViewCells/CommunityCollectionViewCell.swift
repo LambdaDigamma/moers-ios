@@ -32,7 +32,7 @@ class CommunityCollectionViewCell: UICollectionViewCell {
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.7
         label.textAlignment = .center
-        label.text = "Leaderboard"
+        label.text = String.localized("LeaderboardTitle")
         
         return label
         

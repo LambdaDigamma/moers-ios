@@ -115,7 +115,7 @@ class RubbishCollectionComponent: BaseComponent {
     private func showRubbishCollectionDeactivated() {
         
         self.rubbishCardView.stopLoading()
-        self.rubbishCardView.showError(withTitle: "Abfallkalender deaktiviert", message: "Du kannst den Abfallkalender in den Einstellungen aktivieren.")
+        self.rubbishCardView.showError(withTitle: String.localized("WasteErrorTitle"), message: String.localized("WasteErrorMessage"))
         
     }
     

@@ -27,7 +27,7 @@ class LeaderboardViewController: UIViewController {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.medium)
-        label.text = "DEINE PLATZIERUNG"
+        label.text = String.localized("UserRankingText").uppercased()
         
         return label
         
