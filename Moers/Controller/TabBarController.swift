@@ -265,6 +265,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         guard let dashboardVC = dashboardViewController.childViewControllers.first as? DashboardViewController else { return }
         
+        dashboardVC.reloadUI()
         dashboardVC.triggerUpdate()
         
     }

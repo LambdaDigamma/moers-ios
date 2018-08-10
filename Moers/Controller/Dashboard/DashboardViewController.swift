@@ -22,10 +22,7 @@ class DashboardViewController: CardCollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let rubbishComponent = RubbishCollectionComponent(viewController: self)
-        let petrolComponent = AveragePetrolPriceComponent(viewController: self)
-        
-        self.registerComponents(components: [petrolComponent, rubbishComponent])
+        self.registerComponents()
         
     }
     
@@ -44,6 +41,18 @@ class DashboardViewController: CardCollectionViewController {
     }
     
     // MARK: - Private Methods
+    
+    private func registerComponents() {
+  
+        if UserManager.shared.user.type == .citizen {
+            components.append(AveragePetrolPriceComponent(viewController: self))
+        }
+
+        components.append(RubbishCollectionComponent(viewController: self))
+        
+        registerCardViews(components.map { $0.view })
+        
+    }
     
     private func setupReachability() {
         
@@ -67,17 +76,17 @@ class DashboardViewController: CardCollectionViewController {
         
     }
     
-    private func registerComponents(components: [BaseComponent]) {
-        
-        self.components = components
-        
-        registerCardViews(components.map { $0.view })
-        
-    }
-    
     public func triggerUpdate() {
         
         components.forEach { $0.update() }
+        
+    }
+    
+    public func reloadUI() {
+        
+        components.removeAll()
+        
+        registerComponents()
         
     }
     
