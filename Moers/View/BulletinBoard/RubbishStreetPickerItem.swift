@@ -52,7 +52,7 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         
         picker.translatesAutoresizingMaskIntoConstraints = false
-        picker.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        picker.heightAnchor.constraint(equalToConstant: 120).isActive = true
         descriptionLabel?.minimumScaleFactor = 0.5
         descriptionLabel?.adjustsFontSizeToFitWidth = true
         

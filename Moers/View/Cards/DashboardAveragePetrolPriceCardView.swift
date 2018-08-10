@@ -43,7 +43,7 @@ class DashboardAveragePetrolPriceCardView: CardView {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 32)
-        label.text = "Bad Wünnenberg"
+        label.text = "Moers"
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.70
         
