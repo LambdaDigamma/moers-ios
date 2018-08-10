@@ -108,7 +108,11 @@ struct OnboardingManager {
         
         page.alternativeHandler = { item in
             
-            page.next = self.makeCompletionPage()
+            if UserManager.shared.user.type == .citizen {
+                page.next = self.makeRubbishStreetPage()
+            } else {
+                page.next = self.makeCompletionPage()
+            }
             
             item.manager?.displayNextItem()
             
@@ -136,6 +140,7 @@ struct OnboardingManager {
             let selectedStreet = item.streets[item.picker.currentSelectedRow]
             
             RubbishManager.shared.register(selectedStreet)
+            RubbishManager.shared.isEnabled = true
             
             page.next = self.makeRubbishReminderPage()
             
@@ -192,7 +197,7 @@ struct OnboardingManager {
     
     func makeCompletionPage() -> BLTNPageItem {
         
-        let page = BLTNPageItem(title: String.localized("CompletionPageTitle"))
+        let page = FeedbackPageBulletinItem(title: String.localized("CompletionPageTitle"))
         page.image = #imageLiteral(resourceName: "IntroCompletion")
         page.imageAccessibilityLabel = "Checkmark"
         page.appearance = makeAppearance()
@@ -211,7 +216,14 @@ struct OnboardingManager {
         }
         
         page.actionHandler = { item in
+            
+            let successFeedback = SuccessFeedbackGenerator()
+            
+            successFeedback.prepare()
+            successFeedback.success()
+            
             item.manager?.dismissBulletin(animated: true)
+            
         }
         
         return page
