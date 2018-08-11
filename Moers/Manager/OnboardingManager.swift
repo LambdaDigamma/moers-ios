@@ -38,13 +38,21 @@ struct OnboardingManager {
     
     func makeUserTypePage() -> BLTNPageItem {
         
-        
-        let page = UserTypeSelectorBulletinPage(title: String.localized("OnboardingUserTypeSelectorPageTitle"))
+        let page = SelectorBulletinPage<User.UserType>(title: String.localized("OnboardingUserTypeSelectorPageTitle"))
         
         page.appearance = makeAppearance()
         page.descriptionText = String.localized("OnboardingUserTypeSelectorPageDescription")
         page.actionButtonTitle = String.localized("OnboardingUserTypeSelectorPageActionButtonTitle")
         page.isDismissable = false
+        page.onSelect = { type in
+            
+            let user = User(type: type, id: nil, name: nil, description: nil)
+            
+            UserManager.shared.register(user)
+            
+        }
+        
+        page.actionHandler = { $0.manager?.displayNextItem() }
         
         page.next = makeNotitificationsPage()
         

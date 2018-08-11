@@ -41,7 +41,6 @@
 		DF2D6DA720B8983400176614 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DA620B8983400176614 /* UserManager.swift */; };
 		DF2D6DA920B899DD00176614 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DA820B899DD00176614 /* User.swift */; };
 		DF2D6DAB20B8A02B00176614 /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DAA20B8A02B00176614 /* OnboardingManager.swift */; };
-		DF2D6DAD20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DAC20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift */; };
 		DF32F6732104D11400BCF80F /* ParkingLotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32F6722104D11400BCF80F /* ParkingLotManager.swift */; };
 		DF3555AC20DE4D5300B88DA3 /* PodestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3555AB20DE4D5300B88DA3 /* PodestView.swift */; };
 		DF3555AE20DE594F00B88DA3 /* LeaderboardRankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3555AD20DE594F00B88DA3 /* LeaderboardRankingView.swift */; };
@@ -281,7 +280,6 @@
 		DF2D6DA620B8983400176614 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		DF2D6DA820B899DD00176614 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DF2D6DAA20B8A02B00176614 /* OnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
-		DF2D6DAC20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeSelectorBulletinPage.swift; sourceTree = "<group>"; };
 		DF32F6722104D11400BCF80F /* ParkingLotManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLotManager.swift; sourceTree = "<group>"; };
 		DF3555AB20DE4D5300B88DA3 /* PodestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodestView.swift; sourceTree = "<group>"; };
 		DF3555AD20DE594F00B88DA3 /* LeaderboardRankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardRankingView.swift; sourceTree = "<group>"; };
@@ -524,7 +522,6 @@
 				DF0CB4A02082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift */,
 				DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */,
 				DF4BD1C5208CF76C003ECF41 /* RubbishReminderBulletinItem.swift */,
-				DF2D6DAC20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift */,
 				DFD7368F211E424E00826C47 /* SelectorBulletinPage.swift */,
 			);
 			path = BulletinBoard;
@@ -1137,7 +1134,6 @@
 				DF632B441F6E90140022FA8E /* DetailViewController.swift in Sources */,
 				DF3555B020DE599900B88DA3 /* UserRanking.swift in Sources */,
 				DFB6185B1FAE2CC800C98EB6 /* NavigationViewController.swift in Sources */,
-				DF2D6DAD20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift in Sources */,
 				DF3555AC20DE4D5300B88DA3 /* PodestView.swift in Sources */,
 				DFA96A6320BD8A390009B279 /* AveragePetrolPriceComponent.swift in Sources */,
 				DF3EE0C320E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift in Sources */,
