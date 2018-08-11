@@ -90,3 +90,9 @@
 "NotActivated" = "not activated";
 "Activated" = "Activated";
 "Street" = "Street";
+"Diesel" = "Diesel";
+"E5" = "E5";
+"E10" = "E10";
+"OnboardingPetrolTypePageTitle" = "Petrol Type";
+"OnboardingPetrolTypePageDescription" = "Mein Moers can show you the current petrol prices. Select your preferred petrol type.";
+"OnboardingPetrolTypePageActionButtonTitle" = "Continue";

@@ -89,3 +89,9 @@
 "ReminderText" = "Erinnerung";
 "NotActivated" = "nicht aktiviert";
 "Activated" = "Aktiviert";
+"Diesel" = "Diesel";
+"E5" = "E5";
+"E10" = "E10";
+"OnboardingPetrolTypePageTitle" = "Kraftstoff";
+"OnboardingPetrolTypePageDescription" = "Mein Moers kann Dir die aktuellen Spritpreise anzeigen. Wähle hierfür Deine bevorzugte Kraftstoff-Art aus.";
+"OnboardingPetrolTypePageActionButtonTitle" = "Fortfahren";

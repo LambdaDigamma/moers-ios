@@ -99,16 +99,11 @@ struct OnboardingManager {
         page.alternativeButtonTitle = String.localized("Later")
         page.appearance = appearance
         page.isDismissable = false
+        page.next = self.makePetrolType()
         
         page.actionHandler = { item in
             
             LocationManager.shared.requestWhenInUseAuthorization(completion: {
-                
-                if UserManager.shared.user.type == .citizen {
-                    page.next = self.makeRubbishStreetPage()
-                } else {
-                    page.next = self.makeCompletionPage()
-                }
                 
                 item.manager?.displayNextItem()
                 
@@ -118,14 +113,32 @@ struct OnboardingManager {
         
         page.alternativeHandler = { item in
             
-            if UserManager.shared.user.type == .citizen {
-                page.next = self.makeRubbishStreetPage()
-            } else {
-                page.next = self.makeCompletionPage()
-            }
-            
             item.manager?.displayNextItem()
             
+        }
+        
+        return page
+        
+    }
+    
+    func makePetrolType() -> BLTNPageItem {
+        
+        let page = SelectorBulletinPage<PetrolType>(title: String.localized("OnboardingPetrolTypePageTitle"))
+        
+        page.appearance = appearance
+        page.descriptionText = String.localized("OnboardingPetrolTypePageDescription")
+        page.actionButtonTitle = String.localized("OnboardingPetrolTypePageActionButtonTitle")
+        page.isDismissable = false
+        page.onSelect = { type in
+            PetrolManager.shared.petrolType = type
+        }
+        
+        page.actionHandler = { $0.manager?.displayNextItem() }
+        
+        if UserManager.shared.user.type == .citizen {
+            page.next = self.makeRubbishStreetPage()
+        } else {
+            page.next = self.makeCompletionPage()
         }
         
         return page
