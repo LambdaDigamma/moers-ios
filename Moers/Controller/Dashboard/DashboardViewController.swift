@@ -44,11 +44,11 @@ class DashboardViewController: CardCollectionViewController {
     
     private func registerComponents() {
   
+        components.append(AveragePetrolPriceComponent(viewController: self))
+        
         if UserManager.shared.user.type == .citizen {
-            components.append(AveragePetrolPriceComponent(viewController: self))
+            components.append(RubbishCollectionComponent(viewController: self))
         }
-
-        components.append(RubbishCollectionComponent(viewController: self))
         
         registerCardViews(components.map { $0.view })
         

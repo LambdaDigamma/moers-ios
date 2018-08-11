@@ -155,6 +155,11 @@
 		DFD129731FAF0C1B001900CF /* BranchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD129721FAF0C1B001900CF /* BranchTableViewCell.swift */; };
 		DFD129761FAF12D2001900CF /* BranchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */; };
 		DFD728AC20A880C6005FA9F1 /* RebuildDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD728AB20A880C6005FA9F1 /* RebuildDetailViewController.swift */; };
+		DFD73690211E424E00826C47 /* SelectorBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7368F211E424E00826C47 /* SelectorBulletinPage.swift */; };
+		DFD73692211EEDE900826C47 /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD73691211EEDE900826C47 /* EnumCollection.swift */; };
+		DFD73694211EF0A500826C47 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD73693211EF0A500826C47 /* Localizable.swift */; };
+		DFD73695211EF3CC00826C47 /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD73691211EEDE900826C47 /* EnumCollection.swift */; };
+		DFD73696211EF3D400826C47 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD73693211EF0A500826C47 /* Localizable.swift */; };
 		DFD7ACAF20A4486B00D49BE2 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACAE20A4486B00D49BE2 /* CardView.swift */; };
 		DFD7ACB220A44C5A00D49BE2 /* RebuildSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACB120A44C5A00D49BE2 /* RebuildSelectionViewController.swift */; };
 		DFD7ACB420A6BCA000D49BE2 /* DashboardRubbishCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACB320A6BCA000D49BE2 /* DashboardRubbishCardView.swift */; };
@@ -386,6 +391,9 @@
 		DFD129721FAF0C1B001900CF /* BranchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchTableViewCell.swift; sourceTree = "<group>"; };
 		DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCollectionViewCell.swift; sourceTree = "<group>"; };
 		DFD728AB20A880C6005FA9F1 /* RebuildDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildDetailViewController.swift; sourceTree = "<group>"; };
+		DFD7368F211E424E00826C47 /* SelectorBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorBulletinPage.swift; sourceTree = "<group>"; };
+		DFD73691211EEDE900826C47 /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
+		DFD73693211EF0A500826C47 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		DFD7ACAE20A4486B00D49BE2 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		DFD7ACB120A44C5A00D49BE2 /* RebuildSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildSelectionViewController.swift; sourceTree = "<group>"; };
 		DFD7ACB320A6BCA000D49BE2 /* DashboardRubbishCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardRubbishCardView.swift; sourceTree = "<group>"; };
@@ -517,6 +525,7 @@
 				DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */,
 				DF4BD1C5208CF76C003ECF41 /* RubbishReminderBulletinItem.swift */,
 				DF2D6DAC20B8AB4900176614 /* UserTypeSelectorBulletinPage.swift */,
+				DFD7368F211E424E00826C47 /* SelectorBulletinPage.swift */,
 			);
 			path = BulletinBoard;
 			sourceTree = "<group>";
@@ -659,6 +668,8 @@
 				DF3555AF20DE599900B88DA3 /* UserRanking.swift */,
 				DFF9B2DA20FE1EB9007FE158 /* Store.swift */,
 				DF4D89562104A6F0008609A1 /* Datasources.swift */,
+				DFD73691211EEDE900826C47 /* EnumCollection.swift */,
+				DFD73693211EF0A500826C47 /* Localizable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1116,6 +1127,7 @@
 				DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */,
 				DFA9EEFF20B36A86008590EA /* PetrolStation.swift in Sources */,
 				DF524CAC2087443D00D88599 /* RebuildBranchCollectionViewCell.swift in Sources */,
+				DFD73694211EF0A500826C47 /* Localizable.swift in Sources */,
 				DFF4E15D20893694007C24E3 /* RubbishCollectionDate.swift in Sources */,
 				DF0CB4A12082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift in Sources */,
 				DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */,
@@ -1165,6 +1177,7 @@
 				DF8254061F7711180069D751 /* Camera.swift in Sources */,
 				DFDD3F7420B2F30A005602E3 /* AboutViewController.swift in Sources */,
 				DF0CB49D2082B78C00CC0AA8 /* PermissionsManager.swift in Sources */,
+				DFD73690211E424E00826C47 /* SelectorBulletinPage.swift in Sources */,
 				DFB4D76920B062BE00C8D179 /* SettingsViewController.swift in Sources */,
 				DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */,
 				DFCB431B20DFF23900E7AD3F /* RankingManager.swift in Sources */,
@@ -1237,6 +1250,7 @@
 				DF3EE0C520E382EC00CA9279 /* MapLocationPickerViewController.swift in Sources */,
 				DFF4E15F2089ABCA007C24E3 /* RubbishCollectionItem.swift in Sources */,
 				DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */,
+				DFD73692211EEDE900826C47 /* EnumCollection.swift in Sources */,
 				DF0CB48F2082A8DB00CC0AA8 /* AppConfig.swift in Sources */,
 				DFA9EF0A20B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift in Sources */,
 				DFA9EF1320B70F8E008590EA /* Date+Extensions.swift in Sources */,
@@ -1270,10 +1284,12 @@
 				DFAEF40D20E8EA5D001B0756 /* PetrolRequestResponse.swift in Sources */,
 				DFF8F2CF20E6DC36001A9EBB /* NotificationController.swift in Sources */,
 				DFF8F2CD20E6DC36001A9EBB /* ExtensionDelegate.swift in Sources */,
+				DFD73695211EF3CC00826C47 /* EnumCollection.swift in Sources */,
 				DFF8F2E220E6E14E001A9EBB /* RubbishCollectionItem.swift in Sources */,
 				DFAEF40E20E8EA5D001B0756 /* PetrolPriceResponse.swift in Sources */,
 				DFAEF40F20E8EA5D001B0756 /* PetrolDetailResponse.swift in Sources */,
 				DFAEF40920E8E89B001B0756 /* PetrolPriceInterfaceController.swift in Sources */,
+				DFD73696211EF3D400826C47 /* Localizable.swift in Sources */,
 				DFF8F2E120E6E14E001A9EBB /* RubbishCollectionDate.swift in Sources */,
 				DFAEF40320E6E5F5001B0756 /* Date+Extensions.swift in Sources */,
 				DFAEF40A20E8EA5D001B0756 /* PetrolType.swift in Sources */,

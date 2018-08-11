@@ -15,9 +15,18 @@ struct User {
     var name: String?
     var description: String?
     
-    enum UserType: String {
-        case tourist = "tourist"
+    enum UserType: String, EnumCollection, Localizable {
+        
         case citizen = "citizen"
+        case tourist = "tourist"
+        
+        static func localizedForCase(_ c: User.UserType) -> String {
+            switch c {
+            case .citizen: return String.localized("Citizen")
+            case .tourist: return String.localized("Tourist")
+            }
+        }
+        
     }
     
 }
