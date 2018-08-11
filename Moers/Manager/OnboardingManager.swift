@@ -14,6 +14,8 @@ struct OnboardingManager {
     
     static var shared = OnboardingManager()
     
+    var appearance = OnboardingManager.makeAppearance()
+    
     // MARK: - Pages
     
     func makeIntroPage() -> BLTNPageItem {
@@ -21,7 +23,7 @@ struct OnboardingManager {
         let page = FeedbackPageBulletinItem(title: "Mein \(AppConfig.shared.name)")
         page.image = #imageLiteral(resourceName: "MoersAppIcon")
         page.imageAccessibilityLabel = "Mein Moers Logo"
-        page.appearance = makeAppearance()
+        page.appearance = appearance
         page.descriptionText = String.localized("OnboardingDescription")
         page.actionButtonTitle = String.localized("OnboardingFirstPageActionButtonTitle")
         page.isDismissable = false
@@ -40,7 +42,7 @@ struct OnboardingManager {
         
         let page = SelectorBulletinPage<User.UserType>(title: String.localized("OnboardingUserTypeSelectorPageTitle"))
         
-        page.appearance = makeAppearance()
+        page.appearance = appearance
         page.descriptionText = String.localized("OnboardingUserTypeSelectorPageDescription")
         page.actionButtonTitle = String.localized("OnboardingUserTypeSelectorPageActionButtonTitle")
         page.isDismissable = false
@@ -68,7 +70,7 @@ struct OnboardingManager {
         page.descriptionText = String.localized("OnboardingNotificationPageDescription")
         page.actionButtonTitle = String.localized("OnboardingNotificationPageActionButtonTitle")
         page.alternativeButtonTitle = String.localized("OnboardingNotificationPageAlternativeButtonTitle")
-        page.appearance = makeAppearance()
+        page.appearance = appearance
         page.isDismissable = false
         
         page.actionHandler = { item in
@@ -95,7 +97,7 @@ struct OnboardingManager {
         page.descriptionText = String.localized("OnboardingNotificationPageDescription")
         page.actionButtonTitle = String.localized("Allow")
         page.alternativeButtonTitle = String.localized("Later")
-        page.appearance = makeAppearance()
+        page.appearance = appearance
         page.isDismissable = false
         
         page.actionHandler = { item in
@@ -133,7 +135,7 @@ struct OnboardingManager {
     func makeRubbishStreetPage() -> BLTNPageItem {
         
         let page = RubbishStreetPickerItem(title: String.localized("RubbishCollectionPageTitle"))
-        page.appearance = makeAppearance()
+        page.appearance = appearance
         page.descriptionText = String.localized("RubbishCollectionPageDescription")
         page.image = #imageLiteral(resourceName: "yellowWaste")
         page.actionButtonTitle = String.localized("RubbishCollectionPageActionButtonTitle")
@@ -173,7 +175,7 @@ struct OnboardingManager {
     func makeRubbishReminderPage() -> BLTNPageItem {
         
         let page = RubbishReminderBulletinItem(title: String.localized("RubbishCollectionReminderPageTitle"))
-        page.appearance = makeAppearance()
+        page.appearance = appearance
         page.descriptionText = String.localized("RubbishCollectionReminderPageDescription")
         page.image = #imageLiteral(resourceName: "NotificationPrompt")
         page.actionButtonTitle = String.localized("RubbishCollectionReminderPageActionButtonTitle")
@@ -208,7 +210,7 @@ struct OnboardingManager {
         let page = FeedbackPageBulletinItem(title: String.localized("CompletionPageTitle"))
         page.image = #imageLiteral(resourceName: "IntroCompletion")
         page.imageAccessibilityLabel = "Checkmark"
-        page.appearance = makeAppearance()
+        page.appearance = appearance
         page.appearance.actionButtonColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
         page.appearance.imageViewTintColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
         page.appearance.actionButtonTitleColor = .white
@@ -251,7 +253,7 @@ struct OnboardingManager {
 
 extension OnboardingManager {
     
-    func makeAppearance() -> BLTNItemAppearance {
+    static func makeAppearance() -> BLTNItemAppearance {
         
         let appearance = BLTNItemAppearance()
         
