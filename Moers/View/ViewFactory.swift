@@ -125,4 +125,16 @@ struct ViewFactory {
         
     }
     
+    static func tableView() -> UITableView {
+        
+        let tableView = UITableView()
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = UITableViewAutomaticDimension
+        
+        return tableView
+        
+    }
+    
 }
