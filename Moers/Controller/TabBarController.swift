@@ -72,7 +72,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         let navigationController = UINavigationController()
         navigationController.viewControllers = [eventViewController]
         
-        let eventTabItem = ESTabBarItem(ItemBounceContentView(), title: "Veranstaltungen", image: #imageLiteral(resourceName: "calendar"), selectedImage: #imageLiteral(resourceName: "calendar"))
+        let eventTabItem = ESTabBarItem(ItemBounceContentView(), title: String.localized("Events"), image: #imageLiteral(resourceName: "calendar"), selectedImage: #imageLiteral(resourceName: "calendar"))
         
         navigationController.tabBarItem = eventTabItem
         

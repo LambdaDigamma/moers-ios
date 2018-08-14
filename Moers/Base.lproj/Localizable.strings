@@ -96,3 +96,5 @@
 "OnboardingPetrolTypePageTitle" = "Petrol Type";
 "OnboardingPetrolTypePageDescription" = "Mein Moers can show you the current petrol prices. Select your preferred petrol type.";
 "OnboardingPetrolTypePageActionButtonTitle" = "Continue";
+"Feedback" = "Feedback";
+"Events" = "Events";

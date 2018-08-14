@@ -95,3 +95,5 @@
 "OnboardingPetrolTypePageTitle" = "Kraftstoff";
 "OnboardingPetrolTypePageDescription" = "Mein Moers kann Dir die aktuellen Spritpreise anzeigen. Wähle hierfür Deine bevorzugte Kraftstoff-Art aus.";
 "OnboardingPetrolTypePageActionButtonTitle" = "Fortfahren";
+"Feedback" = "Feedback";
+"Events" = "Veranstaltungen";

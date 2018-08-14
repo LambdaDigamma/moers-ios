@@ -8,8 +8,9 @@
 
 import UIKit
 import Gestalt
+import MessageUI
 
-class OtherViewController: UIViewController {
+class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
     private let standardCellIdentifier = "standard"
     private let accountCellIdentifier = "account"
@@ -39,9 +40,11 @@ class OtherViewController: UIViewController {
                         rows: [AccountRow(title: "Account", action: showAccount)]),*/
                 Section(title: String.localized("SettingsTitle"),
                         rows: [NavigationRow(title: String.localized("SettingsTitle"), action: showSettings)]),
-                Section(title: String.localized("Legal"),
+                Section(title: "Info",
                         rows: [NavigationRow(title: String.localized("AboutTitle"), action: showAbout),
-                               NavigationRow(title: String.localized("PrivacyPolicy"), action: showPrivacy),
+                               NavigationRow(title: String.localized("Feedback"), action: showFeedback)]),
+                Section(title: String.localized("Legal"),
+                        rows: [NavigationRow(title: String.localized("PrivacyPolicy"), action: showPrivacy),
                                NavigationRow(title: String.localized("Licences"), action: showLicences)])]
         
     }()
@@ -59,6 +62,8 @@ class OtherViewController: UIViewController {
         super.viewWillAppear(animated)
         
         tableView.reloadData()
+        
+        AnalyticsManager.shared.logOpenedOther()
         
     }
     
@@ -97,6 +102,33 @@ class OtherViewController: UIViewController {
         push(viewController: AboutViewController.self)
     }
     
+    private func showFeedback() {
+        
+        if MFMailComposeViewController.canSendMail() {
+            
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["meinmoers@lambdadigamma.com"])
+            mail.setSubject("Rückmeldung zur Moers-App")
+            
+            present(mail, animated: true)
+            
+        } else {
+            
+            let alert = UIAlertController(title: "Feedback fehlgeschlagen", message: "Du hast scheinbar keine Email-Accounts auf deinem Gerät eingerichtet.", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
+                
+                alert.dismiss(animated: true, completion: nil)
+                
+            }))
+            
+            present(alert, animated: true, completion: nil)
+            
+        }
+        
+    }
+    
     private func showPrivacy() {
         
         
@@ -111,6 +143,12 @@ class OtherViewController: UIViewController {
         
         let vc = viewController.init()
         self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        self.dismiss(animated: true, completion: nil)
         
     }
     
