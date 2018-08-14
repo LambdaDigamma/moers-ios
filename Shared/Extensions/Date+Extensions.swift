@@ -85,4 +85,13 @@ extension Date {
         
     }
     
+    static var yesterday: Date {
+    
+        let calendar = Calendar.autoupdatingCurrent
+        let yesterday = calendar.date(byAdding: .day, value: -1, to: Date())
+        
+        return yesterday ?? Date()
+        
+    }
+    
 }
