@@ -173,6 +173,8 @@
 		DFDF929920DE47E10068D1DF /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDF929820DE47E10068D1DF /* LeaderboardViewController.swift */; };
 		DFEE2E0A20BB117A00A130CB /* BaseComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEE2E0920BB117A00A130CB /* BaseComponent.swift */; };
 		DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */; };
+		DFEFE7CD2122DC1D002F5162 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEFE7CC2122DC1D002F5162 /* Event.swift */; };
+		DFEFE7CF2122E0A6002F5162 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEFE7CE2122E0A6002F5162 /* EventManager.swift */; };
 		DFF4E15B20892CFB007C24E3 /* RubbishManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF4E15A20892CFB007C24E3 /* RubbishManager.swift */; };
 		DFF4E15D20893694007C24E3 /* RubbishCollectionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF4E15C20893694007C24E3 /* RubbishCollectionDate.swift */; };
 		DFF4E15F2089ABCA007C24E3 /* RubbishCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF4E15E2089ABCA007C24E3 /* RubbishCollectionItem.swift */; };
@@ -406,6 +408,8 @@
 		DFDF929820DE47E10068D1DF /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		DFEE2E0920BB117A00A130CB /* BaseComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseComponent.swift; sourceTree = "<group>"; };
 		DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionComponent.swift; sourceTree = "<group>"; };
+		DFEFE7CC2122DC1D002F5162 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		DFEFE7CE2122E0A6002F5162 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		DFF4E15A20892CFB007C24E3 /* RubbishManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishManager.swift; sourceTree = "<group>"; };
 		DFF4E15C20893694007C24E3 /* RubbishCollectionDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionDate.swift; sourceTree = "<group>"; };
 		DFF4E15E2089ABCA007C24E3 /* RubbishCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionItem.swift; sourceTree = "<group>"; };
@@ -512,6 +516,7 @@
 				DFF9B2D820FE177E007FE158 /* ShopManager.swift */,
 				DF4D89582104C298008609A1 /* CameraManager.swift */,
 				DF32F6722104D11400BCF80F /* ParkingLotManager.swift */,
+				DFEFE7CE2122E0A6002F5162 /* EventManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -667,6 +672,7 @@
 				DF4D89562104A6F0008609A1 /* Datasources.swift */,
 				DFD73691211EEDE900826C47 /* EnumCollection.swift */,
 				DFD73693211EF0A500826C47 /* Localizable.swift */,
+				DFEFE7CC2122DC1D002F5162 /* Event.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1206,6 +1212,7 @@
 				DF524CAA2087421800D88599 /* RebuildBranchTableViewCell.swift in Sources */,
 				DF3555AE20DE594F00B88DA3 /* LeaderboardRankingView.swift in Sources */,
 				DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */,
+				DFEFE7CF2122E0A6002F5162 /* EventManager.swift in Sources */,
 				DFCB432720E1036A00E7AD3F /* CommunityCollectionViewCell.swift in Sources */,
 				DFD7ACB420A6BCA000D49BE2 /* DashboardRubbishCardView.swift in Sources */,
 				DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */,
@@ -1219,6 +1226,7 @@
 				DF0CB4B32087092F00CC0AA8 /* RebuildSearchResultTableViewCell.swift in Sources */,
 				DFDD3F6E20B22230005602E3 /* RubbishCollectionViewController.swift in Sources */,
 				DF3EE0C720E38A6B00CA9279 /* PaddingLabel.swift in Sources */,
+				DFEFE7CD2122DC1D002F5162 /* Event.swift in Sources */,
 				DF6279792100CDE400F81A70 /* RebuildDetailParkingViewController.swift in Sources */,
 				DF2D6DA920B899DD00176614 /* User.swift in Sources */,
 				DF0CB4AF2085B65200CC0AA8 /* RebuildMapViewController.swift in Sources */,
