@@ -35,8 +35,8 @@ class OtherViewController: UIViewController {
     
     lazy var data: [Section] = {
         
-        return [Section(title: "",
-                        rows: [AccountRow(title: "Account", action: showAccount)]),
+        return [/*Section(title: "",
+                        rows: [AccountRow(title: "Account", action: showAccount)]),*/
                 Section(title: String.localized("SettingsTitle"),
                         rows: [NavigationRow(title: String.localized("SettingsTitle"), action: showSettings)]),
                 Section(title: String.localized("Legal"),
