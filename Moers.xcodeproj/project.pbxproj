@@ -175,6 +175,7 @@
 		DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */; };
 		DFEFE7CD2122DC1D002F5162 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEFE7CC2122DC1D002F5162 /* Event.swift */; };
 		DFEFE7CF2122E0A6002F5162 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEFE7CE2122E0A6002F5162 /* EventManager.swift */; };
+		DFEFE7D12122ED0F002F5162 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEFE7D02122ED0F002F5162 /* EventViewController.swift */; };
 		DFEFE7D32122FFB0002F5162 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEFE7D22122FFB0002F5162 /* EventTableViewCell.swift */; };
 		DFEFE7D521230149002F5162 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEFE7D421230149002F5162 /* EventView.swift */; };
 		DFF4E15B20892CFB007C24E3 /* RubbishManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF4E15A20892CFB007C24E3 /* RubbishManager.swift */; };
@@ -412,6 +413,7 @@
 		DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionComponent.swift; sourceTree = "<group>"; };
 		DFEFE7CC2122DC1D002F5162 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		DFEFE7CE2122E0A6002F5162 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
+		DFEFE7D02122ED0F002F5162 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		DFEFE7D22122FFB0002F5162 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		DFEFE7D421230149002F5162 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		DFF4E15A20892CFB007C24E3 /* RubbishManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishManager.swift; sourceTree = "<group>"; };
@@ -778,6 +780,7 @@
 				DFDF929820DE47E10068D1DF /* LeaderboardViewController.swift */,
 				DF461CB720E2257400600C0E /* AddShopViewController.swift */,
 				DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */,
+				DFEFE7D02122ED0F002F5162 /* EventViewController.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -1196,6 +1199,7 @@
 				DFA9EF0820B46C0C008590EA /* PetrolStationTimeEntry.swift in Sources */,
 				DFF4E15B20892CFB007C24E3 /* RubbishManager.swift in Sources */,
 				DFA9EF0F20B58351008590EA /* LocationManager.swift in Sources */,
+				DFEFE7D12122ED0F002F5162 /* EventViewController.swift in Sources */,
 				DFB92D601F6B0B3F00669F73 /* Shop.swift in Sources */,
 				DF02B75D1FAFC037004B8B3E /* FilterTableViewCell.swift in Sources */,
 				DFA9EF0620B46A8A008590EA /* PetrolDetailResponse.swift in Sources */,
