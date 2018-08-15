@@ -13,7 +13,6 @@ struct RankingManager {
     
     static var shared = RankingManager()
     
-    private let baseURL = "http://localhost:8080/api"
     private let reachability = Reachability()!
     
     public func getTopRanking(completion: @escaping ((Error?, [UserRanking]?) -> Void)) {
@@ -24,7 +23,7 @@ struct RankingManager {
             
             guard let token = API.shared.token else { completion(APIError.noToken, nil); return }
             
-            guard let url = URL(string: baseURL + "/leaderboard/top") else {
+            guard let url = URL(string: baseURL + "api/leaderboard/top") else {
                 completion(APIError.noConnection, nil)
                 return
             }
@@ -75,7 +74,7 @@ struct RankingManager {
             
             guard let token = API.shared.token else { completion(APIError.noToken, nil); return }
             
-            guard let url = URL(string: baseURL + "/leaderboard/me") else {
+            guard let url = URL(string: baseURL + "api/leaderboard/me") else {
                 completion(APIError.noConnection, nil)
                 return
             }

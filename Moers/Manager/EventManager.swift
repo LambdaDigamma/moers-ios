@@ -9,7 +9,7 @@
 import Foundation
 import Reachability
 
-public let baseURL = "http://localhost:8080/api/"
+public let baseURL = "https://meinmoers.lambdadigamma.com/"
 
 struct EventManager {
     
@@ -22,7 +22,7 @@ struct EventManager {
         
         if reachability.connection != .none {
             
-            guard let url = URL(string: baseURL + "events") else { return }
+            guard let url = URL(string: baseURL + "api/events") else { return }
             
             let request = URLRequest(url: url)
             

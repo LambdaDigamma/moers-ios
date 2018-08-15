@@ -37,8 +37,6 @@ class API: NSObject, XMLParserDelegate {
     
     static let shared = API()
     
-    private let baseURL = "http://localhost:8080/api/"
-    private let tokenURL = "http://localhost:8080/oauth/token/"
     private let reachability = Reachability()!
     
     private var session = URLSession.shared
@@ -68,7 +66,7 @@ class API: NSObject, XMLParserDelegate {
         
         if reachability.connection != .none {
             
-            guard let url = URL(string: tokenURL) else {
+            guard let url = URL(string: baseURL + "oauth/token") else {
                 completion(APIError.noConnection)
                 return
             }
@@ -130,7 +128,7 @@ class API: NSObject, XMLParserDelegate {
             
             guard let token = token else { completion(APIError.noToken, nil); return }
             
-            guard let url = URL(string: baseURL + "user") else {
+            guard let url = URL(string: baseURL + "api/user") else {
                 completion(APIError.noConnection, nil)
                 return
             }
