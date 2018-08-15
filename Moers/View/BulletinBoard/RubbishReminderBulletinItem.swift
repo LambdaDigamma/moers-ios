@@ -36,7 +36,7 @@ class RubbishReminderBulletinItem: BLTNPageItem {
     override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         
         picker.translatesAutoresizingMaskIntoConstraints = false
-        picker.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        picker.heightAnchor.constraint(equalToConstant: 120).isActive = true
         
         return [picker]
         

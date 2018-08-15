@@ -98,3 +98,7 @@
 "OnboardingPetrolTypePageActionButtonTitle" = "Continue";
 "Feedback" = "Feedback";
 "Events" = "Events";
+"UserType" = "Type";
+"User" = "User";
+"Petrol" = "Petrol";
+"PetrolType" = "Type";

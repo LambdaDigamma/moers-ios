@@ -16,6 +16,23 @@ struct OnboardingManager {
     
     var appearance = OnboardingManager.makeAppearance()
     
+    func makeOnboarding() -> BLTNPageItem {
+        
+        let introPage = makeIntroPage()
+        let userTypePage = makeUserTypePage(preSelected: nil)
+        let notificationPage = makeNotitificationsPage()
+        let locationPage = makeLocationPage()
+        let petrolPage = makePetrolType(preSelected: nil)
+        
+        introPage.next = userTypePage
+        userTypePage.next = notificationPage
+        notificationPage.next = locationPage
+        locationPage.next = petrolPage
+        
+        return introPage
+        
+    }
+    
     // MARK: - Pages
     
     func makeIntroPage() -> BLTNPageItem {
@@ -32,15 +49,13 @@ struct OnboardingManager {
             item.manager?.displayNextItem()
         }
         
-        page.next = makeUserTypePage()
-        
         return page
         
     }
     
-    func makeUserTypePage() -> BLTNPageItem {
+    func makeUserTypePage(preSelected: User.UserType?) -> BLTNPageItem {
         
-        let page = SelectorBulletinPage<User.UserType>(title: String.localized("OnboardingUserTypeSelectorPageTitle"))
+        let page = SelectorBulletinPage<User.UserType>(title: String.localized("OnboardingUserTypeSelectorPageTitle"), preSelected: preSelected)
         
         page.appearance = appearance
         page.descriptionText = String.localized("OnboardingUserTypeSelectorPageDescription")
@@ -55,8 +70,6 @@ struct OnboardingManager {
         }
         
         page.actionHandler = { $0.manager?.displayNextItem() }
-        
-        page.next = makeNotitificationsPage()
         
         return page
         
@@ -82,8 +95,6 @@ struct OnboardingManager {
             item.manager?.displayNextItem()
         }
         
-        page.next = makeLocationPage()
-        
         return page
         
     }
@@ -99,7 +110,6 @@ struct OnboardingManager {
         page.alternativeButtonTitle = String.localized("Later")
         page.appearance = appearance
         page.isDismissable = false
-        page.next = self.makePetrolType()
         
         page.actionHandler = { item in
             
@@ -121,9 +131,9 @@ struct OnboardingManager {
         
     }
     
-    func makePetrolType() -> BLTNPageItem {
+    func makePetrolType(preSelected: PetrolType?) -> BLTNPageItem {
         
-        let page = SelectorBulletinPage<PetrolType>(title: String.localized("OnboardingPetrolTypePageTitle"))
+        let page = SelectorBulletinPage<PetrolType>(title: String.localized("OnboardingPetrolTypePageTitle"), preSelected: preSelected)
         
         page.appearance = appearance
         page.descriptionText = String.localized("OnboardingPetrolTypePageDescription")
@@ -133,12 +143,16 @@ struct OnboardingManager {
             PetrolManager.shared.petrolType = type
         }
         
-        page.actionHandler = { $0.manager?.displayNextItem() }
-        
-        if UserManager.shared.user.type == .citizen {
-            page.next = self.makeRubbishStreetPage()
-        } else {
-            page.next = self.makeCompletionPage()
+        page.actionHandler = {
+            
+            if UserManager.shared.user.type == .citizen {
+                page.next = self.makeRubbishStreetPage()
+            } else {
+                page.next = self.makeCompletionPage()
+            }
+            
+            $0.manager?.displayNextItem()
+            
         }
         
         return page

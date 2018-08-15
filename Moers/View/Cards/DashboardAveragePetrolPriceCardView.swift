@@ -79,7 +79,7 @@ class DashboardAveragePetrolPriceCardView: CardView {
         
         let label = UILabel()
         
-        let type = String.localized("PetrolDescription") + " " + PetrolManager.shared.petrolType.rawValue
+        let type = String.localized("PetrolDescription") + " " + PetrolType.localizedForCase(PetrolManager.shared.petrolType)
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.medium)
@@ -113,6 +113,13 @@ class DashboardAveragePetrolPriceCardView: CardView {
             infoLabel.text = "\(numberOfStations) \(String.localized("DashboardPetrolStationInfo"))"
             setNeedsDisplay()
             setNeedsLayout()
+        }
+    }
+    
+    public var petrolType: PetrolType = .diesel {
+        didSet {
+            let type = String.localized("PetrolDescription") + " " + PetrolType.localizedForCase(petrolType)
+            petrolTypeLabel.text = type.uppercased()
         }
     }
     

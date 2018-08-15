@@ -18,6 +18,17 @@ class SelectorBulletinPage<T: RawRepresentable & EnumCollection & Localizable>: 
     private var buttons: [UIButton] = []
     private var selectionFeedbackGenerator = SelectionFeedbackGenerator()
     
+    init(title: String, preSelected: T?) {
+        super.init(title: title)
+        
+        if let preSelected = preSelected {
+            
+            self.selectedOption = preSelected
+            
+        }
+        
+    }
+    
     override func tearDown() {
         super.tearDown()
         
@@ -40,10 +51,10 @@ class SelectorBulletinPage<T: RawRepresentable & EnumCollection & Localizable>: 
         
         self.resetButtonSelections()
         
-        if let button = self.buttons.first {
-            self.setButtonSelection(button)
-            self.selectedOption(button)
-        }
+        let index = T.allValues.index(of: selectedOption) ?? 0
+        
+        self.setButtonSelection(buttons[index])
+        self.selectedOption(buttons[index])
         
         return [optionStack]
         
@@ -62,6 +73,7 @@ class SelectorBulletinPage<T: RawRepresentable & EnumCollection & Localizable>: 
         button.layer.borderWidth = 2
         button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         button.addTarget(self, action: #selector(selectedOption(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(generateFeedback), for: .touchUpInside)
         
         let heightConstraint = button.heightAnchor.constraint(equalToConstant: 55)
         heightConstraint.priority = .defaultHigh
@@ -73,9 +85,6 @@ class SelectorBulletinPage<T: RawRepresentable & EnumCollection & Localizable>: 
     
     @objc private func selectedOption(_ button: UIButton) {
         
-        selectionFeedbackGenerator.prepare()
-        selectionFeedbackGenerator.selectionChanged()
-        
         let index = self.buttons.index(of: button) ?? 0
         
         let option = T.allValues[index]
@@ -85,6 +94,13 @@ class SelectorBulletinPage<T: RawRepresentable & EnumCollection & Localizable>: 
         
         self.resetButtonSelections()
         self.setButtonSelection(button)
+        
+    }
+    
+    @objc private func generateFeedback() {
+        
+        selectionFeedbackGenerator.prepare()
+        selectionFeedbackGenerator.selectionChanged()
         
     }
     

@@ -41,6 +41,7 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
     override func update() {
         
         self.locationManager.delegate = self
+        self.averagePetrolCardView.petrolType = PetrolManager.shared.petrolType
         
         if self.locationManager.authorizationStatus != .denied {
             self.locationManager.requestCurrentLocation()

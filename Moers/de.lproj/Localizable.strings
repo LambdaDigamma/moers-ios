@@ -33,7 +33,7 @@
 "AboutTitle" = "Über";
 "Today" = "Heute";
 "Tomorrow" = "Morgen";
-"OnboardingLocationPageTitle" = "Standortbestimmung";
+"OnboardingLocationPageTitle" = "Standort";
 "OnboardingLocationPageDescription" = "";
 "Allow" = "Erlauben";
 "Later" = "Später";
@@ -89,6 +89,7 @@
 "ReminderText" = "Erinnerung";
 "NotActivated" = "nicht aktiviert";
 "Activated" = "Aktiviert";
+"Street" = "Straße";
 "Diesel" = "Diesel";
 "E5" = "E5";
 "E10" = "E10";
@@ -97,3 +98,7 @@
 "OnboardingPetrolTypePageActionButtonTitle" = "Fortfahren";
 "Feedback" = "Feedback";
 "Events" = "Veranstaltungen";
+"UserType" = "Art";
+"User" = "Benutzer";
+"Petrol" = "Kraftstoff";
+"PetrolType" = "Art";

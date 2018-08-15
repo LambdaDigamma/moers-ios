@@ -128,8 +128,8 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     }()
     
     lazy var bulletinManager: BLTNItemManager = {
-        let introPage = OnboardingManager.shared.makeIntroPage()
-        return BLTNItemManager(rootItem: introPage)
+        let onboarding = OnboardingManager.shared.makeOnboarding()
+        return BLTNItemManager(rootItem: onboarding)
     }()
     
     private var firstLaunch: FirstLaunch

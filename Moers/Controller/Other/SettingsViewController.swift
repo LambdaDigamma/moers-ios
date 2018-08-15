@@ -34,7 +34,160 @@ class SettingsViewController: UIViewController {
         
     }()
     
-    var data: [Section] {
+    lazy var manager: BLTNItemManager = { makeManager(with: BLTNPageItem(title: "")) }()
+    
+    var data: [Section] = []
+    
+    // MARK: - UIViewController Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.title = String.localized("SettingsTitle")
+        self.view.addSubview(tableView)
+        
+        self.setupConstraints()
+        self.reloadRows()
+        
+    }
+    
+    // MARK: - Private Methods
+    
+    private func setupConstraints() {
+        
+        let constraints = [tableView.topAnchor.constraint(equalTo: self.safeTopAnchor),
+                           tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+                           tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+                           tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)]
+        
+        NSLayoutConstraint.activate(constraints)
+        
+    }
+
+    private func setupTheming() {
+        
+        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
+            
+            themeable.view.backgroundColor = theme.backgroundColor
+            
+        }
+        
+    }
+    
+    // MARK: - Settings Rows
+    
+    private func showThemes() {
+        push(viewController: ThemeViewController.self)
+    }
+    
+    private func showRubbishStreet() {
+        
+        let streetPage = OnboardingManager.shared.makeRubbishStreetPage()
+        
+        streetPage.actionHandler = { item in
+            
+            guard let item = item as? RubbishStreetPickerItem else { return }
+            
+            let selectedStreet = item.streets[item.picker.currentSelectedRow]
+            
+            RubbishManager.shared.register(selectedStreet)
+            
+            self.reload()
+            
+            item.manager?.dismissBulletin(animated: true)
+            item.manager?.popToRootItem()
+            
+        }
+        
+        streetPage.alternativeHandler = { item in
+            item.manager?.dismissBulletin(animated: true)
+            item.manager?.popToRootItem()
+        }
+        
+        self.manager.showBulletin(above: self)
+        self.manager.push(item: streetPage)
+        
+    }
+    
+    private func showRubbishReminder() {
+        
+        let reminderPage = OnboardingManager.shared.makeRubbishReminderPage()
+        
+        reminderPage.alternativeButtonTitle = "Deaktivieren"
+        reminderPage.actionHandler = { item in
+            
+            guard let page = item as? RubbishReminderBulletinItem else { return }
+            
+            let hour = Calendar.current.component(.hour, from: page.picker.date)
+            let minutes = Calendar.current.component(.minute, from: page.picker.date)
+            
+            RubbishManager.shared.registerNotifications(at: hour, minute: minutes)
+            
+            self.reloadRows()
+            
+            item.manager?.dismissBulletin(animated: true)
+            item.manager?.popToRootItem()
+            
+        }
+        
+        reminderPage.alternativeHandler = { item in
+            
+            RubbishManager.shared.remindersEnabled = false
+            RubbishManager.shared.reminderHour = 20
+            RubbishManager.shared.reminderMinute = 0
+            
+            self.reloadRows()
+            
+            item.manager?.dismissBulletin(animated: true)
+            item.manager?.popToRootItem()
+            
+        }
+        
+        self.manager.showBulletin(above: self)
+        self.manager.push(item: reminderPage)
+        
+    }
+    
+    private func showPetrolType() {
+        
+        guard let petrolTypePage = OnboardingManager.shared.makePetrolType(preSelected: PetrolManager.shared.petrolType) as? SelectorBulletinPage<PetrolType> else { return }
+        
+        petrolTypePage.actionHandler = { item in
+            item.manager?.dismissBulletin(animated: true)
+            item.manager?.popToRootItem()
+            self.reload()
+        }
+        
+        self.manager.showBulletin(above: self)
+        self.manager.push(item: petrolTypePage)
+        
+    }
+    
+    private func showUserType() {
+        
+        guard let userTypePage = OnboardingManager.shared.makeUserTypePage(preSelected: UserManager.shared.user.type) as? SelectorBulletinPage<User.UserType> else { return }
+        
+        userTypePage.actionHandler = { item in
+            item.manager?.dismissBulletin(animated: true)
+            item.manager?.popToRootItem()
+            self.reload()
+        }
+        
+        self.manager.showBulletin(above: self)
+        self.manager.push(item: userTypePage)
+        
+    }
+    
+    // MARK: - Utilities
+    
+    private func push(viewController: UIViewController.Type) {
+        
+        let vc = viewController.init()
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    private func reloadRows() {
         
         let hour = RubbishManager.shared.reminderHour
         let minute = RubbishManager.shared.reminderMinute
@@ -64,146 +217,71 @@ class SettingsViewController: UIViewController {
             rubbishReminder = String.localized("ReminderText") + ": " + String.localized("NotActivated")
         }
         
-        return [Section(title: String.localized("UIAdjustments"),
-                        rows: [NavigationRow(title: String.localized("ThemeTitle"), action: showThemes)]),
-                Section(title: String.localized("SettingsRubbishCollectionTitle"),
-                        rows: [SwitchRow(title: String.localized("Activated"), switchOn: RubbishManager.shared.isEnabled, action: triggerRubbishCollection),
-                               NavigationRow(title: String.localized("Street") + ": \(RubbishManager.shared.rubbishStreet?.street ?? "nicht ausgewählt")", action: showRubbishStreet),
-                               NavigationRow(title: rubbishReminder, action: showRubbishReminder)]
-            )
-        ]
+        let userType = UserManager.shared.user.type
+        
+        var sections: [Section] = []
+        
+        sections.append(Section(title: String.localized("UIAdjustments"),
+                                rows: [NavigationRow(title: String.localized("ThemeTitle"), action: showThemes)]))
+        
+        sections.append(Section(title: String.localized("User"),
+                                rows: [NavigationRow(title: String.localized("UserType") + ": " + User.UserType.localizedForCase(userType), action: showUserType)]))
+        
+        sections.append(Section(title: String.localized("Petrol"),
+                                rows: [NavigationRow(title: String.localized("PetrolType") + ": " + PetrolType.localizedForCase(PetrolManager.shared.petrolType), action: showPetrolType)]))
+        
+        if UserManager.shared.user.type == .citizen {
+            
+            sections.append(Section(title: String.localized("SettingsRubbishCollectionTitle"),
+                                    rows: [SwitchRow(title: String.localized("Activated"),
+                                                     switchOn: RubbishManager.shared.isEnabled,
+                                                     action: triggerRubbishCollection),
+                                           NavigationRow(title: String.localized("Street") + ": \(RubbishManager.shared.rubbishStreet?.street ?? "nicht ausgewählt")",
+                                            action: showRubbishStreet),
+                                           NavigationRow(title: rubbishReminder,
+                                                         action: showRubbishReminder)]))
+            
+        }
+        
+        self.data = sections
+        
+        self.tableView.reloadData()
         
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.title = String.localized("SettingsTitle")
-        self.view.addSubview(tableView)
+    private func reload() {
         
-        self.setupConstraints()
+        self.reloadRows()
         
-    }
-    
-    private func setupConstraints() {
+        let tabBarController = (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController as? TabBarController
         
-        let constraints = [tableView.topAnchor.constraint(equalTo: self.safeTopAnchor),
-                           tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-                           tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-                           tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)]
+        let dashboardViewController = tabBarController?.dashboardViewController.childViewControllers[0] as? DashboardViewController
         
-        NSLayoutConstraint.activate(constraints)
-        
-    }
-
-    private func setupTheming() {
-        
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            
-        }
-        
-    }
-    
-    private func showThemes() {
-        push(viewController: ThemeViewController.self)
-    }
-    
-    private func showRubbishStreet() {
-        
-        let streetPage = OnboardingManager.shared.makeRubbishStreetPage()
-        let manager = BLTNItemManager(rootItem: streetPage)
-        
-        ThemeManager.default.apply(theme: Theme.self, to: manager) { themeable, theme in
-            
-            themeable.backgroundColor = theme.backgroundColor
-            themeable.hidesHomeIndicator = false
-            themeable.edgeSpacing = .compact
-            
-        }
-        
-        manager.backgroundViewStyle = .dimmed
-        manager.statusBarAppearance = .hidden
-        manager.showBulletin(above: self)
-        
-        streetPage.actionHandler = { item in
-            
-            guard let item = item as? RubbishStreetPickerItem else { return }
-            
-            let selectedStreet = item.streets[item.picker.currentSelectedRow]
-            
-            RubbishManager.shared.register(selectedStreet)
-            
-            self.tableView.reloadData()
-            
-            manager.dismissBulletin(animated: true)
-            
-        }
-        
-        streetPage.alternativeHandler = { item in
-            manager.dismissBulletin(animated: true)
-        }
-        
-    }
-    
-    private func showRubbishReminder() {
-        
-        let reminderPage = OnboardingManager.shared.makeRubbishReminderPage()
-        let manager = BLTNItemManager(rootItem: reminderPage)
-        
-        ThemeManager.default.apply(theme: Theme.self, to: manager) { themeable, theme in
-            
-            themeable.backgroundColor = theme.backgroundColor
-            themeable.hidesHomeIndicator = false
-            themeable.edgeSpacing = .compact
-            
-        }
-        
-        manager.backgroundViewStyle = .dimmed
-        manager.statusBarAppearance = .hidden
-        manager.showBulletin(above: self)
-        
-        reminderPage.alternativeButtonTitle = "Deaktivieren"
-        
-        reminderPage.actionHandler = { item in
-            
-            guard let page = item as? RubbishReminderBulletinItem else { return }
-            
-            let hour = Calendar.current.component(.hour, from: page.picker.date)
-            let minutes = Calendar.current.component(.minute, from: page.picker.date)
-            
-            RubbishManager.shared.registerNotifications(at: hour, minute: minutes)
-            
-            self.tableView.reloadData()
-            
-            manager.dismissBulletin(animated: true)
-            
-        }
-        
-        reminderPage.alternativeHandler = { item in
-            
-            RubbishManager.shared.remindersEnabled = false
-            RubbishManager.shared.reminderHour = 20
-            RubbishManager.shared.reminderMinute = 0
-            
-            self.tableView.reloadData()
-            
-            manager.dismissBulletin(animated: true)
-            
-        }
-        
-    }
-    
-    private func push(viewController: UIViewController.Type) {
-        
-        let vc = viewController.init()
-        self.navigationController?.pushViewController(vc, animated: true)
+        dashboardViewController?.reloadUI()
         
     }
     
     private func triggerRubbishCollection(isEnabled: Bool) {
         RubbishManager.shared.isEnabled = isEnabled
+    }
+    
+    private func makeManager(with item: BLTNItem) -> BLTNItemManager {
+        
+        let manager = BLTNItemManager(rootItem: item)
+        
+        ThemeManager.default.apply(theme: Theme.self, to: manager) { themeable, theme in
+            
+            themeable.backgroundColor = theme.backgroundColor
+            themeable.hidesHomeIndicator = false
+            themeable.edgeSpacing = .compact
+            
+        }
+        
+        manager.backgroundViewStyle = .dimmed
+        manager.statusBarAppearance = .hidden
+        
+        return manager
+        
     }
     
 }
