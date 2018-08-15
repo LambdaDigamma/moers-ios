@@ -18,6 +18,8 @@ class EventViewController: UIViewController {
     private let identifier = "event"
     private let headerIdentifier = "monthHeader"
     
+    var data: [[Event]] = []
+    
     // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
@@ -50,7 +52,16 @@ class EventViewController: UIViewController {
                     
                     guard let events = events else { return }
                     
-                    self.events = events.filter { $0.parsedDate >= Date.yesterday }
+                    self.events = events.filter { $0.parsedDate >= Date.yesterday && Date.component(.year, from: $0.parsedDate) == 2018 }
+                    
+                    for i in 0..<self.numberOfSections {
+                        
+                        let events = self.events(for: i)
+                        
+                        self.data.append(events)
+                        
+                    }
+                    
                     self.tableView.reloadData()
                     
                 }
@@ -132,7 +143,7 @@ extension EventViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return events(for: section).count
+        return data[section].count
         
     }
     
@@ -140,7 +151,7 @@ extension EventViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! EventTableViewCell
         
-        cell.event = events(for: indexPath.section)[indexPath.row]
+        cell.event = data[indexPath.section][indexPath.row]
         
         return cell
         
@@ -162,7 +173,7 @@ extension EventViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let eventURL = events(for: indexPath.section)[indexPath.row].url else { return }
+        guard let eventURL = data[indexPath.section][indexPath.row].url else { return }
         
         guard let url = URL(string: eventURL) else { return }
         
