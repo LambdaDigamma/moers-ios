@@ -37,7 +37,7 @@
 "OnboardingLocationPageDescription" = "";
 "Allow" = "Erlauben";
 "Later" = "Später";
-"PrivacyPolicy" = "Datenschutzerklärung";
+"PrivacyPolicy" = "Datenschutz";
 "Legal" = "Rechtliches";
 "Licences" = "Lizenzen";
 "UIAdjustments" = "Benutzeroberfläche";
@@ -102,3 +102,4 @@
 "User" = "Benutzer";
 "Petrol" = "Kraftstoff";
 "PetrolType" = "Art";
+"TandC" = "AGBs";

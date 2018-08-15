@@ -166,6 +166,8 @@
 		DFD7ACBA20A6C6BC00D49BE2 /* RubbishCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACB920A6C6BC00D49BE2 /* RubbishCollectionView.swift */; };
 		DFD7ACBD20A795AF00D49BE2 /* DashboardNotificationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACBC20A795AF00D49BE2 /* DashboardNotificationCardView.swift */; };
 		DFD7ACC120A842F400D49BE2 /* DateCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACC020A842F400D49BE2 /* DateCardView.swift */; };
+		DFD890872124860A006B5610 /* TandCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD890862124860A006B5610 /* TandCViewController.swift */; };
+		DFD8908921248DD9006B5610 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8908821248DD9006B5610 /* PrivacyViewController.swift */; };
 		DFDD3F6E20B22230005602E3 /* RubbishCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F6D20B22230005602E3 /* RubbishCollectionViewController.swift */; };
 		DFDD3F7020B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F6F20B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift */; };
 		DFDD3F7220B2E525005602E3 /* MonthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F7120B2E525005602E3 /* MonthHeaderView.swift */; };
@@ -404,6 +406,8 @@
 		DFD7ACB920A6C6BC00D49BE2 /* RubbishCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionView.swift; sourceTree = "<group>"; };
 		DFD7ACBC20A795AF00D49BE2 /* DashboardNotificationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardNotificationCardView.swift; sourceTree = "<group>"; };
 		DFD7ACC020A842F400D49BE2 /* DateCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCardView.swift; sourceTree = "<group>"; };
+		DFD890862124860A006B5610 /* TandCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TandCViewController.swift; sourceTree = "<group>"; };
+		DFD8908821248DD9006B5610 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		DFDD3F6D20B22230005602E3 /* RubbishCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionViewController.swift; sourceTree = "<group>"; };
 		DFDD3F6F20B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionItemTableViewCell.swift; sourceTree = "<group>"; };
 		DFDD3F7120B2E525005602E3 /* MonthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthHeaderView.swift; sourceTree = "<group>"; };
@@ -769,6 +773,8 @@
 				DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */,
 				DF2D6DA420B88E1700176614 /* LicencesViewController.swift */,
 				DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */,
+				DFD890862124860A006B5610 /* TandCViewController.swift */,
+				DFD8908821248DD9006B5610 /* PrivacyViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -1186,6 +1192,7 @@
 				DF0CB4B12085B66600CC0AA8 /* RebuildContentViewController.swift in Sources */,
 				DF855C2820C9EADD00B7F7C7 /* WrapperCardCollectionViewCell.swift in Sources */,
 				DF8254061F7711180069D751 /* Camera.swift in Sources */,
+				DFD890872124860A006B5610 /* TandCViewController.swift in Sources */,
 				DFDD3F7420B2F30A005602E3 /* AboutViewController.swift in Sources */,
 				DF0CB49D2082B78C00CC0AA8 /* PermissionsManager.swift in Sources */,
 				DFD73690211E424E00826C47 /* SelectorBulletinPage.swift in Sources */,
@@ -1264,6 +1271,7 @@
 				DFB92D691F6B96E400669F73 /* ClusterAnnotationView.swift in Sources */,
 				DFF9B2DB20FE1EB9007FE158 /* Store.swift in Sources */,
 				DF3EE0C520E382EC00CA9279 /* MapLocationPickerViewController.swift in Sources */,
+				DFD8908921248DD9006B5610 /* PrivacyViewController.swift in Sources */,
 				DFF4E15F2089ABCA007C24E3 /* RubbishCollectionItem.swift in Sources */,
 				DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */,
 				DFD73692211EEDE900826C47 /* EnumCollection.swift in Sources */,

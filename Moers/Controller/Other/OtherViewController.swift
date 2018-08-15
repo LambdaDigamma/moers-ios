@@ -44,7 +44,8 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                         rows: [NavigationRow(title: String.localized("AboutTitle"), action: showAbout),
                                NavigationRow(title: String.localized("Feedback"), action: showFeedback)]),
                 Section(title: String.localized("Legal"),
-                        rows: [NavigationRow(title: String.localized("PrivacyPolicy"), action: showPrivacy),
+                        rows: [NavigationRow(title: String.localized("TandC"), action: showTaC),
+                               NavigationRow(title: String.localized("PrivacyPolicy"), action: showPrivacy),
                                NavigationRow(title: String.localized("Licences"), action: showLicences)])]
         
     }()
@@ -129,10 +130,12 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
     }
     
+    private func showTaC() {
+        push(viewController: TandCViewController.self)
+    }
+    
     private func showPrivacy() {
-        
-        
-        
+        push(viewController: PrivacyViewController.self)
     }
     
     private func showLicences() {

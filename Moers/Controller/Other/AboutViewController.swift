@@ -43,6 +43,8 @@ class AboutViewController: UIViewController {
         textView.font = UIFont.boldSystemFont(ofSize: 14)
         textView.text = "Twitter: twitter.com/codefornrn\nWebsite: codeforniederrhein.de"
         textView.isEditable = false
+        textView.isSelectable = true
+        textView.dataDetectorTypes = .all
         
         return textView
         
@@ -78,8 +80,10 @@ class AboutViewController: UIViewController {
         
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.font = UIFont.boldSystemFont(ofSize: 14)
-        textView.text = "Twitter: twitter.com/lambdadigamma"
+        textView.text = "Twitter: twitter.com/lambdadigamma\nWebsite: lambdadigamma.com"
         textView.isEditable = false
+        textView.isSelectable = true
+        textView.dataDetectorTypes = .all
         
         return textView
         
