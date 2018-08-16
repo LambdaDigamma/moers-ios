@@ -9,12 +9,23 @@
 import UIKit
 import MapKit
 
-enum Status: String {
+enum Status: String, Localizable {
     
     case unchanged = "unverändert"
     case descends = "fallend"
     case ascends = "aufsteigend"
     case undocumented = "nicht erfasst"
+    
+    static func localizedForCase(_ c: Status) -> String {
+        
+        switch c {
+        case .ascends: return String.localized("ParkingLotAscends")
+        case .descends: return String.localized("ParkingLotDescends")
+        case .unchanged: return String.localized("ParkingLotUnchanged")
+        case .undocumented: return String.localized("ParkingLotUndocumented")
+        }
+        
+    }
     
 }
 

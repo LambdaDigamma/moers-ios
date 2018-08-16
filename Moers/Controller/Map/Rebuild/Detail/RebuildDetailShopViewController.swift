@@ -103,6 +103,8 @@ class RebuildDetailShopViewController: UIViewController {
     
     private func selectShop(_ shop: Store?) {
         
+        // TODO: Implement
+        
         if shop?.url == nil {
             
             

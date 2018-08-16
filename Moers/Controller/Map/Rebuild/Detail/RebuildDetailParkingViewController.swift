@@ -133,19 +133,8 @@ class RebuildDetailParkingViewController: UIViewController {
         
         totalLabel.text = "\(parkingLot.slots)"
         freeLabel.text = "\(parkingLot.free)"
-        statusLabel.text = localizedStatus(status: parkingLot.status)
+        statusLabel.text = Status.localizedForCase(parkingLot.status)
         addressLabel.text = parkingLot.address
-        
-    }
-    
-    private func localizedStatus(status: Status) -> String {
-        
-        switch status {
-        case .ascends: return String.localized("ParkingLotAscends")
-        case .descends: return String.localized("ParkingLotDescends")
-        case .unchanged: return String.localized("ParkingLotUnchanged")
-        case .undocumented: return String.localized("ParkingLotUndocumented")
-        }
         
     }
     

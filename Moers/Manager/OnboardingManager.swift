@@ -18,6 +18,8 @@ struct OnboardingManager {
     
     func makeOnboarding() -> BLTNPageItem {
         
+        // TODO: Make Privacy Page
+        
         let introPage = makeIntroPage()
         let userTypePage = makeUserTypePage(preSelected: nil)
         let notificationPage = makeNotitificationsPage()

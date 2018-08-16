@@ -54,6 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.rootViewController = applicationController
         window!.makeKeyAndVisible()
         
+        application.applicationIconBadgeNumber = 0
+        
         OperationQueue.main.addOperation {
             UIApplication.configureLinearNetworkActivityIndicatorIfNeeded()
         }

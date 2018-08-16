@@ -176,6 +176,8 @@ class RubbishManager {
                 
                     let notificationContent = UNMutableNotificationContent()
                     
+                    // TODO: Localize Notifications
+                    
                     notificationContent.badge = 1
                     notificationContent.title = "Abfuhrkalender"
                     notificationContent.body = "Morgen wird abgeholt: \(item.type.rawValue)"

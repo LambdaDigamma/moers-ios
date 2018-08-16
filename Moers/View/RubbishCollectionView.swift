@@ -52,7 +52,7 @@ class RubbishCollectionView: UIView {
             guard let item = rubbishCollectionItem else { return }
             
             dateLabel.text = item.parsedDate.beautify()
-            typeLabel.text = item.type.rawValue
+            typeLabel.text = item.type.rawValue // TODO: Implement Localized Value
             
             switch item.type {
             case .green: imageView.image = #imageLiteral(resourceName: "greenWaste")
