@@ -24,12 +24,14 @@ struct OnboardingManager {
         let userTypePage = makeUserTypePage(preSelected: nil)
         let notificationPage = makeNotitificationsPage()
         let locationPage = makeLocationPage()
+        let privacyPage = makePrivacyPage()
         let petrolPage = makePetrolType(preSelected: nil)
         
         introPage.next = userTypePage
         userTypePage.next = notificationPage
         notificationPage.next = locationPage
-        locationPage.next = petrolPage
+        locationPage.next = privacyPage
+        privacyPage.next = petrolPage
         
         return introPage
         
@@ -107,7 +109,7 @@ struct OnboardingManager {
         
         page.image = #imageLiteral(resourceName: "LocationPrompt")
         page.imageAccessibilityLabel = "Location Icon"
-        page.descriptionText = String.localized("OnboardingNotificationPageDescription")
+        page.descriptionText = String.localized("OnboardingLocationPageDescription")
         page.actionButtonTitle = String.localized("Allow")
         page.alternativeButtonTitle = String.localized("Later")
         page.appearance = appearance
@@ -128,6 +130,23 @@ struct OnboardingManager {
             item.manager?.displayNextItem()
             
         }
+        
+        return page
+        
+    }
+    
+    func makePrivacyPage() -> FeedbackPageBulletinItem {
+        
+        let page = FeedbackPageBulletinItem(title: String.localized("PrivacyPageTitle"))
+        
+        page.image = #imageLiteral(resourceName: "PrivacyPrompt")
+        page.imageAccessibilityLabel = "Privacy Icon"
+        page.descriptionText = String.localized("PrivacyPageDescription")
+        page.actionButtonTitle = String.localized("PrivacyPageButtonTitle")
+        page.appearance = appearance
+        page.isDismissable = false
+        
+        page.actionHandler = { $0.manager?.displayNextItem() }
         
         return page
         
@@ -204,12 +223,11 @@ struct OnboardingManager {
     func makeRubbishReminderPage() -> BLTNPageItem {
         
         let page = RubbishReminderBulletinItem(title: String.localized("RubbishCollectionReminderPageTitle"))
-        page.appearance = appearance
         page.descriptionText = String.localized("RubbishCollectionReminderPageDescription")
         page.image = #imageLiteral(resourceName: "NotificationPrompt")
         page.actionButtonTitle = String.localized("RubbishCollectionReminderPageActionButtonTitle")
         page.alternativeButtonTitle = String.localized("RubbishCollectionReminderPageAlternativeButtonTitle")
-        
+        page.appearance = appearance
         page.isDismissable = false
         
         page.actionHandler = { item in
@@ -219,16 +237,15 @@ struct OnboardingManager {
             
             RubbishManager.shared.registerNotifications(at: hour, minute: minutes)
             
+            page.next = self.makeCompletionPage()
             item.manager?.displayNextItem()
             
         }
         
         page.alternativeHandler = { item in
+            page.next = self.makeCompletionPage()
             item.manager?.displayNextItem()
         }
-        
-        
-        page.next = makeCompletionPage()
         
         return page
         

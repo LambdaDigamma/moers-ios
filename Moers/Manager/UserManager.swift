@@ -52,9 +52,9 @@ struct UserManager {
     public var theme: Theme {
         get {
             
-            let identifier = UserDefaults.standard.string(forKey: "Theme") ?? Theme.lightning.identifier
+            let identifier = UserDefaults.standard.string(forKey: "Theme") ?? Theme.dark.identifier
             
-            let theme = Theme.all.filter { $0.identifier == identifier }.first ?? Theme.lightning
+            let theme = Theme.all.filter { $0.identifier == identifier }.first ?? Theme.dark
             
             return theme
             

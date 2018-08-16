@@ -8,10 +8,10 @@
 "DashboardTabItem" = "Übersicht";
 "MapTabItem" = "Karte";
 "OtherTabItem" = "Sonstiges";
-"OnboardingDescription" = "Suche Geschäfte & Parkplätze mit Live-Daten und bewege Dich mit interaktiven 360° Panoramen durch die Stadt!";
+"OnboardingDescription" = "Suche Geschäfte & Parkplätze mit Live-Daten und bewege Dich mit interaktiven 360° Panoramen durch die Stadt! Finde die günstigste Tankstelle oder bekomme Erinnerungen für Leerungstermine der Mülltonnen.";
 "OnboardingFirstPageActionButtonTitle" = "Fortfahren";
 "OnboardingNotificationPageTitle" = "Push-Mitteilungen";
-"OnboardingNotificationPageDescription" = "Erhalte Push Notifications um auf dem Laufenden zu bleiben.";
+"OnboardingNotificationPageDescription" = "Erhalte Push Notifications, um auf dem Laufenden zu bleiben und an Leerungstermine erinnert zu werden.";
 "OnboardingNotificationPageActionButtonTitle" = "Erhalten";
 "OnboardingNotificationPageAlternativeButtonTitle" = "Nicht jetzt";
 "CompletionPageTitle" = "Einrichtung abgeschlossen";
@@ -34,9 +34,12 @@
 "Today" = "Heute";
 "Tomorrow" = "Morgen";
 "OnboardingLocationPageTitle" = "Standort";
-"OnboardingLocationPageDescription" = "";
+"OnboardingLocationPageDescription" = "Mein Moers benutzt Deinen Standort, um Geschäfte in deiner Nähe zu finden und Dir Kraftstoffpreise in der Umgebung anzuzeigen.";
 "Allow" = "Erlauben";
 "Later" = "Später";
+"PrivacyPageTitle" = "Datenschutz";
+"PrivacyPageDescription" = "Alle Daten werden mit größter Vorsicht und höchster Vertraulichkeit behandelt! \nMit der Benutzung dieser App stimmen Sie den AGBs und Datenschutzbestimmungen, die Sie im Menü finden, zu.";
+"PrivacyPageButtonTitle" = "Verstanden";
 "PrivacyPolicy" = "Datenschutz";
 "Legal" = "Rechtliches";
 "Licences" = "Lizenzen";

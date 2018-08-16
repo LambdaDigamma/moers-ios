@@ -25,6 +25,7 @@ class RubbishReminderBulletinItem: BLTNPageItem {
         
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
             
+            themeable.appearance.actionButtonColor = theme.accentColor
             themeable.picker.backgroundColor = theme.backgroundColor
             themeable.picker.performSelector(inBackground: Selector(("setHighlightsToday:")), with: theme.accentColor)
             themeable.picker.setValue(theme.decentColor, forKey: "textColor")
