@@ -9,6 +9,7 @@
 import Foundation
 import BLTNBoard
 import Gestalt
+import CoreLocation
 
 struct OnboardingManager {
     
@@ -117,11 +118,17 @@ struct OnboardingManager {
         
         page.actionHandler = { item in
             
-            LocationManager.shared.requestWhenInUseAuthorization(completion: {
+            if LocationManager.shared.authorizationStatus == CLAuthorizationStatus.notDetermined {
                 
+                LocationManager.shared.requestWhenInUseAuthorization(completion: {
+                    
+                    item.manager?.displayNextItem()
+                    
+                })
+                
+            } else {
                 item.manager?.displayNextItem()
-                
-            })
+            }
             
         }
         
