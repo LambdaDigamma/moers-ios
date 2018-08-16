@@ -8,8 +8,6 @@
 
 import Foundation
 
-// TODO: Implement Localizable
-
 struct RubbishCollectionItem {
     
     let date: String

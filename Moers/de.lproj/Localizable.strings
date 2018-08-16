@@ -103,3 +103,10 @@
 "Petrol" = "Kraftstoff";
 "PetrolType" = "Art";
 "TandC" = "AGBs";
+"RubbishCollectionNotificationTitle" = "Abfuhrkalender";
+"RubbishCollectionNotificationBody" = "Morgen wird abgeholt: ";
+"ResidualWaste" = "Restabfall";
+"OrganicWaste" = "Biotonne";
+"PaperWaste" = "Papiertonne";
+"YellowWaste" = "Gelber Sack";
+"GreenWaste" = "Grünschnitt";

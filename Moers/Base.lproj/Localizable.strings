@@ -103,3 +103,10 @@
 "Petrol" = "Petrol";
 "PetrolType" = "Type";
 "TandC" = "Terms and Conditions";
+"RubbishCollectionNotificationTitle" = "Pick-up Schedule";
+"RubbishCollectionNotificationBody" = "Tomorrow will be collected: ";
+"ResidualWaste" = "Residual Waste";
+"OrganicWaste" = "Organic Waste";
+"PaperWaste" = "Paper Waste";
+"YellowWaste" = "Yellow Bag";
+"GreenWaste" = "Green Cuttings";

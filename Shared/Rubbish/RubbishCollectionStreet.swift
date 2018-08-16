@@ -8,12 +8,26 @@
 
 import Foundation
 
-enum RubbishWasteType: String {
+enum RubbishWasteType: String, Localizable {
+    
     case residual = "Restabfall"
     case organic = "Biotonne"
     case paper = "Papiertonne"
     case yellow = "Gelber Sack"
     case green = "Grünschnitt"
+    
+    static func localizedForCase(_ c: RubbishWasteType) -> String {
+        
+        switch c {
+        case .green: return String.localized("GreenWaste")
+        case .organic: return String.localized("OrganicWaste")
+        case .paper: return String.localized("PaperWaste")
+        case .residual: return String.localized("ResidualWaste")
+        case .yellow: return String.localized("YellowWaste")
+        }
+        
+    }
+    
 }
 
 struct RubbishCollectionStreet {
