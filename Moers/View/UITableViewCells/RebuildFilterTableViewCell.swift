@@ -7,40 +7,13 @@
 //
 
 import UIKit
+import Gestalt
 
 class RebuildFilterTableViewCell: UITableViewCell {
 
-    lazy var filterImageView: UIImageView = {
-        
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "filter"))
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return imageView
-        
-    }()
-    
-    lazy var branchLabel: UILabel = {
-        
-        let label = UILabel()
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-        
-    }()
-    
-    lazy var closeButton: UIButton = {
-        
-        let button = UIButton()
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(#imageLiteral(resourceName: "close"), for: .normal)
-        button.addTarget(self, action: #selector(close(_:)), for: .touchUpInside)
-        
-        return button
-        
-    }()
+    lazy var filterImageView: UIImageView = { ViewFactory.imageView() }()
+    lazy var branchLabel: UILabel = { ViewFactory.label() }()
+    lazy var closeButton: UIButton = { ViewFactory.button() }()
     
     var onButtonClick: ((UITableViewCell) -> Void)?
     
@@ -53,11 +26,13 @@ class RebuildFilterTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.addSubview(filterImageView)
-        self.addSubview(branchLabel)
-        self.addSubview(closeButton)
+        self.contentView.addSubview(filterImageView)
+        self.contentView.addSubview(branchLabel)
+        self.contentView.addSubview(closeButton)
         
         self.setupConstraints()
+        self.setupUI()
+        self.setupTheming()
         
     }
     
@@ -65,21 +40,43 @@ class RebuildFilterTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setupUI() {
+        
+        self.filterImageView.image = #imageLiteral(resourceName: "filter")
+        self.closeButton.setImage(#imageLiteral(resourceName: "close"), for: .normal)
+        self.closeButton.addTarget(self, action: #selector(close(_:)), for: .touchUpInside)
+        
+    }
+    
     private func setupConstraints() {
         
-        let constraints = [filterImageView.leftAnchor.constraint(equalTo: self.leftAnchor),
-                           filterImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 4),
-                           filterImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -4),
+        let margins = contentView.layoutMarginsGuide
+        
+        let constraints = [filterImageView.leftAnchor.constraint(equalTo: margins.leftAnchor),
+                           filterImageView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 4),
+                           filterImageView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -4),
                            filterImageView.widthAnchor.constraint(equalTo: filterImageView.heightAnchor),
-                           branchLabel.topAnchor.constraint(equalTo: self.topAnchor),
-                           branchLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+                           branchLabel.topAnchor.constraint(equalTo: margins.topAnchor),
+                           branchLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
                            branchLabel.leftAnchor.constraint(equalTo: filterImageView.rightAnchor, constant: 8),
-                           closeButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 4),
-                           closeButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -4),
+                           closeButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 4),
+                           closeButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -4),
                            closeButton.leftAnchor.constraint(equalTo: branchLabel.rightAnchor, constant: 8),
-                           closeButton.rightAnchor.constraint(equalTo: self.rightAnchor)]
+                           closeButton.rightAnchor.constraint(equalTo: margins.rightAnchor),
+                           closeButton.widthAnchor.constraint(equalTo: closeButton.heightAnchor)]
         
         NSLayoutConstraint.activate(constraints)
+        
+    }
+    
+    private func setupTheming() {
+        
+        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
+            
+            themeable.backgroundColor = theme.backgroundColor
+            themeable.branchLabel.textColor = theme.color
+            
+        }
         
     }
     

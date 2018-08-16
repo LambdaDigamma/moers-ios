@@ -90,6 +90,7 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         self.tableView.contentInsetAdjustmentBehavior = .never
         self.tableView.register(RebuildSearchResultTableViewCell.self, forCellReuseIdentifier: CellIdentifier.searchResultCell)
         self.tableView.register(RebuildBranchTableViewCell.self, forCellReuseIdentifier: CellIdentifier.branchCell)
+        self.tableView.register(RebuildFilterTableViewCell.self, forCellReuseIdentifier: CellIdentifier.filterCell)
         
     }
     
@@ -141,35 +142,29 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
     
     public func onSelect(item: Branch) {
         
-        print(item.name)
+        if let drawerVC = self.parent as? PulleyViewController {
+            drawerVC.setDrawerPosition(position: .open, animated: true)
+        }
+
+        selectedBranch = item
         
-//        if let drawerVC = self.parent as? PulleyViewController {
-//            drawerVC.setDrawerPosition(position: .open, animated: true)
-//        }
-//
-//        selectedBranch = item
-//
-//        if let branch = selectedBranch {
-//
-//            Answers.logCustomEvent(withName: "Branch", customAttributes: ["name": branch.name])
-//
-//        }
-//
-//        searchStyle = .branchSearch
-//
-//        filteredLocations = locations.filter { (location) -> Bool in
-//
-//            guard let shop = location as? Store else { return false }
-//
-//            if shop.branch == item.name {
-//                return true
-//            } else {
-//                return false
-//            }
-//
-//        }
-//
-//        tableView.reloadData()
+        Answers.logCustomEvent(withName: "Branch", customAttributes: ["name": item.name]) // TODO: Refactor into AnalyticsManager
+
+        searchStyle = .branchSearch
+        
+        filteredLocations = locations.filter { (location) -> Bool in
+
+            guard let shop = location as? Store else { return false }
+
+            if shop.branch == item.name {
+                return true
+            } else {
+                return false
+            }
+
+        }
+
+        tableView.reloadData()
         
     }
     
