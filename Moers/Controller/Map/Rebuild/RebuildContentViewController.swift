@@ -395,16 +395,17 @@ extension RebuildContentViewController: UITableViewDataSource, UITableViewDelega
                 cell.titleLabel.text = shop.title
                 cell.subtitleLabel.text = shop.subtitle
                 
+                cell.searchImageView.backgroundColor = AppColor.yellow
+                cell.searchImageView.contentMode = .scaleAspectFit
+                cell.searchImageView.layer.borderColor = UIColor.black.cgColor
+                cell.searchImageView.layer.borderWidth = 1
+                cell.searchImageView.layer.cornerRadius = 7
+                
                 if let image = ShopIconDrawer.annotationImage(from: shop.branch) {
                     
                     if let img = UIImage.imageResize(imageObj: image, size: CGSize(width: cell.searchImageView.bounds.width / 2, height: cell.searchImageView.bounds.height / 2), scaleFactor: 0.75) {
                         
-                        cell.searchImageView.backgroundColor = AppColor.yellow //UIColor(red: 0xFF, green: 0xF5, blue: 0x00, alpha: 1)i
                         cell.searchImageView.image = img
-                        cell.searchImageView.contentMode = .scaleAspectFit
-                        cell.searchImageView.layer.borderColor = UIColor.black.cgColor
-                        cell.searchImageView.layer.borderWidth = 1
-                        cell.searchImageView.layer.cornerRadius = 7
                         
                     }
                     
