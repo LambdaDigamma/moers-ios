@@ -9,13 +9,7 @@
 import Foundation
 import InfoKit
 
-struct Branches: Codable {
-    
-    let branches: [Branch]
-    
-}
-
-struct Branch: Codable {
+struct Branch: Equatable {
     
     let name: String
     let color: String

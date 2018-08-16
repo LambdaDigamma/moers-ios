@@ -99,6 +99,19 @@ extension UIColor {
     
 }
 
+public extension Sequence where Element: Equatable {
+    var uniqueElements: [Element] {
+        return self.reduce(into: []) {
+            uniqueElements, element in
+            
+            if !uniqueElements.contains(element) {
+                uniqueElements.append(element)
+            }
+        }
+    }
+}
+
+
 extension UIViewController {
     
     var safeTopAnchor: NSLayoutYAxisAnchor {

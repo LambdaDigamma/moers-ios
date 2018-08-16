@@ -137,4 +137,14 @@ struct ViewFactory {
         
     }
     
+    static func searchBar() -> UISearchBar {
+        
+        let searchBar = UISearchBar()
+        
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        
+        return searchBar
+        
+    }
+    
 }

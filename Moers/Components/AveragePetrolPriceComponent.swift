@@ -140,5 +140,18 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
         
     }
     
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
+        previewingContext.sourceRect = averagePetrolCardView.frame
+        
+        return petrolStationVC()
+        
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        
+        showPetrolStationViewController()
+        
+    }
     
 }
