@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RubbishCollectionComponent: BaseComponent {
+class RubbishCollectionComponent: BaseComponent, UIViewControllerPreviewingDelegate {
     
     let rubbishItems: [RubbishCollectionItem] = []
     
@@ -26,6 +26,8 @@ class RubbishCollectionComponent: BaseComponent {
         super.init(viewController: viewController)
         
         self.register(view: rubbishCardView)
+        
+        self.viewController?.registerForPreviewing(with: self, sourceView: rubbishCardView)
         
         self.rubbishCardView.isUserInteractionEnabled = true
         self.rubbishCardView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showRubbishCollectionViewController)))
@@ -53,10 +55,14 @@ class RubbishCollectionComponent: BaseComponent {
     
     @objc public func showRubbishCollectionViewController() {
         
-        let rubbishCollectionViewController = RubbishCollectionViewController()
+        let rubbishCollectionViewController = generateDetailVC()
         
         viewController?.navigationController?.pushViewController(rubbishCollectionViewController, animated: true)
         
+    }
+    
+    private func generateDetailVC() -> UIViewController {
+        return RubbishCollectionViewController()
     }
     
     private func load() {
@@ -116,6 +122,20 @@ class RubbishCollectionComponent: BaseComponent {
         
         self.rubbishCardView.stopLoading()
         self.rubbishCardView.showError(withTitle: String.localized("WasteErrorTitle"), message: String.localized("WasteErrorMessage"))
+        
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
+        previewingContext.sourceRect = rubbishCardView.frame
+        
+        return generateDetailVC()
+        
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        
+        showRubbishCollectionViewController()
         
     }
     

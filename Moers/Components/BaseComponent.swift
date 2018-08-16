@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseComponent {
+class BaseComponent: NSObject {
     
     public var view: UIView!
     public weak var viewController: UIViewController?

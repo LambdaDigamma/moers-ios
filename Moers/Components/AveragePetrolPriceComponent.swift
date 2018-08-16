@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, PetrolManagerDelegate {
+class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, PetrolManagerDelegate, UIViewControllerPreviewingDelegate {
 
     let locationManager = LocationManager()
     
@@ -27,6 +27,8 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
         super.init(viewController: viewController)
         
         self.register(view: averagePetrolCardView)
+        
+        self.viewController?.registerForPreviewing(with: self, sourceView: averagePetrolCardView)
         
         LocationManager.shared.delegate = self
         PetrolManager.shared.delegate = self
@@ -60,9 +62,17 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
         
     }
     
-    @objc private func showPetrolStationViewController() {
+    private func petrolStationVC() -> PetrolStationViewController {
         
         let petrolStationViewController = PetrolStationViewController()
+        
+        return petrolStationViewController
+        
+    }
+    
+    @objc private func showPetrolStationViewController() {
+        
+        let petrolStationViewController = petrolStationVC()
         
         viewController?.navigationController?.pushViewController(petrolStationViewController, animated: true)
 
