@@ -30,7 +30,21 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
     
     var selectedLocation: Location? { didSet { setupLocation(selectedLocation) } }
     
-    weak var child: UIViewController? = nil
+    weak var child: UIViewController? = nil {
+        willSet {
+            contentView.subviews.forEach({ $0.removeFromSuperview() })
+            contentView.removeFromSuperview()
+            contentView = ViewFactory.scrollView()
+            
+            self.view.addSubview(contentView)
+            
+            contentView.topAnchor.constraint(equalTo: routeButton.bottomAnchor, constant: 8).isActive = true
+            contentView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16).isActive = true
+            contentView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16).isActive = true
+            contentView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: -20).isActive = true
+            
+        }
+    }
     
     // MARK: - UIViewController Lifecycle
     
@@ -44,13 +58,6 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
         self.setupUI()
         self.setupConstraints()
         self.setupTheming()
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        contentView.subviews.forEach({ $0.removeFromSuperview() })
         
     }
     
@@ -78,6 +85,7 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
         routeButton.clipsToBounds = true
         routeButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         routeButton.addTarget(self, action: #selector(navigateViaMaps), for: .touchUpInside)
+        contentView.bounces = false
         
     }
     
@@ -288,7 +296,7 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
     
     private func morphDetailShop() {
         
-        let viewController = RebuildDetailShopViewController()
+        let viewController = RebuildDetailShopViewController.fromStoryboard()
         
         self.add(asChildViewController: viewController)
         
@@ -306,7 +314,7 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
         
         guard let loc = selectedLocation else { return }
         
-        if loc is Shop {
+        if loc is Store {
             height = DetailContentHeight.shop
         } else if loc is ParkingLot {
             height = DetailContentHeight.parkingLot
@@ -315,6 +323,8 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
         } else if loc is BikeChargingStation {
             height = DetailContentHeight.bikeCharger
         }
+        
+        height += 49
         
         // Add Child View as Subview
         contentView.contentSize = CGSize(width: contentView.bounds.width, height: height)

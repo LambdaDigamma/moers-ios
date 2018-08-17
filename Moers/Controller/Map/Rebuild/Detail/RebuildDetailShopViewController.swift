@@ -8,31 +8,41 @@
 
 import UIKit
 import Gestalt
+import SafariServices
 
 class RebuildDetailShopViewController: UIViewController {
 
-    lazy var topSeparator: UIView = { ViewFactory.blankView() }()
-    lazy var callButton: UIButton = { ViewFactory.button() }()
-    lazy var websiteButton: UIButton = { ViewFactory.button() }()
-    lazy var buttonSeparator: UIView = { ViewFactory.blankView() }()
-    lazy var addressHeaderLabel: UILabel = { ViewFactory.label() }()
-    lazy var streetLabel: UILabel = { ViewFactory.label() }()
-    lazy var placeLabel: UILabel = { ViewFactory.label() }()
-    lazy var countryLabel: UILabel = { ViewFactory.label() }()
-    lazy var addressSeperator: UIView = { ViewFactory.blankView() }()
-    lazy var openingHoursHeaderLabel: UILabel = { ViewFactory.label() }()
-    lazy var mondayHeaderLabel: UILabel = { ViewFactory.label() }()
-    lazy var mondayLabel: UILabel = { ViewFactory.label() }()
-    lazy var tuesdayHeaderLabel: UILabel = { ViewFactory.label() }()
-    lazy var tuesdayLabel: UILabel = { ViewFactory.label() }()
-    lazy var wednesdayHeaderLabel: UILabel = { ViewFactory.label() }()
-    lazy var wednesdayLabel: UILabel = { ViewFactory.label() }()
-    lazy var thursdayHeaderLabel: UILabel = { ViewFactory.label() }()
-    lazy var thursdayLabel: UILabel = { ViewFactory.label() }()
-    lazy var fridayHeaderLabel: UILabel = { ViewFactory.label() }()
-    lazy var fridayLabel: UILabel = { ViewFactory.label() }()
+    @IBOutlet weak var topSeparator: UIView!
+    @IBOutlet weak var callButton: DesignableButton!
+    @IBOutlet weak var websiteButton: DesignableButton!
+    @IBOutlet weak var buttonSeparator: UIView!
+    @IBOutlet weak var addressHeaderLabel: UILabel!
+    @IBOutlet weak var streetLabel: UILabel!
+    @IBOutlet weak var placeLabel: UILabel!
+    @IBOutlet weak var countryLabel: UILabel!
+    @IBOutlet weak var addressSeparator: UIView!
+    @IBOutlet weak var openingHoursHeaderLabel: UILabel!
+    @IBOutlet weak var mondayHeaderLabel: UILabel!
+    @IBOutlet weak var mondayLabel: UILabel!
+    @IBOutlet weak var tuesdayHeaderLabel: UILabel!
+    @IBOutlet weak var tuesdayLabel: UILabel!
+    @IBOutlet weak var wednesdayHeaderLabel: UILabel!
+    @IBOutlet weak var wednesdayLabel: UILabel!
+    @IBOutlet weak var thursdayHeaderLabel: UILabel!
+    @IBOutlet weak var thursdayLabel: UILabel!
+    @IBOutlet weak var fridayHeaderLabel: UILabel!
+    @IBOutlet weak var fridayLabel: UILabel!
+    @IBOutlet weak var saturdayHeaderLabel: UILabel!
+    @IBOutlet weak var saturdayLabel: UILabel!
+    @IBOutlet weak var otherHeaderLabel: UILabel!
+    @IBOutlet weak var otherLabel: UILabel!
+    @IBOutlet weak var openingHoursSeparator: UIView!
+    @IBOutlet weak var phoneHeaderLabel: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
+    @IBOutlet weak var websiteHeaderLabel: UILabel!
+    @IBOutlet weak var websiteLabel: UILabel!
     
-    var selectedShop: Store? { didSet { selectShop(selectedShop) } }
+    public var selectedShop: Store? { didSet { selectShop(selectedShop) } }
     
     // MARK: - UIViewController Lifecycle
     
@@ -40,7 +50,6 @@ class RebuildDetailShopViewController: UIViewController {
         super.viewDidLoad()
         
         self.setupUI()
-        self.setupConstraints()
         self.setupTheming()
         
     }
@@ -48,10 +57,6 @@ class RebuildDetailShopViewController: UIViewController {
     // MARK: - Private Methods
 
     private func setupUI() {
-        
-        self.view.addSubview(topSeparator)
-        self.view.addSubview(callButton)
-        self.view.addSubview(websiteButton)
         
         self.callButton.setTitle(String.localized("CallAction"), for: .normal)
         self.websiteButton.setTitle(String.localized("WebsiteAction"), for: .normal)
@@ -61,8 +66,16 @@ class RebuildDetailShopViewController: UIViewController {
         self.websiteButton.clipsToBounds = true
         self.callButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         self.websiteButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        self.addressHeaderLabel.text = "Adresse"
+        self.callButton.addTarget(self, action: #selector(call), for: .touchUpInside)
+        self.websiteButton.addTarget(self, action: #selector(openWebsite), for: .touchUpInside)
+        
+        
         
         self.topSeparator.alpha = 0.5
+        self.buttonSeparator.alpha = 0.5
+        self.addressSeparator.alpha = 0.5
+        self.openingHoursSeparator.alpha = 0.5
         
     }
     
@@ -71,6 +84,9 @@ class RebuildDetailShopViewController: UIViewController {
         ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
             
             themeable.topSeparator.backgroundColor = theme.decentColor
+            themeable.buttonSeparator.backgroundColor = theme.decentColor
+            themeable.addressSeparator.backgroundColor = theme.decentColor
+            themeable.openingHoursSeparator.backgroundColor = theme.decentColor
             themeable.callButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
             themeable.callButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .highlighted)
             themeable.callButton.setTitleColor(theme.backgroundColor, for: .normal)
@@ -78,63 +94,107 @@ class RebuildDetailShopViewController: UIViewController {
             themeable.websiteButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .highlighted)
             themeable.websiteButton.setTitleColor(theme.backgroundColor, for: .normal)
             
+            let labels: [UILabel] = [themeable.addressHeaderLabel,
+                                     themeable.streetLabel,
+                                     themeable.placeLabel,
+                                     themeable.countryLabel,
+                                     themeable.openingHoursHeaderLabel,
+                                     themeable.mondayHeaderLabel,
+                                     themeable.mondayLabel,
+                                     themeable.tuesdayHeaderLabel,
+                                     themeable.tuesdayLabel,
+                                     themeable.wednesdayHeaderLabel,
+                                     themeable.wednesdayLabel,
+                                     themeable.thursdayHeaderLabel,
+                                     themeable.thursdayLabel,
+                                     themeable.fridayHeaderLabel,
+                                     themeable.fridayLabel,
+                                     themeable.saturdayHeaderLabel,
+                                     themeable.saturdayLabel,
+                                     themeable.otherHeaderLabel,
+                                     themeable.otherLabel,
+                                     themeable.phoneHeaderLabel,
+                                     themeable.phoneLabel,
+                                     themeable.websiteHeaderLabel,
+                                     themeable.websiteLabel]
+            
+            for label in labels {
+                label.textColor = theme.color
+            }
+            
         }
         
     }
     
-    private func setupConstraints() {
-        
-        let constraints = [topSeparator.topAnchor.constraint(equalTo: self.view.topAnchor),
-                           topSeparator.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-                           topSeparator.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-                           topSeparator.heightAnchor.constraint(equalToConstant: 1),
-                           callButton.topAnchor.constraint(equalTo: topSeparator.bottomAnchor, constant: 8),
-                           callButton.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-                           callButton.heightAnchor.constraint(equalToConstant: 50),
-                           websiteButton.topAnchor.constraint(equalTo: callButton.topAnchor),
-                           websiteButton.leftAnchor.constraint(equalTo: callButton.rightAnchor, constant: 8),
-                           websiteButton.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-                           websiteButton.heightAnchor.constraint(equalTo: callButton.heightAnchor),
-                           websiteButton.widthAnchor.constraint(equalTo: callButton.widthAnchor)]
-        
-        NSLayoutConstraint.activate(constraints)
-        
-    }
-    
     private func selectShop(_ shop: Store?) {
+
+        guard let shop = shop else { return }
         
-        // TODO: Implement
+        self.streetLabel.text = shop.street + " " + shop.houseNumber
+        self.placeLabel.text = shop.postcode + " " + shop.place
+        self.countryLabel.text = "Deutschland"
         
-        if shop?.url == nil {
-            
-            
-            
+        self.mondayLabel.text = shop.monday ?? ""
+        self.tuesdayLabel.text = shop.tuesday ?? ""
+        self.wednesdayLabel.text = shop.wednesday ?? ""
+        self.thursdayLabel.text = shop.thursday ?? ""
+        self.fridayLabel.text = shop.friday ?? ""
+        self.saturdayLabel.text = shop.saturday ?? ""
+        self.otherLabel.text = shop.other ?? ""
+        
+        if let url = shop.url, url != "" {
+            self.websiteLabel.text = url
+        } else {
+            self.websiteLabel.text = "n/v"
+            self.websiteButton.isEnabled = false
+            self.websiteButton.alpha = 0.25
+        }
+        
+        if let phone = shop.phone, phone != "" {
+            self.phoneLabel.text = phone
+        } else {
+            self.phoneLabel.text = "n/v"
+            self.callButton.isEnabled = false
+            self.callButton.alpha = 0.25
         }
         
     }
     
     @objc private func call() {
         
-        guard let _ = selectedShop else { return }
+        guard let shop = selectedShop else { return }
+        guard let phone = shop.phone?.replacingOccurrences(of: " ", with: "") else { return }
+        guard let url = URL(string: "telprompt://" + phone) else { return }
         
-//        if let url = shop.phone, UIApplication.shared.canOpenURL(url) {
-//
-//            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-//
-//        }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
         
     }
     
     @objc private func openWebsite() {
         
         guard let shop = selectedShop else { return }
-        guard let url = URL(string: shop.url ?? "") else { return }
+        guard var urlString = shop.url else { return }
         
-        if UIApplication.shared.canOpenURL(url) {
-            
-            UIApplication.shared.open(url, options:  [:], completionHandler: nil)
-            
+        if !urlString.starts(with: "https://") && !urlString.starts(with: "http://") {
+            urlString = "http://" + urlString
         }
+        
+        guard let url = URL(string: urlString) else { return }
+        
+        let svc = SFSafariViewController(url: url)
+        svc.preferredBarTintColor = navigationController?.navigationBar.barTintColor
+        svc.preferredControlTintColor = navigationController?.navigationBar.tintColor
+        self.present(svc, animated: true, completion: nil)
+        
+    }
+    
+    static func fromStoryboard() -> RebuildDetailShopViewController {
+        
+        let storyboard = UIStoryboard(name: "DetailViewControllers", bundle: nil)
+        
+        return storyboard.instantiateViewController(withIdentifier: "DetailShopViewController") as! RebuildDetailShopViewController
         
     }
     

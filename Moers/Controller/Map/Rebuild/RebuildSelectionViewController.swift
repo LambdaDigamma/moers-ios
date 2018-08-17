@@ -232,7 +232,7 @@ extension RebuildSelectionViewController: UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         
-        if let cell = tableView.cellForRow(at: indexPath) as? RebuildSearchResultTableViewCell, let _ = clusteredLocations[indexPath.row - 1] as? Store {
+        if let cell = tableView.cellForRow(at: indexPath) as? RebuildSearchResultTableViewCell, let _ = clusteredLocations[indexPath.row] as? Store {
             
             cell.searchImageView.backgroundColor = AppColor.yellow
             

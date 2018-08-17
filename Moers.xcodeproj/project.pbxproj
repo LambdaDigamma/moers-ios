@@ -53,6 +53,7 @@
 		DF3EE0C520E382EC00CA9279 /* MapLocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */; };
 		DF3EE0C720E38A6B00CA9279 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C620E38A6B00CA9279 /* PaddingLabel.swift */; };
 		DF44D58D2125FE9700F8AC0C /* ContentDrawer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF44D58C2125FE9700F8AC0C /* ContentDrawer.storyboard */; };
+		DF44D58F2126F83B00F8AC0C /* DetailViewControllers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF44D58E2126F83B00F8AC0C /* DetailViewControllers.storyboard */; };
 		DF461CB820E2257400600C0E /* AddShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF461CB720E2257400600C0E /* AddShopViewController.swift */; };
 		DF461CBA20E226DE00600C0E /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF461CB920E226DE00600C0E /* ViewFactory.swift */; };
 		DF4BD1BE208A72C5003ECF41 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */; };
@@ -300,6 +301,7 @@
 		DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocationPickerViewController.swift; sourceTree = "<group>"; };
 		DF3EE0C620E38A6B00CA9279 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		DF44D58C2125FE9700F8AC0C /* ContentDrawer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContentDrawer.storyboard; sourceTree = "<group>"; };
+		DF44D58E2126F83B00F8AC0C /* DetailViewControllers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewControllers.storyboard; sourceTree = "<group>"; };
 		DF461CB720E2257400600C0E /* AddShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShopViewController.swift; sourceTree = "<group>"; };
 		DF461CB920E226DE00600C0E /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
 		DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -595,6 +597,8 @@
 				DFB64DCA2038845300173A80 /* Firebase.h */,
 				DFA9EF0220B40C16008590EA /* Moers.gpx */,
 				DF21B2FD20B9D8A900478A33 /* Licenses.plist */,
+				DF44D58C2125FE9700F8AC0C /* ContentDrawer.storyboard */,
+				DF44D58E2126F83B00F8AC0C /* DetailViewControllers.storyboard */,
 				DFB64DBD2038826E00173A80 /* FirebaseAnalytics.framework */,
 				DFB64DBE2038826E00173A80 /* FirebaseCore.framework */,
 				DFB64DBA2038826C00173A80 /* FirebaseCoreDiagnostics.framework */,
@@ -604,7 +608,6 @@
 				DFB64DBF2038826F00173A80 /* nanopb.framework */,
 				DFB64DCC20389FDB00173A80 /* Crashlytics.framework */,
 				DFB64DCD20389FDB00173A80 /* Fabric.framework */,
-				DF44D58C2125FE9700F8AC0C /* ContentDrawer.storyboard */,
 			);
 			path = Moers;
 			sourceTree = "<group>";
@@ -1060,6 +1063,7 @@
 				DF02B7611FB035BB004B8B3E /* Settings.plist in Resources */,
 				DFFB77601FB38A5A00073863 /* Branches.plist in Resources */,
 				DF0CB4A52082BE0F00CC0AA8 /* Localizable.strings in Resources */,
+				DF44D58F2126F83B00F8AC0C /* DetailViewControllers.storyboard in Resources */,
 				DF44D58D2125FE9700F8AC0C /* ContentDrawer.storyboard in Resources */,
 				DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */,
 				DF1A49681F6AAB7000E9108B /* Main.storyboard in Resources */,

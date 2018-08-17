@@ -16,7 +16,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     private var tweets: [TWTRTweet] = []
     
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         
         let tableView = UITableView(frame: CGRect.zero, style: .plain)
         
@@ -85,6 +85,10 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
         }
         
+    }
+    
+    public func reloadData() {
+        self.tableView.reloadData()
     }
     
     // MARK: - UITableViewDataSource

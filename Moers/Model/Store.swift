@@ -20,14 +20,14 @@ class Store: NSObject, Codable, MKAnnotation {
     public let place: String
     public let url: String?
     public let phone: String?
-    private let monday: String?
-    private let tuesday: String?
-    private let wednesday: String?
-    private let thursday: String?
-    private let friday: String?
-    private let saturday: String?
-    private let sunday: String?
-    private let other: String?
+    public let monday: String?
+    public let tuesday: String?
+    public let wednesday: String?
+    public let thursday: String?
+    public let friday: String?
+    public let saturday: String?
+    public let sunday: String?
+    public let other: String?
     private let lat: Double
     private let lng: Double
     
