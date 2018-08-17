@@ -19,6 +19,8 @@ class ThemeViewController: CardCollectionViewController {
         self.setupThemeCards()
         self.setupTheming()
         
+        AnalyticsManager.shared.logOpenedTheme()
+        
     }
     
     private func setupTheming() {
@@ -63,6 +65,13 @@ class ThemeViewController: CardCollectionViewController {
 
         ThemeManager.default.theme = theme
         UserManager.shared.theme = theme
+        
+        AnalyticsManager.shared.logSelectedTheme(theme)
+        
+        guard let tabBarController = UIApplication.shared.keyWindow?.rootViewController as? TabBarController else { return }
+        guard let newsController = tabBarController.newsViewController.childViewControllers.first as? NewsViewController else { return }
+        
+        newsController.reloadData()
         
     }
     
