@@ -143,7 +143,8 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
         } else if view.annotation is MKClusterAnnotation {
             
             if let drawer = self.parent as? PulleyViewController {
-                let drawerDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SelectionViewController") as! SelectionViewController
+                
+                let drawerDetail = RebuildSelectionViewController()
                 
                 drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
                 drawer.setDrawerPosition(position: .partiallyRevealed, animated: true)
@@ -153,6 +154,7 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
                 guard let clusteredLocations = annotation.memberAnnotations as? [Location] else { return }
                 
                 drawerDetail.clusteredLocations = clusteredLocations
+                drawerDetail.annotation = annotation
                 
             }
             
