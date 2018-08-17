@@ -177,7 +177,7 @@ class RubbishManager {
                 
                     let notificationContent = UNMutableNotificationContent()
                     
-                    notificationContent.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber
+                    notificationContent.badge = 1
                     notificationContent.title = String.localized("RubbishCollectionNotificationTitle")
                     notificationContent.body = String.localized("RubbishCollectionNotificationBody") + RubbishWasteType.localizedForCase(item.type)
                     
@@ -282,9 +282,18 @@ class RubbishManager {
         
     }
     
+    public func disableReminder() {
+        
+        self.invalidateRubbishReminderNotifications()
+        self.remindersEnabled = false
+        self.reminderHour = 20
+        self.reminderMinute = 0
+        
+    }
+    
     public var isEnabled: Bool {
         get { return UserDefaults.standard.bool(forKey: "RubbishEnabled") }
-        set { UserDefaults.standard.set(newValue, forKey: "RubbishEnabled") }
+        set { UserDefaults.standard.set(newValue, forKey: "RubbishEnabled")}
     }
     
     public var reminderHour: Int? {

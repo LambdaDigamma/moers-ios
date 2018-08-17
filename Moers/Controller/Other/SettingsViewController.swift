@@ -121,6 +121,7 @@ class SettingsViewController: UIViewController {
             let hour = Calendar.current.component(.hour, from: page.picker.date)
             let minutes = Calendar.current.component(.minute, from: page.picker.date)
             
+            RubbishManager.shared.invalidateRubbishReminderNotifications()
             RubbishManager.shared.registerNotifications(at: hour, minute: minutes)
             
             self.reloadRows()
@@ -132,9 +133,7 @@ class SettingsViewController: UIViewController {
         
         reminderPage.alternativeHandler = { item in
             
-            RubbishManager.shared.remindersEnabled = false
-            RubbishManager.shared.reminderHour = 20
-            RubbishManager.shared.reminderMinute = 0
+            RubbishManager.shared.disableReminder()
             
             self.reloadRows()
             
@@ -262,7 +261,12 @@ class SettingsViewController: UIViewController {
     }
     
     private func triggerRubbishCollection(isEnabled: Bool) {
+        
         RubbishManager.shared.isEnabled = isEnabled
+        RubbishManager.shared.disableReminder()
+        
+        self.reloadRows()
+        
     }
     
     private func makeManager(with item: BLTNItem) -> BLTNItemManager {
