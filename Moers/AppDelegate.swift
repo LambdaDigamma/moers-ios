@@ -54,6 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.rootViewController = applicationController
         window!.makeKeyAndVisible()
         
+        AnalyticsManager.shared.numberOfAppRuns += 1
+        
         application.applicationIconBadgeNumber = 0
         
         OperationQueue.main.addOperation {

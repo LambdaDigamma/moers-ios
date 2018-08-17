@@ -12,6 +12,7 @@ import CoreLocation
 class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, PetrolManagerDelegate, UIViewControllerPreviewingDelegate {
 
     let locationManager = LocationManager()
+    private var place: String = ""
     
     lazy var averagePetrolCardView: DashboardAveragePetrolPriceCardView = {
         
@@ -64,6 +65,8 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
     
     private func petrolStationVC() -> PetrolStationViewController {
         
+        AnalyticsManager.shared.logOpenedPetrolPrices(for: place)
+        
         let petrolStationViewController = PetrolStationViewController()
         
         return petrolStationViewController
@@ -84,6 +87,7 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
         
         GeocodingManager.shared.city(from: location) { (city) in
             
+            self.place = city ?? ""
             self.averagePetrolCardView.locationLabel.text = city
             
         }

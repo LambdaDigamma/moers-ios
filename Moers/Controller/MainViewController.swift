@@ -50,6 +50,13 @@ class MainViewController: PulleyViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        AnalyticsManager.shared.logOpenedMaps()
+        
+    }
+    
     // MARK: - Private Methods
     
     private func loadData() {
@@ -79,6 +86,7 @@ class MainViewController: PulleyViewController {
             }
             
             self.locations = self.locations.filter { !($0 is Store) }
+            self.locations.append(contentsOf: shops)
             
         }
         
@@ -99,6 +107,7 @@ class MainViewController: PulleyViewController {
             }
             
             self.locations = self.locations.filter { !($0 is ParkingLot) }
+            self.locations.append(contentsOf: parkingLots)
             
         }
         
@@ -119,6 +128,7 @@ class MainViewController: PulleyViewController {
             }
             
             self.locations = self.locations.filter { !($0 is Camera) }
+            self.locations.append(contentsOf: cameras)
             
         }
         

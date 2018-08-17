@@ -51,6 +51,8 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         TwitterManager.shared.delegate = self
         TwitterManager.shared.getTweets()
         
+        AnalyticsManager.shared.logOpenedNews()
+        
     }
     
     private func setupConstraints() {

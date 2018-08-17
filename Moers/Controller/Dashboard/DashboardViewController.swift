@@ -31,6 +31,8 @@ class DashboardViewController: CardCollectionViewController {
         
         self.triggerUpdate()
         
+        AnalyticsManager.shared.logOpenedDashboard()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
