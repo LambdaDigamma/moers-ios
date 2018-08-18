@@ -43,8 +43,8 @@ platform :ios do
     produce(
       app_name: 'Mein Moers',
       language: 'German',
-      app_version: '1',
-      sku: 'de.okfn.moers-festival.001'
+      app_version: '2',
+      sku: 'de.okfn.niederrhein.moers.001'
     )
 
     cert
