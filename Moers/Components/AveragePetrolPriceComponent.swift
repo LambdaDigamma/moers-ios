@@ -50,8 +50,10 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
             self.locationManager.requestCurrentLocation()
             self.averagePetrolCardView.dismissError()
             self.averagePetrolCardView.startLoading()
+            self.averagePetrolCardView.isUserInteractionEnabled = true
         } else {
             self.averagePetrolCardView.showError(withTitle: String.localized("PetrolErrorPermissionTitle"), message: String.localized("PetrolErrorPermissionMessage"))
+            self.averagePetrolCardView.isUserInteractionEnabled = false
         }
         
     }
@@ -96,6 +98,7 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
             
             if countryCode != "DE" {
                 
+                self.averagePetrolCardView.isUserInteractionEnabled = false
                 self.averagePetrolCardView.showError(withTitle: String.localized("PetrolErrorLocationTitle"), message: String.localized("PetrolErrorLocationMessage"))
                 
             } else {
@@ -104,6 +107,7 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
                 
                 PetrolManager.shared.delegate = self
                 PetrolManager.shared.sendRequest(coordiante: location.coordinate, radius: 5, sorting: .distance, type: .diesel)
+                self.averagePetrolCardView.isUserInteractionEnabled = true
                 
             }
             
