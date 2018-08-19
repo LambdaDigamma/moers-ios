@@ -156,6 +156,8 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.firstLaunch = FirstLaunch(userDefaults: .standard, key: "FirstLaunch.WasLaunchedBefore")
+        
         self.delegate = self
         
     }

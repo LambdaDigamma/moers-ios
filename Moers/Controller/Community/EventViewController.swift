@@ -77,6 +77,7 @@ class EventViewController: UIViewController {
         let svc = SFSafariViewController(url: url)
         svc.preferredBarTintColor = navigationController?.navigationBar.barTintColor
         svc.preferredControlTintColor = navigationController?.navigationBar.tintColor
+        
         self.present(svc, animated: true, completion: nil)
         
     }
