@@ -8,13 +8,13 @@
 "DashboardTabItem" = "Übersicht";
 "MapTabItem" = "Karte";
 "OtherTabItem" = "Sonstiges";
-"OnboardingDescription" = "Suche Geschäfte & Parkplätze mit Live-Daten und bewege Dich mit interaktiven 360° Panoramen durch die Stadt! Finde die günstigste Tankstelle oder bekomme Erinnerungen für Leerungstermine der Mülltonnen.";
+"OnboardingDescription" = "Suche Geschäfte, Veranstaltungen & Parkplätze mit Live-Daten und bewege Dich mit interaktiven 360° Panoramen durch die Stadt! Finde die günstigste Tankstelle oder bekomme Erinnerungen für Leerungstermine der Mülltonnen.";
 "OnboardingFirstPageActionButtonTitle" = "Fortfahren";
 "OnboardingNotificationPageTitle" = "Push-Mitteilungen";
 "OnboardingNotificationPageDescription" = "Erhalte Push Notifications, um auf dem Laufenden zu bleiben und an Leerungstermine erinnert zu werden.";
 "OnboardingNotificationPageActionButtonTitle" = "Erhalten";
 "OnboardingNotificationPageAlternativeButtonTitle" = "Nicht jetzt";
-"CompletionPageTitle" = "Einrichtung abgeschlossen";
+"CompletionPageTitle" = "Einrichtung beendet";
 "CompletionPageActionButtonTitle" = "Los geht's!";
 "SearchBarPrompt" = "Wohin willst du?";
 "DashboardTitleRubbishCollection" = "Nächste Leerungen";
