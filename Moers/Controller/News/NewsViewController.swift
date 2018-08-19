@@ -43,13 +43,12 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.setupConstraints()
         self.setupTheming()
         
+        self.loadData()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        TwitterManager.shared.delegate = self
-        TwitterManager.shared.getTweets()
         
         AnalyticsManager.shared.logOpenedNews()
         
@@ -73,6 +72,19 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             themeable.view.backgroundColor = theme.backgroundColor
             themeable.tableView.backgroundColor = theme.backgroundColor
             themeable.tableView.separatorColor = theme.decentColor.darker(by: 10)
+            
+        }
+        
+    }
+    
+    private func loadData() {
+        
+        let queue = OperationQueue()
+        
+        queue.addOperation {
+            
+            TwitterManager.shared.delegate = self
+            TwitterManager.shared.getTweets()
             
         }
         
