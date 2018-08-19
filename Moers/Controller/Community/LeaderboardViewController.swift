@@ -169,7 +169,7 @@ class LeaderboardViewController: UIViewController {
             themeable.topLabel.textColor = theme.color
             themeable.userLabel.textColor = theme.color
             themeable.tableView.backgroundColor = theme.backgroundColor
-            themeable.tableView.separatorColor = theme.decentColor
+            themeable.tableView.separatorColor = theme.separatorColor
             
         }
         

@@ -27,7 +27,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
         ThemeManager.default.apply(theme: Theme.self, to: tableView) { themeable, theme in
             themeable.backgroundColor = theme.backgroundColor
-            themeable.separatorColor = theme.decentColor
+            themeable.separatorColor = theme.separatorColor
         }
         
         return tableView

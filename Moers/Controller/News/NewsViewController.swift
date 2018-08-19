@@ -71,7 +71,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             themeable.view.backgroundColor = theme.backgroundColor
             themeable.tableView.backgroundColor = theme.backgroundColor
-            themeable.tableView.separatorColor = theme.decentColor.darker(by: 10)
+            themeable.tableView.separatorColor = theme.separatorColor
             
         }
         

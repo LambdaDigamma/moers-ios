@@ -62,7 +62,7 @@ class AccountViewController: UIViewController {
             
             themeable.view.backgroundColor = theme.backgroundColor
             themeable.tableView.backgroundColor = theme.backgroundColor
-            themeable.tableView.separatorColor = theme.decentColor
+            themeable.tableView.separatorColor = theme.separatorColor
             
         }
         
