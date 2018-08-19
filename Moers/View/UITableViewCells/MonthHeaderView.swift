@@ -25,7 +25,7 @@ class MonthHeaderView: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
-        self.addSubview(titleLabel)
+        self.contentView.addSubview(titleLabel)
         
         self.setupConstraints()
         self.setupTheming()
@@ -38,10 +38,12 @@ class MonthHeaderView: UITableViewHeaderFooterView {
     
     private func setupConstraints() {
         
-        let constraints = [titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
-                           titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8),
-                           titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8),
-                           titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8)]
+        let margins = contentView.layoutMarginsGuide
+        
+        let constraints = [titleLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
+                           titleLabel.leftAnchor.constraint(equalTo: margins.leftAnchor, constant: 0),
+                           titleLabel.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: -0),
+                           titleLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -0)]
         
         NSLayoutConstraint.activate(constraints)
         

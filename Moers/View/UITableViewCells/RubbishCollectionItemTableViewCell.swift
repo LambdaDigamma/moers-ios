@@ -30,7 +30,7 @@ class RubbishCollectionItemTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.addSubview(rubbishCollectionView)
+        self.contentView.addSubview(rubbishCollectionView)
         
         self.setupConstraints()
         self.setupTheming()
@@ -43,10 +43,12 @@ class RubbishCollectionItemTableViewCell: UITableViewCell {
     
     private func setupConstraints() {
         
-        let constraints = [rubbishCollectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
-                           rubbishCollectionView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0),
-                           rubbishCollectionView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -0),
-                           rubbishCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -0)]
+        let margins = contentView.layoutMarginsGuide
+        
+        let constraints = [rubbishCollectionView.topAnchor.constraint(equalTo: margins.topAnchor, constant: -8),
+                           rubbishCollectionView.leftAnchor.constraint(equalTo: margins.leftAnchor, constant: 0),
+                           rubbishCollectionView.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: -0),
+                           rubbishCollectionView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 8)]
         
         NSLayoutConstraint.activate(constraints)
         
