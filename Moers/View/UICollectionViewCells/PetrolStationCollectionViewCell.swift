@@ -8,6 +8,7 @@
 
 import UIKit
 import Gestalt
+import MapKit
 
 class PetrolStationCollectionViewCell: UICollectionViewCell {
     
@@ -73,6 +74,17 @@ class PetrolStationCollectionViewCell: UICollectionViewCell {
         
     }
     
+    @objc private func startRoute() {
+        
+        guard let petrolStation = petrolStation else { return }
+        
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: petrolStation.coordinate))
+        mapItem.name = petrolStation.name
+        
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+        
+    }
+    
     private func setupUI() {
         
         self.addSubview(cardView)
@@ -84,7 +96,7 @@ class PetrolStationCollectionViewCell: UICollectionViewCell {
         self.addSubview(routeButton)
         
         self.nameLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        self.nameLabel.numberOfLines = 0
+        self.nameLabel.numberOfLines = 1
         self.nameLabel.adjustsFontSizeToFitWidth = true
         self.nameLabel.minimumScaleFactor = 0.7
         self.brandLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
@@ -102,6 +114,7 @@ class PetrolStationCollectionViewCell: UICollectionViewCell {
         self.routeButton.clipsToBounds = true
         self.routeButton.layer.cornerRadius = 8
         self.routeButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        self.routeButton.addTarget(self, action: #selector(startRoute), for: .touchUpInside)
         
     }
     
