@@ -69,7 +69,6 @@ class DashboardAveragePetrolPriceCardView: CardView {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.monospacedDigitSystemFont(ofSize: 34, weight: UIFont.Weight.bold)
-        label.text = "1.27€"
         
         return label
         

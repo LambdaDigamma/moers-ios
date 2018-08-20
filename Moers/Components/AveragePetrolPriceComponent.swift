@@ -11,8 +11,10 @@ import CoreLocation
 
 class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, PetrolManagerDelegate, UIViewControllerPreviewingDelegate {
 
-    let locationManager = LocationManager()
+    private let locationManager = LocationManager()
     private var place: String = ""
+    private var petrolStations: [PetrolStation] = []
+    private var isAllowed: Bool { return !(LocationManager.shared.authorizationStatus == .restricted) && !(LocationManager.shared.authorizationStatus == .denied) }
     
     lazy var averagePetrolCardView: DashboardAveragePetrolPriceCardView = {
         
@@ -28,14 +30,37 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
         super.init(viewController: viewController)
         
         self.register(view: averagePetrolCardView)
-        
         self.viewController?.registerForPreviewing(with: self, sourceView: averagePetrolCardView)
+        self.averagePetrolCardView.startLoading()
         
-        LocationManager.shared.delegate = self
         PetrolManager.shared.delegate = self
         
-        self.averagePetrolCardView.isUserInteractionEnabled = true
-        self.averagePetrolCardView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showPetrolStationViewController)))
+        if isAllowed {
+            
+            if let location = LocationManager.shared.lastLocation {
+                
+                self.setupLocation(location)
+                
+            } else {
+                
+                LocationManager.shared.getCurrentLocation { (location, error) in
+                    
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                    
+                    guard let location = location else { return }
+                    
+                    self.setupLocation(location)
+                    
+                }
+                
+            }
+            
+            self.averagePetrolCardView.isUserInteractionEnabled = true
+            self.averagePetrolCardView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showPetrolStationViewController)))
+            
+        }
         
         self.update()
         
@@ -43,13 +68,25 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
     
     override func update() {
         
-        self.locationManager.delegate = self
         self.averagePetrolCardView.petrolType = PetrolManager.shared.petrolType
         
-        if self.locationManager.authorizationStatus != .denied {
-            self.locationManager.requestCurrentLocation()
+        self.checkAuthStatus()
+        
+        // TODO: Check Update of Dashboard
+                
+    }
+    
+    override func invalidate() {
+        
+        // TODO: Stop Monitoring of LocationManager?!
+        self.averagePetrolCardView.stopLoading()
+        
+    }
+    
+    private func checkAuthStatus() {
+        
+        if isAllowed {
             self.averagePetrolCardView.dismissError()
-            self.averagePetrolCardView.startLoading()
             self.averagePetrolCardView.isUserInteractionEnabled = true
         } else {
             self.averagePetrolCardView.showError(withTitle: String.localized("PetrolErrorPermissionTitle"), message: String.localized("PetrolErrorPermissionMessage"))
@@ -58,10 +95,56 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
         
     }
     
-    override func invalidate() {
+    private func setupLocation(_ location: CLLocation) {
         
-        self.locationManager.stopMonitoring()
-        self.averagePetrolCardView.stopLoading()
+        loadPetrolPriceForLocation(location)
+        
+        geocodeLocation(location)
+        
+    }
+    
+    private func geocodeLocation(_ location: CLLocation) {
+        
+        DispatchQueue.global(qos: .background).async {
+            
+            GeocodingManager.shared.countryCode(from: location) { (countryCode) in
+                
+                DispatchQueue.main.async {
+                    
+                    if countryCode != "DE" {
+                        
+                        self.averagePetrolCardView.isUserInteractionEnabled = false
+                        self.averagePetrolCardView.showError(withTitle: String.localized("PetrolErrorLocationTitle"), message: String.localized("PetrolErrorLocationMessage"))
+                        
+                    } else {
+                        
+                        self.averagePetrolCardView.isUserInteractionEnabled = true
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            GeocodingManager.shared.city(from: location) { (city) in
+                
+                DispatchQueue.main.async {
+                    self.place = city ?? ""
+                    self.averagePetrolCardView.locationLabel.text = city
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    private func loadPetrolPriceForLocation(_ location: CLLocation) {
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        PetrolManager.shared.delegate = self
+        PetrolManager.shared.sendRequest(coordiante: location.coordinate, radius: 5, sorting: .distance, type: .diesel)
         
     }
     

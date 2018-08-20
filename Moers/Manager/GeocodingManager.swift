@@ -14,9 +14,9 @@ struct GeocodingManager {
     
     static let shared = GeocodingManager()
     
+    private let geocoder = CLGeocoder()
+    
     func city(from location: CLLocation, withCompletion completion: @escaping ((String?) -> ())) {
-        
-        let geocoder = CLGeocoder()
         
         geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
             
@@ -38,8 +38,6 @@ struct GeocodingManager {
     
     func countryCode(from location: CLLocation, withCompletion completion: @escaping ((String?) -> ())) {
         
-        let geocoder = CLGeocoder()
-        
         geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
             
             if let placemark = placemarks?.first {
@@ -59,8 +57,6 @@ struct GeocodingManager {
     }
     
     func street(from location: CLLocation, withCompletion completion: @escaping ((String?) -> ())) {
-        
-        let geocoder = CLGeocoder()
         
         geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
             

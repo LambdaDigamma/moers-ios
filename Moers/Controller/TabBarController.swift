@@ -160,6 +160,8 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         self.delegate = self
         
+        self.loadData()
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -280,6 +282,8 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         OnboardingManager.shared.userDidCompleteSetup = true
         
+        self.loadData()
+        
         guard let dashboardVC = dashboardViewController.childViewControllers.first as? DashboardViewController else { return }
         
         dashboardVC.reloadUI()
@@ -293,6 +297,19 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         mainViewController.setDrawerPosition(position: .open, animated: true)
         mainViewController.contentViewController.searchBar.becomeFirstResponder()
+        
+    }
+    
+    // MARK: - Data Handling
+    
+    private func loadData() {
+        
+        if LocationManager.shared.authorizationStatus == .authorizedWhenInUse
+            || LocationManager.shared.authorizationStatus == .authorizedAlways {
+            
+            LocationManager.shared.getCurrentLocation(completion: { (_, _) in })
+            
+        }
         
     }
     
