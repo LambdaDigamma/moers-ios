@@ -20,7 +20,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     static let shared: LocationManager = LocationManager()
     
     public var delegate: LocationManagerDelegate? = nil
-    public var lastLocation: CLLocation?
+    public var lastLocation: CLLocation? { return locationManager.location }
     private let locationManager = CLLocationManager()
     private var authorizationCompletion: (() -> Void)?
     private var completion: ((CLLocation?, Error?) -> Void)?
@@ -45,10 +45,12 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         
         if let location = lastLocation {
             completion(location, nil)
+            return
         }
         
         if let location = self.locationManager.location {
             completion(location, nil)
+            return
         }
         
         self.completion = completion
@@ -70,7 +72,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let location = locations.first {
-            self.lastLocation = location
             self.delegate?.didReceiveCurrentLocation(location: location)
             self.completion?(location, nil)
         } else {
