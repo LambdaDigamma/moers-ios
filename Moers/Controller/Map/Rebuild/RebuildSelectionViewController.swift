@@ -255,11 +255,35 @@ extension RebuildSelectionViewController: PulleyDrawerViewControllerDelegate {
     }
     
     func partialRevealDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
+        
+        if let pulleyVC = self.parent as? MainViewController {
+            
+            let height = pulleyVC.mapViewController.map.frame.height
+            
+            if pulleyVC.currentDisplayMode == .leftSide {
+                return height - 49.0 - 16.0 - 16.0 - 64.0 - 50.0 - 16.0
+            }
+            
+        }
+        
         return 264.0 + bottomSafeArea
     }
     
     func supportedDrawerPositions() -> [PulleyPosition] {
+        
+        if let pulleyVC = self.parent as? PulleyViewController {
+            
+            if pulleyVC.currentDisplayMode == .leftSide {
+                
+                self.gripperView.isHidden = true
+                
+                return [PulleyPosition.partiallyRevealed]
+            }
+            
+        }
+        
         return PulleyPosition.all
+        
     }
     
     func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
@@ -267,6 +291,16 @@ extension RebuildSelectionViewController: PulleyDrawerViewControllerDelegate {
         drawerBottomSafeArea = bottomSafeArea
         
         tableView.isScrollEnabled = drawer.drawerPosition == .open
+        
+        if let pulleyVC = self.parent as? PulleyViewController {
+            
+            if pulleyVC.currentDisplayMode == .leftSide {
+            
+                tableView.isScrollEnabled = true
+            
+            }
+            
+        }
         
     }
     

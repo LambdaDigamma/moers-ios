@@ -24,6 +24,8 @@ class MainViewController: PulleyViewController {
         
         super.init(contentViewController: contentViewController, drawerViewController: drawerViewController)
         
+        self.displayMode = .automatic
+        
         self.mapViewController = contentViewController as! RebuildMapViewController
         self.contentViewController = drawerViewController as! RebuildContentViewController
         

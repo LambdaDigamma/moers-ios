@@ -77,6 +77,7 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         self.gripperView.backgroundColor = UIColor.lightGray
         self.topSeparatorView.backgroundColor = UIColor.lightGray
         self.topSeparatorView.alpha = 0.75
+        self.bottomSeparatorView.backgroundColor = UIColor.clear
         
         self.searchBar.searchBarStyle = .minimal
         self.searchBar.barStyle = .default
@@ -299,11 +300,35 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
     }
     
     func partialRevealDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
+        
+        if let pulleyVC = self.parent as? MainViewController {
+            
+            let height = pulleyVC.mapViewController.map.frame.height
+            
+            if pulleyVC.currentDisplayMode == .leftSide {
+                return height - 49.0 - 16.0 - 16.0 - 64.0 - 50.0 - 16.0
+            }
+            
+        }
+        
         return 264.0 + bottomSafeArea
     }
     
     func supportedDrawerPositions() -> [PulleyPosition] {
+        
+        if let pulleyVC = self.parent as? PulleyViewController {
+            
+            if pulleyVC.currentDisplayMode == .leftSide {
+                
+                self.gripperView.isHidden = true
+                
+                return [PulleyPosition.partiallyRevealed]
+            }
+            
+        }
+        
         return PulleyPosition.all
+        
     }
     
     func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
