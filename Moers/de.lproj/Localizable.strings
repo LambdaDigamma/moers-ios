@@ -113,3 +113,6 @@
 "PaperWaste" = "Papiertonne";
 "YellowWaste" = "Gelber Sack";
 "GreenWaste" = "Grünschnitt";
+"Shop" = "Geschäft";
+"BikeChargingStation" = "E-Bike Ladestation";
+"PetrolStation" = "Tankstelle";

@@ -20,19 +20,6 @@ class BikeChargingStation: NSObject, Location, MKAnnotation {
     var openingHours: OpeningHours
     var phone: URL?
     
-    struct OpeningHours {
-        
-        var monday: String
-        var tuesday: String
-        var wednesday: String
-        var thursday: String
-        var friday: String
-        var saturday: String
-        var sunday: String
-        var feastday: String
-        
-    }
-    
     init(name: String, location: CLLocation, postcode: String, place: String, street: String, openingHours: OpeningHours, phone: URL?) {
         
         self.name = name
@@ -45,21 +32,30 @@ class BikeChargingStation: NSObject, Location, MKAnnotation {
         
     }
     
-    var title: String? {
-        
-        return self.name
-        
-    }
+    var title: String? { return self.name }
     
-    var subtitle: String? {
-        
-        return nil
-        
-    }
+    var subtitle: String? { return nil }
     
-    var coordinate: CLLocationCoordinate2D {
+    var coordinate: CLLocationCoordinate2D { return location.coordinate }
+    
+    var detailSubtitle: String { return localizedCategory }
+    
+    var detailHeight: CGFloat = 520.0
+    
+    var category: String { return "Bike Charging Station" }
+    
+    var localizedCategory: String { return String.localized("BikeChargingStation") }
+    
+    struct OpeningHours {
         
-        return location.coordinate
+        var monday: String
+        var tuesday: String
+        var wednesday: String
+        var thursday: String
+        var friday: String
+        var saturday: String
+        var sunday: String
+        var feastday: String
         
     }
     

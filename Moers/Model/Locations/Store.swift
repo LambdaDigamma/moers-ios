@@ -55,24 +55,24 @@ class Store: NSObject, Codable, MKAnnotation {
         
     }
     
-    public var coordinate: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: lat, longitude: lng)
-    }
+    public var coordinate: CLLocationCoordinate2D { return CLLocationCoordinate2D(latitude: lat, longitude: lng) }
     
 }
 
 extension Store: Location {
     
-    var location: CLLocation {
-        return CLLocation(latitude: lat, longitude: lng)
-    }
+    var location: CLLocation { return CLLocation(latitude: lat, longitude: lng) }
     
-    var title: String? {
-        return self.name
-    }
+    var title: String? { return self.name }
     
-    var subtitle: String? {
-        return self.street + " " + self.houseNumber
-    }
+    var subtitle: String? { return self.street + " " + self.houseNumber }
+    
+    var detailSubtitle: String { return branch }
+    
+    var detailHeight: CGFloat { return 550.0 }
+    
+    var category: String { return "Shop" }
+    
+    var localizedCategory: String { return String.localized("Shop") }
     
 }

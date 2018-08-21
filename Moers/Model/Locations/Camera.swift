@@ -27,22 +27,18 @@ class Camera: NSObject, Location, MKAnnotation {
         
     }
     
-    var title: String? {
-        
-        return self.name
-        
-    }
+    var title: String? { return self.name }
     
-    var subtitle: String? {
-        
-        return nil
-        
-    }
+    var subtitle: String? { return nil }
     
-    var coordinate: CLLocationCoordinate2D {
-        
-        return location.coordinate
-        
-    }
+    var coordinate: CLLocationCoordinate2D { return location.coordinate }
+    
+    var detailSubtitle: String { return localizedCategory }
+
+    var detailHeight: CGFloat = 80.0
+    
+    var category: String { return "Camera" }
+    
+    var localizedCategory: String { return String.localized("Camera") }
     
 }

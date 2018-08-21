@@ -9,10 +9,23 @@
 import UIKit
 import CoreLocation
 
-protocol Location {
+protocol Location: DetailPresentable, Categorizable {
     
     var location: CLLocation { get }
     var name: String { get }
     
 }
 
+protocol DetailPresentable {
+    
+    var detailHeight: CGFloat { get }
+    var detailSubtitle: String { get }
+    
+}
+
+protocol Categorizable {
+    
+    var category: String { get }
+    var localizedCategory: String { get }
+    
+}

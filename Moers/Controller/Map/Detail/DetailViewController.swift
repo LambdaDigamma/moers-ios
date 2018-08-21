@@ -207,10 +207,11 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
         
         self.nameLabel.text = location?.name
+        self.subtitleLabel.text = location?.detailSubtitle
+        
+        // TODO: Generify Detail Morphing
         
         if let shop = location as? Store {
-            
-            subtitleLabel.text = shop.branch
             
             if let image = ShopIconDrawer.annotationImage(from: shop.branch) {
                 
@@ -231,14 +232,12 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate {
             
         } else if let parkingLot = selectedLocation as? ParkingLot {
             
-            subtitleLabel.text = String.localized("ParkingLot")
             imageView.image = #imageLiteral(resourceName: "parkingLot")
             
             morphDetailParking()
             
         } else if let camera = selectedLocation as? Camera {
             
-            subtitleLabel.text = String.localized("Camera")
             imageView.image = #imageLiteral(resourceName: "camera")
             
             morphDetailCamera()
@@ -314,37 +313,20 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate {
     
     private func add(asChildViewController viewController: UIViewController) {
         
-        child = viewController
-        
-        addChildViewController(viewController)
-        
-        var height: CGFloat = 700
+        self.child = viewController
+        self.addChildViewController(viewController)
         
         guard let loc = selectedLocation else { return }
         
-        if loc is Store {
-            height = DetailContentHeight.shop
-        } else if loc is ParkingLot {
-            height = DetailContentHeight.parkingLot
-        } else if loc is Camera {
-            height = DetailContentHeight.camera
-        } else if loc is BikeChargingStation {
-            height = DetailContentHeight.bikeCharger
-        }
+        self.contentView.contentSize = CGSize(width: contentView.bounds.width, height: loc.detailHeight + 49)
+        self.contentView.addSubview(viewController.view)
+        self.contentView.isUserInteractionEnabled = true
         
-        height += 49
-        
-        // Add Child View as Subview
-        contentView.contentSize = CGSize(width: contentView.bounds.width, height: height)
-        contentView.addSubview(viewController.view)
-        contentView.isUserInteractionEnabled = true
-        
-        // Configure Child View
         viewController.view.frame = contentView.bounds
         viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        // Notify Child View Controller
         viewController.didMove(toParentViewController: self)
+        
     }
     
 }
