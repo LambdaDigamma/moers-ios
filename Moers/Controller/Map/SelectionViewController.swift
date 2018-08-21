@@ -71,7 +71,7 @@ class SelectionViewController: UIViewController {
         self.closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.register(RebuildSearchResultTableViewCell.self, forCellReuseIdentifier: CellIdentifier.searchResultCell)
+        self.tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: CellIdentifier.searchResultCell)
         
     }
     
@@ -153,7 +153,7 @@ extension SelectionViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! RebuildSearchResultTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
         
         cell.searchImageView.backgroundColor = UIColor.clear
         cell.searchImageView.image = nil
@@ -232,7 +232,7 @@ extension SelectionViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         
-        if let cell = tableView.cellForRow(at: indexPath) as? RebuildSearchResultTableViewCell, let _ = clusteredLocations[indexPath.row] as? Store {
+        if let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell, let _ = clusteredLocations[indexPath.row] as? Store {
             
             cell.searchImageView.backgroundColor = AppColor.yellow
             
