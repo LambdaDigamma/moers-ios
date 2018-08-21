@@ -140,6 +140,8 @@ class Shop: NSObject, MKAnnotation, Location {
     
     var detailSubtitle: String { return branch }
     
+    lazy var detailImage: UIImage = { Store.image(from: branch) }()
+    
     var detailHeight: CGFloat { return 550.0 }
     
     var category: String { return "Shop" }

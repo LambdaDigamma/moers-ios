@@ -67,6 +67,8 @@ class PetrolStation: NSObject, Location, Codable, MKAnnotation {
     
     var detailSubtitle: String { return localizedCategory }
     
+    lazy var detailImage: UIImage = { return UIImage() }()
+    
     var detailHeight: CGFloat = 400 // TODO: Determine Height
     
     var category: String { return "Petrol Station" }

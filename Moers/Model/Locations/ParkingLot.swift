@@ -59,6 +59,8 @@ class ParkingLot: NSObject, Location, MKAnnotation {
     
     var detailSubtitle: String { return localizedCategory }
     
+    lazy var detailImage: UIImage = { return #imageLiteral(resourceName: "parkingLot") }()
+    
     var detailHeight: CGFloat { return 220.0 }
     
     var category: String { return "Parking Lot" }

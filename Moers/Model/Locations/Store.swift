@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-class Store: NSObject, Codable, MKAnnotation {
+class Store: NSObject, Codable, MKAnnotation, Location {
     
     public let id: Int
     public var name: String
@@ -55,12 +55,6 @@ class Store: NSObject, Codable, MKAnnotation {
         
     }
     
-    public var coordinate: CLLocationCoordinate2D { return CLLocationCoordinate2D(latitude: lat, longitude: lng) }
-    
-}
-
-extension Store: Location {
-    
     var location: CLLocation { return CLLocation(latitude: lat, longitude: lng) }
     
     var title: String? { return self.name }
@@ -69,10 +63,23 @@ extension Store: Location {
     
     var detailSubtitle: String { return branch }
     
+    lazy var detailImage: UIImage = { Store.image(from: branch) }()
+    
     var detailHeight: CGFloat { return 550.0 }
     
     var category: String { return "Shop" }
     
     var localizedCategory: String { return String.localized("Shop") }
+    
+    public var coordinate: CLLocationCoordinate2D { return CLLocationCoordinate2D(latitude: lat, longitude: lng) }
+    
+    public static func image(from branch: String) -> UIImage {
+        
+        guard let image = ShopIconDrawer.annotationImage(from: branch) else { return UIImage() }
+        guard let resizedImage = UIImage.imageResize(imageObj: image, size: CGSize(width: 64, height: 64), scaleFactor: 0.75) else { return UIImage() }
+        
+        return resizedImage
+        
+    }
     
 }
