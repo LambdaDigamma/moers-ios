@@ -27,7 +27,6 @@
 		DF0CB4B12085B66600CC0AA8 /* RebuildContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4B02085B66600CC0AA8 /* RebuildContentViewController.swift */; };
 		DF0CB4B32087092F00CC0AA8 /* RebuildSearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4B22087092F00CC0AA8 /* RebuildSearchResultTableViewCell.swift */; };
 		DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A49621F6AAB7000E9108B /* AppDelegate.swift */; };
-		DF1A49681F6AAB7000E9108B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49661F6AAB7000E9108B /* Main.storyboard */; };
 		DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49691F6AAB7000E9108B /* Assets.xcassets */; };
 		DF1A496D1F6AAB7000E9108B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF1A496B1F6AAB7000E9108B /* LaunchScreen.storyboard */; };
 		DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */; };
@@ -64,8 +63,6 @@
 		DF4D8955210476AB008609A1 /* RebuildDetailShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D8954210476AB008609A1 /* RebuildDetailShopViewController.swift */; };
 		DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D89562104A6F0008609A1 /* Datasources.swift */; };
 		DF4D89592104C298008609A1 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D89582104C298008609A1 /* CameraManager.swift */; };
-		DF5135B91F71A4C4002A8977 /* DetailParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5135B81F71A4C4002A8977 /* DetailParkingViewController.swift */; };
-		DF5135BB1F71A7B3002A8977 /* DetailShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5135BA1F71A7B3002A8977 /* DetailShopViewController.swift */; };
 		DF524CA8208741FF00D88599 /* RebuildFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524CA7208741FF00D88599 /* RebuildFilterTableViewCell.swift */; };
 		DF524CAA2087421800D88599 /* RebuildBranchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524CA92087421800D88599 /* RebuildBranchTableViewCell.swift */; };
 		DF524CAC2087443D00D88599 /* RebuildBranchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524CAB2087443D00D88599 /* RebuildBranchCollectionViewCell.swift */; };
@@ -76,7 +73,6 @@
 		DF6279792100CDE400F81A70 /* RebuildDetailParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6279782100CDE400F81A70 /* RebuildDetailParkingViewController.swift */; };
 		DF632B401F6E721B0022FA8E /* ParkingLot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B3F1F6E721B0022FA8E /* ParkingLot.swift */; };
 		DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */; };
-		DF632B441F6E90140022FA8E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B431F6E90140022FA8E /* DetailViewController.swift */; };
 		DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B451F6EA0370022FA8E /* DesignableButton.swift */; };
 		DF632B481F6EA6AA0022FA8E /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B471F6EA6AA0022FA8E /* DesignableView.swift */; };
 		DF8254061F7711180069D751 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8254051F7711170069D751 /* Camera.swift */; };
@@ -102,8 +98,6 @@
 		DFA9EF0F20B58351008590EA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0E20B58351008590EA /* LocationManager.swift */; };
 		DFA9EF1120B595D7008590EA /* GeocodingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF1020B595D7008590EA /* GeocodingManager.swift */; };
 		DFA9EF1320B70F8E008590EA /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF1220B70F8E008590EA /* Date+Extensions.swift */; };
-		DFAEF0611F6AE87000EF25F5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAEF0601F6AE87000EF25F5 /* MapViewController.swift */; };
-		DFAEF0631F6AE89200EF25F5 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAEF0621F6AE89200EF25F5 /* ContentViewController.swift */; };
 		DFAEF40320E6E5F5001B0756 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF1220B70F8E008590EA /* Date+Extensions.swift */; };
 		DFAEF40620E6E671001B0756 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAEF40520E6E671001B0756 /* String+Extensions.swift */; };
 		DFAEF40720E6E72D001B0756 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAEF40520E6E671001B0756 /* String+Extensions.swift */; };
@@ -120,10 +114,7 @@
 		DFB4D76720B03B9000C8D179 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D76620B03B9000C8D179 /* OtherViewController.swift */; };
 		DFB4D76920B062BE00C8D179 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D76820B062BE00C8D179 /* SettingsViewController.swift */; };
 		DFB4D76B20B064CA00C8D179 /* StaticTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D76A20B064CA00C8D179 /* StaticTableView.swift */; };
-		DFB5ECCF1F79ADDA00B2B464 /* DetailCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB5ECCE1F79ADDA00B2B464 /* DetailCameraViewController.swift */; };
-		DFB5ECD11F79B01800B2B464 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB5ECD01F79B01800B2B464 /* CameraViewController.swift */; };
 		DFB618581FAE144000C98EB6 /* Pulley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB618571FAE144000C98EB6 /* Pulley.framework */; };
-		DFB6185B1FAE2CC800C98EB6 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6185A1FAE2CC800C98EB6 /* NavigationViewController.swift */; };
 		DFB64DB120377AEE00173A80 /* MoersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB64DB020377AEE00173A80 /* MoersUITests.swift */; };
 		DFB64DB920377B7600173A80 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB64DB820377B7600173A80 /* SnapshotHelper.swift */; };
 		DFB64DC12038826F00173A80 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DBA2038826C00173A80 /* FirebaseCoreDiagnostics.framework */; };
@@ -135,14 +126,12 @@
 		DFB64DC72038826F00173A80 /* FirebaseNanoPB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DC02038826F00173A80 /* FirebaseNanoPB.framework */; };
 		DFB64DCE20389FDC00173A80 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DCC20389FDB00173A80 /* Crashlytics.framework */; };
 		DFB64DCF20389FDC00173A80 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DCD20389FDB00173A80 /* Fabric.framework */; };
-		DFB64DD12038F94600173A80 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB64DD02038F94600173A80 /* InfoViewController.swift */; };
 		DFB6A0BF21033C7800D5C12B /* RebuildDetailCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6A0BE21033C7800D5C12B /* RebuildDetailCameraViewController.swift */; };
 		DFB92D5E1F6B0B0900669F73 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D5D1F6B0B0900669F73 /* API.swift */; };
 		DFB92D601F6B0B3F00669F73 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D5F1F6B0B3F00669F73 /* Shop.swift */; };
 		DFB92D621F6B0B7A00669F73 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D611F6B0B7A00669F73 /* Location.swift */; };
 		DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D631F6B109C00669F73 /* Extensions.swift */; };
 		DFB92D691F6B96E400669F73 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D681F6B96E400669F73 /* ClusterAnnotationView.swift */; };
-		DFC1CC641F75960A00C1D269 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1CC631F75960A00C1D269 /* SelectionViewController.swift */; };
 		DFC1CC671F76664700C1D269 /* ShopIconDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1CC661F76664700C1D269 /* ShopIconDrawer.swift */; };
 		DFC3DE821F6C65FE0049638B /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC3DE811F6C65FE0049638B /* SearchResultTableViewCell.swift */; };
 		DFC5464E1F8007FB00EB3F7E /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC5464D1F8007FB00EB3F7E /* SearchResult.swift */; };
@@ -255,7 +244,6 @@
 		DF0CB4B22087092F00CC0AA8 /* RebuildSearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildSearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		DF1A495F1F6AAB7000E9108B /* Moers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1A49621F6AAB7000E9108B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DF1A49671F6AAB7000E9108B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DF1A49691F6AAB7000E9108B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF1A496C1F6AAB7000E9108B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF1A496E1F6AAB7000E9108B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -293,8 +281,6 @@
 		DF4D8954210476AB008609A1 /* RebuildDetailShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildDetailShopViewController.swift; sourceTree = "<group>"; };
 		DF4D89562104A6F0008609A1 /* Datasources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datasources.swift; sourceTree = "<group>"; };
 		DF4D89582104C298008609A1 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
-		DF5135B81F71A4C4002A8977 /* DetailParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailParkingViewController.swift; sourceTree = "<group>"; };
-		DF5135BA1F71A7B3002A8977 /* DetailShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailShopViewController.swift; sourceTree = "<group>"; };
 		DF524CA7208741FF00D88599 /* RebuildFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildFilterTableViewCell.swift; sourceTree = "<group>"; };
 		DF524CA92087421800D88599 /* RebuildBranchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildBranchTableViewCell.swift; sourceTree = "<group>"; };
 		DF524CAB2087443D00D88599 /* RebuildBranchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildBranchCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -305,7 +291,6 @@
 		DF6279782100CDE400F81A70 /* RebuildDetailParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildDetailParkingViewController.swift; sourceTree = "<group>"; };
 		DF632B3F1F6E721B0022FA8E /* ParkingLot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLot.swift; sourceTree = "<group>"; };
 		DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLotAnnotationView.swift; sourceTree = "<group>"; };
-		DF632B431F6E90140022FA8E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		DF632B451F6EA0370022FA8E /* DesignableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
 		DF632B471F6EA6AA0022FA8E /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		DF8254051F7711170069D751 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
@@ -332,8 +317,6 @@
 		DFA9EF0E20B58351008590EA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		DFA9EF1020B595D7008590EA /* GeocodingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingManager.swift; sourceTree = "<group>"; };
 		DFA9EF1220B70F8E008590EA /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
-		DFAEF0601F6AE87000EF25F5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		DFAEF0621F6AE89200EF25F5 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		DFAEF40520E6E671001B0756 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		DFAEF40820E8E89B001B0756 /* PetrolPriceInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolPriceInterfaceController.swift; sourceTree = "<group>"; };
 		DFAEF41120E8ECF7001B0756 /* Moers.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Moers.entitlements; sourceTree = "<group>"; };
@@ -341,10 +324,7 @@
 		DFB4D76620B03B9000C8D179 /* OtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
 		DFB4D76820B062BE00C8D179 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DFB4D76A20B064CA00C8D179 /* StaticTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableView.swift; sourceTree = "<group>"; };
-		DFB5ECCE1F79ADDA00B2B464 /* DetailCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCameraViewController.swift; sourceTree = "<group>"; };
-		DFB5ECD01F79B01800B2B464 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		DFB618571FAE144000C98EB6 /* Pulley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pulley.framework; path = Carthage/Build/iOS/Pulley.framework; sourceTree = "<group>"; };
-		DFB6185A1FAE2CC800C98EB6 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NavigationViewController.swift; path = Pulley/NavigationViewController.swift; sourceTree = "<group>"; };
 		DFB64DAE20377AEE00173A80 /* MoersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFB64DB020377AEE00173A80 /* MoersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoersUITests.swift; sourceTree = "<group>"; };
 		DFB64DB220377AEE00173A80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -360,14 +340,12 @@
 		DFB64DCA2038845300173A80 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
 		DFB64DCC20389FDB00173A80 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		DFB64DCD20389FDB00173A80 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
-		DFB64DD02038F94600173A80 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		DFB6A0BE21033C7800D5C12B /* RebuildDetailCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildDetailCameraViewController.swift; sourceTree = "<group>"; };
 		DFB92D5D1F6B0B0900669F73 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		DFB92D5F1F6B0B3F00669F73 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		DFB92D611F6B0B7A00669F73 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		DFB92D631F6B109C00669F73 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DFB92D681F6B96E400669F73 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
-		DFC1CC631F75960A00C1D269 /* SelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionViewController.swift; sourceTree = "<group>"; };
 		DFC1CC661F76664700C1D269 /* ShopIconDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopIconDrawer.swift; sourceTree = "<group>"; };
 		DFC3DE811F6C65FE0049638B /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		DFC5464D1F8007FB00EB3F7E /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
@@ -567,7 +545,6 @@
 				DFA9EF0D20B56BB2008590EA /* Extensions */,
 				DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */,
 				DFB92D631F6B109C00669F73 /* Extensions.swift */,
-				DF1A49661F6AAB7000E9108B /* Main.storyboard */,
 				DF1A49691F6AAB7000E9108B /* Assets.xcassets */,
 				DF1A496B1F6AAB7000E9108B /* LaunchScreen.storyboard */,
 				DF1A496E1F6AAB7000E9108B /* Info.plist */,
@@ -616,11 +593,6 @@
 				DF461CB520E2241400600C0E /* Other */,
 				DF0CB4AC20838FD100CC0AA8 /* MainViewController.swift */,
 				DF855C2520C9E37400B7F7C7 /* CardCollectionViewController.swift */,
-				DFB6185A1FAE2CC800C98EB6 /* NavigationViewController.swift */,
-				DFAEF0601F6AE87000EF25F5 /* MapViewController.swift */,
-				DFAEF0621F6AE89200EF25F5 /* ContentViewController.swift */,
-				DFC1CC631F75960A00C1D269 /* SelectionViewController.swift */,
-				DFB64DD02038F94600173A80 /* InfoViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -743,7 +715,6 @@
 		DF461CB420E2240A00600C0E /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				DFB5ECD01F79B01800B2B464 /* CameraViewController.swift */,
 				DFD7ACB020A44C0D00D49BE2 /* Rebuild */,
 				DFC1CC651F75962E00C1D269 /* Detail */,
 			);
@@ -819,10 +790,6 @@
 		DFC1CC651F75962E00C1D269 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				DF632B431F6E90140022FA8E /* DetailViewController.swift */,
-				DF5135B81F71A4C4002A8977 /* DetailParkingViewController.swift */,
-				DF5135BA1F71A7B3002A8977 /* DetailShopViewController.swift */,
-				DFB5ECCE1F79ADDA00B2B464 /* DetailCameraViewController.swift */,
 				DF626AF81FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift */,
 			);
 			path = Detail;
@@ -1045,7 +1012,6 @@
 				DF44D58F2126F83B00F8AC0C /* DetailViewControllers.storyboard in Resources */,
 				DF44D58D2125FE9700F8AC0C /* ContentDrawer.storyboard in Resources */,
 				DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */,
-				DF1A49681F6AAB7000E9108B /* Main.storyboard in Resources */,
 				DF21B2FE20B9D8A900478A33 /* Licenses.plist in Resources */,
 				DFF5DDCB20094A920075A2F4 /* GoogleService-Info.plist in Resources */,
 			);
@@ -1139,16 +1105,13 @@
 				DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */,
 				DFF9B2D920FE177E007FE158 /* ShopManager.swift in Sources */,
 				DF461CB820E2257400600C0E /* AddShopViewController.swift in Sources */,
-				DF632B441F6E90140022FA8E /* DetailViewController.swift in Sources */,
 				DF3555B020DE599900B88DA3 /* UserRanking.swift in Sources */,
-				DFB6185B1FAE2CC800C98EB6 /* NavigationViewController.swift in Sources */,
 				DF3555AC20DE4D5300B88DA3 /* PodestView.swift in Sources */,
 				DFA96A6320BD8A390009B279 /* AveragePetrolPriceComponent.swift in Sources */,
 				DF3EE0C320E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift in Sources */,
 				DF21B30020BA0DB400478A33 /* SwitchTableViewCell.swift in Sources */,
 				DFDD3F7220B2E525005602E3 /* MonthHeaderView.swift in Sources */,
 				DF29FB4D20B1954B00741A63 /* ThemeViewController.swift in Sources */,
-				DF5135B91F71A4C4002A8977 /* DetailParkingViewController.swift in Sources */,
 				DFA17DF620DFDA6200BBD838 /* AccountViewController.swift in Sources */,
 				DF0CB4AB208357A800CC0AA8 /* MapItemContentView.swift in Sources */,
 				DFAEF40620E6E671001B0756 /* String+Extensions.swift in Sources */,
@@ -1156,10 +1119,8 @@
 				DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */,
 				DFA9EEFD20B3602E008590EA /* PetrolSorting.swift in Sources */,
 				DFA17DF420DEF9DE00BBD838 /* UIButton+Extensions.swift in Sources */,
-				DFAEF0611F6AE87000EF25F5 /* MapViewController.swift in Sources */,
 				DF626AF51FB745E300BFDA67 /* BikeChargingStation.swift in Sources */,
 				DFB92D621F6B0B7A00669F73 /* Location.swift in Sources */,
-				DFC1CC641F75960A00C1D269 /* SelectionViewController.swift in Sources */,
 				DF4D8955210476AB008609A1 /* RebuildDetailShopViewController.swift in Sources */,
 				DFD129761FAF12D2001900CF /* BranchCollectionViewCell.swift in Sources */,
 				DF2D6DA520B88E1700176614 /* LicencesViewController.swift in Sources */,
@@ -1168,7 +1129,6 @@
 				DFD7ACBA20A6C6BC00D49BE2 /* RubbishCollectionView.swift in Sources */,
 				DF3555B420DE730D00B88DA3 /* LoginViewController.swift in Sources */,
 				DF4BD1C6208CF76C003ECF41 /* RubbishReminderBulletinItem.swift in Sources */,
-				DFB64DD12038F94600173A80 /* InfoViewController.swift in Sources */,
 				DF02B7631FB0BAE9004B8B3E /* Branch.swift in Sources */,
 				DF2D6DA320B88BFA00176614 /* Licence.swift in Sources */,
 				DFD7ACBD20A795AF00D49BE2 /* DashboardNotificationCardView.swift in Sources */,
@@ -1220,8 +1180,6 @@
 				DFCB432720E1036A00E7AD3F /* CommunityCollectionViewCell.swift in Sources */,
 				DFD7ACB420A6BCA000D49BE2 /* DashboardRubbishCardView.swift in Sources */,
 				DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */,
-				DFB5ECD11F79B01800B2B464 /* CameraViewController.swift in Sources */,
-				DFB5ECCF1F79ADDA00B2B464 /* DetailCameraViewController.swift in Sources */,
 				DFDF929920DE47E10068D1DF /* LeaderboardViewController.swift in Sources */,
 				DFA9EF1120B595D7008590EA /* GeocodingManager.swift in Sources */,
 				DFA9EF0C20B56BA8008590EA /* UIImage+Extensions.swift in Sources */,
@@ -1254,7 +1212,6 @@
 				DF632B401F6E721B0022FA8E /* ParkingLot.swift in Sources */,
 				DFD7ACC120A842F400D49BE2 /* DateCardView.swift in Sources */,
 				DFC1CC671F76664700C1D269 /* ShopIconDrawer.swift in Sources */,
-				DFAEF0631F6AE89200EF25F5 /* ContentViewController.swift in Sources */,
 				DFB92D691F6B96E400669F73 /* ClusterAnnotationView.swift in Sources */,
 				DFF9B2DB20FE1EB9007FE158 /* Store.swift in Sources */,
 				DF3EE0C520E382EC00CA9279 /* MapLocationPickerViewController.swift in Sources */,
@@ -1265,7 +1222,6 @@
 				DF0CB48F2082A8DB00CC0AA8 /* AppConfig.swift in Sources */,
 				DFA9EF0A20B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift in Sources */,
 				DFA9EF1320B70F8E008590EA /* Date+Extensions.swift in Sources */,
-				DF5135BB1F71A7B3002A8977 /* DetailShopViewController.swift in Sources */,
 				DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */,
 				DF524CA8208741FF00D88599 /* RebuildFilterTableViewCell.swift in Sources */,
 				DF0CB49F2082B90900CC0AA8 /* FeedbackGenerators.swift in Sources */,
@@ -1332,14 +1288,6 @@
 				DF0CB4A92082BE4100CC0AA8 /* de */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		DF1A49661F6AAB7000E9108B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DF1A49671F6AAB7000E9108B /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		DF1A496B1F6AAB7000E9108B /* LaunchScreen.storyboard */ = {

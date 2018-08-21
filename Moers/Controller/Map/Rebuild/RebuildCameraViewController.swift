@@ -54,12 +54,6 @@ class RebuildCameraViewController: UIViewController {
         
     }
     
-    private func setupTheming() {
-        
-        
-        
-    }
-    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .allButUpsideDown
     }

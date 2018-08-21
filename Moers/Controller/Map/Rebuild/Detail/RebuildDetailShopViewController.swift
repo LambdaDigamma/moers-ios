@@ -9,6 +9,7 @@
 import UIKit
 import Gestalt
 import SafariServices
+import Crashlytics
 
 class RebuildDetailShopViewController: UIViewController {
 
@@ -157,6 +158,10 @@ class RebuildDetailShopViewController: UIViewController {
             self.callButton.isEnabled = false
             self.callButton.alpha = 0.25
         }
+        
+        Answers.logCustomEvent(withName: "Open Shop Website", customAttributes:
+            ["name": shop.name,
+             "branch": shop.branch])
         
     }
     

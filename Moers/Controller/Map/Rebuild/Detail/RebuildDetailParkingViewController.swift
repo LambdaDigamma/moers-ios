@@ -8,6 +8,7 @@
 
 import UIKit
 import Gestalt
+import Crashlytics
 
 class RebuildDetailParkingViewController: UIViewController {
 
@@ -135,6 +136,11 @@ class RebuildDetailParkingViewController: UIViewController {
         freeLabel.text = "\(parkingLot.free)"
         statusLabel.text = Status.localizedForCase(parkingLot.status)
         addressLabel.text = parkingLot.address
+        
+        Answers.logCustomEvent(withName: "Detail - Parking Lot", customAttributes:
+            ["name": parkingLot.name,
+             "free": parkingLot.free,
+             "status": parkingLot.status.rawValue])
         
     }
     

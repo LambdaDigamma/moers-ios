@@ -12,6 +12,15 @@ import Gestalt
 import Pulley
 import Crashlytics
 
+struct DetailContentHeight {
+    
+    static let shop: CGFloat = 550
+    static let parkingLot: CGFloat = 220
+    static let camera: CGFloat = 80
+    static let bikeCharger: CGFloat = 520
+    
+}
+
 class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
 
     lazy var locationManager: CLLocationManager = {
