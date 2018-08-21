@@ -148,8 +148,6 @@
 		DFD73690211E424E00826C47 /* SelectorBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7368F211E424E00826C47 /* SelectorBulletinPage.swift */; };
 		DFD73692211EEDE900826C47 /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD73691211EEDE900826C47 /* EnumCollection.swift */; };
 		DFD73694211EF0A500826C47 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD73693211EF0A500826C47 /* Localizable.swift */; };
-		DFD73695211EF3CC00826C47 /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD73691211EEDE900826C47 /* EnumCollection.swift */; };
-		DFD73696211EF3D400826C47 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD73693211EF0A500826C47 /* Localizable.swift */; };
 		DFD7ACAF20A4486B00D49BE2 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACAE20A4486B00D49BE2 /* CardView.swift */; };
 		DFD7ACB220A44C5A00D49BE2 /* RebuildSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACB120A44C5A00D49BE2 /* RebuildSelectionViewController.swift */; };
 		DFD7ACB420A6BCA000D49BE2 /* DashboardRubbishCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACB320A6BCA000D49BE2 /* DashboardRubbishCardView.swift */; };
@@ -627,22 +625,13 @@
 		DF1A49841F6AC40000E9108B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DF632B3F1F6E721B0022FA8E /* ParkingLot.swift */,
-				DFB92D5F1F6B0B3F00669F73 /* Shop.swift */,
-				DFB92D611F6B0B7A00669F73 /* Location.swift */,
-				DF8254051F7711170069D751 /* Camera.swift */,
+				DF4D89562104A6F0008609A1 /* Datasources.swift */,
+				DFBB9DE4212C106000038943 /* Locations */,
+				DFBB9DE5212C108B00038943 /* Utility */,
 				DFC5464D1F8007FB00EB3F7E /* SearchResult.swift */,
 				DF02B7621FB0BAE9004B8B3E /* Branch.swift */,
-				DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */,
-				DF0CB4922082AB5600CC0AA8 /* Theme.swift */,
 				DF2D6DA820B899DD00176614 /* User.swift */,
-				DFB4D76A20B064CA00C8D179 /* StaticTableView.swift */,
-				DF2D6DA220B88BFA00176614 /* Licence.swift */,
 				DF3555AF20DE599900B88DA3 /* UserRanking.swift */,
-				DFF9B2DA20FE1EB9007FE158 /* Store.swift */,
-				DF4D89562104A6F0008609A1 /* Datasources.swift */,
-				DFD73691211EEDE900826C47 /* EnumCollection.swift */,
-				DFD73693211EF0A500826C47 /* Localizable.swift */,
 				DFEFE7CC2122DC1D002F5162 /* Event.swift */,
 			);
 			path = Model;
@@ -785,6 +774,31 @@
 				DFB64DB220377AEE00173A80 /* Info.plist */,
 			);
 			path = MoersUITests;
+			sourceTree = "<group>";
+		};
+		DFBB9DE4212C106000038943 /* Locations */ = {
+			isa = PBXGroup;
+			children = (
+				DFB92D611F6B0B7A00669F73 /* Location.swift */,
+				DFF9B2DA20FE1EB9007FE158 /* Store.swift */,
+				DF632B3F1F6E721B0022FA8E /* ParkingLot.swift */,
+				DF8254051F7711170069D751 /* Camera.swift */,
+				DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */,
+				DFB92D5F1F6B0B3F00669F73 /* Shop.swift */,
+			);
+			path = Locations;
+			sourceTree = "<group>";
+		};
+		DFBB9DE5212C108B00038943 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				DFB4D76A20B064CA00C8D179 /* StaticTableView.swift */,
+				DF2D6DA220B88BFA00176614 /* Licence.swift */,
+				DFD73693211EF0A500826C47 /* Localizable.swift */,
+				DFD73691211EEDE900826C47 /* EnumCollection.swift */,
+				DF0CB4922082AB5600CC0AA8 /* Theme.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		DFC1CC651F75962E00C1D269 /* Detail */ = {
@@ -1251,12 +1265,10 @@
 				DFAEF40D20E8EA5D001B0756 /* PetrolRequestResponse.swift in Sources */,
 				DFF8F2CF20E6DC36001A9EBB /* NotificationController.swift in Sources */,
 				DFF8F2CD20E6DC36001A9EBB /* ExtensionDelegate.swift in Sources */,
-				DFD73695211EF3CC00826C47 /* EnumCollection.swift in Sources */,
 				DFF8F2E220E6E14E001A9EBB /* RubbishCollectionItem.swift in Sources */,
 				DFAEF40E20E8EA5D001B0756 /* PetrolPriceResponse.swift in Sources */,
 				DFAEF40F20E8EA5D001B0756 /* PetrolDetailResponse.swift in Sources */,
 				DFAEF40920E8E89B001B0756 /* PetrolPriceInterfaceController.swift in Sources */,
-				DFD73696211EF3D400826C47 /* Localizable.swift in Sources */,
 				DFF8F2E120E6E14E001A9EBB /* RubbishCollectionDate.swift in Sources */,
 				DFAEF40320E6E5F5001B0756 /* Date+Extensions.swift in Sources */,
 				DFAEF40A20E8EA5D001B0756 /* PetrolType.swift in Sources */,
