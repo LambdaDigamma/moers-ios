@@ -21,13 +21,7 @@ struct DetailContentHeight {
     
 }
 
-class DetailViewController: UIViewController, CLLocationManagerDelegate {
-
-    lazy var locationManager: CLLocationManager = {
-        let manager = CLLocationManager()
-        manager.startUpdatingLocation()
-        return manager
-    }()
+class DetailViewController: UIViewController {
     
     lazy var gripperView: UIView = { ViewFactory.blankView() }()
     lazy var imageView: UIImageView = { ViewFactory.imageView() }()
@@ -153,19 +147,7 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate {
         
         guard let location = selectedLocation else { return }
         
-        var type = ""
-        
-        if location is Shop {
-            type = "Shop"
-        } else if location is ParkingLot {
-            type = "Parking Lot"
-        } else if location is Camera {
-            type = "Camera"
-        } else if location is BikeChargingStation {
-            type = "E-Bike Charger"
-        }
-        
-        Answers.logCustomEvent(withName: "Navigation", customAttributes: ["type": type, "name": location.name])
+        Answers.logCustomEvent(withName: "Navigation", customAttributes: ["type": location.category, "name": location.name])
         
         let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: location.location.coordinate))
         mapItem.name = location.name
@@ -202,31 +184,29 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate {
     
     private func setupLocation(_ location: Location?) {
         
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
-        
         self.nameLabel.text = location?.name
         self.subtitleLabel.text = location?.detailSubtitle
         self.imageView.image = location?.detailImage
+        
+        self.calculateETA()
         
         // TODO: Generify Detail Morphing
         
         if let shop = location as? Store {
             
 //            if let image = ShopIconDrawer.annotationImage(from: shop.branch) {
-//                
+//
 //                if let img = UIImage.imageResize(imageObj: image, size: CGSize(width: imageView.bounds.width / 2, height: imageView.bounds.height / 2), scaleFactor: 0.75) {
-//                    
+//
 //                    imageView.backgroundColor = UIColor(red: 0xFF, green: 0xF5, blue: 0x00, alpha: 1)
 //                    imageView.image = img
 //                    imageView.contentMode = .scaleAspectFit
 //                    imageView.layer.borderColor = UIColor.black.cgColor
 //                    imageView.layer.borderWidth = 1
 //                    imageView.layer.cornerRadius = 7
-//                    
+//
 //                }
-//                
+//
 //            }
             
             morphDetailShop()
@@ -243,11 +223,11 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    private func calculateETA() {
         
-        manager.stopUpdatingLocation()
+        self.routeButton.setTitle("Route", for: .normal)
         
-        guard let sourceCoordinate = locationManager.location?.coordinate else { return }
+        guard let sourceCoordinate = LocationManager.shared.lastLocation?.coordinate else { return }
         guard let destinationCoordinate = selectedLocation?.location.coordinate else { return }
         
         let source = MKMapItem(placemark: MKPlacemark(coordinate: sourceCoordinate))
@@ -273,6 +253,7 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate {
             self.routeButton.setTitle("Route (\(Int(floor(estimate.expectedTravelTime / 60))) min)", for: .normal)
             
         }
+        
         
     }
     
