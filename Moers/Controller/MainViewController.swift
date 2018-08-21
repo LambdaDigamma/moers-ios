@@ -47,6 +47,7 @@ class MainViewController: PulleyViewController {
         self.eventBus.add(subscriber: mapViewController, for: ShopDatasource.self)
         self.eventBus.add(subscriber: mapViewController, for: ParkingLotDatasource.self)
         self.eventBus.add(subscriber: mapViewController, for: CameraDatasource.self)
+        self.eventBus.add(subscriber: mapViewController, for: PetrolDatasource.self)
         
         self.loadData()
         
@@ -67,6 +68,7 @@ class MainViewController: PulleyViewController {
             
             self.loadShops()
             self.loadParkingLots()
+            self.loadPetrolStations()
             self.loadCameras()
             
         }
@@ -133,6 +135,19 @@ class MainViewController: PulleyViewController {
             self.locations.append(contentsOf: cameras)
             
         }
+        
+    }
+    
+    private func loadPetrolStations() {
+        
+        let stations = PetrolManager.shared.cachedStations ?? []
+        
+        self.eventBus.notify(PetrolDatasource.self) { subscriber in
+            subscriber.didReceivePetrolStations(stations)
+        }
+        
+        self.locations = self.locations.filter { !($0 is PetrolStation) }
+        self.locations.append(contentsOf: stations)
         
     }
     

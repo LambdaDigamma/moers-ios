@@ -262,6 +262,13 @@ extension RebuildMapViewController: CameraDatasource {
 }
 
 
+extension RebuildMapViewController: PetrolDatasource {
+    
+    func didReceivePetrolStations(_ petrolStations: [PetrolStation]) {
+        
+    }
+    
+}
 
 
 extension RebuildMapViewController: APIDelegate {
