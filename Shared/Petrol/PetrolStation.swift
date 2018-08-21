@@ -57,20 +57,20 @@ class PetrolStation: NSObject, Location, Codable, MKAnnotation {
 
     }
     
-    var coordinate: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: lat, longitude: lng)
-    }
+    var coordinate: CLLocationCoordinate2D { return CLLocationCoordinate2D(latitude: lat, longitude: lng) }
     
-    var location: CLLocation {
-        return CLLocation(latitude: self.lat, longitude: self.lng)
-    }
+    var location: CLLocation { return CLLocation(latitude: self.lat, longitude: self.lng) }
     
-    var title: String? {
-        return self.name
-    }
+    var title: String? { return self.name }
     
-    var subtitle: String? {
-        return self.brand
-    }
+    var subtitle: String? { return self.brand }
+    
+    var detailSubtitle: String { return localizedCategory }
+    
+    var detailHeight: CGFloat = 400 // TODO: Determine Height
+    
+    var category: String { return "Petrol Station" }
+    
+    var localizedCategory: String { return String.localized("PetrolStation") }
     
 }
