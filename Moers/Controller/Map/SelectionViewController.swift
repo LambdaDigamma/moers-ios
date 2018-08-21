@@ -1,5 +1,5 @@
 //
-//  RebuildSelectionViewController.swift
+//  SelectionViewController.swift
 //  Moers
 //
 //  Created by Lennart Fischer on 10.05.18.
@@ -11,7 +11,7 @@ import Gestalt
 import Pulley
 import MapKit
 
-class RebuildSelectionViewController: UIViewController {
+class SelectionViewController: UIViewController {
 
     lazy var headerView: UIView = { ViewFactory.blankView() }()
     lazy var gripperView: UIView = { ViewFactory.blankView() }()
@@ -143,7 +143,7 @@ class RebuildSelectionViewController: UIViewController {
     
 }
 
-extension RebuildSelectionViewController: UITableViewDataSource, UITableViewDelegate {
+extension SelectionViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -211,14 +211,14 @@ extension RebuildSelectionViewController: UITableViewDataSource, UITableViewDele
         
         if let drawer = self.parent as? PulleyViewController {
             
-            let drawerDetail = RebuildDetailViewController()
+            let drawerDetail = DetailViewController()
             
             drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
             drawer.setDrawerPosition(position: .partiallyRevealed, animated: true)
             
             drawerDetail.selectedLocation = clusteredLocations[indexPath.row]
             
-            if let mapController = drawer.primaryContentViewController as? RebuildMapViewController {
+            if let mapController = drawer.primaryContentViewController as? MapViewController {
                 
                 let coordinate = self.clusteredLocations[indexPath.row].location.coordinate
                 
@@ -248,7 +248,7 @@ extension RebuildSelectionViewController: UITableViewDataSource, UITableViewDele
     
 }
 
-extension RebuildSelectionViewController: PulleyDrawerViewControllerDelegate {
+extension SelectionViewController: PulleyDrawerViewControllerDelegate {
     
     func collapsedDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
         return 68.0 + bottomSafeArea

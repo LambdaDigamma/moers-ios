@@ -1,5 +1,5 @@
 //
-//  RebuildDetailViewController.swift
+//  DetailViewController.swift
 //  Moers
 //
 //  Created by Lennart Fischer on 13.05.18.
@@ -21,7 +21,7 @@ struct DetailContentHeight {
     
 }
 
-class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
+class DetailViewController: UIViewController, CLLocationManagerDelegate {
 
     lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -206,9 +206,10 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         
+        self.nameLabel.text = location?.name
+        
         if let shop = location as? Store {
             
-            nameLabel.text = shop.name
             subtitleLabel.text = shop.branch
             
             if let image = ShopIconDrawer.annotationImage(from: shop.branch) {
@@ -230,7 +231,6 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
             
         } else if let parkingLot = selectedLocation as? ParkingLot {
             
-            nameLabel.text = parkingLot.name
             subtitleLabel.text = String.localized("ParkingLot")
             imageView.image = #imageLiteral(resourceName: "parkingLot")
             
@@ -238,7 +238,6 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
             
         } else if let camera = selectedLocation as? Camera {
             
-            nameLabel.text = camera.title
             subtitleLabel.text = String.localized("Camera")
             imageView.image = #imageLiteral(resourceName: "camera")
             
@@ -285,7 +284,7 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
     
     private func morphDetailParking() {
         
-        let viewController = RebuildDetailParkingViewController()
+        let viewController = DetailParkingViewController()
         
         self.add(asChildViewController: viewController)
         
@@ -295,7 +294,7 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
     
     private func morphDetailCamera() {
         
-        let viewController = RebuildDetailCameraViewController()
+        let viewController = DetailCameraViewController()
         
         self.add(asChildViewController: viewController)
         
@@ -305,7 +304,7 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
     
     private func morphDetailShop() {
         
-        let viewController = RebuildDetailShopViewController.fromStoryboard()
+        let viewController = DetailShopViewController.fromStoryboard()
         
         self.add(asChildViewController: viewController)
         
@@ -350,7 +349,7 @@ class RebuildDetailViewController: UIViewController, CLLocationManagerDelegate {
     
 }
 
-extension RebuildDetailViewController: PulleyDrawerViewControllerDelegate {
+extension DetailViewController: PulleyDrawerViewControllerDelegate {
     
     func collapsedDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
         return 130.0 + (bottomSafeArea - 49)

@@ -1,5 +1,5 @@
 //
-//  RebuildCameraViewController.swift
+//  CameraViewController.swift
 //  Moers
 //
 //  Created by Lennart Fischer on 21.07.18.
@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class RebuildCameraViewController: UIViewController {
+class CameraViewController: UIViewController {
 
     lazy var webView: WKWebView = { ViewFactory.webView() }()
 

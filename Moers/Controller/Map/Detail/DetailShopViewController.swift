@@ -1,5 +1,5 @@
 //
-//  RebuildDetailShopViewController.swift
+//  DetailShopViewController.swift
 //  Moers
 //
 //  Created by Lennart Fischer on 22.07.18.
@@ -11,7 +11,7 @@ import Gestalt
 import SafariServices
 import Crashlytics
 
-class RebuildDetailShopViewController: UIViewController {
+class DetailShopViewController: UIViewController {
 
     @IBOutlet weak var topSeparator: UIView!
     @IBOutlet weak var callButton: DesignableButton!
@@ -195,11 +195,11 @@ class RebuildDetailShopViewController: UIViewController {
         
     }
     
-    static func fromStoryboard() -> RebuildDetailShopViewController {
+    static func fromStoryboard() -> DetailShopViewController {
         
         let storyboard = UIStoryboard(name: "DetailViewControllers", bundle: nil)
         
-        return storyboard.instantiateViewController(withIdentifier: "DetailShopViewController") as! RebuildDetailShopViewController
+        return storyboard.instantiateViewController(withIdentifier: "DetailShopViewController") as! DetailShopViewController
         
     }
     

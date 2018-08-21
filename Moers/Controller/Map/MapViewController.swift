@@ -1,5 +1,5 @@
 //
-//  RebuildMapViewController.swift
+//  MapViewController.swift
 //  Moers
 //
 //  Created by Lennart Fischer on 17.04.18.
@@ -11,7 +11,18 @@ import MapKit
 import Pulley
 import Crashlytics
 
-class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryContentControllerDelegate {
+struct AnnotationIdentifier {
+    
+    static let cluster = "cluster"
+    static let shop = "shop"
+    static let parkingLot = "parkingLot"
+    static let camera = "camera"
+    static let bikeChargingStation = "bikeCharger"
+    static let petrolStation = "petrolStation"
+    
+}
+
+class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryContentControllerDelegate {
 
     lazy var map: MKMapView = {
         
@@ -68,9 +79,6 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
             if view == nil { view = ShopAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.shop) }
             
             view?.annotation = store
-            view?.collisionMode = .circle
-            view?.clusteringIdentifier = AnnotationIdentifier.cluster
-            view?.displayPriority = .defaultHigh
             
             return view
             
@@ -81,9 +89,6 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
             if view == nil { view = ParkingLotAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.parkingLot) }
             
             view?.annotation = parkingLot
-            view?.collisionMode = .circle
-            view?.clusteringIdentifier = AnnotationIdentifier.cluster
-            view?.displayPriority = .defaultHigh
             
             return view
             
@@ -94,9 +99,6 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
             if view == nil { view = CameraAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.camera) }
             
             view?.annotation = camera
-            view?.collisionMode = .circle
-            view?.clusteringIdentifier = AnnotationIdentifier.cluster
-            view?.displayPriority = .defaultHigh
             
             return view
             
@@ -107,9 +109,16 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
             if view == nil { view = BikeChargingStationAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.bikeChargingStation) }
             
             view?.annotation = bikeCharger
-            view?.collisionMode = .circle
-            view?.clusteringIdentifier = AnnotationIdentifier.cluster
-            view?.displayPriority = .defaultHigh
+            
+            return view
+            
+        } else if let petrolStation = annotation as? PetrolStation {
+            
+            var view = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationIdentifier.petrolStation) as? MKMarkerAnnotationView
+            
+            if view == nil { view = PetrolStationAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.petrolStation) }
+            
+            view?.annotation = petrolStation
             
             return view
             
@@ -144,7 +153,7 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
             
             if let drawer = self.parent as? PulleyViewController {
                 
-                let drawerDetail = RebuildSelectionViewController()
+                let drawerDetail = SelectionViewController()
                 
                 drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
                 drawer.setDrawerPosition(position: .partiallyRevealed, animated: true)
@@ -219,7 +228,7 @@ class RebuildMapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
     
 }
 
-extension RebuildMapViewController: ShopDatasource {
+extension MapViewController: ShopDatasource {
     
     func didReceiveShops(_ shops: [Store]) {
         
@@ -233,7 +242,7 @@ extension RebuildMapViewController: ShopDatasource {
     
 }
 
-extension RebuildMapViewController: ParkingLotDatasource {
+extension MapViewController: ParkingLotDatasource {
     
     func didReceiveParkingLots(_ parkingLots: [ParkingLot]) {
         
@@ -247,7 +256,7 @@ extension RebuildMapViewController: ParkingLotDatasource {
     
 }
 
-extension RebuildMapViewController: CameraDatasource {
+extension MapViewController: CameraDatasource {
     
     func didReceiveCameras(_ cameras: [Camera]) {
         
@@ -261,62 +270,16 @@ extension RebuildMapViewController: CameraDatasource {
     
 }
 
-
-extension RebuildMapViewController: PetrolDatasource {
+extension MapViewController: PetrolDatasource {
     
     func didReceivePetrolStations(_ petrolStations: [PetrolStation]) {
         
-    }
-    
-}
-
-
-extension RebuildMapViewController: APIDelegate {
-    
-    func didReceiveShops(shops: [Shop]) {
+        print(petrolStations)
         
-//        self.locations.append(contentsOf: shops as [Location])
-//
-//        DispatchQueue.main.async {
-//
-//            self.map.addAnnotations(shops)
-//
-//        }
-        
-    }
-    
-    func didReceiveParkingLots(parkingLots: [ParkingLot]) {
-        
-//        self.locations.append(contentsOf: parkingLots as [Location] )
-//
-//        DispatchQueue.main.async {
-//
-//            self.map.addAnnotations(parkingLots)
-//
-//        }
-        
-    }
-    
-    func didReceiveCameras(cameras: [Camera]) {
-        
-//        self.locations.append(contentsOf: cameras as [Location])
-//
-//        DispatchQueue.main.async {
-//
-//            self.map.addAnnotations(cameras)
-//
-//        }
-        
-    }
-    
-    func didReceiveBikeChargers(chargers: [BikeChargingStation]) {
-        
-        self.locations.append(contentsOf: chargers as [Location])
+        self.locations.append(contentsOf: petrolStations as [PetrolStation])
         
         DispatchQueue.main.async {
-            
-            self.map.addAnnotations(chargers)
-            
+            self.map.addAnnotations(petrolStations)
         }
         
     }

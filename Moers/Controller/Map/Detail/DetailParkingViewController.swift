@@ -1,5 +1,5 @@
 //
-//  RebuildDetailParkingViewController.swift
+//  DetailParkingViewController.swift
 //  Moers
 //
 //  Created by Lennart Fischer on 19.07.18.
@@ -10,7 +10,7 @@ import UIKit
 import Gestalt
 import Crashlytics
 
-class RebuildDetailParkingViewController: UIViewController {
+class DetailParkingViewController: UIViewController {
 
     lazy var topSeparator: UIView = { ViewFactory.blankView() }()
     lazy var slotsHeaderLabel: UILabel = { ViewFactory.label() }()

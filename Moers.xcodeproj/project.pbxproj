@@ -23,8 +23,8 @@
 		DF0CB4A52082BE0F00CC0AA8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */; };
 		DF0CB4AB208357A800CC0AA8 /* MapItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4AA208357A800CC0AA8 /* MapItemContentView.swift */; };
 		DF0CB4AD20838FD100CC0AA8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4AC20838FD100CC0AA8 /* MainViewController.swift */; };
-		DF0CB4AF2085B65200CC0AA8 /* RebuildMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4AE2085B65200CC0AA8 /* RebuildMapViewController.swift */; };
-		DF0CB4B12085B66600CC0AA8 /* RebuildContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4B02085B66600CC0AA8 /* RebuildContentViewController.swift */; };
+		DF0CB4AF2085B65200CC0AA8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4AE2085B65200CC0AA8 /* MapViewController.swift */; };
+		DF0CB4B12085B66600CC0AA8 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4B02085B66600CC0AA8 /* ContentViewController.swift */; };
 		DF0CB4B32087092F00CC0AA8 /* RebuildSearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4B22087092F00CC0AA8 /* RebuildSearchResultTableViewCell.swift */; };
 		DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A49621F6AAB7000E9108B /* AppDelegate.swift */; };
 		DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49691F6AAB7000E9108B /* Assets.xcassets */; };
@@ -59,8 +59,8 @@
 		DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */; };
 		DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C3208C64F1003ECF41 /* PickerView.swift */; };
 		DF4BD1C6208CF76C003ECF41 /* RubbishReminderBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C5208CF76C003ECF41 /* RubbishReminderBulletinItem.swift */; };
-		DF4D8953210388D5008609A1 /* RebuildCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D8952210388D5008609A1 /* RebuildCameraViewController.swift */; };
-		DF4D8955210476AB008609A1 /* RebuildDetailShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D8954210476AB008609A1 /* RebuildDetailShopViewController.swift */; };
+		DF4D8953210388D5008609A1 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D8952210388D5008609A1 /* CameraViewController.swift */; };
+		DF4D8955210476AB008609A1 /* DetailShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D8954210476AB008609A1 /* DetailShopViewController.swift */; };
 		DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D89562104A6F0008609A1 /* Datasources.swift */; };
 		DF4D89592104C298008609A1 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D89582104C298008609A1 /* CameraManager.swift */; };
 		DF524CA8208741FF00D88599 /* RebuildFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524CA7208741FF00D88599 /* RebuildFilterTableViewCell.swift */; };
@@ -70,7 +70,7 @@
 		DF626AF51FB745E300BFDA67 /* BikeChargingStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */; };
 		DF626AF71FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */; };
 		DF626AF91FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF81FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift */; };
-		DF6279792100CDE400F81A70 /* RebuildDetailParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6279782100CDE400F81A70 /* RebuildDetailParkingViewController.swift */; };
+		DF6279792100CDE400F81A70 /* DetailParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6279782100CDE400F81A70 /* DetailParkingViewController.swift */; };
 		DF632B401F6E721B0022FA8E /* ParkingLot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B3F1F6E721B0022FA8E /* ParkingLot.swift */; };
 		DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */; };
 		DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B451F6EA0370022FA8E /* DesignableButton.swift */; };
@@ -126,7 +126,7 @@
 		DFB64DC72038826F00173A80 /* FirebaseNanoPB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DC02038826F00173A80 /* FirebaseNanoPB.framework */; };
 		DFB64DCE20389FDC00173A80 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DCC20389FDB00173A80 /* Crashlytics.framework */; };
 		DFB64DCF20389FDC00173A80 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DCD20389FDB00173A80 /* Fabric.framework */; };
-		DFB6A0BF21033C7800D5C12B /* RebuildDetailCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6A0BE21033C7800D5C12B /* RebuildDetailCameraViewController.swift */; };
+		DFB6A0BF21033C7800D5C12B /* DetailCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6A0BE21033C7800D5C12B /* DetailCameraViewController.swift */; };
 		DFB92D5E1F6B0B0900669F73 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D5D1F6B0B0900669F73 /* API.swift */; };
 		DFB92D601F6B0B3F00669F73 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D5F1F6B0B3F00669F73 /* Shop.swift */; };
 		DFB92D621F6B0B7A00669F73 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D611F6B0B7A00669F73 /* Location.swift */; };
@@ -144,12 +144,12 @@
 		DFCB432720E1036A00E7AD3F /* CommunityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB432620E1036A00E7AD3F /* CommunityCollectionViewCell.swift */; };
 		DFD129731FAF0C1B001900CF /* BranchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD129721FAF0C1B001900CF /* BranchTableViewCell.swift */; };
 		DFD129761FAF12D2001900CF /* BranchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */; };
-		DFD728AC20A880C6005FA9F1 /* RebuildDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD728AB20A880C6005FA9F1 /* RebuildDetailViewController.swift */; };
+		DFD728AC20A880C6005FA9F1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD728AB20A880C6005FA9F1 /* DetailViewController.swift */; };
 		DFD73690211E424E00826C47 /* SelectorBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7368F211E424E00826C47 /* SelectorBulletinPage.swift */; };
 		DFD73692211EEDE900826C47 /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD73691211EEDE900826C47 /* EnumCollection.swift */; };
 		DFD73694211EF0A500826C47 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD73693211EF0A500826C47 /* Localizable.swift */; };
 		DFD7ACAF20A4486B00D49BE2 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACAE20A4486B00D49BE2 /* CardView.swift */; };
-		DFD7ACB220A44C5A00D49BE2 /* RebuildSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACB120A44C5A00D49BE2 /* RebuildSelectionViewController.swift */; };
+		DFD7ACB220A44C5A00D49BE2 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACB120A44C5A00D49BE2 /* SelectionViewController.swift */; };
 		DFD7ACB420A6BCA000D49BE2 /* DashboardRubbishCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACB320A6BCA000D49BE2 /* DashboardRubbishCardView.swift */; };
 		DFD7ACB620A6BFD500D49BE2 /* TitleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACB520A6BFD500D49BE2 /* TitleCardView.swift */; };
 		DFD7ACBA20A6C6BC00D49BE2 /* RubbishCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACB920A6C6BC00D49BE2 /* RubbishCollectionView.swift */; };
@@ -237,8 +237,8 @@
 		DF0CB4A92082BE4100CC0AA8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DF0CB4AA208357A800CC0AA8 /* MapItemContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItemContentView.swift; sourceTree = "<group>"; };
 		DF0CB4AC20838FD100CC0AA8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		DF0CB4AE2085B65200CC0AA8 /* RebuildMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildMapViewController.swift; sourceTree = "<group>"; };
-		DF0CB4B02085B66600CC0AA8 /* RebuildContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildContentViewController.swift; sourceTree = "<group>"; };
+		DF0CB4AE2085B65200CC0AA8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		DF0CB4B02085B66600CC0AA8 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		DF0CB4B22087092F00CC0AA8 /* RebuildSearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildSearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		DF1A495F1F6AAB7000E9108B /* Moers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1A49621F6AAB7000E9108B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -275,8 +275,8 @@
 		DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishStreetPickerItem.swift; sourceTree = "<group>"; };
 		DF4BD1C3208C64F1003ECF41 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		DF4BD1C5208CF76C003ECF41 /* RubbishReminderBulletinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishReminderBulletinItem.swift; sourceTree = "<group>"; };
-		DF4D8952210388D5008609A1 /* RebuildCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildCameraViewController.swift; sourceTree = "<group>"; };
-		DF4D8954210476AB008609A1 /* RebuildDetailShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildDetailShopViewController.swift; sourceTree = "<group>"; };
+		DF4D8952210388D5008609A1 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		DF4D8954210476AB008609A1 /* DetailShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailShopViewController.swift; sourceTree = "<group>"; };
 		DF4D89562104A6F0008609A1 /* Datasources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datasources.swift; sourceTree = "<group>"; };
 		DF4D89582104C298008609A1 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		DF524CA7208741FF00D88599 /* RebuildFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildFilterTableViewCell.swift; sourceTree = "<group>"; };
@@ -286,7 +286,7 @@
 		DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeChargingStation.swift; sourceTree = "<group>"; };
 		DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeChargingStationAnnotationView.swift; sourceTree = "<group>"; };
 		DF626AF81FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBikeChargingStationViewController.swift; sourceTree = "<group>"; };
-		DF6279782100CDE400F81A70 /* RebuildDetailParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildDetailParkingViewController.swift; sourceTree = "<group>"; };
+		DF6279782100CDE400F81A70 /* DetailParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailParkingViewController.swift; sourceTree = "<group>"; };
 		DF632B3F1F6E721B0022FA8E /* ParkingLot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLot.swift; sourceTree = "<group>"; };
 		DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLotAnnotationView.swift; sourceTree = "<group>"; };
 		DF632B451F6EA0370022FA8E /* DesignableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
@@ -338,7 +338,7 @@
 		DFB64DCA2038845300173A80 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
 		DFB64DCC20389FDB00173A80 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		DFB64DCD20389FDB00173A80 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
-		DFB6A0BE21033C7800D5C12B /* RebuildDetailCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildDetailCameraViewController.swift; sourceTree = "<group>"; };
+		DFB6A0BE21033C7800D5C12B /* DetailCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCameraViewController.swift; sourceTree = "<group>"; };
 		DFB92D5D1F6B0B0900669F73 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		DFB92D5F1F6B0B3F00669F73 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		DFB92D611F6B0B7A00669F73 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -356,12 +356,12 @@
 		DFCB432620E1036A00E7AD3F /* CommunityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCollectionViewCell.swift; sourceTree = "<group>"; };
 		DFD129721FAF0C1B001900CF /* BranchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchTableViewCell.swift; sourceTree = "<group>"; };
 		DFD129751FAF12D2001900CF /* BranchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCollectionViewCell.swift; sourceTree = "<group>"; };
-		DFD728AB20A880C6005FA9F1 /* RebuildDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildDetailViewController.swift; sourceTree = "<group>"; };
+		DFD728AB20A880C6005FA9F1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		DFD7368F211E424E00826C47 /* SelectorBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorBulletinPage.swift; sourceTree = "<group>"; };
 		DFD73691211EEDE900826C47 /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
 		DFD73693211EF0A500826C47 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		DFD7ACAE20A4486B00D49BE2 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		DFD7ACB120A44C5A00D49BE2 /* RebuildSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebuildSelectionViewController.swift; sourceTree = "<group>"; };
+		DFD7ACB120A44C5A00D49BE2 /* SelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionViewController.swift; sourceTree = "<group>"; };
 		DFD7ACB320A6BCA000D49BE2 /* DashboardRubbishCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardRubbishCardView.swift; sourceTree = "<group>"; };
 		DFD7ACB520A6BFD500D49BE2 /* TitleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCardView.swift; sourceTree = "<group>"; };
 		DFD7ACB920A6C6BC00D49BE2 /* RubbishCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionView.swift; sourceTree = "<group>"; };
@@ -589,7 +589,6 @@
 				DF461CB420E2240A00600C0E /* Map */,
 				DF461CB620E2242400600C0E /* Community */,
 				DF461CB520E2241400600C0E /* Other */,
-				DF0CB4AC20838FD100CC0AA8 /* MainViewController.swift */,
 				DF855C2520C9E37400B7F7C7 /* CardCollectionViewController.swift */,
 			);
 			path = Controller;
@@ -704,8 +703,12 @@
 		DF461CB420E2240A00600C0E /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				DFD7ACB020A44C0D00D49BE2 /* Rebuild */,
-				DFC1CC651F75962E00C1D269 /* Detail */,
+				DF0CB4AC20838FD100CC0AA8 /* MainViewController.swift */,
+				DF0CB4AE2085B65200CC0AA8 /* MapViewController.swift */,
+				DF0CB4B02085B66600CC0AA8 /* ContentViewController.swift */,
+				DFD7ACB120A44C5A00D49BE2 /* SelectionViewController.swift */,
+				DF4D8952210388D5008609A1 /* CameraViewController.swift */,
+				DF47AA98212C1EA500308873 /* Detail */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -738,12 +741,14 @@
 			path = Community;
 			sourceTree = "<group>";
 		};
-		DF6279772100CDC300F81A70 /* Detail */ = {
+		DF47AA98212C1EA500308873 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				DF6279782100CDE400F81A70 /* RebuildDetailParkingViewController.swift */,
-				DFB6A0BE21033C7800D5C12B /* RebuildDetailCameraViewController.swift */,
-				DF4D8954210476AB008609A1 /* RebuildDetailShopViewController.swift */,
+				DFD728AB20A880C6005FA9F1 /* DetailViewController.swift */,
+				DF6279782100CDE400F81A70 /* DetailParkingViewController.swift */,
+				DFB6A0BE21033C7800D5C12B /* DetailCameraViewController.swift */,
+				DF4D8954210476AB008609A1 /* DetailShopViewController.swift */,
+				DF626AF81FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -801,14 +806,6 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
-		DFC1CC651F75962E00C1D269 /* Detail */ = {
-			isa = PBXGroup;
-			children = (
-				DF626AF81FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift */,
-			);
-			path = Detail;
-			sourceTree = "<group>";
-		};
 		DFD129741FAF0DE9001900CF /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -816,19 +813,6 @@
 				DF8254071F7712870069D751 /* CSwiftV.swift */,
 			);
 			path = Networking;
-			sourceTree = "<group>";
-		};
-		DFD7ACB020A44C0D00D49BE2 /* Rebuild */ = {
-			isa = PBXGroup;
-			children = (
-				DF0CB4AE2085B65200CC0AA8 /* RebuildMapViewController.swift */,
-				DF0CB4B02085B66600CC0AA8 /* RebuildContentViewController.swift */,
-				DFD7ACB120A44C5A00D49BE2 /* RebuildSelectionViewController.swift */,
-				DFD728AB20A880C6005FA9F1 /* RebuildDetailViewController.swift */,
-				DF6279772100CDC300F81A70 /* Detail */,
-				DF4D8952210388D5008609A1 /* RebuildCameraViewController.swift */,
-			);
-			path = Rebuild;
 			sourceTree = "<group>";
 		};
 		DFD7ACBB20A794D700D49BE2 /* Cards */ = {
@@ -1135,7 +1119,7 @@
 				DFA17DF420DEF9DE00BBD838 /* UIButton+Extensions.swift in Sources */,
 				DF626AF51FB745E300BFDA67 /* BikeChargingStation.swift in Sources */,
 				DFB92D621F6B0B7A00669F73 /* Location.swift in Sources */,
-				DF4D8955210476AB008609A1 /* RebuildDetailShopViewController.swift in Sources */,
+				DF4D8955210476AB008609A1 /* DetailShopViewController.swift in Sources */,
 				DFD129761FAF12D2001900CF /* BranchCollectionViewCell.swift in Sources */,
 				DF2D6DA520B88E1700176614 /* LicencesViewController.swift in Sources */,
 				DF95197F20C8B6F3001D13DC /* PetrolStationViewController.swift in Sources */,
@@ -1150,7 +1134,7 @@
 				DF2D6DA120B83C1E00176614 /* AnalyticsManager.swift in Sources */,
 				DF855C2420C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift in Sources */,
 				DF4BD1BE208A72C5003ECF41 /* DashboardViewController.swift in Sources */,
-				DF0CB4B12085B66600CC0AA8 /* RebuildContentViewController.swift in Sources */,
+				DF0CB4B12085B66600CC0AA8 /* ContentViewController.swift in Sources */,
 				DF855C2820C9EADD00B7F7C7 /* WrapperCardCollectionViewCell.swift in Sources */,
 				DF8254061F7711180069D751 /* Camera.swift in Sources */,
 				DFD890872124860A006B5610 /* TandCViewController.swift in Sources */,
@@ -1203,11 +1187,11 @@
 				DFDD3F6E20B22230005602E3 /* RubbishCollectionViewController.swift in Sources */,
 				DF3EE0C720E38A6B00CA9279 /* PaddingLabel.swift in Sources */,
 				DFEFE7CD2122DC1D002F5162 /* Event.swift in Sources */,
-				DF6279792100CDE400F81A70 /* RebuildDetailParkingViewController.swift in Sources */,
+				DF6279792100CDE400F81A70 /* DetailParkingViewController.swift in Sources */,
 				DF2D6DA920B899DD00176614 /* User.swift in Sources */,
-				DF0CB4AF2085B65200CC0AA8 /* RebuildMapViewController.swift in Sources */,
+				DF0CB4AF2085B65200CC0AA8 /* MapViewController.swift in Sources */,
 				DFB4D76B20B064CA00C8D179 /* StaticTableView.swift in Sources */,
-				DFB6A0BF21033C7800D5C12B /* RebuildDetailCameraViewController.swift in Sources */,
+				DFB6A0BF21033C7800D5C12B /* DetailCameraViewController.swift in Sources */,
 				DF0CB4932082AB5600CC0AA8 /* Theme.swift in Sources */,
 				DF29FB4F20B19BE600741A63 /* ThemeCardView.swift in Sources */,
 				DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */,
@@ -1215,14 +1199,14 @@
 				DFA9EF0120B36CEF008590EA /* PetrolRequestResponse.swift in Sources */,
 				DF626AF91FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift in Sources */,
 				DFEFE7D32122FFB0002F5162 /* EventTableViewCell.swift in Sources */,
-				DFD7ACB220A44C5A00D49BE2 /* RebuildSelectionViewController.swift in Sources */,
+				DFD7ACB220A44C5A00D49BE2 /* SelectionViewController.swift in Sources */,
 				DF2D6DAB20B8A02B00176614 /* OnboardingManager.swift in Sources */,
 				DF626AF71FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift in Sources */,
 				DF4D89592104C298008609A1 /* CameraManager.swift in Sources */,
 				DF8963D420CB0886008A0EDD /* WaterfallLayout.swift in Sources */,
 				DF2D6DA720B8983400176614 /* UserManager.swift in Sources */,
 				DFEFE7D521230149002F5162 /* EventView.swift in Sources */,
-				DF4D8953210388D5008609A1 /* RebuildCameraViewController.swift in Sources */,
+				DF4D8953210388D5008609A1 /* CameraViewController.swift in Sources */,
 				DF632B401F6E721B0022FA8E /* ParkingLot.swift in Sources */,
 				DFD7ACC120A842F400D49BE2 /* DateCardView.swift in Sources */,
 				DFC1CC671F76664700C1D269 /* ShopIconDrawer.swift in Sources */,
@@ -1240,7 +1224,7 @@
 				DF524CA8208741FF00D88599 /* RebuildFilterTableViewCell.swift in Sources */,
 				DF0CB49F2082B90900CC0AA8 /* FeedbackGenerators.swift in Sources */,
 				DFD129731FAF0C1B001900CF /* BranchTableViewCell.swift in Sources */,
-				DFD728AC20A880C6005FA9F1 /* RebuildDetailViewController.swift in Sources */,
+				DFD728AC20A880C6005FA9F1 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

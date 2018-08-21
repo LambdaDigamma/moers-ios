@@ -14,9 +14,9 @@ class MainViewController: PulleyViewController {
 
     private let eventBus = EventBus()
     
-    public var mapViewController: RebuildMapViewController!
-    public var contentViewController: RebuildContentViewController!
-    public lazy var detailViewController: RebuildDetailViewController! = { RebuildDetailViewController() }()
+    public var mapViewController: MapViewController!
+    public var contentViewController: ContentViewController!
+    public lazy var detailViewController: DetailViewController! = { DetailViewController() }()
     
     public var locations: [Location] = []
     
@@ -26,8 +26,8 @@ class MainViewController: PulleyViewController {
         
         self.displayMode = .automatic
         
-        self.mapViewController = contentViewController as! RebuildMapViewController
-        self.contentViewController = drawerViewController as! RebuildContentViewController
+        self.mapViewController = contentViewController as! MapViewController
+        self.contentViewController = drawerViewController as! ContentViewController
         
     }
     
@@ -43,6 +43,7 @@ class MainViewController: PulleyViewController {
         self.eventBus.add(subscriber: contentViewController, for: ShopDatasource.self)
         self.eventBus.add(subscriber: contentViewController, for: ParkingLotDatasource.self)
         self.eventBus.add(subscriber: contentViewController, for: CameraDatasource.self)
+//        self.eventBus.add(subscriber: contentViewController, for: PetrolDatasource.self)
         
         self.eventBus.add(subscriber: mapViewController, for: ShopDatasource.self)
         self.eventBus.add(subscriber: mapViewController, for: ParkingLotDatasource.self)

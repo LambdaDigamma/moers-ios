@@ -1,5 +1,5 @@
 //
-//  RebuildDetailCameraViewController.swift
+//  DetailCameraViewController.swift
 //  Moers
 //
 //  Created by Lennart Fischer on 21.07.18.
@@ -10,7 +10,7 @@ import UIKit
 import Gestalt
 import Crashlytics
 
-class RebuildDetailCameraViewController: UIViewController {
+class DetailCameraViewController: UIViewController {
 
     lazy var topSeperator: UIView = { ViewFactory.blankView() }()
     lazy var showButton: UIButton = { ViewFactory.button() }()
@@ -71,7 +71,7 @@ class RebuildDetailCameraViewController: UIViewController {
     
     @objc private func showCamera() {
         
-        let viewController = RebuildCameraViewController()
+        let viewController = CameraViewController()
         
         guard let cam = selectedCamera else { return }
         
@@ -93,7 +93,7 @@ class RebuildDetailCameraViewController: UIViewController {
         
         if segue.identifier == "viewCamera" {
             
-            if let destination = segue.destination as? RebuildCameraViewController {
+            if let destination = segue.destination as? CameraViewController {
                 
                 guard let cam = selectedCamera else { return }
                 
