@@ -530,7 +530,6 @@
 				DF0CB4942082AFA300CC0AA8 /* Manager */,
 				DFA9EF0D20B56BB2008590EA /* Extensions */,
 				DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */,
-				DFB92D631F6B109C00669F73 /* Extensions.swift */,
 				DF1A49691F6AAB7000E9108B /* Assets.xcassets */,
 				DF1A496B1F6AAB7000E9108B /* LaunchScreen.storyboard */,
 				DF1A496E1F6AAB7000E9108B /* Info.plist */,
@@ -752,6 +751,7 @@
 		DFA9EF0D20B56BB2008590EA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				DFB92D631F6B109C00669F73 /* Extensions.swift */,
 				DFA9EF0B20B56BA8008590EA /* UIImage+Extensions.swift */,
 				DFA17DF320DEF9DE00BBD838 /* UIButton+Extensions.swift */,
 			);
