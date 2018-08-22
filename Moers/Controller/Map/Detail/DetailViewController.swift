@@ -2,12 +2,13 @@
 //  DetailViewController.swift
 //  Moers
 //
-//  Created by Lennart Fischer on 17.09.17.
-//  Copyright © 2017 Lennart Fischer. All rights reserved.
+//  Created by Lennart Fischer on 13.05.18.
+//  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
 import UIKit
 import MapKit
+import Gestalt
 import Pulley
 import Crashlytics
 
@@ -20,147 +21,213 @@ struct DetailContentHeight {
     
 }
 
-class DetailViewController: UIViewController, CLLocationManagerDelegate {
+class DetailViewController: UIViewController {
     
-    let locationManager: CLLocationManager = {
-        let manager = CLLocationManager()
-        manager.requestWhenInUseAuthorization()
-        manager.startUpdatingLocation()
-        return manager
-    }()
+    lazy var gripperView: UIView = { ViewFactory.blankView() }()
+    lazy var imageView: UIImageView = { ViewFactory.imageView() }()
+    lazy var nameLabel: UILabel = { ViewFactory.label() }()
+    lazy var subtitleLabel: UILabel = { ViewFactory.label() }()
+    lazy var contentView: UIScrollView = { ViewFactory.scrollView() }()
+    lazy var closeButton: UIButton = { ViewFactory.button() }()
+    lazy var routeButton: UIButton = { ViewFactory.button() }()
     
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var subtitleLabel: UILabel!
+    var selectedLocation: Location? { didSet { setupLocation(selectedLocation) } }
     
-    @IBOutlet weak var contentView: UIScrollView!
-    
-    @IBOutlet weak var routeButton: DesignableButton!
-    @IBOutlet weak var closeButton: UIButton!
-    
-    @IBAction func close(_ sender: UIButton) {
-        
-        if let drawer = self.parent as? PulleyViewController {
-            let drawerDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ContentViewController") as! ContentViewController
+    weak var child: UIViewController? = nil {
+        willSet {
+            contentView.subviews.forEach({ $0.removeFromSuperview() })
+            contentView.removeFromSuperview()
+            contentView = ViewFactory.scrollView()
             
-            guard let vc = child else { return }
+            self.view.addSubview(contentView)
             
-            vc.removeFromParentViewController()
-            
-            self.dismiss(animated: false) {
-                
-                
-                
-            }
-            
-            drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
-            drawer.setDrawerPosition(position: .collapsed, animated: false)
+            contentView.topAnchor.constraint(equalTo: routeButton.bottomAnchor, constant: 8).isActive = true
+            contentView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16).isActive = true
+            contentView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16).isActive = true
+            contentView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: -20).isActive = true
             
         }
-        
     }
     
-    @IBAction func navigateViaMeps(_ sender: UIButton) {
-        
-        guard let location = selectedLocation else { return }
-        
-        var type = ""
-        
-        if location is Shop {
-            type = "Shop"
-        } else if location is ParkingLot {
-            type = "Parking Lot"
-        } else if location is Camera {
-            type = "Camera"
-        } else if location is BikeChargingStation {
-            type = "E-Bike Charger"
-        }
-        
-        Answers.logCustomEvent(withName: "Navigation", customAttributes: ["type": type, "name": location.name])
-        
-        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: location.location.coordinate, addressDictionary: nil))
-        mapItem.name = "\(location.name)"
-        
-        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
-        
-    }
-    
-    var selectedLocation: Location? {
-        
-        didSet {
-            
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.startUpdatingLocation()
-            
-            if let shop = selectedLocation as? Shop {
-                
-                nameLabel.text = shop.name
-                subtitleLabel.text = shop.branch
-                
-                if let image = ShopIconDrawer.annotationImage(from: shop.branch) {
-                    
-                    if let img = UIImage.imageResize(imageObj: image, size: CGSize(width: imageView.bounds.width / 2, height: imageView.bounds.height / 2), scaleFactor: 0.75) {
-                        
-                        imageView.backgroundColor = UIColor(red: 0xFF, green: 0xF5, blue: 0x00, alpha: 1)
-                        imageView.image = img
-                        imageView.contentMode = .scaleAspectFit
-                        imageView.layer.borderColor = UIColor.black.cgColor
-                        imageView.layer.borderWidth = 1
-                        imageView.layer.cornerRadius = 7
-                        
-                    }
-                    
-                }
-                
-                morphDetailShop()
-                
-            } else if let parkingLot = selectedLocation as? ParkingLot {
-                
-                nameLabel.text = parkingLot.name
-                subtitleLabel.text = "Parkplatz"
-                imageView.image = #imageLiteral(resourceName: "parkingLot")
-                
-                morphDetailParking()
-                
-            } else if let camera = selectedLocation as? Camera {
-                
-                nameLabel.text = camera.title
-                subtitleLabel.text = "360° Kamera"
-                imageView.image = #imageLiteral(resourceName: "camera")
-                
-                morphDetailCamera()
-                
-            } else if let bikeCharger = selectedLocation as? BikeChargingStation {
-                
-                nameLabel.text = bikeCharger.title
-                subtitleLabel.text = "E-Bike Ladestation"
-                imageView.image = #imageLiteral(resourceName: "ebike")
-                
-                morphDetailBikeCharger()
-                
-            }
-            
-        }
-        
-    }
-    
-    weak var child: UIViewController? = nil
+    // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if let drawerVC = self.parent as? PulleyViewController {
             drawerVC.delegate = self
         }
         
+        self.setupUI()
+        self.setupConstraints()
+        self.setupTheming()
+        
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    // MARK: - Private Methods
+    
+    private func setupUI() {
         
-        manager.stopUpdatingLocation()
+        self.view.addSubview(gripperView)
+        self.view.addSubview(imageView)
+        self.view.addSubview(nameLabel)
+        self.view.addSubview(subtitleLabel)
+        self.view.addSubview(contentView)
+        self.view.addSubview(closeButton)
+        self.view.addSubview(routeButton)
         
-        guard let sourceCoordinate = locationManager.location?.coordinate else { return }
+        gripperView.backgroundColor = UIColor.lightGray
+        gripperView.layer.cornerRadius = 2.5
+        nameLabel.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.medium)
+        nameLabel.adjustsFontSizeToFitWidth = true
+        nameLabel.minimumScaleFactor = 0.5
+        subtitleLabel.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.regular)
+        closeButton.setImage(#imageLiteral(resourceName: "close").withRenderingMode(.alwaysTemplate), for: .normal)
+        closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
+        routeButton.layer.cornerRadius = 8
+        routeButton.clipsToBounds = true
+        routeButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        routeButton.addTarget(self, action: #selector(navigateViaMaps), for: .touchUpInside)
+        contentView.bounces = false
+        
+    }
+    
+    private func setupConstraints() {
+        
+        let constraints = [gripperView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 6),
+                           gripperView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                           gripperView.heightAnchor.constraint(equalToConstant: 5),
+                           gripperView.widthAnchor.constraint(equalToConstant: 36),
+                           closeButton.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 16),
+                           closeButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                           closeButton.heightAnchor.constraint(equalToConstant: 25),
+                           closeButton.widthAnchor.constraint(equalToConstant: 25),
+                           imageView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 16),
+                           imageView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
+                           imageView.widthAnchor.constraint(equalToConstant: 47),
+                           imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
+                           nameLabel.topAnchor.constraint(equalTo: imageView.topAnchor),
+                           nameLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 8),
+                           nameLabel.rightAnchor.constraint(equalTo: closeButton.leftAnchor, constant: -8),
+                           subtitleLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
+                           subtitleLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 8),
+                           subtitleLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                           subtitleLabel.heightAnchor.constraint(equalToConstant: 21),
+                           routeButton.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 32),
+                           routeButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
+                           routeButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                           routeButton.heightAnchor.constraint(equalToConstant: 50),
+                           contentView.topAnchor.constraint(equalTo: routeButton.bottomAnchor, constant: 8),
+                           contentView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
+                           contentView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                           contentView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: -20)]
+        
+        NSLayoutConstraint.activate(constraints)
+        
+    }
+
+    private func setupTheming() {
+        
+        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
+            
+            themeable.view.backgroundColor = theme.backgroundColor
+            themeable.nameLabel.textColor = theme.color
+            themeable.subtitleLabel.textColor = theme.color
+            themeable.closeButton.tintColor = theme.decentColor
+            themeable.subtitleLabel.textColor = theme.decentColor
+            themeable.routeButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
+            themeable.routeButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .highlighted)
+            themeable.routeButton.setTitleColor(theme.backgroundColor, for: .normal)
+            
+        }
+        
+    }
+    
+    @objc private func navigateViaMaps() {
+        
+        guard let location = selectedLocation else { return }
+        
+        Answers.logCustomEvent(withName: "Navigation", customAttributes: ["type": location.category, "name": location.name])
+        
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: location.location.coordinate))
+        mapItem.name = location.name
+        
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+        
+    }
+    
+    @objc private func close() {
+        
+        if let drawer = self.parent as? MainViewController {
+            
+            guard let contentDrawer = drawer.contentViewController else { return }
+            guard let mapDrawer = drawer.mapViewController else { return }
+            
+            guard let vc = child else { return }
+            
+            contentView.subviews.forEach({ $0.removeFromSuperview() })
+            
+            vc.removeFromParentViewController()
+            
+            self.dismiss(animated: false, completion: nil)
+            
+            drawer.setDrawerContentViewController(controller: contentDrawer, animated: true)
+            drawer.setDrawerPosition(position: .collapsed, animated: true)
+            
+            if let annotation = selectedLocation as? MKAnnotation {
+                mapDrawer.map.deselectAnnotation(annotation, animated: true)
+            }
+            
+        }
+        
+    }
+    
+    private func setupLocation(_ location: Location?) {
+        
+        self.nameLabel.text = location?.name
+        self.subtitleLabel.text = location?.detailSubtitle
+        self.imageView.image = location?.detailImage
+        
+        self.calculateETA()
+        
+        // TODO: Generify Detail Morphing
+        
+        if let shop = location as? Store {
+            
+//            if let image = ShopIconDrawer.annotationImage(from: shop.branch) {
+//
+//                if let img = UIImage.imageResize(imageObj: image, size: CGSize(width: imageView.bounds.width / 2, height: imageView.bounds.height / 2), scaleFactor: 0.75) {
+//
+//                    imageView.backgroundColor = UIColor(red: 0xFF, green: 0xF5, blue: 0x00, alpha: 1)
+//                    imageView.image = img
+//                    imageView.contentMode = .scaleAspectFit
+//                    imageView.layer.borderColor = UIColor.black.cgColor
+//                    imageView.layer.borderWidth = 1
+//                    imageView.layer.cornerRadius = 7
+//
+//                }
+//
+//            }
+            
+            morphDetailShop()
+            
+        } else if let parkingLot = selectedLocation as? ParkingLot {
+            
+            morphDetailParking()
+            
+        } else if let camera = selectedLocation as? Camera {
+            
+            morphDetailCamera()
+            
+        }
+        
+    }
+    
+    private func calculateETA() {
+        
+        self.routeButton.setTitle("Route", for: .normal)
+        
+        guard let sourceCoordinate = LocationManager.shared.lastLocation?.coordinate else { return }
         guard let destinationCoordinate = selectedLocation?.location.coordinate else { return }
         
         let source = MKMapItem(placemark: MKPlacemark(coordinate: sourceCoordinate))
@@ -177,25 +244,24 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate {
         
         directions.calculateETA { (response, error) -> Void in
             
-            if error == nil {
-                
-                if let estimate = response {
-                    
-                    self.routeButton.setTitle("Route (\(Int(floor(estimate.expectedTravelTime / 60))) min)", for: .normal)
-                    
-                }
-                
+            if let error = error {
+                print(error.localizedDescription)
             }
+            
+            guard let estimate = response else { return }
+            
+            self.routeButton.setTitle("Route (\(Int(floor(estimate.expectedTravelTime / 60))) min)", for: .normal)
             
         }
         
+        
     }
+    
+    // MARK: - Detail
     
     private func morphDetailParking() {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        
-        let viewController = storyboard.instantiateViewController(withIdentifier: "DetailParkingViewController") as! DetailParkingViewController
+        let viewController = DetailParkingViewController()
         
         self.add(asChildViewController: viewController)
         
@@ -203,23 +269,9 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    private func morphDetailShop() {
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        
-        let viewController = storyboard.instantiateViewController(withIdentifier: "DetailShopViewController") as! DetailShopViewController
-        
-        self.add(asChildViewController: viewController)
-        
-        viewController.selectedShop = selectedLocation as? Shop
-        
-    }
-    
     private func morphDetailCamera() {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        
-        let viewController = storyboard.instantiateViewController(withIdentifier: "DetailCameraViewController") as! DetailCameraViewController
+        let viewController = DetailCameraViewController()
         
         self.add(asChildViewController: viewController)
         
@@ -227,60 +279,31 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    private func morphDetailBikeCharger() {
+    private func morphDetailShop() {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        
-        let viewController = storyboard.instantiateViewController(withIdentifier: "DetailBikeChargingStationViewController") as! DetailBikeChargingStationViewController
+        let viewController = DetailShopViewController.fromStoryboard()
         
         self.add(asChildViewController: viewController)
         
-        viewController.selectedBikeChargingStation = selectedLocation as? BikeChargingStation
+        viewController.selectedShop = selectedLocation as? Store
         
     }
     
     private func add(asChildViewController viewController: UIViewController) {
         
-        child = viewController
-        
-        addChildViewController(viewController)
-        
-        
-        var height: CGFloat = 700
+        self.child = viewController
+        self.addChildViewController(viewController)
         
         guard let loc = selectedLocation else { return }
         
-        if loc is Shop {
-            height = DetailContentHeight.shop
-        } else if loc is ParkingLot {
-            height = DetailContentHeight.parkingLot
-        } else if loc is Camera {
-            height = DetailContentHeight.camera
-        } else if loc is BikeChargingStation {
-            height = DetailContentHeight.bikeCharger
-        }
+        self.contentView.contentSize = CGSize(width: contentView.bounds.width, height: loc.detailHeight + 49)
+        self.contentView.addSubview(viewController.view)
+        self.contentView.isUserInteractionEnabled = true
         
-        // Add Child View as Subview
-        contentView.contentSize = CGSize(width: contentView.bounds.width, height: height)
-        contentView.addSubview(viewController.view)
-        contentView.isUserInteractionEnabled = true
-        
-        // Configure Child View
         viewController.view.frame = contentView.bounds
         viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        // Notify Child View Controller
         viewController.didMove(toParentViewController: self)
-    }
-    
-    fileprivate func resetNavBar() {
-        
-        navigationController?.navigationBar.barTintColor = UIColor(red: 0.85, green: 0.12, blue: 0.09, alpha: 1.0)
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-        
-        if let statusBar = UIApplication.shared.value(forKey: "statusBar") as? UIView {
-            statusBar.alpha = 1
-        }
         
     }
     
@@ -289,22 +312,38 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate {
 extension DetailViewController: PulleyDrawerViewControllerDelegate {
     
     func collapsedDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
-        return 154
+        return 130.0 + (bottomSafeArea - 49)
     }
     
     func partialRevealDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
-        return 264.0
+        
+        if let pulleyVC = self.parent as? MainViewController {
+            
+            let height = pulleyVC.mapViewController.map.frame.height
+            
+            if pulleyVC.currentDisplayMode == .leftSide {
+                return height - 49.0 - 16.0 - 16.0 - 64.0 - 50.0 - 16.0
+            }
+            
+        }
+        
+        return 264.0 + bottomSafeArea
     }
     
     func supportedDrawerPositions() -> [PulleyPosition] {
+        
+        if let pulleyVC = self.parent as? PulleyViewController {
+            
+            if pulleyVC.currentDisplayMode == .leftSide {
+                
+                self.gripperView.isHidden = true
+                
+                return [PulleyPosition.partiallyRevealed]
+            }
+            
+        }
+        
         return PulleyPosition.all
-    }
-    
-    func makeUIAdjustmentsForFullscreen(progress: CGFloat, bottomSafeArea: CGFloat) {
-        
-        
-        
-        
     }
     
 }

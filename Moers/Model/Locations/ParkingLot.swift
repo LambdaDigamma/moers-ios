@@ -51,22 +51,22 @@ class ParkingLot: NSObject, Location, MKAnnotation {
         
     }
     
-    var title: String? {
-        
-        return self.name
-        
-    }
+    var title: String? { return self.name }
     
-    var subtitle: String? {
-        
-        return address
-        
-    }
+    var subtitle: String? { return address }
     
-    var coordinate: CLLocationCoordinate2D {
-        
-        return location.coordinate
-        
-    }
+    var coordinate: CLLocationCoordinate2D { return location.coordinate }
+    
+    var detailSubtitle: String { return localizedCategory }
+    
+    lazy var detailImage: UIImage = { return #imageLiteral(resourceName: "parkingLot") }()
+    
+    lazy var detailViewController: UIViewController = { DetailParkingViewController() }()
+    
+    var detailHeight: CGFloat { return 220.0 }
+    
+    var category: String { return "Parking Lot" }
+    
+    var localizedCategory: String { return String.localized("ParkingLot") }
     
 }

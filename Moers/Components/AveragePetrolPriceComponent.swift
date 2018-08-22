@@ -37,6 +37,9 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
         
         if isAllowed {
             
+            self.averagePetrolCardView.dismissError()
+            self.averagePetrolCardView.startLoading()
+            
             if let location = LocationManager.shared.lastLocation {
                 
                 self.setupLocation(location)
@@ -60,9 +63,15 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
             self.averagePetrolCardView.isUserInteractionEnabled = true
             self.averagePetrolCardView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showPetrolStationViewController)))
             
+        } else {
+            self.averagePetrolCardView.showError(withTitle: String.localized("PetrolErrorPermissionTitle"), message: String.localized("PetrolErrorPermissionMessage"))
+            self.averagePetrolCardView.isUserInteractionEnabled = false
         }
         
-        self.update()
+        self.averagePetrolCardView.petrolType = PetrolManager.shared.petrolType
+        
+        self.checkAuthStatus()
+        self.averagePetrolCardView.startLoading()
         
     }
     

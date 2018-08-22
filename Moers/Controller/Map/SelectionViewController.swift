@@ -1,5 +1,5 @@
 //
-//  RebuildSelectionViewController.swift
+//  SelectionViewController.swift
 //  Moers
 //
 //  Created by Lennart Fischer on 10.05.18.
@@ -11,7 +11,7 @@ import Gestalt
 import Pulley
 import MapKit
 
-class RebuildSelectionViewController: UIViewController {
+class SelectionViewController: UIViewController {
 
     lazy var headerView: UIView = { ViewFactory.blankView() }()
     lazy var gripperView: UIView = { ViewFactory.blankView() }()
@@ -71,7 +71,7 @@ class RebuildSelectionViewController: UIViewController {
         self.closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.register(RebuildSearchResultTableViewCell.self, forCellReuseIdentifier: CellIdentifier.searchResultCell)
+        self.tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: CellIdentifier.searchResultCell)
         
     }
     
@@ -143,7 +143,7 @@ class RebuildSelectionViewController: UIViewController {
     
 }
 
-extension RebuildSelectionViewController: UITableViewDataSource, UITableViewDelegate {
+extension SelectionViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -153,7 +153,7 @@ extension RebuildSelectionViewController: UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! RebuildSearchResultTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
         
         cell.searchImageView.backgroundColor = UIColor.clear
         cell.searchImageView.image = nil
@@ -211,14 +211,14 @@ extension RebuildSelectionViewController: UITableViewDataSource, UITableViewDele
         
         if let drawer = self.parent as? PulleyViewController {
             
-            let drawerDetail = RebuildDetailViewController()
+            let drawerDetail = DetailViewController()
             
             drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
             drawer.setDrawerPosition(position: .partiallyRevealed, animated: true)
             
             drawerDetail.selectedLocation = clusteredLocations[indexPath.row]
             
-            if let mapController = drawer.primaryContentViewController as? RebuildMapViewController {
+            if let mapController = drawer.primaryContentViewController as? MapViewController {
                 
                 let coordinate = self.clusteredLocations[indexPath.row].location.coordinate
                 
@@ -232,7 +232,7 @@ extension RebuildSelectionViewController: UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         
-        if let cell = tableView.cellForRow(at: indexPath) as? RebuildSearchResultTableViewCell, let _ = clusteredLocations[indexPath.row] as? Store {
+        if let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell, let _ = clusteredLocations[indexPath.row] as? Store {
             
             cell.searchImageView.backgroundColor = AppColor.yellow
             
@@ -248,7 +248,7 @@ extension RebuildSelectionViewController: UITableViewDataSource, UITableViewDele
     
 }
 
-extension RebuildSelectionViewController: PulleyDrawerViewControllerDelegate {
+extension SelectionViewController: PulleyDrawerViewControllerDelegate {
     
     func collapsedDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
         return 68.0 + bottomSafeArea

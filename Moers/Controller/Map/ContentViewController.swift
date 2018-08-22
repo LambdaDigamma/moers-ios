@@ -1,5 +1,5 @@
 //
-//  RebuildContentViewController.swift
+//  ContentViewController.swift
 //  Moers
 //
 //  Created by Lennart Fischer on 17.04.18.
@@ -20,7 +20,15 @@ public enum SearchStyle {
     
 }
 
-class RebuildContentViewController: UIViewController, PulleyDrawerViewControllerDelegate, UISearchBarDelegate {
+public struct CellIdentifier {
+    
+    static let searchResultCell = "searchResult"
+    static let branchCell = "branchCell"
+    static let filterCell = "filterCell"
+    
+}
+
+class ContentViewController: UIViewController, PulleyDrawerViewControllerDelegate, UISearchBarDelegate {
 
     // MARK: - UI
     
@@ -62,8 +70,6 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         self.setupUI()
         self.setupTheming()
         
-        API.shared.delegate = self
-        
     }
     
     // MARK: - Private Methods
@@ -89,9 +95,9 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.contentInsetAdjustmentBehavior = .never
-        self.tableView.register(RebuildSearchResultTableViewCell.self, forCellReuseIdentifier: CellIdentifier.searchResultCell)
-        self.tableView.register(RebuildBranchTableViewCell.self, forCellReuseIdentifier: CellIdentifier.branchCell)
-        self.tableView.register(RebuildFilterTableViewCell.self, forCellReuseIdentifier: CellIdentifier.filterCell)
+        self.tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: CellIdentifier.searchResultCell)
+        self.tableView.register(BranchTableViewCell.self, forCellReuseIdentifier: CellIdentifier.branchCell)
+        self.tableView.register(FilterTableViewCell.self, forCellReuseIdentifier: CellIdentifier.filterCell)
         
     }
     
@@ -359,7 +365,7 @@ class RebuildContentViewController: UIViewController, PulleyDrawerViewController
     
 }
 
-extension RebuildContentViewController: UITableViewDataSource, UITableViewDelegate {
+extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -379,7 +385,7 @@ extension RebuildContentViewController: UITableViewDataSource, UITableViewDelega
         
         if searchStyle == .none && indexPath.row == 0 {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.branchCell, for: indexPath) as! RebuildBranchTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.branchCell, for: indexPath) as! BranchTableViewCell
             
             cell.branches = branches
             cell.onSelect = onSelect
@@ -390,7 +396,7 @@ extension RebuildContentViewController: UITableViewDataSource, UITableViewDelega
             
         } else if searchStyle == .branchSearch && indexPath.row == 0 {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.filterCell, for: indexPath) as! RebuildFilterTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.filterCell, for: indexPath) as! FilterTableViewCell
             
             cell.selectionStyle = .none
             
@@ -409,7 +415,7 @@ extension RebuildContentViewController: UITableViewDataSource, UITableViewDelega
             
         } else {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! RebuildSearchResultTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
             
             cell.searchImageView.backgroundColor = UIColor.clear
             cell.searchImageView.image = nil
@@ -485,11 +491,11 @@ extension RebuildContentViewController: UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         
-        guard let cell = tableView.cellForRow(at: indexPath) as? RebuildSearchResultTableViewCell else { return }
+        guard let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell else { return }
         
         cell.backgroundColor = highlightedColor
         
-        if let cell = tableView.cellForRow(at: indexPath) as? RebuildSearchResultTableViewCell, let _ = datasource[indexPath.row - 1] as? Shop {
+        if let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell, let _ = datasource[indexPath.row - 1] as? Shop {
             
             cell.searchImageView.backgroundColor = AppColor.yellow
             
@@ -499,7 +505,7 @@ extension RebuildContentViewController: UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         
-        guard let cell = tableView.cellForRow(at: indexPath) as? RebuildSearchResultTableViewCell else { return }
+        guard let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell else { return }
         
         cell.backgroundColor = normalColor
         
@@ -517,7 +523,7 @@ extension RebuildContentViewController: UITableViewDataSource, UITableViewDelega
             
             if let drawer = self.parent as? MainViewController {
                 
-                if let mapController = drawer.primaryContentViewController as? RebuildMapViewController {
+                if let mapController = drawer.primaryContentViewController as? MapViewController {
                     
                     let annotation = self.datasource[indexPath.row - 1] as! MKAnnotation
                     
@@ -540,7 +546,7 @@ extension RebuildContentViewController: UITableViewDataSource, UITableViewDelega
     
 }
 
-extension RebuildContentViewController: ShopDatasource, ParkingLotDatasource, CameraDatasource {
+extension ContentViewController: ShopDatasource, ParkingLotDatasource, CameraDatasource {
     
     func didReceiveShops(_ shops: [Store]) {
         
@@ -571,34 +577,6 @@ extension RebuildContentViewController: ShopDatasource, ParkingLotDatasource, Ca
     func didReceiveCameras(_ cameras: [Camera]) {
         
         self.locations.append(contentsOf: cameras as [Location])
-        
-        DispatchQueue.main.async {
-            
-            self.tableView.reloadData()
-            
-        }
-        
-    }
-    
-}
-
-extension RebuildContentViewController: APIDelegate {
-    
-    func didReceiveShops(shops: [Shop]) {
-        
-    }
-    
-    func didReceiveParkingLots(parkingLots: [ParkingLot]) {
-        
-    }
-    
-    func didReceiveCameras(cameras: [Camera]) {
-        
-    }
-    
-    func didReceiveBikeChargers(chargers: [BikeChargingStation]) {
-        
-        self.locations.append(contentsOf: chargers as [Location])
         
         DispatchQueue.main.async {
             

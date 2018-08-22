@@ -2,8 +2,8 @@
 //  MapViewController.swift
 //  Moers
 //
-//  Created by Lennart Fischer on 14.09.17.
-//  Copyright © 2017 Lennart Fischer. All rights reserved.
+//  Created by Lennart Fischer on 17.04.18.
+//  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
 import UIKit
@@ -18,14 +18,22 @@ struct AnnotationIdentifier {
     static let parkingLot = "parkingLot"
     static let camera = "camera"
     static let bikeChargingStation = "bikeCharger"
+    static let petrolStation = "petrolStation"
     
 }
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryContentControllerDelegate {
 
-    // MARK: - UI
-    
-    @IBOutlet weak var map: MKMapView!
+    lazy var map: MKMapView = {
+        
+        let map = MKMapView()
+        
+        map.translatesAutoresizingMaskIntoConstraints = false
+        map.delegate = self
+        
+        return map
+        
+    }()
     
     let locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -35,89 +43,17 @@ class MapViewController: UIViewController {
     
     private var locations: [Location] = []
     
+    // MARK: - UIViewController Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let moersRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.451667, longitude: 6.626389), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
-        
-        map.setRegion(moersRegion, animated: true)
-        map.showsUserLocation = true
-        map.showsBuildings = false
-        map.showsPointsOfInterest = false
-        map.mapType = .standard
-        
-        API.shared.delegate = self
-        
-        populateData()
-        
-    }
-    
-    private func populateData() {
-        
-        self.locations.append(contentsOf: API.shared.cachedShops as [Location])
-        self.locations.append(contentsOf: API.shared.cachedParkingLots as [Location])
-        self.locations.append(contentsOf: API.shared.cachedCameras as [Location])
-        self.locations.append(contentsOf: API.shared.cachedBikeCharger as [Location])
-        
-        self.map.addAnnotations(locations as! [MKAnnotation])
-        
-    }
-    
-}
 
-extension MapViewController: APIDelegate {
-    
-    func didReceiveShops(shops: [Shop]) {
-        
-        self.locations.append(contentsOf: shops as [Location])
-        
-        DispatchQueue.main.async {
-            
-            self.map.addAnnotations(shops)
-            
-        }
+        self.setupUI()
+        self.setupConstraints()
         
     }
     
-    func didReceiveParkingLots(parkingLots: [ParkingLot]) {
-        
-        self.locations.append(contentsOf: parkingLots as [Location] )
-        
-        DispatchQueue.main.async {
-            
-            self.map.addAnnotations(parkingLots)
-            
-        }
-        
-    }
-    
-    func didReceiveCameras(cameras: [Camera]) {
-        
-        self.locations.append(contentsOf: cameras as [Location])
-        
-        DispatchQueue.main.async {
-            
-            self.map.addAnnotations(cameras)
-            
-        }
-        
-    }
-    
-    func didReceiveBikeChargers(chargers: [BikeChargingStation]) {
-        
-        self.locations.append(contentsOf: chargers as [Location])
-        
-        DispatchQueue.main.async {
-            
-            self.map.addAnnotations(chargers)
-            
-        }
-        
-    }
-    
-}
-
-extension MapViewController: MKMapViewDelegate {
+    // MARK: - MKMapViewDelegate
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
@@ -132,22 +68,17 @@ extension MapViewController: MKMapViewDelegate {
             if view == nil { view = ClusterAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.cluster) }
             
             view?.annotation = cluster
-            
             view?.collisionMode = .circle
             
             return view
             
-        } else if let shop = annotation as? Shop {
+        } else if let store = annotation as? Store {
             
             var view = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationIdentifier.shop) as? MKMarkerAnnotationView
             
             if view == nil { view = ShopAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.shop) }
             
-            view?.annotation = shop
-            
-            view?.collisionMode = .circle
-            view?.clusteringIdentifier = AnnotationIdentifier.cluster
-            view?.displayPriority = .defaultHigh
+            view?.annotation = store
             
             return view
             
@@ -159,10 +90,6 @@ extension MapViewController: MKMapViewDelegate {
             
             view?.annotation = parkingLot
             
-            view?.collisionMode = .circle
-            view?.clusteringIdentifier = AnnotationIdentifier.cluster
-            view?.displayPriority = .defaultHigh
-            
             return view
             
         } else if let camera = annotation as? Camera {
@@ -172,10 +99,6 @@ extension MapViewController: MKMapViewDelegate {
             if view == nil { view = CameraAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.camera) }
             
             view?.annotation = camera
-            
-            view?.collisionMode = .circle
-            view?.clusteringIdentifier = AnnotationIdentifier.cluster
-            view?.displayPriority = .defaultHigh
             
             return view
             
@@ -187,16 +110,20 @@ extension MapViewController: MKMapViewDelegate {
             
             view?.annotation = bikeCharger
             
-            view?.collisionMode = .circle
-            view?.clusteringIdentifier = AnnotationIdentifier.cluster
-            view?.displayPriority = .defaultHigh
+            return view
+            
+        } else if let petrolStation = annotation as? PetrolStation {
+            
+            var view = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationIdentifier.petrolStation) as? MKMarkerAnnotationView
+            
+            if view == nil { view = PetrolStationAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.petrolStation) }
+            
+            view?.annotation = petrolStation
             
             return view
             
         } else {
-            
             return nil
-            
         }
         
     }
@@ -207,9 +134,9 @@ extension MapViewController: MKMapViewDelegate {
             
             Answers.logCustomEvent(withName: "Map Selection", customAttributes: ["name": (view.annotation as! Location).name])
             
-            if let drawer = self.parent as? PulleyViewController {
+            if let drawer = self.parent as? MainViewController {
                 
-                let drawerDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+                guard let drawerDetail = drawer.detailViewController else { return }
                 
                 drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
                 drawer.setDrawerPosition(position: .partiallyRevealed, animated: true)
@@ -225,7 +152,8 @@ extension MapViewController: MKMapViewDelegate {
         } else if view.annotation is MKClusterAnnotation {
             
             if let drawer = self.parent as? PulleyViewController {
-                let drawerDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SelectionViewController") as! SelectionViewController
+                
+                let drawerDetail = SelectionViewController()
                 
                 drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
                 drawer.setDrawerPosition(position: .partiallyRevealed, animated: true)
@@ -235,6 +163,7 @@ extension MapViewController: MKMapViewDelegate {
                 guard let clusteredLocations = annotation.memberAnnotations as? [Location] else { return }
                 
                 drawerDetail.clusteredLocations = clusteredLocations
+                drawerDetail.annotation = annotation
                 
             }
             
@@ -248,8 +177,9 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         
-        if let drawer = self.parent as? PulleyViewController {
-            let drawerDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ContentViewController") as! ContentViewController
+        if let drawer = self.parent as? MainViewController {
+            
+            guard let drawerDetail = drawer.contentViewController else { return }
             
             drawer.setDrawerContentViewController(controller: drawerDetail, animated: true)
             drawer.setDrawerPosition(position: .collapsed, animated: true)
@@ -258,15 +188,99 @@ extension MapViewController: MKMapViewDelegate {
         
     }
     
-}
-
-extension MapViewController: PulleyPrimaryContentControllerDelegate {
+    // MARK: - Private Methods
     
-    func makeUIAdjustmentsForFullscreen(progress: CGFloat) {
+    private func setupUI() {
+        
+        self.view.addSubview(map)
+        
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.451667, longitude: 6.626389), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
+        
+        map.setRegion(region, animated: true)
+        map.showsUserLocation = true
+        map.showsBuildings = false
+        map.showsPointsOfInterest = false
+        map.mapType = .standard
         
     }
     
-    func drawerChangedDistanceFromBottom(drawer: PulleyViewController, distance: CGFloat) {
+    private func setupConstraints() {
+        
+        let constraints = [map.topAnchor.constraint(equalTo: self.view.topAnchor),
+                           map.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+                           map.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+                           map.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)]
+        
+        NSLayoutConstraint.activate(constraints)
+        
+    }
+
+    private func populateData() {
+        
+        self.locations.append(contentsOf: API.shared.cachedShops as [Location])
+        self.locations.append(contentsOf: API.shared.cachedParkingLots as [Location])
+        self.locations.append(contentsOf: API.shared.cachedCameras as [Location])
+        self.locations.append(contentsOf: API.shared.cachedBikeCharger as [Location])
+        
+        self.map.addAnnotations(locations as! [MKAnnotation])
+        
+    }
+    
+}
+
+extension MapViewController: ShopDatasource {
+    
+    func didReceiveShops(_ shops: [Store]) {
+        
+        self.locations.append(contentsOf: shops as [Store])
+        
+        DispatchQueue.main.async {
+            self.map.addAnnotations(shops)
+        }
+        
+    }
+    
+}
+
+extension MapViewController: ParkingLotDatasource {
+    
+    func didReceiveParkingLots(_ parkingLots: [ParkingLot]) {
+        
+        self.locations.append(contentsOf: parkingLots as [ParkingLot])
+        
+        DispatchQueue.main.async {
+            self.map.addAnnotations(parkingLots)
+        }
+        
+    }
+    
+}
+
+extension MapViewController: CameraDatasource {
+    
+    func didReceiveCameras(_ cameras: [Camera]) {
+        
+        self.locations.append(contentsOf: cameras as [Camera])
+        
+        DispatchQueue.main.async {
+            self.map.addAnnotations(cameras)
+        }
+        
+    }
+    
+}
+
+extension MapViewController: PetrolDatasource {
+    
+    func didReceivePetrolStations(_ petrolStations: [PetrolStation]) {
+        
+        print(petrolStations)
+        
+        self.locations.append(contentsOf: petrolStations as [PetrolStation])
+        
+        DispatchQueue.main.async {
+            self.map.addAnnotations(petrolStations)
+        }
         
     }
     

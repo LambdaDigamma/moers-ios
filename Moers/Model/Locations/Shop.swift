@@ -132,22 +132,22 @@ class Shop: NSObject, MKAnnotation, Location {
         
     }
     
-    var title: String? {
-        
-        return self.name
-        
-    }
+    var title: String? { return self.name }
     
-    var subtitle: String? {
-        
-        return street + " " + houseNumber
-        
-    }
+    var subtitle: String? { return street + " " + houseNumber }
     
-    var coordinate: CLLocationCoordinate2D {
-        
-        return location.coordinate
-        
-    }
+    var coordinate: CLLocationCoordinate2D { return location.coordinate }
+    
+    var detailSubtitle: String { return branch }
+    
+    lazy var detailImage: UIImage = { Store.image(from: branch) }()
+    
+    lazy var detailViewController: UIViewController = { DetailShopViewController.fromStoryboard() }()
+    
+    var detailHeight: CGFloat { return 550.0 }
+    
+    var category: String { return "Shop" }
+    
+    var localizedCategory: String { return String.localized("Shop") }
     
 }

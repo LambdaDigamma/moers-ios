@@ -14,9 +14,9 @@ class MainViewController: PulleyViewController {
 
     private let eventBus = EventBus()
     
-    public var mapViewController: RebuildMapViewController!
-    public var contentViewController: RebuildContentViewController!
-    public lazy var detailViewController: RebuildDetailViewController! = { RebuildDetailViewController() }()
+    public var mapViewController: MapViewController!
+    public var contentViewController: ContentViewController!
+    public lazy var detailViewController: DetailViewController! = { DetailViewController() }()
     
     public var locations: [Location] = []
     
@@ -26,8 +26,8 @@ class MainViewController: PulleyViewController {
         
         self.displayMode = .automatic
         
-        self.mapViewController = contentViewController as! RebuildMapViewController
-        self.contentViewController = drawerViewController as! RebuildContentViewController
+        self.mapViewController = contentViewController as! MapViewController
+        self.contentViewController = drawerViewController as! ContentViewController
         
     }
     
@@ -43,10 +43,12 @@ class MainViewController: PulleyViewController {
         self.eventBus.add(subscriber: contentViewController, for: ShopDatasource.self)
         self.eventBus.add(subscriber: contentViewController, for: ParkingLotDatasource.self)
         self.eventBus.add(subscriber: contentViewController, for: CameraDatasource.self)
+//        self.eventBus.add(subscriber: contentViewController, for: PetrolDatasource.self)
         
         self.eventBus.add(subscriber: mapViewController, for: ShopDatasource.self)
         self.eventBus.add(subscriber: mapViewController, for: ParkingLotDatasource.self)
         self.eventBus.add(subscriber: mapViewController, for: CameraDatasource.self)
+        self.eventBus.add(subscriber: mapViewController, for: PetrolDatasource.self)
         
         self.loadData()
         
@@ -67,6 +69,7 @@ class MainViewController: PulleyViewController {
             
             self.loadShops()
             self.loadParkingLots()
+            self.loadPetrolStations()
             self.loadCameras()
             
         }
@@ -133,6 +136,19 @@ class MainViewController: PulleyViewController {
             self.locations.append(contentsOf: cameras)
             
         }
+        
+    }
+    
+    private func loadPetrolStations() {
+        
+        let stations = PetrolManager.shared.cachedStations ?? []
+        
+        self.eventBus.notify(PetrolDatasource.self) { subscriber in
+            subscriber.didReceivePetrolStations(stations)
+        }
+        
+        self.locations = self.locations.filter { !($0 is PetrolStation) }
+        self.locations.append(contentsOf: stations)
         
     }
     

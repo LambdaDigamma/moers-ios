@@ -1,15 +1,15 @@
 //
-//  ShopAnnotationView.swift
+//  PetrolStationAnnotationView.swift
 //  Moers
 //
-//  Created by Lennart Fischer on 15.09.17.
-//  Copyright © 2017 Lennart Fischer. All rights reserved.
+//  Created by Lennart Fischer on 21.08.18.
+//  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
 import UIKit
 import MapKit
 
-class ShopAnnotationView: MKMarkerAnnotationView {
+class PetrolStationAnnotationView: MKMarkerAnnotationView {
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -24,12 +24,12 @@ class ShopAnnotationView: MKMarkerAnnotationView {
         
         willSet {
             
+            collisionMode = .circle
             clusteringIdentifier = AnnotationIdentifier.cluster
             displayPriority = .defaultHigh
-            collisionMode = .circle
-            markerTintColor = AppColor.yellow //UIColor(red: 1.00, green: 0.80, blue: 0.00, alpha: 1.0)
-            glyphTintColor = UIColor.black
-            glyphImage = #imageLiteral(resourceName: "shopping-cart")
+            markerTintColor = UIColor.blue
+            glyphTintColor = UIColor.white
+//            glyphImage =
             
         }
         

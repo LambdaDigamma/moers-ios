@@ -47,7 +47,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     
     lazy var mapViewController: UIViewController = {
         
-        let mapViewController = RebuildMapViewController()
+        let mapViewController = MapViewController()
         let contentViewController = UIStoryboard(name: "ContentDrawer", bundle: nil).instantiateViewController(withIdentifier: "DrawerContentViewController")
         
         let mainViewController = MainViewController(contentViewController: mapViewController, drawerViewController: contentViewController)

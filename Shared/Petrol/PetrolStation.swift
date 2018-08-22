@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import CoreLocation
+import MapKit
 
-struct PetrolStation: Codable {
+class PetrolStation: NSObject, Location, Codable, MKAnnotation {
     
     var id: String
     var name: String
@@ -30,9 +30,51 @@ struct PetrolStation: Codable {
     var openingTimes: [PetrolStationTimeEntry]? = nil
     var overrides: [String]? = nil
     var state: String? = nil
+    
+    init(id: String, name: String, brand: String, street: String, place: String, houseNumber: String?, postCode: Int?, lat: Double, lng: Double,
+    dist: Double?, diesel: Double?, e5: Double?, e10: Double?, price: Double?,
+    isOpen: Bool, wholeDay: Bool?, openingTimes: [PetrolStationTimeEntry]?, overrides: [String]?, state: String?) {
+        
+        self.id = id
+        self.name = name
+        self.brand = brand
+        self.street = street
+        self.place = place
+        self.houseNumber = houseNumber
+        self.postCode = postCode
+        self.lat = lat
+        self.lng = lng
+        self.dist = dist
+        self.diesel = diesel
+        self.e5 = e5
+        self.e10 = e10
+        self.price = price
+        self.isOpen = isOpen
+        self.wholeDay = wholeDay
+        self.openingTimes = openingTimes
+        self.overrides = overrides
+        self.state = state
 
-    var coordinate: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: lat, longitude: lng)
     }
+    
+    var coordinate: CLLocationCoordinate2D { return CLLocationCoordinate2D(latitude: lat, longitude: lng) }
+    
+    var location: CLLocation { return CLLocation(latitude: self.lat, longitude: self.lng) }
+    
+    var title: String? { return self.name }
+    
+    var subtitle: String? { return self.brand }
+    
+    var detailSubtitle: String { return localizedCategory }
+    
+    lazy var detailImage: UIImage = { return UIImage() }()
+    
+    lazy var detailViewController: UIViewController = { UIViewController() }()
+    
+    var detailHeight: CGFloat { return 400 } // TODO: Determine Height
+    
+    var category: String { return "Petrol Station" }
+    
+    var localizedCategory: String { return String.localized("PetrolStation") }
     
 }
