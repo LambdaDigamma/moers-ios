@@ -25,11 +25,11 @@ class BikeChargingStationAnnotationView: MKMarkerAnnotationView {
             
             if let _ = newValue as? BikeChargingStation {
                 
-                clusteringIdentifier = "location"
+                clusteringIdentifier = AnnotationIdentifier.cluster
+                collisionMode = .circle
+                displayPriority = .defaultLow
                 markerTintColor = UIColor(red: 0.365, green: 0.780, blue: 0.973, alpha: 1.00)
                 glyphImage = #imageLiteral(resourceName: "bicycle")
-                
-                displayPriority = .defaultHigh
                 
             }
             

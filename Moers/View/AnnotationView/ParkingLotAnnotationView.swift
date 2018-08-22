@@ -26,11 +26,12 @@ class ParkingLotAnnotationView: MKMarkerAnnotationView {
             
             if let _ = newValue as? ParkingLot {
                 
-                clusteringIdentifier = "location"
+                clusteringIdentifier = AnnotationIdentifier.cluster
+                collisionMode = .circle
+                displayPriority = .defaultHigh
                 markerTintColor = UIColor(red: 0.00, green: 0.48, blue: 1.00, alpha: 1.0)
                 glyphTintColor = UIColor.white
                 glyphText = "P"
-                displayPriority = .defaultHigh
                 
             }
             

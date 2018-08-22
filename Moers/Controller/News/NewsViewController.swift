@@ -52,6 +52,8 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         AnalyticsManager.shared.logOpenedNews()
         
+        self.reloadData()
+        
     }
     
     private func setupConstraints() {
@@ -92,9 +94,10 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func receivedTweets(tweets: [TWTRTweet]) {
         
+        self.tweets = tweets
+        
         DispatchQueue.main.async {
             
-            self.tweets = tweets
             self.tableView.reloadData()
             
         }
