@@ -21,6 +21,7 @@ protocol DetailPresentable {
     var detailHeight: CGFloat { get }
     var detailSubtitle: String { get }
     var detailImage: UIImage { get }
+    var detailViewController: UIViewController { get }
     
 }
 

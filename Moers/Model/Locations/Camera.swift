@@ -37,6 +37,8 @@ class Camera: NSObject, Location, MKAnnotation {
 
     lazy var detailImage: UIImage = { return #imageLiteral(resourceName: "camera") }()
     
+    lazy var detailViewController: UIViewController = { DetailCameraViewController() }()
+    
     var detailHeight: CGFloat = 80.0
     
     var category: String { return "Camera" }

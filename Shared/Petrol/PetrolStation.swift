@@ -69,7 +69,9 @@ class PetrolStation: NSObject, Location, Codable, MKAnnotation {
     
     lazy var detailImage: UIImage = { return UIImage() }()
     
-    var detailHeight: CGFloat = 400 // TODO: Determine Height
+    lazy var detailViewController: UIViewController = { UIViewController() }()
+    
+    var detailHeight: CGFloat { return 400 } // TODO: Determine Height
     
     var category: String { return "Petrol Station" }
     

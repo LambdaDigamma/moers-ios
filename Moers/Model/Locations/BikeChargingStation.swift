@@ -42,6 +42,8 @@ class BikeChargingStation: NSObject, Location, MKAnnotation {
     
     lazy var detailImage: UIImage = { #imageLiteral(resourceName: "ebike") }()
     
+    lazy var detailViewController: UIViewController = { UIViewController() }()
+    
     var detailHeight: CGFloat = 520.0
     
     var category: String { return "Bike Charging Station" }

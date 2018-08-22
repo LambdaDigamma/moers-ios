@@ -61,6 +61,8 @@ class ParkingLot: NSObject, Location, MKAnnotation {
     
     lazy var detailImage: UIImage = { return #imageLiteral(resourceName: "parkingLot") }()
     
+    lazy var detailViewController: UIViewController = { DetailParkingViewController() }()
+    
     var detailHeight: CGFloat { return 220.0 }
     
     var category: String { return "Parking Lot" }

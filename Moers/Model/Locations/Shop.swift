@@ -142,6 +142,8 @@ class Shop: NSObject, MKAnnotation, Location {
     
     lazy var detailImage: UIImage = { Store.image(from: branch) }()
     
+    lazy var detailViewController: UIViewController = { DetailShopViewController.fromStoryboard() }()
+    
     var detailHeight: CGFloat { return 550.0 }
     
     var category: String { return "Shop" }
