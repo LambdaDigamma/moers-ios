@@ -85,6 +85,22 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
                 
     }
     
+    override func refresh() {
+        
+        LocationManager.shared.getCurrentLocation { (location, error) in
+            
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            guard let location = location else { return }
+            
+            self.setupLocation(location)
+            
+        }
+        
+    }
+    
     override func invalidate() {
         
         // TODO: Stop Monitoring of LocationManager?!

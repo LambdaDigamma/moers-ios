@@ -47,6 +47,10 @@ class RubbishCollectionComponent: BaseComponent, UIViewControllerPreviewingDeleg
         
     }
     
+    override func refresh() {
+        
+    }
+    
     override func invalidate() {
         
         self.rubbishCardView.stopLoading()

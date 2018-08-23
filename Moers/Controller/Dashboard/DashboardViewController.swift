@@ -24,6 +24,9 @@ class DashboardViewController: CardCollectionViewController {
 
         self.registerComponents()
         
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.isPullToRefreshEnabled = true
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -84,11 +87,31 @@ class DashboardViewController: CardCollectionViewController {
         
     }
     
+    public func triggerRefresh() {
+        
+        components.forEach { $0.refresh() }
+        
+    }
+    
     public func reloadUI() {
         
         components.removeAll()
         
         registerComponents()
+        
+    }
+    
+    override func refresh() {
+        
+        UIView.animate(withDuration: 1, animations: {
+            
+            self.collectionView.refreshControl?.endRefreshing()
+            
+        }) { (_) in
+            
+            self.triggerRefresh()
+            
+        }
         
     }
     

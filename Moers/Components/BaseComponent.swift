@@ -27,6 +27,10 @@ class BaseComponent: NSObject {
         
     }
     
+    public func refresh() {
+        
+    }
+    
     public func invalidate() {
         
     }
