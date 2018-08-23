@@ -24,22 +24,8 @@ struct AnnotationIdentifier {
 
 class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryContentControllerDelegate {
 
-    lazy var map: MKMapView = {
-        
-        let map = MKMapView()
-        
-        map.translatesAutoresizingMaskIntoConstraints = false
-        map.delegate = self
-        
-        return map
-        
-    }()
-    
-    let locationManager: CLLocationManager = {
-        let manager = CLLocationManager()
-        manager.startUpdatingLocation()
-        return manager
-    }()
+    lazy var map: MKMapView = { return ViewFactory.map() }()
+    lazy var drawer = { return self.parent as! MainViewController }()
     
     private var locations: [Location] = []
     
@@ -130,46 +116,32 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
+        guard let coordinate = view.annotation?.coordinate else { return }
+        
+        self.map.setCenter(coordinate, animated: true)
+        
         if !(view.annotation is MKClusterAnnotation) && !(view.annotation is MKUserLocation) {
             
-            Answers.logCustomEvent(withName: "Map Selection", customAttributes: ["name": (view.annotation as! Location).name])
+            self.setDrawerController(drawer.detailViewController, position: .partiallyRevealed)
+            self.drawer.detailViewController.selectedLocation = view.annotation as? Location
             
-            if let drawer = self.parent as? MainViewController {
-                
-                guard let drawerDetail = drawer.detailViewController else { return }
-                
-                drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
-                drawer.setDrawerPosition(position: .partiallyRevealed, animated: true)
-                
-                drawerDetail.selectedLocation = view.annotation as? Location
-                
-            }
+            guard let location = view.annotation as? Location else { return }
             
-            guard let coordinate = view.annotation?.coordinate else { return }
-            
-            mapView.setCenter(coordinate, animated: true)
+            AnalyticsManager.shared.logSelectedItem(location)
             
         } else if view.annotation is MKClusterAnnotation {
             
-            if let drawer = self.parent as? PulleyViewController {
-                
-                let drawerDetail = SelectionViewController()
-                
-                drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
-                drawer.setDrawerPosition(position: .partiallyRevealed, animated: true)
-                
-                guard let annotation = view.annotation as? MKClusterAnnotation else { return }
-                
-                guard let clusteredLocations = annotation.memberAnnotations as? [Location] else { return }
-                
-                drawerDetail.clusteredLocations = clusteredLocations
-                drawerDetail.annotation = annotation
-                
-            }
+            guard let annotation = view.annotation as? MKClusterAnnotation else { return }
+            guard let clusteredLocations = annotation.memberAnnotations as? [Location] else { return }
             
-            guard let coordinate = view.annotation?.coordinate else { return }
+            let selectionController = SelectionViewController()
             
-            mapView.setCenter(coordinate, animated: true)
+            selectionController.clusteredLocations = clusteredLocations
+            selectionController.annotation = annotation
+            
+            self.setDrawerController(selectionController, position: .partiallyRevealed)
+            
+            AnalyticsManager.shared.logSelectedCluster(with: annotation.memberAnnotations.count)
             
         }
         
@@ -177,20 +149,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         
-        if let drawer = self.parent as? MainViewController {
-            
-            guard let drawerDetail = drawer.contentViewController else { return }
-            
-            drawer.setDrawerContentViewController(controller: drawerDetail, animated: true)
-            drawer.setDrawerPosition(position: .collapsed, animated: true)
-            
-        }
+        setDrawerController(drawer.contentViewController)
         
     }
     
     // MARK: - Private Methods
     
     private func setupUI() {
+        
+        self.map.delegate = self
         
         self.view.addSubview(map)
         
@@ -214,21 +181,17 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
         NSLayoutConstraint.activate(constraints)
         
     }
-
-    private func populateData() {
+    
+    private func setDrawerController(_ controller: UIViewController, position: PulleyPosition = .collapsed) {
         
-        self.locations.append(contentsOf: API.shared.cachedShops as [Location])
-        self.locations.append(contentsOf: API.shared.cachedParkingLots as [Location])
-        self.locations.append(contentsOf: API.shared.cachedCameras as [Location])
-        self.locations.append(contentsOf: API.shared.cachedBikeCharger as [Location])
-        
-        self.map.addAnnotations(locations as! [MKAnnotation])
+        drawer.setDrawerContentViewController(controller: controller, animated: true)
+        drawer.setDrawerPosition(position: position, animated: true)
         
     }
     
 }
 
-extension MapViewController: ShopDatasource {
+extension MapViewController: ShopDatasource, ParkingLotDatasource, CameraDatasource, PetrolDatasource {
     
     func didReceiveShops(_ shops: [Store]) {
         
@@ -239,11 +202,7 @@ extension MapViewController: ShopDatasource {
         }
         
     }
-    
-}
 
-extension MapViewController: ParkingLotDatasource {
-    
     func didReceiveParkingLots(_ parkingLots: [ParkingLot]) {
         
         self.locations.append(contentsOf: parkingLots as [ParkingLot])
@@ -254,10 +213,6 @@ extension MapViewController: ParkingLotDatasource {
         
     }
     
-}
-
-extension MapViewController: CameraDatasource {
-    
     func didReceiveCameras(_ cameras: [Camera]) {
         
         self.locations.append(contentsOf: cameras as [Camera])
@@ -267,10 +222,6 @@ extension MapViewController: CameraDatasource {
         }
         
     }
-    
-}
-
-extension MapViewController: PetrolDatasource {
     
     func didReceivePetrolStations(_ petrolStations: [PetrolStation]) {
         
