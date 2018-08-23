@@ -19,8 +19,6 @@ struct OnboardingManager {
     
     func makeOnboarding() -> BLTNPageItem {
         
-        // TODO: Make Privacy Page
-        
         let introPage = makeIntroPage()
         let userTypePage = makeUserTypePage(preSelected: nil)
         let notificationPage = makeNotitificationsPage()
@@ -72,6 +70,8 @@ struct OnboardingManager {
             
             UserManager.shared.register(user)
             
+            AnalyticsManager.shared.logUserType(type)
+            
         }
         
         page.actionHandler = { $0.manager?.displayNextItem() }
@@ -93,6 +93,7 @@ struct OnboardingManager {
         
         page.actionHandler = { item in
             PermissionsManager.shared.requestRemoteNotifications()
+            AnalyticsManager.shared.logEnabledNotifications()
             item.manager?.displayNextItem()
         }
         
@@ -117,6 +118,8 @@ struct OnboardingManager {
         page.isDismissable = false
         
         page.actionHandler = { item in
+            
+            AnalyticsManager.shared.logEnabledLocation()
             
             if LocationManager.shared.authorizationStatus == CLAuthorizationStatus.notDetermined {
                 
@@ -169,6 +172,7 @@ struct OnboardingManager {
         page.isDismissable = false
         page.onSelect = { type in
             PetrolManager.shared.petrolType = type
+            AnalyticsManager.shared.logPetrolType(type)
         }
         
         page.actionHandler = {
@@ -243,6 +247,7 @@ struct OnboardingManager {
             let minutes = Calendar.current.component(.minute, from: page.picker.date)
             
             RubbishManager.shared.registerNotifications(at: hour, minute: minutes)
+            AnalyticsManager.shared.logEnabledRubbishReminder(hour)
             
             page.next = self.makeCompletionPage()
             item.manager?.displayNextItem()

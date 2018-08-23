@@ -155,8 +155,8 @@ class ContentViewController: UIViewController, PulleyDrawerViewControllerDelegat
 
         selectedBranch = item
         
-        Answers.logCustomEvent(withName: "Branch", customAttributes: ["name": item.name]) // TODO: Refactor into AnalyticsManager
-
+        AnalyticsManager.shared.logSelectedBranch(item.name)
+        
         searchStyle = .branchSearch
         
         filteredLocations = locations.filter { (location) -> Bool in
@@ -530,7 +530,11 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
                 
                 if let mapController = drawer.primaryContentViewController as? MapViewController {
                     
-                    let annotation = self.datasource[indexPath.row - 1] as! MKAnnotation
+                    let location = self.datasource[indexPath.row - 1]
+                    
+                    guard let annotation = location as? MKAnnotation else { return }
+                    
+                    AnalyticsManager.shared.logSelectedItemContent(location)
                     
                     mapController.map.selectAnnotation(annotation, animated: true)
                     mapController.map.camera.altitude = 1000

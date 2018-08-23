@@ -18,7 +18,7 @@ class EventViewController: UIViewController {
     private let identifier = "event"
     private let headerIdentifier = "monthHeader"
     
-    var data: [[Event]] = []
+    var keyedEvents: [[Event]] = []
     
     // MARK: - UIViewController Lifecycle
     
@@ -31,6 +31,13 @@ class EventViewController: UIViewController {
         self.setupConstraints()
         self.setupTheming()
         self.loadData()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        AnalyticsManager.shared.logOpenedEvents()
         
     }
     
@@ -58,7 +65,7 @@ class EventViewController: UIViewController {
                         
                         let events = self.events(for: i)
                         
-                        self.data.append(events)
+                        self.keyedEvents.append(events)
                         
                     }
                     
@@ -144,7 +151,7 @@ extension EventViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return data[section].count
+        return keyedEvents[section].count
         
     }
     
@@ -152,7 +159,7 @@ extension EventViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! EventTableViewCell
         
-        cell.event = data[indexPath.section][indexPath.row]
+        cell.event = keyedEvents[indexPath.section][indexPath.row]
         
         return cell
         
@@ -174,7 +181,9 @@ extension EventViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let eventURL = data[indexPath.section][indexPath.row].url else { return }
+        AnalyticsManager.shared.logOpenedEventDetail(keyedEvents[indexPath.section][indexPath.row])
+        
+        guard let eventURL = keyedEvents[indexPath.section][indexPath.row].url else { return }
         
         guard let url = URL(string: eventURL) else { return }
         

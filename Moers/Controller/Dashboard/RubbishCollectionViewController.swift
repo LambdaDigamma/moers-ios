@@ -44,6 +44,13 @@ class RubbishCollectionViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        AnalyticsManager.shared.logOpenedWasteSchedule()
+        
+    }
+    
     private func setupConstraints() {
         
         let constraints = [tableView.topAnchor.constraint(equalTo: self.safeTopAnchor),

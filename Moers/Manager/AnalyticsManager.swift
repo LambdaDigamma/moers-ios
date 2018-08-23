@@ -103,6 +103,24 @@ struct AnalyticsManager {
         
     }
     
+    public func logOpenedEvents() {
+        
+        if shouldLog {
+            Answers.logCustomEvent(withName: "Opened Events", customAttributes: [:])
+        }
+        
+    }
+    
+    public func logOpenedEventDetail(_ event: Event) {
+        
+        if shouldLog {
+            Answers.logCustomEvent(withName: "Opened Event Details", customAttributes: ["name": event.name,
+                                                                                        "time": event.parsedTime,
+                                                                                        "date": event.date])
+        }
+        
+    }
+    
     public func logOpenedOther() {
         
         if shouldLog {
@@ -131,6 +149,101 @@ struct AnalyticsManager {
         
         if shouldLog {
             Answers.logCustomEvent(withName: "Onboarding Completed", customAttributes: [:])
+        }
+        
+    }
+    
+    public func logSelectedBranch(_ branch: String) {
+        
+        if shouldLog {
+            Answers.logCustomEvent(withName: "Branch", customAttributes: ["name": branch])
+        }
+        
+    }
+    
+    public func logSelectedItemContent(_ location: Location) {
+        
+        if shouldLog {
+            Answers.logCustomEvent(withName: "Selected Location (Drawer)", customAttributes:
+                ["location": location.category,
+                 "name": location.name])
+        }
+        
+    }
+    
+    public func logSelectedItem(_ location: Location) {
+        
+        if shouldLog {
+            Answers.logCustomEvent(withName: "Selected Location", customAttributes:
+                ["location": location.category,
+                 "name": location.name])
+        }
+        
+    }
+    
+    public func logSelectedCluster(with memberCount: Int) {
+        
+        if shouldLog {
+            Answers.logCustomEvent(withName: "Selected Cluster", customAttributes:
+                ["count": memberCount])
+        }
+        
+    }
+    
+    public func logNavigation(_ location: Location) {
+        
+        if shouldLog {
+            Answers.logCustomEvent(withName: "Navigation", customAttributes:
+                ["type": location.category,
+                 "name": location.name])
+        }
+        
+    }
+    
+    public func logPano(_ panoID: PanoID) {
+        
+        if shouldLog {
+            Answers.logCustomEvent(withName: "Opened Pano", customAttributes: ["id": panoID])
+        }
+        
+    }
+    
+    public func logUserType(_ type: User.UserType) {
+        
+        if shouldLog {
+            Answers.logCustomEvent(withName: "Onboarding - User Type", customAttributes: ["type": type.rawValue])
+        }
+        
+    }
+    
+    public func logEnabledNotifications() {
+        
+        if shouldLog {
+            Answers.logCustomEvent(withName: "Onboarding - Enabled Notifications", customAttributes: [:])
+        }
+        
+    }
+    
+    public func logEnabledLocation() {
+        
+        if shouldLog {
+            Answers.logCustomEvent(withName: "Onboarding - Enabled Notifications", customAttributes: [:])
+        }
+        
+    }
+
+    public func logPetrolType(_ type: PetrolType) {
+        
+        if shouldLog {
+            Answers.logCustomEvent(withName: "Onboarding - Petrol Type", customAttributes: ["type": type.rawValue])
+        }
+        
+    }
+    
+    public func logEnabledRubbishReminder(_ hour: Int) {
+        
+        if shouldLog {
+            Answers.logCustomEvent(withName: "Onboarding - Enabled Reminder", customAttributes: ["hour": hour])
         }
         
     }

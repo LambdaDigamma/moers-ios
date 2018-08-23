@@ -75,6 +75,8 @@ class DetailCameraViewController: UIViewController {
         
         guard let cam = selectedCamera else { return }
         
+        AnalyticsManager.shared.logPano(cam.panoID)
+        
         viewController.panoID = cam.panoID
         
         navigationController?.pushViewController(viewController, animated: true)

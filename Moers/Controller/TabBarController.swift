@@ -281,6 +281,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     @objc func setupDidComplete() {
         
         OnboardingManager.shared.userDidCompleteSetup = true
+        AnalyticsManager.shared.logCompletedOnboarding()
         
         self.loadData()
         

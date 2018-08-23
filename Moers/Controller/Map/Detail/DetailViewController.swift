@@ -138,7 +138,7 @@ class DetailViewController: UIViewController {
         
         guard let location = selectedLocation else { return }
         
-        Answers.logCustomEvent(withName: "Navigation", customAttributes: ["type": location.category, "name": location.name])
+        AnalyticsManager.shared.logNavigation(location)
         
         let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: location.location.coordinate))
         mapItem.name = location.name
@@ -185,20 +185,20 @@ class DetailViewController: UIViewController {
         
         if let shop = location as? Store {
             
-//            if let image = ShopIconDrawer.annotationImage(from: shop.branch) {
-//
-//                if let img = UIImage.imageResize(imageObj: image, size: CGSize(width: imageView.bounds.width / 2, height: imageView.bounds.height / 2), scaleFactor: 0.75) {
-//
-//                    imageView.backgroundColor = UIColor(red: 0xFF, green: 0xF5, blue: 0x00, alpha: 1)
-//                    imageView.image = img
-//                    imageView.contentMode = .scaleAspectFit
-//                    imageView.layer.borderColor = UIColor.black.cgColor
-//                    imageView.layer.borderWidth = 1
-//                    imageView.layer.cornerRadius = 7
-//
-//                }
-//
-//            }
+            if let image = ShopIconDrawer.annotationImage(from: shop.branch) {
+
+                if let img = UIImage.imageResize(imageObj: image, size: CGSize(width: imageView.bounds.width / 2, height: imageView.bounds.height / 2), scaleFactor: 0.75) {
+
+                    imageView.backgroundColor = UIColor(red: 0xFF, green: 0xF5, blue: 0x00, alpha: 1)
+                    imageView.image = img
+                    imageView.contentMode = .scaleAspectFit
+                    imageView.layer.borderColor = UIColor.black.cgColor
+                    imageView.layer.borderWidth = 1
+                    imageView.layer.cornerRadius = 7
+
+                }
+
+            }
             
             morphDetailShop()
             
