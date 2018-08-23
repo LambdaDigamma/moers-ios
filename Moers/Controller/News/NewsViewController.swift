@@ -36,10 +36,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = String.localized("NewsTitle")
-        
-        self.view.addSubview(self.tableView)
-        
+        self.setupUI()
         self.setupConstraints()
         self.setupTheming()
         
@@ -56,11 +53,23 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
+    private func setupUI() {
+        
+        self.title = String.localized("NewsTitle")
+        
+        self.view.addSubview(self.tableView)
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
+        tableView.refreshControl = refreshControl
+        
+    }
+    
     private func setupConstraints() {
         
         let constraints = [tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
                            tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-                           tableView.topAnchor.constraint(equalTo: self.safeTopAnchor),
+                           tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
                            tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)]
         
         NSLayoutConstraint.activate(constraints)
@@ -106,6 +115,20 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     public func reloadData() {
         self.tableView.reloadData()
+    }
+    
+    @objc private func refresh() {
+        
+        UIView.animate(withDuration: 1, animations: {
+            
+            self.tableView.refreshControl?.endRefreshing()
+            
+        }) { (_) in
+            
+            self.loadData()
+            
+        }
+        
     }
     
     // MARK: - UITableViewDataSource
