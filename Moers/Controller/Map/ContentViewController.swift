@@ -51,6 +51,7 @@ class ContentViewController: UIViewController, PulleyDrawerViewControllerDelegat
     private let cellHeight: CGFloat = 80
     private var normalColor = UIColor.clear
     private var highlightedColor = UIColor.clear
+    private lazy var drawer = { self.parent as! MainViewController }()
     
     // MARK: - Data
     
@@ -307,14 +308,10 @@ class ContentViewController: UIViewController, PulleyDrawerViewControllerDelegat
     
     func partialRevealDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
         
-        if let pulleyVC = self.parent as? MainViewController {
-            
-            let height = pulleyVC.mapViewController.map.frame.height
-            
-            if pulleyVC.currentDisplayMode == .leftSide {
-                return height - 49.0 - 16.0 - 16.0 - 64.0 - 50.0 - 16.0
-            }
-            
+        let height = drawer.mapViewController.map.frame.height
+        
+        if drawer.currentDisplayMode == .leftSide {
+            return height - 49.0 - 16.0 - 16.0 - 64.0 - 50.0 - 16.0
         }
         
         return 264.0 + bottomSafeArea
@@ -322,15 +319,11 @@ class ContentViewController: UIViewController, PulleyDrawerViewControllerDelegat
     
     func supportedDrawerPositions() -> [PulleyPosition] {
         
-        if let pulleyVC = self.parent as? PulleyViewController {
+        if drawer.currentDisplayMode == .leftSide {
             
-            if pulleyVC.currentDisplayMode == .leftSide {
-                
-                self.gripperView.isHidden = true
-                
-                return [PulleyPosition.partiallyRevealed]
-            }
+            self.gripperView.isHidden = true
             
+            return [PulleyPosition.partiallyRevealed]
         }
         
         return PulleyPosition.all

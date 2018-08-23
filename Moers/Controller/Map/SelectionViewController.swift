@@ -19,6 +19,7 @@ class SelectionViewController: UIViewController {
     lazy var separatorView: UIView = { ViewFactory.blankView() }()
     lazy var closeButton: UIButton = { ViewFactory.button() }()
     lazy var tableView: UITableView = { ViewFactory.tableView() }()
+    lazy var drawer: MainViewController = { self.parent as! MainViewController }()
     
     public var annotation: MKAnnotation?
     public var clusteredLocations: [Location] = [] {
@@ -46,15 +47,13 @@ class SelectionViewController: UIViewController {
         self.setupConstraints()
         self.setupTheming()
         
-        if let parent = self.parent as? PulleyViewController {
-            parent.delegate = self
-        }
-        
     }
     
     // MARK: - Private Methods
     
     private func setupUI() {
+        
+        drawer.delegate = self
         
         self.view.addSubview(headerView)
         self.view.addSubview(gripperView)
@@ -123,20 +122,16 @@ class SelectionViewController: UIViewController {
     
     @objc private func close() {
         
-        if let drawer = self.parent as? MainViewController {
-            
-            guard let contentDrawer = drawer.contentViewController else { return }
-            guard let mapDrawer = drawer.mapViewController else { return }
-            
-            self.dismiss(animated: false, completion: nil)
-            
-            drawer.setDrawerContentViewController(controller: contentDrawer, animated: true)
-            drawer.setDrawerPosition(position: .collapsed, animated: true)
-            
-            if let annotation = annotation {
-                mapDrawer.map.deselectAnnotation(annotation, animated: true)
-            }
-            
+        guard let contentDrawer = drawer.contentViewController else { return }
+        guard let mapDrawer = drawer.mapViewController else { return }
+        
+        self.dismiss(animated: false, completion: nil)
+        
+        drawer.setDrawerContentViewController(controller: contentDrawer, animated: true)
+        drawer.setDrawerPosition(position: .collapsed, animated: true)
+        
+        if let annotation = annotation {
+            mapDrawer.map.deselectAnnotation(annotation, animated: true)
         }
         
     }
@@ -209,22 +204,16 @@ extension SelectionViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let drawer = self.parent as? PulleyViewController {
+        drawer.setDrawerContentViewController(controller: drawer.detailViewController, animated: false)
+        drawer.setDrawerPosition(position: .partiallyRevealed, animated: true)
+        
+        drawer.detailViewController.selectedLocation = clusteredLocations[indexPath.row]
+        
+        if let mapController = drawer.primaryContentViewController as? MapViewController {
             
-            let drawerDetail = DetailViewController()
+            let coordinate = self.clusteredLocations[indexPath.row].location.coordinate
             
-            drawer.setDrawerContentViewController(controller: drawerDetail, animated: false)
-            drawer.setDrawerPosition(position: .partiallyRevealed, animated: true)
-            
-            drawerDetail.selectedLocation = clusteredLocations[indexPath.row]
-            
-            if let mapController = drawer.primaryContentViewController as? MapViewController {
-                
-                let coordinate = self.clusteredLocations[indexPath.row].location.coordinate
-                
-                mapController.map.setCenter(coordinate, animated: true)
-                
-            }
+            mapController.map.setCenter(coordinate, animated: true)
             
         }
         
@@ -256,14 +245,10 @@ extension SelectionViewController: PulleyDrawerViewControllerDelegate {
     
     func partialRevealDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
         
-        if let pulleyVC = self.parent as? MainViewController {
-            
-            let height = pulleyVC.mapViewController.map.frame.height
-            
-            if pulleyVC.currentDisplayMode == .leftSide {
-                return height - 49.0 - 16.0 - 16.0 - 64.0 - 50.0 - 16.0
-            }
-            
+        let height = drawer.mapViewController.map.frame.height
+        
+        if drawer.currentDisplayMode == .leftSide {
+            return height - 49.0 - 16.0 - 16.0 - 64.0 - 50.0 - 16.0
         }
         
         return 264.0 + bottomSafeArea
@@ -271,15 +256,11 @@ extension SelectionViewController: PulleyDrawerViewControllerDelegate {
     
     func supportedDrawerPositions() -> [PulleyPosition] {
         
-        if let pulleyVC = self.parent as? PulleyViewController {
+        if drawer.currentDisplayMode == .leftSide {
             
-            if pulleyVC.currentDisplayMode == .leftSide {
-                
-                self.gripperView.isHidden = true
-                
-                return [PulleyPosition.partiallyRevealed]
-            }
+            self.gripperView.isHidden = true
             
+            return [PulleyPosition.partiallyRevealed]
         }
         
         return PulleyPosition.all
@@ -292,14 +273,10 @@ extension SelectionViewController: PulleyDrawerViewControllerDelegate {
         
         tableView.isScrollEnabled = drawer.drawerPosition == .open
         
-        if let pulleyVC = self.parent as? PulleyViewController {
-            
-            if pulleyVC.currentDisplayMode == .leftSide {
-            
-                tableView.isScrollEnabled = true
-            
-            }
-            
+        if drawer.currentDisplayMode == .leftSide {
+        
+            tableView.isScrollEnabled = true
+        
         }
         
     }
