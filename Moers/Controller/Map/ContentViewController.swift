@@ -463,6 +463,11 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
                 
                 cell.searchImageView.image = #imageLiteral(resourceName: "ebike")
                 
+            } else if let petrolStation = datasource[indexPath.row - 1] as? PetrolStation {
+                
+                cell.titleLabel.text = petrolStation.title
+                cell.subtitleLabel.text = petrolStation.localizedCategory
+                
             }
             
             return cell
@@ -546,7 +551,7 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
     
 }
 
-extension ContentViewController: ShopDatasource, ParkingLotDatasource, CameraDatasource {
+extension ContentViewController: ShopDatasource, ParkingLotDatasource, CameraDatasource, PetrolDatasource {
     
     func didReceiveShops(_ shops: [Store]) {
         
@@ -583,6 +588,19 @@ extension ContentViewController: ShopDatasource, ParkingLotDatasource, CameraDat
             self.tableView.reloadData()
             
         }
+        
+    }
+    
+    func didReceivePetrolStations(_ petrolStations: [PetrolStation]) {
+        
+        self.locations.append(contentsOf: petrolStations as [PetrolStation])
+        
+        DispatchQueue.main.async {
+            
+            self.tableView.reloadData()
+            
+        }
+
         
     }
     

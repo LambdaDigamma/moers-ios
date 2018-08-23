@@ -46,9 +46,7 @@ class PetrolStationCollectionViewCell: UICollectionViewCell {
             distance = String(format:"%.1fkm", dist)
         }
         
-        let name = petrolStation.name
-                                .capitalized(with: Locale.autoupdatingCurrent)
-                                .replacingOccurrences(of: "_", with: " ")
+        let name = petrolStation.title
         
         let brand = petrolStation.brand + " • " +
                     (petrolStation.isOpen ? String.localized("LocalityOpen") : String.localized("LocalityClosed"))
@@ -62,7 +60,7 @@ class PetrolStationCollectionViewCell: UICollectionViewCell {
         
         if let price = petrolStation.price {
             
-            self.priceLabel.text = String(format:"%.2f€", price)
+            self.priceLabel.text = String(format: "%.2f€", price)
             self.priceView.backgroundColor = price <= averagePrice ? #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1) : #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
             
         } else {

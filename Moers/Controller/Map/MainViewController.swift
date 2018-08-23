@@ -43,7 +43,7 @@ class MainViewController: PulleyViewController {
         self.eventBus.add(subscriber: contentViewController, for: ShopDatasource.self)
         self.eventBus.add(subscriber: contentViewController, for: ParkingLotDatasource.self)
         self.eventBus.add(subscriber: contentViewController, for: CameraDatasource.self)
-//        self.eventBus.add(subscriber: contentViewController, for: PetrolDatasource.self)
+        self.eventBus.add(subscriber: contentViewController, for: PetrolDatasource.self)
         
         self.eventBus.add(subscriber: mapViewController, for: ShopDatasource.self)
         self.eventBus.add(subscriber: mapViewController, for: ParkingLotDatasource.self)

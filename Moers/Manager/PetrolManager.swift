@@ -68,6 +68,9 @@ class PetrolManager {
                     
                     guard let stations = response.stations else { return }
                     
+                    stations.forEach { $0.name = $0.name.capitalized(with: Locale.autoupdatingCurrent)
+                        .replacingOccurrences(of: "_", with: " ") }
+                    
                     self.cachedStations = stations
                     
                     self.delegate?.didReceivePetrolStations(stations: stations)

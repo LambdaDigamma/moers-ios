@@ -61,11 +61,18 @@ class PetrolStation: NSObject, Location, Codable, MKAnnotation {
     
     var location: CLLocation { return CLLocation(latitude: self.lat, longitude: self.lng) }
     
-    var title: String? { return self.name }
+    var title: String? { return self.name.capitalized(with: Locale.autoupdatingCurrent)
+                                         .replacingOccurrences(of: "_", with: " ") }
     
     var subtitle: String? { return self.brand }
     
-    var detailSubtitle: String { return localizedCategory }
+    var detailSubtitle: String {
+        
+        let open = self.isOpen ? String.localized("LocalityOpen") : String.localized("LocalityClosed")
+        
+        return self.brand + " • " + open
+        
+    }
     
     lazy var detailImage: UIImage = { return UIImage() }()
     

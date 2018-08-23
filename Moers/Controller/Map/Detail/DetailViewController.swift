@@ -12,15 +12,6 @@ import Gestalt
 import Pulley
 import Crashlytics
 
-struct DetailContentHeight {
-    
-    static let shop: CGFloat = 550
-    static let parkingLot: CGFloat = 220
-    static let camera: CGFloat = 80
-    static let bikeCharger: CGFloat = 520
-    
-}
-
 class DetailViewController: UIViewController {
     
     lazy var gripperView: UIView = { ViewFactory.blankView() }()
@@ -211,13 +202,17 @@ class DetailViewController: UIViewController {
             
             morphDetailShop()
             
-        } else if let parkingLot = selectedLocation as? ParkingLot {
+        } else if selectedLocation is ParkingLot {
             
             morphDetailParking()
             
-        } else if let camera = selectedLocation as? Camera {
+        } else if selectedLocation is Camera {
             
             morphDetailCamera()
+            
+        } else if selectedLocation is PetrolStation {
+            
+            morphDetailPetrolStation()
             
         }
         
@@ -286,6 +281,16 @@ class DetailViewController: UIViewController {
         self.add(asChildViewController: viewController)
         
         viewController.selectedShop = selectedLocation as? Store
+        
+    }
+    
+    private func morphDetailPetrolStation() {
+        
+        let viewController = DetailPetrolStationViewController.fromStoryboard()
+        
+        self.add(asChildViewController: viewController)
+        
+        viewController.selectedPetrolStation = selectedLocation as? PetrolStation
         
     }
     
