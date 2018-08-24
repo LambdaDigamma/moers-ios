@@ -74,7 +74,7 @@ class PetrolStation: NSObject, Location, Codable, MKAnnotation {
         
     }
     
-    lazy var detailImage: UIImage = { return UIImage() }()
+    lazy var detailImage: UIImage = { return #imageLiteral(resourceName: "petrol") }()
     
     lazy var detailViewController: UIViewController = { UIViewController() }()
     

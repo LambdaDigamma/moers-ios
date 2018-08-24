@@ -53,8 +53,6 @@ class SelectionViewController: UIViewController {
     
     private func setupUI() {
         
-        drawer.delegate = self
-        
         self.view.addSubview(headerView)
         self.view.addSubview(gripperView)
         self.view.addSubview(closeButton)
@@ -71,6 +69,8 @@ class SelectionViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: CellIdentifier.searchResultCell)
+        
+        drawer.delegate = self
         
     }
     
@@ -195,6 +195,13 @@ extension SelectionViewController: UITableViewDataSource, UITableViewDelegate {
             cell.subtitleLabel.text = ebike.localizedCategory
             
             cell.searchImageView.image = #imageLiteral(resourceName: "ebike")
+            
+        } else if let petrolStation = clusteredLocations[indexPath.row] as? PetrolStation {
+            
+            cell.titleLabel.text = petrolStation.name
+            cell.subtitleLabel.text = petrolStation.brand
+            
+            cell.searchImageView.image = #imageLiteral(resourceName: "petrol")
             
         }
         

@@ -27,9 +27,9 @@ class PetrolStationAnnotationView: MKMarkerAnnotationView {
             collisionMode = .circle
             clusteringIdentifier = AnnotationIdentifier.cluster
             displayPriority = .defaultHigh
-            markerTintColor = UIColor.blue
+            markerTintColor = UIColor(hexString: "#D32F2F")
             glyphTintColor = UIColor.white
-//            glyphImage =
+            glyphImage = #imageLiteral(resourceName: "petrolGlyph")
             
         }
         

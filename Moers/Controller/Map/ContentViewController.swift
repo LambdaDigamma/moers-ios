@@ -132,12 +132,16 @@ class ContentViewController: UIViewController, PulleyDrawerViewControllerDelegat
                     return t1.name < t2.name
                 } else if t1 is Camera && t2 is Camera {
                     return t1.name < t2.name
+                } else if t1 is PetrolStation && t2 is PetrolStation {
+                  return t1.name < t2.name
                 } else if t1 is Shop && !(t2 is Shop) {
                     return true
                 } else if t1 is ParkingLot && t2 is Shop {
                     return false
-                } else if t1 is ParkingLot && t2 is Camera {
-                    return true
+                } else if t1 is PetrolStation && t2 is ParkingLot {
+                    return false
+                } else if t1 is PetrolStation && t2 is Camera {
+                    return false
                 } else {
                     return false
                 }
@@ -445,14 +449,14 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
             } else if let camera = datasource[indexPath.row - 1] as? Camera {
                 
                 cell.titleLabel.text = camera.title
-                cell.subtitleLabel.text = "360° Kamera"
+                cell.subtitleLabel.text = camera.localizedCategory
                 
                 cell.searchImageView.image = #imageLiteral(resourceName: "camera")
                 
             } else if let bikeCharger = datasource[indexPath.row - 1] as? BikeChargingStation {
                 
                 cell.titleLabel.text = bikeCharger.title
-                cell.subtitleLabel.text = "E-Bike Ladestation"
+                cell.subtitleLabel.text = bikeCharger.localizedCategory
                 
                 cell.searchImageView.image = #imageLiteral(resourceName: "ebike")
                 
@@ -460,6 +464,8 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
                 
                 cell.titleLabel.text = petrolStation.title
                 cell.subtitleLabel.text = petrolStation.localizedCategory
+                
+                cell.searchImageView.image = #imageLiteral(resourceName: "petrol")
                 
             }
             
