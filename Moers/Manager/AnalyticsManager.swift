@@ -15,7 +15,6 @@ struct AnalyticsManager {
     static var shared = AnalyticsManager()
     
     private let kSendAnalytics = "sendAnalytics"
-    private let kPetrolPrices = "petrol"
     private let kAppRuns = "kAppRuns"
     private let reviewRate = 5
     

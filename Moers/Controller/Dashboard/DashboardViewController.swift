@@ -59,28 +59,6 @@ class DashboardViewController: CardCollectionViewController {
         
     }
     
-    private func setupReachability() {
-        
-        guard let reachability = Reachability() else { return }
-        
-        reachability.whenReachable = { reachability in
-            
-            if reachability.connection == .cellular {
-                
-            } else if reachability.connection == .wifi {
-                
-            }
-            
-        }
-        
-        reachability.whenUnreachable = { _ in
-            
-            
-            
-        }
-        
-    }
-    
     public func triggerUpdate() {
         
         components.forEach { $0.update() }

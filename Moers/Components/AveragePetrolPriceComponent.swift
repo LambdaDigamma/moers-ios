@@ -11,7 +11,6 @@ import CoreLocation
 
 class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, PetrolManagerDelegate, UIViewControllerPreviewingDelegate {
 
-    private let locationManager = LocationManager()
     private var place: String = ""
     private var petrolStations: [PetrolStation] = []
     private var isAllowed: Bool { return !(LocationManager.shared.authorizationStatus == .restricted) && !(LocationManager.shared.authorizationStatus == .denied) }
@@ -236,6 +235,8 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
         DispatchQueue.main.async {
             
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
+            self.petrolStations = stations
             
             let openStations = stations.filter { $0.isOpen && $0.price != nil }
             

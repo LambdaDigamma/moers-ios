@@ -519,20 +519,16 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
         
         if indexPath.row != 0 {
             
-            if let drawer = self.parent as? MainViewController {
+            if let mapController = drawer.primaryContentViewController as? MapViewController {
                 
-                if let mapController = drawer.primaryContentViewController as? MapViewController {
-                    
-                    let location = self.datasource[indexPath.row - 1]
-                    
-                    guard let annotation = location as? MKAnnotation else { return }
-                    
-                    AnalyticsManager.shared.logSelectedItemContent(location)
-                    
-                    mapController.map.selectAnnotation(annotation, animated: true)
-                    mapController.map.camera.altitude = 1000
-                    
-                }
+                let location = self.datasource[indexPath.row - 1]
+                
+                guard let annotation = location as? MKAnnotation else { return }
+                
+                AnalyticsManager.shared.logSelectedItemContent(location)
+                
+                mapController.map.selectAnnotation(annotation, animated: true)
+                mapController.map.camera.altitude = 1000
                 
             }
             

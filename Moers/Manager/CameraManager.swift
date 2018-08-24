@@ -13,8 +13,6 @@ struct CameraManager {
 
     static let shared = CameraManager()
     
-    private var session = URLSession.shared
-    
     public func get(completion: @escaping ((Error?, [Camera]?) -> Void)) {
         
         let cameraURL = URL(string: "https://raw.githubusercontent.com/noelsch/360Moers/master/360moers_OpenData.csv")

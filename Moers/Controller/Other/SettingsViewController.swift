@@ -63,16 +63,6 @@ class SettingsViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
         
     }
-
-    private func setupTheming() {
-        
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            
-        }
-        
-    }
     
     // MARK: - Settings Rows
     
