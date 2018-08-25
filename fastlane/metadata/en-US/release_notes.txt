@@ -1,1 +1,6 @@
-
+The app was completely rebuilt!
+Under the hood hides a new engine with even more power, which now also provides the current fuel prices and road-based collection dates for waste.
+To make sure you don't forget to put the rubbish bin on the street, you can be reminded of the emptying the evening before with a push message.
+Under the tab "Events" you can find events in Moers and the surrounding area and get more information about them.
+SocialMedia contributions from the city of Moers are now displayed in the app as well.
+The user interface has now become even faster and clearer and has been adapted to the new functions.
