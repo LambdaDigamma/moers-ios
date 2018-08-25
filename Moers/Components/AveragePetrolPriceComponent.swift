@@ -34,6 +34,18 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
         
         PetrolManager.shared.delegate = self
         
+        if let testing = ProcessInfo.processInfo.environment["-Test"], testing == "true" {
+            
+            self.averagePetrolCardView.dismissError()
+            self.averagePetrolCardView.stopLoading()
+            self.averagePetrolCardView.locationLabel.text = "Moers"
+            self.averagePetrolCardView.numberOfStations = 10
+            self.averagePetrolCardView.price = 1.25
+            
+            return
+            
+        }
+        
         if isAllowed {
             
             self.averagePetrolCardView.dismissError()

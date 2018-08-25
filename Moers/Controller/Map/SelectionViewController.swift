@@ -25,7 +25,7 @@ class SelectionViewController: UIViewController {
     public var clusteredLocations: [Location] = [] {
         didSet {
             
-            self.titleLabel.text = "\(clusteredLocations.count) Einträge"
+            self.titleLabel.text = "\(clusteredLocations.count)" + String.localized("Entries")
             self.tableView.reloadData()
             
         }
