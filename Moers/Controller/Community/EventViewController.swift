@@ -59,7 +59,16 @@ class EventViewController: UIViewController {
                     
                     guard let events = events else { return }
                     
-                    self.events = events.filter { $0.parsedDate >= Date.yesterday && Date.component(.year, from: $0.parsedDate) == 2018 }
+                    self.events = events.filter { $0.parsedDate >= Date.yesterday && Date.component(.year, from: $0.parsedDate) == Date.component(.year, from: Date()) }
+                                        .sorted(by: { (e1, e2) -> Bool in
+                                            
+                                            if e1.parsedDate == e2.parsedDate {
+                                                return e1.parsedTime < e2.parsedTime
+                                            } else {
+                                                return e1.parsedDate < e2.parsedDate
+                                            }
+                            
+                                        })
                     
                     for i in 0..<self.numberOfSections {
                         
