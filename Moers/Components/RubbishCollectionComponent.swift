@@ -10,7 +10,7 @@ import UIKit
 
 class RubbishCollectionComponent: BaseComponent, UIViewControllerPreviewingDelegate {
     
-    let rubbishItems: [RubbishCollectionItem] = []
+    var rubbishItems: [RubbishCollectionItem] = []
     
     lazy var rubbishCardView: DashboardRubbishCardView = {
         
@@ -37,6 +37,8 @@ class RubbishCollectionComponent: BaseComponent, UIViewControllerPreviewingDeleg
     }
     
     override func update() {
+        
+        self.reloadUI()
         
         if rubbishItems.count == 0 && RubbishManager.shared.isEnabled {
             self.rubbishCardView.dismissError()
@@ -89,22 +91,15 @@ class RubbishCollectionComponent: BaseComponent, UIViewControllerPreviewingDeleg
             
             RubbishManager.shared.loadItems(completion: { (items) in
                 
+                self.rubbishItems = items
+                
                 OperationQueue.main.addOperation {
                     
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     
                     self.rubbishCardView.stopLoading()
                     
-                    if items.count >= 3 {
-                        self.rubbishCardView.itemView1.rubbishCollectionItem = items[0]
-                        self.rubbishCardView.itemView2.rubbishCollectionItem = items[1]
-                        self.rubbishCardView.itemView3.rubbishCollectionItem = items[2]
-                    } else if items.count >= 2 {
-                        self.rubbishCardView.itemView1.rubbishCollectionItem = items[0]
-                        self.rubbishCardView.itemView2.rubbishCollectionItem = items[1]
-                    } else if items.count >= 1 {
-                        self.rubbishCardView.itemView1.rubbishCollectionItem = items[0]
-                    }
+                    self.reloadUI()
                     
                 }
                 
@@ -118,6 +113,21 @@ class RubbishCollectionComponent: BaseComponent, UIViewControllerPreviewingDeleg
                 
             }
             
+        }
+        
+    }
+    
+    private func reloadUI() {
+        
+        if rubbishItems.count >= 3 {
+            self.rubbishCardView.itemView1.rubbishCollectionItem = rubbishItems[0]
+            self.rubbishCardView.itemView2.rubbishCollectionItem = rubbishItems[1]
+            self.rubbishCardView.itemView3.rubbishCollectionItem = rubbishItems[2]
+        } else if rubbishItems.count >= 2 {
+            self.rubbishCardView.itemView1.rubbishCollectionItem = rubbishItems[0]
+            self.rubbishCardView.itemView2.rubbishCollectionItem = rubbishItems[1]
+        } else if rubbishItems.count >= 1 {
+            self.rubbishCardView.itemView1.rubbishCollectionItem = rubbishItems[0]
         }
         
     }
