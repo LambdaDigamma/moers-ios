@@ -62,6 +62,7 @@
 		DF4D8955210476AB008609A1 /* DetailShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D8954210476AB008609A1 /* DetailShopViewController.swift */; };
 		DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D89562104A6F0008609A1 /* Datasources.swift */; };
 		DF4D89592104C298008609A1 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D89582104C298008609A1 /* CameraManager.swift */; };
+		DF503CEF21431503006EE226 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF503CEE21431503006EE226 /* DebugViewController.swift */; };
 		DF524CA8208741FF00D88599 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524CA7208741FF00D88599 /* FilterTableViewCell.swift */; };
 		DF524CAA2087421800D88599 /* BranchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524CA92087421800D88599 /* BranchTableViewCell.swift */; };
 		DF524CAC2087443D00D88599 /* BranchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524CAB2087443D00D88599 /* BranchCollectionViewCell.swift */; };
@@ -276,6 +277,7 @@
 		DF4D8954210476AB008609A1 /* DetailShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailShopViewController.swift; sourceTree = "<group>"; };
 		DF4D89562104A6F0008609A1 /* Datasources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datasources.swift; sourceTree = "<group>"; };
 		DF4D89582104C298008609A1 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		DF503CEE21431503006EE226 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		DF524CA7208741FF00D88599 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		DF524CA92087421800D88599 /* BranchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchTableViewCell.swift; sourceTree = "<group>"; };
 		DF524CAB2087443D00D88599 /* BranchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -715,6 +717,7 @@
 				DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */,
 				DFD890862124860A006B5610 /* TandCViewController.swift */,
 				DFD8908821248DD9006B5610 /* PrivacyViewController.swift */,
+				DF503CEE21431503006EE226 /* DebugViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -1094,6 +1097,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFA9EF0420B468E3008590EA /* PetrolPriceResponse.swift in Sources */,
+				DF503CEF21431503006EE226 /* DebugViewController.swift in Sources */,
 				DFCB431F20E02D0300E7AD3F /* TwitterManager.swift in Sources */,
 				DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */,
 				DFA9EEFF20B36A86008590EA /* PetrolStation.swift in Sources */,

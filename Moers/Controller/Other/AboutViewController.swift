@@ -105,7 +105,15 @@ class AboutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = NSLocalizedString("AboutTitle", comment: "")
+        self.setupUI()
+        self.setupConstraints()
+        self.setupTheming()
+        
+    }
+    
+    private func setupUI() {
+        
+        self.title = String.localized("AboutTitle")
         
         self.view.addSubview(cfnImageView)
         self.view.addSubview(cfnLabel)
@@ -115,19 +123,9 @@ class AboutViewController: UIViewController {
         self.view.addSubview(meTextView)
         self.view.addSubview(infoTextView)
         
-        self.setupConstraints()
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fastForward, target: self, action: #selector(showDebug))
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.cfnLabel.textColor = theme.color
-            themeable.cfnTextView.textColor = theme.color
-            themeable.cfnTextView.backgroundColor = theme.backgroundColor
-            themeable.nameLabel.textColor = theme.color
-            themeable.meTextView.textColor = theme.color
-            themeable.meTextView.backgroundColor = theme.backgroundColor
-            themeable.infoTextView.textColor = theme.color
-            themeable.infoTextView.backgroundColor = theme.backgroundColor
-        }
+        navigationItem.rightBarButtonItem = barButtonItem
         
     }
     
@@ -164,5 +162,29 @@ class AboutViewController: UIViewController {
         
     }
     
+    private func setupTheming() {
+        
+        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
+            themeable.view.backgroundColor = theme.backgroundColor
+            themeable.cfnLabel.textColor = theme.color
+            themeable.cfnTextView.textColor = theme.color
+            themeable.cfnTextView.backgroundColor = theme.backgroundColor
+            themeable.nameLabel.textColor = theme.color
+            themeable.meTextView.textColor = theme.color
+            themeable.meTextView.backgroundColor = theme.backgroundColor
+            themeable.infoTextView.textColor = theme.color
+            themeable.infoTextView.backgroundColor = theme.backgroundColor
+        }
+        
+    }
+    
+    @objc private func showDebug() {
+        
+        let debugViewController = DebugViewController()
+        
+        self.navigationController?.pushViewController(debugViewController, animated: true)
+
+        
+    }
 
 }

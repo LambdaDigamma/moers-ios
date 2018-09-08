@@ -242,8 +242,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="mcV-cc-nWy" firstAttribute="height" secondItem="cEp-HY-Utq" secondAttribute="height" id="4RF-7D-V87"/>
+                                            <constraint firstItem="kQq-X8-wdh" firstAttribute="height" secondItem="cEp-HY-Utq" secondAttribute="height" id="5NH-eM-lRc"/>
+                                            <constraint firstItem="NPw-Dv-aX2" firstAttribute="height" secondItem="cEp-HY-Utq" secondAttribute="height" id="69K-yl-n2I"/>
+                                            <constraint firstItem="A0f-cD-P1w" firstAttribute="height" secondItem="cEp-HY-Utq" secondAttribute="height" id="J4y-Gt-BLc"/>
+                                            <constraint firstItem="zt8-QY-Vqx" firstAttribute="height" secondItem="cEp-HY-Utq" secondAttribute="height" id="Jaa-3S-QAe"/>
+                                            <constraint firstItem="cUk-DG-LpG" firstAttribute="height" secondItem="cEp-HY-Utq" secondAttribute="height" id="cLR-Hq-hqe"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="168" id="kKj-2Q-qe3"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <constraints>

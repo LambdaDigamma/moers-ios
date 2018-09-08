@@ -163,8 +163,6 @@ class RubbishManager {
         self.reminderMinute = minute
         self.remindersEnabled = true
         
-        self.invalidateRubbishReminderNotifications()
-        
         let queue = OperationQueue()
         
         queue.addOperation {
@@ -187,7 +185,9 @@ class RubbishManager {
                     
                     var dateComponents = DateComponents()
                     
-                    dateComponents.day = calendar.component(.day, from: date) - 1
+                    let previousDate = calendar.date(byAdding: .day, value: -1, to: date) ?? Date()
+                    
+                    dateComponents.day = calendar.component(.day, from: previousDate)
                     dateComponents.month = calendar.component(.month, from: date)
                     dateComponents.year = calendar.component(.year, from: date)
                     dateComponents.hour = self.reminderHour ?? 20
@@ -203,6 +203,8 @@ class RubbishManager {
                     self.requests.append(request)
                     
                 }
+                
+                self.invalidateRubbishReminderNotifications()
                 
                 // Recursively schedule all Notifications
                 

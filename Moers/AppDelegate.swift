@@ -40,6 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             UIApplication.configureLinearNetworkActivityIndicatorIfNeeded()
         }
         
+        if let isEnabled = RubbishManager.shared.remindersEnabled, RubbishManager.shared.isEnabled && isEnabled {
+            
+            RubbishManager.shared.registerNotifications(at: RubbishManager.shared.reminderHour ?? 20, minute: RubbishManager.shared.reminderHour ?? 00)
+            
+        }
+        
         return true
     }
     
