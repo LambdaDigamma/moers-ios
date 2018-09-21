@@ -254,7 +254,7 @@ extension SelectionViewController: PulleyDrawerViewControllerDelegate {
         
         let height = drawer.mapViewController.map.frame.height
         
-        if drawer.currentDisplayMode == .leftSide {
+        if drawer.currentDisplayMode == .panel {
             return height - 49.0 - 16.0 - 16.0 - 64.0 - 50.0 - 16.0
         }
         
@@ -263,7 +263,7 @@ extension SelectionViewController: PulleyDrawerViewControllerDelegate {
     
     func supportedDrawerPositions() -> [PulleyPosition] {
         
-        if drawer.currentDisplayMode == .leftSide {
+        if drawer.currentDisplayMode == .panel {
             
             self.gripperView.isHidden = true
             
@@ -280,7 +280,7 @@ extension SelectionViewController: PulleyDrawerViewControllerDelegate {
         
         tableView.isScrollEnabled = drawer.drawerPosition == .open
         
-        if drawer.currentDisplayMode == .leftSide {
+        if drawer.currentDisplayMode == .panel {
         
             tableView.isScrollEnabled = true
         

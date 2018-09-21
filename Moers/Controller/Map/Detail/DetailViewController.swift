@@ -326,7 +326,7 @@ extension DetailViewController: PulleyDrawerViewControllerDelegate {
             
             let height = pulleyVC.mapViewController.map.frame.height
             
-            if pulleyVC.currentDisplayMode == .leftSide {
+            if pulleyVC.currentDisplayMode == .panel {
                 return height - 49.0 - 16.0 - 16.0 - 64.0 - 50.0 - 16.0
             }
             
@@ -339,7 +339,7 @@ extension DetailViewController: PulleyDrawerViewControllerDelegate {
         
         if let pulleyVC = self.parent as? PulleyViewController {
             
-            if pulleyVC.currentDisplayMode == .leftSide {
+            if pulleyVC.currentDisplayMode == .panel {
                 
                 self.gripperView.isHidden = true
                 

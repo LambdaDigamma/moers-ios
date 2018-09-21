@@ -295,7 +295,7 @@ class RubbishManager {
     
     public var isEnabled: Bool {
         get { return UserDefaults.standard.bool(forKey: "RubbishEnabled") }
-        set { UserDefaults.standard.set(newValue, forKey: "RubbishEnabled")}
+        set { UserDefaults.standard.set(newValue, forKey: "RubbishEnabled") }
     }
     
     public var reminderHour: Int? {

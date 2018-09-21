@@ -314,7 +314,7 @@ class ContentViewController: UIViewController, PulleyDrawerViewControllerDelegat
         
         let height = drawer.mapViewController.map.frame.height
         
-        if drawer.currentDisplayMode == .leftSide {
+        if drawer.currentDisplayMode == .panel {
             return height - 49.0 - 16.0 - 16.0 - 64.0 - 50.0 - 16.0
         }
         
@@ -323,7 +323,7 @@ class ContentViewController: UIViewController, PulleyDrawerViewControllerDelegat
     
     func supportedDrawerPositions() -> [PulleyPosition] {
         
-        if drawer.currentDisplayMode == .leftSide {
+        if drawer.currentDisplayMode == .panel {
             
             self.gripperView.isHidden = true
             
@@ -344,13 +344,13 @@ class ContentViewController: UIViewController, PulleyDrawerViewControllerDelegat
             headerSectionHeightConstraint.constant = 68.0
         }
         
-        tableView.isScrollEnabled = drawer.drawerPosition == .open || drawer.currentDisplayMode == .leftSide
+        tableView.isScrollEnabled = drawer.drawerPosition == .open || drawer.currentDisplayMode == .panel
         
         if drawer.drawerPosition != .open {
             searchBar.resignFirstResponder()
         }
         
-        if drawer.currentDisplayMode == .leftSide {
+        if drawer.currentDisplayMode == .panel {
             topSeparatorView.isHidden = drawer.drawerPosition == .collapsed
             bottomSeparatorView.isHidden = drawer.drawerPosition == .collapsed
         } else {
