@@ -17,7 +17,7 @@ import UIKit
     
     override func drawText(in rect: CGRect) {
         let insets = UIEdgeInsets.init(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
-        super.drawText(in: UIEdgeInsetsInsetRect(rect, insets))
+        super.drawText(in: rect.inset(by: insets))
     }
     
     override var intrinsicContentSize: CGSize {

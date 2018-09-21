@@ -61,7 +61,7 @@ class ItemBounceContentView: BasicItemContentView {
         let impliesAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
         impliesAnimation.values = [1.0 ,1.4, 0.9, 1.15, 0.95, 1.02, 1.0]
         impliesAnimation.duration = duration * 2
-        impliesAnimation.calculationMode = kCAAnimationCubic
+        impliesAnimation.calculationMode = CAAnimationCalculationMode.cubic
         imageView.layer.add(impliesAnimation, forKey: nil)
     }
 }
@@ -74,10 +74,10 @@ class MapItemContentView: ESTabBarItemContentView {
         self.imageView.layer.borderWidth = 3.0
         self.imageView.layer.cornerRadius = 35
         self.imageView.clipsToBounds = true
-        self.insets = UIEdgeInsetsMake(-32, 0, 0, 0)
+        self.insets = UIEdgeInsets.init(top: -32, left: 0, bottom: 0, right: 0)
         let transform = CGAffineTransform.identity
         self.imageView.transform = transform
-        self.superview?.bringSubview(toFront: self)
+        self.superview?.bringSubviewToFront(self)
         
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
 
@@ -155,7 +155,7 @@ class MapItemContentView: ESTabBarItemContentView {
         scale?.toValue = NSValue(cgSize: CGSize.init(width: 36.0, height: 36.0))
         scale?.beginTime = CACurrentMediaTime()
         scale?.duration = 0.3
-        scale?.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        scale?.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         scale?.removedOnCompletion = true
         
         let alpha = POPBasicAnimation(propertyNamed: kPOPLayerOpacity)
@@ -163,7 +163,7 @@ class MapItemContentView: ESTabBarItemContentView {
         alpha?.toValue = 0.6
         alpha?.beginTime = CACurrentMediaTime()
         alpha?.duration = 0.25
-        alpha?.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        alpha?.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         alpha?.removedOnCompletion = true
         
         view.layer.pop_add(scale, forKey: "scale")

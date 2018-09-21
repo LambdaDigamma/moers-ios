@@ -91,7 +91,7 @@ class CardView: UIView {
     
     private lazy var blurView: UIVisualEffectView = {
         
-        let effect = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let effect = UIBlurEffect(style: UIBlurEffect.Style.light)
         let blurView = UIVisualEffectView(effect: effect)
         
         blurView.translatesAutoresizingMaskIntoConstraints = false
@@ -130,7 +130,7 @@ class CardView: UIView {
     
     private lazy var activityIndicator: UIActivityIndicatorView = {
         
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
         
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
@@ -169,7 +169,7 @@ class CardView: UIView {
             themeable.cornerRadius = 12.0
             themeable.backgroundColor = theme.cardBackgroundColor
             themeable.blurView.effect = theme.statusBarStyle == .default ? UIBlurEffect(style: .light) : UIBlurEffect(style: .dark)
-            themeable.activityIndicator.activityIndicatorViewStyle = theme.statusBarStyle == .default ? .gray : .white
+            themeable.activityIndicator.style = theme.statusBarStyle == .default ? .gray : .white
             themeable.messageLabel.textColor = theme.color
             themeable.titleLabel.textColor = theme.color
             

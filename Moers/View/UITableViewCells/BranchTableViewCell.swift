@@ -42,7 +42,7 @@ class BranchTableViewCell: UITableViewCell {
     
     var onSelect: ((Branch) -> (Void))?
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in

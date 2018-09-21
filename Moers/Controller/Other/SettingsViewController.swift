@@ -17,7 +17,7 @@ class SettingsViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         
-        let tableView = UITableView(frame: CGRect.zero, style: UITableViewStyle.grouped)
+        let tableView = UITableView(frame: CGRect.zero, style: UITableView.Style.grouped)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -244,7 +244,7 @@ class SettingsViewController: UIViewController {
         
         let tabBarController = (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController as? TabBarController
         
-        let dashboardViewController = tabBarController?.dashboardViewController.childViewControllers[0] as? DashboardViewController
+        let dashboardViewController = tabBarController?.dashboardViewController.children[0] as? DashboardViewController
         
         dashboardViewController?.reloadUI()
         

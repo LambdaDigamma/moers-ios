@@ -123,7 +123,7 @@ class AboutViewController: UIViewController {
         self.view.addSubview(meTextView)
         self.view.addSubview(infoTextView)
         
-        let barButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fastForward, target: self, action: #selector(showDebug))
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fastForward, target: self, action: #selector(showDebug))
         
         navigationItem.rightBarButtonItem = barButtonItem
         

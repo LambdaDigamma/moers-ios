@@ -158,7 +158,7 @@ class DetailViewController: UIViewController {
             
             contentView.subviews.forEach({ $0.removeFromSuperview() })
             
-            vc.removeFromParentViewController()
+            vc.removeFromParent()
             
             self.dismiss(animated: false, completion: nil)
             
@@ -228,7 +228,7 @@ class DetailViewController: UIViewController {
         let source = MKMapItem(placemark: MKPlacemark(coordinate: sourceCoordinate))
         let destination = MKMapItem(placemark: MKPlacemark(coordinate: destinationCoordinate))
         
-        let request = MKDirectionsRequest()
+        let request = MKDirections.Request()
         
         request.source = source
         request.destination = destination
@@ -297,7 +297,7 @@ class DetailViewController: UIViewController {
     private func add(asChildViewController viewController: UIViewController) {
         
         self.child = viewController
-        self.addChildViewController(viewController)
+        self.addChild(viewController)
         
         guard let loc = selectedLocation else { return }
         
@@ -308,7 +308,7 @@ class DetailViewController: UIViewController {
         viewController.view.frame = contentView.bounds
         viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        viewController.didMove(toParentViewController: self)
+        viewController.didMove(toParent: self)
         
     }
     

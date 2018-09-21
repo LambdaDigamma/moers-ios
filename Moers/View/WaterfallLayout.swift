@@ -193,7 +193,7 @@ public class WaterfallLayout: UICollectionViewLayout {
         position += headerInset.top
 
         if headerHeight > 0 {
-            let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, with: [section, 0])
+            let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: [section, 0])
             attributes.frame = CGRect(
                 x: headerInset.left,
                 y: position,
@@ -281,7 +281,7 @@ public class WaterfallLayout: UICollectionViewLayout {
         position += footerInset.top
 
         if footerHeight > 0.0 {
-            let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, with: [section, 0])
+            let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, with: [section, 0])
             attributes.frame = CGRect(x: footerInset.left, y: position, width: collectionView.bounds.width - (footerInset.left + footerInset.right), height: footerHeight)
             footersAttribute[section] = attributes
             allItemAttributes.append(attributes)

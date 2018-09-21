@@ -85,7 +85,7 @@ class LoginViewController: UIViewController {
     
     lazy var actionButton: UIButton = {
         
-        let button = UIButton(type: UIButtonType.custom)
+        let button = UIButton(type: UIButton.ButtonType.custom)
         
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(String.localized("LoginTitle").uppercased(), for: .normal)
@@ -100,7 +100,7 @@ class LoginViewController: UIViewController {
     
     lazy var closeButton: UIButton = {
         
-        let button = UIButton(type: UIButtonType.custom)
+        let button = UIButton(type: UIButton.ButtonType.custom)
         
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(close), for: .touchUpInside)

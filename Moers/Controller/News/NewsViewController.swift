@@ -25,7 +25,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.register(TweetTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.estimatedRowHeight = 150
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         return tableView
         
@@ -60,7 +60,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.view.addSubview(self.tableView)
         
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
         tableView.refreshControl = refreshControl
         
     }

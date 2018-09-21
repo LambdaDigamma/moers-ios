@@ -68,7 +68,7 @@ class SelectorBulletinPage<T: RawRepresentable & EnumCollection & Localizable>: 
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         button.contentHorizontalAlignment = .center
         button.accessibilityLabel = title
-        button.accessibilityTraits &= ~UIAccessibilityTraitSelected
+        button.accessibilityTraits &= ~UIAccessibilityTraits.selected
         button.layer.cornerRadius = 12
         button.layer.borderWidth = 2
         button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
@@ -112,7 +112,7 @@ class SelectorBulletinPage<T: RawRepresentable & EnumCollection & Localizable>: 
             
             themeable.layer.borderColor = accentColor.cgColor
             themeable.setTitleColor(accentColor, for: .normal)
-            themeable.accessibilityTraits |= UIAccessibilityTraitSelected
+            themeable.accessibilityTraits |= UIAccessibilityTraits.selected
             
         }
         
@@ -128,7 +128,7 @@ class SelectorBulletinPage<T: RawRepresentable & EnumCollection & Localizable>: 
                 
                 button.layer.borderColor = decentColor.cgColor
                 button.setTitleColor(decentColor, for: .normal)
-                button.accessibilityTraits &= ~UIAccessibilityTraitSelected
+                button.accessibilityTraits &= ~UIAccessibilityTraits.selected
                 
             })
             

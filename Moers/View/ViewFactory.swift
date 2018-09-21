@@ -130,8 +130,8 @@ struct ViewFactory {
         let tableView = UITableView()
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.estimatedRowHeight = UITableViewAutomaticDimension
-        tableView.estimatedSectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.estimatedSectionHeaderHeight = UITableView.automaticDimension
         
         return tableView
         

@@ -70,8 +70,8 @@ class AddShopViewController: UIViewController, MapLocationPickerViewControllerDe
         self.setupOpeningHours()
         
         let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         
         self.mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(choosePosition)))
         
@@ -311,10 +311,10 @@ class AddShopViewController: UIViewController, MapLocationPickerViewControllerDe
         
         guard let userInfo = notification.userInfo else { return }
         
-        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let keyboardScreenEndFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
         
-        if notification.name == Notification.Name.UIKeyboardWillHide {
+        if notification.name == UIResponder.keyboardWillHideNotification {
             scrollView.contentInset = UIEdgeInsets.zero
         } else {
             scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)

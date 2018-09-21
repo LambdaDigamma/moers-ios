@@ -64,7 +64,7 @@ class LeaderboardViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = 40
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.bounces = false
         tableView.allowsSelection = false
         

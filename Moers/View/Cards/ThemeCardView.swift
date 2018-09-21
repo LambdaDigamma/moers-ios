@@ -32,7 +32,7 @@ class ThemeCardView: TitleCardView {
         
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
-        stackView.alignment = UIStackViewAlignment.fill
+        stackView.alignment = UIStackView.Alignment.fill
         stackView.spacing = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
         

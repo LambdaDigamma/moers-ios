@@ -244,8 +244,8 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
                     nav.navigationBar.barTintColor = theme.navigationBarColor
                     nav.navigationBar.tintColor = theme.accentColor
                     nav.navigationBar.prefersLargeTitles = true
-                    nav.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: theme.accentColor]
-                    nav.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: theme.accentColor]
+                    nav.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
+                    nav.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
                     nav.navigationBar.isTranslucent = true
                     
                     if theme.statusBarStyle == .lightContent {
@@ -285,7 +285,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         self.loadData()
         
-        guard let dashboardVC = dashboardViewController.childViewControllers.first as? DashboardViewController else { return }
+        guard let dashboardVC = dashboardViewController.children.first as? DashboardViewController else { return }
         
         dashboardVC.reloadUI()
         dashboardVC.triggerUpdate()
@@ -294,7 +294,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     
     @objc func search() {
         
-        guard let mainViewController = mapViewController.childViewControllers.first as? MainViewController else { return }
+        guard let mainViewController = mapViewController.children.first as? MainViewController else { return }
         
         mainViewController.setDrawerPosition(position: .open, animated: true)
         mainViewController.contentViewController.searchBar.becomeFirstResponder()

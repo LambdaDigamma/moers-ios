@@ -21,8 +21,8 @@ class RubbishCollectionViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.estimatedRowHeight = UITableViewAutomaticDimension
-        tableView.estimatedSectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.estimatedSectionHeaderHeight = UITableView.automaticDimension
         tableView.register(RubbishCollectionItemTableViewCell.self, forCellReuseIdentifier: identifier)
         tableView.register(MonthHeaderView.self, forHeaderFooterViewReuseIdentifier: headerIdentifier)
         

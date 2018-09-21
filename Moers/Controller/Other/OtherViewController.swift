@@ -17,7 +17,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     lazy var tableView: UITableView = {
         
-        let tableView = UITableView(frame: CGRect.zero, style: UITableViewStyle.grouped)
+        let tableView = UITableView(frame: CGRect.zero, style: UITableView.Style.grouped)
         
         tableView.delegate = self
         tableView.dataSource = self

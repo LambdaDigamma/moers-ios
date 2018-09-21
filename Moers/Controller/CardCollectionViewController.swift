@@ -38,7 +38,7 @@ class CardCollectionViewController: UIViewController, UICollectionViewDataSource
         didSet {
             if isPullToRefreshEnabled {
                 let refreshControl = UIRefreshControl()
-                refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
+                refreshControl.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
                 collectionView.refreshControl = refreshControl
             } else {
                 collectionView.refreshControl = nil
