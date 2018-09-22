@@ -22,7 +22,7 @@ struct AnalyticsManager {
     
     init() {
         
-        self.shouldLog = isAnalyticsEnabled
+        self.shouldLog = true
         
     }
     

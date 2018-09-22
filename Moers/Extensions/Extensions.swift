@@ -99,6 +99,15 @@ extension UIColor {
     
 }
 
+extension Bundle {
+    var releaseVersionNumber: String? {
+        return infoDictionary?["CFBundleShortVersionString"] as? String
+    }
+    var buildVersionNumber: String? {
+        return infoDictionary?["CFBundleVersion"] as? String
+    }
+}
+
 public extension Sequence where Element: Equatable {
     var uniqueElements: [Element] {
         return self.reduce(into: []) {
