@@ -15,7 +15,7 @@ struct User {
     var name: String?
     var description: String?
     
-    enum UserType: String, EnumCollection, Localizable {
+    enum UserType: String, EnumCollection, Localizable, CaseIterable {
         
         case citizen = "citizen"
         case tourist = "tourist"

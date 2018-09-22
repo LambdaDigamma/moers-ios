@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum PetrolType: String, Codable, EnumCollection, Localizable {
+enum PetrolType: String, Codable, EnumCollection, Localizable, CaseIterable {
     
     case diesel = "diesel"
     case e5 = "e5"

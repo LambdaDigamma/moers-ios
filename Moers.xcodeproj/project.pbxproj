@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DF02B7611FB035BB004B8B3E /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF02B7601FB035BB004B8B3E /* Settings.plist */; };
 		DF02B7631FB0BAE9004B8B3E /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02B7621FB0BAE9004B8B3E /* Branch.swift */; };
 		DF02B7651FB0BBD8004B8B3E /* SwiftyConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF02B7641FB0BBD8004B8B3E /* SwiftyConfiguration.framework */; };
 		DF08361D1F6C198400A1B8A5 /* ShopAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF08361C1F6C198400A1B8A5 /* ShopAnnotationView.swift */; };
@@ -184,7 +183,6 @@
 		DFF9B2D920FE177E007FE158 /* ShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF9B2D820FE177E007FE158 /* ShopManager.swift */; };
 		DFF9B2DB20FE1EB9007FE158 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF9B2DA20FE1EB9007FE158 /* Store.swift */; };
 		DFFB775B1FB37E0A00073863 /* InfoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFFB775A1FB37E0A00073863 /* InfoKit.framework */; };
-		DFFB77601FB38A5A00073863 /* Branches.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFFB775F1FB38A5A00073863 /* Branches.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,7 +217,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DF02B7601FB035BB004B8B3E /* Settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
 		DF02B7621FB0BAE9004B8B3E /* Branch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
 		DF02B7641FB0BBD8004B8B3E /* SwiftyConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyConfiguration.framework; path = Carthage/Build/iOS/SwiftyConfiguration.framework; sourceTree = "<group>"; };
 		DF08361C1F6C198400A1B8A5 /* ShopAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAnnotationView.swift; sourceTree = "<group>"; };
@@ -396,7 +393,6 @@
 		DFF9B2D820FE177E007FE158 /* ShopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopManager.swift; sourceTree = "<group>"; };
 		DFF9B2DA20FE1EB9007FE158 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		DFFB775A1FB37E0A00073863 /* InfoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InfoKit.framework; path = Carthage/Build/iOS/InfoKit.framework; sourceTree = "<group>"; };
-		DFFB775F1FB38A5A00073863 /* Branches.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Branches.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -539,8 +535,6 @@
 				DF1A49691F6AAB7000E9108B /* Assets.xcassets */,
 				DF1A496B1F6AAB7000E9108B /* LaunchScreen.storyboard */,
 				DF1A496E1F6AAB7000E9108B /* Info.plist */,
-				DF02B7601FB035BB004B8B3E /* Settings.plist */,
-				DFFB775F1FB38A5A00073863 /* Branches.plist */,
 				DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */,
 				DFB64DC9203883D200173A80 /* module.modulemap */,
 				DFB64DCA2038845300173A80 /* Firebase.h */,
@@ -1011,8 +1005,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF1A496D1F6AAB7000E9108B /* LaunchScreen.storyboard in Resources */,
-				DF02B7611FB035BB004B8B3E /* Settings.plist in Resources */,
-				DFFB77601FB38A5A00073863 /* Branches.plist in Resources */,
 				DF0CB4A52082BE0F00CC0AA8 /* Localizable.strings in Resources */,
 				DF44D58F2126F83B00F8AC0C /* DetailViewControllers.storyboard in Resources */,
 				DF44D58D2125FE9700F8AC0C /* ContentDrawer.storyboard in Resources */,

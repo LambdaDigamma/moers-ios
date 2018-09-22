@@ -25,7 +25,7 @@ class SelectionViewController: UIViewController {
     public var clusteredLocations: [Location] = [] {
         didSet {
             
-            self.titleLabel.text = "\(clusteredLocations.count)" + String.localized("Entries")
+            self.titleLabel.text = "\(clusteredLocations.count) " + String.localized("Entries")
             self.tableView.reloadData()
             
         }
@@ -49,6 +49,13 @@ class SelectionViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        drawer.delegate = self
+        
+    }
+    
     // MARK: - Private Methods
     
     private func setupUI() {
@@ -69,8 +76,6 @@ class SelectionViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: CellIdentifier.searchResultCell)
-        
-        drawer.delegate = self
         
     }
     
