@@ -40,7 +40,7 @@ class SelectorBulletinPage<T: RawRepresentable & CaseIterable & EnumCollection &
         
         let optionStack = interfaceBuilder.makeGroupStack(spacing: 16)
         
-        T.allValues.forEach { (value) in
+        T.allCases.forEach { (value) in
             
             let button = createOptionCell(title: T.localizedForCase(value))
             
@@ -51,7 +51,7 @@ class SelectorBulletinPage<T: RawRepresentable & CaseIterable & EnumCollection &
         
         self.resetButtonSelections()
         
-        let index = T.allValues.index(of: selectedOption) ?? 0
+        let index = Array(T.allCases).index(of: selectedOption) ?? 0
         
         self.setButtonSelection(buttons[index])
         self.selectedOption(buttons[index])
@@ -86,7 +86,7 @@ class SelectorBulletinPage<T: RawRepresentable & CaseIterable & EnumCollection &
         
         let index = self.buttons.index(of: button) ?? 0
         
-        let option = T.allValues[index]
+        let option = Array(T.allCases)[index]
         
         self.selectedOption = option
         self.onSelect?(option)
