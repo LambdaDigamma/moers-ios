@@ -13,3 +13,4 @@ github "raulriera/TextFieldEffects"
 binary "https://ton.twimg.com/syndication/twitterkit/ios/TwitterKit.json"
 binary "https://ton.twimg.com/syndication/twitterkit/ios/TwitterCore.json"
 github "mutualmobile/MMWormhole"
+github "sgr-ksmt/Alertift" ~> 3.2
