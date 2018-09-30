@@ -22,7 +22,7 @@ struct EventManager {
         
         if reachability.connection != .none {
             
-            guard let url = URL(string: baseURL + "api/events") else { return }
+            guard let url = URL(string: baseURL + "api/v1/events") else { return }
             
             let request = URLRequest(url: url)
             

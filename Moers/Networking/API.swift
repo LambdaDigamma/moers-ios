@@ -128,7 +128,7 @@ class API: NSObject, XMLParserDelegate {
             
             guard let token = token else { completion(APIError.noToken, nil); return }
             
-            guard let url = URL(string: baseURL + "api/user") else {
+            guard let url = URL(string: baseURL + "api/v1/user") else {
                 completion(APIError.noConnection, nil)
                 return
             }
@@ -165,6 +165,82 @@ class API: NSObject, XMLParserDelegate {
                     
                 } catch {
                     completion(error, nil)
+                }
+                
+            }
+            
+            task.resume()
+            
+        } else {
+            completion(APIError.noConnection, nil)
+        }
+        
+    }
+    
+    public func storeShop(shopEntry: ShopEntry, completion: @escaping ((Error?, Bool?) -> Void)) {
+        
+        if reachability.connection != .none {
+            
+            guard let token = token else { completion(APIError.noToken, nil); return }
+            
+            guard let url = URL(string: baseURL + "api/v1/shops") else {
+                completion(APIError.noConnection, nil)
+                return
+            }
+            
+            let data: [String: Any] = ["name": shopEntry.title,
+                                       "branch": shopEntry.branch,
+                                       "street": shopEntry.street,
+                                       "house_number": shopEntry.houseNr,
+                                       "postcode": shopEntry.postcode,
+                                       "place": shopEntry.place,
+                                       "lat": shopEntry.coordinate.latitude,
+                                       "lng": shopEntry.coordinate.longitude,
+                                       "url": shopEntry.website ?? "",
+                                       "phone": shopEntry.phone ?? "",
+                                       "monday": shopEntry.monday ?? "",
+                                       "tuesday": shopEntry.tuesday ?? "",
+                                       "wednesday": shopEntry.wednesday ?? "",
+                                       "thursday": shopEntry.thursday ?? "",
+                                       "friday": shopEntry.friday ?? "",
+                                       "saturday": shopEntry.saturday ?? "",
+                                       "sunday": shopEntry.sunday ?? "",
+                                       "other": shopEntry.other ?? ""]
+            
+            var request = URLRequest(url: url)
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            request.httpMethod = "POST"
+            
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+            } catch {
+                print(error.localizedDescription)
+            }
+            
+            let task = session.dataTask(with: request) { (data, response, error) in
+                
+                guard error == nil else {
+                    completion(error, nil)
+                    return
+                }
+                
+                guard let data = data else {
+                    completion(APIError.noData, nil)
+                    return
+                }
+                
+                do {
+                    
+                    guard let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else { completion(APIError.noData, nil); return }
+                    
+                    print(json)
+                    
+                    completion(nil, true)
+                    
+                } catch {
+                    completion(error, false)
                 }
                 
             }

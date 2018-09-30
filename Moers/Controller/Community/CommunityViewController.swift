@@ -48,7 +48,8 @@ class CommunityViewController: UIViewController, UICollectionViewDataSource {
 
         self.title = String.localized("CommunityTitle")
         
-        self.panels = [CommunityDashboardPanel(title: String.localized("LeaderboardTitle"), image: #imageLiteral(resourceName: "trophy").withRenderingMode(.alwaysTemplate), action: showLeaderboard),
+        self.panels = [CommunityDashboardPanel(title: String.localized("Events"), image: #imageLiteral(resourceName: "calendar").withRenderingMode(.alwaysTemplate), action: showEvents),
+                       CommunityDashboardPanel(title: String.localized("LeaderboardTitle"), image: #imageLiteral(resourceName: "trophy").withRenderingMode(.alwaysTemplate), action: showLeaderboard),
                        CommunityDashboardPanel(title: String.localized("AddStoreTitle"), image: #imageLiteral(resourceName: "shop").withRenderingMode(.alwaysTemplate), action: showAddShop)]
         
         self.view.addSubview(collectionView)
@@ -84,6 +85,12 @@ class CommunityViewController: UIViewController, UICollectionViewDataSource {
             themeable.collectionView.backgroundColor = theme.backgroundColor
             
         }
+        
+    }
+    
+    private func showEvents() {
+        
+        push(viewController: EventViewController.self)
         
     }
     
