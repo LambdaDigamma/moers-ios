@@ -16,7 +16,7 @@ struct ShopManager {
     
     public func get(completion: @escaping ((Error?, [Store]?) -> Void)) {
         
-        let url = baseURL + "api/v1/shops"
+        let url = Environment.current.baseURL + "api/v1/shops"
         
         do {
             

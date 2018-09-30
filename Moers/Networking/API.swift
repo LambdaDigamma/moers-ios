@@ -58,15 +58,15 @@ class API: NSObject, XMLParserDelegate {
     public func login(email: String, password: String, completion: @escaping ((Error?) -> Void)) {
         
         let params = ["grant_type": "password",
-                      "client_id": "2",
-                      "client_secret": "2l564wXWihfjFzJoqES6P1gRtQtDnL5yr8XxBRV6",
+                      "client_id": "\(Environment.current.clientID)",
+                      "client_secret": Environment.current.clientSecret,
                       "username": email,
                       "password": password,
                       "scope": "*"]
         
         if reachability.connection != .none {
             
-            guard let url = URL(string: baseURL + "oauth/token") else {
+            guard let url = URL(string: Environment.current.baseURL + "oauth/token") else {
                 completion(APIError.noConnection)
                 return
             }
@@ -128,7 +128,7 @@ class API: NSObject, XMLParserDelegate {
             
             guard let token = token else { completion(APIError.noToken, nil); return }
             
-            guard let url = URL(string: baseURL + "api/v1/user") else {
+            guard let url = URL(string: Environment.current.baseURL + "api/v1/user") else {
                 completion(APIError.noConnection, nil)
                 return
             }
@@ -183,7 +183,7 @@ class API: NSObject, XMLParserDelegate {
             
             guard let token = token else { completion(APIError.noToken, nil); return }
             
-            guard let url = URL(string: baseURL + "api/v1/shops") else {
+            guard let url = URL(string: Environment.current.baseURL + "api/v1/shops") else {
                 completion(APIError.noConnection, nil)
                 return
             }
