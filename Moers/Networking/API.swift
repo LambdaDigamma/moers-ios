@@ -122,6 +122,65 @@ class API: NSObject, XMLParserDelegate {
         
     }
     
+    public func register(name: String, email: String, password: String, completion: @escaping ((Error?) -> Void)) {
+        
+        if reachability.connection != .none {
+            
+            guard let url = URL(string: Environment.current.baseURL + "api/v1/register") else {
+                completion(APIError.noConnection)
+                return
+            }
+            
+            let params = ["name": name,
+                          "email": email,
+                          "password": password]
+
+            var request = URLRequest(url: url)
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            request.httpMethod = "POST"
+            
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+            } catch let error {
+                print(error.localizedDescription)
+            }
+            
+            let task = session.dataTask(with: request) { (data, response, error) in
+                
+                guard error == nil else {
+                    print(error?.localizedDescription)
+                    completion(error)
+                    return
+                }
+                
+                guard let data = data else {
+                    completion(APIError.noData)
+                    return
+                }
+                
+                do {
+                    
+                    guard let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else { completion(APIError.noData); return }
+                    
+                    print(json)
+                    
+                    completion(nil)
+                    
+                } catch {
+                    completion(error)
+                }
+                
+            }
+            
+            task.resume()
+            
+        } else {
+            completion(APIError.noConnection)
+        }
+        
+    }
+    
     public func getUser(completion: @escaping ((Error?, User?) -> Void)) {
         
         if reachability.connection != .none {
