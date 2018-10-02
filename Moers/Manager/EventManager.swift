@@ -9,8 +9,6 @@
 import Foundation
 import Reachability
 
-public let baseURL = "https://meinmoers.lambdadigamma.com/"
-
 struct EventManager {
     
     static var shared = EventManager()
@@ -22,7 +20,7 @@ struct EventManager {
         
         if reachability.connection != .none {
             
-            guard let url = URL(string: baseURL + "api/events") else { return }
+            guard let url = URL(string: Environment.current.baseURL + "api/v1/events") else { return }
             
             let request = URLRequest(url: url)
             

@@ -62,6 +62,7 @@ class LoginViewController: UIViewController {
         textField.autocapitalizationType = .none
         textField.autocorrectionType = .no
         textField.addTarget(self, action: #selector(didEndEditingEmailTextField(textField:)), for: .editingDidEnd)
+        textField.addTarget(self, action: #selector(changedEditedEmailTextField(textField:)), for: .editingChanged)
         
         return textField
         
@@ -78,6 +79,7 @@ class LoginViewController: UIViewController {
         textField.autocapitalizationType = .none
         textField.autocorrectionType = .no
         textField.addTarget(self, action: #selector(didEndEditingPasswordTextField(textField:)), for: .editingDidEnd)
+        textField.addTarget(self, action: #selector(changedEditingPasswordTextField(textField:)), for: .editingChanged)
         
         return textField
         
@@ -165,6 +167,14 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func didEndEditingPasswordTextField(textField: HoshiTextField) {
+        self.validateInputs()
+    }
+    
+    @objc private func changedEditedEmailTextField(textField: HoshiTextField) {
+        self.validateInputs()
+    }
+    
+    @objc private func changedEditingPasswordTextField(textField: HoshiTextField) {
         self.validateInputs()
     }
     

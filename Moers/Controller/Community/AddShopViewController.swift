@@ -10,6 +10,29 @@ import UIKit
 import Gestalt
 import TextFieldEffects
 import MapKit
+import Alertift
+
+struct ShopEntry {
+    
+    var title: String
+    var branch: String
+    var street: String
+    var houseNr: String
+    var postcode: String
+    var place: String
+    var coordinate: CLLocationCoordinate2D
+    var website: String?
+    var phone: String?
+    var monday: String?
+    var tuesday: String?
+    var wednesday: String?
+    var thursday: String?
+    var friday: String?
+    var saturday: String?
+    var sunday: String?
+    var other: String?
+    
+}
 
 class AddShopViewController: UIViewController, MapLocationPickerViewControllerDelegate {
 
@@ -39,6 +62,8 @@ class AddShopViewController: UIViewController, MapLocationPickerViewControllerDe
     lazy var sundayOHTextField = { return ViewFactory.textField() }()
     lazy var otherOHTextField = { return ViewFactory.textField() }()
     lazy var saveButton = { return ViewFactory.button() }()
+    
+    var coordinate: CLLocationCoordinate2D? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,6 +169,7 @@ class AddShopViewController: UIViewController, MapLocationPickerViewControllerDe
         self.saveButton.layer.cornerRadius = 8
         self.saveButton.clipsToBounds = true
         self.saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
+        self.saveButton.addTarget(self, action: #selector(saveShop), for: .touchUpInside)
         
     }
     
@@ -336,7 +362,109 @@ class AddShopViewController: UIViewController, MapLocationPickerViewControllerDe
     
     @objc func saveShop() {
         
+        guard let name = nameTextField.text,
+              let branch = branchTextField.text,
+              let street = streetTextField.text,
+              let houseNr = houseNrTextField.text,
+              let postcode = postcodeTextField.text,
+              let place = placeTextField.text,
+              let coordinate = coordinate else {
+                
+                self.alertMissingInformation()
+                return
+                
+              }
         
+        if name != "" && street != "" && houseNr != "" && postcode != "" && place != "" {
+            
+            let shopEntry = ShopEntry(title: name,
+                                      branch: branch,
+                                      street: street,
+                                      houseNr: houseNr,
+                                      postcode: postcode,
+                                      place: place,
+                                      coordinate: coordinate,
+                                      website: websiteTextField.text,
+                                      phone: phoneTextField.text,
+                                      monday: mondayOHTextField.text,
+                                      tuesday: tuesdayOHTextField.text,
+                                      wednesday: wednesdayOHTextField.text,
+                                      thursday: thursdayOHTextField.text,
+                                      friday: fridayOHTextField.text,
+                                      saturday: saturdayOHTextField.text,
+                                      sunday: sundayOHTextField.text,
+                                      other: otherOHTextField.text)
+            
+            API.shared.storeShop(shopEntry: shopEntry) { (error, success) in
+                
+                if let error = error as? APIError {
+                    print(error.localizedDescription)
+                    
+                    if error == APIError.noToken {
+                        self.alertNoToken()
+                    } else {
+                        self.alertError()
+                    }
+                    
+                }
+                
+                guard let success = success else { self.alertError(); return }
+                
+                if success {
+                    self.alertSuccess()
+                } else {
+                    self.alertError()
+                }
+                
+            }
+            
+        } else {
+            
+            self.alertMissingInformation()
+            
+        }
+        
+    }
+    
+    private func alertMissingInformation() {
+        
+        Alertift.alert(title: "Angaben fehlen", message: "Erforderliche Angaben wurden nicht eingetragen!")
+            .titleTextColor(branchTextField.textColor)
+            .messageTextColor(branchTextField.textColor)
+            .buttonTextColor(branchTextField.textColor)
+            .backgroundColor(view.backgroundColor)
+            .action(.default("Okay"), handler: { (action, i, textFields) in
+                
+            })
+            .show()
+        
+    }
+    
+    private func alertError() {
+        
+        Alertift.alert(title: "Ein Fehler ist aufgetreten", message: "Ein unbekannter Fehler ist aufgetreten.")
+            .titleTextColor(branchTextField.textColor)
+            .messageTextColor(branchTextField.textColor)
+            .buttonTextColor(branchTextField.textColor)
+            .backgroundColor(view.backgroundColor)
+            .action(.default("Okay"), handler: { (action, i, textFields) in
+                
+            })
+            .show()
+        
+    }
+    
+    private func alertSuccess() {
+        
+        Alertift.alert(title: "Geschäft erfolgreich hinzugefügt", message: "Vielen Dank für Deinen Beitrag!\nDein Eintrag wird einer kurzen Prüfung unterzogen und dann für die Karte freigeschaltet!")
+            .titleTextColor(branchTextField.textColor)
+            .messageTextColor(branchTextField.textColor)
+            .buttonTextColor(branchTextField.textColor)
+            .backgroundColor(view.backgroundColor)
+            .action(.default("Okay"), handler: { (action, i, textFields) in
+                self.navigationController?.popViewController(animated: true)
+            })
+            .show()
         
     }
     
@@ -359,8 +487,9 @@ class AddShopViewController: UIViewController, MapLocationPickerViewControllerDe
         
         promptLabel.removeFromSuperview()
         
-        let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.0025, longitudeDelta: 0.0025))
+        self.coordinate = coordinate
         
+        let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.0025, longitudeDelta: 0.0025))
         let annotation = MKPointAnnotation()
         
         annotation.coordinate = coordinate

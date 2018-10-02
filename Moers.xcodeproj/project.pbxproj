@@ -82,6 +82,7 @@
 		DF855C2820C9EADD00B7F7C7 /* WrapperCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF855C2720C9EADD00B7F7C7 /* WrapperCardCollectionViewCell.swift */; };
 		DF8963D420CB0886008A0EDD /* WaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8963D320CB0886008A0EDD /* WaterfallLayout.swift */; };
 		DF95197F20C8B6F3001D13DC /* PetrolStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95197E20C8B6F3001D13DC /* PetrolStationViewController.swift */; };
+		DF9A914B2160DA840054A2B8 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9A914A2160DA840054A2B8 /* Environment.swift */; };
 		DFA17DF420DEF9DE00BBD838 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA17DF320DEF9DE00BBD838 /* UIButton+Extensions.swift */; };
 		DFA17DF620DFDA6200BBD838 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA17DF520DFDA6200BBD838 /* AccountViewController.swift */; };
 		DFA96A6320BD8A390009B279 /* AveragePetrolPriceComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA96A6220BD8A390009B279 /* AveragePetrolPriceComponent.swift */; };
@@ -295,6 +296,7 @@
 		DF855C2720C9EADD00B7F7C7 /* WrapperCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapperCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		DF8963D320CB0886008A0EDD /* WaterfallLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterfallLayout.swift; sourceTree = "<group>"; };
 		DF95197E20C8B6F3001D13DC /* PetrolStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolStationViewController.swift; sourceTree = "<group>"; };
+		DF9A914A2160DA840054A2B8 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		DFA17DF320DEF9DE00BBD838 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		DFA17DF520DFDA6200BBD838 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		DFA96A6220BD8A390009B279 /* AveragePetrolPriceComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AveragePetrolPriceComponent.swift; sourceTree = "<group>"; };
@@ -609,6 +611,7 @@
 		DF1A49841F6AC40000E9108B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DF9A914A2160DA840054A2B8 /* Environment.swift */,
 				DF4D89562104A6F0008609A1 /* Datasources.swift */,
 				DFBB9DE4212C106000038943 /* Locations */,
 				DFBB9DE5212C108B00038943 /* Utility */,
@@ -1063,6 +1066,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/TwitterKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TwitterShareExtensionUI.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/MMWormhole.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alertift.framework",
 			);
 			outputPaths = (
 			);
@@ -1213,6 +1217,7 @@
 				DFF9B2DB20FE1EB9007FE158 /* Store.swift in Sources */,
 				DF3EE0C520E382EC00CA9279 /* MapLocationPickerViewController.swift in Sources */,
 				DFD8908921248DD9006B5610 /* PrivacyViewController.swift in Sources */,
+				DF9A914B2160DA840054A2B8 /* Environment.swift in Sources */,
 				DFF4E15F2089ABCA007C24E3 /* RubbishCollectionItem.swift in Sources */,
 				DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */,
 				DFD73692211EEDE900826C47 /* EnumCollection.swift in Sources */,
