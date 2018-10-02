@@ -397,7 +397,24 @@ class AddShopViewController: UIViewController, MapLocationPickerViewControllerDe
             
             API.shared.storeShop(shopEntry: shopEntry) { (error, success) in
                 
+                if let error = error as? APIError {
+                    print(error.localizedDescription)
+                    
+                    if error == APIError.noToken {
+                        self.alertNoToken()
+                    } else {
+                        self.alertError()
+                    }
+                    
+                }
                 
+                guard let success = success else { self.alertError(); return }
+                
+                if success {
+                    self.alertSuccess()
+                } else {
+                    self.alertError()
+                }
                 
             }
             
@@ -416,7 +433,37 @@ class AddShopViewController: UIViewController, MapLocationPickerViewControllerDe
             .messageTextColor(branchTextField.textColor)
             .buttonTextColor(branchTextField.textColor)
             .backgroundColor(view.backgroundColor)
-            .action(.default("Okay"))
+            .action(.default("Okay"), handler: { (action, i, textFields) in
+                
+            })
+            .show()
+        
+    }
+    
+    private func alertError() {
+        
+        Alertift.alert(title: "Ein Fehler ist aufgetreten", message: "Ein unbekannter Fehler ist aufgetreten.")
+            .titleTextColor(branchTextField.textColor)
+            .messageTextColor(branchTextField.textColor)
+            .buttonTextColor(branchTextField.textColor)
+            .backgroundColor(view.backgroundColor)
+            .action(.default("Okay"), handler: { (action, i, textFields) in
+                
+            })
+            .show()
+        
+    }
+    
+    private func alertSuccess() {
+        
+        Alertift.alert(title: "Geschäft erfolgreich hinzugefügt", message: "Vielen Dank für Deinen Beitrag!\nDein Eintrag wird einer kurzen Prüfung unterzogen und dann für die Karte freigeschaltet!")
+            .titleTextColor(branchTextField.textColor)
+            .messageTextColor(branchTextField.textColor)
+            .buttonTextColor(branchTextField.textColor)
+            .backgroundColor(view.backgroundColor)
+            .action(.default("Okay"), handler: { (action, i, textFields) in
+                self.navigationController?.popViewController(animated: true)
+            })
             .show()
         
     }
