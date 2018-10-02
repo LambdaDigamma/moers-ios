@@ -173,7 +173,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.viewControllers = [dashboardViewController, newsViewController, mapViewController, communityViewController, otherViewController]
+        self.viewControllers = [dashboardViewController, newsViewController, mapViewController, eventViewController, otherViewController]
         
         setupTheming()
         

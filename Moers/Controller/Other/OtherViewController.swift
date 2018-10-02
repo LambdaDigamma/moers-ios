@@ -36,8 +36,10 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     lazy var data: [Section] = {
         
-        return [Section(title: "",
-                        rows: [AccountRow(title: "Account", action: showAccount)]),
+        return [/*Section(title: "",
+                        rows: [AccountRow(title: "Account", action: showAccount)]),*/
+                Section(title: "Daten",
+                        rows: [NavigationRow(title: "Geschäft hinzufügen", action: showAddShop)]),
                 Section(title: String.localized("SettingsTitle"),
                         rows: [NavigationRow(title: String.localized("SettingsTitle"), action: showSettings)]),
                 Section(title: "Info",
@@ -94,6 +96,10 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
             
         }
         
+    }
+    
+    private func showAddShop() {
+        push(viewController: AddShopViewController.self)
     }
     
     private func showSettings() {

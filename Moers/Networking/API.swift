@@ -240,14 +240,15 @@ class API: NSObject, XMLParserDelegate {
         
         if reachability.connection != .none {
             
-            guard let token = token else { completion(APIError.noToken, nil); return }
+//            guard let token = token else { completion(APIError.noToken, nil); return }
             
             guard let url = URL(string: Environment.current.baseURL + "api/v1/shops") else {
                 completion(APIError.noConnection, nil)
                 return
             }
             
-            let data: [String: Any] = ["name": shopEntry.title,
+            let data: [String: Any] = ["secret": "tzVQl34i6SrYSzAGSkBh",
+                                       "name": shopEntry.title,
                                        "branch": shopEntry.branch,
                                        "street": shopEntry.street,
                                        "house_number": shopEntry.houseNr,
@@ -269,7 +270,7 @@ class API: NSObject, XMLParserDelegate {
             var request = URLRequest(url: url)
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+//            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             request.httpMethod = "POST"
             
             do {

@@ -397,23 +397,27 @@ class AddShopViewController: UIViewController, MapLocationPickerViewControllerDe
             
             API.shared.storeShop(shopEntry: shopEntry) { (error, success) in
                 
-                if let error = error as? APIError {
-                    print(error.localizedDescription)
+                DispatchQueue.main.async {
                     
-                    if error == APIError.noToken {
-                        self.alertNoToken()
+                    if let error = error as? APIError {
+                        print(error.localizedDescription)
+                        
+                        if error == APIError.noToken {
+                            //                        self.alertNoToken()
+                        } else {
+                            self.alertError()
+                        }
+                        
+                    }
+                    
+                    guard let success = success else { self.alertError(); return }
+                    
+                    if success {
+                        self.alertSuccess()
                     } else {
                         self.alertError()
                     }
                     
-                }
-                
-                guard let success = success else { self.alertError(); return }
-                
-                if success {
-                    self.alertSuccess()
-                } else {
-                    self.alertError()
                 }
                 
             }
@@ -456,7 +460,7 @@ class AddShopViewController: UIViewController, MapLocationPickerViewControllerDe
     
     private func alertSuccess() {
         
-        Alertift.alert(title: "Geschäft erfolgreich hinzugefügt", message: "Vielen Dank für Deinen Beitrag!\nDein Eintrag wird einer kurzen Prüfung unterzogen und dann für die Karte freigeschaltet!")
+        Alertift.alert(title: "Geschäft hinzugefügt!", message: "Vielen Dank für Deinen Beitrag!\nDein Eintrag wird einer kurzen Prüfung unterzogen und dann für die Karte freigeschaltet!")
             .titleTextColor(branchTextField.textColor)
             .messageTextColor(branchTextField.textColor)
             .buttonTextColor(branchTextField.textColor)
