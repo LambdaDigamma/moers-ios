@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,41 +15,49 @@
             <objects>
                 <viewController storyboardIdentifier="DrawerContentViewController" id="pXR-Y2-PIM" customClass="ContentViewController" customModule="Moers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o9A-41-zdS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="2rC-lJ-as0">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="610"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="677"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b8x-K1-kcp">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="68"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
                                         <subviews>
-                                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Where do you want to go?" translatesAutoresizingMaskIntoConstraints="NO" id="Svj-Wg-uhD">
-                                                <rect key="frame" x="0.0" y="6" width="600" height="56"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="pXR-Y2-PIM" id="qCf-gr-snh"/>
-                                                </connections>
-                                            </searchBar>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QIc-yl-F1I">
-                                                <rect key="frame" x="0.0" y="67" width="600" height="1"/>
+                                                <rect key="frame" x="0.0" y="97.5" width="375" height="0.5"/>
                                                 <color key="backgroundColor" red="0.81960784310000001" green="0.81960784310000001" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="0.5" id="W5m-RG-ASd"/>
                                                 </constraints>
                                             </view>
+                                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Where do you want to go?" translatesAutoresizingMaskIntoConstraints="NO" id="Svj-Wg-uhD">
+                                                <rect key="frame" x="8" y="6" width="359" height="56"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="pXR-Y2-PIM" id="qCf-gr-snh"/>
+                                                </connections>
+                                            </searchBar>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rj8-Bm-N5e" customClass="TagListView" customModule="TagListView">
+                                                <rect key="frame" x="16" y="62" width="343" height="28"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstItem="rj8-Bm-N5e" firstAttribute="top" secondItem="Svj-Wg-uhD" secondAttribute="bottom" id="78d-gn-Iad"/>
                                             <constraint firstAttribute="bottom" secondItem="QIc-yl-F1I" secondAttribute="bottom" id="905-Kb-hwU"/>
-                                            <constraint firstAttribute="trailing" secondItem="Svj-Wg-uhD" secondAttribute="trailing" id="fcM-uL-nBK"/>
-                                            <constraint firstAttribute="height" priority="750" constant="68" id="msn-0b-zsW"/>
+                                            <constraint firstAttribute="trailing" secondItem="rj8-Bm-N5e" secondAttribute="trailing" constant="16" id="AJf-Ae-Ejy"/>
+                                            <constraint firstAttribute="bottom" secondItem="rj8-Bm-N5e" secondAttribute="bottom" constant="8" id="Ckc-Xl-rAi"/>
+                                            <constraint firstItem="rj8-Bm-N5e" firstAttribute="leading" secondItem="b8x-K1-kcp" secondAttribute="leading" constant="16" id="ZeA-hH-quN"/>
+                                            <constraint firstAttribute="trailing" secondItem="Svj-Wg-uhD" secondAttribute="trailing" constant="8" id="fcM-uL-nBK"/>
+                                            <constraint firstAttribute="height" priority="750" constant="98" id="msn-0b-zsW"/>
                                             <constraint firstItem="Svj-Wg-uhD" firstAttribute="top" secondItem="b8x-K1-kcp" secondAttribute="top" constant="6" id="rhK-Yp-sOn"/>
-                                            <constraint firstItem="Svj-Wg-uhD" firstAttribute="leading" secondItem="b8x-K1-kcp" secondAttribute="leading" id="xDg-HZ-3Ds"/>
+                                            <constraint firstItem="Svj-Wg-uhD" firstAttribute="leading" secondItem="b8x-K1-kcp" secondAttribute="leading" constant="8" id="xDg-HZ-3Ds"/>
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="68" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eFV-9L-9Zp">
-                                        <rect key="frame" x="0.0" y="68" width="600" height="512"/>
+                                        <rect key="frame" x="0.0" y="98" width="375" height="549"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="dataSource" destination="pXR-Y2-PIM" id="LsK-Df-0bZ"/>
@@ -66,7 +77,7 @@
                                 </constraints>
                             </view>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xdS-YA-BpN">
-                                <rect key="frame" x="282" y="6" width="36" height="5"/>
+                                <rect key="frame" x="169.5" y="6" width="36" height="5"/>
                                 <color key="backgroundColor" red="0.72941176470000002" green="0.72549019609999998" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="5" id="KlX-pC-fdL"/>
@@ -74,7 +85,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wqv-0Y-WNG">
-                                <rect key="frame" x="0.0" y="580" width="600" height="1"/>
+                                <rect key="frame" x="0.0" y="647" width="375" height="0.5"/>
                                 <color key="backgroundColor" red="0.81960784310000001" green="0.81960784310000001" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="0.5" id="3kS-Fs-ECp"/>
@@ -107,12 +118,13 @@
                         <outlet property="headerSectionHeightConstraint" destination="msn-0b-zsW" id="o1X-Xx-TFI"/>
                         <outlet property="searchBar" destination="Svj-Wg-uhD" id="3kW-H1-eM5"/>
                         <outlet property="tableView" destination="eFV-9L-9Zp" id="gdg-Qq-jMk"/>
+                        <outlet property="tagListView" destination="rj8-Bm-N5e" id="uIi-J2-vrS"/>
                         <outlet property="topSeparatorView" destination="QIc-yl-F1I" id="02u-6q-jJ9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Ph-Pa-boW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="744.79999999999995" y="350.59970014992507"/>
+            <point key="canvasLocation" x="744.79999999999995" y="350.37481259370315"/>
         </scene>
     </scenes>
 </document>

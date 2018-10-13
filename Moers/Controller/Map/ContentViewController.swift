@@ -11,24 +11,24 @@ import Gestalt
 import Pulley
 import Crashlytics
 import MapKit
+import TagListView
 
-public enum SearchStyle {
+enum DisplayMode {
     
-    case none
-    case branchSearch
-    case textSearch
+    case list
+    case search(searchTerm: String, tags: [NSAttributedString], items: [Location])
+    case filter(searchTerm: String?, selectedTags: [String], items: [Location])
     
 }
 
 public struct CellIdentifier {
     
     static let searchResultCell = "searchResult"
-    static let branchCell = "branchCell"
-    static let filterCell = "filterCell"
+    static let tagCell = "tagCell"
     
 }
 
-class ContentViewController: UIViewController, PulleyDrawerViewControllerDelegate, UISearchBarDelegate {
+class ContentViewController: UIViewController {
 
     // MARK: - UI
     
@@ -37,6 +37,8 @@ class ContentViewController: UIViewController, PulleyDrawerViewControllerDelegat
     @IBOutlet weak var gripperView: UIView!
     @IBOutlet weak var topSeparatorView: UIView!
     @IBOutlet weak var bottomSeparatorView: UIView!
+    
+    @IBOutlet weak var tagListView: TagListView!
     
     @IBOutlet weak var gripperTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerSectionHeightConstraint: NSLayoutConstraint!
@@ -48,20 +50,19 @@ class ContentViewController: UIViewController, PulleyDrawerViewControllerDelegat
         }
     }
     
-    private let cellHeight: CGFloat = 80
+    private lazy var drawer = { self.parent as! MainViewController }()
     private var normalColor = UIColor.clear
     private var highlightedColor = UIColor.clear
-    private lazy var drawer = { self.parent as! MainViewController }()
+    private let fuse = Fuse(location: 0, distance: 100, threshold: 0.45, maxPatternLength: 32, isCaseSensitive: false)
     
     // MARK: - Data
     
-    private var locations: [Location] = []
-    private var filteredLocations: [Location] = []
-    private var branches: [Branch] = []
-    private var selectedBranch: Branch?
-    public var searchStyle = SearchStyle.none
+    private var displayMode = DisplayMode.list
     
-    var datasource: [Location] = []
+    private var locations: [Location] = []
+    private var datasource: [Location] = []
+    private var selectedTags: [String] = []
+    private var tags: [String] = []
     
     // MARK: - UIViewController Lifecycle
     
@@ -97,8 +98,24 @@ class ContentViewController: UIViewController, PulleyDrawerViewControllerDelegat
         self.tableView.delegate = self
         self.tableView.contentInsetAdjustmentBehavior = .never
         self.tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: CellIdentifier.searchResultCell)
-        self.tableView.register(BranchTableViewCell.self, forCellReuseIdentifier: CellIdentifier.branchCell)
-        self.tableView.register(FilterTableViewCell.self, forCellReuseIdentifier: CellIdentifier.filterCell)
+        self.tableView.register(TagTableViewCell.self, forCellReuseIdentifier: CellIdentifier.tagCell)
+        
+        self.tagListView.delegate = self
+        self.tagListView.backgroundColor = UIColor.clear
+        self.tagListView.paddingX = 12
+        self.tagListView.paddingY = 7
+        self.tagListView.marginX = 10
+        self.tagListView.marginY = 7
+        self.tagListView.cornerRadius = 10
+        self.tagListView.tagBackgroundColor = UIColor.yellow
+        self.tagListView.textColor = UIColor.black
+        self.tagListView.enableRemoveButton = true
+        self.tagListView.removeIconLineColor = UIColor.black
+        self.tagListView.removeIconLineWidth = 2
+        self.tagListView.removeButtonIconSize = 7
+        self.tagListView.textFont = UIFont.boldSystemFont(ofSize: 10)
+        
+        self.headerSectionHeightConstraint.constant = 68.0
         
     }
     
@@ -124,63 +141,99 @@ class ContentViewController: UIViewController, PulleyDrawerViewControllerDelegat
     
     private func generateDatasource() -> [Location] {
         
-        if searchBar.text == "" && searchStyle == .none {
-            return locations.sorted { t1, t2 in
-                if t1 is Shop && t2 is Shop {
-                    return t1.name < t2.name
-                } else if t1 is ParkingLot && t2 is ParkingLot {
-                    return t1.name < t2.name
-                } else if t1 is Camera && t2 is Camera {
-                    return t1.name < t2.name
-                } else if t1 is PetrolStation && t2 is PetrolStation {
-                  return t1.name < t2.name
-                } else if t1 is Shop && !(t2 is Shop) {
-                    return true
-                } else if t1 is ParkingLot && t2 is Shop {
-                    return false
-                } else if t1 is PetrolStation && t2 is ParkingLot {
-                    return false
-                } else if t1 is PetrolStation && t2 is Camera {
-                    return false
-                } else {
-                    return false
-                }
-            }
+        self.tags = Array(Set(locations.map { $0.tags }.reduce([], +)))
+        
+        if LocationManager.shared.authorizationStatus == .authorizedAlways ||
+            LocationManager.shared.authorizationStatus == .authorizedWhenInUse {
+         
+            return locations.sorted(by: { (l1, l2) -> Bool in
+                l1.distance < l2.distance
+            })
+            
         } else {
-            return filteredLocations
+            return locations
         }
         
     }
     
-    public func onSelect(item: Branch) {
+    private func searchTags(with searchTerm: String) -> [NSAttributedString] {
+    
+        let results = fuse.search(searchTerm, in: tags)
         
-        if let drawerVC = self.parent as? PulleyViewController {
-            drawerVC.setDrawerPosition(position: .open, animated: true)
-        }
-
-        selectedBranch = item
+        let boldAttrs = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)]
         
-        AnalyticsManager.shared.logSelectedBranch(item.name)
-        
-        searchStyle = .branchSearch
-        
-        filteredLocations = locations.filter { (location) -> Bool in
-
-            guard let shop = location as? Store else { return false }
-
-            if shop.branch == item.name {
-                return true
-            } else {
-                return false
+        let filteredTags: [NSAttributedString] = results.sorted(by: { $0.score < $1.score }).map { result in
+            
+            let tag = tags[result.index]
+            
+            let attributedString = NSMutableAttributedString(string: tag)
+            
+            result.ranges.map(Range.init).map(NSRange.init).forEach {
+                attributedString.addAttributes(boldAttrs, range: $0)
             }
-
+            
+            return attributedString
+            
         }
-
-        tableView.reloadData()
+        
+        return filteredTags
         
     }
     
-    // MARK: - UISearchBarDelegate
+    private func searchLocations(with searchTerm: String) -> [Location] {
+        
+        let results = fuse.search(searchTerm, in: locations)
+                          .sorted(by: { $0.score < $1.score })
+                          .map { locations[$0.index] }
+        
+        return results
+        
+    }
+    
+    private func filterLocations(with searchTerm: String) -> [Location] {
+        
+        if searchTerm.isNotEmptyOrWhitespace {
+            
+            let locations = searchLocations(with: searchTerm)
+            
+            let isEmpty = selectedTags.isEmpty
+            
+            let filterLocations = datasource.filter { !isEmpty && arrayContainsSubset(array: $0.tags, subset: selectedTags) }
+            
+            return (locations + filterLocations).sorted(by: { $0.distance < $1.distance }) // TODO
+            
+        } else {
+            
+            let filterLocations = datasource.filter { !$0.tags.isEmpty && arrayContainsSubset(array: $0.tags, subset: selectedTags) }.sorted(by: { $0.distance < $1.distance })
+            
+            return filterLocations
+            
+        }
+        
+    }
+    
+    private func selectLocaton(_ location: Location) {
+        
+        if let mapController = drawer.primaryContentViewController as? MapViewController {
+            
+            guard let annotation = location as? MKAnnotation else { return }
+            
+            AnalyticsManager.shared.logSelectedItemContent(location)
+            
+            mapController.map.selectAnnotation(annotation, animated: true)
+            mapController.map.camera.altitude = 1000
+            
+        }
+        
+    }
+    
+    func arrayContainsSubset<T : Equatable>(array: [T], subset: [T]) -> Bool {
+        return subset.reduce(true) { (result, item) in return result && array.contains(item) }
+    }
+    
+}
+
+extension ContentViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
@@ -188,109 +241,43 @@ class ContentViewController: UIViewController, PulleyDrawerViewControllerDelegat
             drawerVC.setDrawerPosition(position: .open, animated: true)
         }
         
+        let searchTerm = searchBar.text ?? ""
+        
+        if !searchTerm.isEmpty {
+            
+            let tags = searchTags(with: searchTerm)
+            let items = searchLocations(with: searchTerm)
+            
+            displayMode = .search(searchTerm: searchTerm, tags: tags, items: items)
+            
+            tableView.reloadData()
+            
+        }
+        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        let fuzziness = 1.0 //0.75
-        let threshold = 0.5 // 0.5
+        if !tags.isEmpty && !locations.isEmpty {
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: false)
+        }
         
-        var locs: [Location] = []
-        
-        if searchText != "" {
+        if searchText.isNotEmptyOrWhitespace {
             
-            for location in locations {
-                
-                if location.name.score(searchText, fuzziness: fuzziness) >= threshold {
-                    
-                    locs.append(location)
-                    
-                    continue
-                    
-                } else if location is ParkingLot {
-                    
-                    let loc = location as! ParkingLot
-                    
-                    if loc.address.score(searchText, fuzziness: fuzziness) >= threshold {
-                        
-                        locs.append(location)
-                        
-                        continue
-                        
-                    } else if loc.subtitle!.score(searchText, fuzziness: fuzziness) >= threshold {
-                        
-                        locs.append(location)
-                        
-                    }
-                    
-                    
-                } else if location is Shop {
-                    
-                    let loc = location as! Shop
-                    
-                    if loc.branch.score(searchText, fuzziness: fuzziness) >= threshold {
-                        
-                        locs.append(location)
-                        
-                        continue
-                        
-                    } else if loc.place.score(searchText, fuzziness: fuzziness) >= threshold {
-                        
-                        locs.append(location)
-                        
-                        continue
-                        
-                    } else if loc.street.score(searchText, fuzziness: fuzziness) >= threshold {
-                        
-                        locs.append(location)
-                        
-                        continue
-                        
-                    } else if loc.quater.score(searchText, fuzziness: fuzziness) >= threshold {
-                        
-                        locs.append(location)
-                        
-                        continue
-                        
-                    } else if loc.houseNumber.score(searchText, fuzziness: fuzziness) >= threshold {
-                        
-                        locs.append(location)
-                        
-                        continue
-                        
-                    }
-                    
-                } else if location is Camera {
-                    
-                    let loc = location as! Camera
-                    
-                    if loc.title!.score(searchText, fuzziness: fuzziness) >= threshold {
-                        
-                        locs.append(location)
-                        
-                        continue
-                        
-                    } else if "360° Kamera".score(searchText, fuzziness: fuzziness) >= threshold {
-                        
-                        locs.append(location)
-                        
-                        continue
-                        
-                    }
-                    
-                }
-                
+            let tags = searchTags(with: searchText)
+            let items = searchLocations(with: searchText)
+            
+            displayMode = .search(searchTerm: searchText, tags: tags, items: items)
+            
+        } else {
+            
+            if selectedTags.isEmpty {
+                displayMode = .list
+            } else {
+                displayMode = .filter(searchTerm: nil, selectedTags: selectedTags, items: filterLocations(with: ""))
             }
             
         }
-        
-        if searchText != "" {
-            
-            searchStyle = .none
-            
-        }
-        
-        filteredLocations = locs
         
         tableView.reloadData()
         
@@ -298,13 +285,292 @@ class ContentViewController: UIViewController, PulleyDrawerViewControllerDelegat
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        Answers.logSearch(withQuery: searchBar.text, customAttributes: nil)
+        let searchText = searchBar.text ?? ""
+        
+        if searchText.isNotEmptyOrWhitespace {
+            
+            let filteredItems = filterLocations(with: searchText)
+            
+            self.displayMode = .filter(searchTerm: searchText, selectedTags: selectedTags, items: filteredItems)
+            
+        } else {
+            
+            let filteredItems = filterLocations(with: searchText)
+            
+            self.displayMode = .filter(searchTerm: nil, selectedTags: selectedTags, items: filteredItems)
+            
+        }
+        
+        searchBar.resignFirstResponder()
+        
+        tableView.reloadData()
+        
+        //Answers.logSearch(withQuery: searchBar.text, customAttributes: nil)
+        
+    }
+    
+}
+
+extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        print(displayMode)
+        
+        switch displayMode {
+        
+        case .list:
+            return datasource.count
+            
+        case .filter(_, let tags, let items):
+            
+            tagListView.removeAllTags()
+            tagListView.addTags(tags)
+            
+            return items.count
+            
+        case .search(_, let tags, let items):
+            
+            if tags.count >= 5 {
+                return 5 + items.count
+            } else {
+                return tags.count + items.count
+            }
+            
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        func setupSearchResultCell(_ cell: SearchResultTableViewCell, _ location: Location) -> SearchResultTableViewCell {
+            
+            cell.titleLabel.text = location.title ?? ""
+            cell.subtitleLabel.text = location.detailSubtitle
+            cell.searchImageView.image = location.detailImage
+            
+            return cell
+            
+        }
+        
+        switch displayMode {
+            
+        case .list:
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
+            
+            let location = datasource[indexPath.row]
+            
+            return setupSearchResultCell(cell, location)
+            
+        case .filter(_, _, let items):
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
+            
+            let location = items[indexPath.row]
+            
+            print(location.tags)
+            
+            return setupSearchResultCell(cell, location)
+            
+        case .search(_, let tags, let items):
+            
+            let numberOfTags = tags.count >= 5 ? 5 : tags.count
+            
+            if indexPath.row < numberOfTags {
+            
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.tagCell, for: indexPath) as! TagTableViewCell
+                
+                cell.titleLabel.attributedText = tags[indexPath.row]
+                
+                return cell
+                
+            } else {
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
+                
+                return setupSearchResultCell(cell, items[indexPath.row - numberOfTags])
+                
+            }
+            
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        switch displayMode {
+        case .list:
+            
+            return 60
+            
+        case .search(_, let tags, _):
+            
+            let numberOfTags = tags.count >= 5 ? 5 : tags.count
+            
+            if indexPath.row < numberOfTags {
+                return 50
+            } else {
+                return 60
+            }
+            
+        case .filter(_, _, _):
+            return 60
+            
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell else { return }
+        
+        cell.backgroundColor = highlightedColor
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell else { return }
+        
+        cell.backgroundColor = normalColor
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        switch displayMode {
+        
+        case .list:
+            selectLocaton(datasource[indexPath.row])
+            
+        case .filter(_, _, let items):
+            selectLocaton(items[indexPath.row])
+            
+        case .search(_, let tags, let items):
+            
+            let numberOfTags = tags.count >= 5 ? 5 : tags.count
+            
+            if indexPath.row < numberOfTags {
+                
+                if !selectedTags.contains(tags[indexPath.row].string) {
+                    self.selectedTags.append(tags[indexPath.row].string)
+                }
+                
+                self.searchBar.text = ""
+                
+                self.headerSectionHeightConstraint.constant = 98
+                
+                let filteredItems = filterLocations(with: "")
+                
+                self.displayMode = .filter(searchTerm: "", selectedTags: selectedTags, items: filteredItems)
+                
+                self.tableView.reloadData()
+                
+            } else {
+                
+                selectLocaton(items[indexPath.row - numberOfTags])
+                
+            }
+            
+        }
+        
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
         searchBar.resignFirstResponder()
         
     }
     
-    // MARK: - PulleyDrawerViewControllerDelegate
+}
+
+extension ContentViewController: TagListViewDelegate {
+    
+    func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
+        
+        self.selectedTags.removeAll(where: { $0 == title })
+        
+        sender.removeTagView(tagView)
+        
+        if sender.tagViews.count == 0 {
+            self.headerSectionHeightConstraint.constant = 68.0
+            self.displayMode = .list
+            self.tableView.reloadData()
+        } else {
+            let searchText = searchBar.text ?? ""
+            self.displayMode = .filter(searchTerm: searchText, selectedTags: selectedTags, items: filterLocations(with: searchText))
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+}
+
+extension ContentViewController: EntryDatasource, ShopDatasource, ParkingLotDatasource, CameraDatasource, PetrolDatasource {
+    
+    func didReceiveEntries(_ entries: [Entry]) {
+        
+        self.locations.append(contentsOf: entries as [Entry])
+        
+        self.datasource = generateDatasource()
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+    func didReceiveShops(_ shops: [Store]) {
+        
+    }
+    
+    func didReceiveParkingLots(_ parkingLots: [ParkingLot]) {
+        
+        self.locations.append(contentsOf: parkingLots as [Location])
+        
+        self.datasource = generateDatasource()
+        
+        DispatchQueue.main.async {
+            
+            self.tableView.reloadData()
+            
+        }
+        
+    }
+    
+    func didReceiveCameras(_ cameras: [Camera]) {
+        
+        self.locations.append(contentsOf: cameras as [Location])
+        
+        self.datasource = generateDatasource()
+        
+        DispatchQueue.main.async {
+            
+            self.tableView.reloadData()
+            
+        }
+        
+    }
+    
+    func didReceivePetrolStations(_ petrolStations: [PetrolStation]) {
+        
+        self.locations.append(contentsOf: petrolStations as [PetrolStation])
+        
+        self.datasource = generateDatasource()
+        
+        DispatchQueue.main.async {
+            
+            self.tableView.reloadData()
+            
+        }
+
+        
+    }
+    
+}
+
+extension ContentViewController: PulleyDrawerViewControllerDelegate {
     
     func collapsedDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
         return 68.0 + bottomSafeArea
@@ -338,11 +604,11 @@ class ContentViewController: UIViewController, PulleyDrawerViewControllerDelegat
         
         drawerBottomSafeArea = bottomSafeArea
         
-        if drawer.drawerPosition == .collapsed {
-            headerSectionHeightConstraint.constant = 68.0 + drawerBottomSafeArea
-        } else {
-            headerSectionHeightConstraint.constant = 68.0
-        }
+        //        if drawer.drawerPosition == .collapsed {
+        //            headerSectionHeightConstraint.constant = 68.0 + drawerBottomSafeArea
+        //        } else {
+        //            headerSectionHeightConstraint.constant = 68.0
+        //        }
         
         tableView.isScrollEnabled = drawer.drawerPosition == .open || drawer.currentDisplayMode == .panel
         
@@ -357,249 +623,6 @@ class ContentViewController: UIViewController, PulleyDrawerViewControllerDelegat
             topSeparatorView.isHidden = false
             bottomSeparatorView.isHidden = true
         }
-        
-    }
-    
-}
-
-extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        print("generateDatasource")
-        
-        datasource = generateDatasource()
-        
-        if searchStyle == SearchStyle.textSearch {
-            return datasource.count
-        } else {
-            return datasource.count + 1
-        }
-        
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if searchStyle == .none && indexPath.row == 0 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.branchCell, for: indexPath) as! BranchTableViewCell
-            
-            cell.branches = branches
-            cell.onSelect = onSelect
-            
-            cell.selectionStyle = .none
-            
-            return cell
-            
-        } else if searchStyle == .branchSearch && indexPath.row == 0 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.filterCell, for: indexPath) as! FilterTableViewCell
-            
-            cell.selectionStyle = .none
-            
-            guard let branch = selectedBranch else { return cell }
-            
-            cell.branchLabel.text = branch.name
-            cell.onButtonClick = { cell in
-                
-                self.searchStyle = .none
-                
-                tableView.reloadData()
-                
-            }
-            
-            return cell
-            
-        } else {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
-            
-            cell.searchImageView.backgroundColor = UIColor.clear
-            cell.searchImageView.image = nil
-            cell.searchImageView.layer.borderWidth = 0
-            
-            if let shop = datasource[indexPath.row - 1] as? Store {
-                
-                cell.titleLabel.text = shop.title
-                cell.subtitleLabel.text = shop.subtitle
-                
-                cell.searchImageView.backgroundColor = AppColor.yellow
-                cell.searchImageView.contentMode = .scaleAspectFit
-                cell.searchImageView.layer.borderColor = UIColor.black.cgColor
-                cell.searchImageView.layer.borderWidth = 1
-                cell.searchImageView.layer.cornerRadius = 7
-                
-                if let image = ShopIconDrawer.annotationImage(from: shop.branch) {
-                    
-                    if let img = UIImage.imageResize(imageObj: image, size: CGSize(width: cell.searchImageView.bounds.width / 2, height: cell.searchImageView.bounds.height / 2), scaleFactor: 0.75) {
-                        
-                        cell.searchImageView.image = img
-                        
-                    }
-                    
-                }
-                
-            } else if let parkingLot = datasource[indexPath.row - 1] as? ParkingLot {
-                
-                cell.titleLabel.text = parkingLot.title
-                cell.subtitleLabel.text = parkingLot.subtitle
-                
-                cell.searchImageView.image = #imageLiteral(resourceName: "parkingLot")
-                
-            } else if let camera = datasource[indexPath.row - 1] as? Camera {
-                
-                cell.titleLabel.text = camera.title
-                cell.subtitleLabel.text = camera.localizedCategory
-                
-                cell.searchImageView.image = #imageLiteral(resourceName: "camera")
-                
-            } else if let bikeCharger = datasource[indexPath.row - 1] as? BikeChargingStation {
-                
-                cell.titleLabel.text = bikeCharger.title
-                cell.subtitleLabel.text = bikeCharger.localizedCategory
-                
-                cell.searchImageView.image = #imageLiteral(resourceName: "ebike")
-                
-            } else if let petrolStation = datasource[indexPath.row - 1] as? PetrolStation {
-                
-                cell.titleLabel.text = petrolStation.title
-                cell.subtitleLabel.text = petrolStation.localizedCategory
-                
-                cell.searchImageView.image = #imageLiteral(resourceName: "petrol")
-                
-            }
-            
-            return cell
-            
-        }
-        
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        if searchStyle == .none && indexPath.row == 0 {
-            
-            return (2 * cellHeight) + 40
-            
-        } else if searchStyle == .branchSearch && indexPath.row == 0 {
-            
-            return 50
-            
-        } else {
-            
-            return 81
-            
-        }
-        
-    }
-    
-    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        
-        guard let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell else { return }
-        
-        cell.backgroundColor = highlightedColor
-        
-        if let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell, let _ = datasource[indexPath.row - 1] as? Shop {
-            
-            cell.searchImageView.backgroundColor = AppColor.yellow
-            
-        }
-        
-    }
-    
-    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-        
-        guard let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell else { return }
-        
-        cell.backgroundColor = normalColor
-        
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if searchBar.text != "" {
-            
-            Answers.logSearch(withQuery: searchBar.text, customAttributes: nil)
-            
-        }
-        
-        if indexPath.row != 0 {
-            
-            if let mapController = drawer.primaryContentViewController as? MapViewController {
-                
-                let location = self.datasource[indexPath.row - 1]
-                
-                guard let annotation = location as? MKAnnotation else { return }
-                
-                AnalyticsManager.shared.logSelectedItemContent(location)
-                
-                mapController.map.selectAnnotation(annotation, animated: true)
-                mapController.map.camera.altitude = 1000
-                
-            }
-            
-        }
-        
-    }
-    
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        
-        searchBar.resignFirstResponder()
-        
-    }
-    
-}
-
-extension ContentViewController: ShopDatasource, ParkingLotDatasource, CameraDatasource, PetrolDatasource {
-    
-    func didReceiveShops(_ shops: [Store]) {
-        
-        self.locations.append(contentsOf: shops as [Location])
-        
-        self.branches = shops.map { Branch(name: $0.branch, color: "") }.uniqueElements.sorted(by: { $0.name < $1.name })
-        
-        DispatchQueue.main.async {
-            
-            self.tableView.reloadData()
-            
-        }
-        
-    }
-    
-    func didReceiveParkingLots(_ parkingLots: [ParkingLot]) {
-        
-        self.locations.append(contentsOf: parkingLots as [Location])
-        
-        DispatchQueue.main.async {
-            
-            self.tableView.reloadData()
-            
-        }
-        
-    }
-    
-    func didReceiveCameras(_ cameras: [Camera]) {
-        
-        self.locations.append(contentsOf: cameras as [Location])
-        
-        DispatchQueue.main.async {
-            
-            self.tableView.reloadData()
-            
-        }
-        
-    }
-    
-    func didReceivePetrolStations(_ petrolStations: [PetrolStation]) {
-        
-        self.locations.append(contentsOf: petrolStations as [PetrolStation])
-        
-        DispatchQueue.main.async {
-            
-            self.tableView.reloadData()
-            
-        }
-
         
     }
     

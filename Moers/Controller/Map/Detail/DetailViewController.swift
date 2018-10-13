@@ -183,7 +183,11 @@ class DetailViewController: UIViewController {
         
         // TODO: Generify Detail Morphing
         
-        if let shop = location as? Store {
+        if let entry = location as? Entry {
+            
+            morphDetailEntry()
+            
+        } else if let shop = location as? Store {
             
             if let image = ShopIconDrawer.annotationImage(from: shop.branch) {
 
@@ -253,6 +257,16 @@ class DetailViewController: UIViewController {
     }
     
     // MARK: - Detail
+    
+    private func morphDetailEntry() {
+        
+        let viewController = DetailEntryViewController.fromStoryboard()
+        
+        self.add(asChildViewController: viewController)
+        
+        viewController.selectedEntry = selectedLocation as? Entry
+        
+    }
     
     private func morphDetailParking() {
         

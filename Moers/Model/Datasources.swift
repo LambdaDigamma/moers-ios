@@ -31,3 +31,15 @@ protocol PetrolDatasource {
     func didReceivePetrolStations(_ petrolStations: [PetrolStation])
     
 }
+
+protocol EntryDatasource {
+    
+    func didReceiveEntries(_ entries: [Entry])
+    
+}
+
+protocol RestaurantDatasource {
+    
+    func didReceiveRestaurants(_ restaurants: [Restaurant]) 
+    
+}

@@ -533,13 +533,13 @@ extension AddShopViewController: UITextFieldDelegate {
             
         } else if textField === websiteTextField {
             
-            if (textField.text ?? "").count != 0 {
+            if !(textField.text ?? "").isEmpty {
                 textField.setValidInput(textField.text ?? "" ~= "[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)")
             }
             
         } else {
             
-            if (textField.text ?? "").count != 0 {
+            if !(textField.text ?? "").isEmpty {
                 textField.setValidInput(true)
             }
             

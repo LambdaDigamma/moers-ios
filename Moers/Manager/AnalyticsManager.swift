@@ -24,6 +24,10 @@ struct AnalyticsManager {
         
         self.shouldLog = true
         
+        if Environment.current.type != .production {
+            self.shouldLog = false
+        }
+        
     }
     
     public var isAnalyticsEnabled: Bool {

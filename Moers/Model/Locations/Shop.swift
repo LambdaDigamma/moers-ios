@@ -99,10 +99,10 @@ struct OpeningHours {
     
 }
 
-class Shop: NSObject, MKAnnotation, Location {
+class Shop: NSObject, Location {
     
     var location: CLLocation
-    var name: String
+    @objc dynamic var name: String
     
     var quater: String
     var street: String
@@ -135,6 +135,24 @@ class Shop: NSObject, MKAnnotation, Location {
     var title: String? { return self.name }
     
     var subtitle: String? { return street + " " + houseNumber }
+    
+    var properties: [FuseProperty] {
+        return [
+            FuseProperty(name: "name", weight: 1)
+        ]
+    }
+    
+    lazy var distance: Double = {
+        if let location = LocationManager.shared.lastLocation {
+            return location.distance(from: self.location)
+        } else {
+            return 0
+        }
+    }()
+
+    var tags: [String] {
+        return [localizedCategory]
+    }
     
     var coordinate: CLLocationCoordinate2D { return location.coordinate }
     

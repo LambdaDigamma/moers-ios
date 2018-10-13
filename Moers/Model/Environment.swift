@@ -26,7 +26,7 @@ struct Environment {
                                                                   .local: Environment(name: "Local", baseURL: "http://localhost:8080/", clientID: 2, clientSecret: "2l564wXWihfjFzJoqES6P1gRtQtDnL5yr8XxBRV6", type: .local)]
     
     static var current: Environment {
-        guard let env = Environment.all[.local] else { fatalError("No Environment set!") }
+        guard let env = Environment.all[.production] else { fatalError("No Environment set!") }
         return env
     }
     

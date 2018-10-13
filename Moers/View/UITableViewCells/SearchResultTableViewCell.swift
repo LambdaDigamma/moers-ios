@@ -11,22 +11,14 @@ import Gestalt
 
 class SearchResultTableViewCell: UITableViewCell {
     
-    lazy var searchImageView: UIImageView = {
-        
-        let imageView = UIImageView()
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return imageView
-        
-    }()
+    lazy var searchImageView: UIImageView = { ViewFactory.imageView() }()
     
     lazy var titleLabel: UILabel = {
         
         let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
         
@@ -39,7 +31,7 @@ class SearchResultTableViewCell: UITableViewCell {
         let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         
         return label
         
@@ -74,7 +66,7 @@ class SearchResultTableViewCell: UITableViewCell {
                            titleLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
                            titleLabel.leftAnchor.constraint(equalTo: searchImageView.rightAnchor, constant: 8),
                            titleLabel.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: 0),
-                           subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+                           subtitleLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0),
                            subtitleLabel.leftAnchor.constraint(equalTo: searchImageView.rightAnchor, constant: 8),
                            subtitleLabel.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: 0)]
         

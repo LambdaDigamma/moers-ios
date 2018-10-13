@@ -155,60 +155,11 @@ extension SelectionViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
         
-        cell.searchImageView.backgroundColor = UIColor.clear
-        cell.searchImageView.image = nil
-        cell.searchImageView.layer.borderWidth = 0
+        let location = clusteredLocations[indexPath.row]
         
-        if let shop = clusteredLocations[indexPath.row] as? Store {
-            
-            cell.titleLabel.text = shop.title
-            cell.subtitleLabel.text = shop.subtitle
-            
-            cell.searchImageView.contentMode = .scaleAspectFit
-            cell.searchImageView.layer.borderColor = UIColor.black.cgColor
-            cell.searchImageView.layer.borderWidth = 1
-            cell.searchImageView.layer.cornerRadius = 7
-            cell.searchImageView.backgroundColor = AppColor.yellow
-            
-            if let image = ShopIconDrawer.annotationImage(from: shop.branch) {
-                
-                if let img = UIImage.imageResize(imageObj: image, size: CGSize(width: cell.searchImageView.bounds.width / 2, height: cell.searchImageView.bounds.height / 2), scaleFactor: 0.75) {
-                    
-                    cell.searchImageView.image = img
-                    
-                }
-                
-            }
-            
-        } else if let parkingLot = clusteredLocations[indexPath.row] as? ParkingLot {
-            
-            cell.titleLabel.text = parkingLot.title
-            cell.subtitleLabel.text = parkingLot.subtitle
-            
-            cell.searchImageView.image = #imageLiteral(resourceName: "parkingLot")
-            
-        } else if let camera = clusteredLocations[indexPath.row] as? Camera {
-            
-            cell.titleLabel.text = camera.title
-            cell.subtitleLabel.text = camera.localizedCategory
-            
-            cell.searchImageView.image = #imageLiteral(resourceName: "camera")
-            
-        } else if let ebike = clusteredLocations[indexPath.row] as? BikeChargingStation {
-            
-            cell.titleLabel.text = ebike.title
-            cell.subtitleLabel.text = ebike.localizedCategory
-            
-            cell.searchImageView.image = #imageLiteral(resourceName: "ebike")
-            
-        } else if let petrolStation = clusteredLocations[indexPath.row] as? PetrolStation {
-            
-            cell.titleLabel.text = petrolStation.name
-            cell.subtitleLabel.text = petrolStation.brand
-            
-            cell.searchImageView.image = #imageLiteral(resourceName: "petrol")
-            
-        }
+        cell.titleLabel.text = location.title ?? ""
+        cell.subtitleLabel.text = location.detailSubtitle
+        cell.searchImageView.image = location.detailImage
         
         return cell
         
@@ -242,9 +193,7 @@ extension SelectionViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return 81
-        
+        return 60
     }
     
 }

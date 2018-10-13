@@ -9,9 +9,9 @@
 import Foundation
 import MapKit
 
-class BikeChargingStation: NSObject, Location, MKAnnotation {
+class BikeChargingStation: NSObject, Location {
     
-    var name: String
+    @objc dynamic var name: String
     var location: CLLocation
     
     var postcode: String
@@ -32,9 +32,27 @@ class BikeChargingStation: NSObject, Location, MKAnnotation {
         
     }
     
+    var tags: [String] {
+        return [localizedCategory]
+    }
+    
+    lazy var distance: Double = {
+        if let location = LocationManager.shared.lastLocation {
+            return location.distance(from: self.location)
+        } else {
+            return 0
+        }
+    }()
+    
     var title: String? { return self.name }
     
     var subtitle: String? { return nil }
+    
+    var properties: [FuseProperty] {
+        return [
+            FuseProperty(name: "name", weight: 1)
+        ]
+    }
     
     var coordinate: CLLocationCoordinate2D { return location.coordinate }
     

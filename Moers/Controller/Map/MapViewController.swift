@@ -19,6 +19,7 @@ struct AnnotationIdentifier {
     static let camera = "camera"
     static let bikeChargingStation = "bikeCharger"
     static let petrolStation = "petrolStation"
+    static let entry = "entry"
     
 }
 
@@ -55,6 +56,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
             
             view?.annotation = cluster
             view?.collisionMode = .circle
+            
+            return view
+            
+        } else if let entry = annotation as? Entry {
+            
+            var view = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationIdentifier.entry)
+            
+            if view == nil {
+                view = EntryAnnotationView(annotation: entry, reuseIdentifier: AnnotationIdentifier.entry)
+            } else {
+                view?.annotation = entry
+            }
             
             return view
             
@@ -161,13 +174,24 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
         
         self.view.addSubview(map)
         
-        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.451667, longitude: 6.626389), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
-        
-        map.setRegion(region, animated: true)
         map.showsUserLocation = true
         map.showsBuildings = false
         map.showsPointsOfInterest = false
         map.mapType = .standard
+        
+        if let userLocation = LocationManager.shared.lastLocation?.coordinate {
+            
+            let region = MKCoordinateRegion(center: userLocation, latitudinalMeters: 500, longitudinalMeters: 500)
+            
+            map.setRegion(region, animated: true)
+            
+        } else {
+            
+            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.451667, longitude: 6.626389), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
+            
+            map.setRegion(region, animated: true)
+            
+        }
         
     }
     
@@ -191,15 +215,25 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
     
 }
 
-extension MapViewController: ShopDatasource, ParkingLotDatasource, CameraDatasource, PetrolDatasource {
+extension MapViewController: EntryDatasource, ShopDatasource, ParkingLotDatasource, CameraDatasource, PetrolDatasource {
+    
+    func didReceiveEntries(_ entries: [Entry]) {
+        
+        self.locations.append(contentsOf: entries as [Entry])
+        
+        DispatchQueue.main.async {
+            self.map.addAnnotations(entries)
+        }
+        
+    }
     
     func didReceiveShops(_ shops: [Store]) {
         
-        self.locations.append(contentsOf: shops as [Store])
+//        self.locations.append(contentsOf: shops as [Store])
         
-        DispatchQueue.main.async {
-            self.map.addAnnotations(shops)
-        }
+//        DispatchQueue.main.async {
+//            self.map.addAnnotations(shops)
+//        }
         
     }
 

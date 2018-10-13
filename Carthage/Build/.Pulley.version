@@ -1,9 +1,9 @@
 {
-  "commitish" : "2.6.0",
+  "commitish" : "2.6.2",
   "iOS" : [
     {
       "name" : "Pulley",
-      "hash" : "907458afcd23f1fff61263eb90ca5de99e20f1c4b75b9bbe3eb0660b4c0d0223"
+      "hash" : "bbefa2a4aebdeb995a3ecdb0ee2a00f3ef8c13664f563a75abfde962c89dee3f"
     }
   ]
 }
