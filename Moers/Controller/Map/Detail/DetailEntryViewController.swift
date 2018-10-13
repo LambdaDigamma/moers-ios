@@ -1,8 +1,8 @@
 //
-//  DetailShopViewController.swift
+//  DetailEntryViewController.swift
 //  Moers
 //
-//  Created by Lennart Fischer on 22.07.18.
+//  Created by Lennart Fischer on 11.10.18.
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
@@ -11,8 +11,8 @@ import Gestalt
 import SafariServices
 import Crashlytics
 
-class DetailShopViewController: UIViewController {
-
+class DetailEntryViewController: UIViewController {
+    
     @IBOutlet weak var topSeparator: UIView!
     @IBOutlet weak var callButton: DesignableButton!
     @IBOutlet weak var websiteButton: DesignableButton!
@@ -43,20 +43,20 @@ class DetailShopViewController: UIViewController {
     @IBOutlet weak var websiteHeaderLabel: UILabel!
     @IBOutlet weak var websiteLabel: UILabel!
     
-    public var selectedShop: Store? { didSet { selectShop(selectedShop) } }
+    public var selectedEntry: Entry? { didSet { selectedEntry(selectedEntry) } }
     
     // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.setupUI()
         self.setupTheming()
         
     }
     
     // MARK: - Private Methods
-
+    
     private func setupUI() {
         
         self.callButton.setTitle(String.localized("CallAction"), for: .normal)
@@ -70,8 +70,6 @@ class DetailShopViewController: UIViewController {
         self.addressHeaderLabel.text = "Adresse"
         self.callButton.addTarget(self, action: #selector(call), for: .touchUpInside)
         self.websiteButton.addTarget(self, action: #selector(openWebsite), for: .touchUpInside)
-        
-        
         
         self.topSeparator.alpha = 0.5
         self.buttonSeparator.alpha = 0.5
@@ -126,24 +124,24 @@ class DetailShopViewController: UIViewController {
         }
         
     }
-    
-    private func selectShop(_ shop: Store?) {
 
-        guard let shop = shop else { return }
+    private func selectedEntry(_ entry: Entry?) {
         
-        self.streetLabel.text = shop.street + " " + shop.houseNumber
-        self.placeLabel.text = shop.postcode + " " + shop.place
+        guard let entry = entry else { return }
+        
+        self.streetLabel.text = entry.street + " " + entry.houseNumber
+        self.placeLabel.text = entry.postcode + " " + entry.place
         self.countryLabel.text = "Deutschland"
         
-        self.mondayLabel.text = shop.monday ?? ""
-        self.tuesdayLabel.text = shop.tuesday ?? ""
-        self.wednesdayLabel.text = shop.wednesday ?? ""
-        self.thursdayLabel.text = shop.thursday ?? ""
-        self.fridayLabel.text = shop.friday ?? ""
-        self.saturdayLabel.text = shop.saturday ?? ""
-        self.otherLabel.text = shop.other ?? ""
+        self.mondayLabel.text = entry.monday ?? ""
+        self.tuesdayLabel.text = entry.tuesday ?? ""
+        self.wednesdayLabel.text = entry.wednesday ?? ""
+        self.thursdayLabel.text = entry.thursday ?? ""
+        self.fridayLabel.text = entry.friday ?? ""
+        self.saturdayLabel.text = entry.saturday ?? ""
+        self.otherLabel.text = entry.other ?? ""
         
-        if let url = shop.url, url != "" {
+        if let url = entry.url, url != "" {
             self.websiteLabel.text = url
         } else {
             self.websiteLabel.text = "n/v"
@@ -151,7 +149,7 @@ class DetailShopViewController: UIViewController {
             self.websiteButton.alpha = 0.25
         }
         
-        if let phone = shop.phone, phone != "" {
+        if let phone = entry.phone, phone != "" {
             self.phoneLabel.text = phone
         } else {
             self.phoneLabel.text = "n/v"
@@ -159,16 +157,15 @@ class DetailShopViewController: UIViewController {
             self.callButton.alpha = 0.25
         }
         
-        Answers.logCustomEvent(withName: "Open Shop Website", customAttributes:
-            ["name": shop.name,
-             "branch": shop.branch])
+        Answers.logCustomEvent(withName: "Open Entry Website", customAttributes:
+            ["name": entry.name])
         
     }
     
     @objc private func call() {
         
-        guard let shop = selectedShop else { return }
-        guard let phone = shop.phone?.replacingOccurrences(of: " ", with: "") else { return }
+        guard let entry = selectedEntry else { return }
+        guard let phone = entry.phone?.replacingOccurrences(of: " ", with: "") else { return }
         guard let url = URL(string: "telprompt://" + phone) else { return }
         
         if UIApplication.shared.canOpenURL(url) {
@@ -179,8 +176,8 @@ class DetailShopViewController: UIViewController {
     
     @objc private func openWebsite() {
         
-        guard let shop = selectedShop else { return }
-        guard var urlString = shop.url else { return }
+        guard let entry = selectedEntry else { return }
+        guard var urlString = entry.url else { return }
         
         if !urlString.starts(with: "https://") && !urlString.starts(with: "http://") {
             urlString = "http://" + urlString
@@ -195,17 +192,12 @@ class DetailShopViewController: UIViewController {
         
     }
     
-    static func fromStoryboard() -> DetailShopViewController {
+    static func fromStoryboard() -> DetailEntryViewController {
         
         let storyboard = UIStoryboard(name: "DetailViewControllers", bundle: nil)
         
-        return storyboard.instantiateViewController(withIdentifier: "DetailShopViewController") as! DetailShopViewController
+        return storyboard.instantiateViewController(withIdentifier: "DetailEntryViewController") as! DetailEntryViewController
         
     }
     
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-public func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

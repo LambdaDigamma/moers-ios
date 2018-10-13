@@ -11,12 +11,11 @@ import MapKit
 
 typealias PanoID = Int
 
-class Camera: NSObject, Location, MKAnnotation {
+class Camera: NSObject, Location {
     
-    var name: String
+    @objc dynamic var name: String
     var location: CLLocation
-    
-    var panoID = PanoID()
+    var panoID: PanoID
     
     init(name: String, location: CLLocation, panoID: PanoID) {
         
@@ -27,22 +26,64 @@ class Camera: NSObject, Location, MKAnnotation {
         
     }
     
-    var title: String? { return self.name }
     
-    var subtitle: String? { return nil }
+    
+    // MARK: - Search
+    
+    var properties: [FuseProperty] {
+        return [
+            FuseProperty(name: "name", weight: 1)
+        ]
+    }
+    
+    // MARK: - Location
+    
+    lazy var distance: Double = {
+        if let location = LocationManager.shared.lastLocation {
+            return location.distance(from: self.location)
+        } else {
+            return 0
+        }
+    }()
+    
+    var tags: [String] {
+        return [localizedCategory]
+    }
+    
+    // MARK: - MKAnnotation
     
     var coordinate: CLLocationCoordinate2D { return location.coordinate }
+    var title: String? { return self.name }
+    var subtitle: String? { return nil }
     
-    var detailSubtitle: String { return localizedCategory }
-
-    lazy var detailImage: UIImage = { return #imageLiteral(resourceName: "camera") }()
-    
-    lazy var detailViewController: UIViewController = { DetailCameraViewController() }()
-    
-    var detailHeight: CGFloat = 80.0
+    // MARK: - Categorizable
     
     var category: String { return "Camera" }
-    
     var localizedCategory: String { return String.localized("Camera") }
+    
+    // MARK: - DetailRepresentable
+    
+    var detailSubtitle: String {
+        
+        if LocationManager.shared.authorizationStatus == .authorizedAlways ||
+            LocationManager.shared.authorizationStatus == .authorizedWhenInUse {
+            
+            var subtitle = ""
+            
+            let dist = prettifyDistance(distance: distance)
+            
+            return "\(dist) • \(localizedCategory)"
+            
+        } else {
+            return localizedCategory
+        }
+        
+        return localizedCategory
+        
+    }
+    
+    var detailHeight: CGFloat = 80.0
+    lazy var detailImage: UIImage = { return #imageLiteral(resourceName: "camera") }()
+    lazy var detailViewController: UIViewController = { DetailCameraViewController() }()
     
 }

@@ -29,15 +29,14 @@ enum Status: String, Localizable {
     
 }
 
-class ParkingLot: NSObject, Location, MKAnnotation {
+class ParkingLot: NSObject, Location {
     
-    var location: CLLocation
-    var name: String
+    @objc dynamic public var name: String
     
-    var address: String
-    var slots: Int
-    var free: Int
-    var status = Status.undocumented
+    public var address: String
+    public var slots: Int
+    public var free: Int
+    public var status = Status.undocumented
     
     init(name: String, address: String, slots: Int, free: Int, status: Status, location: CLLocation) {
         
@@ -51,22 +50,60 @@ class ParkingLot: NSObject, Location, MKAnnotation {
         
     }
     
-    var title: String? { return self.name }
+    // MARK: - Search
     
-    var subtitle: String? { return address }
+    public var properties: [FuseProperty] {
+        return [
+            FuseProperty(name: "name", weight: 1)
+        ]
+    }
+    
+    // MARK: - Location
+    
+    public var location: CLLocation
+    
+    lazy var distance: Double = {
+        if let location = LocationManager.shared.lastLocation {
+            return location.distance(from: self.location)
+        } else {
+            return 0
+        }
+    }()
+    
+    public var tags: [String] {
+        return [localizedCategory, "Parken"]
+    }
+    
+    // MARK: - MKAnnotation
     
     var coordinate: CLLocationCoordinate2D { return location.coordinate }
+    var title: String? { return self.name }
+    var subtitle: String? { return address }
     
-    var detailSubtitle: String { return localizedCategory }
+    // MARK: - Categorizable
+ 
+    var category: String { return "Parking Lot" }
+    var localizedCategory: String { return String.localized("ParkingLot") }
     
-    lazy var detailImage: UIImage = { return #imageLiteral(resourceName: "parkingLot") }()
+    // MARK: - DetailRepresentable
     
-    lazy var detailViewController: UIViewController = { DetailParkingViewController() }()
+    var detailSubtitle: String {
+        
+        if LocationManager.shared.authorizationStatus == .authorizedAlways ||
+            LocationManager.shared.authorizationStatus == .authorizedWhenInUse {
+            
+            let dist = prettifyDistance(distance: distance)
+            
+            return "\(dist) • \(localizedCategory)"
+            
+        } else {
+            return localizedCategory
+        }
+        
+    }
     
     var detailHeight: CGFloat { return 220.0 }
-    
-    var category: String { return "Parking Lot" }
-    
-    var localizedCategory: String { return String.localized("ParkingLot") }
+    lazy var detailImage: UIImage = { return #imageLiteral(resourceName: "parkingLot") }()
+    lazy var detailViewController: UIViewController = { DetailParkingViewController() }()
     
 }

@@ -269,6 +269,8 @@ SWIFT_CLASS("_TtC6Pulley20PulleyViewController")
 @property (nonatomic) float shadowOpacity;
 /// The radius of the drawer shadow.
 @property (nonatomic) CGFloat shadowRadius;
+/// The offset of the drawer shadow.
+@property (nonatomic) CGSize shadowOffset;
 /// The opaque color of the background dimming view.
 @property (nonatomic, strong) UIColor * _Nonnull backgroundDimmingColor;
 /// The maximum amount of opacity when dimming.

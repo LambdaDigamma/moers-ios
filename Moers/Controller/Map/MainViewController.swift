@@ -26,8 +26,8 @@ class MainViewController: PulleyViewController {
         
         self.displayMode = .automatic
         
-        self.mapViewController = contentViewController as! MapViewController
-        self.contentViewController = drawerViewController as! ContentViewController
+        self.mapViewController = contentViewController as? MapViewController
+        self.contentViewController = drawerViewController as? ContentViewController
         
     }
     
@@ -40,11 +40,13 @@ class MainViewController: PulleyViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.eventBus.add(subscriber: contentViewController, for: EntryDatasource.self)
         self.eventBus.add(subscriber: contentViewController, for: ShopDatasource.self)
         self.eventBus.add(subscriber: contentViewController, for: ParkingLotDatasource.self)
         self.eventBus.add(subscriber: contentViewController, for: CameraDatasource.self)
         self.eventBus.add(subscriber: contentViewController, for: PetrolDatasource.self)
         
+        self.eventBus.add(subscriber: mapViewController, for: EntryDatasource.self)
         self.eventBus.add(subscriber: mapViewController, for: ShopDatasource.self)
         self.eventBus.add(subscriber: mapViewController, for: ParkingLotDatasource.self)
         self.eventBus.add(subscriber: mapViewController, for: CameraDatasource.self)
@@ -67,6 +69,7 @@ class MainViewController: PulleyViewController {
         
         OperationQueue.main.addOperation {
             
+            self.loadEntries()
             self.loadShops()
             self.loadParkingLots()
             self.loadPetrolStations()
@@ -92,6 +95,25 @@ class MainViewController: PulleyViewController {
             
             self.locations = self.locations.filter { !($0 is Store) }
             self.locations.append(contentsOf: shops)
+            
+        }
+        
+    }
+    
+    private func loadEntries() {
+        
+        EntryManager.shared.get { (error, entries) in
+            
+            if let error = error {
+                print(error)
+            }
+            
+            guard let entries = entries else { return }
+            
+            self.eventBus.notify(EntryDatasource.self, closure: { subscriber in
+                subscriber.didReceiveEntries(entries)
+            })
+            
             
         }
         

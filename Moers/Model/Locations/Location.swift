@@ -8,11 +8,14 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
-protocol Location: DetailPresentable, Categorizable {
+protocol Location: DetailPresentable, Categorizable, Fuseable, MKAnnotation {
     
     var location: CLLocation { get }
     var name: String { get }
+    var tags: [String] { get }
+    var distance: Double { get }
     
 }
 

@@ -1,19 +1,19 @@
 //
-//  Store.swift
+//  Restaurant.swift
 //  Moers
 //
-//  Created by Lennart Fischer on 17.07.18.
+//  Created by Lennart Fischer on 03.10.18.
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
 import Foundation
 import MapKit
 
-class Store: NSObject, Codable, Location {
+class Restaurant: NSObject, Codable, Location {
     
     public let id: Int
-    public var name: String
-    public let branch: String
+    @objc dynamic public var name: String
+    public let cuisine: String
     public let street: String
     public let houseNumber: String
     public let postcode: String
@@ -31,11 +31,11 @@ class Store: NSObject, Codable, Location {
     private let lat: Double
     private let lng: Double
     
-    init(id: Int, name: String, branch: String, street: String, houseNumber: String, postcode: String, place: String, url: String?, phone: String?, monday: String?, tuesday: String?, wednesday: String?, thursday: String?, friday: String?, saturday: String?, sunday: String?, other: String?, lat: Double, lng: Double) {
+    init(id: Int, name: String, cuisine: String, street: String, houseNumber: String, postcode: String, place: String, url: String?, phone: String?, monday: String?, tuesday: String?, wednesday: String?, thursday: String?, friday: String?, saturday: String?, sunday: String?, other: String?, lat: Double, lng: Double) {
         
         self.id = id
         self.name = name
-        self.branch = branch
+        self.cuisine = cuisine
         self.street = street
         self.houseNumber = houseNumber
         self.postcode = postcode
@@ -55,8 +55,8 @@ class Store: NSObject, Codable, Location {
         
     }
     
-    var properties: [FuseProperty] {
-        return []
+    var tags: [String] {
+        return [localizedCategory]
     }
     
     lazy var distance: Double = {
@@ -66,10 +66,6 @@ class Store: NSObject, Codable, Location {
             return 0
         }
     }()
-
-    var tags: [String] {
-        return [localizedCategory]
-    }
     
     var location: CLLocation { return CLLocation(latitude: lat, longitude: lng) }
     
@@ -77,9 +73,15 @@ class Store: NSObject, Codable, Location {
     
     var subtitle: String? { return self.street + " " + self.houseNumber }
     
-    var detailSubtitle: String { return branch }
+    var properties: [FuseProperty] {
+        return [
+            FuseProperty(name: "name", weight: 1)
+        ]
+    }
     
-    lazy var detailImage: UIImage = { Store.image(from: branch) }()
+    var detailSubtitle: String { return cuisine }
+    
+    lazy var detailImage: UIImage = { UIImage() }()
     
     lazy var detailViewController: UIViewController = { DetailShopViewController.fromStoryboard() }()
     
@@ -101,3 +103,5 @@ class Store: NSObject, Codable, Location {
     }
     
 }
+
+

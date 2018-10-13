@@ -184,3 +184,25 @@ public struct Math {
     }
     
 }
+
+protocol Formattable {
+    func format(pattern: String) -> String
+}
+extension Formattable where Self: CVarArg {
+    func format(pattern: String) -> String {
+        return String(format: pattern, arguments: [self])
+    }
+}
+extension Int: Formattable { }
+extension Double: Formattable { }
+extension Float: Formattable { }
+
+func prettifyDistance(distance: Double) -> String {
+    
+    if distance >= 1000 {
+        return Double(distance / 1000).format(pattern: "%.1f") + "km"
+    } else {
+        return "\(Int(distance))m"
+    }
+    
+}

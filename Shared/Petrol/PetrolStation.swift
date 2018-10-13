@@ -12,7 +12,7 @@ import MapKit
 class PetrolStation: NSObject, Location, Codable, MKAnnotation {
     
     var id: String
-    var name: String
+    @objc dynamic var name: String
     var brand: String
     var street: String
     var place: String
@@ -57,31 +57,69 @@ class PetrolStation: NSObject, Location, Codable, MKAnnotation {
 
     }
     
-    var coordinate: CLLocationCoordinate2D { return CLLocationCoordinate2D(latitude: lat, longitude: lng) }
+    // MARK: - Search
+    
+    var properties: [FuseProperty] {
+        return [
+            FuseProperty(name: "name", weight: 1)
+        ]
+    }
+    
+    // MARK: - Location
     
     var location: CLLocation { return CLLocation(latitude: self.lat, longitude: self.lng) }
     
+    var tags: [String] {
+        return [localizedCategory, "Tanken", "Diesel", "E5", "E10"]
+    }
+    
+    lazy var distance: Double = {
+        if let location = LocationManager.shared.lastLocation {
+            return location.distance(from: self.location)
+        } else {
+            return 0
+        }
+    }()
+    
+    // MARK: - MKAnnotation
+    
+    var coordinate: CLLocationCoordinate2D { return CLLocationCoordinate2D(latitude: lat, longitude: lng) }
     var title: String? { return self.name.capitalized(with: Locale.autoupdatingCurrent)
                                          .replacingOccurrences(of: "_", with: " ") }
-    
     var subtitle: String? { return self.brand }
+    
+    // MARK: - Categorizable
+    
+    var category: String { return "Petrol Station" }
+    var localizedCategory: String { return String.localized("PetrolStation") }
+    
+    // MARK: - DetailRepresentable
     
     var detailSubtitle: String {
         
         let open = self.isOpen ? String.localized("LocalityOpen") : String.localized("LocalityClosed")
         
-        return self.brand + " • " + open
+        if LocationManager.shared.authorizationStatus == .authorizedAlways ||
+            LocationManager.shared.authorizationStatus == .authorizedWhenInUse {
+            
+            var subtitle = ""
+            
+            if distance >= 900 {
+                subtitle = Double(distance / 1000).format(pattern: "%.1f") + "km"
+            } else {
+                subtitle = "\(Int(distance))m"
+            }
+            
+            return subtitle + " • " + open + " • " + localizedCategory
+            
+        } else {
+            return open + " • " + localizedCategory
+        }
         
     }
     
-    lazy var detailImage: UIImage = { return #imageLiteral(resourceName: "petrol") }()
-    
-    lazy var detailViewController: UIViewController = { UIViewController() }()
-    
     var detailHeight: CGFloat { return 250 }
-    
-    var category: String { return "Petrol Station" }
-    
-    var localizedCategory: String { return String.localized("PetrolStation") }
+    lazy var detailImage: UIImage = { return #imageLiteral(resourceName: "petrol") }()
+    lazy var detailViewController: UIViewController = { UIViewController() }()
     
 }

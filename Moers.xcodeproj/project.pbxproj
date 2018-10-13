@@ -38,6 +38,10 @@
 		DF2D6DA720B8983400176614 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DA620B8983400176614 /* UserManager.swift */; };
 		DF2D6DA920B899DD00176614 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DA820B899DD00176614 /* User.swift */; };
 		DF2D6DAB20B8A02B00176614 /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DAA20B8A02B00176614 /* OnboardingManager.swift */; };
+		DF310D9B216FE72E004C69BA /* EntryAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF310D9A216FE72E004C69BA /* EntryAnnotationView.swift */; };
+		DF310D9F216FF2AE004C69BA /* DetailEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF310D9E216FF2AE004C69BA /* DetailEntryViewController.swift */; };
+		DF310DA22170F28A004C69BA /* Fuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF310DA12170F28A004C69BA /* Fuse.swift */; };
+		DF310DA421710887004C69BA /* TagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF310DA321710887004C69BA /* TagTableViewCell.swift */; };
 		DF32F6732104D11400BCF80F /* ParkingLotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32F6722104D11400BCF80F /* ParkingLotManager.swift */; };
 		DF3555AC20DE4D5300B88DA3 /* PodestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3555AB20DE4D5300B88DA3 /* PodestView.swift */; };
 		DF3555AE20DE594F00B88DA3 /* LeaderboardRankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3555AD20DE594F00B88DA3 /* LeaderboardRankingView.swift */; };
@@ -71,10 +75,16 @@
 		DF626AF71FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */; };
 		DF626AF91FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF81FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift */; };
 		DF6279792100CDE400F81A70 /* DetailParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6279782100CDE400F81A70 /* DetailParkingViewController.swift */; };
+		DF62BA8B2164AE5100BF7FC7 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF62BA8A2164AE5100BF7FC7 /* Restaurant.swift */; };
+		DF62BA8D2164BA3F00BF7FC7 /* RestaurantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF62BA8C2164BA3F00BF7FC7 /* RestaurantManager.swift */; };
 		DF632B401F6E721B0022FA8E /* ParkingLot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B3F1F6E721B0022FA8E /* ParkingLot.swift */; };
 		DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */; };
 		DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B451F6EA0370022FA8E /* DesignableButton.swift */; };
 		DF632B481F6EA6AA0022FA8E /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B471F6EA6AA0022FA8E /* DesignableView.swift */; };
+		DF77BFF9216804600025A31E /* DetailRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF77BFF8216804600025A31E /* DetailRestaurantViewController.swift */; };
+		DF77BFFB2168B7BB0025A31E /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF77BFFA2168B7BB0025A31E /* Entry.swift */; };
+		DF77BFFD2168BE960025A31E /* EntryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF77BFFC2168BE960025A31E /* EntryManager.swift */; };
+		DF77BFFF21695F8D0025A31E /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF77BFFE21695F8D0025A31E /* EntryTableViewCell.swift */; };
 		DF8254061F7711180069D751 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8254051F7711170069D751 /* Camera.swift */; };
 		DF8254081F7712880069D751 /* CSwiftV.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8254071F7712870069D751 /* CSwiftV.swift */; };
 		DF855C2420C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF855C2320C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift */; };
@@ -252,6 +262,10 @@
 		DF2D6DA620B8983400176614 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		DF2D6DA820B899DD00176614 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DF2D6DAA20B8A02B00176614 /* OnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
+		DF310D9A216FE72E004C69BA /* EntryAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryAnnotationView.swift; sourceTree = "<group>"; };
+		DF310D9E216FF2AE004C69BA /* DetailEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEntryViewController.swift; sourceTree = "<group>"; };
+		DF310DA12170F28A004C69BA /* Fuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fuse.swift; sourceTree = "<group>"; };
+		DF310DA321710887004C69BA /* TagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTableViewCell.swift; sourceTree = "<group>"; };
 		DF32F6722104D11400BCF80F /* ParkingLotManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLotManager.swift; sourceTree = "<group>"; };
 		DF3555AB20DE4D5300B88DA3 /* PodestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodestView.swift; sourceTree = "<group>"; };
 		DF3555AD20DE594F00B88DA3 /* LeaderboardRankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardRankingView.swift; sourceTree = "<group>"; };
@@ -285,10 +299,16 @@
 		DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeChargingStationAnnotationView.swift; sourceTree = "<group>"; };
 		DF626AF81FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBikeChargingStationViewController.swift; sourceTree = "<group>"; };
 		DF6279782100CDE400F81A70 /* DetailParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailParkingViewController.swift; sourceTree = "<group>"; };
+		DF62BA8A2164AE5100BF7FC7 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		DF62BA8C2164BA3F00BF7FC7 /* RestaurantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantManager.swift; sourceTree = "<group>"; };
 		DF632B3F1F6E721B0022FA8E /* ParkingLot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLot.swift; sourceTree = "<group>"; };
 		DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLotAnnotationView.swift; sourceTree = "<group>"; };
 		DF632B451F6EA0370022FA8E /* DesignableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
 		DF632B471F6EA6AA0022FA8E /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
+		DF77BFF8216804600025A31E /* DetailRestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRestaurantViewController.swift; sourceTree = "<group>"; };
+		DF77BFFA2168B7BB0025A31E /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		DF77BFFC2168BE960025A31E /* EntryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryManager.swift; sourceTree = "<group>"; };
+		DF77BFFE21695F8D0025A31E /* EntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTableViewCell.swift; sourceTree = "<group>"; };
 		DF8254051F7711170069D751 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		DF8254071F7712870069D751 /* CSwiftV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSwiftV.swift; sourceTree = "<group>"; };
 		DF855C2320C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolStationCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -448,6 +468,8 @@
 				DF3555B520DE752900B88DA3 /* AccountTableViewCell.swift */,
 				DFCB432220E038AB00E7AD3F /* TweetTableViewCell.swift */,
 				DFEFE7D22122FFB0002F5162 /* EventTableViewCell.swift */,
+				DF77BFFE21695F8D0025A31E /* EntryTableViewCell.swift */,
+				DF310DA321710887004C69BA /* TagTableViewCell.swift */,
 			);
 			path = UITableViewCells;
 			sourceTree = "<group>";
@@ -481,6 +503,8 @@
 				DF4D89582104C298008609A1 /* CameraManager.swift */,
 				DF32F6722104D11400BCF80F /* ParkingLotManager.swift */,
 				DFEFE7CE2122E0A6002F5162 /* EventManager.swift */,
+				DF62BA8C2164BA3F00BF7FC7 /* RestaurantManager.swift */,
+				DF77BFFC2168BE960025A31E /* EntryManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -633,6 +657,7 @@
 				DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */,
 				DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */,
 				DFBB9DE2212BF63600038943 /* PetrolStationAnnotationView.swift */,
+				DF310D9A216FE72E004C69BA /* EntryAnnotationView.swift */,
 			);
 			path = AnnotationView;
 			sourceTree = "<group>";
@@ -740,6 +765,8 @@
 				DF4D8954210476AB008609A1 /* DetailShopViewController.swift */,
 				DF626AF81FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift */,
 				DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */,
+				DF77BFF8216804600025A31E /* DetailRestaurantViewController.swift */,
+				DF310D9E216FF2AE004C69BA /* DetailEntryViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -760,6 +787,7 @@
 				DFB92D631F6B109C00669F73 /* Extensions.swift */,
 				DFA9EF0B20B56BA8008590EA /* UIImage+Extensions.swift */,
 				DFA17DF320DEF9DE00BBD838 /* UIButton+Extensions.swift */,
+				DF310DA12170F28A004C69BA /* Fuse.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -792,6 +820,8 @@
 				DF8254051F7711170069D751 /* Camera.swift */,
 				DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */,
 				DFB92D5F1F6B0B3F00669F73 /* Shop.swift */,
+				DF62BA8A2164AE5100BF7FC7 /* Restaurant.swift */,
+				DF77BFFA2168B7BB0025A31E /* Entry.swift */,
 			);
 			path = Locations;
 			sourceTree = "<group>";
@@ -1067,6 +1097,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/TwitterShareExtensionUI.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/MMWormhole.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Alertift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/TagListView.framework",
 			);
 			outputPaths = (
 			);
@@ -1102,6 +1133,7 @@
 				DF524CAC2087443D00D88599 /* BranchCollectionViewCell.swift in Sources */,
 				DFD73694211EF0A500826C47 /* Localizable.swift in Sources */,
 				DFF4E15D20893694007C24E3 /* RubbishCollectionDate.swift in Sources */,
+				DF77BFF9216804600025A31E /* DetailRestaurantViewController.swift in Sources */,
 				DF0CB4A12082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift in Sources */,
 				DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */,
 				DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */,
@@ -1116,9 +1148,11 @@
 				DF29FB4D20B1954B00741A63 /* ThemeViewController.swift in Sources */,
 				DFA17DF620DFDA6200BBD838 /* AccountViewController.swift in Sources */,
 				DF0CB4AB208357A800CC0AA8 /* MapItemContentView.swift in Sources */,
+				DF62BA8D2164BA3F00BF7FC7 /* RestaurantManager.swift in Sources */,
 				DFAEF40620E6E671001B0756 /* String+Extensions.swift in Sources */,
 				DF32F6732104D11400BCF80F /* ParkingLotManager.swift in Sources */,
 				DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */,
+				DF77BFFD2168BE960025A31E /* EntryManager.swift in Sources */,
 				DFA9EEFD20B3602E008590EA /* PetrolSorting.swift in Sources */,
 				DFA17DF420DEF9DE00BBD838 /* UIButton+Extensions.swift in Sources */,
 				DF626AF51FB745E300BFDA67 /* BikeChargingStation.swift in Sources */,
@@ -1157,6 +1191,7 @@
 				DFA9EF0F20B58351008590EA /* LocationManager.swift in Sources */,
 				DFEFE7D12122ED0F002F5162 /* EventViewController.swift in Sources */,
 				DFB92D601F6B0B3F00669F73 /* Shop.swift in Sources */,
+				DF310D9F216FF2AE004C69BA /* DetailEntryViewController.swift in Sources */,
 				DFA9EF0620B46A8A008590EA /* PetrolDetailResponse.swift in Sources */,
 				DF08361D1F6C198400A1B8A5 /* ShopAnnotationView.swift in Sources */,
 				DFBB9DE3212BF63600038943 /* PetrolStationAnnotationView.swift in Sources */,
@@ -1171,9 +1206,11 @@
 				DFCB432520E0E7CF00E7AD3F /* CommunityViewController.swift in Sources */,
 				DFA9EEF920B35AED008590EA /* PetrolManager.swift in Sources */,
 				DFCB432320E038AB00E7AD3F /* TweetTableViewCell.swift in Sources */,
+				DF310DA421710887004C69BA /* TagTableViewCell.swift in Sources */,
 				DF855C2620C9E37400B7F7C7 /* CardCollectionViewController.swift in Sources */,
 				DFB4D76720B03B9000C8D179 /* OtherViewController.swift in Sources */,
 				DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */,
+				DF62BA8B2164AE5100BF7FC7 /* Restaurant.swift in Sources */,
 				DF0CB4AD20838FD100CC0AA8 /* MainViewController.swift in Sources */,
 				DF524CAA2087421800D88599 /* BranchTableViewCell.swift in Sources */,
 				DF3555AE20DE594F00B88DA3 /* LeaderboardRankingView.swift in Sources */,
@@ -1193,12 +1230,14 @@
 				DFEFE7CD2122DC1D002F5162 /* Event.swift in Sources */,
 				DF6279792100CDE400F81A70 /* DetailParkingViewController.swift in Sources */,
 				DF2D6DA920B899DD00176614 /* User.swift in Sources */,
+				DF310D9B216FE72E004C69BA /* EntryAnnotationView.swift in Sources */,
 				DF0CB4AF2085B65200CC0AA8 /* MapViewController.swift in Sources */,
 				DFB4D76B20B064CA00C8D179 /* StaticTableView.swift in Sources */,
 				DFB6A0BF21033C7800D5C12B /* DetailCameraViewController.swift in Sources */,
 				DF0CB4932082AB5600CC0AA8 /* Theme.swift in Sources */,
 				DF29FB4F20B19BE600741A63 /* ThemeCardView.swift in Sources */,
 				DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */,
+				DF77BFFB2168B7BB0025A31E /* Entry.swift in Sources */,
 				DFA9EF0120B36CEF008590EA /* PetrolRequestResponse.swift in Sources */,
 				DF626AF91FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift in Sources */,
 				DFEFE7D32122FFB0002F5162 /* EventTableViewCell.swift in Sources */,
@@ -1206,6 +1245,7 @@
 				DF2D6DAB20B8A02B00176614 /* OnboardingManager.swift in Sources */,
 				DF626AF71FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift in Sources */,
 				DF4D89592104C298008609A1 /* CameraManager.swift in Sources */,
+				DF310DA22170F28A004C69BA /* Fuse.swift in Sources */,
 				DF8963D420CB0886008A0EDD /* WaterfallLayout.swift in Sources */,
 				DF2D6DA720B8983400176614 /* UserManager.swift in Sources */,
 				DFEFE7D521230149002F5162 /* EventView.swift in Sources */,
@@ -1225,6 +1265,7 @@
 				DFA9EF0A20B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift in Sources */,
 				DFA9EF1320B70F8E008590EA /* Date+Extensions.swift in Sources */,
 				DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */,
+				DF77BFFF21695F8D0025A31E /* EntryTableViewCell.swift in Sources */,
 				DF524CA8208741FF00D88599 /* FilterTableViewCell.swift in Sources */,
 				DF0CB49F2082B90900CC0AA8 /* FeedbackGenerators.swift in Sources */,
 				DFD728AC20A880C6005FA9F1 /* DetailViewController.swift in Sources */,
