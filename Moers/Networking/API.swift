@@ -149,7 +149,6 @@ class API: NSObject, XMLParserDelegate {
             let task = session.dataTask(with: request) { (data, response, error) in
                 
                 guard error == nil else {
-                    print(error?.localizedDescription)
                     completion(error)
                     return
                 }

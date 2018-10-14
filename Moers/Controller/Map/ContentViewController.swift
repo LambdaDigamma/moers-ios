@@ -216,11 +216,9 @@ class ContentViewController: UIViewController {
         
         if let mapController = drawer.primaryContentViewController as? MapViewController {
             
-            guard let annotation = location as? MKAnnotation else { return }
-            
             AnalyticsManager.shared.logSelectedItemContent(location)
             
-            mapController.map.selectAnnotation(annotation, animated: true)
+            mapController.map.selectAnnotation(location, animated: true)
             mapController.map.camera.altitude = 1000
             
         }

@@ -68,8 +68,6 @@ class Camera: NSObject, Location {
         if LocationManager.shared.authorizationStatus == .authorizedAlways ||
             LocationManager.shared.authorizationStatus == .authorizedWhenInUse {
             
-            var subtitle = ""
-            
             let dist = prettifyDistance(distance: distance)
             
             return "\(dist) • \(localizedCategory)"
@@ -77,8 +75,6 @@ class Camera: NSObject, Location {
         } else {
             return localizedCategory
         }
-        
-        return localizedCategory
         
     }
     

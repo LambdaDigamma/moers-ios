@@ -165,9 +165,7 @@ class DetailViewController: UIViewController {
             drawer.setDrawerContentViewController(controller: contentDrawer, animated: true)
             drawer.setDrawerPosition(position: .collapsed, animated: true)
             
-            if let annotation = selectedLocation as? MKAnnotation {
-                mapDrawer.map.deselectAnnotation(annotation, animated: true)
-            }
+            mapDrawer.map.deselectAnnotation(selectedLocation, animated: true)
             
         }
         
