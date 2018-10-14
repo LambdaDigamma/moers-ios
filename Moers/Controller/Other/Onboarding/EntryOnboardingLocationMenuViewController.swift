@@ -91,7 +91,7 @@ class EntryOnboardingLocationMenuViewController: UIViewController {
     
     @objc private func enterAddress() {
         
-        let viewController = UIViewController()
+        let viewController = EntryOnboardingAddressViewController()
         
         self.navigationController?.pushViewController(viewController, animated: true)
         

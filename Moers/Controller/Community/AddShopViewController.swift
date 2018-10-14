@@ -548,17 +548,3 @@ extension AddShopViewController: UITextFieldDelegate {
     }
     
 }
-
-extension HoshiTextField {
-    
-    public func setValidInput(_ isValid: Bool) {
-        
-        if isValid {
-            self.borderInactiveColor = UIColor.green
-        } else {
-            self.borderInactiveColor = UIColor.red
-        }
-        
-    }
-    
-}
