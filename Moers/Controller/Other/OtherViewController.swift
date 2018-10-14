@@ -39,7 +39,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         return [/*Section(title: "",
                         rows: [AccountRow(title: "Account", action: showAccount)]),*/
                 Section(title: "Daten",
-                        rows: [NavigationRow(title: "Geschäft hinzufügen", action: showAddShop)]),
+                        rows: [NavigationRow(title: "Eintrag hinzufügen", action: showAddShop)]),
                 Section(title: String.localized("SettingsTitle"),
                         rows: [NavigationRow(title: String.localized("SettingsTitle"), action: showSettings)]),
                 Section(title: "Info",
@@ -99,7 +99,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     }
     
     private func showAddShop() {
-        push(viewController: AddShopViewController.self)
+        push(viewController: EntryOnboardingLocationMenuViewController.self)
     }
     
     private func showSettings() {

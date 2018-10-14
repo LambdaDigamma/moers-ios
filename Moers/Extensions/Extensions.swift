@@ -175,16 +175,6 @@ extension UIImage {
     
 }
 
-public struct Math {
-    
-    public static func sigmoid(x: CGFloat) -> CGFloat {
-        
-        return CGFloat(1 / (1 + pow(M_E, Double(-x))))
-        
-    }
-    
-}
-
 protocol Formattable {
     func format(pattern: String) -> String
 }

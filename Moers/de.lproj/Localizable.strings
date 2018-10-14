@@ -84,7 +84,7 @@
 "AddStoreTitle" = "Geschäft hinzufügen";
 "UserRankingText" = "Deine Platzierung";
 "AddTitle" = "Hinzufügen";
-"PickerPromptText" = "Bewege das Fadenkreuz auf das Geschäft auf der Karte!";
+"PickerPromptText" = "Wähle die aktuelle Position aus oder bewege das Fadenkreuz auf das Geschäft auf der Karte!";
 "LoginTitle" = "Login";
 "SignUpTitle" = "Registrieren";
 "PasswordText" = "Passwort";

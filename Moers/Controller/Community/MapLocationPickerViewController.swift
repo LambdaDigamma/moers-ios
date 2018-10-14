@@ -22,7 +22,12 @@ class MapLocationPickerViewController: UIViewController {
     lazy var pointer = { return ViewFactory.imageView() }()
     lazy var promptLabel = { return ViewFactory.paddingLabel() }()
     lazy var streetLabel = { return ViewFactory.paddingLabel() }()
-    lazy var checkButton = { return ViewFactory.button() }()
+    lazy var userLocationButton = { return ViewFactory.button() }()
+    
+    private var currentStreet: String = ""
+    private var currentHouseNumber: String = ""
+    private var currentPlace: String = ""
+    private var currentPostcode: String = ""
     
     weak var delegate: MapLocationPickerViewControllerDelegate?
     
@@ -35,16 +40,23 @@ class MapLocationPickerViewController: UIViewController {
         self.view.addSubview(pointer)
         self.view.addSubview(promptLabel)
         self.view.addSubview(streetLabel)
-        self.view.addSubview(checkButton)
+        self.view.addSubview(userLocationButton)
         
         self.setupConstraints()
         self.setupUI()
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.focusOnUserLocation()
+        
+    }
+    
     private func setupUI() {
-
-        let coordinate = CLLocationCoordinate2D(latitude: 51.4516, longitude: 6.6255)
+        
+        let coordinate = LocationManager.shared.lastLocation?.coordinate ?? CLLocationCoordinate2D(latitude: 51.4516, longitude: 6.6255)
         
         let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)) // 0.0015
         
@@ -69,12 +81,16 @@ class MapLocationPickerViewController: UIViewController {
         streetLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.semibold)
         streetLabel.layer.cornerRadius = 8
         streetLabel.clipsToBounds = true
-        checkButton.setImage(#imageLiteral(resourceName: "checkmark").withRenderingMode(.alwaysTemplate), for: .normal)
-        checkButton.tintColor = UIColor.white
-        checkButton.setBackgroundColor(color: UIColor.black, forState: .normal)
-        checkButton.layer.cornerRadius = 30
-        checkButton.clipsToBounds = true
-        checkButton.addTarget(self, action: #selector(selectedCoordinate), for: .touchUpInside)
+        userLocationButton.setImage(#imageLiteral(resourceName: "geolocation").withRenderingMode(.alwaysTemplate), for: .normal)
+        userLocationButton.tintColor = UIColor.white
+        userLocationButton.setBackgroundColor(color: UIColor.black, forState: .normal)
+        userLocationButton.layer.cornerRadius = 30
+        userLocationButton.clipsToBounds = true
+        userLocationButton.addTarget(self, action: #selector(focusOnUserLocation), for: .touchUpInside)
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Weiter", style: .plain, target: self, action: #selector(continueOnboarding))
+        
+        executeReverseGeocode()
         
     }
     
@@ -85,7 +101,7 @@ class MapLocationPickerViewController: UIViewController {
                            mapView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
                            mapView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor),
                            pointer.centerXAnchor.constraint(equalTo: mapView.centerXAnchor),
-                           pointer.centerYAnchor.constraint(equalTo: mapView.centerYAnchor),
+                           pointer.centerYAnchor.constraint(equalTo: mapView.centerYAnchor), // , constant: 44
                            pointer.widthAnchor.constraint(equalToConstant: 20),
                            pointer.heightAnchor.constraint(equalTo: pointer.widthAnchor),
                            streetLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
@@ -94,30 +110,44 @@ class MapLocationPickerViewController: UIViewController {
                            promptLabel.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: -40),
                            promptLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
                            promptLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
-                           checkButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
-                           checkButton.bottomAnchor.constraint(equalTo: streetLabel.topAnchor, constant: -8),
-                           checkButton.widthAnchor.constraint(equalToConstant: 60),
-                           checkButton.heightAnchor.constraint(equalTo: checkButton.widthAnchor)]
+                           userLocationButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                           userLocationButton.bottomAnchor.constraint(equalTo: streetLabel.topAnchor, constant: -8),
+                           userLocationButton.widthAnchor.constraint(equalToConstant: 60),
+                           userLocationButton.heightAnchor.constraint(equalTo: userLocationButton.widthAnchor)]
         
         NSLayoutConstraint.activate(constraints)
         
     }
     
-    @objc private func selectedCoordinate() {
+    @objc private func focusOnUserLocation() {
         
-        let coordinate = mapView.camera.centerCoordinate
-        
-        delegate?.selectedCoordinate(coordinate)
-        
-        self.navigationController?.popViewController(animated: true)
+        if let coordinate = LocationManager.shared.lastLocation?.coordinate {
+            
+            let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)) // 0.0015
+            
+            mapView.setCenter(coordinate, animated: true)
+            mapView.setRegion(region, animated: true)
+            
+            executeReverseGeocode()
+            
+        }
         
     }
     
-}
-
-extension MapLocationPickerViewController: MKMapViewDelegate {
+    @objc private func continueOnboarding() {
+        
+        let coordinate = mapView.centerCoordinate
+        
+        EntryManager.shared.entryLat = coordinate.latitude
+        EntryManager.shared.entryLng = coordinate.longitude
+        EntryManager.shared.entryStreet = currentStreet
+        EntryManager.shared.entryHouseNumber = currentHouseNumber
+        EntryManager.shared.entryPlace = currentPlace
+        EntryManager.shared.entryPostcode = currentPostcode
+        
+    }
     
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+    private func executeReverseGeocode() {
         
         let coordinate = mapView.centerCoordinate
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
@@ -128,9 +158,24 @@ extension MapLocationPickerViewController: MKMapViewDelegate {
             
             guard let placemark = placemarks?.first else { return }
             
+            self.currentStreet = placemark.thoroughfare ?? ""
+            self.currentHouseNumber = placemark.subThoroughfare ?? ""
+            self.currentPostcode = placemark.postalCode ?? ""
+            self.currentPlace = placemark.locality ?? ""
+            
             self.streetLabel.text = "\(placemark.thoroughfare ?? "") \(placemark.subThoroughfare ?? "")"
             
         }
+        
+    }
+    
+}
+
+extension MapLocationPickerViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
+        executeReverseGeocode()
         
     }
     
