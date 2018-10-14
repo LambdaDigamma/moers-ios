@@ -61,6 +61,11 @@ struct EntryManager {
     
     // MARK: - Entry Onboarding
     
+    public var entryName: String? {
+        get { return UserDefaults.standard.string(forKey: "EntryName") }
+        set { UserDefaults.standard.set(newValue, forKey: "EntryName") }
+    }
+    
     public var entryLat: Double {
         get { return UserDefaults.standard.double(forKey: "EntryLat") }
         set { UserDefaults.standard.set(newValue, forKey: "EntryLat") }
@@ -89,6 +94,16 @@ struct EntryManager {
     public var entryPlace: String? {
         get { return UserDefaults.standard.string(forKey: "EntryPlace") }
         set { UserDefaults.standard.set(newValue, forKey: "EntryPlace") }
+    }
+    
+    public var entryPhone: String? {
+        get { return UserDefaults.standard.string(forKey: "EntryPhone") }
+        set { UserDefaults.standard.set(newValue, forKey: "EntryPhone") }
+    }
+    
+    public var entryWebsite: String? {
+        get { return UserDefaults.standard.string(forKey: "EntryWebsite") }
+        set { UserDefaults.standard.set(newValue, forKey: "EntryWebsite") }
     }
     
 }

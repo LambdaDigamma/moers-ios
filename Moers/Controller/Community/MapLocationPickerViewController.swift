@@ -145,6 +145,10 @@ class MapLocationPickerViewController: UIViewController {
         EntryManager.shared.entryPlace = currentPlace
         EntryManager.shared.entryPostcode = currentPostcode
         
+        let viewController = EntryOnboardingGeneralViewController()
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
+        
     }
     
     private func executeReverseGeocode() {

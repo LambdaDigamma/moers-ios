@@ -11,11 +11,12 @@ import Gestalt
 
 class EntryOnboardingLocationMenuViewController: UIViewController {
 
-    lazy var infoLabel: UILabel = { ViewFactory.label() }()
+    lazy var progressView: OnboardingProgressView = { ViewFactory.onboardingProgressView() }()
     lazy var addressButton: UIButton = { ViewFactory.button() }()
     lazy var locationButton: UIButton = { ViewFactory.button() }()
+    lazy var infoLabel: UILabel = { ViewFactory.label() }()
     
-    // MARK: - UIViewController Lifecycles
+    // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,15 +27,23 @@ class EntryOnboardingLocationMenuViewController: UIViewController {
         
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        progressView.progress = 0
+        
+    }
+    
     // MARK: - Private Methods
     
     private func setupUI() {
         
         self.title = "Eintrag hinzufügen"
         
-        self.view.addSubview(infoLabel)
+        self.view.addSubview(progressView)
         self.view.addSubview(addressButton)
         self.view.addSubview(locationButton)
+        self.view.addSubview(infoLabel)
         
         self.infoLabel.text = "Es gibt zwei Möglichkeiten, einen neuen Eintrag hinzufügen: \nWenn Du gerade neben dem Ort stehst, kannst ihn am aktuellen Standort hinzufügen. \nAndernfalls kannst Du einen Ort an einer Adresse hinzufügen."
         self.infoLabel.numberOfLines = 0
@@ -54,6 +63,8 @@ class EntryOnboardingLocationMenuViewController: UIViewController {
         self.locationButton.addTarget(self, action: #selector(enterLocation), for: .touchUpInside)
         self.addressButton.addTarget(self, action: #selector(enterAddress), for: .touchUpInside)
         
+        self.progressView.currentStep = "1. Eintrags-Verfahren wählen"
+        
     }
     
     private func setupTheming() {
@@ -66,6 +77,9 @@ class EntryOnboardingLocationMenuViewController: UIViewController {
             themeable.locationButton.setTitleColor(theme.backgroundColor, for: .normal)
             themeable.addressButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
             themeable.locationButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
+            themeable.progressView.accentColor = theme.accentColor
+            themeable.progressView.decentColor = theme.decentColor
+            themeable.progressView.textColor = theme.color
             
         }
         
@@ -73,7 +87,10 @@ class EntryOnboardingLocationMenuViewController: UIViewController {
     
     private func setupConstraints() {
         
-        let constraints = [locationButton.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 16),
+        let constraints = [progressView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 20),
+                           progressView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
+                           progressView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                           locationButton.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20),
                            locationButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
                            locationButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
                            locationButton.heightAnchor.constraint(equalToConstant: 45),

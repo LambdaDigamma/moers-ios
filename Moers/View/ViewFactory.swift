@@ -147,4 +147,24 @@ struct ViewFactory {
         
     }
     
+    static func progressView() -> UIProgressView {
+        
+        let progressView = UIProgressView()
+        
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return progressView
+        
+    }
+    
+    static func onboardingProgressView() -> OnboardingProgressView {
+        
+        let progressView = OnboardingProgressView()
+        
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return progressView
+        
+    }
+    
 }

@@ -92,6 +92,8 @@
 		DF855C2820C9EADD00B7F7C7 /* WrapperCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF855C2720C9EADD00B7F7C7 /* WrapperCardCollectionViewCell.swift */; };
 		DF86AB9721728A1E00EFC7EA /* EntryOnboardingLocationMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF86AB9621728A1E00EFC7EA /* EntryOnboardingLocationMenuViewController.swift */; };
 		DF86AB9921729DDD00EFC7EA /* EntryOnboardingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF86AB9821729DDD00EFC7EA /* EntryOnboardingAddressViewController.swift */; };
+		DF86AB9B2173837B00EFC7EA /* EntryOnboardingGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF86AB9A2173837B00EFC7EA /* EntryOnboardingGeneralViewController.swift */; };
+		DF86AB9D217387E700EFC7EA /* OnboardingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF86AB9C217387E700EFC7EA /* OnboardingProgressView.swift */; };
 		DF8963D420CB0886008A0EDD /* WaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8963D320CB0886008A0EDD /* WaterfallLayout.swift */; };
 		DF95197F20C8B6F3001D13DC /* PetrolStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95197E20C8B6F3001D13DC /* PetrolStationViewController.swift */; };
 		DF9A914B2160DA840054A2B8 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9A914A2160DA840054A2B8 /* Environment.swift */; };
@@ -318,6 +320,8 @@
 		DF855C2720C9EADD00B7F7C7 /* WrapperCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapperCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		DF86AB9621728A1E00EFC7EA /* EntryOnboardingLocationMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryOnboardingLocationMenuViewController.swift; sourceTree = "<group>"; };
 		DF86AB9821729DDD00EFC7EA /* EntryOnboardingAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryOnboardingAddressViewController.swift; sourceTree = "<group>"; };
+		DF86AB9A2173837B00EFC7EA /* EntryOnboardingGeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryOnboardingGeneralViewController.swift; sourceTree = "<group>"; };
+		DF86AB9C217387E700EFC7EA /* OnboardingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingProgressView.swift; sourceTree = "<group>"; };
 		DF8963D320CB0886008A0EDD /* WaterfallLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterfallLayout.swift; sourceTree = "<group>"; };
 		DF95197E20C8B6F3001D13DC /* PetrolStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolStationViewController.swift; sourceTree = "<group>"; };
 		DF9A914A2160DA840054A2B8 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
@@ -632,6 +636,7 @@
 				DF3EE0C020E37E4800CA9279 /* FTLinearActivityIndicator.swift */,
 				DF3EE0C120E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift */,
 				DF3EE0C620E38A6B00CA9279 /* PaddingLabel.swift */,
+				DF86AB9C217387E700EFC7EA /* OnboardingProgressView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -791,6 +796,7 @@
 			children = (
 				DF86AB9621728A1E00EFC7EA /* EntryOnboardingLocationMenuViewController.swift */,
 				DF86AB9821729DDD00EFC7EA /* EntryOnboardingAddressViewController.swift */,
+				DF86AB9A2173837B00EFC7EA /* EntryOnboardingGeneralViewController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1181,6 +1187,7 @@
 				DF4BD1C6208CF76C003ECF41 /* RubbishReminderBulletinItem.swift in Sources */,
 				DF02B7631FB0BAE9004B8B3E /* Branch.swift in Sources */,
 				DF2D6DA320B88BFA00176614 /* Licence.swift in Sources */,
+				DF86AB9B2173837B00EFC7EA /* EntryOnboardingGeneralViewController.swift in Sources */,
 				DFD7ACBD20A795AF00D49BE2 /* DashboardNotificationCardView.swift in Sources */,
 				DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */,
 				DF2D6DA120B83C1E00176614 /* AnalyticsManager.swift in Sources */,
@@ -1232,6 +1239,7 @@
 				DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */,
 				DFEFE7CF2122E0A6002F5162 /* EventManager.swift in Sources */,
 				DFCB432720E1036A00E7AD3F /* CommunityCollectionViewCell.swift in Sources */,
+				DF86AB9D217387E700EFC7EA /* OnboardingProgressView.swift in Sources */,
 				DFD7ACB420A6BCA000D49BE2 /* DashboardRubbishCardView.swift in Sources */,
 				DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */,
 				DFDF929920DE47E10068D1DF /* LeaderboardViewController.swift in Sources */,

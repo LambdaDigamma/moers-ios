@@ -15,6 +15,7 @@ class EntryOnboardingAddressViewController: UIViewController {
 
     lazy var scrollView = { return ViewFactory.scrollView() }()
     lazy var contentView = { return ViewFactory.blankView() }()
+    lazy var progressView = { ViewFactory.onboardingProgressView() }()
     lazy var addressHeaderLabel = { return ViewFactory.label() }()
     lazy var streetTextField = { return ViewFactory.textField() }()
     lazy var houseNrTextField = { return ViewFactory.textField() }()
@@ -22,6 +23,8 @@ class EntryOnboardingAddressViewController: UIViewController {
     lazy var placeTextField = { return ViewFactory.textField() }()
     lazy var mapView = { return ViewFactory.map() }()
     lazy var infoLabel = { return ViewFactory.label() }()
+    
+    private var coordinate: CLLocationCoordinate2D? = nil
     
     // MARK: - UIViewController Lifecycle
     
@@ -34,14 +37,22 @@ class EntryOnboardingAddressViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        progressView.progress = 0.25
+        
+    }
+    
     // MARK: - Private Methods
     
     private func setupUI() {
         
-        self.title = "Ort auswählen"
+        self.title = "Eintrag hinzufügen"
         
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(contentView)
+        self.contentView.addSubview(progressView)
         self.contentView.addSubview(addressHeaderLabel)
         self.contentView.addSubview(streetTextField)
         self.contentView.addSubview(houseNrTextField)
@@ -49,6 +60,9 @@ class EntryOnboardingAddressViewController: UIViewController {
         self.contentView.addSubview(placeTextField)
         self.contentView.addSubview(mapView)
         self.contentView.addSubview(infoLabel)
+        
+        self.progressView.currentStep = "2. Adresse eingeben"
+        self.progressView.progress = 0.0
         
         self.addressHeaderLabel.text = "ADRESSE"
         self.streetTextField.placeholder = "Straße"
@@ -110,6 +124,9 @@ class EntryOnboardingAddressViewController: UIViewController {
             themeable.addressHeaderLabel.textColor = theme.decentColor
             themeable.mapView.layer.cornerRadius = 10
             themeable.infoLabel.textColor = theme.color
+            themeable.progressView.accentColor = theme.accentColor
+            themeable.progressView.decentColor = theme.decentColor
+            themeable.progressView.textColor = theme.color
             
             applyTheming(themeable.streetTextField)
             applyTheming(themeable.houseNrTextField)
@@ -132,7 +149,10 @@ class EntryOnboardingAddressViewController: UIViewController {
                            contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
                            contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
                            contentView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
-                           addressHeaderLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 16),
+                           progressView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 20),
+                           progressView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
+                           progressView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                           addressHeaderLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20),
                            addressHeaderLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
                            addressHeaderLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
                            streetTextField.topAnchor.constraint(equalTo: self.addressHeaderLabel.bottomAnchor, constant: 0),
@@ -191,8 +211,14 @@ class EntryOnboardingAddressViewController: UIViewController {
         EntryManager.shared.entryPostcode = postcodeTextField.text
         EntryManager.shared.entryPlace = placeTextField.text
         
+        guard let coordinate = coordinate else { return }
         
+        EntryManager.shared.entryLat = coordinate.latitude
+        EntryManager.shared.entryLng = coordinate.longitude
         
+        let viewController = EntryOnboardingGeneralViewController()
+            
+        self.navigationController?.pushViewController(viewController, animated: true)
         
     }
     
@@ -237,6 +263,8 @@ class EntryOnboardingAddressViewController: UIViewController {
             if let placemark = placemarks?.first {
                 
                 guard let coordinate = placemark.location?.coordinate else { return }
+                
+                self.coordinate = coordinate
                 
                 let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.0025, longitudeDelta: 0.0025))
                 let annotation = MKPointAnnotation()
