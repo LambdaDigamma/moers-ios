@@ -20,37 +20,43 @@ class RubbishManager {
     
     public func loadRubbishCollectionStreets(completion: @escaping ([RubbishCollectionStreet]) -> Void) {
         
-        if let url = rubbishStreetURL {
+        DispatchQueue.global(qos: .background).async {
             
-            do {
+            if let url = self.rubbishStreetURL {
                 
-                let content = try String(contentsOf: url, encoding: String.Encoding.utf8)
-                
-                let csv = CSwiftV(with: content, separator: ";", headers: ["Straße", "Restabfall", "Biotonne", "Papiertonne", "Gelber Sack", "Grünschnitt", "Kehrtag"])
-                
-                var streets: [RubbishCollectionStreet] = []
-                
-                var rows = csv.keyedRows!
-                rows.remove(at: 0)
-                
-                for row in rows {
+                do {
                     
-                    let street = RubbishCollectionStreet(street: row["Straße"] ?? "",
-                                                         residualWaste: Int(row["Restabfall"] ?? "")!,
-                                                         organicWaste: Int(row["Biotonne"] ?? "")!,
-                                                         paperWaste: Int(row["Papiertonne"] ?? "")!,
-                                                         yellowBag: Int(row["Gelber Sack"] ?? "")!,
-                                                         greenWaste: Int(row["Grünschnitt"] ?? "")!,
-                                                         sweeperDay: row["Kehrtag"] ?? "")
+                    let content = try String(contentsOf: url, encoding: String.Encoding.utf8)
                     
-                    streets.append(street)
+                    let csv = CSwiftV(with: content, separator: ";", headers: ["Straße", "Restabfall", "Biotonne", "Papiertonne", "Gelber Sack", "Grünschnitt", "Kehrtag"])
                     
+                    var streets: [RubbishCollectionStreet] = []
+                    
+                    var rows = csv.keyedRows!
+                    rows.remove(at: 0)
+                    
+                    for row in rows {
+                        
+                        let street = RubbishCollectionStreet(street: row["Straße"] ?? "",
+                                                             residualWaste: Int(row["Restabfall"] ?? "")!,
+                                                             organicWaste: Int(row["Biotonne"] ?? "")!,
+                                                             paperWaste: Int(row["Papiertonne"] ?? "")!,
+                                                             yellowBag: Int(row["Gelber Sack"] ?? "")!,
+                                                             greenWaste: Int(row["Grünschnitt"] ?? "")!,
+                                                             sweeperDay: row["Kehrtag"] ?? "")
+                        
+                        streets.append(street)
+                        
+                    }
+                    
+                    DispatchQueue.main.async {
+                        completion(streets)
+                    }
+                    
+                } catch let err as NSError {
+                    print(err.localizedDescription)
                 }
                 
-                completion(streets)
-                
-            } catch let err as NSError {
-                print(err.localizedDescription)
             }
             
         }
@@ -59,37 +65,45 @@ class RubbishManager {
     
     public func loadRubbishCollectionDate(completion: @escaping ([RubbishCollectionDate]) -> Void) {
         
-        if let url = rubbishDateURL {
+        DispatchQueue.global(qos: .background).async {
             
-            do {
+            if let url = self.rubbishDateURL {
                 
-                let content = try String(contentsOf: url, encoding: String.Encoding.ascii)
-                
-                let csv = CSwiftV(with: content, separator: ";", headers: ["id", "datum", "rest_woche", "restabfall", "biotonne", "papiertonne", "gelber_sack", "gruenschnitt", "schadstoff", "del"])
-                
-                var dates: [RubbishCollectionDate] = []
-                
-                var rows = csv.keyedRows!
-                rows.remove(at: 0)
-                
-                for row in rows {
+                do {
                     
-                    let date = RubbishCollectionDate(id: Int(row["id"] ?? "")!,
-                                                     date: row["datum"] ?? "",
-                                                     residualWaste: Int(row["restabfall"] ?? ""),
-                                                     organicWaste: Int(row["biotonne"] ?? ""),
-                                                     paperWaste: Int(row["papiertonne"] ?? ""),
-                                                     yellowBag: Int(row["gelber_sack"] ?? ""),
-                                                     greenWaste: Int(row["gruenschnitt"] ?? ""))
+                    let content = try String(contentsOf: url, encoding: String.Encoding.ascii)
                     
-                    dates.append(date)
+                    let csv = CSwiftV(with: content, separator: ";", headers: ["id", "datum", "rest_woche", "restabfall", "biotonne", "papiertonne", "gelber_sack", "gruenschnitt", "schadstoff", "del"])
                     
+                    var dates: [RubbishCollectionDate] = []
+                    
+                    var rows = csv.keyedRows!
+                    rows.remove(at: 0)
+                    
+                    for row in rows {
+                        
+                        let date = RubbishCollectionDate(id: Int(row["id"] ?? "")!,
+                                                         date: row["datum"] ?? "",
+                                                         residualWaste: Int(row["restabfall"] ?? ""),
+                                                         organicWaste: Int(row["biotonne"] ?? ""),
+                                                         paperWaste: Int(row["papiertonne"] ?? ""),
+                                                         yellowBag: Int(row["gelber_sack"] ?? ""),
+                                                         greenWaste: Int(row["gruenschnitt"] ?? ""))
+                        
+                        dates.append(date)
+                        
+                    }
+                    
+                    DispatchQueue.main.async {
+                        
+                        completion(dates)
+                        
+                    }
+                    
+                } catch let err {
+                    print(err.localizedDescription)
                 }
                 
-                completion(dates)
-                
-            } catch let err {
-                print(err.localizedDescription)
             }
             
         }
@@ -128,10 +142,16 @@ class RubbishManager {
                 
                 let futureItems = items.filter { $0.parsedDate > today || $0.parsedDate.isToday }
                 
-                completion(futureItems)
+                DispatchQueue.main.async {
+                    completion(futureItems)
+                }
                 
             } else {
-                completion(items)
+                
+                DispatchQueue.main.async {
+                    completion(items)
+                }
+                
             }
             
         }

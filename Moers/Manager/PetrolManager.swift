@@ -50,42 +50,48 @@ class PetrolManager {
         
         let request = URLRequest(url: builtURL)
         
-        session.dataTask(with: request) { (data, _, error) in
+        DispatchQueue.global(qos: .background).async {
             
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            
-            guard let data = data else { return }
-            
-            let jsonDecoder = JSONDecoder()
-            
-            do {
+            self.session.dataTask(with: request) { (data, _, error) in
                 
-                let response = try jsonDecoder.decode(PetrolRequestResponse.self, from: data)
-                    
-                if response.isValid {
-                    
-                    guard let stations = response.stations else { return }
-                    
-                    stations.forEach { $0.name = $0.name.capitalized(with: Locale.autoupdatingCurrent)
-                        .replacingOccurrences(of: "_", with: " ") }
-                    
-                    self.cachedStations = stations
-                    
-                    self.delegate?.didReceivePetrolStations(stations: stations)
-                    
-                } else {
-                    
-                    print("An Error Occured: \(response.status)")
-                    
+                if let error = error {
+                    print(error.localizedDescription)
                 }
                 
-            } catch {
-                print(error.localizedDescription)
-            }
+                guard let data = data else { return }
+                
+                let jsonDecoder = JSONDecoder()
+                
+                do {
+                    
+                    let response = try jsonDecoder.decode(PetrolRequestResponse.self, from: data)
+                    
+                    if response.isValid {
+                        
+                        guard let stations = response.stations else { return }
+                        
+                        stations.forEach { $0.name = $0.name.capitalized(with: Locale.autoupdatingCurrent)
+                            .replacingOccurrences(of: "_", with: " ") }
+                        
+                        self.cachedStations = stations
+                        
+                        DispatchQueue.main.async {
+                            self.delegate?.didReceivePetrolStations(stations: stations)
+                        }
+                        
+                    } else {
+                        
+                        print("An Error Occured: \(response.status)")
+                        
+                    }
+                    
+                } catch {
+                    print(error.localizedDescription)
+                }
+                
+            }.resume()
             
-        }.resume()
+        }
         
     }
     
@@ -99,38 +105,42 @@ class PetrolManager {
         
         let request = URLRequest(url: builtURL)
         
-        session.dataTask(with: request) { (data, _, error) in
+        DispatchQueue.global(qos: .background).async {
             
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            
-            guard let data = data else { return }
-            
-            let jsonDecoder = JSONDecoder()
-            
-            do {
+            self.session.dataTask(with: request) { (data, _, error) in
                 
-                let response = try jsonDecoder.decode(PetrolDetailResponse.self, from: data)
-                
-                if response.isValid {
-                    
-                    completion(response.station)
-                    
-                } else {
-                    
-                    print("Error: \(response.ok)")
-                    
-                    completion(nil)
-                    
+                if let error = error {
+                    print(error.localizedDescription)
                 }
                 
-            } catch {
-                print("Error")
-                print(error.localizedDescription)
-            }
+                guard let data = data else { return }
+                
+                let jsonDecoder = JSONDecoder()
+                
+                do {
+                    
+                    let response = try jsonDecoder.decode(PetrolDetailResponse.self, from: data)
+                    
+                    if response.isValid {
+                        
+                        completion(response.station)
+                        
+                    } else {
+                        
+                        print("Error: \(response.ok)")
+                        
+                        completion(nil)
+                        
+                    }
+                    
+                } catch {
+                    print("Error")
+                    print(error.localizedDescription)
+                }
+                
+            }.resume()
             
-        }.resume()
+        }
         
     }
     

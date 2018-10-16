@@ -181,7 +181,7 @@ class DetailViewController: UIViewController {
         
         // TODO: Generify Detail Morphing
         
-        if let entry = location as? Entry {
+        if let _ = location as? Entry {
             
             morphDetailEntry()
             
