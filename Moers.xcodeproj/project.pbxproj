@@ -94,6 +94,7 @@
 		DF86AB9921729DDD00EFC7EA /* EntryOnboardingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF86AB9821729DDD00EFC7EA /* EntryOnboardingAddressViewController.swift */; };
 		DF86AB9B2173837B00EFC7EA /* EntryOnboardingGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF86AB9A2173837B00EFC7EA /* EntryOnboardingGeneralViewController.swift */; };
 		DF86AB9D217387E700EFC7EA /* OnboardingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF86AB9C217387E700EFC7EA /* OnboardingProgressView.swift */; };
+		DF86ABA32174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF86ABA22174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift */; };
 		DF8963D420CB0886008A0EDD /* WaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8963D320CB0886008A0EDD /* WaterfallLayout.swift */; };
 		DF95197F20C8B6F3001D13DC /* PetrolStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95197E20C8B6F3001D13DC /* PetrolStationViewController.swift */; };
 		DF9A914B2160DA840054A2B8 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9A914A2160DA840054A2B8 /* Environment.swift */; };
@@ -322,6 +323,7 @@
 		DF86AB9821729DDD00EFC7EA /* EntryOnboardingAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryOnboardingAddressViewController.swift; sourceTree = "<group>"; };
 		DF86AB9A2173837B00EFC7EA /* EntryOnboardingGeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryOnboardingGeneralViewController.swift; sourceTree = "<group>"; };
 		DF86AB9C217387E700EFC7EA /* OnboardingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingProgressView.swift; sourceTree = "<group>"; };
+		DF86ABA22174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryOnboardingOpeningHoursViewController.swift; sourceTree = "<group>"; };
 		DF8963D320CB0886008A0EDD /* WaterfallLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterfallLayout.swift; sourceTree = "<group>"; };
 		DF95197E20C8B6F3001D13DC /* PetrolStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolStationViewController.swift; sourceTree = "<group>"; };
 		DF9A914A2160DA840054A2B8 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
@@ -797,6 +799,7 @@
 				DF86AB9621728A1E00EFC7EA /* EntryOnboardingLocationMenuViewController.swift */,
 				DF86AB9821729DDD00EFC7EA /* EntryOnboardingAddressViewController.swift */,
 				DF86AB9A2173837B00EFC7EA /* EntryOnboardingGeneralViewController.swift */,
+				DF86ABA22174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1234,6 +1237,7 @@
 				DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */,
 				DF62BA8B2164AE5100BF7FC7 /* Restaurant.swift in Sources */,
 				DF0CB4AD20838FD100CC0AA8 /* MainViewController.swift in Sources */,
+				DF86ABA32174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift in Sources */,
 				DF524CAA2087421800D88599 /* BranchTableViewCell.swift in Sources */,
 				DF3555AE20DE594F00B88DA3 /* LeaderboardRankingView.swift in Sources */,
 				DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */,

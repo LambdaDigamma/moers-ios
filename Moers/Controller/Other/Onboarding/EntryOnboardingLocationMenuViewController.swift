@@ -48,8 +48,8 @@ class EntryOnboardingLocationMenuViewController: UIViewController {
         self.infoLabel.text = "Es gibt zwei Möglichkeiten, einen neuen Eintrag hinzufügen: \nWenn Du gerade neben dem Ort stehst, kannst ihn am aktuellen Standort hinzufügen. \nAndernfalls kannst Du einen Ort an einer Adresse hinzufügen."
         self.infoLabel.numberOfLines = 0
         self.infoLabel.font = UIFont.systemFont(ofSize: 12)
-        self.addressButton.setTitle("Eintrag an Adresse hinzufügen", for: .normal)
-        self.locationButton.setTitle("Eintrag an aktueller Position hinzufügen", for: .normal)
+        self.addressButton.setTitle("Eintrag mit Adresse hinzufügen", for: .normal)
+        self.locationButton.setTitle("Eintrag am aktuellen Standort hinzufügen", for: .normal)
         self.addressButton.titleLabel?.numberOfLines = 0
         self.locationButton.titleLabel?.numberOfLines = 0
         self.addressButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)

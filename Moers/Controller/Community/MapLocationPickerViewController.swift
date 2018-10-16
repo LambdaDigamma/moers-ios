@@ -50,7 +50,11 @@ class MapLocationPickerViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.focusOnUserLocation()
+        if EntryManager.shared.entryLat != 0 && EntryManager.shared.entryLng != 0 {
+            
+        } else {
+            self.focusOnUserLocation()
+        }
         
     }
     
@@ -170,6 +174,19 @@ class MapLocationPickerViewController: UIViewController {
             self.streetLabel.text = "\(placemark.thoroughfare ?? "") \(placemark.subThoroughfare ?? "")"
             
         }
+        
+    }
+    
+    private func focusOnPreviousLocation() {
+        
+        let coordinate = CLLocationCoordinate2D(latitude: EntryManager.shared.entryLat, longitude: EntryManager.shared.entryLng)
+        
+        let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)) // 0.0015
+            
+        mapView.setCenter(coordinate, animated: true)
+        mapView.setRegion(region, animated: true)
+            
+        executeReverseGeocode()
         
     }
     

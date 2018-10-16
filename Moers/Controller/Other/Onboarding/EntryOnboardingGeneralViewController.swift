@@ -37,6 +37,12 @@ class EntryOnboardingGeneralViewController: UIViewController {
         
         self.progressView.progress = 0.5
         
+        self.nameTextField.text = EntryManager.shared.entryName
+        self.phoneTextField.text = EntryManager.shared.entryPhone
+        self.websiteTextField.text = EntryManager.shared.entryWebsite
+        
+        self.checkDataInput()
+        
     }
     
     // MARK: - Private Methods
@@ -179,6 +185,18 @@ class EntryOnboardingGeneralViewController: UIViewController {
     
     @objc private func textChanged(_ textField: UITextField) {
         
+        checkDataInput()
+        
+    }
+    
+    private func invalidateUI() {
+        
+        self.navigationItem.rightBarButtonItem = nil
+        
+    }
+    
+    private func checkDataInput() {
+        
         if nameTextField.text != "" {
             
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Weiter", style: .plain, target: self, action: #selector(self.continueOnboarding))
@@ -191,19 +209,13 @@ class EntryOnboardingGeneralViewController: UIViewController {
         
     }
     
-    private func invalidateUI() {
-        
-        self.navigationItem.rightBarButtonItem = nil
-        
-    }
-    
     @objc private func continueOnboarding() {
         
         EntryManager.shared.entryName = nameTextField.text
         EntryManager.shared.entryWebsite = websiteTextField.text
         EntryManager.shared.entryPhone = phoneTextField.text
         
-        let viewController = UIViewController()
+        let viewController = EntryOnboardingOpeningHoursViewController()
         
         self.navigationController?.pushViewController(viewController, animated: true)
         

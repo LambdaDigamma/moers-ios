@@ -42,6 +42,13 @@ class EntryOnboardingAddressViewController: UIViewController {
         
         progressView.progress = 0.25
         
+        self.streetTextField.text = EntryManager.shared.entryStreet
+        self.houseNrTextField.text = EntryManager.shared.entryHouseNumber
+        self.postcodeTextField.text = EntryManager.shared.entryPostcode
+        self.placeTextField.text = EntryManager.shared.entryPlace
+        
+        self.checkDataInput()
+        
     }
     
     // MARK: - Private Methods
@@ -287,6 +294,26 @@ class EntryOnboardingAddressViewController: UIViewController {
         
     }
     
+    private func checkDataInput() {
+        
+        let street = streetTextField.text ?? ""
+        let houseNumber = houseNrTextField.text ?? ""
+        let postcode = postcodeTextField.text ?? ""
+        let place = placeTextField.text ?? ""
+        
+        if street != "" && houseNumber != "" && postcode != "" && place != "" {
+            
+            self.startGeocodingAddress(street: street,
+                                       houseNumber: houseNumber,
+                                       postcode: postcode,
+                                       place: place)
+            
+        } else {
+            self.invalidateUI()
+        }
+        
+    }
+    
 }
 
 extension EntryOnboardingAddressViewController: UITextFieldDelegate {
@@ -310,21 +337,7 @@ extension EntryOnboardingAddressViewController: UITextFieldDelegate {
             
         }
         
-        let street = streetTextField.text ?? ""
-        let houseNumber = houseNrTextField.text ?? ""
-        let postcode = postcodeTextField.text ?? ""
-        let place = placeTextField.text ?? ""
-        
-        if street != "" && houseNumber != "" && postcode != "" && place != "" {
-            
-            self.startGeocodingAddress(street: street,
-                                       houseNumber: houseNumber,
-                                       postcode: postcode,
-                                       place: place)
-            
-        } else {
-            self.invalidateUI()
-        }
+        checkDataInput()
         
     }
     

@@ -106,4 +106,44 @@ struct EntryManager {
         set { UserDefaults.standard.set(newValue, forKey: "EntryWebsite") }
     }
     
+    public var entryMondayOH: String? {
+        get { return UserDefaults.standard.string(forKey: "EntryMondayOH") }
+        set { UserDefaults.standard.set(newValue, forKey: "EntryMondayOH") }
+    }
+    
+    public var entryTuesdayOH: String? {
+        get { return UserDefaults.standard.string(forKey: "EntryTuesdayOH") }
+        set { UserDefaults.standard.set(newValue, forKey: "EntryTuesdayOH") }
+    }
+    
+    public var entryWednesdayOH: String? {
+        get { return UserDefaults.standard.string(forKey: "EntryWednesdayOH") }
+        set { UserDefaults.standard.set(newValue, forKey: "EntryWednesdayOH") }
+    }
+    
+    public var entryThursdayOH: String? {
+        get { return UserDefaults.standard.string(forKey: "EntryThursdayOH") }
+        set { UserDefaults.standard.set(newValue, forKey: "EntryThursdayOH") }
+    }
+    
+    public var entryFridayOH: String? {
+        get { return UserDefaults.standard.string(forKey: "EntryFridayOH") }
+        set { UserDefaults.standard.set(newValue, forKey: "EntryFridayOH") }
+    }
+
+    public var entrySaturdayOH: String? {
+        get { return UserDefaults.standard.string(forKey: "EntrySaturdayOH") }
+        set { UserDefaults.standard.set(newValue, forKey: "EntrySaturdayOH") }
+    }
+
+    public var entrySundayOH: String? {
+        get { return UserDefaults.standard.string(forKey: "EntrySundayOH") }
+        set { UserDefaults.standard.set(newValue, forKey: "EntrySundayOH") }
+    }
+
+    public var entryOtherOH: String? {
+        get { return UserDefaults.standard.string(forKey: "EntryOtherOH") }
+        set { UserDefaults.standard.set(newValue, forKey: "EntryOtherOH") }
+    }
+
 }
