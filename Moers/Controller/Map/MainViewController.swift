@@ -29,6 +29,9 @@ class MainViewController: PulleyViewController {
         self.mapViewController = contentViewController as? MapViewController
         self.contentViewController = drawerViewController as? ContentViewController
         
+        self.setupObserver()
+        self.loadData()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -39,7 +42,20 @@ class MainViewController: PulleyViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        AnalyticsManager.shared.logOpenedMaps()
+        
+    }
+    
+    // MARK: - Private Methods
+    
+    private func setupObserver() {
+        
         self.eventBus.add(subscriber: contentViewController, for: EntryDatasource.self)
         self.eventBus.add(subscriber: contentViewController, for: ShopDatasource.self)
         self.eventBus.add(subscriber: contentViewController, for: ParkingLotDatasource.self)
@@ -52,18 +68,7 @@ class MainViewController: PulleyViewController {
         self.eventBus.add(subscriber: mapViewController, for: CameraDatasource.self)
         self.eventBus.add(subscriber: mapViewController, for: PetrolDatasource.self)
         
-        self.loadData()
-        
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        AnalyticsManager.shared.logOpenedMaps()
-        
-    }
-    
-    // MARK: - Private Methods
     
     private func loadData() {
         
@@ -114,6 +119,8 @@ class MainViewController: PulleyViewController {
                 subscriber.didReceiveEntries(entries)
             })
             
+            self.locations = self.locations.filter { !($0 is Entry) }
+            self.locations.append(contentsOf: entries)
             
         }
         

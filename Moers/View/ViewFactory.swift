@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import TextFieldEffects
 import WebKit
+import TagListView
 
 struct ViewFactory {
     
@@ -164,6 +165,16 @@ struct ViewFactory {
         progressView.translatesAutoresizingMaskIntoConstraints = false
         
         return progressView
+        
+    }
+    
+    static func tagListView() -> TagListView {
+        
+        let tagListView = TagListView()
+        
+        tagListView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return tagListView
         
     }
     

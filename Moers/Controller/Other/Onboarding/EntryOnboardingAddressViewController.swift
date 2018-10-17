@@ -13,16 +13,16 @@ import MapKit
 
 class EntryOnboardingAddressViewController: UIViewController {
 
-    lazy var scrollView = { return ViewFactory.scrollView() }()
-    lazy var contentView = { return ViewFactory.blankView() }()
+    lazy var scrollView = { ViewFactory.scrollView() }()
+    lazy var contentView = { ViewFactory.blankView() }()
     lazy var progressView = { ViewFactory.onboardingProgressView() }()
-    lazy var addressHeaderLabel = { return ViewFactory.label() }()
-    lazy var streetTextField = { return ViewFactory.textField() }()
-    lazy var houseNrTextField = { return ViewFactory.textField() }()
-    lazy var postcodeTextField = { return ViewFactory.textField() }()
-    lazy var placeTextField = { return ViewFactory.textField() }()
-    lazy var mapView = { return ViewFactory.map() }()
-    lazy var infoLabel = { return ViewFactory.label() }()
+    lazy var addressHeaderLabel = { ViewFactory.label() }()
+    lazy var streetTextField = { ViewFactory.textField() }()
+    lazy var houseNrTextField = { ViewFactory.textField() }()
+    lazy var postcodeTextField = { ViewFactory.textField() }()
+    lazy var placeTextField = { ViewFactory.textField() }()
+    lazy var mapView = { ViewFactory.map() }()
+    lazy var infoLabel = { ViewFactory.label() }()
     
     private var coordinate: CLLocationCoordinate2D? = nil
     
@@ -40,7 +40,7 @@ class EntryOnboardingAddressViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        progressView.progress = 0.25
+        self.progressView.progress = 0.25
         
         self.streetTextField.text = EntryManager.shared.entryStreet
         self.houseNrTextField.text = EntryManager.shared.entryHouseNumber
