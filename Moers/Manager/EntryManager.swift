@@ -145,5 +145,10 @@ struct EntryManager {
         get { return UserDefaults.standard.string(forKey: "EntryOtherOH") }
         set { UserDefaults.standard.set(newValue, forKey: "EntryOtherOH") }
     }
+    
+    public var entryTags: [String] {
+        get { return UserDefaults.standard.stringArray(forKey: "EntryTags") ?? [] }
+        set { UserDefaults.standard.set(newValue, forKey: "EntryTags") }
+    }
 
 }

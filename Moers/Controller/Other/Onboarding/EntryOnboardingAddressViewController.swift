@@ -40,7 +40,7 @@ class EntryOnboardingAddressViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.progressView.progress = 0.25
+        self.progressView.progress = 0.2
         
         self.streetTextField.text = EntryManager.shared.entryStreet
         self.houseNrTextField.text = EntryManager.shared.entryHouseNumber

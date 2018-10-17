@@ -46,7 +46,23 @@ class EntryOnboardingTagsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        self.selectedTags = []
         
+        EntryManager.shared.entryTags.forEach { tag in
+            
+            if !selectedTags.contains(tag) {
+                
+                let index = self.tagsListView.tagViews.count - 1
+                
+                self.selectedTags.append(tag)
+                
+                self.tagsListView.insertTag(tag, at: index)
+                
+            }
+            
+        }
+        
+        self.progressView.progress = 0.6
         
     }
     
@@ -64,7 +80,7 @@ class EntryOnboardingTagsViewController: UIViewController {
         self.contentView.addSubview(infoLabel)
         
         self.progressView.currentStep = "4. Schlagwörter eingeben"
-        self.progressView.progress = 0.5
+        self.progressView.progress = 0.4
         
         self.tagsHeaderLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.semibold)
         self.tagsHeaderLabel.text = "Schlagwörter"
@@ -79,6 +95,8 @@ class EntryOnboardingTagsViewController: UIViewController {
         
         let item = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(close))
         self.searchController.navigationItem.rightBarButtonItem = item
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Weiter", style: .plain, target: self, action: #selector(self.continueOnboarding))
         
     }
     
@@ -239,6 +257,16 @@ class EntryOnboardingTagsViewController: UIViewController {
             }
             
         }
+        
+    }
+    
+    @objc private func continueOnboarding() {
+        
+        EntryManager.shared.entryTags = selectedTags
+        
+        let viewController = EntryOnboardingOpeningHoursViewController()
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
         
     }
     

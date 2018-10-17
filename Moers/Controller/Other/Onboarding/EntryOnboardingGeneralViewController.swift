@@ -35,7 +35,7 @@ class EntryOnboardingGeneralViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.progressView.progress = 0.5
+        self.progressView.progress = 0.4
         
         self.nameTextField.text = EntryManager.shared.entryName
         self.phoneTextField.text = EntryManager.shared.entryPhone
@@ -61,7 +61,7 @@ class EntryOnboardingGeneralViewController: UIViewController {
         self.contentView.addSubview(phoneTextField)
         
         self.progressView.currentStep = "3. Allgemeines & Kontakt"
-        self.progressView.progress = 0.25
+        self.progressView.progress = 0.2
         
         self.generalHeaderLabel.text = "Allgemeines"
         self.contactHeaderLabel.text = "Kontakt (optional)"
@@ -215,7 +215,7 @@ class EntryOnboardingGeneralViewController: UIViewController {
         EntryManager.shared.entryWebsite = websiteTextField.text
         EntryManager.shared.entryPhone = phoneTextField.text
         
-        let viewController = EntryOnboardingOpeningHoursViewController()
+        let viewController = EntryOnboardingTagsViewController()
         
         self.navigationController?.pushViewController(viewController, animated: true)
         

@@ -41,7 +41,7 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        progressView.progress = 0.5
+        progressView.progress = 0.8
         
         mondayOHTextField.text = EntryManager.shared.entryMondayOH
         tuesdayOHTextField.text = EntryManager.shared.entryTuesdayOH
@@ -87,8 +87,8 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
         
         self.openingHoursHeaderLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.semibold)
         
-        self.progressView.currentStep = "3. Öffnungszeiten eingeben"
-        self.progressView.progress = 0.25
+        self.progressView.currentStep = "5. Öffnungszeiten eingeben"
+        self.progressView.progress = 0.6
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Weiter", style: .plain, target: self, action: #selector(continueOnboarding))
         
