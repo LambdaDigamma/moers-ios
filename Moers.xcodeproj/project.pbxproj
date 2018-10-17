@@ -158,7 +158,7 @@
 		DFC5464E1F8007FB00EB3F7E /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC5464D1F8007FB00EB3F7E /* SearchResult.swift */; };
 		DFCB431B20DFF23900E7AD3F /* RankingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431A20DFF23900E7AD3F /* RankingManager.swift */; };
 		DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431C20E0283000E7AD3F /* NewsViewController.swift */; };
-		DFCB431F20E02D0300E7AD3F /* TwitterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431E20E02D0300E7AD3F /* TwitterManager.swift */; };
+		DFCB431F20E02D0300E7AD3F /* NewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431E20E02D0300E7AD3F /* NewsManager.swift */; };
 		DFCB432120E0344800E7AD3F /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFCB432020E0344700E7AD3F /* TwitterKit.framework */; };
 		DFCB432320E038AB00E7AD3F /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB432220E038AB00E7AD3F /* TweetTableViewCell.swift */; };
 		DFCB432520E0E7CF00E7AD3F /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB432420E0E7CF00E7AD3F /* CommunityViewController.swift */; };
@@ -388,7 +388,7 @@
 		DFC5464D1F8007FB00EB3F7E /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		DFCB431A20DFF23900E7AD3F /* RankingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingManager.swift; sourceTree = "<group>"; };
 		DFCB431C20E0283000E7AD3F /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
-		DFCB431E20E02D0300E7AD3F /* TwitterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterManager.swift; sourceTree = "<group>"; };
+		DFCB431E20E02D0300E7AD3F /* NewsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsManager.swift; sourceTree = "<group>"; };
 		DFCB432020E0344700E7AD3F /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Carthage/Build/iOS/TwitterKit.framework; sourceTree = "<group>"; };
 		DFCB432220E038AB00E7AD3F /* TweetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 		DFCB432420E0E7CF00E7AD3F /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
@@ -518,7 +518,7 @@
 				DF2D6DA620B8983400176614 /* UserManager.swift */,
 				DF2D6DAA20B8A02B00176614 /* OnboardingManager.swift */,
 				DFCB431A20DFF23900E7AD3F /* RankingManager.swift */,
-				DFCB431E20E02D0300E7AD3F /* TwitterManager.swift */,
+				DFCB431E20E02D0300E7AD3F /* NewsManager.swift */,
 				DFF9B2D820FE177E007FE158 /* ShopManager.swift */,
 				DF4D89582104C298008609A1 /* CameraManager.swift */,
 				DF32F6722104D11400BCF80F /* ParkingLotManager.swift */,
@@ -1173,7 +1173,7 @@
 			files = (
 				DFA9EF0420B468E3008590EA /* PetrolPriceResponse.swift in Sources */,
 				DF503CEF21431503006EE226 /* DebugViewController.swift in Sources */,
-				DFCB431F20E02D0300E7AD3F /* TwitterManager.swift in Sources */,
+				DFCB431F20E02D0300E7AD3F /* NewsManager.swift in Sources */,
 				DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */,
 				DFA9EEFF20B36A86008590EA /* PetrolStation.swift in Sources */,
 				DF75734521771D6800953DA1 /* LFSearchViewDataSource.swift in Sources */,

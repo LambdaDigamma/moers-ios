@@ -10,7 +10,7 @@ import UIKit
 import Gestalt
 import TwitterKit
 
-class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TwitterManagerDelegate {
+class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NewsManagerDelegate {
     
     private let cellIdentifier = "tweet"
     
@@ -94,8 +94,8 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         queue.addOperation {
             
-            TwitterManager.shared.delegate = self
-            TwitterManager.shared.getTweets()
+            NewsManager.shared.delegate = self
+            NewsManager.shared.getTweets()
             
         }
         

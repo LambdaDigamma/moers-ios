@@ -1,5 +1,5 @@
 //
-//  TwitterManager.swift
+//  NewsManager.swift
 //  Moers
 //
 //  Created by Lennart Fischer on 24.06.18.
@@ -8,8 +8,9 @@
 
 import Foundation
 import TwitterKit
+import FeedKit
 
-protocol TwitterManagerDelegate {
+protocol NewsManagerDelegate {
     
     func receivedTweets(tweets: [TWTRTweet])
     
@@ -21,7 +22,7 @@ struct NewsManager {
     
     private let client = TWTRAPIClient()
     
-    public var delegate: TwitterManagerDelegate? = nil
+    public var delegate: NewsManagerDelegate? = nil
     
     public func getTweets() {
         
@@ -72,6 +73,27 @@ struct NewsManager {
             }
             
         }
+        
+    }
+    
+    public func getRSS() {
+        
+//        guard let feedURL = URL(string: "https://rp-online.de/nrw/staedte/moers/feed.rss") else { return } // RP Online Moers
+        guard let feedURL = URL(string: "https://www.lokalkompass.de/feed/action/mode/realm/ID/35/") else { return } // Lokalkompass
+        
+        let parser = FeedParser(URL: feedURL)
+        
+        parser.parseAsync(queue: DispatchQueue.global(qos: .userInitiated)) { (result) in
+            
+            guard let feed = result.rssFeed else { return }
+            
+            feed.items?.forEach { print($0.pubDate) }
+            
+            DispatchQueue.main.async {
+                // ..and update the UI
+            }
+        }
+        
         
     }
     
