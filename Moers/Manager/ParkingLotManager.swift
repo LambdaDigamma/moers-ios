@@ -29,14 +29,18 @@ class ParkingLotManager: NSObject, XMLParserDelegate {
             
             self.completion = completion
             
-            let parkingLotURL = URL(string: "http://download.moers.de/Parkdaten/Parkdaten_open.php")
-            
-            if let parkingLotURL = parkingLotURL {
+            DispatchQueue.global(qos: .background).async {
                 
-                let parser = XMLParser(contentsOf: parkingLotURL)
+                let parkingLotURL = URL(string: "http://download.moers.de/Parkdaten/Parkdaten_open.php")
                 
-                parser?.delegate = self
-                parser?.parse()
+                if let parkingLotURL = parkingLotURL {
+                    
+                    let parser = XMLParser(contentsOf: parkingLotURL)
+                    
+                    parser?.delegate = self
+                    parser?.parse()
+                    
+                }
                 
             }
             
@@ -80,9 +84,13 @@ class ParkingLotManager: NSObject, XMLParserDelegate {
     
     func parserDidEndDocument(_ parser: XMLParser) {
         
-        completion?(nil, parkingLots)
-        
-        parser.delegate = nil
+        DispatchQueue.main.async {
+            
+            self.completion?(nil, self.parkingLots)
+            
+            parser.delegate = nil
+            
+        }
         
     }
     

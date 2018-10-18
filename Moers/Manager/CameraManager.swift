@@ -19,35 +19,43 @@ struct CameraManager {
         
         if let url = cameraURL {
             
-            do {
+            DispatchQueue.global(qos: .background).async {
                 
-                let content = try String(contentsOf: url, encoding: String.Encoding.utf8)
-                
-                let csv = CSwiftV(with: content, separator: ";", headers: nil)
-                
-                var cameras: [Camera] = []
-                
-                for row in csv.rows {
+                do {
                     
-                    let lat = row[1].components(separatedBy: ", ").first
-                    let lng = row[1].components(separatedBy: ", ").last
+                    let content = try String(contentsOf: url, encoding: String.Encoding.utf8)
                     
-                    if let lat = lat?.doubleValue, let lng = lng?.doubleValue {
+                    let csv = CSwiftV(with: content, separator: ";", headers: nil)
+                    
+                    var cameras: [Camera] = []
+                    
+                    for row in csv.rows {
                         
-                        let location = CLLocation(latitude: lat, longitude: lng)
+                        let lat = row[1].components(separatedBy: ", ").first
+                        let lng = row[1].components(separatedBy: ", ").last
                         
-                        let camera = Camera(name: row.first!, location: location, panoID: Int(row.last!)!)
-                        
-                        cameras.append(camera)
+                        if let lat = lat?.doubleValue, let lng = lng?.doubleValue {
+                            
+                            let location = CLLocation(latitude: lat, longitude: lng)
+                            
+                            let camera = Camera(name: row.first!, location: location, panoID: Int(row.last!)!)
+                            
+                            cameras.append(camera)
+                            
+                        }
                         
                     }
                     
+                    DispatchQueue.main.async {
+                        completion(nil, cameras)
+                    }
+                    
+                } catch  {
+                    DispatchQueue.main.async {
+                        completion(error, nil)
+                    }
                 }
                 
-                completion(nil, cameras)
-                
-            } catch  {
-                completion(error, nil)
             }
             
         }
