@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import Reachability
 
 struct EntryManager {
     
     static var shared = EntryManager()
     
+    private let reachability = Reachability()!
     private var session = URLSession.shared
     
     public func get(completion: @escaping ((Error?, [Entry]?) -> Void)) {
@@ -23,31 +25,127 @@ struct EntryManager {
         var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        let task = session.dataTask(with: request) { (data, response, error) in
+        DispatchQueue.global(qos: .background).async {
             
-            if let error = error {
-                print(error.localizedDescription)
+            let task = self.session.dataTask(with: request) { (data, response, error) in
+                
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                
+                guard let data = data else { return }
+                
+                let jsonDecoder = JSONDecoder()
+                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+                
+                do {
+                    
+                    let entries = try jsonDecoder.decode([Entry].self, from: data)
+                    
+                    DispatchQueue.main.async {
+                        completion(nil, entries)
+                    }
+                    
+                } catch {
+                    
+                    DispatchQueue.main.async {
+                        completion(error, nil)
+                    }
+                    
+                    print(error.localizedDescription)
+                }
+                
             }
             
-            guard let data = data else { return }
-            
-            let jsonDecoder = JSONDecoder()
-            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            do {
-                
-                let entries = try jsonDecoder.decode([Entry].self, from: data)
-                
-                completion(nil, entries)
-                
-            } catch {
-                completion(error, nil)
-                print(error.localizedDescription)
-            }
+            task.resume()
             
         }
         
-        task.resume()
+    }
+    
+    public func store(entry: Entry, completion: @escaping ((Error?, Bool?, Int?) -> Void)) {
+        
+        if reachability.connection != .none {
+            
+            guard let url = URL(string: Environment.current.baseURL + "api/v1/entries") else {
+                completion(APIError.noConnection, nil, nil)
+                return
+            }
+            
+            let tags = entry.tags.joined(separator: ", ")
+            
+            let data: [String: Any] = ["secret": "tzVQl34i6SrYSzAGSkBh",
+                                       "name": entry.name,
+                                       "tags": tags,
+                                       "street": entry.street,
+                                       "house_number": entry.houseNumber,
+                                       "postcode": entry.postcode,
+                                       "place": entry.place,
+                                       "lat": entry.coordinate.latitude,
+                                       "lng": entry.coordinate.longitude,
+                                       "url": entry.url ?? "",
+                                       "phone": entry.phone ?? "",
+                                       "monday": entry.monday ?? "",
+                                       "tuesday": entry.tuesday ?? "",
+                                       "wednesday": entry.wednesday ?? "",
+                                       "thursday": entry.thursday ?? "",
+                                       "friday": entry.friday ?? "",
+                                       "saturday": entry.saturday ?? "",
+                                       "sunday": entry.sunday ?? "",
+                                       "other": entry.other ?? ""]
+            
+            var request = URLRequest(url: url)
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = "POST"
+            
+            DispatchQueue.global(qos: .background).async {
+                
+                do {
+                    request.httpBody = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+                } catch {
+                    print(error.localizedDescription)
+                }
+                
+                let task = self.session.dataTask(with: request) { (data, response, error) in
+                    
+                    guard error == nil else {
+                        completion(error, nil, nil)
+                        return
+                    }
+                    
+                    guard let data = data else {
+                        completion(APIError.noData, nil, nil)
+                        return
+                    }
+                    
+                    do {
+                        
+                        guard let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else { completion(APIError.noData, nil, nil); return }
+                        
+                        print(json)
+                        
+                        let id = (json["id"] as? Int) ?? -1
+                        
+                        DispatchQueue.main.async {
+                            completion(nil, true, id)
+                        }
+                        
+                    } catch {
+                        DispatchQueue.main.async {
+                            completion(error, false, nil)
+                        }
+                    }
+                    
+                }
+                
+                task.resume()
+                
+            }
+            
+        } else {
+            completion(APIError.noConnection, nil, nil)
+        }
         
     }
     

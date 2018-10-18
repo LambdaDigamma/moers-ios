@@ -57,13 +57,11 @@ class MainViewController: PulleyViewController {
     private func setupObserver() {
         
         self.eventBus.add(subscriber: contentViewController, for: EntryDatasource.self)
-        self.eventBus.add(subscriber: contentViewController, for: ShopDatasource.self)
         self.eventBus.add(subscriber: contentViewController, for: ParkingLotDatasource.self)
         self.eventBus.add(subscriber: contentViewController, for: CameraDatasource.self)
         self.eventBus.add(subscriber: contentViewController, for: PetrolDatasource.self)
         
         self.eventBus.add(subscriber: mapViewController, for: EntryDatasource.self)
-        self.eventBus.add(subscriber: mapViewController, for: ShopDatasource.self)
         self.eventBus.add(subscriber: mapViewController, for: ParkingLotDatasource.self)
         self.eventBus.add(subscriber: mapViewController, for: CameraDatasource.self)
         self.eventBus.add(subscriber: mapViewController, for: PetrolDatasource.self)
@@ -75,7 +73,6 @@ class MainViewController: PulleyViewController {
         OperationQueue.main.addOperation {
             
             self.loadEntries()
-            self.loadShops()
             self.loadParkingLots()
             self.loadPetrolStations()
             self.loadCameras()

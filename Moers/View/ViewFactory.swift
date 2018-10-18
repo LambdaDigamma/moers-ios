@@ -173,6 +173,15 @@ struct ViewFactory {
         let tagListView = TagListView()
         
         tagListView.translatesAutoresizingMaskIntoConstraints = false
+        tagListView.paddingX = 12
+        tagListView.paddingY = 7
+        tagListView.marginX = 10
+        tagListView.marginY = 7
+        tagListView.removeIconLineWidth = 2
+        tagListView.removeButtonIconSize = 7
+        tagListView.textFont = UIFont.boldSystemFont(ofSize: 10)
+        tagListView.cornerRadius = 10
+        tagListView.backgroundColor = UIColor.clear
         
         return tagListView
         

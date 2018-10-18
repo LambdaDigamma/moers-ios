@@ -36,9 +36,9 @@ class EntryOnboardingTagsViewController: UIViewController {
         super.viewDidLoad()
         
         self.setupUI()
-        self.setupTags()
         self.setupConstraints()
         self.setupTheming()
+        self.setupTags()
         self.getTags()
         
     }
@@ -47,6 +47,7 @@ class EntryOnboardingTagsViewController: UIViewController {
         super.viewDidAppear(animated)
         
         self.selectedTags = []
+        self.tagsListView.removeAllTags()
         
         EntryManager.shared.entryTags.forEach { tag in
             
@@ -139,6 +140,9 @@ class EntryOnboardingTagsViewController: UIViewController {
             themeable.progressView.textColor = theme.color
             themeable.infoLabel.textColor = theme.color
             themeable.tagsHeaderLabel.textColor = theme.decentColor
+            themeable.tagsListView.tagBackgroundColor = theme.accentColor
+            themeable.tagsListView.textColor = theme.backgroundColor
+            themeable.tagsListView.removeIconLineColor = theme.backgroundColor
             themeable.searchController.searchBarBackgroundColor = theme.navigationBarColor
             themeable.searchController.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
             themeable.searchController.searchBar.textField?.textColor = theme.color
@@ -169,19 +173,7 @@ class EntryOnboardingTagsViewController: UIViewController {
     private func setupTags() {
         
         self.tagsListView.delegate = self
-        self.tagsListView.backgroundColor = UIColor.clear
-        self.tagsListView.paddingX = 12
-        self.tagsListView.paddingY = 7
-        self.tagsListView.marginX = 10
-        self.tagsListView.marginY = 7
-        self.tagsListView.cornerRadius = 10
-        self.tagsListView.tagBackgroundColor = UIColor.yellow
-        self.tagsListView.textColor = UIColor.black
         self.tagsListView.enableRemoveButton = true
-        self.tagsListView.removeIconLineColor = UIColor.black
-        self.tagsListView.removeIconLineWidth = 2
-        self.tagsListView.removeButtonIconSize = 7
-        self.tagsListView.textFont = UIFont.boldSystemFont(ofSize: 10)
         
         self.tagsListView.addTags(tags)
         

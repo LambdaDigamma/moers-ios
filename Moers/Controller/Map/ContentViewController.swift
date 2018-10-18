@@ -101,19 +101,7 @@ class ContentViewController: UIViewController {
         self.tableView.register(TagTableViewCell.self, forCellReuseIdentifier: CellIdentifier.tagCell)
         
         self.tagListView.delegate = self
-        self.tagListView.backgroundColor = UIColor.clear
-        self.tagListView.paddingX = 12
-        self.tagListView.paddingY = 7
-        self.tagListView.marginX = 10
-        self.tagListView.marginY = 7
-        self.tagListView.cornerRadius = 10
-        self.tagListView.tagBackgroundColor = UIColor.yellow
-        self.tagListView.textColor = UIColor.black
         self.tagListView.enableRemoveButton = true
-        self.tagListView.removeIconLineColor = UIColor.black
-        self.tagListView.removeIconLineWidth = 2
-        self.tagListView.removeButtonIconSize = 7
-        self.tagListView.textFont = UIFont.boldSystemFont(ofSize: 10)
         
         self.headerSectionHeightConstraint.constant = 68.0
         
@@ -134,6 +122,9 @@ class ContentViewController: UIViewController {
             themeable.normalColor = theme.backgroundColor
             themeable.highlightedColor = theme.backgroundColor.darker(by: 10)!
             themeable.searchBar.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
+            themeable.tagListView.tagBackgroundColor = theme.accentColor
+            themeable.tagListView.textColor = theme.backgroundColor
+            themeable.tagListView.removeIconLineColor = theme.backgroundColor
             
         }
         
