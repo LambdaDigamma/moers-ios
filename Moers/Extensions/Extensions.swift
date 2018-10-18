@@ -7,18 +7,7 @@
 //
 
 import Foundation
-
-#if os(OSX)
-    
-    import Cocoa
-    public  typealias PXColor = NSColor
-    
-#else
-    
-    import UIKit
-    public  typealias PXColor = UIColor
-    
-#endif
+import UIKit
 
 extension UIColor {
     
@@ -59,24 +48,6 @@ extension UIColor {
         self.init(red: red, green: green, blue:  blue, alpha: alpha)
     }
     
-}
-
-struct AppColor {
-    
-    static let yellow = UIColor(red: 0xFF, green: 0xEB, blue: 0x3B)
-    
-}
-
-extension UISearchBar {
-    
-    var textField: UITextField? {
-        return self.value(forKey: "searchField") as? UITextField
-    }
-    
-}
-
-extension UIColor {
-    
     func lighter(by percentage: CGFloat = 30.0) -> UIColor? {
         return self.adjust(by: abs(percentage))
     }
@@ -97,7 +68,23 @@ extension UIColor {
         }
     }
     
+    
 }
+
+struct AppColor {
+    
+    static let yellow = UIColor(red: 0xFF, green: 0xEB, blue: 0x3B)
+    
+}
+
+extension UISearchBar {
+    
+    var textField: UITextField? {
+        return self.value(forKey: "searchField") as? UITextField
+    }
+    
+}
+
 
 extension Bundle {
     var releaseVersionNumber: String? {

@@ -14,7 +14,6 @@ import Crashlytics
 struct AnnotationIdentifier {
     
     static let cluster = "cluster"
-    static let shop = "shop"
     static let parkingLot = "parkingLot"
     static let camera = "camera"
     static let bikeChargingStation = "bikeCharger"
@@ -68,16 +67,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
             } else {
                 view?.annotation = entry
             }
-            
-            return view
-            
-        } else if let store = annotation as? Store {
-            
-            var view = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationIdentifier.shop) as? MKMarkerAnnotationView
-            
-            if view == nil { view = ShopAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.shop) }
-            
-            view?.annotation = store
             
             return view
             
@@ -215,7 +204,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
     
 }
 
-extension MapViewController: EntryDatasource, ShopDatasource, ParkingLotDatasource, CameraDatasource, PetrolDatasource {
+extension MapViewController: EntryDatasource, ParkingLotDatasource, CameraDatasource, PetrolDatasource {
     
     func didReceiveEntries(_ entries: [Entry]) {
         
@@ -227,16 +216,6 @@ extension MapViewController: EntryDatasource, ShopDatasource, ParkingLotDatasour
         
     }
     
-    func didReceiveShops(_ shops: [Store]) {
-        
-//        self.locations.append(contentsOf: shops as [Store])
-        
-//        DispatchQueue.main.async {
-//            self.map.addAnnotations(shops)
-//        }
-        
-    }
-
     func didReceiveParkingLots(_ parkingLots: [ParkingLot]) {
         
         self.locations.append(contentsOf: parkingLots as [ParkingLot])

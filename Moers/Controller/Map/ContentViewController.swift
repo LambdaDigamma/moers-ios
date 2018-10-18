@@ -496,7 +496,7 @@ extension ContentViewController: TagListViewDelegate {
     
 }
 
-extension ContentViewController: EntryDatasource, ShopDatasource, ParkingLotDatasource, CameraDatasource, PetrolDatasource {
+extension ContentViewController: EntryDatasource, ParkingLotDatasource, CameraDatasource, PetrolDatasource {
     
     func didReceiveEntries(_ entries: [Entry]) {
         
@@ -507,10 +507,6 @@ extension ContentViewController: EntryDatasource, ShopDatasource, ParkingLotData
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-        
-    }
-    
-    func didReceiveShops(_ shops: [Store]) {
         
     }
     

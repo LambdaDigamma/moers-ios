@@ -43,8 +43,7 @@ class EntryTableViewCell: UITableViewCell {
                            entryImageView.widthAnchor.constraint(equalTo: entryImageView.heightAnchor),
                            titleLabel.topAnchor.constraint(equalTo: margins.topAnchor),
                            titleLabel.leftAnchor.constraint(equalTo: entryImageView.rightAnchor, constant: 8),
-                           titleLabel.rightAnchor.constraint(equalTo: margins.rightAnchor),
-                           ]
+                           titleLabel.rightAnchor.constraint(equalTo: margins.rightAnchor)]
         
         NSLayoutConstraint.activate(constraints)
         

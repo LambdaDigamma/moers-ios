@@ -12,18 +12,6 @@ import SwiftyConfiguration
 import InfoKit
 import Reachability
 
-protocol APIDelegate {
-    
-    func didReceiveShops(shops: [Shop])
-    
-    func didReceiveParkingLots(parkingLots: [ParkingLot])
-    
-    func didReceiveCameras(cameras: [Camera])
-    
-    func didReceiveBikeChargers(chargers: [BikeChargingStation])
-    
-}
-
 enum APIError: Error {
     case noConnection
     case noData
@@ -33,8 +21,6 @@ enum APIError: Error {
 
 class API: NSObject, XMLParserDelegate {
 
-    var delegate: APIDelegate?
-    
     static let shared = API()
     
     private let reachability = Reachability()!
@@ -44,9 +30,7 @@ class API: NSObject, XMLParserDelegate {
     private var valueBuffer: [String: AnyObject]? = [:]
     
     private var parkingLots: [ParkingLot] = []
-    private var branches: [Branch] = []
     
-    public var cachedShops: [Shop] = []
     public var cachedParkingLots: [ParkingLot] = []
     public var cachedCameras: [Camera] = []
     public var cachedBikeCharger: [BikeChargingStation] = []
@@ -357,7 +341,6 @@ class API: NSObject, XMLParserDelegate {
                 }
                 
                 self.cachedBikeCharger = chargers
-                self.delegate?.didReceiveBikeChargers(chargers: chargers)
                 
             } catch let err {
                 print(err.localizedDescription)

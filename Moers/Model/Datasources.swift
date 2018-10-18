@@ -8,12 +8,6 @@
 
 import Foundation
 
-protocol ShopDatasource {
-    
-    func didReceiveShops(_ shops: [Store])
-    
-}
-
 protocol ParkingLotDatasource {
     
     func didReceiveParkingLots(_ parkingLots: [ParkingLot])
@@ -35,11 +29,5 @@ protocol PetrolDatasource {
 protocol EntryDatasource {
     
     func didReceiveEntries(_ entries: [Entry])
-    
-}
-
-protocol RestaurantDatasource {
-    
-    func didReceiveRestaurants(_ restaurants: [Restaurant]) 
     
 }

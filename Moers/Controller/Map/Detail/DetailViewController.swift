@@ -185,25 +185,6 @@ class DetailViewController: UIViewController {
             
             morphDetailEntry()
             
-        } else if let shop = location as? Store {
-            
-            if let image = ShopIconDrawer.annotationImage(from: shop.branch) {
-
-                if let img = UIImage.imageResize(imageObj: image, size: CGSize(width: imageView.bounds.width / 2, height: imageView.bounds.height / 2), scaleFactor: 0.75) {
-
-                    imageView.backgroundColor = UIColor(red: 0xFF, green: 0xF5, blue: 0x00, alpha: 1)
-                    imageView.image = img
-                    imageView.contentMode = .scaleAspectFit
-                    imageView.layer.borderColor = UIColor.black.cgColor
-                    imageView.layer.borderWidth = 1
-                    imageView.layer.cornerRadius = 7
-
-                }
-
-            }
-            
-            morphDetailShop()
-            
         } else if selectedLocation is ParkingLot {
             
             morphDetailParking()
@@ -283,16 +264,6 @@ class DetailViewController: UIViewController {
         self.add(asChildViewController: viewController)
         
         viewController.selectedCamera = selectedLocation as? Camera
-        
-    }
-    
-    private func morphDetailShop() {
-        
-        let viewController = DetailShopViewController.fromStoryboard()
-        
-        self.add(asChildViewController: viewController)
-        
-        viewController.selectedShop = selectedLocation as? Store
         
     }
     

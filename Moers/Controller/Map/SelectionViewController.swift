@@ -11,6 +11,7 @@ import Gestalt
 import Pulley
 import MapKit
 
+// TODO: Update Selection View Controller
 class SelectionViewController: UIViewController {
 
     lazy var headerView: UIView = { ViewFactory.blankView() }()
@@ -177,16 +178,6 @@ extension SelectionViewController: UITableViewDataSource, UITableViewDelegate {
             let coordinate = self.clusteredLocations[indexPath.row].location.coordinate
             
             mapController.map.setCenter(coordinate, animated: true)
-            
-        }
-        
-    }
-    
-    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        
-        if let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell, let _ = clusteredLocations[indexPath.row] as? Store {
-            
-            cell.searchImageView.backgroundColor = AppColor.yellow
             
         }
         

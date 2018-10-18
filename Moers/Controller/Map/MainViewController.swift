@@ -81,27 +81,6 @@ class MainViewController: PulleyViewController {
         
     }
     
-    private func loadShops() {
-        
-        ShopManager.shared.get { (error, shops) in
-            
-            if let error = error {
-                print(error)
-            }
-            
-            guard let shops = shops else { return }
-            
-            self.eventBus.notify(ShopDatasource.self) { subscriber in
-                subscriber.didReceiveShops(shops)
-            }
-            
-            self.locations = self.locations.filter { !($0 is Store) }
-            self.locations.append(contentsOf: shops)
-            
-        }
-        
-    }
-    
     private func loadEntries() {
         
         EntryManager.shared.get { (error, entries) in
