@@ -57,6 +57,7 @@
 		DF44D58F2126F83B00F8AC0C /* DetailViewControllers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF44D58E2126F83B00F8AC0C /* DetailViewControllers.storyboard */; };
 		DF461CB820E2257400600C0E /* AddShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF461CB720E2257400600C0E /* AddShopViewController.swift */; };
 		DF461CBA20E226DE00600C0E /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF461CB920E226DE00600C0E /* ViewFactory.swift */; };
+		DF46E0E22177E28E003545F6 /* EntryOnboardingSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF46E0E12177E28E003545F6 /* EntryOnboardingSummaryViewController.swift */; };
 		DF4BD1BE208A72C5003ECF41 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */; };
 		DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */; };
 		DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C3208C64F1003ECF41 /* PickerView.swift */; };
@@ -75,8 +76,6 @@
 		DF626AF71FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */; };
 		DF626AF91FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF81FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift */; };
 		DF6279792100CDE400F81A70 /* DetailParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6279782100CDE400F81A70 /* DetailParkingViewController.swift */; };
-		DF62BA8B2164AE5100BF7FC7 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF62BA8A2164AE5100BF7FC7 /* Restaurant.swift */; };
-		DF62BA8D2164BA3F00BF7FC7 /* RestaurantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF62BA8C2164BA3F00BF7FC7 /* RestaurantManager.swift */; };
 		DF632B401F6E721B0022FA8E /* ParkingLot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B3F1F6E721B0022FA8E /* ParkingLot.swift */; };
 		DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */; };
 		DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B451F6EA0370022FA8E /* DesignableButton.swift */; };
@@ -86,7 +85,6 @@
 		DF75734321771D3100953DA1 /* LFSearchViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75734221771D3100953DA1 /* LFSearchViewDelegate.swift */; };
 		DF75734521771D6800953DA1 /* LFSearchViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75734421771D6800953DA1 /* LFSearchViewDataSource.swift */; };
 		DF757347217725AC00953DA1 /* LFSearchViewDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF757346217725AC00953DA1 /* LFSearchViewDefaults.swift */; };
-		DF77BFF9216804600025A31E /* DetailRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF77BFF8216804600025A31E /* DetailRestaurantViewController.swift */; };
 		DF77BFFB2168B7BB0025A31E /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF77BFFA2168B7BB0025A31E /* Entry.swift */; };
 		DF77BFFD2168BE960025A31E /* EntryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF77BFFC2168BE960025A31E /* EntryManager.swift */; };
 		DF77BFFF21695F8D0025A31E /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF77BFFE21695F8D0025A31E /* EntryTableViewCell.swift */; };
@@ -291,6 +289,7 @@
 		DF44D58E2126F83B00F8AC0C /* DetailViewControllers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewControllers.storyboard; sourceTree = "<group>"; };
 		DF461CB720E2257400600C0E /* AddShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShopViewController.swift; sourceTree = "<group>"; };
 		DF461CB920E226DE00600C0E /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
+		DF46E0E12177E28E003545F6 /* EntryOnboardingSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryOnboardingSummaryViewController.swift; sourceTree = "<group>"; };
 		DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishStreetPickerItem.swift; sourceTree = "<group>"; };
 		DF4BD1C3208C64F1003ECF41 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
@@ -309,8 +308,6 @@
 		DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeChargingStationAnnotationView.swift; sourceTree = "<group>"; };
 		DF626AF81FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBikeChargingStationViewController.swift; sourceTree = "<group>"; };
 		DF6279782100CDE400F81A70 /* DetailParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailParkingViewController.swift; sourceTree = "<group>"; };
-		DF62BA8A2164AE5100BF7FC7 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
-		DF62BA8C2164BA3F00BF7FC7 /* RestaurantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantManager.swift; sourceTree = "<group>"; };
 		DF632B3F1F6E721B0022FA8E /* ParkingLot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLot.swift; sourceTree = "<group>"; };
 		DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLotAnnotationView.swift; sourceTree = "<group>"; };
 		DF632B451F6EA0370022FA8E /* DesignableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
@@ -320,7 +317,6 @@
 		DF75734221771D3100953DA1 /* LFSearchViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewDelegate.swift; sourceTree = "<group>"; };
 		DF75734421771D6800953DA1 /* LFSearchViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewDataSource.swift; sourceTree = "<group>"; };
 		DF757346217725AC00953DA1 /* LFSearchViewDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewDefaults.swift; sourceTree = "<group>"; };
-		DF77BFF8216804600025A31E /* DetailRestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRestaurantViewController.swift; sourceTree = "<group>"; };
 		DF77BFFA2168B7BB0025A31E /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		DF77BFFC2168BE960025A31E /* EntryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryManager.swift; sourceTree = "<group>"; };
 		DF77BFFE21695F8D0025A31E /* EntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTableViewCell.swift; sourceTree = "<group>"; };
@@ -523,7 +519,6 @@
 				DF4D89582104C298008609A1 /* CameraManager.swift */,
 				DF32F6722104D11400BCF80F /* ParkingLotManager.swift */,
 				DFEFE7CE2122E0A6002F5162 /* EventManager.swift */,
-				DF62BA8C2164BA3F00BF7FC7 /* RestaurantManager.swift */,
 				DF77BFFC2168BE960025A31E /* EntryManager.swift */,
 			);
 			path = Manager;
@@ -788,7 +783,6 @@
 				DF4D8954210476AB008609A1 /* DetailShopViewController.swift */,
 				DF626AF81FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift */,
 				DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */,
-				DF77BFF8216804600025A31E /* DetailRestaurantViewController.swift */,
 				DF310D9E216FF2AE004C69BA /* DetailEntryViewController.swift */,
 			);
 			path = Detail;
@@ -823,6 +817,7 @@
 				DF86AB9A2173837B00EFC7EA /* EntryOnboardingGeneralViewController.swift */,
 				DF75733D2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift */,
 				DF86ABA22174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift */,
+				DF46E0E12177E28E003545F6 /* EntryOnboardingSummaryViewController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -866,7 +861,6 @@
 				DF8254051F7711170069D751 /* Camera.swift */,
 				DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */,
 				DFB92D5F1F6B0B3F00669F73 /* Shop.swift */,
-				DF62BA8A2164AE5100BF7FC7 /* Restaurant.swift */,
 				DF77BFFA2168B7BB0025A31E /* Entry.swift */,
 			);
 			path = Locations;
@@ -1180,7 +1174,6 @@
 				DF524CAC2087443D00D88599 /* BranchCollectionViewCell.swift in Sources */,
 				DFD73694211EF0A500826C47 /* Localizable.swift in Sources */,
 				DFF4E15D20893694007C24E3 /* RubbishCollectionDate.swift in Sources */,
-				DF77BFF9216804600025A31E /* DetailRestaurantViewController.swift in Sources */,
 				DF0CB4A12082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift in Sources */,
 				DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */,
 				DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */,
@@ -1194,8 +1187,8 @@
 				DFDD3F7220B2E525005602E3 /* MonthHeaderView.swift in Sources */,
 				DF29FB4D20B1954B00741A63 /* ThemeViewController.swift in Sources */,
 				DFA17DF620DFDA6200BBD838 /* AccountViewController.swift in Sources */,
+				DF46E0E22177E28E003545F6 /* EntryOnboardingSummaryViewController.swift in Sources */,
 				DF0CB4AB208357A800CC0AA8 /* MapItemContentView.swift in Sources */,
-				DF62BA8D2164BA3F00BF7FC7 /* RestaurantManager.swift in Sources */,
 				DFAEF40620E6E671001B0756 /* String+Extensions.swift in Sources */,
 				DF32F6732104D11400BCF80F /* ParkingLotManager.swift in Sources */,
 				DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */,
@@ -1262,7 +1255,6 @@
 				DF855C2620C9E37400B7F7C7 /* CardCollectionViewController.swift in Sources */,
 				DFB4D76720B03B9000C8D179 /* OtherViewController.swift in Sources */,
 				DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */,
-				DF62BA8B2164AE5100BF7FC7 /* Restaurant.swift in Sources */,
 				DF0CB4AD20838FD100CC0AA8 /* MainViewController.swift in Sources */,
 				DF86ABA32174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift in Sources */,
 				DF524CAA2087421800D88599 /* BranchTableViewCell.swift in Sources */,
