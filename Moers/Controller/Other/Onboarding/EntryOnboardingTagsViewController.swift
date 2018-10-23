@@ -38,7 +38,7 @@ class EntryOnboardingTagsViewController: UIViewController {
         self.setupUI()
         self.setupConstraints()
         self.setupTheming()
-        self.setupTags()
+        self.setupAddTag()
         self.getTags()
         
     }
@@ -46,22 +46,7 @@ class EntryOnboardingTagsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.selectedTags = []
-        self.tagsListView.removeAllTags()
-        
-        EntryManager.shared.entryTags.forEach { tag in
-            
-            if !selectedTags.contains(tag) {
-                
-                let index = self.tagsListView.tagViews.count - 1
-                
-                self.selectedTags.append(tag)
-                
-                self.tagsListView.insertTag(tag, at: index)
-                
-            }
-            
-        }
+        self.checkData()
         
         self.progressView.progress = 0.6
         
@@ -170,12 +155,10 @@ class EntryOnboardingTagsViewController: UIViewController {
     
     // MARK: - Helper
     
-    private func setupTags() {
+    private func setupAddTag() {
         
         self.tagsListView.delegate = self
         self.tagsListView.enableRemoveButton = true
-        
-        self.tagsListView.addTags(tags)
         
         let addTagView = tagsListView.addTag("Hinzufügen")
 
@@ -196,8 +179,6 @@ class EntryOnboardingTagsViewController: UIViewController {
             // TODO: Improve Tag Fetching
             self.tags = Array(Set(mainViewController.locations.map { $0.tags }.reduce([], +))).sorted()
             self.tags.removeAll(where: { $0.isEmptyOrWhitespace })
-            
-            print(self.tags)
             
         }
         
@@ -246,6 +227,31 @@ class EntryOnboardingTagsViewController: UIViewController {
             
             self.searchController.dismiss(animated: true) {
                 self.tagsListView.insertTag(tag, at: index)
+            }
+            
+        }
+        
+    }
+    
+    private func checkData() {
+        
+        if !EntryManager.shared.entryTags.isEmpty {
+            
+            self.selectedTags = []
+            self.tagsListView.removeAllTags()
+            self.setupAddTag()
+            
+            EntryManager.shared.entryTags.forEach { tag in
+                
+                if !selectedTags.contains(tag) {
+                    
+                    let index = self.tagsListView.tagViews.count - 1
+                    
+                    self.selectedTags.append(tag)
+                    self.tagsListView.insertTag(tag, at: index)
+                    
+                }
+                
             }
             
         }
