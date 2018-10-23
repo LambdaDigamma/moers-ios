@@ -9,11 +9,14 @@
 import UIKit
 import Gestalt
 import MessageUI
+import Alertift
 
 class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
     private let standardCellIdentifier = "standard"
     private let accountCellIdentifier = "account"
+    private var backgroundColor: UIColor = .clear
+    private var textColor: UIColor = .clear
     
     lazy var tableView: UITableView = {
         
@@ -25,11 +28,6 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         tableView.register(AccountTableViewCell.self, forCellReuseIdentifier: accountCellIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
-        ThemeManager.default.apply(theme: Theme.self, to: tableView) { themeable, theme in
-            themeable.backgroundColor = theme.backgroundColor
-            themeable.separatorColor = theme.separatorColor
-        }
-        
         return tableView
         
     }()
@@ -39,7 +37,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         return [/*Section(title: "",
                         rows: [AccountRow(title: "Account", action: showAccount)]),*/
                 Section(title: "Daten",
-                        rows: [NavigationRow(title: "Eintrag hinzufügen", action: showAddShop)]),
+                        rows: [NavigationRow(title: "Eintrag hinzufügen", action: showAddEntry)]),
                 Section(title: String.localized("SettingsTitle"),
                         rows: [NavigationRow(title: String.localized("SettingsTitle"), action: showSettings)]),
                 Section(title: "Info",
@@ -59,6 +57,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         self.view.addSubview(tableView)
         
         self.setupConstraints()
+        self.setupTheming()
         
     }
     
@@ -82,6 +81,17 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
     }
 
+    private func setupTheming() {
+        
+        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
+            themeable.textColor = theme.color
+            themeable.backgroundColor = theme.backgroundColor
+            themeable.tableView.backgroundColor = theme.backgroundColor
+            themeable.tableView.separatorColor = theme.separatorColor
+        }
+        
+    }
+    
     // MARK: - Row Action
     
     private func showAccount() {
@@ -98,8 +108,33 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
     }
     
-    private func showAddShop() {
-        push(viewController: EntryOnboardingLocationMenuViewController.self)
+    private func showAddEntry() {
+        
+        if EntryManager.shared.entryStreet != nil || EntryManager.shared.entryLat != nil {
+            
+            Alertift.alert(title: "Letzte Daten", message: "Beim letzten Mal wurde der Vorgang nicht abgeschlossen und Daten wurden zwischen gespeichert. Möchtest Du diese übernehmen?")
+                .titleTextColor(textColor)
+                .messageTextColor(textColor)
+                .buttonTextColor(textColor)
+                .backgroundColor(backgroundColor)
+                .action(Alertift.Action.cancel("Nein"), handler: { (action, i, textFields) in
+                    
+                    EntryManager.shared.resetData()
+                    
+                    self.push(viewController: EntryOnboardingLocationMenuViewController.self)
+                    
+                })
+                .action(.default("Ja"), isPreferred: true, handler: { (action, i, textFields) in
+                    
+                    self.push(viewController: EntryOnboardingLocationMenuViewController.self)
+                    
+                })
+                .show()
+            
+        } else {
+            push(viewController: EntryOnboardingLocationMenuViewController.self)
+        }
+        
     }
     
     private func showSettings() {
