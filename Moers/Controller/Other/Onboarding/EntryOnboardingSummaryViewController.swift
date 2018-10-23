@@ -318,7 +318,7 @@ class EntryOnboardingSummaryViewController: UIViewController {
         disableTextFields([nameTextField, phoneTextField, websiteTextField, streetTextField, houseNrTextField, postcodeTextField, placeTextField, mondayOHTextField, tuesdayOHTextField, wednesdayOHTextField, thursdayOHTextField, fridayOHTextField, saturdayOHTextField, sundayOHTextField, otherOHTextField])
         
         
-        let coordinate = CLLocationCoordinate2D(latitude: EntryManager.shared.entryLat, longitude: EntryManager.shared.entryLng)
+        let coordinate = CLLocationCoordinate2D(latitude: EntryManager.shared.entryLat ?? 0, longitude: EntryManager.shared.entryLng ?? 0)
         
         let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.0025, longitudeDelta: 0.0025))
         let annotation = MKPointAnnotation()
@@ -379,8 +379,8 @@ class EntryOnboardingSummaryViewController: UIViewController {
                           saturday: EntryManager.shared.entrySaturdayOH,
                           sunday: EntryManager.shared.entrySundayOH,
                           other: EntryManager.shared.entryOtherOH,
-                          lat: EntryManager.shared.entryLat,
-                          lng: EntryManager.shared.entryLng,
+                          lat: EntryManager.shared.entryLat ?? 0,
+                          lng: EntryManager.shared.entryLng ?? 0,
                           isValidated: false)
         
         EntryManager.shared.store(entry: entry) { (error, success, id) in
@@ -390,7 +390,11 @@ class EntryOnboardingSummaryViewController: UIViewController {
             guard let success = success else { return }
             
             if success {
+                
                 self.alertSuccess()
+                
+                EntryManager.shared.resetData()
+                
             } else {
                 self.alertError()
             }
@@ -407,7 +411,11 @@ class EntryOnboardingSummaryViewController: UIViewController {
             .buttonTextColor(nameTextField.textColor)
             .backgroundColor(view.backgroundColor)
             .action(.default("Okay"), handler: { (action, i, textFields) in
-                self.navigationController?.popViewController(animated: true)
+                
+                guard let otherVC = self.navigationController?.children.first else { return }
+                
+                self.navigationController?.popToViewController(otherVC, animated: true)
+                
             })
             .show()
         

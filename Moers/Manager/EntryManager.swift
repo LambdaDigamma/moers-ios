@@ -157,6 +157,29 @@ struct EntryManager {
         
     }
     
+    public mutating func resetData() {
+        
+        self.entryName = nil
+        self.entryLat = nil
+        self.entryLng = nil
+        self.entryStreet = nil
+        self.entryHouseNumber = nil
+        self.entryPostcode = nil
+        self.entryPlace = nil
+        self.entryPhone = nil
+        self.entryWebsite = nil
+        self.entryMondayOH = nil
+        self.entryTuesdayOH = nil
+        self.entryWednesdayOH = nil
+        self.entryThursdayOH = nil
+        self.entryFridayOH = nil
+        self.entrySaturdayOH = nil
+        self.entrySundayOH = nil
+        self.entryOtherOH = nil
+        self.entryTags = []
+        
+    }
+    
     // MARK: - Entry Onboarding
     
     public var entryName: String? {
@@ -164,13 +187,25 @@ struct EntryManager {
         set { UserDefaults.standard.set(newValue, forKey: "EntryName") }
     }
     
-    public var entryLat: Double {
-        get { return UserDefaults.standard.double(forKey: "EntryLat") }
+    public var entryLat: Double? {
+        get {
+            if UserDefaults.standard.double(forKey: "EntryLat") != 0 {
+                return UserDefaults.standard.double(forKey: "EntryLat")
+            } else {
+                return nil
+            }
+        }
         set { UserDefaults.standard.set(newValue, forKey: "EntryLat") }
     }
     
-    public var entryLng: Double {
-        get { return UserDefaults.standard.double(forKey: "EntryLng") }
+    public var entryLng: Double? {
+        get {
+            if UserDefaults.standard.double(forKey: "EntryLng") != 0 {
+                return UserDefaults.standard.double(forKey: "EntryLng")
+            } else {
+                return nil
+            }
+        }
         set { UserDefaults.standard.set(newValue, forKey: "EntryLng") }
     }
     

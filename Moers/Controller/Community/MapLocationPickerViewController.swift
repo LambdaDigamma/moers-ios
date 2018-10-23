@@ -179,7 +179,7 @@ class MapLocationPickerViewController: UIViewController {
     
     private func focusOnPreviousLocation() {
         
-        let coordinate = CLLocationCoordinate2D(latitude: EntryManager.shared.entryLat, longitude: EntryManager.shared.entryLng)
+        let coordinate = CLLocationCoordinate2D(latitude: EntryManager.shared.entryLat ?? 0, longitude: EntryManager.shared.entryLng ?? 0)
         
         let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)) // 0.0015
             
