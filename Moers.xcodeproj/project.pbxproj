@@ -65,6 +65,8 @@
 		DF4D89592104C298008609A1 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D89582104C298008609A1 /* CameraManager.swift */; };
 		DF503CEF21431503006EE226 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF503CEE21431503006EE226 /* DebugViewController.swift */; };
 		DF524CAE20885A7700D88599 /* RubbishCollectionStreet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524CAD20885A7700D88599 /* RubbishCollectionStreet.swift */; };
+		DF541389217FCD25007FDEC8 /* EntryValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF541388217FCD25007FDEC8 /* EntryValidationViewController.swift */; };
+		DF54138B217FD733007FDEC8 /* EntryValidationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF54138A217FD733007FDEC8 /* EntryValidationTableViewCell.swift */; };
 		DF61DCCD212ECD850093915F /* DetailPetrolStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */; };
 		DF626AF51FB745E300BFDA67 /* BikeChargingStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */; };
 		DF626AF71FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */; };
@@ -287,6 +289,8 @@
 		DF4D89582104C298008609A1 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		DF503CEE21431503006EE226 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		DF524CAD20885A7700D88599 /* RubbishCollectionStreet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionStreet.swift; sourceTree = "<group>"; };
+		DF541388217FCD25007FDEC8 /* EntryValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryValidationViewController.swift; sourceTree = "<group>"; };
+		DF54138A217FD733007FDEC8 /* EntryValidationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryValidationTableViewCell.swift; sourceTree = "<group>"; };
 		DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPetrolStationViewController.swift; sourceTree = "<group>"; };
 		DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeChargingStation.swift; sourceTree = "<group>"; };
 		DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeChargingStationAnnotationView.swift; sourceTree = "<group>"; };
@@ -464,6 +468,7 @@
 				DFEFE7D22122FFB0002F5162 /* EventTableViewCell.swift */,
 				DF77BFFE21695F8D0025A31E /* EntryTableViewCell.swift */,
 				DF310DA321710887004C69BA /* TagTableViewCell.swift */,
+				DF54138A217FD733007FDEC8 /* EntryValidationTableViewCell.swift */,
 			);
 			path = UITableViewCells;
 			sourceTree = "<group>";
@@ -731,6 +736,7 @@
 				DFD8908821248DD9006B5610 /* PrivacyViewController.swift */,
 				DF503CEE21431503006EE226 /* DebugViewController.swift */,
 				DF86AB952172782F00EFC7EA /* Onboarding */,
+				DF541388217FCD25007FDEC8 /* EntryValidationViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -1145,6 +1151,7 @@
 				DFF4E15D20893694007C24E3 /* RubbishCollectionDate.swift in Sources */,
 				DF0CB4A12082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift in Sources */,
 				DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */,
+				DF541389217FCD25007FDEC8 /* EntryValidationViewController.swift in Sources */,
 				DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */,
 				DF461CB820E2257400600C0E /* AddShopViewController.swift in Sources */,
 				DF3555B020DE599900B88DA3 /* UserRanking.swift in Sources */,
@@ -1200,6 +1207,7 @@
 				DFF4E15B20892CFB007C24E3 /* RubbishManager.swift in Sources */,
 				DFA9EF0F20B58351008590EA /* LocationManager.swift in Sources */,
 				DFEFE7D12122ED0F002F5162 /* EventViewController.swift in Sources */,
+				DF54138B217FD733007FDEC8 /* EntryValidationTableViewCell.swift in Sources */,
 				DF310D9F216FF2AE004C69BA /* DetailEntryViewController.swift in Sources */,
 				DFA9EF0620B46A8A008590EA /* PetrolDetailResponse.swift in Sources */,
 				DF75733E2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift in Sources */,
