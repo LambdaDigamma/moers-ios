@@ -12,6 +12,7 @@ import UserNotifications
 import CoreLocation
 import MapKit
 import Reachability
+import Intents
 
 class DashboardViewController: CardCollectionViewController {
     
@@ -35,6 +36,8 @@ class DashboardViewController: CardCollectionViewController {
         self.triggerUpdate()
         
         AnalyticsManager.shared.logOpenedDashboard()
+        
+        self.setupIntents()
         
     }
     
@@ -88,6 +91,38 @@ class DashboardViewController: CardCollectionViewController {
         }) { (_) in
             
             self.triggerRefresh()
+            
+        }
+        
+    }
+    
+    public func openRubbishViewController () {
+        
+        let rubbishCollectionViewController = RubbishCollectionViewController()
+        
+        navigationController?.pushViewController(rubbishCollectionViewController, animated: true)
+        
+    }
+    
+    private func setupIntents() {
+        
+        if RubbishManager.shared.isEnabled && RubbishManager.shared.rubbishStreet != nil {
+            
+            let activity = NSUserActivity(activityType: "de.okfn.niederrhein.Moers.nextRubbish")
+            
+            if #available(iOS 12.0, *) {
+                activity.isEligibleForPrediction = true
+                activity.suggestedInvocationPhrase = "Nächste Abholtermine"
+                activity.persistentIdentifier = "de.okfn.niederrhein.Moers.nextRubbish"
+            }
+            
+            activity.isEligibleForPublicIndexing = true
+            activity.isEligibleForSearch = true
+            activity.keywords = ["Müll", "Moers"]
+            activity.title = "Nächste Abholtermine"
+            
+            view.userActivity = activity
+            activity.becomeCurrent()
             
         }
         

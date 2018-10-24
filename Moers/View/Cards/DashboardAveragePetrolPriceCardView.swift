@@ -32,6 +32,7 @@ class DashboardAveragePetrolPriceCardView: CardView {
         label.text = String.localized("CurrentLocation")
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.70
+        label.adjustsFontForContentSizeCategory = true
         
         return label
         
@@ -46,6 +47,7 @@ class DashboardAveragePetrolPriceCardView: CardView {
         label.text = "Moers"
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.70
+        label.adjustsFontForContentSizeCategory = true
         
         return label
         
@@ -69,6 +71,7 @@ class DashboardAveragePetrolPriceCardView: CardView {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.monospacedDigitSystemFont(ofSize: 34, weight: UIFont.Weight.bold)
+        label.adjustsFontForContentSizeCategory = true
         
         return label
         
@@ -83,6 +86,7 @@ class DashboardAveragePetrolPriceCardView: CardView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.medium)
         label.text = type.uppercased()
+        label.adjustsFontForContentSizeCategory = true
         
         return label
         
@@ -96,6 +100,7 @@ class DashboardAveragePetrolPriceCardView: CardView {
         label.font = UIFont.systemFont(ofSize: 14)
         label.text = "8 \(String.localized("DashboardPetrolStationInfo"))"
         label.numberOfLines = 0
+        label.adjustsFontForContentSizeCategory = true
         
         return label
         

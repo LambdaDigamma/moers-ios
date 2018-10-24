@@ -60,6 +60,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
     }
     
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        
+        let viewController = window?.rootViewController as! TabBarController
+        
+        if userActivity.activityType == "de.okfn.niederrhein.Moers.nextRubbish" {
+            
+            if RubbishManager.shared.isEnabled && RubbishManager.shared.rubbishStreet != nil {
+                
+                guard let dashboardViewController = viewController.dashboardViewController.children.first as? DashboardViewController else { return true }
+                
+                dashboardViewController.openRubbishViewController()
+                
+            }
+            
+        }
+        
+        return true
+        
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         
     }

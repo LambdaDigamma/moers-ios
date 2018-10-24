@@ -28,6 +28,7 @@ class RubbishCollectionView: UIView {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14)
+        label.adjustsFontForContentSizeCategory = true
         
         return label
         
@@ -41,6 +42,7 @@ class RubbishCollectionView: UIView {
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.minimumScaleFactor = 0.5
         label.adjustsFontSizeToFitWidth = true
+        label.adjustsFontForContentSizeCategory = true
         
         return label
         
