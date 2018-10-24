@@ -1121,6 +1121,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/MMWormhole.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Alertift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TagListView.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/FeedKit.framework",
 			);
 			outputPaths = (
 			);
