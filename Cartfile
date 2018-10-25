@@ -16,3 +16,4 @@ github "mutualmobile/MMWormhole"
 github "sgr-ksmt/Alertift" ~> 3.2
 github "ElaWorkshop/TagListView" ~> 1.0
 github "nmdias/FeedKit" ~> 8.0
+github "onevcat/Kingfisher" ~> 4.0
