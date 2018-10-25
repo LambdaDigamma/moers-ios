@@ -187,4 +187,25 @@ struct ViewFactory {
         
     }
     
+    static func collectionView() -> UICollectionView {
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return collectionView
+        
+    }
+    
+    static func blurView() -> UIVisualEffectView {
+        
+        let effect = UIBlurEffect(style: .dark)
+        let blurView = UIVisualEffectView(effect: effect)
+        
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return blurView
+        
+    }
+    
 }

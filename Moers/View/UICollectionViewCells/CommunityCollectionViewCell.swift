@@ -106,7 +106,7 @@ class CommunityCollectionViewCell: UICollectionViewCell {
     
 }
 
-extension CommunityCollectionViewCell {
+extension UICollectionViewCell {
     
     public var cornerRadius: CGFloat {
         get {

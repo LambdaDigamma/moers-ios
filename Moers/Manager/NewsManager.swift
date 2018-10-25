@@ -76,10 +76,9 @@ struct NewsManager {
         
     }
     
-    public func getRSS() {
+    public func getRheinischePost(completion: @escaping ((Error?, RSSFeed?) -> Void)) {
         
-//        guard let feedURL = URL(string: "https://rp-online.de/nrw/staedte/moers/feed.rss") else { return } // RP Online Moers
-        guard let feedURL = URL(string: "https://www.lokalkompass.de/feed/action/mode/realm/ID/35/") else { return } // Lokalkompass
+        guard let feedURL = URL(string: "https://rp-online.de/nrw/staedte/moers/feed.rss") else { return }
         
         let parser = FeedParser(URL: feedURL)
         
@@ -87,13 +86,33 @@ struct NewsManager {
             
             guard let feed = result.rssFeed else { return }
             
-            feed.items?.forEach { print($0.pubDate) }
-            
             DispatchQueue.main.async {
-                // ..and update the UI
+                
+                completion(nil, feed)
+                
             }
+            
         }
         
+    }
+    
+    public func getLokalkompass(completion: @escaping ((Error?, RSSFeed?) -> Void)) {
+        
+        guard let feedURL = URL(string: "https://www.lokalkompass.de/feed/action/mode/realm/ID/35/") else { return }
+        
+        let parser = FeedParser(URL: feedURL)
+        
+        parser.parseAsync(queue: .global(qos: .userInitiated)) { (result) in
+            
+            guard let feed = result.rssFeed else { return }
+            
+            DispatchQueue.main.async {
+                
+                completion(nil, feed)
+                
+            }
+            
+        }
         
     }
     
