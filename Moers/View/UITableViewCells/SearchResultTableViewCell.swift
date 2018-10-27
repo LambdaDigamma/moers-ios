@@ -11,48 +11,39 @@ import Gestalt
 
 class SearchResultTableViewCell: UITableViewCell {
     
-    lazy var searchImageView: UIImageView = { ViewFactory.imageView() }()
-    
-    lazy var titleLabel: UILabel = {
-        
-        let label = UILabel()
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.5
-        
-        return label
-        
-    }()
-    
-    lazy var subtitleLabel: UILabel = {
-        
-        let label = UILabel()
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        
-        return label
-        
-    }()
+    lazy var searchImageView = { ViewFactory.imageView() }()
+    lazy var titleLabel = { ViewFactory.label() }()
+    lazy var subtitleLabel = { ViewFactory.label() }()
+    lazy var checkmarkView = { ViewFactory.checkmarkView() }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.contentView.addSubview(titleLabel)
-        self.contentView.addSubview(subtitleLabel)
-        self.contentView.addSubview(searchImageView)
-        
+        self.setupUI()
         self.setupConstraints()
         self.setupTheming()
-        
-        self.selectionStyle = .none
         
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupUI() {
+        
+        self.contentView.addSubview(titleLabel)
+        self.contentView.addSubview(subtitleLabel)
+        self.contentView.addSubview(searchImageView)
+        self.contentView.addSubview(checkmarkView)
+        
+        self.titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        self.titleLabel.adjustsFontSizeToFitWidth = true
+        self.titleLabel.minimumScaleFactor = 0.5
+        self.subtitleLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        self.checkmarkView.backgroundColor = UIColor.clear
+        
+        self.selectionStyle = .none
+        
     }
     
     private func setupConstraints() {
@@ -68,7 +59,11 @@ class SearchResultTableViewCell: UITableViewCell {
                            titleLabel.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: 0),
                            subtitleLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0),
                            subtitleLabel.leftAnchor.constraint(equalTo: searchImageView.rightAnchor, constant: 8),
-                           subtitleLabel.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: 0)]
+                           subtitleLabel.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: 0),
+                           checkmarkView.rightAnchor.constraint(equalTo: margins.rightAnchor),
+                           checkmarkView.heightAnchor.constraint(equalToConstant: 20),
+                           checkmarkView.widthAnchor.constraint(equalTo: checkmarkView.heightAnchor),
+                           checkmarkView.bottomAnchor.constraint(equalTo: margins.bottomAnchor)]
         
         NSLayoutConstraint.activate(constraints)
         

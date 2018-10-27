@@ -102,6 +102,15 @@ class ContentViewController: UIViewController {
         
         self.tagListView.delegate = self
         self.tagListView.enableRemoveButton = true
+        self.tagListView.paddingX = 12
+        self.tagListView.paddingY = 7
+        self.tagListView.marginX = 10
+        self.tagListView.marginY = 7
+        self.tagListView.removeIconLineWidth = 2
+        self.tagListView.removeButtonIconSize = 7
+        self.tagListView.textFont = UIFont.boldSystemFont(ofSize: 10)
+        self.tagListView.cornerRadius = 10
+        self.tagListView.backgroundColor = UIColor.clear
         
         self.headerSectionHeightConstraint.constant = 68.0
         
@@ -337,6 +346,17 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
             cell.titleLabel.text = location.title ?? ""
             cell.subtitleLabel.text = location.detailSubtitle
             cell.searchImageView.image = location.detailImage
+            
+            if let entry = location as? Entry {
+                if entry.isValidated {
+                    cell.checkmarkView.style = .green
+                } else {
+                    cell.checkmarkView.style = .nothing
+                }
+                
+            } else {
+                cell.checkmarkView.style = .green
+            }
             
             return cell
             

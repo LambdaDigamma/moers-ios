@@ -68,6 +68,7 @@
 		DF541389217FCD25007FDEC8 /* EntryValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF541388217FCD25007FDEC8 /* EntryValidationViewController.swift */; };
 		DF54138B217FD733007FDEC8 /* EntryValidationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF54138A217FD733007FDEC8 /* EntryValidationTableViewCell.swift */; };
 		DF54138D2180955B007FDEC8 /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF54138C2180955A007FDEC8 /* NewsCollectionViewCell.swift */; };
+		DF552FC72184D2210062EB2B /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF552FC62184D2210062EB2B /* CheckmarkView.swift */; };
 		DF61DCCD212ECD850093915F /* DetailPetrolStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */; };
 		DF626AF51FB745E300BFDA67 /* BikeChargingStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */; };
 		DF626AF71FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */; };
@@ -294,6 +295,7 @@
 		DF541388217FCD25007FDEC8 /* EntryValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryValidationViewController.swift; sourceTree = "<group>"; };
 		DF54138A217FD733007FDEC8 /* EntryValidationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryValidationTableViewCell.swift; sourceTree = "<group>"; };
 		DF54138C2180955A007FDEC8 /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
+		DF552FC62184D2210062EB2B /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
 		DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPetrolStationViewController.swift; sourceTree = "<group>"; };
 		DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeChargingStation.swift; sourceTree = "<group>"; };
 		DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeChargingStationAnnotationView.swift; sourceTree = "<group>"; };
@@ -633,6 +635,7 @@
 				DF3EE0C120E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift */,
 				DF3EE0C620E38A6B00CA9279 /* PaddingLabel.swift */,
 				DF86AB9C217387E700EFC7EA /* OnboardingProgressView.swift */,
+				DF552FC62184D2210062EB2B /* CheckmarkView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1285,6 +1288,7 @@
 				DFD7ACC120A842F400D49BE2 /* DateCardView.swift in Sources */,
 				DFC1CC671F76664700C1D269 /* ShopIconDrawer.swift in Sources */,
 				DFB92D691F6B96E400669F73 /* ClusterAnnotationView.swift in Sources */,
+				DF552FC72184D2210062EB2B /* CheckmarkView.swift in Sources */,
 				DF3EE0C520E382EC00CA9279 /* MapLocationPickerViewController.swift in Sources */,
 				DFD8908921248DD9006B5610 /* PrivacyViewController.swift in Sources */,
 				DF9A914B2160DA840054A2B8 /* Environment.swift in Sources */,

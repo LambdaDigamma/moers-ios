@@ -13,7 +13,7 @@ class Entry: NSObject, Codable, Location {
     
     public let id: Int
     @objc dynamic public var name: String
-    public let tags: [String]
+    public var tags: [String]
     public let street: String
     public let houseNumber: String
     public let postcode: String
@@ -106,7 +106,7 @@ class Entry: NSObject, Codable, Location {
         
     }
     
-    var detailHeight: CGFloat { return 550.0 }
+    var detailHeight: CGFloat { return 750.0 }
     lazy var detailImage: UIImage = { UIImage() }()
     lazy var detailViewController: UIViewController = { DetailEntryViewController.fromStoryboard() }()
     

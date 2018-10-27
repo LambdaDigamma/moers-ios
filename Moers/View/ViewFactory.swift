@@ -208,4 +208,14 @@ struct ViewFactory {
         
     }
     
+    static func checkmarkView() -> CheckmarkView {
+        
+        let checkmarkView = CheckmarkView()
+        
+        checkmarkView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return checkmarkView
+        
+    }
+    
 }

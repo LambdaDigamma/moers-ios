@@ -42,6 +42,12 @@ struct EntryManager {
                     
                     let entries = try jsonDecoder.decode([Entry].self, from: data)
                     
+                    entries.forEach { entry in
+                        if entry.tags == [""] {
+                            entry.tags = []
+                        }
+                    }
+                    
                     DispatchQueue.main.async {
                         completion(nil, entries)
                     }

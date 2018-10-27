@@ -10,6 +10,7 @@ import UIKit
 import Gestalt
 import SafariServices
 import Crashlytics
+import TagListView
 
 class DetailEntryViewController: UIViewController {
     
@@ -42,6 +43,9 @@ class DetailEntryViewController: UIViewController {
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var websiteHeaderLabel: UILabel!
     @IBOutlet weak var websiteLabel: UILabel!
+    @IBOutlet weak var tagSeparator: UIView!
+    @IBOutlet weak var tagLabel: UILabel!
+    @IBOutlet weak var tagsListView: TagListView!
     
     public var selectedEntry: Entry? { didSet { selectedEntry(selectedEntry) } }
     
@@ -75,6 +79,17 @@ class DetailEntryViewController: UIViewController {
         self.buttonSeparator.alpha = 0.5
         self.addressSeparator.alpha = 0.5
         self.openingHoursSeparator.alpha = 0.5
+        self.tagSeparator.alpha = 0.5
+        
+        self.tagsListView.paddingX = 12
+        self.tagsListView.paddingY = 7
+        self.tagsListView.marginX = 10
+        self.tagsListView.marginY = 7
+        self.tagsListView.removeIconLineWidth = 2
+        self.tagsListView.removeButtonIconSize = 7
+        self.tagsListView.textFont = UIFont.boldSystemFont(ofSize: 10)
+        self.tagsListView.cornerRadius = 10
+        self.tagsListView.backgroundColor = UIColor.clear
         
     }
     
@@ -86,12 +101,17 @@ class DetailEntryViewController: UIViewController {
             themeable.buttonSeparator.backgroundColor = theme.decentColor
             themeable.addressSeparator.backgroundColor = theme.decentColor
             themeable.openingHoursSeparator.backgroundColor = theme.decentColor
+            themeable.tagSeparator.backgroundColor = theme.decentColor
             themeable.callButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
             themeable.callButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .highlighted)
             themeable.callButton.setTitleColor(theme.backgroundColor, for: .normal)
             themeable.websiteButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
             themeable.websiteButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .highlighted)
             themeable.websiteButton.setTitleColor(theme.backgroundColor, for: .normal)
+            themeable.tagsListView.backgroundColor = UIColor.clear
+            themeable.tagsListView.tagBackgroundColor = theme.accentColor
+            themeable.tagsListView.textColor = theme.backgroundColor
+            themeable.tagsListView.removeIconLineColor = theme.backgroundColor
             
             let labels: [UILabel] = [themeable.addressHeaderLabel,
                                      themeable.streetLabel,
@@ -115,7 +135,8 @@ class DetailEntryViewController: UIViewController {
                                      themeable.phoneHeaderLabel,
                                      themeable.phoneLabel,
                                      themeable.websiteHeaderLabel,
-                                     themeable.websiteLabel]
+                                     themeable.websiteLabel,
+                                     themeable.tagLabel]
             
             for label in labels {
                 label.textColor = theme.color
@@ -132,6 +153,9 @@ class DetailEntryViewController: UIViewController {
         self.streetLabel.text = entry.street + " " + entry.houseNumber
         self.placeLabel.text = entry.postcode + " " + entry.place
         self.countryLabel.text = "Deutschland"
+        
+        self.tagsListView.removeAllTags()
+        self.tagsListView.addTags(entry.tags)
         
         self.mondayLabel.text = entry.monday ?? ""
         self.tuesdayLabel.text = entry.tuesday ?? ""
