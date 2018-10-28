@@ -7,5 +7,5 @@ xcode_project: Moers.xcodeproj
 xcode_scheme: Moers
 before_script:
   - carthage bootstrap --platform iOS --no-use-binaries --cache-builds
-xcode_destination: platform=iOS Simulator, id=12BA173C-33E7-4FE2-8839-EC760B7288E6, OS=12.0, name=iPhone X
+xcode_destination: platform='iOS Simulator', OS=12.0, name='iPhone X'
 xcode_sdk: iphonesimulator12.0
