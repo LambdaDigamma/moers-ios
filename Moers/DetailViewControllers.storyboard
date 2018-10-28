@@ -688,13 +688,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cu3-EO-R78" customClass="TagListView" customModule="TagListView">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cu3-EO-R78" customClass="TagListView" customModule="TagListView">
                                 <rect key="frame" x="0.0" y="578.5" width="375" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" priority="250" constant="100" id="RUG-5H-kot"/>
-                                </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Letzte Änderung: nicht bekannt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PA9-Sd-K0C">
+                                <rect key="frame" x="0.0" y="686.5" width="375" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXU-PE-Ial">
+                                <rect key="frame" x="0.0" y="710" width="375" height="16"/>
+                                <string key="text">Alle Daten werden von Bürgerinnen und Bürgern eingetragen. Es kann keine Garantie für Richtigkeit und Aktualität übernommen werden.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -731,6 +741,8 @@
                             <constraint firstItem="74Q-Qa-36F" firstAttribute="trailing" secondItem="nx9-gW-vlN" secondAttribute="trailing" id="Vaa-3I-YoN"/>
                             <constraint firstItem="g6Q-jb-or4" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="Voc-KG-h1O"/>
                             <constraint firstItem="xZS-A0-x0j" firstAttribute="top" secondItem="nx9-gW-vlN" secondAttribute="top" id="WYL-ie-PwO"/>
+                            <constraint firstItem="nx9-gW-vlN" firstAttribute="trailing" secondItem="PA9-Sd-K0C" secondAttribute="trailing" id="WcQ-TL-PMO"/>
+                            <constraint firstItem="jXU-PE-Ial" firstAttribute="top" secondItem="PA9-Sd-K0C" secondAttribute="bottom" constant="8" id="Wcc-Cl-Xxy"/>
                             <constraint firstItem="MFP-4u-Ly0" firstAttribute="top" secondItem="74Q-Qa-36F" secondAttribute="bottom" constant="8" id="Wun-Yr-Eqo"/>
                             <constraint firstItem="jHs-W1-XXc" firstAttribute="trailing" secondItem="nx9-gW-vlN" secondAttribute="trailing" id="XyK-lQ-yO5"/>
                             <constraint firstItem="sqU-W6-7Bc" firstAttribute="trailing" secondItem="nx9-gW-vlN" secondAttribute="trailing" id="aUE-f5-zkg"/>
@@ -742,15 +754,19 @@
                             <constraint firstItem="dQJ-F5-DrP" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="gfv-Vm-bsE"/>
                             <constraint firstItem="TSe-eK-7gw" firstAttribute="leading" secondItem="WgV-BI-Ou7" secondAttribute="leading" id="h63-7Q-fYL"/>
                             <constraint firstItem="dQJ-F5-DrP" firstAttribute="trailing" secondItem="nx9-gW-vlN" secondAttribute="trailing" id="hiF-wX-Cc6"/>
+                            <constraint firstItem="nx9-gW-vlN" firstAttribute="trailing" secondItem="jXU-PE-Ial" secondAttribute="trailing" id="jMe-Lj-TYH"/>
                             <constraint firstItem="lu3-RD-ZKP" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="jdl-G4-INp"/>
                             <constraint firstItem="nx9-gW-vlN" firstAttribute="trailing" secondItem="kSV-XE-HCF" secondAttribute="trailing" id="l7O-7W-Lfa"/>
+                            <constraint firstItem="PA9-Sd-K0C" firstAttribute="top" secondItem="Cu3-EO-R78" secondAttribute="bottom" constant="20" id="lpN-J3-hSo"/>
                             <constraint firstItem="KLa-k1-mMK" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="nSB-me-Piw"/>
+                            <constraint firstItem="PA9-Sd-K0C" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="nnt-9w-WTD"/>
                             <constraint firstItem="h2m-mt-m9t" firstAttribute="top" secondItem="kSV-XE-HCF" secondAttribute="bottom" constant="8" id="pD5-Cd-884"/>
                             <constraint firstItem="74Q-Qa-36F" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="tmw-6R-GUC"/>
                             <constraint firstItem="O81-We-yGB" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="u56-NH-Mvt"/>
                             <constraint firstItem="jJ9-8R-cRn" firstAttribute="trailing" secondItem="nx9-gW-vlN" secondAttribute="trailing" id="veC-BQ-rwu"/>
                             <constraint firstItem="zEZ-cN-aKY" firstAttribute="top" secondItem="VWI-k1-1if" secondAttribute="bottom" constant="8" id="wPT-RA-QAi"/>
                             <constraint firstItem="ovR-ee-3yj" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="ya2-HG-Cxb"/>
+                            <constraint firstItem="jXU-PE-Ial" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="zpi-Sf-a2j"/>
                             <constraint firstItem="MFP-4u-Ly0" firstAttribute="trailing" secondItem="nx9-gW-vlN" secondAttribute="trailing" id="zzt-se-6MM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nx9-gW-vlN"/>
@@ -764,6 +780,8 @@
                         <outlet property="countryLabel" destination="jJ9-8R-cRn" id="w56-eQ-JIx"/>
                         <outlet property="fridayHeaderLabel" destination="lWK-r1-jPB" id="r2D-bf-nC4"/>
                         <outlet property="fridayLabel" destination="59y-hS-Ula" id="A75-OX-d7D"/>
+                        <outlet property="infoLabel" destination="jXU-PE-Ial" id="SoR-xt-zoH"/>
+                        <outlet property="lastUpdateLabel" destination="PA9-Sd-K0C" id="RXZ-nI-hA7"/>
                         <outlet property="mondayHeaderLabel" destination="Eb9-iD-w2l" id="yHf-bg-R2I"/>
                         <outlet property="mondayLabel" destination="vTe-xb-nlJ" id="hJP-bW-stu"/>
                         <outlet property="openingHoursHeaderLabel" destination="h2m-mt-m9t" id="o2r-53-2aE"/>

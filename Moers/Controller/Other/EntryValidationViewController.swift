@@ -94,7 +94,10 @@ extension EntryValidationViewController: UITableViewDataSource, UITableViewDeleg
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "entryCell", for: indexPath) as! EntryValidationTableViewCell
         
-        cell.titleLabel.text = entries[indexPath.row].name
+        let entry = entries[indexPath.row]
+        
+        cell.titleLabel.text = entry.name
+        cell.descriptionLabel.text = entry.detailSubtitle
         
         return cell
         

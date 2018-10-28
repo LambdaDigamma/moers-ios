@@ -46,6 +46,8 @@ class DetailEntryViewController: UIViewController {
     @IBOutlet weak var tagSeparator: UIView!
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var tagsListView: TagListView!
+    @IBOutlet weak var lastUpdateLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
     
     public var selectedEntry: Entry? { didSet { selectedEntry(selectedEntry) } }
     
@@ -112,6 +114,8 @@ class DetailEntryViewController: UIViewController {
             themeable.tagsListView.tagBackgroundColor = theme.accentColor
             themeable.tagsListView.textColor = theme.backgroundColor
             themeable.tagsListView.removeIconLineColor = theme.backgroundColor
+            themeable.lastUpdateLabel.textColor = theme.decentColor
+            themeable.infoLabel.textColor = theme.decentColor
             
             let labels: [UILabel] = [themeable.addressHeaderLabel,
                                      themeable.streetLabel,
@@ -179,6 +183,12 @@ class DetailEntryViewController: UIViewController {
             self.phoneLabel.text = "n/v"
             self.callButton.isEnabled = false
             self.callButton.alpha = 0.25
+        }
+        
+        if let update = entry.updateDate {
+            self.lastUpdateLabel.text = "Letzte Änderung: \(update.beautify(format: "dd.MM.yyyy hh:mm"))"
+        } else {
+            self.lastUpdateLabel.text = "Letzte Änderung: nicht bekannt"
         }
         
         Answers.logCustomEvent(withName: "Open Entry Website", customAttributes:

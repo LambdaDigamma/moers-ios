@@ -28,12 +28,14 @@ class Entry: NSObject, Codable, Location {
     public let saturday: String?
     public let sunday: String?
     public let other: String?
+    public let createdAt: String?
+    public let updatedAt: String?
     private let lat: Double
     private let lng: Double
-
+    
     public var isValidated: Bool
 
-    init(id: Int, name: String, tags: [String], street: String, houseNumber: String, postcode: String, place: String, url: String?, phone: String?, monday: String?, tuesday: String?, wednesday: String?, thursday: String?, friday: String?, saturday: String?, sunday: String?, other: String?, lat: Double, lng: Double, isValidated: Bool) {
+    init(id: Int, name: String, tags: [String], street: String, houseNumber: String, postcode: String, place: String, url: String?, phone: String?, monday: String?, tuesday: String?, wednesday: String?, thursday: String?, friday: String?, saturday: String?, sunday: String?, other: String?, lat: Double, lng: Double, isValidated: Bool, createdAt: String?, updatedAt: String?) {
 
         self.id = id
         self.name = name
@@ -55,7 +57,17 @@ class Entry: NSObject, Codable, Location {
         self.lat = lat
         self.lng = lng
         self.isValidated = isValidated
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
 
+    }
+    
+    var updateDate: Date? {
+        return Date.from(updatedAt ?? "", withFormat: "yyyy-MM-dd hh:mm:ss")
+    }
+    
+    var creationDate: Date? {
+        return Date.from(createdAt ?? "", withFormat: "yyyy-MM-dd hh:mm:ss")
     }
     
     // MARK: - Search

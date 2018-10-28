@@ -381,7 +381,9 @@ class EntryOnboardingSummaryViewController: UIViewController {
                           other: EntryManager.shared.entryOtherOH,
                           lat: EntryManager.shared.entryLat ?? 0,
                           lng: EntryManager.shared.entryLng ?? 0,
-                          isValidated: false)
+                          isValidated: false,
+                          createdAt: nil,
+                          updatedAt: nil)
         
         EntryManager.shared.store(entry: entry) { (error, success, id) in
             
