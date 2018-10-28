@@ -22,6 +22,7 @@ class EntryValidationTableViewCell: UITableViewCell {
         self.contentView.addSubview(titleLabel)
         self.contentView.addSubview(descriptionLabel)
         
+        self.setupUI()
         self.setupConstraints()
         self.setupTheming()
         
@@ -31,6 +32,13 @@ class EntryValidationTableViewCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupUI() {
+        
+        self.titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        self.descriptionLabel.font = UIFont.systemFont(ofSize: 15)
+        
     }
     
     private func setupConstraints() {
