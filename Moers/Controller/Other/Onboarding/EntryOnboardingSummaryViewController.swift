@@ -385,6 +385,11 @@ class EntryOnboardingSummaryViewController: UIViewController {
         
         EntryManager.shared.store(entry: entry) { (error, success, id) in
             
+            if let error = error as? APIError, error == .notAuthorized {
+                self.alertNotAuthorized()
+                return
+            }
+            
             // TODO: Add Entry to Map and Drawer
             
             guard let success = success else { return }
@@ -429,6 +434,24 @@ class EntryOnboardingSummaryViewController: UIViewController {
             .buttonTextColor(nameTextField.textColor)
             .backgroundColor(view.backgroundColor)
             .action(.default("Okay"), handler: { (action, i, textFields) in
+                
+            })
+            .show()
+        
+    }
+    
+    private func alertNotAuthorized() {
+        
+        Alertift.alert(title: "Nicht authorisiert!", message: "Das Hinzufügen von Einträgen wurde aufgrund von Missbrauch zwischenzeitlich bis auf weiteres geschlossen.")
+            .titleTextColor(nameTextField.textColor)
+            .messageTextColor(nameTextField.textColor)
+            .buttonTextColor(nameTextField.textColor)
+            .backgroundColor(view.backgroundColor)
+            .action(.default("Okay"), handler: { (action, i, textFields) in
+                
+                guard let otherVC = self.navigationController?.children.first else { return }
+                
+                self.navigationController?.popToViewController(otherVC, animated: true)
                 
             })
             .show()

@@ -115,6 +115,11 @@ struct EntryManager {
                 
                 let task = self.session.dataTask(with: request) { (data, response, error) in
                     
+                    if let response = response as? HTTPURLResponse, response.statusCode == 401 {
+                        completion(APIError.notAuthorized, nil, nil)
+                        return
+                    }
+                    
                     guard error == nil else {
                         completion(error, nil, nil)
                         return

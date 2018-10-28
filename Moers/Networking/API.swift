@@ -17,6 +17,7 @@ enum APIError: Error {
     case noData
     case noToken
     case unavailableURL
+    case notAuthorized
 }
 
 class API: NSObject, XMLParserDelegate {
