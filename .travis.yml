@@ -7,4 +7,3 @@ xcode_project: Moers.xcodeproj
 xcode_scheme: Moers
 before_script:
   - carthage bootstrap --platform iOS --no-use-binaries --cache-builds
-xcode_sdk: iphonesimulator12.0
