@@ -1,7 +1,11 @@
 language: objective-c
 osx_image: xcode10
+cache:
+  directories:
+  - Carthage
 xcode_project: Moers.xcodeproj
 xcode_scheme: Moers
-before_install: 
-  - carthage bootstrap --verbose
+before_script: 
+  - carthage update
+  - carthage bootstrap --platform iOS --no-use-binaries --cache-builds
 xcode_sdk: platform=iOS Simulator,OS=12.0,name=iPhone X
