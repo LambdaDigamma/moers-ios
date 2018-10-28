@@ -1,0 +1,7 @@
+language: objective-c
+osx_image: xcode10
+xcode_project: Moers.xcodeproj
+xcode_scheme: Moers
+before_install: 
+  - carthage bootstrap --verbose
+xcode_sdk: platform=iOS Simulator,OS=12.0,name=iPhone X
