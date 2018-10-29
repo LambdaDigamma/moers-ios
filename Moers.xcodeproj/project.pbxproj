@@ -77,6 +77,8 @@
 		DF57D6922187397F00E6A0A9 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D68A2187397F00E6A0A9 /* FirebaseCore.framework */; };
 		DF57D6932187397F00E6A0A9 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D68B2187397F00E6A0A9 /* FirebaseInstanceID.framework */; };
 		DF57D6942187397F00E6A0A9 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D68C2187397F00E6A0A9 /* FirebaseCoreDiagnostics.framework */; };
+		DF57D69921875FE900E6A0A9 /* TabBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF57D69821875FE900E6A0A9 /* TabBarControllerTests.swift */; };
+		DF57D69B2187615B00E6A0A9 /* EventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF57D69A2187615B00E6A0A9 /* EventTests.swift */; };
 		DF61DCCD212ECD850093915F /* DetailPetrolStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */; };
 		DF626AF51FB745E300BFDA67 /* BikeChargingStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */; };
 		DF626AF71FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */; };
@@ -304,6 +306,8 @@
 		DF54138A217FD733007FDEC8 /* EntryValidationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryValidationTableViewCell.swift; sourceTree = "<group>"; };
 		DF54138C2180955A007FDEC8 /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		DF552FC62184D2210062EB2B /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
+		DF57D66B2187383000E6A0A9 /* MoersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF57D66F2187383000E6A0A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF57D675218738F400E6A0A9 /* FIRAnalyticsConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FIRAnalyticsConnector.framework; path = ../../../../Downloads/Firebase/Analytics/FIRAnalyticsConnector.framework; sourceTree = "<group>"; };
 		DF57D676218738F400E6A0A9 /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = ../../../../Downloads/Firebase/Analytics/GoogleUtilities.framework; sourceTree = "<group>"; };
 		DF57D677218738F400E6A0A9 /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = nanopb.framework; path = ../../../../Downloads/Firebase/Analytics/nanopb.framework; sourceTree = "<group>"; };
@@ -321,6 +325,8 @@
 		DF57D68B2187397F00E6A0A9 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Frameworks/FirebaseInstanceID.framework; sourceTree = "<group>"; };
 		DF57D68C2187397F00E6A0A9 /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCoreDiagnostics.framework; path = Frameworks/FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
 		DF57D695218739C500E6A0A9 /* Moers-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Moers-Bridging-Header.h"; sourceTree = "<group>"; };
+		DF57D69821875FE900E6A0A9 /* TabBarControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerTests.swift; sourceTree = "<group>"; };
+		DF57D69A2187615B00E6A0A9 /* EventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTests.swift; sourceTree = "<group>"; };
 		DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPetrolStationViewController.swift; sourceTree = "<group>"; };
 		DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeChargingStation.swift; sourceTree = "<group>"; };
 		DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeChargingStationAnnotationView.swift; sourceTree = "<group>"; };
@@ -558,6 +564,7 @@
 				DFF8F2BA20E6DC32001A9EBB /* Watch */,
 				DFF8F2C920E6DC36001A9EBB /* Watch Extension */,
 				DFB64DAF20377AEE00173A80 /* MoersUITests */,
+				DF57D66C2187383000E6A0A9 /* MoersTests */,
 				DF1A49601F6AAB7000E9108B /* Products */,
 				DF1A497D1F6ABD7100E9108B /* Frameworks */,
 			);
@@ -570,6 +577,7 @@
 				DFB64DAE20377AEE00173A80 /* MoersUITests.xctest */,
 				DFF8F2B920E6DC32001A9EBB /* Watch.app */,
 				DFF8F2C520E6DC36001A9EBB /* Watch Extension.appex */,
+				DF57D66B2187383000E6A0A9 /* MoersTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -812,6 +820,16 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
+		DF57D66C2187383000E6A0A9 /* MoersTests */ = {
+			isa = PBXGroup;
+			children = (
+				DF57D69A2187615B00E6A0A9 /* EventTests.swift */,
+				DF57D69821875FE900E6A0A9 /* TabBarControllerTests.swift */,
+				DF57D66F2187383000E6A0A9 /* Info.plist */,
+			);
+			path = MoersTests;
+			sourceTree = "<group>";
+		};
 		DF632E49212C72E700AC4660 /* ContentView */ = {
 			isa = PBXGroup;
 			children = (
@@ -979,6 +997,24 @@
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DF57D66A2187383000E6A0A9 /* MoersTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF57D6742187383000E6A0A9 /* Build configuration list for PBXNativeTarget "MoersTests" */;
+			buildPhases = (
+				DF57D6672187383000E6A0A9 /* Sources */,
+				DF57D6682187383000E6A0A9 /* Frameworks */,
+				DF57D6692187383000E6A0A9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DF57D6712187383000E6A0A9 /* PBXTargetDependency */,
+			);
+			name = MoersTests;
+			productName = MoersTests;
+			productReference = DF57D66B2187383000E6A0A9 /* MoersTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		DFB64DAD20377AEE00173A80 /* MoersUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DFB64DB720377AEE00173A80 /* Build configuration list for PBXNativeTarget "MoersUITests" */;
@@ -1055,6 +1091,11 @@
 							};
 						};
 					};
+					DF57D66A2187383000E6A0A9 = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DF1A495E1F6AAB7000E9108B;
+					};
 					DFB64DAD20377AEE00173A80 = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1000;
@@ -1094,6 +1135,7 @@
 				DFB64DAD20377AEE00173A80 /* MoersUITests */,
 				DFF8F2B820E6DC32001A9EBB /* Watch */,
 				DFF8F2C420E6DC36001A9EBB /* Watch Extension */,
+				DF57D66A2187383000E6A0A9 /* MoersTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1110,6 +1152,13 @@
 				DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */,
 				DF21B2FE20B9D8A900478A33 /* Licenses.plist in Resources */,
 				DFF5DDCB20094A920075A2F4 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF57D6692187383000E6A0A9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1342,6 +1391,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DF57D6672187383000E6A0A9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF57D69B2187615B00E6A0A9 /* EventTests.swift in Sources */,
+				DF57D69921875FE900E6A0A9 /* TabBarControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DFB64DAA20377AEE00173A80 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1561,6 +1619,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Moers-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}";
@@ -1592,11 +1651,49 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Moers-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}";
 				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		DF57D6722187383000E6A0A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 93C29USLP6;
+				INFOPLIST_FILE = MoersTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moers.app/Moers";
+			};
+			name = Debug;
+		};
+		DF57D6732187383000E6A0A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 93C29USLP6;
+				INFOPLIST_FILE = MoersTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moers.app/Moers";
 			};
 			name = Release;
 		};
@@ -1727,6 +1824,15 @@
 			buildConfigurations = (
 				DF1A49721F6AAB7000E9108B /* Debug */,
 				DF1A49731F6AAB7000E9108B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DF57D6742187383000E6A0A9 /* Build configuration list for PBXNativeTarget "MoersTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF57D6722187383000E6A0A9 /* Debug */,
+				DF57D6732187383000E6A0A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
