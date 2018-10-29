@@ -146,6 +146,22 @@ class RubbishManagerTests: XCTestCase {
         
     }
     
+    func testStoreGreenWaste() {
+        
+        rubbishManager.greenWaste = 3
+        
+        XCTAssertEqual(rubbishManager.greenWaste, 3)
+        
+    }
+    
+    func testStoreGreenWasteNil() {
+        
+        rubbishManager.greenWaste = nil
+        
+        XCTAssertNil(rubbishManager.greenWaste)
+        
+    }
+    
     func testInvalidateRubbishReminder() {
         
         rubbishManager.invalidateRubbishReminderNotifications()
