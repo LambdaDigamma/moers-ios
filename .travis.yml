@@ -1,0 +1,9 @@
+language: objective-c
+osx_image: xcode10
+cache:
+  directories:
+  - Carthage
+xcode_project: Moers.xcodeproj
+xcode_scheme: Moers
+before_script:
+  - carthage bootstrap --platform iOS --no-use-binaries --cache-builds

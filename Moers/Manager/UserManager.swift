@@ -64,4 +64,47 @@ struct UserManager {
         }
     }
     
+    public func getID() {
+        
+        let endpoint = Environment.current.baseURL + "api/v1/user/new"
+        
+        guard let url = URL(string: endpoint) else { return }
+        
+        var request = URLRequest(url: url)
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        DispatchQueue.global(qos: .background).async {
+            
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                
+                guard let data = data else { return }
+                
+                do {
+                    
+                    guard let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else { return }
+                    
+                    let id = json["id"] as? Int
+                    var user = self.loadUser()
+                    
+                    user.id = id ?? -1
+                    
+                    UserManager.shared.register(user)
+                    
+                } catch {
+                    print(error.localizedDescription)
+                }
+                
+            })
+            
+            task.resume()
+            
+        }
+        
+    }
+    
+    
 }

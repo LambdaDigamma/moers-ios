@@ -97,7 +97,7 @@ extension EntryValidationViewController: UITableViewDataSource, UITableViewDeleg
         let entry = entries[indexPath.row]
         
         cell.titleLabel.text = entry.name
-        cell.descriptionLabel.text = entry.detailSubtitle
+        cell.descriptionLabel.text = entry.creationDate?.format(format: "dd.MM.yyyy hh:mm")
         
         return cell
         

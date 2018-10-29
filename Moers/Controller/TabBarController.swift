@@ -168,6 +168,12 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             
         }
         
+        if UserManager.shared.user.id == nil {
+            
+            UserManager.shared.getID()
+            
+        }
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {

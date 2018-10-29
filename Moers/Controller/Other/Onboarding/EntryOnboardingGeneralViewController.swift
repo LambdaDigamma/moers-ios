@@ -158,14 +158,6 @@ class EntryOnboardingGeneralViewController: UIViewController {
     
     // MARK: - Helper
     
-    @objc private func openScanner() {
-        
-        let viewController = TextRecognitionViewController()
-        
-        self.navigationController?.pushViewController(viewController, animated: true)
-        
-    }
-    
     @objc private func adjustForKeyboard(notification: Notification) {
         
         guard let userInfo = notification.userInfo else { return }
