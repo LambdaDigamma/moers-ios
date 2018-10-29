@@ -318,52 +318,67 @@ class RubbishManager {
         set { UserDefaults.standard.set(newValue, forKey: "RubbishEnabled") }
     }
     
-    public var reminderHour: Int? {
+    public internal(set) var reminderHour: Int? {
         get { return UserDefaults.standard.integer(forKey: "RubbishReminderHour") }
         set { UserDefaults.standard.set(newValue, forKey: "RubbishReminderHour") }
     }
     
-    public var reminderMinute: Int? {
+    public internal(set) var reminderMinute: Int? {
         get { return UserDefaults.standard.integer(forKey: "RubbishReminderMinute") }
         set { UserDefaults.standard.set(newValue, forKey: "RubbishReminderMinute") }
     }
     
-    public var remindersEnabled: Bool? {
+    public var remindersEnabled: Bool {
         get { return UserDefaults.standard.bool(forKey: "RubbishRemindersEnabled") }
         set { UserDefaults.standard.set(newValue, forKey: "RubbishRemindersEnabled") }
     }
     
-    private var street: String? {
+    internal var street: String? {
         get { return UserDefaults.standard.string(forKey: "RubbishStreet") }
         set { UserDefaults.standard.set(newValue, forKey: "RubbishStreet") }
     }
     
-    private var residualWaste: Int? {
-        get { return UserDefaults.standard.integer(forKey: "RubbishResidualWaste") }
+    internal var residualWaste: Int? {
+        get {
+            let residual = UserDefaults.standard.integer(forKey: "RubbishResidualWaste")
+            return residual != 0 ? residual : nil
+        }
         set { UserDefaults.standard.set(newValue, forKey: "RubbishResidualWaste") }
     }
     
-    private var organicWaste: Int? {
-        get { return UserDefaults.standard.integer(forKey: "RubbishOrganicWaste") }
+    internal var organicWaste: Int? {
+        get {
+            let organic = UserDefaults.standard.integer(forKey: "RubbishOrganicWaste")
+            return organic != 0 ? organic : nil
+        }
         set { UserDefaults.standard.set(newValue, forKey: "RubbishOrganicWaste") }
     }
     
-    private var paperWaste: Int? {
-        get { return UserDefaults.standard.integer(forKey: "RubbishPaperWaste") }
+    internal var paperWaste: Int? {
+        get {
+            let paper = UserDefaults.standard.integer(forKey: "RubbishPaperWaste")
+            return paper != 0 ? paper : nil
+        }
         set { UserDefaults.standard.set(newValue, forKey: "RubbishPaperWaste") }
     }
     
-    private var yellowBag: Int? {
-        get { return UserDefaults.standard.integer(forKey: "RubbishYellowBag") }
+    internal var yellowBag: Int? {
+        get {
+            let yellow = UserDefaults.standard.integer(forKey: "RubbishYellowBag")
+            return yellow != 0 ? yellow : nil
+        }
         set { UserDefaults.standard.set(newValue, forKey: "RubbishYellowBag") }
     }
     
-    private var greenWaste: Int? {
-        get { return UserDefaults.standard.integer(forKey: "RubbishGreenWaste") }
+    internal var greenWaste: Int? {
+        get {
+            let green = UserDefaults.standard.integer(forKey: "RubbishGreenWaste")
+            return green != 0 ? green : nil
+        }
         set { UserDefaults.standard.set(newValue, forKey: "RubbishGreenWaste") }
     }
     
-    private var sweeperDay: String? {
+    internal var sweeperDay: String? {
         get { return UserDefaults.standard.string(forKey: "RubbishSweeperDay") }
         set { UserDefaults.standard.set(newValue, forKey: "RubbishSweeperDay") }
     }
