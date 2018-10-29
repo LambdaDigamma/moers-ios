@@ -823,11 +823,35 @@
 		DF57D66C2187383000E6A0A9 /* MoersTests */ = {
 			isa = PBXGroup;
 			children = (
-				DF57D69A2187615B00E6A0A9 /* EventTests.swift */,
-				DF57D69821875FE900E6A0A9 /* TabBarControllerTests.swift */,
+				DF57D69E21876AC200E6A0A9 /* Models */,
+				DF57D69C21876AB700E6A0A9 /* Manager */,
+				DF57D69F21876ACD00E6A0A9 /* ViewController */,
 				DF57D66F2187383000E6A0A9 /* Info.plist */,
 			);
 			path = MoersTests;
+			sourceTree = "<group>";
+		};
+		DF57D69C21876AB700E6A0A9 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		DF57D69E21876AC200E6A0A9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DF57D69A2187615B00E6A0A9 /* EventTests.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DF57D69F21876ACD00E6A0A9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DF57D69821875FE900E6A0A9 /* TabBarControllerTests.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		DF632E49212C72E700AC4660 /* ContentView */ = {
