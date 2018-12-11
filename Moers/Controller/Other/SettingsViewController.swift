@@ -183,7 +183,7 @@ class SettingsViewController: UIViewController {
         
         var rubbishReminder: String
         
-        if let hour = hour, let minute = minute, let enabled = RubbishManager.shared.remindersEnabled, enabled {
+        if let hour = hour, let minute = minute, RubbishManager.shared.remindersEnabled {
             
             var hourString = ""
             var minuteString = ""

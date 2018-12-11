@@ -162,7 +162,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         self.loadData()
         
-        if let isEnabled = RubbishManager.shared.remindersEnabled, RubbishManager.shared.isEnabled && isEnabled {
+        if RubbishManager.shared.remindersEnabled && RubbishManager.shared.isEnabled {
             
             RubbishManager.shared.registerNotifications(at: RubbishManager.shared.reminderHour ?? 20, minute: RubbishManager.shared.reminderHour ?? 00)
             

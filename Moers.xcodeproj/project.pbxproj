@@ -79,6 +79,7 @@
 		DF57D6942187397F00E6A0A9 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D68C2187397F00E6A0A9 /* FirebaseCoreDiagnostics.framework */; };
 		DF57D69921875FE900E6A0A9 /* TabBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF57D69821875FE900E6A0A9 /* TabBarControllerTests.swift */; };
 		DF57D69B2187615B00E6A0A9 /* EventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF57D69A2187615B00E6A0A9 /* EventTests.swift */; };
+		DF57D6A121876B0100E6A0A9 /* RubbishManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF57D6A021876B0100E6A0A9 /* RubbishManagerTests.swift */; };
 		DF61DCCD212ECD850093915F /* DetailPetrolStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */; };
 		DF626AF51FB745E300BFDA67 /* BikeChargingStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */; };
 		DF626AF71FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */; };
@@ -96,6 +97,7 @@
 		DF77BFFB2168B7BB0025A31E /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF77BFFA2168B7BB0025A31E /* Entry.swift */; };
 		DF77BFFD2168BE960025A31E /* EntryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF77BFFC2168BE960025A31E /* EntryManager.swift */; };
 		DF77BFFF21695F8D0025A31E /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF77BFFE21695F8D0025A31E /* EntryTableViewCell.swift */; };
+		DF78BC50218849D700296EB8 /* RubbishCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF78BC4F218849D700296EB8 /* RubbishCollectionTests.swift */; };
 		DF8254061F7711180069D751 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8254051F7711170069D751 /* Camera.swift */; };
 		DF8254081F7712880069D751 /* CSwiftV.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8254071F7712870069D751 /* CSwiftV.swift */; };
 		DF855C2420C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF855C2320C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift */; };
@@ -327,6 +329,7 @@
 		DF57D695218739C500E6A0A9 /* Moers-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Moers-Bridging-Header.h"; sourceTree = "<group>"; };
 		DF57D69821875FE900E6A0A9 /* TabBarControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerTests.swift; sourceTree = "<group>"; };
 		DF57D69A2187615B00E6A0A9 /* EventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTests.swift; sourceTree = "<group>"; };
+		DF57D6A021876B0100E6A0A9 /* RubbishManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishManagerTests.swift; sourceTree = "<group>"; };
 		DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPetrolStationViewController.swift; sourceTree = "<group>"; };
 		DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeChargingStation.swift; sourceTree = "<group>"; };
 		DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeChargingStationAnnotationView.swift; sourceTree = "<group>"; };
@@ -344,6 +347,7 @@
 		DF77BFFA2168B7BB0025A31E /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		DF77BFFC2168BE960025A31E /* EntryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryManager.swift; sourceTree = "<group>"; };
 		DF77BFFE21695F8D0025A31E /* EntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTableViewCell.swift; sourceTree = "<group>"; };
+		DF78BC4F218849D700296EB8 /* RubbishCollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionTests.swift; sourceTree = "<group>"; };
 		DF8254051F7711170069D751 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		DF8254071F7712870069D751 /* CSwiftV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSwiftV.swift; sourceTree = "<group>"; };
 		DF855C2320C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolStationCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -823,11 +827,37 @@
 		DF57D66C2187383000E6A0A9 /* MoersTests */ = {
 			isa = PBXGroup;
 			children = (
-				DF57D69A2187615B00E6A0A9 /* EventTests.swift */,
-				DF57D69821875FE900E6A0A9 /* TabBarControllerTests.swift */,
+				DF57D69E21876AC200E6A0A9 /* Models */,
+				DF57D69C21876AB700E6A0A9 /* Manager */,
+				DF57D69F21876ACD00E6A0A9 /* ViewController */,
 				DF57D66F2187383000E6A0A9 /* Info.plist */,
 			);
 			path = MoersTests;
+			sourceTree = "<group>";
+		};
+		DF57D69C21876AB700E6A0A9 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				DF57D6A021876B0100E6A0A9 /* RubbishManagerTests.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		DF57D69E21876AC200E6A0A9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DF57D69A2187615B00E6A0A9 /* EventTests.swift */,
+				DF78BC4F218849D700296EB8 /* RubbishCollectionTests.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DF57D69F21876ACD00E6A0A9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DF57D69821875FE900E6A0A9 /* TabBarControllerTests.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		DF632E49212C72E700AC4660 /* ContentView */ = {
@@ -1396,7 +1426,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF57D69B2187615B00E6A0A9 /* EventTests.swift in Sources */,
+				DF78BC50218849D700296EB8 /* RubbishCollectionTests.swift in Sources */,
 				DF57D69921875FE900E6A0A9 /* TabBarControllerTests.swift in Sources */,
+				DF57D6A121876B0100E6A0A9 /* RubbishManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

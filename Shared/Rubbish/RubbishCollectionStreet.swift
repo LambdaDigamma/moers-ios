@@ -30,7 +30,7 @@ enum RubbishWasteType: String, Localizable {
     
 }
 
-struct RubbishCollectionStreet {
+struct RubbishCollectionStreet: Equatable {
     
     var street: String
     var residualWaste: Int
