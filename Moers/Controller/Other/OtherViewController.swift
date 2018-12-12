@@ -36,9 +36,9 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
         return [/*Section(title: "",
                         rows: [AccountRow(title: "Account", action: showAccount)]),*/
-                Section(title: "Daten",
+                /*Section(title: "Daten",
                         rows: [NavigationRow(title: "Eintrag hinzufügen", action: showAddEntry),
-                               NavigationRow(title: "Einträge validieren", action: showNonValidData)]),
+                               NavigationRow(title: "Einträge validieren", action: showNonValidData)]),*/
                 Section(title: String.localized("SettingsTitle"),
                         rows: [NavigationRow(title: String.localized("SettingsTitle"), action: showSettings)]),
                 Section(title: "Info",

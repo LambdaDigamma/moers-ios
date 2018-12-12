@@ -121,6 +121,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
         guard let coordinate = view.annotation?.coordinate else { return }
         
         self.map.setCenter(coordinate, animated: true)
+        self.map.camera.altitude = 300
         
         if !(view.annotation is MKClusterAnnotation) && !(view.annotation is MKUserLocation) {
             

@@ -256,7 +256,7 @@ extension ContentViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        if !tags.isEmpty && !locations.isEmpty {
+        if !tags.isEmpty && !locations.isEmpty && tableView.cellForRow(at: IndexPath(row: 0, section: 0)) != nil {
             tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: false)
         }
         

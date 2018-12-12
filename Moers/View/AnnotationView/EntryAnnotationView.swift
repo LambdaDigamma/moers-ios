@@ -22,11 +22,12 @@ class EntryAnnotationView: MKMarkerAnnotationView {
     override var annotation: MKAnnotation? {
         willSet {
             
+            glyphText = "•"
             clusteringIdentifier = AnnotationIdentifier.cluster
-            displayPriority = .defaultHigh
-            collisionMode = .circle
             markerTintColor = AppColor.yellow
             glyphTintColor = UIColor.black
+            displayPriority = .defaultHigh
+            collisionMode = .circle
             
         }
     }

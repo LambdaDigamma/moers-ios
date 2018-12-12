@@ -119,7 +119,7 @@ class Entry: NSObject, Codable, Location {
     }
     
     var detailHeight: CGFloat { return 750.0 }
-    lazy var detailImage: UIImage = { UIImage() }()
+    lazy var detailImage: UIImage = { return #imageLiteral(resourceName: "entry") }()
     lazy var detailViewController: UIViewController = { DetailEntryViewController.fromStoryboard() }()
     
 }
