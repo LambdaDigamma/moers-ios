@@ -16,27 +16,12 @@ class NewsViewController: UIViewController, NewsManagerDelegate {
     
     private let cellIdentifier = "tweet"
     
+    private var newsItems: [NewsItem] = []
+    
     private var tweets: [TWTRTweet] = []
     private var items: [RSSFeedItem] = []
     
     private lazy var collectionView = { ViewFactory.collectionView() }()
-    
-    private lazy var tableView: UITableView = {
-        
-        let tableView = UITableView(frame: CGRect.zero, style: .plain)
-        
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(TweetTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.estimatedRowHeight = 150
-        tableView.rowHeight = UITableView.automaticDimension
-        
-        return tableView
-        
-    }()
-    
-    private let segmentedControl = UISegmentedControl(items: ["Presse", "Sozial"])
     
     // MARK: - UIViewController Lifecycle
     
@@ -46,7 +31,6 @@ class NewsViewController: UIViewController, NewsManagerDelegate {
         self.setupUI()
         self.setupConstraints()
         self.setupTheming()
-        self.setupHeader()
         
         self.loadData()
         
@@ -67,10 +51,6 @@ class NewsViewController: UIViewController, NewsManagerDelegate {
         
         self.view.addSubview(collectionView)
         
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
-        tableView.refreshControl = refreshControl
-        
         let layout = WaterfallLayout()
         
         layout.delegate = self
@@ -82,6 +62,7 @@ class NewsViewController: UIViewController, NewsManagerDelegate {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(NewsCollectionViewCell.self, forCellWithReuseIdentifier: "newsCell")
+        collectionView.register(TweetCollectionViewCell.self, forCellWithReuseIdentifier: "tweetCell")
         
     }
     
@@ -103,28 +84,15 @@ class NewsViewController: UIViewController, NewsManagerDelegate {
             themeable.view.backgroundColor = theme.backgroundColor
             themeable.collectionView.backgroundColor = theme.backgroundColor
             
+            self.reloadData()
+            
         }
-        
-    }
-    
-    private func setupHeader() {
-        
-        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 30 + 8 + 8))
-        
-        ThemeManager.default.apply(theme: Theme.self, to: segmentedControl) { themeable, theme in
-            themeable.tintColor = theme.accentColor
-        }
-        
-        segmentedControl.frame = CGRect(x: 10, y: 8, width: self.view.frame.width - 2 * 10, height: 30)
-        segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.addTarget(self, action: #selector(selectedSegment), for: .valueChanged)
-        containerView.addSubview(segmentedControl)
-        
-        tableView.tableHeaderView = containerView
         
     }
     
     private func loadData() {
+        
+        newsItems = []
         
         let queue = OperationQueue()
         
@@ -143,23 +111,12 @@ class NewsViewController: UIViewController, NewsManagerDelegate {
             
             guard let feed = feed else { return }
             
-            self.items += feed.items ?? []
-            self.items.sort(by: { ($0.pubDate ?? Date()) > ($1.pubDate ?? Date()) })
+            self.newsItems.append(contentsOf: feed.items ?? [])
+            self.newsItems.sort(by: { ($0.date > $1.date ) })
+            
             self.collectionView.reloadData()
             
-        }
-        
-        NewsManager.shared.getLokalkompass { (error, feed) in
-            
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            
-            guard let feed = feed else { return }
-            
             self.items += feed.items ?? []
-            self.items.sort(by: { ($0.pubDate ?? Date()) > ($1.pubDate ?? Date()) })
-            self.collectionView.reloadData()
             
         }
         
@@ -167,44 +124,22 @@ class NewsViewController: UIViewController, NewsManagerDelegate {
     
     func receivedTweets(tweets: [TWTRTweet]) {
         
+        self.newsItems.append(contentsOf: tweets)
+        self.newsItems.sort(by: { ($0.date > $1.date ) })
         self.tweets = tweets
         
         DispatchQueue.main.async {
             
-            self.tableView.reloadData()
+            self.collectionView.reloadData()
             
         }
         
     }
     
     public func reloadData() {
-        self.tableView.reloadData()
+        self.collectionView.reloadData()
     }
     
-    @objc private func refresh() {
-        
-        UIView.animate(withDuration: 1, animations: {
-            
-            self.tableView.refreshControl?.endRefreshing()
-            
-        }) { (_) in
-            
-            self.loadData()
-            
-        }
-        
-    }
-    
-    @objc private func selectedSegment() {
-        
-        if segmentedControl.selectedSegmentIndex == 0 {
-            
-        } else {
-            
-        }
-        
-    }
-
     var numberOfColumns: Int {
         
         if view.traitCollection.horizontalSizeClass == .compact {
@@ -220,60 +155,51 @@ class NewsViewController: UIViewController, NewsManagerDelegate {
 extension NewsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(items.count)
         
-        return items.count
+        return newsItems.count
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newsCell", for: indexPath) as! NewsCollectionViewCell
+        if let newsItem = newsItems[indexPath.row] as? RSSFeedItem {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newsCell", for: indexPath) as! NewsCollectionViewCell
+            
+            cell.feedItem = newsItem
+            
+            return cell
+            
+        } else if let newsItem = newsItems[indexPath.row] as? TWTRTweet {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tweetCell", for: indexPath) as! TweetCollectionViewCell
+
+            cell.tweetView.showBorder = false
+            cell.tweetView.showActionButtons = false
+            
+            cell.tweetView.configure(with: newsItem)
+            
+            return cell
+            
+        }
         
-        cell.feedItem = items[indexPath.item]
-        
-        return cell
+        return UICollectionViewCell()
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let url = URL(string: items[indexPath.item].link ?? "") else { return }
-        
-        let svc = SFSafariViewController(url: url)
-        svc.preferredBarTintColor = navigationController?.navigationBar.barTintColor
-        svc.preferredControlTintColor = navigationController?.navigationBar.tintColor
-        svc.configuration.entersReaderIfAvailable = true
-        self.present(svc, animated: true, completion: nil)
-        
-    }
-    
-}
-
-extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return tweets.count
-        
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tweet") as! TweetTableViewCell
-        
-        cell.tweetView.showBorder = false
-        cell.tweetView.showActionButtons = false
-        
-        cell.tweetView.configure(with: tweets[indexPath.row])
-        
-        cell.selectionStyle = .none
-        
-        return cell
-        
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let newsItem = newsItems[indexPath.item] as? RSSFeedItem {
+            
+            guard let url = URL(string: newsItem.link ?? "") else { return }
+            
+            let svc = SFSafariViewController(url: url)
+            svc.preferredBarTintColor = navigationController?.navigationBar.barTintColor
+            svc.preferredControlTintColor = navigationController?.navigationBar.tintColor
+            svc.configuration.entersReaderIfAvailable = true
+            self.present(svc, animated: true, completion: nil)
+            
+        }
         
     }
     

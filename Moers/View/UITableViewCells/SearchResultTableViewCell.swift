@@ -59,7 +59,7 @@ class SearchResultTableViewCell: UITableViewCell {
                            titleLabel.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: 0),
                            subtitleLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0),
                            subtitleLabel.leftAnchor.constraint(equalTo: searchImageView.rightAnchor, constant: 8),
-                           subtitleLabel.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: 0),
+                           subtitleLabel.rightAnchor.constraint(equalTo: checkmarkView.leftAnchor, constant: -4),
                            checkmarkView.rightAnchor.constraint(equalTo: margins.rightAnchor),
                            checkmarkView.heightAnchor.constraint(equalToConstant: 20),
                            checkmarkView.widthAnchor.constraint(equalTo: checkmarkView.heightAnchor),

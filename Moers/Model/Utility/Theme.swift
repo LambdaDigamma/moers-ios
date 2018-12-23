@@ -22,6 +22,7 @@ struct Theme: ThemeProtocol {
     let statusBarStyle: UIStatusBarStyle
     let cardShadow: Bool
     let cardBackgroundColor: UIColor
+    let presentationStyle: PresentationStyle
     
     static private let darkGray = UIColor(red: 0.137, green: 0.122, blue: 0.125, alpha: 1.00)
     static private let yellow = UIColor(red: 1.000, green: 0.949, blue: 0.200, alpha: 1.00)
@@ -38,7 +39,8 @@ struct Theme: ThemeProtocol {
                             separatorColor: UIColor(red: 0.149, green: 0.196, blue: 0.220, alpha: 1.00),
                             statusBarStyle: .lightContent,
                             cardShadow: false,
-                            cardBackgroundColor: darkGray.darker(by: 2)!)
+                            cardBackgroundColor: darkGray.darker(by: 2)!,
+                            presentationStyle: .dark)
     
     static let darkOrange = Theme(identifier: "Dark Orange",
                                   color: UIColor.white,
@@ -50,7 +52,8 @@ struct Theme: ThemeProtocol {
                                   separatorColor: UIColor(red: 0.149, green: 0.196, blue: 0.220, alpha: 1.00),
                                   statusBarStyle: .lightContent,
                                   cardShadow: false,
-                                  cardBackgroundColor: darkGray.darker(by: 2)!)
+                                  cardBackgroundColor: darkGray.darker(by: 2)!,
+                                  presentationStyle: .dark)
     
     
     
@@ -78,7 +81,8 @@ struct Theme: ThemeProtocol {
                                  separatorColor: UIColor.lightGray,
                                  statusBarStyle: .default,
                                  cardShadow: true,
-                                 cardBackgroundColor: UIColor.white)
+                                 cardBackgroundColor: UIColor.white,
+                                 presentationStyle: .light)
     
     static let mono = Theme(identifier: "Mono",
                             color: UIColor.black,
@@ -90,7 +94,8 @@ struct Theme: ThemeProtocol {
                             separatorColor: UIColor.lightGray,
                             statusBarStyle: .lightContent,
                             cardShadow: true,
-                            cardBackgroundColor: UIColor.white)
+                            cardBackgroundColor: UIColor.white,
+                            presentationStyle: .light)
     
     static let red = Theme(identifier: "Red",
                           color: UIColor.black,
@@ -102,7 +107,8 @@ struct Theme: ThemeProtocol {
                           separatorColor: UIColor.lightGray,
                           statusBarStyle: .lightContent,
                           cardShadow: true,
-                          cardBackgroundColor: UIColor.white)
+                          cardBackgroundColor: UIColor.white,
+                          presentationStyle: .light)
     
 //    static let lightJulius = Theme(color: UIColor(red: 0x2C, green: 0x28, blue: 0x29),
 //                                   backgroundColor: UIColor(hexString: "#000000")!,
@@ -118,4 +124,9 @@ struct Theme: ThemeProtocol {
     
     
     
+}
+
+enum PresentationStyle {
+    case dark
+    case light
 }

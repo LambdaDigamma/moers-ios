@@ -39,7 +39,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
             let date = feedItem.pubDate ?? Date()
             
             titleLabel.text = feedItem.title
-            descriptionLabel.text = date.beautify()
+            descriptionLabel.text = date.beautify() + " • " + "RP Online"
             
         }
     }
@@ -100,6 +100,12 @@ class NewsCollectionViewCell: UICollectionViewCell {
         
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
             
+            if theme.presentationStyle == .light {
+                themeable.blurView.effect = UIBlurEffect(style: UIBlurEffect.Style.extraLight)
+            } else {
+                themeable.blurView.effect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+            }
+            
             themeable.cornerRadius = 12.0
             themeable.backgroundColor = theme.cardBackgroundColor
             themeable.titleLabel.textColor = theme.color
@@ -113,7 +119,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
                 themeable.shadowColor = UIColor.lightGray
                 themeable.shadowOpacity = 0.6
                 themeable.shadowRadius = 10.0
-                themeable.imageView.layer.cornerRadius = 10.0
+                themeable.imageView.roundCorners(corners: [.allCorners], radius: 12.0)
                 themeable.shadowOffset = CGSize(width: 0, height: 0)
                 
             } else {
@@ -126,10 +132,14 @@ class NewsCollectionViewCell: UICollectionViewCell {
                 
             }
             
-            themeable.clipsToBounds = true
-            
         }
         
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        blurView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 12.0)
+        imageView.roundCorners(corners: [.allCorners], radius: 12.0)
     }
     
 }
