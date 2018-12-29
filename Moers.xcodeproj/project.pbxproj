@@ -102,6 +102,15 @@
 		DF8254061F7711180069D751 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8254051F7711170069D751 /* Camera.swift */; };
 		DF8254081F7712880069D751 /* CSwiftV.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8254071F7712870069D751 /* CSwiftV.swift */; };
 		DF8281B621CFA74F00C3B3CE /* TweetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281B521CFA74F00C3B3CE /* TweetCollectionViewCell.swift */; };
+		DF8281B821CFD2D900C3B3CE /* Organisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281B721CFD2D800C3B3CE /* Organisation.swift */; };
+		DF8281BA21CFD84300C3B3CE /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281B921CFD84300C3B3CE /* Utility.swift */; };
+		DF8281BC21CFEDC700C3B3CE /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281BB21CFEDC700C3B3CE /* HTTPClient.swift */; };
+		DF8281BE21CFEEB300C3B3CE /* OrganisationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281BD21CFEEB300C3B3CE /* OrganisationManager.swift */; };
+		DF8281C021D0F9F300C3B3CE /* OrganisationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281BF21D0F9F300C3B3CE /* OrganisationDetailViewController.swift */; };
+		DF8281C221D10A9500C3B3CE /* OrganisationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281C121D10A9500C3B3CE /* OrganisationHeader.swift */; };
+		DF8281C421D1165C00C3B3CE /* FollowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281C321D1165C00C3B3CE /* FollowButton.swift */; };
+		DF8281C621D297BC00C3B3CE /* OrganisationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281C521D297BC00C3B3CE /* OrganisationsViewController.swift */; };
+		DF8281C821D29E9D00C3B3CE /* OrganisationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281C721D29E9D00C3B3CE /* OrganisationTableViewCell.swift */; };
 		DF855C2420C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF855C2320C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift */; };
 		DF855C2620C9E37400B7F7C7 /* CardCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF855C2520C9E37400B7F7C7 /* CardCollectionViewController.swift */; };
 		DF855C2820C9EADD00B7F7C7 /* WrapperCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF855C2720C9EADD00B7F7C7 /* WrapperCardCollectionViewCell.swift */; };
@@ -354,6 +363,15 @@
 		DF8254051F7711170069D751 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		DF8254071F7712870069D751 /* CSwiftV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSwiftV.swift; sourceTree = "<group>"; };
 		DF8281B521CFA74F00C3B3CE /* TweetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCollectionViewCell.swift; sourceTree = "<group>"; };
+		DF8281B721CFD2D800C3B3CE /* Organisation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organisation.swift; sourceTree = "<group>"; };
+		DF8281B921CFD84300C3B3CE /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		DF8281BB21CFEDC700C3B3CE /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		DF8281BD21CFEEB300C3B3CE /* OrganisationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationManager.swift; sourceTree = "<group>"; };
+		DF8281BF21D0F9F300C3B3CE /* OrganisationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationDetailViewController.swift; sourceTree = "<group>"; };
+		DF8281C121D10A9500C3B3CE /* OrganisationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationHeader.swift; sourceTree = "<group>"; };
+		DF8281C321D1165C00C3B3CE /* FollowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowButton.swift; sourceTree = "<group>"; };
+		DF8281C521D297BC00C3B3CE /* OrganisationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationsViewController.swift; sourceTree = "<group>"; };
+		DF8281C721D29E9D00C3B3CE /* OrganisationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationTableViewCell.swift; sourceTree = "<group>"; };
 		DF855C2320C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolStationCollectionViewCell.swift; sourceTree = "<group>"; };
 		DF855C2520C9E37400B7F7C7 /* CardCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewController.swift; sourceTree = "<group>"; };
 		DF855C2720C9EADD00B7F7C7 /* WrapperCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapperCardCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -516,6 +534,7 @@
 				DF77BFFE21695F8D0025A31E /* EntryTableViewCell.swift */,
 				DF310DA321710887004C69BA /* TagTableViewCell.swift */,
 				DF54138A217FD733007FDEC8 /* EntryValidationTableViewCell.swift */,
+				DF8281C721D29E9D00C3B3CE /* OrganisationTableViewCell.swift */,
 			);
 			path = UITableViewCells;
 			sourceTree = "<group>";
@@ -550,6 +569,8 @@
 				DF32F6722104D11400BCF80F /* ParkingLotManager.swift */,
 				DFEFE7CE2122E0A6002F5162 /* EventManager.swift */,
 				DF77BFFC2168BE960025A31E /* EntryManager.swift */,
+				DF8281BB21CFEDC700C3B3CE /* HTTPClient.swift */,
+				DF8281BD21CFEEB300C3B3CE /* OrganisationManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -689,6 +710,7 @@
 				DF3EE0C620E38A6B00CA9279 /* PaddingLabel.swift */,
 				DF86AB9C217387E700EFC7EA /* OnboardingProgressView.swift */,
 				DF552FC62184D2210062EB2B /* CheckmarkView.swift */,
+				DF8281C321D1165C00C3B3CE /* FollowButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -704,6 +726,8 @@
 				DF3555AF20DE599900B88DA3 /* UserRanking.swift */,
 				DFEFE7CC2122DC1D002F5162 /* Event.swift */,
 				DF199BDF21CF9C7000C89966 /* NewsItem.swift */,
+				DF8281B721CFD2D800C3B3CE /* Organisation.swift */,
+				DF8281B921CFD84300C3B3CE /* Utility.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -813,6 +837,8 @@
 				DF461CB720E2257400600C0E /* AddShopViewController.swift */,
 				DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */,
 				DFEFE7D02122ED0F002F5162 /* EventViewController.swift */,
+				DF8281BF21D0F9F300C3B3CE /* OrganisationDetailViewController.swift */,
+				DF8281C521D297BC00C3B3CE /* OrganisationsViewController.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -872,6 +898,7 @@
 				DFEFE7D421230149002F5162 /* EventView.swift */,
 				DFD7ACB920A6C6BC00D49BE2 /* RubbishCollectionView.swift */,
 				DF0CB4AA208357A800CC0AA8 /* MapItemContentView.swift */,
+				DF8281C121D10A9500C3B3CE /* OrganisationHeader.swift */,
 			);
 			path = ContentView;
 			sourceTree = "<group>";
@@ -1282,15 +1309,18 @@
 				DF503CEF21431503006EE226 /* DebugViewController.swift in Sources */,
 				DFCB431F20E02D0300E7AD3F /* NewsManager.swift in Sources */,
 				DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */,
+				DF8281C621D297BC00C3B3CE /* OrganisationsViewController.swift in Sources */,
 				DFA9EEFF20B36A86008590EA /* PetrolStation.swift in Sources */,
 				DF75734521771D6800953DA1 /* LFSearchViewDataSource.swift in Sources */,
 				DFD73694211EF0A500826C47 /* Localizable.swift in Sources */,
 				DFF4E15D20893694007C24E3 /* RubbishCollectionDate.swift in Sources */,
 				DF0CB4A12082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift in Sources */,
 				DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */,
+				DF8281C221D10A9500C3B3CE /* OrganisationHeader.swift in Sources */,
 				DF541389217FCD25007FDEC8 /* EntryValidationViewController.swift in Sources */,
 				DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */,
 				DF461CB820E2257400600C0E /* AddShopViewController.swift in Sources */,
+				DF8281B821CFD2D900C3B3CE /* Organisation.swift in Sources */,
 				DF3555B020DE599900B88DA3 /* UserRanking.swift in Sources */,
 				DF3555AC20DE4D5300B88DA3 /* PodestView.swift in Sources */,
 				DFA96A6320BD8A390009B279 /* AveragePetrolPriceComponent.swift in Sources */,
@@ -1312,6 +1342,7 @@
 				DFB92D621F6B0B7A00669F73 /* Location.swift in Sources */,
 				DF2D6DA520B88E1700176614 /* LicencesViewController.swift in Sources */,
 				DF95197F20C8B6F3001D13DC /* PetrolStationViewController.swift in Sources */,
+				DF8281C821D29E9D00C3B3CE /* OrganisationTableViewCell.swift in Sources */,
 				DFEE2E0A20BB117A00A130CB /* BaseComponent.swift in Sources */,
 				DFD7ACBA20A6C6BC00D49BE2 /* RubbishCollectionView.swift in Sources */,
 				DF3555B420DE730D00B88DA3 /* LoginViewController.swift in Sources */,
@@ -1330,6 +1361,7 @@
 				DF61DCCD212ECD850093915F /* DetailPetrolStationViewController.swift in Sources */,
 				DF8254061F7711180069D751 /* Camera.swift in Sources */,
 				DFD890872124860A006B5610 /* TandCViewController.swift in Sources */,
+				DF8281BE21CFEEB300C3B3CE /* OrganisationManager.swift in Sources */,
 				DFDD3F7420B2F30A005602E3 /* AboutViewController.swift in Sources */,
 				DF0CB49D2082B78C00CC0AA8 /* PermissionsManager.swift in Sources */,
 				DFD73690211E424E00826C47 /* SelectorBulletinPage.swift in Sources */,
@@ -1351,6 +1383,7 @@
 				DFBB9DE3212BF63600038943 /* PetrolStationAnnotationView.swift in Sources */,
 				DFD7ACB620A6BFD500D49BE2 /* TitleCardView.swift in Sources */,
 				DFA9EEFB20B35EB8008590EA /* PetrolType.swift in Sources */,
+				DF8281C421D1165C00C3B3CE /* FollowButton.swift in Sources */,
 				DF3555B220DE66F800B88DA3 /* LeaderboardRankingTableViewCell.swift in Sources */,
 				DF3555B620DE752900B88DA3 /* AccountTableViewCell.swift in Sources */,
 				DF3EE0C220E37E4900CA9279 /* FTLinearActivityIndicator.swift in Sources */,
@@ -1375,6 +1408,7 @@
 				DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */,
 				DFDF929920DE47E10068D1DF /* LeaderboardViewController.swift in Sources */,
 				DFA9EF1120B595D7008590EA /* GeocodingManager.swift in Sources */,
+				DF8281C021D0F9F300C3B3CE /* OrganisationDetailViewController.swift in Sources */,
 				DFA9EF0C20B56BA8008590EA /* UIImage+Extensions.swift in Sources */,
 				DFD7ACAF20A4486B00D49BE2 /* CardView.swift in Sources */,
 				DF0CB4B32087092F00CC0AA8 /* SearchResultTableViewCell.swift in Sources */,
@@ -1387,6 +1421,7 @@
 				DF199BE021CF9C7000C89966 /* NewsItem.swift in Sources */,
 				DF0CB4AF2085B65200CC0AA8 /* MapViewController.swift in Sources */,
 				DFB4D76B20B064CA00C8D179 /* StaticTableView.swift in Sources */,
+				DF8281BA21CFD84300C3B3CE /* Utility.swift in Sources */,
 				DFB6A0BF21033C7800D5C12B /* DetailCameraViewController.swift in Sources */,
 				DF0CB4932082AB5600CC0AA8 /* Theme.swift in Sources */,
 				DF29FB4F20B19BE600741A63 /* ThemeCardView.swift in Sources */,
@@ -1395,6 +1430,7 @@
 				DFA9EF0120B36CEF008590EA /* PetrolRequestResponse.swift in Sources */,
 				DF626AF91FB77EEC00BFDA67 /* DetailBikeChargingStationViewController.swift in Sources */,
 				DFEFE7D32122FFB0002F5162 /* EventTableViewCell.swift in Sources */,
+				DF8281BC21CFEDC700C3B3CE /* HTTPClient.swift in Sources */,
 				DFD7ACB220A44C5A00D49BE2 /* SelectionViewController.swift in Sources */,
 				DF2D6DAB20B8A02B00176614 /* OnboardingManager.swift in Sources */,
 				DF75734321771D3100953DA1 /* LFSearchViewDelegate.swift in Sources */,
