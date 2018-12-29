@@ -385,18 +385,14 @@ class EntryOnboardingSummaryViewController: UIViewController {
                           createdAt: Date().format(format: "yyyy-MM-dd HH:mm:ss"),
                           updatedAt: Date().format(format: "yyyy-MM-dd HH:mm:ss"))
         
-        EntryManager.shared.store(entry: entry) { (error, success, id) in
+        EntryManager.shared.store(entry: entry) { (error, entry) in
             
             if let error = error as? APIError, error == .notAuthorized {
                 self.alertNotAuthorized()
                 return
             }
             
-            guard let success = success else { return }
-            
-            if success {
-                
-                entry.id = id ?? -1
+            if let entry = entry {
                 
                 self.alertSuccess()
                 
