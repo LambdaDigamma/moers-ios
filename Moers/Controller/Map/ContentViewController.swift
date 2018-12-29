@@ -229,6 +229,22 @@ class ContentViewController: UIViewController {
         return subset.reduce(true) { (result, item) in return result && array.contains(item) }
     }
     
+    // MARK: - Public Methods
+    
+    public func addLocation(_ location: Location) {
+        
+        self.locations.append(location)
+        
+        self.datasource = generateDatasource()
+        
+        DispatchQueue.main.async {
+            
+            self.tableView.reloadData()
+            
+        }
+        
+    }
+    
 }
 
 extension ContentViewController: UISearchBarDelegate {

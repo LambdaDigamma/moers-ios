@@ -43,7 +43,7 @@ class MainViewController: PulleyViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = String.localized("MapTabItem")
+        self.navigationItem.title = String.localized("MapTabItem")
         
     }
     
@@ -156,6 +156,17 @@ class MainViewController: PulleyViewController {
         
         self.locations = self.locations.filter { !($0 is PetrolStation) }
         self.locations.append(contentsOf: stations)
+        
+    }
+    
+    // MARK: - Public Methods
+    
+    public func addLocation(_ location: Location) {
+        
+        self.locations.append(location)
+        
+        self.mapViewController.addLocation(location)
+        self.contentViewController.addLocation(location)
         
     }
     

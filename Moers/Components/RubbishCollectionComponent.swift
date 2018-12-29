@@ -128,6 +128,9 @@ class RubbishCollectionComponent: BaseComponent, UIViewControllerPreviewingDeleg
             self.rubbishCardView.itemView2.rubbishCollectionItem = rubbishItems[1]
         } else if rubbishItems.count >= 1 {
             self.rubbishCardView.itemView1.rubbishCollectionItem = rubbishItems[0]
+        } else if rubbishItems.count == 0 {
+            self.rubbishCardView.stopLoading()
+            self.rubbishCardView.showError(withTitle: "Warnung", message: "Leider sind keine weiteren Abholtermine bekannt. Wir arbeiten daran, so schnell wie möglich aktuelle Termine bereitstellen zu können!")
         }
         
     }

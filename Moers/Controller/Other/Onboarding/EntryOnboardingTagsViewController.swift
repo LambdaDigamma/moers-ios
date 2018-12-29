@@ -136,6 +136,8 @@ class EntryOnboardingTagsViewController: UIViewController {
             themeable.cellTextColor = theme.color
             themeable.cellBackgroundColor = theme.backgroundColor
             themeable.searchController.tableView.backgroundColor = theme.backgroundColor
+            themeable.searchController.separatorColor = theme.separatorColor
+            themeable.searchController.view.backgroundColor = theme.backgroundColor
             themeable.searchController.navigationBarClosure = { bar in
                 
                 bar.barTintColor = theme.navigationBarColor
@@ -195,7 +197,7 @@ class EntryOnboardingTagsViewController: UIViewController {
         
         let results = fuse.search(searchTerm, in: tags)
         
-        let boldAttrs = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)]
+        let boldAttrs = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)]
         
         let filteredTags: [NSAttributedString] = results.sorted(by: { $0.score < $1.score }).map { result in
             

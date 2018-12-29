@@ -119,7 +119,7 @@ class EntryOnboardingSummaryViewController: UIViewController {
         self.saveButton.layer.cornerRadius = 8
         self.saveButton.clipsToBounds = true
         self.saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
-        self.saveButton.addTarget(self, action: #selector(save), for: .touchUpInside)
+        self.saveButton.addTarget(self, action: #selector(alertConfirm), for: .touchUpInside)
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -381,9 +381,9 @@ class EntryOnboardingSummaryViewController: UIViewController {
                           other: EntryManager.shared.entryOtherOH,
                           lat: EntryManager.shared.entryLat ?? 0,
                           lng: EntryManager.shared.entryLng ?? 0,
-                          isValidated: false,
-                          createdAt: nil,
-                          updatedAt: nil)
+                          isValidated: true,
+                          createdAt: Date().format(format: "yyyy-MM-dd HH:mm:ss"),
+                          updatedAt: Date().format(format: "yyyy-MM-dd HH:mm:ss"))
         
         EntryManager.shared.store(entry: entry) { (error, success, id) in
             
@@ -391,8 +391,6 @@ class EntryOnboardingSummaryViewController: UIViewController {
                 self.alertNotAuthorized()
                 return
             }
-            
-            // TODO: Add Entry to Map and Drawer
             
             guard let success = success else { return }
             
@@ -406,8 +404,7 @@ class EntryOnboardingSummaryViewController: UIViewController {
                 
                 guard let tabBarController = self.tabBarController as? TabBarController else { return }
                 
-                // TODO: Add Location to Main View Controller; this should update Map and List
-                tabBarController.mainViewController.mapViewController.addLocation(entry)
+                tabBarController.mainViewController.addLocation(entry)
                 
             } else {
                 self.alertError()
@@ -417,9 +414,28 @@ class EntryOnboardingSummaryViewController: UIViewController {
         
     }
     
+    @objc private func alertConfirm() {
+        
+        Alertift.alert(title: "Bist Du sicher?", message: "Willst Du diesen Eintrag wirklich hinzufügen? Achte darauf, dass Du auch wirklich die richtigen Informationen eingetragen hast. Nur so können andere davon profitieren!")
+            .titleTextColor(nameTextField.textColor)
+            .messageTextColor(nameTextField.textColor)
+            .buttonTextColor(nameTextField.textColor)
+            .backgroundColor(view.backgroundColor)
+            .action(Alertift.Action.cancel("Nein"), handler: { (action, i, textFields) in
+                
+            })
+            .action(.default("Ja"), isPreferred: true, handler: { (action, i, textFields) in
+                
+                self.save()
+                
+            })
+            .show()
+        
+    }
+    
     private func alertSuccess() {
         
-        Alertift.alert(title: "Eintrag hinzugefügt!", message: "Vielen Dank für Deinen Beitrag!\nDein Eintrag wurde zwar noch nicht von einem anderen Benutzer bestätigt, aber ist schon auf der Karte zu sehen!")
+        Alertift.alert(title: "Eintrag hinzugefügt!", message: "Vielen Dank für Deinen Beitrag!\nDein Eintrag ist ab jetzt auf der Karte zu finden!")
             .titleTextColor(nameTextField.textColor)
             .messageTextColor(nameTextField.textColor)
             .buttonTextColor(nameTextField.textColor)

@@ -114,7 +114,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
         if EntryManager.shared.entryStreet != nil || EntryManager.shared.entryLat != nil {
             
-            Alertift.alert(title: "Letzte Daten", message: "Beim letzten Mal wurde der Vorgang nicht abgeschlossen und Daten wurden zwischen gespeichert. Möchtest Du diese übernehmen?")
+            Alertift.alert(title: "Daten übernehmen?", message: "Beim letzten Mal wurde der Vorgang nicht abgeschlossen und Daten wurden zwischen gespeichert. Möchtest Du diese übernehmen?")
                 .titleTextColor(textColor)
                 .messageTextColor(textColor)
                 .buttonTextColor(textColor)

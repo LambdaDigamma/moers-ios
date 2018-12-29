@@ -139,6 +139,8 @@ public class LFSearchViewController: UIViewController {
         self.tableView.isHidden = false
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.separatorInsetReference = .fromCellEdges
+        self.tableView.separatorInset = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
         
         self.searchBar.placeholder = self.searchBarPlaceHolder
         
