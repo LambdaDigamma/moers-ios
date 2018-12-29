@@ -48,6 +48,7 @@ class DetailEntryViewController: UIViewController {
     @IBOutlet weak var tagsListView: TagListView!
     @IBOutlet weak var lastUpdateLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var editButton: DesignableButton!
     
     public var selectedEntry: Entry? { didSet { selectedEntry(selectedEntry) } }
     
@@ -76,6 +77,7 @@ class DetailEntryViewController: UIViewController {
         self.addressHeaderLabel.text = "Adresse"
         self.callButton.addTarget(self, action: #selector(call), for: .touchUpInside)
         self.websiteButton.addTarget(self, action: #selector(openWebsite), for: .touchUpInside)
+        self.editButton.addTarget(self, action: #selector(editEntry), for: .touchUpInside)
         
         self.topSeparator.alpha = 0.5
         self.buttonSeparator.alpha = 0.5
@@ -116,6 +118,10 @@ class DetailEntryViewController: UIViewController {
             themeable.tagsListView.removeIconLineColor = theme.backgroundColor
             themeable.lastUpdateLabel.textColor = theme.decentColor
             themeable.infoLabel.textColor = theme.decentColor
+            themeable.editButton.setBackgroundColor(color: theme.decentColor, forState: .normal)
+            themeable.editButton.setBackgroundColor(color: theme.decentColor.darker(by: 10)!, forState: UIControl.State.selected)
+            themeable.editButton.alpha = 0.75
+            themeable.editButton.setTitleColor(theme.backgroundColor, for: .normal)
             
             let labels: [UILabel] = [themeable.addressHeaderLabel,
                                      themeable.streetLabel,
@@ -223,6 +229,12 @@ class DetailEntryViewController: UIViewController {
         svc.preferredBarTintColor = navigationController?.navigationBar.barTintColor
         svc.preferredControlTintColor = navigationController?.navigationBar.tintColor
         self.present(svc, animated: true, completion: nil)
+        
+    }
+    
+    @objc private func editEntry() {
+        
+        print("Hallo")
         
     }
     
