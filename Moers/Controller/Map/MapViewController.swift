@@ -203,6 +203,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
         
     }
     
+    // MARK: - Public Methods
+    
+    public func addLocation(_ location: Location) {
+        
+        self.locations.append(location)
+        
+        DispatchQueue.main.async {
+            self.map.addAnnotation(location)
+        }
+        
+    }
+    
 }
 
 extension MapViewController: EntryDatasource, ParkingLotDatasource, CameraDatasource, PetrolDatasource {

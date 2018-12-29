@@ -43,6 +43,8 @@ class MainViewController: PulleyViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = String.localized("MapTabItem")
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

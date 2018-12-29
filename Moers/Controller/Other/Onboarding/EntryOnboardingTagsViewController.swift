@@ -172,15 +172,13 @@ class EntryOnboardingTagsViewController: UIViewController {
     
     private func getTags() {
         
-        guard let tabBarController = (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController as? TabBarController else { return}
+        guard let tabBarController = self.tabBarController as? TabBarController else { return }
         
-        if let mainViewController = tabBarController.mapViewController.children.first as? MainViewController {
-            
-            // TODO: Improve Tag Fetching
-            self.tags = Array(Set(mainViewController.locations.map { $0.tags }.reduce([], +))).sorted()
-            self.tags.removeAll(where: { $0.isEmptyOrWhitespace })
-            
-        }
+        let locations = tabBarController.mainViewController.locations
+        
+        // TODO: Improve Tag Fetching
+        self.tags = Array(Set(locations.map { $0.tags }.reduce([], +))).sorted()
+        self.tags.removeAll(where: { $0.isEmptyOrWhitespace })
         
     }
     

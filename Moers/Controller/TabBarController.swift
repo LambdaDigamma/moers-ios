@@ -13,117 +13,21 @@ import ESTabBarController
 
 class TabBarController: ESTabBarController, UITabBarControllerDelegate {
 
-    lazy var dashboardViewController: UIViewController = {
-        
-        let dashboardViewController = DashboardViewController()
-        
-        dashboardViewController.navigationItem.title = String.localized("DashboardTabItem")
-        
-        let navigationController = UINavigationController()
-        navigationController.viewControllers = [dashboardViewController]
-        
-        let dashboardTabItem = ESTabBarItem(ItemBounceContentView(), title: String.localized("DashboardTabItem"), image: #imageLiteral(resourceName: "dashboard"), selectedImage: #imageLiteral(resourceName: "dashboard"))
-        
-        navigationController.tabBarItem = dashboardTabItem
-        
-        return navigationController
-        
-    }()
-    
-    lazy var newsViewController: UIViewController = {
-        
-        let newsViewController = NewsViewController()
-        
-        let navigationController = UINavigationController()
-        navigationController.viewControllers = [newsViewController]
-        
-        let newsTabItem = ESTabBarItem(ItemBounceContentView(), title: String.localized("NewsTitle"), image: #imageLiteral(resourceName: "news"), selectedImage: #imageLiteral(resourceName: "news"))
-        
-        navigationController.tabBarItem = newsTabItem
-        
-        return navigationController
-        
-    }()
-    
-    lazy var mapViewController: UIViewController = {
+    lazy var dashboardViewController = { DashboardViewController() }()
+    lazy var newsViewController = { NewsViewController() }()
+    lazy var eventViewController = { EventViewController() }()
+    lazy var communityViewController = { CommunityViewController() }()
+    lazy var leaderboardViewController = { LeaderboardViewController() }()
+    lazy var organisationDetailViewController = { OrganisationDetailViewController() }()
+    lazy var otherViewController = { OtherViewController() }()
+    lazy var mainViewController: MainViewController = {
         
         let mapViewController = MapViewController()
         let contentViewController = UIStoryboard(name: "ContentDrawer", bundle: nil).instantiateViewController(withIdentifier: "DrawerContentViewController")
         
         let mainViewController = MainViewController(contentViewController: mapViewController, drawerViewController: contentViewController)
         
-        mainViewController.navigationItem.title = String.localized("MapTabItem")
-        
-        let navigationController = UINavigationController()
-        navigationController.viewControllers = [mainViewController]
-        
-        let mapTabItem = ESTabBarItem(MapItemContentView(), title: nil, image: #imageLiteral(resourceName: "map_marker"), selectedImage: #imageLiteral(resourceName: "map_marker"))
-        
-        navigationController.tabBarItem = mapTabItem
-        
-        return navigationController
-        
-    }()
-    
-    lazy var eventViewController: UIViewController = {
-       
-        let eventViewController = EventViewController()
-        
-        let navigationController = UINavigationController()
-        navigationController.viewControllers = [eventViewController]
-        
-        let eventTabItem = ESTabBarItem(ItemBounceContentView(), title: String.localized("Events"), image: #imageLiteral(resourceName: "calendar"), selectedImage: #imageLiteral(resourceName: "calendar"))
-        
-        navigationController.tabBarItem = eventTabItem
-        
-        return navigationController
-        
-    }()
-    
-    lazy var communityViewController: UIViewController = {
-        
-        let communityViewController = CommunityViewController()
-        
-        let navigationController = UINavigationController()
-        navigationController.viewControllers = [communityViewController]
-        
-        let communityTabItem = ESTabBarItem(ItemBounceContentView(), title: "Community", image: #imageLiteral(resourceName: "people"), selectedImage: #imageLiteral(resourceName: "people"))
-        
-        navigationController.tabBarItem = communityTabItem
-        
-        return navigationController
-        
-    }()
-    
-    lazy var leaderboardViewController: UIViewController = {
-        
-        let leaderboardViewController = LeaderboardViewController()
-        
-        let navigationController = UINavigationController()
-        navigationController.viewControllers = [leaderboardViewController]
-        
-        let leaderboardTabItem = ESTabBarItem(ItemBounceContentView(), title: String.localized("LeaderboardTitle"), image: #imageLiteral(resourceName: "trophy"), selectedImage: #imageLiteral(resourceName: "trophy"))
-        
-        navigationController.tabBarItem = leaderboardTabItem
-        
-        return navigationController
-        
-    }()
-    
-    lazy var otherViewController: UIViewController = {
-        
-        let otherViewController = OtherViewController()
-        
-        otherViewController.navigationItem.title = String.localized("OtherTabItem")
-        
-        let navigationController = UINavigationController()
-        navigationController.viewControllers = [otherViewController]
-        
-        let otherTabItem = ESTabBarItem(ItemBounceContentView(), title: String.localized("OtherTabItem"), image: #imageLiteral(resourceName: "list"), selectedImage: #imageLiteral(resourceName: "list"))
-        
-        navigationController.tabBarItem = otherTabItem
-        
-        return navigationController
+        return mainViewController
         
     }()
     
@@ -168,18 +72,40 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             
         }
         
-        if UserManager.shared.user.id == nil {
-            
-            UserManager.shared.getID()
-            
-        }
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.viewControllers = [dashboardViewController, newsViewController, mapViewController, eventViewController, otherViewController]
+        let dashboard = navigation(with: dashboardViewController,
+                                   and: ESTabBarItem(ItemBounceContentView(), title: String.localized("DashboardTabItem"), image: #imageLiteral(resourceName: "dashboard"), selectedImage: #imageLiteral(resourceName: "dashboard")))
+        
+        let news = navigation(with: newsViewController,
+                              and: ESTabBarItem(ItemBounceContentView(), title: String.localized("NewsTitle"), image: #imageLiteral(resourceName: "news"), selectedImage: #imageLiteral(resourceName: "news")))
+        
+        let main = navigation(with: mainViewController,
+                             and: ESTabBarItem(MapItemContentView(), title: nil, image: #imageLiteral(resourceName: "map_marker"), selectedImage: #imageLiteral(resourceName: "map_marker")))
+        
+        let event = navigation(with: eventViewController,
+                               and: ESTabBarItem(ItemBounceContentView(), title: String.localized("Events"), image: #imageLiteral(resourceName: "calendar"), selectedImage: #imageLiteral(resourceName: "calendar")))
+        
+        let other = navigation(with: otherViewController,
+                               and: ESTabBarItem(ItemBounceContentView(), title: String.localized("OtherTabItem"), image: #imageLiteral(resourceName: "list"), selectedImage: #imageLiteral(resourceName: "list")))
+        
+        // Testing
+        
+        /*
+        let community = navigation(with: communityViewController,
+                                   and: ESTabBarItem(ItemBounceContentView(), title: "Community", image: #imageLiteral(resourceName: "people"), selectedImage: #imageLiteral(resourceName: "people")))
+        
+        let leaderboard = navigation(with: leaderboardViewController,
+                                     and: ESTabBarItem(ItemBounceContentView(), title: String.localized("LeaderboardTitle"), image: #imageLiteral(resourceName: "trophy"), selectedImage: #imageLiteral(resourceName: "trophy")))
+        
+        let organisationDetail = navigation(with: organisationDetailViewController,
+                                            and: ESTabBarItem(ItemBounceContentView(), title: "Test", image: #imageLiteral(resourceName: "trophy"), selectedImage: #imageLiteral(resourceName: "trophy")))
+        */
+        
+        self.viewControllers = [dashboard, news, main, event, other]
         
         setupTheming()
         
@@ -290,6 +216,17 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
     }
     
+    private func navigation(with controller: UIViewController, and tabItem: ESTabBarItem) -> UINavigationController {
+        
+        let navigationController = UINavigationController()
+        navigationController.viewControllers = [controller]
+        
+        navigationController.tabBarItem = tabItem
+        
+        return navigationController
+        
+    }
+    
     @objc func setupDidComplete() {
         
         OnboardingManager.shared.userDidCompleteSetup = true
@@ -297,16 +234,12 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         self.loadData()
         
-        guard let dashboardVC = dashboardViewController.children.first as? DashboardViewController else { return }
-        
-        dashboardVC.reloadUI()
-        dashboardVC.triggerUpdate()
+        dashboardViewController.reloadUI()
+        dashboardViewController.triggerUpdate()
         
     }
     
     @objc func search() {
-        
-        guard let mainViewController = mapViewController.children.first as? MainViewController else { return }
         
         mainViewController.setDrawerPosition(position: .open, animated: true)
         mainViewController.contentViewController.searchBar.becomeFirstResponder()

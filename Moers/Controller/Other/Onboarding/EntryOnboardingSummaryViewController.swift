@@ -398,9 +398,16 @@ class EntryOnboardingSummaryViewController: UIViewController {
             
             if success {
                 
+                entry.id = id ?? -1
+                
                 self.alertSuccess()
                 
                 EntryManager.shared.resetData()
+                
+                guard let tabBarController = self.tabBarController as? TabBarController else { return }
+                
+                // TODO: Add Location to Main View Controller; this should update Map and List
+                tabBarController.mainViewController.mapViewController.addLocation(entry)
                 
             } else {
                 self.alertError()

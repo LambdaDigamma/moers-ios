@@ -68,9 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             if RubbishManager.shared.isEnabled && RubbishManager.shared.rubbishStreet != nil {
                 
-                guard let dashboardViewController = viewController.dashboardViewController.children.first as? DashboardViewController else { return true }
-                
-                dashboardViewController.openRubbishViewController()
+                viewController.dashboardViewController.openRubbishViewController()
                 
             }
             

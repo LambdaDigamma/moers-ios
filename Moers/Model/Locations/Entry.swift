@@ -11,7 +11,7 @@ import MapKit
 
 class Entry: NSObject, Codable, Location {
     
-    public let id: Int
+    public var id: Int
     @objc dynamic public var name: String
     public var tags: [String]
     public let street: String
@@ -63,11 +63,11 @@ class Entry: NSObject, Codable, Location {
     }
     
     var updateDate: Date? {
-        return Date.from(updatedAt ?? "", withFormat: "yyyy-MM-dd hh:mm:ss")
+        return Date.from(updatedAt ?? "", withFormat: "yyyy-MM-dd HH:mm:ss")
     }
     
     var creationDate: Date? {
-        return Date.from(createdAt ?? "", withFormat: "yyyy-MM-dd hh:mm:ss")
+        return Date.from(createdAt ?? "", withFormat: "yyyy-MM-dd HH:mm:ss")
     }
     
     // MARK: - Search

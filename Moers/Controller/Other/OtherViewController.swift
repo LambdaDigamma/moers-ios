@@ -36,9 +36,8 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
         return [/*Section(title: "",
                         rows: [AccountRow(title: "Account", action: showAccount)]),*/
-                /*Section(title: "Daten",
-                        rows: [NavigationRow(title: "Eintrag hinzufügen", action: showAddEntry),
-                               NavigationRow(title: "Einträge validieren", action: showNonValidData)]),*/
+                Section(title: "Daten",
+                        rows: [NavigationRow(title: "Eintrag hinzufügen", action: showAddEntry)]),
                 Section(title: String.localized("SettingsTitle"),
                         rows: [NavigationRow(title: String.localized("SettingsTitle"), action: showSettings)]),
                 Section(title: "Info",
@@ -54,6 +53,8 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = String.localized("OtherTabItem")
         
         self.view.addSubview(tableView)
         
