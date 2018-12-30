@@ -234,7 +234,13 @@ class DetailEntryViewController: UIViewController {
     
     @objc private func editEntry() {
         
-        print("Hallo")
+        let viewController = EntryOnboardingOverviewViewController()
+        
+        guard let entry = selectedEntry else { return }
+        
+        viewController.overviewType = .edit(entry: entry)
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
         
     }
     

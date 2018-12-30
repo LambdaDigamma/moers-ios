@@ -1,5 +1,5 @@
 //
-//  EntryOnboardingSummaryViewController.swift
+//  EntryOnboardingOverviewViewController.swift
 //  Moers
 //
 //  Created by Lennart Fischer on 17.10.18.
@@ -12,7 +12,12 @@ import TextFieldEffects
 import MapKit
 import Alertift
 
-class EntryOnboardingSummaryViewController: UIViewController {
+enum EntryOverviewType: Equatable {
+    case summary
+    case edit(entry: Entry)
+}
+
+class EntryOnboardingOverviewViewController: UIViewController {
 
     lazy var scrollView = { ViewFactory.scrollView() }()
     lazy var contentView = { ViewFactory.blankView() }()
@@ -42,6 +47,8 @@ class EntryOnboardingSummaryViewController: UIViewController {
     lazy var otherOHTextField = { ViewFactory.textField() }()
     lazy var saveButton = { ViewFactory.button() }()
     
+    public var overviewType = EntryOverviewType.summary
+    
     // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
@@ -49,9 +56,9 @@ class EntryOnboardingSummaryViewController: UIViewController {
 
         self.setupUI()
         self.setupConstraints()
-        self.setupTheming()
         self.setupOpeningHours()
         self.fillData()
+        self.setupTheming()
         
     }
     
@@ -59,7 +66,11 @@ class EntryOnboardingSummaryViewController: UIViewController {
     
     private func setupUI() {
         
-        self.title = "Zusammenfassung"
+        if overviewType == .summary {
+            self.title = "Zusammenfassung"
+        } else {
+            self.title = "Bearbeiten"
+        }
         
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(contentView)
@@ -100,7 +111,12 @@ class EntryOnboardingSummaryViewController: UIViewController {
         self.saturdayOHTextField.placeholder = "Samstag"
         self.sundayOHTextField.placeholder = "Sonntag"
         self.otherOHTextField.placeholder = "Sonstiges"
-        self.saveButton.setTitle("Einsenden", for: .normal)
+        
+        if overviewType == EntryOverviewType.summary {
+            self.saveButton.setTitle("Hinzufügen", for: .normal)
+        } else {
+            self.saveButton.setTitle("Aktualisieren", for: .normal)
+        }
         
         self.tagsListView.enableRemoveButton = false
         
@@ -216,13 +232,19 @@ class EntryOnboardingSummaryViewController: UIViewController {
             
             let applyTheming: ((HoshiTextField) -> Void) = { textField in
                 
-                textField.borderActiveColor = theme.decentColor
+                if textField.isEnabled {
+                    textField.borderActiveColor = theme.accentColor
+                } else {
+                    textField.borderActiveColor = theme.decentColor
+                }
+                
                 textField.borderInactiveColor = theme.decentColor
                 textField.placeholderColor = theme.color
                 textField.textColor = theme.color.darker(by: 10)
                 textField.tintColor = theme.accentColor
                 textField.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
                 textField.autocorrectionType = .no
+                textField.delegate = self
                 
             }
             
@@ -295,9 +317,53 @@ class EntryOnboardingSummaryViewController: UIViewController {
     
     private func fillData() {
         
-        func disableTextFields(_ textFields: [UITextField]) {
-            textFields.forEach { $0.isEnabled = false }
+        switch overviewType {
+        case .summary:
+            
+            self.setupSummary()
+            
+        case .edit(let entry):
+            
+            self.setupEdit(with: entry)
+            
         }
+        
+    }
+    
+    @objc private func adjustForKeyboard(notification: Notification) {
+        
+        guard let userInfo = notification.userInfo else { return }
+        
+        let keyboardScreenEndFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+        
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            scrollView.contentInset = UIEdgeInsets.zero
+        } else {
+            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
+        }
+        
+        scrollView.scrollIndicatorInsets = scrollView.contentInset
+        
+    }
+    
+    @objc private func save() {
+        
+        switch overviewType {
+        case .summary:
+            self.storeEntry()
+        case .edit(let entry):
+            self.updateEntry(entry)
+        }
+        
+        // TODO: Update Entry Model from Text Fields
+        // TODO: Diff between Adding and Editing
+        // TODO: Adjust Alerts
+        // TODO: Update the Model in other VCs
+        
+    }
+    
+    private func setupSummary() {
         
         self.nameTextField.text = EntryManager.shared.entryName
         self.phoneTextField.text = EntryManager.shared.entryPhone
@@ -317,8 +383,39 @@ class EntryOnboardingSummaryViewController: UIViewController {
         
         disableTextFields([nameTextField, phoneTextField, websiteTextField, streetTextField, houseNrTextField, postcodeTextField, placeTextField, mondayOHTextField, tuesdayOHTextField, wednesdayOHTextField, thursdayOHTextField, fridayOHTextField, saturdayOHTextField, sundayOHTextField, otherOHTextField])
         
-        
         let coordinate = CLLocationCoordinate2D(latitude: EntryManager.shared.entryLat ?? 0, longitude: EntryManager.shared.entryLng ?? 0)
+        
+        self.setupMap(with: coordinate)
+        self.setupTags(with: EntryManager.shared.entryTags)
+        
+    }
+    
+    private func setupEdit(with entry: Entry) {
+        
+        self.nameTextField.text = entry.name
+        self.phoneTextField.text = entry.phone
+        self.websiteTextField.text = entry.url
+        self.streetTextField.text = entry.street
+        self.houseNrTextField.text = entry.houseNumber
+        self.postcodeTextField.text = entry.postcode
+        self.placeTextField.text = entry.place
+        self.mondayOHTextField.text = entry.monday
+        self.tuesdayOHTextField.text = entry.tuesday
+        self.wednesdayOHTextField.text = entry.wednesday
+        self.thursdayOHTextField.text = entry.thursday
+        self.fridayOHTextField.text = entry.friday
+        self.saturdayOHTextField.text = entry.saturday
+        self.sundayOHTextField.text = entry.sunday
+        self.otherOHTextField.text = entry.other
+        
+        disableTextFields([streetTextField, houseNrTextField, postcodeTextField, placeTextField])
+        
+        self.setupMap(with: entry.coordinate)
+        self.setupTags(with: entry.tags, enableAddTag: true)
+        
+    }
+    
+    private func setupMap(with coordinate: CLLocationCoordinate2D) {
         
         let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.0025, longitudeDelta: 0.0025))
         let annotation = MKPointAnnotation()
@@ -331,9 +428,13 @@ class EntryOnboardingSummaryViewController: UIViewController {
         self.mapView.setRegion(region, animated: false)
         self.mapView.alpha = 1
         
+    }
+    
+    private func setupTags(with tags: [String], enableAddTag: Bool = false) {
+        
         self.tagsListView.removeAllTags()
         
-        EntryManager.shared.entryTags.forEach { tag in
+        tags.forEach { tag in
             
             let index = self.tagsListView.tagViews.count
             
@@ -341,26 +442,15 @@ class EntryOnboardingSummaryViewController: UIViewController {
             
         }
         
-    }
-    
-    @objc func adjustForKeyboard(notification: Notification) {
-        
-        guard let userInfo = notification.userInfo else { return }
-        
-        let keyboardScreenEndFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-        
-        if notification.name == UIResponder.keyboardWillHideNotification {
-            scrollView.contentInset = UIEdgeInsets.zero
-        } else {
-            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
-        }
-        
-        scrollView.scrollIndicatorInsets = scrollView.contentInset
+        // TODO: Add Another Tag for Adding Tags
         
     }
     
-    @objc func save() {
+    private func disableTextFields(_ textFields: [UITextField]) {
+        textFields.forEach { $0.isEnabled = false }
+    }
+    
+    private func storeEntry() {
         
         let entry = Entry(id: -1,
                           name: EntryManager.shared.entryName ?? "",
@@ -410,9 +500,54 @@ class EntryOnboardingSummaryViewController: UIViewController {
         
     }
     
+    private func updateEntry(_ entry: Entry) {
+        
+        entry.name = nameTextField.text ?? ""
+        entry.url = websiteTextField.text
+        entry.phone = phoneTextField.text
+        entry.monday = mondayOHTextField.text
+        entry.tuesday = tuesdayOHTextField.text
+        entry.wednesday = wednesdayOHTextField.text
+        entry.thursday = thursdayOHTextField.text
+        entry.friday = fridayOHTextField.text
+        entry.saturday = saturdayOHTextField.text
+        entry.sunday = sundayOHTextField.text
+        entry.other = otherOHTextField.text
+        
+        EntryManager.shared.update(entry: entry) { (error, entry) in
+            
+            DispatchQueue.main.async {
+                
+                if let error = error as? APIError, error == .notAuthorized {
+                    self.alertNotAuthorized()
+                    return
+                }
+                
+                if let entry = entry {
+                    
+                    self.alertSuccess()
+                    
+                    guard let tabBarController = self.tabBarController as? TabBarController else { return }
+                    
+                    tabBarController.mainViewController.loadData()
+                    
+                    // TODO: Update Entry in Map
+                    
+                } else {
+                    self.alertError()
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    // MARK: - Alerts
+    
     @objc private func alertConfirm() {
         
-        Alertift.alert(title: "Bist Du sicher?", message: "Willst Du diesen Eintrag wirklich hinzufügen? Achte darauf, dass Du auch wirklich die richtigen Informationen eingetragen hast. Nur so können andere davon profitieren!")
+        Alertift.alert(title: "Bist Du sicher?", message: "Willst Du diesen Eintrag wirklich \(overviewType == .summary ? "hinzufügen" : "ändern")? Achte darauf, dass Du auch wirklich die richtigen Informationen eingetragen hast. Nur so können andere davon profitieren!")
             .titleTextColor(nameTextField.textColor)
             .messageTextColor(nameTextField.textColor)
             .buttonTextColor(nameTextField.textColor)
@@ -431,16 +566,24 @@ class EntryOnboardingSummaryViewController: UIViewController {
     
     private func alertSuccess() {
         
-        Alertift.alert(title: "Eintrag hinzugefügt!", message: "Vielen Dank für Deinen Beitrag!\nDein Eintrag ist ab jetzt auf der Karte zu finden!")
+        Alertift.alert(title: "Eintrag \(overviewType == .summary ? "hinzugefügt" : "geändert")!", message: "Vielen Dank für Deinen Beitrag!\nDein Eintrag ist jetzt auf der Karte zu finden!")
             .titleTextColor(nameTextField.textColor)
             .messageTextColor(nameTextField.textColor)
             .buttonTextColor(nameTextField.textColor)
             .backgroundColor(view.backgroundColor)
             .action(.default("Okay"), handler: { (action, i, textFields) in
                 
-                guard let otherVC = self.navigationController?.children.first else { return }
-                
-                self.navigationController?.popToViewController(otherVC, animated: true)
+                if self.overviewType == .summary {
+                    
+                    guard let otherVC = self.navigationController?.children.first else { return }
+                    
+                    self.navigationController?.popToViewController(otherVC, animated: true)
+                    
+                } else {
+                    
+                    self.navigationController?.popViewController(animated: true)
+                    
+                }
                 
             })
             .show()
@@ -477,6 +620,15 @@ class EntryOnboardingSummaryViewController: UIViewController {
             })
             .show()
         
+    }
+    
+}
+
+extension EntryOnboardingOverviewViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
 }

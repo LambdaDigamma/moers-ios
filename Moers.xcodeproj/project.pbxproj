@@ -56,7 +56,7 @@
 		DF44D58F2126F83B00F8AC0C /* DetailViewControllers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF44D58E2126F83B00F8AC0C /* DetailViewControllers.storyboard */; };
 		DF461CB820E2257400600C0E /* AddShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF461CB720E2257400600C0E /* AddShopViewController.swift */; };
 		DF461CBA20E226DE00600C0E /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF461CB920E226DE00600C0E /* ViewFactory.swift */; };
-		DF46E0E22177E28E003545F6 /* EntryOnboardingSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF46E0E12177E28E003545F6 /* EntryOnboardingSummaryViewController.swift */; };
+		DF46E0E22177E28E003545F6 /* EntryOnboardingOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF46E0E12177E28E003545F6 /* EntryOnboardingOverviewViewController.swift */; };
 		DF4BD1BE208A72C5003ECF41 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */; };
 		DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */; };
 		DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C3208C64F1003ECF41 /* PickerView.swift */; };
@@ -306,7 +306,7 @@
 		DF44D58E2126F83B00F8AC0C /* DetailViewControllers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewControllers.storyboard; sourceTree = "<group>"; };
 		DF461CB720E2257400600C0E /* AddShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShopViewController.swift; sourceTree = "<group>"; };
 		DF461CB920E226DE00600C0E /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
-		DF46E0E12177E28E003545F6 /* EntryOnboardingSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryOnboardingSummaryViewController.swift; sourceTree = "<group>"; };
+		DF46E0E12177E28E003545F6 /* EntryOnboardingOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryOnboardingOverviewViewController.swift; sourceTree = "<group>"; };
 		DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishStreetPickerItem.swift; sourceTree = "<group>"; };
 		DF4BD1C3208C64F1003ECF41 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
@@ -922,7 +922,7 @@
 				DF86AB9A2173837B00EFC7EA /* EntryOnboardingGeneralViewController.swift */,
 				DF75733D2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift */,
 				DF86ABA22174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift */,
-				DF46E0E12177E28E003545F6 /* EntryOnboardingSummaryViewController.swift */,
+				DF46E0E12177E28E003545F6 /* EntryOnboardingOverviewViewController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1329,7 +1329,7 @@
 				DFDD3F7220B2E525005602E3 /* MonthHeaderView.swift in Sources */,
 				DF29FB4D20B1954B00741A63 /* ThemeViewController.swift in Sources */,
 				DFA17DF620DFDA6200BBD838 /* AccountViewController.swift in Sources */,
-				DF46E0E22177E28E003545F6 /* EntryOnboardingSummaryViewController.swift in Sources */,
+				DF46E0E22177E28E003545F6 /* EntryOnboardingOverviewViewController.swift in Sources */,
 				DF0CB4AB208357A800CC0AA8 /* MapItemContentView.swift in Sources */,
 				DFAEF40620E6E671001B0756 /* String+Extensions.swift in Sources */,
 				DF32F6732104D11400BCF80F /* ParkingLotManager.swift in Sources */,

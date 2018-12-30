@@ -70,7 +70,9 @@ class MainViewController: PulleyViewController {
         
     }
     
-    private func loadData() {
+    public func loadData() {
+        
+        self.locations.removeAll()
         
         OperationQueue.main.addOperation {
             

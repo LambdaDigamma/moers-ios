@@ -220,9 +220,10 @@ extension MapViewController: EntryDatasource, ParkingLotDatasource, CameraDataso
     
     func didReceiveEntries(_ entries: [Entry]) {
         
-        self.locations.append(contentsOf: entries as [Entry])
-        
         DispatchQueue.main.async {
+            self.map.removeAnnotations(self.locations.filter { $0 is Entry })
+            self.locations = self.locations.filter { !($0 is Entry) }
+            self.locations.append(contentsOf: entries as [Entry])
             self.map.addAnnotations(entries)
         }
         
@@ -230,9 +231,10 @@ extension MapViewController: EntryDatasource, ParkingLotDatasource, CameraDataso
     
     func didReceiveParkingLots(_ parkingLots: [ParkingLot]) {
         
-        self.locations.append(contentsOf: parkingLots as [ParkingLot])
-        
         DispatchQueue.main.async {
+            self.map.removeAnnotations(self.locations.filter { $0 is ParkingLot })
+            self.locations = self.locations.filter { !($0 is ParkingLot) }
+            self.locations.append(contentsOf: parkingLots as [ParkingLot])
             self.map.addAnnotations(parkingLots)
         }
         
@@ -240,9 +242,10 @@ extension MapViewController: EntryDatasource, ParkingLotDatasource, CameraDataso
     
     func didReceiveCameras(_ cameras: [Camera]) {
         
-        self.locations.append(contentsOf: cameras as [Camera])
-        
         DispatchQueue.main.async {
+            self.map.removeAnnotations(self.locations.filter { $0 is Camera })
+            self.locations = self.locations.filter { !($0 is Camera) }
+            self.locations.append(contentsOf: cameras as [Camera])
             self.map.addAnnotations(cameras)
         }
         
@@ -250,11 +253,10 @@ extension MapViewController: EntryDatasource, ParkingLotDatasource, CameraDataso
     
     func didReceivePetrolStations(_ petrolStations: [PetrolStation]) {
         
-        print(petrolStations)
-        
-        self.locations.append(contentsOf: petrolStations as [PetrolStation])
-        
         DispatchQueue.main.async {
+            self.map.removeAnnotations(self.locations.filter { $0 is PetrolStation })
+            self.locations = self.locations.filter { !($0 is PetrolStation) }
+            self.locations.append(contentsOf: petrolStations as [PetrolStation])
             self.map.addAnnotations(petrolStations)
         }
         

@@ -14,22 +14,22 @@ class Entry: NSObject, Codable, Location {
     public var id: Int
     @objc dynamic public var name: String
     public var tags: [String]
-    public let street: String
-    public let houseNumber: String
-    public let postcode: String
-    public let place: String
-    public let url: String?
-    public let phone: String?
-    public let monday: String?
-    public let tuesday: String?
-    public let wednesday: String?
-    public let thursday: String?
-    public let friday: String?
-    public let saturday: String?
-    public let sunday: String?
-    public let other: String?
+    public var street: String
+    public var houseNumber: String
+    public var postcode: String
+    public var place: String
+    public var url: String?
+    public var phone: String?
+    public var monday: String?
+    public var tuesday: String?
+    public var wednesday: String?
+    public var thursday: String?
+    public var friday: String?
+    public var saturday: String?
+    public var sunday: String?
+    public var other: String?
     public let createdAt: String?
-    public let updatedAt: String?
+    public var updatedAt: String?
     private let lat: Double
     private let lng: Double
     

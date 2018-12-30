@@ -536,6 +536,7 @@ extension ContentViewController: EntryDatasource, ParkingLotDatasource, CameraDa
     
     func didReceiveEntries(_ entries: [Entry]) {
         
+        self.locations = self.locations.filter { !($0 is Entry) }
         self.locations.append(contentsOf: entries as [Entry])
         
         self.datasource = generateDatasource()
@@ -548,6 +549,7 @@ extension ContentViewController: EntryDatasource, ParkingLotDatasource, CameraDa
     
     func didReceiveParkingLots(_ parkingLots: [ParkingLot]) {
         
+        self.locations = self.locations.filter { !($0 is ParkingLot) }
         self.locations.append(contentsOf: parkingLots as [Location])
         
         self.datasource = generateDatasource()
@@ -562,6 +564,7 @@ extension ContentViewController: EntryDatasource, ParkingLotDatasource, CameraDa
     
     func didReceiveCameras(_ cameras: [Camera]) {
         
+        self.locations = self.locations.filter { !($0 is Camera) }
         self.locations.append(contentsOf: cameras as [Location])
         
         self.datasource = generateDatasource()
@@ -576,6 +579,7 @@ extension ContentViewController: EntryDatasource, ParkingLotDatasource, CameraDa
     
     func didReceivePetrolStations(_ petrolStations: [PetrolStation]) {
         
+        self.locations = self.locations.filter { !($0 is PetrolStation) }
         self.locations.append(contentsOf: petrolStations as [PetrolStation])
         
         self.datasource = generateDatasource()

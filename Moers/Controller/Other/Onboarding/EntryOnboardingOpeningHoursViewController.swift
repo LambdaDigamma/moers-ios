@@ -227,7 +227,7 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
         EntryManager.shared.entrySundayOH = sundayOHTextField.text
         EntryManager.shared.entryOtherOH = otherOHTextField.text
         
-        let viewController = EntryOnboardingSummaryViewController()
+        let viewController = EntryOnboardingOverviewViewController()
         
         self.navigationController?.pushViewController(viewController, animated: true)
         

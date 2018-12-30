@@ -72,7 +72,7 @@ struct HTTPClient {
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
             } catch {
-                print(error.localizedDescription)
+                completion(error, nil)
             }
             
             if withAuth {
@@ -118,12 +118,13 @@ struct HTTPClient {
             var request = URLRequest(url: url)
             
             request.addValue("application/json", forHTTPHeaderField: "Accept")
-            request.httpMethod = "UPDATE"
+            request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = "PUT"
             
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
             } catch {
-                print(error.localizedDescription)
+                completion(error, nil)
             }
             
             if withAuth {
