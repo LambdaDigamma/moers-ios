@@ -49,6 +49,7 @@ class DetailEntryViewController: UIViewController {
     @IBOutlet weak var lastUpdateLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var editButton: DesignableButton!
+    @IBOutlet weak var historyButton: DesignableButton!
     
     public var selectedEntry: Entry? { didSet { selectedEntry(selectedEntry) } }
     
@@ -78,6 +79,7 @@ class DetailEntryViewController: UIViewController {
         self.callButton.addTarget(self, action: #selector(call), for: .touchUpInside)
         self.websiteButton.addTarget(self, action: #selector(openWebsite), for: .touchUpInside)
         self.editButton.addTarget(self, action: #selector(editEntry), for: .touchUpInside)
+        self.historyButton.addTarget(self, action: #selector(showHistory), for: .touchUpInside)
         
         self.topSeparator.alpha = 0.5
         self.buttonSeparator.alpha = 0.5
@@ -122,6 +124,10 @@ class DetailEntryViewController: UIViewController {
             themeable.editButton.setBackgroundColor(color: theme.decentColor.darker(by: 10)!, forState: UIControl.State.selected)
             themeable.editButton.alpha = 0.75
             themeable.editButton.setTitleColor(theme.backgroundColor, for: .normal)
+            themeable.historyButton.setBackgroundColor(color: theme.decentColor, forState: .normal)
+            themeable.historyButton.setBackgroundColor(color: theme.decentColor.darker(by: 10)!, forState: UIControl.State.selected)
+            themeable.historyButton.alpha = 0.75
+            themeable.historyButton.setTitleColor(theme.backgroundColor, for: .normal)
             
             let labels: [UILabel] = [themeable.addressHeaderLabel,
                                      themeable.streetLabel,
@@ -239,6 +245,18 @@ class DetailEntryViewController: UIViewController {
         guard let entry = selectedEntry else { return }
         
         viewController.overviewType = .edit(entry: entry)
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
+        
+    }
+    
+    @objc private func showHistory() {
+        
+        let viewController = EntryHistoryViewController()
+        
+        guard let entry = selectedEntry else { return }
+        
+        viewController.entry = entry
         
         self.navigationController?.pushViewController(viewController, animated: true)
         

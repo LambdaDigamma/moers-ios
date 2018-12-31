@@ -689,30 +689,46 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cu3-EO-R78" customClass="TagListView" customModule="TagListView">
-                                <rect key="frame" x="0.0" y="578.5" width="375" height="144.5"/>
+                                <rect key="frame" x="0.0" y="578.5" width="375" height="86.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Letzte Änderung: nicht bekannt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PA9-Sd-K0C">
-                                <rect key="frame" x="0.0" y="743" width="375" height="16"/>
+                                <rect key="frame" x="0.0" y="685" width="375" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXU-PE-Ial">
-                                <rect key="frame" x="0.0" y="767" width="375" height="47"/>
+                                <rect key="frame" x="0.0" y="709" width="375" height="47"/>
                                 <string key="text">Alle Daten werden von Bürgerinnen und Bürgern eingetragen. Es kann keine Garantie für Richtigkeit und Aktualität übernommen werden.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyN-rh-NmI" customClass="DesignableButton" customModule="Moers" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="830" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="772" width="375" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="R16-7u-BQB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="Informationen bearbeiten">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ThS-OW-btJ" customClass="DesignableButton" customModule="Moers" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="830" width="375" height="50"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6ms-hN-arV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Historie anzeigen">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -733,12 +749,14 @@
                             <constraint firstItem="xZS-A0-x0j" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="7h9-xP-g6o"/>
                             <constraint firstItem="ovR-ee-3yj" firstAttribute="top" secondItem="KLa-k1-mMK" secondAttribute="bottom" constant="8" id="7wA-c7-rAC"/>
                             <constraint firstItem="jHs-W1-XXc" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="Aum-6k-ewx"/>
+                            <constraint firstItem="ThS-OW-btJ" firstAttribute="trailing" secondItem="nx9-gW-vlN" secondAttribute="trailing" id="BlW-uc-Kbo"/>
                             <constraint firstItem="ovR-ee-3yj" firstAttribute="trailing" secondItem="nx9-gW-vlN" secondAttribute="trailing" id="Bwx-cC-dRZ"/>
                             <constraint firstItem="VWI-k1-1if" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="C2i-b2-dyT"/>
                             <constraint firstItem="KLa-k1-mMK" firstAttribute="trailing" secondItem="nx9-gW-vlN" secondAttribute="trailing" id="CB0-tl-mYc"/>
                             <constraint firstItem="lu3-RD-ZKP" firstAttribute="top" secondItem="MFP-4u-Ly0" secondAttribute="bottom" constant="8" id="Ddj-dp-dJg"/>
                             <constraint firstItem="zEZ-cN-aKY" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="Dgk-Yn-gm7"/>
                             <constraint firstItem="sqU-W6-7Bc" firstAttribute="top" secondItem="O81-We-yGB" secondAttribute="bottom" constant="8" id="FZ4-XW-qEf"/>
+                            <constraint firstItem="ThS-OW-btJ" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="GN2-hX-4tQ"/>
                             <constraint firstItem="h2m-mt-m9t" firstAttribute="trailing" secondItem="nx9-gW-vlN" secondAttribute="trailing" id="Iaf-8x-KlC"/>
                             <constraint firstItem="g6Q-jb-or4" firstAttribute="top" secondItem="lu3-RD-ZKP" secondAttribute="bottom" constant="8" id="JAD-Zc-UZC"/>
                             <constraint firstItem="nx9-gW-vlN" firstAttribute="trailing" secondItem="O81-We-yGB" secondAttribute="trailing" id="JYI-5b-ddI"/>
@@ -753,6 +771,7 @@
                             <constraint firstItem="Cu3-EO-R78" firstAttribute="trailing" secondItem="nx9-gW-vlN" secondAttribute="trailing" id="PHO-SZ-UgZ"/>
                             <constraint firstItem="nx9-gW-vlN" firstAttribute="trailing" secondItem="zEZ-cN-aKY" secondAttribute="trailing" id="RmE-2M-M4M"/>
                             <constraint firstItem="jJ9-8R-cRn" firstAttribute="top" secondItem="dQJ-F5-DrP" secondAttribute="bottom" constant="4" id="T8b-6W-uOP"/>
+                            <constraint firstItem="nx9-gW-vlN" firstAttribute="bottom" secondItem="ThS-OW-btJ" secondAttribute="bottom" constant="120" id="TrV-ou-xCg"/>
                             <constraint firstItem="kSV-XE-HCF" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="U0r-P8-v5K"/>
                             <constraint firstItem="74Q-Qa-36F" firstAttribute="trailing" secondItem="nx9-gW-vlN" secondAttribute="trailing" id="Vaa-3I-YoN"/>
                             <constraint firstItem="g6Q-jb-or4" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="Voc-KG-h1O"/>
@@ -773,11 +792,11 @@
                             <constraint firstItem="dQJ-F5-DrP" firstAttribute="trailing" secondItem="nx9-gW-vlN" secondAttribute="trailing" id="hiF-wX-Cc6"/>
                             <constraint firstItem="nx9-gW-vlN" firstAttribute="trailing" secondItem="jXU-PE-Ial" secondAttribute="trailing" id="jMe-Lj-TYH"/>
                             <constraint firstItem="lu3-RD-ZKP" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="jdl-G4-INp"/>
+                            <constraint firstItem="ThS-OW-btJ" firstAttribute="top" secondItem="pyN-rh-NmI" secondAttribute="bottom" constant="8" id="kNr-wa-wI3"/>
                             <constraint firstItem="nx9-gW-vlN" firstAttribute="trailing" secondItem="kSV-XE-HCF" secondAttribute="trailing" id="l7O-7W-Lfa"/>
                             <constraint firstItem="PA9-Sd-K0C" firstAttribute="top" secondItem="Cu3-EO-R78" secondAttribute="bottom" constant="20" id="lpN-J3-hSo"/>
                             <constraint firstItem="KLa-k1-mMK" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="nSB-me-Piw"/>
                             <constraint firstItem="PA9-Sd-K0C" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="nnt-9w-WTD"/>
-                            <constraint firstItem="nx9-gW-vlN" firstAttribute="bottom" secondItem="pyN-rh-NmI" secondAttribute="bottom" constant="120" id="ogQ-m5-gBB"/>
                             <constraint firstItem="h2m-mt-m9t" firstAttribute="top" secondItem="kSV-XE-HCF" secondAttribute="bottom" constant="8" id="pD5-Cd-884"/>
                             <constraint firstItem="pyN-rh-NmI" firstAttribute="top" secondItem="jXU-PE-Ial" secondAttribute="bottom" constant="16" id="sVX-Mf-3xd"/>
                             <constraint firstItem="74Q-Qa-36F" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="tmw-6R-GUC"/>
@@ -801,6 +820,7 @@
                         <outlet property="editButton" destination="pyN-rh-NmI" id="mwC-G2-iae"/>
                         <outlet property="fridayHeaderLabel" destination="lWK-r1-jPB" id="r2D-bf-nC4"/>
                         <outlet property="fridayLabel" destination="59y-hS-Ula" id="A75-OX-d7D"/>
+                        <outlet property="historyButton" destination="ThS-OW-btJ" id="Flr-M3-3af"/>
                         <outlet property="infoLabel" destination="jXU-PE-Ial" id="SoR-xt-zoH"/>
                         <outlet property="lastUpdateLabel" destination="PA9-Sd-K0C" id="RXZ-nI-hA7"/>
                         <outlet property="mondayHeaderLabel" destination="Eb9-iD-w2l" id="yHf-bg-R2I"/>

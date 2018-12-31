@@ -90,6 +90,7 @@
 		DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */; };
 		DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B451F6EA0370022FA8E /* DesignableButton.swift */; };
 		DF632B481F6EA6AA0022FA8E /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B471F6EA6AA0022FA8E /* DesignableView.swift */; };
+		DF69B73C21D986AD00F910D8 /* EntryHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF69B73B21D986AD00F910D8 /* EntryHistoryViewController.swift */; };
 		DF75733E2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75733D2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift */; };
 		DF75734021771CC900953DA1 /* LFSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75733F21771CC800953DA1 /* LFSearchViewController.swift */; };
 		DF75734321771D3100953DA1 /* LFSearchViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75734221771D3100953DA1 /* LFSearchViewDelegate.swift */; };
@@ -351,6 +352,7 @@
 		DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLotAnnotationView.swift; sourceTree = "<group>"; };
 		DF632B451F6EA0370022FA8E /* DesignableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
 		DF632B471F6EA6AA0022FA8E /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
+		DF69B73B21D986AD00F910D8 /* EntryHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryHistoryViewController.swift; sourceTree = "<group>"; };
 		DF75733D2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryOnboardingTagsViewController.swift; sourceTree = "<group>"; };
 		DF75733F21771CC800953DA1 /* LFSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewController.swift; sourceTree = "<group>"; };
 		DF75734221771D3100953DA1 /* LFSearchViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewDelegate.swift; sourceTree = "<group>"; };
@@ -806,6 +808,7 @@
 				DFD7ACB120A44C5A00D49BE2 /* SelectionViewController.swift */,
 				DF4D8952210388D5008609A1 /* CameraViewController.swift */,
 				DF47AA98212C1EA500308873 /* Detail */,
+				DF69B73B21D986AD00F910D8 /* EntryHistoryViewController.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -1439,6 +1442,7 @@
 				DF86AB9721728A1E00EFC7EA /* EntryOnboardingLocationMenuViewController.swift in Sources */,
 				DF626AF71FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift in Sources */,
 				DF4D89592104C298008609A1 /* CameraManager.swift in Sources */,
+				DF69B73C21D986AD00F910D8 /* EntryHistoryViewController.swift in Sources */,
 				DF310DA22170F28A004C69BA /* Fuse.swift in Sources */,
 				DF8963D420CB0886008A0EDD /* WaterfallLayout.swift in Sources */,
 				DF2D6DA720B8983400176614 /* UserManager.swift in Sources */,
