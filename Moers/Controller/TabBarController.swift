@@ -36,6 +36,11 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         return BLTNItemManager(rootItem: onboarding)
     }()
     
+    lazy var rubbishMigrationManager: BLTNItemManager = {
+        let page = makeRubbishMigrationPage()
+        return BLTNItemManager(rootItem: page)
+    }()
+    
     private var firstLaunch: FirstLaunch
     
     init() {
@@ -65,12 +70,6 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         self.delegate = self
         
         self.loadData()
-        
-        if RubbishManager.shared.remindersEnabled && RubbishManager.shared.isEnabled {
-            
-            RubbishManager.shared.registerNotifications(at: RubbishManager.shared.reminderHour ?? 20, minute: RubbishManager.shared.reminderHour ?? 00)
-            
-        }
         
     }
 
@@ -107,7 +106,9 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         self.viewControllers = [dashboard, news, main, event, other]
         
-        setupTheming()
+        self.setupTheming()
+        
+        self.loadRubbishData()
         
     }
     
@@ -172,6 +173,9 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             themeable.bulletinManager.backgroundColor = theme.backgroundColor
             themeable.bulletinManager.hidesHomeIndicator = false
             themeable.bulletinManager.edgeSpacing = .compact
+            themeable.rubbishMigrationManager.backgroundColor = theme.backgroundColor
+            themeable.rubbishMigrationManager.hidesHomeIndicator = false
+            themeable.rubbishMigrationManager.edgeSpacing = .compact
             
             if let viewControllers = themeable.viewControllers {
                 
@@ -216,6 +220,40 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
     }
     
+    private func loadRubbishData() {
+        
+//        RubbishManager.shared.street = "Adler"
+        
+        if RubbishManager.shared.isEnabled && !firstLaunch.isFirstLaunch && OnboardingManager.shared.userDidCompleteSetup && (RubbishManager.shared.rubbishStreet?.street ?? "") != "" {
+            
+            RubbishManager.shared.loadRubbishCollectionStreets { (streets) in
+                
+                let currentStreetName = RubbishManager.shared.rubbishStreet?.street ?? ""
+                
+                if let filteredStreet = streets.filter({ $0.street == currentStreetName }).first {
+                    
+                    RubbishManager.shared.register(filteredStreet)
+                    
+                    if RubbishManager.shared.remindersEnabled {
+                        RubbishManager.shared.registerNotifications(at: RubbishManager.shared.reminderHour ?? 20, minute: RubbishManager.shared.reminderHour ?? 00)
+                    }
+                    
+                } else {
+                    
+                    RubbishManager.shared.disableStreet()
+                    
+                    self.rubbishMigrationManager.backgroundViewStyle = .dimmed
+                    self.rubbishMigrationManager.statusBarAppearance = .hidden
+                    self.rubbishMigrationManager.showBulletin(above: self)
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
     private func navigation(with controller: UIViewController, and tabItem: ESTabBarItem) -> UINavigationController {
         
         let navigationController = UINavigationController()
@@ -243,6 +281,46 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         mainViewController.setDrawerPosition(position: .open, animated: true)
         mainViewController.contentViewController.searchBar.becomeFirstResponder()
+        
+    }
+    
+    private func makeRubbishMigrationPage() -> BLTNPageItem {
+        
+        let page = OnboardingManager.shared.makeRubbishStreetPage()
+        page.descriptionText = "Wähle Deine Straße erneut aus, um die aktuellen Abfuhrtermine der Müllabfuhr angezeigt zu bekommen."
+        
+        page.actionHandler = { item in
+            
+            guard let item = item as? RubbishStreetPickerItem else { return }
+            
+            let selectedStreet = item.streets[item.picker.currentSelectedRow]
+            
+            RubbishManager.shared.register(selectedStreet)
+            RubbishManager.shared.isEnabled = true
+            
+            if RubbishManager.shared.remindersEnabled {
+                RubbishManager.shared.registerNotifications(at: RubbishManager.shared.reminderHour ?? 20, minute: RubbishManager.shared.reminderHour ?? 00)
+            }
+            
+            item.manager?.dismissBulletin(animated: true)
+            
+        }
+        
+        page.alternativeHandler = { item in
+            
+            RubbishManager.shared.isEnabled = false
+            RubbishManager.shared.remindersEnabled = false
+            RubbishManager.shared.reminderHour = 20
+            RubbishManager.shared.reminderMinute = 0
+            
+            item.manager?.dismissBulletin(animated: true)
+            
+            self.dashboardViewController.reloadUI()
+            self.dashboardViewController.triggerUpdate()
+            
+        }
+        
+        return page
         
     }
     

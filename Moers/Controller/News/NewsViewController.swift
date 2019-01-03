@@ -197,7 +197,12 @@ extension NewsViewController: UICollectionViewDataSource, UICollectionViewDelega
             svc.preferredBarTintColor = navigationController?.navigationBar.barTintColor
             svc.preferredControlTintColor = navigationController?.navigationBar.tintColor
             svc.configuration.entersReaderIfAvailable = true
-            self.present(svc, animated: true, completion: nil)
+            svc.delegate = self
+            self.present(svc, animated: true) {
+                
+                self.navigationItem.largeTitleDisplayMode = .never
+                
+            }
             
         }
         
@@ -215,6 +220,17 @@ extension NewsViewController: WaterfallLayoutDelegate {
     
     func collectionViewLayout(for section: Int) -> WaterfallLayout.Layout {
         return WaterfallLayout.Layout.waterfall(column: numberOfColumns)
+    }
+    
+}
+
+extension NewsViewController: SFSafariViewControllerDelegate {
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+//        self.navigationItem.largeTitleDisplayMode = .always
+        
     }
     
 }

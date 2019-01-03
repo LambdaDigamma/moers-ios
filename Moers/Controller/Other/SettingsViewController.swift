@@ -252,6 +252,13 @@ class SettingsViewController: UIViewController {
         
         RubbishManager.shared.isEnabled = isEnabled
         RubbishManager.shared.disableReminder()
+        RubbishManager.shared.disableStreet()
+        
+        if isEnabled {
+            
+            self.showRubbishStreet()
+            
+        }
         
         self.reloadRows()
         
