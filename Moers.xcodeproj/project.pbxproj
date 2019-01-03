@@ -91,6 +91,7 @@
 		DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B451F6EA0370022FA8E /* DesignableButton.swift */; };
 		DF632B481F6EA6AA0022FA8E /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B471F6EA6AA0022FA8E /* DesignableView.swift */; };
 		DF69B73C21D986AD00F910D8 /* EntryHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF69B73B21D986AD00F910D8 /* EntryHistoryViewController.swift */; };
+		DF69B73E21DA1C8700F910D8 /* Audit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF69B73D21DA1C8700F910D8 /* Audit.swift */; };
 		DF69B74021DA2AFB00F910D8 /* Protobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF69B73F21DA2AFB00F910D8 /* Protobuf.framework */; };
 		DF75733E2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75733D2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift */; };
 		DF75734021771CC900953DA1 /* LFSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75733F21771CC800953DA1 /* LFSearchViewController.swift */; };
@@ -355,6 +356,7 @@
 		DF632B451F6EA0370022FA8E /* DesignableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
 		DF632B471F6EA6AA0022FA8E /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		DF69B73B21D986AD00F910D8 /* EntryHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryHistoryViewController.swift; sourceTree = "<group>"; };
+		DF69B73D21DA1C8700F910D8 /* Audit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audit.swift; sourceTree = "<group>"; };
 		DF69B73F21DA2AFB00F910D8 /* Protobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Protobuf.framework; path = Frameworks/Protobuf.framework; sourceTree = "<group>"; };
 		DF75733D2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryOnboardingTagsViewController.swift; sourceTree = "<group>"; };
 		DF75733F21771CC800953DA1 /* LFSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewController.swift; sourceTree = "<group>"; };
@@ -738,6 +740,7 @@
 				DF199BDF21CF9C7000C89966 /* NewsItem.swift */,
 				DF8281B721CFD2D800C3B3CE /* Organisation.swift */,
 				DF8281B921CFD84300C3B3CE /* Utility.swift */,
+				DF69B73D21DA1C8700F910D8 /* Audit.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1418,6 +1421,7 @@
 				DFEFE7CF2122E0A6002F5162 /* EventManager.swift in Sources */,
 				DFCB432720E1036A00E7AD3F /* CommunityCollectionViewCell.swift in Sources */,
 				DF86AB9D217387E700EFC7EA /* OnboardingProgressView.swift in Sources */,
+				DF69B73E21DA1C8700F910D8 /* Audit.swift in Sources */,
 				DFD7ACB420A6BCA000D49BE2 /* DashboardRubbishCardView.swift in Sources */,
 				DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */,
 				DFDF929920DE47E10068D1DF /* LeaderboardViewController.swift in Sources */,
@@ -1694,7 +1698,7 @@
 				CODE_SIGN_ENTITLEMENTS = Moers/Moers.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1726,7 +1730,7 @@
 				CODE_SIGN_ENTITLEMENTS = Moers/Moers.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
