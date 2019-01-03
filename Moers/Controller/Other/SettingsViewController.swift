@@ -242,11 +242,9 @@ class SettingsViewController: UIViewController {
         
         self.reloadRows()
         
-        let tabBarController = (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController as? TabBarController
+        guard let tabBarController = self.tabBarController as? TabBarController else { return }
         
-        let dashboardViewController = tabBarController?.dashboardViewController.children[0] as? DashboardViewController
-        
-        dashboardViewController?.reloadUI()
+        tabBarController.dashboardViewController.reloadUI()
         
     }
     
@@ -254,6 +252,13 @@ class SettingsViewController: UIViewController {
         
         RubbishManager.shared.isEnabled = isEnabled
         RubbishManager.shared.disableReminder()
+        RubbishManager.shared.disableStreet()
+        
+        if isEnabled {
+            
+            self.showRubbishStreet()
+            
+        }
         
         self.reloadRows()
         

@@ -14,8 +14,8 @@ class RubbishManager {
     
     static let shared = RubbishManager()
     
-    private let rubbishStreetURL = URL(string: "https://meinmoers.lambdadigamma.com/abfallkalender-strassenverzeichnis.csv")
-    private let rubbishDateURL = URL(string: "https://www.offenesdatenportal.de/dataset/fe92e461-9db4-4d12-ba58-8d4439084e90/resource/04c58f79-e903-46d4-afc9-d546f4474543/download/abfallkalender--abfuhrtermine-2018.csv")
+    private let rubbishStreetURL = URL(string: "https://meinmoers.lambdadigamma.com/abfallkalender-strassenverzeichnis-2019.csv")
+    private let rubbishDateURL = URL(string: "https://www.offenesdatenportal.de/dataset/fe92e461-9db4-4d12-ba58-8d4439084e90/resource/7a2fd251-e470-4ebb-a092-73cd1d3499ac/download/abfk-2019-termine.csv")
     private var requests: [UNNotificationRequest] = []
     
     public func loadRubbishCollectionStreets(completion: @escaping ([RubbishCollectionStreet]) -> Void) {
@@ -28,7 +28,7 @@ class RubbishManager {
                     
                     let content = try String(contentsOf: url, encoding: String.Encoding.utf8)
                     
-                    let csv = CSwiftV(with: content, separator: ";", headers: ["Straße", "Restabfall", "Biotonne", "Papiertonne", "Gelber Sack", "Grünschnitt", "Kehrtag"])
+                    let csv = CSwiftV(with: content, separator: ";", headers: ["_id", "Straße", "Restabfall", "Biotonne", "Papiertonne", "Gelber Sack", "Grünschnitt", "Kehrtag"])
                     
                     var streets: [RubbishCollectionStreet] = []
                     
@@ -71,9 +71,9 @@ class RubbishManager {
                 
                 do {
                     
-                    let content = try String(contentsOf: url, encoding: String.Encoding.ascii)
+                    let content = try String(contentsOf: url, encoding: String.Encoding.utf8)
                     
-                    let csv = CSwiftV(with: content, separator: ";", headers: ["id", "datum", "rest_woche", "restabfall", "biotonne", "papiertonne", "gelber_sack", "gruenschnitt", "schadstoff", "del"])
+                    let csv = CSwiftV(with: content, separator: ",", headers: ["_id", "datum", "restabfall", "biotonne", "papiertonne", "gelber_sack", "gruenschnitt", "schadstoff"])
                     
                     var dates: [RubbishCollectionDate] = []
                     
@@ -82,7 +82,7 @@ class RubbishManager {
                     
                     for row in rows {
                         
-                        let date = RubbishCollectionDate(id: Int(row["id"] ?? "")!,
+                        let date = RubbishCollectionDate(id: Int(row["_id"] ?? "")!,
                                                          date: row["datum"] ?? "",
                                                          residualWaste: Int(row["restabfall"] ?? ""),
                                                          organicWaste: Int(row["biotonne"] ?? ""),
@@ -310,6 +310,18 @@ class RubbishManager {
         self.remindersEnabled = false
         self.reminderHour = 20
         self.reminderMinute = 0
+        
+    }
+    
+    public func disableStreet() {
+        
+        self.street = nil
+        self.residualWaste = nil
+        self.organicWaste = nil
+        self.paperWaste = nil
+        self.yellowBag = nil
+        self.greenWaste = nil
+        self.sweeperDay = nil
         
     }
     

@@ -107,11 +107,7 @@ class DetailViewController: UIViewController {
                            routeButton.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 32),
                            routeButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
                            routeButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
-                           routeButton.heightAnchor.constraint(equalToConstant: 50),
-                           contentView.topAnchor.constraint(equalTo: routeButton.bottomAnchor, constant: 8),
-                           contentView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-                           contentView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
-                           contentView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: -20)]
+                           routeButton.heightAnchor.constraint(equalToConstant: 50)]
         
         NSLayoutConstraint.activate(constraints)
         
@@ -280,21 +276,22 @@ class DetailViewController: UIViewController {
     private func add(asChildViewController viewController: UIViewController) {
         
         self.child = viewController
+        
         self.addChild(viewController)
-        
-        guard let loc = selectedLocation else { return }
-        
-        self.contentView.contentSize = CGSize(width: contentView.bounds.width, height: loc.detailHeight + 49)
         self.contentView.addSubview(viewController.view)
-        self.contentView.isUserInteractionEnabled = true
         
-        viewController.view.frame = contentView.bounds
-        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        viewController.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        viewController.view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        viewController.view.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        viewController.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        viewController.view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        viewController.view.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         
         viewController.didMove(toParent: self)
         
     }
-    
+        
 }
 
 extension DetailViewController: PulleyDrawerViewControllerDelegate {

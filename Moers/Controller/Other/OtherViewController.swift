@@ -37,8 +37,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         return [/*Section(title: "",
                         rows: [AccountRow(title: "Account", action: showAccount)]),*/
                 /*Section(title: "Daten",
-                        rows: [NavigationRow(title: "Eintrag hinzufügen", action: showAddEntry),
-                               NavigationRow(title: "Einträge validieren", action: showNonValidData)]),*/
+                        rows: [NavigationRow(title: "Eintrag hinzufügen", action: showAddEntry)]),*/
                 Section(title: String.localized("SettingsTitle"),
                         rows: [NavigationRow(title: String.localized("SettingsTitle"), action: showSettings)]),
                 Section(title: "Info",
@@ -54,6 +53,8 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = String.localized("OtherTabItem")
         
         self.view.addSubview(tableView)
         
@@ -113,7 +114,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
         if EntryManager.shared.entryStreet != nil || EntryManager.shared.entryLat != nil {
             
-            Alertift.alert(title: "Letzte Daten", message: "Beim letzten Mal wurde der Vorgang nicht abgeschlossen und Daten wurden zwischen gespeichert. Möchtest Du diese übernehmen?")
+            Alertift.alert(title: "Daten übernehmen?", message: "Beim letzten Mal wurde der Vorgang nicht abgeschlossen und Daten wurden zwischen gespeichert. Möchtest Du diese übernehmen?")
                 .titleTextColor(textColor)
                 .messageTextColor(textColor)
                 .buttonTextColor(textColor)

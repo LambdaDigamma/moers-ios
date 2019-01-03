@@ -136,6 +136,8 @@ class EntryOnboardingTagsViewController: UIViewController {
             themeable.cellTextColor = theme.color
             themeable.cellBackgroundColor = theme.backgroundColor
             themeable.searchController.tableView.backgroundColor = theme.backgroundColor
+            themeable.searchController.separatorColor = theme.separatorColor
+            themeable.searchController.view.backgroundColor = theme.backgroundColor
             themeable.searchController.navigationBarClosure = { bar in
                 
                 bar.barTintColor = theme.navigationBarColor
@@ -172,15 +174,13 @@ class EntryOnboardingTagsViewController: UIViewController {
     
     private func getTags() {
         
-        guard let tabBarController = (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController as? TabBarController else { return}
+        guard let tabBarController = self.tabBarController as? TabBarController else { return }
         
-        if let mainViewController = tabBarController.mapViewController.children.first as? MainViewController {
-            
-            // TODO: Improve Tag Fetching
-            self.tags = Array(Set(mainViewController.locations.map { $0.tags }.reduce([], +))).sorted()
-            self.tags.removeAll(where: { $0.isEmptyOrWhitespace })
-            
-        }
+        let locations = tabBarController.mainViewController.locations
+        
+        // TODO: Improve Tag Fetching
+        self.tags = Array(Set(locations.map { $0.tags }.reduce([], +))).sorted()
+        self.tags.removeAll(where: { $0.isEmptyOrWhitespace })
         
     }
     
@@ -197,7 +197,7 @@ class EntryOnboardingTagsViewController: UIViewController {
         
         let results = fuse.search(searchTerm, in: tags)
         
-        let boldAttrs = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)]
+        let boldAttrs = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)]
         
         let filteredTags: [NSAttributedString] = results.sorted(by: { $0.score < $1.score }).map { result in
             

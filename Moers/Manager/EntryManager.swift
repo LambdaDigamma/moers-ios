@@ -18,144 +18,100 @@ struct EntryManager {
     
     public func get(completion: @escaping ((Error?, [Entry]?) -> Void)) {
         
-        let endpoint = Environment.current.baseURL + "api/v1/entries"
+        guard let url = URL(string: Environment.current.baseURL + "api/v1/entries") else { return }
         
-        guard let url = URL(string: endpoint) else { completion(APIError.unavailableURL, nil); return }
-        
-        var request = URLRequest(url: url)
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        DispatchQueue.global(qos: .background).async {
+        HTTPClient.shared.get(url: url) { (error, data) in
             
-            let task = self.session.dataTask(with: request) { (data, response, error) in
+            guard let data = data else { return }
+            
+            let decoder = JSONDecoder()
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd H:mm:ss"
+            
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            decoder.dateDecodingStrategy = .formatted(formatter)
+            
+            do {
                 
-                if let error = error {
-                    print(error.localizedDescription)
+                let entries = try decoder.decode([Entry].self, from: data)
+                
+                entries.forEach { entry in
+                    if entry.tags == [""] {
+                        entry.tags = []
+                    }
                 }
                 
-                guard let data = data else { return }
+                completion(nil, entries)
                 
-                let jsonDecoder = JSONDecoder()
-                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-                
-                do {
-                    
-                    let entries = try jsonDecoder.decode([Entry].self, from: data)
-                    
-                    entries.forEach { entry in
-                        if entry.tags == [""] {
-                            entry.tags = []
-                        }
-                    }
-                    
-                    DispatchQueue.main.async {
-                        completion(nil, entries)
-                    }
-                    
-                } catch {
-                    
-                    DispatchQueue.main.async {
-                        completion(error, nil)
-                    }
-                    
-                    print(error.localizedDescription)
-                }
-                
+            } catch {
+                completion(error, nil)
             }
-            
-            task.resume()
             
         }
         
     }
     
-    public func store(entry: Entry, completion: @escaping ((Error?, Bool?, Int?) -> Void)) {
+    public func store(entry: Entry, completion: @escaping ((Error?, Entry?) -> Void)) {
         
-        if reachability.connection != .none {
+        guard let url = URL(string: Environment.current.baseURL + "api/v1/entries") else { return }
+        
+        let payload = data(from: entry)
+        
+        HTTPClient.shared.post(url: url, data: payload) { (error, data) in
             
-            guard let url = URL(string: Environment.current.baseURL + "api/v1/entries") else {
-                completion(APIError.noConnection, nil, nil)
-                return
+            guard let data = data else { return }
+            
+            let decoder = JSONDecoder()
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd H:mm:ss"
+            
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            decoder.dateDecodingStrategy = .formatted(formatter)
+            
+            do {
+                
+                let entry = try decoder.decode(Entry.self, from: data)
+                
+                completion(nil, entry)
+                
+            } catch {
+                completion(error, nil)
             }
             
-            let tags = entry.tags.joined(separator: ", ")
+        }
+        
+    }
+    
+    public func update(entry: Entry, completion: @escaping ((Error?, Entry?) -> Void)) {
+        
+        guard let url = URL(string: Environment.current.baseURL + "api/v1/entries/\(entry.id)") else { return }
+        
+        let payload = data(from: entry)
+        
+        HTTPClient.shared.update(url: url, data: payload) { (error, data) in
             
-            let data: [String: Any] = ["secret": "tzVQl34i6SrYSzAGSkBh",
-                                       "name": entry.name,
-                                       "tags": tags,
-                                       "street": entry.street,
-                                       "house_number": entry.houseNumber,
-                                       "postcode": entry.postcode,
-                                       "place": entry.place,
-                                       "lat": entry.coordinate.latitude,
-                                       "lng": entry.coordinate.longitude,
-                                       "url": entry.url ?? "",
-                                       "phone": entry.phone ?? "",
-                                       "monday": entry.monday ?? "",
-                                       "tuesday": entry.tuesday ?? "",
-                                       "wednesday": entry.wednesday ?? "",
-                                       "thursday": entry.thursday ?? "",
-                                       "friday": entry.friday ?? "",
-                                       "saturday": entry.saturday ?? "",
-                                       "sunday": entry.sunday ?? "",
-                                       "other": entry.other ?? ""]
+            guard let data = data else { return }
             
-            var request = URLRequest(url: url)
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpMethod = "POST"
+            let decoder = JSONDecoder()
             
-            DispatchQueue.global(qos: .background).async {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd H:mm:ss"
+            
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            decoder.dateDecodingStrategy = .formatted(formatter)
+            
+            do {
                 
-                do {
-                    request.httpBody = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
-                } catch {
-                    print(error.localizedDescription)
-                }
+                let entry = try decoder.decode(Entry.self, from: data)
                 
-                let task = self.session.dataTask(with: request) { (data, response, error) in
-                    
-                    if let response = response as? HTTPURLResponse, response.statusCode == 401 {
-                        completion(APIError.notAuthorized, nil, nil)
-                        return
-                    }
-                    
-                    guard error == nil else {
-                        completion(error, nil, nil)
-                        return
-                    }
-                    
-                    guard let data = data else {
-                        completion(APIError.noData, nil, nil)
-                        return
-                    }
-                    
-                    do {
-                        
-                        guard let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else { completion(APIError.noData, nil, nil); return }
-                        
-                        print(json)
-                        
-                        let id = (json["id"] as? Int) ?? -1
-                        
-                        DispatchQueue.main.async {
-                            completion(nil, true, id)
-                        }
-                        
-                    } catch {
-                        DispatchQueue.main.async {
-                            completion(error, false, nil)
-                        }
-                    }
-                    
-                }
+                completion(nil, entry)
                 
-                task.resume()
-                
+            } catch {
+                completion(error, nil)
             }
             
-        } else {
-            completion(APIError.noConnection, nil, nil)
         }
         
     }
@@ -188,6 +144,34 @@ struct EntryManager {
         self.entrySundayOH = nil
         self.entryOtherOH = nil
         self.entryTags = []
+        
+    }
+    
+    private func data(from entry: Entry) -> [String: Any] {
+        
+        let tags = entry.tags.joined(separator: ", ")
+        
+        let data: [String: Any] = ["secret": "tzVQl34i6SrYSzAGSkBh",
+                                   "name": entry.name,
+                                   "tags": tags,
+                                   "street": entry.street,
+                                   "house_number": entry.houseNumber,
+                                   "postcode": entry.postcode,
+                                   "place": entry.place,
+                                   "lat": entry.coordinate.latitude,
+                                   "lng": entry.coordinate.longitude,
+                                   "url": entry.url ?? "",
+                                   "phone": entry.phone ?? "",
+                                   "monday": entry.monday ?? "",
+                                   "tuesday": entry.tuesday ?? "",
+                                   "wednesday": entry.wednesday ?? "",
+                                   "thursday": entry.thursday ?? "",
+                                   "friday": entry.friday ?? "",
+                                   "saturday": entry.saturday ?? "",
+                                   "sunday": entry.sunday ?? "",
+                                   "other": entry.other ?? ""]
+        
+        return data
         
     }
     

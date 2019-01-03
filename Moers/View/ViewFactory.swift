@@ -218,4 +218,14 @@ struct ViewFactory {
         
     }
     
+    static func organisationHeader() -> OrganisationHeader {
+        
+        let header = OrganisationHeader()
+        
+        header.translatesAutoresizingMaskIntoConstraints = false
+        
+        return header
+        
+    }
+    
 }

@@ -22,8 +22,9 @@ struct Environment {
         case local = "Local"
     }
     
-    static var all: [Environment.EnvironmentType: Environment] = [.production: Environment(name: "Production", baseURL: "https://meinmoers.lambdadigamma.com/", clientID: 4, clientSecret: "qRwT7QC1MIyQVTpSm2QnttieSOaFKWrqdn4j0vNh", type: .production),
-                                                                  .local: Environment(name: "Local", baseURL: "http://localhost:8080/", clientID: 2, clientSecret: "2l564wXWihfjFzJoqES6P1gRtQtDnL5yr8XxBRV6", type: .local)]
+    static var all: [Environment.EnvironmentType: Environment] = [.production: Environment(name: "Production", baseURL: "https://meinmoers.lambdadigamma.com/", clientID: 2, clientSecret: "jNMAQBsoiyRlyKyeM8Wly2Ffn54EEFukEjLDaccR", type: .production),
+                                                                  .beta: Environment(name: "Beta", baseURL: "http://beta.meinmoers.lambdadigamma.com/", clientID: 2, clientSecret: "jNMAQBsoiyRlyKyeM8Wly2Ffn54EEFukEjLDaccR", type: .beta),
+                                                                  .local: Environment(name: "Local", baseURL: "http://localhost:8080/", clientID: 2, clientSecret: "jNMAQBsoiyRlyKyeM8Wly2Ffn54EEFukEjLDaccR", type: .local)]
     
     static var current: Environment {
         guard let env = Environment.all[.production] else { fatalError("No Environment set!") }

@@ -23,6 +23,8 @@ class DashboardViewController: CardCollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = String.localized("DashboardTabItem")
+        
         self.registerComponents()
         
         self.extendedLayoutIncludesOpaqueBars = true
