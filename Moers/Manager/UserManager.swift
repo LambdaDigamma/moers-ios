@@ -106,5 +106,23 @@ struct UserManager {
         
     }
     
+    public func nextRubbishActivity() -> NSUserActivity {
+        
+        let activity = NSUserActivity(activityType: "de.okfn.niederrhein.Moers.nextRubbish")
+        
+        if #available(iOS 12.0, *) {
+            activity.isEligibleForPrediction = true
+            activity.suggestedInvocationPhrase = "Nächste Abholtermine"
+            activity.persistentIdentifier = "de.okfn.niederrhein.Moers.nextRubbish"
+        }
+        
+        activity.isEligibleForPublicIndexing = true
+        activity.isEligibleForSearch = true
+        activity.keywords = ["Müll", "Moers"]
+        activity.title = "Nächste Abholtermine"
+        
+        return activity
+        
+    }
     
 }

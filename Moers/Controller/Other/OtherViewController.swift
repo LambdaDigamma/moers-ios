@@ -39,7 +39,8 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                 /*Section(title: "Daten",
                         rows: [NavigationRow(title: "Eintrag hinzufügen", action: showAddEntry)]),*/
                 Section(title: String.localized("SettingsTitle"),
-                        rows: [NavigationRow(title: String.localized("SettingsTitle"), action: showSettings)]),
+                        rows: [NavigationRow(title: String.localized("SettingsTitle"), action: showSettings),
+                               NavigationRow(title: "Siri Shortcuts", action: showSiriShortcuts)]),
                 Section(title: "Info",
                         rows: [NavigationRow(title: String.localized("AboutTitle"), action: showAbout),
                                NavigationRow(title: String.localized("Feedback"), action: showFeedback),
@@ -145,6 +146,10 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     private func showSettings() {
         push(viewController: SettingsViewController.self)
+    }
+    
+    private func showSiriShortcuts() {
+        push(viewController: ShortcutsViewController.self)
     }
     
     private func showAbout() {

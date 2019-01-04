@@ -44,7 +44,7 @@
 	<key>NSUserActivityTypes</key>
 	<dict>
 		<key>Item</key>
-		<string>de.okfn.niederrhein.Moers.rubbish</string>
+		<string>de.okfn.niederrhein.Moers.nextRubbish</string>
 	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

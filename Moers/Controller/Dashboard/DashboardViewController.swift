@@ -110,18 +110,7 @@ class DashboardViewController: CardCollectionViewController {
         
         if RubbishManager.shared.isEnabled && RubbishManager.shared.rubbishStreet != nil {
             
-            let activity = NSUserActivity(activityType: "de.okfn.niederrhein.Moers.nextRubbish")
-            
-            if #available(iOS 12.0, *) {
-                activity.isEligibleForPrediction = true
-                activity.suggestedInvocationPhrase = "Nächste Abholtermine"
-                activity.persistentIdentifier = "de.okfn.niederrhein.Moers.nextRubbish"
-            }
-            
-            activity.isEligibleForPublicIndexing = true
-            activity.isEligibleForSearch = true
-            activity.keywords = ["Müll", "Moers"]
-            activity.title = "Nächste Abholtermine"
+            let activity = UserManager.shared.nextRubbishActivity()
             
             view.userActivity = activity
             activity.becomeCurrent()

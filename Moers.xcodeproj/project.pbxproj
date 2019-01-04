@@ -171,6 +171,7 @@
 		DFB92D691F6B96E400669F73 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D681F6B96E400669F73 /* ClusterAnnotationView.swift */; };
 		DFBB9DE3212BF63600038943 /* PetrolStationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBB9DE2212BF63600038943 /* PetrolStationAnnotationView.swift */; };
 		DFC1CC671F76664700C1D269 /* ShopIconDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1CC661F76664700C1D269 /* ShopIconDrawer.swift */; };
+		DFC7126921DFC863006D05DB /* ShortcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC7126821DFC863006D05DB /* ShortcutsViewController.swift */; };
 		DFCB431B20DFF23900E7AD3F /* RankingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431A20DFF23900E7AD3F /* RankingManager.swift */; };
 		DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431C20E0283000E7AD3F /* NewsViewController.swift */; };
 		DFCB431F20E02D0300E7AD3F /* NewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431E20E02D0300E7AD3F /* NewsManager.swift */; };
@@ -432,6 +433,7 @@
 		DFB92D681F6B96E400669F73 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
 		DFBB9DE2212BF63600038943 /* PetrolStationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolStationAnnotationView.swift; sourceTree = "<group>"; };
 		DFC1CC661F76664700C1D269 /* ShopIconDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopIconDrawer.swift; sourceTree = "<group>"; };
+		DFC7126821DFC863006D05DB /* ShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsViewController.swift; sourceTree = "<group>"; };
 		DFCB431A20DFF23900E7AD3F /* RankingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingManager.swift; sourceTree = "<group>"; };
 		DFCB431C20E0283000E7AD3F /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		DFCB431E20E02D0300E7AD3F /* NewsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsManager.swift; sourceTree = "<group>"; };
@@ -837,6 +839,7 @@
 				DFD890862124860A006B5610 /* TandCViewController.swift */,
 				DFD8908821248DD9006B5610 /* PrivacyViewController.swift */,
 				DF503CEE21431503006EE226 /* DebugViewController.swift */,
+				DFC7126821DFC863006D05DB /* ShortcutsViewController.swift */,
 				DF86AB952172782F00EFC7EA /* Onboarding */,
 				DF541388217FCD25007FDEC8 /* EntryValidationViewController.swift */,
 			);
@@ -1360,6 +1363,7 @@
 				DF2D6DA520B88E1700176614 /* LicencesViewController.swift in Sources */,
 				DF95197F20C8B6F3001D13DC /* PetrolStationViewController.swift in Sources */,
 				DF8281C821D29E9D00C3B3CE /* OrganisationTableViewCell.swift in Sources */,
+				DFC7126921DFC863006D05DB /* ShortcutsViewController.swift in Sources */,
 				DFEE2E0A20BB117A00A130CB /* BaseComponent.swift in Sources */,
 				DFD7ACBA20A6C6BC00D49BE2 /* RubbishCollectionView.swift in Sources */,
 				DF3555B420DE730D00B88DA3 /* LoginViewController.swift in Sources */,
