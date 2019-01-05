@@ -84,11 +84,11 @@ class RubbishManager {
                         
                         let date = RubbishCollectionDate(id: Int(row["_id"] ?? "")!,
                                                          date: row["datum"] ?? "",
-                                                         residualWaste: Int(row["restabfall"] ?? ""),
-                                                         organicWaste: Int(row["biotonne"] ?? ""),
-                                                         paperWaste: Int(row["papiertonne"] ?? ""),
-                                                         yellowBag: Int(row["gelber_sack"] ?? ""),
-                                                         greenWaste: Int(row["gruenschnitt"] ?? ""))
+                                                         residualWaste: self.rowToArray(row["restabfall"]),
+                                                         organicWaste: self.rowToArray(row["biotonne"]),
+                                                         paperWaste: self.rowToArray(row["papiertonne"]),
+                                                         yellowBag: self.rowToArray(row["gelber_sack"]),
+                                                         greenWaste: self.rowToArray(row["gruenschnitt"]))
                         
                         dates.append(date)
                         
@@ -126,11 +126,11 @@ class RubbishManager {
         
         loadRubbishCollectionDate { (dates) in
             
-            let residual = dates.filter { $0.residualWaste == self.residualWaste && $0.residualWaste != nil }.map { RubbishCollectionItem(date: $0.date, type: .residual) }
-            let organic = dates.filter { $0.organicWaste == self.organicWaste && $0.organicWaste != nil }.map { RubbishCollectionItem(date: $0.date, type: .organic) }
-            let paper = dates.filter { $0.paperWaste == self.paperWaste && $0.paperWaste != nil }.map { RubbishCollectionItem(date: $0.date, type: .paper) }
-            let yellow = dates.filter { $0.yellowBag == self.yellowBag && $0.yellowBag != nil }.map { RubbishCollectionItem(date: $0.date, type: .yellow) }
-            let green = dates.filter { $0.greenWaste == self.greenWaste && $0.greenWaste != nil }.map { RubbishCollectionItem(date: $0.date, type: .green) }
+            let residual = dates.filter { $0.residualWaste.contains(self.residualWaste ?? -1) }.map { RubbishCollectionItem(date: $0.date, type: .residual) }
+            let organic = dates.filter { $0.organicWaste.contains(self.organicWaste ?? -1) }.map { RubbishCollectionItem(date: $0.date, type: .organic) }
+            let paper = dates.filter { $0.paperWaste.contains(self.paperWaste ?? -1) }.map { RubbishCollectionItem(date: $0.date, type: .paper) }
+            let yellow = dates.filter { $0.yellowBag.contains(self.yellowBag ?? -1) }.map { RubbishCollectionItem(date: $0.date, type: .yellow) }
+            let green = dates.filter { $0.greenWaste.contains(self.greenWaste ?? -1) }.map { RubbishCollectionItem(date: $0.date, type: .green) }
             
             var items = residual + organic + paper + yellow + green
             
@@ -393,6 +393,16 @@ class RubbishManager {
     internal var sweeperDay: String? {
         get { return UserDefaults.standard.string(forKey: "RubbishSweeperDay") }
         set { UserDefaults.standard.set(newValue, forKey: "RubbishSweeperDay") }
+    }
+    
+    // Helper
+    
+    private func rowToArray(_ string: String?) -> [Int] {
+        
+        let row = string ?? ""
+        
+        return row.components(separatedBy: ",").flatMap({ Int($0.trimmingCharacters(in: .whitespaces)) })
+        
     }
     
 }

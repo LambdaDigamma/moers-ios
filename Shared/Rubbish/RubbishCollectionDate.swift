@@ -12,10 +12,10 @@ struct RubbishCollectionDate {
     
     let id: Int
     let date: String
-    let residualWaste: Int?
-    let organicWaste: Int?
-    let paperWaste: Int?
-    let yellowBag: Int?
-    let greenWaste: Int?
+    let residualWaste: [Int]
+    let organicWaste: [Int]
+    let paperWaste: [Int]
+    let yellowBag: [Int]
+    let greenWaste: [Int]
     
 }
