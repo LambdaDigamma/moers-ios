@@ -40,7 +40,11 @@ struct EventManager {
                     
                     let decoder = JSONDecoder()
                     
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "yyyy-MM-dd H:mm:ss"
+                    
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    decoder.dateDecodingStrategy = .formatted(formatter)
                     
                     let events = try decoder.decode([Event].self, from: data)
                     

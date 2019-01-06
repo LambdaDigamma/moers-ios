@@ -12,7 +12,7 @@ struct Event: Codable, Timestamp {
     
     let id: Int
     let name: String
-    let description: String
+    let description: String?
     let url: String?
     let date: String
     let timeStart: String
