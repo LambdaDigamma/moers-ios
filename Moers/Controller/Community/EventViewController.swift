@@ -93,8 +93,13 @@ class EventViewController: UIViewController {
         let svc = SFSafariViewController(url: url)
         svc.preferredBarTintColor = navigationController?.navigationBar.barTintColor
         svc.preferredControlTintColor = navigationController?.navigationBar.tintColor
-        
-        self.present(svc, animated: true, completion: nil)
+        svc.configuration.entersReaderIfAvailable = true
+        svc.delegate = self
+        self.present(svc, animated: true) {
+            
+            self.navigationItem.largeTitleDisplayMode = .never
+            
+        }
         
     }
     
@@ -202,6 +207,16 @@ extension EventViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+}
+
+extension EventViewController: SFSafariViewControllerDelegate {
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        
     }
     
 }

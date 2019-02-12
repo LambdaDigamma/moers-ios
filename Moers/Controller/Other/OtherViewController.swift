@@ -27,6 +27,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: standardCellIdentifier)
         tableView.register(AccountTableViewCell.self, forCellReuseIdentifier: accountCellIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.cellLayoutMarginsFollowReadableWidth = true
         
         return tableView
         
