@@ -401,7 +401,7 @@ class RubbishManager {
         
         let row = string ?? ""
         
-        return row.components(separatedBy: ",").flatMap({ Int($0.trimmingCharacters(in: .whitespaces)) })
+        return row.components(separatedBy: ",").compactMap({ Int($0.trimmingCharacters(in: .whitespaces)) })
         
     }
     
