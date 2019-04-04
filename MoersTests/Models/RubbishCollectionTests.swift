@@ -26,11 +26,11 @@ class RubbishCollectionTests: XCTestCase {
         
         date = RubbishCollectionDate(id: 2,
                                      date: "20.10.2018",
-                                     residualWaste: 9,
-                                     organicWaste: 8,
-                                     paperWaste: 7,
-                                     yellowBag: 6,
-                                     greenWaste: 5)
+                                     residualWaste: [9],
+                                     organicWaste: [8],
+                                     paperWaste: [7],
+                                     yellowBag: [6],
+                                     greenWaste: [5])
         
     }
     
@@ -55,11 +55,11 @@ class RubbishCollectionTests: XCTestCase {
     func testDateInit() {
         
         XCTAssertEqual(date.id, 2)
-        XCTAssertEqual(date.residualWaste, 9)
-        XCTAssertEqual(date.organicWaste, 8)
-        XCTAssertEqual(date.paperWaste, 7)
-        XCTAssertEqual(date.yellowBag, 6)
-        XCTAssertEqual(date.greenWaste, 5)
+        XCTAssertEqual(date.residualWaste, [9])
+        XCTAssertEqual(date.organicWaste, [8])
+        XCTAssertEqual(date.paperWaste, [7])
+        XCTAssertEqual(date.yellowBag, [6])
+        XCTAssertEqual(date.greenWaste, [5])
         
     }
     

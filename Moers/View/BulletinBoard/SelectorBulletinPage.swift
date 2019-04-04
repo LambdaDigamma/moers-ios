@@ -51,7 +51,7 @@ class SelectorBulletinPage<T: RawRepresentable & CaseIterable & EnumCollection &
         
         self.resetButtonSelections()
         
-        let index = Array(T.allCases).index(of: selectedOption) ?? 0
+        let index = Array(T.allCases).firstIndex(of: selectedOption) ?? 0
         
         self.setButtonSelection(buttons[index])
         self.selectedOption(buttons[index])
@@ -84,7 +84,7 @@ class SelectorBulletinPage<T: RawRepresentable & CaseIterable & EnumCollection &
     
     @objc private func selectedOption(_ button: UIButton) {
         
-        let index = self.buttons.index(of: button) ?? 0
+        let index = self.buttons.firstIndex(of: button) ?? 0
         
         let option = Array(T.allCases)[index]
         

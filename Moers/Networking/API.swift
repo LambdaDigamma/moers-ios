@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreLocation
-import SwiftyConfiguration
 import InfoKit
 import Reachability
 

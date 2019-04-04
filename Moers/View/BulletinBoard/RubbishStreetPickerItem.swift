@@ -107,7 +107,7 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
             
             if let street = self.streets.filter({ $0.street.contains(street) }).first {
                 
-                self.picker.selectRow(self.streets.index(where: { $0.street == street.street }) ?? 0, animated: true)
+                self.picker.selectRow(self.streets.firstIndex(where: { $0.street == street.street }) ?? 0, animated: true)
                 self.picker.adjustCurrentSelectedAfterOrientationChanges()
                 
             }

@@ -17,11 +17,18 @@ class EventTests: XCTestCase {
         
         event = Event(id: 2,
                       name: "Test-Event",
+                      description: "This is a description.",
                       url: nil,
                       date: "21.10.2018",
                       timeStart: "10:00",
                       timeEnd: "13:30",
-                      category: "Test")
+                      category: "Test",
+                      organisationID: nil,
+                      entryID: nil,
+                      organisation: nil,
+                      entry: nil,
+                      createdAt: Date(),
+                      updatedAt: Date())
         
     }
 

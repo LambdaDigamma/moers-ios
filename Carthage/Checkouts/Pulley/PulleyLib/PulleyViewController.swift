@@ -90,12 +90,21 @@ public typealias PulleyAnimationCompletionBlock = ((_ finished: Bool) -> Void)
         .closed
     ]
     
-    let rawValue: Int
+    public let rawValue: Int
     
-    init(rawValue: Int) {
-        self.rawValue = rawValue
+    public init(rawValue: Int) {
+        if rawValue < 0 || rawValue > 3 {
+            print("PulleyViewController: A raw value of \(rawValue) is not supported. You have to use one of the predefined values in PulleyPosition. Defaulting to `collapsed`.")
+            self.rawValue = 0
+        } else {
+            self.rawValue = rawValue
+        }
     }
     
+    /// Return one of the defined positions for the given string.
+    ///
+    /// - Parameter string: The string, preferably obtained by `stringFor(position:)`
+    /// - Returns: The `PulleyPosition` or `.collapsed` if the string didn't match.
     public static func positionFor(string: String?) -> PulleyPosition {
         
         guard let positionString = string?.lowercased() else {
@@ -121,6 +130,14 @@ public typealias PulleyAnimationCompletionBlock = ((_ finished: Bool) -> Void)
             print("PulleyViewController: Position for string '\(positionString)' not found. Available values are: collapsed, partiallyRevealed, open, and closed. Defaulting to collapsed.")
             return .collapsed
         }
+    }
+
+    public override func isEqual(_ object: Any?) -> Bool {
+        guard let position = object as? PulleyPosition else {
+            return false
+        }
+
+        return self.rawValue == position.rawValue
     }
 }
 
@@ -998,7 +1015,13 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
         let cutoutHeight = 2 * drawerCornerRadius
         let maskHeight = backgroundDimmingView.bounds.size.height - cutoutHeight - drawerScrollView.contentSize.height
         let borderPath = drawerMaskingPath(byRoundingCorners: [.topLeft, .topRight])
-        borderPath.apply(CGAffineTransform(translationX: 0.0, y: maskHeight))
+        
+        // This applys the boarder path transform to the minimum x of the content container for iPhone X size devices
+        if let frame = drawerContentContainer.superview?.convert(drawerContentContainer.frame, to: self.view) {
+            borderPath.apply(CGAffineTransform(translationX: frame.minX, y: maskHeight))
+        } else  {
+            borderPath.apply(CGAffineTransform(translationX: 0.0, y: maskHeight))
+        }
         let maskLayer = CAShapeLayer()
 
         // Invert mask to cut away the bottom part of the dimming view
@@ -1022,7 +1045,7 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
     open func triggerFeedbackGenerator() {
         
         if #available(iOS 10.0, *) {
-            
+            // prepareFeedbackGenerator() is also added to scrollViewWillEndDragging to improve time between haptic engine triggering feedback and the call to prepare.
             prepareFeedbackGenerator()
             
             (feedbackGenerator as? UIImpactFeedbackGenerator)?.impactOccurred()
@@ -1599,6 +1622,8 @@ extension PulleyViewController: UIScrollViewDelegate {
     
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
+        prepareFeedbackGenerator()
+
         if scrollView == drawerScrollView
         {
             lastDragTargetContentOffset = targetContentOffset.pointee

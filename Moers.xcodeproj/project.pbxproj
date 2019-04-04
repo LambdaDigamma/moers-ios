@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DF02B7651FB0BBD8004B8B3E /* SwiftyConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF02B7641FB0BBD8004B8B3E /* SwiftyConfiguration.framework */; };
 		DF0CB48F2082A8DB00CC0AA8 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB48E2082A8DB00CC0AA8 /* AppConfig.swift */; };
 		DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */; };
 		DF0CB4932082AB5600CC0AA8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4922082AB5600CC0AA8 /* Theme.swift */; };
@@ -501,7 +500,6 @@
 				DF86ABA12174900400EFC7EA /* Intents.framework in Frameworks */,
 				DFCB432120E0344800E7AD3F /* TwitterKit.framework in Frameworks */,
 				DFB618581FAE144000C98EB6 /* Pulley.framework in Frameworks */,
-				DF02B7651FB0BBD8004B8B3E /* SwiftyConfiguration.framework in Frameworks */,
 				DFFB775B1FB37E0A00073863 /* InfoKit.framework in Frameworks */,
 				DFB64DCE20389FDC00173A80 /* Crashlytics.framework in Frameworks */,
 				DFB64DCF20389FDC00173A80 /* Fabric.framework in Frameworks */,
@@ -1160,7 +1158,7 @@
 				TargetAttributes = {
 					DF1A495E1F6AAB7000E9108B = {
 						CreatedOnToolsVersion = 9.0;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -1176,12 +1174,13 @@
 					};
 					DF57D66A2187383000E6A0A9 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						TestTargetID = DF1A495E1F6AAB7000E9108B;
 					};
 					DFB64DAD20377AEE00173A80 = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						TestTargetID = DF1A495E1F6AAB7000E9108B;
 					};
@@ -1279,7 +1278,6 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Pulley.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SwiftyConfiguration.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/InfoKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Gestalt.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BLTNBoard.framework",
@@ -1719,7 +1717,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Moers-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1750,7 +1748,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Moers-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1773,7 +1771,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moers.app/Moers";
 			};
@@ -1794,7 +1792,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moers.app/Moers";
 			};
@@ -1812,7 +1810,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Moers;
 			};
@@ -1830,7 +1828,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Moers;
 			};
