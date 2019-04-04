@@ -52,6 +52,10 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         super.init(nibName: nil, bundle: nil)
         
+        if isSnapshotting() {
+            self.setupMocked()
+        }
+        
     }
     
     deinit {
@@ -115,7 +119,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if firstLaunch.isFirstLaunch || !OnboardingManager.shared.userDidCompleteSetup {
+        if (firstLaunch.isFirstLaunch || !OnboardingManager.shared.userDidCompleteSetup) && !isSnapshotting() {
             
             showBulletin()
             
@@ -254,6 +258,23 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
     }
     
+    private func setupMocked() {
+        
+        let rubbishCollectionStreet = RubbishCollectionStreet(street: "Adlerstraße",
+                                                              residualWaste: 3,
+                                                              organicWaste: 2,
+                                                              paperWaste: 8,
+                                                              yellowBag: 3,
+                                                              greenWaste: 2,
+                                                              sweeperDay: "")
+        
+        UserManager.shared.register(User(type: .citizen, id: nil, name: nil, description: nil))
+        PetrolManager.shared.petrolType = .diesel
+        RubbishManager.shared.isEnabled = true
+        RubbishManager.shared.register(rubbishCollectionStreet)
+        
+    }
+    
     private func navigation(with controller: UIViewController, and tabItem: ESTabBarItem) -> UINavigationController {
         
         let navigationController = UINavigationController()
@@ -335,6 +356,10 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             
         }
         
+    }
+    
+    private func isSnapshotting() -> Bool {
+        return UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT")
     }
     
 }

@@ -16,6 +16,11 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
+### ios test
+```
+fastlane ios test
+```
+Run All Unit Tests
 ### ios beta
 ```
 fastlane ios beta
@@ -26,11 +31,16 @@ Push a new beta build to TestFlight
 fastlane ios provisioning
 ```
 Creating a code signing certificate and provisioning profile
-### ios screenshot
+### ios screenshots
 ```
-fastlane ios screenshot
+fastlane ios screenshots
 ```
-Take screenshots
+Take Screenshots and Upload them to AppStore Connect
+### ios take_screenshots
+```
+fastlane ios take_screenshots
+```
+Take Screenshots
 ### ios build
 ```
 fastlane ios build

@@ -174,24 +174,6 @@ class RubbishManagerTests: XCTestCase {
         
     }
     
-    func testScheduleNotification() {
-        
-        rubbishManager.invalidateRubbishReminderNotifications()
-        
-        let request = UNNotificationRequest(identifier: "uniqueNotification", content: UNMutableNotificationContent(), trigger: UNTimeIntervalNotificationTrigger(timeInterval: 100, repeats: false))
-        
-        rubbishManager.scheduleNotification(request: request) {
-            
-            UNUserNotificationCenter.current().getPendingNotificationRequests(completionHandler: { (requests) in
-                
-                XCTAssertEqual(requests.count, 1)
-                
-            })
-            
-        }
-        
-    }
-    
     func testDisableReminder() {
         
         rubbishManager.disableReminder()

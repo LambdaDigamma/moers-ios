@@ -16,6 +16,13 @@ end
 default_platform(:ios)
 
 platform :ios do
+  setup_travis
+
+  desc "Run All Unit Tests"
+  lane :test do
+    run_tests(scheme: "Moers",
+              devices: ["iPhone X"])
+  end
 
   desc "Push a new beta build to TestFlight"
   lane :beta do
@@ -53,9 +60,18 @@ platform :ios do
 
   end
 
-  desc "Take screenshots"
-  lane :screenshot do
+  # --- Screenshots and Upload them to AppStore Connect ---
+
+  desc "Take Screenshots and Upload them to AppStore Connect"
+  lane :screenshots do
+    take_screenshots
+    upload_to_app_store
+  end
+
+  desc "Take Screenshots"
+  lane :take_screenshots do
     snapshot
+    frame_screenshots(path: "/screenshots")
   end
 
   desc "Create ipa"
@@ -72,7 +88,7 @@ platform :ios do
   desc "Provision, take screenshots, build and upload to App Store"
   lane :do_everything do
     provisioning
-    screenshot
+    screenshots
     build
     upload
   end
