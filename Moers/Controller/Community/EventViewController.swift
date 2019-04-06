@@ -9,6 +9,7 @@
 import UIKit
 import Gestalt
 import SafariServices
+import MMAPI
 
 class EventViewController: UIViewController {
 
@@ -49,36 +50,39 @@ class EventViewController: UIViewController {
         
         queue.addOperation {
             
-            EventManager.shared.getEvents(completion: { (error, events) in
+            EventManager.shared.getEvents(completion: { (result) in
                 
-                OperationQueue.main.addOperation {
+                switch result {
                     
-                    if let error = error {
-                        print(error.localizedDescription)
-                    }
+                case .success(let events):
                     
-                    guard let events = events else { return }
-                    
-                    self.events = events.filter { $0.parsedDate >= Date.yesterday && Date.component(.year, from: $0.parsedDate) == Date.component(.year, from: Date()) }
-                                        .sorted(by: { (e1, e2) -> Bool in
-                                            
-                                            if e1.parsedDate == e2.parsedDate {
-                                                return e1.parsedTime < e2.parsedTime
-                                            } else {
-                                                return e1.parsedDate < e2.parsedDate
-                                            }
+                    OperationQueue.main.addOperation {
+                        
+                        self.events = events.filter { $0.parsedDate >= Date.yesterday && Date.component(.year, from: $0.parsedDate) == Date.component(.year, from: Date()) }
+                            .sorted(by: { (e1, e2) -> Bool in
+                                
+                                if e1.parsedDate == e2.parsedDate {
+                                    return e1.parsedTime < e2.parsedTime
+                                } else {
+                                    return e1.parsedDate < e2.parsedDate
+                                }
+                                
+                            })
+                        
+                        for i in 0..<self.numberOfSections {
                             
-                                        })
-                    
-                    for i in 0..<self.numberOfSections {
+                            let events = self.events(for: i)
+                            
+                            self.keyedEvents.append(events)
+                            
+                        }
                         
-                        let events = self.events(for: i)
-                        
-                        self.keyedEvents.append(events)
+                        self.tableView.reloadData()
                         
                     }
                     
-                    self.tableView.reloadData()
+                case .failure(let error):
+                    print(error.localizedDescription)
                     
                 }
                 

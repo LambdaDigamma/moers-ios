@@ -81,6 +81,7 @@
 		DF57D69B2187615B00E6A0A9 /* EventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF57D69A2187615B00E6A0A9 /* EventTests.swift */; };
 		DF57D6A121876B0100E6A0A9 /* RubbishManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF57D6A021876B0100E6A0A9 /* RubbishManagerTests.swift */; };
 		DF5D81CA2256832600A19B01 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5D81C92256832600A19B01 /* Config.swift */; };
+		DF5D82572257F1AE00A19B01 /* MMAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF5D82562257F1AE00A19B01 /* MMAPI.framework */; };
 		DF61DCCD212ECD850093915F /* DetailPetrolStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */; };
 		DF626AF51FB745E300BFDA67 /* BikeChargingStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */; };
 		DF626AF71FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */; };
@@ -106,10 +107,8 @@
 		DF8254061F7711180069D751 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8254051F7711170069D751 /* Camera.swift */; };
 		DF8254081F7712880069D751 /* CSwiftV.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8254071F7712870069D751 /* CSwiftV.swift */; };
 		DF8281B621CFA74F00C3B3CE /* TweetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281B521CFA74F00C3B3CE /* TweetCollectionViewCell.swift */; };
-		DF8281B821CFD2D900C3B3CE /* Organisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281B721CFD2D800C3B3CE /* Organisation.swift */; };
 		DF8281BA21CFD84300C3B3CE /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281B921CFD84300C3B3CE /* Utility.swift */; };
 		DF8281BC21CFEDC700C3B3CE /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281BB21CFEDC700C3B3CE /* HTTPClient.swift */; };
-		DF8281BE21CFEEB300C3B3CE /* OrganisationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281BD21CFEEB300C3B3CE /* OrganisationManager.swift */; };
 		DF8281C021D0F9F300C3B3CE /* OrganisationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281BF21D0F9F300C3B3CE /* OrganisationDetailViewController.swift */; };
 		DF8281C221D10A9500C3B3CE /* OrganisationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281C121D10A9500C3B3CE /* OrganisationHeader.swift */; };
 		DF8281C421D1165C00C3B3CE /* FollowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281C321D1165C00C3B3CE /* FollowButton.swift */; };
@@ -199,8 +198,6 @@
 		DFDF929920DE47E10068D1DF /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDF929820DE47E10068D1DF /* LeaderboardViewController.swift */; };
 		DFEE2E0A20BB117A00A130CB /* BaseComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEE2E0920BB117A00A130CB /* BaseComponent.swift */; };
 		DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */; };
-		DFEFE7CD2122DC1D002F5162 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEFE7CC2122DC1D002F5162 /* Event.swift */; };
-		DFEFE7CF2122E0A6002F5162 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEFE7CE2122E0A6002F5162 /* EventManager.swift */; };
 		DFEFE7D12122ED0F002F5162 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEFE7D02122ED0F002F5162 /* EventViewController.swift */; };
 		DFEFE7D32122FFB0002F5162 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEFE7D22122FFB0002F5162 /* EventTableViewCell.swift */; };
 		DFEFE7D521230149002F5162 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEFE7D421230149002F5162 /* EventView.swift */; };
@@ -348,6 +345,7 @@
 		DF57D69A2187615B00E6A0A9 /* EventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTests.swift; sourceTree = "<group>"; };
 		DF57D6A021876B0100E6A0A9 /* RubbishManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishManagerTests.swift; sourceTree = "<group>"; };
 		DF5D81C92256832600A19B01 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		DF5D82562257F1AE00A19B01 /* MMAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMAPI.framework; path = Carthage/Build/iOS/MMAPI.framework; sourceTree = "<group>"; };
 		DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPetrolStationViewController.swift; sourceTree = "<group>"; };
 		DF626AF41FB745E300BFDA67 /* BikeChargingStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeChargingStation.swift; sourceTree = "<group>"; };
 		DF626AF61FB7741E00BFDA67 /* BikeChargingStationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeChargingStationAnnotationView.swift; sourceTree = "<group>"; };
@@ -373,10 +371,8 @@
 		DF8254051F7711170069D751 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		DF8254071F7712870069D751 /* CSwiftV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSwiftV.swift; sourceTree = "<group>"; };
 		DF8281B521CFA74F00C3B3CE /* TweetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCollectionViewCell.swift; sourceTree = "<group>"; };
-		DF8281B721CFD2D800C3B3CE /* Organisation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organisation.swift; sourceTree = "<group>"; };
 		DF8281B921CFD84300C3B3CE /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		DF8281BB21CFEDC700C3B3CE /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
-		DF8281BD21CFEEB300C3B3CE /* OrganisationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationManager.swift; sourceTree = "<group>"; };
 		DF8281BF21D0F9F300C3B3CE /* OrganisationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationDetailViewController.swift; sourceTree = "<group>"; };
 		DF8281C121D10A9500C3B3CE /* OrganisationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationHeader.swift; sourceTree = "<group>"; };
 		DF8281C321D1165C00C3B3CE /* FollowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowButton.swift; sourceTree = "<group>"; };
@@ -462,8 +458,6 @@
 		DFDF929820DE47E10068D1DF /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		DFEE2E0920BB117A00A130CB /* BaseComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseComponent.swift; sourceTree = "<group>"; };
 		DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionComponent.swift; sourceTree = "<group>"; };
-		DFEFE7CC2122DC1D002F5162 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		DFEFE7CE2122E0A6002F5162 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		DFEFE7D02122ED0F002F5162 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		DFEFE7D22122FFB0002F5162 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		DFEFE7D421230149002F5162 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
@@ -489,6 +483,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF5D82572257F1AE00A19B01 /* MMAPI.framework in Frameworks */,
 				DF7E702A21DA39A300A43B84 /* FirebaseMessaging.framework in Frameworks */,
 				DF69B74021DA2AFB00F910D8 /* Protobuf.framework in Frameworks */,
 				DF57D6902187397F00E6A0A9 /* FirebaseAnalytics.framework in Frameworks */,
@@ -579,10 +574,8 @@
 				DFCB431E20E02D0300E7AD3F /* NewsManager.swift */,
 				DF4D89582104C298008609A1 /* CameraManager.swift */,
 				DF32F6722104D11400BCF80F /* ParkingLotManager.swift */,
-				DFEFE7CE2122E0A6002F5162 /* EventManager.swift */,
 				DF77BFFC2168BE960025A31E /* EntryManager.swift */,
 				DF8281BB21CFEDC700C3B3CE /* HTTPClient.swift */,
-				DF8281BD21CFEEB300C3B3CE /* OrganisationManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -658,6 +651,7 @@
 		DF1A497D1F6ABD7100E9108B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DF5D82562257F1AE00A19B01 /* MMAPI.framework */,
 				DF7E702921DA39A300A43B84 /* FirebaseMessaging.framework */,
 				DF69B73F21DA2AFB00F910D8 /* Protobuf.framework */,
 				DF57D675218738F400E6A0A9 /* FIRAnalyticsConnector.framework */,
@@ -738,9 +732,7 @@
 				DFBB9DE5212C108B00038943 /* Utility */,
 				DF2D6DA820B899DD00176614 /* User.swift */,
 				DF3555AF20DE599900B88DA3 /* UserRanking.swift */,
-				DFEFE7CC2122DC1D002F5162 /* Event.swift */,
 				DF199BDF21CF9C7000C89966 /* NewsItem.swift */,
-				DF8281B721CFD2D800C3B3CE /* Organisation.swift */,
 				DF8281B921CFD84300C3B3CE /* Utility.swift */,
 				DF69B73D21DA1C8700F910D8 /* Audit.swift */,
 			);
@@ -1299,6 +1291,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/TagListView.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/FeedKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MMAPI.framework",
 			);
 			outputPaths = (
 			);
@@ -1341,7 +1334,6 @@
 				DF541389217FCD25007FDEC8 /* EntryValidationViewController.swift in Sources */,
 				DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */,
 				DF461CB820E2257400600C0E /* AddShopViewController.swift in Sources */,
-				DF8281B821CFD2D900C3B3CE /* Organisation.swift in Sources */,
 				DF3555B020DE599900B88DA3 /* UserRanking.swift in Sources */,
 				DF3555AC20DE4D5300B88DA3 /* PodestView.swift in Sources */,
 				DFA96A6320BD8A390009B279 /* AveragePetrolPriceComponent.swift in Sources */,
@@ -1383,7 +1375,6 @@
 				DF61DCCD212ECD850093915F /* DetailPetrolStationViewController.swift in Sources */,
 				DF8254061F7711180069D751 /* Camera.swift in Sources */,
 				DFD890872124860A006B5610 /* TandCViewController.swift in Sources */,
-				DF8281BE21CFEEB300C3B3CE /* OrganisationManager.swift in Sources */,
 				DFDD3F7420B2F30A005602E3 /* AboutViewController.swift in Sources */,
 				DF0CB49D2082B78C00CC0AA8 /* PermissionsManager.swift in Sources */,
 				DFD73690211E424E00826C47 /* SelectorBulletinPage.swift in Sources */,
@@ -1424,7 +1415,6 @@
 				DF86ABA32174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift in Sources */,
 				DF3555AE20DE594F00B88DA3 /* LeaderboardRankingView.swift in Sources */,
 				DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */,
-				DFEFE7CF2122E0A6002F5162 /* EventManager.swift in Sources */,
 				DFCB432720E1036A00E7AD3F /* CommunityCollectionViewCell.swift in Sources */,
 				DF86AB9D217387E700EFC7EA /* OnboardingProgressView.swift in Sources */,
 				DF69B73E21DA1C8700F910D8 /* Audit.swift in Sources */,
@@ -1438,7 +1428,6 @@
 				DF0CB4B32087092F00CC0AA8 /* SearchResultTableViewCell.swift in Sources */,
 				DFDD3F6E20B22230005602E3 /* RubbishCollectionViewController.swift in Sources */,
 				DF3EE0C720E38A6B00CA9279 /* PaddingLabel.swift in Sources */,
-				DFEFE7CD2122DC1D002F5162 /* Event.swift in Sources */,
 				DF6279792100CDE400F81A70 /* DetailParkingViewController.swift in Sources */,
 				DF2D6DA920B899DD00176614 /* User.swift in Sources */,
 				DF310D9B216FE72E004C69BA /* EntryAnnotationView.swift in Sources */,

@@ -9,6 +9,7 @@
 import UIKit
 import Gestalt
 import Kingfisher
+import MMAPI
 
 class OrganisationTableViewCell: UITableViewCell {
 

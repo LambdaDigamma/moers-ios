@@ -9,6 +9,7 @@
 import Foundation
 import Crashlytics
 import StoreKit
+import MMAPI
 
 struct AnalyticsManager {
     
