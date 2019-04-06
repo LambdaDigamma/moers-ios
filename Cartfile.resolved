@@ -3,7 +3,7 @@ binary "https://ton.twimg.com/syndication/twitterkit/ios/TwitterKit.json" "3.4.2
 github "52inc/Pulley" "2.7.0"
 github "ElaWorkshop/TagListView" "1.3.2"
 github "Haneke/HanekeSwift" "v0.11.1"
-github "LambdaDigamma/mmapi-ios" "v0.0.5"
+github "LambdaDigamma/mmapi-ios" "v0.0.6"
 github "alexaubry/BulletinBoard" "dd6948b935ea1cbe90aa3e965ff7df291a590c16"
 github "ashleymills/Reachability.swift" "v4.3.1"
 github "eggswift/ESTabBarController" "2.6.4"
