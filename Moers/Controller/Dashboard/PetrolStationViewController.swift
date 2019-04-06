@@ -9,6 +9,7 @@
 import UIKit
 import Gestalt
 import CoreLocation
+import MMAPI
 
 class PetrolStationViewController: CardCollectionViewController {
 
@@ -117,7 +118,7 @@ class PetrolStationViewController: CardCollectionViewController {
 
 extension PetrolStationViewController: PetrolManagerDelegate {
     
-    func didReceivePetrolStations(stations: [PetrolStation]) {
+    func petrolManager(_ manager: PetrolManager, didReceivePetrolStations stations: [PetrolStation]) {
         
         self.stations = stations.sorted(by: { (p1, p2) -> Bool in
             p1.isOpen == p2.isOpen

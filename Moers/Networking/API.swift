@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import InfoKit
 import Reachability
+import MMAPI
 
 enum APIError: Error {
     case noConnection

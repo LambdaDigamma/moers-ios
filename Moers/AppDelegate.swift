@@ -14,6 +14,7 @@ import FirebaseInstanceID
 import FirebaseMessaging
 import Fabric
 import Crashlytics
+import MMAPI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -31,6 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         window = UIWindow(frame: UIScreen.main.bounds)
         window!.rootViewController = applicationController
         window!.makeKeyAndVisible()
+        
+        Config.registerBaseURL(Environment.current.baseURL)
+        PetrolManager.shared.registerAPIKey("0dfdfad3-7385-ef47-2ff6-ec0477872677")
         
         UNUserNotificationCenter.current().delegate = self
         

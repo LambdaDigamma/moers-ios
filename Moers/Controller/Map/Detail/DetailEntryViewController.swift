@@ -11,6 +11,7 @@ import Gestalt
 import SafariServices
 import Crashlytics
 import TagListView
+import MMAPI
 
 class DetailEntryViewController: UIViewController {
     
@@ -200,7 +201,7 @@ class DetailEntryViewController: UIViewController {
             self.callButton.alpha = 0.25
         }
         
-        if let update = entry.updateDate {
+        if let update = entry.updatedAt {
             self.lastUpdateLabel.text = "Letzte Änderung: \(update.beautify(format: "dd.MM.yyyy hh:mm"))"
         } else {
             self.lastUpdateLabel.text = "Letzte Änderung: nicht bekannt"

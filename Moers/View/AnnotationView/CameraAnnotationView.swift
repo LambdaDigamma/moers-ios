@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import MMAPI
 
 class CameraAnnotationView: MKMarkerAnnotationView {
     

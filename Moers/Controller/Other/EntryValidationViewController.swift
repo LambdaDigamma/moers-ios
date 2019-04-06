@@ -8,6 +8,7 @@
 
 import UIKit
 import Gestalt
+import MMAPI
 
 class EntryValidationViewController: UIViewController {
 
@@ -66,17 +67,21 @@ class EntryValidationViewController: UIViewController {
     
     private func loadData() {
         
-        EntryManager.shared.get { (error, entries) in
+        EntryManager.shared.get { (result) in
             
-            if let error = error {
+            switch result {
+                
+            case .success(let entries):
+                
+                self.entries = entries.filter { !$0.isValidated }
+                
+                self.tableView.reloadData()
+                
+            case .failure(let error):
                 print(error.localizedDescription)
+                
             }
             
-            guard let entries = entries else { return }
-            
-            self.entries = entries.filter { !$0.isValidated }
-            
-            self.tableView.reloadData()
             
         }
         
@@ -97,7 +102,7 @@ extension EntryValidationViewController: UITableViewDataSource, UITableViewDeleg
         let entry = entries[indexPath.row]
         
         cell.titleLabel.text = entry.name
-        cell.descriptionLabel.text = entry.creationDate?.format(format: "dd.MM.yyyy hh:mm")
+        cell.descriptionLabel.text = entry.createdAt?.format(format: "dd.MM.yyyy hh:mm")
         
         return cell
         

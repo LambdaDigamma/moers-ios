@@ -1,5 +1,5 @@
 //
-//  Config.swift
+//  MockConfig.swift
 //  Moers
 //
 //  Created by Lennart Fischer on 04.04.19.
@@ -7,16 +7,17 @@
 //
 
 import Foundation
+import MMAPI
 
-struct Config {
+struct MockConfig {
     
     var petrolCity: String = "Moers"
     var petrolPrice: Double = 1.19
     var petrolNumberStations: Int = 20
     var petrolType = PetrolType.diesel
     
-    static var mocked: Config {
-        return Config()
+    static var mocked: MockConfig {
+        return MockConfig()
     }
     
     static var isSnapshotting: Bool {

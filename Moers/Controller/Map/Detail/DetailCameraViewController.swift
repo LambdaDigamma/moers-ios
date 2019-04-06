@@ -9,6 +9,7 @@
 import UIKit
 import Gestalt
 import Crashlytics
+import MMAPI
 
 class DetailCameraViewController: UIViewController {
 

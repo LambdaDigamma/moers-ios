@@ -12,6 +12,8 @@ import Pulley
 import Crashlytics
 import MapKit
 import TagListView
+import MMAPI
+import Fuse
 
 enum DisplayMode {
     
@@ -360,8 +362,8 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
         func setupSearchResultCell(_ cell: SearchResultTableViewCell, _ location: Location) -> SearchResultTableViewCell {
             
             cell.titleLabel.text = location.title ?? ""
-            cell.subtitleLabel.text = location.detailSubtitle
-            cell.searchImageView.image = location.detailImage
+            cell.subtitleLabel.text = UIProperties.detailSubtitle(for: location)
+            cell.searchImageView.image = UIProperties.detailImage(for: location)
             
             if let entry = location as? Entry {
                 if entry.isValidated {

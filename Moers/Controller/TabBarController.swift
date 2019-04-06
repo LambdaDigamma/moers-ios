@@ -10,6 +10,7 @@ import UIKit
 import BLTNBoard
 import Gestalt
 import ESTabBarController
+import MMAPI
 
 class TabBarController: ESTabBarController, UITabBarControllerDelegate {
 
@@ -331,8 +332,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             
             RubbishManager.shared.isEnabled = false
             RubbishManager.shared.remindersEnabled = false
-            RubbishManager.shared.reminderHour = 20
-            RubbishManager.shared.reminderMinute = 0
+            RubbishManager.shared.disableReminder()
             
             item.manager?.dismissBulletin(animated: true)
             

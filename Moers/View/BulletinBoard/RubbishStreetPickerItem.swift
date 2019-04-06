@@ -10,6 +10,7 @@ import UIKit
 import BLTNBoard
 import Gestalt
 import CoreLocation
+import MMAPI
 
 class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataSource, LocationManagerDelegate {
 

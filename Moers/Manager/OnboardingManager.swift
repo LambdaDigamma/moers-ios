@@ -10,6 +10,7 @@ import Foundation
 import BLTNBoard
 import Gestalt
 import CoreLocation
+import MMAPI
 
 struct OnboardingManager {
     
@@ -220,8 +221,7 @@ struct OnboardingManager {
         page.alternativeHandler = { item in
             
             RubbishManager.shared.remindersEnabled = false
-            RubbishManager.shared.reminderHour = 20
-            RubbishManager.shared.reminderMinute = 0
+            RubbishManager.shared.disableReminder()
             
             page.next = self.makeCompletionPage()
             item.manager?.displayNextItem()

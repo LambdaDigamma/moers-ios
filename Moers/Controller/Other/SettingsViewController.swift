@@ -9,6 +9,7 @@
 import UIKit
 import Gestalt
 import BLTNBoard
+import MMAPI
 
 class SettingsViewController: UIViewController {
 

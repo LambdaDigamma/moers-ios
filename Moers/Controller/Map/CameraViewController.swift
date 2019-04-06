@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import MMAPI
 
 class CameraViewController: UIViewController {
 

@@ -10,6 +10,8 @@ import UIKit
 import Gestalt
 import TagListView
 import Alertift
+import Fuse
+import MMAPI
 
 class EntryOnboardingTagsViewController: UIViewController {
 

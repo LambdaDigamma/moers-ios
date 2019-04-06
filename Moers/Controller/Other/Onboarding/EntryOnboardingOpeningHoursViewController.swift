@@ -9,6 +9,7 @@
 import UIKit
 import Gestalt
 import TextFieldEffects
+import MMAPI
 
 class EntryOnboardingOpeningHoursViewController: UIViewController {
 

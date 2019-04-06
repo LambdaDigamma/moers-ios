@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import MMAPI
 
 protocol MapLocationPickerViewControllerDelegate:class {
     

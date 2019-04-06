@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MMAPI
 
 class RubbishCollectionComponent: BaseComponent, UIViewControllerPreviewingDelegate {
     

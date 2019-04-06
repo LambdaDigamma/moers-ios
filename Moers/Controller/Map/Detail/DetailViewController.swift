@@ -11,6 +11,7 @@ import MapKit
 import Gestalt
 import Pulley
 import Crashlytics
+import MMAPI
 
 class DetailViewController: UIViewController {
     
@@ -169,9 +170,11 @@ class DetailViewController: UIViewController {
     
     private func setupLocation(_ location: Location?) {
         
-        self.nameLabel.text = location?.name
-        self.subtitleLabel.text = location?.detailSubtitle
-        self.imageView.image = location?.detailImage
+        guard let location = location else { return }
+        
+        self.nameLabel.text = location.name
+        self.subtitleLabel.text = UIProperties.detailSubtitle(for: location)
+        self.imageView.image = UIProperties.detailImage(for: location)
         
         self.calculateETA()
         

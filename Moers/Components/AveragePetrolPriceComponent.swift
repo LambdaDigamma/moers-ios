@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import MMAPI
 
 class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, PetrolManagerDelegate, UIViewControllerPreviewingDelegate {
 
@@ -34,13 +35,13 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
         
         PetrolManager.shared.delegate = self
         
-        if Config.isSnapshotting {
+        if MockConfig.isSnapshotting {
             
             self.averagePetrolCardView.dismissError()
             self.averagePetrolCardView.stopLoading()
-            self.averagePetrolCardView.locationLabel.text = Config.mocked.petrolCity
-            self.averagePetrolCardView.numberOfStations = Config.mocked.petrolNumberStations
-            self.averagePetrolCardView.price = Config.mocked.petrolPrice
+            self.averagePetrolCardView.locationLabel.text = MockConfig.mocked.petrolCity
+            self.averagePetrolCardView.numberOfStations = MockConfig.mocked.petrolNumberStations
+            self.averagePetrolCardView.price = MockConfig.mocked.petrolPrice
             
             return
             
@@ -244,7 +245,7 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
     
     // MARK: - PetrolManagerDelegate
     
-    func didReceivePetrolStations(stations: [PetrolStation]) {
+    func petrolManager(_ manager: PetrolManager, didReceivePetrolStations stations: [PetrolStation]) {
         
         DispatchQueue.main.async {
             
@@ -253,6 +254,8 @@ class AveragePetrolPriceComponent: BaseComponent, LocationManagerDelegate, Petro
             self.petrolStations = stations
             
             let openStations = stations.filter { $0.isOpen && $0.price != nil }
+            
+            print("Number of stations: ", openStations.count)
             
             self.averagePetrolCardView.stopLoading()
             self.averagePetrolCardView.numberOfStations = openStations.count

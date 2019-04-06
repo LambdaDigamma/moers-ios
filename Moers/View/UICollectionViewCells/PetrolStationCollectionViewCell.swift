@@ -9,6 +9,7 @@
 import UIKit
 import Gestalt
 import MapKit
+import MMAPI
 
 class PetrolStationCollectionViewCell: UICollectionViewCell {
     

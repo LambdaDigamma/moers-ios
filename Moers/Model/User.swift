@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MMAPI
 
 struct User {
     

@@ -10,6 +10,7 @@ import UIKit
 import Gestalt
 import Pulley
 import MapKit
+import MMAPI
 
 // TODO: Update Selection View Controller
 class SelectionViewController: UIViewController {
@@ -159,8 +160,8 @@ extension SelectionViewController: UITableViewDataSource, UITableViewDelegate {
         let location = clusteredLocations[indexPath.row]
         
         cell.titleLabel.text = location.title ?? ""
-        cell.subtitleLabel.text = location.detailSubtitle
-        cell.searchImageView.image = location.detailImage
+        cell.subtitleLabel.text = UIProperties.detailSubtitle(for: location)
+        cell.searchImageView.image = UIProperties.detailImage(for: location)
         
         return cell
         

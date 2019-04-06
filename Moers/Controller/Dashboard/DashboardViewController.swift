@@ -13,6 +13,7 @@ import CoreLocation
 import MapKit
 import Reachability
 import Intents
+import MMAPI
 
 class DashboardViewController: CardCollectionViewController {
     

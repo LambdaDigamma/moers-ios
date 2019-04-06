@@ -11,6 +11,7 @@ import Gestalt
 import TextFieldEffects
 import MapKit
 import Alertift
+import MMAPI
 
 enum EntryOverviewType: Equatable {
     case summary
@@ -471,18 +472,13 @@ class EntryOnboardingOverviewViewController: UIViewController {
                           other: EntryManager.shared.entryOtherOH,
                           lat: EntryManager.shared.entryLat ?? 0,
                           lng: EntryManager.shared.entryLng ?? 0,
-                          isValidated: true,
-                          createdAt: Date().format(format: "yyyy-MM-dd HH:mm:ss"),
-                          updatedAt: Date().format(format: "yyyy-MM-dd HH:mm:ss"))
+                          isValidated: true)
         
-        EntryManager.shared.store(entry: entry) { (error, entry) in
+        EntryManager.shared.store(entry: entry) { (result) in
             
-            if let error = error as? APIError, error == .notAuthorized {
-                self.alertNotAuthorized()
-                return
-            }
-            
-            if let entry = entry {
+            switch result {
+                
+            case .success(let entry):
                 
                 self.alertSuccess()
                 
@@ -492,8 +488,17 @@ class EntryOnboardingOverviewViewController: UIViewController {
                 
                 tabBarController.mainViewController.addLocation(entry)
                 
-            } else {
+            case .failure(let error):
+                
+                print(error.localizedDescription)
+                
+                if let error = error as? APIError, error == .notAuthorized {
+                    self.alertNotAuthorized()
+                    return
+                }
+                
                 self.alertError()
+                
             }
             
         }
@@ -514,16 +519,13 @@ class EntryOnboardingOverviewViewController: UIViewController {
         entry.sunday = sundayOHTextField.text
         entry.other = otherOHTextField.text
         
-        EntryManager.shared.update(entry: entry) { (error, entry) in
+        EntryManager.shared.update(entry: entry) { (result) in
             
             DispatchQueue.main.async {
-                
-                if let error = error as? APIError, error == .notAuthorized {
-                    self.alertNotAuthorized()
-                    return
-                }
-                
-                if let entry = entry {
+            
+                switch result {
+                    
+                case .success(let _):
                     
                     self.alertSuccess()
                     
@@ -533,8 +535,17 @@ class EntryOnboardingOverviewViewController: UIViewController {
                     
                     // TODO: Update Entry in Map
                     
-                } else {
+                case .failure(let error):
+                    
+                    print(error.localizedDescription)
+                    
+                    if let error = error as? APIError, error == .notAuthorized {
+                        self.alertNotAuthorized()
+                        return
+                    }
+                    
                     self.alertError()
+                    
                 }
                 
             }

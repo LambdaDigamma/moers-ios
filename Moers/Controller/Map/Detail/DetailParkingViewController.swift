@@ -9,6 +9,7 @@
 import UIKit
 import Gestalt
 import Crashlytics
+import MMAPI
 
 class DetailParkingViewController: UIViewController {
 
@@ -134,7 +135,7 @@ class DetailParkingViewController: UIViewController {
         
         totalLabel.text = "\(parkingLot.slots)"
         freeLabel.text = "\(parkingLot.free)"
-        statusLabel.text = Status.localizedForCase(parkingLot.status)
+        statusLabel.text = ParkingLotStatus.localizedForCase(parkingLot.status)
         addressLabel.text = parkingLot.address
         
         Answers.logCustomEvent(withName: "Detail - Parking Lot", customAttributes:

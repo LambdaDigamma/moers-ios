@@ -9,6 +9,7 @@
 import UIKit
 import Pulley
 import EventBus
+import MMAPI
 
 class MainViewController: PulleyViewController {
 
@@ -87,20 +88,23 @@ class MainViewController: PulleyViewController {
     
     private func loadEntries() {
         
-        EntryManager.shared.get { (error, entries) in
+        EntryManager.shared.get { (result) in
             
-            if let error = error {
-                print(error)
+            switch result {
+                
+            case .success(let entries):
+                
+                self.eventBus.notify(EntryDatasource.self, closure: { subscriber in
+                    subscriber.didReceiveEntries(entries)
+                })
+                
+                self.locations = self.locations.filter { !($0 is Entry) }
+                self.locations.append(contentsOf: entries)
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+                
             }
-            
-            guard let entries = entries else { return }
-            
-            self.eventBus.notify(EntryDatasource.self, closure: { subscriber in
-                subscriber.didReceiveEntries(entries)
-            })
-            
-            self.locations = self.locations.filter { !($0 is Entry) }
-            self.locations.append(contentsOf: entries)
             
         }
         
@@ -108,20 +112,24 @@ class MainViewController: PulleyViewController {
     
     private func loadParkingLots() {
         
-        ParkingLotManager.shared.get { (error, parkingLots) in
+        ParkingLotManager.shared.get { (result) in
             
-            if let error = error {
+            switch result {
+                
+            case .success(let parkingLots):
+                
+                self.eventBus.notify(ParkingLotDatasource.self) { subscriber in
+                    subscriber.didReceiveParkingLots(parkingLots)
+                }
+                
+                self.locations = self.locations.filter { !($0 is ParkingLot) }
+                self.locations.append(contentsOf: parkingLots)
+                
+            case .failure(let error):
                 print(error.localizedDescription)
+                
             }
             
-            guard let parkingLots = parkingLots else { return }
-            
-            self.eventBus.notify(ParkingLotDatasource.self) { subscriber in
-                subscriber.didReceiveParkingLots(parkingLots)
-            }
-            
-            self.locations = self.locations.filter { !($0 is ParkingLot) }
-            self.locations.append(contentsOf: parkingLots)
             
         }
         
@@ -129,20 +137,23 @@ class MainViewController: PulleyViewController {
     
     private func loadCameras() {
         
-        CameraManager.shared.get { (error, cameras) in
+        CameraManager.shared.get { (result) in
             
-            if let error = error {
+            switch result {
+                
+            case .success(let cameras):
+                
+                self.eventBus.notify(CameraDatasource.self) { subscriber in
+                    subscriber.didReceiveCameras(cameras)
+                }
+                
+                self.locations = self.locations.filter { !($0 is Camera) }
+                self.locations.append(contentsOf: cameras)
+                
+            case .failure(let error):
                 print(error.localizedDescription)
+                
             }
-            
-            guard let cameras = cameras else { return }
-            
-            self.eventBus.notify(CameraDatasource.self) { subscriber in
-                subscriber.didReceiveCameras(cameras)
-            }
-            
-            self.locations = self.locations.filter { !($0 is Camera) }
-            self.locations.append(contentsOf: cameras)
             
         }
         
