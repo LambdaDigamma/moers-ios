@@ -8,6 +8,7 @@
 
 import Foundation
 import Reachability
+import MMAPI
 
 struct RankingManager {
     

@@ -12,14 +12,6 @@ import InfoKit
 import Reachability
 import MMAPI
 
-enum APIError: Error {
-    case noConnection
-    case noData
-    case noToken
-    case unavailableURL
-    case notAuthorized
-}
-
 class API: NSObject, XMLParserDelegate {
 
     static let shared = API()

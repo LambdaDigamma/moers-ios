@@ -11,6 +11,7 @@ import UIKit
 extension UIImage {
     
     func tinted(color: UIColor) -> UIImage {
+        
         UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
         color.setFill()
         
@@ -29,5 +30,27 @@ extension UIImage {
         return newImage!
     }
     
+    // TODO: Check whether this works
+    func newTinted(color: UIColor) -> UIImage {
+        
+        let renderer = UIGraphicsImageRenderer(size: self.size)
+        
+        let image = renderer.image { ctx in
+            
+            color.setFill()
+            
+            ctx.cgContext.translateBy(x: 0, y: self.size.height)
+            ctx.cgContext.scaleBy(x: 1.0, y: -1.0)
+            ctx.cgContext.setBlendMode(.normal)
+            
+            let rect = CGRect(origin: .zero, size: CGSize(width: self.size.width, height: self.size.height))
+            ctx.cgContext.clip(to: rect, mask: self.cgImage!)
+            ctx.cgContext.fill(rect)
+            
+        }
+        
+        return image
+        
+    }
     
 }

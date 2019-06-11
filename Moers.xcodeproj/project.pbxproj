@@ -74,8 +74,6 @@
 		DF57D6932187397F00E6A0A9 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D68B2187397F00E6A0A9 /* FirebaseInstanceID.framework */; };
 		DF57D6942187397F00E6A0A9 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D68C2187397F00E6A0A9 /* FirebaseCoreDiagnostics.framework */; };
 		DF57D69921875FE900E6A0A9 /* TabBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF57D69821875FE900E6A0A9 /* TabBarControllerTests.swift */; };
-		DF57D69B2187615B00E6A0A9 /* EventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF57D69A2187615B00E6A0A9 /* EventTests.swift */; };
-		DF57D6A121876B0100E6A0A9 /* RubbishManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF57D6A021876B0100E6A0A9 /* RubbishManagerTests.swift */; };
 		DF5D81CA2256832600A19B01 /* MockConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5D81C92256832600A19B01 /* MockConfig.swift */; };
 		DF5D82572257F1AE00A19B01 /* MMAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF5D82562257F1AE00A19B01 /* MMAPI.framework */; };
 		DF5D82732258DBD900A19B01 /* UIProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5D82722258DBD900A19B01 /* UIProperties.swift */; };
@@ -97,7 +95,6 @@
 		DF75734521771D6800953DA1 /* LFSearchViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75734421771D6800953DA1 /* LFSearchViewDataSource.swift */; };
 		DF757347217725AC00953DA1 /* LFSearchViewDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF757346217725AC00953DA1 /* LFSearchViewDefaults.swift */; };
 		DF77BFFF21695F8D0025A31E /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF77BFFE21695F8D0025A31E /* EntryTableViewCell.swift */; };
-		DF78BC50218849D700296EB8 /* RubbishCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF78BC4F218849D700296EB8 /* RubbishCollectionTests.swift */; };
 		DF7E702A21DA39A300A43B84 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF7E702921DA39A300A43B84 /* FirebaseMessaging.framework */; };
 		DF8254081F7712880069D751 /* CSwiftV.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8254071F7712870069D751 /* CSwiftV.swift */; };
 		DF8281B621CFA74F00C3B3CE /* TweetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281B521CFA74F00C3B3CE /* TweetCollectionViewCell.swift */; };
@@ -306,8 +303,6 @@
 		DF57D68C2187397F00E6A0A9 /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCoreDiagnostics.framework; path = Frameworks/FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
 		DF57D695218739C500E6A0A9 /* Moers-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Moers-Bridging-Header.h"; sourceTree = "<group>"; };
 		DF57D69821875FE900E6A0A9 /* TabBarControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerTests.swift; sourceTree = "<group>"; };
-		DF57D69A2187615B00E6A0A9 /* EventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTests.swift; sourceTree = "<group>"; };
-		DF57D6A021876B0100E6A0A9 /* RubbishManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishManagerTests.swift; sourceTree = "<group>"; };
 		DF5D81C92256832600A19B01 /* MockConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConfig.swift; sourceTree = "<group>"; };
 		DF5D82562257F1AE00A19B01 /* MMAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMAPI.framework; path = Carthage/Build/iOS/MMAPI.framework; sourceTree = "<group>"; };
 		DF5D82722258DBD900A19B01 /* UIProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIProperties.swift; sourceTree = "<group>"; };
@@ -329,7 +324,6 @@
 		DF75734421771D6800953DA1 /* LFSearchViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewDataSource.swift; sourceTree = "<group>"; };
 		DF757346217725AC00953DA1 /* LFSearchViewDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewDefaults.swift; sourceTree = "<group>"; };
 		DF77BFFE21695F8D0025A31E /* EntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTableViewCell.swift; sourceTree = "<group>"; };
-		DF78BC4F218849D700296EB8 /* RubbishCollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionTests.swift; sourceTree = "<group>"; };
 		DF7E702921DA39A300A43B84 /* FirebaseMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseMessaging.framework; path = Frameworks/FirebaseMessaging.framework; sourceTree = "<group>"; };
 		DF8254071F7712870069D751 /* CSwiftV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSwiftV.swift; sourceTree = "<group>"; };
 		DF8281B521CFA74F00C3B3CE /* TweetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -802,29 +796,10 @@
 		DF57D66C2187383000E6A0A9 /* MoersTests */ = {
 			isa = PBXGroup;
 			children = (
-				DF57D69E21876AC200E6A0A9 /* Models */,
-				DF57D69C21876AB700E6A0A9 /* Manager */,
 				DF57D69F21876ACD00E6A0A9 /* ViewController */,
 				DF57D66F2187383000E6A0A9 /* Info.plist */,
 			);
 			path = MoersTests;
-			sourceTree = "<group>";
-		};
-		DF57D69C21876AB700E6A0A9 /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				DF57D6A021876B0100E6A0A9 /* RubbishManagerTests.swift */,
-			);
-			path = Manager;
-			sourceTree = "<group>";
-		};
-		DF57D69E21876AC200E6A0A9 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				DF57D69A2187615B00E6A0A9 /* EventTests.swift */,
-				DF78BC4F218849D700296EB8 /* RubbishCollectionTests.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		DF57D69F21876ACD00E6A0A9 /* ViewController */ = {
@@ -1223,6 +1198,7 @@
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Fuse.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/MMAPI.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1390,10 +1366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF57D69B2187615B00E6A0A9 /* EventTests.swift in Sources */,
-				DF78BC50218849D700296EB8 /* RubbishCollectionTests.swift in Sources */,
 				DF57D69921875FE900E6A0A9 /* TabBarControllerTests.swift in Sources */,
-				DF57D6A121876B0100E6A0A9 /* RubbishManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1589,7 +1562,7 @@
 				CODE_SIGN_ENTITLEMENTS = Moers/Moers.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1622,7 +1595,7 @@
 				CODE_SIGN_ENTITLEMENTS = Moers/Moers.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
