@@ -11,6 +11,7 @@ import Gestalt
 import TwitterKit
 import FeedKit
 import SafariServices
+import MMUI
 
 class NewsViewController: UIViewController, NewsManagerDelegate {
     

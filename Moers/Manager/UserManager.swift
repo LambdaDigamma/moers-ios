@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MMUI
 
 struct UserManager {
     
@@ -66,7 +67,7 @@ struct UserManager {
     
     public func getID() {
         
-        let endpoint = Environment.current.baseURL + "api/v1/user/new"
+        let endpoint = Environment.rootURL + "api/v1/user/new"
         
         guard let url = URL(string: endpoint) else { return }
         

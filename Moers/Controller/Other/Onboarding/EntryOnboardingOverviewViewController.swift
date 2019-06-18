@@ -12,6 +12,7 @@ import TextFieldEffects
 import MapKit
 import Alertift
 import MMAPI
+import MMUI
 
 enum EntryOverviewType: Equatable {
     case summary
@@ -525,7 +526,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
             
                 switch result {
                     
-                case .success(let _):
+                case .success(_):
                     
                     self.alertSuccess()
                     

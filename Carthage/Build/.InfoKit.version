@@ -3,7 +3,8 @@
   "iOS" : [
     {
       "name" : "InfoKit",
-      "hash" : "5afffd5a4aadf9f5f459e44089fecf139586cf7c4a8c392be395dc69518fd9f0"
+      "hash" : "8b38ac10cb5894312ece359aaa275630f6c52bfd0ed60419e2d6c030343a5a47",
+      "swiftToolchainVersion" : "5.0.1 (swiftlang-1001.0.82.4 clang-1001.0.46.5)"
     }
   ]
 }

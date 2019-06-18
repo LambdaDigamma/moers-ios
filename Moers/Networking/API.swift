@@ -35,15 +35,15 @@ class API: NSObject, XMLParserDelegate {
     public func login(email: String, password: String, completion: @escaping ((Error?) -> Void)) {
         
         let params = ["grant_type": "password",
-                      "client_id": "\(Environment.current.clientID)",
-                      "client_secret": Environment.current.clientSecret,
+                      "client_id": "\(Environment.clientID)",
+                      "client_secret": Environment.clientSecret,
                       "username": email,
                       "password": password,
                       "scope": "*"]
         
         if reachability.connection != .none {
             
-            guard let url = URL(string: Environment.current.baseURL + "oauth/token") else {
+            guard let url = URL(string: Environment.rootURL + "oauth/token") else {
                 completion(APIError.noConnection)
                 return
             }
@@ -103,7 +103,7 @@ class API: NSObject, XMLParserDelegate {
         
         if reachability.connection != .none {
             
-            guard let url = URL(string: Environment.current.baseURL + "api/v1/register") else {
+            guard let url = URL(string: Environment.rootURL + "api/v1/register") else {
                 completion(APIError.noConnection)
                 return
             }
@@ -163,7 +163,7 @@ class API: NSObject, XMLParserDelegate {
             
             guard let token = token else { completion(APIError.noToken, nil); return }
             
-            guard let url = URL(string: Environment.current.baseURL + "api/v1/user") else {
+            guard let url = URL(string: Environment.rootURL + "api/v1/user") else {
                 completion(APIError.noConnection, nil)
                 return
             }
@@ -218,7 +218,7 @@ class API: NSObject, XMLParserDelegate {
             
 //            guard let token = token else { completion(APIError.noToken, nil); return }
             
-            guard let url = URL(string: Environment.current.baseURL + "api/v1/shops") else {
+            guard let url = URL(string: Environment.rootURL + "api/v1/shops") else {
                 completion(APIError.noConnection, nil)
                 return
             }
@@ -291,55 +291,7 @@ class API: NSObject, XMLParserDelegate {
     
     func loadBikeChargingStations() {
         
-        let bikeChargingURL = URL(string: "https://www.offenesdatenportal.de/dataset/16cf7d90-dbbb-4ce1-aeec-762dfb49b973/resource/4a3b89d7-3301-45bf-97f6-9ba06b23256f/download/e-bike-ladestationen-neu.csv")
         
-        if let url = bikeChargingURL {
-            
-            do {
-                
-                let content = try String(contentsOf: url, encoding: String.Encoding.ascii)
-                
-                let csv = CSwiftV(with: content, separator: ";", headers: nil)
-                
-                var chargers: [BikeChargingStation] = []
-                
-                guard let rows = csv.keyedRows else { return }
-                
-                for row in rows {
-                    
-                    if let lat = row["slat"]?.doubleValue, let lng = row["slng"]?.doubleValue {
-                        
-                        let loc = CLLocation(latitude: lat, longitude: lng)
-                        
-                        var phone: URL? = nil
-                        
-                        if let tel = row["Tel"] {
-                            
-                            if let phoneUrl = URL(string: "telprompt://49" + tel.replacingOccurrences(of: "/", with: "")) { // telprompt://4902841
-                                
-                                phone = phoneUrl
-                                
-                            }
-                            
-                        }
-                        
-                        let openingHours = BikeChargingStation.OpeningHours(monday: row["Mo"] ?? "", tuesday: row["Di"] ?? "", wednesday: row["Mi"] ?? "", thursday: row["Do"] ?? "", friday: row["Fr"] ?? "", saturday: row["Sa"] ?? "", sunday: row["So"] ?? "", feastday: row["Feiertag"] ?? "")
-                        
-                        let charger = BikeChargingStation(name: row["Name"]!, location: loc, postcode: row["PLZ"]!, place: row["Ort"]!, street: row["Strasse"]!, openingHours: openingHours, phone: phone)
-                        
-                        chargers.append(charger)
-                        
-                    }
-                    
-                }
-                
-                self.cachedBikeCharger = chargers
-                
-            } catch let err {
-                print(err.localizedDescription)
-            }
-            
-        }
         
     }
     

@@ -11,6 +11,7 @@ import BLTNBoard
 import Gestalt
 import CoreLocation
 import MMAPI
+import MMUI
 
 class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataSource, LocationManagerDelegate {
 

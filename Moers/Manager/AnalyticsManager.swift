@@ -10,6 +10,7 @@ import Foundation
 import Crashlytics
 import StoreKit
 import MMAPI
+import MMUI
 
 struct AnalyticsManager {
     
@@ -24,10 +25,6 @@ struct AnalyticsManager {
     init() {
         
         self.shouldLog = true
-        
-        if Environment.current.type != .production {
-            self.shouldLog = false
-        }
         
     }
     

@@ -10,6 +10,7 @@ import UIKit
 import Gestalt
 import MapKit
 import MMAPI
+import MMUI
 
 class PetrolStationCollectionViewCell: UICollectionViewCell {
     

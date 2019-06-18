@@ -1,0 +1,18 @@
+//
+//  Staging.xcconfig
+//  Moers
+//
+//  Created by Lennart Fischer on 18.06.19.
+//  Copyright © 2019 Lennart Fischer. All rights reserved.
+//
+
+// Server URL
+ROOT_URL = https:/$()/www.beta.meinmoers.lambdadigamma.com/
+
+// Auth
+CLIENT_ID = 2
+CLIENT_SECRET = jNMAQBsoiyRlyKyeM8Wly2Ffn54EEFukEjLDaccR
+
+// App Settings
+APP_NAME = Moers (staging)
+APP_BUNDLE_ID = de.okfn.niederrhein.Moers.staging

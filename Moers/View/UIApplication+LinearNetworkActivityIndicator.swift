@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIApplication {
+    
 	@objc final public class func configureLinearNetworkActivityIndicatorIfNeeded() {
 		if #available(iOS 11.0, *) {
 			// detect iPhone X
@@ -86,9 +87,11 @@ extension UIApplication {
 	func ftUpdateNetworkActivityIndicatorAppearance() {
 		self.indicatorWindow?.isHidden = !self.isNetworkActivityIndicatorVisible || self.isStatusBarHidden
 	}
+    
 }
 
 extension UIViewController {
+    
 	@objc final public class func configureLinearNetworkActivityIndicator() {
 		DispatchQueue.once {
 			let originalSelector = #selector(setNeedsStatusBarAppearanceUpdate)
@@ -108,6 +111,7 @@ extension UIViewController {
 
 // https://stackoverflow.com/a/39983813/235297
 extension DispatchQueue {
+    
 	private static var _onceTracker = [String]()
 	
 	public class func once(file: String = #file, function: String = #function, line: Int = #line, block:()->Void) {
@@ -134,4 +138,5 @@ extension DispatchQueue {
 		_onceTracker.append(token)
 		block()
 	}
+    
 }

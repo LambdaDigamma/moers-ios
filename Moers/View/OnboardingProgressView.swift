@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MMUI
 
 class OnboardingProgressView: UIView {
 

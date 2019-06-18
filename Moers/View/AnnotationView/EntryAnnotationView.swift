@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import MMUI
 
 class EntryAnnotationView: MKMarkerAnnotationView {
 
@@ -24,7 +25,7 @@ class EntryAnnotationView: MKMarkerAnnotationView {
             
             glyphText = "•"
             clusteringIdentifier = AnnotationIdentifier.cluster
-            markerTintColor = AppColor.yellow
+            markerTintColor = Colors.yellow
             glyphTintColor = UIColor.black
             displayPriority = .defaultHigh
             collisionMode = .circle

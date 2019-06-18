@@ -9,6 +9,7 @@
 import UIKit
 import Gestalt
 import MMAPI
+import MMUI
 
 class EntryHistoryViewController: UIViewController {
 

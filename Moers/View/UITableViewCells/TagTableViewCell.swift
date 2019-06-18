@@ -8,6 +8,7 @@
 
 import UIKit
 import Gestalt
+import MMUI
 
 class TagTableViewCell: UITableViewCell {
 

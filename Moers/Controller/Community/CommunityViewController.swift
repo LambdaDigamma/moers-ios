@@ -9,6 +9,7 @@
 import UIKit
 import Gestalt
 import MMAPI
+import MMUI
 
 struct CommunityDashboardPanel {
     
@@ -91,7 +92,7 @@ class CommunityViewController: UIViewController, UICollectionViewDataSource {
     
     private func showEvents() {
         
-        push(viewController: EventViewController.self)
+        push(viewController: NewEventViewController.self)
         
     }
     

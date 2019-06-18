@@ -24,7 +24,7 @@ struct RankingManager {
             
             guard let token = API.shared.token else { completion(APIError.noToken, nil); return }
             
-            guard let url = URL(string: Environment.current.baseURL + "api/v1/leaderboard/top") else {
+            guard let url = URL(string: Environment.rootURL + "api/v1/leaderboard/top") else {
                 completion(APIError.noConnection, nil)
                 return
             }
@@ -75,7 +75,7 @@ struct RankingManager {
             
             guard let token = API.shared.token else { completion(APIError.noToken, nil); return }
             
-            guard let url = URL(string: Environment.current.baseURL + "api/v1/leaderboard/me") else {
+            guard let url = URL(string: Environment.rootURL + "api/v1/leaderboard/me") else {
                 completion(APIError.noConnection, nil)
                 return
             }

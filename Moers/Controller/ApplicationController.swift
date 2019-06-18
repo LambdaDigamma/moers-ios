@@ -8,14 +8,13 @@
 
 import UIKit
 import Gestalt
+import MMUI
 
 class ApplicationController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        ThemeManager.default.theme = UserManager.shared.theme
-        ThemeManager.default.animated = true
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
             UIApplication.shared.statusBarStyle = theme.statusBarStyle
             themeable.view.backgroundColor = theme.backgroundColor

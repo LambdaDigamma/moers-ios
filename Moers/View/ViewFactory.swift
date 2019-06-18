@@ -11,57 +11,17 @@ import MapKit
 import TextFieldEffects
 import WebKit
 import TagListView
+import MMUI
 
-struct ViewFactory {
-    
-    static func blankView() -> UIView {
-    
-        let view = UIView()
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return view
-    
-    }
-    
-    static func label() -> UILabel {
-        
-        let label = UILabel()
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-        
-    }
+extension ViewFactory {
     
     static func paddingLabel() -> PaddingLabel {
         
-        let label = PaddingLabel()
+        let paddingLabel = PaddingLabel()
         
-        label.translatesAutoresizingMaskIntoConstraints = false
+        paddingLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        return label
-        
-    }
-    
-    static func scrollView() -> UIScrollView {
-        
-        let scrollView = UIScrollView()
-        
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.showsVerticalScrollIndicator = false
-        
-        return scrollView
-        
-    }
-    
-    static func map() -> MKMapView {
-        
-        let map = MKMapView()
-        
-        map.translatesAutoresizingMaskIntoConstraints = false
-        
-        return map
+        return paddingLabel
         
     }
     
@@ -72,37 +32,6 @@ struct ViewFactory {
         textField.translatesAutoresizingMaskIntoConstraints = false
         
         return textField
-        
-    }
-    
-    static func imageView() -> UIImageView {
-        
-        let imageView = UIImageView()
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        
-        return imageView
-        
-    }
-    
-    static func button() -> UIButton {
-        
-        let button = UIButton(type: .custom)
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
-        
-    }
-    
-    static func stackView() -> UIStackView {
-        
-        let stackView = UIStackView()
-        
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return stackView
         
     }
     
@@ -123,38 +52,6 @@ struct ViewFactory {
         cardView.translatesAutoresizingMaskIntoConstraints = false
         
         return cardView
-        
-    }
-    
-    static func tableView() -> UITableView {
-        
-        let tableView = UITableView()
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.estimatedRowHeight = UITableView.automaticDimension
-        tableView.estimatedSectionHeaderHeight = UITableView.automaticDimension
-        
-        return tableView
-        
-    }
-    
-    static func searchBar() -> UISearchBar {
-        
-        let searchBar = UISearchBar()
-        
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
-        
-        return searchBar
-        
-    }
-    
-    static func progressView() -> UIProgressView {
-        
-        let progressView = UIProgressView()
-        
-        progressView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return progressView
         
     }
     
@@ -184,27 +81,6 @@ struct ViewFactory {
         tagListView.backgroundColor = UIColor.clear
         
         return tagListView
-        
-    }
-    
-    static func collectionView() -> UICollectionView {
-        
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return collectionView
-        
-    }
-    
-    static func blurView() -> UIVisualEffectView {
-        
-        let effect = UIBlurEffect(style: .dark)
-        let blurView = UIVisualEffectView(effect: effect)
-        
-        blurView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return blurView
         
     }
     

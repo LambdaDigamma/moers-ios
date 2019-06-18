@@ -12,6 +12,7 @@ import SafariServices
 import Crashlytics
 import TagListView
 import MMAPI
+import MMUI
 
 class DetailEntryViewController: UIViewController {
     

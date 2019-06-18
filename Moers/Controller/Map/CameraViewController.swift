@@ -9,6 +9,7 @@
 import UIKit
 import WebKit
 import MMAPI
+import MMUI
 
 class CameraViewController: UIViewController {
 

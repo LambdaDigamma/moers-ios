@@ -10,6 +10,7 @@ import UIKit
 import BLTNBoard
 import Gestalt
 import MMAPI
+import MMUI
 
 class SelectorBulletinPage<T: RawRepresentable & CaseIterable & EnumCollection & Localizable>: FeedbackPageBulletinItem where T.RawValue == String {
 

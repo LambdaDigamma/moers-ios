@@ -10,6 +10,7 @@ import UIKit
 import Gestalt
 import Kingfisher
 import MMAPI
+import MMUI
 
 class OrganisationTableViewCell: UITableViewCell {
 

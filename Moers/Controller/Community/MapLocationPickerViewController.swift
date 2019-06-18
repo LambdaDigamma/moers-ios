@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import MMAPI
+import MMUI
 
 protocol MapLocationPickerViewControllerDelegate:class {
     

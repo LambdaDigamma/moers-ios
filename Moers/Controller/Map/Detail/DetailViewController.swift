@@ -12,6 +12,7 @@ import Gestalt
 import Pulley
 import Crashlytics
 import MMAPI
+import MMUI
 
 class DetailViewController: UIViewController {
     

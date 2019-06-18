@@ -12,6 +12,7 @@ import TagListView
 import Alertift
 import Fuse
 import MMAPI
+import MMUI
 
 class EntryOnboardingTagsViewController: UIViewController {
 

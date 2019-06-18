@@ -14,6 +14,7 @@ import MapKit
 import TagListView
 import MMAPI
 import Fuse
+import MMUI
 
 enum DisplayMode {
     

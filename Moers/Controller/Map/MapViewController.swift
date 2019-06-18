@@ -11,6 +11,7 @@ import MapKit
 import Pulley
 import Crashlytics
 import MMAPI
+import MMUI
 
 struct AnnotationIdentifier {
     
@@ -88,16 +89,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
             if view == nil { view = CameraAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.camera) }
             
             view?.annotation = camera
-            
-            return view
-            
-        } else if let bikeCharger = annotation as? BikeChargingStation {
-            
-            var view = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationIdentifier.bikeChargingStation) as? MKMarkerAnnotationView
-            
-            if view == nil { view = BikeChargingStationAnnotationView(annotation: nil, reuseIdentifier: AnnotationIdentifier.bikeChargingStation) }
-            
-            view?.annotation = bikeCharger
             
             return view
             

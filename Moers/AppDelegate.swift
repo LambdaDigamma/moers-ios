@@ -14,7 +14,9 @@ import FirebaseInstanceID
 import FirebaseMessaging
 import Fabric
 import Crashlytics
+import Gestalt
 import MMAPI
+import MMUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -33,8 +35,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         window!.rootViewController = applicationController
         window!.makeKeyAndVisible()
         
-        MMAPIConfig.registerBaseURL(Environment.current.baseURL)
+        ThemeManager.default.theme = UserManager.shared.theme
+        ThemeManager.default.animated = true
+        
+        MMUIConfig.registerThemeManager(ThemeManager.default)
+        MMAPIConfig.registerBaseURL(Environment.rootURL)
         MMAPIConfig.registerPetrolAPIKey("0dfdfad3-7385-ef47-2ff6-ec0477872677")
+        MMAPIConfig.isMoersFestivalModeEnabled = false
         
         UNUserNotificationCenter.current().delegate = self
         

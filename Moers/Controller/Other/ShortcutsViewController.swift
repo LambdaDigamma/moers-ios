@@ -9,6 +9,7 @@
 import UIKit
 import Gestalt
 import IntentsUI
+import MMUI
 
 class ShortcutsViewController: UIViewController {
 

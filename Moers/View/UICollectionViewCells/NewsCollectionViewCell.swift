@@ -10,6 +10,7 @@ import UIKit
 import Gestalt
 import FeedKit
 import Kingfisher
+import MMUI
 
 class NewsCollectionViewCell: UICollectionViewCell {
     

@@ -11,6 +11,7 @@ import Gestalt
 import MessageUI
 import Alertift
 import MMAPI
+import MMUI
 
 class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate {
 

@@ -11,12 +11,13 @@ import BLTNBoard
 import Gestalt
 import ESTabBarController
 import MMAPI
+import MMUI
 
 class TabBarController: ESTabBarController, UITabBarControllerDelegate {
 
     lazy var dashboardViewController = { DashboardViewController() }()
     lazy var newsViewController = { NewsViewController() }()
-    lazy var eventViewController = { EventViewController() }()
+    lazy var eventViewController = { NewEventViewController() }()
     lazy var communityViewController = { CommunityViewController() }()
     lazy var leaderboardViewController = { LeaderboardViewController() }()
     lazy var organisationDetailViewController = { OrganisationDetailViewController() }()
