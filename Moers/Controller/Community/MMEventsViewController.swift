@@ -10,7 +10,7 @@ import UIKit
 import MMAPI
 import MMUI
 
-class NewEventViewController: EventsViewController {
+class MMEventsViewController: EventsViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

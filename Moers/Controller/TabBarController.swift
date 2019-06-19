@@ -17,10 +17,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
 
     lazy var dashboardViewController = { DashboardViewController() }()
     lazy var newsViewController = { NewsViewController() }()
-    lazy var eventViewController = { NewEventViewController() }()
-    lazy var communityViewController = { CommunityViewController() }()
-    lazy var leaderboardViewController = { LeaderboardViewController() }()
-    lazy var organisationDetailViewController = { OrganisationDetailViewController() }()
+    lazy var eventViewController = { MMEventsViewController() }()
     lazy var otherViewController = { OtherViewController() }()
     lazy var mainViewController: MainViewController = {
         

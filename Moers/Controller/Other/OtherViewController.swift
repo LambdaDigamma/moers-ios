@@ -27,7 +27,6 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: standardCellIdentifier)
-        tableView.register(AccountTableViewCell.self, forCellReuseIdentifier: accountCellIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.cellLayoutMarginsFollowReadableWidth = true
         
@@ -37,9 +36,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     lazy var data: [Section] = {
         
-        return [/*Section(title: "",
-                        rows: [AccountRow(title: "Account", action: showAccount)]),*/
-                /*Section(title: "Daten",
+        return [/*Section(title: "Daten",
                         rows: [NavigationRow(title: "Eintrag hinzufügen", action: showAddEntry)]),*/
                 Section(title: String.localized("SettingsTitle"),
                         rows: [NavigationRow(title: String.localized("SettingsTitle"), action: showSettings),
@@ -99,21 +96,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     }
     
     // MARK: - Row Action
-    
-    private func showAccount() {
         
-        if API.shared.token == nil {
-            
-            self.present(LoginViewController(), animated: true, completion: nil)
-            
-        } else {
-            
-            self.navigationController?.pushViewController(AccountViewController(), animated: true)
-            
-        }
-        
-    }
-    
     private func showAddEntry() {
         
         if EntryManager.shared.entryStreet != nil || EntryManager.shared.entryLat != nil {
@@ -216,9 +199,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
 extension OtherViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        
         return data.count
-        
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -244,27 +225,7 @@ extension OtherViewController: UITableViewDataSource, UITableViewDelegate {
             cell.accessoryType = .disclosureIndicator
             
         } else {
-            
-            let _ = data[indexPath.section].rows[indexPath.row] as? AccountRow
-            
-            let accountCell = tableView.dequeueReusableCell(withIdentifier: accountCellIdentifier) as! AccountTableViewCell
-            
-            accountCell.update()
-            
-            API.shared.getUser { (error, user) in
-                
-                guard let user = user else { return }
-                
-                UserManager.shared.register(user)
-                
-                OperationQueue.main.addOperation {
-                    accountCell.update()
-                }
-                
-            }
-            
-            cell = accountCell
-            
+            cell = UITableViewCell()
         }
         
         cell.selectionStyle = .none
@@ -280,11 +241,7 @@ extension OtherViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let accountRow = data[indexPath.section].rows[indexPath.row] as? AccountRow {
-            
-            accountRow.action?()
-            
-        } else if let navigationRow = data[indexPath.section].rows[indexPath.row] as? NavigationRow {
+        if let navigationRow = data[indexPath.section].rows[indexPath.row] as? NavigationRow {
             
             navigationRow.action?()
             
