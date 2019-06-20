@@ -27,6 +27,10 @@ platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
 
+    increment_build_number_in_plist(target: 'Moers')
+    increment_build_number_in_plist(target: 'MoersTests')
+    increment_build_number_in_plist(target: 'MoersUITests')
+
     increment_build_number
 
     build_app(scheme: "Moers")
@@ -76,7 +80,10 @@ platform :ios do
 
   desc "Create ipa"
   lane :build do
-    increment_build_number
+    increment_build_number_in_plist(target: 'Moers')
+    increment_build_number_in_plist(target: 'MoersTests')
+    increment_build_number_in_plist(target: 'MoersUITests')
+    
     gym(options.merge(:export_xcargs => "-allowProvisioningUpdates"))
   end
 

@@ -12,15 +12,7 @@ import MMUI
 
 class SwitchTableViewCell: UITableViewCell {
     
-    lazy var descriptionLabel: UILabel = {
-        
-        let label = UILabel()
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-        
-    }()
+    lazy var descriptionLabel = { ViewFactory.label() }()
     
     lazy var switchControl: UISwitch = {
         
