@@ -29,12 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let applicationController = ApplicationController()
-        
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window!.rootViewController = applicationController
-        window!.makeKeyAndVisible()
-        
         ThemeManager.default.theme = UserManager.shared.theme
         ThemeManager.default.animated = true
         
@@ -42,6 +36,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         MMAPIConfig.registerBaseURL(Environment.rootURL)
         MMAPIConfig.registerPetrolAPIKey("0dfdfad3-7385-ef47-2ff6-ec0477872677")
         MMAPIConfig.isMoersFestivalModeEnabled = false
+        
+        let applicationController = ApplicationController()
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window!.rootViewController = applicationController
+        window!.makeKeyAndVisible()
         
         UNUserNotificationCenter.current().delegate = self
         

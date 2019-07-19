@@ -38,7 +38,7 @@ class BasicItemContentView: ESTabBarItemContentView {
 
 class ItemBounceContentView: BasicItemContentView {
     
-    public var duration = 0.3
+    public var duration = 0.15
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -16,6 +16,8 @@ class MMEventsViewController: EventsViewController {
         super.viewDidLoad()
         
         self.numberOfDisplayedUpcomingEvents = 15
+        self.sectionUpcomingTitle = "IN DEN NÄCHSTEN TAGEN"
+        self.sectionActiveTitle = "HEUTE"
         
     }
     

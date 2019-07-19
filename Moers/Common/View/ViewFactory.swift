@@ -15,16 +15,6 @@ import MMUI
 
 extension ViewFactory {
     
-    static func paddingLabel() -> PaddingLabel {
-        
-        let paddingLabel = PaddingLabel()
-        
-        paddingLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        return paddingLabel
-        
-    }
-    
     static func textField() -> HoshiTextField {
         
         let textField = HoshiTextField()

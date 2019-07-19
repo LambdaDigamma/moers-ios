@@ -14,27 +14,19 @@ class SelectionFeedbackGenerator {
     
     init() {
         
-        if #available(iOS 10, *) {
-            anyObject = UISelectionFeedbackGenerator()
-        } else {
-            anyObject = nil
-        }
+        anyObject = UISelectionFeedbackGenerator()
         
     }
     
     func prepare() {
         
-        if #available(iOS 10, *) {
-            (anyObject as! UISelectionFeedbackGenerator).prepare()
-        }
+        (anyObject as! UISelectionFeedbackGenerator).prepare()
         
     }
     
     func selectionChanged() {
         
-        if #available(iOS 10, *) {
-            (anyObject as! UISelectionFeedbackGenerator).selectionChanged()
-        }
+        (anyObject as! UISelectionFeedbackGenerator).selectionChanged()
         
     }
     
@@ -46,27 +38,19 @@ class SuccessFeedbackGenerator {
     
     init() {
         
-        if #available(iOS 10, *) {
-            anyObject = UINotificationFeedbackGenerator()
-        } else {
-            anyObject = nil
-        }
+        anyObject = UINotificationFeedbackGenerator()
         
     }
     
     func prepare() {
         
-        if #available(iOS 10, *) {
-            (anyObject as! UINotificationFeedbackGenerator).prepare()
-        }
+        (anyObject as! UINotificationFeedbackGenerator).prepare()
         
     }
     
     func success() {
         
-        if #available(iOS 10, *) {
-            (anyObject as! UINotificationFeedbackGenerator).notificationOccurred(.success)
-        }
+        (anyObject as! UINotificationFeedbackGenerator).notificationOccurred(.success)
         
     }
     
