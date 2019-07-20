@@ -68,6 +68,7 @@
 "PriceHeader" = "Price";
 "CurrentLocation" = "Current Location";
 "DashboardPetrolStationInfo" = "Petrol Stations in your area are open";
+"DashboardAction" = "Tap to get list of petrol stations";
 "PetrolErrorPermissionTitle" = "No Permission";
 "PetrolErrorPermissionMessage" = "The app is not allowed to access your current location to calculate current petrol prices.";
 "PetrolErrorLocationTitle" = "Petrol Information";
@@ -132,7 +133,6 @@
 /* Notifications: Rubbish */
 "RubbishCollectionNotificationTitle" = "Pick-up Schedule";
 "RubbishCollectionNotificationBody" = "Tomorrow will be collected: ";
-
 
 /* Misc */
 "LeaderboardTitle" = "Leaderboard";
