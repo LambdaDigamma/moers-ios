@@ -77,6 +77,7 @@
 /* Dashboard: Rubbish */
 "WasteErrorTitle" = "Waste Schedule is deactivated";
 "WasteErrorMessage" = "You can activate the Waste Schedule in the settings.";
+"WasteCollection" = "is being collected on";
 
 /* Tab: News */
 "NewsTitle" = "News";
@@ -141,3 +142,4 @@
 "AddTitle" = "Add";
 "PickerPromptText" = "Move the crosshairs to the store on the map!";
 "Events" = "Events";
+"Unknown" = "unknown";

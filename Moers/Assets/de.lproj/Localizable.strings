@@ -77,6 +77,7 @@
 /* Dashboard: Rubbish */
 "WasteErrorTitle" = "Abfallkalender deaktiviert";
 "WasteErrorMessage" = "Du kannst den Abfallkalender in den Einstellungen aktivieren.";
+"WasteCollection" = "wird abgeholt am";
 
 /* Tab: News */
 "NewsTitle" = "Neuigkeiten";
@@ -141,3 +142,4 @@
 "AddTitle" = "Hinzufügen";
 "PickerPromptText" = "Wähle die aktuelle Position aus oder bewege das Fadenkreuz auf das Geschäft auf der Karte!";
 "Events" = "Veranstaltungen";
+"Unknown" = "unbekannt";

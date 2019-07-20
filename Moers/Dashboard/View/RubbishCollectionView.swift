@@ -13,42 +13,11 @@ import MMUI
 
 class RubbishCollectionView: UIView {
 
-    lazy var imageView: UIImageView = {
-        
-        let imageView = UIImageView()
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        
-        return imageView
-        
-    }()
+    // MARK: - UI
     
-    lazy var dateLabel: UILabel = {
-        
-        let label = UILabel()
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.adjustsFontForContentSizeCategory = true
-        
-        return label
-        
-    }()
-    
-    lazy var typeLabel: UILabel = {
-        
-        let label = UILabel()
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.minimumScaleFactor = 0.5
-        label.adjustsFontSizeToFitWidth = true
-        label.adjustsFontForContentSizeCategory = true
-        
-        return label
-        
-    }()
+    private lazy var imageView = { ViewFactory.imageView() }()
+    private lazy var typeLabel = { ViewFactory.label() }()
+    private lazy var dateLabel = { ViewFactory.label() }()
     
     var rubbishCollectionItem: RubbishCollectionItem? {
         didSet {
@@ -66,6 +35,8 @@ class RubbishCollectionView: UIView {
             case .organic: imageView.image = #imageLiteral(resourceName: "greenWaste")
             }
             
+            self.setupAccessibility()
+            
         }
     }
     
@@ -76,6 +47,7 @@ class RubbishCollectionView: UIView {
         self.addSubview(dateLabel)
         self.addSubview(typeLabel)
         
+        self.setupUI()
         self.setupConstraints()
         self.setupTheming()
         
@@ -83,6 +55,36 @@ class RubbishCollectionView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Private Methods
+    
+    private func setupUI() {
+        
+        self.imageView.contentMode = .scaleAspectFit
+        
+        self.typeLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        self.typeLabel.minimumScaleFactor = 0.5
+        self.typeLabel.adjustsFontSizeToFitWidth = true
+        self.typeLabel.adjustsFontForContentSizeCategory = true
+        
+        self.dateLabel.font = UIFont.systemFont(ofSize: 14)
+        self.dateLabel.adjustsFontForContentSizeCategory = true
+        
+    }
+    
+    private func setupAccessibility() {
+        
+        guard let item = rubbishCollectionItem else { return }
+        
+        let localizedDate = DateFormatter.localizedString(from: item.parsedDate, dateStyle: .full, timeStyle: .none)
+        let localizedType = RubbishWasteType.localizedForCase(item.type)
+        
+        self.isAccessibilityElement = true
+        self.accessibilityElements = []
+        self.accessibilityIdentifier = "RubbishItem-\(item.type)"
+        self.accessibilityLabel = "\(localizedType) \(String.localized("WasteCollection")) \(localizedDate)"
+        
     }
     
     private func setupConstraints() {
