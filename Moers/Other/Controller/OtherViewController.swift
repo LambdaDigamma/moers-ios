@@ -44,7 +44,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                 Section(title: "Info",
                         rows: [NavigationRow(title: String.localized("AboutTitle"), action: showAbout),
                                NavigationRow(title: String.localized("Feedback"), action: showFeedback),
-                               NavigationRow(title: "Version: \(Bundle.main.releaseVersionNumber ?? "?") (\(Bundle.main.buildVersionNumber ?? "?"))", action: nil)]),
+                               NavigationRow(title: Bundle.main.versionString, action: nil)]),
                 Section(title: String.localized("Legal"),
                         rows: [NavigationRow(title: String.localized("TandC"), action: showTaC),
                                NavigationRow(title: String.localized("PrivacyPolicy"), action: showPrivacy),

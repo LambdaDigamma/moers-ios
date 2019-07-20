@@ -19,12 +19,33 @@ extension UISearchBar {
 
 
 extension Bundle {
-    var releaseVersionNumber: String? {
-        return infoDictionary?["CFBundleShortVersionString"] as? String
+    
+    private var releaseVersionNumber: String {
+        return infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     }
-    var buildVersionNumber: String? {
-        return infoDictionary?["CFBundleVersion"] as? String
+    
+    private var buildVersionNumber: String {
+        return infoDictionary?["CFBundleVersion"] as? String ?? ""
     }
+    
+    var bundleID: String {
+        return Bundle.main.bundleIdentifier?.lowercased() ?? ""
+    }
+    
+    var versionString: String {
+        var scheme = ""
+        
+        if bundleID.contains(".dev") {
+            scheme = "Dev"
+        } else if bundleID.contains(".staging") {
+            scheme = "Staging"
+        }
+        
+        let returnValue = "Version \(releaseVersionNumber) (\(buildVersionNumber)) \(scheme)"
+        
+        return returnValue.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
 }
 
 public extension Sequence where Element: Equatable {
