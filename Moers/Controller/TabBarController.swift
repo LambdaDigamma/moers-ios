@@ -43,11 +43,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     private var firstLaunch: FirstLaunch
     
     init() {
-//        #if DEBUG
-//        self.firstLaunch = FirstLaunch.alwaysFirst()
-//        #else
         self.firstLaunch = FirstLaunch(userDefaults: .standard, key: "FirstLaunch.WasLaunchedBefore")
-//        #endif
         
         super.init(nibName: nil, bundle: nil)
         
@@ -79,38 +75,65 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let dashboard = navigation(with: dashboardViewController,
-                                   and: ESTabBarItem(ItemBounceContentView(), title: String.localized("DashboardTabItem"), image: #imageLiteral(resourceName: "dashboard"), selectedImage: #imageLiteral(resourceName: "dashboard")))
+        let tabControllerFactory = TabControllerFactory()
         
-        let news = navigation(with: newsViewController,
-                              and: ESTabBarItem(ItemBounceContentView(), title: String.localized("NewsTitle"), image: #imageLiteral(resourceName: "news"), selectedImage: #imageLiteral(resourceName: "news")))
+        let dashboardTab = tabControllerFactory.buildTabItem(
+            using: ItemBounceContentView(),
+            title: String.localized("DashboardTabItem"),
+            image: #imageLiteral(resourceName: "dashboard"),
+            accessibilityLabel: String.localized("DashboardTabItem"),
+            accessibilityIdentifier: "TabDashboard")
         
-        let main = navigation(with: mainViewController,
-                             and: ESTabBarItem(MapItemContentView(), title: nil, image: #imageLiteral(resourceName: "map_marker"), selectedImage: #imageLiteral(resourceName: "map_marker")))
+        let newsTab = tabControllerFactory.buildTabItem(
+            using: ItemBounceContentView(),
+            title: String.localized("NewsTitle"),
+            image: #imageLiteral(resourceName: "news"),
+            accessibilityLabel: String.localized("NewsTitle"),
+            accessibilityIdentifier: "TabNews")
         
-        let event = navigation(with: eventViewController,
-                               and: ESTabBarItem(ItemBounceContentView(), title: String.localized("Events"), image: #imageLiteral(resourceName: "calendar"), selectedImage: #imageLiteral(resourceName: "calendar")))
+        let mapTab = tabControllerFactory.buildTabItem(
+            using: MapItemContentView(),
+            image: #imageLiteral(resourceName: "map_marker"),
+            accessibilityLabel: String.localized("MapTabItem"),
+            accessibilityIdentifier: "TabMap")
         
-        let other = navigation(with: otherViewController,
-                               and: ESTabBarItem(ItemBounceContentView(), title: String.localized("OtherTabItem"), image: #imageLiteral(resourceName: "list"), selectedImage: #imageLiteral(resourceName: "list")))
+        let eventsTab = tabControllerFactory.buildTabItem(
+            using: ItemBounceContentView(),
+            title: String.localized("Events"),
+            image: #imageLiteral(resourceName: "calendar"),
+            accessibilityLabel: String.localized("Events"),
+            accessibilityIdentifier: "TabEvents")
         
-        // Testing
+        let otherTab = tabControllerFactory.buildTabItem(
+            using: ItemBounceContentView(),
+            title: String.localized("OtherTabItem"),
+            image: #imageLiteral(resourceName: "list"),
+            accessibilityLabel: String.localized("OtherTabItem"),
+            accessibilityIdentifier: "TabOther")
         
-        /*
-        let community = navigation(with: communityViewController,
-                                   and: ESTabBarItem(ItemBounceContentView(), title: "Community", image: #imageLiteral(resourceName: "people"), selectedImage: #imageLiteral(resourceName: "people")))
+        let dashboard = tabControllerFactory.buildNavigationController(
+            using: dashboardViewController,
+            tabItem: dashboardTab)
         
-        let leaderboard = navigation(with: leaderboardViewController,
-                                     and: ESTabBarItem(ItemBounceContentView(), title: String.localized("LeaderboardTitle"), image: #imageLiteral(resourceName: "trophy"), selectedImage: #imageLiteral(resourceName: "trophy")))
+        let news = tabControllerFactory.buildNavigationController(
+            using: newsViewController,
+            tabItem: newsTab)
         
-        let organisationDetail = navigation(with: organisationDetailViewController,
-                                            and: ESTabBarItem(ItemBounceContentView(), title: "Test", image: #imageLiteral(resourceName: "trophy"), selectedImage: #imageLiteral(resourceName: "trophy")))
-        */
+        let map = tabControllerFactory.buildNavigationController(
+            using: mainViewController,
+            tabItem: mapTab)
         
-        self.viewControllers = [dashboard, news, main, event, other]
+        let events = tabControllerFactory.buildNavigationController(
+            using: eventViewController,
+            tabItem: eventsTab)
+        
+        let other = tabControllerFactory.buildNavigationController(
+            using: otherViewController,
+            tabItem: otherTab)
+        
+        self.viewControllers = [dashboard, news, map, events, other]
         
         self.setupTheming()
-        
         self.loadRubbishData()
         
     }
@@ -133,9 +156,12 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             
             if item.contentView is MapItemContentView {
                 
-                let tabBarItem = ESTabBarItem(MapItemContentView(), title: nil, image: #imageLiteral(resourceName: "search"), selectedImage: #imageLiteral(resourceName: "search"))
+                item.image = #imageLiteral(resourceName: "search")
+                item.selectedImage = #imageLiteral(resourceName: "search")
+                item.accessibilityIdentifier = "TabMapSearch"
+                item.accessibilityLabel = String.localized("SearchMap")
                 
-                tabBarItem.contentView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(search)))
+                item.contentView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(search)))
                 
                 self.shouldHijackHandler = {
                     tabbarController, viewController, index in
@@ -151,13 +177,16 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
                     
                 }
                 
-                viewControllers?[2].tabBarItem = tabBarItem
-                
             } else {
                 
-                viewControllers?[2].tabBarItem = ESTabBarItem(MapItemContentView(), title: nil, image: #imageLiteral(resourceName: "map_marker"), selectedImage: #imageLiteral(resourceName: "map_marker"))
-                
                 self.shouldHijackHandler = nil
+                
+                guard let item = viewControllers?[2].tabBarItem else { return }
+                
+                item.image = #imageLiteral(resourceName: "map_marker")
+                item.selectedImage = #imageLiteral(resourceName: "map_marker")
+                item.accessibilityLabel = String.localized("MapTabItem")
+                item.accessibilityIdentifier = "TabMap"
                 
             }
             
@@ -271,17 +300,6 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         PetrolManager.shared.petrolType = .diesel
         RubbishManager.shared.isEnabled = true
         RubbishManager.shared.register(rubbishCollectionStreet)
-        
-    }
-    
-    private func navigation(with controller: UIViewController, and tabItem: ESTabBarItem) -> UINavigationController {
-        
-        let navigationController = UINavigationController()
-        navigationController.viewControllers = [controller]
-        
-        navigationController.tabBarItem = tabItem
-        
-        return navigationController
         
     }
     

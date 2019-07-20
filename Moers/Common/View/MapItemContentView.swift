@@ -75,9 +75,8 @@ class MapItemContentView: ESTabBarItemContentView {
         self.imageView.layer.borderWidth = 3.0
         self.imageView.layer.cornerRadius = 35
         self.imageView.clipsToBounds = true
-        self.insets = UIEdgeInsets.init(top: -32, left: 0, bottom: 0, right: 0)
-        let transform = CGAffineTransform.identity
-        self.imageView.transform = transform
+        self.insets = UIEdgeInsets(top: -32, left: 0, bottom: 0, right: 0)
+        self.imageView.transform = CGAffineTransform.identity
         self.superview?.bringSubviewToFront(self)
         
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in

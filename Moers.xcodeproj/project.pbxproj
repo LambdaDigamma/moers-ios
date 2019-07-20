@@ -52,6 +52,7 @@
 		DF4D8953210388D5008609A1 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D8952210388D5008609A1 /* CameraViewController.swift */; };
 		DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D89562104A6F0008609A1 /* Datasources.swift */; };
 		DF503CEF21431503006EE226 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF503CEE21431503006EE226 /* DebugViewController.swift */; };
+		DF51F78D22E26A9200A0CF00 /* TabControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF51F78C22E26A9200A0CF00 /* TabControllerFactory.swift */; };
 		DF541389217FCD25007FDEC8 /* EntryValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF541388217FCD25007FDEC8 /* EntryValidationViewController.swift */; };
 		DF54138B217FD733007FDEC8 /* EntryValidationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF54138A217FD733007FDEC8 /* EntryValidationTableViewCell.swift */; };
 		DF54138D2180955B007FDEC8 /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF54138C2180955A007FDEC8 /* NewsCollectionViewCell.swift */; };
@@ -245,6 +246,7 @@
 		DF4D8952210388D5008609A1 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		DF4D89562104A6F0008609A1 /* Datasources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datasources.swift; sourceTree = "<group>"; };
 		DF503CEE21431503006EE226 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
+		DF51F78C22E26A9200A0CF00 /* TabControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabControllerFactory.swift; path = ../../../../../../../../../System/Volumes/Data/Users/lennart/Documents/Development/iOS/Moers/Moers/Common/Controller/TabControllerFactory.swift; sourceTree = "<group>"; };
 		DF541388217FCD25007FDEC8 /* EntryValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryValidationViewController.swift; sourceTree = "<group>"; };
 		DF54138A217FD733007FDEC8 /* EntryValidationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryValidationTableViewCell.swift; sourceTree = "<group>"; };
 		DF54138C2180955A007FDEC8 /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -830,6 +832,7 @@
 			children = (
 				DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */,
 				DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */,
+				DF51F78C22E26A9200A0CF00 /* TabControllerFactory.swift */,
 				DF855C2520C9E37400B7F7C7 /* CardCollectionViewController.swift */,
 				DF75734121771D1500953DA1 /* SeachController */,
 			);
@@ -1335,6 +1338,7 @@
 				DFA9EF0A20B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift in Sources */,
 				DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */,
 				DF0CB49F2082B90900CC0AA8 /* FeedbackGenerators.swift in Sources */,
+				DF51F78D22E26A9200A0CF00 /* TabControllerFactory.swift in Sources */,
 				DFD728AC20A880C6005FA9F1 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
