@@ -16,46 +16,36 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
-### ios test
+### ios increment
 ```
-fastlane ios test
+fastlane ios increment
+```
+Increment Version
+### ios increment_build
+```
+fastlane ios increment_build
+```
+Increment Build Number
+### ios test_unit
+```
+fastlane ios test_unit
 ```
 Run All Unit Tests
-### ios beta
+### ios test_ui
 ```
-fastlane ios beta
+fastlane ios test_ui
 ```
-Push a new beta build to TestFlight
-### ios provisioning
+Run All UI Tests
+### ios release
 ```
-fastlane ios provisioning
+fastlane ios release
 ```
-Creating a code signing certificate and provisioning profile
+Release a new version of Mein Moers
 ### ios screenshots
 ```
 fastlane ios screenshots
 ```
 Take Screenshots and Upload them to AppStore Connect
-### ios take_screenshots
-```
-fastlane ios take_screenshots
-```
-Take Screenshots
-### ios build
-```
-fastlane ios build
-```
-Create ipa
-### ios upload
-```
-fastlane ios upload
-```
-Upload to App Store
-### ios do_everything
-```
-fastlane ios do_everything
-```
-Provision, take screenshots, build and upload to App Store
 
 ----
 

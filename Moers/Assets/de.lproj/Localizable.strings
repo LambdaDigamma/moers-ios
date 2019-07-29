@@ -1,0 +1,145 @@
+/* 
+  Localizable.strings
+  Moers
+
+  Created by Lennart Fischer on 15.04.18.
+  Copyright © 2018 Lennart Fischer. All rights reserved.
+*/
+
+/* Tab Bar Items */
+"DashboardTabItem" = "Übersicht";
+"MapTabItem" = "Karte";
+"OtherTabItem" = "Sonstiges";
+
+/* Onboarding: Introduction */
+"OnboardingDescription" = "Suche Geschäfte, Veranstaltungen & Parkplätze mit Live-Daten und bewege Dich mit interaktiven 360° Panoramen durch die Stadt! Finde die günstigste Tankstelle oder bekomme Erinnerungen für Leerungstermine der Mülltonnen.";
+"OnboardingFirstPageActionButtonTitle" = "Fortfahren";
+
+/* Onboarding: Privacy */
+"PrivacyPageTitle" = "Datenschutz";
+"PrivacyPageDescription" = "Alle Daten werden mit größter Vorsicht und höchster Vertraulichkeit behandelt! \nMit der Benutzung dieser App stimmen Sie den AGBs und Datenschutzbestimmungen, die Sie im Menü finden, zu.";
+"PrivacyPageButtonTitle" = "Verstanden";
+
+/* Onboarding: Notifications */
+"OnboardingNotificationPageTitle" = "Push-Mitteilungen";
+"OnboardingNotificationPageDescription" = "Erhalte Push Notifications, um auf dem Laufenden zu bleiben und an Leerungstermine erinnert zu werden.";
+"OnboardingNotificationPageActionButtonTitle" = "Erhalten";
+"OnboardingNotificationPageAlternativeButtonTitle" = "Nicht jetzt";
+
+/* Onboarding: Location */
+"OnboardingLocationPageTitle" = "Standort";
+"OnboardingLocationPageDescription" = "Mein Moers benutzt Deinen Standort, um Geschäfte in deiner Nähe zu finden und Dir Kraftstoffpreise in der Umgebung anzuzeigen.";
+"Allow" = "Erlauben";
+"Later" = "Später";
+
+/* Onboarding: User Type */
+"OnboardingUserTypeSelectorPageTitle" = "Benutzer";
+"OnboardingUserTypeSelectorPageDescription" = "Bist Du Besucher oder Bürger der Stadt Moers?";
+"OnboardingUserTypeSelectorPageActionButtonTitle" = "Fortfahren";
+
+/* Onboarding: Rubbish Collection Introduction */
+"RubbishCollectionPageTitle" = "Abfuhrkalender";
+"RubbishCollectionPageDescription" = "Mein Moers kann Dir die Abfuhrtermine der Müllabfuhr zeigen und Dich daran erinnern, diese herauszustellen.";
+"RubbishCollectionPageActionButtonTitle" = "Fortfahren";
+"RubbishCollectionPageAlternativeButtonTitle" = "Nicht jetzt";
+
+/* Onboarding: Rubbish Collection Reminder */
+"RubbishCollectionReminderPageTitle" = "Abfuhr-Benachrichtigungen";
+"RubbishCollectionReminderPageDescription" = "Mein Moers kann Dich am Vortag zu einer bestimmen Uhrzeit daran erinnern, Deine Mülltonnen rechtzeitig an die Straße zu stellen.";
+"RubbishCollectionReminderPageActionButtonTitle" = "Einstellen";
+"RubbishCollectionReminderPageAlternativeButtonTitle" = "Nicht jetzt";
+
+/* Onboarding: Petrol */
+"OnboardingPetrolTypePageTitle" = "Kraftstoff";
+"OnboardingPetrolTypePageDescription" = "Mein Moers kann Dir die aktuellen Spritpreise anzeigen. Wähle hierfür Deine bevorzugte Kraftstoff-Art aus.";
+"OnboardingPetrolTypePageActionButtonTitle" = "Fortfahren";
+
+/* Onboarding: Completion */
+"CompletionPageTitle" = "Einrichtung beendet";
+"CompletionPageActionButtonTitle" = "Los geht's!";
+
+/* Tab: Dashboard */
+"DashboardTitleRubbishCollection" = "Nächste Leerungen";
+"DashboardMoreRubbish" = "Mehr";
+
+/* Dashboard: Petrol */
+"PetrolStationsTitle" = "Tankstellen";
+"PetrolDescription" = "pro L";
+"PriceHeader" = "Preis";
+"CurrentLocation" = "Aktueller Ort";
+"DashboardPetrolStationInfo" = "Tankstellen in Ihrer näheren Umgebung haben geöffnet";
+"DashboardAction" = "Tippe, um Liste von Tankstellen in der näheren Umgebung anzuzeigen.";
+"PetrolErrorPermissionTitle" = "Berechtigung fehlt";
+"PetrolErrorPermissionMessage" = "Die App darf nicht auf deinen aktuellen Standort zugreifen, um aktuelle Spritpreise zu berechnen.";
+"PetrolErrorLocationTitle" = "Spritinformationen";
+"PetrolErrorLocationMessage" = "Nur in Deutschland verfügbar";
+
+/* Dashboard: Rubbish */
+"WasteErrorTitle" = "Abfallkalender deaktiviert";
+"WasteErrorMessage" = "Du kannst den Abfallkalender in den Einstellungen aktivieren.";
+"WasteCollection" = "wird abgeholt am";
+
+/* Tab: News */
+"NewsTitle" = "Neuigkeiten";
+
+/* Tab: Map */
+"SearchMap" = "Auf Karte suchen";
+"SearchBarPrompt" = "Wohin willst du?";
+"Entries" = "Einträge";
+
+/* Map: Parking */
+"SlotsHeader" = "Plätze";
+"TotalHeader" = "Gesamt:";
+"FreeHeader" = "Frei:";
+"StatusHeader" = "Trend:";
+"AddressHeader" = "Adresse";
+"ParkingLotUnchanged" = "unverändert";
+"ParkingLotDescends" = "fallend";
+"ParkingLotAscends" = "aufsteigend";
+"ParkingLotUndocumented" = "nicht erfasst";
+
+/* Map: Entries */
+"CallAction" = "Anrufen";
+"WebsiteAction" = "Website";
+
+/* Tab: Other */
+"AboutTitle" = "Über";
+"SettingsTitle" = "Einstellungen";
+"PrivacyPolicy" = "Datenschutz";
+"Legal" = "Rechtliches";
+"Licences" = "Lizenzen";
+"UIAdjustments" = "Benutzeroberfläche";
+"ThemeTitle" = "Theme";
+"RubbishCollectionTitle" = "Leerungen";
+"TandC" = "AGBs";
+"SettingsRubbishCollectionTitle" = "Abfuhrkalender";
+"ReminderText" = "Erinnerung";
+"NotActivated" = "nicht aktiviert";
+"Activated" = "Aktiviert";
+"Street" = "Straße";
+"Petrol" = "Kraftstoff";
+"PetrolType" = "Art";
+"Feedback" = "Feedback";
+
+/* Common */
+"LocalityOpen" = "geöffnet";
+"LocalityClosed" = "geschlossen";
+
+/* User Type */
+"User" = "Benutzer";
+"UserType" = "Art";
+"Tourist" = "Besucher";
+"Citizen" = "Bürger";
+
+/* Notifications: Rubbish */
+"RubbishCollectionNotificationTitle" = "Abfuhrkalender";
+"RubbishCollectionNotificationBody" = "Morgen wird abgeholt: ";
+
+/* Misc */
+"LeaderboardTitle" = "Bestenliste";
+"CommunityTitle" = "Community";
+"AddStoreTitle" = "Geschäft hinzufügen";
+"AddTitle" = "Hinzufügen";
+"PickerPromptText" = "Wähle die aktuelle Position aus oder bewege das Fadenkreuz auf das Geschäft auf der Karte!";
+"Events" = "Veranstaltungen";
+"Unknown" = "unbekannt";

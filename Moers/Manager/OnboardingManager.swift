@@ -13,6 +13,7 @@ import CoreLocation
 import MMAPI
 import MMUI
 
+// TODO: Move Privacy Consent to Front of Onboarding
 struct OnboardingManager {
     
     static var shared = OnboardingManager()

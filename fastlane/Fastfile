@@ -18,23 +18,89 @@ default_platform(:ios)
 platform :ios do
   setup_travis
 
+  # --- Utilies ---
+
+  desc "Increment Version"
+  lane :increment do |options|
+
+    version = options[:version]
+
+    # Set App plist version
+    set_info_plist_value(
+      path: "Moers/Configs/Info.plist",
+      key: "CFBundleShortVersionString", 
+      value: version
+    )
+    # Set App UI Tests plist version
+    set_info_plist_value(
+      path: "MoersUITests/Info.plist",
+      key: "CFBundleShortVersionString", 
+      value: version
+    )
+    # Set App Unit Tests plist version
+    set_info_plist_value(
+      path: "MoersTests/Info.plist", 
+      key: "CFBundleShortVersionString", 
+      value: version
+    )
+  
+    # Commit plists to git
+    git_commit(
+      path: [
+        "Moers/Configs/Info.plist",
+        "MoersUITests/Info.plist",
+        "MoersTests/Info.plist"
+      ],
+      message: "Mein Moers Version #{version} 🚀"
+    )
+
+  end
+
+  desc "Increment Build Number"
+  lane :increment_build do
+    increment_build_number_in_plist(target: 'Moers')
+    increment_build_number_in_plist(target: 'MoersTests')
+    increment_build_number_in_plist(target: 'MoersUITests')
+  end
+
+  # --- Tests ---
+
   desc "Run All Unit Tests"
-  lane :test do
+  lane :test_unit do
     run_tests(scheme: "Moers",
               devices: ["iPhone X"])
   end
 
-  desc "Push a new beta build to TestFlight"
-  lane :beta do
+  desc "Run All UI Tests"
+  lane :test_ui do
+    run_tests(scheme: "MoersUITests")
+  end
 
-    increment_build_number
+  # --- Distribution ---
 
-    build_app(scheme: "Moers")
-    upload_to_testflight
+  desc "Release a new version of Mein Moers"
+  lane :release do |options|
 
+    ensure_git_status_clean
+    
+    ensure_git_branch(branch: 'master')
+
+    # test_unit
+    # test_ui
+
+    version = options[:version]
+
+    increment(version: version)
+    increment_build()
+
+    match(type: "appstore")
+    gym(scheme: "Moers")
+    pilot(skip_waiting_for_build_processing: true)
+
+    push_to_git_remote()
 
     slack(
-      message: "Mein Moers Beta successfully released!",
+      message: "Mein Moers #{version} (#{get_build_number()}) successfully released!",
       channel: "#mein-moers",
       payload: {
         "Build Date" => Time.new.to_s,
@@ -44,53 +110,13 @@ platform :ios do
 
   end
 
-  desc "Creating a code signing certificate and provisioning profile"
-  lane :provisioning do 
-    
-    produce(
-      app_name: 'Mein Moers',
-      language: 'German',
-      app_version: '2.1',
-      sku: 'de.okfn.niederrhein.moers.001'
-    )
+  # --- Screenshots ---
 
-    cert
-
-    sigh(force: true)
-
-  end
-
-  # --- Screenshots and Upload them to AppStore Connect ---
-
-  desc "Take Screenshots and Upload them to AppStore Connect"
+  desc "Take Screenshots and upload them to AppStore Connect"
   lane :screenshots do
     take_screenshots
     upload_to_app_store
-  end
-
-  desc "Take Screenshots"
-  lane :take_screenshots do
-    snapshot
-    frame_screenshots(path: "/screenshots")
-  end
-
-  desc "Create ipa"
-  lane :build do
-    increment_build_number
-    gym(options.merge(:export_xcargs => "-allowProvisioningUpdates"))
-  end
-
-  desc "Upload to App Store"
-  lane :upload do
-    deliver
-  end
-
-  desc "Provision, take screenshots, build and upload to App Store"
-  lane :do_everything do
-    provisioning
-    screenshots
-    build
-    upload
+    deliver(skip_binary_upload: true)
   end
 
   error do |lane, exception|

@@ -1,0 +1,145 @@
+/* 
+  Localizable.strings
+  Moers
+
+  Created by Lennart Fischer on 15.04.18.
+  Copyright © 2018 Lennart Fischer. All rights reserved.
+*/
+
+/* Tab Bar Items */
+"DashboardTabItem" = "Dashboard";
+"MapTabItem" = "Map";
+"OtherTabItem" = "Other";
+
+/* Onboarding: Introduction */
+"OnboardingDescription" = "Search shops & parking lots with live data and move through the city with interactive 360° panoramas! Find the cheapest petrol station or get reminders for rubbish collection.";
+"OnboardingFirstPageActionButtonTitle" = "Continue";
+
+/* Onboarding: Privacy */
+"PrivacyPageTitle" = "Privacy";
+"PrivacyPageDescription" = "All data will be treated with the utmost care and confidentiality! \nBy using this app, you agree to the terms and conditions and privacy policy found in the menu.";
+"PrivacyPageButtonTitle" = "Understood";
+
+/* Onboarding: Notifications */
+"OnboardingNotificationPageTitle" = "Push Notifications";
+"OnboardingNotificationPageDescription" = "Receive push notifications to keep up to date and be reminded of collection dates.";
+"OnboardingNotificationPageActionButtonTitle" = "Subscribe";
+"OnboardingNotificationPageAlternativeButtonTitle" = "Not now";
+
+/* Onboarding: Location */
+"OnboardingLocationPageTitle" = "Location";
+"OnboardingLocationPageDescription" = "Mein Moers can use your location to find shops close to you and display nearby petrol prices.";
+"Allow" = "Allow";
+"Later" = "Later";
+
+/* Onboarding: User Type */
+"OnboardingUserTypeSelectorPageTitle" = "User";
+"OnboardingUserTypeSelectorPageDescription" = "Are you a visitor or citizen to the city of Moers?";
+"OnboardingUserTypeSelectorPageActionButtonTitle" = "Continue";
+
+/* Onboarding: Rubbish Collection Introduction */
+"RubbishCollectionPageTitle" = "Pick-up Schedule";
+"RubbishCollectionPageDescription" = "Mein Moers can show you the collection dates of the garbage collection and remind you to expose them.";
+"RubbishCollectionPageActionButtonTitle" = "Fortfahren";
+"RubbishCollectionPageAlternativeButtonTitle" = "Not now";
+
+/* Onboarding: Rubbish Collection Reminder */
+"RubbishCollectionReminderPageTitle" = "Pick-up notifications";
+"RubbishCollectionReminderPageDescription" = "Mein Moers can remind you to put your trash cans on the street in time.";
+"RubbishCollectionReminderPageActionButtonTitle" = "Setup";
+"RubbishCollectionReminderPageAlternativeButtonTitle" = "Not now";
+
+/* Onboarding: Petrol */
+"OnboardingPetrolTypePageTitle" = "Petrol Type";
+"OnboardingPetrolTypePageDescription" = "Mein Moers can show you the current petrol prices. Select your preferred petrol type.";
+"OnboardingPetrolTypePageActionButtonTitle" = "Continue";
+
+/* Onboarding: Completion */
+"CompletionPageTitle" = "Setup completed";
+"CompletionPageActionButtonTitle" = "Get started";
+
+/* Tab: Dashboard */
+"DashboardTitleRubbishCollection" = "Waste Schedule";
+"DashboardMoreRubbish" = "More";
+
+/* Dashboard: Petrol */
+"PetrolStationsTitle" = "Petrol Stations";
+"PetrolDescription" = "per L";
+"PriceHeader" = "Price";
+"CurrentLocation" = "Current Location";
+"DashboardPetrolStationInfo" = "Petrol Stations in your area are open";
+"DashboardAction" = "Tap to get list of petrol stations";
+"PetrolErrorPermissionTitle" = "No Permission";
+"PetrolErrorPermissionMessage" = "The app is not allowed to access your current location to calculate current petrol prices.";
+"PetrolErrorLocationTitle" = "Petrol Information";
+"PetrolErrorLocationMessage" = "Only available in Germany";
+
+/* Dashboard: Rubbish */
+"WasteErrorTitle" = "Waste Schedule is deactivated";
+"WasteErrorMessage" = "You can activate the Waste Schedule in the settings.";
+"WasteCollection" = "is being collected on";
+
+/* Tab: News */
+"NewsTitle" = "News";
+
+/* Tab: Map */
+"SearchMap" = "Search on Map";
+"SearchBarPrompt" = "Where do you want to go?";
+"Entries" = "Entries";
+
+/* Map: Parking */
+"SlotsHeader" = "Slots";
+"TotalHeader" = "Total:";
+"FreeHeader" = "Free:";
+"StatusHeader" = "Status:";
+"AddressHeader" = "Address";
+"ParkingLotUnchanged" = "unchanged";
+"ParkingLotDescends" = "falling";
+"ParkingLotAscends" = "raising";
+"ParkingLotUndocumented" = "undocumented";
+
+/* Map: Entries */
+"CallAction" = "Call";
+"WebsiteAction" = "Website";
+
+/* Tab: Other */
+"AboutTitle" = "About";
+"SettingsTitle" = "Settings";
+"PrivacyPolicy" = "Privacy Policy";
+"Legal" = "Legal";
+"Licences" = "Licences";
+"UIAdjustments" = "User Interface";
+"ThemeTitle" = "Theme";
+"RubbishCollectionTitle" = "Pick-up Schedule";
+"TandC" = "Terms and Conditions";
+"SettingsRubbishCollectionTitle" = "Pick-up Schedule";
+"ReminderText" = "Reminder";
+"NotActivated" = "not activated";
+"Activated" = "Activated";
+"Street" = "Street";
+"Petrol" = "Petrol";
+"PetrolType" = "Type";
+"Feedback" = "Feedback";
+
+/* Common */
+"LocalityOpen" = "open";
+"LocalityClosed" = "closed";
+
+/* User Type */
+"User" = "User";
+"UserType" = "Type";
+"Tourist" = "Tourist";
+"Citizen" = "Citizen";
+
+/* Notifications: Rubbish */
+"RubbishCollectionNotificationTitle" = "Pick-up Schedule";
+"RubbishCollectionNotificationBody" = "Tomorrow will be collected: ";
+
+/* Misc */
+"LeaderboardTitle" = "Leaderboard";
+"CommunityTitle" = "Community";
+"AddStoreTitle" = "Add Store";
+"AddTitle" = "Add";
+"PickerPromptText" = "Move the crosshairs to the store on the map!";
+"Events" = "Events";
+"Unknown" = "unknown";

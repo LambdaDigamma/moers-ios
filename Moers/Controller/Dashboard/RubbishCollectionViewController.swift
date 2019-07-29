@@ -85,6 +85,8 @@ class RubbishCollectionViewController: UIViewController {
                 self.items = items
                 self.tableView.reloadData()
                 
+                UIAccessibility.post(notification: .layoutChanged, argument: nil)
+                
             }
             
         })
