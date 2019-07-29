@@ -13,100 +13,13 @@ import MMUI
 
 class DashboardAveragePetrolPriceCardView: CardView {
 
-    private lazy var locationImageView: UIImageView = {
-        
-        let imageView = UIImageView()
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = #imageLiteral(resourceName: "location")
-        
-        return imageView
-        
-    }()
-    
-    private lazy var locationDescriptionLabel: UILabel = {
-        
-        let label = UILabel()
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.medium)
-        label.text = String.localized("CurrentLocation")
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.70
-        label.adjustsFontForContentSizeCategory = true
-        
-        return label
-        
-    }()
-    
-    public lazy var locationLabel: UILabel = {
-        
-        let label = UILabel()
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 32)
-        label.text = "Moers"
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.70
-        label.adjustsFontForContentSizeCategory = true
-        
-        return label
-        
-    }()
-    
-    private lazy var averageImageView: UIImageView = {
-        
-        let imageView = UIImageView()
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = #imageLiteral(resourceName: "average")
-        imageView.contentMode = .scaleAspectFit
-        
-        return imageView
-        
-    }()
-    
-    private lazy var priceLabel: UILabel = {
-        
-        let label = UILabel()
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.monospacedDigitSystemFont(ofSize: 34, weight: UIFont.Weight.bold)
-        label.adjustsFontForContentSizeCategory = true
-        
-        return label
-        
-    }()
-    
-    private lazy var petrolTypeLabel: UILabel = {
-        
-        let label = UILabel()
-        
-        let type = String.localized("PetrolDescription") + " " + PetrolType.localizedForCase(PetrolManager.shared.petrolType)
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.medium)
-        label.text = type.uppercased()
-        label.adjustsFontForContentSizeCategory = true
-        
-        return label
-        
-    }()
-    
-    private lazy var infoLabel: UILabel = {
-        
-        let label = UILabel()
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.text = "8 \(String.localized("DashboardPetrolStationInfo"))"
-        label.numberOfLines = 0
-        label.adjustsFontForContentSizeCategory = true
-        
-        return label
-        
-    }()
+    public lazy var locationLabel = { ViewFactory.label() }()
+    private lazy var locationImageView = { ViewFactory.imageView() }()
+    private lazy var locationDescriptionLabel = { ViewFactory.label() }()
+    private lazy var averageImageView = { ViewFactory.imageView() }()
+    private lazy var priceLabel = { ViewFactory.label() }()
+    private lazy var petrolTypeLabel = { ViewFactory.label() }()
+    private lazy var infoLabel = { ViewFactory.label() }()
     
     public var price: Double = 0 {
         didSet {
@@ -140,6 +53,8 @@ class DashboardAveragePetrolPriceCardView: CardView {
         self.addSubview(infoLabel)
         self.addSubview(petrolTypeLabel)
         
+        self.setupUI()
+        self.setupAccessibility()
         self.setupConstraints()
         self.setupTheming()
         
@@ -147,6 +62,59 @@ class DashboardAveragePetrolPriceCardView: CardView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupUI() {
+        
+        self.locationImageView.contentMode = .scaleAspectFit
+        self.locationImageView.image = #imageLiteral(resourceName: "location")
+        
+        self.locationDescriptionLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.medium)
+        self.locationDescriptionLabel.text = String.localized("CurrentLocation")
+        self.locationDescriptionLabel.adjustsFontSizeToFitWidth = true
+        self.locationDescriptionLabel.minimumScaleFactor = 0.70
+        self.locationDescriptionLabel.adjustsFontForContentSizeCategory = true
+        
+        self.locationLabel.font = UIFont.boldSystemFont(ofSize: 32)
+        self.locationLabel.text = "Moers"
+        self.locationLabel.adjustsFontSizeToFitWidth = true
+        self.locationLabel.minimumScaleFactor = 0.70
+        self.locationLabel.adjustsFontForContentSizeCategory = true
+        
+        self.averageImageView.image = #imageLiteral(resourceName: "average")
+        self.averageImageView.contentMode = .scaleAspectFit
+        
+        self.priceLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 34, weight: UIFont.Weight.bold)
+        self.priceLabel.adjustsFontForContentSizeCategory = true
+        
+        let type = String.localized("PetrolDescription") + " " + PetrolType.localizedForCase(PetrolManager.shared.petrolType)
+        
+        self.petrolTypeLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.medium)
+        self.petrolTypeLabel.text = type.uppercased()
+        self.petrolTypeLabel.adjustsFontForContentSizeCategory = true
+        
+        self.infoLabel.font = UIFont.systemFont(ofSize: 14)
+        self.infoLabel.text = "8 \(String.localized("DashboardPetrolStationInfo"))"
+        self.infoLabel.numberOfLines = 0
+        self.infoLabel.adjustsFontForContentSizeCategory = true
+        
+    }
+    
+    private func setupAccessibility() {
+        
+        accessibilityElements = []
+        
+        self.isAccessibilityElement = true
+        self.accessibilityIdentifier = "DashboardPetrol"
+        self.accessibilityLabel = "Overview of current petrol prices at your location: "
+        
+        self.accessibilityLabel =
+            String.localized("") +
+            "\"\(locationLabel.text ?? String.localized("Unknown"))\""
+            
+        
+        self.accessibilityHint = String.localized("DashboardAction")
+        
     }
     
     private func setupConstraints() {

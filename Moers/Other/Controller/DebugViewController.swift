@@ -47,7 +47,7 @@ class DebugViewController: UIViewController {
         self.setupConstraints()
         self.setupTheming()
         
-        RubbishManager.shared.loadItems(completion: { (items) in
+        RubbishManager.shared.loadItems(completion: { (items: [RubbishCollectionItem]) in
             
             self.rubbishItemsTextView.text = "Collections: \(items.count)\n\n"
             self.rubbishItemsTextView.text = self.rubbishItemsTextView.text + items.map { $0.date + " " + RubbishWasteType.localizedForCase($0.type) }.joined(separator: "\n")
@@ -78,14 +78,15 @@ class DebugViewController: UIViewController {
     
     private func setupConstraints() {
         
-        let constraints = [rubbishItemsTextView.topAnchor.constraint(equalTo: self.safeTopAnchor),
-                           rubbishItemsTextView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 8),
-                           rubbishItemsTextView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor),
-                           rubbishItemsTextView.widthAnchor.constraint(equalTo: notificationItemsTextView.widthAnchor),
-                           notificationItemsTextView.topAnchor.constraint(equalTo: self.safeTopAnchor),
-                           notificationItemsTextView.leftAnchor.constraint(equalTo: rubbishItemsTextView.rightAnchor),
-                           notificationItemsTextView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -8),
-                           notificationItemsTextView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)]
+        let constraints: [NSLayoutConstraint] = [
+            rubbishItemsTextView.topAnchor.constraint(equalTo: self.safeTopAnchor),
+            rubbishItemsTextView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 8),
+            rubbishItemsTextView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor),
+            rubbishItemsTextView.widthAnchor.constraint(equalTo: notificationItemsTextView.widthAnchor),
+            notificationItemsTextView.topAnchor.constraint(equalTo: self.safeTopAnchor),
+            notificationItemsTextView.leftAnchor.constraint(equalTo: rubbishItemsTextView.rightAnchor),
+            notificationItemsTextView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -8),
+            notificationItemsTextView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)]
         
         NSLayoutConstraint.activate(constraints)
         

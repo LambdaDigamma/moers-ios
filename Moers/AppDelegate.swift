@@ -17,6 +17,7 @@ import Crashlytics
 import Gestalt
 import MMAPI
 import MMUI
+import Haneke
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -28,6 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private let gcmMessageIDKey = "gcm.message_id"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        #if DEBUG
+        LaunchArgumentsHandler(userDefaults: UserDefaults.standard).handle()
+        #endif
         
         ThemeManager.default.theme = UserManager.shared.theme
         ThemeManager.default.animated = true
@@ -50,8 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         application.registerForRemoteNotifications()
         application.applicationIconBadgeNumber = 0
-        
-        
         
         return true
     }

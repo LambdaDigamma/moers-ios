@@ -137,25 +137,22 @@ class MainViewController: PulleyViewController {
     
     private func loadCameras() {
         
-        CameraManager.shared.get { (result) in
+        let cameras = CameraManager.shared.getCameras()
+        
+        cameras.observeNext { (cameras: [Camera]) in
             
-            switch result {
-                
-            case .success(let cameras):
-                
-                self.eventBus.notify(CameraDatasource.self) { subscriber in
-                    subscriber.didReceiveCameras(cameras)
-                }
-                
-                self.locations = self.locations.filter { !($0 is Camera) }
-                self.locations.append(contentsOf: cameras)
-                
-            case .failure(let error):
-                print(error.localizedDescription)
-                
+            self.eventBus.notify(CameraDatasource.self) { subscriber in
+                subscriber.didReceiveCameras(cameras)
             }
             
-        }
+            self.locations = self.locations.filter { !($0 is Camera) }
+            self.locations.append(contentsOf: cameras)
+            
+        }.dispose(in: bag)
+        
+        cameras.observeFailed { (error: Error) in
+            print(error.localizedDescription)
+        }.dispose(in: bag)
         
     }
     

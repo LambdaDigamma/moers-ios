@@ -7,7 +7,7 @@
 //
 
 // Server URL
-ROOT_URL = http:/$()/localhost:8080/
+ROOT_URL = http:/$()/localhost:8080/api/v2/
 
 // Auth
 CLIENT_ID = 2

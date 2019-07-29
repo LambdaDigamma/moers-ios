@@ -112,16 +112,6 @@ struct AnalyticsManager {
         
     }
     
-    public func logOpenedEventDetail(_ event: Event) {
-        
-        if shouldLog {
-            Answers.logCustomEvent(withName: "Opened Event Details", customAttributes: ["name": event.name,
-                                                                                        "time": event.parsedTime,
-                                                                                        "date": event.date])
-        }
-        
-    }
-    
     public func logOpenedOther() {
         
         if shouldLog {

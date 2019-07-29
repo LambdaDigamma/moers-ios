@@ -23,7 +23,7 @@ class MMEventsViewController: EventsViewController {
     
     override func loadData() {
         
-        let eventObserver = EventManager.shared.getMFEvents(forceReload: true)
+        let eventObserver = EventManager.shared.getEvents(shouldReload: true)
         
         eventObserver.observeNext { events in
             self.events = events
