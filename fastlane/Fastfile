@@ -90,8 +90,8 @@ platform :ios do
 
     version = options[:version]
 
-    increment(version: version)
     increment_build()
+    increment(version: version)
 
     match(type: "appstore")
     gym(scheme: "Moers")

@@ -17,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>2.2</string>
 	<key>CFBundleVersion</key>
-	<string>31</string>
+	<string>32</string>
 	<key>CLIENT_ID</key>
 	<string>$(CLIENT_ID)</string>
 	<key>CLIENT_SECRET</key>
@@ -53,7 +53,7 @@
 	<key>ROOT_URL</key>
 	<string>$(ROOT_URL)</string>
 	<key>UILaunchStoryboardName</key>
-	<string>Assets/LaunchScreen</string>
+	<string>Launch Screen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

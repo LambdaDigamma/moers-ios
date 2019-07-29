@@ -14,13 +14,13 @@
 		DF0CB49D2082B78C00CC0AA8 /* PermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB49C2082B78C00CC0AA8 /* PermissionsManager.swift */; };
 		DF0CB49F2082B90900CC0AA8 /* FeedbackGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB49E2082B90900CC0AA8 /* FeedbackGenerators.swift */; };
 		DF0CB4A12082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4A02082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift */; };
-		DF0CB4A52082BE0F00CC0AA8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */; };
 		DF0CB4AB208357A800CC0AA8 /* MapItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4AA208357A800CC0AA8 /* MapItemContentView.swift */; };
 		DF0CB4AD20838FD100CC0AA8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4AC20838FD100CC0AA8 /* MainViewController.swift */; };
 		DF0CB4AF2085B65200CC0AA8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4AE2085B65200CC0AA8 /* MapViewController.swift */; };
 		DF0CB4B12085B66600CC0AA8 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4B02085B66600CC0AA8 /* ContentViewController.swift */; };
 		DF0CB4B32087092F00CC0AA8 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4B22087092F00CC0AA8 /* SearchResultTableViewCell.swift */; };
-		DF1077B822BB807E001DDFD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF1A496B1F6AAB7000E9108B /* LaunchScreen.storyboard */; };
+		DF16582E22EF8C990033D218 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */; };
+		DF16583022EF90D90033D218 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF16582F22EF90D90033D218 /* Launch Screen.storyboard */; };
 		DF199BE021CF9C7000C89966 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF199BDF21CF9C7000C89966 /* NewsItem.swift */; };
 		DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A49621F6AAB7000E9108B /* AppDelegate.swift */; };
 		DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49691F6AAB7000E9108B /* Assets.xcassets */; };
@@ -214,11 +214,12 @@
 		DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
 		DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
+		DF16582F22EF90D90033D218 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "../../../../../../../System/Volumes/Data/Users/lennart/Documents/Development/iOS/Moers/Moers/Launch Screen.storyboard"; sourceTree = "<group>"; };
+		DF16583122EF918A0033D218 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		DF199BDF21CF9C7000C89966 /* NewsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
 		DF1A495F1F6AAB7000E9108B /* Moers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1A49621F6AAB7000E9108B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		DF1A49691F6AAB7000E9108B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DF1A496C1F6AAB7000E9108B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF1A496E1F6AAB7000E9108B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnnotationView.swift; sourceTree = "<group>"; };
 		DF21B2FD20B9D8A900478A33 /* Licenses.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Licenses.plist; path = Moers/Assets/Licenses.plist; sourceTree = SOURCE_ROOT; };
@@ -691,6 +692,7 @@
 				DF1077B922BB81DD001DDFD3 /* Utility */,
 				DFB64DCC20389FDB00173A80 /* Crashlytics.framework */,
 				DFB64DCD20389FDB00173A80 /* Fabric.framework */,
+				DF16582F22EF90D90033D218 /* Launch Screen.storyboard */,
 			);
 			path = Moers;
 			sourceTree = "<group>";
@@ -847,7 +849,7 @@
 		DF6D9E4D22BB7BCA00BD3132 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				DF1A496B1F6AAB7000E9108B /* LaunchScreen.storyboard */,
+				DF16583122EF918A0033D218 /* Launch Screen.storyboard */,
 				DFA9EF0220B40C16008590EA /* Moers.gpx */,
 				DF21B2FD20B9D8A900478A33 /* Licenses.plist */,
 				DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */,
@@ -1137,8 +1139,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF1077B822BB807E001DDFD3 /* LaunchScreen.storyboard in Resources */,
-				DF0CB4A52082BE0F00CC0AA8 /* Localizable.strings in Resources */,
+				DF16582E22EF8C990033D218 /* Localizable.strings in Resources */,
+				DF16583022EF90D90033D218 /* Launch Screen.storyboard in Resources */,
 				DF44D58F2126F83B00F8AC0C /* DetailViewControllers.storyboard in Resources */,
 				DF44D58D2125FE9700F8AC0C /* ContentDrawer.storyboard in Resources */,
 				DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */,
@@ -1408,14 +1410,6 @@
 				DF0CB4A92082BE4100CC0AA8 /* de */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		DF1A496B1F6AAB7000E9108B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DF1A496C1F6AAB7000E9108B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 		DFF8F2BB20E6DC32001A9EBB /* Interface.storyboard */ = {
