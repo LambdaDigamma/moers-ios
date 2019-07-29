@@ -45,7 +45,7 @@ Release a new version of Mein Moers
 ```
 fastlane ios screenshots
 ```
-Take Screenshots and Upload them to AppStore Connect
+Take Screenshots and upload them to AppStore Connect
 
 ----
 

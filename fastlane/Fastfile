@@ -27,7 +27,7 @@ platform :ios do
 
     # Set App plist version
     set_info_plist_value(
-      path: "Moers/Configs/Info.plist",
+      path: "Moers/Config/Info.plist",
       key: "CFBundleShortVersionString", 
       value: version
     )
@@ -47,7 +47,7 @@ platform :ios do
     # Commit plists to git
     git_commit(
       path: [
-        "Moers/Configs/Info.plist",
+        "Moers/Config/Info.plist",
         "MoersUITests/Info.plist",
         "MoersTests/Info.plist"
       ],
