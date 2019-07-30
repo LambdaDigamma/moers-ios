@@ -246,7 +246,7 @@ class SettingsViewController: UIViewController {
         
         guard let tabBarController = self.tabBarController as? TabBarController else { return }
         
-        tabBarController.dashboardViewController.reloadUI()
+        tabBarController.updateDashboard()
         
     }
     

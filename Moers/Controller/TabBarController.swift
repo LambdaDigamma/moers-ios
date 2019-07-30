@@ -15,20 +15,13 @@ import MMUI
 
 class TabBarController: ESTabBarController, UITabBarControllerDelegate {
 
-    lazy var dashboardViewController = { DashboardViewController() }()
-    lazy var newsViewController = { NewsViewController() }()
-    lazy var eventViewController = { MMEventsViewController() }()
-    lazy var otherViewController = { OtherViewController() }()
-    lazy var mainViewController: MainViewController = {
-        
-        let mapViewController = MapViewController()
-        let contentViewController = UIStoryboard(name: "ContentDrawer", bundle: nil).instantiateViewController(withIdentifier: "DrawerContentViewController")
-        
-        let mainViewController = MainViewController(contentViewController: mapViewController, drawerViewController: contentViewController)
-        
-        return mainViewController
-        
-    }()
+    let firstLaunch: FirstLaunch
+    
+    let dashboardViewController: DashboardViewController
+    let newsViewController: NewsViewController
+    let mainViewController: MainViewController
+    let eventViewController: MMEventsViewController
+    let otherViewController: OtherViewController
     
     lazy var bulletinManager: BLTNItemManager = {
         let onboarding = OnboardingManager.shared.makeOnboarding()
@@ -40,12 +33,21 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         return BLTNItemManager(rootItem: page)
     }()
     
-    private var firstLaunch: FirstLaunch
-    
     init() {
-        self.firstLaunch = FirstLaunch(userDefaults: .standard, key: "FirstLaunch.WasLaunchedBefore")
+        self.firstLaunch = FirstLaunch(userDefaults: .standard, key: Constants.firstLaunch)
+        
+        let mapViewController = MapViewController()
+        let contentViewController = UIStoryboard(name: "ContentDrawer", bundle: nil).instantiateViewController(withIdentifier: "DrawerContentViewController")
+        
+        self.dashboardViewController = DashboardViewController()
+        self.newsViewController = NewsViewController()
+        self.mainViewController = MainViewController(contentViewController: mapViewController, drawerViewController: contentViewController)
+        self.eventViewController = MMEventsViewController()
+        self.otherViewController = OtherViewController()
         
         super.init(nibName: nil, bundle: nil)
+        
+        self.delegate = self
         
         if isSnapshotting() {
             self.setupMocked()
@@ -61,12 +63,10 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - UIViewController Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.firstLaunch = FirstLaunch(userDefaults: .standard, key: "FirstLaunch.WasLaunchedBefore")
-        
-        self.delegate = self
         
         self.loadData()
         
@@ -142,12 +142,12 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         super.viewDidAppear(animated)
         
         if (firstLaunch.isFirstLaunch || !OnboardingManager.shared.userDidCompleteSetup) && !isSnapshotting() {
-            
             showBulletin()
-            
         }
         
     }
+    
+    // MARK: - UITabBarDelegate
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         super.tabBar(tabBar, didSelect: item)
@@ -163,15 +163,13 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
                 
                 item.contentView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(search)))
                 
-                self.shouldHijackHandler = {
-                    tabbarController, viewController, index in
+                self.shouldHijackHandler = { _, _, index in
                     
                     return index == 2
                     
                 }
                 
-                self.didHijackHandler = {
-                    tabbarController, viewController, index in
+                self.didHijackHandler = { _, _, _ in
                     
                     self.search()
                     
@@ -193,6 +191,8 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         }
         
     }
+    
+    // MARK: - UI
     
     private func setupTheming() {
         
@@ -223,15 +223,11 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
                     nav.navigationBar.isTranslucent = true
                     
                     if theme.statusBarStyle == .lightContent {
-                        
                         self.tabBar.barStyle = .black
                         nav.navigationBar.barStyle = .black
-                        
                     } else {
-                        
                         self.tabBar.barStyle = .default
                         nav.navigationBar.barStyle = .default
-                        
                     }
                     
                 }
@@ -239,6 +235,30 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             }
             
         }
+        
+    }
+    
+    // MARK: - Actions
+    
+    public func updateDashboard() {
+        dashboardViewController.reloadUI()
+        dashboardViewController.triggerUpdate()
+    }
+    
+    @objc func setupDidComplete() {
+        
+        OnboardingManager.shared.userDidCompleteSetup = true
+        AnalyticsManager.shared.logCompletedOnboarding()
+        
+        self.loadData()
+        self.updateDashboard()
+        
+    }
+    
+    @objc func search() {
+        
+        mainViewController.setDrawerPosition(position: .open, animated: true)
+        mainViewController.contentViewController.searchBar.becomeFirstResponder()
         
     }
     
@@ -252,9 +272,61 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
     }
     
+    private func makeRubbishMigrationPage() -> BLTNPageItem {
+        
+        let page = OnboardingManager.shared.makeRubbishStreetPage()
+        page.descriptionText = "Wähle Deine Straße erneut aus, um die aktuellen Abfuhrtermine der Müllabfuhr angezeigt zu bekommen."
+        
+        page.actionHandler = { item in
+            
+            guard let item = item as? RubbishStreetPickerItem else { return }
+            
+            let selectedStreet = item.streets[item.picker.currentSelectedRow]
+            
+            RubbishManager.shared.register(selectedStreet)
+            RubbishManager.shared.isEnabled = true
+            
+            if RubbishManager.shared.remindersEnabled {
+                RubbishManager.shared.registerNotifications(at: RubbishManager.shared.reminderHour ?? 20,
+                                                            minute: RubbishManager.shared.reminderHour ?? 00)
+            }
+            
+            item.manager?.dismissBulletin(animated: true)
+            
+        }
+        
+        page.alternativeHandler = { item in
+            
+            RubbishManager.shared.isEnabled = false
+            RubbishManager.shared.remindersEnabled = false
+            RubbishManager.shared.disableReminder()
+            
+            item.manager?.dismissBulletin(animated: true)
+            
+            self.updateDashboard()
+            
+        }
+        
+        return page
+        
+    }
+    
+    // MARK: - Data Handling
+    
+    private func loadData() {
+        
+        if LocationManager.shared.authorizationStatus == .authorizedWhenInUse
+            || LocationManager.shared.authorizationStatus == .authorizedAlways {
+            
+            LocationManager.shared.getCurrentLocation(completion: { (_, _) in })
+            
+        }
+        
+    }
+    
     private func loadRubbishData() {
         
-//        RubbishManager.shared.street = "Adler"
+        //        RubbishManager.shared.street = "Adler"
         
         if RubbishManager.shared.isEnabled && !firstLaunch.isFirstLaunch && OnboardingManager.shared.userDidCompleteSetup && (RubbishManager.shared.rubbishStreet?.street ?? "") != "" {
             
@@ -286,6 +358,12 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
     }
     
+    // MARK: - Helper
+    
+    private func isSnapshotting() -> Bool {
+        return UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT")
+    }
+    
     private func setupMocked() {
         
         let rubbishCollectionStreet = RubbishCollectionStreet(street: "Adlerstraße",
@@ -301,81 +379,6 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         RubbishManager.shared.isEnabled = true
         RubbishManager.shared.register(rubbishCollectionStreet)
         
-    }
-    
-    @objc func setupDidComplete() {
-        
-        OnboardingManager.shared.userDidCompleteSetup = true
-        AnalyticsManager.shared.logCompletedOnboarding()
-        
-        self.loadData()
-        
-        dashboardViewController.reloadUI()
-        dashboardViewController.triggerUpdate()
-        
-    }
-    
-    @objc func search() {
-        
-        mainViewController.setDrawerPosition(position: .open, animated: true)
-        mainViewController.contentViewController.searchBar.becomeFirstResponder()
-        
-    }
-    
-    private func makeRubbishMigrationPage() -> BLTNPageItem {
-        
-        let page = OnboardingManager.shared.makeRubbishStreetPage()
-        page.descriptionText = "Wähle Deine Straße erneut aus, um die aktuellen Abfuhrtermine der Müllabfuhr angezeigt zu bekommen."
-        
-        page.actionHandler = { item in
-            
-            guard let item = item as? RubbishStreetPickerItem else { return }
-            
-            let selectedStreet = item.streets[item.picker.currentSelectedRow]
-            
-            RubbishManager.shared.register(selectedStreet)
-            RubbishManager.shared.isEnabled = true
-            
-            if RubbishManager.shared.remindersEnabled {
-                RubbishManager.shared.registerNotifications(at: RubbishManager.shared.reminderHour ?? 20, minute: RubbishManager.shared.reminderHour ?? 00)
-            }
-            
-            item.manager?.dismissBulletin(animated: true)
-            
-        }
-        
-        page.alternativeHandler = { item in
-            
-            RubbishManager.shared.isEnabled = false
-            RubbishManager.shared.remindersEnabled = false
-            RubbishManager.shared.disableReminder()
-            
-            item.manager?.dismissBulletin(animated: true)
-            
-            self.dashboardViewController.reloadUI()
-            self.dashboardViewController.triggerUpdate()
-            
-        }
-        
-        return page
-        
-    }
-    
-    // MARK: - Data Handling
-    
-    private func loadData() {
-        
-        if LocationManager.shared.authorizationStatus == .authorizedWhenInUse
-            || LocationManager.shared.authorizationStatus == .authorizedAlways {
-            
-            LocationManager.shared.getCurrentLocation(completion: { (_, _) in })
-            
-        }
-        
-    }
-    
-    private func isSnapshotting() -> Bool {
-        return UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT")
     }
     
 }

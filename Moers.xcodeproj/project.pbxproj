@@ -84,6 +84,7 @@
 		DF75734321771D3100953DA1 /* LFSearchViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75734221771D3100953DA1 /* LFSearchViewDelegate.swift */; };
 		DF75734521771D6800953DA1 /* LFSearchViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75734421771D6800953DA1 /* LFSearchViewDataSource.swift */; };
 		DF757347217725AC00953DA1 /* LFSearchViewDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF757346217725AC00953DA1 /* LFSearchViewDefaults.swift */; };
+		DF7D4B5E22F0D53400126AF7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7D4B5D22F0D53400126AF7 /* Constants.swift */; };
 		DF7E702A21DA39A300A43B84 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF7E702921DA39A300A43B84 /* FirebaseMessaging.framework */; };
 		DF8281B621CFA74F00C3B3CE /* TweetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281B521CFA74F00C3B3CE /* TweetCollectionViewCell.swift */; };
 		DF855C2420C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF855C2320C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift */; };
@@ -292,6 +293,7 @@
 		DF75734221771D3100953DA1 /* LFSearchViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewDelegate.swift; sourceTree = "<group>"; };
 		DF75734421771D6800953DA1 /* LFSearchViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewDataSource.swift; sourceTree = "<group>"; };
 		DF757346217725AC00953DA1 /* LFSearchViewDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewDefaults.swift; sourceTree = "<group>"; };
+		DF7D4B5D22F0D53400126AF7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../../../../../../../../System/Volumes/Data/Users/lennart/Documents/Development/iOS/Moers/Moers/Config/Constants.swift; sourceTree = "<group>"; };
 		DF7E702921DA39A300A43B84 /* FirebaseMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseMessaging.framework; path = Frameworks/FirebaseMessaging.framework; sourceTree = "<group>"; };
 		DF8281B521CFA74F00C3B3CE /* TweetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCollectionViewCell.swift; sourceTree = "<group>"; };
 		DF855C2320C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolStationCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 				DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */,
 				DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */,
 				DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */,
+				DF7D4B5D22F0D53400126AF7 /* Constants.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -1286,6 +1289,7 @@
 				DF0CB49D2082B78C00CC0AA8 /* PermissionsManager.swift in Sources */,
 				DFD73690211E424E00826C47 /* SelectorBulletinPage.swift in Sources */,
 				DFB4D76920B062BE00C8D179 /* SettingsViewController.swift in Sources */,
+				DF7D4B5E22F0D53400126AF7 /* Constants.swift in Sources */,
 				DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */,
 				DF461CBA20E226DE00600C0E /* ViewFactory.swift in Sources */,
 				DFDD3F7020B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift in Sources */,

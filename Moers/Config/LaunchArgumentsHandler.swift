@@ -29,4 +29,8 @@ struct LaunchArgumentsHandler {
         
     }
     
+    private func isSnapshotting() -> Bool {
+        return UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT")
+    }
+    
 }
