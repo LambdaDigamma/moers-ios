@@ -13,7 +13,9 @@ class MoersUITests: XCTestCase {
     func testExample() {
         
         let app = XCUIApplication()
+        
         setupSnapshot(app)
+        
         app.launchEnvironment["-Test"] = "true"
         app.launch()
         
@@ -23,22 +25,16 @@ class MoersUITests: XCTestCase {
             XCUIDevice.shared.orientation = .portrait
         }
         
-        let tabBarsQuery = app.tabBars
+        snapshot("01-Dashboard", timeWaitingForIdle: 10)
         
-        snapshot("01-Dashboard", timeWaitingForIdle: 15)
-        
-        tabBarsQuery.children(matching: .other).element(boundBy: 1).tap()
-        
+        app.tabBars["TabNews"].tap()
         snapshot("02-News", timeWaitingForIdle: 5)
         
-        tabBarsQuery.children(matching: .other).element(boundBy: 2).tap()
-        
+        app.tabBars["TabMap"].tap()
         snapshot("03-Map", timeWaitingForIdle: 10)
         
-        tabBarsQuery.children(matching: .other).element(boundBy: 3).tap()
-
+        app.tabBars["TabEvents"].tap()
         snapshot("04-Event", timeWaitingForIdle: 5)
-        
         
     }
     

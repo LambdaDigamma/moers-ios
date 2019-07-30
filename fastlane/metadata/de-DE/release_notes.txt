@@ -1,9 +1,1 @@
-Du lebst in der Stadt Moers, bist einfach nur zu Besuch oder willst Dich ein bisschen in der Stadt und Geschäften umsehen? - dann ist diese App genau das Richtige für Dich!
-Bewege Dich mit interaktiven 360° Panoramen virtuell bequem von der Couch aus durch die Stadt und Geschäfte.
-Finde nach Branchen aufgeschlüsselte Geschäfte und Gastronomen, prüfe, ob sie noch geöffnet haben und starte die Navigation!
-Suche Dir den besten Parkplatz für Deinen Besuch in der Innenstadt mit aktuellen Parkzahlen und überprüfe, wie sich ihre Belegung in der letzten Zeit entwickelt hat, um nicht unnötig durch die Stadt fahren zu müssen!
-Damit Du auch wirklich nicht vergisst, die Mülltonne an die Straße zu stellen, kannst Du jetzt auch am Vorabend mit einer Push-Meldung an die Leerung erinnert werden.
-Die aktuellen Kraftstoffpreise können abgerufen und verglichen werden!
-Bewohnern der Stadt Moers hilft jetzt der straßen-basierte Abfallkalendar den Überblick über Leerungstermine zu behalten.
-Damit Du auch wirklich nicht vergisst, die Mülltonne an die Straße zu stellen, kannst Du auch am Vorabend mit einer Push-Meldung an die Leerung erinnert werden.
-Um nie wieder eine tolle Veranstaltung zu verpassen, werden Veranstaltungen aus Moers und Umgebung angezeigt.
+Die Veranstaltungsansicht wurde überarbeitet und zeigt die Veranstaltungen nun in einer übersichtlicheren Form an. Auch unter der Haube wurden einige Verbesserungen vorgenommen.
