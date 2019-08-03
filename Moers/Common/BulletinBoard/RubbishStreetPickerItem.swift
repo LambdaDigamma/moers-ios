@@ -13,33 +13,42 @@ import CoreLocation
 import MMAPI
 import MMUI
 
-class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataSource, LocationManagerDelegate {
+class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataSource {
 
-    lazy var picker = PickerView()
+    private let locationManager: LocationManagerProtocol
+    private let rubbishManager: RubbishManagerProtocol
+    private let geocodingManager: GeocodingManagerProtocol
     
-    var streets: [RubbishCollectionStreet] = []
+    private var streets: [RubbishCollectionStreet] = []
+    private var accentColor = UIColor.clear
+    private var decentColor = UIColor.clear
     
-    var accentColor = UIColor.clear
-    var decentColor = UIColor.clear
+    private lazy var picker = PickerView()
     
-    override init(title: String) {
+    public var selectedStreet: RubbishCollectionStreet {
+        return streets[picker.currentSelectedRow]
+    }
+    
+    init(title: String,
+         locationManager: LocationManagerProtocol,
+         geocodingManager: GeocodingManagerProtocol,
+         rubbishManager: RubbishManagerProtocol) {
+        
+        self.locationManager = locationManager
+        self.geocodingManager = geocodingManager
+        self.rubbishManager = rubbishManager
+        
         super.init(title: title)
+        
+        self.setupPicker()
+        self.loadStreets()
+        
+    }
+    
+    private func setupPicker() {
         
         picker.delegate = self
         picker.dataSource = self
-        
-        if AppConfig.shared.loadData {
-            
-            RubbishManager.shared.loadRubbishCollectionStreets { (streets) in
-                
-                self.streets = streets
-                self.picker.reloadPickerView()
-                
-                self.getLocationStreet()
-                
-            }
-            
-        }
         
         ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
             
@@ -50,6 +59,61 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
         }
         
     }
+    
+    private func loadStreets() {
+        
+        rubbishManager.loadRubbishCollectionStreets { streets in
+            
+            self.streets = streets
+            self.picker.reloadPickerView()
+            
+            self.loadUserLocationForStreetEstimation()
+            
+        }
+        
+    }
+    
+    private func loadUserLocationForStreetEstimation() {
+        
+        locationManager.authorizationStatus.observeNext { authorizationStatus in
+            
+            if authorizationStatus == .authorizedWhenInUse {
+                self.estimateUserStreet()
+            }
+            
+        }.dispose(in: bag)
+        
+    }
+    
+    private func estimateUserStreet() {
+        
+        locationManager.requestCurrentLocation()
+        locationManager.location.observeNext { location in
+            
+            self.checkStreetExistance(for: location)
+            
+        }.dispose(in: bag)
+        
+    }
+    
+    private func checkStreetExistance(for location: CLLocation) {
+        
+        geocodingManager.placemark(from: location).observeNext { placemark in
+            
+            let userStreet = placemark.street
+            
+            if let rubbishStreet = self.streets.filter({ $0.street.contains(userStreet) }).first {
+                
+                self.picker.selectRow(self.streets.firstIndex(of: rubbishStreet) ?? 0, animated: true)
+                self.picker.adjustCurrentSelectedAfterOrientationChanges()
+                
+            }
+            
+        }.dispose(in: bag)
+        
+    }
+    
+    // MARK: - BLNTPageItem
     
     override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         
@@ -62,16 +126,7 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
         
     }
     
-    private func getLocationStreet() {
-        
-        if LocationManager.shared.authorizationStatus == .authorizedWhenInUse {
-            
-            LocationManager.shared.delegate = self
-            LocationManager.shared.requestCurrentLocation()
-            
-        }
-        
-    }
+    // MARK: - PickerViewDelegate / PickerViewDataSource
     
     func pickerViewNumberOfRows(_ pickerView: PickerView) -> Int {
         return streets.count
@@ -99,27 +154,6 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
             label.textColor = decentColor
         }
         
-    }
-    
-    func didReceiveCurrentLocation(location: CLLocation) {
-        
-        GeocodingManager.shared.street(from: location) { (street) in
-            
-            guard let street = street else { return }
-            
-            if let street = self.streets.filter({ $0.street.contains(street) }).first {
-                
-                self.picker.selectRow(self.streets.firstIndex(where: { $0.street == street.street }) ?? 0, animated: true)
-                self.picker.adjustCurrentSelectedAfterOrientationChanges()
-                
-            }
-            
-        }
-        
-    }
-    
-    func didFailWithError(error: Error) {
-        print(error.localizedDescription)
     }
     
 }

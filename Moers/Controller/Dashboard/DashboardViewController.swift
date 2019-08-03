@@ -19,6 +19,26 @@ class DashboardViewController: CardCollectionViewController {
     
     var components: [BaseComponent] = []
     
+    private let locationManager: LocationManagerProtocol
+    private let geocodingManager: GeocodingManagerProtocol
+    private let petrolManager: PetrolManagerProtocol
+    
+    init(locationManager: LocationManagerProtocol,
+         geocodingManager: GeocodingManagerProtocol,
+         petrolManager: PetrolManagerProtocol) {
+        
+        self.locationManager = locationManager
+        self.geocodingManager = geocodingManager
+        self.petrolManager = petrolManager
+        
+        super.init(nibName: nil, bundle: nil)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
@@ -55,7 +75,12 @@ class DashboardViewController: CardCollectionViewController {
     
     private func registerComponents() {
   
-        components.append(AveragePetrolPriceComponent(viewController: self))
+        let petrolPriceComponent = AveragePetrolPriceComponent(viewController: self,
+                                                               locationManager: locationManager,
+                                                               geocodingManager: geocodingManager,
+                                                               petrolManager: petrolManager)
+        
+        components.append(petrolPriceComponent)
         
         if UserManager.shared.user.type == .citizen {
             components.append(RubbishCollectionComponent(viewController: self))

@@ -31,6 +31,20 @@ class MapLocationPickerViewController: UIViewController {
     private var currentPlace: String = ""
     private var currentPostcode: String = ""
     
+    private let locationManager: LocationManagerProtocol
+    
+    init(locationManager: LocationManagerProtocol) {
+        
+        self.locationManager = locationManager
+        
+        super.init(nibName: nil, bundle: nil)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     weak var delegate: MapLocationPickerViewControllerDelegate?
     
     override func viewDidLoad() {
@@ -62,14 +76,22 @@ class MapLocationPickerViewController: UIViewController {
     
     private func setupUI() {
         
-        let coordinate = LocationManager.shared.lastLocation?.coordinate ?? CLLocationCoordinate2D(latitude: 51.4516, longitude: 6.6255)
+        self.setupMap(centeringOn: CLLocationCoordinate2D(latitude: 51.4516, longitude: 6.6255))
         
-        let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)) // 0.0015
+        locationManager.authorizationStatus.observeNext { authorizationStatus in
+            
+            if authorizationStatus == .authorizedWhenInUse {
+                self.locationManager.requestCurrentLocation()
+                self.locationManager.location.observeOn(.main).observeNext(with: { location in
+                    self.setupMap(centeringOn: location.coordinate)
+                }).dispose(in: self.bag)
+            }
+            
+        }.dispose(in: bag)
         
         mapView.delegate = self
         mapView.showsUserLocation = true
-        mapView.setCenter(coordinate, animated: false)
-        mapView.setRegion(region, animated: false)
+        
         pointer.image = #imageLiteral(resourceName: "geolocation").withRenderingMode(.alwaysTemplate)
         pointer.tintColor = UIColor.black
         promptLabel.backgroundColor = UIColor.darkGray
@@ -125,18 +147,24 @@ class MapLocationPickerViewController: UIViewController {
         
     }
     
+    private func setupMap(centeringOn coordinate: CLLocationCoordinate2D) {
+        
+        let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+        
+        mapView.setCenter(coordinate, animated: false)
+        mapView.setRegion(region, animated: false)
+        
+    }
+    
     @objc private func focusOnUserLocation() {
         
-        if let coordinate = LocationManager.shared.lastLocation?.coordinate {
+        locationManager.requestCurrentLocation()
+        locationManager.location.observeOn(.main).observeNext { location in
             
-            let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)) // 0.0015
+            self.setupMap(centeringOn: location.coordinate)
+            self.executeReverseGeocode()
             
-            mapView.setCenter(coordinate, animated: true)
-            mapView.setRegion(region, animated: true)
-            
-            executeReverseGeocode()
-            
-        }
+        }.dispose(in: bag)
         
     }
     

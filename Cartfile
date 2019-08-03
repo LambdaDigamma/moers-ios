@@ -13,5 +13,5 @@ github "sgr-ksmt/Alertift" ~> 3.2
 github "ElaWorkshop/TagListView" ~> 1.0
 github "nmdias/FeedKit" ~> 8.0
 github "onevcat/Kingfisher" ~> 4.0
-github "LambdaDigamma/mmapi-ios" ~> 0.0.18
+github "LambdaDigamma/mmapi-ios" ~> 0.0.25
 github "LambdaDigamma/mmui-ios" ~> 0.0.13

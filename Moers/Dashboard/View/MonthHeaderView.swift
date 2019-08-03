@@ -12,22 +12,14 @@ import MMUI
 
 class MonthHeaderView: UITableViewHeaderFooterView {
 
-    lazy var titleLabel: UILabel = {
-        
-        var label = UILabel()
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        
-        return label
-        
-    }()
+    lazy var titleLabel = { ViewFactory.label() }()
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
         self.contentView.addSubview(titleLabel)
         
+        self.setupUI()
         self.setupConstraints()
         self.setupTheming()
         
@@ -35,6 +27,12 @@ class MonthHeaderView: UITableViewHeaderFooterView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupUI() {
+        
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        
     }
     
     private func setupConstraints() {

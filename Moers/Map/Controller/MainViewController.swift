@@ -10,18 +10,36 @@ import UIKit
 import Pulley
 import EventBus
 import MMAPI
+import CoreLocation
 
 class MainViewController: PulleyViewController {
 
-    private let eventBus = EventBus()
-    
     public var mapViewController: MapViewController!
     public var contentViewController: ContentViewController!
-    public lazy var detailViewController: DetailViewController! = { DetailViewController() }()
-    
     public var locations: [Location] = []
+    public lazy var detailViewController = { DetailViewController(locationManager: locationManager) }()
     
-    required init(contentViewController: UIViewController, drawerViewController: UIViewController) {
+    private let locationManager: LocationManagerProtocol
+    private let petrolManager: PetrolManagerProtocol
+    private let cameraManager: CameraManagerProtocol
+    private let entryManager: EntryManagerProtocol
+    private let parkingLotManager: ParkingLotManagerProtocol
+    private let eventBus: EventBus
+    
+    required init(contentViewController: UIViewController,
+                  drawerViewController: UIViewController,
+                  locationManager: LocationManagerProtocol,
+                  petrolManager: PetrolManagerProtocol,
+                  cameraManager: CameraManagerProtocol,
+                  entryManager: EntryManagerProtocol,
+                  parkingLotManager: ParkingLotManagerProtocol) {
+        
+        self.eventBus = EventBus()
+        self.locationManager = locationManager
+        self.petrolManager = petrolManager
+        self.cameraManager = cameraManager
+        self.entryManager = entryManager
+        self.parkingLotManager = parkingLotManager
         
         super.init(contentViewController: contentViewController, drawerViewController: drawerViewController)
         
@@ -37,6 +55,10 @@ class MainViewController: PulleyViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    required init(contentViewController: UIViewController, drawerViewController: UIViewController) {
+        fatalError("init(contentViewController:drawerViewController:) has not been implemented")
     }
     
     // MARK: - UIViewController Lifecycle
@@ -88,7 +110,7 @@ class MainViewController: PulleyViewController {
     
     private func loadEntries() {
         
-        EntryManager.shared.get { (result) in
+        entryManager.get { (result) in
             
             switch result {
                 
@@ -112,7 +134,7 @@ class MainViewController: PulleyViewController {
     
     private func loadParkingLots() {
         
-        ParkingLotManager.shared.get { (result) in
+        parkingLotManager.get { (result) in
             
             switch result {
                 
@@ -137,7 +159,7 @@ class MainViewController: PulleyViewController {
     
     private func loadCameras() {
         
-        let cameras = CameraManager.shared.getCameras()
+        let cameras = cameraManager.getCameras(shouldReload: false)
         
         cameras.observeNext { (cameras: [Camera]) in
             
@@ -158,14 +180,24 @@ class MainViewController: PulleyViewController {
     
     private func loadPetrolStations() {
         
-        let stations = PetrolManager.shared.cachedStations ?? []
+        let preferredPetrolType = petrolManager.petrolType
         
-        self.eventBus.notify(PetrolDatasource.self) { subscriber in
-            subscriber.didReceivePetrolStations(stations)
-        }
+        let petrolStations = petrolManager.getPetrolStations(coordinate: CLLocationCoordinate2D(latitude: 51.4516, longitude: 6.6255),
+                                                             radius: 10,
+                                                             sorting: .distance,
+                                                             type: preferredPetrolType,
+                                                             shouldReload: false)
         
-        self.locations = self.locations.filter { !($0 is PetrolStation) }
-        self.locations.append(contentsOf: stations)
+        petrolStations.observeNext { stations in
+            
+            self.eventBus.notify(PetrolDatasource.self) { subscriber in
+                subscriber.didReceivePetrolStations(stations)
+            }
+            
+            self.locations = self.locations.filter { !($0 is PetrolStation) }
+            self.locations.append(contentsOf: stations)
+            
+        }.dispose(in: bag)
         
     }
     

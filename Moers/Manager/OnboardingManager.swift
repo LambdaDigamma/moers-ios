@@ -12,13 +12,31 @@ import Gestalt
 import CoreLocation
 import MMAPI
 import MMUI
+import ReactiveKit
 
 // TODO: Move Privacy Consent to Front of Onboarding
-struct OnboardingManager {
+class OnboardingManager {
     
-    static var shared = OnboardingManager()
+    private let locationManager: LocationManagerProtocol
+    private let geocodingManager: GeocodingManagerProtocol
+    private let rubbishManager: RubbishManagerProtocol
+    private var petrolManager: PetrolManagerProtocol
+    private let appearance: BLTNItemAppearance
+    private let bag: DisposeBag
     
-    var appearance = OnboardingManager.makeAppearance()
+    init(locationManager: LocationManagerProtocol,
+         geocodingManager: GeocodingManagerProtocol,
+         rubbishManager: RubbishManagerProtocol,
+         petrolManager: PetrolManagerProtocol) {
+        
+        self.locationManager = locationManager
+        self.geocodingManager = geocodingManager
+        self.rubbishManager = rubbishManager
+        self.petrolManager = petrolManager
+        self.appearance = OnboardingManager.makeAppearance()
+        self.bag = DisposeBag()
+        
+    }
     
     func makeOnboarding() -> BLTNPageItem {
         
@@ -43,7 +61,7 @@ struct OnboardingManager {
     
     func makeIntroPage() -> BLTNPageItem {
         
-        let page = FeedbackPageBulletinItem(title: "Mein \(AppConfig.shared.name)")
+        let page = FeedbackPageBulletinItem(title: "Mein Moers")
         page.image = #imageLiteral(resourceName: "MoersAppIcon")
         page.imageAccessibilityLabel = "Mein Moers Logo"
         page.appearance = appearance
@@ -124,24 +142,20 @@ struct OnboardingManager {
             
             AnalyticsManager.shared.logEnabledLocation()
             
-            if LocationManager.shared.authorizationStatus == CLAuthorizationStatus.notDetermined {
+            self.locationManager.authorizationStatus.observeNext(with: { authorizationStatus in
                 
-                LocationManager.shared.requestWhenInUseAuthorization(completion: {
-                    
+                if authorizationStatus == .notDetermined {
+                    self.locationManager.requestWhenInUseAuthorization()
+                } else {
                     item.manager?.displayNextItem()
-                    
-                })
+                }
                 
-            } else {
-                item.manager?.displayNextItem()
-            }
+            }).dispose(in: self.bag)
             
         }
         
         page.alternativeHandler = { item in
-            
             item.manager?.displayNextItem()
-            
         }
         
         return page
@@ -173,8 +187,9 @@ struct OnboardingManager {
         page.descriptionText = String.localized("OnboardingPetrolTypePageDescription")
         page.actionButtonTitle = String.localized("OnboardingPetrolTypePageActionButtonTitle")
         page.isDismissable = false
+        
         page.onSelect = { type in
-            PetrolManager.shared.petrolType = type
+            self.petrolManager.petrolType = type
             AnalyticsManager.shared.logPetrolType(type)
         }
         
@@ -196,7 +211,11 @@ struct OnboardingManager {
     
     func makeRubbishStreetPage() -> BLTNPageItem {
         
-        let page = RubbishStreetPickerItem(title: String.localized("RubbishCollectionPageTitle"))
+        let page = RubbishStreetPickerItem(title: String.localized("RubbishCollectionPageTitle"),
+                                           locationManager: locationManager,
+                                           geocodingManager: geocodingManager,
+                                           rubbishManager: rubbishManager)
+        
         page.appearance = appearance
         page.descriptionText = String.localized("RubbishCollectionPageDescription")
         page.image = #imageLiteral(resourceName: "yellowWaste")
@@ -209,9 +228,7 @@ struct OnboardingManager {
             
             guard let item = item as? RubbishStreetPickerItem else { return }
             
-            let selectedStreet = item.streets[item.picker.currentSelectedRow]
-            
-            RubbishManager.shared.register(selectedStreet)
+            RubbishManager.shared.register(item.selectedStreet)
             RubbishManager.shared.isEnabled = true
             
             page.next = self.makeRubbishReminderPage()

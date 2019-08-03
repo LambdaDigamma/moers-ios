@@ -9,13 +9,25 @@
 import UIKit
 import Gestalt
 import MMUI
+import MMAPI
 
 class EntryOnboardingLocationMenuViewController: UIViewController {
 
-    lazy var progressView: OnboardingProgressView = { ViewFactory.onboardingProgressView() }()
-    lazy var addressButton: UIButton = { ViewFactory.button() }()
-    lazy var locationButton: UIButton = { ViewFactory.button() }()
-    lazy var infoLabel: UILabel = { ViewFactory.label() }()
+    private lazy var progressView: OnboardingProgressView = { ViewFactory.onboardingProgressView() }()
+    private lazy var addressButton: UIButton = { ViewFactory.button() }()
+    private lazy var locationButton: UIButton = { ViewFactory.button() }()
+    private lazy var infoLabel: UILabel = { ViewFactory.label() }()
+    
+    private let locationManager: LocationManagerProtocol
+    
+    init(locationManager: LocationManagerProtocol) {
+        self.locationManager = locationManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - UIViewController Lifecycle
     
@@ -117,7 +129,7 @@ class EntryOnboardingLocationMenuViewController: UIViewController {
     
     @objc private func enterLocation() {
         
-        let viewController = MapLocationPickerViewController()
+        let viewController = MapLocationPickerViewController(locationManager: locationManager)
         
         self.navigationController?.pushViewController(viewController, animated: true)
         

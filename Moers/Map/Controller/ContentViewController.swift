@@ -60,12 +60,22 @@ class ContentViewController: UIViewController {
     
     // MARK: - Data
     
-    private var displayMode = DisplayMode.list
+    public var locationManager: LocationManagerProtocol!
     
+    private var displayMode = DisplayMode.list
     private var locations: [Location] = []
     private var datasource: [Location] = []
     private var selectedTags: [String] = []
     private var tags: [String] = []
+    
+    init(locationManager: LocationManagerProtocol) {
+        self.locationManager = locationManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
     // MARK: - UIViewController Lifecycle
     
@@ -142,20 +152,25 @@ class ContentViewController: UIViewController {
         
     }
     
-    private func generateDatasource() -> [Location] {
+    private func updateDatasource() {
         
         self.tags = Array(Set(locations.map { $0.tags }.reduce([], +)))
         
-        if LocationManager.shared.authorizationStatus == .authorizedAlways ||
-            LocationManager.shared.authorizationStatus == .authorizedWhenInUse {
-         
-            return locations.sorted(by: { (l1, l2) -> Bool in
+        let updatedLocations = self.locationManager.updateDistances(locations: locations)
+        
+        updatedLocations.observeNext { locations in
+            
+            self.locations = locations.sorted(by: { (l1, l2) -> Bool in
                 l1.distance < l2.distance
             })
             
-        } else {
-            return locations
-        }
+            self.datasource = self.locations
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            
+        }.dispose(in: bag)
         
     }
     
@@ -238,13 +253,7 @@ class ContentViewController: UIViewController {
         
         self.locations.append(location)
         
-        self.datasource = generateDatasource()
-        
-        DispatchQueue.main.async {
-            
-            self.tableView.reloadData()
-            
-        }
+        self.updateDatasource()
         
     }
     
@@ -542,11 +551,7 @@ extension ContentViewController: EntryDatasource, ParkingLotDatasource, CameraDa
         self.locations = self.locations.filter { !($0 is Entry) }
         self.locations.append(contentsOf: entries as [Entry])
         
-        self.datasource = generateDatasource()
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        self.updateDatasource()
         
     }
     
@@ -555,13 +560,7 @@ extension ContentViewController: EntryDatasource, ParkingLotDatasource, CameraDa
         self.locations = self.locations.filter { !($0 is ParkingLot) }
         self.locations.append(contentsOf: parkingLots as [Location])
         
-        self.datasource = generateDatasource()
-        
-        DispatchQueue.main.async {
-            
-            self.tableView.reloadData()
-            
-        }
+        self.updateDatasource()
         
     }
     
@@ -570,13 +569,7 @@ extension ContentViewController: EntryDatasource, ParkingLotDatasource, CameraDa
         self.locations = self.locations.filter { !($0 is Camera) }
         self.locations.append(contentsOf: cameras as [Location])
         
-        self.datasource = generateDatasource()
-        
-        DispatchQueue.main.async {
-            
-            self.tableView.reloadData()
-            
-        }
+        self.updateDatasource()
         
     }
     
@@ -585,14 +578,7 @@ extension ContentViewController: EntryDatasource, ParkingLotDatasource, CameraDa
         self.locations = self.locations.filter { !($0 is PetrolStation) }
         self.locations.append(contentsOf: petrolStations as [PetrolStation])
         
-        self.datasource = generateDatasource()
-        
-        DispatchQueue.main.async {
-            
-            self.tableView.reloadData()
-            
-        }
-
+        self.updateDatasource()
         
     }
     

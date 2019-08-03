@@ -26,10 +26,20 @@ struct AnnotationIdentifier {
 
 class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryContentControllerDelegate {
 
-    lazy var map: MKMapView = { return ViewFactory.map() }()
+    lazy var map = { return ViewFactory.map() }()
     lazy var drawer = { return self.parent as! MainViewController }()
     
+    private let locationManager: LocationManagerProtocol
     private var locations: [Location] = []
+    
+    init(locationManager: LocationManagerProtocol) {
+        self.locationManager = locationManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - UIViewController Lifecycle
     
@@ -160,19 +170,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
         map.showsPointsOfInterest = false
         map.mapType = .standard
         
-        if let userLocation = LocationManager.shared.lastLocation?.coordinate {
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.451667, longitude: 6.626389),
+                                        span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
+        
+        map.setRegion(region, animated: true)
+        
+        locationManager.authorizationStatus.observeNext { authorizationStatus in
             
-            let region = MKCoordinateRegion(center: userLocation, latitudinalMeters: 500, longitudinalMeters: 500)
+            let region = MKCoordinateRegion(center: self.map.userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
             
-            map.setRegion(region, animated: true)
+            self.map.setRegion(region, animated: true)
             
-        } else {
-            
-            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.451667, longitude: 6.626389), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
-            
-            map.setRegion(region, animated: true)
-            
-        }
+        }.dispose(in: bag)
         
     }
     

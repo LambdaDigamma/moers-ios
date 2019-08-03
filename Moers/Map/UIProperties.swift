@@ -69,23 +69,21 @@ struct UIProperties {
         
         if let location = location as? Entry {
 
-            if LocationManager.shared.authorizationStatus == .authorizedAlways ||
-                LocationManager.shared.authorizationStatus == .authorizedWhenInUse {
-
+            if location.distance != 0 {
+                
                 let dist = prettifyDistance(distance: location.distance)
-
+                
                 return "\(dist) • \(location.street) \(location.houseNumber)"
-
+                
             } else {
                 return location.street + " " + location.houseNumber
             }
-
+            
         } else if let location = location as? PetrolStation {
             
             let open = location.isOpen ? String.localized("LocalityOpen") : String.localized("LocalityClosed")
             
-            if LocationManager.shared.authorizationStatus == .authorizedAlways ||
-                LocationManager.shared.authorizationStatus == .authorizedWhenInUse {
+            if location.distance != 0 {
                 
                 let dist = prettifyDistance(distance: location.distance)
                 
@@ -98,8 +96,7 @@ struct UIProperties {
             
         } else {
             
-            if LocationManager.shared.authorizationStatus == .authorizedAlways ||
-                LocationManager.shared.authorizationStatus == .authorizedWhenInUse {
+            if location.distance != 0 {
                 
                 let dist = prettifyDistance(distance: location.distance)
                 

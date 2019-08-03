@@ -20,6 +20,11 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     private var backgroundColor: UIColor = .clear
     private var textColor: UIColor = .clear
     
+    private let locationManager: LocationManagerProtocol
+    private let geocodingManager: GeocodingManagerProtocol
+    private let rubbishManager: RubbishManagerProtocol
+    private let petrolManager: PetrolManagerProtocol
+    
     lazy var tableView: UITableView = {
         
         let tableView = UITableView(frame: CGRect.zero, style: UITableView.Style.grouped)
@@ -51,6 +56,26 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                                NavigationRow(title: String.localized("Licences"), action: showLicences)])]
         
     }()
+    
+    init(locationManager: LocationManagerProtocol,
+         geocodingManager: GeocodingManagerProtocol,
+         rubbishManager: RubbishManagerProtocol,
+         petrolManager: PetrolManagerProtocol) {
+        
+        self.locationManager = locationManager
+        self.geocodingManager = geocodingManager
+        self.rubbishManager = rubbishManager
+        self.petrolManager = petrolManager
+        
+        super.init(nibName: nil, bundle: nil)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,7 +156,14 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     }
     
     private func showSettings() {
-        push(viewController: SettingsViewController.self)
+        
+        let settingsViewController = SettingsViewController(locationManager: locationManager,
+                                                            geocodingManager: geocodingManager,
+                                                            rubbishMananger: rubbishManager,
+                                                            petrolManager: petrolManager)
+        
+        navigationController?.pushViewController(settingsViewController, animated: true)
+        
     }
     
     private func showSiriShortcuts() {

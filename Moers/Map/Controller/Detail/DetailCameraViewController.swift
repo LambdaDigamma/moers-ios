@@ -76,11 +76,11 @@ class DetailCameraViewController: UIViewController {
         
         let viewController = CameraViewController()
         
-        guard let cam = selectedCamera else { return }
+        guard let camera = selectedCamera else { return }
         
-        AnalyticsManager.shared.logPano(cam.panoID)
+        AnalyticsManager.shared.logPano(camera.id)
         
-        viewController.panoID = cam.panoID
+        viewController.panoID = camera.id
         
         navigationController?.pushViewController(viewController, animated: true)
         
@@ -90,7 +90,7 @@ class DetailCameraViewController: UIViewController {
         
         guard let camera = camera else { return }
         
-        Answers.logCustomEvent(withName: "Detail - Camera", customAttributes: ["name": camera.name, "panoID": camera.panoID])
+        Answers.logCustomEvent(withName: "Detail - Camera", customAttributes: ["name": camera.name, "panoID": camera.id])
         
     }
     
@@ -102,7 +102,7 @@ class DetailCameraViewController: UIViewController {
                 
                 guard let cam = selectedCamera else { return }
                 
-                destination.panoID = cam.panoID
+                destination.panoID = cam.id
                 
             }
             

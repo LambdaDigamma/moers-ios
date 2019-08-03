@@ -23,8 +23,25 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     let eventViewController: MMEventsViewController
     let otherViewController: OtherViewController
     
+    let locationManager: LocationManagerProtocol
+    let geocodingManager: GeocodingManagerProtocol
+    let cameraManager: CameraManagerProtocol
+    let entryManager: EntryManagerProtocol
+    let parkingLotManager: ParkingLotManagerProtocol
+    var petrolManager: PetrolManagerProtocol
+    var rubbishManager: RubbishManagerProtocol
+    
+    lazy var onboardingManager: OnboardingManager = {
+       
+        return OnboardingManager(locationManager: locationManager,
+                                 geocodingManager: geocodingManager,
+                                 rubbishManager: rubbishManager,
+                                 petrolManager: petrolManager)
+        
+    }()
+    
     lazy var bulletinManager: BLTNItemManager = {
-        let onboarding = OnboardingManager.shared.makeOnboarding()
+        let onboarding = onboardingManager.makeOnboarding()
         return BLTNItemManager(rootItem: onboarding)
     }()
     
@@ -33,17 +50,47 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         return BLTNItemManager(rootItem: page)
     }()
     
-    init() {
-        self.firstLaunch = FirstLaunch(userDefaults: .standard, key: Constants.firstLaunch)
+    init(locationManager: LocationManagerProtocol,
+         petrolManager: PetrolManagerProtocol,
+         rubbishManager: RubbishManagerProtocol,
+         geocodingManager: GeocodingManagerProtocol,
+         cameraManager: CameraManagerProtocol,
+         entryManager: EntryManagerProtocol,
+         parkingLotManager: ParkingLotManagerProtocol) {
         
-        let mapViewController = MapViewController()
+        self.firstLaunch = FirstLaunch(userDefaults: .standard, key: Constants.firstLaunch)
+        self.locationManager = locationManager
+        self.petrolManager = petrolManager
+        self.rubbishManager = rubbishManager
+        self.geocodingManager = geocodingManager
+        self.cameraManager = cameraManager
+        self.entryManager = entryManager
+        self.parkingLotManager = parkingLotManager
+        
+        let mapViewController = MapViewController(locationManager: locationManager)
         let contentViewController = UIStoryboard(name: "ContentDrawer", bundle: nil).instantiateViewController(withIdentifier: "DrawerContentViewController")
         
-        self.dashboardViewController = DashboardViewController()
+        self.dashboardViewController = DashboardViewController(locationManager: locationManager,
+                                                               geocodingManager: geocodingManager,
+                                                               petrolManager: petrolManager)
+        
         self.newsViewController = NewsViewController()
-        self.mainViewController = MainViewController(contentViewController: mapViewController, drawerViewController: contentViewController)
+        self.mainViewController = MainViewController(contentViewController: mapViewController,
+                                                     drawerViewController: contentViewController,
+                                                     locationManager: locationManager,
+                                                     petrolManager: petrolManager,
+                                                     cameraManager: cameraManager,
+                                                     entryManager: entryManager,
+                                                     parkingLotManager: parkingLotManager)
         self.eventViewController = MMEventsViewController()
-        self.otherViewController = OtherViewController()
+        self.otherViewController = OtherViewController(locationManager: locationManager,
+                                                       geocodingManager: geocodingManager,
+                                                       rubbishManager: rubbishManager,
+                                                       petrolManager: petrolManager)
+        
+        if let contentViewController = contentViewController as? ContentViewController {
+            contentViewController.locationManager = locationManager
+        }
         
         super.init(nibName: nil, bundle: nil)
         
@@ -68,7 +115,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.loadData()
+        self.loadCurrentLocation()
         
     }
 
@@ -141,7 +188,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if (firstLaunch.isFirstLaunch || !OnboardingManager.shared.userDidCompleteSetup) && !isSnapshotting() {
+        if (firstLaunch.isFirstLaunch || !onboardingManager.userDidCompleteSetup) && !isSnapshotting() {
             showBulletin()
         }
         
@@ -247,10 +294,10 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     
     @objc func setupDidComplete() {
         
-        OnboardingManager.shared.userDidCompleteSetup = true
         AnalyticsManager.shared.logCompletedOnboarding()
         
-        self.loadData()
+        self.onboardingManager.userDidCompleteSetup = true
+        self.loadCurrentLocation()
         self.updateDashboard()
         
     }
@@ -274,16 +321,14 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     
     private func makeRubbishMigrationPage() -> BLTNPageItem {
         
-        let page = OnboardingManager.shared.makeRubbishStreetPage()
+        let page = onboardingManager.makeRubbishStreetPage()
         page.descriptionText = "Wähle Deine Straße erneut aus, um die aktuellen Abfuhrtermine der Müllabfuhr angezeigt zu bekommen."
         
         page.actionHandler = { item in
             
             guard let item = item as? RubbishStreetPickerItem else { return }
             
-            let selectedStreet = item.streets[item.picker.currentSelectedRow]
-            
-            RubbishManager.shared.register(selectedStreet)
+            RubbishManager.shared.register(item.selectedStreet)
             RubbishManager.shared.isEnabled = true
             
             if RubbishManager.shared.remindersEnabled {
@@ -313,14 +358,13 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     
     // MARK: - Data Handling
     
-    private func loadData() {
+    private func loadCurrentLocation() {
         
-        if LocationManager.shared.authorizationStatus == .authorizedWhenInUse
-            || LocationManager.shared.authorizationStatus == .authorizedAlways {
-            
-            LocationManager.shared.getCurrentLocation(completion: { (_, _) in })
-            
-        }
+        locationManager.authorizationStatus.observeNext { authorizationStatus in
+            if authorizationStatus == .authorizedWhenInUse {
+                self.locationManager.requestCurrentLocation()
+            }
+        }.dispose(in: bag)
         
     }
     
@@ -328,18 +372,21 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         //        RubbishManager.shared.street = "Adler"
         
-        if RubbishManager.shared.isEnabled && !firstLaunch.isFirstLaunch && OnboardingManager.shared.userDidCompleteSetup && (RubbishManager.shared.rubbishStreet?.street ?? "") != "" {
+        if RubbishManager.shared.isEnabled && !firstLaunch.isFirstLaunch &&
+            onboardingManager.userDidCompleteSetup &&
+            (RubbishManager.shared.rubbishStreet?.street ?? "") != "" {
             
             RubbishManager.shared.loadRubbishCollectionStreets { (streets) in
                 
-                let currentStreetName = RubbishManager.shared.rubbishStreet?.street ?? ""
+                let currentStreetName = self.rubbishManager.rubbishStreet?.street ?? ""
                 
                 if let filteredStreet = streets.filter({ $0.street == currentStreetName }).first {
                     
                     RubbishManager.shared.register(filteredStreet)
                     
                     if RubbishManager.shared.remindersEnabled {
-                        RubbishManager.shared.registerNotifications(at: RubbishManager.shared.reminderHour ?? 20, minute: RubbishManager.shared.reminderHour ?? 00)
+                        RubbishManager.shared.registerNotifications(at: RubbishManager.shared.reminderHour ?? 20,
+                                                                    minute: RubbishManager.shared.reminderHour ?? 00)
                     }
                     
                 } else {
@@ -375,9 +422,9 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
                                                               sweeperDay: "")
         
         UserManager.shared.register(User(type: .citizen, id: nil, name: nil, description: nil))
-        PetrolManager.shared.petrolType = .diesel
-        RubbishManager.shared.isEnabled = true
-        RubbishManager.shared.register(rubbishCollectionStreet)
+        petrolManager.petrolType = .diesel
+        rubbishManager.isEnabled = true
+        rubbishManager.register(rubbishCollectionStreet)
         
     }
     

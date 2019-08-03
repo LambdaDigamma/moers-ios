@@ -16,17 +16,17 @@ import MMUI
 
 class DetailViewController: UIViewController {
     
-    lazy var gripperView: UIView = { ViewFactory.blankView() }()
-    lazy var imageView: UIImageView = { ViewFactory.imageView() }()
-    lazy var nameLabel: UILabel = { ViewFactory.label() }()
-    lazy var subtitleLabel: UILabel = { ViewFactory.label() }()
-    lazy var contentView: UIScrollView = { ViewFactory.scrollView() }()
-    lazy var closeButton: UIButton = { ViewFactory.button() }()
-    lazy var routeButton: UIButton = { ViewFactory.button() }()
+    private lazy var gripperView: UIView = { ViewFactory.blankView() }()
+    private lazy var imageView: UIImageView = { ViewFactory.imageView() }()
+    private lazy var nameLabel: UILabel = { ViewFactory.label() }()
+    private lazy var subtitleLabel: UILabel = { ViewFactory.label() }()
+    private lazy var contentView: UIScrollView = { ViewFactory.scrollView() }()
+    private lazy var closeButton: UIButton = { ViewFactory.button() }()
+    private lazy var routeButton: UIButton = { ViewFactory.button() }()
     
-    var selectedLocation: Location? { didSet { setupLocation(selectedLocation) } }
+    private let locationManager: LocationManagerProtocol
     
-    weak var child: UIViewController? = nil {
+    private weak var child: UIViewController? = nil {
         willSet {
             contentView.subviews.forEach({ $0.removeFromSuperview() })
             contentView.removeFromSuperview()
@@ -40,6 +40,20 @@ class DetailViewController: UIViewController {
             contentView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: -20).isActive = true
             
         }
+    }
+    
+    public var selectedLocation: Location? { didSet { setupLocation(selectedLocation) } }
+    
+    init(locationManager: LocationManagerProtocol) {
+        
+        self.locationManager = locationManager
+        
+        super.init(nibName: nil, bundle: nil)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - UIViewController Lifecycle
@@ -205,11 +219,42 @@ class DetailViewController: UIViewController {
         
         self.routeButton.setTitle("Route", for: .normal)
         
-        guard let sourceCoordinate = LocationManager.shared.lastLocation?.coordinate else { return }
         guard let destinationCoordinate = selectedLocation?.location.coordinate else { return }
         
-        let source = MKMapItem(placemark: MKPlacemark(coordinate: sourceCoordinate))
-        let destination = MKMapItem(placemark: MKPlacemark(coordinate: destinationCoordinate))
+        locationManager.authorizationStatus.observeNext { authorizationStatus in
+            self.setupDistance(to: destinationCoordinate)
+        }.dispose(in: bag)
+        
+    }
+    
+    private func setupDistance(to destinationCoordinate: CLLocationCoordinate2D) {
+        
+        locationManager.requestCurrentLocation()
+        locationManager.location.observeNext { location in
+            
+            let directions = self.buildDirectionRequest(from: location.coordinate, to: destinationCoordinate)
+            
+            directions.calculateETA(completionHandler: { (response, error) in
+                
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                
+                guard let estimate = response else { return }
+                
+                self.routeButton.setTitle("Route (\(Int(floor(estimate.expectedTravelTime / 60))) min)", for: .normal)
+                
+            })
+            
+        }.dispose(in: bag)
+        
+    }
+    
+    private func buildDirectionRequest(from source: CLLocationCoordinate2D,
+                                       to destination: CLLocationCoordinate2D) -> MKDirections {
+        
+        let source = MKMapItem(placemark: MKPlacemark(coordinate: source))
+        let destination = MKMapItem(placemark: MKPlacemark(coordinate: destination))
         
         let request = MKDirections.Request()
         
@@ -218,20 +263,7 @@ class DetailViewController: UIViewController {
         
         request.transportType = .automobile
         
-        let directions = MKDirections(request: request)
-        
-        directions.calculateETA { (response, error) -> Void in
-            
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            
-            guard let estimate = response else { return }
-            
-            self.routeButton.setTitle("Route (\(Int(floor(estimate.expectedTravelTime / 60))) min)", for: .normal)
-            
-        }
-        
+        return MKDirections(request: request)
         
     }
     

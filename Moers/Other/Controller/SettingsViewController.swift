@@ -17,9 +17,58 @@ class SettingsViewController: UIViewController {
     private let standardCellIdentifier = "standard"
     private let switchCellIdentifier = "switchCell"
     
-    lazy var tableView: UITableView = {
+    lazy var tableView = { ViewFactory.tableView(with: .grouped) }()
+    lazy var manager = { makeManager(with: BLTNPageItem(title: "")) }()
+    
+    var data: [Section] = []
+    
+    private let locationManager: LocationManagerProtocol
+    private let geocodingManager: GeocodingManagerProtocol
+    private let rubbishManager: RubbishManagerProtocol
+    private let petrolManager: PetrolManagerProtocol
+    private let onboardingManager: OnboardingManager
+    
+    init(locationManager: LocationManagerProtocol,
+         geocodingManager: GeocodingManagerProtocol,
+         rubbishMananger: RubbishManagerProtocol,
+         petrolManager: PetrolManagerProtocol) {
         
-        let tableView = UITableView(frame: CGRect.zero, style: UITableView.Style.grouped)
+        self.locationManager = locationManager
+        self.geocodingManager = geocodingManager
+        self.rubbishManager = rubbishMananger
+        self.petrolManager = petrolManager
+        
+        self.onboardingManager = OnboardingManager(locationManager: locationManager,
+                                                   geocodingManager: geocodingManager,
+                                                   rubbishManager: rubbishMananger,
+                                                   petrolManager: petrolManager)
+        
+        super.init(nibName: nil, bundle: nil)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - UIViewController Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.setupUI()
+        self.setupConstraints()
+        self.setupTheming()
+        self.reloadRows()
+        
+    }
+    
+    // MARK: - Private Methods
+    
+    private func setupUI() {
+        
+        title = String.localized("SettingsTitle")
+        view.addSubview(tableView)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -27,33 +76,7 @@ class SettingsViewController: UIViewController {
         tableView.register(SwitchTableViewCell.self, forCellReuseIdentifier: switchCellIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
-        ThemeManager.default.apply(theme: Theme.self, to: tableView) { themeable, theme in
-            themeable.backgroundColor = theme.backgroundColor
-            themeable.separatorColor = theme.separatorColor
-        }
-        
-        return tableView
-        
-    }()
-    
-    lazy var manager: BLTNItemManager = { makeManager(with: BLTNPageItem(title: "")) }()
-    
-    var data: [Section] = []
-    
-    // MARK: - UIViewController Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.title = String.localized("SettingsTitle")
-        self.view.addSubview(tableView)
-        
-        self.setupConstraints()
-        self.reloadRows()
-        
     }
-    
-    // MARK: - Private Methods
     
     private func setupConstraints() {
         
@@ -66,6 +89,15 @@ class SettingsViewController: UIViewController {
         
     }
     
+    private func setupTheming() {
+        
+        ThemeManager.default.apply(theme: Theme.self, to: tableView) { themeable, theme in
+            themeable.backgroundColor = theme.backgroundColor
+            themeable.separatorColor = theme.separatorColor
+        }
+        
+    }
+    
     // MARK: - Settings Rows
     
     private func showThemes() {
@@ -74,15 +106,13 @@ class SettingsViewController: UIViewController {
     
     private func showRubbishStreet() {
         
-        let streetPage = OnboardingManager.shared.makeRubbishStreetPage()
+        let streetPage = onboardingManager.makeRubbishStreetPage()
         
         streetPage.actionHandler = { item in
             
             guard let item = item as? RubbishStreetPickerItem else { return }
             
-            let selectedStreet = item.streets[item.picker.currentSelectedRow]
-            
-            RubbishManager.shared.register(selectedStreet)
+            self.rubbishManager.register(item.selectedStreet)
             
             self.reload()
             
@@ -103,7 +133,7 @@ class SettingsViewController: UIViewController {
     
     private func showRubbishReminder() {
         
-        let reminderPage = OnboardingManager.shared.makeRubbishReminderPage()
+        let reminderPage = onboardingManager.makeRubbishReminderPage()
         
         reminderPage.alternativeButtonTitle = "Deaktivieren"
         reminderPage.actionHandler = { item in
@@ -141,7 +171,7 @@ class SettingsViewController: UIViewController {
     
     private func showPetrolType() {
         
-        guard let petrolTypePage = OnboardingManager.shared.makePetrolType(preSelected: PetrolManager.shared.petrolType) as? SelectorBulletinPage<PetrolType> else { return }
+        guard let petrolTypePage = onboardingManager.makePetrolType(preSelected: petrolManager.petrolType) as? SelectorBulletinPage<PetrolType> else { return }
         
         petrolTypePage.actionHandler = { item in
             item.manager?.dismissBulletin(animated: true)
@@ -156,7 +186,7 @@ class SettingsViewController: UIViewController {
     
     private func showUserType() {
         
-        guard let userTypePage = OnboardingManager.shared.makeUserTypePage(preSelected: UserManager.shared.user.type) as? SelectorBulletinPage<User.UserType> else { return }
+        guard let userTypePage = onboardingManager.makeUserTypePage(preSelected: UserManager.shared.user.type) as? SelectorBulletinPage<User.UserType> else { return }
         
         userTypePage.actionHandler = { item in
             item.manager?.dismissBulletin(animated: true)
@@ -180,8 +210,8 @@ class SettingsViewController: UIViewController {
     
     private func reloadRows() {
         
-        let hour = RubbishManager.shared.reminderHour
-        let minute = RubbishManager.shared.reminderMinute
+        let hour = rubbishManager.reminderHour
+        let minute = rubbishManager.reminderMinute
         
         var rubbishReminder: String
         
@@ -219,16 +249,16 @@ class SettingsViewController: UIViewController {
                                 rows: [NavigationRow(title: String.localized("UserType") + ": " + User.UserType.localizedForCase(userType), action: showUserType)]))
         
         sections.append(Section(title: String.localized("Petrol"),
-                                rows: [NavigationRow(title: String.localized("PetrolType") + ": " + PetrolType.localizedForCase(PetrolManager.shared.petrolType), action: showPetrolType)]))
+                                rows: [NavigationRow(title: String.localized("PetrolType") + ": " + PetrolType.localizedForCase(petrolManager.petrolType), action: showPetrolType)]))
         
         if UserManager.shared.user.type == .citizen {
             
             sections.append(Section(title: String.localized("SettingsRubbishCollectionTitle"),
                                     rows: [SwitchRow(title: String.localized("Activated"),
-                                                     switchOn: RubbishManager.shared.isEnabled,
+                                                     switchOn: rubbishManager.isEnabled,
                                                      action: triggerRubbishCollection),
                                            NavigationRow(title: String.localized("Street") + ": \(RubbishManager.shared.rubbishStreet?.street ?? "nicht ausgewählt")",
-                                            action: showRubbishStreet),
+                                                         action: showRubbishStreet),
                                            NavigationRow(title: rubbishReminder,
                                                          action: showRubbishReminder)]))
             

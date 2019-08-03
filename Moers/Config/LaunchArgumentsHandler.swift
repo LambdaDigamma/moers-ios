@@ -13,7 +13,15 @@ struct LaunchArgumentsHandler {
     let userDefaults: UserDefaults
     
     func handle() {
+        
         resetIfNeeded()
+        
+        #if DEBUG
+        if isSnapshotting() {
+            UIView.setAnimationsEnabled(false)
+        }
+        #endif
+        
     }
 
     private func resetIfNeeded() {
