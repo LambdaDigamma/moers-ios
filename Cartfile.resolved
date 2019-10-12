@@ -2,7 +2,7 @@ binary "https://ton.twimg.com/syndication/twitterkit/ios/TwitterCore.json" "3.2.
 binary "https://ton.twimg.com/syndication/twitterkit/ios/TwitterKit.json" "3.4.2"
 github "52inc/Pulley" "2.7.0"
 github "DeclarativeHub/Bond" "7.6.0"
-github "DeclarativeHub/ReactiveKit" "v3.13.0"
+github "DeclarativeHub/ReactiveKit" "v3.13.2"
 github "ElaWorkshop/TagListView" "1.4.0"
 github "Haneke/HanekeSwift" "v0.11.1"
 github "LambdaDigamma/mmapi-ios" "v0.0.25"

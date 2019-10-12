@@ -31,18 +31,6 @@ platform :ios do
       key: "CFBundleShortVersionString", 
       value: version
     )
-    # Set App UI Tests plist version
-    set_info_plist_value(
-      path: "MoersUITests/Info.plist",
-      key: "CFBundleShortVersionString", 
-      value: version
-    )
-    # Set App Unit Tests plist version
-    set_info_plist_value(
-      path: "MoersTests/Info.plist", 
-      key: "CFBundleShortVersionString", 
-      value: version
-    )
   
     # Commit plists to git
     git_commit(
@@ -85,9 +73,6 @@ platform :ios do
     
     ensure_git_branch(branch: 'master')
 
-    # test_unit
-    # test_ui
-
     version = options[:version]
 
     increment_build()
@@ -96,8 +81,6 @@ platform :ios do
     match(type: "appstore")
     gym(scheme: "Moers")
     pilot(skip_waiting_for_build_processing: true)
-
-    push_to_git_remote()
 
     slack(
       message: "Mein Moers #{version} (#{get_build_number()}) successfully released!",

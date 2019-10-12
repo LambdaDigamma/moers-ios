@@ -42,6 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         MMAPIConfig.registerPetrolAPIKey("0dfdfad3-7385-ef47-2ff6-ec0477872677")
         MMAPIConfig.isMoersFestivalModeEnabled = false
         
+        RubbishManager.shared.rubbishStreetURL = URL(string: "https://beta.meinmoers.lambdadigamma.com/abfallkalender-strassenverzeichnis-2019-08.csv")
+        RubbishManager.shared.rubbishDateURL = URL(string: "https://beta.meinmoers.lambdadigamma.com/abfallkalender-termine-2019-08.csv")
+        
         let applicationController = ApplicationController()
         
         window = UIWindow(frame: UIScreen.main.bounds)
