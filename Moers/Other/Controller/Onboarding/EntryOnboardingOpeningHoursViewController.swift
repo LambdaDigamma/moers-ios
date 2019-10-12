@@ -136,37 +136,7 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            let applyTheming: ((HoshiTextField) -> Void) = { textField in
-                
-                textField.borderActiveColor = theme.accentColor
-                textField.borderInactiveColor = theme.decentColor
-                textField.placeholderColor = theme.color
-                textField.textColor = theme.color
-                textField.tintColor = theme.accentColor
-                textField.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
-                textField.autocorrectionType = .no
-                
-            }
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.openingHoursHeaderLabel.textColor = theme.color
-            themeable.progressView.accentColor = theme.accentColor
-            themeable.progressView.decentColor = theme.decentColor
-            themeable.progressView.textColor = theme.color
-            
-            applyTheming(themeable.mondayOHTextField)
-            applyTheming(themeable.tuesdayOHTextField)
-            applyTheming(themeable.wednesdayOHTextField)
-            applyTheming(themeable.thursdayOHTextField)
-            applyTheming(themeable.fridayOHTextField)
-            applyTheming(themeable.saturdayOHTextField)
-            applyTheming(themeable.sundayOHTextField)
-            applyTheming(themeable.otherOHTextField)
-            
-        }
-        
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
     }
 
     private func setupOpeningHours() {
@@ -249,6 +219,43 @@ extension EntryOnboardingOpeningHoursViewController: UITextFieldDelegate {
         guard let textField = textField as? HoshiTextField else { return }
         
         textField.setValidInput(!(textField.text ?? "").isEmpty)
+        
+    }
+    
+}
+
+extension EntryOnboardingOpeningHoursViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        
+        let applyTheming: ((HoshiTextField) -> Void) = { textField in
+            
+            textField.borderActiveColor = theme.accentColor
+            textField.borderInactiveColor = theme.decentColor
+            textField.placeholderColor = theme.color
+            textField.textColor = theme.color
+            textField.tintColor = theme.accentColor
+            textField.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
+            textField.autocorrectionType = .no
+            
+        }
+        
+        self.view.backgroundColor = theme.backgroundColor
+        self.openingHoursHeaderLabel.textColor = theme.color
+        self.progressView.accentColor = theme.accentColor
+        self.progressView.decentColor = theme.decentColor
+        self.progressView.textColor = theme.color
+        
+        applyTheming(self.mondayOHTextField)
+        applyTheming(self.tuesdayOHTextField)
+        applyTheming(self.wednesdayOHTextField)
+        applyTheming(self.thursdayOHTextField)
+        applyTheming(self.fridayOHTextField)
+        applyTheming(self.saturdayOHTextField)
+        applyTheming(self.sundayOHTextField)
+        applyTheming(self.otherOHTextField)
         
     }
     

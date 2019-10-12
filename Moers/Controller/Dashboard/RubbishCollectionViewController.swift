@@ -66,13 +66,7 @@ class RubbishCollectionViewController: UIViewController {
 
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.tableView.backgroundColor = theme.backgroundColor
-            themeable.tableView.separatorColor = theme.separatorColor
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -155,6 +149,18 @@ extension RubbishCollectionViewController: UITableViewDataSource {
         
         return cell
         
+    }
+    
+}
+
+extension RubbishCollectionViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.view.backgroundColor = theme.backgroundColor
+        self.tableView.backgroundColor = theme.backgroundColor
+        self.tableView.separatorColor = theme.separatorColor
     }
     
 }

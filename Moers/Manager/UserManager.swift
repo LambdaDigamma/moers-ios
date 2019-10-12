@@ -50,12 +50,12 @@ struct UserManager {
         
     }
     
-    public var theme: Theme {
+    public var theme: ApplicationTheme {
         get {
             
-            let identifier = UserDefaults.standard.string(forKey: "Theme") ?? Theme.dark.identifier
+            let identifier = UserDefaults.standard.string(forKey: "Theme") ?? ApplicationTheme.dark.identifier
             
-            let theme = Theme.all.filter { $0.identifier == identifier }.first ?? Theme.dark
+            let theme = ApplicationTheme.all.filter { $0.identifier == identifier }.first ?? ApplicationTheme.dark
             
             return theme
             

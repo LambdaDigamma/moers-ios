@@ -129,32 +129,7 @@ class EntryOnboardingGeneralViewController: UIViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            let applyTheming: ((HoshiTextField) -> Void) = { textField in
-                
-                textField.borderActiveColor = theme.accentColor
-                textField.borderInactiveColor = theme.decentColor
-                textField.placeholderColor = theme.color
-                textField.textColor = theme.color
-                textField.tintColor = theme.accentColor
-                textField.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
-                textField.autocorrectionType = .no
-                
-            }
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.generalHeaderLabel.textColor = theme.decentColor
-            themeable.contactHeaderLabel.textColor = theme.decentColor
-            themeable.progressView.accentColor = theme.accentColor
-            themeable.progressView.decentColor = theme.decentColor
-            themeable.progressView.textColor = theme.color
-            
-            applyTheming(themeable.nameTextField)
-            applyTheming(themeable.websiteTextField)
-            applyTheming(themeable.phoneTextField)
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -229,6 +204,39 @@ extension EntryOnboardingGeneralViewController: UITextFieldDelegate {
         guard let textField = textField as? HoshiTextField else { return }
         
         textField.setValidInput(!(textField.text ?? "").isEmpty)
+        
+    }
+    
+}
+
+extension EntryOnboardingGeneralViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        
+        let applyTheming: ((HoshiTextField) -> Void) = { textField in
+            
+            textField.borderActiveColor = theme.accentColor
+            textField.borderInactiveColor = theme.decentColor
+            textField.placeholderColor = theme.color
+            textField.textColor = theme.color
+            textField.tintColor = theme.accentColor
+            textField.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
+            textField.autocorrectionType = .no
+            
+        }
+        
+        self.view.backgroundColor = theme.backgroundColor
+        self.generalHeaderLabel.textColor = theme.decentColor
+        self.contactHeaderLabel.textColor = theme.decentColor
+        self.progressView.accentColor = theme.accentColor
+        self.progressView.decentColor = theme.decentColor
+        self.progressView.textColor = theme.color
+        
+        applyTheming(self.nameTextField)
+        applyTheming(self.websiteTextField)
+        applyTheming(self.phoneTextField)
         
     }
     

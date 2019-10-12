@@ -70,21 +70,7 @@ class DetailParkingViewController: UIViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.topSeparator.backgroundColor = theme.decentColor
-            themeable.middleSeparator.backgroundColor = theme.decentColor
-            themeable.slotsHeaderLabel.textColor = theme.color
-            themeable.totalHeaderLabel.textColor = theme.color
-            themeable.totalLabel.textColor = theme.color
-            themeable.freeHeaderLabel.textColor = theme.color
-            themeable.freeLabel.textColor = theme.color
-            themeable.statusHeaderLabel.textColor = theme.color
-            themeable.statusLabel.textColor = theme.color
-            themeable.addressHeaderLabel.textColor = theme.color
-            themeable.addressLabel.textColor = theme.color
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -143,6 +129,28 @@ class DetailParkingViewController: UIViewController {
             ["name": parkingLot.name,
              "free": parkingLot.free,
              "status": parkingLot.status.rawValue])
+        
+    }
+    
+}
+
+extension DetailParkingViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        
+        self.topSeparator.backgroundColor = theme.decentColor
+        self.middleSeparator.backgroundColor = theme.decentColor
+        self.slotsHeaderLabel.textColor = theme.color
+        self.totalHeaderLabel.textColor = theme.color
+        self.totalLabel.textColor = theme.color
+        self.freeHeaderLabel.textColor = theme.color
+        self.freeLabel.textColor = theme.color
+        self.statusHeaderLabel.textColor = theme.color
+        self.statusLabel.textColor = theme.color
+        self.addressHeaderLabel.textColor = theme.color
+        self.addressLabel.textColor = theme.color
         
     }
     

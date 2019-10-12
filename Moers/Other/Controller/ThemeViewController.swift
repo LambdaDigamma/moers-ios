@@ -26,17 +26,13 @@ class ThemeViewController: CardCollectionViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
     public func setupThemeCards() {
         
-        let themes = Theme.all
+        let themes = ApplicationTheme.all
         
         let cards = themes.map { themeCard(with: $0) }
         
@@ -46,7 +42,7 @@ class ThemeViewController: CardCollectionViewController {
         
     }
     
-    private func themeCard(with theme: Theme) -> ThemeCardView {
+    private func themeCard(with theme: ApplicationTheme) -> ThemeCardView {
         
         let cardView = ThemeCardView()
         

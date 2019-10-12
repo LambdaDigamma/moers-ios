@@ -120,35 +120,7 @@ class EntryOnboardingTagsViewController: UIViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.progressView.accentColor = theme.accentColor
-            themeable.progressView.decentColor = theme.decentColor
-            themeable.progressView.textColor = theme.color
-            themeable.infoLabel.textColor = theme.color
-            themeable.tagsHeaderLabel.textColor = theme.decentColor
-            themeable.tagsListView.tagBackgroundColor = theme.accentColor
-            themeable.tagsListView.textColor = theme.backgroundColor
-            themeable.tagsListView.removeIconLineColor = theme.backgroundColor
-            themeable.searchController.searchBarBackgroundColor = theme.navigationBarColor
-            themeable.searchController.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
-            themeable.searchController.searchBar.textField?.textColor = theme.color
-            themeable.searchController.tableView.separatorColor = .clear
-            themeable.searchController.navigationItem.rightBarButtonItem?.tintColor = theme.accentColor
-            themeable.cellTextColor = theme.color
-            themeable.cellBackgroundColor = theme.backgroundColor
-            themeable.searchController.tableView.backgroundColor = theme.backgroundColor
-            themeable.searchController.separatorColor = theme.separatorColor
-            themeable.searchController.view.backgroundColor = theme.backgroundColor
-            themeable.searchController.navigationBarClosure = { bar in
-                
-                bar.barTintColor = theme.navigationBarColor
-                bar.tintColor = theme.accentColor
-                
-            }
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \ApplicationTheme.self, for: self)
         
     }
     
@@ -360,6 +332,42 @@ extension EntryOnboardingTagsViewController: LFSearchViewDataSource, LFSearchVie
         cell.selectionStyle = .none
         
         return cell
+        
+    }
+    
+}
+
+extension EntryOnboardingTagsViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: ApplicationTheme) {
+        
+        self.view.backgroundColor = theme.backgroundColor
+        self.progressView.accentColor = theme.accentColor
+        self.progressView.decentColor = theme.decentColor
+        self.progressView.textColor = theme.color
+        self.infoLabel.textColor = theme.color
+        self.tagsHeaderLabel.textColor = theme.decentColor
+        self.tagsListView.tagBackgroundColor = theme.accentColor
+        self.tagsListView.textColor = theme.backgroundColor
+        self.tagsListView.removeIconLineColor = theme.backgroundColor
+        self.searchController.searchBarBackgroundColor = theme.navigationBarColor
+        self.searchController.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
+        self.searchController.searchBar.textField?.textColor = theme.color
+        self.searchController.tableView.separatorColor = .clear
+        self.searchController.navigationItem.rightBarButtonItem?.tintColor = theme.accentColor
+        self.cellTextColor = theme.color
+        self.cellBackgroundColor = theme.backgroundColor
+        self.searchController.tableView.backgroundColor = theme.backgroundColor
+        self.searchController.separatorColor = theme.separatorColor
+        self.searchController.view.backgroundColor = theme.backgroundColor
+        self.searchController.navigationBarClosure = { bar in
+            
+            bar.barTintColor = theme.navigationBarColor
+            bar.tintColor = theme.accentColor
+            
+        }
         
     }
     

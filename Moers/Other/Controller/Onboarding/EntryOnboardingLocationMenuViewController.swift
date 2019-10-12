@@ -82,19 +82,7 @@ class EntryOnboardingLocationMenuViewController: UIViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.infoLabel.textColor = theme.color
-            themeable.addressButton.setTitleColor(theme.backgroundColor, for: .normal)
-            themeable.locationButton.setTitleColor(theme.backgroundColor, for: .normal)
-            themeable.addressButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
-            themeable.locationButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
-            themeable.progressView.accentColor = theme.accentColor
-            themeable.progressView.decentColor = theme.decentColor
-            themeable.progressView.textColor = theme.color
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -133,6 +121,24 @@ class EntryOnboardingLocationMenuViewController: UIViewController {
         
         self.navigationController?.pushViewController(viewController, animated: true)
         
+    }
+    
+}
+
+extension EntryOnboardingLocationMenuViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.view.backgroundColor = theme.backgroundColor
+        self.infoLabel.textColor = theme.color
+        self.addressButton.setTitleColor(theme.backgroundColor, for: .normal)
+        self.locationButton.setTitleColor(theme.backgroundColor, for: .normal)
+        self.addressButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
+        self.locationButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
+        self.progressView.accentColor = theme.accentColor
+        self.progressView.decentColor = theme.decentColor
+        self.progressView.textColor = theme.color
     }
     
 }

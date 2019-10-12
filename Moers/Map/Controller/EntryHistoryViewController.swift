@@ -42,12 +42,18 @@ class EntryHistoryViewController: UIViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
 
+}
+
+extension EntryHistoryViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.view.backgroundColor = theme.backgroundColor
+    }
+    
 }

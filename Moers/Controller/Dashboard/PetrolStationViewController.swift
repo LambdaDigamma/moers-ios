@@ -59,12 +59,7 @@ class PetrolStationViewController: CardCollectionViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.collectionView.backgroundColor = theme.backgroundColor
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     

@@ -114,17 +114,7 @@ class SelectionViewController: UIViewController {
 
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.titleLabel.textColor = theme.color
-            themeable.tableView.backgroundColor = theme.backgroundColor
-            themeable.tableView.separatorColor = theme.separatorColor
-            themeable.gripperView.backgroundColor = UIColor.lightGray
-            themeable.headerView.backgroundColor = theme.backgroundColor
-            themeable.closeButton.tintColor = theme.decentColor
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -233,6 +223,22 @@ extension SelectionViewController: PulleyDrawerViewControllerDelegate {
         
         }
         
+    }
+    
+}
+
+extension SelectionViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.view.backgroundColor = theme.backgroundColor
+        self.titleLabel.textColor = theme.color
+        self.tableView.backgroundColor = theme.backgroundColor
+        self.tableView.separatorColor = theme.separatorColor
+        self.gripperView.backgroundColor = UIColor.lightGray
+        self.headerView.backgroundColor = theme.backgroundColor
+        self.closeButton.tintColor = theme.decentColor
     }
     
 }

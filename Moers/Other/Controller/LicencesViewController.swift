@@ -30,11 +30,7 @@ class LicensesViewController: UIViewController {
         self.view.addSubview(textView)
         self.title = String.localized("Licences")
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.textView.backgroundColor = theme.backgroundColor
-            themeable.textView.textColor = theme.color
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
         setupConstraints()
         
@@ -63,6 +59,18 @@ class LicensesViewController: UIViewController {
         
         return licenseString
         
+    }
+    
+}
+
+extension LicensesViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.view.backgroundColor = theme.backgroundColor
+        self.textView.backgroundColor = theme.backgroundColor
+        self.textView.textColor = theme.color
     }
     
 }

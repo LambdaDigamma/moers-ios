@@ -65,12 +65,20 @@ class EntryValidationTableViewCell: UITableViewCell {
         
         self.accessoryType = .disclosureIndicator
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            themeable.backgroundColor = theme.backgroundColor
-            themeable.titleLabel.textColor = theme.color
-            themeable.descriptionLabel.textColor = theme.decentColor
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
+    }
+    
+}
+
+extension EntryValidationTableViewCell: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.backgroundColor = theme.backgroundColor
+        self.titleLabel.textColor = theme.color
+        self.descriptionLabel.textColor = theme.decentColor
     }
     
 }

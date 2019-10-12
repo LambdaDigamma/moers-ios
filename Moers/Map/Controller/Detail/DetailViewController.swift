@@ -131,18 +131,7 @@ class DetailViewController: UIViewController {
 
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.nameLabel.textColor = theme.color
-            themeable.subtitleLabel.textColor = theme.color
-            themeable.closeButton.tintColor = theme.decentColor
-            themeable.subtitleLabel.textColor = theme.decentColor
-            themeable.routeButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
-            themeable.routeButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .highlighted)
-            themeable.routeButton.setTitleColor(theme.backgroundColor, for: .normal)
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -365,6 +354,25 @@ extension DetailViewController: PulleyDrawerViewControllerDelegate {
         }
         
         return PulleyPosition.all
+    }
+    
+}
+
+extension DetailViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        
+        self.view.backgroundColor = theme.backgroundColor
+        self.nameLabel.textColor = theme.color
+        self.subtitleLabel.textColor = theme.color
+        self.closeButton.tintColor = theme.decentColor
+        self.subtitleLabel.textColor = theme.decentColor
+        self.routeButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
+        self.routeButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .highlighted)
+        self.routeButton.setTitleColor(theme.backgroundColor, for: .normal)
+        
     }
     
 }

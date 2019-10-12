@@ -58,12 +58,18 @@ class RubbishCollectionItemTableViewCell: UITableViewCell {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.backgroundColor = theme.backgroundColor
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
+    }
+    
+}
+
+extension RubbishCollectionItemTableViewCell: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.backgroundColor = theme.backgroundColor
     }
     
 }

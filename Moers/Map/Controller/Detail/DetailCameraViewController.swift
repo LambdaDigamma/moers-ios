@@ -48,15 +48,7 @@ class DetailCameraViewController: UIViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.topSeperator.backgroundColor = theme.decentColor
-            themeable.showButton.setBackgroundColor(color: #colorLiteral(red: 0.276827544, green: 0.6099686027, blue: 0.3140196502, alpha: 1), forState: .normal)
-            themeable.showButton.setBackgroundColor(color: #colorLiteral(red: 0.276827544, green: 0.6099686027, blue: 0.3140196502, alpha: 1).darker(by: 10)!, forState: .selected)
-            themeable.showButton.setTitleColor(UIColor.white, for: .normal)
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -108,6 +100,20 @@ class DetailCameraViewController: UIViewController {
             
         }
         
+    }
+    
+}
+
+extension DetailCameraViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.view.backgroundColor = theme.backgroundColor
+        self.topSeperator.backgroundColor = theme.decentColor
+        self.showButton.setBackgroundColor(color: #colorLiteral(red: 0.276827544, green: 0.6099686027, blue: 0.3140196502, alpha: 1), forState: .normal)
+        self.showButton.setBackgroundColor(color: #colorLiteral(red: 0.276827544, green: 0.6099686027, blue: 0.3140196502, alpha: 1).darker(by: 10)!, forState: .selected)
+        self.showButton.setTitleColor(UIColor.white, for: .normal)
     }
     
 }

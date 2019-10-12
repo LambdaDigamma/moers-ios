@@ -50,12 +50,6 @@ class TitleCardView: CardView {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            
-            themeable.titleLabel.textColor = theme.color
-            
-        }
-        
     }
     
 }

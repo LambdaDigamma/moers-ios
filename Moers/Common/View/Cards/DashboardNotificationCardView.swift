@@ -101,13 +101,19 @@ class DashboardNotificationCardView: CardView {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            
-            themeable.titleLabel.textColor = theme.color
-            themeable.subtitleLabel.textColor = theme.color.lighter()
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
+    }
+    
+}
+
+extension DashboardNotificationCardView: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.titleLabel.textColor = theme.color
+        self.subtitleLabel.textColor = theme.color.lighter()
     }
     
 }

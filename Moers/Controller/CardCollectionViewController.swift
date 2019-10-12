@@ -80,12 +80,7 @@ class CardCollectionViewController: UIViewController, UICollectionViewDataSource
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.collectionView.backgroundColor = theme.backgroundColor
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
 
@@ -143,3 +138,15 @@ extension CardCollectionViewController: WaterfallLayoutDelegate {
     }
     
 }
+
+extension CardCollectionViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.view.backgroundColor = theme.backgroundColor
+        self.collectionView.backgroundColor = theme.backgroundColor
+    }
+    
+}
+

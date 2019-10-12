@@ -131,24 +131,7 @@ class ContentViewController: UIViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.searchBar.barTintColor = theme.accentColor
-            themeable.searchBar.backgroundColor = theme.backgroundColor
-            themeable.searchBar.tintColor = theme.accentColor
-            themeable.searchBar.textField?.textColor = theme.color
-            themeable.topSeparatorView.backgroundColor = theme.separatorColor
-            themeable.tableView.backgroundColor = theme.backgroundColor
-            themeable.tableView.separatorColor = theme.separatorColor
-            themeable.normalColor = theme.backgroundColor
-            themeable.highlightedColor = theme.backgroundColor.darker(by: 10)!
-            themeable.searchBar.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
-            themeable.tagListView.tagBackgroundColor = theme.accentColor
-            themeable.tagListView.textColor = theme.backgroundColor
-            themeable.tagListView.removeIconLineColor = theme.backgroundColor
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -637,6 +620,31 @@ extension ContentViewController: PulleyDrawerViewControllerDelegate {
             topSeparatorView.isHidden = false
             bottomSeparatorView.isHidden = true
         }
+        
+    }
+    
+}
+
+extension ContentViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        
+        self.view.backgroundColor = theme.backgroundColor
+        self.searchBar.barTintColor = theme.accentColor
+        self.searchBar.backgroundColor = theme.backgroundColor
+        self.searchBar.tintColor = theme.accentColor
+        self.searchBar.textField?.textColor = theme.color
+        self.topSeparatorView.backgroundColor = theme.separatorColor
+        self.tableView.backgroundColor = theme.backgroundColor
+        self.tableView.separatorColor = theme.separatorColor
+        self.normalColor = theme.backgroundColor
+        self.highlightedColor = theme.backgroundColor.darker(by: 10)!
+        self.searchBar.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
+        self.tagListView.tagBackgroundColor = theme.accentColor
+        self.tagListView.textColor = theme.backgroundColor
+        self.tagListView.removeIconLineColor = theme.backgroundColor
         
     }
     

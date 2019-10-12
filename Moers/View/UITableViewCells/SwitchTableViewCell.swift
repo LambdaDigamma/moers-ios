@@ -60,17 +60,23 @@ class SwitchTableViewCell: UITableViewCell {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.backgroundColor = theme.backgroundColor
-            themeable.descriptionLabel.textColor = theme.color
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
 
     @objc func switchChanged(switchControl: UISwitch) {
         action?(switchControl.isOn)
+    }
+    
+}
+
+extension SwitchTableViewCell: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.backgroundColor = theme.backgroundColor
+        self.descriptionLabel.textColor = theme.color
     }
     
 }

@@ -230,60 +230,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            let applyTheming: ((HoshiTextField) -> Void) = { textField in
-                
-                if textField.isEnabled {
-                    textField.borderActiveColor = theme.accentColor
-                } else {
-                    textField.borderActiveColor = theme.decentColor
-                }
-                
-                textField.borderInactiveColor = theme.decentColor
-                textField.placeholderColor = theme.color
-                textField.textColor = theme.color.darker(by: 10)
-                textField.tintColor = theme.accentColor
-                textField.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
-                textField.autocorrectionType = .no
-                textField.delegate = self
-                
-            }
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.generalHeaderLabel.textColor = theme.decentColor
-            themeable.tagsHeaderLabel.textColor = theme.decentColor
-            themeable.addressHeaderLabel.textColor = theme.decentColor
-            themeable.contactHeaderLabel.textColor = theme.decentColor
-            themeable.openingHoursHeaderLabel.textColor = theme.decentColor
-            themeable.promptLabel.textColor = theme.color
-            themeable.tagsListView.tagBackgroundColor = theme.accentColor
-            themeable.tagsListView.textColor = theme.backgroundColor
-            themeable.tagsListView.removeIconLineColor = theme.backgroundColor
-            
-            themeable.mapView.layer.cornerRadius = 10
-            themeable.saveButton.setTitleColor(theme.backgroundColor, for: .normal)
-            themeable.saveButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
-            themeable.saveButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .selected)
-            
-            applyTheming(themeable.nameTextField)
-            applyTheming(themeable.streetTextField)
-            applyTheming(themeable.houseNrTextField)
-            applyTheming(themeable.postcodeTextField)
-            applyTheming(themeable.placeTextField)
-            applyTheming(themeable.websiteTextField)
-            applyTheming(themeable.phoneTextField)
-            applyTheming(themeable.mondayOHTextField)
-            applyTheming(themeable.tuesdayOHTextField)
-            applyTheming(themeable.wednesdayOHTextField)
-            applyTheming(themeable.thursdayOHTextField)
-            applyTheming(themeable.fridayOHTextField)
-            applyTheming(themeable.saturdayOHTextField)
-            applyTheming(themeable.sundayOHTextField)
-            applyTheming(themeable.otherOHTextField)
-            
-        }
-
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -641,6 +588,66 @@ extension EntryOnboardingOverviewViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+    
+}
+
+extension EntryOnboardingOverviewViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        
+        let applyTheming: ((HoshiTextField) -> Void) = { textField in
+            
+            if textField.isEnabled {
+                textField.borderActiveColor = theme.accentColor
+            } else {
+                textField.borderActiveColor = theme.decentColor
+            }
+            
+            textField.borderInactiveColor = theme.decentColor
+            textField.placeholderColor = theme.color
+            textField.textColor = theme.color.darker(by: 10)
+            textField.tintColor = theme.accentColor
+            textField.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
+            textField.autocorrectionType = .no
+            textField.delegate = self
+            
+        }
+        
+        self.view.backgroundColor = theme.backgroundColor
+        self.generalHeaderLabel.textColor = theme.decentColor
+        self.tagsHeaderLabel.textColor = theme.decentColor
+        self.addressHeaderLabel.textColor = theme.decentColor
+        self.contactHeaderLabel.textColor = theme.decentColor
+        self.openingHoursHeaderLabel.textColor = theme.decentColor
+        self.promptLabel.textColor = theme.color
+        self.tagsListView.tagBackgroundColor = theme.accentColor
+        self.tagsListView.textColor = theme.backgroundColor
+        self.tagsListView.removeIconLineColor = theme.backgroundColor
+        
+        self.mapView.layer.cornerRadius = 10
+        self.saveButton.setTitleColor(theme.backgroundColor, for: .normal)
+        self.saveButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
+        self.saveButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .selected)
+        
+        applyTheming(self.nameTextField)
+        applyTheming(self.streetTextField)
+        applyTheming(self.houseNrTextField)
+        applyTheming(self.postcodeTextField)
+        applyTheming(self.placeTextField)
+        applyTheming(self.websiteTextField)
+        applyTheming(self.phoneTextField)
+        applyTheming(self.mondayOHTextField)
+        applyTheming(self.tuesdayOHTextField)
+        applyTheming(self.wednesdayOHTextField)
+        applyTheming(self.thursdayOHTextField)
+        applyTheming(self.fridayOHTextField)
+        applyTheming(self.saturdayOHTextField)
+        applyTheming(self.sundayOHTextField)
+        applyTheming(self.otherOHTextField)
+        
     }
     
 }

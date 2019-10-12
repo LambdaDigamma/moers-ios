@@ -148,7 +148,6 @@
 		DFF8F2CD20E6DC36001A9EBB /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8F2CC20E6DC36001A9EBB /* ExtensionDelegate.swift */; };
 		DFF8F2CF20E6DC36001A9EBB /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8F2CE20E6DC36001A9EBB /* NotificationController.swift */; };
 		DFF8F2D120E6DC36001A9EBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFF8F2D020E6DC36001A9EBB /* Assets.xcassets */; };
-		DFFB775B1FB37E0A00073863 /* InfoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFFB775A1FB37E0A00073863 /* InfoKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -380,7 +379,6 @@
 				DF86ABA12174900400EFC7EA /* Intents.framework in Frameworks */,
 				DFCB432120E0344800E7AD3F /* TwitterKit.framework in Frameworks */,
 				DFB618581FAE144000C98EB6 /* Pulley.framework in Frameworks */,
-				DFFB775B1FB37E0A00073863 /* InfoKit.framework in Frameworks */,
 				DF409CFA2352453C001A473E /* Gestalt in Frameworks */,
 				DFB64DCE20389FDC00173A80 /* Crashlytics.framework in Frameworks */,
 				DFB64DCF20389FDC00173A80 /* Fabric.framework in Frameworks */,
@@ -1042,7 +1040,7 @@
 			attributes = {
 				DefaultBuildSystemTypeForWorkspace = Latest;
 				LastSwiftUpdateCheck = 1000;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "Lennart Fischer";
 				TargetAttributes = {
 					DF1A495E1F6AAB7000E9108B = {
@@ -1175,17 +1173,13 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Pulley.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/InfoKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BLTNBoard.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ESTabBarController.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/pop.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/EventBus.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/BetterSegmentedControl.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TextFieldEffects.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TwitterCore.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TwitterKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/TwitterShareExtensionUI.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/MMWormhole.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Alertift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TagListView.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/FeedKit.framework",
@@ -1500,6 +1494,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
@@ -1572,6 +1567,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1658,7 +1654,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = Dark;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Moers/Utility/Moers.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = 93C29USLP6;
@@ -1680,7 +1676,7 @@
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore de.okfn.niederrhein.Moers";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development de.okfn.niederrhein.Moers";
 				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Utility/Moers-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1696,6 +1692,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
@@ -1768,6 +1765,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1897,6 +1895,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
@@ -1969,6 +1968,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2055,7 +2055,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = Dark;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Moers/Utility/Moers.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = 93C29USLP6;
@@ -2077,7 +2077,7 @@
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore de.okfn.niederrhein.Moers";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development de.okfn.niederrhein.Moers";
 				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Utility/Moers-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2093,6 +2093,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
@@ -2165,6 +2166,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2355,7 +2357,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = Dark;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Moers/Utility/Moers.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = 93C29USLP6;
@@ -2376,7 +2378,7 @@
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore de.okfn.niederrhein.Moers";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development de.okfn.niederrhein.Moers";
 				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Utility/Moers-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2392,6 +2394,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2419,6 +2422,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2445,6 +2449,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
@@ -2468,6 +2473,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;

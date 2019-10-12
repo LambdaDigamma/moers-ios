@@ -120,17 +120,7 @@ class PetrolStationCollectionViewCell: UICollectionViewCell {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            
-            themeable.backgroundColor = UIColor.clear
-            themeable.nameLabel.textColor = theme.color
-            themeable.brandLabel.textColor = theme.decentColor
-            themeable.addressLabel.textColor = theme.decentColor
-            themeable.routeButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
-            themeable.routeButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .highlighted)
-            themeable.routeButton.setTitleColor(theme.cardBackgroundColor, for: .normal)
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -163,6 +153,22 @@ class PetrolStationCollectionViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate(constraints)
         
+    }
+    
+}
+
+extension PetrolStationCollectionViewCell: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.backgroundColor = UIColor.clear
+        self.nameLabel.textColor = theme.color
+        self.brandLabel.textColor = theme.decentColor
+        self.addressLabel.textColor = theme.decentColor
+        self.routeButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
+        self.routeButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .highlighted)
+        self.routeButton.setTitleColor(theme.cardBackgroundColor, for: .normal)
     }
     
 }

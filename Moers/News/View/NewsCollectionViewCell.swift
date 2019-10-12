@@ -99,41 +99,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            
-            if theme.presentationStyle == .light {
-                themeable.blurView.effect = UIBlurEffect(style: UIBlurEffect.Style.extraLight)
-            } else {
-                themeable.blurView.effect = UIBlurEffect(style: UIBlurEffect.Style.dark)
-            }
-            
-            themeable.cornerRadius = 12.0
-            themeable.backgroundColor = theme.cardBackgroundColor
-            themeable.titleLabel.textColor = theme.color
-            themeable.descriptionLabel.textColor = theme.color
-            themeable.imageView.tintColor = theme.color
-            themeable.imageView.image = themeable.imageView.image?.tinted(color: theme.color)
-            
-            if theme.cardShadow {
-                
-                themeable.clipsToBounds = false
-                themeable.shadowColor = UIColor.lightGray
-                themeable.shadowOpacity = 0.6
-                themeable.shadowRadius = 10.0
-                themeable.imageView.roundCorners(corners: [.allCorners], radius: 12.0)
-                themeable.shadowOffset = CGSize(width: 0, height: 0)
-                
-            } else {
-                
-                themeable.clipsToBounds = false
-                themeable.shadowColor = UIColor.lightGray
-                themeable.shadowOpacity = 0.0
-                themeable.shadowRadius = 0.0
-                themeable.shadowOffset = CGSize(width: 0, height: 0)
-                
-            }
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -141,6 +107,48 @@ class NewsCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         blurView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 12.0)
         imageView.roundCorners(corners: [.allCorners], radius: 12.0)
+    }
+    
+}
+
+extension NewsCollectionViewCell: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        
+        if theme.presentationStyle == .light {
+            self.blurView.effect = UIBlurEffect(style: UIBlurEffect.Style.extraLight)
+        } else {
+            self.blurView.effect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+        }
+        
+        self.cornerRadius = 12.0
+        self.backgroundColor = theme.cardBackgroundColor
+        self.titleLabel.textColor = theme.color
+        self.descriptionLabel.textColor = theme.color
+        self.imageView.tintColor = theme.color
+        self.imageView.image = self.imageView.image?.tinted(color: theme.color)
+        
+        if theme.cardShadow {
+            
+            self.clipsToBounds = false
+            self.shadowColor = UIColor.lightGray
+            self.shadowOpacity = 0.6
+            self.shadowRadius = 10.0
+            self.imageView.roundCorners(corners: [.allCorners], radius: 12.0)
+            self.shadowOffset = CGSize(width: 0, height: 0)
+            
+        } else {
+            
+            self.clipsToBounds = false
+            self.shadowColor = UIColor.lightGray
+            self.shadowOpacity = 0.0
+            self.shadowRadius = 0.0
+            self.shadowOffset = CGSize(width: 0, height: 0)
+            
+        }
+        
     }
     
 }

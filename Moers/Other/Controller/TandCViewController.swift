@@ -56,11 +56,7 @@ class TandCViewController: UIViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.textView.backgroundColor = theme.backgroundColor
-            themeable.textView.textColor = theme.color
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -86,5 +82,17 @@ class TandCViewController: UIViewController {
 
     Ich kann unsere Allgemeinen Geschäftsbedingungen von Zeit zu Zeit aktualisieren. Wir empfehlen Ihnen daher, diese Seite regelmäßig auf Änderungen zu überprüfen. Ich werde Sie über alle Änderungen informieren, indem ich die neuen Allgemeinen Geschäftsbedingungen auf dieser Seite veröffentliche. Diese Änderungen werden sofort nach ihrer Veröffentlichung auf dieser Seite wirksam.
     """
+    
+}
+
+extension TandCViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.view.backgroundColor = theme.backgroundColor
+        self.textView.backgroundColor = theme.backgroundColor
+        self.textView.textColor = theme.color
+    }
     
 }

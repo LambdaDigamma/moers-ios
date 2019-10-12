@@ -47,11 +47,20 @@ class TagTableViewCell: UITableViewCell {
         
         self.accessoryType = .disclosureIndicator
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            themeable.backgroundColor = theme.backgroundColor
-            themeable.titleLabel.textColor = theme.color
-        }
+        MMUIConfig.themeManager?.manage(theme: \ApplicationTheme.self, for: self)
         
     }
     
 }
+
+extension TagTableViewCell: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: ApplicationTheme) {
+        self.backgroundColor = theme.backgroundColor
+        self.titleLabel.textColor = theme.color
+    }
+    
+}
+

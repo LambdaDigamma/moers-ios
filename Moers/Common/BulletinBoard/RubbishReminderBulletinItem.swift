@@ -24,14 +24,7 @@ class RubbishReminderBulletinItem: BLTNPageItem {
         picker.date = date ?? Date()
         picker.locale = Locale.current
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            
-            themeable.appearance.actionButtonColor = theme.accentColor
-            themeable.picker.backgroundColor = theme.backgroundColor
-            themeable.picker.performSelector(inBackground: Selector(("setHighlightsToday:")), with: theme.accentColor)
-            themeable.picker.setValue(theme.decentColor, forKey: "textColor")
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -42,6 +35,19 @@ class RubbishReminderBulletinItem: BLTNPageItem {
         
         return [picker]
         
+    }
+    
+}
+
+extension RubbishReminderBulletinItem: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.appearance.actionButtonColor = theme.accentColor
+        self.picker.backgroundColor = theme.backgroundColor
+        self.picker.performSelector(inBackground: Selector(("setHighlightsToday:")), with: theme.accentColor)
+        self.picker.setValue(theme.decentColor, forKey: "textColor")
     }
     
 }

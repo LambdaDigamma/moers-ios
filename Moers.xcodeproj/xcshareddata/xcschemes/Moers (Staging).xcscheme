@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1020"
+   LastUpgradeVersion = "1110"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -26,8 +26,17 @@
       buildConfiguration = "Debug (Staging)"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      codeCoverageEnabled = "YES"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "DF1A495E1F6AAB7000E9108B"
+            BuildableName = "Moers.app"
+            BlueprintName = "Moers"
+            ReferencedContainer = "container:Moers.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "YES">
@@ -50,17 +59,6 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DF1A495E1F6AAB7000E9108B"
-            BuildableName = "Moers.app"
-            BlueprintName = "Moers"
-            ReferencedContainer = "container:Moers.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug (Staging)"
@@ -86,16 +84,6 @@
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
-         <AdditionalOption
-            key = "DYLD_PRINT_LIBRARIES"
-            value = ""
-            isEnabled = "YES">
-         </AdditionalOption>
-         <AdditionalOption
-            key = "DYLD_PRINT_APIS"
-            value = ""
-            isEnabled = "YES">
-         </AdditionalOption>
          <AdditionalOption
             key = "NSZombieEnabled"
             value = "YES"

@@ -243,45 +243,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            
-            UIApplication.shared.statusBarStyle = theme.statusBarStyle
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.tabBar.tintColor = theme.accentColor
-            themeable.tabBar.barTintColor = theme.navigationBarColor
-            themeable.bulletinManager.backgroundColor = theme.backgroundColor
-            themeable.bulletinManager.hidesHomeIndicator = false
-            themeable.bulletinManager.edgeSpacing = .compact
-            themeable.rubbishMigrationManager.backgroundColor = theme.backgroundColor
-            themeable.rubbishMigrationManager.hidesHomeIndicator = false
-            themeable.rubbishMigrationManager.edgeSpacing = .compact
-            
-            if let viewControllers = themeable.viewControllers {
-                
-                for navigationController in viewControllers {
-                    
-                    guard let nav = navigationController as? UINavigationController else { return }
-                    
-                    nav.navigationBar.barTintColor = theme.navigationBarColor
-                    nav.navigationBar.tintColor = theme.accentColor
-                    nav.navigationBar.prefersLargeTitles = true
-                    nav.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
-                    nav.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
-                    nav.navigationBar.isTranslucent = true
-                    
-                    if theme.statusBarStyle == .lightContent {
-                        self.tabBar.barStyle = .black
-                        nav.navigationBar.barStyle = .black
-                    } else {
-                        self.tabBar.barStyle = .default
-                        nav.navigationBar.barStyle = .default
-                    }
-                    
-                }
-                
-            }
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -425,6 +387,52 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         petrolManager.petrolType = .diesel
         rubbishManager.isEnabled = true
         rubbishManager.register(rubbishCollectionStreet)
+        
+    }
+    
+}
+
+extension TabBarController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        
+        UIApplication.shared.statusBarStyle = theme.statusBarStyle
+        self.view.backgroundColor = theme.backgroundColor
+        self.tabBar.tintColor = theme.accentColor
+        self.tabBar.barTintColor = theme.navigationBarColor
+        self.bulletinManager.backgroundColor = theme.backgroundColor
+        self.bulletinManager.hidesHomeIndicator = false
+        self.bulletinManager.edgeSpacing = .compact
+        self.rubbishMigrationManager.backgroundColor = theme.backgroundColor
+        self.rubbishMigrationManager.hidesHomeIndicator = false
+        self.rubbishMigrationManager.edgeSpacing = .compact
+        
+        if let viewControllers = self.viewControllers {
+            
+            for navigationController in viewControllers {
+                
+                guard let nav = navigationController as? UINavigationController else { return }
+                
+                nav.navigationBar.barTintColor = theme.navigationBarColor
+                nav.navigationBar.tintColor = theme.accentColor
+                nav.navigationBar.prefersLargeTitles = true
+                nav.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
+                nav.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
+                nav.navigationBar.isTranslucent = true
+                
+                if theme.statusBarStyle == .lightContent {
+                    self.tabBar.barStyle = .black
+                    nav.navigationBar.barStyle = .black
+                } else {
+                    self.tabBar.barStyle = .default
+                    nav.navigationBar.barStyle = .default
+                }
+                
+            }
+            
+        }
         
     }
     

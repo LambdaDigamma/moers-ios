@@ -80,14 +80,7 @@ class NewsViewController: UIViewController, NewsManagerDelegate {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.collectionView.backgroundColor = theme.backgroundColor
-            
-            self.reloadData()
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -231,6 +224,21 @@ extension NewsViewController: SFSafariViewControllerDelegate {
         
         self.navigationController?.navigationBar.prefersLargeTitles = true
 //        self.navigationItem.largeTitleDisplayMode = .always
+        
+    }
+    
+}
+
+extension NewsViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        
+        self.view.backgroundColor = theme.backgroundColor
+        self.collectionView.backgroundColor = theme.backgroundColor
+        
+        self.reloadData()
         
     }
     

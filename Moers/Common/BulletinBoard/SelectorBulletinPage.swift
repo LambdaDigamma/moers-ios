@@ -107,31 +107,43 @@ class SelectorBulletinPage<T: RawRepresentable & CaseIterable & EnumCollection &
     
     private func setButtonSelection(_ button: UIButton) {
         
-        ThemeManager.default.apply(theme: Theme.self, to: button) { (themeable, theme) in
-            
-            let accentColor = theme.accentColor
-            
-            themeable.layer.borderColor = accentColor.cgColor
-            themeable.setTitleColor(accentColor, for: .normal)
-            
-        }
+        // TODO: !!!!!!!
+        
+//        ThemeManager.default.apply(theme: Theme.self, to: button) { (themeable, theme) in
+//
+//            let accentColor = theme.accentColor
+//
+//            themeable.layer.borderColor = accentColor.cgColor
+//            themeable.setTitleColor(accentColor, for: .normal)
+//
+//        }
         
     }
     
     private func resetButtonSelections() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.buttons.forEach({ (button) in
-                
-                let decentColor = theme.decentColor
-                
-                button.layer.borderColor = decentColor.cgColor
-                button.setTitleColor(decentColor, for: .normal)
-                
-            })
-            
-        }
+//        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
+//
+//            themeable.buttons.forEach({ (button) in
+//
+//                let decentColor = theme.decentColor
+//
+//                button.layer.borderColor = decentColor.cgColor
+//                button.setTitleColor(decentColor, for: .normal)
+//
+//            })
+//
+//        }
+        
+    }
+    
+}
+
+extension SelectorBulletinPage: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
         
     }
     

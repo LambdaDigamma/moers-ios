@@ -50,13 +50,7 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
         picker.delegate = self
         picker.dataSource = self
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            
-            themeable.accentColor = theme.accentColor
-            themeable.decentColor = theme.decentColor
-            themeable.picker.backgroundColor = theme.backgroundColor
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -154,6 +148,18 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
             label.textColor = decentColor
         }
         
+    }
+    
+}
+
+extension RubbishStreetPickerItem: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.accentColor = theme.accentColor
+        self.decentColor = theme.decentColor
+        self.picker.backgroundColor = theme.backgroundColor
     }
     
 }

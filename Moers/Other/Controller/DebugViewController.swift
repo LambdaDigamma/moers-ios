@@ -94,14 +94,22 @@ class DebugViewController: UIViewController {
 
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.rubbishItemsTextView.textColor = theme.color
-            themeable.rubbishItemsTextView.backgroundColor = theme.backgroundColor
-            themeable.notificationItemsTextView.textColor = theme.color
-            themeable.notificationItemsTextView.backgroundColor = theme.backgroundColor
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
+    }
+    
+}
+
+extension DebugViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.view.backgroundColor = theme.backgroundColor
+        self.rubbishItemsTextView.textColor = theme.color
+        self.rubbishItemsTextView.backgroundColor = theme.backgroundColor
+        self.notificationItemsTextView.textColor = theme.color
+        self.notificationItemsTextView.backgroundColor = theme.backgroundColor
     }
     
 }
