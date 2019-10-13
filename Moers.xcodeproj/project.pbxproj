@@ -139,6 +139,8 @@
 		DFDD3F7020B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F6F20B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift */; };
 		DFDD3F7220B2E525005602E3 /* MonthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F7120B2E525005602E3 /* MonthHeaderView.swift */; };
 		DFDD3F7420B2F30A005602E3 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */; };
+		DFE1B58D235315E2009CA2EC /* MMUI.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFE1B58F235315E2009CA2EC /* MMUI.strings */; };
+		DFE1B5932353165F009CA2EC /* MMAPI.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFE1B5952353165F009CA2EC /* MMAPI.strings */; };
 		DFEE2E0A20BB117A00A130CB /* BaseComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEE2E0920BB117A00A130CB /* BaseComponent.swift */; };
 		DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */; };
 		DFF5DDCB20094A920075A2F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */; };
@@ -343,6 +345,10 @@
 		DFDD3F6F20B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionItemTableViewCell.swift; sourceTree = "<group>"; };
 		DFDD3F7120B2E525005602E3 /* MonthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthHeaderView.swift; sourceTree = "<group>"; };
 		DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		DFE1B58E235315E2009CA2EC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MMUI.strings; sourceTree = "<group>"; };
+		DFE1B590235315E5009CA2EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MMUI.strings; sourceTree = "<group>"; };
+		DFE1B5942353165F009CA2EC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MMAPI.strings; sourceTree = "<group>"; };
+		DFE1B59623531663009CA2EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MMAPI.strings; sourceTree = "<group>"; };
 		DFEE2E0920BB117A00A130CB /* BaseComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseComponent.swift; sourceTree = "<group>"; };
 		DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionComponent.swift; sourceTree = "<group>"; };
 		DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -826,6 +832,8 @@
 				DFA9EF0220B40C16008590EA /* Moers.gpx */,
 				DF21B2FD20B9D8A900478A33 /* Licenses.plist */,
 				DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */,
+				DFE1B58F235315E2009CA2EC /* MMUI.strings */,
+				DFE1B5952353165F009CA2EC /* MMAPI.strings */,
 				DF1A49691F6AAB7000E9108B /* Assets.xcassets */,
 			);
 			path = Assets;
@@ -1126,7 +1134,9 @@
 				DF16583022EF90D90033D218 /* Launch Screen.storyboard in Resources */,
 				DF44D58F2126F83B00F8AC0C /* DetailViewControllers.storyboard in Resources */,
 				DF44D58D2125FE9700F8AC0C /* ContentDrawer.storyboard in Resources */,
+				DFE1B58D235315E2009CA2EC /* MMUI.strings in Resources */,
 				DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */,
+				DFE1B5932353165F009CA2EC /* MMAPI.strings in Resources */,
 				DF21B2FE20B9D8A900478A33 /* Licenses.plist in Resources */,
 				DFF5DDCB20094A920075A2F4 /* GoogleService-Info.plist in Resources */,
 			);
@@ -1374,6 +1384,24 @@
 				DF0CB4A92082BE4100CC0AA8 /* de */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		DFE1B58F235315E2009CA2EC /* MMUI.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DFE1B58E235315E2009CA2EC /* de */,
+				DFE1B590235315E5009CA2EC /* en */,
+			);
+			name = MMUI.strings;
+			sourceTree = "<group>";
+		};
+		DFE1B5952353165F009CA2EC /* MMAPI.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DFE1B5942353165F009CA2EC /* de */,
+				DFE1B59623531663009CA2EC /* en */,
+			);
+			name = MMAPI.strings;
 			sourceTree = "<group>";
 		};
 		DFF8F2BB20E6DC32001A9EBB /* Interface.storyboard */ = {

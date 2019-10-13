@@ -1,0 +1,23 @@
+/* 
+  MMUI.strings
+  Moers
+
+  Created by Lennart Fischer on 13.10.19.
+  Copyright © 2019 Lennart Fischer. All rights reserved.
+*/
+
+"EventsTitle" = "Events";
+"SearchEventsPrompt" = "Search Events";
+"ShowMore" = "Show more";
+"UpcomingFavourites" = "Upcoming Favorites";
+"Favourites" = "Favourites";
+"Upcoming" = "Upcoming";
+"LiveNow" = "live now";
+"RouteButtonTitle" = "Route";
+"EventsNoFavourite" = "No event has been marked as a favorite yet.";
+"EventsNoLive" = "Currently there are no events taking place.";
+"EventsNoUpcoming" = "Currently there are no events scheduled. Come back soon!";
+"NavigationButtonMovingAct" = "Show current position";
+"MoreInformation" = "Learn more ➤";
+"Venue" = "Venue";
+"Unknown" = "Unknown";

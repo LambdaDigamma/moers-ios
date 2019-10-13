@@ -1,0 +1,51 @@
+/* 
+  MMAPI.strings
+  Moers
+
+  Created by Lennart Fischer on 13.10.19.
+  Copyright © 2019 Lennart Fischer. All rights reserved.
+*/
+
+/* Petrol */
+"PetrolStation" = "Tankstelle";
+"Diesel" = "Diesel";
+"E5" = "Super";
+"E10" = "Super E10";
+
+/* Waste */
+"ResidualWaste" = "Restabfall";
+"OrganicWaste" = "Biotonne";
+"PaperWaste" = "Papiertonne";
+"YellowWaste" = "Gelber Sack";
+"GreenWaste" = "Grünschnitt";
+
+/* Date+Extensions */
+"Today" = "Heute";
+"Tomorrow" = "Morgen";
+
+/* ParkingLot */
+"ParkingLot" = "Parkplatz";
+"ParkingLotUnchanged" = "unverändert";
+"ParkingLotDescends" = "fallend";
+"ParkingLotAscends" = "aufsteigend";
+"ParkingLotUndocumented" = "nicht erfasst";
+
+/* Camera */
+"Camera" = "360° Kamera";
+
+/* BikeChargingStation */
+"BikeChargingStation" = "E-Bike Ladestation";
+
+/* Moers Festival */
+"Free" = "kostenlos";
+"NeedsFestivalTicket" = "Eintritt mit Festival-/Tagesticket";
+"ExtraTicket" = "Festival-/Tagesticket oder Mörzz-Ticket (*)";
+"NotKnownPrompt" = "noch nicht bekannt";
+"LocationNotKnown" = "Ort bald bekannt";
+
+/* Rubbish Notifications */
+"RubbishCollectionNotificationTitle" = "Abfuhrkalender";
+"RubbishCollectionNotificationBody" = "Morgen wird abgeholt: ";
+
+/* Events */
+"LiveNow" = "jetzt live";
