@@ -39,8 +39,17 @@ class NewsCollectionViewCell: UICollectionViewCell {
             
             let date = feedItem.pubDate ?? Date()
             
-            titleLabel.text = feedItem.title
-            descriptionLabel.text = date.beautify() + " • " + "RP Online"
+            titleLabel.text = feedItem.title?.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            if let url = feedItem.enclosure?.attributes?.url {
+                
+                if url.lowercased().contains("nrz") {
+                    descriptionLabel.text = date.beautify() + " • " + "NRZ"
+                } else if url.lowercased().contains("rp") {
+                    descriptionLabel.text = date.beautify() + " • " + "RP Online"
+                }
+                
+            }
             
         }
     }

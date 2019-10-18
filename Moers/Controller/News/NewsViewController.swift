@@ -114,6 +114,23 @@ class NewsViewController: UIViewController, NewsManagerDelegate {
             
         }
         
+        NewsManager.shared.getNRZ { (error, feed) in
+            
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            guard let feed = feed else { return }
+            
+            self.newsItems.append(contentsOf: feed.items ?? [])
+            self.newsItems.sort(by: { ($0.date > $1.date ) })
+            
+            self.collectionView.reloadData()
+            
+            self.items += feed.items ?? []
+            
+        }
+        
     }
     
     func receivedTweets(tweets: [TWTRTweet]) {

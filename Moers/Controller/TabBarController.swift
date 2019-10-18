@@ -434,6 +434,22 @@ extension TabBarController: Themeable {
             
         }
         
+        if #available(iOS 13.0, *) {
+            
+            let appearance = UINavigationBarAppearance()
+            
+            appearance.configureWithDefaultBackground()
+            appearance.backgroundColor = theme.navigationBarColor
+            
+            appearance.titleTextAttributes = [.foregroundColor : theme.accentColor]
+            appearance.largeTitleTextAttributes = [.foregroundColor : theme.accentColor]
+            
+            guard let controller = self.viewControllers?[2] as? UINavigationController else { return }
+            
+            controller.navigationBar.scrollEdgeAppearance = appearance
+            
+        }
+        
     }
     
 }

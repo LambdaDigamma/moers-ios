@@ -13,10 +13,12 @@ import MMUI
 class MonthHeaderView: UITableViewHeaderFooterView {
 
     lazy var titleLabel = { ViewFactory.label() }()
+    lazy var bgView: UIView = { ViewFactory.blankView() }()
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
+        self.contentView.addSubview(bgView)
         self.contentView.addSubview(titleLabel)
         
         self.setupUI()
@@ -39,7 +41,11 @@ class MonthHeaderView: UITableViewHeaderFooterView {
         
         let margins = contentView.layoutMarginsGuide
         
-        let constraints = [titleLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
+        let constraints = [bgView.topAnchor.constraint(equalTo: self.topAnchor),
+                           bgView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+                           bgView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+                           bgView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+                           titleLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
                            titleLabel.leftAnchor.constraint(equalTo: margins.leftAnchor, constant: 0),
                            titleLabel.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: -0),
                            titleLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -0)]
@@ -61,7 +67,7 @@ extension MonthHeaderView: Themeable {
     typealias Theme = ApplicationTheme
     
     func apply(theme: Theme) {
-        self.backgroundColor = theme.backgroundColor
+        self.bgView.backgroundColor = theme.backgroundColor.darker(by: 5)
         self.titleLabel.textColor = theme.color
     }
     
