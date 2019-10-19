@@ -68,7 +68,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         self.parkingLotManager = parkingLotManager
         
         let mapViewController = MapViewController(locationManager: locationManager)
-        let contentViewController = UIStoryboard(name: "ContentDrawer", bundle: nil).instantiateViewController(withIdentifier: "DrawerContentViewController")
+        let contentViewController = SearchDrawerViewController(locationManager: locationManager)
         
         self.dashboardViewController = DashboardViewController(locationManager: locationManager,
                                                                geocodingManager: geocodingManager,
@@ -87,10 +87,6 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
                                                        geocodingManager: geocodingManager,
                                                        rubbishManager: rubbishManager,
                                                        petrolManager: petrolManager)
-        
-        if let contentViewController = contentViewController as? ContentViewController {
-            contentViewController.locationManager = locationManager
-        }
         
         super.init(nibName: nil, bundle: nil)
         
@@ -267,7 +263,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     @objc func search() {
         
         mainViewController.setDrawerPosition(position: .open, animated: true)
-        mainViewController.contentViewController.searchBar.becomeFirstResponder()
+        mainViewController.contentViewController.searchDrawer.searchBar.becomeFirstResponder()
         
     }
     

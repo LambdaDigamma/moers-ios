@@ -1,60 +1,33 @@
 //
-//  ContentViewController.swift
+//  SearchDrawerViewController.swift
 //  Moers
 //
-//  Created by Lennart Fischer on 17.04.18.
-//  Copyright © 2018 Lennart Fischer. All rights reserved.
+//  Created by Lennart Fischer on 18.10.19.
+//  Copyright © 2019 Lennart Fischer. All rights reserved.
 //
 
 import UIKit
+import MMAPI
+import MMUI
 import Gestalt
 import Pulley
-import Crashlytics
-import MapKit
 import TagListView
-import MMAPI
 import Fuse
-import MMUI
 
-
-
-public struct CellIdentifier {
+enum DisplayMode {
     
-    static let searchResultCell = "searchResult"
-    static let tagCell = "tagCell"
+    case list
+    case search(searchTerm: String, tags: [NSAttributedString], items: [Location])
+    case filter(searchTerm: String?, selectedTags: [String], items: [Location])
     
 }
 
-class ContentViewController: UIViewController {
-
-    // MARK: - UI
+class SearchDrawerViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var gripperView: UIView!
-    @IBOutlet weak var topSeparatorView: UIView!
-    @IBOutlet weak var bottomSeparatorView: UIView!
+    public let searchDrawer: SearchDrawerView
+    private lazy var drawer = { return self.parent as! MainViewController }()
     
-    @IBOutlet weak var tagListView: TagListView!
-    
-    @IBOutlet weak var gripperTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var headerSectionHeightConstraint: NSLayoutConstraint!
-    
-    private var drawerBottomSafeArea: CGFloat = 0.0 {
-        didSet {
-            self.loadViewIfNeeded()
-            self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: drawerBottomSafeArea, right: 0.0)
-        }
-    }
-    
-    private lazy var drawer = { self.parent as! MainViewController }()
-    private var normalColor = UIColor.clear
-    private var highlightedColor = UIColor.clear
     private let fuse = Fuse(location: 0, distance: 100, threshold: 0.45, maxPatternLength: 32, isCaseSensitive: false)
-    
-    // MARK: - Data
-    
-    public var locationManager: LocationManagerProtocol!
     
     private var displayMode = DisplayMode.list
     private var locations: [Location] = []
@@ -62,85 +35,55 @@ class ContentViewController: UIViewController {
     private var selectedTags: [String] = []
     private var tags: [String] = []
     
+    private var normalColor = UIColor.clear
+    private var highlightedColor = UIColor.clear
+    
+    private var drawerBottomSafeArea: CGFloat = 0.0 {
+        didSet {
+            self.loadViewIfNeeded()
+            self.searchDrawer.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: drawerBottomSafeArea, right: 0.0)
+        }
+    }
+    
+    public var locationManager: LocationManagerProtocol!
+    
     init(locationManager: LocationManagerProtocol) {
         self.locationManager = locationManager
+        self.searchDrawer = SearchDrawerView()
         super.init(nibName: nil, bundle: nil)
+        self.searchDrawer.searchBar.delegate = self
+        self.searchDrawer.tagList.delegate = self
+        self.searchDrawer.tableView.delegate = self
+        self.searchDrawer.tableView.dataSource = self
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - UIViewController Lifecycle
+    override func loadView() {
+        view = searchDrawer
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let feedbackGenerator = UISelectionFeedbackGenerator()
+        self.pulleyViewController?.feedbackGenerator = feedbackGenerator
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setupUI()
-        self.setupTheming()
-        
-    }
-    
-    // MARK: - Private Methods
-    
-    private func setupUI() {
-        
-        self.navigationItem.largeTitleDisplayMode = .never
-        self.navigationController?.navigationBar.prefersLargeTitles = false
-        
-        self.setupPulleyUI()
-        self.setupSearchBar()
-        self.setupTableView()
-        self.setupTagListView()
-        
-        self.headerSectionHeightConstraint.constant = 68.0
-        
-    }
-    
-    private func setupPulleyUI() {
-        self.gripperView.layer.cornerRadius = 2.5
-        self.gripperView.backgroundColor = UIColor.lightGray
-        self.topSeparatorView.backgroundColor = UIColor.lightGray
-        self.topSeparatorView.alpha = 0.75
-        self.bottomSeparatorView.backgroundColor = UIColor.clear
-    }
-    
-    private func setupSearchBar() {
-        self.searchBar.searchBarStyle = .minimal
-        self.searchBar.barStyle = .default
-        self.searchBar.isTranslucent = true
-        self.searchBar.backgroundColor = UIColor.clear
-        self.searchBar.placeholder = String.localized("SearchBarPrompt")
-        self.searchBar.delegate = self
-    }
-    
-    private func setupTableView() {
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        self.tableView.contentInsetAdjustmentBehavior = .never
-        self.tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: CellIdentifier.searchResultCell)
-        self.tableView.register(TagTableViewCell.self, forCellReuseIdentifier: CellIdentifier.tagCell)
-    }
-    
-    private func setupTagListView() {
-        self.tagListView.delegate = self
-        self.tagListView.enableRemoveButton = true
-        self.tagListView.paddingX = 12
-        self.tagListView.paddingY = 7
-        self.tagListView.marginX = 10
-        self.tagListView.marginY = 7
-        self.tagListView.removeIconLineWidth = 2
-        self.tagListView.removeButtonIconSize = 7
-        self.tagListView.textFont = UIFont.boldSystemFont(ofSize: 10)
-        self.tagListView.cornerRadius = 10
-        self.tagListView.backgroundColor = UIColor.clear
-    }
-    
-    private func setupTheming() {
-        
         MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
+        pulleyViewController?.delegate = self
+        pulleyViewController?.setDrawerPosition(position: .open, animated: false)
+        
     }
+    
+    // MARK: - Data Handling
     
     private func updateDatasource() {
         
@@ -157,7 +100,7 @@ class ContentViewController: UIViewController {
             self.datasource = self.locations
             
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self.searchDrawer.tableView.reloadData()
             }
             
         }.dispose(in: bag)
@@ -222,7 +165,7 @@ class ContentViewController: UIViewController {
     
     private func selectLocaton(_ location: Location) {
         
-        if let mapController = drawer.primaryContentViewController as? MapViewController {
+        if let mapController = pulleyViewController?.primaryContentViewController as? MapViewController {
             
             AnalyticsManager.shared.logSelectedItemContent(location)
             
@@ -232,12 +175,6 @@ class ContentViewController: UIViewController {
         }
         
     }
-    
-    func arrayContainsSubset<T : Equatable>(array: [T], subset: [T]) -> Bool {
-        return subset.reduce(true) { (result, item) in return result && array.contains(item) }
-    }
-    
-    // MARK: - Public Methods
     
     public func addLocation(_ location: Location) {
         
@@ -249,24 +186,108 @@ class ContentViewController: UIViewController {
     
 }
 
-extension ContentViewController: UISearchBarDelegate {
+extension SearchDrawerViewController: PulleyDrawerViewControllerDelegate {
+    
+    func collapsedDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
+        return 68.0 + (pulleyViewController?.currentDisplayMode == .drawer ? bottomSafeArea : 0.0)
+    }
+    
+    func partialRevealDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
+        
+//        let height = drawer.mapViewController.map.frame.height
+//
+//        if drawer.currentDisplayMode == .panel {
+//            return height - 49.0 - 16.0 - 16.0 - 64.0 - 50.0 - 16.0
+//        }
+        
+        return 264.0 + (pulleyViewController?.currentDisplayMode == .drawer ? bottomSafeArea : 0.0)
+        
+    }
+    
+    func supportedDrawerPositions() -> [PulleyPosition] {
+        
+//        if drawer.currentDisplayMode == .panel {
+//
+//            self.gripperView.isHidden = true
+//
+//            return [PulleyPosition.partiallyRevealed]
+//        }
+        
+        return PulleyPosition.all
+        
+    }
+    
+    func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
+        
+        drawerBottomSafeArea = bottomSafeArea
+        
+        searchDrawer.tableView.isScrollEnabled = drawer.drawerPosition == .open || drawer.currentDisplayMode == .panel
+        
+        if drawer.drawerPosition != .open {
+            searchDrawer.searchBar.resignFirstResponder()
+        }
+        
+//        tableView.isScrollEnabled = drawer.drawerPosition == .open || drawer.currentDisplayMode == .panel
+//
+//        if drawer.drawerPosition != .open {
+//            searchBar.resignFirstResponder()
+//        }
+//
+//        if drawer.currentDisplayMode == .panel {
+//            topSeparatorView.isHidden = drawer.drawerPosition == .collapsed
+//            bottomSeparatorView.isHidden = drawer.drawerPosition == .collapsed
+//        } else {
+//            topSeparatorView.isHidden = false
+//            bottomSeparatorView.isHidden = true
+//        }
+        
+    }
+    
+}
+
+
+extension SearchDrawerViewController: TagListViewDelegate {
+    
+    func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
+        
+        self.selectedTags.removeAll(where: { $0 == title })
+        
+        sender.removeTagView(tagView)
+        
+        if sender.tagViews.count == 0 {
+            self.searchDrawer.searchWrapperHeight.constant = 68.0
+            self.displayMode = .list
+            self.searchDrawer.tableView.reloadData()
+        } else {
+            let searchText = searchDrawer.searchBar.text ?? ""
+            self.displayMode = .filter(searchTerm: searchText,
+                                       selectedTags: selectedTags,
+                                       items: filterLocations(with: searchText))
+            self.searchDrawer.tableView.reloadData()
+        }
+        
+    }
+    
+}
+
+extension SearchDrawerViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
-        if let drawerVC = self.parent as? MainViewController {
-            drawerVC.setDrawerPosition(position: .open, animated: true)
+        if let drawer = self.parent as? MainViewController {
+            drawer.setDrawerPosition(position: .open, animated: true)
         }
         
         let searchTerm = searchBar.text ?? ""
         
         if !searchTerm.isEmpty {
             
-            let tags = searchTags(with: searchTerm)
-            let items = searchLocations(with: searchTerm)
+//            let tags = searchTags(with: searchTerm)
+//            let items = searchLocations(with: searchTerm)
+//
+//            displayMode = .search(searchTerm: searchTerm, tags: tags, items: items)
             
-            displayMode = .search(searchTerm: searchTerm, tags: tags, items: items)
-            
-            tableView.reloadData()
+            searchDrawer.tableView.reloadData()
             
         }
         
@@ -274,8 +295,16 @@ extension ContentViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        if !tags.isEmpty && !locations.isEmpty && tableView.cellForRow(at: IndexPath(row: 0, section: 0)) != nil {
-            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: false)
+        let tagsNotEmpty = !tags.isEmpty
+        let locationsNotEmpty = !locations.isEmpty
+        let cellAtIndex0Exists = searchDrawer.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) != nil
+        
+        if tagsNotEmpty && locationsNotEmpty && cellAtIndex0Exists {
+            
+            self.searchDrawer.tableView.scrollToRow(at: IndexPath(row: 0, section: 0),
+                                                    at: UITableView.ScrollPosition.top,
+                                                    animated: false)
+            
         }
         
         if searchText.isNotEmptyOrWhitespace {
@@ -295,7 +324,7 @@ extension ContentViewController: UISearchBarDelegate {
             
         }
         
-        tableView.reloadData()
+        self.searchDrawer.tableView.reloadData()
         
     }
     
@@ -319,19 +348,15 @@ extension ContentViewController: UISearchBarDelegate {
         
         searchBar.resignFirstResponder()
         
-        tableView.reloadData()
-        
-        //Answers.logSearch(withQuery: searchBar.text, customAttributes: nil)
+        self.searchDrawer.tableView.reloadData()
         
     }
     
 }
 
-extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
+extension SearchDrawerViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        print(displayMode)
         
         switch displayMode {
         
@@ -340,8 +365,8 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
             
         case .filter(_, let tags, let items):
             
-            tagListView.removeAllTags()
-            tagListView.addTags(tags)
+            searchDrawer.tagList.removeAllTags()
+            searchDrawer.tagList.addTags(tags)
             
             return items.count
             
@@ -396,8 +421,6 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
             
             let location = items[indexPath.row]
             
-            print(location.tags)
-            
             return setupSearchResultCell(cell, location)
             
         case .search(_, let tags, let items):
@@ -427,8 +450,8 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         switch displayMode {
-        case .list:
             
+        case .list:
             return 60
             
         case .search(_, let tags, _):
@@ -484,15 +507,14 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
                     self.selectedTags.append(tags[indexPath.row].string)
                 }
                 
-                self.searchBar.text = ""
-                
-                self.headerSectionHeightConstraint.constant = 98
+                self.searchDrawer.searchBar.text = ""
+                self.searchDrawer.searchWrapperHeight.constant = 98
                 
                 let filteredItems = filterLocations(with: "")
                 
                 self.displayMode = .filter(searchTerm: "", selectedTags: selectedTags, items: filteredItems)
                 
-                self.tableView.reloadData()
+                self.searchDrawer.tableView.reloadData()
                 
             } else {
                 
@@ -506,35 +528,13 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
-        searchBar.resignFirstResponder()
+        self.searchDrawer.searchBar.resignFirstResponder()
         
     }
     
 }
 
-extension ContentViewController: TagListViewDelegate {
-    
-    func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
-        
-        self.selectedTags.removeAll(where: { $0 == title })
-        
-        sender.removeTagView(tagView)
-        
-        if sender.tagViews.count == 0 {
-            self.headerSectionHeightConstraint.constant = 68.0
-            self.displayMode = .list
-            self.tableView.reloadData()
-        } else {
-            let searchText = searchBar.text ?? ""
-            self.displayMode = .filter(searchTerm: searchText, selectedTags: selectedTags, items: filterLocations(with: searchText))
-            self.tableView.reloadData()
-        }
-        
-    }
-    
-}
-
-extension ContentViewController: EntryDatasource, ParkingLotDatasource, CameraDatasource, PetrolDatasource {
+extension SearchDrawerViewController: EntryDatasource, ParkingLotDatasource, CameraDatasource, PetrolDatasource {
     
     func didReceiveEntries(_ entries: [Entry]) {
         
@@ -574,85 +574,21 @@ extension ContentViewController: EntryDatasource, ParkingLotDatasource, CameraDa
     
 }
 
-extension ContentViewController: PulleyDrawerViewControllerDelegate {
+extension SearchDrawerViewController {
     
-    func collapsedDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
-        return 68.0 + bottomSafeArea
-    }
-    
-    func partialRevealDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
-        
-        let height = drawer.mapViewController.map.frame.height
-        
-        if drawer.currentDisplayMode == .panel {
-            return height - 49.0 - 16.0 - 16.0 - 64.0 - 50.0 - 16.0
-        }
-        
-        return 264.0 + bottomSafeArea
-    }
-    
-    func supportedDrawerPositions() -> [PulleyPosition] {
-        
-        if drawer.currentDisplayMode == .panel {
-            
-            self.gripperView.isHidden = true
-            
-            return [PulleyPosition.partiallyRevealed]
-        }
-        
-        return PulleyPosition.all
-        
-    }
-    
-    func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
-        
-        drawerBottomSafeArea = bottomSafeArea
-        
-        //        if drawer.drawerPosition == .collapsed {
-        //            headerSectionHeightConstraint.constant = 68.0 + drawerBottomSafeArea
-        //        } else {
-        //            headerSectionHeightConstraint.constant = 68.0
-        //        }
-        
-        tableView.isScrollEnabled = drawer.drawerPosition == .open || drawer.currentDisplayMode == .panel
-        
-        if drawer.drawerPosition != .open {
-            searchBar.resignFirstResponder()
-        }
-        
-        if drawer.currentDisplayMode == .panel {
-            topSeparatorView.isHidden = drawer.drawerPosition == .collapsed
-            bottomSeparatorView.isHidden = drawer.drawerPosition == .collapsed
-        } else {
-            topSeparatorView.isHidden = false
-            bottomSeparatorView.isHidden = true
-        }
-        
+    private func arrayContainsSubset<T : Equatable>(array: [T], subset: [T]) -> Bool {
+        return subset.reduce(true) { (result, item) in return result && array.contains(item) }
     }
     
 }
 
-extension ContentViewController: Themeable {
+extension SearchDrawerViewController: Themeable {
     
     typealias Theme = ApplicationTheme
     
-    func apply(theme: Theme) {
-        
-        self.view.backgroundColor = theme.backgroundColor
-        self.searchBar.barTintColor = theme.accentColor
-        self.searchBar.backgroundColor = theme.backgroundColor
-        self.searchBar.tintColor = theme.accentColor
-        self.searchBar.textField?.textColor = theme.color
-        self.topSeparatorView.backgroundColor = theme.separatorColor
-        self.tableView.backgroundColor = theme.backgroundColor
-        self.tableView.separatorColor = theme.separatorColor
+    func apply(theme: ApplicationTheme) {
         self.normalColor = theme.backgroundColor
         self.highlightedColor = theme.backgroundColor.darker(by: 10)!
-        self.searchBar.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
-        self.tagListView.tagBackgroundColor = theme.accentColor
-        self.tagListView.textColor = theme.backgroundColor
-        self.tagListView.removeIconLineColor = theme.backgroundColor
-        
     }
     
 }

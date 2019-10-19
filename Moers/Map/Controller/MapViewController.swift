@@ -171,17 +171,17 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
         map.mapType = .standard
         
         let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.451667, longitude: 6.626389),
-                                        span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
+                                        span: MKCoordinateSpan(latitudeDelta: 0.012, longitudeDelta: 0.012))
         
         map.setRegion(region, animated: true)
         
-        locationManager.authorizationStatus.observeNext { authorizationStatus in
-            
-            let region = MKCoordinateRegion(center: self.map.userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
-            
-            self.map.setRegion(region, animated: true)
-            
-        }.dispose(in: bag)
+//        locationManager.authorizationStatus.observeNext { authorizationStatus in
+//
+//            let region = MKCoordinateRegion(center: self.map.userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+//
+//            self.map.setRegion(region, animated: true)
+//
+//        }.dispose(in: bag)
         
     }
     
