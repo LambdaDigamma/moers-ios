@@ -39,7 +39,7 @@ platform :ios do
         "MoersUITests/Info.plist",
         "MoersTests/Info.plist"
       ],
-      message: "Mein Moers Version #{version} (#{get_build_number()}) 🚀"
+      message: "Mein Moers Version #{version} 🚀"
     )
 
   end
