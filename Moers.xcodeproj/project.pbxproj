@@ -964,6 +964,7 @@
 			buildConfigurationList = DF1A49711F6AAB7000E9108B /* Build configuration list for PBXNativeTarget "Moers" */;
 			buildPhases = (
 				DF1A495C1F6AAB7000E9108B /* Frameworks */,
+				DF36A75B2379E27F006BF6EA /* Fix SPM */,
 				DF1A495B1F6AAB7000E9108B /* Sources */,
 				DF1A495D1F6AAB7000E9108B /* Resources */,
 				DFB618591FAE144D00C98EB6 /* ShellScript */,
@@ -1190,6 +1191,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		DF36A75B2379E27F006BF6EA /* Fix SPM */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Fix SPM";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ -d \"${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/\" ] && [ \"${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/\" != \"${SYMROOT}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/\" ] \nthen\n  cp -f -R \"${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/\" \"${SYMROOT}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/\"\nfi\n\n";
+		};
 		DFB618591FAE144D00C98EB6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
