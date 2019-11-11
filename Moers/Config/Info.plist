@@ -15,9 +15,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.2.1</string>
+	<string>2.2.2</string>
 	<key>CFBundleVersion</key>
-	<string>36</string>
+	<string>37</string>
 	<key>CLIENT_ID</key>
 	<string>$(CLIENT_ID)</string>
 	<key>CLIENT_SECRET</key>
