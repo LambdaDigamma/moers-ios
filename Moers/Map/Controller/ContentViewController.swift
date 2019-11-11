@@ -16,13 +16,7 @@ import MMAPI
 import Fuse
 import MMUI
 
-enum DisplayMode {
-    
-    case list
-    case search(searchTerm: String, tags: [NSAttributedString], items: [Location])
-    case filter(searchTerm: String?, selectedTags: [String], items: [Location])
-    
-}
+
 
 public struct CellIdentifier {
     
@@ -94,25 +88,41 @@ class ContentViewController: UIViewController {
         self.navigationItem.largeTitleDisplayMode = .never
         self.navigationController?.navigationBar.prefersLargeTitles = false
         
+        self.setupPulleyUI()
+        self.setupSearchBar()
+        self.setupTableView()
+        self.setupTagListView()
+        
+        self.headerSectionHeightConstraint.constant = 68.0
+        
+    }
+    
+    private func setupPulleyUI() {
         self.gripperView.layer.cornerRadius = 2.5
         self.gripperView.backgroundColor = UIColor.lightGray
         self.topSeparatorView.backgroundColor = UIColor.lightGray
         self.topSeparatorView.alpha = 0.75
         self.bottomSeparatorView.backgroundColor = UIColor.clear
-        
+    }
+    
+    private func setupSearchBar() {
         self.searchBar.searchBarStyle = .minimal
         self.searchBar.barStyle = .default
         self.searchBar.isTranslucent = true
         self.searchBar.backgroundColor = UIColor.clear
         self.searchBar.placeholder = String.localized("SearchBarPrompt")
         self.searchBar.delegate = self
-        
+    }
+    
+    private func setupTableView() {
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.contentInsetAdjustmentBehavior = .never
         self.tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: CellIdentifier.searchResultCell)
         self.tableView.register(TagTableViewCell.self, forCellReuseIdentifier: CellIdentifier.tagCell)
-        
+    }
+    
+    private func setupTagListView() {
         self.tagListView.delegate = self
         self.tagListView.enableRemoveButton = true
         self.tagListView.paddingX = 12
@@ -124,31 +134,11 @@ class ContentViewController: UIViewController {
         self.tagListView.textFont = UIFont.boldSystemFont(ofSize: 10)
         self.tagListView.cornerRadius = 10
         self.tagListView.backgroundColor = UIColor.clear
-        
-        self.headerSectionHeightConstraint.constant = 68.0
-        
     }
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.searchBar.barTintColor = theme.accentColor
-            themeable.searchBar.backgroundColor = theme.backgroundColor
-            themeable.searchBar.tintColor = theme.accentColor
-            themeable.searchBar.textField?.textColor = theme.color
-            themeable.topSeparatorView.backgroundColor = theme.separatorColor
-            themeable.tableView.backgroundColor = theme.backgroundColor
-            themeable.tableView.separatorColor = theme.separatorColor
-            themeable.normalColor = theme.backgroundColor
-            themeable.highlightedColor = theme.backgroundColor.darker(by: 10)!
-            themeable.searchBar.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
-            themeable.tagListView.tagBackgroundColor = theme.accentColor
-            themeable.tagListView.textColor = theme.backgroundColor
-            themeable.tagListView.removeIconLineColor = theme.backgroundColor
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -637,6 +627,31 @@ extension ContentViewController: PulleyDrawerViewControllerDelegate {
             topSeparatorView.isHidden = false
             bottomSeparatorView.isHidden = true
         }
+        
+    }
+    
+}
+
+extension ContentViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        
+        self.view.backgroundColor = theme.backgroundColor
+        self.searchBar.barTintColor = theme.accentColor
+        self.searchBar.backgroundColor = theme.backgroundColor
+        self.searchBar.tintColor = theme.accentColor
+        self.searchBar.textField?.textColor = theme.color
+        self.topSeparatorView.backgroundColor = theme.separatorColor
+        self.tableView.backgroundColor = theme.backgroundColor
+        self.tableView.separatorColor = theme.separatorColor
+        self.normalColor = theme.backgroundColor
+        self.highlightedColor = theme.backgroundColor.darker(by: 10)!
+        self.searchBar.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
+        self.tagListView.tagBackgroundColor = theme.accentColor
+        self.tagListView.textColor = theme.backgroundColor
+        self.tagListView.removeIconLineColor = theme.backgroundColor
         
     }
     

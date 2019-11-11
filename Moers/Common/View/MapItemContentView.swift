@@ -17,21 +17,27 @@ class BasicItemContentView: ESTabBarItemContentView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            
-            themeable.backdropColor = UIColor.clear
-            themeable.highlightBackdropColor = UIColor.clear
-            themeable.iconColor = theme.decentColor
-            themeable.textColor = theme.decentColor
-            themeable.highlightIconColor = theme.accentColor
-            themeable.highlightTextColor = theme.accentColor
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+extension BasicItemContentView: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.backdropColor = UIColor.clear
+        self.highlightBackdropColor = UIColor.clear
+        self.iconColor = theme.decentColor
+        self.textColor = theme.decentColor
+        self.highlightIconColor = theme.accentColor
+        self.highlightTextColor = theme.accentColor
     }
     
 }
@@ -79,17 +85,7 @@ class MapItemContentView: ESTabBarItemContentView {
         self.imageView.transform = CGAffineTransform.identity
         self.superview?.bringSubviewToFront(self)
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-
-            themeable.imageView.backgroundColor = theme.accentColor
-            themeable.imageView.layer.borderColor = theme.navigationBarColor.cgColor
-            themeable.textColor = theme.decentColor
-            themeable.iconColor = theme.navigationBarColor
-            themeable.highlightIconColor = theme.navigationBarColor
-            themeable.highlightTextColor = theme.accentColor
-            themeable.backdropColor = .clear
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -172,6 +168,22 @@ class MapItemContentView: ESTabBarItemContentView {
         scale?.completionBlock = ({ animation, finished in
             completion?()
         })
+    }
+    
+}
+
+extension MapItemContentView: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.imageView.backgroundColor = theme.accentColor
+        self.imageView.layer.borderColor = theme.navigationBarColor.cgColor
+        self.textColor = theme.decentColor
+        self.iconColor = theme.navigationBarColor
+        self.highlightIconColor = theme.navigationBarColor
+        self.highlightTextColor = theme.accentColor
+        self.backdropColor = .clear
     }
     
 }

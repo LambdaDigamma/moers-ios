@@ -31,7 +31,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: standardCellIdentifier)
+        tableView.register(OtherTableViewCell.self, forCellReuseIdentifier: standardCellIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.cellLayoutMarginsFollowReadableWidth = true
         
@@ -111,12 +111,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
 
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            themeable.textColor = theme.color
-            themeable.backgroundColor = theme.backgroundColor
-            themeable.tableView.backgroundColor = theme.backgroundColor
-            themeable.tableView.separatorColor = theme.separatorColor
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -253,19 +248,17 @@ extension OtherViewController: UITableViewDataSource, UITableViewDelegate {
             cell = tableView.dequeueReusableCell(withIdentifier: standardCellIdentifier)!
             
             cell.textLabel?.text = navigationRow.title
-            
             cell.accessoryType = .disclosureIndicator
+            
+            if let cell = cell as? OtherTableViewCell {
+                MMUIConfig.themeManager?.manage(theme: \ApplicationTheme.self, for: cell)
+            }
             
         } else {
             cell = UITableViewCell()
         }
         
         cell.selectionStyle = .none
-        
-        ThemeManager.default.apply(theme: Theme.self, to: cell) { themeable, theme in
-            themeable.backgroundColor = theme.backgroundColor
-            themeable.textLabel?.textColor = theme.color
-        }
         
         return cell
         
@@ -279,6 +272,36 @@ extension OtherViewController: UITableViewDataSource, UITableViewDelegate {
             
         }
         
+    }
+    
+}
+
+public class OtherTableViewCell: UITableViewCell {
+    
+    
+    
+}
+
+extension OtherViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.textColor = theme.color
+        self.backgroundColor = theme.backgroundColor
+        self.tableView.backgroundColor = theme.backgroundColor
+        self.tableView.separatorColor = theme.separatorColor
+    }
+    
+}
+
+extension OtherTableViewCell: Themeable {
+    
+    public typealias Theme = ApplicationTheme
+    
+    public func apply(theme: Theme) {
+        self.backgroundColor = theme.backgroundColor
+        self.textLabel?.textColor = theme.color
     }
     
 }

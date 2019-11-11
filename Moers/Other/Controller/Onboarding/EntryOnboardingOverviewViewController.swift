@@ -51,6 +51,17 @@ class EntryOnboardingOverviewViewController: UIViewController {
     
     public var overviewType = EntryOverviewType.summary
     
+    private var entryManager: EntryManagerProtocol
+    
+    init(entryManager: EntryManagerProtocol) {
+        self.entryManager = entryManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
@@ -230,60 +241,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            let applyTheming: ((HoshiTextField) -> Void) = { textField in
-                
-                if textField.isEnabled {
-                    textField.borderActiveColor = theme.accentColor
-                } else {
-                    textField.borderActiveColor = theme.decentColor
-                }
-                
-                textField.borderInactiveColor = theme.decentColor
-                textField.placeholderColor = theme.color
-                textField.textColor = theme.color.darker(by: 10)
-                textField.tintColor = theme.accentColor
-                textField.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
-                textField.autocorrectionType = .no
-                textField.delegate = self
-                
-            }
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.generalHeaderLabel.textColor = theme.decentColor
-            themeable.tagsHeaderLabel.textColor = theme.decentColor
-            themeable.addressHeaderLabel.textColor = theme.decentColor
-            themeable.contactHeaderLabel.textColor = theme.decentColor
-            themeable.openingHoursHeaderLabel.textColor = theme.decentColor
-            themeable.promptLabel.textColor = theme.color
-            themeable.tagsListView.tagBackgroundColor = theme.accentColor
-            themeable.tagsListView.textColor = theme.backgroundColor
-            themeable.tagsListView.removeIconLineColor = theme.backgroundColor
-            
-            themeable.mapView.layer.cornerRadius = 10
-            themeable.saveButton.setTitleColor(theme.backgroundColor, for: .normal)
-            themeable.saveButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
-            themeable.saveButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .selected)
-            
-            applyTheming(themeable.nameTextField)
-            applyTheming(themeable.streetTextField)
-            applyTheming(themeable.houseNrTextField)
-            applyTheming(themeable.postcodeTextField)
-            applyTheming(themeable.placeTextField)
-            applyTheming(themeable.websiteTextField)
-            applyTheming(themeable.phoneTextField)
-            applyTheming(themeable.mondayOHTextField)
-            applyTheming(themeable.tuesdayOHTextField)
-            applyTheming(themeable.wednesdayOHTextField)
-            applyTheming(themeable.thursdayOHTextField)
-            applyTheming(themeable.fridayOHTextField)
-            applyTheming(themeable.saturdayOHTextField)
-            applyTheming(themeable.sundayOHTextField)
-            applyTheming(themeable.otherOHTextField)
-            
-        }
-
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -367,28 +325,28 @@ class EntryOnboardingOverviewViewController: UIViewController {
     
     private func setupSummary() {
         
-        self.nameTextField.text = EntryManager.shared.entryName
-        self.phoneTextField.text = EntryManager.shared.entryPhone
-        self.websiteTextField.text = EntryManager.shared.entryWebsite
-        self.streetTextField.text = EntryManager.shared.entryStreet
-        self.houseNrTextField.text = EntryManager.shared.entryHouseNumber
-        self.postcodeTextField.text = EntryManager.shared.entryPostcode
-        self.placeTextField.text = EntryManager.shared.entryPlace
-        self.mondayOHTextField.text = EntryManager.shared.entryMondayOH
-        self.tuesdayOHTextField.text = EntryManager.shared.entryTuesdayOH
-        self.wednesdayOHTextField.text = EntryManager.shared.entryWednesdayOH
-        self.thursdayOHTextField.text = EntryManager.shared.entryThursdayOH
-        self.fridayOHTextField.text = EntryManager.shared.entryFridayOH
-        self.saturdayOHTextField.text = EntryManager.shared.entrySaturdayOH
-        self.sundayOHTextField.text = EntryManager.shared.entrySundayOH
-        self.otherOHTextField.text = EntryManager.shared.entryOtherOH
+        self.nameTextField.text = entryManager.entryName
+        self.phoneTextField.text = entryManager.entryPhone
+        self.websiteTextField.text = entryManager.entryWebsite
+        self.streetTextField.text = entryManager.entryStreet
+        self.houseNrTextField.text = entryManager.entryHouseNumber
+        self.postcodeTextField.text = entryManager.entryPostcode
+        self.placeTextField.text = entryManager.entryPlace
+        self.mondayOHTextField.text = entryManager.entryMondayOH
+        self.tuesdayOHTextField.text = entryManager.entryTuesdayOH
+        self.wednesdayOHTextField.text = entryManager.entryWednesdayOH
+        self.thursdayOHTextField.text = entryManager.entryThursdayOH
+        self.fridayOHTextField.text = entryManager.entryFridayOH
+        self.saturdayOHTextField.text = entryManager.entrySaturdayOH
+        self.sundayOHTextField.text = entryManager.entrySundayOH
+        self.otherOHTextField.text = entryManager.entryOtherOH
         
         disableTextFields([nameTextField, phoneTextField, websiteTextField, streetTextField, houseNrTextField, postcodeTextField, placeTextField, mondayOHTextField, tuesdayOHTextField, wednesdayOHTextField, thursdayOHTextField, fridayOHTextField, saturdayOHTextField, sundayOHTextField, otherOHTextField])
         
-        let coordinate = CLLocationCoordinate2D(latitude: EntryManager.shared.entryLat ?? 0, longitude: EntryManager.shared.entryLng ?? 0)
+        let coordinate = CLLocationCoordinate2D(latitude: entryManager.entryLat ?? 0, longitude: entryManager.entryLng ?? 0)
         
         self.setupMap(with: coordinate)
-        self.setupTags(with: EntryManager.shared.entryTags)
+        self.setupTags(with: entryManager.entryTags)
         
     }
     
@@ -455,35 +413,34 @@ class EntryOnboardingOverviewViewController: UIViewController {
     private func storeEntry() {
         
         let entry = Entry(id: -1,
-                          name: EntryManager.shared.entryName ?? "",
-                          tags: EntryManager.shared.entryTags,
-                          street: EntryManager.shared.entryStreet ?? "",
-                          houseNumber: EntryManager.shared.entryHouseNumber ?? "",
-                          postcode: EntryManager.shared.entryPostcode ?? "",
-                          place: EntryManager.shared.entryPlace ?? "",
-                          url: EntryManager.shared.entryWebsite,
-                          phone: EntryManager.shared.entryPhone,
-                          monday: EntryManager.shared.entryMondayOH,
-                          tuesday: EntryManager.shared.entryTuesdayOH,
-                          wednesday: EntryManager.shared.entryWednesdayOH,
-                          thursday: EntryManager.shared.entryThursdayOH,
-                          friday: EntryManager.shared.entryFridayOH,
-                          saturday: EntryManager.shared.entrySaturdayOH,
-                          sunday: EntryManager.shared.entrySundayOH,
-                          other: EntryManager.shared.entryOtherOH,
-                          lat: EntryManager.shared.entryLat ?? 0,
-                          lng: EntryManager.shared.entryLng ?? 0,
+                          name: entryManager.entryName ?? "",
+                          tags: entryManager.entryTags,
+                          street: entryManager.entryStreet ?? "",
+                          houseNumber: entryManager.entryHouseNumber ?? "",
+                          postcode: entryManager.entryPostcode ?? "",
+                          place: entryManager.entryPlace ?? "",
+                          url: entryManager.entryWebsite,
+                          phone: entryManager.entryPhone,
+                          monday: entryManager.entryMondayOH,
+                          tuesday: entryManager.entryTuesdayOH,
+                          wednesday: entryManager.entryWednesdayOH,
+                          thursday: entryManager.entryThursdayOH,
+                          friday: entryManager.entryFridayOH,
+                          saturday: entryManager.entrySaturdayOH,
+                          sunday: entryManager.entrySundayOH,
+                          other: entryManager.entryOtherOH,
+                          lat: entryManager.entryLat ?? 0,
+                          lng: entryManager.entryLng ?? 0,
                           isValidated: true)
         
-        EntryManager.shared.store(entry: entry) { (result) in
+        entryManager.store(entry: entry) { (result) in
             
             switch result {
                 
             case .success(let entry):
                 
                 self.alertSuccess()
-                
-                EntryManager.shared.resetData()
+                self.entryManager.resetData()
                 
                 guard let tabBarController = self.tabBarController as? TabBarController else { return }
                 
@@ -520,7 +477,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
         entry.sunday = sundayOHTextField.text
         entry.other = otherOHTextField.text
         
-        EntryManager.shared.update(entry: entry) { (result) in
+        entryManager.update(entry: entry) { (result) in
             
             DispatchQueue.main.async {
             
@@ -641,6 +598,66 @@ extension EntryOnboardingOverviewViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+    
+}
+
+extension EntryOnboardingOverviewViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        
+        let applyTheming: ((HoshiTextField) -> Void) = { textField in
+            
+            if textField.isEnabled {
+                textField.borderActiveColor = theme.accentColor
+            } else {
+                textField.borderActiveColor = theme.decentColor
+            }
+            
+            textField.borderInactiveColor = theme.decentColor
+            textField.placeholderColor = theme.color
+            textField.textColor = theme.color.darker(by: 10)
+            textField.tintColor = theme.accentColor
+            textField.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
+            textField.autocorrectionType = .no
+            textField.delegate = self
+            
+        }
+        
+        self.view.backgroundColor = theme.backgroundColor
+        self.generalHeaderLabel.textColor = theme.decentColor
+        self.tagsHeaderLabel.textColor = theme.decentColor
+        self.addressHeaderLabel.textColor = theme.decentColor
+        self.contactHeaderLabel.textColor = theme.decentColor
+        self.openingHoursHeaderLabel.textColor = theme.decentColor
+        self.promptLabel.textColor = theme.color
+        self.tagsListView.tagBackgroundColor = theme.accentColor
+        self.tagsListView.textColor = theme.backgroundColor
+        self.tagsListView.removeIconLineColor = theme.backgroundColor
+        
+        self.mapView.layer.cornerRadius = 10
+        self.saveButton.setTitleColor(theme.backgroundColor, for: .normal)
+        self.saveButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
+        self.saveButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .selected)
+        
+        applyTheming(self.nameTextField)
+        applyTheming(self.streetTextField)
+        applyTheming(self.houseNrTextField)
+        applyTheming(self.postcodeTextField)
+        applyTheming(self.placeTextField)
+        applyTheming(self.websiteTextField)
+        applyTheming(self.phoneTextField)
+        applyTheming(self.mondayOHTextField)
+        applyTheming(self.tuesdayOHTextField)
+        applyTheming(self.wednesdayOHTextField)
+        applyTheming(self.thursdayOHTextField)
+        applyTheming(self.fridayOHTextField)
+        applyTheming(self.saturdayOHTextField)
+        applyTheming(self.sundayOHTextField)
+        applyTheming(self.otherOHTextField)
+        
     }
     
 }

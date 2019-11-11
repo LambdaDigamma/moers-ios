@@ -28,6 +28,17 @@ class EntryOnboardingAddressViewController: UIViewController {
     
     private var coordinate: CLLocationCoordinate2D? = nil
     
+    private var entryManager: EntryManagerProtocol
+    
+    init(entryManager: EntryManagerProtocol) {
+        self.entryManager = entryManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
@@ -44,10 +55,10 @@ class EntryOnboardingAddressViewController: UIViewController {
         
         self.progressView.progress = 0.2
         
-        self.streetTextField.text = EntryManager.shared.entryStreet
-        self.houseNrTextField.text = EntryManager.shared.entryHouseNumber
-        self.postcodeTextField.text = EntryManager.shared.entryPostcode
-        self.placeTextField.text = EntryManager.shared.entryPlace
+        self.streetTextField.text = entryManager.entryStreet
+        self.houseNrTextField.text = entryManager.entryHouseNumber
+        self.postcodeTextField.text = entryManager.entryPostcode
+        self.placeTextField.text = entryManager.entryPlace
         
         self.checkDataInput()
         
@@ -115,35 +126,7 @@ class EntryOnboardingAddressViewController: UIViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            let applyTheming: ((HoshiTextField) -> Void) = { textField in
-                
-                textField.borderActiveColor = theme.accentColor
-                textField.borderInactiveColor = theme.decentColor
-                textField.placeholderColor = theme.color
-                textField.textColor = theme.color
-                textField.tintColor = theme.accentColor
-                textField.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
-                textField.autocorrectionType = .no
-                
-            }
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.addressHeaderLabel.textColor = theme.decentColor
-            themeable.mapView.layer.cornerRadius = 10
-            themeable.infoLabel.textColor = theme.color
-            themeable.progressView.accentColor = theme.accentColor
-            themeable.progressView.decentColor = theme.decentColor
-            themeable.progressView.textColor = theme.color
-            
-            applyTheming(themeable.streetTextField)
-            applyTheming(themeable.houseNrTextField)
-            applyTheming(themeable.postcodeTextField)
-            applyTheming(themeable.placeTextField)
-            
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -215,17 +198,17 @@ class EntryOnboardingAddressViewController: UIViewController {
     
     @objc private func continueOnboarding() {
         
-        EntryManager.shared.entryStreet = streetTextField.text
-        EntryManager.shared.entryHouseNumber = houseNrTextField.text
-        EntryManager.shared.entryPostcode = postcodeTextField.text
-        EntryManager.shared.entryPlace = placeTextField.text
+        entryManager.entryStreet = streetTextField.text
+        entryManager.entryHouseNumber = houseNrTextField.text
+        entryManager.entryPostcode = postcodeTextField.text
+        entryManager.entryPlace = placeTextField.text
         
         guard let coordinate = coordinate else { return }
         
-        EntryManager.shared.entryLat = coordinate.latitude
-        EntryManager.shared.entryLng = coordinate.longitude
+        entryManager.entryLat = coordinate.latitude
+        entryManager.entryLng = coordinate.longitude
         
-        let viewController = EntryOnboardingGeneralViewController()
+        let viewController = EntryOnboardingGeneralViewController(entryManager: entryManager)
             
         self.navigationController?.pushViewController(viewController, animated: true)
         
@@ -354,6 +337,41 @@ extension HoshiTextField {
         } else {
             self.borderInactiveColor = UIColor.red
         }
+        
+    }
+    
+}
+
+extension EntryOnboardingAddressViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        
+        let applyTheming: ((HoshiTextField) -> Void) = { textField in
+            
+            textField.borderActiveColor = theme.accentColor
+            textField.borderInactiveColor = theme.decentColor
+            textField.placeholderColor = theme.color
+            textField.textColor = theme.color
+            textField.tintColor = theme.accentColor
+            textField.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
+            textField.autocorrectionType = .no
+            
+        }
+        
+        self.view.backgroundColor = theme.backgroundColor
+        self.addressHeaderLabel.textColor = theme.decentColor
+        self.mapView.layer.cornerRadius = 10
+        self.infoLabel.textColor = theme.color
+        self.progressView.accentColor = theme.accentColor
+        self.progressView.decentColor = theme.decentColor
+        self.progressView.textColor = theme.color
+        
+        applyTheming(self.streetTextField)
+        applyTheming(self.houseNrTextField)
+        applyTheming(self.postcodeTextField)
+        applyTheming(self.placeTextField)
         
     }
     

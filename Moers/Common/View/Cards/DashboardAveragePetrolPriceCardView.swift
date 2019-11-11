@@ -154,17 +154,27 @@ class DashboardAveragePetrolPriceCardView: CardView {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.locationImageView.image = #imageLiteral(resourceName: "location").tinted(color: theme.color)
-            themeable.locationDescriptionLabel.textColor = theme.color
-            themeable.locationLabel.textColor = theme.color
-            themeable.priceLabel.textColor = theme.color
-            themeable.infoLabel.textColor = theme.decentColor //.darker(by: 20)
-            themeable.petrolTypeLabel.textColor = theme.decentColor //.darker(by: 20)
-            themeable.averageImageView.image = #imageLiteral(resourceName: "average").tinted(color: theme.color)
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \ApplicationTheme.self, for: self)
+        
+    }
+    
+}
+
+extension DashboardAveragePetrolPriceCardView: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: ApplicationTheme) {
+        
+        self.applyBaseStyling(theme: theme)
+        
+        self.locationImageView.image = #imageLiteral(resourceName: "location").tinted(color: theme.color)
+        self.locationDescriptionLabel.textColor = theme.color
+        self.locationLabel.textColor = theme.color
+        self.priceLabel.textColor = theme.color
+        self.infoLabel.textColor = theme.decentColor //.darker(by: 20)
+        self.petrolTypeLabel.textColor = theme.decentColor //.darker(by: 20)
+        self.averageImageView.image = #imageLiteral(resourceName: "average").tinted(color: theme.color)
         
     }
     

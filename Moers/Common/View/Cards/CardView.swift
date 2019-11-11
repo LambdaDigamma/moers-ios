@@ -165,34 +165,7 @@ class CardView: UIView {
     
     private func applyTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            
-            themeable.cornerRadius = 12.0
-            themeable.backgroundColor = theme.cardBackgroundColor
-            themeable.blurView.effect = theme.statusBarStyle == .default ? UIBlurEffect(style: .light) : UIBlurEffect(style: .dark)
-            themeable.activityIndicator.style = theme.statusBarStyle == .default ? .gray : .white
-            themeable.messageLabel.textColor = theme.color
-            themeable.titleLabel.textColor = theme.color
-            
-            if theme.cardShadow {
-                
-                themeable.clipsToBounds = false
-                themeable.shadowColor = UIColor.lightGray
-                themeable.shadowOpacity = 0.6
-                themeable.shadowRadius = 10.0
-                themeable.shadowOffset = CGSize(width: 0, height: 0)
-                
-            } else {
-                
-                themeable.clipsToBounds = false
-                themeable.shadowColor = UIColor.lightGray
-                themeable.shadowOpacity = 0.0
-                themeable.shadowRadius = 0.0
-                themeable.shadowOffset = CGSize(width: 0, height: 0)
-                
-            }
-            
-        }
+        applyBaseStyling(theme: .dark) // TODO: Check whether this makes sense.
         
     }
     
@@ -253,6 +226,35 @@ class CardView: UIView {
         
         self.activityIndicator.removeFromSuperview()
         self.blurView.removeFromSuperview()
+        
+    }
+    
+    public func applyBaseStyling(theme: ApplicationTheme) {
+        
+        self.cornerRadius = 12.0
+        self.backgroundColor = theme.cardBackgroundColor
+        self.blurView.effect = theme.statusBarStyle == .default ? UIBlurEffect(style: .light) : UIBlurEffect(style: .dark)
+        self.activityIndicator.style = theme.statusBarStyle == .default ? .gray : .white
+        self.messageLabel.textColor = theme.color
+        self.titleLabel.textColor = theme.color
+        
+        if theme.cardShadow {
+            
+            self.clipsToBounds = false
+            self.shadowColor = UIColor.lightGray
+            self.shadowOpacity = 0.6
+            self.shadowRadius = 10.0
+            self.shadowOffset = CGSize(width: 0, height: 0)
+            
+        } else {
+            
+            self.clipsToBounds = false
+            self.shadowColor = UIColor.lightGray
+            self.shadowOpacity = 0.0
+            self.shadowRadius = 0.0
+            self.shadowOffset = CGSize(width: 0, height: 0)
+            
+        }
         
     }
     

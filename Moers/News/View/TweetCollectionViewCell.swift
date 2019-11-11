@@ -129,33 +129,7 @@ class TweetCollectionViewCell: UICollectionViewCell, TWTRTweetViewDelegate {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            themeable.backgroundColor = theme.backgroundColor
-            themeable.tweetView.theme = theme.statusBarStyle == .lightContent ? .dark : .light
-            themeable.tweetView.backgroundColor = theme.cardBackgroundColor
-            
-            themeable.cornerRadius = 12.0
-            themeable.backgroundColor = theme.cardBackgroundColor
-            
-            if theme.cardShadow {
-                
-                themeable.clipsToBounds = false
-                themeable.shadowColor = UIColor.lightGray
-                themeable.shadowOpacity = 0.6
-                themeable.shadowRadius = 10.0
-                themeable.shadowOffset = CGSize(width: 0, height: 0)
-                
-            } else {
-                
-                themeable.clipsToBounds = false
-                themeable.shadowColor = UIColor.lightGray
-                themeable.shadowOpacity = 0.0
-                themeable.shadowRadius = 0.0
-                themeable.shadowOffset = CGSize(width: 0, height: 0)
-                
-            }
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -179,6 +153,40 @@ class TweetCollectionViewCell: UICollectionViewCell, TWTRTweetViewDelegate {
     func tweetView(_ tweetView: TWTRTweetView, didTapVideoWith videoURL: URL) {
         
     }
+        
+}
+
+extension TweetCollectionViewCell: Themeable {
     
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        
+        self.backgroundColor = theme.backgroundColor
+        self.tweetView.theme = theme.statusBarStyle == .lightContent ? .dark : .light
+        self.tweetView.backgroundColor = theme.cardBackgroundColor
+        
+        self.cornerRadius = 12.0
+        self.backgroundColor = theme.cardBackgroundColor
+        
+        if theme.cardShadow {
+            
+            self.clipsToBounds = false
+            self.shadowColor = UIColor.lightGray
+            self.shadowOpacity = 0.6
+            self.shadowRadius = 10.0
+            self.shadowOffset = CGSize(width: 0, height: 0)
+            
+        } else {
+            
+            self.clipsToBounds = false
+            self.shadowColor = UIColor.lightGray
+            self.shadowOpacity = 0.0
+            self.shadowRadius = 0.0
+            self.shadowOffset = CGSize(width: 0, height: 0)
+            
+        }
+        
+    }
     
 }

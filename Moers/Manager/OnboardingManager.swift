@@ -334,15 +334,7 @@ extension OnboardingManager {
         
         let appearance = BLTNItemAppearance()
         
-        ThemeManager.default.apply(theme: Theme.self, to: appearance) { themeable, theme in
-            
-            themeable.titleTextColor = theme.color
-            themeable.descriptionTextColor = theme.color
-            themeable.actionButtonColor = theme.accentColor
-            themeable.actionButtonTitleColor = theme.backgroundColor
-            themeable.alternativeButtonTitleColor = theme.color
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \ApplicationTheme.self, for: appearance)
         
         return appearance
         
@@ -355,5 +347,21 @@ extension OnboardingManager {
 extension Notification.Name {
     
     static let SetupDidComplete = Notification.Name("SetupDidCompleteNotification")
+    
+}
+
+extension BLTNItemAppearance: Themeable {
+    
+    public typealias Theme = ApplicationTheme
+    
+    public func apply(theme: Theme) {
+        
+        self.titleTextColor = theme.color
+        self.descriptionTextColor = theme.color
+        self.actionButtonColor = theme.accentColor
+        self.actionButtonTitleColor = theme.backgroundColor
+        self.alternativeButtonTitleColor = theme.color
+        
+    }
     
 }

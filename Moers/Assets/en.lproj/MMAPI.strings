@@ -1,0 +1,51 @@
+/* 
+  MMAPI.strings
+  Moers
+
+  Created by Lennart Fischer on 13.10.19.
+  Copyright © 2019 Lennart Fischer. All rights reserved.
+*/
+
+/* Petrol */
+"PetrolStation" = "Petrol Station";
+"Diesel" = "Diesel";
+"E5" = "E5";
+"E10" = "E10";
+
+/* Waste */
+"ResidualWaste" = "Residual Waste";
+"OrganicWaste" = "Organic Waste";
+"PaperWaste" = "Paper Waste";
+"YellowWaste" = "Yellow Bag";
+"GreenWaste" = "Green Cuttings";
+
+/* Date+Extensions */
+"Today" = "Today";
+"Tomorrow" = "Tomorrow";
+
+/* ParkingLot */
+"ParkingLot" = "Parking Lot";
+"ParkingLotUnchanged" = "unchanged";
+"ParkingLotDescends" = "falling";
+"ParkingLotAscends" = "raising";
+"ParkingLotUndocumented" = "undocumented";
+
+/* Camera */
+"Camera" = "360° Camera";
+
+/* BikeChargingStation */
+"BikeChargingStation" = "Bike Charging Station";
+
+/* Moers Festival */
+"Free" = "free";
+"NeedsFestivalTicket" = "festival/day ticket required";
+"ExtraTicket" = "festival/day ticket or Mörzz-Ticket required (*)";
+"NotKnownPrompt" = "not yet announced";
+"LocationNotKnown" = "Site soon known";
+
+/* Rubbish Notifications */
+"RubbishCollectionNotificationTitle" = "Pick-up Schedule";
+"RubbishCollectionNotificationBody" = "Tomorrow will be collected: ";
+
+/* Events */
+"LiveNow" = "live now";

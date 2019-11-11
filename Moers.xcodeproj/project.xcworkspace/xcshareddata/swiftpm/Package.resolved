@@ -1,0 +1,79 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Bond",
+        "repositoryURL": "https://github.com/DeclarativeHub/Bond.git",
+        "state": {
+          "branch": null,
+          "revision": "1c4ce95a76502b7253362101a93d717c6b29e5b5",
+          "version": "7.6.0"
+        }
+      },
+      {
+        "package": "Differ",
+        "repositoryURL": "https://github.com/tonyarnold/Differ.git",
+        "state": {
+          "branch": null,
+          "revision": "e2cca36e7258dd8add88ae46b5ea56509b066e21",
+          "version": "1.4.3"
+        }
+      },
+      {
+        "package": "Fuse",
+        "repositoryURL": "https://github.com/LambdaDigamma/fuse-swift",
+        "state": {
+          "branch": null,
+          "revision": "271a3b32d268605a222615d3d8ec8f88ad5cb831",
+          "version": "1.2.2"
+        }
+      },
+      {
+        "package": "Gestalt",
+        "repositoryURL": "https://github.com/regexident/Gestalt.git",
+        "state": {
+          "branch": "swift-5",
+          "revision": "77957e0d336e7c1bb53edaa23f6bd70c5ec506bc",
+          "version": null
+        }
+      },
+      {
+        "package": "Haneke",
+        "repositoryURL": "https://github.com/LambdaDigamma/HanekeSwift",
+        "state": {
+          "branch": null,
+          "revision": "1fcd8e27a638c3005760d463bec76cc647db3fea",
+          "version": null
+        }
+      },
+      {
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/onevcat/Kingfisher",
+        "state": {
+          "branch": null,
+          "revision": "9c039c8d8d2aa349b326c1059702d9f1b83bdb82",
+          "version": "5.8.3"
+        }
+      },
+      {
+        "package": "Reachability",
+        "repositoryURL": "https://github.com/ashleymills/Reachability.swift.git",
+        "state": {
+          "branch": null,
+          "revision": "6c8652a8ea35a64cf36367d07b3d6e5e6a24b272",
+          "version": "4.3.1"
+        }
+      },
+      {
+        "package": "ReactiveKit",
+        "repositoryURL": "https://github.com/DeclarativeHub/ReactiveKit.git",
+        "state": {
+          "branch": null,
+          "revision": "08350920b54c220a038e38bde0d84bd6126488dd",
+          "version": "3.13.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

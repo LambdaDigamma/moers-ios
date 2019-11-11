@@ -15,9 +15,9 @@ import CoreLocation
 class MainViewController: PulleyViewController {
 
     public var mapViewController: MapViewController!
-    public var contentViewController: ContentViewController!
+    public var contentViewController: SearchDrawerViewController!
     public var locations: [Location] = []
-    public lazy var detailViewController = { DetailViewController(locationManager: locationManager) }()
+    public lazy var detailViewController = { DetailViewController(locationManager: locationManager, entryManager: entryManager) }()
     
     private let locationManager: LocationManagerProtocol
     private let petrolManager: PetrolManagerProtocol
@@ -46,7 +46,7 @@ class MainViewController: PulleyViewController {
         self.displayMode = .automatic
         
         self.mapViewController = contentViewController as? MapViewController
-        self.contentViewController = drawerViewController as? ContentViewController
+        self.contentViewController = drawerViewController as? SearchDrawerViewController
         
         self.setupObserver()
         self.loadData()

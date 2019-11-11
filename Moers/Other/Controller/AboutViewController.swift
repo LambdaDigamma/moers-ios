@@ -165,17 +165,7 @@ class AboutViewController: UIViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.cfnLabel.textColor = theme.color
-            themeable.cfnTextView.textColor = theme.color
-            themeable.cfnTextView.backgroundColor = theme.backgroundColor
-            themeable.nameLabel.textColor = theme.color
-            themeable.meTextView.textColor = theme.color
-            themeable.meTextView.backgroundColor = theme.backgroundColor
-            themeable.infoTextView.textColor = theme.color
-            themeable.infoTextView.backgroundColor = theme.backgroundColor
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -188,4 +178,24 @@ class AboutViewController: UIViewController {
         
     }
 
+}
+
+extension AboutViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        
+        self.view.backgroundColor = theme.backgroundColor
+        self.cfnLabel.textColor = theme.color
+        self.cfnTextView.textColor = theme.color
+        self.cfnTextView.backgroundColor = theme.backgroundColor
+        self.nameLabel.textColor = theme.color
+        self.meTextView.textColor = theme.color
+        self.meTextView.backgroundColor = theme.backgroundColor
+        self.infoTextView.textColor = theme.color
+        self.infoTextView.backgroundColor = theme.backgroundColor
+        
+    }
+    
 }

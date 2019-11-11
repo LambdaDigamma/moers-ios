@@ -128,7 +128,7 @@ struct AnalyticsManager {
         
     }
     
-    public func logSelectedTheme(_ theme: Theme) {
+    public func logSelectedTheme(_ theme: ApplicationTheme) {
         
         if shouldLog {
             Answers.logCustomEvent(withName: "Selected Theme", customAttributes: ["identifier": theme.identifier])

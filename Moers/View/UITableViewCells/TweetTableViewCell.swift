@@ -27,11 +27,7 @@ class TweetTableViewCell: UITableViewCell, TWTRTweetViewDelegate {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            themeable.backgroundColor = theme.backgroundColor
-            themeable.tweetView.theme = theme.statusBarStyle == .lightContent ? .dark : .light
-            themeable.tweetView.backgroundColor = theme.backgroundColor
-        }
+        MMUIConfig.themeManager?.manage(theme: \ApplicationTheme.self, for: self)
         
         self.contentView.addSubview(tweetView)
         
@@ -62,6 +58,18 @@ class TweetTableViewCell: UITableViewCell, TWTRTweetViewDelegate {
     
     func tweetView(_ tweetView: TWTRTweetView, didTapVideoWith videoURL: URL) {
         
+    }
+    
+}
+
+extension TweetTableViewCell: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: ApplicationTheme) {
+        self.backgroundColor = theme.backgroundColor
+        self.tweetView.theme = theme.statusBarStyle == .lightContent ? .dark : .light
+        self.tweetView.backgroundColor = theme.backgroundColor
     }
     
 }

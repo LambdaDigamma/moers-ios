@@ -32,10 +32,11 @@ class MapLocationPickerViewController: UIViewController {
     private var currentPostcode: String = ""
     
     private let locationManager: LocationManagerProtocol
+    private var entryManager: EntryManagerProtocol
     
-    init(locationManager: LocationManagerProtocol) {
-        
+    init(locationManager: LocationManagerProtocol, entryManager: EntryManagerProtocol) {
         self.locationManager = locationManager
+        self.entryManager = entryManager
         
         super.init(nibName: nil, bundle: nil)
         
@@ -172,14 +173,14 @@ class MapLocationPickerViewController: UIViewController {
         
         let coordinate = mapView.centerCoordinate
         
-        EntryManager.shared.entryLat = coordinate.latitude
-        EntryManager.shared.entryLng = coordinate.longitude
-        EntryManager.shared.entryStreet = currentStreet
-        EntryManager.shared.entryHouseNumber = currentHouseNumber
-        EntryManager.shared.entryPlace = currentPlace
-        EntryManager.shared.entryPostcode = currentPostcode
+        entryManager.entryLat = coordinate.latitude
+        entryManager.entryLng = coordinate.longitude
+        entryManager.entryStreet = currentStreet
+        entryManager.entryHouseNumber = currentHouseNumber
+        entryManager.entryPlace = currentPlace
+        entryManager.entryPostcode = currentPostcode
         
-        let viewController = EntryOnboardingGeneralViewController()
+        let viewController = EntryOnboardingGeneralViewController(entryManager: entryManager)
         
         self.navigationController?.pushViewController(viewController, animated: true)
         

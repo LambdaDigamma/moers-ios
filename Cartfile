@@ -1,18 +1,11 @@
 github "52inc/Pulley"
-github "regexident/Gestalt" ~> 1.2
 github "alexaubry/BulletinBoard" "master"
 github "eggswift/ESTabBarController"
 github "facebook/pop" ~> 1.0.10
 github "regexident/EventBus"
-github "Haneke/HanekeSwift"
-github "ashleymills/Reachability.swift"
 github "raulriera/TextFieldEffects"
 binary "https://ton.twimg.com/syndication/twitterkit/ios/TwitterKit.json"
 binary "https://ton.twimg.com/syndication/twitterkit/ios/TwitterCore.json"
 github "sgr-ksmt/Alertift" ~> 3.2
 github "ElaWorkshop/TagListView" ~> 1.0
 github "nmdias/FeedKit" ~> 8.0
-github "onevcat/Kingfisher" ~> 4.0
-github "LambdaDigamma/mmapi-ios" ~> 0.0.25
-github "LambdaDigamma/mmui-ios" ~> 0.0.13
-github "LambdaDigamma/mmapi-ios" "fix-rubbish"

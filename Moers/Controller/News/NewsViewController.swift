@@ -80,14 +80,7 @@ class NewsViewController: UIViewController, NewsManagerDelegate {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.collectionView.backgroundColor = theme.backgroundColor
-            
-            self.reloadData()
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -105,6 +98,23 @@ class NewsViewController: UIViewController, NewsManagerDelegate {
         }
         
         NewsManager.shared.getRheinischePost { (error, feed) in
+            
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            guard let feed = feed else { return }
+            
+            self.newsItems.append(contentsOf: feed.items ?? [])
+            self.newsItems.sort(by: { ($0.date > $1.date ) })
+            
+            self.collectionView.reloadData()
+            
+            self.items += feed.items ?? []
+            
+        }
+        
+        NewsManager.shared.getNRZ { (error, feed) in
             
             if let error = error {
                 print(error.localizedDescription)
@@ -231,6 +241,21 @@ extension NewsViewController: SFSafariViewControllerDelegate {
         
         self.navigationController?.navigationBar.prefersLargeTitles = true
 //        self.navigationItem.largeTitleDisplayMode = .always
+        
+    }
+    
+}
+
+extension NewsViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        
+        self.view.backgroundColor = theme.backgroundColor
+        self.collectionView.backgroundColor = theme.backgroundColor
+        
+        self.reloadData()
         
     }
     

@@ -12,7 +12,7 @@ import MMUI
 
 class ThemeCardView: TitleCardView {
     
-    public var theme: Theme? {
+    public var theme: ApplicationTheme? {
         didSet {
             
             guard let theme = theme else { return }
@@ -72,7 +72,7 @@ class ThemeCardView: TitleCardView {
     
     private func buildColorView(color: UIColor) -> UIView {
         
-        let view = UIView()
+        let view = ColorView()
         
         view.backgroundColor = color
         view.layer.borderWidth = 2
@@ -80,12 +80,24 @@ class ThemeCardView: TitleCardView {
         
         view.translatesAutoresizingMaskIntoConstraints = false
         
-        ThemeManager.default.apply(theme: Theme.self, to: view) { (themeable, theme) in
-            themeable.layer.borderColor = theme.decentColor.cgColor
-        }
+        MMUIConfig.themeManager?.manage(theme: \ApplicationTheme.self, for: view)
         
         return view
         
+    }
+    
+}
+
+class ColorView: UIView {
+    
+}
+
+extension ColorView: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: ApplicationTheme) {
+        self.layer.borderColor = theme.decentColor.cgColor
     }
     
 }

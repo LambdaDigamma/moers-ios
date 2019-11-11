@@ -55,6 +55,17 @@ class DetailEntryViewController: UIViewController {
     
     public var selectedEntry: Entry? { didSet { selectedEntry(selectedEntry) } }
     
+    private var entryManager: EntryManagerProtocol!
+    
+    init(entryManager: EntryManagerProtocol) {
+        self.entryManager = entryManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
@@ -106,64 +117,7 @@ class DetailEntryViewController: UIViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.topSeparator.backgroundColor = theme.decentColor
-            themeable.buttonSeparator.backgroundColor = theme.decentColor
-            themeable.addressSeparator.backgroundColor = theme.decentColor
-            themeable.openingHoursSeparator.backgroundColor = theme.decentColor
-            themeable.tagSeparator.backgroundColor = theme.decentColor
-            themeable.callButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
-            themeable.callButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .highlighted)
-            themeable.callButton.setTitleColor(theme.backgroundColor, for: .normal)
-            themeable.websiteButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
-            themeable.websiteButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .highlighted)
-            themeable.websiteButton.setTitleColor(theme.backgroundColor, for: .normal)
-            themeable.tagsListView.backgroundColor = UIColor.clear
-            themeable.tagsListView.tagBackgroundColor = theme.accentColor
-            themeable.tagsListView.textColor = theme.backgroundColor
-            themeable.tagsListView.removeIconLineColor = theme.backgroundColor
-            themeable.lastUpdateLabel.textColor = theme.decentColor
-            themeable.infoLabel.textColor = theme.decentColor
-            themeable.editButton.setBackgroundColor(color: theme.decentColor, forState: .normal)
-            themeable.editButton.setBackgroundColor(color: theme.decentColor.darker(by: 10)!, forState: UIControl.State.selected)
-            themeable.editButton.alpha = 0.75
-            themeable.editButton.setTitleColor(theme.backgroundColor, for: .normal)
-            themeable.historyButton.setBackgroundColor(color: theme.decentColor, forState: .normal)
-            themeable.historyButton.setBackgroundColor(color: theme.decentColor.darker(by: 10)!, forState: UIControl.State.selected)
-            themeable.historyButton.alpha = 0.75
-            themeable.historyButton.setTitleColor(theme.backgroundColor, for: .normal)
-            
-            let labels: [UILabel] = [themeable.addressHeaderLabel,
-                                     themeable.streetLabel,
-                                     themeable.placeLabel,
-                                     themeable.countryLabel,
-                                     themeable.openingHoursHeaderLabel,
-                                     themeable.mondayHeaderLabel,
-                                     themeable.mondayLabel,
-                                     themeable.tuesdayHeaderLabel,
-                                     themeable.tuesdayLabel,
-                                     themeable.wednesdayHeaderLabel,
-                                     themeable.wednesdayLabel,
-                                     themeable.thursdayHeaderLabel,
-                                     themeable.thursdayLabel,
-                                     themeable.fridayHeaderLabel,
-                                     themeable.fridayLabel,
-                                     themeable.saturdayHeaderLabel,
-                                     themeable.saturdayLabel,
-                                     themeable.otherHeaderLabel,
-                                     themeable.otherLabel,
-                                     themeable.phoneHeaderLabel,
-                                     themeable.phoneLabel,
-                                     themeable.websiteHeaderLabel,
-                                     themeable.websiteLabel,
-                                     themeable.tagLabel]
-            
-            for label in labels {
-                label.textColor = theme.color
-            }
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
 
@@ -245,7 +199,7 @@ class DetailEntryViewController: UIViewController {
     
     @objc private func editEntry() {
         
-        let viewController = EntryOnboardingOverviewViewController()
+        let viewController = EntryOnboardingOverviewViewController(entryManager: entryManager)
         
         guard let entry = selectedEntry else { return }
         
@@ -267,6 +221,10 @@ class DetailEntryViewController: UIViewController {
         
     }
     
+    public func setEntryManager(_ entryManager: EntryManagerProtocol) {
+        self.entryManager = entryManager
+    }
+    
     static func fromStoryboard() -> DetailEntryViewController {
         
         let storyboard = UIStoryboard(name: "DetailViewControllers", bundle: nil)
@@ -280,4 +238,69 @@ class DetailEntryViewController: UIViewController {
 // Helper function inserted by Swift 4.2 migrator.
 public func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
     return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+}
+
+extension DetailEntryViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        
+        self.topSeparator.backgroundColor = theme.decentColor
+        self.buttonSeparator.backgroundColor = theme.decentColor
+        self.addressSeparator.backgroundColor = theme.decentColor
+        self.openingHoursSeparator.backgroundColor = theme.decentColor
+        self.tagSeparator.backgroundColor = theme.decentColor
+        self.callButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
+        self.callButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .highlighted)
+        self.callButton.setTitleColor(theme.backgroundColor, for: .normal)
+        self.websiteButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
+        self.websiteButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .highlighted)
+        self.websiteButton.setTitleColor(theme.backgroundColor, for: .normal)
+        self.tagsListView.backgroundColor = UIColor.clear
+        self.tagsListView.tagBackgroundColor = theme.accentColor
+        self.tagsListView.textColor = theme.backgroundColor
+        self.tagsListView.removeIconLineColor = theme.backgroundColor
+        self.lastUpdateLabel.textColor = theme.decentColor
+        self.infoLabel.textColor = theme.decentColor
+        self.editButton.setBackgroundColor(color: theme.decentColor, forState: .normal)
+        self.editButton.setBackgroundColor(color: theme.decentColor.darker(by: 10)!, forState: UIControl.State.selected)
+        self.editButton.alpha = 0.75
+        self.editButton.setTitleColor(theme.backgroundColor, for: .normal)
+        self.historyButton.setBackgroundColor(color: theme.decentColor, forState: .normal)
+        self.historyButton.setBackgroundColor(color: theme.decentColor.darker(by: 10)!, forState: UIControl.State.selected)
+        self.historyButton.alpha = 0.75
+        self.historyButton.setTitleColor(theme.backgroundColor, for: .normal)
+        
+        let labels: [UILabel] = [self.addressHeaderLabel,
+                                 self.streetLabel,
+                                 self.placeLabel,
+                                 self.countryLabel,
+                                 self.openingHoursHeaderLabel,
+                                 self.mondayHeaderLabel,
+                                 self.mondayLabel,
+                                 self.tuesdayHeaderLabel,
+                                 self.tuesdayLabel,
+                                 self.wednesdayHeaderLabel,
+                                 self.wednesdayLabel,
+                                 self.thursdayHeaderLabel,
+                                 self.thursdayLabel,
+                                 self.fridayHeaderLabel,
+                                 self.fridayLabel,
+                                 self.saturdayHeaderLabel,
+                                 self.saturdayLabel,
+                                 self.otherHeaderLabel,
+                                 self.otherLabel,
+                                 self.phoneHeaderLabel,
+                                 self.phoneLabel,
+                                 self.websiteHeaderLabel,
+                                 self.websiteLabel,
+                                 self.tagLabel]
+        
+        for label in labels {
+            label.textColor = theme.color
+        }
+        
+    }
+    
 }

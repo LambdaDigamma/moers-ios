@@ -107,13 +107,19 @@ class RubbishCollectionView: UIView {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            
-            themeable.dateLabel.textColor = theme.color
-            themeable.typeLabel.textColor = theme.color
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
 
+}
+
+extension RubbishCollectionView: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.dateLabel.textColor = theme.color
+        self.typeLabel.textColor = theme.color
+    }
+    
 }

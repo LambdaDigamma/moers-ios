@@ -72,7 +72,7 @@ class SettingsViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: standardCellIdentifier)
+        tableView.register(OtherTableViewCell.self, forCellReuseIdentifier: standardCellIdentifier)
         tableView.register(SwitchTableViewCell.self, forCellReuseIdentifier: switchCellIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -91,10 +91,7 @@ class SettingsViewController: UIViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: tableView) { themeable, theme in
-            themeable.backgroundColor = theme.backgroundColor
-            themeable.separatorColor = theme.separatorColor
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -300,13 +297,7 @@ class SettingsViewController: UIViewController {
         
         let manager = BLTNItemManager(rootItem: item)
         
-        ThemeManager.default.apply(theme: Theme.self, to: manager) { themeable, theme in
-            
-            themeable.backgroundColor = theme.backgroundColor
-            themeable.hidesHomeIndicator = false
-            themeable.edgeSpacing = .compact
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: manager)
         
         manager.backgroundViewStyle = .dimmed
         manager.statusBarAppearance = .hidden
@@ -346,6 +337,9 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             cell.textLabel?.text = navigationRow.title
             cell.accessoryType = .disclosureIndicator
             
+            if let cell = cell as? OtherTableViewCell {
+                MMUIConfig.themeManager?.manage(theme: \ApplicationTheme.self, for: cell)
+            }
             
         } else {
             
@@ -357,16 +351,13 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             switchCell.switchControl.isOn = switchRow?.switchOn ?? false
             switchCell.action = switchRow?.action
             
+            MMUIConfig.themeManager?.manage(theme: \ApplicationTheme.self, for: switchCell)
+            
             cell = switchCell
             
         }
         
         cell.selectionStyle = .none
-        
-        ThemeManager.default.apply(theme: Theme.self, to: cell) { themeable, theme in
-            themeable.backgroundColor = theme.backgroundColor
-            themeable.textLabel?.textColor = theme.color
-        }
         
         return cell
         
@@ -378,6 +369,29 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         
         navigationRow.action?()
         
+    }
+    
+}
+
+extension SettingsViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.tableView.backgroundColor = theme.backgroundColor
+        self.tableView.separatorColor = theme.separatorColor
+    }
+    
+}
+
+extension BLTNItemManager: Themeable {
+    
+    public typealias Theme = ApplicationTheme
+    
+    public func apply(theme: Theme) {
+        self.backgroundColor = theme.backgroundColor
+        self.hidesHomeIndicator = false
+        self.edgeSpacing = .compact
     }
     
 }

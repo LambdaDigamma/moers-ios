@@ -45,24 +45,7 @@ class DetailPetrolStationViewController: UIViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.topSeparator.backgroundColor = theme.decentColor
-            themeable.addressSeparator.backgroundColor = theme.decentColor
-            
-            let labels: [UILabel] = [themeable.priceHeaderLabel,
-                                     themeable.typeLabel,
-                                     themeable.priceLabel,
-                                     themeable.addressHeaderLabel,
-                                     themeable.streetLabel,
-                                     themeable.placeLabel,
-                                     themeable.countryLabel]
-            
-            for label in labels {
-                label.textColor = theme.color
-            }
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -83,6 +66,30 @@ class DetailPetrolStationViewController: UIViewController {
         
         return storyboard.instantiateViewController(withIdentifier: "DetailPetrolStationViewController") as! DetailPetrolStationViewController
         
+    }
+    
+}
+
+extension DetailPetrolStationViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        
+        self.topSeparator.backgroundColor = theme.decentColor
+        self.addressSeparator.backgroundColor = theme.decentColor
+        
+        let labels: [UILabel] = [self.priceHeaderLabel,
+                                 self.typeLabel,
+                                 self.priceLabel,
+                                 self.addressHeaderLabel,
+                                 self.streetLabel,
+                                 self.placeLabel,
+                                 self.countryLabel]
+        
+        for label in labels {
+            label.textColor = theme.color
+        }
     }
     
 }

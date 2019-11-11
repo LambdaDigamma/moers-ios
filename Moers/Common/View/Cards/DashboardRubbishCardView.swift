@@ -51,12 +51,7 @@ class DashboardRubbishCardView: TitleCardView {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            
-            themeable.titleLabel.textColor = theme.color
-            themeable.backgroundColor = theme.cardBackgroundColor
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \ApplicationTheme.self, for: self)
         
     }
     
@@ -68,6 +63,20 @@ class DashboardRubbishCardView: TitleCardView {
                            rubbishList.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8)]
 
         NSLayoutConstraint.activate(constraints)
+        
+    }
+    
+}
+
+extension DashboardRubbishCardView: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: ApplicationTheme) {
+        
+        self.applyBaseStyling(theme: theme)
+        self.titleLabel.textColor = theme.color
+        self.backgroundColor = theme.cardBackgroundColor
         
     }
     

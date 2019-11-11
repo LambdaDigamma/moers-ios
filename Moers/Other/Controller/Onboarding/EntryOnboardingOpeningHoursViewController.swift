@@ -28,6 +28,17 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
     lazy var sundayOHTextField = { ViewFactory.textField() }()
     lazy var otherOHTextField = { ViewFactory.textField() }()
     
+    private var entryManager: EntryManagerProtocol
+    
+    init(entryManager: EntryManagerProtocol) {
+        self.entryManager = entryManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
@@ -45,14 +56,14 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
         
         progressView.progress = 0.8
         
-        mondayOHTextField.text = EntryManager.shared.entryMondayOH
-        tuesdayOHTextField.text = EntryManager.shared.entryTuesdayOH
-        wednesdayOHTextField.text = EntryManager.shared.entryWednesdayOH
-        thursdayOHTextField.text = EntryManager.shared.entryThursdayOH
-        fridayOHTextField.text = EntryManager.shared.entryFridayOH
-        saturdayOHTextField.text = EntryManager.shared.entrySaturdayOH
-        sundayOHTextField.text = EntryManager.shared.entrySundayOH
-        otherOHTextField.text = EntryManager.shared.entryOtherOH
+        mondayOHTextField.text = entryManager.entryMondayOH
+        tuesdayOHTextField.text = entryManager.entryTuesdayOH
+        wednesdayOHTextField.text = entryManager.entryWednesdayOH
+        thursdayOHTextField.text = entryManager.entryThursdayOH
+        fridayOHTextField.text = entryManager.entryFridayOH
+        saturdayOHTextField.text = entryManager.entrySaturdayOH
+        sundayOHTextField.text = entryManager.entrySundayOH
+        otherOHTextField.text = entryManager.entryOtherOH
         
     }
     
@@ -136,37 +147,7 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            let applyTheming: ((HoshiTextField) -> Void) = { textField in
-                
-                textField.borderActiveColor = theme.accentColor
-                textField.borderInactiveColor = theme.decentColor
-                textField.placeholderColor = theme.color
-                textField.textColor = theme.color
-                textField.tintColor = theme.accentColor
-                textField.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
-                textField.autocorrectionType = .no
-                
-            }
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.openingHoursHeaderLabel.textColor = theme.color
-            themeable.progressView.accentColor = theme.accentColor
-            themeable.progressView.decentColor = theme.decentColor
-            themeable.progressView.textColor = theme.color
-            
-            applyTheming(themeable.mondayOHTextField)
-            applyTheming(themeable.tuesdayOHTextField)
-            applyTheming(themeable.wednesdayOHTextField)
-            applyTheming(themeable.thursdayOHTextField)
-            applyTheming(themeable.fridayOHTextField)
-            applyTheming(themeable.saturdayOHTextField)
-            applyTheming(themeable.sundayOHTextField)
-            applyTheming(themeable.otherOHTextField)
-            
-        }
-        
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
     }
 
     private func setupOpeningHours() {
@@ -220,16 +201,16 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
     
     @objc private func continueOnboarding() {
         
-        EntryManager.shared.entryMondayOH = mondayOHTextField.text
-        EntryManager.shared.entryTuesdayOH = tuesdayOHTextField.text
-        EntryManager.shared.entryWednesdayOH = wednesdayOHTextField.text
-        EntryManager.shared.entryThursdayOH = thursdayOHTextField.text
-        EntryManager.shared.entryFridayOH = fridayOHTextField.text
-        EntryManager.shared.entrySaturdayOH = saturdayOHTextField.text
-        EntryManager.shared.entrySundayOH = sundayOHTextField.text
-        EntryManager.shared.entryOtherOH = otherOHTextField.text
+        entryManager.entryMondayOH = mondayOHTextField.text
+        entryManager.entryTuesdayOH = tuesdayOHTextField.text
+        entryManager.entryWednesdayOH = wednesdayOHTextField.text
+        entryManager.entryThursdayOH = thursdayOHTextField.text
+        entryManager.entryFridayOH = fridayOHTextField.text
+        entryManager.entrySaturdayOH = saturdayOHTextField.text
+        entryManager.entrySundayOH = sundayOHTextField.text
+        entryManager.entryOtherOH = otherOHTextField.text
         
-        let viewController = EntryOnboardingOverviewViewController()
+        let viewController = EntryOnboardingOverviewViewController(entryManager: entryManager)
         
         self.navigationController?.pushViewController(viewController, animated: true)
         
@@ -249,6 +230,43 @@ extension EntryOnboardingOpeningHoursViewController: UITextFieldDelegate {
         guard let textField = textField as? HoshiTextField else { return }
         
         textField.setValidInput(!(textField.text ?? "").isEmpty)
+        
+    }
+    
+}
+
+extension EntryOnboardingOpeningHoursViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        
+        let applyTheming: ((HoshiTextField) -> Void) = { textField in
+            
+            textField.borderActiveColor = theme.accentColor
+            textField.borderInactiveColor = theme.decentColor
+            textField.placeholderColor = theme.color
+            textField.textColor = theme.color
+            textField.tintColor = theme.accentColor
+            textField.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
+            textField.autocorrectionType = .no
+            
+        }
+        
+        self.view.backgroundColor = theme.backgroundColor
+        self.openingHoursHeaderLabel.textColor = theme.color
+        self.progressView.accentColor = theme.accentColor
+        self.progressView.decentColor = theme.decentColor
+        self.progressView.textColor = theme.color
+        
+        applyTheming(self.mondayOHTextField)
+        applyTheming(self.tuesdayOHTextField)
+        applyTheming(self.wednesdayOHTextField)
+        applyTheming(self.thursdayOHTextField)
+        applyTheming(self.fridayOHTextField)
+        applyTheming(self.saturdayOHTextField)
+        applyTheming(self.sundayOHTextField)
+        applyTheming(self.otherOHTextField)
         
     }
     

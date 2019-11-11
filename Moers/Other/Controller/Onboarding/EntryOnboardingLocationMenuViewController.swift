@@ -19,9 +19,11 @@ class EntryOnboardingLocationMenuViewController: UIViewController {
     private lazy var infoLabel: UILabel = { ViewFactory.label() }()
     
     private let locationManager: LocationManagerProtocol
+    private let entryManager: EntryManagerProtocol
     
-    init(locationManager: LocationManagerProtocol) {
+    init(locationManager: LocationManagerProtocol, entryManager: EntryManagerProtocol) {
         self.locationManager = locationManager
+        self.entryManager = entryManager
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -82,19 +84,7 @@ class EntryOnboardingLocationMenuViewController: UIViewController {
     
     private func setupTheming() {
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-            
-            themeable.view.backgroundColor = theme.backgroundColor
-            themeable.infoLabel.textColor = theme.color
-            themeable.addressButton.setTitleColor(theme.backgroundColor, for: .normal)
-            themeable.locationButton.setTitleColor(theme.backgroundColor, for: .normal)
-            themeable.addressButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
-            themeable.locationButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
-            themeable.progressView.accentColor = theme.accentColor
-            themeable.progressView.decentColor = theme.decentColor
-            themeable.progressView.textColor = theme.color
-            
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -121,7 +111,7 @@ class EntryOnboardingLocationMenuViewController: UIViewController {
     
     @objc private func enterAddress() {
         
-        let viewController = EntryOnboardingAddressViewController()
+        let viewController = EntryOnboardingAddressViewController(entryManager: entryManager)
         
         self.navigationController?.pushViewController(viewController, animated: true)
         
@@ -129,10 +119,28 @@ class EntryOnboardingLocationMenuViewController: UIViewController {
     
     @objc private func enterLocation() {
         
-        let viewController = MapLocationPickerViewController(locationManager: locationManager)
+        let viewController = MapLocationPickerViewController(locationManager: locationManager, entryManager: entryManager)
         
         self.navigationController?.pushViewController(viewController, animated: true)
         
+    }
+    
+}
+
+extension EntryOnboardingLocationMenuViewController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.view.backgroundColor = theme.backgroundColor
+        self.infoLabel.textColor = theme.color
+        self.addressButton.setTitleColor(theme.backgroundColor, for: .normal)
+        self.locationButton.setTitleColor(theme.backgroundColor, for: .normal)
+        self.addressButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
+        self.locationButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
+        self.progressView.accentColor = theme.accentColor
+        self.progressView.decentColor = theme.decentColor
+        self.progressView.textColor = theme.color
     }
     
 }

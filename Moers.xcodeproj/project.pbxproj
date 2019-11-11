@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -42,6 +42,9 @@
 		DF3EE0C220E37E4900CA9279 /* FTLinearActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C020E37E4800CA9279 /* FTLinearActivityIndicator.swift */; };
 		DF3EE0C320E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C120E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift */; };
 		DF3EE0C520E382EC00CA9279 /* MapLocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */; };
+		DF409CF82352453C001A473E /* MMUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF409CF72352453C001A473E /* MMUI */; };
+		DF409CFA2352453C001A473E /* Gestalt in Frameworks */ = {isa = PBXBuildFile; productRef = DF409CF92352453C001A473E /* Gestalt */; };
+		DF409CFC2352453C001A473E /* MMAPI in Frameworks */ = {isa = PBXBuildFile; productRef = DF409CFB2352453C001A473E /* MMAPI */; };
 		DF44D58D2125FE9700F8AC0C /* ContentDrawer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF44D58C2125FE9700F8AC0C /* ContentDrawer.storyboard */; };
 		DF44D58F2126F83B00F8AC0C /* DetailViewControllers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF44D58E2126F83B00F8AC0C /* DetailViewControllers.storyboard */; };
 		DF461CBA20E226DE00600C0E /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF461CB920E226DE00600C0E /* ViewFactory.swift */; };
@@ -52,6 +55,8 @@
 		DF4BD1C6208CF76C003ECF41 /* RubbishReminderBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C5208CF76C003ECF41 /* RubbishReminderBulletinItem.swift */; };
 		DF4D8953210388D5008609A1 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D8952210388D5008609A1 /* CameraViewController.swift */; };
 		DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D89562104A6F0008609A1 /* Datasources.swift */; };
+		DF500153235A3D2D00ED39B2 /* SearchDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF500152235A3D2D00ED39B2 /* SearchDrawerView.swift */; };
+		DF500155235A4E1E00ED39B2 /* SearchDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF500154235A4E1E00ED39B2 /* SearchDrawerViewController.swift */; };
 		DF503CEF21431503006EE226 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF503CEE21431503006EE226 /* DebugViewController.swift */; };
 		DF51F78D22E26A9200A0CF00 /* TabControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF51F78C22E26A9200A0CF00 /* TabControllerFactory.swift */; };
 		DF541389217FCD25007FDEC8 /* EntryValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF541388217FCD25007FDEC8 /* EntryValidationViewController.swift */; };
@@ -68,9 +73,7 @@
 		DF57D6942187397F00E6A0A9 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D68C2187397F00E6A0A9 /* FirebaseCoreDiagnostics.framework */; };
 		DF57D69921875FE900E6A0A9 /* TabBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF57D69821875FE900E6A0A9 /* TabBarControllerTests.swift */; };
 		DF5D81CA2256832600A19B01 /* MockConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5D81C92256832600A19B01 /* MockConfig.swift */; };
-		DF5D82572257F1AE00A19B01 /* MMAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF5D82562257F1AE00A19B01 /* MMAPI.framework */; };
 		DF5D82732258DBD900A19B01 /* UIProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5D82722258DBD900A19B01 /* UIProperties.swift */; };
-		DF5D82772258EF6600A19B01 /* Fuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF5D82762258EF6600A19B01 /* Fuse.framework */; };
 		DF61DCCD212ECD850093915F /* DetailPetrolStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */; };
 		DF6279792100CDE400F81A70 /* DetailParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6279782100CDE400F81A70 /* DetailParkingViewController.swift */; };
 		DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */; };
@@ -123,10 +126,6 @@
 		DFCB432120E0344800E7AD3F /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFCB432020E0344700E7AD3F /* TwitterKit.framework */; };
 		DFCB432320E038AB00E7AD3F /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB432220E038AB00E7AD3F /* TweetTableViewCell.swift */; };
 		DFD39A3322B7578B0085F06E /* MMEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD39A3222B7578B0085F06E /* MMEventsViewController.swift */; };
-		DFD39A3822B758240085F06E /* MMUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFD39A3422B758240085F06E /* MMUI.framework */; };
-		DFD39A3922B758240085F06E /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFD39A3522B758240085F06E /* Bond.framework */; };
-		DFD39A3A22B758240085F06E /* Differ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFD39A3622B758240085F06E /* Differ.framework */; };
-		DFD39A3B22B758240085F06E /* ReactiveKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFD39A3722B758240085F06E /* ReactiveKit.framework */; };
 		DFD728AC20A880C6005FA9F1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD728AB20A880C6005FA9F1 /* DetailViewController.swift */; };
 		DFD73690211E424E00826C47 /* SelectorBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7368F211E424E00826C47 /* SelectorBulletinPage.swift */; };
 		DFD7ACAF20A4486B00D49BE2 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACAE20A4486B00D49BE2 /* CardView.swift */; };
@@ -142,6 +141,9 @@
 		DFDD3F7020B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F6F20B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift */; };
 		DFDD3F7220B2E525005602E3 /* MonthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F7120B2E525005602E3 /* MonthHeaderView.swift */; };
 		DFDD3F7420B2F30A005602E3 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */; };
+		DFE1B58D235315E2009CA2EC /* MMUI.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFE1B58F235315E2009CA2EC /* MMUI.strings */; };
+		DFE1B5932353165F009CA2EC /* MMAPI.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFE1B5952353165F009CA2EC /* MMAPI.strings */; };
+		DFE1B59C235323D3009CA2EC /* MMUI.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFE1B59B235323D3009CA2EC /* MMUI.xcassets */; };
 		DFEE2E0A20BB117A00A130CB /* BaseComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEE2E0920BB117A00A130CB /* BaseComponent.swift */; };
 		DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */; };
 		DFF5DDCB20094A920075A2F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */; };
@@ -151,7 +153,6 @@
 		DFF8F2CD20E6DC36001A9EBB /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8F2CC20E6DC36001A9EBB /* ExtensionDelegate.swift */; };
 		DFF8F2CF20E6DC36001A9EBB /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8F2CE20E6DC36001A9EBB /* NotificationController.swift */; };
 		DFF8F2D120E6DC36001A9EBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFF8F2D020E6DC36001A9EBB /* Assets.xcassets */; };
-		DFFB775B1FB37E0A00073863 /* InfoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFFB775A1FB37E0A00073863 /* InfoKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -246,6 +247,8 @@
 		DF4BD1C5208CF76C003ECF41 /* RubbishReminderBulletinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishReminderBulletinItem.swift; sourceTree = "<group>"; };
 		DF4D8952210388D5008609A1 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		DF4D89562104A6F0008609A1 /* Datasources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datasources.swift; sourceTree = "<group>"; };
+		DF500152235A3D2D00ED39B2 /* SearchDrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDrawerView.swift; sourceTree = "<group>"; };
+		DF500154235A4E1E00ED39B2 /* SearchDrawerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDrawerViewController.swift; sourceTree = "<group>"; };
 		DF503CEE21431503006EE226 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		DF51F78C22E26A9200A0CF00 /* TabControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabControllerFactory.swift; path = ../../../../../../../../../System/Volumes/Data/Users/lennart/Documents/Development/iOS/Moers/Moers/Common/Controller/TabControllerFactory.swift; sourceTree = "<group>"; };
 		DF541388217FCD25007FDEC8 /* EntryValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryValidationViewController.swift; sourceTree = "<group>"; };
@@ -273,9 +276,7 @@
 		DF57D695218739C500E6A0A9 /* Moers-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Moers-Bridging-Header.h"; sourceTree = "<group>"; };
 		DF57D69821875FE900E6A0A9 /* TabBarControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerTests.swift; sourceTree = "<group>"; };
 		DF5D81C92256832600A19B01 /* MockConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConfig.swift; sourceTree = "<group>"; };
-		DF5D82562257F1AE00A19B01 /* MMAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMAPI.framework; path = Carthage/Build/iOS/MMAPI.framework; sourceTree = "<group>"; };
 		DF5D82722258DBD900A19B01 /* UIProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIProperties.swift; path = ../UIProperties.swift; sourceTree = "<group>"; };
-		DF5D82762258EF6600A19B01 /* Fuse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fuse.framework; path = Carthage/Build/iOS/Fuse.framework; sourceTree = "<group>"; };
 		DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPetrolStationViewController.swift; sourceTree = "<group>"; };
 		DF6279782100CDE400F81A70 /* DetailParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailParkingViewController.swift; sourceTree = "<group>"; };
 		DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLotAnnotationView.swift; sourceTree = "<group>"; };
@@ -334,10 +335,6 @@
 		DFCB432020E0344700E7AD3F /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Carthage/Build/iOS/TwitterKit.framework; sourceTree = "<group>"; };
 		DFCB432220E038AB00E7AD3F /* TweetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TweetTableViewCell.swift; path = ../../View/UITableViewCells/TweetTableViewCell.swift; sourceTree = "<group>"; };
 		DFD39A3222B7578B0085F06E /* MMEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMEventsViewController.swift; sourceTree = "<group>"; };
-		DFD39A3422B758240085F06E /* MMUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMUI.framework; path = Carthage/Build/iOS/MMUI.framework; sourceTree = "<group>"; };
-		DFD39A3522B758240085F06E /* Bond.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bond.framework; path = Carthage/Build/iOS/Bond.framework; sourceTree = "<group>"; };
-		DFD39A3622B758240085F06E /* Differ.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differ.framework; path = Carthage/Build/iOS/Differ.framework; sourceTree = "<group>"; };
-		DFD39A3722B758240085F06E /* ReactiveKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveKit.framework; path = Carthage/Build/iOS/ReactiveKit.framework; sourceTree = "<group>"; };
 		DFD728AB20A880C6005FA9F1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		DFD7368F211E424E00826C47 /* SelectorBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorBulletinPage.swift; sourceTree = "<group>"; };
 		DFD7ACAE20A4486B00D49BE2 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -353,6 +350,13 @@
 		DFDD3F6F20B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionItemTableViewCell.swift; sourceTree = "<group>"; };
 		DFDD3F7120B2E525005602E3 /* MonthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthHeaderView.swift; sourceTree = "<group>"; };
 		DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		DFE1B58E235315E2009CA2EC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MMUI.strings; sourceTree = "<group>"; };
+		DFE1B590235315E5009CA2EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MMUI.strings; sourceTree = "<group>"; };
+		DFE1B5942353165F009CA2EC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MMAPI.strings; sourceTree = "<group>"; };
+		DFE1B59623531663009CA2EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MMAPI.strings; sourceTree = "<group>"; };
+		DFE1B59923531C10009CA2EC /* mmui-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "mmui-ios"; path = "../mmui-ios"; sourceTree = "<group>"; };
+		DFE1B59A23531C21009CA2EC /* mmapi-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "mmapi-ios"; path = "../mmapi-ios"; sourceTree = "<group>"; };
+		DFE1B59B235323D3009CA2EC /* MMUI.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MMUI.xcassets; sourceTree = "<group>"; };
 		DFEE2E0920BB117A00A130CB /* BaseComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseComponent.swift; sourceTree = "<group>"; };
 		DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionComponent.swift; sourceTree = "<group>"; };
 		DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -374,12 +378,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFD39A3922B758240085F06E /* Bond.framework in Frameworks */,
-				DFD39A3A22B758240085F06E /* Differ.framework in Frameworks */,
-				DFD39A3B22B758240085F06E /* ReactiveKit.framework in Frameworks */,
-				DF5D82772258EF6600A19B01 /* Fuse.framework in Frameworks */,
-				DF5D82572257F1AE00A19B01 /* MMAPI.framework in Frameworks */,
-				DFD39A3822B758240085F06E /* MMUI.framework in Frameworks */,
+				DF409CFC2352453C001A473E /* MMAPI in Frameworks */,
+				DF409CF82352453C001A473E /* MMUI in Frameworks */,
 				DF7E702A21DA39A300A43B84 /* FirebaseMessaging.framework in Frameworks */,
 				DF69B74021DA2AFB00F910D8 /* Protobuf.framework in Frameworks */,
 				DF57D6902187397F00E6A0A9 /* FirebaseAnalytics.framework in Frameworks */,
@@ -393,7 +393,7 @@
 				DF86ABA12174900400EFC7EA /* Intents.framework in Frameworks */,
 				DFCB432120E0344800E7AD3F /* TwitterKit.framework in Frameworks */,
 				DFB618581FAE144000C98EB6 /* Pulley.framework in Frameworks */,
-				DFFB775B1FB37E0A00073863 /* InfoKit.framework in Frameworks */,
+				DF409CFA2352453C001A473E /* Gestalt in Frameworks */,
 				DFB64DCE20389FDC00173A80 /* Crashlytics.framework in Frameworks */,
 				DFB64DCF20389FDC00173A80 /* Fabric.framework in Frameworks */,
 			);
@@ -640,6 +640,8 @@
 				DF310DA321710887004C69BA /* TagTableViewCell.swift */,
 				DF5D82722258DBD900A19B01 /* UIProperties.swift */,
 				DF1EC3EC1F78C4E40090809A /* AnnotationView */,
+				DF500152235A3D2D00ED39B2 /* SearchDrawerView.swift */,
+				DF500154235A4E1E00ED39B2 /* SearchDrawerViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -647,6 +649,8 @@
 		DF1A49561F6AAB7000E9108B = {
 			isa = PBXGroup;
 			children = (
+				DFE1B59A23531C21009CA2EC /* mmapi-ios */,
+				DFE1B59923531C10009CA2EC /* mmui-ios */,
 				DF1A49611F6AAB7000E9108B /* Moers */,
 				DFF8F2DF20E6DF26001A9EBB /* Shared */,
 				DFF8F2BA20E6DC32001A9EBB /* Watch */,
@@ -693,12 +697,6 @@
 		DF1A497D1F6ABD7100E9108B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DFD39A3522B758240085F06E /* Bond.framework */,
-				DFD39A3622B758240085F06E /* Differ.framework */,
-				DFD39A3422B758240085F06E /* MMUI.framework */,
-				DFD39A3722B758240085F06E /* ReactiveKit.framework */,
-				DF5D82762258EF6600A19B01 /* Fuse.framework */,
-				DF5D82562257F1AE00A19B01 /* MMAPI.framework */,
 				DF7E702921DA39A300A43B84 /* FirebaseMessaging.framework */,
 				DF69B73F21DA2AFB00F910D8 /* Protobuf.framework */,
 				DF57D675218738F400E6A0A9 /* FIRAnalyticsConnector.framework */,
@@ -846,7 +844,10 @@
 				DFA9EF0220B40C16008590EA /* Moers.gpx */,
 				DF21B2FD20B9D8A900478A33 /* Licenses.plist */,
 				DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */,
+				DFE1B58F235315E2009CA2EC /* MMUI.strings */,
+				DFE1B5952353165F009CA2EC /* MMAPI.strings */,
 				DF1A49691F6AAB7000E9108B /* Assets.xcassets */,
+				DFE1B59B235323D3009CA2EC /* MMUI.xcassets */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -962,8 +963,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DF1A49711F6AAB7000E9108B /* Build configuration list for PBXNativeTarget "Moers" */;
 			buildPhases = (
-				DF1A495B1F6AAB7000E9108B /* Sources */,
 				DF1A495C1F6AAB7000E9108B /* Frameworks */,
+				DF1A495B1F6AAB7000E9108B /* Sources */,
 				DF1A495D1F6AAB7000E9108B /* Resources */,
 				DFB618591FAE144D00C98EB6 /* ShellScript */,
 				DFB64DCB20389FB400173A80 /* ShellScript */,
@@ -973,6 +974,11 @@
 			dependencies = (
 			);
 			name = Moers;
+			packageProductDependencies = (
+				DF409CF72352453C001A473E /* MMUI */,
+				DF409CF92352453C001A473E /* Gestalt */,
+				DF409CFB2352453C001A473E /* MMAPI */,
+			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
 			productType = "com.apple.product-type.application";
@@ -1055,7 +1061,7 @@
 			attributes = {
 				DefaultBuildSystemTypeForWorkspace = Latest;
 				LastSwiftUpdateCheck = 1000;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "Lennart Fischer";
 				TargetAttributes = {
 					DF1A495E1F6AAB7000E9108B = {
@@ -1114,6 +1120,11 @@
 				de,
 			);
 			mainGroup = DF1A49561F6AAB7000E9108B;
+			packageReferences = (
+				DF31C63D23521E4F0085DA6F /* XCRemoteSwiftPackageReference "mmui-ios" */,
+				DF22FC1123522756003F1B3A /* XCRemoteSwiftPackageReference "Gestalt" */,
+				DF409CF023522AD9001A473E /* XCRemoteSwiftPackageReference "mmapi-ios" */,
+			);
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1135,8 +1146,11 @@
 				DF16582E22EF8C990033D218 /* Localizable.strings in Resources */,
 				DF16583022EF90D90033D218 /* Launch Screen.storyboard in Resources */,
 				DF44D58F2126F83B00F8AC0C /* DetailViewControllers.storyboard in Resources */,
+				DFE1B59C235323D3009CA2EC /* MMUI.xcassets in Resources */,
 				DF44D58D2125FE9700F8AC0C /* ContentDrawer.storyboard in Resources */,
+				DFE1B58D235315E2009CA2EC /* MMUI.strings in Resources */,
 				DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */,
+				DFE1B5932353165F009CA2EC /* MMAPI.strings in Resources */,
 				DF21B2FE20B9D8A900478A33 /* Licenses.plist in Resources */,
 				DFF5DDCB20094A920075A2F4 /* GoogleService-Info.plist in Resources */,
 			);
@@ -1183,34 +1197,18 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Pulley.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/InfoKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Gestalt.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BLTNBoard.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ESTabBarController.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/pop.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/EventBus.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Haneke.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/BetterSegmentedControl.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TextFieldEffects.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TwitterCore.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TwitterKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/TwitterShareExtensionUI.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/MMWormhole.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Alertift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TagListView.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/FeedKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/MMAPI.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Fuse.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/MMUI.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Bond.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ReactiveKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Differ.framework",
 			);
 			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Fuse.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/MMAPI.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1264,6 +1262,7 @@
 				DF4BD1C6208CF76C003ECF41 /* RubbishReminderBulletinItem.swift in Sources */,
 				DF2D6DA320B88BFA00176614 /* Licence.swift in Sources */,
 				DF75734021771CC900953DA1 /* LFSearchViewController.swift in Sources */,
+				DF500153235A3D2D00ED39B2 /* SearchDrawerView.swift in Sources */,
 				DF86AB9B2173837B00EFC7EA /* EntryOnboardingGeneralViewController.swift in Sources */,
 				DFD7ACBD20A795AF00D49BE2 /* DashboardNotificationCardView.swift in Sources */,
 				DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */,
@@ -1337,6 +1336,7 @@
 				DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */,
 				DFA9EF0A20B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift in Sources */,
 				DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */,
+				DF500155235A4E1E00ED39B2 /* SearchDrawerViewController.swift in Sources */,
 				DF0CB49F2082B90900CC0AA8 /* FeedbackGenerators.swift in Sources */,
 				DF51F78D22E26A9200A0CF00 /* TabControllerFactory.swift in Sources */,
 				DFD728AC20A880C6005FA9F1 /* DetailViewController.swift in Sources */,
@@ -1400,6 +1400,24 @@
 				DF0CB4A92082BE4100CC0AA8 /* de */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		DFE1B58F235315E2009CA2EC /* MMUI.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DFE1B58E235315E2009CA2EC /* de */,
+				DFE1B590235315E5009CA2EC /* en */,
+			);
+			name = MMUI.strings;
+			sourceTree = "<group>";
+		};
+		DFE1B5952353165F009CA2EC /* MMAPI.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DFE1B5942353165F009CA2EC /* de */,
+				DFE1B59623531663009CA2EC /* en */,
+			);
+			name = MMAPI.strings;
 			sourceTree = "<group>";
 		};
 		DFF8F2BB20E6DC32001A9EBB /* Interface.storyboard */ = {
@@ -1495,7 +1513,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
@@ -1505,7 +1526,10 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR} ${PROJECT_DIR}/Moers/Utility";
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/Moers/Utility",
+				);
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Debug (Staging)";
@@ -1514,12 +1538,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = MoersUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1562,7 +1591,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers.watchkitapp.extension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1578,6 +1611,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1585,7 +1619,11 @@
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = MoersTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
@@ -1646,7 +1684,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1659,7 +1698,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = Dark;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Moers/Utility/Moers.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = 93C29USLP6;
@@ -1673,16 +1712,22 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore de.okfn.niederrhein.Moers";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development de.okfn.niederrhein.Moers";
 				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Utility/Moers-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR} ${PROJECT_DIR}/Moers/Utility";
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/Moers/Utility",
+				);
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Release (Staging)";
@@ -1691,12 +1736,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = MoersUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1739,7 +1789,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers.watchkitapp.extension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1755,6 +1809,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1762,7 +1817,11 @@
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = MoersTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1855,7 +1914,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
@@ -1865,7 +1927,10 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR} ${PROJECT_DIR}/Moers/Utility";
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/Moers/Utility",
+				);
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Debug (Production)";
@@ -1874,12 +1939,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = MoersUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1922,7 +1992,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers.watchkitapp.extension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1938,6 +2012,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1945,7 +2020,11 @@
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = MoersTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
@@ -2006,7 +2085,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2019,7 +2099,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = Dark;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Moers/Utility/Moers.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = 93C29USLP6;
@@ -2033,16 +2113,22 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore de.okfn.niederrhein.Moers";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development de.okfn.niederrhein.Moers";
 				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Utility/Moers-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR} ${PROJECT_DIR}/Moers/Utility";
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/Moers/Utility",
+				);
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Release (Production)";
@@ -2051,12 +2137,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = MoersUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2099,7 +2190,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers.watchkitapp.extension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2115,6 +2210,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2122,7 +2218,11 @@
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = MoersTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2246,7 +2346,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2272,7 +2373,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
@@ -2282,7 +2386,10 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR} ${PROJECT_DIR}/Moers/Utility";
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/Moers/Utility",
+				);
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Debug (Development)";
@@ -2294,7 +2401,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = Dark;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Moers/Utility/Moers.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = 93C29USLP6;
@@ -2307,16 +2414,22 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore de.okfn.niederrhein.Moers";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development de.okfn.niederrhein.Moers";
 				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Utility/Moers-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR} ${PROJECT_DIR}/Moers/Utility";
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/Moers/Utility",
+				);
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Release (Development)";
@@ -2325,6 +2438,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2332,7 +2446,11 @@
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = MoersTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
@@ -2348,6 +2466,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2355,7 +2474,11 @@
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = MoersTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2370,12 +2493,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = MoersUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2389,12 +2517,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = MoersUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2460,7 +2593,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers.watchkitapp.extension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2482,7 +2619,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers.watchkitapp.extension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2576,6 +2717,51 @@
 			defaultConfigurationName = "Release (Production)";
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DF22FC1123522756003F1B3A /* XCRemoteSwiftPackageReference "Gestalt" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/regexident/Gestalt.git";
+			requirement = {
+				branch = "swift-5";
+				kind = branch;
+			};
+		};
+		DF31C63D23521E4F0085DA6F /* XCRemoteSwiftPackageReference "mmui-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LambdaDigamma/mmui-ios";
+			requirement = {
+				branch = spm;
+				kind = branch;
+			};
+		};
+		DF409CF023522AD9001A473E /* XCRemoteSwiftPackageReference "mmapi-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LambdaDigamma/mmapi-ios";
+			requirement = {
+				branch = spm;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DF409CF72352453C001A473E /* MMUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF31C63D23521E4F0085DA6F /* XCRemoteSwiftPackageReference "mmui-ios" */;
+			productName = MMUI;
+		};
+		DF409CF92352453C001A473E /* Gestalt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF22FC1123522756003F1B3A /* XCRemoteSwiftPackageReference "Gestalt" */;
+			productName = Gestalt;
+		};
+		DF409CFB2352453C001A473E /* MMAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF409CF023522AD9001A473E /* XCRemoteSwiftPackageReference "mmapi-ios" */;
+			productName = MMAPI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DF1A49571F6AAB7000E9108B /* Project object */;
 }

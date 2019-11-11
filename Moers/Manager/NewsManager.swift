@@ -116,4 +116,22 @@ struct NewsManager {
         
     }
     
+    public func getNRZ(completion: @escaping ((Error?, RSSFeed?) -> Void)) {
+        
+        guard let feedURL = URL(string: "https://www.nrz.de/?config=rss_moers_app") else { return }
+        
+        let parser = FeedParser(URL: feedURL)
+        
+        parser.parseAsync(queue: DispatchQueue.global(qos: .userInitiated)) { (result) in
+            
+            guard let feed = result.rssFeed else { return }
+            
+            DispatchQueue.main.async {
+                completion(nil, feed)
+            }
+            
+        }
+        
+    }
+    
 }

@@ -74,12 +74,20 @@ class SearchResultTableViewCell: UITableViewCell {
         
         self.accessoryType = .disclosureIndicator
         
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            themeable.backgroundColor = theme.backgroundColor
-            themeable.titleLabel.textColor = theme.color
-            themeable.subtitleLabel.textColor = theme.decentColor
-        }
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
+    }
+    
+}
+
+extension SearchResultTableViewCell: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: Theme) {
+        self.backgroundColor = theme.backgroundColor
+        self.titleLabel.textColor = theme.color
+        self.subtitleLabel.textColor = theme.decentColor
     }
     
 }

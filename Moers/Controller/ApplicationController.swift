@@ -11,8 +11,6 @@ import Gestalt
 import MMUI
 import MMAPI
 
-extension EntryManager: EntryManagerProtocol {}
-
 class ApplicationController: UIViewController {
 
     let locationManager: LocationManagerProtocol
@@ -50,10 +48,7 @@ class ApplicationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        ThemeManager.default.apply(theme: Theme.self, to: self) { themeable, theme in
-            UIApplication.shared.statusBarStyle = theme.statusBarStyle
-            themeable.view.backgroundColor = theme.backgroundColor
-        }
+        MMUIConfig.themeManager?.manage(theme: \ApplicationTheme.self, for: self)
         
         let tabBarController = TabBarController(locationManager: locationManager,
                                                 petrolManager: petrolManager,
@@ -67,4 +62,15 @@ class ApplicationController: UIViewController {
         
     }
 
+}
+
+extension ApplicationController: Themeable {
+    
+    typealias Theme = ApplicationTheme
+    
+    func apply(theme: ApplicationTheme) {
+        UIApplication.shared.statusBarStyle = theme.statusBarStyle
+        self.view.backgroundColor = theme.backgroundColor
+    }
+    
 }
