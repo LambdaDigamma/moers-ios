@@ -144,7 +144,7 @@
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Release (Production)"
       revealArchiveInOrganizer = "YES">
       <PreActions>
          <ExecutionAction
