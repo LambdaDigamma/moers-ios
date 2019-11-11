@@ -23,6 +23,17 @@ class EntryOnboardingGeneralViewController: UIViewController {
     lazy var websiteTextField = { ViewFactory.textField() }()
     lazy var phoneTextField = { ViewFactory.textField() }()
     
+    private var entryManager: EntryManagerProtocol
+    
+    init(entryManager: EntryManagerProtocol) {
+        self.entryManager = entryManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
@@ -39,9 +50,9 @@ class EntryOnboardingGeneralViewController: UIViewController {
         
         self.progressView.progress = 0.4
         
-        self.nameTextField.text = EntryManager.shared.entryName
-        self.phoneTextField.text = EntryManager.shared.entryPhone
-        self.websiteTextField.text = EntryManager.shared.entryWebsite
+        self.nameTextField.text = entryManager.entryName
+        self.phoneTextField.text = entryManager.entryPhone
+        self.websiteTextField.text = entryManager.entryWebsite
         
         self.checkDataInput()
         
@@ -180,11 +191,11 @@ class EntryOnboardingGeneralViewController: UIViewController {
     
     @objc private func continueOnboarding() {
         
-        EntryManager.shared.entryName = nameTextField.text
-        EntryManager.shared.entryWebsite = websiteTextField.text
-        EntryManager.shared.entryPhone = phoneTextField.text
+        entryManager.entryName = nameTextField.text
+        entryManager.entryWebsite = websiteTextField.text
+        entryManager.entryPhone = phoneTextField.text
         
-        let viewController = EntryOnboardingTagsViewController()
+        let viewController = EntryOnboardingTagsViewController(entryManager: entryManager)
         
         self.navigationController?.pushViewController(viewController, animated: true)
         

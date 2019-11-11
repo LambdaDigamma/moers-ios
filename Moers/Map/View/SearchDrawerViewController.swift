@@ -15,17 +15,14 @@ import TagListView
 import Fuse
 
 enum DisplayMode {
-    
     case list
     case search(searchTerm: String, tags: [NSAttributedString], items: [Location])
     case filter(searchTerm: String?, selectedTags: [String], items: [Location])
-    
 }
 
 class SearchDrawerViewController: UIViewController {
     
     public let searchDrawer: SearchDrawerView
-    private lazy var drawer = { return self.parent as! MainViewController }()
     
     private let fuse = Fuse(location: 0, distance: 100, threshold: 0.45, maxPatternLength: 32, isCaseSensitive: false)
     
@@ -193,28 +190,11 @@ extension SearchDrawerViewController: PulleyDrawerViewControllerDelegate {
     }
     
     func partialRevealDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
-        
-//        let height = drawer.mapViewController.map.frame.height
-//
-//        if drawer.currentDisplayMode == .panel {
-//            return height - 49.0 - 16.0 - 16.0 - 64.0 - 50.0 - 16.0
-//        }
-        
         return 264.0 + (pulleyViewController?.currentDisplayMode == .drawer ? bottomSafeArea : 0.0)
-        
     }
     
     func supportedDrawerPositions() -> [PulleyPosition] {
-        
-//        if drawer.currentDisplayMode == .panel {
-//
-//            self.gripperView.isHidden = true
-//
-//            return [PulleyPosition.partiallyRevealed]
-//        }
-        
         return PulleyPosition.all
-        
     }
     
     func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
@@ -226,20 +206,6 @@ extension SearchDrawerViewController: PulleyDrawerViewControllerDelegate {
         if drawer.drawerPosition != .open {
             searchDrawer.searchBar.resignFirstResponder()
         }
-        
-//        tableView.isScrollEnabled = drawer.drawerPosition == .open || drawer.currentDisplayMode == .panel
-//
-//        if drawer.drawerPosition != .open {
-//            searchBar.resignFirstResponder()
-//        }
-//
-//        if drawer.currentDisplayMode == .panel {
-//            topSeparatorView.isHidden = drawer.drawerPosition == .collapsed
-//            bottomSeparatorView.isHidden = drawer.drawerPosition == .collapsed
-//        } else {
-//            topSeparatorView.isHidden = false
-//            bottomSeparatorView.isHidden = true
-//        }
         
     }
     
@@ -332,19 +298,11 @@ extension SearchDrawerViewController: UISearchBarDelegate {
         
         let searchText = searchBar.text ?? ""
         
-        if searchText.isNotEmptyOrWhitespace {
-            
-            let filteredItems = filterLocations(with: searchText)
-            
-            self.displayMode = .filter(searchTerm: searchText, selectedTags: selectedTags, items: filteredItems)
-            
-        } else {
-            
-            let filteredItems = filterLocations(with: searchText)
-            
-            self.displayMode = .filter(searchTerm: nil, selectedTags: selectedTags, items: filteredItems)
-            
-        }
+        let newSearchTerm: String? = searchText.isNotEmptyOrWhitespace ? searchText : nil
+        
+        self.displayMode = .filter(searchTerm: newSearchTerm,
+                                   selectedTags: selectedTags,
+                                   items: filterLocations(with: searchText))
         
         searchBar.resignFirstResponder()
         

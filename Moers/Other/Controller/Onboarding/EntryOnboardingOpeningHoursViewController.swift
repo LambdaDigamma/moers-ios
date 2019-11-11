@@ -28,6 +28,17 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
     lazy var sundayOHTextField = { ViewFactory.textField() }()
     lazy var otherOHTextField = { ViewFactory.textField() }()
     
+    private var entryManager: EntryManagerProtocol
+    
+    init(entryManager: EntryManagerProtocol) {
+        self.entryManager = entryManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
@@ -45,14 +56,14 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
         
         progressView.progress = 0.8
         
-        mondayOHTextField.text = EntryManager.shared.entryMondayOH
-        tuesdayOHTextField.text = EntryManager.shared.entryTuesdayOH
-        wednesdayOHTextField.text = EntryManager.shared.entryWednesdayOH
-        thursdayOHTextField.text = EntryManager.shared.entryThursdayOH
-        fridayOHTextField.text = EntryManager.shared.entryFridayOH
-        saturdayOHTextField.text = EntryManager.shared.entrySaturdayOH
-        sundayOHTextField.text = EntryManager.shared.entrySundayOH
-        otherOHTextField.text = EntryManager.shared.entryOtherOH
+        mondayOHTextField.text = entryManager.entryMondayOH
+        tuesdayOHTextField.text = entryManager.entryTuesdayOH
+        wednesdayOHTextField.text = entryManager.entryWednesdayOH
+        thursdayOHTextField.text = entryManager.entryThursdayOH
+        fridayOHTextField.text = entryManager.entryFridayOH
+        saturdayOHTextField.text = entryManager.entrySaturdayOH
+        sundayOHTextField.text = entryManager.entrySundayOH
+        otherOHTextField.text = entryManager.entryOtherOH
         
     }
     
@@ -190,16 +201,16 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
     
     @objc private func continueOnboarding() {
         
-        EntryManager.shared.entryMondayOH = mondayOHTextField.text
-        EntryManager.shared.entryTuesdayOH = tuesdayOHTextField.text
-        EntryManager.shared.entryWednesdayOH = wednesdayOHTextField.text
-        EntryManager.shared.entryThursdayOH = thursdayOHTextField.text
-        EntryManager.shared.entryFridayOH = fridayOHTextField.text
-        EntryManager.shared.entrySaturdayOH = saturdayOHTextField.text
-        EntryManager.shared.entrySundayOH = sundayOHTextField.text
-        EntryManager.shared.entryOtherOH = otherOHTextField.text
+        entryManager.entryMondayOH = mondayOHTextField.text
+        entryManager.entryTuesdayOH = tuesdayOHTextField.text
+        entryManager.entryWednesdayOH = wednesdayOHTextField.text
+        entryManager.entryThursdayOH = thursdayOHTextField.text
+        entryManager.entryFridayOH = fridayOHTextField.text
+        entryManager.entrySaturdayOH = saturdayOHTextField.text
+        entryManager.entrySundayOH = sundayOHTextField.text
+        entryManager.entryOtherOH = otherOHTextField.text
         
-        let viewController = EntryOnboardingOverviewViewController()
+        let viewController = EntryOnboardingOverviewViewController(entryManager: entryManager)
         
         self.navigationController?.pushViewController(viewController, animated: true)
         

@@ -19,9 +19,11 @@ class EntryOnboardingLocationMenuViewController: UIViewController {
     private lazy var infoLabel: UILabel = { ViewFactory.label() }()
     
     private let locationManager: LocationManagerProtocol
+    private let entryManager: EntryManagerProtocol
     
-    init(locationManager: LocationManagerProtocol) {
+    init(locationManager: LocationManagerProtocol, entryManager: EntryManagerProtocol) {
         self.locationManager = locationManager
+        self.entryManager = entryManager
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -109,7 +111,7 @@ class EntryOnboardingLocationMenuViewController: UIViewController {
     
     @objc private func enterAddress() {
         
-        let viewController = EntryOnboardingAddressViewController()
+        let viewController = EntryOnboardingAddressViewController(entryManager: entryManager)
         
         self.navigationController?.pushViewController(viewController, animated: true)
         
@@ -117,7 +119,7 @@ class EntryOnboardingLocationMenuViewController: UIViewController {
     
     @objc private func enterLocation() {
         
-        let viewController = MapLocationPickerViewController(locationManager: locationManager)
+        let viewController = MapLocationPickerViewController(locationManager: locationManager, entryManager: entryManager)
         
         self.navigationController?.pushViewController(viewController, animated: true)
         

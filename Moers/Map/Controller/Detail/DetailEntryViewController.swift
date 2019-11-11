@@ -55,6 +55,17 @@ class DetailEntryViewController: UIViewController {
     
     public var selectedEntry: Entry? { didSet { selectedEntry(selectedEntry) } }
     
+    private var entryManager: EntryManagerProtocol!
+    
+    init(entryManager: EntryManagerProtocol) {
+        self.entryManager = entryManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
@@ -188,7 +199,7 @@ class DetailEntryViewController: UIViewController {
     
     @objc private func editEntry() {
         
-        let viewController = EntryOnboardingOverviewViewController()
+        let viewController = EntryOnboardingOverviewViewController(entryManager: entryManager)
         
         guard let entry = selectedEntry else { return }
         
@@ -208,6 +219,10 @@ class DetailEntryViewController: UIViewController {
         
         self.navigationController?.pushViewController(viewController, animated: true)
         
+    }
+    
+    public func setEntryManager(_ entryManager: EntryManagerProtocol) {
+        self.entryManager = entryManager
     }
     
     static func fromStoryboard() -> DetailEntryViewController {

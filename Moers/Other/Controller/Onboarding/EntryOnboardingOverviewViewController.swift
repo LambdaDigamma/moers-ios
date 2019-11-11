@@ -51,6 +51,17 @@ class EntryOnboardingOverviewViewController: UIViewController {
     
     public var overviewType = EntryOverviewType.summary
     
+    private var entryManager: EntryManagerProtocol
+    
+    init(entryManager: EntryManagerProtocol) {
+        self.entryManager = entryManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
@@ -314,28 +325,28 @@ class EntryOnboardingOverviewViewController: UIViewController {
     
     private func setupSummary() {
         
-        self.nameTextField.text = EntryManager.shared.entryName
-        self.phoneTextField.text = EntryManager.shared.entryPhone
-        self.websiteTextField.text = EntryManager.shared.entryWebsite
-        self.streetTextField.text = EntryManager.shared.entryStreet
-        self.houseNrTextField.text = EntryManager.shared.entryHouseNumber
-        self.postcodeTextField.text = EntryManager.shared.entryPostcode
-        self.placeTextField.text = EntryManager.shared.entryPlace
-        self.mondayOHTextField.text = EntryManager.shared.entryMondayOH
-        self.tuesdayOHTextField.text = EntryManager.shared.entryTuesdayOH
-        self.wednesdayOHTextField.text = EntryManager.shared.entryWednesdayOH
-        self.thursdayOHTextField.text = EntryManager.shared.entryThursdayOH
-        self.fridayOHTextField.text = EntryManager.shared.entryFridayOH
-        self.saturdayOHTextField.text = EntryManager.shared.entrySaturdayOH
-        self.sundayOHTextField.text = EntryManager.shared.entrySundayOH
-        self.otherOHTextField.text = EntryManager.shared.entryOtherOH
+        self.nameTextField.text = entryManager.entryName
+        self.phoneTextField.text = entryManager.entryPhone
+        self.websiteTextField.text = entryManager.entryWebsite
+        self.streetTextField.text = entryManager.entryStreet
+        self.houseNrTextField.text = entryManager.entryHouseNumber
+        self.postcodeTextField.text = entryManager.entryPostcode
+        self.placeTextField.text = entryManager.entryPlace
+        self.mondayOHTextField.text = entryManager.entryMondayOH
+        self.tuesdayOHTextField.text = entryManager.entryTuesdayOH
+        self.wednesdayOHTextField.text = entryManager.entryWednesdayOH
+        self.thursdayOHTextField.text = entryManager.entryThursdayOH
+        self.fridayOHTextField.text = entryManager.entryFridayOH
+        self.saturdayOHTextField.text = entryManager.entrySaturdayOH
+        self.sundayOHTextField.text = entryManager.entrySundayOH
+        self.otherOHTextField.text = entryManager.entryOtherOH
         
         disableTextFields([nameTextField, phoneTextField, websiteTextField, streetTextField, houseNrTextField, postcodeTextField, placeTextField, mondayOHTextField, tuesdayOHTextField, wednesdayOHTextField, thursdayOHTextField, fridayOHTextField, saturdayOHTextField, sundayOHTextField, otherOHTextField])
         
-        let coordinate = CLLocationCoordinate2D(latitude: EntryManager.shared.entryLat ?? 0, longitude: EntryManager.shared.entryLng ?? 0)
+        let coordinate = CLLocationCoordinate2D(latitude: entryManager.entryLat ?? 0, longitude: entryManager.entryLng ?? 0)
         
         self.setupMap(with: coordinate)
-        self.setupTags(with: EntryManager.shared.entryTags)
+        self.setupTags(with: entryManager.entryTags)
         
     }
     
@@ -402,35 +413,34 @@ class EntryOnboardingOverviewViewController: UIViewController {
     private func storeEntry() {
         
         let entry = Entry(id: -1,
-                          name: EntryManager.shared.entryName ?? "",
-                          tags: EntryManager.shared.entryTags,
-                          street: EntryManager.shared.entryStreet ?? "",
-                          houseNumber: EntryManager.shared.entryHouseNumber ?? "",
-                          postcode: EntryManager.shared.entryPostcode ?? "",
-                          place: EntryManager.shared.entryPlace ?? "",
-                          url: EntryManager.shared.entryWebsite,
-                          phone: EntryManager.shared.entryPhone,
-                          monday: EntryManager.shared.entryMondayOH,
-                          tuesday: EntryManager.shared.entryTuesdayOH,
-                          wednesday: EntryManager.shared.entryWednesdayOH,
-                          thursday: EntryManager.shared.entryThursdayOH,
-                          friday: EntryManager.shared.entryFridayOH,
-                          saturday: EntryManager.shared.entrySaturdayOH,
-                          sunday: EntryManager.shared.entrySundayOH,
-                          other: EntryManager.shared.entryOtherOH,
-                          lat: EntryManager.shared.entryLat ?? 0,
-                          lng: EntryManager.shared.entryLng ?? 0,
+                          name: entryManager.entryName ?? "",
+                          tags: entryManager.entryTags,
+                          street: entryManager.entryStreet ?? "",
+                          houseNumber: entryManager.entryHouseNumber ?? "",
+                          postcode: entryManager.entryPostcode ?? "",
+                          place: entryManager.entryPlace ?? "",
+                          url: entryManager.entryWebsite,
+                          phone: entryManager.entryPhone,
+                          monday: entryManager.entryMondayOH,
+                          tuesday: entryManager.entryTuesdayOH,
+                          wednesday: entryManager.entryWednesdayOH,
+                          thursday: entryManager.entryThursdayOH,
+                          friday: entryManager.entryFridayOH,
+                          saturday: entryManager.entrySaturdayOH,
+                          sunday: entryManager.entrySundayOH,
+                          other: entryManager.entryOtherOH,
+                          lat: entryManager.entryLat ?? 0,
+                          lng: entryManager.entryLng ?? 0,
                           isValidated: true)
         
-        EntryManager.shared.store(entry: entry) { (result) in
+        entryManager.store(entry: entry) { (result) in
             
             switch result {
                 
             case .success(let entry):
                 
                 self.alertSuccess()
-                
-                EntryManager.shared.resetData()
+                self.entryManager.resetData()
                 
                 guard let tabBarController = self.tabBarController as? TabBarController else { return }
                 
@@ -467,7 +477,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
         entry.sunday = sundayOHTextField.text
         entry.other = otherOHTextField.text
         
-        EntryManager.shared.update(entry: entry) { (result) in
+        entryManager.update(entry: entry) { (result) in
             
             DispatchQueue.main.async {
             

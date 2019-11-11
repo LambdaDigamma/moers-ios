@@ -3,8 +3,8 @@
   "iOS" : [
     {
       "name" : "Pulley",
-      "hash" : "609b665dc58c54eb462c305260676f5ed188da05f316738bcd8e843ebdf03b2d",
-      "swiftToolchainVersion" : "5.1 (swiftlang-1100.0.270.13 clang-1100.0.33.7)"
+      "hash" : "647bf931ca47cf708623556026ef0d4acad05e80d2332e00b6f977c1daa97c83",
+      "swiftToolchainVersion" : "5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
     }
   ]
 }

@@ -33,6 +33,17 @@ class EntryOnboardingTagsViewController: UIViewController {
     private var cellTextColor = UIColor.black
     private var cellBackgroundColor = UIColor.white
     
+    private var entryManager: EntryManagerProtocol
+    
+    init(entryManager: EntryManagerProtocol) {
+        self.entryManager = entryManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
@@ -210,13 +221,13 @@ class EntryOnboardingTagsViewController: UIViewController {
     
     private func checkData() {
         
-        if !EntryManager.shared.entryTags.isEmpty {
+        if !entryManager.entryTags.isEmpty {
             
             self.selectedTags = []
             self.tagsListView.removeAllTags()
             self.setupAddTag()
             
-            EntryManager.shared.entryTags.forEach { tag in
+            entryManager.entryTags.forEach { tag in
                 
                 if !selectedTags.contains(tag) {
                     
@@ -235,9 +246,9 @@ class EntryOnboardingTagsViewController: UIViewController {
     
     @objc private func continueOnboarding() {
         
-        EntryManager.shared.entryTags = selectedTags
+        entryManager.entryTags = selectedTags
         
-        let viewController = EntryOnboardingOpeningHoursViewController()
+        let viewController = EntryOnboardingOpeningHoursViewController(entryManager: entryManager)
         
         self.navigationController?.pushViewController(viewController, animated: true)
         

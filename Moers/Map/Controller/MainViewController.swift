@@ -17,7 +17,7 @@ class MainViewController: PulleyViewController {
     public var mapViewController: MapViewController!
     public var contentViewController: SearchDrawerViewController!
     public var locations: [Location] = []
-    public lazy var detailViewController = { DetailViewController(locationManager: locationManager) }()
+    public lazy var detailViewController = { DetailViewController(locationManager: locationManager, entryManager: entryManager) }()
     
     private let locationManager: LocationManagerProtocol
     private let petrolManager: PetrolManagerProtocol

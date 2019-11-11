@@ -28,6 +28,17 @@ class EntryOnboardingAddressViewController: UIViewController {
     
     private var coordinate: CLLocationCoordinate2D? = nil
     
+    private var entryManager: EntryManagerProtocol
+    
+    init(entryManager: EntryManagerProtocol) {
+        self.entryManager = entryManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
@@ -44,10 +55,10 @@ class EntryOnboardingAddressViewController: UIViewController {
         
         self.progressView.progress = 0.2
         
-        self.streetTextField.text = EntryManager.shared.entryStreet
-        self.houseNrTextField.text = EntryManager.shared.entryHouseNumber
-        self.postcodeTextField.text = EntryManager.shared.entryPostcode
-        self.placeTextField.text = EntryManager.shared.entryPlace
+        self.streetTextField.text = entryManager.entryStreet
+        self.houseNrTextField.text = entryManager.entryHouseNumber
+        self.postcodeTextField.text = entryManager.entryPostcode
+        self.placeTextField.text = entryManager.entryPlace
         
         self.checkDataInput()
         
@@ -187,17 +198,17 @@ class EntryOnboardingAddressViewController: UIViewController {
     
     @objc private func continueOnboarding() {
         
-        EntryManager.shared.entryStreet = streetTextField.text
-        EntryManager.shared.entryHouseNumber = houseNrTextField.text
-        EntryManager.shared.entryPostcode = postcodeTextField.text
-        EntryManager.shared.entryPlace = placeTextField.text
+        entryManager.entryStreet = streetTextField.text
+        entryManager.entryHouseNumber = houseNrTextField.text
+        entryManager.entryPostcode = postcodeTextField.text
+        entryManager.entryPlace = placeTextField.text
         
         guard let coordinate = coordinate else { return }
         
-        EntryManager.shared.entryLat = coordinate.latitude
-        EntryManager.shared.entryLng = coordinate.longitude
+        entryManager.entryLat = coordinate.latitude
+        entryManager.entryLng = coordinate.longitude
         
-        let viewController = EntryOnboardingGeneralViewController()
+        let viewController = EntryOnboardingGeneralViewController(entryManager: entryManager)
             
         self.navigationController?.pushViewController(viewController, animated: true)
         

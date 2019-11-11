@@ -20,6 +20,9 @@ class SelectorBulletinPage<T: RawRepresentable & CaseIterable & EnumCollection &
     private var buttons: [UIButton] = []
     private var selectionFeedbackGenerator = SelectionFeedbackGenerator()
     
+    var accentColor: UIColor?
+    var decentColor: UIColor?
+    
     init(title: String, preSelected: T?) {
         super.init(title: title)
         
@@ -28,6 +31,8 @@ class SelectorBulletinPage<T: RawRepresentable & CaseIterable & EnumCollection &
             self.selectedOption = preSelected
             
         }
+        
+        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -107,33 +112,17 @@ class SelectorBulletinPage<T: RawRepresentable & CaseIterable & EnumCollection &
     
     private func setButtonSelection(_ button: UIButton) {
         
-        // TODO: !!!!!!!
-        
-//        ThemeManager.default.apply(theme: Theme.self, to: button) { (themeable, theme) in
-//
-//            let accentColor = theme.accentColor
-//
-//            themeable.layer.borderColor = accentColor.cgColor
-//            themeable.setTitleColor(accentColor, for: .normal)
-//
-//        }
+        button.layer.borderColor = accentColor?.cgColor
+        button.setTitleColor(accentColor, for: .normal)
         
     }
     
     private func resetButtonSelections() {
         
-//        ThemeManager.default.apply(theme: Theme.self, to: self) { (themeable, theme) in
-//
-//            themeable.buttons.forEach({ (button) in
-//
-//                let decentColor = theme.decentColor
-//
-//                button.layer.borderColor = decentColor.cgColor
-//                button.setTitleColor(decentColor, for: .normal)
-//
-//            })
-//
-//        }
+        buttons.forEach { (button: UIButton) in
+            button.layer.borderColor = decentColor?.cgColor
+            button.setTitleColor(decentColor, for: .normal)
+        }
         
     }
     
@@ -144,7 +133,8 @@ extension SelectorBulletinPage: Themeable {
     typealias Theme = ApplicationTheme
     
     func apply(theme: Theme) {
-        
+        self.accentColor = theme.accentColor
+        self.decentColor = theme.decentColor
     }
     
 }

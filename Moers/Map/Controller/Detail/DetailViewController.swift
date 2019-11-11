@@ -25,6 +25,7 @@ class DetailViewController: UIViewController {
     private lazy var routeButton: UIButton = { ViewFactory.button() }()
     
     private let locationManager: LocationManagerProtocol
+    private let entryManager: EntryManagerProtocol
     
     private weak var child: UIViewController? = nil {
         willSet {
@@ -44,9 +45,10 @@ class DetailViewController: UIViewController {
     
     public var selectedLocation: Location? { didSet { setupLocation(selectedLocation) } }
     
-    init(locationManager: LocationManagerProtocol) {
+    init(locationManager: LocationManagerProtocol, entryManager: EntryManagerProtocol) {
         
         self.locationManager = locationManager
+        self.entryManager = entryManager
         
         super.init(nibName: nil, bundle: nil)
         
@@ -261,6 +263,8 @@ class DetailViewController: UIViewController {
     private func morphDetailEntry() {
         
         let viewController = DetailEntryViewController.fromStoryboard()
+        
+        viewController.setEntryManager(entryManager)
         
         self.add(asChildViewController: viewController)
         
