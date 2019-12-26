@@ -1,9 +1,9 @@
 {
-  "commitish" : "2.7.0",
+  "commitish" : "2.8.0",
   "iOS" : [
     {
       "name" : "Pulley",
-      "hash" : "f2244f36a045fa53887bb06b044d4da01feff9c7f642b55e689eeee441d7a27e",
+      "hash" : "fdd91cce80552e96504dcf00b28e60449da93eb43da504798c3b3bc47597d16a",
       "swiftToolchainVersion" : "5.1.3 (swiftlang-1100.0.282.1 clang-1100.0.33.15)"
     }
   ]

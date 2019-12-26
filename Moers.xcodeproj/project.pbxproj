@@ -88,6 +88,14 @@
 		DF757347217725AC00953DA1 /* LFSearchViewDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF757346217725AC00953DA1 /* LFSearchViewDefaults.swift */; };
 		DF77DA0323B52FB9001FCA29 /* input.xcfilelist in Resources */ = {isa = PBXBuildFile; fileRef = DF77DA0223B52FB9001FCA29 /* input.xcfilelist */; };
 		DF77DA0523B52FD9001FCA29 /* output.xcfilelist in Resources */ = {isa = PBXBuildFile; fileRef = DF77DA0423B52FD9001FCA29 /* output.xcfilelist */; };
+		DF77DA0723B533E5001FCA29 /* EventBus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0623B533E5001FCA29 /* EventBus.framework */; };
+		DF77DA0923B53426001FCA29 /* TextFieldEffects.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0823B53426001FCA29 /* TextFieldEffects.framework */; };
+		DF77DA0B23B53440001FCA29 /* TagListView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0A23B53440001FCA29 /* TagListView.framework */; };
+		DF77DA0D23B53458001FCA29 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0C23B53458001FCA29 /* pop.framework */; };
+		DF77DA0F23B53470001FCA29 /* FeedKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0E23B53470001FCA29 /* FeedKit.framework */; };
+		DF77DA1123B53484001FCA29 /* Alertift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA1023B53484001FCA29 /* Alertift.framework */; };
+		DF77DA1323B5349D001FCA29 /* ESTabBarController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA1223B5349D001FCA29 /* ESTabBarController.framework */; };
+		DF77DA1523B534B4001FCA29 /* BLTNBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA1423B534B4001FCA29 /* BLTNBoard.framework */; };
 		DF7D4B5E22F0D53400126AF7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7D4B5D22F0D53400126AF7 /* Constants.swift */; };
 		DF7E702A21DA39A300A43B84 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF7E702921DA39A300A43B84 /* FirebaseMessaging.framework */; };
 		DF8281B621CFA74F00C3B3CE /* TweetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281B521CFA74F00C3B3CE /* TweetCollectionViewCell.swift */; };
@@ -117,7 +125,6 @@
 		DFB64DB120377AEE00173A80 /* MoersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB64DB020377AEE00173A80 /* MoersUITests.swift */; };
 		DFB64DB920377B7600173A80 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB64DB820377B7600173A80 /* SnapshotHelper.swift */; };
 		DFB64DCE20389FDC00173A80 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DCC20389FDB00173A80 /* Crashlytics.framework */; };
-		DFB64DCF20389FDC00173A80 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DCD20389FDB00173A80 /* Fabric.framework */; };
 		DFB6A0BF21033C7800D5C12B /* DetailCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6A0BE21033C7800D5C12B /* DetailCameraViewController.swift */; };
 		DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D631F6B109C00669F73 /* Extensions.swift */; };
 		DFB92D691F6B96E400669F73 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D681F6B96E400669F73 /* ClusterAnnotationView.swift */; };
@@ -293,6 +300,14 @@
 		DF757346217725AC00953DA1 /* LFSearchViewDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewDefaults.swift; sourceTree = "<group>"; };
 		DF77DA0223B52FB9001FCA29 /* input.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = input.xcfilelist; sourceTree = "<group>"; };
 		DF77DA0423B52FD9001FCA29 /* output.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = output.xcfilelist; sourceTree = "<group>"; };
+		DF77DA0623B533E5001FCA29 /* EventBus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventBus.framework; path = Carthage/Build/iOS/EventBus.framework; sourceTree = "<group>"; };
+		DF77DA0823B53426001FCA29 /* TextFieldEffects.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TextFieldEffects.framework; path = Carthage/Build/iOS/TextFieldEffects.framework; sourceTree = "<group>"; };
+		DF77DA0A23B53440001FCA29 /* TagListView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TagListView.framework; path = Carthage/Build/iOS/TagListView.framework; sourceTree = "<group>"; };
+		DF77DA0C23B53458001FCA29 /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = pop.framework; path = Carthage/Build/iOS/pop.framework; sourceTree = "<group>"; };
+		DF77DA0E23B53470001FCA29 /* FeedKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FeedKit.framework; path = Carthage/Build/iOS/FeedKit.framework; sourceTree = "<group>"; };
+		DF77DA1023B53484001FCA29 /* Alertift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alertift.framework; path = Carthage/Build/iOS/Alertift.framework; sourceTree = "<group>"; };
+		DF77DA1223B5349D001FCA29 /* ESTabBarController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ESTabBarController.framework; path = Carthage/Build/iOS/ESTabBarController.framework; sourceTree = "<group>"; };
+		DF77DA1423B534B4001FCA29 /* BLTNBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BLTNBoard.framework; path = Carthage/Build/iOS/BLTNBoard.framework; sourceTree = "<group>"; };
 		DF7D4B5D22F0D53400126AF7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../../../../../../../../System/Volumes/Data/Users/lennart/Documents/Development/iOS/Moers/Moers/Config/Constants.swift; sourceTree = "<group>"; };
 		DF7E702921DA39A300A43B84 /* FirebaseMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseMessaging.framework; path = Frameworks/FirebaseMessaging.framework; sourceTree = "<group>"; };
 		DF8281B521CFA74F00C3B3CE /* TweetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -395,11 +410,18 @@
 				DF57D6932187397F00E6A0A9 /* FirebaseInstanceID.framework in Frameworks */,
 				DF57D6942187397F00E6A0A9 /* FirebaseCoreDiagnostics.framework in Frameworks */,
 				DF86ABA12174900400EFC7EA /* Intents.framework in Frameworks */,
-				DFCB432120E0344800E7AD3F /* TwitterKit.framework in Frameworks */,
 				DFB618581FAE144000C98EB6 /* Pulley.framework in Frameworks */,
 				DF409CFA2352453C001A473E /* Gestalt in Frameworks */,
 				DFB64DCE20389FDC00173A80 /* Crashlytics.framework in Frameworks */,
-				DFB64DCF20389FDC00173A80 /* Fabric.framework in Frameworks */,
+				DF77DA0723B533E5001FCA29 /* EventBus.framework in Frameworks */,
+				DF77DA0923B53426001FCA29 /* TextFieldEffects.framework in Frameworks */,
+				DF77DA0B23B53440001FCA29 /* TagListView.framework in Frameworks */,
+				DFCB432120E0344800E7AD3F /* TwitterKit.framework in Frameworks */,
+				DF77DA0F23B53470001FCA29 /* FeedKit.framework in Frameworks */,
+				DF77DA0D23B53458001FCA29 /* pop.framework in Frameworks */,
+				DF77DA1123B53484001FCA29 /* Alertift.framework in Frameworks */,
+				DF77DA1323B5349D001FCA29 /* ESTabBarController.framework in Frameworks */,
+				DF77DA1523B534B4001FCA29 /* BLTNBoard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,6 +725,14 @@
 		DF1A497D1F6ABD7100E9108B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DF77DA1423B534B4001FCA29 /* BLTNBoard.framework */,
+				DF77DA1223B5349D001FCA29 /* ESTabBarController.framework */,
+				DF77DA1023B53484001FCA29 /* Alertift.framework */,
+				DF77DA0E23B53470001FCA29 /* FeedKit.framework */,
+				DF77DA0C23B53458001FCA29 /* pop.framework */,
+				DF77DA0A23B53440001FCA29 /* TagListView.framework */,
+				DF77DA0823B53426001FCA29 /* TextFieldEffects.framework */,
+				DF77DA0623B533E5001FCA29 /* EventBus.framework */,
 				DF7E702921DA39A300A43B84 /* FirebaseMessaging.framework */,
 				DF69B73F21DA2AFB00F910D8 /* Protobuf.framework */,
 				DF57D675218738F400E6A0A9 /* FIRAnalyticsConnector.framework */,
