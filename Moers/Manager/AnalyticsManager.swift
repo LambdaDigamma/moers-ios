@@ -82,7 +82,7 @@ struct AnalyticsManager {
     public func logOpenedDashboard() {
         
         if shouldLog {
-            Analytics.logEvent("Opened Dashboard", parameters: [:])
+            Analytics.logEvent("Opened_Dashboard", parameters: [:])
         }
         
     }
