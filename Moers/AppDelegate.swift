@@ -12,7 +12,6 @@ import UserNotifications
 import Firebase
 import FirebaseInstanceID
 import FirebaseMessaging
-import Fabric
 import Crashlytics
 import Gestalt
 import MMAPI
@@ -150,8 +149,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     private func setupThirdParties() {
-        
-        Fabric.with([Crashlytics.self, Answers.self])
         
         FirebaseApp.configure()
         FirebaseConfiguration.shared.analyticsConfiguration.setAnalyticsCollectionEnabled(true)

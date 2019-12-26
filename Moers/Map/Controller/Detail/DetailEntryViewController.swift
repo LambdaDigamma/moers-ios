@@ -162,7 +162,7 @@ class DetailEntryViewController: UIViewController {
             self.lastUpdateLabel.text = "Letzte Änderung: nicht bekannt"
         }
         
-        Answers.logCustomEvent(withName: "Open Entry Website", customAttributes:
+        Analytics.logEvent("Open Entry Website", parameters:
             ["name": entry.name])
         
     }

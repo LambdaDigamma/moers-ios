@@ -82,7 +82,7 @@ class DetailCameraViewController: UIViewController {
         
         guard let camera = camera else { return }
         
-        Answers.logCustomEvent(withName: "Detail - Camera", customAttributes: ["name": camera.name, "panoID": camera.id])
+        Analytics.logEvent("Detail - Camera", parameters: ["name": camera.name, "panoID": camera.id])
         
     }
     

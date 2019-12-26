@@ -125,7 +125,7 @@ class DetailParkingViewController: UIViewController {
         statusLabel.text = ParkingLotStatus.localizedForCase(parkingLot.status)
         addressLabel.text = parkingLot.address
         
-        Answers.logCustomEvent(withName: "Detail - Parking Lot", customAttributes:
+        Analytics.logEvent("Detail - Parking Lot", parameters:
             ["name": parkingLot.name,
              "free": parkingLot.free,
              "status": parkingLot.status.rawValue])
