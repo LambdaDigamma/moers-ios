@@ -86,6 +86,8 @@
 		DF75734321771D3100953DA1 /* LFSearchViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75734221771D3100953DA1 /* LFSearchViewDelegate.swift */; };
 		DF75734521771D6800953DA1 /* LFSearchViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75734421771D6800953DA1 /* LFSearchViewDataSource.swift */; };
 		DF757347217725AC00953DA1 /* LFSearchViewDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF757346217725AC00953DA1 /* LFSearchViewDefaults.swift */; };
+		DF77DA0323B52FB9001FCA29 /* input.xcfilelist in Resources */ = {isa = PBXBuildFile; fileRef = DF77DA0223B52FB9001FCA29 /* input.xcfilelist */; };
+		DF77DA0523B52FD9001FCA29 /* output.xcfilelist in Resources */ = {isa = PBXBuildFile; fileRef = DF77DA0423B52FD9001FCA29 /* output.xcfilelist */; };
 		DF7D4B5E22F0D53400126AF7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7D4B5D22F0D53400126AF7 /* Constants.swift */; };
 		DF7E702A21DA39A300A43B84 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF7E702921DA39A300A43B84 /* FirebaseMessaging.framework */; };
 		DF8281B621CFA74F00C3B3CE /* TweetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281B521CFA74F00C3B3CE /* TweetCollectionViewCell.swift */; };
@@ -289,6 +291,8 @@
 		DF75734221771D3100953DA1 /* LFSearchViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewDelegate.swift; sourceTree = "<group>"; };
 		DF75734421771D6800953DA1 /* LFSearchViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewDataSource.swift; sourceTree = "<group>"; };
 		DF757346217725AC00953DA1 /* LFSearchViewDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewDefaults.swift; sourceTree = "<group>"; };
+		DF77DA0223B52FB9001FCA29 /* input.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = input.xcfilelist; sourceTree = "<group>"; };
+		DF77DA0423B52FD9001FCA29 /* output.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = output.xcfilelist; sourceTree = "<group>"; };
 		DF7D4B5D22F0D53400126AF7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../../../../../../../../System/Volumes/Data/Users/lennart/Documents/Development/iOS/Moers/Moers/Config/Constants.swift; sourceTree = "<group>"; };
 		DF7E702921DA39A300A43B84 /* FirebaseMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseMessaging.framework; path = Frameworks/FirebaseMessaging.framework; sourceTree = "<group>"; };
 		DF8281B521CFA74F00C3B3CE /* TweetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -470,6 +474,8 @@
 				DF9A914A2160DA840054A2B8 /* Environment.swift */,
 				DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */,
 				DF7D4B5D22F0D53400126AF7 /* Constants.swift */,
+				DF77DA0223B52FB9001FCA29 /* input.xcfilelist */,
+				DF77DA0423B52FD9001FCA29 /* output.xcfilelist */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -1146,10 +1152,12 @@
 				DF16582E22EF8C990033D218 /* Localizable.strings in Resources */,
 				DF16583022EF90D90033D218 /* Launch Screen.storyboard in Resources */,
 				DF44D58F2126F83B00F8AC0C /* DetailViewControllers.storyboard in Resources */,
+				DF77DA0523B52FD9001FCA29 /* output.xcfilelist in Resources */,
 				DFE1B59C235323D3009CA2EC /* MMUI.xcassets in Resources */,
 				DF44D58D2125FE9700F8AC0C /* ContentDrawer.storyboard in Resources */,
 				DFE1B58D235315E2009CA2EC /* MMUI.strings in Resources */,
 				DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */,
+				DF77DA0323B52FB9001FCA29 /* input.xcfilelist in Resources */,
 				DFE1B5932353165F009CA2EC /* MMAPI.strings in Resources */,
 				DF21B2FE20B9D8A900478A33 /* Licenses.plist in Resources */,
 				DFF5DDCB20094A920075A2F4 /* GoogleService-Info.plist in Resources */,
@@ -1213,18 +1221,13 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+				"$(SRCROOT)/Moers/Config/input.xcfilelist",
+			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Pulley.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/BLTNBoard.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ESTabBarController.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/pop.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/EventBus.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/TextFieldEffects.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/TwitterCore.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/TwitterKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Alertift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/TagListView.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/FeedKit.framework",
+			);
+			outputFileListPaths = (
+				"$(SRCROOT)/Moers/Config/output.xcfilelist",
 			);
 			outputPaths = (
 			);
