@@ -13,7 +13,7 @@ import MMUI
 
 class RubbishCollectionItemTableViewCell: UITableViewCell {
 
-    var item: RubbishCollectionItem? {
+    var item: RubbishPickupItem? {
         didSet {
             self.rubbishCollectionView.rubbishCollectionItem = item
         }

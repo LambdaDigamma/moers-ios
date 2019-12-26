@@ -32,7 +32,8 @@ class RubbishCollectionViewController: UIViewController {
         
     }()
     
-    var items: [RubbishCollectionItem] = []
+    var sections: [Section] = []
+    var items: [RubbishPickupItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,36 +73,67 @@ class RubbishCollectionViewController: UIViewController {
     
     private func loadData() {
         
-        RubbishManager.shared.loadItems(completion: { (items) in
+        guard let street = RubbishManager.shared.rubbishStreet else {
+            return
+        }
+        
+        let pickupItems = RubbishManager.shared.loadRubbishPickupItems(for: street)
+        
+        pickupItems.observeNext { (items: [RubbishPickupItem]) in
             
             OperationQueue.main.addOperation {
                 
                 self.items = items
+                self.buildSections()
                 self.tableView.reloadData()
                 
                 UIAccessibility.post(notification: .layoutChanged, argument: nil)
                 
             }
             
-        })
+        }.dispose(in: self.bag)
+        
+        pickupItems.observeFailed { (error: Error) in
+            print("Loading Rubbish Pickup Items failed: \(error.localizedDescription)")
+        }.dispose(in: self.bag)
+        
+    }
+    
+    private func buildSections() {
+        
+        let mappedSections = items.map { (item: RubbishPickupItem) -> Section in
+            
+            let month = Date.component(.month, from: item.date)
+            let year = Date.component(.year, from: item.date)
+            
+            return Section(month: month, year: year)
+            
+        }
+        
+        self.sections = Array(Set(mappedSections)).sorted { (lhs, rhs) -> Bool in
+            
+            if lhs.month != rhs.month {
+                return lhs.month < rhs.month
+            } else {
+                return lhs.year < rhs.year
+            }
+            
+        }
         
     }
     
     // MARK: - Data Handling
     
-    private var numberOfSections: Int {
+    private func items(for section: Section) -> [RubbishPickupItem] {
         
-        let set = Set(items.map { Date.component(.month, from: Date.from($0.date, withFormat: "dd.MM.yyyy") ?? Date()) })
-        
-        return set.count
-        
-    }
-    
-    private func items(for section: Int) -> [RubbishCollectionItem] {
-        
-        let currentMonth = Date.component(.month, from: Date())
-        
-        return items.filter { Date.component(.month, from: Date.from($0.date, withFormat: "dd.MM.yyyy")!) - currentMonth == section }
+        return items.filter { (item: RubbishPickupItem) -> Bool in
+            
+            let month = Date.component(.month, from: item.date)
+            let year = Date.component(.year, from: item.date)
+            
+            return month == section.month && year == section.year
+            
+        }
         
     }
     
@@ -118,10 +150,12 @@ extension RubbishCollectionViewController: UITableViewDelegate {
 extension RubbishCollectionViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return numberOfSections
+        return sections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        let section = sections[section]
         
         return items(for: section).count
         
@@ -130,12 +164,10 @@ extension RubbishCollectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerIdentifier) as! MonthHeaderView
+        let section = sections[section]
+        let date = Date.from("\(section.month) \(section.year)", withFormat: "M yyyy")?.format(format: "MMMM yyyy")
         
-        let currentMonth = Date.component(.month, from: Date())
-        
-        let sectionMonth = currentMonth + section
-        
-        headerView.titleLabel.text = Date.from("\(sectionMonth)", withFormat: "M")?.format(format: "MMMM")
+        headerView.titleLabel.text = date
         
         return headerView
         
@@ -145,7 +177,8 @@ extension RubbishCollectionViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! RubbishCollectionItemTableViewCell
         
-        cell.item = items(for: indexPath.section)[indexPath.row]
+        let section = sections[indexPath.section]
+        cell.item = items(for: section)[indexPath.row]
         
         return cell
         
@@ -161,6 +194,15 @@ extension RubbishCollectionViewController: Themeable {
         self.view.backgroundColor = theme.backgroundColor
         self.tableView.backgroundColor = theme.backgroundColor
         self.tableView.separatorColor = theme.separatorColor
+    }
+    
+}
+
+extension RubbishCollectionViewController {
+    
+    struct Section: Equatable, Hashable {
+        var month: Int
+        var year: Int
     }
     
 }

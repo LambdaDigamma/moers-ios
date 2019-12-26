@@ -56,14 +56,20 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     
     private func loadStreets() {
         
-        rubbishManager.loadRubbishCollectionStreets { streets in
+        let streets = rubbishManager.loadRubbishCollectionStreets()
+        
+        streets.observeOn(.main).observeNext { (streets: [RubbishCollectionStreet]) in
             
             self.streets = streets
             self.picker.reloadPickerView()
             
             self.loadUserLocationForStreetEstimation()
             
-        }
+        }.dispose(in: self.bag)
+        
+        streets.observeFailed { (error: Error) in
+            print("Loading Rubbish Collection Streets Failed: \(error.localizedDescription)")
+        }.dispose(in: bag)
         
     }
     

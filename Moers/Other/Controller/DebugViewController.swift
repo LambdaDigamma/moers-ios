@@ -47,13 +47,6 @@ class DebugViewController: UIViewController {
         self.setupConstraints()
         self.setupTheming()
         
-        RubbishManager.shared.loadItems(completion: { (items: [RubbishCollectionItem]) in
-            
-            self.rubbishItemsTextView.text = "Collections: \(items.count)\n\n"
-            self.rubbishItemsTextView.text = self.rubbishItemsTextView.text + items.map { $0.date + " " + RubbishWasteType.localizedForCase($0.type) }.joined(separator: "\n")
-            
-        }, all: false)
-        
         UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
             
             DispatchQueue.main.async {
@@ -64,6 +57,19 @@ class DebugViewController: UIViewController {
             }
             
         }
+        
+        guard let street = RubbishManager.shared.rubbishStreet else {
+            return
+        }
+        
+        let pickupItems = RubbishManager.shared.loadRubbishPickupItems(for: street) // TODO: Refactor this!
+        
+        pickupItems.observeOn(.main).observeNext { (items: [RubbishPickupItem]) in
+            
+            self.rubbishItemsTextView.text = "Collections: \(items.count)\n\n"
+            self.rubbishItemsTextView.text = self.rubbishItemsTextView.text + items.map { $0.date.format(format: "dd.MM.yyyy") + " " + RubbishWasteType.localizedForCase($0.type) }.joined(separator: "\n")
+            
+        }.dispose(in: self.bag)
         
     }
     

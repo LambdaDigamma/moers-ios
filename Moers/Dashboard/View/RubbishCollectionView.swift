@@ -19,18 +19,18 @@ class RubbishCollectionView: UIView {
     private lazy var typeLabel = { ViewFactory.label() }()
     private lazy var dateLabel = { ViewFactory.label() }()
     
-    var rubbishCollectionItem: RubbishCollectionItem? {
+    var rubbishCollectionItem: RubbishPickupItem? {
         didSet {
             
             guard let item = rubbishCollectionItem else { return }
             
-            dateLabel.text = item.parsedDate.beautify()
+            dateLabel.text = item.date.beautify()
             typeLabel.text = RubbishWasteType.localizedForCase(item.type)
             
             switch item.type {
-            case .green: imageView.image = #imageLiteral(resourceName: "greenWaste")
+            case .cuttings: imageView.image = #imageLiteral(resourceName: "greenWaste")
             case .paper: imageView.image = #imageLiteral(resourceName: "paperWaste")
-            case .yellow: imageView.image = #imageLiteral(resourceName: "yellowWaste")
+            case .plastic: imageView.image = #imageLiteral(resourceName: "yellowWaste")
             case .residual: imageView.image = #imageLiteral(resourceName: "residualWaste")
             case .organic: imageView.image = #imageLiteral(resourceName: "greenWaste")
             }
@@ -77,7 +77,7 @@ class RubbishCollectionView: UIView {
         
         guard let item = rubbishCollectionItem else { return }
         
-        let localizedDate = DateFormatter.localizedString(from: item.parsedDate, dateStyle: .full, timeStyle: .none)
+        let localizedDate = DateFormatter.localizedString(from: item.date, dateStyle: .full, timeStyle: .none)
         let localizedType = RubbishWasteType.localizedForCase(item.type)
         
         self.isAccessibilityElement = true
@@ -89,17 +89,19 @@ class RubbishCollectionView: UIView {
     
     private func setupConstraints() {
         
-        let constraints = [self.heightAnchor.constraint(equalToConstant: 60),
-                           imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
-                           imageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8),
-                           imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
-                           imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
-                           typeLabel.topAnchor.constraint(equalTo: imageView.topAnchor),
-                           typeLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 8),
-                           typeLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8),
-                           dateLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
-                           dateLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 8),
-                           dateLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)]
+        let constraints = [
+            self.heightAnchor.constraint(equalToConstant: 60),
+            imageView.topAnchor.constraint(equalTo: typeLabel.topAnchor),
+            imageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8),
+            imageView.bottomAnchor.constraint(equalTo: self.dateLabel.bottomAnchor),
+            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
+            typeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
+            typeLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 8),
+            typeLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8),
+            dateLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
+            dateLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 8),
+            dateLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         

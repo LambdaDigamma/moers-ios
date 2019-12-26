@@ -296,6 +296,8 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             
             item.manager?.dismissBulletin(animated: true)
             
+            self.updateDashboard()
+            
         }
         
         page.alternativeHandler = { item in
@@ -328,15 +330,18 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     
     private func loadRubbishData() {
         
-        //        RubbishManager.shared.street = "Adler"
+//        RubbishManager.shared.street = "Adler"
+//        RubbishManager.shared.setupBadSetup()
         
         if RubbishManager.shared.isEnabled && !firstLaunch.isFirstLaunch &&
             onboardingManager.userDidCompleteSetup &&
-            (RubbishManager.shared.rubbishStreet?.street ?? "") != "" {
+            (RubbishManager.shared.street ?? "") != "" {
             
-            RubbishManager.shared.loadRubbishCollectionStreets { (streets) in
+            let streets = RubbishManager.shared.loadRubbishCollectionStreets()
+            
+            streets.observeOn(.main).observeNext { (streets: [RubbishCollectionStreet]) in
                 
-                let currentStreetName = self.rubbishManager.rubbishStreet?.street ?? ""
+                let currentStreetName = RubbishManager.shared.rubbishStreet?.street ?? ""
                 
                 if let filteredStreet = streets.filter({ $0.street == currentStreetName }).first {
                     
@@ -357,7 +362,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
                     
                 }
                 
-            }
+            }.dispose(in: self.bag)
             
         }
         
@@ -371,13 +376,16 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     
     private func setupMocked() {
         
-        let rubbishCollectionStreet = RubbishCollectionStreet(street: "Adlerstraße",
+        let rubbishCollectionStreet = RubbishCollectionStreet(id: 2,
+                                                              street: "Adlerstraße",
+                                                              streetAddition: nil,
                                                               residualWaste: 3,
                                                               organicWaste: 2,
                                                               paperWaste: 8,
                                                               yellowBag: 3,
                                                               greenWaste: 2,
-                                                              sweeperDay: "")
+                                                              sweeperDay: "",
+                                                              year: 2020)
         
         UserManager.shared.register(User(type: .citizen, id: nil, name: nil, description: nil))
         petrolManager.petrolType = .diesel

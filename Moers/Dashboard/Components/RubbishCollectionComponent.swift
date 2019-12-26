@@ -11,7 +11,7 @@ import MMAPI
 
 class RubbishCollectionComponent: BaseComponent, UIViewControllerPreviewingDelegate {
     
-    var rubbishItems: [RubbishCollectionItem] = []
+    var rubbishItems: [RubbishPickupItem] = []
     
     lazy var rubbishCardView: DashboardRubbishCardView = {
         
@@ -90,7 +90,13 @@ class RubbishCollectionComponent: BaseComponent, UIViewControllerPreviewingDeleg
         
         if RubbishManager.shared.isEnabled {
             
-            RubbishManager.shared.loadItems(completion: { (items) in
+            guard let street = RubbishManager.shared.rubbishStreet else {
+                return
+            }
+            
+            let pickupItems = RubbishManager.shared.loadRubbishPickupItems(for: street)
+            
+            pickupItems.observeNext { (items: [RubbishPickupItem]) in
                 
                 self.rubbishItems = items
                 
@@ -104,7 +110,7 @@ class RubbishCollectionComponent: BaseComponent, UIViewControllerPreviewingDeleg
                     
                 }
                 
-            })
+            }.dispose(in: self.bag)
             
         } else {
             
