@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/DeclarativeHub/Bond.git",
         "state": {
           "branch": null,
-          "revision": "1c4ce95a76502b7253362101a93d717c6b29e5b5",
-          "version": "7.6.0"
+          "revision": "5a47c82cf132de50803700a06e9bf9be7d535285",
+          "version": "7.6.6"
         }
       },
       {
@@ -51,8 +51,26 @@
         "repositoryURL": "https://github.com/onevcat/Kingfisher",
         "state": {
           "branch": null,
-          "revision": "9c039c8d8d2aa349b326c1059702d9f1b83bdb82",
-          "version": "5.8.3"
+          "revision": "2f9d171f17869768f6dbec1d039b851e2503af35",
+          "version": "5.12.0"
+        }
+      },
+      {
+        "package": "MMAPI",
+        "repositoryURL": "https://github.com/LambdaDigamma/mmapi-ios",
+        "state": {
+          "branch": "spm",
+          "revision": "8d95490952c7ba9724dcf78fb0070985e70bd5ef",
+          "version": null
+        }
+      },
+      {
+        "package": "MMUI",
+        "repositoryURL": "https://github.com/LambdaDigamma/mmui-ios",
+        "state": {
+          "branch": "spm",
+          "revision": "981437e2028086bcd80d77790d7f2070c7b122cb",
+          "version": null
         }
       },
       {
@@ -69,8 +87,8 @@
         "repositoryURL": "https://github.com/DeclarativeHub/ReactiveKit.git",
         "state": {
           "branch": null,
-          "revision": "08350920b54c220a038e38bde0d84bd6126488dd",
-          "version": "3.13.2"
+          "revision": "016b3981690658f8cf54641af4694bdaa4bd9425",
+          "version": "3.15.4"
         }
       }
     ]

@@ -133,7 +133,7 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     }
     
     func pickerView(_ pickerView: PickerView, titleForRow row: Int, index: Int) -> String {
-        return streets[row].street
+        return streets[row].displayName
     }
     
     func pickerViewHeightForRows(_ pickerView: PickerView) -> CGFloat {
