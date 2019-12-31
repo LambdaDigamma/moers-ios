@@ -28,6 +28,7 @@
 		DF21B30020BA0DB400478A33 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF21B2FF20BA0DB400478A33 /* SwitchTableViewCell.swift */; };
 		DF29FB4D20B1954B00741A63 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */; };
 		DF29FB4F20B19BE600741A63 /* ThemeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29FB4E20B19BE600741A63 /* ThemeCardView.swift */; };
+		DF2CF1C223BBB2EA003497C5 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = DF2CF1C123BBB2EA003497C5 /* TextFieldEffects */; };
 		DF2D6DA120B83C1E00176614 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DA020B83C1E00176614 /* AnalyticsManager.swift */; };
 		DF2D6DA320B88BFA00176614 /* Licence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DA220B88BFA00176614 /* Licence.swift */; };
 		DF2D6DA520B88E1700176614 /* LicencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DA420B88E1700176614 /* LicencesViewController.swift */; };
@@ -88,7 +89,6 @@
 		DF757347217725AC00953DA1 /* LFSearchViewDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF757346217725AC00953DA1 /* LFSearchViewDefaults.swift */; };
 		DF77DA0323B52FB9001FCA29 /* input.xcfilelist in Resources */ = {isa = PBXBuildFile; fileRef = DF77DA0223B52FB9001FCA29 /* input.xcfilelist */; };
 		DF77DA0523B52FD9001FCA29 /* output.xcfilelist in Resources */ = {isa = PBXBuildFile; fileRef = DF77DA0423B52FD9001FCA29 /* output.xcfilelist */; };
-		DF77DA0923B53426001FCA29 /* TextFieldEffects.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0823B53426001FCA29 /* TextFieldEffects.framework */; };
 		DF77DA0B23B53440001FCA29 /* TagListView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0A23B53440001FCA29 /* TagListView.framework */; };
 		DF77DA0D23B53458001FCA29 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0C23B53458001FCA29 /* pop.framework */; };
 		DF77DA0F23B53470001FCA29 /* FeedKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0E23B53470001FCA29 /* FeedKit.framework */; };
@@ -232,6 +232,7 @@
 		DF21B2FF20BA0DB400478A33 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwitchTableViewCell.swift; path = ../../View/UITableViewCells/SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		DF29FB4E20B19BE600741A63 /* ThemeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCardView.swift; sourceTree = "<group>"; };
+		DF2CF1C323BBB315003497C5 /* TextFieldEffects */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TextFieldEffects; path = ../TextFieldEffects; sourceTree = "<group>"; };
 		DF2D6DA020B83C1E00176614 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		DF2D6DA220B88BFA00176614 /* Licence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Licence.swift; sourceTree = "<group>"; };
 		DF2D6DA420B88E1700176614 /* LicencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicencesViewController.swift; sourceTree = "<group>"; };
@@ -399,6 +400,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF409CFC2352453C001A473E /* MMAPI in Frameworks */,
+				DF2CF1C223BBB2EA003497C5 /* TextFieldEffects in Frameworks */,
 				DF409CF82352453C001A473E /* MMUI in Frameworks */,
 				DF7E702A21DA39A300A43B84 /* FirebaseMessaging.framework in Frameworks */,
 				DF69B74021DA2AFB00F910D8 /* Protobuf.framework in Frameworks */,
@@ -414,7 +416,6 @@
 				DFB618581FAE144000C98EB6 /* Pulley.framework in Frameworks */,
 				DF409CFA2352453C001A473E /* Gestalt in Frameworks */,
 				DFB64DCE20389FDC00173A80 /* Crashlytics.framework in Frameworks */,
-				DF77DA0923B53426001FCA29 /* TextFieldEffects.framework in Frameworks */,
 				DF77DA0B23B53440001FCA29 /* TagListView.framework in Frameworks */,
 				DFCB432120E0344800E7AD3F /* TwitterKit.framework in Frameworks */,
 				DF77DA0F23B53470001FCA29 /* FeedKit.framework in Frameworks */,
@@ -678,6 +679,7 @@
 		DF1A49561F6AAB7000E9108B = {
 			isa = PBXGroup;
 			children = (
+				DF2CF1C323BBB315003497C5 /* TextFieldEffects */,
 				DFE1B59A23531C21009CA2EC /* mmapi-ios */,
 				DFE1B59923531C10009CA2EC /* mmui-ios */,
 				DF1A49611F6AAB7000E9108B /* Moers */,
@@ -1016,6 +1018,7 @@
 				DF409CF72352453C001A473E /* MMUI */,
 				DF409CF92352453C001A473E /* Gestalt */,
 				DF409CFB2352453C001A473E /* MMAPI */,
+				DF2CF1C123BBB2EA003497C5 /* TextFieldEffects */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1162,6 +1165,7 @@
 				DF31C63D23521E4F0085DA6F /* XCRemoteSwiftPackageReference "mmui-ios" */,
 				DF22FC1123522756003F1B3A /* XCRemoteSwiftPackageReference "Gestalt" */,
 				DF409CF023522AD9001A473E /* XCRemoteSwiftPackageReference "mmapi-ios" */,
+				DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 			);
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
@@ -2767,6 +2771,14 @@
 				kind = branch;
 			};
 		};
+		DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LambdaDigamma/TextFieldEffects";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		DF31C63D23521E4F0085DA6F /* XCRemoteSwiftPackageReference "mmui-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/LambdaDigamma/mmui-ios";
@@ -2786,6 +2798,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DF2CF1C123BBB2EA003497C5 /* TextFieldEffects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
+			productName = TextFieldEffects;
+		};
 		DF409CF72352453C001A473E /* MMUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DF31C63D23521E4F0085DA6F /* XCRemoteSwiftPackageReference "mmui-ios" */;

@@ -56,24 +56,6 @@
         }
       },
       {
-        "package": "MMAPI",
-        "repositoryURL": "https://github.com/LambdaDigamma/mmapi-ios",
-        "state": {
-          "branch": "spm",
-          "revision": "8d95490952c7ba9724dcf78fb0070985e70bd5ef",
-          "version": null
-        }
-      },
-      {
-        "package": "MMUI",
-        "repositoryURL": "https://github.com/LambdaDigamma/mmui-ios",
-        "state": {
-          "branch": "spm",
-          "revision": "981437e2028086bcd80d77790d7f2070c7b122cb",
-          "version": null
-        }
-      },
-      {
         "package": "Reachability",
         "repositoryURL": "https://github.com/ashleymills/Reachability.swift.git",
         "state": {
