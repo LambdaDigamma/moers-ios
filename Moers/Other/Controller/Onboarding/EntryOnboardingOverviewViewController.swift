@@ -561,15 +561,19 @@ class EntryOnboardingOverviewViewController: UIViewController {
     
     private func alertError() {
         
-        Alertift.alert(title: "Ein Fehler ist aufgetreten", message: "Ein unbekannter Fehler ist aufgetreten.")
-            .titleTextColor(nameTextField.textColor)
-            .messageTextColor(nameTextField.textColor)
-            .buttonTextColor(nameTextField.textColor)
-            .backgroundColor(view.backgroundColor)
-            .action(.default("Okay"), handler: { (action, i, textFields) in
-                
-            })
-            .show()
+        DispatchQueue.main.async {
+            
+            Alertift.alert(title: "Ein Fehler ist aufgetreten", message: "Ein unbekannter Fehler ist aufgetreten.")
+                .titleTextColor(self.nameTextField.textColor)
+                .messageTextColor(self.nameTextField.textColor)
+                .buttonTextColor(self.nameTextField.textColor)
+                .backgroundColor(self.view.backgroundColor)
+                .action(.default("Okay"), handler: { (action, i, textFields) in
+                    
+                })
+                .show()
+            
+        }
         
     }
     

@@ -41,8 +41,8 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     lazy var data: [Section] = {
         
-        return [/*Section(title: "Daten",
-                        rows: [NavigationRow(title: "Eintrag hinzufügen", action: showAddEntry)]),*/
+        return [Section(title: "Daten",
+                        rows: [NavigationRow(title: "Eintrag hinzufügen", action: showAddEntry)]),
                 Section(title: String.localized("SettingsTitle"),
                         rows: [NavigationRow(title: String.localized("SettingsTitle"), action: showSettings),
                                NavigationRow(title: "Siri Shortcuts", action: showSiriShortcuts)]),
@@ -130,18 +130,29 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                     
                     EntryManager.shared.resetData()
                     
-                    self.push(viewController: EntryOnboardingLocationMenuViewController.self)
+                    let viewController = EntryOnboardingLocationMenuViewController(locationManager: self.locationManager,
+                                                                                   entryManager: EntryManager.shared)
+                    
+                    self.navigationController?.pushViewController(viewController, animated: true)
                     
                 })
                 .action(.default("Ja"), isPreferred: true, handler: { (action, i, textFields) in
                     
-                    self.push(viewController: EntryOnboardingLocationMenuViewController.self)
+                    let viewController = EntryOnboardingLocationMenuViewController(locationManager: self.locationManager,
+                                                                                   entryManager: EntryManager.shared)
+                    
+                    self.navigationController?.pushViewController(viewController, animated: true)
                     
                 })
                 .show()
             
         } else {
-            push(viewController: EntryOnboardingLocationMenuViewController.self)
+            
+            let viewController = EntryOnboardingLocationMenuViewController(locationManager: self.locationManager,
+                                                                           entryManager: EntryManager.shared)
+            
+            self.navigationController?.pushViewController(viewController, animated: true)
+            
         }
         
     }
