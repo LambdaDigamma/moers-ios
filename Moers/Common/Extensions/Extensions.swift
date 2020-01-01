@@ -81,17 +81,17 @@ extension UIViewController {
     
     var safeLeftAnchor: NSLayoutXAxisAnchor {
         if #available(iOS 11.0, *) {
-            return view.safeAreaLayoutGuide.leftAnchor
+            return view.safeAreaLayoutGuide.leadingAnchor
         } else {
-            return view.leftAnchor
+            return view.leadingAnchor
         }
     }
     
     var safeRightAnchor: NSLayoutXAxisAnchor {
         if #available(iOS 11.0, *) {
-            return view.safeAreaLayoutGuide.rightAnchor
+            return view.safeAreaLayoutGuide.trailingAnchor
         } else {
-            return view.rightAnchor
+            return view.trailingAnchor
         }
     }
     

@@ -20,6 +20,7 @@
 		DF0CB4B32087092F00CC0AA8 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4B22087092F00CC0AA8 /* SearchResultTableViewCell.swift */; };
 		DF16582E22EF8C990033D218 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */; };
 		DF16583022EF90D90033D218 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF16582F22EF90D90033D218 /* Launch Screen.storyboard */; };
+		DF174FA723BC361B00812BDD /* AuditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF174FA623BC361B00812BDD /* AuditTableViewCell.swift */; };
 		DF199BE021CF9C7000C89966 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF199BDF21CF9C7000C89966 /* NewsItem.swift */; };
 		DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A49621F6AAB7000E9108B /* AppDelegate.swift */; };
 		DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49691F6AAB7000E9108B /* Assets.xcassets */; };
@@ -80,7 +81,6 @@
 		DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */; };
 		DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B451F6EA0370022FA8E /* DesignableButton.swift */; };
 		DF69B73C21D986AD00F910D8 /* EntryHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF69B73B21D986AD00F910D8 /* EntryHistoryViewController.swift */; };
-		DF69B73E21DA1C8700F910D8 /* Audit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF69B73D21DA1C8700F910D8 /* Audit.swift */; };
 		DF69B74021DA2AFB00F910D8 /* Protobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF69B73F21DA2AFB00F910D8 /* Protobuf.framework */; };
 		DF75733E2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75733D2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift */; };
 		DF75734021771CC900953DA1 /* LFSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75733F21771CC800953DA1 /* LFSearchViewController.swift */; };
@@ -222,6 +222,7 @@
 		DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		DF16582F22EF90D90033D218 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "../../../../../../../System/Volumes/Data/Users/lennart/Documents/Development/iOS/Moers/Moers/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		DF16583122EF918A0033D218 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		DF174FA623BC361B00812BDD /* AuditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditTableViewCell.swift; sourceTree = "<group>"; };
 		DF199BDF21CF9C7000C89966 /* NewsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
 		DF1A495F1F6AAB7000E9108B /* Moers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1A49621F6AAB7000E9108B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
@@ -292,7 +293,6 @@
 		DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLotAnnotationView.swift; sourceTree = "<group>"; };
 		DF632B451F6EA0370022FA8E /* DesignableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
 		DF69B73B21D986AD00F910D8 /* EntryHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryHistoryViewController.swift; sourceTree = "<group>"; };
-		DF69B73D21DA1C8700F910D8 /* Audit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Audit.swift; path = ../../Model/Audit.swift; sourceTree = "<group>"; };
 		DF69B73F21DA2AFB00F910D8 /* Protobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Protobuf.framework; path = Frameworks/Protobuf.framework; sourceTree = "<group>"; };
 		DF75733D2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryOnboardingTagsViewController.swift; sourceTree = "<group>"; };
 		DF75733F21771CC800953DA1 /* LFSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewController.swift; sourceTree = "<group>"; };
@@ -655,7 +655,6 @@
 		DF11BFCB22BA738E0051C3B3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DF69B73D21DA1C8700F910D8 /* Audit.swift */,
 				DF4D89562104A6F0008609A1 /* Datasources.swift */,
 			);
 			path = Model;
@@ -672,6 +671,7 @@
 				DF1EC3EC1F78C4E40090809A /* AnnotationView */,
 				DF500152235A3D2D00ED39B2 /* SearchDrawerView.swift */,
 				DF500154235A4E1E00ED39B2 /* SearchDrawerViewController.swift */,
+				DF174FA623BC361B00812BDD /* AuditTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1345,7 +1345,6 @@
 				DF86ABA32174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift in Sources */,
 				DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */,
 				DF86AB9D217387E700EFC7EA /* OnboardingProgressView.swift in Sources */,
-				DF69B73E21DA1C8700F910D8 /* Audit.swift in Sources */,
 				DFD7ACB420A6BCA000D49BE2 /* DashboardRubbishCardView.swift in Sources */,
 				DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */,
 				DFA9EF0C20B56BA8008590EA /* UIImage+Extensions.swift in Sources */,
@@ -1369,6 +1368,7 @@
 				DF86AB9721728A1E00EFC7EA /* EntryOnboardingLocationMenuViewController.swift in Sources */,
 				DF69B73C21D986AD00F910D8 /* EntryHistoryViewController.swift in Sources */,
 				DF8963D420CB0886008A0EDD /* WaterfallLayout.swift in Sources */,
+				DF174FA723BC361B00812BDD /* AuditTableViewCell.swift in Sources */,
 				DF2D6DA720B8983400176614 /* UserManager.swift in Sources */,
 				DF4D8953210388D5008609A1 /* CameraViewController.swift in Sources */,
 				DFD7ACC120A842F400D49BE2 /* DateCardView.swift in Sources */,

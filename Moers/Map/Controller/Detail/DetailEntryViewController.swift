@@ -110,8 +110,8 @@ class DetailEntryViewController: UIViewController {
         self.tagsListView.cornerRadius = 10
         self.tagsListView.backgroundColor = UIColor.clear
         
-        self.editButton.isHidden = true
-        self.historyButton.isHidden = true
+//        self.editButton.isHidden = true
+//        self.historyButton.isHidden = true
         
     }
     
