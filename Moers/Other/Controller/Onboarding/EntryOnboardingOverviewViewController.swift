@@ -439,16 +439,21 @@ class EntryOnboardingOverviewViewController: UIViewController {
                 
             case .success(let entry):
                 
-                self.alertSuccess()
-                self.entryManager.resetData()
-                
-                guard let tabBarController = self.tabBarController as? TabBarController else { return }
-                
-                tabBarController.mainViewController.addLocation(entry)
+                DispatchQueue.main.async {
+                    
+                    self.alertSuccess()
+                    self.entryManager.resetData()
+                    
+                    guard let tabBarController = self.tabBarController as? TabBarController else { return }
+                    
+                    tabBarController.mainViewController.addLocation(entry)
+                    
+                }
                 
             case .failure(let error):
                 
                 print(error.localizedDescription)
+                print((error as? DecodingError))
                 
                 if let error = error as? APIError, error == .notAuthorized {
                     self.alertNotAuthorized()
