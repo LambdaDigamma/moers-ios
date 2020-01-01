@@ -55,6 +55,26 @@ class AuditTableViewCell: UITableViewCell {
     private lazy var changeSetHeader = { ViewFactory.label() }()
     private lazy var changesStackView = { ViewFactory.stackView() }()
     
+    private let lookupTable: [String: String] = [
+        "name": String.localized("AuditingEntryName"),
+        "lat": String.localized("AuditingEntryLatitude"),
+        "lng": String.localized("AuditingEntryLongitude"),
+        "street": String.localized("AuditingEntryStreet"),
+        "house_number": String.localized("AuditingEntryHouseNumber"),
+        "postcode": String.localized("AuditingEntryPostcode"),
+        "place": String.localized("AuditingEntryPlace"),
+        "monday": String.localized("AuditingEntryMonday"),
+        "tuesday": String.localized("AuditingEntryTuesday"),
+        "wednesday": String.localized("AuditingEntryWednesday"),
+        "thursday": String.localized("AuditingEntryThursday"),
+        "friday": String.localized("AuditingEntryFriday"),
+        "saturday": String.localized("AuditingEntrySaturday"),
+        "sunday": String.localized("AuditingEntrySunday"),
+        "other": String.localized("AuditingEntryOther"),
+        "url": String.localized("AuditingEntryWebsite"),
+        "phone": String.localized("AuditingEntryPhone"),
+    ]
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -160,8 +180,9 @@ class AuditTableViewCell: UITableViewCell {
                     }
                 }
                 
+                let valueDescription = lookupTable[change.key] ?? change.key.uppercased(with: Locale.current)
                 
-                let auditChangeView = AuditChangeView(valueDescription: change.key.uppercased(with: Locale.current),
+                let auditChangeView = AuditChangeView(valueDescription: valueDescription,
                                                       oldValue: oldValueRepresentation,
                                                       newValue: newValueRepresentation)
 

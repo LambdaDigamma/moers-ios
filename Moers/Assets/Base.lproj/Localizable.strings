@@ -143,3 +143,23 @@
 "PickerPromptText" = "Move the crosshairs to the store on the map!";
 "Events" = "Events";
 "Unknown" = "unknown";
+
+/* Auditing Entry */
+"AuditingEntryName" = "Name";
+"AuditingEntryLatitude" = "Tags";
+"AuditingEntryLatitude" = "Latitude";
+"AuditingEntryLongitude" = "Longitude";
+"AuditingEntryStreet" = "Street";
+"AuditingEntryHouseNumber" = "House Number";
+"AuditingEntryPostcode" = "Postcode";
+"AuditingEntryPlace" = "Place";
+"AuditingEntryMonday" = "Monday (Opening Hours)";
+"AuditingEntryTuesday" = "Tuesday (Opening Hours)";
+"AuditingEntryWednesday" = "Mittwoch (Opening Hours)";
+"AuditingEntryThursday" = "Thursday (Opening Hours)";
+"AuditingEntryFriday" = "Friday (Opening Hours)";
+"AuditingEntrySaturday" = "Saturday (Opening Hours)";
+"AuditingEntrySunday" = "Sunday (Opening Hours)";
+"AuditingEntryOther" = "Other (Opening Hours)";
+"AuditingEntryWebsite" = "Websete";
+"AuditingEntryPhone" = "Phone";

@@ -143,3 +143,24 @@
 "PickerPromptText" = "Wähle die aktuelle Position aus oder bewege das Fadenkreuz auf das Geschäft auf der Karte!";
 "Events" = "Veranstaltungen";
 "Unknown" = "unbekannt";
+
+/* Auditing Entry */
+"AuditingEntryName" = "Name";
+"AuditingEntryLatitude" = "Schlagworte";
+"AuditingEntryLatitude" = "Breitengrad";
+"AuditingEntryLongitude" = "Längengrad";
+"AuditingEntryStreet" = "Straße";
+"AuditingEntryHouseNumber" = "Hausnummer";
+"AuditingEntryPostcode" = "Postleitzahl";
+"AuditingEntryPlace" = "Ort";
+"AuditingEntryMonday" = "Montag (Öffnungszeiten)";
+"AuditingEntryTuesday" = "Dienstag (Öffnungszeiten)";
+"AuditingEntryWednesday" = "Mittwoch (Öffnungszeiten)";
+"AuditingEntryThursday" = "Donnerstag (Öffnungszeiten)";
+"AuditingEntryFriday" = "Freitag (Öffnungszeiten)";
+"AuditingEntrySaturday" = "Samstag (Öffnungszeiten)";
+"AuditingEntrySunday" = "Sonntag (Öffnungszeiten)";
+"AuditingEntryOther" = "Sonstiges (Öffnungszeiten)";
+"AuditingEntryWebsite" = "Webseite";
+"AuditingEntryPhone" = "Telefon";
+
