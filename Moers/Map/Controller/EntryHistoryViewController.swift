@@ -78,7 +78,9 @@ class EntryHistoryViewController: UIViewController {
             case .success(let audits):
                 
                 DispatchQueue.main.async {
-                    self.audits = audits
+                    self.audits = audits.sorted(by: { (lhs, rhs) -> Bool in
+                        return lhs.updatedAt ?? Date() > rhs.updatedAt ?? Date()
+                    })
                     self.tableView.reloadData()
                 }
                 
@@ -112,6 +114,10 @@ extension EntryHistoryViewController: UITableViewDataSource, UITableViewDelegate
         
     }
     
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
 }
 
 extension EntryHistoryViewController: Themeable {
@@ -119,9 +125,33 @@ extension EntryHistoryViewController: Themeable {
     typealias Theme = ApplicationTheme
     
     func apply(theme: Theme) {
+        
         self.view.backgroundColor = theme.backgroundColor
         self.tableView.backgroundColor = theme.backgroundColor
         self.tableView.separatorColor = theme.separatorColor
+        
+        if #available(iOS 13.0, *) {
+            
+            navigationController?.navigationBar.barTintColor = theme.navigationBarColor
+            navigationController?.navigationBar.tintColor = theme.accentColor
+            navigationController?.navigationBar.prefersLargeTitles = true
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
+            navigationController?.navigationBar.isTranslucent = true
+            
+            let appearance = UINavigationBarAppearance()
+            
+            appearance.configureWithDefaultBackground()
+            appearance.backgroundColor = theme.navigationBarColor
+            
+            appearance.titleTextAttributes = [.foregroundColor : theme.accentColor]
+            appearance.largeTitleTextAttributes = [.foregroundColor : theme.accentColor]
+            
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+            navigationController?.navigationBar.standardAppearance = appearance
+            
+        }
+        
     }
     
 }

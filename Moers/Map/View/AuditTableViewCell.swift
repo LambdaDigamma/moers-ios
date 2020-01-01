@@ -16,26 +16,51 @@ class AuditTableViewCell: UITableViewCell {
     var audit: Audit? {
         didSet {
             guard let audit = audit else { return }
-            self.auditingTypeLabel.text = audit.event.rawValue
-            self.dateLabel.text = audit.updatedAt?.beautify(format: "E dd.MM.yyyy • HH:mm") ?? "Zeit nicht bekannt"
+            
+            self.dateLabel.text = "vor " + (audit.updatedAt?.timeAgo() ?? "n/v")
+            
+            switch audit.event {
+                
+            case .created:
+                self.auditingTypeLabel.text = "Eintrag erstellt"
+//                self.auditingTypeLabel.textColor = UIColor(hexString: "089C3B")
+                self.auditingTypeImageView.image = #imageLiteral(resourceName: "changeset_add")
+                
+            case .updated:
+                self.auditingTypeLabel.text = "Eintrag aktualisiert"
+//                self.auditingTypeLabel.textColor = UIColor(hexString: "089C3B")
+                self.auditingTypeImageView.image = #imageLiteral(resourceName: "changeset_update")
+                
+            case .deleted:
+                self.auditingTypeLabel.text = "Eintrag gelöscht"
+//                self.auditingTypeLabel.textColor = UIColor(hexString: "FF0000")
+                self.auditingTypeImageView.image = nil
+                self.auditingTypeImageView.image = #imageLiteral(resourceName: "changeset_delete")
+                
+            case .restored:
+                self.auditingTypeLabel.text = "Eintrag widerhergestellt"
+//                self.auditingTypeLabel.textColor = UIColor(hexString: "089C3B")
+                self.auditingTypeImageView.image = #imageLiteral(resourceName: "changeset_add")
+            
+            }
+            
+            self.setupChangesStackView()
+            
         }
     }
     
-    private lazy var auditingTypeLabel = { ViewFactory.label() }()
     private lazy var dateLabel = { ViewFactory.label() }()
+    private lazy var auditingTypeImageView = { ViewFactory.imageView() }()
+    private lazy var auditingTypeLabel = { ViewFactory.label() }()
+    private lazy var changeSetHeader = { ViewFactory.label() }()
     private lazy var changesStackView = { ViewFactory.stackView() }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.contentView.addSubview(auditingTypeLabel)
-        self.contentView.addSubview(dateLabel)
-        self.contentView.addSubview(changesStackView)
-        
         self.setupUI()
         self.setupConstraints()
         self.setupTheming()
-        self.setupChangesStackView()
         
     }
     
@@ -45,8 +70,17 @@ class AuditTableViewCell: UITableViewCell {
     
     private func setupUI() {
         
-        auditingTypeLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        dateLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        self.contentView.addSubview(auditingTypeLabel)
+        self.contentView.addSubview(dateLabel)
+        self.contentView.addSubview(changesStackView)
+        self.contentView.addSubview(changeSetHeader)
+        self.contentView.addSubview(auditingTypeImageView)
+        
+        self.auditingTypeImageView.contentMode = .scaleAspectFit
+        self.auditingTypeLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        self.dateLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        self.changeSetHeader.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        self.changesStackView.axis = .vertical
         
     }
     
@@ -54,16 +88,24 @@ class AuditTableViewCell: UITableViewCell {
         
         let margins = contentView.layoutMarginsGuide
         
-        let constraints = [dateLabel.topAnchor.constraint(equalTo: margins.topAnchor),
-                           dateLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-                           dateLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-                           auditingTypeLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 4),
-                           auditingTypeLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-                           auditingTypeLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-                           changesStackView.topAnchor.constraint(equalTo: auditingTypeLabel.bottomAnchor, constant: 8),
-                           changesStackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-                           changesStackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-                           changesStackView.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
+        let constraints = [
+            dateLabel.topAnchor.constraint(equalTo: margins.topAnchor),
+            dateLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            dateLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            auditingTypeImageView.centerYAnchor.constraint(equalTo: auditingTypeLabel.centerYAnchor, constant: -1),
+            auditingTypeImageView.leadingAnchor.constraint(equalTo: dateLabel.leadingAnchor),
+            auditingTypeImageView.heightAnchor.constraint(equalToConstant: 16),
+            auditingTypeImageView.widthAnchor.constraint(equalTo: auditingTypeImageView.heightAnchor),
+            auditingTypeLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 4),
+            auditingTypeLabel.leadingAnchor.constraint(equalTo: auditingTypeImageView.trailingAnchor, constant: 8),
+            auditingTypeLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            changeSetHeader.topAnchor.constraint(equalTo: auditingTypeLabel.bottomAnchor, constant: 8),
+            changeSetHeader.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            changeSetHeader.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            changesStackView.topAnchor.constraint(equalTo: changeSetHeader.bottomAnchor, constant: 8),
+            changesStackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            changesStackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            changesStackView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -8),
         ]
         
         NSLayoutConstraint.activate(constraints)
@@ -79,14 +121,56 @@ class AuditTableViewCell: UITableViewCell {
     
     private func setupChangesStackView() {
         
-        changesStackView.arrangedSubviews.forEach { changesStackView.removeArrangedSubview($0) }
+        changesStackView.arrangedSubviews.forEach { changesStackView.removeArrangedSubview($0) }
         
-        for i in 0..<1 {
+        guard let audit = audit else { return }
+        
+        if audit.event == .updated {
             
-            let auditChangeView = AuditChangeView(valueDescription: "Name:", oldValue: "Alter Name", newValue: "Neuer Name")
+            self.changeSetHeader.text = "Änderungsprotokoll:"
             
-            changesStackView.addArrangedSubview(auditChangeView)
+            for change in audit.newValues.baseValues {
+                
+                let newGenericValue = change.value
+                let oldGenericValue = audit.oldValues.baseValues[change.key] ?? nil
+                
+                var newValueRepresentation = "n/v"
+                
+                if let newGenericValue = newGenericValue {
+                    switch newGenericValue {
+                    case .string(let value):
+                        newValueRepresentation = value
+                    case .double(let value):
+                        newValueRepresentation = value.format(pattern: "%.2f")
+                    case .integer(let value):
+                        newValueRepresentation = String(value)
+                    }
+                }
+                
+                var oldValueRepresentation = "n/v"
+                
+                if let oldGenericValue = oldGenericValue {
+                    switch oldGenericValue {
+                    case .string(let value):
+                        oldValueRepresentation = value
+                    case .double(let value):
+                        oldValueRepresentation = value.format(pattern: "%.2f")
+                    case .integer(let value):
+                        oldValueRepresentation = String(value)
+                    }
+                }
+                
+                
+                let auditChangeView = AuditChangeView(valueDescription: change.key.uppercased(with: Locale.current),
+                                                      oldValue: oldValueRepresentation,
+                                                      newValue: newValueRepresentation)
+
+                changesStackView.addArrangedSubview(auditChangeView)
+
+            }
             
+        } else {
+            self.changeSetHeader.text = ""
         }
         
     }
@@ -99,95 +183,9 @@ extension AuditTableViewCell: Themeable {
     
     func apply(theme: Theme) {
         self.backgroundColor = theme.backgroundColor
+        self.changeSetHeader.textColor = theme.color
         self.auditingTypeLabel.textColor = theme.color
-        self.dateLabel.textColor = theme.accentColor
-    }
-    
-}
-
-class AuditChangeView: UIView {
-    
-    private lazy var changedValueDescriptionLabel: UILabel = { ViewFactory.label() }()
-    private lazy var oldValueLabel: UILabel = { ViewFactory.label() }()
-    private lazy var newValueLabel: UILabel = { ViewFactory.label() }()
-    private lazy var changeSetImageView: UIImageView = { ViewFactory.imageView() }()
-    
-    let valueDescription: String
-    let oldValue: String
-    let newValue: String
-    
-    init(valueDescription: String, oldValue: String, newValue: String) {
-        
-        self.valueDescription = valueDescription
-        self.oldValue = oldValue
-        self.newValue = newValue
-        
-        super.init(frame: .zero)
-        
-        self.setupUI()
-        self.setupConstraints()
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupUI() {
-        
-        self.addSubview(changedValueDescriptionLabel)
-        self.addSubview(oldValueLabel)
-        self.addSubview(newValueLabel)
-        self.addSubview(changeSetImageView)
-        
-        self.changedValueDescriptionLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        self.changedValueDescriptionLabel.text = valueDescription
-        self.oldValueLabel.text = oldValue
-        self.oldValueLabel.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        self.newValueLabel.text = newValue
-        self.newValueLabel.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        
-        self.changeSetImageView.image = #imageLiteral(resourceName: "changeset")
-        self.changeSetImageView.contentMode = .scaleAspectFit
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
-        
-    }
-    
-    private func setupConstraints() {
-        
-        let constraints = [
-            changedValueDescriptionLabel.topAnchor.constraint(equalTo: self.topAnchor),
-            changedValueDescriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            changedValueDescriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            newValueLabel.topAnchor.constraint(equalTo: changedValueDescriptionLabel.bottomAnchor, constant: 4),
-            newValueLabel.leadingAnchor.constraint(equalTo: changedValueDescriptionLabel.leadingAnchor),
-            newValueLabel.trailingAnchor.constraint(equalTo: changedValueDescriptionLabel.trailingAnchor),
-            changeSetImageView.topAnchor.constraint(equalTo: newValueLabel.bottomAnchor, constant: 4),
-            changeSetImageView.leadingAnchor.constraint(equalTo: changedValueDescriptionLabel.leadingAnchor),
-            changeSetImageView.trailingAnchor.constraint(equalTo: changedValueDescriptionLabel.trailingAnchor),
-            changeSetImageView.heightAnchor.constraint(equalTo: changeSetImageView.widthAnchor, multiplier: 80 / 600),
-            oldValueLabel.topAnchor.constraint(equalTo: changeSetImageView.bottomAnchor, constant: 4),
-            oldValueLabel.leadingAnchor.constraint(equalTo: changedValueDescriptionLabel.leadingAnchor),
-            oldValueLabel.trailingAnchor.constraint(equalTo: changedValueDescriptionLabel.trailingAnchor),
-            oldValueLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
-        
-    }
-    
-}
-
-extension AuditChangeView: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        self.backgroundColor = theme.backgroundColor
-        self.changedValueDescriptionLabel.textColor = theme.color
-        self.oldValueLabel.textColor = UIColor(hexString: "FF0000")
-        self.newValueLabel.textColor = UIColor(hexString: "089C3B")
+        self.dateLabel.textColor = theme.decentColor
     }
     
 }
