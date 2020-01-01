@@ -48,6 +48,11 @@ class EntryOnboardingOverviewViewController: UIViewController {
     lazy var sundayOHTextField = { ViewFactory.textField() }()
     lazy var otherOHTextField = { ViewFactory.textField() }()
     lazy var saveButton = { ViewFactory.button() }()
+    lazy var noticeView: OnboardingOverviewNotice = {
+        let notice = OnboardingOverviewNotice()
+        notice.translatesAutoresizingMaskIntoConstraints = false
+        return notice
+    }()
     
     public var overviewType = EntryOverviewType.summary
     
@@ -87,6 +92,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
         
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(contentView)
+        self.contentView.addSubview(noticeView)
         self.contentView.addSubview(generalHeaderLabel)
         self.contentView.addSubview(nameTextField)
         self.contentView.addSubview(tagsHeaderLabel)
@@ -127,8 +133,10 @@ class EntryOnboardingOverviewViewController: UIViewController {
         
         if overviewType == EntryOverviewType.summary {
             self.saveButton.setTitle("Hinzufügen", for: .normal)
+            self.noticeView.notice = "Überprüfe Deine Eingaben. Du kannst ohne Datenverlust zurück kehren, um die Eingaben zu korrigieren."
         } else {
             self.saveButton.setTitle("Aktualisieren", for: .normal)
+            self.noticeView.notice = "Du kannst nur Name, Kontakt-Daten und Öffnungszeiten bearbeiten."
         }
         
         self.tagsListView.enableRemoveButton = false
@@ -167,7 +175,10 @@ class EntryOnboardingOverviewViewController: UIViewController {
                            contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
                            contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
                            contentView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
-                           generalHeaderLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 16),
+                           noticeView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 0),
+                           noticeView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
+                           noticeView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
+                           generalHeaderLabel.topAnchor.constraint(equalTo: self.noticeView.bottomAnchor, constant: 16),
                            generalHeaderLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
                            generalHeaderLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
                            nameTextField.topAnchor.constraint(equalTo: self.generalHeaderLabel.bottomAnchor, constant: 0),
@@ -666,6 +677,28 @@ extension EntryOnboardingOverviewViewController: Themeable {
         applyTheming(self.saturdayOHTextField)
         applyTheming(self.sundayOHTextField)
         applyTheming(self.otherOHTextField)
+        
+        if #available(iOS 13.0, *) {
+            
+            navigationController?.navigationBar.barTintColor = theme.navigationBarColor
+            navigationController?.navigationBar.tintColor = theme.accentColor
+            navigationController?.navigationBar.prefersLargeTitles = true
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
+            navigationController?.navigationBar.isTranslucent = true
+            
+            let appearance = UINavigationBarAppearance()
+            
+            appearance.configureWithDefaultBackground()
+            appearance.backgroundColor = theme.navigationBarColor
+            
+            appearance.titleTextAttributes = [.foregroundColor : theme.accentColor]
+            appearance.largeTitleTextAttributes = [.foregroundColor : theme.accentColor]
+            
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+            navigationController?.navigationBar.standardAppearance = appearance
+            
+        }
         
     }
     
