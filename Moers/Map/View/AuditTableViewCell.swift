@@ -59,6 +59,7 @@ class AuditTableViewCell: UITableViewCell {
         "name": String.localized("AuditingEntryName"),
         "lat": String.localized("AuditingEntryLatitude"),
         "lng": String.localized("AuditingEntryLongitude"),
+        "tags": String.localized("AuditingEntryTags"),
         "street": String.localized("AuditingEntryStreet"),
         "house_number": String.localized("AuditingEntryHouseNumber"),
         "postcode": String.localized("AuditingEntryPostcode"),

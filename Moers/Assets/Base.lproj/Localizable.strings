@@ -146,7 +146,7 @@
 
 /* Auditing Entry */
 "AuditingEntryName" = "Name";
-"AuditingEntryLatitude" = "Tags";
+"AuditingEntryTags" = "Tags";
 "AuditingEntryLatitude" = "Latitude";
 "AuditingEntryLongitude" = "Longitude";
 "AuditingEntryStreet" = "Street";
