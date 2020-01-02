@@ -23,6 +23,7 @@ enum EntryOverviewType: Equatable {
 
 class EntryOnboardingOverviewViewController: UIViewController {
 
+    lazy var searchController = { LFSearchViewController() }()
     lazy var scrollView = { ViewFactory.scrollView() }()
     lazy var contentView = { ViewFactory.blankView() }()
     lazy var generalHeaderLabel = { ViewFactory.label() }()
@@ -56,8 +57,6 @@ class EntryOnboardingOverviewViewController: UIViewController {
         return notice
     }()
     
-    lazy var searchController = { LFSearchViewController() }()
-    
     public var overviewType = EntryOverviewType.summary
     
     private var entryManager: EntryManagerProtocol
@@ -80,7 +79,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
         self.setupConstraints()
         self.setupOpeningHours()
         self.setupTheming()
-        self.fillData()
+        self.setupDataForOverviewType()
         
     }
     
@@ -291,7 +290,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
     
     // MARK: - Data Handling
     
-    private func fillData() {
+    private func setupDataForOverviewType() {
         
         switch overviewType {
         case .summary:
@@ -395,7 +394,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
         self.setupMap(with: entry.coordinate)
         self.setupTags(with: entry.tags, enableAddTag: true)
         self.selectedTags = entry.tags
-        self.getTags()
+        self.loadAllExistingTags()
         
         self.searchController.delegate = self
         self.searchController.dataSource = self
@@ -404,7 +403,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
         let item = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(close))
         self.searchController.navigationItem.rightBarButtonItem = item
         
-        print(tags)
+        print(allLoadedTags)
         
     }
     
@@ -446,7 +445,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
             addTagView.textColor = UIColor.white
             addTagView.enableRemoveButton = false
             
-            addTagView.onTap = showSearchController(_:)
+            addTagView.onTap = showSearch
 
             
         }
@@ -502,7 +501,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
             case .failure(let error):
                 
                 print(error.localizedDescription)
-                print((error as? DecodingError))
+                print((error as? DecodingError) ?? "")
                 
                 if let error = error as? APIError, error == .notAuthorized {
                     self.alertNotAuthorized()
@@ -653,8 +652,8 @@ class EntryOnboardingOverviewViewController: UIViewController {
     // MARK: - Tags
     
     private var selectedTags: [String] = []
-    private var tags: [String] = []
-    private var filteredTags: [NSAttributedString] = []
+    private var allLoadedTags: [String] = []
+    private var searchResultTags: [NSAttributedString] = []
     private let fuse = Fuse(location: 0,
                             distance: 100,
                             threshold: 0.45,
@@ -664,28 +663,28 @@ class EntryOnboardingOverviewViewController: UIViewController {
     private var cellTextColor = UIColor.black
     private var cellBackgroundColor = UIColor.white
     
-    private func showSearchController(_ tagView: TagView) {
+    private func showSearch(_ tagView: TagView) {
             
-        self.filteredTags = tags.map { NSAttributedString(string: $0) }
+        self.searchResultTags = allLoadedTags.map { NSAttributedString(string: $0) }
 
         self.searchController.show(in: self)
         self.searchController.reloadData()
         
     }
     
-    private func getTags() {
+    private func loadAllExistingTags() {
         
         guard let tabBarController = self.tabBarController as? TabBarController else { return }
         
         let locations = tabBarController.mainViewController.locations
         
         // TODO: Improve Tag Fetching
-        self.tags = Array(Set(locations.map { $0.tags }.reduce([], +))).sorted()
-        self.tags.removeAll(where: { $0.isEmptyOrWhitespace })
+        self.allLoadedTags = Array(Set(locations.map { $0.tags }.reduce([], +))).sorted()
+        self.allLoadedTags.removeAll(where: { $0.isEmptyOrWhitespace })
         
     }
     
-    private func addTag(_ tag: String) {
+    private func addAndDisplayTagIfNotExisted(_ tag: String) {
         
         if !selectedTags.contains(tag) {
             
@@ -701,15 +700,15 @@ class EntryOnboardingOverviewViewController: UIViewController {
         
     }
     
-    private func searchTags(with searchTerm: String) -> [NSAttributedString] {
+    private func searchResults(for searchTerm: String) -> [NSAttributedString] {
         
-        let results = fuse.search(searchTerm, in: tags)
+        let results = fuse.search(searchTerm, in: allLoadedTags)
         
         let boldAttrs = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)]
         
         let filteredTags: [NSAttributedString] = results.sorted(by: { $0.score < $1.score }).map { result in
             
-            let tag = tags[result.index]
+            let tag = allLoadedTags[result.index]
             
             let attributedString = NSMutableAttributedString(string: tag)
             
@@ -863,10 +862,10 @@ extension EntryOnboardingOverviewViewController: LFSearchViewDataSource, LFSearc
     
     func searchView(_ searchView: LFSearchViewController, tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if let tag = self.searchController.searchBar?.textField?.text, tag.isNotEmptyOrWhitespace, !tags.contains(tag) {
-            return filteredTags.count + 1
+        if let tag = self.searchController.searchBar?.textField?.text, tag.isNotEmptyOrWhitespace, !allLoadedTags.contains(tag) {
+            return searchResultTags.count + 1
         } else {
-            return filteredTags.count
+            return searchResultTags.count
         }
         
     }
@@ -874,9 +873,9 @@ extension EntryOnboardingOverviewViewController: LFSearchViewDataSource, LFSearc
     func searchView(_ searchView: LFSearchViewController, didTextChangeTo text: String, textLength: Int) {
         
         if text.isEmpty {
-            self.filteredTags = tags.map { NSAttributedString(string: $0) }
+            self.searchResultTags = allLoadedTags.map { NSAttributedString(string: $0) }
         } else {
-            self.filteredTags = searchTags(with: text)
+            self.searchResultTags = searchResults(for: text)
         }
         
         searchView.reloadData()
@@ -885,17 +884,17 @@ extension EntryOnboardingOverviewViewController: LFSearchViewDataSource, LFSearc
     
     func searchView(_ searchView: LFSearchViewController, didSelectResultAt index: Int) {
         
-        if index != filteredTags.count {
+        if index != searchResultTags.count {
             
-            let tag = filteredTags[index].string
+            let tag = searchResultTags[index].string
             
-            self.addTag(tag)
+            self.addAndDisplayTagIfNotExisted(tag)
             
         } else {
             
             guard let tag = searchView.searchBar.textField?.text else { return }
             
-            self.addTag(tag)
+            self.addAndDisplayTagIfNotExisted(tag)
             
         }
         
@@ -911,9 +910,9 @@ extension EntryOnboardingOverviewViewController: LFSearchViewDataSource, LFSearc
         
         let cell = tableView.dequeueReusableCell(withIdentifier: searchView.cellIdentifier)!
         
-        if indexPath.row == filteredTags.count {
+        if indexPath.row == searchResultTags.count {
             
-            if let tag = self.searchController.searchBar?.textField?.text, tag.isNotEmptyOrWhitespace, !tags.contains(tag) {
+            if let tag = self.searchController.searchBar?.textField?.text, tag.isNotEmptyOrWhitespace, !allLoadedTags.contains(tag) {
                 
                 cell.textLabel?.text = "Schlagwort \"\(tag)\" hinzufügen"
                 
@@ -921,7 +920,7 @@ extension EntryOnboardingOverviewViewController: LFSearchViewDataSource, LFSearc
             
         } else {
             
-            cell.textLabel?.attributedText = self.filteredTags[indexPath.row]
+            cell.textLabel?.attributedText = self.searchResultTags[indexPath.row]
             
         }
         
