@@ -54,8 +54,10 @@ class AuditChangeView: UIView {
         self.changedValueDescriptionLabel.textAlignment = .center
         self.oldValueLabel.text = oldValue
         self.oldValueLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        self.oldValueLabel.numberOfLines = 0
         self.newValueLabel.text = newValue
         self.newValueLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        self.newValueLabel.numberOfLines = 0
         self.oldValueLabel.textAlignment = .right
         
         self.changeSetImageView.image = #imageLiteral(resourceName: "changeset")
