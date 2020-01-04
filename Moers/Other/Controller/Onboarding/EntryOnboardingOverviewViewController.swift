@@ -503,12 +503,19 @@ class EntryOnboardingOverviewViewController: UIViewController {
                 print(error.localizedDescription)
                 print((error as? DecodingError) ?? "")
                 
-                if let error = error as? APIError, error == .notAuthorized {
-                    self.alertNotAuthorized()
+                guard let error = error as? APIError else {
+                    self.alertUnknownError()
                     return
                 }
                 
-                self.alertError()
+                switch error {
+                case .notAuthorized:
+                    self.alertNotAuthorized()
+                case .unprocessableEntity(let errorBag):
+                    self.alertErrorInForm(with: errorBag)
+                default:
+                    break
+                }
                 
             }
             
@@ -550,13 +557,21 @@ class EntryOnboardingOverviewViewController: UIViewController {
                 case .failure(let error):
                     
                     print(error.localizedDescription)
+                    print((error as? DecodingError) ?? "")
                     
-                    if let error = error as? APIError, error == .notAuthorized {
-                        self.alertNotAuthorized()
+                    guard let error = error as? APIError else {
+                        self.alertUnknownError()
                         return
                     }
                     
-                    self.alertError()
+                    switch error {
+                    case .notAuthorized:
+                        self.alertNotAuthorized()
+                    case .unprocessableEntity(let errorBag):
+                        self.alertErrorInForm(with: errorBag)
+                    default:
+                        break
+                    }
                     
                 }
                 
@@ -613,7 +628,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
         
     }
     
-    private func alertError() {
+    private func alertUnknownError() {
         
         DispatchQueue.main.async {
             
@@ -646,6 +661,25 @@ class EntryOnboardingOverviewViewController: UIViewController {
                 
             })
             .show()
+        
+    }
+    
+    private func alertErrorInForm(with errorBag: ErrorBag?) {
+        
+        DispatchQueue.main.async {
+            
+            Alertift
+                .alert(title: "Eingaben inkorrekt", message: "Leider entsprechen nicht alle Eingaben dem gewünschten Format. Überprüfe sie.")
+                .titleTextColor(self.nameTextField.textColor)
+                .messageTextColor(self.nameTextField.textColor)
+                .buttonTextColor(self.nameTextField.textColor)
+                .backgroundColor(self.view.backgroundColor)
+                .action(.default("Okay"), handler: { (action, i, textFields) in
+                    
+                })
+                .show()
+            
+        }
         
     }
     

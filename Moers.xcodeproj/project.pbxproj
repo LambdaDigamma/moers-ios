@@ -18,6 +18,22 @@
 		DF0CB4AF2085B65200CC0AA8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4AE2085B65200CC0AA8 /* MapViewController.swift */; };
 		DF0CB4B12085B66600CC0AA8 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4B02085B66600CC0AA8 /* ContentViewController.swift */; };
 		DF0CB4B32087092F00CC0AA8 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4B22087092F00CC0AA8 /* SearchResultTableViewCell.swift */; };
+		DF1207BA23C0C777003285C1 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1207B923C0C777003285C1 /* Form.swift */; };
+		DF1207BC23C0CA1C003285C1 /* FormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1207BB23C0CA1C003285C1 /* FormTests.swift */; };
+		DF1207C023C0CE28003285C1 /* MMUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF1207BF23C0CE28003285C1 /* MMUI */; };
+		DF1207C223C0CE28003285C1 /* Gestalt in Frameworks */ = {isa = PBXBuildFile; productRef = DF1207C123C0CE28003285C1 /* Gestalt */; };
+		DF1207C423C0CE28003285C1 /* MMAPI in Frameworks */ = {isa = PBXBuildFile; productRef = DF1207C323C0CE28003285C1 /* MMAPI */; };
+		DF1207C623C0CE28003285C1 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = DF1207C523C0CE28003285C1 /* TextFieldEffects */; };
+		DF1207C723C0CE39003285C1 /* FIRAnalyticsConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D6872187397F00E6A0A9 /* FIRAnalyticsConnector.framework */; };
+		DF1207C823C0CE39003285C1 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D6882187397F00E6A0A9 /* FirebaseAnalytics.framework */; };
+		DF1207C923C0CE39003285C1 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D68A2187397F00E6A0A9 /* FirebaseCore.framework */; };
+		DF1207CA23C0CE39003285C1 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D68C2187397F00E6A0A9 /* FirebaseCoreDiagnostics.framework */; };
+		DF1207CB23C0CE39003285C1 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D68B2187397F00E6A0A9 /* FirebaseInstanceID.framework */; };
+		DF1207CC23C0CE39003285C1 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF7E702921DA39A300A43B84 /* FirebaseMessaging.framework */; };
+		DF1207CD23C0CE39003285C1 /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D6892187397F00E6A0A9 /* GoogleAppMeasurement.framework */; };
+		DF1207CE23C0CE39003285C1 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D6852187397F00E6A0A9 /* GoogleUtilities.framework */; };
+		DF1207CF23C0CE39003285C1 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D6862187397F00E6A0A9 /* nanopb.framework */; };
+		DF1207D023C0CE39003285C1 /* Protobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF69B73F21DA2AFB00F910D8 /* Protobuf.framework */; };
 		DF16582E22EF8C990033D218 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */; };
 		DF16583022EF90D90033D218 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF16582F22EF90D90033D218 /* Launch Screen.storyboard */; };
 		DF174FA723BC361B00812BDD /* AuditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF174FA623BC361B00812BDD /* AuditTableViewCell.swift */; };
@@ -222,6 +238,8 @@
 		DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
 		DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
+		DF1207B923C0C777003285C1 /* Form.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Form.swift; sourceTree = "<group>"; };
+		DF1207BB23C0CA1C003285C1 /* FormTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTests.swift; sourceTree = "<group>"; };
 		DF16582F22EF90D90033D218 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "../../../../../../../System/Volumes/Data/Users/lennart/Documents/Development/iOS/Moers/Moers/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		DF16583122EF918A0033D218 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		DF174FA623BC361B00812BDD /* AuditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditTableViewCell.swift; sourceTree = "<group>"; };
@@ -442,6 +460,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF1207C723C0CE39003285C1 /* FIRAnalyticsConnector.framework in Frameworks */,
+				DF1207C823C0CE39003285C1 /* FirebaseAnalytics.framework in Frameworks */,
+				DF1207C923C0CE39003285C1 /* FirebaseCore.framework in Frameworks */,
+				DF1207CA23C0CE39003285C1 /* FirebaseCoreDiagnostics.framework in Frameworks */,
+				DF1207CB23C0CE39003285C1 /* FirebaseInstanceID.framework in Frameworks */,
+				DF1207CC23C0CE39003285C1 /* FirebaseMessaging.framework in Frameworks */,
+				DF1207CD23C0CE39003285C1 /* GoogleAppMeasurement.framework in Frameworks */,
+				DF1207CE23C0CE39003285C1 /* GoogleUtilities.framework in Frameworks */,
+				DF1207CF23C0CE39003285C1 /* nanopb.framework in Frameworks */,
+				DF1207D023C0CE39003285C1 /* Protobuf.framework in Frameworks */,
+				DF1207C423C0CE28003285C1 /* MMAPI in Frameworks */,
+				DF1207C623C0CE28003285C1 /* TextFieldEffects in Frameworks */,
+				DF1207C023C0CE28003285C1 /* MMUI in Frameworks */,
+				DF1207C223C0CE28003285C1 /* Gestalt in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,6 +643,7 @@
 			children = (
 				DF0CB49E2082B90900CC0AA8 /* FeedbackGenerators.swift */,
 				DF2D6DA820B899DD00176614 /* User.swift */,
+				DF1207B923C0C777003285C1 /* Form.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -841,6 +874,7 @@
 			children = (
 				DF57D69F21876ACD00E6A0A9 /* ViewController */,
 				DF57D66F2187383000E6A0A9 /* Info.plist */,
+				DF1207BB23C0CA1C003285C1 /* FormTests.swift */,
 			);
 			path = MoersTests;
 			sourceTree = "<group>";
@@ -1055,6 +1089,8 @@
 				DFB64DAA20377AEE00173A80 /* Sources */,
 				DFB64DAB20377AEE00173A80 /* Frameworks */,
 				DFB64DAC20377AEE00173A80 /* Resources */,
+				DF1207BD23C0CC43003285C1 /* ShellScript */,
+				DF1207BE23C0CC7F003285C1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1062,6 +1098,12 @@
 				DFB64DB420377AEE00173A80 /* PBXTargetDependency */,
 			);
 			name = MoersUITests;
+			packageProductDependencies = (
+				DF1207BF23C0CE28003285C1 /* MMUI */,
+				DF1207C123C0CE28003285C1 /* Gestalt */,
+				DF1207C323C0CE28003285C1 /* MMAPI */,
+				DF1207C523C0CE28003285C1 /* TextFieldEffects */,
+			);
 			productName = MoersUITests;
 			productReference = DFB64DAE20377AEE00173A80 /* MoersUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -1178,10 +1220,10 @@
 			projectRoot = "";
 			targets = (
 				DF1A495E1F6AAB7000E9108B /* Moers */,
+				DF57D66A2187383000E6A0A9 /* MoersTests */,
 				DFB64DAD20377AEE00173A80 /* MoersUITests */,
 				DFF8F2B820E6DC32001A9EBB /* Watch */,
 				DFF8F2C420E6DC36001A9EBB /* Watch Extension */,
-				DF57D66A2187383000E6A0A9 /* MoersTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1240,6 +1282,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		DF1207BD23C0CC43003285C1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(SRCROOT)/Moers/Config/input.xcfilelist",
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+				"$(SRCROOT)/Moers/Config/output.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ -d \"${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/\" ] && [ \"${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/\" != \"${SYMROOT}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/\" ] \nthen\n  cp -f -R \"${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/\" \"${SYMROOT}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/\"\nfi\n";
+		};
+		DF1207BE23C0CC7F003285C1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
 		DF36A75B2379E27F006BF6EA /* Fix SPM */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1284,6 +1362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF1207BA23C0C777003285C1 /* Form.swift in Sources */,
 				DF503CEF21431503006EE226 /* DebugViewController.swift in Sources */,
 				DFCB431F20E02D0300E7AD3F /* NewsManager.swift in Sources */,
 				DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */,
@@ -1400,6 +1479,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF57D69921875FE900E6A0A9 /* TabBarControllerTests.swift in Sources */,
+				DF1207BC23C0CA1C003285C1 /* FormTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1594,6 +1674,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = MoersUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1792,6 +1876,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = MoersUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1995,6 +2083,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = MoersUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2193,6 +2285,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = MoersUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2549,6 +2645,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = MoersUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2573,6 +2673,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = MoersUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2806,6 +2910,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DF1207BF23C0CE28003285C1 /* MMUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF31C63D23521E4F0085DA6F /* XCRemoteSwiftPackageReference "mmui-ios" */;
+			productName = MMUI;
+		};
+		DF1207C123C0CE28003285C1 /* Gestalt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF22FC1123522756003F1B3A /* XCRemoteSwiftPackageReference "Gestalt" */;
+			productName = Gestalt;
+		};
+		DF1207C323C0CE28003285C1 /* MMAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF409CF023522AD9001A473E /* XCRemoteSwiftPackageReference "mmapi-ios" */;
+			productName = MMAPI;
+		};
+		DF1207C523C0CE28003285C1 /* TextFieldEffects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
+			productName = TextFieldEffects;
+		};
 		DF2CF1C123BBB2EA003497C5 /* TextFieldEffects */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
