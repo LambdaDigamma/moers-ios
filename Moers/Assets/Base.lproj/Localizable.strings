@@ -163,3 +163,58 @@
 "AuditingEntryOther" = "Other (Opening Hours)";
 "AuditingEntryWebsite" = "Websete";
 "AuditingEntryPhone" = "Phone";
+
+/* Entry Onboarding */
+"EntryOnboardingOverviewSummaryTitle" = "Summary";
+"EntryOnboardingOverviewEditTitle" = "Edit";
+"EntryOnboardingOverviewStoreNotice" = "Check your input. You can go back without losing any data to correct your inputs.";
+"EntryOnboardingOverviewUpdateNotice" = "You can only edit name, tags, contact data and opening hours.";
+"EntryOnboardingOverviewGeneralHeader" = "General information";
+"EntryOnboardingOverviewName" = "Name";
+"EntryOnboardingOverviewTagsHeader" = "Tags";
+"EntryOnboardingOverviewAddressHeader" = "Addresse";
+"EntryOnboardingOverviewStreet" = "Street";
+"EntryOnboardingOverviewHouseNr" = "Number";
+"EntryOnboardingOverviewPostcode" = "Postcode";
+"EntryOnboardingOverviewPlace" = "Place";
+"EntryOnboardingOverviewContact" = "Contact information";
+"EntryOnboardingOverviewWebsite" = "Website (with http://)";
+"EntryOnboardingOverviewPhone" = "Phone";
+"EntryOnboardingOverviewOpeningHoursHeader" = "Opening Hours";
+"EntryOnboardingOverviewOpeningHoursMonday" = "Monday";
+"EntryOnboardingOverviewOpeningHoursTuesday" = "Tuesday";
+"EntryOnboardingOverviewOpeningHoursWednesday" = "Wednesday";
+"EntryOnboardingOverviewOpeningHoursThursday" = "Thursday";
+"EntryOnboardingOverviewOpeningHoursFriday" = "Friday";
+"EntryOnboardingOverviewOpeningHoursSaturday" = "Saturday";
+"EntryOnboardingOverviewOpeningHoursSunday" = "Sunday";
+"EntryOnboardingOverviewOpeningHoursOther" = "Other";
+"EntryOnboardingOverviewActionStore" = "Add";
+"EntryOnboardingOverviewActionUpdate" = "Update";
+"EntryOnboardingOverviewSearchBarAddTag" = "Add tag";
+"EntryOnboardingOverviewAddTag" = "Add tag";
+
+"EntryOnboardingOverviewAlertConfirmTitle" = "Are you sure?";
+"EntryOnboardingOverviewAlertConfirmStoreMessage" = "Do you want to add this entry? Make sure that you have entered the correct information. Only in this way others can profit from it!";
+"EntryOnboardingOverviewAlertConfirmUpdateMessage" = "Do you want to update this entry? Make sure that you have entered the correct information. Only in this way others can profit from it!";
+"EntryOnboardingOverviewAlertConfirmCancel" = "Cancel";
+"EntryOnboardingOverviewAlertConfirmYes" = "Yes";
+
+"EntryOnboardingOverviewAlertSuccessTitleAdded" = "Entry added!";
+"EntryOnboardingOverviewAlertSuccessTitleUpdated" = "Entry updated!";
+"EntryOnboardingOverviewAlertSuccessMessage" = "Thank you very much for your contribution! Your entry can now be found on the map!";
+"EntryOnboardingOverviewAlertSuccessOkay" = "Okay";
+
+"EntryOnboardingOverviewAlertUnknownErrorTitle" = "An error has occurred.";
+"EntryOnboardingOverviewAlertUnknownErrorMessage" = "An unknown error has occurred.";
+"EntryOnboardingOverviewAlertUnknownErrorOkay" = "Okay";
+
+"EntryOnboardingOverviewAlertNotAllowedTitle" = "Not allowed!";
+"EntryOnboardingOverviewAlertNotAllowedMessage" = "Adding and updating of entries has been forbidden in the meantime until further notice due to abuse.";
+"EntryOnboardingOverviewAlertNotAllowedErrorOkay" = "Okay";
+
+"EntryOnboardingOverviewAlertFormErrorTitle" = "Inputs incorrect";
+"EntryOnboardingOverviewAlertFormErrorMessage" = "Unfortunately not all entries correspond to the required format. Check them.";
+"EntryOnboardingOverviewAlertFormErrorOkay" = "Okay";
+
+"EntryOnboardingOverviewAddTagCell" = "Add Tag \"%1$@\"";
