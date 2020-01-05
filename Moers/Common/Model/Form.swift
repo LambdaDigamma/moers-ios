@@ -34,7 +34,7 @@ class Form {
         
     }
     
-    internal func receivedError(errorBag: ErrorBag) {
+    internal func receivedError(errorBag: ErrorBag?) {
         
         self.errorBag = errorBag
         self.displayErrorsInViews()

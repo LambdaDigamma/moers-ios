@@ -164,3 +164,57 @@
 "AuditingEntryWebsite" = "Webseite";
 "AuditingEntryPhone" = "Telefon";
 
+/* Entry Onboarding */
+"EntryOnboardingOverviewSummaryTitle" = "Zusammenfassung";
+"EntryOnboardingOverviewEditTitle" = "Bearbeiten";
+"EntryOnboardingOverviewStoreNotice" = "Überprüfe Deine Eingaben. Du kannst ohne Datenverlust zurück kehren, um die Eingaben zu korrigieren.";
+"EntryOnboardingOverviewUpdateNotice" = "Du kannst nur Name, Schlagworte, Kontakt-Daten und Öffnungszeiten bearbeiten.";
+"EntryOnboardingOverviewGeneralHeader" = "Allgemeines";
+"EntryOnboardingOverviewName" = "Name";
+"EntryOnboardingOverviewTagsHeader" = "Schlagworte";
+"EntryOnboardingOverviewAddressHeader" = "Adresse";
+"EntryOnboardingOverviewStreet" = "Straße";
+"EntryOnboardingOverviewHouseNr" = "Nr";
+"EntryOnboardingOverviewPostcode" = "PLZ";
+"EntryOnboardingOverviewPlace" = "Ort";
+"EntryOnboardingOverviewContact" = "Kontakt";
+"EntryOnboardingOverviewWebsite" = "Webseite (http:// vorangestellt)";
+"EntryOnboardingOverviewPhone" = "Telefon";
+"EntryOnboardingOverviewOpeningHoursHeader" = "Öffnungszeiten";
+"EntryOnboardingOverviewOpeningHoursMonday" = "Montag";
+"EntryOnboardingOverviewOpeningHoursTuesday" = "Dienstag";
+"EntryOnboardingOverviewOpeningHoursWednesday" = "Mittwoch";
+"EntryOnboardingOverviewOpeningHoursThursday" = "Donnerstag";
+"EntryOnboardingOverviewOpeningHoursFriday" = "Freitag";
+"EntryOnboardingOverviewOpeningHoursSaturday" = "Samstag";
+"EntryOnboardingOverviewOpeningHoursSunday" = "Sonntag";
+"EntryOnboardingOverviewOpeningHoursOther" = "Sonstiges";
+"EntryOnboardingOverviewActionStore" = "Hinzufügen";
+"EntryOnboardingOverviewActionUpdate" = "Aktualisieren";
+"EntryOnboardingOverviewSearchBarAddTag" = "Schlagwort hinzufügen";
+"EntryOnboardingOverviewAddTag" = "Hinzufügen";
+
+"EntryOnboardingOverviewAlertConfirmTitle" = "Bist Du sicher?";
+"EntryOnboardingOverviewAlertConfirmStoreMessage" = "Willst Du diesen Eintrag wirklich hinzufügen? Achte darauf, dass Du auch wirklich die richtigen Informationen eingetragen hast. Nur so können andere davon profitieren!";
+"EntryOnboardingOverviewAlertConfirmUpdateMessage" = "Willst Du diesen Eintrag wirklich aktualisieren? Achte darauf, dass Du auch wirklich die richtigen Informationen eingetragen hast. Nur so können andere davon profitieren!";
+"EntryOnboardingOverviewAlertConfirmCancel" = "Abbrechen";
+"EntryOnboardingOverviewAlertConfirmYes" = "Ja";
+
+"EntryOnboardingOverviewAlertSuccessTitleAdded" = "Eintrag hinzugefügt!";
+"EntryOnboardingOverviewAlertSuccessTitleUpdated" = "Eintrag geändert!";
+"EntryOnboardingOverviewAlertSuccessMessage" = "Vielen Dank für Deinen Beitrag!\nDein Eintrag ist jetzt auf der Karte zu finden!";
+"EntryOnboardingOverviewAlertSuccessOkay" = "Okay";
+
+"EntryOnboardingOverviewAlertUnknownErrorTitle" = "Ein Fehler ist aufgetreten.";
+"EntryOnboardingOverviewAlertUnknownErrorMessage" = "Ein unbekannter Fehler ist aufgetreten.";
+"EntryOnboardingOverviewAlertUnknownErrorOkay" = "Okay";
+
+"EntryOnboardingOverviewAlertNotAllowedTitle" = "Nicht erlaubt!";
+"EntryOnboardingOverviewAlertNotAllowedMessage" = "Das Hinzufügen und ändern von Einträgen wurde aufgrund von Missbrauch zwischenzeitlich bis auf weiteres verboten.";
+"EntryOnboardingOverviewAlertNotAllowedErrorOkay" = "Okay";
+
+"EntryOnboardingOverviewAlertFormErrorTitle" = "Eingaben inkorrekt";
+"EntryOnboardingOverviewAlertFormErrorMessage" = "Leider entsprechen nicht alle Eingaben dem gewünschten Format. Überprüfe sie.";
+"EntryOnboardingOverviewAlertFormErrorOkay" = "Okay";
+
+"EntryOnboardingOverviewAddTagCell" = "Schlagwort \"%1$@\" hinzufügen";

@@ -84,4 +84,14 @@ extension ViewFactory {
         
     }
     
+    static func textFieldFormView() -> TextFieldFormView {
+        
+        let formRow = TextFieldFormView()
+        
+        formRow.translatesAutoresizingMaskIntoConstraints = false
+        
+        return formRow
+        
+    }
+    
 }
