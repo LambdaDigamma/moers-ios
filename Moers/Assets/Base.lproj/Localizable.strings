@@ -270,3 +270,11 @@
 "EntryOnboardingTagsViewControllerNext" = "Next";
 "EntryOnboardingTagsViewControllerAddTag" = "Add tag";
 "EntryOnboardingTagsViewControllerAddTagCell" = "Add tag \"%1$@\"";
+
+/* Data Section Other */
+"OtherSectionDataTitle" = "Data";
+"OtherSectionDataAddEntry" = "Add entry";
+"OtherDataTakeOldDataTitle" = "Continue operation?";
+"OtherDataTakeOldDataMessage" = "Last time the operation was not completed and this data was temporarily saved. Do you want to keep them?";
+"OtherDataTakeOldDataNo" = "No";
+"OtherDataTakeOldDataYes" = "Yes";

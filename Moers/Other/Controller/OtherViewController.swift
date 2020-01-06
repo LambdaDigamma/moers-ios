@@ -41,19 +41,28 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     lazy var data: [Section] = {
         
-        return [Section(title: "Daten",
-                        rows: [NavigationRow(title: "Eintrag hinzufügen", action: showAddEntry)]),
+        return [Section(title: String.localized("OtherSectionDataTitle"),
+                        rows: [NavigationRow(title: String.localized("OtherSectionDataAddEntry"),
+                                             action: showAddEntry)]),
                 Section(title: String.localized("SettingsTitle"),
-                        rows: [NavigationRow(title: String.localized("SettingsTitle"), action: showSettings),
-                               NavigationRow(title: "Siri Shortcuts", action: showSiriShortcuts)]),
+                        rows: [NavigationRow(title: String.localized("SettingsTitle"),
+                                             action: showSettings),
+                               NavigationRow(title: "Siri Shortcuts",
+                                             action: showSiriShortcuts)]),
                 Section(title: "Info",
-                        rows: [NavigationRow(title: String.localized("AboutTitle"), action: showAbout),
-                               NavigationRow(title: String.localized("Feedback"), action: showFeedback),
-                               NavigationRow(title: Bundle.main.versionString, action: nil)]),
+                        rows: [NavigationRow(title: String.localized("AboutTitle"),
+                                             action: showAbout),
+                               NavigationRow(title: String.localized("Feedback"),
+                                             action: showFeedback),
+                               NavigationRow(title: Bundle.main.versionString,
+                                             action: nil)]),
                 Section(title: String.localized("Legal"),
-                        rows: [NavigationRow(title: String.localized("TandC"), action: showTaC),
-                               NavigationRow(title: String.localized("PrivacyPolicy"), action: showPrivacy),
-                               NavigationRow(title: String.localized("Licences"), action: showLicences)])]
+                        rows: [NavigationRow(title: String.localized("TandC"),
+                                             action: showTaC),
+                               NavigationRow(title: String.localized("PrivacyPolicy"),
+                                             action: showPrivacy),
+                               NavigationRow(title: String.localized("Licences"),
+                                             action: showLicences)])]
         
     }()
     
@@ -121,12 +130,13 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
         if EntryManager.shared.entryStreet != nil || EntryManager.shared.entryLat != nil {
             
-            Alertift.alert(title: "Daten übernehmen?", message: "Beim letzten Mal wurde der Vorgang nicht abgeschlossen und Daten wurden zwischen gespeichert. Möchtest Du diese übernehmen?")
+            Alertift
+                .alert(title: String.localized("OtherDataTakeOldDataTitle"), message: String.localized("OtherDataTakeOldDataMessage"))
                 .titleTextColor(textColor)
                 .messageTextColor(textColor)
                 .buttonTextColor(textColor)
                 .backgroundColor(backgroundColor)
-                .action(Alertift.Action.cancel("Nein"), handler: { (action, i, textFields) in
+                .action(Alertift.Action.cancel(String.localized("OtherDataTakeOldDataNo")), handler: { (action, i, textFields) in
                     
                     EntryManager.shared.resetData()
                     
@@ -136,7 +146,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                     self.navigationController?.pushViewController(viewController, animated: true)
                     
                 })
-                .action(.default("Ja"), isPreferred: true, handler: { (action, i, textFields) in
+                .action(.default(String.localized("OtherDataTakeOldDataYes")), isPreferred: true, handler: { (action, i, textFields) in
                     
                     let viewController = EntryOnboardingLocationMenuViewController(locationManager: self.locationManager,
                                                                                    entryManager: EntryManager.shared)
