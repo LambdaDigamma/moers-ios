@@ -229,3 +229,13 @@
 "EntryOnboardingAddressViewControllerPlace" = "Place";
 "EntryOnboardingAddressViewControllerInfo" = "Enter all required information and continue.";
 "EntryOnboardingAddressViewControllerNext" = "Next";
+
+/* EntryOnboardingGeneralViewController */
+"EntryOnboardingGeneralViewControllerTitle" = "Add entry";
+"EntryOnboardingGeneralViewControllerCurrentStep" = "3. General & Contact";
+"EntryOnboardingGeneralViewControllerGeneral" = "General";
+"EntryOnboardingGeneralViewControllerContact" = "Contact (optional)";
+"EntryOnboardingGeneralViewControllerName" = "Name";
+"EntryOnboardingGeneralViewControllerWebsite" = "Website";
+"EntryOnboardingGeneralViewControllerPhone" = "Phone";
+"EntryOnboardingGeneralViewControllerNext" = "Next";

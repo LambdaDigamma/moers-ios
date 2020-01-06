@@ -229,3 +229,13 @@
 "EntryOnboardingAddressViewControllerPlace" = "Ort";
 "EntryOnboardingAddressViewControllerInfo" = "Trage alle benötigten Informationen ein und fahre fort.";
 "EntryOnboardingAddressViewControllerNext" = "Weiter";
+
+/* EntryOnboardingGeneralViewController */
+"EntryOnboardingGeneralViewControllerTitle" = "Eintrag hinzufügen";
+"EntryOnboardingGeneralViewControllerCurrentStep" = "3. Allgemeines & Kontakt";
+"EntryOnboardingGeneralViewControllerGeneral" = "Allgemeines";
+"EntryOnboardingGeneralViewControllerContact" = "Kontakt (optional)";
+"EntryOnboardingGeneralViewControllerName" = "Name";
+"EntryOnboardingGeneralViewControllerWebsite" = "Webseite";
+"EntryOnboardingGeneralViewControllerPhone" = "Telefon";
+"EntryOnboardingGeneralViewControllerNext" = "Weiter";
