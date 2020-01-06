@@ -386,6 +386,8 @@ class EntryOnboardingOverviewViewController: UIViewController {
         self.sundayOHTextField.text = entryManager.entrySundayOH
         self.otherOHTextField.text = entryManager.entryOtherOH
         
+        disableTextFields([streetTextField, houseNrTextField, postcodeTextField, placeTextField])
+        
         // disableTextFields([nameTextField, phoneTextField, websiteTextField, streetTextField, houseNrTextField, postcodeTextField, placeTextField, mondayOHTextField, tuesdayOHTextField, wednesdayOHTextField, thursdayOHTextField, fridayOHTextField, saturdayOHTextField, sundayOHTextField, otherOHTextField])
         
         let coordinate = CLLocationCoordinate2D(latitude: entryManager.entryLat ?? 0, longitude: entryManager.entryLng ?? 0)
@@ -479,7 +481,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
     }
     
     private func disableTextFields(_ textFields: [TextFieldFormView]) {
-        textFields.forEach { $0.isEnabled = false }
+        textFields.forEach { $0.isEnabled = false; $0.textField.borderInactiveColor = UIColor.gray; $0.textField.alpha = 0.5 }
     }
     
     // MARK: - Networking
@@ -506,6 +508,18 @@ class EntryOnboardingOverviewViewController: UIViewController {
                           lat: entryManager.entryLat ?? 0,
                           lng: entryManager.entryLng ?? 0,
                           isValidated: true)
+        
+        entry.name = nameTextField.text ?? ""
+        entry.url = websiteTextField.text
+        entry.phone = phoneTextField.text
+        entry.monday = mondayOHTextField.text
+        entry.tuesday = tuesdayOHTextField.text
+        entry.wednesday = wednesdayOHTextField.text
+        entry.thursday = thursdayOHTextField.text
+        entry.friday = fridayOHTextField.text
+        entry.saturday = saturdayOHTextField.text
+        entry.sunday = sundayOHTextField.text
+        entry.other = otherOHTextField.text
         
         entryManager.store(entry: entry) { (result) in
             
