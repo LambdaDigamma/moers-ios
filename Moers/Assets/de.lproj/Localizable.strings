@@ -218,3 +218,14 @@
 "EntryOnboardingOverviewAlertFormErrorOkay" = "Okay";
 
 "EntryOnboardingOverviewAddTagCell" = "Schlagwort \"%1$@\" hinzufügen";
+
+/* EntryOnboardingAddressViewController */
+"EntryOnboardingAddressViewControllerTitle" = "Eintrag hinzufügen";
+"EntryOnboardingAddressViewControllerCurrentStep" = "2. Adresse eingeben";
+"EntryOnboardingAddressViewControllerAddress" = "Adresse";
+"EntryOnboardingAddressViewControllerStreet" = "Straße";
+"EntryOnboardingAddressViewControllerNumber" = "Nr";
+"EntryOnboardingAddressViewControllerPostcode" = "PLZ";
+"EntryOnboardingAddressViewControllerPlace" = "Ort";
+"EntryOnboardingAddressViewControllerInfo" = "Trage alle benötigten Informationen ein und fahre fort.";
+"EntryOnboardingAddressViewControllerNext" = "Weiter";
