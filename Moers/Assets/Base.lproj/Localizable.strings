@@ -260,3 +260,13 @@
 "EntryOnboardingOpeningHoursViewControllerSunuday" = "Sunday";
 "EntryOnboardingOpeningHoursViewControllerOther" = "Other";
 "EntryOnboardingOpeningHoursViewControllerNext" = "Next";
+
+/* EntryOnboardingTagsViewController */
+"EntryOnboardingTagsViewControllerTitle" = "Add entry";
+"EntryOnboardingTagsViewControllerCurrentStep" = "4. Enter tags";
+"EntryOnboardingTagsViewControllerTags" = "Tags";
+"EntryOnboardingTagsViewControllerInfo" = "Good tags are important for the search! \nSuitable tags include branches, product categories, dishes or other attributes.";
+"EntryOnboardingTagsViewControllerSearchBarPlaceholder" = "Add tag";
+"EntryOnboardingTagsViewControllerNext" = "Next";
+"EntryOnboardingTagsViewControllerAddTag" = "Add tag";
+"EntryOnboardingTagsViewControllerAddTagCell" = "Add tag \"%1$@\"";

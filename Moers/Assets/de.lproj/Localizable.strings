@@ -260,3 +260,13 @@
 "EntryOnboardingOpeningHoursViewControllerSunuday" = "Sonntag";
 "EntryOnboardingOpeningHoursViewControllerOther" = "Sonstiges";
 "EntryOnboardingOpeningHoursViewControllerNext" = "Weiter";
+
+/* EntryOnboardingTagsViewController */
+"EntryOnboardingTagsViewControllerTitle" = "Eintrag hinzufügen";
+"EntryOnboardingTagsViewControllerCurrentStep" = "4. Schlagwörter eingeben";
+"EntryOnboardingTagsViewControllerTags" = "Schlagwörter";
+"EntryOnboardingTagsViewControllerInfo" = "Für die Suche sind gute Schlagworte wichtig! \nGute Schlagworte sind zum Beispiel Branchen, Produkt-Kategorien, Speisen oder Eigenschaften.";
+"EntryOnboardingTagsViewControllerSearchBarPlaceholder" = "Schlagwort hinzufügen";
+"EntryOnboardingTagsViewControllerNext" = "Weiter";
+"EntryOnboardingTagsViewControllerAddTag" = "Hinzufügen";
+"EntryOnboardingTagsViewControllerAddTagCell" = "Schlagwort \"%1$@\" hinzufügen";

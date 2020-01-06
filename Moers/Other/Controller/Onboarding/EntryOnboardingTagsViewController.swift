@@ -70,7 +70,7 @@ class EntryOnboardingTagsViewController: UIViewController {
     
     private func setupUI() {
         
-        self.title = "Eintrag hinzufügen"
+        self.title = String.localized("EntryOnboardingTagsViewControllerTitle")
         
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(contentView)
@@ -79,24 +79,27 @@ class EntryOnboardingTagsViewController: UIViewController {
         self.contentView.addSubview(tagsListView)
         self.contentView.addSubview(infoLabel)
         
-        self.progressView.currentStep = "4. Schlagwörter eingeben"
+        self.progressView.currentStep = String.localized("EntryOnboardingTagsViewControllerCurrentStep")
         self.progressView.progress = 0.4
         
         self.tagsHeaderLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.semibold)
-        self.tagsHeaderLabel.text = "Schlagwörter"
+        self.tagsHeaderLabel.text = String.localized("EntryOnboardingTagsViewControllerTags")
         
         self.infoLabel.font = UIFont.systemFont(ofSize: 12)
         self.infoLabel.numberOfLines = 0
-        self.infoLabel.text = "Für die Suche sind gute Schlagworte wichtig! \nGute Schlagworte sind zum Beispiel Branchen, Produkt-Kategorien, Speisen oder Eigenschaften."
+        self.infoLabel.text = String.localized("EntryOnboardingTagsViewControllerInfo")
         
         self.searchController.delegate = self
         self.searchController.dataSource = self
-        self.searchController.searchBarPlaceHolder = "Schlagwort hinzufügen"
+        self.searchController.searchBarPlaceHolder = String.localized("EntryOnboardingTagsViewControllerSearchBarPlaceholder")
         
         let item = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(close))
         self.searchController.navigationItem.rightBarButtonItem = item
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Weiter", style: .plain, target: self, action: #selector(self.continueOnboarding))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: String.localized("EntryOnboardingTagsViewControllerNext"),
+                                                                 style: .plain,
+                                                                 target: self,
+                                                                 action: #selector(self.continueOnboarding))
         
     }
     
@@ -148,7 +151,7 @@ class EntryOnboardingTagsViewController: UIViewController {
         self.tagsListView.delegate = self
         self.tagsListView.enableRemoveButton = true
         
-        let addTagView = tagsListView.addTag("Hinzufügen")
+        let addTagView = tagsListView.addTag(String.localized("EntryOnboardingTagsViewControllerAddTag"))
 
         addTagView.tagBackgroundColor = UIColor.gray
         addTagView.textColor = UIColor.white
@@ -328,7 +331,7 @@ extension EntryOnboardingTagsViewController: LFSearchViewDataSource, LFSearchVie
             
             if let tag = self.searchController.searchBar?.textField?.text, tag.isNotEmptyOrWhitespace, !tags.contains(tag) {
                 
-                cell.textLabel?.text = "Schlagwort \"\(tag)\" hinzufügen"
+                cell.textLabel?.text = String(format: String.localized("EntryOnboardingTagsViewControllerAddTagCell"), tag)
                 
             }
             
