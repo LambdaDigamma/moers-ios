@@ -27,6 +27,7 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
     lazy var saturdayOHTextField = { ViewFactory.textField() }()
     lazy var sundayOHTextField = { ViewFactory.textField() }()
     lazy var otherOHTextField = { ViewFactory.textField() }()
+    lazy var openingHoursInfoLabel = { ViewFactory.label() }()
     
     private var entryManager: EntryManagerProtocol
     
@@ -78,6 +79,7 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
         self.contentView.addSubview(progressView)
         self.contentView.addSubview(openingHoursHeaderLabel)
         self.contentView.addSubview(openingHoursStackView)
+        self.contentView.addSubview(openingHoursInfoLabel)
         
         self.openingHoursHeaderLabel.text = String.localized("EntryOnboardingOpeningHoursViewControllerOpeningHours")
         self.mondayOHTextField.placeholder = String.localized("EntryOnboardingOpeningHoursViewControllerMonday")
@@ -89,6 +91,8 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
         self.sundayOHTextField.placeholder = String.localized("EntryOnboardingOpeningHoursViewControllerSunuday")
         self.otherOHTextField.placeholder = String.localized("EntryOnboardingOpeningHoursViewControllerOther")
         
+        self.openingHoursInfoLabel.text = String.localized("EntryOnboardingOpeningHoursViewControllerInfo")
+        
         self.mondayOHTextField.delegate = self
         self.tuesdayOHTextField.delegate = self
         self.wednesdayOHTextField.delegate = self
@@ -99,6 +103,8 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
         self.otherOHTextField.delegate = self
         
         self.openingHoursHeaderLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.semibold)
+        self.openingHoursInfoLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.regular)
+        self.openingHoursInfoLabel.numberOfLines = 0
         
         self.progressView.currentStep = String.localized("EntryOnboardingOpeningHoursViewControllerCurrentStep")
         self.progressView.progress = 0.6
@@ -142,7 +148,10 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
                            openingHoursStackView.topAnchor.constraint(equalTo: openingHoursHeaderLabel.bottomAnchor, constant: 0),
                            openingHoursStackView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
                            openingHoursStackView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
-                           openingHoursStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50)]
+                           openingHoursStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50),
+                           openingHoursInfoLabel.topAnchor.constraint(equalTo: openingHoursStackView.bottomAnchor, constant: 20),
+                           openingHoursInfoLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                           openingHoursInfoLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)]
         
         NSLayoutConstraint.activate(constraints)
         
@@ -261,6 +270,8 @@ extension EntryOnboardingOpeningHoursViewController: Themeable {
         self.progressView.accentColor = theme.accentColor
         self.progressView.decentColor = theme.decentColor
         self.progressView.textColor = theme.color
+        
+        self.openingHoursInfoLabel.textColor = theme.color
         
         applyTheming(self.mondayOHTextField)
         applyTheming(self.tuesdayOHTextField)

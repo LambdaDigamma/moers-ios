@@ -260,6 +260,7 @@
 "EntryOnboardingOpeningHoursViewControllerSunuday" = "Sunday";
 "EntryOnboardingOpeningHoursViewControllerOther" = "Other";
 "EntryOnboardingOpeningHoursViewControllerNext" = "Next";
+"EntryOnboardingOpeningHoursViewControllerInfo" = "Please use the following format:\nSimple times: \"10:30 - 20:00\"\nComplex times with break: \"09:30 - 12:30, 14:00 - 19:00\"\nFreeform text: \"Geschlossen\", \"Ruhetag\", etc.";
 
 /* EntryOnboardingTagsViewController */
 "EntryOnboardingTagsViewControllerTitle" = "Add entry";
