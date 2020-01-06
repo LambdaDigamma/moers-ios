@@ -239,3 +239,10 @@
 "EntryOnboardingGeneralViewControllerWebsite" = "Website";
 "EntryOnboardingGeneralViewControllerPhone" = "Phone";
 "EntryOnboardingGeneralViewControllerNext" = "Next";
+
+/* EntryOnboardingLocationMenuViewController */
+"EntryOnboardingLocationMenuViewControllerTitle" = "Add entry";
+"EntryOnboardingLocationMenuViewControllerCurrentStep" = "1. Select input method";
+"EntryOnboardingLocationMenuViewControllerInfo" = "There are two ways to add a new entry: \nIf you are standing next to the location, you can add it at the current location. \nOtherwise, you can add a place at an address.";
+"EntryOnboardingLocationMenuViewControllerAddressAction" = "Add entry with address";
+"EntryOnboardingLocationMenuViewControllerLocationAction" = "Add entry at your current location";

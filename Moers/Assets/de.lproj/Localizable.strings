@@ -239,3 +239,10 @@
 "EntryOnboardingGeneralViewControllerWebsite" = "Webseite";
 "EntryOnboardingGeneralViewControllerPhone" = "Telefon";
 "EntryOnboardingGeneralViewControllerNext" = "Weiter";
+
+/* EntryOnboardingLocationMenuViewController */
+"EntryOnboardingLocationMenuViewControllerTitle" = "Eintrag hinzufügen";
+"EntryOnboardingLocationMenuViewControllerCurrentStep" = "1. Eintrags-Verfahren wählen";
+"EntryOnboardingLocationMenuViewControllerInfo" = "Es gibt zwei Möglichkeiten, einen neuen Eintrag hinzu zu fügen: \nWenn Du gerade neben dem Ort stehst, kannst ihn am aktuellen Standort hinzufügen. \nAndernfalls kannst Du einen Ort an einer Adresse hinzufügen.";
+"EntryOnboardingLocationMenuViewControllerAddressAction" = "Eintrag mit Adresse hinzufügen";
+"EntryOnboardingLocationMenuViewControllerLocationAction" = "Eintrag am aktuellen Standort hinzufügen";

@@ -53,18 +53,18 @@ class EntryOnboardingLocationMenuViewController: UIViewController {
     
     private func setupUI() {
         
-        self.title = "Eintrag hinzufügen"
+        self.title = String.localized("EntryOnboardingLocationMenuViewControllerTitle")
         
         self.view.addSubview(progressView)
         self.view.addSubview(addressButton)
         self.view.addSubview(locationButton)
         self.view.addSubview(infoLabel)
         
-        self.infoLabel.text = "Es gibt zwei Möglichkeiten, einen neuen Eintrag hinzu zu fügen: \nWenn Du gerade neben dem Ort stehst, kannst ihn am aktuellen Standort hinzufügen. \nAndernfalls kannst Du einen Ort an einer Adresse hinzufügen."
+        self.infoLabel.text = String.localized("EntryOnboardingLocationMenuViewControllerInfo")
         self.infoLabel.numberOfLines = 0
         self.infoLabel.font = UIFont.systemFont(ofSize: 12)
-        self.addressButton.setTitle("Eintrag mit Adresse hinzufügen", for: .normal)
-        self.locationButton.setTitle("Eintrag am aktuellen Standort hinzufügen", for: .normal)
+        self.addressButton.setTitle(String.localized("EntryOnboardingLocationMenuViewControllerAddressAction"), for: .normal)
+        self.locationButton.setTitle(String.localized("EntryOnboardingLocationMenuViewControllerLocationAction"), for: .normal)
         self.addressButton.titleLabel?.numberOfLines = 0
         self.locationButton.titleLabel?.numberOfLines = 0
         self.addressButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
@@ -78,7 +78,7 @@ class EntryOnboardingLocationMenuViewController: UIViewController {
         self.locationButton.addTarget(self, action: #selector(enterLocation), for: .touchUpInside)
         self.addressButton.addTarget(self, action: #selector(enterAddress), for: .touchUpInside)
         
-        self.progressView.currentStep = "1. Eintrags-Verfahren wählen"
+        self.progressView.currentStep = String.localized("EntryOnboardingLocationMenuViewControllerCurrentStep")
         
     }
     
