@@ -246,3 +246,17 @@
 "EntryOnboardingLocationMenuViewControllerInfo" = "There are two ways to add a new entry: \nIf you are standing next to the location, you can add it at the current location. \nOtherwise, you can add a place at an address.";
 "EntryOnboardingLocationMenuViewControllerAddressAction" = "Add entry with address";
 "EntryOnboardingLocationMenuViewControllerLocationAction" = "Add entry at your current location";
+
+/* EntryOnboardingOpeningHoursViewController */
+"EntryOnboardingOpeningHoursViewControllerTitle" = "Add entry";
+"EntryOnboardingOpeningHoursViewControllerCurrentStep" = "5. Enter opening hours";
+"EntryOnboardingOpeningHoursViewControllerOpeningHours" = "Opening hours (optional)";
+"EntryOnboardingOpeningHoursViewControllerMonday" = "Monday";
+"EntryOnboardingOpeningHoursViewControllerTuesday" = "Tuesday";
+"EntryOnboardingOpeningHoursViewControllerWednesday" = "Wednesday";
+"EntryOnboardingOpeningHoursViewControllerThursday" = "Thursday";
+"EntryOnboardingOpeningHoursViewControllerFriday" = "Friday";
+"EntryOnboardingOpeningHoursViewControllerSaturday" = "Saturday";
+"EntryOnboardingOpeningHoursViewControllerSunuday" = "Sunday";
+"EntryOnboardingOpeningHoursViewControllerOther" = "Other";
+"EntryOnboardingOpeningHoursViewControllerNext" = "Next";

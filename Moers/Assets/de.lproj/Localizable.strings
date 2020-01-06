@@ -246,3 +246,17 @@
 "EntryOnboardingLocationMenuViewControllerInfo" = "Es gibt zwei Möglichkeiten, einen neuen Eintrag hinzu zu fügen: \nWenn Du gerade neben dem Ort stehst, kannst ihn am aktuellen Standort hinzufügen. \nAndernfalls kannst Du einen Ort an einer Adresse hinzufügen.";
 "EntryOnboardingLocationMenuViewControllerAddressAction" = "Eintrag mit Adresse hinzufügen";
 "EntryOnboardingLocationMenuViewControllerLocationAction" = "Eintrag am aktuellen Standort hinzufügen";
+
+/* EntryOnboardingOpeningHoursViewController */
+"EntryOnboardingOpeningHoursViewControllerTitle" = "Eintrag hinzufügen";
+"EntryOnboardingOpeningHoursViewControllerCurrentStep" = "5. Öffnungszeiten eingeben";
+"EntryOnboardingOpeningHoursViewControllerOpeningHours" = "ÖFFNUNGSZEITEN (optional)";
+"EntryOnboardingOpeningHoursViewControllerMonday" = "Montag";
+"EntryOnboardingOpeningHoursViewControllerTuesday" = "Dienstag";
+"EntryOnboardingOpeningHoursViewControllerWednesday" = "Mittwoch";
+"EntryOnboardingOpeningHoursViewControllerThursday" = "Donnerstag";
+"EntryOnboardingOpeningHoursViewControllerFriday" = "Freitag";
+"EntryOnboardingOpeningHoursViewControllerSaturday" = "Samstag";
+"EntryOnboardingOpeningHoursViewControllerSunuday" = "Sonntag";
+"EntryOnboardingOpeningHoursViewControllerOther" = "Sonstiges";
+"EntryOnboardingOpeningHoursViewControllerNext" = "Weiter";
