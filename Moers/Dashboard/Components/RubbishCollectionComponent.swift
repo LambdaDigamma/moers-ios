@@ -105,6 +105,7 @@ class RubbishCollectionComponent: BaseComponent, UIViewControllerPreviewingDeleg
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     
                     self.rubbishCardView.stopLoading()
+                    self.rubbishCardView.dismissError()
                     
                     self.reloadUI()
                     

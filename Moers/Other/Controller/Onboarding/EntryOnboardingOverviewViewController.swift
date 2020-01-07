@@ -13,6 +13,8 @@ import MapKit
 import Alertift
 import MMAPI
 import MMUI
+import TagListView
+import Fuse
 
 enum EntryOverviewType: Equatable {
     case summary
@@ -21,33 +23,41 @@ enum EntryOverviewType: Equatable {
 
 class EntryOnboardingOverviewViewController: UIViewController {
 
+    lazy var searchController = { LFSearchViewController() }()
     lazy var scrollView = { ViewFactory.scrollView() }()
     lazy var contentView = { ViewFactory.blankView() }()
     lazy var generalHeaderLabel = { ViewFactory.label() }()
-    lazy var nameTextField = { ViewFactory.textField() }()
+    lazy var nameTextField = { ViewFactory.textFieldFormView() }()
     lazy var tagsHeaderLabel = { ViewFactory.label() }()
     lazy var tagsListView = { ViewFactory.tagListView() }()
     lazy var addressHeaderLabel = { ViewFactory.label() }()
-    lazy var streetTextField = { ViewFactory.textField() }()
-    lazy var houseNrTextField = { ViewFactory.textField() }()
-    lazy var postcodeTextField = { ViewFactory.textField() }()
-    lazy var placeTextField = { ViewFactory.textField() }()
+    lazy var streetTextField = { ViewFactory.textFieldFormView() }()
+    lazy var houseNrTextField = { ViewFactory.textFieldFormView() }()
+    lazy var postcodeTextField = { ViewFactory.textFieldFormView() }()
+    lazy var placeTextField = { ViewFactory.textFieldFormView() }()
     lazy var mapView = { ViewFactory.map() }()
     lazy var promptLabel = { ViewFactory.label() }()
     lazy var contactHeaderLabel = { ViewFactory.label() }()
-    lazy var websiteTextField = { ViewFactory.textField() }()
-    lazy var phoneTextField = { ViewFactory.textField() }()
+    lazy var websiteTextField = { ViewFactory.textFieldFormView() }()
+    lazy var phoneTextField = { ViewFactory.textFieldFormView() }()
     lazy var openingHoursHeaderLabel = { ViewFactory.label() }()
     lazy var openingHoursStackView = { ViewFactory.stackView() }()
-    lazy var mondayOHTextField = { ViewFactory.textField() }()
-    lazy var tuesdayOHTextField = { ViewFactory.textField() }()
-    lazy var wednesdayOHTextField = { ViewFactory.textField() }()
-    lazy var thursdayOHTextField = { ViewFactory.textField() }()
-    lazy var fridayOHTextField = { ViewFactory.textField() }()
-    lazy var saturdayOHTextField = { ViewFactory.textField() }()
-    lazy var sundayOHTextField = { ViewFactory.textField() }()
-    lazy var otherOHTextField = { ViewFactory.textField() }()
+    lazy var mondayOHTextField = { ViewFactory.textFieldFormView() }()
+    lazy var tuesdayOHTextField = { ViewFactory.textFieldFormView() }()
+    lazy var wednesdayOHTextField = { ViewFactory.textFieldFormView() }()
+    lazy var thursdayOHTextField = { ViewFactory.textFieldFormView() }()
+    lazy var fridayOHTextField = { ViewFactory.textFieldFormView() }()
+    lazy var saturdayOHTextField = { ViewFactory.textFieldFormView() }()
+    lazy var sundayOHTextField = { ViewFactory.textFieldFormView() }()
+    lazy var otherOHTextField = { ViewFactory.textFieldFormView() }()
     lazy var saveButton = { ViewFactory.button() }()
+    lazy var noticeView: OnboardingOverviewNotice = {
+        let notice = OnboardingOverviewNotice()
+        notice.translatesAutoresizingMaskIntoConstraints = false
+        return notice
+    }()
+    
+    var form = Form()
     
     public var overviewType = EntryOverviewType.summary
     
@@ -70,23 +80,24 @@ class EntryOnboardingOverviewViewController: UIViewController {
         self.setupUI()
         self.setupConstraints()
         self.setupOpeningHours()
-        self.fillData()
         self.setupTheming()
+        self.setupDataForOverviewType()
         
     }
     
-    // MARK: - Private Methods
+    // MARK: - UI
     
     private func setupUI() {
         
         if overviewType == .summary {
-            self.title = "Zusammenfassung"
+            self.title = String.localized("EntryOnboardingOverviewSummaryTitle")
         } else {
-            self.title = "Bearbeiten"
+            self.title = String.localized("EntryOnboardingOverviewEditTitle")
         }
         
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(contentView)
+        self.contentView.addSubview(noticeView)
         self.contentView.addSubview(generalHeaderLabel)
         self.contentView.addSubview(nameTextField)
         self.contentView.addSubview(tagsHeaderLabel)
@@ -104,40 +115,81 @@ class EntryOnboardingOverviewViewController: UIViewController {
         self.contentView.addSubview(openingHoursStackView)
         self.contentView.addSubview(saveButton)
         
-        self.generalHeaderLabel.text = "ALLGEMEINES"
-        self.nameTextField.placeholder = "Name"
-        self.tagsHeaderLabel.text = "SCHLAGWORTE"
-        self.addressHeaderLabel.text = "ADRESSE"
-        self.streetTextField.placeholder = "Straße"
-        self.houseNrTextField.placeholder = "Nr"
-        self.postcodeTextField.placeholder = "PLZ"
-        self.placeTextField.placeholder = "Ort"
-        self.contactHeaderLabel.text = "KONTAKT"
-        self.websiteTextField.placeholder = "Webseite"
-        self.phoneTextField.placeholder = "Telefon"
-        self.openingHoursHeaderLabel.text = "ÖFFNUNGSZEITEN"
-        self.mondayOHTextField.placeholder = "Montag"
-        self.tuesdayOHTextField.placeholder = "Dienstag"
-        self.wednesdayOHTextField.placeholder = "Mittwoch"
-        self.thursdayOHTextField.placeholder = "Donnerstag"
-        self.fridayOHTextField.placeholder = "Freitag"
-        self.saturdayOHTextField.placeholder = "Samstag"
-        self.sundayOHTextField.placeholder = "Sonntag"
-        self.otherOHTextField.placeholder = "Sonstiges"
+        self.form.registerView(for: "name", view: nameTextField)
+        self.form.registerView(for: "street", view: streetTextField)
+        self.form.registerView(for: "house_number", view: houseNrTextField)
+        self.form.registerView(for: "postcode", view: postcodeTextField)
+        self.form.registerView(for: "place", view: placeTextField)
+        self.form.registerView(for: "url", view: websiteTextField)
+        self.form.registerView(for: "phone", view: phoneTextField)
+        self.form.registerView(for: "monday", view: mondayOHTextField)
+        self.form.registerView(for: "tuesday", view: tuesdayOHTextField)
+        self.form.registerView(for: "wednesday", view: wednesdayOHTextField)
+        self.form.registerView(for: "thursday", view: thursdayOHTextField)
+        self.form.registerView(for: "friday", view: fridayOHTextField)
+        self.form.registerView(for: "saturday", view: saturdayOHTextField)
+        self.form.registerView(for: "sunday", view: sundayOHTextField)
+        self.form.registerView(for: "other", view: otherOHTextField)
+        
+        [
+            nameTextField,
+            streetTextField,
+            houseNrTextField,
+            postcodeTextField,
+            placeTextField,
+            websiteTextField,
+            phoneTextField,
+            mondayOHTextField,
+            tuesdayOHTextField,
+            wednesdayOHTextField,
+            thursdayOHTextField,
+            fridayOHTextField,
+            saturdayOHTextField,
+            sundayOHTextField,
+            otherOHTextField
+        ].forEach { $0.textFieldDelegate = self }
+        
+        self.generalHeaderLabel.text = String.localized("EntryOnboardingOverviewGeneralHeader").uppercased()
+        self.nameTextField.placeholder = String.localized("EntryOnboardingOverviewName")
+        self.tagsHeaderLabel.text = String.localized("EntryOnboardingOverviewTagsHeader").uppercased()
+        self.addressHeaderLabel.text = String.localized("EntryOnboardingOverviewAddressHeader").uppercased()
+        self.streetTextField.placeholder = String.localized("EntryOnboardingOverviewStreet")
+        self.houseNrTextField.placeholder = String.localized("EntryOnboardingOverviewHouseNr")
+        self.postcodeTextField.placeholder = String.localized("EntryOnboardingOverviewPostcode")
+        self.placeTextField.placeholder = String.localized("EntryOnboardingOverviewPlace")
+        self.contactHeaderLabel.text = String.localized("EntryOnboardingOverviewContact").uppercased()
+        self.websiteTextField.placeholder = String.localized("EntryOnboardingOverviewWebsite")
+        self.phoneTextField.placeholder = String.localized("EntryOnboardingOverviewPhone")
+        self.openingHoursHeaderLabel.text = String.localized("EntryOnboardingOverviewOpeningHoursHeader").uppercased()
+        self.mondayOHTextField.placeholder = String.localized("EntryOnboardingOverviewOpeningHoursMonday")
+        self.tuesdayOHTextField.placeholder = String.localized("EntryOnboardingOverviewOpeningHoursTuesday")
+        self.wednesdayOHTextField.placeholder = String.localized("EntryOnboardingOverviewOpeningHoursWednesday")
+        self.thursdayOHTextField.placeholder = String.localized("EntryOnboardingOverviewOpeningHoursThursday")
+        self.fridayOHTextField.placeholder = String.localized("EntryOnboardingOverviewOpeningHoursFriday")
+        self.saturdayOHTextField.placeholder = String.localized("EntryOnboardingOverviewOpeningHoursSaturday")
+        self.sundayOHTextField.placeholder = String.localized("EntryOnboardingOverviewOpeningHoursSunday")
+        self.otherOHTextField.placeholder = String.localized("EntryOnboardingOverviewOpeningHoursOther")
+        
+        self.websiteTextField.textField.autocapitalizationType = .none
         
         if overviewType == EntryOverviewType.summary {
-            self.saveButton.setTitle("Hinzufügen", for: .normal)
+            self.saveButton.setTitle(String.localized("EntryOnboardingOverviewActionStore"), for: .normal)
+            self.noticeView.notice = String.localized("EntryOnboardingOverviewStoreNotice")
         } else {
-            self.saveButton.setTitle("Aktualisieren", for: .normal)
+            self.saveButton.setTitle(String.localized("EntryOnboardingOverviewActionUpdate"), for: .normal)
+            self.noticeView.notice = String.localized("EntryOnboardingOverviewUpdateNotice")
         }
         
         self.tagsListView.enableRemoveButton = false
         
-        self.generalHeaderLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.semibold)
-        self.tagsHeaderLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.semibold)
-        self.addressHeaderLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.semibold)
-        self.contactHeaderLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.semibold)
-        self.openingHoursHeaderLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.semibold)
+        [
+            generalHeaderLabel,
+            tagsHeaderLabel,
+            addressHeaderLabel,
+            contactHeaderLabel,
+            openingHoursHeaderLabel,
+        ].forEach { $0.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.semibold) }
+        
         
         self.mapView.isScrollEnabled = false
         self.mapView.isZoomEnabled = false
@@ -167,71 +219,58 @@ class EntryOnboardingOverviewViewController: UIViewController {
                            contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
                            contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
                            contentView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
-                           generalHeaderLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 16),
+                           noticeView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 0),
+                           noticeView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
+                           noticeView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
+                           generalHeaderLabel.topAnchor.constraint(equalTo: self.noticeView.bottomAnchor, constant: 16),
                            generalHeaderLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
                            generalHeaderLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
                            nameTextField.topAnchor.constraint(equalTo: self.generalHeaderLabel.bottomAnchor, constant: 0),
-                           nameTextField.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-                           nameTextField.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
-                           nameTextField.heightAnchor.constraint(equalToConstant: 55),
+                           nameTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                           nameTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
                            tagsHeaderLabel.topAnchor.constraint(equalTo: self.nameTextField.bottomAnchor, constant: 16),
-                           tagsHeaderLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-                           tagsHeaderLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                           tagsHeaderLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                           tagsHeaderLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
                            tagsListView.topAnchor.constraint(equalTo: self.tagsHeaderLabel.bottomAnchor, constant: 8),
-                           tagsListView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-                           tagsListView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                           tagsListView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                           tagsListView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
                            addressHeaderLabel.topAnchor.constraint(equalTo: self.tagsListView.bottomAnchor, constant: 16),
-                           addressHeaderLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-                           addressHeaderLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                           addressHeaderLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                           addressHeaderLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
                            streetTextField.topAnchor.constraint(equalTo: self.addressHeaderLabel.bottomAnchor, constant: 0),
-                           streetTextField.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-                           streetTextField.rightAnchor.constraint(equalTo: self.streetTextField.leftAnchor, constant: -16),
-                           streetTextField.heightAnchor.constraint(equalToConstant: 55),
+                           streetTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                           streetTextField.trailingAnchor.constraint(equalTo: self.houseNrTextField.leadingAnchor, constant: -8),
                            houseNrTextField.topAnchor.constraint(equalTo: self.streetTextField.topAnchor),
-                           houseNrTextField.leftAnchor.constraint(equalTo: self.streetTextField.rightAnchor, constant: 8),
-                           houseNrTextField.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
-                           houseNrTextField.heightAnchor.constraint(equalToConstant: 55),
+                           houseNrTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
                            houseNrTextField.widthAnchor.constraint(equalToConstant: 55),
                            postcodeTextField.topAnchor.constraint(equalTo: self.houseNrTextField.bottomAnchor, constant: 8),
-                           postcodeTextField.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-                           postcodeTextField.rightAnchor.constraint(equalTo: self.placeTextField.leftAnchor, constant: -8),
-                           postcodeTextField.heightAnchor.constraint(equalToConstant: 55),
+                           postcodeTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                           postcodeTextField.trailingAnchor.constraint(equalTo: self.placeTextField.leadingAnchor, constant: -8),
                            postcodeTextField.widthAnchor.constraint(equalToConstant: 80),
                            placeTextField.topAnchor.constraint(equalTo: self.houseNrTextField.bottomAnchor, constant: 8),
-                           placeTextField.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
-                           placeTextField.heightAnchor.constraint(equalToConstant: 55),
+                           placeTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
                            mapView.topAnchor.constraint(equalTo: self.placeTextField.bottomAnchor, constant: 20),
-                           mapView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-                           mapView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                           mapView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                           mapView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
                            mapView.heightAnchor.constraint(equalToConstant: 180),
                            contactHeaderLabel.topAnchor.constraint(equalTo: self.mapView.bottomAnchor, constant: 20),
-                           contactHeaderLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-                           contactHeaderLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                           contactHeaderLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                           contactHeaderLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
                            websiteTextField.topAnchor.constraint(equalTo: self.contactHeaderLabel.bottomAnchor, constant: 0),
-                           websiteTextField.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-                           websiteTextField.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
-                           websiteTextField.heightAnchor.constraint(equalToConstant: 55),
+                           websiteTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                           websiteTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
                            phoneTextField.topAnchor.constraint(equalTo: self.websiteTextField.bottomAnchor, constant: 16),
-                           phoneTextField.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-                           phoneTextField.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
-                           phoneTextField.heightAnchor.constraint(equalToConstant: 55),
+                           phoneTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                           phoneTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
                            openingHoursHeaderLabel.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: 16),
-                           openingHoursHeaderLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-                           openingHoursHeaderLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
-                           mondayOHTextField.heightAnchor.constraint(equalToConstant: 55),
-                           tuesdayOHTextField.heightAnchor.constraint(equalToConstant: 55),
-                           wednesdayOHTextField.heightAnchor.constraint(equalToConstant: 55),
-                           thursdayOHTextField.heightAnchor.constraint(equalToConstant: 55),
-                           fridayOHTextField.heightAnchor.constraint(equalToConstant: 55),
-                           saturdayOHTextField.heightAnchor.constraint(equalToConstant: 55),
-                           sundayOHTextField.heightAnchor.constraint(equalToConstant: 55),
-                           otherOHTextField.heightAnchor.constraint(equalToConstant: 55),
+                           openingHoursHeaderLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                           openingHoursHeaderLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
                            openingHoursStackView.topAnchor.constraint(equalTo: openingHoursHeaderLabel.bottomAnchor, constant: 0),
-                           openingHoursStackView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-                           openingHoursStackView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                           openingHoursStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                           openingHoursStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
                            saveButton.topAnchor.constraint(equalTo: self.openingHoursStackView.bottomAnchor, constant: 16),
-                           saveButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-                           saveButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                           saveButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                           saveButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
                            saveButton.heightAnchor.constraint(equalToConstant: 45),
                            saveButton.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -50)]
         
@@ -247,7 +286,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
     
     private func setupOpeningHours() {
         
-        let columnStackView: ((HoshiTextField, HoshiTextField) -> UIStackView) = { textField1, textField2 in
+        let columnStackView: ((TextFieldFormView, TextFieldFormView) -> UIStackView) = { textField1, textField2 in
             
             let stackView = UIStackView()
             
@@ -275,7 +314,9 @@ class EntryOnboardingOverviewViewController: UIViewController {
         
     }
     
-    private func fillData() {
+    // MARK: - Data Handling
+    
+    private func setupDataForOverviewType() {
         
         switch overviewType {
         case .summary:
@@ -289,6 +330,8 @@ class EntryOnboardingOverviewViewController: UIViewController {
         }
         
     }
+    
+    // MARK: - Actions
     
     @objc private func adjustForKeyboard(notification: Notification) {
         
@@ -323,6 +366,8 @@ class EntryOnboardingOverviewViewController: UIViewController {
         
     }
     
+    // MARK: - Filling Summary Data
+    
     private func setupSummary() {
         
         self.nameTextField.text = entryManager.entryName
@@ -341,7 +386,9 @@ class EntryOnboardingOverviewViewController: UIViewController {
         self.sundayOHTextField.text = entryManager.entrySundayOH
         self.otherOHTextField.text = entryManager.entryOtherOH
         
-        disableTextFields([nameTextField, phoneTextField, websiteTextField, streetTextField, houseNrTextField, postcodeTextField, placeTextField, mondayOHTextField, tuesdayOHTextField, wednesdayOHTextField, thursdayOHTextField, fridayOHTextField, saturdayOHTextField, sundayOHTextField, otherOHTextField])
+        disableTextFields([streetTextField, houseNrTextField, postcodeTextField, placeTextField])
+        
+        // disableTextFields([nameTextField, phoneTextField, websiteTextField, streetTextField, houseNrTextField, postcodeTextField, placeTextField, mondayOHTextField, tuesdayOHTextField, wednesdayOHTextField, thursdayOHTextField, fridayOHTextField, saturdayOHTextField, sundayOHTextField, otherOHTextField])
         
         let coordinate = CLLocationCoordinate2D(latitude: entryManager.entryLat ?? 0, longitude: entryManager.entryLng ?? 0)
         
@@ -349,6 +396,8 @@ class EntryOnboardingOverviewViewController: UIViewController {
         self.setupTags(with: entryManager.entryTags)
         
     }
+    
+    // MARK: - Filling Editing Data
     
     private func setupEdit(with entry: Entry) {
         
@@ -372,6 +421,17 @@ class EntryOnboardingOverviewViewController: UIViewController {
         
         self.setupMap(with: entry.coordinate)
         self.setupTags(with: entry.tags, enableAddTag: true)
+        self.selectedTags = entry.tags
+        self.loadAllExistingTags()
+        
+        self.searchController.delegate = self
+        self.searchController.dataSource = self
+        self.searchController.searchBarPlaceHolder = String.localized("EntryOnboardingOverviewSearchBarAddTag")
+        
+        let item = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(close))
+        self.searchController.navigationItem.rightBarButtonItem = item
+        
+        print(allLoadedTags)
         
     }
     
@@ -402,13 +462,29 @@ class EntryOnboardingOverviewViewController: UIViewController {
             
         }
         
-        // TODO: Add Another Tag for Adding Tags
+        if enableAddTag {
+            
+            self.tagsListView.delegate = self
+            self.tagsListView.enableRemoveButton = true
+            
+            let addTagView = tagsListView.addTag(String.localized("EntryOnboardingOverviewAddTag"))
+
+            addTagView.tagBackgroundColor = UIColor.gray
+            addTagView.textColor = UIColor.white
+            addTagView.enableRemoveButton = false
+            
+            addTagView.onTap = showSearch
+
+            
+        }
         
     }
     
-    private func disableTextFields(_ textFields: [UITextField]) {
-        textFields.forEach { $0.isEnabled = false }
+    private func disableTextFields(_ textFields: [TextFieldFormView]) {
+        textFields.forEach { $0.isEnabled = false; $0.textField.borderInactiveColor = UIColor.gray; $0.textField.alpha = 0.5 }
     }
+    
+    // MARK: - Networking
     
     private func storeEntry() {
         
@@ -433,29 +509,58 @@ class EntryOnboardingOverviewViewController: UIViewController {
                           lng: entryManager.entryLng ?? 0,
                           isValidated: true)
         
+        entry.name = nameTextField.text ?? ""
+        entry.url = websiteTextField.text
+        entry.phone = phoneTextField.text
+        entry.monday = mondayOHTextField.text
+        entry.tuesday = tuesdayOHTextField.text
+        entry.wednesday = wednesdayOHTextField.text
+        entry.thursday = thursdayOHTextField.text
+        entry.friday = fridayOHTextField.text
+        entry.saturday = saturdayOHTextField.text
+        entry.sunday = sundayOHTextField.text
+        entry.other = otherOHTextField.text
+        
         entryManager.store(entry: entry) { (result) in
             
             switch result {
                 
             case .success(let entry):
                 
-                self.alertSuccess()
-                self.entryManager.resetData()
-                
-                guard let tabBarController = self.tabBarController as? TabBarController else { return }
-                
-                tabBarController.mainViewController.addLocation(entry)
+                DispatchQueue.main.async {
+                    
+                    self.alertSuccess()
+                    self.entryManager.resetData()
+                    
+                    guard let tabBarController = self.tabBarController as? TabBarController else { return }
+                    
+                    tabBarController.mainViewController.addLocation(entry)
+                    
+                }
                 
             case .failure(let error):
                 
                 print(error.localizedDescription)
+                print((error as? DecodingError) ?? "")
                 
-                if let error = error as? APIError, error == .notAuthorized {
-                    self.alertNotAuthorized()
+                guard let error = error as? APIError else {
+                    self.alertUnknownError()
                     return
                 }
                 
-                self.alertError()
+                switch error {
+                case .notAuthorized:
+                    self.alertNotAuthorized()
+                case .unprocessableEntity(let errorBag):
+                    
+                    DispatchQueue.main.async {
+                        self.alertErrorInForm(with: errorBag)
+                        self.form.receivedError(errorBag: errorBag)
+                    }
+                    
+                default:
+                    break
+                }
                 
             }
             
@@ -476,6 +581,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
         entry.saturday = saturdayOHTextField.text
         entry.sunday = sundayOHTextField.text
         entry.other = otherOHTextField.text
+        entry.tags = selectedTags
         
         entryManager.update(entry: entry) { (result) in
             
@@ -496,13 +602,21 @@ class EntryOnboardingOverviewViewController: UIViewController {
                 case .failure(let error):
                     
                     print(error.localizedDescription)
+                    print((error as? DecodingError) ?? "")
                     
-                    if let error = error as? APIError, error == .notAuthorized {
-                        self.alertNotAuthorized()
+                    guard let error = error as? APIError else {
+                        self.alertUnknownError()
                         return
                     }
                     
-                    self.alertError()
+                    switch error {
+                    case .notAuthorized:
+                        self.alertNotAuthorized()
+                    case .unprocessableEntity(let errorBag):
+                        self.alertErrorInForm(with: errorBag)
+                    default:
+                        break
+                    }
                     
                 }
                 
@@ -516,15 +630,20 @@ class EntryOnboardingOverviewViewController: UIViewController {
     
     @objc private func alertConfirm() {
         
-        Alertift.alert(title: "Bist Du sicher?", message: "Willst Du diesen Eintrag wirklich \(overviewType == .summary ? "hinzufügen" : "ändern")? Achte darauf, dass Du auch wirklich die richtigen Informationen eingetragen hast. Nur so können andere davon profitieren!")
+        let message = overviewType == .summary ?
+            String.localized("EntryOnboardingOverviewAlertConfirmStoreMessage") :
+            String.localized("EntryOnboardingOverviewAlertConfirmUpdateMessage")
+        
+        
+        Alertift
+            .alert(title: String.localized("EntryOnboardingOverviewAlertConfirmTitle"),
+                   message: message)
             .titleTextColor(nameTextField.textColor)
             .messageTextColor(nameTextField.textColor)
             .buttonTextColor(nameTextField.textColor)
             .backgroundColor(view.backgroundColor)
-            .action(Alertift.Action.cancel("Nein"), handler: { (action, i, textFields) in
-                
-            })
-            .action(.default("Ja"), isPreferred: true, handler: { (action, i, textFields) in
+            .action(Alertift.Action.cancel(String.localized("EntryOnboardingOverviewAlertConfirmCancel")))
+            .action(.default(String.localized("EntryOnboardingOverviewAlertConfirmYes")), isPreferred: true, handler: { (action, i, textFields) in
                 
                 self.save()
                 
@@ -535,12 +654,19 @@ class EntryOnboardingOverviewViewController: UIViewController {
     
     private func alertSuccess() {
         
-        Alertift.alert(title: "Eintrag \(overviewType == .summary ? "hinzugefügt" : "geändert")!", message: "Vielen Dank für Deinen Beitrag!\nDein Eintrag ist jetzt auf der Karte zu finden!")
+        let title = overviewType == .summary ?
+            String.localized("EntryOnboardingOverviewAlertSuccessTitleAdded") :
+            String.localized("EntryOnboardingOverviewAlertSuccessTitleUpdated")
+        
+        Alertift
+            .alert(title: title,
+                   message: String.localized("EntryOnboardingOverviewAlertSuccessMessage"))
             .titleTextColor(nameTextField.textColor)
             .messageTextColor(nameTextField.textColor)
             .buttonTextColor(nameTextField.textColor)
             .backgroundColor(view.backgroundColor)
-            .action(.default("Okay"), handler: { (action, i, textFields) in
+            .action(.default(String.localized("EntryOnboardingOverviewAlertSuccessOkay")),
+                    handler: { (action, i, textFields) in
                 
                 if self.overviewType == .summary {
                     
@@ -559,28 +685,35 @@ class EntryOnboardingOverviewViewController: UIViewController {
         
     }
     
-    private func alertError() {
+    private func alertUnknownError() {
         
-        Alertift.alert(title: "Ein Fehler ist aufgetreten", message: "Ein unbekannter Fehler ist aufgetreten.")
-            .titleTextColor(nameTextField.textColor)
-            .messageTextColor(nameTextField.textColor)
-            .buttonTextColor(nameTextField.textColor)
-            .backgroundColor(view.backgroundColor)
-            .action(.default("Okay"), handler: { (action, i, textFields) in
-                
-            })
-            .show()
+        DispatchQueue.main.async {
+            
+            Alertift
+                .alert(title: String.localized("EntryOnboardingOverviewAlertUnknownErrorTitle"),
+                       message: String.localized("EntryOnboardingOverviewAlertUnknownErrorMessage"))
+                .titleTextColor(self.nameTextField.textColor)
+                .messageTextColor(self.nameTextField.textColor)
+                .buttonTextColor(self.nameTextField.textColor)
+                .backgroundColor(self.view.backgroundColor)
+                .action(.default(String.localized("EntryOnboardingOverviewAlertUnknownErrorOkay")))
+                .show()
+            
+        }
         
     }
     
     private func alertNotAuthorized() {
         
-        Alertift.alert(title: "Nicht authorisiert!", message: "Das Hinzufügen von Einträgen wurde aufgrund von Missbrauch zwischenzeitlich bis auf weiteres geschlossen.")
+        Alertift
+            .alert(title: String.localized("EntryOnboardingOverviewAlertNotAllowedTitle"),
+                   message: String.localized("EntryOnboardingOverviewAlertNotAllowedMessage"))
             .titleTextColor(nameTextField.textColor)
             .messageTextColor(nameTextField.textColor)
             .buttonTextColor(nameTextField.textColor)
             .backgroundColor(view.backgroundColor)
-            .action(.default("Okay"), handler: { (action, i, textFields) in
+            .action(.default(String.localized("EntryOnboardingOverviewAlertNotAllowedErrorOkay")),
+                    handler: { (action, i, textFields) in
                 
                 guard let otherVC = self.navigationController?.children.first else { return }
                 
@@ -588,6 +721,105 @@ class EntryOnboardingOverviewViewController: UIViewController {
                 
             })
             .show()
+        
+    }
+    
+    private func alertErrorInForm(with errorBag: ErrorBag?) {
+        
+        DispatchQueue.main.async {
+            
+            Alertift
+                .alert(title: String.localized("EntryOnboardingOverviewAlertFormErrorTitle"),
+                       message: String.localized("EntryOnboardingOverviewAlertFormErrorMessage"))
+                .titleTextColor(self.nameTextField.textColor)
+                .messageTextColor(self.nameTextField.textColor)
+                .buttonTextColor(self.nameTextField.textColor)
+                .backgroundColor(self.view.backgroundColor)
+                .action(.default(String.localized("EntryOnboardingOverviewAlertFormErrorOkay")))
+                .show()
+            
+        }
+        
+    }
+    
+    // MARK: - Tags
+    
+    private var selectedTags: [String] = []
+    private var allLoadedTags: [String] = []
+    private var searchResultTags: [NSAttributedString] = []
+    private let fuse = Fuse(location: 0,
+                            distance: 100,
+                            threshold: 0.45,
+                            maxPatternLength: 32,
+                            isCaseSensitive: false)
+    
+    private var cellTextColor = UIColor.black
+    private var cellBackgroundColor = UIColor.white
+    
+    private func showSearch(_ tagView: TagView) {
+            
+        self.searchResultTags = allLoadedTags.map { NSAttributedString(string: $0) }
+
+        self.searchController.show(in: self)
+        self.searchController.reloadData()
+        
+    }
+    
+    private func loadAllExistingTags() {
+        
+        guard let tabBarController = self.tabBarController as? TabBarController else { return }
+        
+        let locations = tabBarController.mainViewController.locations
+        
+        // TODO: Improve Tag Fetching
+        self.allLoadedTags = Array(Set(locations.map { $0.tags }.reduce([], +))).sorted()
+        self.allLoadedTags.removeAll(where: { $0.isEmptyOrWhitespace })
+        
+    }
+    
+    private func addAndDisplayTagIfNotExisted(_ tag: String) {
+        
+        if !selectedTags.contains(tag) {
+            
+            let index = self.tagsListView.tagViews.count - 1
+            
+            self.selectedTags.append(tag)
+            
+            self.searchController.dismiss(animated: true) {
+                self.tagsListView.insertTag(tag, at: index)
+            }
+            
+        }
+        
+    }
+    
+    private func searchResults(for searchTerm: String) -> [NSAttributedString] {
+        
+        let results = fuse.search(searchTerm, in: allLoadedTags)
+        
+        let boldAttrs = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)]
+        
+        let filteredTags: [NSAttributedString] = results.sorted(by: { $0.score < $1.score }).map { result in
+            
+            let tag = allLoadedTags[result.index]
+            
+            let attributedString = NSMutableAttributedString(string: tag)
+            
+            result.ranges.map(Range.init).map(NSRange.init).forEach {
+                attributedString.addAttributes(boldAttrs, range: $0)
+            }
+            
+            return attributedString
+            
+        }
+        
+        return filteredTags
+        
+    }
+    
+    @objc private func close() {
+        
+        self.searchController.dismiss(animated: true)
         
     }
     
@@ -608,24 +840,6 @@ extension EntryOnboardingOverviewViewController: Themeable {
     
     func apply(theme: Theme) {
         
-        let applyTheming: ((HoshiTextField) -> Void) = { textField in
-            
-            if textField.isEnabled {
-                textField.borderActiveColor = theme.accentColor
-            } else {
-                textField.borderActiveColor = theme.decentColor
-            }
-            
-            textField.borderInactiveColor = theme.decentColor
-            textField.placeholderColor = theme.color
-            textField.textColor = theme.color.darker(by: 10)
-            textField.tintColor = theme.accentColor
-            textField.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
-            textField.autocorrectionType = .no
-            textField.delegate = self
-            
-        }
-        
         self.view.backgroundColor = theme.backgroundColor
         self.generalHeaderLabel.textColor = theme.decentColor
         self.tagsHeaderLabel.textColor = theme.decentColor
@@ -642,21 +856,144 @@ extension EntryOnboardingOverviewViewController: Themeable {
         self.saveButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
         self.saveButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .selected)
         
-        applyTheming(self.nameTextField)
-        applyTheming(self.streetTextField)
-        applyTheming(self.houseNrTextField)
-        applyTheming(self.postcodeTextField)
-        applyTheming(self.placeTextField)
-        applyTheming(self.websiteTextField)
-        applyTheming(self.phoneTextField)
-        applyTheming(self.mondayOHTextField)
-        applyTheming(self.tuesdayOHTextField)
-        applyTheming(self.wednesdayOHTextField)
-        applyTheming(self.thursdayOHTextField)
-        applyTheming(self.fridayOHTextField)
-        applyTheming(self.saturdayOHTextField)
-        applyTheming(self.sundayOHTextField)
-        applyTheming(self.otherOHTextField)
+        if #available(iOS 13.0, *) {
+            
+            navigationController?.navigationBar.barTintColor = theme.navigationBarColor
+            navigationController?.navigationBar.tintColor = theme.accentColor
+            navigationController?.navigationBar.prefersLargeTitles = true
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
+            navigationController?.navigationBar.isTranslucent = true
+            
+            let appearance = UINavigationBarAppearance()
+            
+            appearance.configureWithDefaultBackground()
+            appearance.backgroundColor = theme.navigationBarColor
+            
+            appearance.titleTextAttributes = [.foregroundColor : theme.accentColor]
+            appearance.largeTitleTextAttributes = [.foregroundColor : theme.accentColor]
+            
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+            navigationController?.navigationBar.standardAppearance = appearance
+            
+        }
+        
+        // Style Search Controller
+        
+        self.cellTextColor = theme.color
+        self.cellBackgroundColor = theme.backgroundColor
+        self.searchController.searchBarBackgroundColor = theme.navigationBarColor
+        self.searchController.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
+        self.searchController.searchBar.textField?.textColor = theme.color
+        self.searchController.tableView.separatorColor = .clear
+        self.searchController.navigationItem.rightBarButtonItem?.tintColor = theme.accentColor
+        self.searchController.tableView.backgroundColor = theme.backgroundColor
+        self.searchController.separatorColor = theme.separatorColor
+        self.searchController.view.backgroundColor = theme.backgroundColor
+        self.searchController.navigationBarClosure = { bar in
+            
+            bar.barTintColor = theme.navigationBarColor
+            bar.tintColor = theme.accentColor
+            
+        }
+        
+    }
+    
+}
+
+extension EntryOnboardingOverviewViewController: TagListViewDelegate {
+    
+    func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
+        
+    }
+    
+    func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
+        
+        sender.removeTagView(tagView)
+        
+        self.selectedTags.removeAll(where: { $0 == title })
+        
+    }
+    
+}
+
+extension EntryOnboardingOverviewViewController: LFSearchViewDataSource, LFSearchViewDelegate {
+    
+    func searchView(_ searchView: LFSearchViewController, tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if let tag = self.searchController.searchBar?.textField?.text, tag.isNotEmptyOrWhitespace, !allLoadedTags.contains(tag) {
+            return searchResultTags.count + 1
+        } else {
+            return searchResultTags.count
+        }
+        
+    }
+    
+    func searchView(_ searchView: LFSearchViewController, didTextChangeTo text: String, textLength: Int) {
+        
+        let text = text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        
+        if text.isEmpty {
+            self.searchResultTags = allLoadedTags.map { NSAttributedString(string: $0) }
+        } else {
+            self.searchResultTags = searchResults(for: text)
+        }
+        
+        searchView.reloadData()
+        
+    }
+    
+    func searchView(_ searchView: LFSearchViewController, didSelectResultAt index: Int) {
+        
+        if index != searchResultTags.count {
+            
+            let tag = searchResultTags[index].string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            self.addAndDisplayTagIfNotExisted(tag)
+            
+        } else {
+            
+            guard let tag = searchView.searchBar.textField?.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) else { return }
+            
+            self.addAndDisplayTagIfNotExisted(tag)
+            
+        }
+        
+        self.searchController.searchBar?.textField?.text = ""
+        
+    }
+    
+    func searchView(_ searchView: LFSearchViewController, didSearchForText text: String) {
+        
+        let tag = text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        self.addAndDisplayTagIfNotExisted(tag)
+        
+        self.searchController.searchBar?.textField?.text = ""
+        
+    }
+    
+    func searchView(_ searchView: LFSearchViewController, tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: searchView.cellIdentifier)!
+        
+        if indexPath.row == searchResultTags.count {
+            
+            if let tag = self.searchController.searchBar?.textField?.text, tag.isNotEmptyOrWhitespace, !allLoadedTags.contains(tag) {
+                
+                cell.textLabel?.text = String(format: String.localized("EntryOnboardingOverviewAddTagCell"), tag)
+                
+            }
+            
+        } else {
+            
+            cell.textLabel?.attributedText = self.searchResultTags[indexPath.row]
+            
+        }
+        
+        cell.textLabel?.textColor = self.cellTextColor
+        cell.contentView.backgroundColor = self.cellBackgroundColor
+        cell.selectionStyle = .none
+        
+        return cell
         
     }
     

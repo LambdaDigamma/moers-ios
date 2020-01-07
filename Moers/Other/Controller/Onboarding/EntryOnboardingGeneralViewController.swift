@@ -62,7 +62,7 @@ class EntryOnboardingGeneralViewController: UIViewController {
     
     private func setupUI() {
         
-        self.title = "Eintrag hinzufügen"
+        self.title = String.localized("EntryOnboardingGeneralViewControllerTitle")
         
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(contentView)
@@ -73,14 +73,14 @@ class EntryOnboardingGeneralViewController: UIViewController {
         self.contentView.addSubview(websiteTextField)
         self.contentView.addSubview(phoneTextField)
         
-        self.progressView.currentStep = "3. Allgemeines & Kontakt"
+        self.progressView.currentStep = String.localized("EntryOnboardingGeneralViewControllerCurrentStep")
         self.progressView.progress = 0.2
         
-        self.generalHeaderLabel.text = "Allgemeines"
-        self.contactHeaderLabel.text = "Kontakt (optional)"
-        self.nameTextField.placeholder = "Name"
-        self.websiteTextField.placeholder = "Website"
-        self.phoneTextField.placeholder = "Telefon"
+        self.generalHeaderLabel.text = String.localized("EntryOnboardingGeneralViewControllerGeneral").uppercased()
+        self.contactHeaderLabel.text = String.localized("EntryOnboardingGeneralViewControllerContact").uppercased()
+        self.nameTextField.placeholder = String.localized("EntryOnboardingGeneralViewControllerName")
+        self.websiteTextField.placeholder = String.localized("EntryOnboardingGeneralViewControllerWebsite")
+        self.phoneTextField.placeholder = String.localized("EntryOnboardingGeneralViewControllerPhone")
         self.nameTextField.delegate = self
         self.websiteTextField.delegate = self
         self.phoneTextField.delegate = self
@@ -179,7 +179,10 @@ class EntryOnboardingGeneralViewController: UIViewController {
         
         if nameTextField.text != "" {
             
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Weiter", style: .plain, target: self, action: #selector(self.continueOnboarding))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: String.localized("EntryOnboardingGeneralViewControllerNext"),
+                                                                     style: .plain,
+                                                                     target: self,
+                                                                     action: #selector(self.continueOnboarding))
             
         } else {
             

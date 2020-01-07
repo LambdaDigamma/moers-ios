@@ -110,8 +110,8 @@ class DetailEntryViewController: UIViewController {
         self.tagsListView.cornerRadius = 10
         self.tagsListView.backgroundColor = UIColor.clear
         
-        self.editButton.isHidden = true
-        self.historyButton.isHidden = true
+//        self.editButton.isHidden = true
+//        self.historyButton.isHidden = true
         
     }
     
@@ -157,7 +157,7 @@ class DetailEntryViewController: UIViewController {
         }
         
         if let update = entry.updatedAt {
-            self.lastUpdateLabel.text = "Letzte Änderung: \(update.beautify(format: "dd.MM.yyyy hh:mm"))"
+            self.lastUpdateLabel.text = "Letzte Änderung: \(update.beautify(format: "dd.MM.yyyy HH:mm"))"
         } else {
             self.lastUpdateLabel.text = "Letzte Änderung: nicht bekannt"
         }
