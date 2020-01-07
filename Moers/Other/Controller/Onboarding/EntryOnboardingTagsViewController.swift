@@ -25,7 +25,7 @@ class EntryOnboardingTagsViewController: UIViewController {
     
     lazy var searchController = { LFSearchViewController() }()
     
-    private var selectedTags: [String] = []
+    private var selectedTags: [String] = [] { didSet { updateNextButton() } }
     private var tags: [String] = []
     private var filteredTags: [NSAttributedString] = []
     private let fuse = Fuse(location: 0, distance: 100, threshold: 0.45, maxPatternLength: 32, isCaseSensitive: false)
@@ -91,15 +91,13 @@ class EntryOnboardingTagsViewController: UIViewController {
         
         self.searchController.delegate = self
         self.searchController.dataSource = self
+        self.searchController.searchBar.textField?.returnKeyType = .next
         self.searchController.searchBarPlaceHolder = String.localized("EntryOnboardingTagsViewControllerSearchBarPlaceholder")
         
         let item = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(close))
         self.searchController.navigationItem.rightBarButtonItem = item
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: String.localized("EntryOnboardingTagsViewControllerNext"),
-                                                                 style: .plain,
-                                                                 target: self,
-                                                                 action: #selector(self.continueOnboarding))
+        self.updateNextButton()
         
     }
     
@@ -247,6 +245,23 @@ class EntryOnboardingTagsViewController: UIViewController {
         
     }
     
+    private func updateNextButton() {
+        
+        if selectedTags.count != 0 {
+            
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: String.localized("EntryOnboardingTagsViewControllerNext"),
+                                                                     style: .plain,
+                                                                     target: self,
+                                                                     action: #selector(self.continueOnboarding))
+            
+        } else {
+            
+            self.navigationItem.rightBarButtonItem = nil
+            
+        }
+        
+    }
+    
     @objc private func continueOnboarding() {
         
         entryManager.entryTags = selectedTags
@@ -289,6 +304,8 @@ extension EntryOnboardingTagsViewController: LFSearchViewDataSource, LFSearchVie
     
     func searchView(_ searchView: LFSearchViewController, didTextChangeTo text: String, textLength: Int) {
         
+        let text = text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        
         if text.isEmpty {
             self.filteredTags = tags.map { NSAttributedString(string: $0) }
         } else {
@@ -303,14 +320,12 @@ extension EntryOnboardingTagsViewController: LFSearchViewDataSource, LFSearchVie
         
         if index != filteredTags.count {
             
-            let tag = filteredTags[index].string
-            
+            let tag = filteredTags[index].string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             self.addTag(tag)
             
         } else {
             
-            guard let tag = searchView.searchBar.textField?.text else { return }
-            
+            guard let tag = searchView.searchBar.textField?.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) else { return }
             self.addTag(tag)
             
         }
@@ -320,6 +335,11 @@ extension EntryOnboardingTagsViewController: LFSearchViewDataSource, LFSearchVie
     }
     
     func searchView(_ searchView: LFSearchViewController, didSearchForText text: String) {
+        
+        let tag = text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        self.addTag(tag)
+        
+        self.searchController.searchBar?.textField?.text = ""
         
     }
     

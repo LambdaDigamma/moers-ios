@@ -931,6 +931,8 @@ extension EntryOnboardingOverviewViewController: LFSearchViewDataSource, LFSearc
     
     func searchView(_ searchView: LFSearchViewController, didTextChangeTo text: String, textLength: Int) {
         
+        let text = text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        
         if text.isEmpty {
             self.searchResultTags = allLoadedTags.map { NSAttributedString(string: $0) }
         } else {
@@ -945,13 +947,12 @@ extension EntryOnboardingOverviewViewController: LFSearchViewDataSource, LFSearc
         
         if index != searchResultTags.count {
             
-            let tag = searchResultTags[index].string
-            
+            let tag = searchResultTags[index].string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             self.addAndDisplayTagIfNotExisted(tag)
             
         } else {
             
-            guard let tag = searchView.searchBar.textField?.text else { return }
+            guard let tag = searchView.searchBar.textField?.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) else { return }
             
             self.addAndDisplayTagIfNotExisted(tag)
             
@@ -962,6 +963,11 @@ extension EntryOnboardingOverviewViewController: LFSearchViewDataSource, LFSearc
     }
     
     func searchView(_ searchView: LFSearchViewController, didSearchForText text: String) {
+        
+        let tag = text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        self.addAndDisplayTagIfNotExisted(tag)
+        
+        self.searchController.searchBar?.textField?.text = ""
         
     }
     
