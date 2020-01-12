@@ -421,10 +421,13 @@ extension TabBarController: Themeable {
                 
                 nav.navigationBar.barTintColor = theme.navigationBarColor
                 nav.navigationBar.tintColor = theme.accentColor
-                nav.navigationBar.prefersLargeTitles = true
                 nav.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
                 nav.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
                 nav.navigationBar.isTranslucent = true
+                
+                if #available(iOS 13, *) {
+                    nav.navigationBar.prefersLargeTitles = true
+                }
                 
                 if theme.statusBarStyle == .lightContent {
                     self.tabBar.barStyle = .black
