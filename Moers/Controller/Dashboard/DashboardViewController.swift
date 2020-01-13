@@ -17,6 +17,8 @@ import MMAPI
 
 class DashboardViewController: CardCollectionViewController {
     
+    var coordinator: DashboardCoordinator?
+    
     var components: [BaseComponent] = []
     
     private let locationManager: LocationManagerProtocol
@@ -125,11 +127,7 @@ class DashboardViewController: CardCollectionViewController {
     }
     
     public func openRubbishViewController () {
-        
-        let rubbishCollectionViewController = RubbishCollectionViewController()
-        
-        navigationController?.pushViewController(rubbishCollectionViewController, animated: true)
-        
+        coordinator?.pushRubbishViewController()
     }
     
     private func setupIntents() {

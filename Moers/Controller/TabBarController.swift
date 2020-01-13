@@ -17,6 +17,8 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
 
     let firstLaunch: FirstLaunch
     
+    let dashboard: DashboardCoordinator
+    
     let dashboardViewController: DashboardViewController
     let newsViewController: NewsViewController
     let mainViewController: MainViewController
@@ -67,6 +69,12 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         self.entryManager = entryManager
         self.parkingLotManager = parkingLotManager
         
+        self.dashboard = DashboardCoordinator(locationManager: locationManager,
+                                              rubbishManager: rubbishManager,
+                                              geocodingManager: geocodingManager,
+                                              petrolManager: petrolManager)
+        
+        
         let mapViewController = MapViewController(locationManager: locationManager)
         let contentViewController = SearchDrawerViewController(locationManager: locationManager)
         
@@ -113,19 +121,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         self.loadCurrentLocation()
         
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         let tabControllerFactory = TabControllerFactory()
-        
-        let dashboardTab = tabControllerFactory.buildTabItem(
-            using: ItemBounceContentView(),
-            title: String.localized("DashboardTabItem"),
-            image: #imageLiteral(resourceName: "dashboard"),
-            accessibilityLabel: String.localized("DashboardTabItem"),
-            accessibilityIdentifier: "TabDashboard")
         
         let newsTab = tabControllerFactory.buildTabItem(
             using: ItemBounceContentView(),
@@ -154,10 +150,6 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             accessibilityLabel: String.localized("OtherTabItem"),
             accessibilityIdentifier: "TabOther")
         
-        let dashboard = tabControllerFactory.buildNavigationController(
-            using: dashboardViewController,
-            tabItem: dashboardTab)
-        
         let news = tabControllerFactory.buildNavigationController(
             using: newsViewController,
             tabItem: newsTab)
@@ -174,7 +166,16 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             using: otherViewController,
             tabItem: otherTab)
         
-        self.viewControllers = [dashboard, news, map, events, other]
+        self.viewControllers = [dashboard.navigationController,
+                                news,
+                                map,
+                                events,
+                                other]
+        
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         self.setupTheming()
         self.loadRubbishData()

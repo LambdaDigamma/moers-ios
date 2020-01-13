@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF04D60A23CBD5EC008AE677 /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF04D60923CBD5EC008AE677 /* DashboardCoordinator.swift */; };
 		DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */; };
 		DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4952082AFD000CC0AA8 /* FirstLaunchManager.swift */; };
 		DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */; };
@@ -223,6 +224,7 @@
 
 /* Begin PBXFileReference section */
 		DF02B7641FB0BBD8004B8B3E /* SwiftyConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyConfiguration.framework; path = Carthage/Build/iOS/SwiftyConfiguration.framework; sourceTree = "<group>"; };
+		DF04D60923CBD5EC008AE677 /* DashboardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
 		DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ApplicationController.swift; path = ../../Controller/ApplicationController.swift; sourceTree = "<group>"; };
 		DF0CB4952082AFD000CC0AA8 /* FirstLaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchManager.swift; sourceTree = "<group>"; };
 		DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = ../../Controller/TabBarController.swift; sourceTree = "<group>"; };
@@ -489,6 +491,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF04D60423CBD4F0008AE677 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				DF04D60923CBD5EC008AE677 /* DashboardCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 		DF0CB4942082AFA300CC0AA8 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -752,6 +762,7 @@
 			children = (
 				DF11BF9622B94E410051C3B3 /* Config */,
 				DF11BFC222BA6E960051C3B3 /* Common */,
+				DF04D60423CBD4F0008AE677 /* Coordinators */,
 				DF11BFC022BA68D70051C3B3 /* Dashboard */,
 				DF11BFC722BA70D20051C3B3 /* News */,
 				DF11BFBE22BA67C30051C3B3 /* Map */,
@@ -1450,6 +1461,7 @@
 				DFB4D76B20B064CA00C8D179 /* StaticTableView.swift in Sources */,
 				DFB6A0BF21033C7800D5C12B /* DetailCameraViewController.swift in Sources */,
 				DF29FB4F20B19BE600741A63 /* ThemeCardView.swift in Sources */,
+				DF04D60A23CBD5EC008AE677 /* DashboardCoordinator.swift in Sources */,
 				DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */,
 				DFD7ACB220A44C5A00D49BE2 /* SelectionViewController.swift in Sources */,
 				DF2D6DAB20B8A02B00176614 /* OnboardingManager.swift in Sources */,
