@@ -58,8 +58,8 @@ class DashboardRubbishCardView: TitleCardView {
     private func setupConstraints() {
         
         let constraints = [rubbishList.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-                           rubbishList.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8),
-                           rubbishList.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8),
+                           rubbishList.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
+                           rubbishList.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
                            rubbishList.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8)]
 
         NSLayoutConstraint.activate(constraints)

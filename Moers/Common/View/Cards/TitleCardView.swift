@@ -40,8 +40,8 @@ class TitleCardView: CardView {
     private func setupConstraints() {
         
         let constraints = [titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-                           titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-                           titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+                           titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+                           titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
                            titleLabel.heightAnchor.constraint(equalToConstant: 26)]
         
         NSLayoutConstraint.activate(constraints)

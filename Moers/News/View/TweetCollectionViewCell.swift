@@ -137,8 +137,8 @@ class TweetCollectionViewCell: UICollectionViewCell, TWTRTweetViewDelegate {
         
         let margins = contentView.layoutMarginsGuide
         
-        let constraints = [tweetView.leftAnchor.constraint(equalTo: margins.leftAnchor, constant: 0),
-                           tweetView.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: 0),
+        let constraints = [tweetView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 0),
+                           tweetView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 0),
                            tweetView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 8),
                            tweetView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -8)]
         

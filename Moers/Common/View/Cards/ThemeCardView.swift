@@ -62,8 +62,8 @@ class ThemeCardView: TitleCardView {
     private func setupConstraints() {
         
         let constraints = [colorList.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
-                           colorList.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-                           colorList.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+                           colorList.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+                           colorList.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
                            colorList.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)]
         
         NSLayoutConstraint.activate(constraints)

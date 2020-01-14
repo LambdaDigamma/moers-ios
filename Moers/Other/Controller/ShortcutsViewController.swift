@@ -58,8 +58,8 @@ class ShortcutsViewController: UIViewController {
     private func setupConstraints() {
         
         let constraints = [intentStackView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 16),
-                           intentStackView.leftAnchor.constraint(equalTo: self.safeLeftAnchor, constant: 16),
-                           intentStackView.rightAnchor.constraint(equalTo: self.safeRightAnchor, constant: -16)]
+                           intentStackView.leadingAnchor.constraint(equalTo: self.safeLeftAnchor, constant: 16),
+                           intentStackView.trailingAnchor.constraint(equalTo: self.safeRightAnchor, constant: -16)]
         
         NSLayoutConstraint.activate(constraints)
         

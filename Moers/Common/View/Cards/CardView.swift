@@ -181,13 +181,13 @@ class CardView: UIView {
         self.messageLabel.text = message
         
         let constraints = [blurView.topAnchor.constraint(equalTo: self.topAnchor),
-                           blurView.leftAnchor.constraint(equalTo: self.leftAnchor),
-                           blurView.rightAnchor.constraint(equalTo: self.rightAnchor),
+                           blurView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+                           blurView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
                            blurView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
                            errorContainer.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                            errorContainer.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-                           errorContainer.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-                           errorContainer.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16)]
+                           errorContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+                           errorContainer.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)]
         
         NSLayoutConstraint.activate(constraints)
         
@@ -207,8 +207,8 @@ class CardView: UIView {
         self.addSubview(activityIndicator)
         
         let constraints = [blurView.topAnchor.constraint(equalTo: self.topAnchor),
-                           blurView.leftAnchor.constraint(equalTo: self.leftAnchor),
-                           blurView.rightAnchor.constraint(equalTo: self.rightAnchor),
+                           blurView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+                           blurView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
                            blurView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
                            activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                            activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor)]

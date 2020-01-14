@@ -70,8 +70,8 @@ class CardCollectionViewController: UIViewController, UICollectionViewDataSource
     private func setupConstraints() {
         
         let constraints = [collectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
-                           collectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-                           collectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+                           collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                           collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
                            collectionView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)]
         
         NSLayoutConstraint.activate(constraints)

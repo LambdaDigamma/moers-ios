@@ -46,8 +46,8 @@ class MonthHeaderView: UITableViewHeaderFooterView {
                            bgView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
                            bgView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
                            titleLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
-                           titleLabel.leftAnchor.constraint(equalTo: margins.leftAnchor, constant: 0),
-                           titleLabel.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: -0),
+                           titleLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 0),
+                           titleLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -0),
                            titleLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -0)]
         
         NSLayoutConstraint.activate(constraints)

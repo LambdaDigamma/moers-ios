@@ -55,8 +55,8 @@ class DetailCameraViewController: UIViewController {
     private func setupConstraints() {
         
         let constraints = [showButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 8),
-                           showButton.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-                           showButton.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+                           showButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                           showButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
                            showButton.heightAnchor.constraint(equalToConstant: 50),
                            showButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -8)]
         

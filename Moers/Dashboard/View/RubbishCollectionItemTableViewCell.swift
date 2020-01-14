@@ -48,8 +48,8 @@ class RubbishCollectionItemTableViewCell: UITableViewCell {
         let margins = contentView.layoutMarginsGuide
         
         let constraints = [rubbishCollectionView.topAnchor.constraint(equalTo: margins.topAnchor, constant: -8),
-                           rubbishCollectionView.leftAnchor.constraint(equalTo: margins.leftAnchor, constant: 0),
-                           rubbishCollectionView.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: -0),
+                           rubbishCollectionView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 0),
+                           rubbishCollectionView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -0),
                            rubbishCollectionView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 8)]
         
         NSLayoutConstraint.activate(constraints)

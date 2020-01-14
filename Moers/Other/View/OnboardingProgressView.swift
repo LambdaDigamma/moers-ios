@@ -68,11 +68,11 @@ class OnboardingProgressView: UIView {
     private func setupConstraints() {
         
         let constraints = [currentStepLabel.topAnchor.constraint(equalTo: self.topAnchor),
-                           currentStepLabel.leftAnchor.constraint(equalTo: self.leftAnchor),
-                           currentStepLabel.rightAnchor.constraint(equalTo: self.rightAnchor),
+                           currentStepLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+                           currentStepLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
                            progressView.topAnchor.constraint(equalTo: self.currentStepLabel.bottomAnchor, constant: 16),
-                           progressView.leftAnchor.constraint(equalTo: self.leftAnchor),
-                           progressView.rightAnchor.constraint(equalTo: self.rightAnchor),
+                           progressView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+                           progressView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
                            progressView.heightAnchor.constraint(equalToConstant: 3),
                            separatorView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20),
                            separatorView.centerXAnchor.constraint(equalTo: self.centerXAnchor),

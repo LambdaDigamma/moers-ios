@@ -46,8 +46,8 @@ class EntryValidationViewController: UIViewController {
     private func setupConstraints() {
         
         let constraints = [tableView.topAnchor.constraint(equalTo: self.safeTopAnchor),
-                           tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-                           tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+                           tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                           tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
                            tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)]
         
         NSLayoutConstraint.activate(constraints)

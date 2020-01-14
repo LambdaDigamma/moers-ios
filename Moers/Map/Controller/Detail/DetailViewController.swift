@@ -36,8 +36,8 @@ class DetailViewController: UIViewController {
             self.view.addSubview(contentView)
             
             contentView.topAnchor.constraint(equalTo: routeButton.bottomAnchor, constant: 8).isActive = true
-            contentView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16).isActive = true
-            contentView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16).isActive = true
+            contentView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16).isActive = true
+            contentView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).isActive = true
             contentView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: -20).isActive = true
             
         }
@@ -108,23 +108,23 @@ class DetailViewController: UIViewController {
                            gripperView.heightAnchor.constraint(equalToConstant: 5),
                            gripperView.widthAnchor.constraint(equalToConstant: 36),
                            closeButton.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 16),
-                           closeButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                           closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
                            closeButton.heightAnchor.constraint(equalToConstant: 25),
                            closeButton.widthAnchor.constraint(equalToConstant: 25),
                            imageView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 16),
-                           imageView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
+                           imageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
                            imageView.widthAnchor.constraint(equalToConstant: 47),
                            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
                            nameLabel.topAnchor.constraint(equalTo: imageView.topAnchor),
-                           nameLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 8),
-                           nameLabel.rightAnchor.constraint(equalTo: closeButton.leftAnchor, constant: -8),
+                           nameLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
+                           nameLabel.trailingAnchor.constraint(equalTo: closeButton.leadingAnchor, constant: -8),
                            subtitleLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
-                           subtitleLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 8),
-                           subtitleLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                           subtitleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
+                           subtitleLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
                            subtitleLabel.heightAnchor.constraint(equalToConstant: 21),
                            routeButton.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 32),
-                           routeButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-                           routeButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                           routeButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                           routeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
                            routeButton.heightAnchor.constraint(equalToConstant: 50)]
         
         NSLayoutConstraint.activate(constraints)

@@ -35,8 +35,8 @@ class TagTableViewCell: UITableViewCell {
         let margins = contentView.layoutMarginsGuide
         
         let constraints = [titleLabel.topAnchor.constraint(equalTo: margins.topAnchor),
-                           titleLabel.leftAnchor.constraint(equalTo: margins.leftAnchor),
-                           titleLabel.rightAnchor.constraint(equalTo: margins.rightAnchor),
+                           titleLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+                           titleLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
                            titleLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor)]
         
         NSLayoutConstraint.activate(constraints)

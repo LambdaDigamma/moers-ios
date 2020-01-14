@@ -25,8 +25,8 @@ class WrapperCardCollectionViewCell: UICollectionViewCell {
         self.addSubview(view)
         
         let constraints = [view.topAnchor.constraint(equalTo: self.topAnchor),
-                           view.leftAnchor.constraint(equalTo: self.leftAnchor),
-                           view.rightAnchor.constraint(equalTo: self.rightAnchor),
+                           view.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+                           view.trailingAnchor.constraint(equalTo: self.trailingAnchor),
                            view.bottomAnchor.constraint(equalTo: self.bottomAnchor)]
         
         NSLayoutConstraint.activate(constraints)

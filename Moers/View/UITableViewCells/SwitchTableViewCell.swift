@@ -47,11 +47,11 @@ class SwitchTableViewCell: UITableViewCell {
         let margins = contentView.layoutMarginsGuide
         
         let constraints = [descriptionLabel.topAnchor.constraint(equalTo: margins.topAnchor),
-                           descriptionLabel.leftAnchor.constraint(equalTo: margins.leftAnchor),
-                           descriptionLabel.rightAnchor.constraint(equalTo: switchControl.leftAnchor, constant: -8),
+                           descriptionLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+                           descriptionLabel.trailingAnchor.constraint(equalTo: switchControl.leadingAnchor, constant: -8),
                            descriptionLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
                            switchControl.topAnchor.constraint(equalTo: margins.topAnchor),
-                           switchControl.rightAnchor.constraint(equalTo: margins.rightAnchor),
+                           switchControl.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
                            switchControl.bottomAnchor.constraint(equalTo: margins.bottomAnchor)]
         
         NSLayoutConstraint.activate(constraints)

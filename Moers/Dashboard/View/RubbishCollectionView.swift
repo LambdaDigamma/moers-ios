@@ -92,15 +92,15 @@ class RubbishCollectionView: UIView {
         let constraints = [
             self.heightAnchor.constraint(equalToConstant: 60),
             imageView.topAnchor.constraint(equalTo: typeLabel.topAnchor),
-            imageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8),
+            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
             imageView.bottomAnchor.constraint(equalTo: self.dateLabel.bottomAnchor),
             imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
             typeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
-            typeLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 8),
-            typeLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8),
+            typeLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
+            typeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
             dateLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
-            dateLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 8),
-            dateLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)
+            dateLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
+            dateLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8)
         ]
         
         NSLayoutConstraint.activate(constraints)

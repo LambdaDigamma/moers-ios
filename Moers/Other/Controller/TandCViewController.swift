@@ -46,8 +46,8 @@ class TandCViewController: UIViewController {
     private func setupConstraints() {
         
         let constraints = [textView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 8),
-                           textView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 8),
-                           textView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -8),
+                           textView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 8),
+                           textView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -8),
                            textView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: -8)]
         
         NSLayoutConstraint.activate(constraints)

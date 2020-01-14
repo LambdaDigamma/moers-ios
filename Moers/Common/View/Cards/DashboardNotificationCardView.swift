@@ -82,11 +82,11 @@ class DashboardNotificationCardView: CardView {
         let constraints = [imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
                            imageView.heightAnchor.constraint(equalToConstant: 50),
                            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-                           titleLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 16),
-                           titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+                           titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
+                           titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
                            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-                           subtitleLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 16),
-                           subtitleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+                           subtitleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
+                           subtitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
                            subtitleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)]
         
         NSLayoutConstraint.activate(constraints)
@@ -94,7 +94,7 @@ class DashboardNotificationCardView: CardView {
         imageWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: 0)
         imageWidthConstraint?.isActive = true
         
-        imageLeftConstraint = imageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0)
+        imageLeftConstraint = imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0)
         imageLeftConstraint?.isActive = true
         
     }

@@ -86,12 +86,12 @@ class DebugViewController: UIViewController {
         
         let constraints: [NSLayoutConstraint] = [
             rubbishItemsTextView.topAnchor.constraint(equalTo: self.safeTopAnchor),
-            rubbishItemsTextView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 8),
+            rubbishItemsTextView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 8),
             rubbishItemsTextView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor),
             rubbishItemsTextView.widthAnchor.constraint(equalTo: notificationItemsTextView.widthAnchor),
             notificationItemsTextView.topAnchor.constraint(equalTo: self.safeTopAnchor),
-            notificationItemsTextView.leftAnchor.constraint(equalTo: rubbishItemsTextView.rightAnchor),
-            notificationItemsTextView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -8),
+            notificationItemsTextView.leadingAnchor.constraint(equalTo: rubbishItemsTextView.trailingAnchor),
+            notificationItemsTextView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -8),
             notificationItemsTextView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)]
         
         NSLayoutConstraint.activate(constraints)

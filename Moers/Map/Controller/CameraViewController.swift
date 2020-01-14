@@ -48,8 +48,8 @@ class CameraViewController: UIViewController {
     private func setupConstraints() {
         
         let constraints = [webView.topAnchor.constraint(equalTo: self.safeTopAnchor),
-                           webView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-                           webView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+                           webView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                           webView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
                            webView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)]
         
         NSLayoutConstraint.activate(constraints)
