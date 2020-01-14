@@ -12,6 +12,8 @@ import MMUI
 
 class MMEventsViewController: EventsViewController {
 
+    var coordinator: EventCoordinator?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -163,7 +163,7 @@ class EntryOnboardingTagsViewController: UIViewController {
         
         guard let tabBarController = self.tabBarController as? TabBarController else { return }
         
-        let locations = tabBarController.mainViewController.locations
+        let locations = tabBarController.map.mainViewController?.locations ?? []
         
         // TODO: Improve Tag Fetching
         self.tags = Array(Set(locations.map { $0.tags }.reduce([], +))).sorted()

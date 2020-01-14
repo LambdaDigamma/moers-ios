@@ -14,6 +14,8 @@ import CoreLocation
 
 class MainViewController: PulleyViewController {
 
+    var coordinator: MapCoordintor?
+    
     public var mapViewController: MapViewController!
     public var contentViewController: SearchDrawerViewController!
     public var locations: [Location] = []

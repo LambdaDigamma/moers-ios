@@ -104,7 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if RubbishManager.shared.isEnabled && RubbishManager.shared.rubbishStreet != nil {
                 
                 viewController.selectedIndex = 0
-                viewController.dashboardViewController.openRubbishViewController()
+                viewController.dashboard.pushRubbishViewController()
                 
             }
             

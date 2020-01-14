@@ -534,7 +534,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
                     
                     guard let tabBarController = self.tabBarController as? TabBarController else { return }
                     
-                    tabBarController.mainViewController.addLocation(entry)
+                    tabBarController.map.mainViewController?.addLocation(entry)
                     
                 }
                 
@@ -595,7 +595,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
                     
                     guard let tabBarController = self.tabBarController as? TabBarController else { return }
                     
-                    tabBarController.mainViewController.loadData()
+                    tabBarController.map.mainViewController?.loadData()
                     
                     // TODO: Update Entry in Map
                     
@@ -769,7 +769,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
         
         guard let tabBarController = self.tabBarController as? TabBarController else { return }
         
-        let locations = tabBarController.mainViewController.locations
+        let locations = tabBarController.map.mainViewController?.locations ?? []
         
         // TODO: Improve Tag Fetching
         self.allLoadedTags = Array(Set(locations.map { $0.tags }.reduce([], +))).sorted()

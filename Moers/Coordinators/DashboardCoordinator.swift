@@ -16,6 +16,8 @@ class DashboardCoordinator: Coordinator {
     var rubbishManager: RubbishManagerProtocol
     var petrolManager: PetrolManagerProtocol
     
+    var dashboardViewController: DashboardViewController?
+    
     init(navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
          locationManager: LocationManagerProtocol,
          rubbishManager: RubbishManagerProtocol,
@@ -27,7 +29,6 @@ class DashboardCoordinator: Coordinator {
         self.petrolManager = petrolManager
         
         self.navigationController.coordinator = self
-        self.navigationController.navigationBar.prefersLargeTitles = true
         
         let dashboardViewController = DashboardViewController(locationManager: locationManager,
                                                               geocodingManager: geocodingManager,
@@ -37,6 +38,7 @@ class DashboardCoordinator: Coordinator {
         dashboardViewController.coordinator = self
         
         self.navigationController.viewControllers = [dashboardViewController]
+        self.dashboardViewController = dashboardViewController
         
     }
     
@@ -62,6 +64,13 @@ class DashboardCoordinator: Coordinator {
         let rubbishCollectionViewController = RubbishCollectionViewController()
         
         navigationController.pushViewController(rubbishCollectionViewController, animated: true)
+        
+    }
+    
+    public func updateUI() {
+        
+        dashboardViewController?.reloadUI()
+        dashboardViewController?.triggerUpdate()
         
     }
     

@@ -18,11 +18,10 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     let firstLaunch: FirstLaunch
     
     let dashboard: DashboardCoordinator
+    let map: MapCoordintor
+    let events: EventCoordinator
     
-    let dashboardViewController: DashboardViewController
     let newsViewController: NewsViewController
-    let mainViewController: MainViewController
-    let eventViewController: MMEventsViewController
     let otherViewController: OtherViewController
     
     let locationManager: LocationManagerProtocol
@@ -69,28 +68,26 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         self.entryManager = entryManager
         self.parkingLotManager = parkingLotManager
         
-        self.dashboard = DashboardCoordinator(locationManager: locationManager,
-                                              rubbishManager: rubbishManager,
-                                              geocodingManager: geocodingManager,
-                                              petrolManager: petrolManager)
+        self.dashboard = DashboardCoordinator(
+            locationManager: locationManager,
+            rubbishManager: rubbishManager,
+            geocodingManager: geocodingManager,
+            petrolManager: petrolManager
+        )
         
+        self.map = MapCoordintor(
+            locationManager: locationManager,
+            petrolManager: petrolManager,
+            cameraManager: cameraManager,
+            entryManager: entryManager,
+            parkingLotManager: parkingLotManager
+        )
         
-        let mapViewController = MapViewController(locationManager: locationManager)
-        let contentViewController = SearchDrawerViewController(locationManager: locationManager)
-        
-        self.dashboardViewController = DashboardViewController(locationManager: locationManager,
-                                                               geocodingManager: geocodingManager,
-                                                               petrolManager: petrolManager)
+        self.events = EventCoordinator(
+            eventManager: EventManager()
+        )
         
         self.newsViewController = NewsViewController()
-        self.mainViewController = MainViewController(contentViewController: mapViewController,
-                                                     drawerViewController: contentViewController,
-                                                     locationManager: locationManager,
-                                                     petrolManager: petrolManager,
-                                                     cameraManager: cameraManager,
-                                                     entryManager: entryManager,
-                                                     parkingLotManager: parkingLotManager)
-        self.eventViewController = MMEventsViewController()
         self.otherViewController = OtherViewController(locationManager: locationManager,
                                                        geocodingManager: geocodingManager,
                                                        rubbishManager: rubbishManager,
@@ -130,19 +127,6 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             accessibilityLabel: String.localized("NewsTitle"),
             accessibilityIdentifier: "TabNews")
         
-        let mapTab = tabControllerFactory.buildTabItem(
-            using: MapItemContentView(),
-            image: #imageLiteral(resourceName: "map_marker"),
-            accessibilityLabel: String.localized("MapTabItem"),
-            accessibilityIdentifier: "TabMap")
-        
-        let eventsTab = tabControllerFactory.buildTabItem(
-            using: ItemBounceContentView(),
-            title: String.localized("Events"),
-            image: #imageLiteral(resourceName: "calendar"),
-            accessibilityLabel: String.localized("Events"),
-            accessibilityIdentifier: "TabEvents")
-        
         let otherTab = tabControllerFactory.buildTabItem(
             using: ItemBounceContentView(),
             title: String.localized("OtherTabItem"),
@@ -154,22 +138,14 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             using: newsViewController,
             tabItem: newsTab)
         
-        let map = tabControllerFactory.buildNavigationController(
-            using: mainViewController,
-            tabItem: mapTab)
-        
-        let events = tabControllerFactory.buildNavigationController(
-            using: eventViewController,
-            tabItem: eventsTab)
-        
         let other = tabControllerFactory.buildNavigationController(
             using: otherViewController,
             tabItem: otherTab)
         
         self.viewControllers = [dashboard.navigationController,
                                 news,
-                                map,
-                                events,
+                                map.navigationController,
+                                events.navigationController,
                                 other]
         
     }
@@ -247,8 +223,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     // MARK: - Actions
     
     public func updateDashboard() {
-        dashboardViewController.reloadUI()
-        dashboardViewController.triggerUpdate()
+        dashboard.updateUI()
     }
     
     @objc func setupDidComplete() {
@@ -262,10 +237,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     }
     
     @objc func search() {
-        
-        mainViewController.setDrawerPosition(position: .open, animated: true)
-        mainViewController.contentViewController.searchDrawer.searchBar.becomeFirstResponder()
-        
+        map.showSearch()
     }
     
     private func showBulletin() {
