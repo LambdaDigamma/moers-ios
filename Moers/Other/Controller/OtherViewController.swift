@@ -15,6 +15,8 @@ import MMUI
 
 class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
+    var coordinator: OtherCoordinator?
+    
     private let standardCellIdentifier = "standard"
     private let accountCellIdentifier = "account"
     private var backgroundColor: UIColor = .clear

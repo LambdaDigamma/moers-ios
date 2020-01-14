@@ -20,9 +20,9 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     let dashboard: DashboardCoordinator
     let map: MapCoordintor
     let events: EventCoordinator
+    let other: OtherCoordinator
     
     let newsViewController: NewsViewController
-    let otherViewController: OtherViewController
     
     let locationManager: LocationManagerProtocol
     let geocodingManager: GeocodingManagerProtocol
@@ -87,11 +87,14 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             eventManager: EventManager()
         )
         
+        self.other = OtherCoordinator(
+            locationManager: locationManager,
+            geocodingManager: geocodingManager,
+            rubbishManager: rubbishManager,
+            petrolManager: petrolManager
+        )
+        
         self.newsViewController = NewsViewController()
-        self.otherViewController = OtherViewController(locationManager: locationManager,
-                                                       geocodingManager: geocodingManager,
-                                                       rubbishManager: rubbishManager,
-                                                       petrolManager: petrolManager)
         
         super.init(nibName: nil, bundle: nil)
         
@@ -127,26 +130,15 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             accessibilityLabel: String.localized("NewsTitle"),
             accessibilityIdentifier: "TabNews")
         
-        let otherTab = tabControllerFactory.buildTabItem(
-            using: ItemBounceContentView(),
-            title: String.localized("OtherTabItem"),
-            image: #imageLiteral(resourceName: "list"),
-            accessibilityLabel: String.localized("OtherTabItem"),
-            accessibilityIdentifier: "TabOther")
-        
         let news = tabControllerFactory.buildNavigationController(
             using: newsViewController,
             tabItem: newsTab)
-        
-        let other = tabControllerFactory.buildNavigationController(
-            using: otherViewController,
-            tabItem: otherTab)
         
         self.viewControllers = [dashboard.navigationController,
                                 news,
                                 map.navigationController,
                                 events.navigationController,
-                                other]
+                                other.navigationController]
         
     }
 
