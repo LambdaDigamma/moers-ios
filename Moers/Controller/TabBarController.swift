@@ -15,7 +15,7 @@ import MMUI
 
 class TabBarController: ESTabBarController, UITabBarControllerDelegate {
 
-    let firstLaunch: FirstLaunch
+    var firstLaunch: FirstLaunch
     
     let dashboard: DashboardCoordinator
     let map: MapCoordintor
@@ -152,6 +152,8 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        self.firstLaunch = FirstLaunch(userDefaults: .standard, key: Constants.firstLaunch)
         
         if (firstLaunch.isFirstLaunch || !onboardingManager.userDidCompleteSetup) && !isSnapshotting() {
             showBulletin()

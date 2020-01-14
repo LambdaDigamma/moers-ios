@@ -46,6 +46,24 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "cp -f -R &quot;${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/&quot; &quot;${SYMROOT}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "DF57D66A2187383000E6A0A9"
+                     BuildableName = "MoersTests.xctest"
+                     BlueprintName = "MoersTests"
+                     ReferencedContainer = "container:Moers.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"

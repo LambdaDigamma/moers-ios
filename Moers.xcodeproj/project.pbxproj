@@ -132,6 +132,10 @@
 		DF95197F20C8B6F3001D13DC /* PetrolStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95197E20C8B6F3001D13DC /* PetrolStationViewController.swift */; };
 		DF9605A923BD06A800E24959 /* AuditChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9605A823BD06A800E24959 /* AuditChangeView.swift */; };
 		DF9A914B2160DA840054A2B8 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9A914A2160DA840054A2B8 /* Environment.swift */; };
+		DF9D2FC923CE0096008938F6 /* MMUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF9D2FC823CE0096008938F6 /* MMUI */; };
+		DF9D2FCB23CE0096008938F6 /* Gestalt in Frameworks */ = {isa = PBXBuildFile; productRef = DF9D2FCA23CE0096008938F6 /* Gestalt */; };
+		DF9D2FCD23CE0096008938F6 /* MMAPI in Frameworks */ = {isa = PBXBuildFile; productRef = DF9D2FCC23CE0096008938F6 /* MMAPI */; };
+		DF9D2FCF23CE0096008938F6 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = DF9D2FCE23CE0096008938F6 /* TextFieldEffects */; };
 		DFA17DF420DEF9DE00BBD838 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA17DF320DEF9DE00BBD838 /* UIButton+Extensions.swift */; };
 		DFA96A6320BD8A390009B279 /* AveragePetrolPriceComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA96A6220BD8A390009B279 /* AveragePetrolPriceComponent.swift */; };
 		DFA9EF0A20B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0920B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift */; };
@@ -463,6 +467,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF9D2FCD23CE0096008938F6 /* MMAPI in Frameworks */,
+				DF9D2FCF23CE0096008938F6 /* TextFieldEffects in Frameworks */,
+				DF9D2FC923CE0096008938F6 /* MMUI in Frameworks */,
+				DF9D2FCB23CE0096008938F6 /* Gestalt in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1067,10 +1075,10 @@
 			buildConfigurationList = DF1A49711F6AAB7000E9108B /* Build configuration list for PBXNativeTarget "Moers" */;
 			buildPhases = (
 				DF1A495C1F6AAB7000E9108B /* Frameworks */,
+				DF36A75B2379E27F006BF6EA /* Fix SPM */,
 				DF1A495B1F6AAB7000E9108B /* Sources */,
 				DF1A495D1F6AAB7000E9108B /* Resources */,
 				DFB618591FAE144D00C98EB6 /* ShellScript */,
-				DF36A75B2379E27F006BF6EA /* Fix SPM */,
 			);
 			buildRules = (
 			);
@@ -1091,6 +1099,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DF57D6742187383000E6A0A9 /* Build configuration list for PBXNativeTarget "MoersTests" */;
 			buildPhases = (
+				DF9D2FD023CE013D008938F6 /* Fix SPM */,
 				DF57D6672187383000E6A0A9 /* Sources */,
 				DF57D6682187383000E6A0A9 /* Frameworks */,
 				DF57D6692187383000E6A0A9 /* Resources */,
@@ -1101,6 +1110,12 @@
 				DF57D6712187383000E6A0A9 /* PBXTargetDependency */,
 			);
 			name = MoersTests;
+			packageProductDependencies = (
+				DF9D2FC823CE0096008938F6 /* MMUI */,
+				DF9D2FCA23CE0096008938F6 /* Gestalt */,
+				DF9D2FCC23CE0096008938F6 /* MMAPI */,
+				DF9D2FCE23CE0096008938F6 /* TextFieldEffects */,
+			);
 			productName = MoersTests;
 			productReference = DF57D66B2187383000E6A0A9 /* MoersTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -1342,6 +1357,24 @@
 			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		DF36A75B2379E27F006BF6EA /* Fix SPM */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Fix SPM";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ -d \"${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/\" ] && [ \"${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/\" != \"${SYMROOT}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/\" ] \nthen\n  cp -f -R \"${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/\" \"${SYMROOT}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/\"\nfi\n\n";
+		};
+		DF9D2FD023CE013D008938F6 /* Fix SPM */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1790,6 +1823,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMAPI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMUI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/TextFieldEffects.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/Gestalt.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1991,6 +2025,7 @@
 					"@loader_path/Frameworks",
 				);
 				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMAPI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMUI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/TextFieldEffects.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/Gestalt.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2199,6 +2234,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMAPI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMUI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/TextFieldEffects.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/Gestalt.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2400,6 +2436,7 @@
 					"@loader_path/Frameworks",
 				);
 				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMAPI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMUI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/TextFieldEffects.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/Gestalt.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2629,6 +2666,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMAPI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMUI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/TextFieldEffects.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/Gestalt.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2656,6 +2694,7 @@
 					"@loader_path/Frameworks",
 				);
 				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMAPI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMUI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/TextFieldEffects.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/Gestalt.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2977,6 +3016,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DF409CF023522AD9001A473E /* XCRemoteSwiftPackageReference "mmapi-ios" */;
 			productName = MMAPI;
+		};
+		DF9D2FC823CE0096008938F6 /* MMUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF31C63D23521E4F0085DA6F /* XCRemoteSwiftPackageReference "mmui-ios" */;
+			productName = MMUI;
+		};
+		DF9D2FCA23CE0096008938F6 /* Gestalt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF22FC1123522756003F1B3A /* XCRemoteSwiftPackageReference "Gestalt" */;
+			productName = Gestalt;
+		};
+		DF9D2FCC23CE0096008938F6 /* MMAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF409CF023522AD9001A473E /* XCRemoteSwiftPackageReference "mmapi-ios" */;
+			productName = MMAPI;
+		};
+		DF9D2FCE23CE0096008938F6 /* TextFieldEffects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
+			productName = TextFieldEffects;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
