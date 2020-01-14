@@ -150,8 +150,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     private func setupThirdParties() {
         
-        FirebaseApp.configure()
+        FirebaseConfiguration.shared.setLoggerLevel(.warning)
         FirebaseConfiguration.shared.analyticsConfiguration.setAnalyticsCollectionEnabled(true)
+        FirebaseApp.configure()
         
         Messaging.messaging().delegate = self
         

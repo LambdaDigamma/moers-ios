@@ -161,6 +161,7 @@ extension SearchDrawerView: Themeable {
         
         backgroundColor = theme.backgroundColor
         tableView.backgroundColor = theme.backgroundColor
+        tableView.separatorColor = theme.separatorColor
         searchWrapper.backgroundColor = theme.backgroundColor
         gripper.backgroundColor = UIColor.lightGray
         
