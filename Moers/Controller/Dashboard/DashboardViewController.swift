@@ -126,7 +126,7 @@ class DashboardViewController: CardCollectionViewController {
         
     }
     
-    public func openRubbishViewController () {
+    public func openRubbishViewController() {
         coordinator?.pushRubbishViewController()
     }
     

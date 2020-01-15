@@ -87,16 +87,20 @@ class AveragePetrolPriceComponent: BaseComponent, UIViewControllerPreviewingDele
     
     private func checkAuthStatusAndLoadIfNeeded() {
         
-        locationManager.authorizationStatus.observeOn   (.main).observeNext { authorizationStatus in
-            if authorizationStatus == .authorizedWhenInUse {
-                self.averagePetrolCardView.dismissError()
-                self.averagePetrolCardView.isUserInteractionEnabled = true
-                self.loadCurrentLocation()
-            } else {
-                self.averagePetrolCardView.showError(withTitle: String.localized("PetrolErrorPermissionTitle"),
-                                                     message: String.localized("PetrolErrorPermissionMessage"))
-                self.averagePetrolCardView.isUserInteractionEnabled = false
-            }
+        locationManager.authorizationStatus
+            .receive(on: DispatchQueue.main)
+            .observeNext { authorizationStatus in
+            
+                if authorizationStatus == .authorizedWhenInUse {
+                    self.averagePetrolCardView.dismissError()
+                    self.averagePetrolCardView.isUserInteractionEnabled = true
+                    self.loadCurrentLocation()
+                } else {
+                    self.averagePetrolCardView.showError(withTitle: String.localized("PetrolErrorPermissionTitle"),
+                                                         message: String.localized("PetrolErrorPermissionMessage"))
+                    self.averagePetrolCardView.isUserInteractionEnabled = false
+                }
+                
         }.dispose(in: bag)
         
     }
@@ -111,28 +115,32 @@ class AveragePetrolPriceComponent: BaseComponent, UIViewControllerPreviewingDele
             self.loadPlacemark(for: location)
         }.dispose(in: bag)
         
-        location.observeOn(.main).observeFailed { error in
-            // TODO: Show standard price for Moers
-            self.averagePetrolCardView.showError(withTitle: "Loadinng Location Failed.", message: "")
-        }.dispose(in: bag)
+        location
+            .receive(on: DispatchQueue.main)
+            .observeFailed { error in
+                // TODO: Show standard price for Moers
+                self.averagePetrolCardView.showError(withTitle: "Loading Location Failed.", message: "")
+            }.dispose(in: bag)
         
     }
     
     private func loadPlacemark(for location: CLLocation) {
         
-        geocodingManager.placemark(from: location).observeOn(.main).observeNext { placemark in
+        geocodingManager.placemark(from: location)
+            .receive(on: DispatchQueue.main)
+            .observeNext { placemark in
             
-            self.averagePetrolCardView.locationLabel.text = placemark.city
+                self.averagePetrolCardView.locationLabel.text = placemark.city
+                
+                if placemark.countryCode == "DE" {
+                    self.loadPetrolPrice(for: location)
+                } else {
+                    self.averagePetrolCardView.isUserInteractionEnabled = false
+                    self.averagePetrolCardView.showError(withTitle: String.localized("PetrolErrorLocationTitle"),
+                                                         message: String.localized("PetrolErrorLocationMessage"))
+                }
             
-            if placemark.countryCode == "DE" {
-                self.loadPetrolPrice(for: location)
-            } else {
-                self.averagePetrolCardView.isUserInteractionEnabled = false
-                self.averagePetrolCardView.showError(withTitle: String.localized("PetrolErrorLocationTitle"),
-                                                     message: String.localized("PetrolErrorLocationMessage"))
-            }
-            
-        }.dispose(in: bag)
+            }.dispose(in: bag)
         
     }
     
@@ -148,9 +156,11 @@ class AveragePetrolPriceComponent: BaseComponent, UIViewControllerPreviewingDele
                                                              type: userPetrolPreference,
                                                              shouldReload: false)
         
-        petrolStations.observeOn(.main).observeNext { petrolStations in
-            self.handleReceivedPetrolStations(petrolStations)
-        }.dispose(in: bag)
+        petrolStations
+            .receive(on: DispatchQueue.main)
+            .observeNext { petrolStations in
+                self.handleReceivedPetrolStations(petrolStations)
+            }.dispose(in: bag)
         
         petrolStations.observeFailed { error in
             // TODO: Add Error Handling

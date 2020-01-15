@@ -66,7 +66,7 @@ struct AnalyticsManager {
     public func logOpenedPetrolPrices(for place: String) {
         
         if shouldLog {
-            Analytics.logEvent("Opened Petrol Prices", parameters: ["place": place])
+            Analytics.logEvent("Opened_Petrol_Prices", parameters: ["place": place])
         }
         
     }
@@ -74,7 +74,7 @@ struct AnalyticsManager {
     public func logOpenedWasteSchedule() {
         
         if shouldLog {
-            Analytics.logEvent("Opened Waste Schedule", parameters: [:])
+            Analytics.logEvent("Opened_Waste_Schedule", parameters: [:])
         }
         
     }
@@ -90,7 +90,7 @@ struct AnalyticsManager {
     public func logOpenedNews() {
         
         if shouldLog {
-            Analytics.logEvent("Opened News", parameters: [:])
+            Analytics.logEvent("Opened_News", parameters: [:])
         }
         
     }
@@ -98,7 +98,7 @@ struct AnalyticsManager {
     public func logOpenedMaps() {
         
         if shouldLog {
-            Analytics.logEvent("Opened Maps", parameters: [:])
+            Analytics.logEvent("Opened_Maps", parameters: [:])
         }
         
     }
@@ -106,7 +106,7 @@ struct AnalyticsManager {
     public func logOpenedEvents() {
         
         if shouldLog {
-            Analytics.logEvent("Opened Events", parameters: [:])
+            Analytics.logEvent("Opened_Events", parameters: [:])
         }
         
     }
@@ -114,7 +114,7 @@ struct AnalyticsManager {
     public func logOpenedOther() {
         
         if shouldLog {
-            Analytics.logEvent("Opened Other", parameters: [:])
+            Analytics.logEvent("Opened_Other", parameters: [:])
         }
         
     }
@@ -122,7 +122,7 @@ struct AnalyticsManager {
     public func logOpenedTheme() {
         
         if shouldLog {
-            Analytics.logEvent("Opened Themes", parameters: [:])
+            Analytics.logEvent("Opened_Themes", parameters: [:])
         }
         
     }
@@ -130,7 +130,7 @@ struct AnalyticsManager {
     public func logSelectedTheme(_ theme: ApplicationTheme) {
         
         if shouldLog {
-            Analytics.logEvent("Selected Theme", parameters: ["identifier": theme.identifier])
+            Analytics.logEvent("Selected_Theme", parameters: ["identifier": theme.identifier])
         }
         
     }
@@ -138,7 +138,7 @@ struct AnalyticsManager {
     public func logCompletedOnboarding() {
         
         if shouldLog {
-            Analytics.logEvent("Onboarding Completed", parameters: [:])
+            Analytics.logEvent("Onboarding_Completed", parameters: [:])
         }
         
     }
@@ -154,7 +154,7 @@ struct AnalyticsManager {
     public func logSelectedItemContent(_ location: Location) {
         
         if shouldLog {
-            Analytics.logEvent("Selected Location (Drawer)", parameters:
+            Analytics.logEvent("Selected_Location_Drawer", parameters:
                 ["location": location.category,
                  "name": location.name])
         }
@@ -164,7 +164,7 @@ struct AnalyticsManager {
     public func logSelectedItem(_ location: Location) {
         
         if shouldLog {
-            Analytics.logEvent("Selected Location", parameters:
+            Analytics.logEvent("Selected_Location", parameters:
                 ["location": location.category,
                  "name": location.name])
         }
@@ -174,7 +174,7 @@ struct AnalyticsManager {
     public func logSelectedCluster(with memberCount: Int) {
         
         if shouldLog {
-            Analytics.logEvent("Selected Cluster", parameters:
+            Analytics.logEvent("Selected_Cluster", parameters:
                 ["count": memberCount])
         }
         
@@ -193,7 +193,7 @@ struct AnalyticsManager {
     public func logPano(_ panoID: PanoID) {
         
         if shouldLog {
-            Analytics.logEvent("Opened Pano", parameters: ["id": panoID])
+            Analytics.logEvent("Opened_Pano", parameters: ["id": panoID])
         }
         
     }
@@ -201,7 +201,7 @@ struct AnalyticsManager {
     public func logUserType(_ type: User.UserType) {
         
         if shouldLog {
-            Analytics.logEvent("Onboarding - User Type", parameters: ["type": type.rawValue])
+            Analytics.logEvent("Onboarding_User_Type", parameters: ["type": type.rawValue])
         }
         
     }
@@ -209,7 +209,7 @@ struct AnalyticsManager {
     public func logEnabledNotifications() {
         
         if shouldLog {
-            Analytics.logEvent("Onboarding - Enabled Notifications", parameters: [:])
+            Analytics.logEvent("Onboarding_Enabled_Notifications", parameters: [:])
         }
         
     }
@@ -217,7 +217,7 @@ struct AnalyticsManager {
     public func logEnabledLocation() {
         
         if shouldLog {
-            Analytics.logEvent("Onboarding - Enabled Notifications", parameters: [:])
+            Analytics.logEvent("Onboarding_Enabled_Notifications", parameters: [:])
         }
         
     }
@@ -225,7 +225,7 @@ struct AnalyticsManager {
     public func logPetrolType(_ type: PetrolType) {
         
         if shouldLog {
-            Analytics.logEvent("Onboarding - Petrol Type", parameters: ["type": type.rawValue])
+            Analytics.logEvent("Onboarding_Petrol_Type", parameters: ["type": type.rawValue])
         }
         
     }
@@ -233,7 +233,7 @@ struct AnalyticsManager {
     public func logEnabledRubbishReminder(_ hour: Int) {
         
         if shouldLog {
-            Analytics.logEvent("Onboarding - Enabled Reminder", parameters: ["hour": hour])
+            Analytics.logEvent("Onboarding_Enabled_Reminder", parameters: ["hour": hour])
         }
         
     }
