@@ -67,6 +67,15 @@ class DashboardCoordinator: Coordinator {
         
     }
     
+    @available(iOS 13.0, *)
+    public func showDashboardSettings() {
+        
+        let dashboardSettingsViewController = DashboardSettingsViewController()
+        
+        navigationController.pushViewController(dashboardSettingsViewController, animated: true)
+        
+    }
+    
     public func updateUI() {
         
         dashboardViewController?.reloadUI()

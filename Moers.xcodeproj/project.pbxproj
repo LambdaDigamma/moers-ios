@@ -116,6 +116,9 @@
 		DF77DA1823B5491D001FCA29 /* EventBus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0623B533E5001FCA29 /* EventBus.framework */; };
 		DF78DFE423BD50A2000A78AE /* OnboardingOverviewNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF78DFE323BD50A2000A78AE /* OnboardingOverviewNotice.swift */; };
 		DF79985123CCD3C6007E7186 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF79985023CCD3C6007E7186 /* MapCoordinator.swift */; };
+		DF7CED0223CF496A0066607E /* DashboardSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7CED0123CF496A0066607E /* DashboardSettingsViewController.swift */; };
+		DF7CED0423CF54960066607E /* DashboardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7CED0323CF54960066607E /* DashboardItem.swift */; };
+		DF7CED0623CF6F0E0066607E /* DashboardItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7CED0523CF6F0E0066607E /* DashboardItemTableViewCell.swift */; };
 		DF7D4B5E22F0D53400126AF7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7D4B5D22F0D53400126AF7 /* Constants.swift */; };
 		DF7E702A21DA39A300A43B84 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF7E702921DA39A300A43B84 /* FirebaseMessaging.framework */; };
 		DF8281B621CFA74F00C3B3CE /* TweetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281B521CFA74F00C3B3CE /* TweetCollectionViewCell.swift */; };
@@ -343,6 +346,9 @@
 		DF77DA1623B54906001FCA29 /* EventBus */ = {isa = PBXFileReference; lastKnownFileType = folder; name = EventBus; path = Carthage/Checkouts/EventBus; sourceTree = "<group>"; };
 		DF78DFE323BD50A2000A78AE /* OnboardingOverviewNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingOverviewNotice.swift; sourceTree = "<group>"; };
 		DF79985023CCD3C6007E7186 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
+		DF7CED0123CF496A0066607E /* DashboardSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSettingsViewController.swift; sourceTree = "<group>"; };
+		DF7CED0323CF54960066607E /* DashboardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardItem.swift; sourceTree = "<group>"; };
+		DF7CED0523CF6F0E0066607E /* DashboardItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardItemTableViewCell.swift; sourceTree = "<group>"; };
 		DF7D4B5D22F0D53400126AF7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../../../../../../../../System/Volumes/Data/Users/lennart/Documents/Development/iOS/Moers/Moers/Config/Constants.swift; sourceTree = "<group>"; };
 		DF7E702921DA39A300A43B84 /* FirebaseMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseMessaging.framework; path = Frameworks/FirebaseMessaging.framework; sourceTree = "<group>"; };
 		DF8281B521CFA74F00C3B3CE /* TweetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -612,6 +618,7 @@
 			children = (
 				DF2D6DA220B88BFA00176614 /* Licence.swift */,
 				DFB4D76A20B064CA00C8D179 /* StaticTableView.swift */,
+				DF7CED0323CF54960066607E /* DashboardItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -653,6 +660,7 @@
 				DF86AB9C217387E700EFC7EA /* OnboardingProgressView.swift */,
 				DF21B2FF20BA0DB400478A33 /* SwitchTableViewCell.swift */,
 				DF78DFE323BD50A2000A78AE /* OnboardingOverviewNotice.swift */,
+				DF7CED0523CF6F0E0066607E /* DashboardItemTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -883,6 +891,7 @@
 				DFC7126821DFC863006D05DB /* ShortcutsViewController.swift */,
 				DFD890862124860A006B5610 /* TandCViewController.swift */,
 				DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */,
+				DF7CED0123CF496A0066607E /* DashboardSettingsViewController.swift */,
 				DF86AB952172782F00EFC7EA /* Onboarding */,
 			);
 			path = Controller;
@@ -1433,6 +1442,7 @@
 				DF3EE0C320E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift in Sources */,
 				DF21B30020BA0DB400478A33 /* SwitchTableViewCell.swift in Sources */,
 				DFDD3F7220B2E525005602E3 /* MonthHeaderView.swift in Sources */,
+				DF7CED0223CF496A0066607E /* DashboardSettingsViewController.swift in Sources */,
 				DF29FB4D20B1954B00741A63 /* ThemeViewController.swift in Sources */,
 				DF46E0E22177E28E003545F6 /* EntryOnboardingOverviewViewController.swift in Sources */,
 				DF0CB4AB208357A800CC0AA8 /* MapItemContentView.swift in Sources */,
@@ -1491,6 +1501,7 @@
 				DF0CB4AD20838FD100CC0AA8 /* MainViewController.swift in Sources */,
 				DF86ABA32174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift in Sources */,
 				DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */,
+				DF7CED0623CF6F0E0066607E /* DashboardItemTableViewCell.swift in Sources */,
 				DF86AB9D217387E700EFC7EA /* OnboardingProgressView.swift in Sources */,
 				DFD7ACB420A6BCA000D49BE2 /* DashboardRubbishCardView.swift in Sources */,
 				DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */,
@@ -1506,6 +1517,7 @@
 				DFB4D76B20B064CA00C8D179 /* StaticTableView.swift in Sources */,
 				DFB6A0BF21033C7800D5C12B /* DetailCameraViewController.swift in Sources */,
 				DF29FB4F20B19BE600741A63 /* ThemeCardView.swift in Sources */,
+				DF7CED0423CF54960066607E /* DashboardItem.swift in Sources */,
 				DF04D60A23CBD5EC008AE677 /* DashboardCoordinator.swift in Sources */,
 				DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */,
 				DFD7ACB220A44C5A00D49BE2 /* SelectionViewController.swift in Sources */,

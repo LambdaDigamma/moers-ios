@@ -53,6 +53,10 @@ class DashboardViewController: CardCollectionViewController {
         self.extendedLayoutIncludesOpaqueBars = true
         self.isPullToRefreshEnabled = true
         
+        if #available(iOS 13.0, *) {
+            setupSettingsBarButtonItem()
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -140,6 +144,22 @@ class DashboardViewController: CardCollectionViewController {
             activity.becomeCurrent()
             
         }
+        
+    }
+    
+    @available(iOS 13.0, *)
+    private func setupSettingsBarButtonItem() {
+        
+        let item = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(showSettings))
+        
+        self.navigationItem.rightBarButtonItem = item
+        
+    }
+    
+    @available(iOS 13.0, *)
+    @objc private func showSettings() {
+        
+        coordinator?.showDashboardSettings()
         
     }
     
