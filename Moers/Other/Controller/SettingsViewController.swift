@@ -254,7 +254,7 @@ class SettingsViewController: UIViewController {
                                     rows: [SwitchRow(title: String.localized("Activated"),
                                                      switchOn: rubbishManager.isEnabled,
                                                      action: triggerRubbishCollection),
-                                           NavigationRow(title: String.localized("Street") + ": \(RubbishManager.shared.rubbishStreet?.street ?? "nicht ausgewählt")",
+                                           NavigationRow(title: String.localized("Street") + ": \(RubbishManager.shared.rubbishStreet?.displayName ?? "nicht ausgewählt")",
                                                          action: showRubbishStreet),
                                            NavigationRow(title: rubbishReminder,
                                                          action: showRubbishReminder)]))

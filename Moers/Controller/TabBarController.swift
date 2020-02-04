@@ -306,11 +306,12 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             
             let streets = RubbishManager.shared.loadRubbishCollectionStreets()
             
-            streets.observeOn(.main).observeNext { (streets: [RubbishCollectionStreet]) in
+            streets.receive(on: DispatchQueue.main).observeNext { (streets: [RubbishCollectionStreet]) in
                 
                 let currentStreetName = RubbishManager.shared.rubbishStreet?.street ?? ""
+                let currentStreetAddition = RubbishManager.shared.rubbishStreet?.streetAddition ?? ""
                 
-                if let filteredStreet = streets.filter({ $0.street == currentStreetName }).first {
+                if let filteredStreet = streets.filter({ $0.street == currentStreetName && $0.streetAddition == currentStreetAddition }).first {
                     
                     RubbishManager.shared.register(filteredStreet)
                     
