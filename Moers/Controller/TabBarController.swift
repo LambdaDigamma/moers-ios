@@ -316,7 +316,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
                     
                     if RubbishManager.shared.remindersEnabled {
                         RubbishManager.shared.registerNotifications(at: RubbishManager.shared.reminderHour ?? 20,
-                                                                    minute: RubbishManager.shared.reminderHour ?? 00)
+                                                                    minute: RubbishManager.shared.reminderMinute ?? 00)
                     }
                     
                 } else {
