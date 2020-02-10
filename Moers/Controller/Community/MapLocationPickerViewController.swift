@@ -67,7 +67,7 @@ class MapLocationPickerViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if EntryManager.shared.entryLat != 0 && EntryManager.shared.entryLng != 0 {
+        if entryManager.entryLat != 0 && entryManager.entryLng != 0 {
             
         } else {
             self.focusOnUserLocation()
@@ -213,7 +213,7 @@ class MapLocationPickerViewController: UIViewController {
     
     private func focusOnPreviousLocation() {
         
-        let coordinate = CLLocationCoordinate2D(latitude: EntryManager.shared.entryLat ?? 0, longitude: EntryManager.shared.entryLng ?? 0)
+        let coordinate = CLLocationCoordinate2D(latitude: entryManager.entryLat ?? 0, longitude: entryManager.entryLng ?? 0)
         
         let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)) // 0.0015
             

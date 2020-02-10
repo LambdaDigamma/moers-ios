@@ -16,6 +16,8 @@ import MMUI
 
 class DetailViewController: UIViewController {
     
+    public var coordinator: MapCoordintor?
+    
     private lazy var gripperView: UIView = { ViewFactory.blankView() }()
     private lazy var imageView: UIImageView = { ViewFactory.imageView() }()
     private lazy var nameLabel: UILabel = { ViewFactory.label() }()
@@ -295,6 +297,8 @@ class DetailViewController: UIViewController {
     private func morphDetailPetrolStation() {
         
         let viewController = DetailPetrolStationViewController.fromStoryboard()
+        
+        viewController.coordinator = coordinator
         
         self.add(asChildViewController: viewController)
         

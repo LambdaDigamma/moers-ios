@@ -24,14 +24,27 @@ class DashboardViewController: CardCollectionViewController {
     private let locationManager: LocationManagerProtocol
     private let geocodingManager: GeocodingManagerProtocol
     private let petrolManager: PetrolManagerProtocol
+    private let rubbishManager: RubbishManagerProtocol
+    
+    init(coordinator: DashboardCoordinator) {
+        self.geocodingManager = coordinator.geocodingManager
+        self.locationManager = coordinator.locationManager
+        self.petrolManager = coordinator.petrolManager
+        self.rubbishManager = coordinator.rubbishManager
+        self.coordinator = coordinator
+        
+        super.init(nibName: nil, bundle: nil)
+    }
     
     init(locationManager: LocationManagerProtocol,
          geocodingManager: GeocodingManagerProtocol,
-         petrolManager: PetrolManagerProtocol) {
+         petrolManager: PetrolManagerProtocol,
+         rubbishManager: RubbishManagerProtocol) {
         
         self.locationManager = locationManager
         self.geocodingManager = geocodingManager
         self.petrolManager = petrolManager
+        self.rubbishManager = rubbishManager
         
         super.init(nibName: nil, bundle: nil)
         

@@ -16,6 +16,12 @@ class OtherCoordinator: Coordinator {
     
     var otherViewController: OtherViewController?
     
+    public let locationManager: LocationManagerProtocol
+    public let geocodingManager: GeocodingManagerProtocol
+    public let rubbishManager: RubbishManagerProtocol
+    public let petrolManager: PetrolManagerProtocol
+    public let entryManager: EntryManagerProtocol
+    
     init(navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
          locationManager: LocationManagerProtocol,
          geocodingManager: GeocodingManagerProtocol,
@@ -24,6 +30,11 @@ class OtherCoordinator: Coordinator {
          entryManager: EntryManagerProtocol) {
         
         self.navigationController = navigationController
+        self.locationManager = locationManager
+        self.geocodingManager = geocodingManager
+        self.rubbishManager = rubbishManager
+        self.petrolManager = petrolManager
+        self.entryManager = entryManager
         
         let otherViewController = OtherViewController(locationManager: locationManager,
                                                       geocodingManager: geocodingManager,

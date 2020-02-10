@@ -1,5 +1,5 @@
 //
-//  NewEventViewController.swift
+//  MMEventsViewController.swift
 //  Moers
 //
 //  Created by Lennart Fischer on 17.06.19.
