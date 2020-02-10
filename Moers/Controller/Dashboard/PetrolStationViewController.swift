@@ -70,7 +70,7 @@ class PetrolStationViewController: CardCollectionViewController {
         locationManager.requestCurrentLocation()
         
         locationManager.location
-            .debounce(interval: 2)
+            .debounce(for: 2)
             .observeNext { location in
                 self.loadPetrolStations(for: location.coordinate)
             }.dispose(in: bag)

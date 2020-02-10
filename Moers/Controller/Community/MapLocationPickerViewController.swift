@@ -83,7 +83,8 @@ class MapLocationPickerViewController: UIViewController {
             
             if authorizationStatus == .authorizedWhenInUse {
                 self.locationManager.requestCurrentLocation()
-                self.locationManager.location.observeOn(.main).observeNext(with: { location in
+                self.locationManager.location.receive(on: DispatchQueue.main)
+                    .observeNext(with: { location in
                     self.setupMap(centeringOn: location.coordinate)
                 }).dispose(in: self.bag)
             }
@@ -160,7 +161,9 @@ class MapLocationPickerViewController: UIViewController {
     @objc private func focusOnUserLocation() {
         
         locationManager.requestCurrentLocation()
-        locationManager.location.observeOn(.main).observeNext { location in
+        locationManager.location
+            .receive(on: DispatchQueue.main)
+            .observeNext { location in
             
             self.setupMap(centeringOn: location.coordinate)
             self.executeReverseGeocode()

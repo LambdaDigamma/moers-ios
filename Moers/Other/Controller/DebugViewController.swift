@@ -64,7 +64,9 @@ class DebugViewController: UIViewController {
         
         let pickupItems = RubbishManager.shared.loadRubbishPickupItems(for: street) // TODO: Refactor this!
         
-        pickupItems.observeOn(.main).observeNext { (items: [RubbishPickupItem]) in
+        pickupItems
+            .receive(on: DispatchQueue.main)
+            .observeNext { (items: [RubbishPickupItem]) in
             
             self.rubbishItemsTextView.text = "Collections: \(items.count)\n\n"
             self.rubbishItemsTextView.text = self.rubbishItemsTextView.text + items.map { $0.date.format(format: "dd.MM.yyyy") + " " + RubbishWasteType.localizedForCase($0.type) }.joined(separator: "\n")
