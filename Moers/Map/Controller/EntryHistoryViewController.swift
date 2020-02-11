@@ -13,11 +13,29 @@ import MMUI
 
 class EntryHistoryViewController: UIViewController {
 
-    public var entry: Entry?
-    private var audits: [Audit] = []
+    public var coordinator: MapCoordintor?
     
+    public var entry: Entry?
+    
+    private let entryManager: EntryManagerProtocol
+    private var audits: [Audit] = []
     private var tableView: UITableView = { ViewFactory.tableView() }()
     private let identifier = "auditCell"
+    
+    init(coordinator: MapCoordintor) {
+        self.coordinator = coordinator
+        self.entryManager = coordinator.entryManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    init(entryManager: EntryManagerProtocol) {
+        self.entryManager = entryManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - UIViewController Lifecycle
     
@@ -71,7 +89,7 @@ class EntryHistoryViewController: UIViewController {
         
         guard let entry = entry else { return }
         
-        EntryManager.shared.fetchHistory(entry: entry) { (result) in
+        entryManager.fetchHistory(entry: entry) { (result) in
             
             switch result {
                 

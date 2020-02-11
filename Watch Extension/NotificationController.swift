@@ -2,22 +2,18 @@
 //  NotificationController.swift
 //  Watch Extension
 //
-//  Created by Lennart Fischer on 29.06.18.
-//  Copyright © 2018 Lennart Fischer. All rights reserved.
+//  Created by Lennart Fischer on 09.02.20.
+//  Copyright © 2020 Lennart Fischer. All rights reserved.
 //
 
 import WatchKit
-import Foundation
+import SwiftUI
 import UserNotifications
 
+class NotificationController: WKUserNotificationHostingController<NotificationView> {
 
-class NotificationController: WKUserNotificationInterfaceController {
-
-    override init() {
-        // Initialize variables here.
-        super.init()
-        
-        // Configure interface objects here.
+    override var body: NotificationView {
+        return NotificationView()
     }
 
     override func willActivate() {
@@ -30,14 +26,9 @@ class NotificationController: WKUserNotificationInterfaceController {
         super.didDeactivate()
     }
 
-    /*
-    override func didReceive(_ notification: UNNotification, withCompletion completionHandler: @escaping (WKUserNotificationInterfaceType) -> Swift.Void) {
+    override func didReceive(_ notification: UNNotification) {
         // This method is called when a notification needs to be presented.
         // Implement it if you use a dynamic notification interface.
         // Populate your dynamic notification interface as quickly as possible.
-        //
-        // After populating your dynamic notification interface call the completion block.
-        completionHandler(.custom)
     }
-    */
 }

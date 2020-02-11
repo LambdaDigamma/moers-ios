@@ -16,6 +16,12 @@ import MMUI
 
 class DetailEntryViewController: UIViewController {
     
+    public var coordinator: MapCoordintor? {
+        didSet {
+            self.entryManager = coordinator?.entryManager
+        }
+    }
+    
     @IBOutlet weak var topSeparator: UIView!
     @IBOutlet weak var callButton: DesignableButton!
     @IBOutlet weak var websiteButton: DesignableButton!
@@ -211,7 +217,9 @@ class DetailEntryViewController: UIViewController {
     
     @objc private func showHistory() {
         
-        let viewController = EntryHistoryViewController()
+        guard let coordinator = coordinator else { return }
+        
+        let viewController = EntryHistoryViewController(coordinator: coordinator)
         
         guard let entry = selectedEntry else { return }
         
@@ -219,10 +227,6 @@ class DetailEntryViewController: UIViewController {
         
         self.navigationController?.pushViewController(viewController, animated: true)
         
-    }
-    
-    public func setEntryManager(_ entryManager: EntryManagerProtocol) {
-        self.entryManager = entryManager
     }
     
     static func fromStoryboard() -> DetailEntryViewController {

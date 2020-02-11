@@ -266,7 +266,7 @@ class DetailViewController: UIViewController {
         
         let viewController = DetailEntryViewController.fromStoryboard()
         
-        viewController.setEntryManager(entryManager)
+        viewController.coordinator = coordinator
         
         self.add(asChildViewController: viewController)
         

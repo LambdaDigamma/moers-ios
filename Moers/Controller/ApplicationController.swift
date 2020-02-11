@@ -22,10 +22,11 @@ class ApplicationController: UIViewController {
     let parkingLotManager: ParkingLotManagerProtocol
     
     init(locationManager: LocationManagerProtocol = LocationManager(),
-         petrolManager: PetrolManagerProtocol = PetrolManager(),
-         rubbishManager: RubbishManagerProtocol = RubbishManager(),
+         petrolManager: PetrolManagerProtocol = PetrolManager(storageManager: StorageManager()),
+         rubbishManager: RubbishManagerProtocol = RubbishManager(storagePickupItemsManager: StorageManager(),
+                                                                 storageStreetsManager: StorageManager()),
          geocodingManager: GeocodingManagerProtocol = GeocodingManager(),
-         cameraManager: CameraManagerProtocol = CameraManager(),
+         cameraManager: CameraManagerProtocol = CameraManager(storageManager: StorageManager()),
          entryManager: EntryManagerProtocol = EntryManager(),
          parkingLotManager: ParkingLotManagerProtocol = ParkingLotManager()) {
         
