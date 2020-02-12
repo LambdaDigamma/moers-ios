@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import Moers
 
 class MoersUITests: XCTestCase {
     

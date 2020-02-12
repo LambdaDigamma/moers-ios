@@ -22,10 +22,6 @@
 		DF1116BF23F35F6C003C6CCD /* StorageManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1116BE23F35F6C003C6CCD /* StorageManagerTests.swift */; };
 		DF1207BA23C0C777003285C1 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1207B923C0C777003285C1 /* Form.swift */; };
 		DF1207BC23C0CA1C003285C1 /* FormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1207BB23C0CA1C003285C1 /* FormTests.swift */; };
-		DF1207C023C0CE28003285C1 /* MMUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF1207BF23C0CE28003285C1 /* MMUI */; };
-		DF1207C223C0CE28003285C1 /* Gestalt in Frameworks */ = {isa = PBXBuildFile; productRef = DF1207C123C0CE28003285C1 /* Gestalt */; };
-		DF1207C423C0CE28003285C1 /* MMAPI in Frameworks */ = {isa = PBXBuildFile; productRef = DF1207C323C0CE28003285C1 /* MMAPI */; };
-		DF1207C623C0CE28003285C1 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = DF1207C523C0CE28003285C1 /* TextFieldEffects */; };
 		DF1207C723C0CE39003285C1 /* FIRAnalyticsConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D6872187397F00E6A0A9 /* FIRAnalyticsConnector.framework */; };
 		DF1207C823C0CE39003285C1 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D6882187397F00E6A0A9 /* FirebaseAnalytics.framework */; };
 		DF1207C923C0CE39003285C1 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D68A2187397F00E6A0A9 /* FirebaseCore.framework */; };
@@ -46,6 +42,16 @@
 		DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */; };
 		DF21B2FE20B9D8A900478A33 /* Licenses.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF21B2FD20B9D8A900478A33 /* Licenses.plist */; };
 		DF21B30020BA0DB400478A33 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF21B2FF20BA0DB400478A33 /* SwitchTableViewCell.swift */; };
+		DF284ED323F4B3CE00EC999B /* Alertift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA1023B53484001FCA29 /* Alertift.framework */; };
+		DF284ED423F4B3CE00EC999B /* BLTNBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA1423B534B4001FCA29 /* BLTNBoard.framework */; };
+		DF284ED523F4B3CE00EC999B /* ESTabBarController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA1223B5349D001FCA29 /* ESTabBarController.framework */; };
+		DF284ED623F4B3CE00EC999B /* EventBus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0623B533E5001FCA29 /* EventBus.framework */; };
+		DF284ED723F4B3CE00EC999B /* FeedKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0E23B53470001FCA29 /* FeedKit.framework */; };
+		DF284ED823F4B3CE00EC999B /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0C23B53458001FCA29 /* pop.framework */; };
+		DF284ED923F4B3CE00EC999B /* Pulley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB618571FAE144000C98EB6 /* Pulley.framework */; };
+		DF284EDA23F4B3CE00EC999B /* TagListView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0A23B53440001FCA29 /* TagListView.framework */; };
+		DF284EDB23F4B3CE00EC999B /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9A4D3F23F45BAA00EE5356 /* TwitterCore.framework */; };
+		DF284EDC23F4B3CE00EC999B /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFCB432020E0344700E7AD3F /* TwitterKit.framework */; };
 		DF29FB4D20B1954B00741A63 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */; };
 		DF29FB4F20B19BE600741A63 /* ThemeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29FB4E20B19BE600741A63 /* ThemeCardView.swift */; };
 		DF2CF1C223BBB2EA003497C5 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = DF2CF1C123BBB2EA003497C5 /* TextFieldEffects */; };
@@ -58,7 +64,6 @@
 		DF310D9B216FE72E004C69BA /* EntryAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF310D9A216FE72E004C69BA /* EntryAnnotationView.swift */; };
 		DF310D9F216FF2AE004C69BA /* DetailEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF310D9E216FF2AE004C69BA /* DetailEntryViewController.swift */; };
 		DF310DA421710887004C69BA /* TagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF310DA321710887004C69BA /* TagTableViewCell.swift */; };
-		DF3BE04B22E74998001726A3 /* OnboardingUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3BE04A22E74998001726A3 /* OnboardingUITest.swift */; };
 		DF3BE04D22E749FD001726A3 /* LaunchArgumentsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */; };
 		DF3EE0C220E37E4900CA9279 /* FTLinearActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C020E37E4800CA9279 /* FTLinearActivityIndicator.swift */; };
 		DF3EE0C320E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C120E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift */; };
@@ -305,7 +310,6 @@
 		DF310D9A216FE72E004C69BA /* EntryAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryAnnotationView.swift; sourceTree = "<group>"; };
 		DF310D9E216FF2AE004C69BA /* DetailEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEntryViewController.swift; sourceTree = "<group>"; };
 		DF310DA321710887004C69BA /* TagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TagTableViewCell.swift; path = ../../View/UITableViewCells/TagTableViewCell.swift; sourceTree = "<group>"; };
-		DF3BE04A22E74998001726A3 /* OnboardingUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingUITest.swift; path = ../../../../../../../System/Volumes/Data/Users/lennart/Documents/Development/iOS/Moers/MoersUITests/OnboardingUITest.swift; sourceTree = "<group>"; };
 		DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LaunchArgumentsHandler.swift; path = ../../../../../../../../System/Volumes/Data/Users/lennart/Documents/Development/iOS/Moers/Moers/Config/LaunchArgumentsHandler.swift; sourceTree = "<group>"; };
 		DF3EE0C020E37E4800CA9279 /* FTLinearActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FTLinearActivityIndicator.swift; path = ../../View/FTLinearActivityIndicator.swift; sourceTree = "<group>"; };
 		DF3EE0C120E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIApplication+LinearNetworkActivityIndicator.swift"; path = "../../View/UIApplication+LinearNetworkActivityIndicator.swift"; sourceTree = "<group>"; };
@@ -527,6 +531,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF284ED323F4B3CE00EC999B /* Alertift.framework in Frameworks */,
+				DF284ED423F4B3CE00EC999B /* BLTNBoard.framework in Frameworks */,
+				DF284ED523F4B3CE00EC999B /* ESTabBarController.framework in Frameworks */,
+				DF284ED623F4B3CE00EC999B /* EventBus.framework in Frameworks */,
+				DF284ED723F4B3CE00EC999B /* FeedKit.framework in Frameworks */,
+				DF284ED823F4B3CE00EC999B /* pop.framework in Frameworks */,
+				DF284ED923F4B3CE00EC999B /* Pulley.framework in Frameworks */,
+				DF284EDA23F4B3CE00EC999B /* TagListView.framework in Frameworks */,
+				DF284EDB23F4B3CE00EC999B /* TwitterCore.framework in Frameworks */,
+				DF284EDC23F4B3CE00EC999B /* TwitterKit.framework in Frameworks */,
 				DF1207C723C0CE39003285C1 /* FIRAnalyticsConnector.framework in Frameworks */,
 				DF1207C823C0CE39003285C1 /* FirebaseAnalytics.framework in Frameworks */,
 				DF1207C923C0CE39003285C1 /* FirebaseCore.framework in Frameworks */,
@@ -537,10 +551,6 @@
 				DF1207CE23C0CE39003285C1 /* GoogleUtilities.framework in Frameworks */,
 				DF1207CF23C0CE39003285C1 /* nanopb.framework in Frameworks */,
 				DF1207D023C0CE39003285C1 /* Protobuf.framework in Frameworks */,
-				DF1207C423C0CE28003285C1 /* MMAPI in Frameworks */,
-				DF1207C623C0CE28003285C1 /* TextFieldEffects in Frameworks */,
-				DF1207C023C0CE28003285C1 /* MMUI in Frameworks */,
-				DF1207C223C0CE28003285C1 /* Gestalt in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1092,7 +1102,6 @@
 			isa = PBXGroup;
 			children = (
 				DFB64DB020377AEE00173A80 /* MoersUITests.swift */,
-				DF3BE04A22E74998001726A3 /* OnboardingUITest.swift */,
 				DFB64DB820377B7600173A80 /* SnapshotHelper.swift */,
 				DFB64DB220377AEE00173A80 /* Info.plist */,
 			);
@@ -1214,11 +1223,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DFB64DB720377AEE00173A80 /* Build configuration list for PBXNativeTarget "MoersUITests" */;
 			buildPhases = (
-				DFB64DAA20377AEE00173A80 /* Sources */,
 				DFB64DAB20377AEE00173A80 /* Frameworks */,
+				DFB64DAA20377AEE00173A80 /* Sources */,
 				DFB64DAC20377AEE00173A80 /* Resources */,
-				DF1207BD23C0CC43003285C1 /* ShellScript */,
-				DF1207BE23C0CC7F003285C1 /* ShellScript */,
+				DF1207BE23C0CC7F003285C1 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1227,10 +1235,6 @@
 			);
 			name = MoersUITests;
 			packageProductDependencies = (
-				DF1207BF23C0CE28003285C1 /* MMUI */,
-				DF1207C123C0CE28003285C1 /* Gestalt */,
-				DF1207C323C0CE28003285C1 /* MMAPI */,
-				DF1207C523C0CE28003285C1 /* TextFieldEffects */,
 			);
 			productName = MoersUITests;
 			productReference = DFB64DAE20377AEE00173A80 /* MoersUITests.xctest */;
@@ -1370,7 +1374,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		DF1207BD23C0CC43003285C1 /* ShellScript */ = {
+		DF1207BE23C0CC7F003285C1 /* Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1380,25 +1384,9 @@
 			);
 			inputPaths = (
 			);
+			name = "Copy Frameworks";
 			outputFileListPaths = (
 				"$(SRCROOT)/Moers/Config/output.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ -d \"${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/\" ] && [ \"${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/\" != \"${SYMROOT}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/\" ] \nthen\n  cp -f -R \"${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/\" \"${SYMROOT}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/\"\nfi\n";
-		};
-		DF1207BE23C0CC7F003285C1 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
@@ -1617,7 +1605,6 @@
 			files = (
 				DFB64DB120377AEE00173A80 /* MoersUITests.swift in Sources */,
 				DFB64DB920377B7600173A80 /* SnapshotHelper.swift in Sources */,
-				DF3BE04B22E74998001726A3 /* OnboardingUITest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1793,26 +1780,35 @@
 			baseConfigurationReference = DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Moers",
 				);
 				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Moers;
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/Moers/Utility",
+				);
 			};
 			name = "Debug (Staging)";
 		};
@@ -1958,26 +1954,35 @@
 			baseConfigurationReference = DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Moers",
 				);
 				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Moers;
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/Moers/Utility",
+				);
 			};
 			name = "Release (Staging)";
 		};
@@ -2128,26 +2133,35 @@
 			baseConfigurationReference = DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Moers",
 				);
 				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Moers;
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/Moers/Utility",
+				);
 			};
 			name = "Debug (Production)";
 		};
@@ -2293,26 +2307,35 @@
 			baseConfigurationReference = DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Moers",
 				);
 				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Moers;
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/Moers/Utility",
+				);
 			};
 			name = "Release (Production)";
 		};
@@ -3493,26 +3516,35 @@
 			baseConfigurationReference = DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Moers",
 				);
 				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Moers;
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/Moers/Utility",
+				);
 			};
 			name = "Debug (Development)";
 		};
@@ -3521,26 +3553,36 @@
 			baseConfigurationReference = DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Moers",
 				);
 				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Moers;
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/Moers/Utility",
+				);
 			};
 			name = "Release (Development)";
 		};
@@ -3663,26 +3705,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DF1207BF23C0CE28003285C1 /* MMUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF31C63D23521E4F0085DA6F /* XCRemoteSwiftPackageReference "mmui-ios" */;
-			productName = MMUI;
-		};
-		DF1207C123C0CE28003285C1 /* Gestalt */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF22FC1123522756003F1B3A /* XCRemoteSwiftPackageReference "Gestalt" */;
-			productName = Gestalt;
-		};
-		DF1207C323C0CE28003285C1 /* MMAPI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF409CF023522AD9001A473E /* XCRemoteSwiftPackageReference "mmapi-ios" */;
-			productName = MMAPI;
-		};
-		DF1207C523C0CE28003285C1 /* TextFieldEffects */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
-			productName = TextFieldEffects;
-		};
 		DF2CF1C123BBB2EA003497C5 /* TextFieldEffects */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
