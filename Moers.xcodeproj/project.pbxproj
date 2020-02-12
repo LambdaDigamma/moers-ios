@@ -144,11 +144,17 @@
 		DF94B13D23F0A7E8009C57ED /* Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = DF94B11723F0A7E5009C57ED /* Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DF95197F20C8B6F3001D13DC /* PetrolStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95197E20C8B6F3001D13DC /* PetrolStationViewController.swift */; };
 		DF9605A923BD06A800E24959 /* AuditChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9605A823BD06A800E24959 /* AuditChangeView.swift */; };
+		DF9A4D3623F45BAA00EE5356 /* Alertift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA1023B53484001FCA29 /* Alertift.framework */; };
+		DF9A4D3723F45BAA00EE5356 /* BLTNBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA1423B534B4001FCA29 /* BLTNBoard.framework */; };
+		DF9A4D3823F45BAA00EE5356 /* ESTabBarController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA1223B5349D001FCA29 /* ESTabBarController.framework */; };
+		DF9A4D3923F45BAA00EE5356 /* EventBus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0623B533E5001FCA29 /* EventBus.framework */; };
+		DF9A4D3A23F45BAA00EE5356 /* FeedKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0E23B53470001FCA29 /* FeedKit.framework */; };
+		DF9A4D3B23F45BAA00EE5356 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0C23B53458001FCA29 /* pop.framework */; };
+		DF9A4D3C23F45BAA00EE5356 /* Pulley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB618571FAE144000C98EB6 /* Pulley.framework */; };
+		DF9A4D3D23F45BAA00EE5356 /* TagListView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0A23B53440001FCA29 /* TagListView.framework */; };
+		DF9A4D3E23F45BAA00EE5356 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFCB432020E0344700E7AD3F /* TwitterKit.framework */; };
+		DF9A4D4023F45BAA00EE5356 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9A4D3F23F45BAA00EE5356 /* TwitterCore.framework */; };
 		DF9A914B2160DA840054A2B8 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9A914A2160DA840054A2B8 /* Environment.swift */; };
-		DF9D2FC923CE0096008938F6 /* MMUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF9D2FC823CE0096008938F6 /* MMUI */; };
-		DF9D2FCB23CE0096008938F6 /* Gestalt in Frameworks */ = {isa = PBXBuildFile; productRef = DF9D2FCA23CE0096008938F6 /* Gestalt */; };
-		DF9D2FCD23CE0096008938F6 /* MMAPI in Frameworks */ = {isa = PBXBuildFile; productRef = DF9D2FCC23CE0096008938F6 /* MMAPI */; };
-		DF9D2FCF23CE0096008938F6 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = DF9D2FCE23CE0096008938F6 /* TextFieldEffects */; };
 		DFA17DF420DEF9DE00BBD838 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA17DF320DEF9DE00BBD838 /* UIButton+Extensions.swift */; };
 		DFA96A6320BD8A390009B279 /* AveragePetrolPriceComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA96A6220BD8A390009B279 /* AveragePetrolPriceComponent.swift */; };
 		DFA9EF0A20B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0920B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift */; };
@@ -195,7 +201,6 @@
 		DFF5DDCB20094A920075A2F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */; };
 		DFF8F0B723CD8EC60066220D /* EventCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8F0B623CD8EC60066220D /* EventCoordinator.swift */; };
 		DFF8F0B923CD93E80066220D /* OtherCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8F0B823CD93E80066220D /* OtherCoordinator.swift */; };
-		DFFA43C323F358FF00D3E2B9 /* MMAPI in Frameworks */ = {isa = PBXBuildFile; productRef = DFFA43C223F358FF00D3E2B9 /* MMAPI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -399,6 +404,9 @@
 		DF94B13A23F0A7E8009C57ED /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		DF95197E20C8B6F3001D13DC /* PetrolStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PetrolStationViewController.swift; path = ../../Controller/Dashboard/PetrolStationViewController.swift; sourceTree = "<group>"; };
 		DF9605A823BD06A800E24959 /* AuditChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditChangeView.swift; sourceTree = "<group>"; };
+		DF9A4D3F23F45BAA00EE5356 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = Carthage/Build/iOS/TwitterCore.framework; sourceTree = "<group>"; };
+		DF9A4D4323F48D5800EE5356 /* mmapi-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "mmapi-ios"; path = "../mmapi-ios"; sourceTree = "<group>"; };
+		DF9A4D4423F48DC500EE5356 /* mmui-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "mmui-ios"; path = "../mmui-ios"; sourceTree = "<group>"; };
 		DF9A914A2160DA840054A2B8 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		DFA17DF320DEF9DE00BBD838 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		DFA96A6220BD8A390009B279 /* AveragePetrolPriceComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AveragePetrolPriceComponent.swift; sourceTree = "<group>"; };
@@ -449,8 +457,6 @@
 		DFE1B590235315E5009CA2EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MMUI.strings; sourceTree = "<group>"; };
 		DFE1B5942353165F009CA2EC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MMAPI.strings; sourceTree = "<group>"; };
 		DFE1B59623531663009CA2EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MMAPI.strings; sourceTree = "<group>"; };
-		DFE1B59923531C10009CA2EC /* mmui-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "mmui-ios"; path = "../mmui-ios"; sourceTree = "<group>"; };
-		DFE1B59A23531C21009CA2EC /* mmapi-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "mmapi-ios"; path = "../mmapi-ios"; sourceTree = "<group>"; };
 		DFE1B59B235323D3009CA2EC /* MMUI.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MMUI.xcassets; sourceTree = "<group>"; };
 		DFEE2E0920BB117A00A130CB /* BaseComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseComponent.swift; sourceTree = "<group>"; };
 		DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionComponent.swift; sourceTree = "<group>"; };
@@ -497,10 +503,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF9D2FCD23CE0096008938F6 /* MMAPI in Frameworks */,
-				DF9D2FCF23CE0096008938F6 /* TextFieldEffects in Frameworks */,
-				DF9D2FC923CE0096008938F6 /* MMUI in Frameworks */,
-				DF9D2FCB23CE0096008938F6 /* Gestalt in Frameworks */,
+				DF9A4D4023F45BAA00EE5356 /* TwitterCore.framework in Frameworks */,
+				DF9A4D3623F45BAA00EE5356 /* Alertift.framework in Frameworks */,
+				DF9A4D3723F45BAA00EE5356 /* BLTNBoard.framework in Frameworks */,
+				DF9A4D3823F45BAA00EE5356 /* ESTabBarController.framework in Frameworks */,
+				DF9A4D3923F45BAA00EE5356 /* EventBus.framework in Frameworks */,
+				DF9A4D3A23F45BAA00EE5356 /* FeedKit.framework in Frameworks */,
+				DF9A4D3B23F45BAA00EE5356 /* pop.framework in Frameworks */,
+				DF9A4D3C23F45BAA00EE5356 /* Pulley.framework in Frameworks */,
+				DF9A4D3D23F45BAA00EE5356 /* TagListView.framework in Frameworks */,
+				DF9A4D3E23F45BAA00EE5356 /* TwitterKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,7 +520,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFFA43C323F358FF00D3E2B9 /* MMAPI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,9 +791,9 @@
 		DF1A49561F6AAB7000E9108B = {
 			isa = PBXGroup;
 			children = (
+				DF9A4D4423F48DC500EE5356 /* mmui-ios */,
+				DF9A4D4323F48D5800EE5356 /* mmapi-ios */,
 				DF2CF1C323BBB315003497C5 /* TextFieldEffects */,
-				DFE1B59A23531C21009CA2EC /* mmapi-ios */,
-				DFE1B59923531C10009CA2EC /* mmui-ios */,
 				DF1A49611F6AAB7000E9108B /* Moers */,
 				DFF8F2DF20E6DF26001A9EBB /* Shared */,
 				DF57D66C2187383000E6A0A9 /* MoersTests */,
@@ -830,6 +841,7 @@
 		DF1A497D1F6ABD7100E9108B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DF9A4D3F23F45BAA00EE5356 /* TwitterCore.framework */,
 				DF77DA1623B54906001FCA29 /* EventBus */,
 				DF77DA1423B534B4001FCA29 /* BLTNBoard.framework */,
 				DF77DA1223B5349D001FCA29 /* ESTabBarController.framework */,
@@ -1145,10 +1157,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DF57D6742187383000E6A0A9 /* Build configuration list for PBXNativeTarget "MoersTests" */;
 			buildPhases = (
-				DF9D2FD023CE013D008938F6 /* Fix SPM */,
-				DF57D6672187383000E6A0A9 /* Sources */,
 				DF57D6682187383000E6A0A9 /* Frameworks */,
+				DF57D6672187383000E6A0A9 /* Sources */,
 				DF57D6692187383000E6A0A9 /* Resources */,
+				DF9A4D4123F45C4500EE5356 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1157,10 +1169,6 @@
 			);
 			name = MoersTests;
 			packageProductDependencies = (
-				DF9D2FC823CE0096008938F6 /* MMUI */,
-				DF9D2FCA23CE0096008938F6 /* Gestalt */,
-				DF9D2FCC23CE0096008938F6 /* MMAPI */,
-				DF9D2FCE23CE0096008938F6 /* TextFieldEffects */,
 			);
 			productName = MoersTests;
 			productReference = DF57D66B2187383000E6A0A9 /* MoersTests.xctest */;
@@ -1197,7 +1205,6 @@
 			);
 			name = "Watch Extension";
 			packageProductDependencies = (
-				DFFA43C223F358FF00D3E2B9 /* MMAPI */,
 			);
 			productName = "Watch Extension";
 			productReference = DF94B12323F0A7E7009C57ED /* Watch Extension.appex */;
@@ -1417,23 +1424,25 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ -d \"${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/\" ] && [ \"${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/\" != \"${SYMROOT}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/\" ] \nthen\n  cp -f -R \"${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/\" \"${SYMROOT}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/\"\nfi\n\n";
 		};
-		DF9D2FD023CE013D008938F6 /* Fix SPM */ = {
+		DF9A4D4123F45C4500EE5356 /* Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"$(SRCROOT)/Moers/Config/input.xcfilelist",
 			);
 			inputPaths = (
 			);
-			name = "Fix SPM";
+			name = "Copy Frameworks";
 			outputFileListPaths = (
+				"$(SRCROOT)/Moers/Config/output.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -d \"${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/\" ] && [ \"${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/\" != \"${SYMROOT}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/\" ] \nthen\n  cp -f -R \"${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/\" \"${SYMROOT}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/\"\nfi\n\n";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		DFB618591FAE144D00C98EB6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1817,6 +1826,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Moers",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = MoersTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1826,13 +1842,17 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMAPI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMUI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/TextFieldEffects.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/Gestalt.modulemap";
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moers.app/Moers";
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/Moers/Utility",
+				);
 			};
 			name = "Debug (Staging)";
 		};
@@ -1971,6 +1991,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Moers",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = MoersTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1979,13 +2006,17 @@
 					"@loader_path/Frameworks",
 				);
 				MTL_FAST_MATH = YES;
-				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMAPI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMUI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/TextFieldEffects.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/Gestalt.modulemap";
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moers.app/Moers";
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/Moers/Utility",
+				);
 			};
 			name = "Release (Staging)";
 		};
@@ -2130,6 +2161,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Moers",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = MoersTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2139,13 +2177,17 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMAPI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMUI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/TextFieldEffects.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/Gestalt.modulemap";
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moers.app/Moers";
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/Moers/Utility",
+				);
 			};
 			name = "Debug (Production)";
 		};
@@ -2284,6 +2326,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Moers",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = MoersTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2292,13 +2341,17 @@
 					"@loader_path/Frameworks",
 				);
 				MTL_FAST_MATH = YES;
-				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMAPI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMUI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/TextFieldEffects.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/Gestalt.modulemap";
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moers.app/Moers";
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/Moers/Utility",
+				);
 			};
 			name = "Release (Production)";
 		};
@@ -2513,6 +2566,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Moers",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = MoersTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2522,13 +2582,17 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMAPI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMUI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/TextFieldEffects.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/Gestalt.modulemap";
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moers.app/Moers";
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/Moers/Utility",
+				);
 			};
 			name = "Debug (Development)";
 		};
@@ -2542,6 +2606,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Moers",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = MoersTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2550,13 +2621,18 @@
 					"@loader_path/Frameworks",
 				);
 				MTL_FAST_MATH = YES;
-				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMAPI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/MMUI.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/TextFieldEffects.modulemap -fmodule-map-file=$(PROJECT_TEMP_ROOT)/GeneratedModuleMaps/iphonesimulator/Gestalt.modulemap";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moers.app/Moers";
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/Moers/Utility",
+				);
 			};
 			name = "Release (Development)";
 		};
@@ -3572,7 +3648,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/LambdaDigamma/mmui-ios";
 			requirement = {
-				branch = spm;
+				branch = master;
 				kind = branch;
 			};
 		};
@@ -3580,7 +3656,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/LambdaDigamma/mmapi-ios";
 			requirement = {
-				branch = spm;
+				branch = master;
 				kind = branch;
 			};
 		};
@@ -3625,30 +3701,6 @@
 		DF409CFB2352453C001A473E /* MMAPI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DF409CF023522AD9001A473E /* XCRemoteSwiftPackageReference "mmapi-ios" */;
-			productName = MMAPI;
-		};
-		DF9D2FC823CE0096008938F6 /* MMUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF31C63D23521E4F0085DA6F /* XCRemoteSwiftPackageReference "mmui-ios" */;
-			productName = MMUI;
-		};
-		DF9D2FCA23CE0096008938F6 /* Gestalt */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF22FC1123522756003F1B3A /* XCRemoteSwiftPackageReference "Gestalt" */;
-			productName = Gestalt;
-		};
-		DF9D2FCC23CE0096008938F6 /* MMAPI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF409CF023522AD9001A473E /* XCRemoteSwiftPackageReference "mmapi-ios" */;
-			productName = MMAPI;
-		};
-		DF9D2FCE23CE0096008938F6 /* TextFieldEffects */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
-			productName = TextFieldEffects;
-		};
-		DFFA43C223F358FF00D3E2B9 /* MMAPI */ = {
-			isa = XCSwiftPackageProductDependency;
 			productName = MMAPI;
 		};
 /* End XCSwiftPackageProductDependency section */

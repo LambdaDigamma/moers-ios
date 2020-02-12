@@ -7,8 +7,8 @@
 //
 
 import XCTest
-
-@testable import MMAPI
+import MMAPI
+@testable import Moers
 
 final class StorageManagerTests: XCTestCase {
     

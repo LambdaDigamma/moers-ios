@@ -41,29 +41,11 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Debug (Production)"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
-      <PreActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Run Script"
-               scriptText = "cp -f -R &quot;${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/&quot; &quot;${SYMROOT}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/&quot;&#10;">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "DF57D66A2187383000E6A0A9"
-                     BuildableName = "MoersTests.xctest"
-                     BlueprintName = "MoersTests"
-                     ReferencedContainer = "container:Moers.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PreActions>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -129,24 +111,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <PreActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Run Script"
-               scriptText = "cp -f -R &quot;${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/&quot; &quot;${SYMROOT}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/&quot;&#10;">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "DF1A495E1F6AAB7000E9108B"
-                     BuildableName = "Moers.app"
-                     BlueprintName = "Moers"
-                     ReferencedContainer = "container:Moers.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PreActions>
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
@@ -164,23 +128,5 @@
    <ArchiveAction
       buildConfiguration = "Release (Production)"
       revealArchiveInOrganizer = "YES">
-      <PreActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Run Script"
-               scriptText = "cp -f -R &quot;${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/&quot; &quot;${SYMROOT}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/&quot;&#10;">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "DF1A495E1F6AAB7000E9108B"
-                     BuildableName = "Moers.app"
-                     BlueprintName = "Moers"
-                     ReferencedContainer = "container:Moers.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PreActions>
    </ArchiveAction>
 </Scheme>
