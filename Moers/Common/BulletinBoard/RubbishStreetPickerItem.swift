@@ -58,7 +58,8 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
         
         let streets = rubbishManager.loadRubbishCollectionStreets()
         
-        streets.observeOn(.main).observeNext { (streets: [RubbishCollectionStreet]) in
+        streets.receive(on: DispatchQueue.main)
+            .observeNext { (streets: [RubbishCollectionStreet]) in
             
             self.streets = streets
             self.picker.reloadPickerView()

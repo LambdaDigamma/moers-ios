@@ -7,8 +7,8 @@
 //
 
 import XCTest
-@testable import Moers
 @testable import MMAPI
+@testable import Moers
 
 class FormTests: XCTestCase {
 
@@ -33,7 +33,7 @@ class FormTests: XCTestCase {
     public func testReceivingErrors() {
         
         form.receivedError(errorBag: errorBag)
-        
+
         XCTAssertEqual(errorBag, form.errorBag)
         
     }
@@ -42,10 +42,10 @@ class FormTests: XCTestCase {
         
         let formViewMock = FormViewMock()
         let formKey = "url"
-        
+
         form.registerView(for: formKey, view: formViewMock)
         form.receivedError(errorBag: errorBag)
-        
+
         XCTAssertEqual(formViewMock.errors, errorBag.errors[formKey])
         
     }
@@ -55,9 +55,13 @@ class FormTests: XCTestCase {
 class FormViewMock: FormView {
     
     var errors: [String] = []
-    
+
     func displayErrors(_ errors: [String]) {
         self.errors = errors
+    }
+    
+    func currentData() -> Codable {
+        return ["testData": "test"]
     }
     
 }

@@ -23,6 +23,28 @@ class DetailPetrolStationViewController: UIViewController {
     @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var countryLabel: UILabel!
     
+    public var coordinator: MapCoordintor? {
+        didSet {
+            petrolManager = coordinator?.petrolManager
+        }
+    }
+    
+    public var petrolManager: PetrolManagerProtocol!
+    
+    init(coordinator: MapCoordintor) {
+        self.petrolManager = coordinator.petrolManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    init(petrolManager: PetrolManagerProtocol) {
+        self.petrolManager = petrolManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     var selectedPetrolStation: PetrolStation? { didSet { setupPetrolStation(selectedPetrolStation) } }
     
     override func viewDidLoad() {
@@ -55,7 +77,7 @@ class DetailPetrolStationViewController: UIViewController {
         
         self.streetLabel.text = petrolStation.street + " " + (petrolStation.houseNumber ?? "")
         self.placeLabel.text = "\(petrolStation.postCode ?? 0) \(petrolStation.place)"
-        self.typeLabel.text = PetrolType.localizedForCase(PetrolManager.shared.petrolType)
+        self.typeLabel.text = PetrolType.localizedForCase(petrolManager.petrolType)
         self.priceLabel.text = String(format: "%.2f€", petrolStation.price ?? 0)
         
     }

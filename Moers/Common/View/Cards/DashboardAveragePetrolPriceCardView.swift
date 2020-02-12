@@ -87,7 +87,7 @@ class DashboardAveragePetrolPriceCardView: CardView {
         self.priceLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 34, weight: UIFont.Weight.bold)
         self.priceLabel.adjustsFontForContentSizeCategory = true
         
-        let type = String.localized("PetrolDescription") + " " + PetrolType.localizedForCase(PetrolManager.shared.petrolType)
+        let type = String.localized("PetrolDescription") + " " + "Diesel"
         
         self.petrolTypeLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.medium)
         self.petrolTypeLabel.text = type.uppercased()

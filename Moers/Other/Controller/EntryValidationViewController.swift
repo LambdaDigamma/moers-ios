@@ -13,9 +13,21 @@ import MMUI
 
 class EntryValidationViewController: UIViewController {
 
-    private lazy var tableView = { ViewFactory.tableView() }()
+    public var coordinator: DashboardCoordinator?
     
+    private lazy var tableView = { ViewFactory.tableView() }()
     private var entries: [Entry] = []
+    private let entryManager: EntryManagerProtocol
+    
+    init(otherCoordinator: OtherCoordinator) {
+        self.entryManager = otherCoordinator.entryManager
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - UIViewController Lifecycle
     
@@ -62,7 +74,7 @@ class EntryValidationViewController: UIViewController {
     
     private func loadData() {
         
-        EntryManager.shared.get { (result) in
+        entryManager.get { (result) in
             
             switch result {
                 

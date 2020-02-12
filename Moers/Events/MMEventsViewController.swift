@@ -1,5 +1,5 @@
 //
-//  NewEventViewController.swift
+//  MMEventsViewController.swift
 //  Moers
 //
 //  Created by Lennart Fischer on 17.06.19.
@@ -25,7 +25,9 @@ class MMEventsViewController: EventsViewController {
     
     override func loadData() {
         
-        let eventObserver = EventManager.shared.getEvents(shouldReload: true)
+        guard let eventManager = coordinator?.eventManager else { return }
+        
+        let eventObserver = eventManager.getEvents(shouldReload: true)
         
         eventObserver.observeNext { events in
             self.events = events

@@ -16,18 +16,31 @@ class OtherCoordinator: Coordinator {
     
     var otherViewController: OtherViewController?
     
+    public let locationManager: LocationManagerProtocol
+    public let geocodingManager: GeocodingManagerProtocol
+    public let rubbishManager: RubbishManagerProtocol
+    public let petrolManager: PetrolManagerProtocol
+    public let entryManager: EntryManagerProtocol
+    
     init(navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
          locationManager: LocationManagerProtocol,
          geocodingManager: GeocodingManagerProtocol,
          rubbishManager: RubbishManagerProtocol,
-         petrolManager: PetrolManagerProtocol) {
+         petrolManager: PetrolManagerProtocol,
+         entryManager: EntryManagerProtocol) {
         
         self.navigationController = navigationController
+        self.locationManager = locationManager
+        self.geocodingManager = geocodingManager
+        self.rubbishManager = rubbishManager
+        self.petrolManager = petrolManager
+        self.entryManager = entryManager
         
         let otherViewController = OtherViewController(locationManager: locationManager,
                                                       geocodingManager: geocodingManager,
                                                       rubbishManager: rubbishManager,
-                                                      petrolManager: petrolManager)
+                                                      petrolManager: petrolManager,
+                                                      entryManager: entryManager)
         
         otherViewController.tabBarItem = generateTabBarItem()
         otherViewController.coordinator = self

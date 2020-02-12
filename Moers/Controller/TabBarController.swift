@@ -91,7 +91,8 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             locationManager: locationManager,
             geocodingManager: geocodingManager,
             rubbishManager: rubbishManager,
-            petrolManager: petrolManager
+            petrolManager: petrolManager,
+            entryManager: entryManager
         )
         
         self.newsViewController = NewsViewController()

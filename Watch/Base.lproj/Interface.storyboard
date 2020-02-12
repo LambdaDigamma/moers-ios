@@ -1,126 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14113" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DIl-d3-Faz">
-    <device id="watch38" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14815" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NBu-mt-KyX">
+    <device id="watch38"/>
     <dependencies>
-        <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14033"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14770"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14621"/>
     </dependencies>
     <scenes>
-        <!--Rubbish-->
-        <scene sceneID="0kf-Ve-ZzP">
+        <!--Hosting Controller-->
+        <scene sceneID="RUd-og-cv4">
             <objects>
-                <controller identifier="Rubbish" hidesWhenLoading="NO" id="6o0-ij-07j">
-                    <items>
-                        <table alignment="left" id="uo3-Y8-nbD"/>
-                        <table alignment="left" id="Yid-Pi-H6Q">
-                            <items>
-                                <tableRow id="Qh0-A4-6n2">
-                                    <group key="rootItem" width="1" height="43" alignment="left" id="FTU-FF-jjJ">
-                                        <items>
-                                            <imageView width="0.20000000000000001" height="1" alignment="left" image="wasteGreen" contentMode="scaleAspectFit" id="zzO-xx-h7J"/>
-                                            <group width="0.80000000000000004" height="1" alignment="left" layout="vertical" spacing="0.0" id="VxG-iQ-PTu">
-                                                <items>
-                                                    <label alignment="left" verticalAlignment="center" text="Biotonne" id="OVj-D7-63K">
-                                                        <fontDescription key="font" type="system" weight="semibold" pointSize="15"/>
-                                                    </label>
-                                                    <label alignment="left" verticalAlignment="center" text="02.07.2018" id="Hoi-lu-qlB">
-                                                        <fontDescription key="font" type="system" pointSize="10"/>
-                                                    </label>
-                                                </items>
-                                            </group>
-                                        </items>
-                                    </group>
-                                </tableRow>
-                            </items>
-                        </table>
-                    </items>
-                </controller>
+                <hostingController id="NBu-mt-KyX" customClass="HostingController" 
+                customModuleProvider="target"/>                
             </objects>
-            <point key="canvasLocation" x="468" y="385"/>
-        </scene>
-        <!--Petrol Price Interface Controller-->
-        <scene sceneID="qbC-s3-YmD">
-            <objects>
-                <controller id="DIl-d3-Faz" customClass="PetrolPriceInterfaceController" customModule="Watch_Extension">
-                    <items>
-                        <group width="134" alignment="left" id="rLr-AE-JcD">
-                            <items>
-                                <imageView width="22" height="1" alignment="center" image="current" contentMode="scaleAspectFit" id="8Is-kW-aA4">
-                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </imageView>
-                                <label alignment="center" text="Aktueller Ort" textAlignment="left" id="sjS-NB-z3e">
-                                    <fontDescription key="font" type="system" pointSize="12"/>
-                                </label>
-                            </items>
-                        </group>
-                        <label width="1" height="28" alignment="left" text="Moers" textAlignment="center" minimumScaleFactor="0.59999999999999998" id="SJy-JN-Sf0">
-                            <fontDescription key="font" type="system" weight="medium" pointSize="26"/>
-                        </label>
-                        <group width="1" height="33" alignment="left" id="uZz-nW-16z">
-                            <items>
-                                <label width="1" height="100" alignment="left" text="1.18€" textAlignment="center" id="rsi-nZ-9Xp">
-                                    <color key="textColor" red="0.29803921570000003" green="0.46274509800000002" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    <fontDescription key="font" type="system" weight="semibold" pointSize="37"/>
-                                </label>
-                            </items>
-                        </group>
-                        <label width="1" height="13" alignment="left" text="PRO L DIESEL" textAlignment="center" id="gtR-Sd-BSn">
-                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="font" type="system" weight="medium" pointSize="13"/>
-                        </label>
-                        <separator alignment="left" id="UwN-hG-OOC">
-                            <color key="color" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </separator>
-                        <button width="1" alignment="left" title="Anzeigen" id="5pr-QJ-4c1">
-                            <connections>
-                                <action selector="show" destination="DIl-d3-Faz" id="NHh-4h-xz7"/>
-                            </connections>
-                        </button>
-                        <separator alignment="left" id="6eU-Ng-tpE">
-                            <color key="color" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </separator>
-                    </items>
-                    <menu key="menu" id="ShS-Oh-5Yg">
-                        <items>
-                            <menuItem title="Müll" icon="trash" id="IWM-Hf-azY"/>
-                            <menuItem title="Tanken" id="tsu-Ti-O6W"/>
-                        </items>
-                    </menu>
-                    <connections>
-                        <outlet property="placeLabel" destination="SJy-JN-Sf0" id="swV-2c-PIp"/>
-                        <outlet property="priceLabel" destination="rsi-nZ-9Xp" id="cdJ-xZ-zv7"/>
-                        <outlet property="subtitleLabel" destination="gtR-Sd-BSn" id="fPl-q8-U2w"/>
-                        <segue destination="6o0-ij-07j" kind="relationship" relationship="nextPage" id="APb-M4-Ya9"/>
-                    </connections>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="220" y="386"/>
+            <point key="canvasLocation" x="187" y="141"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
             <objects>
                 <notificationController id="YCC-NB-fut">
                     <items>
-                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
+                        <label alignment="left" text="Alert Label" numberOfLines="0" id="IdU-wH-bcW"/>
                     </items>
                     <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
                     <connections>
                         <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
-                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                        <segue destination="eXb-UN-Cd0" kind="relationship" relationship="dynamicInteractiveNotificationInterface" id="mpB-YA-K8N"/>
                     </connections>
                 </notificationController>
             </objects>
-            <point key="canvasLocation" x="220" y="643"/>
+            <point key="canvasLocation" x="187" y="462"/>
         </scene>
-        <!--Notification Controller-->
-        <scene sceneID="ZPc-GJ-vnh">
+        <!--Notification Hosting Controller-->
+        <scene sceneID="Niz-AI-uX2">
             <objects>
-                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="Watch" customModuleProvider="target"/>
+                <controller id="eXb-UN-Cd0" customClass="NotificationController"
+                customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="468" y="643"/>
+            <point key="canvasLocation" x="488" y="462"/>
         </scene>
     </scenes>
 </document>

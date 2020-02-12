@@ -15,6 +15,8 @@ class DashboardCoordinator: Coordinator {
     var navigationController: CoordinatedNavigationController
     var rubbishManager: RubbishManagerProtocol
     var petrolManager: PetrolManagerProtocol
+    var locationManager: LocationManagerProtocol
+    var geocodingManager: GeocodingManagerProtocol
     
     var dashboardViewController: DashboardViewController?
     
@@ -27,15 +29,14 @@ class DashboardCoordinator: Coordinator {
         self.navigationController = navigationController
         self.rubbishManager = rubbishManager
         self.petrolManager = petrolManager
+        self.locationManager = locationManager
+        self.geocodingManager = geocodingManager
         
         self.navigationController.coordinator = self
         
-        let dashboardViewController = DashboardViewController(locationManager: locationManager,
-                                                              geocodingManager: geocodingManager,
-                                                              petrolManager: petrolManager)
+        let dashboardViewController = DashboardViewController(coordinator: self)
         
         dashboardViewController.tabBarItem = generateTabBarItem()
-        dashboardViewController.coordinator = self
         
         self.navigationController.viewControllers = [dashboardViewController]
         self.dashboardViewController = dashboardViewController

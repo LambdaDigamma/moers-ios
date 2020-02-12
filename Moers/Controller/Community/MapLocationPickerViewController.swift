@@ -67,7 +67,7 @@ class MapLocationPickerViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if EntryManager.shared.entryLat != 0 && EntryManager.shared.entryLng != 0 {
+        if entryManager.entryLat != 0 && entryManager.entryLng != 0 {
             
         } else {
             self.focusOnUserLocation()
@@ -83,7 +83,8 @@ class MapLocationPickerViewController: UIViewController {
             
             if authorizationStatus == .authorizedWhenInUse {
                 self.locationManager.requestCurrentLocation()
-                self.locationManager.location.observeOn(.main).observeNext(with: { location in
+                self.locationManager.location.receive(on: DispatchQueue.main)
+                    .observeNext(with: { location in
                     self.setupMap(centeringOn: location.coordinate)
                 }).dispose(in: self.bag)
             }
@@ -160,7 +161,9 @@ class MapLocationPickerViewController: UIViewController {
     @objc private func focusOnUserLocation() {
         
         locationManager.requestCurrentLocation()
-        locationManager.location.observeOn(.main).observeNext { location in
+        locationManager.location
+            .receive(on: DispatchQueue.main)
+            .observeNext { location in
             
             self.setupMap(centeringOn: location.coordinate)
             self.executeReverseGeocode()
@@ -210,7 +213,7 @@ class MapLocationPickerViewController: UIViewController {
     
     private func focusOnPreviousLocation() {
         
-        let coordinate = CLLocationCoordinate2D(latitude: EntryManager.shared.entryLat ?? 0, longitude: EntryManager.shared.entryLng ?? 0)
+        let coordinate = CLLocationCoordinate2D(latitude: entryManager.entryLat ?? 0, longitude: entryManager.entryLng ?? 0)
         
         let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)) // 0.0015
             

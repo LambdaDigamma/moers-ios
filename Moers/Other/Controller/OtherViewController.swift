@@ -22,6 +22,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     private var backgroundColor: UIColor = .clear
     private var textColor: UIColor = .clear
     
+    private var entryManager: EntryManagerProtocol
     private let locationManager: LocationManagerProtocol
     private let geocodingManager: GeocodingManagerProtocol
     private let rubbishManager: RubbishManagerProtocol
@@ -71,12 +72,14 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     init(locationManager: LocationManagerProtocol,
          geocodingManager: GeocodingManagerProtocol,
          rubbishManager: RubbishManagerProtocol,
-         petrolManager: PetrolManagerProtocol) {
+         petrolManager: PetrolManagerProtocol,
+         entryManager: EntryManagerProtocol) {
         
         self.locationManager = locationManager
         self.geocodingManager = geocodingManager
         self.rubbishManager = rubbishManager
         self.petrolManager = petrolManager
+        self.entryManager = entryManager
         
         super.init(nibName: nil, bundle: nil)
         
@@ -130,7 +133,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
     private func showAddEntry() {
         
-        if EntryManager.shared.entryStreet != nil || EntryManager.shared.entryLat != nil {
+        if entryManager.entryStreet != nil || entryManager.entryLat != nil {
             
             Alertift
                 .alert(title: String.localized("OtherDataTakeOldDataTitle"), message: String.localized("OtherDataTakeOldDataMessage"))
@@ -140,10 +143,10 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                 .backgroundColor(backgroundColor)
                 .action(Alertift.Action.cancel(String.localized("OtherDataTakeOldDataNo")), handler: { (action, i, textFields) in
                     
-                    EntryManager.shared.resetData()
+                    self.entryManager.resetData()
                     
                     let viewController = EntryOnboardingLocationMenuViewController(locationManager: self.locationManager,
-                                                                                   entryManager: EntryManager.shared)
+                                                                                   entryManager: self.entryManager)
                     
                     self.navigationController?.pushViewController(viewController, animated: true)
                     
@@ -151,7 +154,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                 .action(.default(String.localized("OtherDataTakeOldDataYes")), isPreferred: true, handler: { (action, i, textFields) in
                     
                     let viewController = EntryOnboardingLocationMenuViewController(locationManager: self.locationManager,
-                                                                                   entryManager: EntryManager.shared)
+                                                                                   entryManager: self.entryManager)
                     
                     self.navigationController?.pushViewController(viewController, animated: true)
                     
@@ -161,7 +164,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         } else {
             
             let viewController = EntryOnboardingLocationMenuViewController(locationManager: self.locationManager,
-                                                                           entryManager: EntryManager.shared)
+                                                                           entryManager: self.entryManager)
             
             self.navigationController?.pushViewController(viewController, animated: true)
             
