@@ -57,16 +57,6 @@
       </MacroExpansion>
       <Testables>
          <TestableReference
-            skipped = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DFB64DAD20377AEE00173A80"
-               BuildableName = "MoersUITests.xctest"
-               BlueprintName = "MoersUITests"
-               ReferencedContainer = "container:Moers.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"

@@ -22,16 +22,6 @@
 		DF1116BF23F35F6C003C6CCD /* StorageManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1116BE23F35F6C003C6CCD /* StorageManagerTests.swift */; };
 		DF1207BA23C0C777003285C1 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1207B923C0C777003285C1 /* Form.swift */; };
 		DF1207BC23C0CA1C003285C1 /* FormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1207BB23C0CA1C003285C1 /* FormTests.swift */; };
-		DF1207C723C0CE39003285C1 /* FIRAnalyticsConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D6872187397F00E6A0A9 /* FIRAnalyticsConnector.framework */; };
-		DF1207C823C0CE39003285C1 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D6882187397F00E6A0A9 /* FirebaseAnalytics.framework */; };
-		DF1207C923C0CE39003285C1 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D68A2187397F00E6A0A9 /* FirebaseCore.framework */; };
-		DF1207CA23C0CE39003285C1 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D68C2187397F00E6A0A9 /* FirebaseCoreDiagnostics.framework */; };
-		DF1207CB23C0CE39003285C1 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D68B2187397F00E6A0A9 /* FirebaseInstanceID.framework */; };
-		DF1207CC23C0CE39003285C1 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF7E702921DA39A300A43B84 /* FirebaseMessaging.framework */; };
-		DF1207CD23C0CE39003285C1 /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D6892187397F00E6A0A9 /* GoogleAppMeasurement.framework */; };
-		DF1207CE23C0CE39003285C1 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D6852187397F00E6A0A9 /* GoogleUtilities.framework */; };
-		DF1207CF23C0CE39003285C1 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D6862187397F00E6A0A9 /* nanopb.framework */; };
-		DF1207D023C0CE39003285C1 /* Protobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF69B73F21DA2AFB00F910D8 /* Protobuf.framework */; };
 		DF1207D223C14B97003285C1 /* TextFieldFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1207D123C14B97003285C1 /* TextFieldFormView.swift */; };
 		DF16582E22EF8C990033D218 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */; };
 		DF16583022EF90D90033D218 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF16582F22EF90D90033D218 /* Launch Screen.storyboard */; };
@@ -42,16 +32,6 @@
 		DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */; };
 		DF21B2FE20B9D8A900478A33 /* Licenses.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF21B2FD20B9D8A900478A33 /* Licenses.plist */; };
 		DF21B30020BA0DB400478A33 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF21B2FF20BA0DB400478A33 /* SwitchTableViewCell.swift */; };
-		DF284ED323F4B3CE00EC999B /* Alertift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA1023B53484001FCA29 /* Alertift.framework */; };
-		DF284ED423F4B3CE00EC999B /* BLTNBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA1423B534B4001FCA29 /* BLTNBoard.framework */; };
-		DF284ED523F4B3CE00EC999B /* ESTabBarController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA1223B5349D001FCA29 /* ESTabBarController.framework */; };
-		DF284ED623F4B3CE00EC999B /* EventBus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0623B533E5001FCA29 /* EventBus.framework */; };
-		DF284ED723F4B3CE00EC999B /* FeedKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0E23B53470001FCA29 /* FeedKit.framework */; };
-		DF284ED823F4B3CE00EC999B /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0C23B53458001FCA29 /* pop.framework */; };
-		DF284ED923F4B3CE00EC999B /* Pulley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB618571FAE144000C98EB6 /* Pulley.framework */; };
-		DF284EDA23F4B3CE00EC999B /* TagListView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0A23B53440001FCA29 /* TagListView.framework */; };
-		DF284EDB23F4B3CE00EC999B /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9A4D3F23F45BAA00EE5356 /* TwitterCore.framework */; };
-		DF284EDC23F4B3CE00EC999B /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFCB432020E0344700E7AD3F /* TwitterKit.framework */; };
 		DF29FB4D20B1954B00741A63 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */; };
 		DF29FB4F20B19BE600741A63 /* ThemeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29FB4E20B19BE600741A63 /* ThemeCardView.swift */; };
 		DF2CF1C223BBB2EA003497C5 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = DF2CF1C123BBB2EA003497C5 /* TextFieldEffects */; };
@@ -170,8 +150,6 @@
 		DFB4D76920B062BE00C8D179 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D76820B062BE00C8D179 /* SettingsViewController.swift */; };
 		DFB4D76B20B064CA00C8D179 /* StaticTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D76A20B064CA00C8D179 /* StaticTableView.swift */; };
 		DFB618581FAE144000C98EB6 /* Pulley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB618571FAE144000C98EB6 /* Pulley.framework */; };
-		DFB64DB120377AEE00173A80 /* MoersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB64DB020377AEE00173A80 /* MoersUITests.swift */; };
-		DFB64DB920377B7600173A80 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB64DB820377B7600173A80 /* SnapshotHelper.swift */; };
 		DFB64DCE20389FDC00173A80 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DCC20389FDB00173A80 /* Crashlytics.framework */; };
 		DFB6A0BF21033C7800D5C12B /* DetailCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6A0BE21033C7800D5C12B /* DetailCameraViewController.swift */; };
 		DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D631F6B109C00669F73 /* Extensions.swift */; };
@@ -229,13 +207,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = DF94B11623F0A7E5009C57ED;
 			remoteInfo = Watch;
-		};
-		DFB64DB320377AEE00173A80 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DF1A49571F6AAB7000E9108B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DF1A495E1F6AAB7000E9108B;
-			remoteInfo = Moers;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -424,10 +395,6 @@
 		DFB4D76820B062BE00C8D179 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DFB4D76A20B064CA00C8D179 /* StaticTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableView.swift; sourceTree = "<group>"; };
 		DFB618571FAE144000C98EB6 /* Pulley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pulley.framework; path = Carthage/Build/iOS/Pulley.framework; sourceTree = "<group>"; };
-		DFB64DAE20377AEE00173A80 /* MoersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DFB64DB020377AEE00173A80 /* MoersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoersUITests.swift; sourceTree = "<group>"; };
-		DFB64DB220377AEE00173A80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DFB64DB820377B7600173A80 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		DFB64DC9203883D200173A80 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		DFB64DCA2038845300173A80 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
 		DFB64DCC20389FDB00173A80 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Moers/Crashlytics.framework; sourceTree = SOURCE_ROOT; };
@@ -524,33 +491,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DFB64DAB20377AEE00173A80 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DF284ED323F4B3CE00EC999B /* Alertift.framework in Frameworks */,
-				DF284ED423F4B3CE00EC999B /* BLTNBoard.framework in Frameworks */,
-				DF284ED523F4B3CE00EC999B /* ESTabBarController.framework in Frameworks */,
-				DF284ED623F4B3CE00EC999B /* EventBus.framework in Frameworks */,
-				DF284ED723F4B3CE00EC999B /* FeedKit.framework in Frameworks */,
-				DF284ED823F4B3CE00EC999B /* pop.framework in Frameworks */,
-				DF284ED923F4B3CE00EC999B /* Pulley.framework in Frameworks */,
-				DF284EDA23F4B3CE00EC999B /* TagListView.framework in Frameworks */,
-				DF284EDB23F4B3CE00EC999B /* TwitterCore.framework in Frameworks */,
-				DF284EDC23F4B3CE00EC999B /* TwitterKit.framework in Frameworks */,
-				DF1207C723C0CE39003285C1 /* FIRAnalyticsConnector.framework in Frameworks */,
-				DF1207C823C0CE39003285C1 /* FirebaseAnalytics.framework in Frameworks */,
-				DF1207C923C0CE39003285C1 /* FirebaseCore.framework in Frameworks */,
-				DF1207CA23C0CE39003285C1 /* FirebaseCoreDiagnostics.framework in Frameworks */,
-				DF1207CB23C0CE39003285C1 /* FirebaseInstanceID.framework in Frameworks */,
-				DF1207CC23C0CE39003285C1 /* FirebaseMessaging.framework in Frameworks */,
-				DF1207CD23C0CE39003285C1 /* GoogleAppMeasurement.framework in Frameworks */,
-				DF1207CE23C0CE39003285C1 /* GoogleUtilities.framework in Frameworks */,
-				DF1207CF23C0CE39003285C1 /* nanopb.framework in Frameworks */,
-				DF1207D023C0CE39003285C1 /* Protobuf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -807,7 +747,6 @@
 				DF1A49611F6AAB7000E9108B /* Moers */,
 				DFF8F2DF20E6DF26001A9EBB /* Shared */,
 				DF57D66C2187383000E6A0A9 /* MoersTests */,
-				DFB64DAF20377AEE00173A80 /* MoersUITests */,
 				DF94B11823F0A7E5009C57ED /* Watch */,
 				DF94B12723F0A7E8009C57ED /* Watch Extension */,
 				DF1A49601F6AAB7000E9108B /* Products */,
@@ -819,7 +758,6 @@
 			isa = PBXGroup;
 			children = (
 				DF1A495F1F6AAB7000E9108B /* Moers.app */,
-				DFB64DAE20377AEE00173A80 /* MoersUITests.xctest */,
 				DF57D66B2187383000E6A0A9 /* MoersTests.xctest */,
 				DF94B11723F0A7E5009C57ED /* Watch.app */,
 				DF94B12323F0A7E7009C57ED /* Watch Extension.appex */,
@@ -1098,16 +1036,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		DFB64DAF20377AEE00173A80 /* MoersUITests */ = {
-			isa = PBXGroup;
-			children = (
-				DFB64DB020377AEE00173A80 /* MoersUITests.swift */,
-				DFB64DB820377B7600173A80 /* SnapshotHelper.swift */,
-				DFB64DB220377AEE00173A80 /* Info.plist */,
-			);
-			path = MoersUITests;
-			sourceTree = "<group>";
-		};
 		DFD7ACBB20A794D700D49BE2 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
@@ -1219,27 +1147,6 @@
 			productReference = DF94B12323F0A7E7009C57ED /* Watch Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
-		DFB64DAD20377AEE00173A80 /* MoersUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DFB64DB720377AEE00173A80 /* Build configuration list for PBXNativeTarget "MoersUITests" */;
-			buildPhases = (
-				DFB64DAB20377AEE00173A80 /* Frameworks */,
-				DFB64DAA20377AEE00173A80 /* Sources */,
-				DFB64DAC20377AEE00173A80 /* Resources */,
-				DF1207BE23C0CC7F003285C1 /* Copy Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DFB64DB420377AEE00173A80 /* PBXTargetDependency */,
-			);
-			name = MoersUITests;
-			packageProductDependencies = (
-			);
-			productName = MoersUITests;
-			productReference = DFB64DAE20377AEE00173A80 /* MoersUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1282,12 +1189,6 @@
 					DF94B12223F0A7E7009C57ED = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
-					DFB64DAD20377AEE00173A80 = {
-						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1020;
-						ProvisioningStyle = Automatic;
-						TestTargetID = DF1A495E1F6AAB7000E9108B;
-					};
 				};
 			};
 			buildConfigurationList = DF1A495A1F6AAB7000E9108B /* Build configuration list for PBXProject "Moers" */;
@@ -1312,7 +1213,6 @@
 			targets = (
 				DF1A495E1F6AAB7000E9108B /* Moers */,
 				DF57D66A2187383000E6A0A9 /* MoersTests */,
-				DFB64DAD20377AEE00173A80 /* MoersUITests */,
 				DF94B11623F0A7E5009C57ED /* Watch */,
 				DF94B12223F0A7E7009C57ED /* Watch Extension */,
 			);
@@ -1364,36 +1264,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DFB64DAC20377AEE00173A80 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		DF1207BE23C0CC7F003285C1 /* Copy Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"$(SRCROOT)/Moers/Config/input.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "Copy Frameworks";
-			outputFileListPaths = (
-				"$(SRCROOT)/Moers/Config/output.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
 		DF36A75B2379E27F006BF6EA /* Fix SPM */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1599,15 +1472,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DFB64DAA20377AEE00173A80 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DFB64DB120377AEE00173A80 /* MoersUITests.swift in Sources */,
-				DFB64DB920377B7600173A80 /* SnapshotHelper.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1625,11 +1489,6 @@
 			isa = PBXTargetDependency;
 			target = DF94B11623F0A7E5009C57ED /* Watch */;
 			targetProxy = DF94B13B23F0A7E8009C57ED /* PBXContainerItemProxy */;
-		};
-		DFB64DB420377AEE00173A80 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DF1A495E1F6AAB7000E9108B /* Moers */;
-			targetProxy = DFB64DB320377AEE00173A80 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1775,43 +1634,6 @@
 			};
 			name = "Debug (Staging)";
 		};
-		DF11BF9E22B951180051C3B3 /* Debug (Staging) */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 93C29USLP6;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Moers",
-				);
-				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Moers;
-				USER_HEADER_SEARCH_PATHS = (
-					"${PROJECT_DIR}",
-					"${PROJECT_DIR}/Moers/Utility",
-				);
-			};
-			name = "Debug (Staging)";
-		};
 		DF11BFA122B951180051C3B3 /* Debug (Staging) */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */;
@@ -1946,43 +1768,6 @@
 					"${PROJECT_DIR}/Moers/Utility",
 				);
 				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = "Release (Staging)";
-		};
-		DF11BFA422B9512E0051C3B3 /* Release (Staging) */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 93C29USLP6;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Moers",
-				);
-				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Moers;
-				USER_HEADER_SEARCH_PATHS = (
-					"${PROJECT_DIR}",
-					"${PROJECT_DIR}/Moers/Utility",
-				);
 			};
 			name = "Release (Staging)";
 		};
@@ -2128,43 +1913,6 @@
 			};
 			name = "Debug (Production)";
 		};
-		DF11BFAA22B9515E0051C3B3 /* Debug (Production) */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 93C29USLP6;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Moers",
-				);
-				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Moers;
-				USER_HEADER_SEARCH_PATHS = (
-					"${PROJECT_DIR}",
-					"${PROJECT_DIR}/Moers/Utility",
-				);
-			};
-			name = "Debug (Production)";
-		};
 		DF11BFAD22B9515E0051C3B3 /* Debug (Production) */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */;
@@ -2299,43 +2047,6 @@
 					"${PROJECT_DIR}/Moers/Utility",
 				);
 				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = "Release (Production)";
-		};
-		DF11BFB022B951780051C3B3 /* Release (Production) */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 93C29USLP6;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Moers",
-				);
-				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Moers;
-				USER_HEADER_SEARCH_PATHS = (
-					"${PROJECT_DIR}",
-					"${PROJECT_DIR}/Moers/Utility",
-				);
 			};
 			name = "Release (Production)";
 		};
@@ -2661,6 +2372,7 @@
 		};
 		DF94B13F23F0A7E8009C57ED /* Debug (Development) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
@@ -2737,6 +2449,7 @@
 		};
 		DF94B14023F0A7E8009C57ED /* Debug (Staging) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
@@ -2813,6 +2526,7 @@
 		};
 		DF94B14123F0A7E8009C57ED /* Debug (Production) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
@@ -2889,6 +2603,7 @@
 		};
 		DF94B14223F0A7E8009C57ED /* Release (Development) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
@@ -2959,6 +2674,7 @@
 		};
 		DF94B14323F0A7E8009C57ED /* Release (Staging) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
@@ -3029,6 +2745,7 @@
 		};
 		DF94B14423F0A7E8009C57ED /* Release (Production) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
@@ -3099,6 +2816,7 @@
 		};
 		DF94B14723F0A7E8009C57ED /* Debug (Development) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -3171,6 +2889,7 @@
 		};
 		DF94B14823F0A7E8009C57ED /* Debug (Staging) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -3243,6 +2962,7 @@
 		};
 		DF94B14923F0A7E8009C57ED /* Debug (Production) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -3315,6 +3035,7 @@
 		};
 		DF94B14A23F0A7E8009C57ED /* Release (Development) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -3381,6 +3102,7 @@
 		};
 		DF94B14B23F0A7E8009C57ED /* Release (Staging) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -3447,6 +3169,7 @@
 		};
 		DF94B14C23F0A7E8009C57ED /* Release (Production) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -3510,81 +3233,6 @@
 				WATCHOS_DEPLOYMENT_TARGET = 6.1;
 			};
 			name = "Release (Production)";
-		};
-		DFB64DB520377AEE00173A80 /* Debug (Development) */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 93C29USLP6;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Moers",
-				);
-				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Moers;
-				USER_HEADER_SEARCH_PATHS = (
-					"${PROJECT_DIR}",
-					"${PROJECT_DIR}/Moers/Utility",
-				);
-			};
-			name = "Debug (Development)";
-		};
-		DFB64DB620377AEE00173A80 /* Release (Development) */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 93C29USLP6;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Moers",
-				);
-				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.MoersUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Moers;
-				USER_HEADER_SEARCH_PATHS = (
-					"${PROJECT_DIR}",
-					"${PROJECT_DIR}/Moers/Utility",
-				);
-			};
-			name = "Release (Development)";
 		};
 /* End XCBuildConfiguration section */
 
@@ -3650,19 +3298,6 @@
 				DF94B14A23F0A7E8009C57ED /* Release (Development) */,
 				DF94B14B23F0A7E8009C57ED /* Release (Staging) */,
 				DF94B14C23F0A7E8009C57ED /* Release (Production) */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release (Production)";
-		};
-		DFB64DB720377AEE00173A80 /* Build configuration list for PBXNativeTarget "MoersUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DFB64DB520377AEE00173A80 /* Debug (Development) */,
-				DF11BF9E22B951180051C3B3 /* Debug (Staging) */,
-				DF11BFAA22B9515E0051C3B3 /* Debug (Production) */,
-				DFB64DB620377AEE00173A80 /* Release (Development) */,
-				DF11BFA422B9512E0051C3B3 /* Release (Staging) */,
-				DF11BFB022B951780051C3B3 /* Release (Production) */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release (Production)";
