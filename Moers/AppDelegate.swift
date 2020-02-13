@@ -33,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         LaunchArgumentsHandler(userDefaults: UserDefaults.standard).handle()
         #endif
         
+        self.resetIfNeeded()
+        
         ThemeManager.default.theme = UserManager.shared.theme
         ThemeManager.default.animated = true
         
@@ -165,6 +167,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         TWTRTwitter.sharedInstance().start(withConsumerKey: consumerKey, consumerSecret: consumerSecret)
+        
+    }
+    
+}
+
+extension AppDelegate {
+    
+    func resetIfNeeded() {
+        
+        guard CommandLine.arguments.contains("-reset") else {
+            return
+        }
+
+        let defaultsName = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: defaultsName)
+
+        Shared.dataCache.removeAll()
+        Shared.JSONCache.removeAll()
+        Shared.stringCache.removeAll()
         
     }
     

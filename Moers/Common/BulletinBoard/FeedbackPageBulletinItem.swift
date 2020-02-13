@@ -9,7 +9,7 @@
 import UIKit
 import BLTNBoard
 
-class FeedbackPageBulletinItem: BLTNPageItem {
+class FeedbackPageBulletinItem: AccessibleBulletinPageItem {
     
     private let feedbackGenerator = SelectionFeedbackGenerator()
     

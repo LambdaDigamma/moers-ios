@@ -66,6 +66,16 @@
                ReferencedContainer = "container:Moers.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DF284EFC23F4C17100EC999B"
+               BuildableName = "MoersUITests.xctest"
+               BlueprintName = "MoersUITests"
+               ReferencedContainer = "container:Moers.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
