@@ -108,17 +108,19 @@ class AveragePetrolPriceComponent: BaseComponent, UIViewControllerPreviewingDele
     private func loadCurrentLocation() {
         
         self.averagePetrolCardView.startLoading()
+        locationManager.requestCurrentLocation()
         
         let location = locationManager.location
         
         location.observeNext { location in
             self.loadPlacemark(for: location)
-        }.dispose(in: bag)
+        }.dispose(in: bag) // Add Throtteling here
         
         location
             .receive(on: DispatchQueue.main)
             .observeFailed { error in
                 // TODO: Show standard price for Moers
+                print(error.localizedDescription)
                 self.averagePetrolCardView.showError(withTitle: "Loading Location Failed.", message: "")
             }.dispose(in: bag)
         
@@ -169,6 +171,8 @@ class AveragePetrolPriceComponent: BaseComponent, UIViewControllerPreviewingDele
     }
     
     private func handleReceivedPetrolStations(_ petrolStations: [PetrolStation]) {
+        
+        self.averagePetrolCardView.stopLoading()
         
         let openStations = petrolStations.filter { $0.isOpen && $0.price != nil }
         
