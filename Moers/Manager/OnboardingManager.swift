@@ -73,6 +73,9 @@ class OnboardingManager {
             item.manager?.displayNextItem()
         }
         
+        page.actionButtonAccessibilityIdentifier = "ContinueButton"
+        page.titleLabelAccessibilityIdentifier = "StartAppTitleLabel"
+        
         return page
         
     }
@@ -96,6 +99,9 @@ class OnboardingManager {
         }
         
         page.actionHandler = { $0.manager?.displayNextItem() }
+        
+        page.actionButtonAccessibilityIdentifier = "ContinueButton"
+        page.titleLabelAccessibilityIdentifier = "CitizenTypeTitleLabel"
         
         return page
         
@@ -121,6 +127,10 @@ class OnboardingManager {
         page.alternativeHandler = { item in
             item.manager?.displayNextItem()
         }
+        
+        page.titleLabelAccessibilityIdentifier = "NotificationsTitleLabel"
+        page.actionButtonAccessibilityIdentifier = "SubscribeNotificationsButton"
+        page.alternativeButtonAccessibilityIdentifier = "NotNowNotificationsButton"
         
         return page
         
