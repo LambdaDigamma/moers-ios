@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import MMAPI
+import MMUI
 
 class AveragePetrolPriceComponent: BaseComponent, UIViewControllerPreviewingDelegate {
 
