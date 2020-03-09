@@ -94,6 +94,8 @@
 		DF75734321771D3100953DA1 /* LFSearchViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75734221771D3100953DA1 /* LFSearchViewDelegate.swift */; };
 		DF75734521771D6800953DA1 /* LFSearchViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75734421771D6800953DA1 /* LFSearchViewDataSource.swift */; };
 		DF757347217725AC00953DA1 /* LFSearchViewDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF757346217725AC00953DA1 /* LFSearchViewDefaults.swift */; };
+		DF777BBD2414361500C7C9D5 /* MarkdownKit in Frameworks */ = {isa = PBXBuildFile; productRef = DF777BBC2414361500C7C9D5 /* MarkdownKit */; };
+		DF777BC024143A9D00C7C9D5 /* SwiftyMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = DF777BBF24143A9D00C7C9D5 /* SwiftyMarkdown */; };
 		DF77DA0323B52FB9001FCA29 /* input.xcfilelist in Resources */ = {isa = PBXBuildFile; fileRef = DF77DA0223B52FB9001FCA29 /* input.xcfilelist */; };
 		DF77DA0523B52FD9001FCA29 /* output.xcfilelist in Resources */ = {isa = PBXBuildFile; fileRef = DF77DA0423B52FD9001FCA29 /* output.xcfilelist */; };
 		DF77DA0B23B53440001FCA29 /* TagListView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0A23B53440001FCA29 /* TagListView.framework */; };
@@ -449,6 +451,7 @@
 			files = (
 				DF409CFC2352453C001A473E /* MMAPI in Frameworks */,
 				DF2CF1C223BBB2EA003497C5 /* TextFieldEffects in Frameworks */,
+				DF777BBD2414361500C7C9D5 /* MarkdownKit in Frameworks */,
 				DF409CF82352453C001A473E /* MMUI in Frameworks */,
 				DF7E702A21DA39A300A43B84 /* FirebaseMessaging.framework in Frameworks */,
 				DF69B74021DA2AFB00F910D8 /* Protobuf.framework in Frameworks */,
@@ -472,6 +475,7 @@
 				DF77DA1323B5349D001FCA29 /* ESTabBarController.framework in Frameworks */,
 				DF77DA1523B534B4001FCA29 /* BLTNBoard.framework in Frameworks */,
 				DF77DA1823B5491D001FCA29 /* EventBus.framework in Frameworks */,
+				DF777BC024143A9D00C7C9D5 /* SwiftyMarkdown in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1105,6 +1109,8 @@
 				DF409CF92352453C001A473E /* Gestalt */,
 				DF409CFB2352453C001A473E /* MMAPI */,
 				DF2CF1C123BBB2EA003497C5 /* TextFieldEffects */,
+				DF777BBC2414361500C7C9D5 /* MarkdownKit */,
+				DF777BBF24143A9D00C7C9D5 /* SwiftyMarkdown */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1248,6 +1254,8 @@
 				DF22FC1123522756003F1B3A /* XCRemoteSwiftPackageReference "Gestalt" */,
 				DF409CF023522AD9001A473E /* XCRemoteSwiftPackageReference "mmapi-ios" */,
 				DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
+				DF777BBB2414361500C7C9D5 /* XCRemoteSwiftPackageReference "MarkdownKit" */,
+				DF777BBE24143A9D00C7C9D5 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */,
 			);
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
@@ -3830,6 +3838,22 @@
 				kind = branch;
 			};
 		};
+		DF777BBB2414361500C7C9D5 /* XCRemoteSwiftPackageReference "MarkdownKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OscarGorog/MarkdownKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.0;
+			};
+		};
+		DF777BBE24143A9D00C7C9D5 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimonFairbairn/SwiftyMarkdown";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -3852,6 +3876,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DF409CF023522AD9001A473E /* XCRemoteSwiftPackageReference "mmapi-ios" */;
 			productName = MMAPI;
+		};
+		DF777BBC2414361500C7C9D5 /* MarkdownKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF777BBB2414361500C7C9D5 /* XCRemoteSwiftPackageReference "MarkdownKit" */;
+			productName = MarkdownKit;
+		};
+		DF777BBF24143A9D00C7C9D5 /* SwiftyMarkdown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF777BBE24143A9D00C7C9D5 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */;
+			productName = SwiftyMarkdown;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

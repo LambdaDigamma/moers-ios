@@ -10,6 +10,8 @@ import UIKit
 import Gestalt
 import MMUI
 import MMAPI
+import MarkdownKit
+import SwiftyMarkdown
 
 class ApplicationController: UIViewController {
 
@@ -50,6 +52,30 @@ class ApplicationController: UIViewController {
         super.viewDidLoad()
 
         MMUIConfig.themeManager?.manage(theme: \ApplicationTheme.self, for: self)
+        
+        MMUIConfig.markdownConverter = { text in
+            
+            let markdown = SwiftyMarkdown(string: text)
+
+            markdown.setFontColorForAllStyles(with: UIColor.white)
+            markdown.h1.fontStyle = FontStyle.bold
+            markdown.h2.fontStyle = FontStyle.bold
+            markdown.h3.fontStyle = FontStyle.boldItalic
+            markdown.link.color = UIColor.yellow
+            markdown.underlineLinks = false
+            markdown.bullet = "•"
+            
+            return markdown.attributedString()
+            
+//            let markdownParser = MarkdownParser(font: UIFont.systemFont(ofSize: 14), color: UIColor.white)
+//            markdownParser.enabledElements = .disabledAutomaticLink
+//            markdownParser.list.indicator = "•"
+//            markdownParser.header.fontIncrease = 2
+//            markdownParser.code.textBackgroundColor = UIColor.black
+//
+//            return markdownParser.parse(text)
+            
+        }
         
         let tabBarController = TabBarController(locationManager: locationManager,
                                                 petrolManager: petrolManager,

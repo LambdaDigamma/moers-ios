@@ -60,8 +60,17 @@
         "repositoryURL": "https://github.com/onevcat/Kingfisher",
         "state": {
           "branch": null,
-          "revision": "44bfa76787a0f07e4d5ae3304e9d4f631fd519bd",
-          "version": "5.13.0"
+          "revision": "56075f629bc3915e1bfa876d175df67e1a7cbe3c",
+          "version": "5.13.2"
+        }
+      },
+      {
+        "package": "MarkdownKit",
+        "repositoryURL": "https://github.com/OscarGorog/MarkdownKit",
+        "state": {
+          "branch": null,
+          "revision": "c64728dedf6dbcac463cf5e53e93d210ab825793",
+          "version": "1.6.0"
         }
       },
       {
@@ -78,8 +87,17 @@
         "repositoryURL": "https://github.com/DeclarativeHub/ReactiveKit.git",
         "state": {
           "branch": null,
-          "revision": "ca6619a7752f9e475fc51b8c2b6db82e66964823",
-          "version": "3.16.2"
+          "revision": "12b359dce94ef3919bc4955ed2b3abd834fce51d",
+          "version": "3.17.0"
+        }
+      },
+      {
+        "package": "SwiftyMarkdown",
+        "repositoryURL": "https://github.com/SimonFairbairn/SwiftyMarkdown",
+        "state": {
+          "branch": null,
+          "revision": "a06d690000d0877e61cc7632b4b230300acaa5a5",
+          "version": "1.1.0"
         }
       }
     ]
