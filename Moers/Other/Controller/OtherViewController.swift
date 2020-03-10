@@ -44,7 +44,10 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     lazy var data: [Section] = {
         
-        return [Section(title: String.localized("OtherSectionDataTitle"),
+        return [Section(title: "Erkunden",
+                        rows: [NavigationRow(title: "AR",
+                                             action: showAR)]),
+                Section(title: String.localized("OtherSectionDataTitle"),
                         rows: [NavigationRow(title: String.localized("OtherSectionDataAddEntry"),
                                              action: showAddEntry)]),
                 Section(title: String.localized("SettingsTitle"),
@@ -131,6 +134,16 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     // MARK: - Row Action
         
+    private func showAR() {
+        
+        let arNavigation = ARNavigationViewController()
+        
+        arNavigation.modalPresentationStyle = .fullScreen
+        
+        self.present(arNavigation, animated: true, completion: nil)
+        
+    }
+    
     private func showAddEntry() {
         
         if entryManager.entryStreet != nil || entryManager.entryLat != nil {

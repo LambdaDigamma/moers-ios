@@ -93,6 +93,8 @@
 		DF57D6932187397F00E6A0A9 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D68B2187397F00E6A0A9 /* FirebaseInstanceID.framework */; };
 		DF57D6942187397F00E6A0A9 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF57D68C2187397F00E6A0A9 /* FirebaseCoreDiagnostics.framework */; };
 		DF57D69921875FE900E6A0A9 /* TabBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF57D69821875FE900E6A0A9 /* TabBarControllerTests.swift */; };
+		DF5B6F4D241004F000CAD8B6 /* ARCL in Frameworks */ = {isa = PBXBuildFile; productRef = DF5B6F4C241004F000CAD8B6 /* ARCL */; };
+		DF5B6F4F2410064D00CAD8B6 /* ARNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5B6F4E2410064D00CAD8B6 /* ARNavigationViewController.swift */; };
 		DF5D81CA2256832600A19B01 /* MockConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5D81C92256832600A19B01 /* MockConfig.swift */; };
 		DF5D82732258DBD900A19B01 /* UIProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5D82722258DBD900A19B01 /* UIProperties.swift */; };
 		DF61DCCD212ECD850093915F /* DetailPetrolStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */; };
@@ -173,6 +175,9 @@
 		DFB92D691F6B96E400669F73 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D681F6B96E400669F73 /* ClusterAnnotationView.swift */; };
 		DFBB9DE3212BF63600038943 /* PetrolStationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBB9DE2212BF63600038943 /* PetrolStationAnnotationView.swift */; };
 		DFC7126921DFC863006D05DB /* ShortcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC7126821DFC863006D05DB /* ShortcutsViewController.swift */; };
+		DFC7F74424124E9400C94ED4 /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFC7F74324124E9300C94ED4 /* ARKit.framework */; };
+		DFC7F74624124E9F00C94ED4 /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFC7F74524124E9F00C94ED4 /* SceneKit.framework */; };
+		DFC7F74824124EA700C94ED4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFC7F74724124EA700C94ED4 /* CoreLocation.framework */; };
 		DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431C20E0283000E7AD3F /* NewsViewController.swift */; };
 		DFCB431F20E02D0300E7AD3F /* NewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431E20E02D0300E7AD3F /* NewsManager.swift */; };
 		DFCB432120E0344800E7AD3F /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFCB432020E0344700E7AD3F /* TwitterKit.framework */; };
@@ -348,6 +353,7 @@
 		DF57D68C2187397F00E6A0A9 /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCoreDiagnostics.framework; path = Frameworks/FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
 		DF57D695218739C500E6A0A9 /* Moers-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Moers-Bridging-Header.h"; sourceTree = "<group>"; };
 		DF57D69821875FE900E6A0A9 /* TabBarControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerTests.swift; sourceTree = "<group>"; };
+		DF5B6F4E2410064D00CAD8B6 /* ARNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARNavigationViewController.swift; sourceTree = "<group>"; };
 		DF5D81C92256832600A19B01 /* MockConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConfig.swift; sourceTree = "<group>"; };
 		DF5D82722258DBD900A19B01 /* UIProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIProperties.swift; path = ../UIProperties.swift; sourceTree = "<group>"; };
 		DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPetrolStationViewController.swift; sourceTree = "<group>"; };
@@ -433,6 +439,9 @@
 		DFB92D681F6B96E400669F73 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
 		DFBB9DE2212BF63600038943 /* PetrolStationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolStationAnnotationView.swift; sourceTree = "<group>"; };
 		DFC7126821DFC863006D05DB /* ShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsViewController.swift; sourceTree = "<group>"; };
+		DFC7F74324124E9300C94ED4 /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
+		DFC7F74524124E9F00C94ED4 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
+		DFC7F74724124EA700C94ED4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DFCB431C20E0283000E7AD3F /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewsViewController.swift; path = ../../Controller/News/NewsViewController.swift; sourceTree = "<group>"; };
 		DFCB431E20E02D0300E7AD3F /* NewsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsManager.swift; sourceTree = "<group>"; };
 		DFCB432020E0344700E7AD3F /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Carthage/Build/iOS/TwitterKit.framework; sourceTree = "<group>"; };
@@ -477,6 +486,7 @@
 				DF7E702A21DA39A300A43B84 /* FirebaseMessaging.framework in Frameworks */,
 				DF69B74021DA2AFB00F910D8 /* Protobuf.framework in Frameworks */,
 				DF57D6902187397F00E6A0A9 /* FirebaseAnalytics.framework in Frameworks */,
+				DFC7F74424124E9400C94ED4 /* ARKit.framework in Frameworks */,
 				DF57D68D2187397F00E6A0A9 /* GoogleUtilities.framework in Frameworks */,
 				DF57D68E2187397F00E6A0A9 /* nanopb.framework in Frameworks */,
 				DF57D68F2187397F00E6A0A9 /* FIRAnalyticsConnector.framework in Frameworks */,
@@ -487,12 +497,15 @@
 				DF86ABA12174900400EFC7EA /* Intents.framework in Frameworks */,
 				DFB618581FAE144000C98EB6 /* Pulley.framework in Frameworks */,
 				DF409CFA2352453C001A473E /* Gestalt in Frameworks */,
+				DF5B6F4D241004F000CAD8B6 /* ARCL in Frameworks */,
 				DFB64DCE20389FDC00173A80 /* Crashlytics.framework in Frameworks */,
 				DF77DA0B23B53440001FCA29 /* TagListView.framework in Frameworks */,
 				DFCB432120E0344800E7AD3F /* TwitterKit.framework in Frameworks */,
 				DF77DA0F23B53470001FCA29 /* FeedKit.framework in Frameworks */,
+				DFC7F74824124EA700C94ED4 /* CoreLocation.framework in Frameworks */,
 				DF77DA0D23B53458001FCA29 /* pop.framework in Frameworks */,
 				DF77DA1123B53484001FCA29 /* Alertift.framework in Frameworks */,
+				DFC7F74624124E9F00C94ED4 /* SceneKit.framework in Frameworks */,
 				DF77DA1323B5349D001FCA29 /* ESTabBarController.framework in Frameworks */,
 				DF77DA1523B534B4001FCA29 /* BLTNBoard.framework in Frameworks */,
 				DF77DA1823B5491D001FCA29 /* EventBus.framework in Frameworks */,
@@ -759,6 +772,7 @@
 				DF0CB4AE2085B65200CC0AA8 /* MapViewController.swift */,
 				DFD7ACB120A44C5A00D49BE2 /* SelectionViewController.swift */,
 				DF47AA98212C1EA500308873 /* Detail */,
+				DF5B6F4E2410064D00CAD8B6 /* ARNavigationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -841,6 +855,9 @@
 		DF1A497D1F6ABD7100E9108B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DFC7F74724124EA700C94ED4 /* CoreLocation.framework */,
+				DFC7F74524124E9F00C94ED4 /* SceneKit.framework */,
+				DFC7F74324124E9300C94ED4 /* ARKit.framework */,
 				DF9A4D3F23F45BAA00EE5356 /* TwitterCore.framework */,
 				DF77DA1623B54906001FCA29 /* EventBus */,
 				DF77DA1423B534B4001FCA29 /* BLTNBoard.framework */,
@@ -1148,6 +1165,7 @@
 				DF409CF92352453C001A473E /* Gestalt */,
 				DF409CFB2352453C001A473E /* MMAPI */,
 				DF2CF1C123BBB2EA003497C5 /* TextFieldEffects */,
+				DF5B6F4C241004F000CAD8B6 /* ARCL */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1301,6 +1319,7 @@
 				DF22FC1123522756003F1B3A /* XCRemoteSwiftPackageReference "Gestalt" */,
 				DF409CF023522AD9001A473E /* XCRemoteSwiftPackageReference "mmapi-ios" */,
 				DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
+				DF5B6F4B241004F000CAD8B6 /* XCRemoteSwiftPackageReference "ARKit-CoreLocation" */,
 			);
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
@@ -1516,6 +1535,7 @@
 				DFDD3F7420B2F30A005602E3 /* AboutViewController.swift in Sources */,
 				DF0CB49D2082B78C00CC0AA8 /* PermissionsManager.swift in Sources */,
 				DF1207D223C14B97003285C1 /* TextFieldFormView.swift in Sources */,
+				DF5B6F4F2410064D00CAD8B6 /* ARNavigationViewController.swift in Sources */,
 				DFD73690211E424E00826C47 /* SelectorBulletinPage.swift in Sources */,
 				DFB4D76920B062BE00C8D179 /* SettingsViewController.swift in Sources */,
 				DF7D4B5E22F0D53400126AF7 /* Constants.swift in Sources */,
@@ -3660,6 +3680,14 @@
 				kind = branch;
 			};
 		};
+		DF5B6F4B241004F000CAD8B6 /* XCRemoteSwiftPackageReference "ARKit-CoreLocation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ProjectDent/ARKit-CoreLocation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -3702,6 +3730,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DF409CF023522AD9001A473E /* XCRemoteSwiftPackageReference "mmapi-ios" */;
 			productName = MMAPI;
+		};
+		DF5B6F4C241004F000CAD8B6 /* ARCL */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF5B6F4B241004F000CAD8B6 /* XCRemoteSwiftPackageReference "ARKit-CoreLocation" */;
+			productName = ARCL;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

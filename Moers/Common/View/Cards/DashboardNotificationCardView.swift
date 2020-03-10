@@ -45,18 +45,18 @@ class DashboardNotificationCardView: CardView {
         
     }()
     
-    var image: UIImage? = nil {
-        didSet {
-            if let image = image {
-                imageView.image = image
-                imageWidthConstraint?.constant = 50
-                imageLeftConstraint?.constant = 16
-            } else {
-                imageWidthConstraint?.constant = 0
-                imageLeftConstraint?.constant = 0
-            }
-        }
-    }
+//    var image: UIImage? = nil {
+//        didSet {
+//            if let image = image {
+//                imageView.image = image
+//                imageWidthConstraint?.constant = 50
+//                imageLeftConstraint?.constant = 16
+//            } else {
+//                imageWidthConstraint?.constant = 0
+//                imageLeftConstraint?.constant = 0
+//            }
+//        }
+//    }
 
     var imageWidthConstraint: NSLayoutConstraint?
     var imageLeftConstraint: NSLayoutConstraint?
