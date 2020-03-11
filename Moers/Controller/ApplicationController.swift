@@ -67,14 +67,6 @@ class ApplicationController: UIViewController {
             
             return markdown.attributedString()
             
-//            let markdownParser = MarkdownParser(font: UIFont.systemFont(ofSize: 14), color: UIColor.white)
-//            markdownParser.enabledElements = .disabledAutomaticLink
-//            markdownParser.list.indicator = "•"
-//            markdownParser.header.fontIncrease = 2
-//            markdownParser.code.textBackgroundColor = UIColor.black
-//
-//            return markdownParser.parse(text)
-            
         }
         
         let tabBarController = TabBarController(locationManager: locationManager,
