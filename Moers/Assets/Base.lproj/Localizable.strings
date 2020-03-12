@@ -279,3 +279,6 @@
 "OtherDataTakeOldDataMessage" = "Last time the operation was not completed and this data was temporarily saved. Do you want to keep them?";
 "OtherDataTakeOldDataNo" = "No";
 "OtherDataTakeOldDataYes" = "Yes";
+
+"Upcoming" = "Upcoming";
+"ActiveEventsHeadline" = "Today";

@@ -279,3 +279,7 @@
 "OtherDataTakeOldDataMessage" = "Beim letzten Mal wurde der Vorgang nicht abgeschlossen und diese Daten wurden zwischen gespeichert. Möchtest Du diese übernehmen?";
 "OtherDataTakeOldDataNo" = "Nein";
 "OtherDataTakeOldDataYes" = "Ja";
+
+"Upcoming" = "In den nächsten Tagen";
+"ActiveEventsHeadline" = "Heute";
+

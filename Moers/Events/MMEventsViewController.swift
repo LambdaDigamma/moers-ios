@@ -18,8 +18,8 @@ class MMEventsViewController: EventsViewController {
         super.viewDidLoad()
         
         self.numberOfDisplayedUpcomingEvents = 15
-        self.sectionUpcomingTitle = "IN DEN NÄCHSTEN TAGEN"
-        self.sectionActiveTitle = "HEUTE"
+        self.sectionUpcomingTitle = String.localized("Upcoming").uppercased()
+        self.sectionActiveTitle = String.localized("ActiveEventsHeadline").uppercased()
         
     }
     
@@ -37,6 +37,36 @@ class MMEventsViewController: EventsViewController {
         eventObserver.observeFailed { error in
             print(error.localizedDescription)
         }.dispose(in: bag)
+        
+    }
+    
+    override func filterActive(events: [Event]) -> [Event] {
+        
+        return events.filter { (event) -> Bool in
+            return isActive(event: event)
+        }
+        
+    }
+    
+    override func filterUpcoming(events: [Event]) -> [Event] {
+        
+        return events.filter({ !$0.isLongEvent }).filter { (event) -> Bool in
+            return !isActive(event: event)
+        }
+        
+    }
+    
+    private func isActive(event: Event) -> Bool {
+        
+        if let startDate = event.startDate {
+            return startDate.isToday
+        } else if let startDate = event.startDate, let endDate = event.endDate {
+            return (startDate...endDate).contains(Date())
+        } else if event.startDate == nil {
+            return false
+        } else {
+            return false
+        }
         
     }
     
