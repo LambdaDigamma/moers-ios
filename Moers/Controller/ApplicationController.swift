@@ -12,6 +12,7 @@ import MMUI
 import MMAPI
 import MarkdownKit
 import SwiftyMarkdown
+import BasicNetworking
 
 class ApplicationController: UIViewController {
 
@@ -23,13 +24,18 @@ class ApplicationController: UIViewController {
     let entryManager: EntryManagerProtocol
     let parkingLotManager: ParkingLotManagerProtocol
     
+    convenience init(apiClient: APIClient) {
+        self.init(entryManager: EntryManager(apiClient: apiClient))
+        
+    }
+    
     init(locationManager: LocationManagerProtocol = LocationManager(),
          petrolManager: PetrolManagerProtocol = PetrolManager(storageManager: StorageManager()),
          rubbishManager: RubbishManagerProtocol = RubbishManager(storagePickupItemsManager: StorageManager(),
                                                                  storageStreetsManager: StorageManager()),
          geocodingManager: GeocodingManagerProtocol = GeocodingManager(),
          cameraManager: CameraManagerProtocol = CameraManager(storageManager: StorageManager()),
-         entryManager: EntryManagerProtocol = EntryManager(),
+         entryManager: EntryManagerProtocol,
          parkingLotManager: ParkingLotManagerProtocol = ParkingLotManager()) {
         
         self.locationManager = locationManager

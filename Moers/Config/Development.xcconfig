@@ -7,11 +7,12 @@
 //
 
 // Server URL
-ROOT_URL = http:/$()/mein-moers.test/api/v2/
+ROOT_URL = https:/$()/mein-moers.localhost/api/v2/
+BASE_URL = https:/$()/mein-moers.localhost/
 
 // Auth
 CLIENT_ID = 2
-CLIENT_SECRET = jNMAQBsoiyRlyKyeM8Wly2Ffn54EEFukEjLDaccR
+CLIENT_SECRET = 3hgDVmklXAqPrgS8OXo3claU7eD7sERBn0ZiroSZ
 
 // App Settings
 APP_NAME = Moers (dev)

@@ -17,6 +17,7 @@ import Gestalt
 import MMAPI
 import MMUI
 import Haneke
+import BasicNetworking
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -46,7 +47,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         RubbishManager.shared.rubbishStreetURL = URL(string: "https://beta.meinmoers.lambdadigamma.com/abfallkalender-strassenverzeichnis-2020-01.csv")
         RubbishManager.shared.rubbishDateURL = URL(string: "https://beta.meinmoers.lambdadigamma.com/abfallkalender-termine-2020-01.csv")
         
-        let applicationController = ApplicationController()
+        
+        
+        let sessionConfig = URLSessionConfiguration.default
+        let _ = "ey...."
+        
+//        sessionConfig.httpAdditionalHeaders = [
+//            "Authorization": "Bearer \(apiKey)"
+//        ]
+        
+        let config = MMAPIConfig(baseURL: URL(string: Environment.baseURL)!)
+        let client = APIClient(config: config, urlSessionConfiguration: sessionConfig, adapters: [LoggingAdapter()])
+        
+        let applicationController = ApplicationController(apiClient: client)
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window!.rootViewController = applicationController

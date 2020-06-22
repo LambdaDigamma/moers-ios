@@ -8,6 +8,7 @@
 
 // Server URL
 ROOT_URL = https:/$()/www.meinmoers.lambdadigamma.com/api/v2/
+BASE_URL = https:/$()/www.meinmoers.lambdadigamma.com/
 
 // Auth
 CLIENT_ID = 2

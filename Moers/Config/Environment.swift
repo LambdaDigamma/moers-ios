@@ -12,6 +12,7 @@ public enum Environment {
     
     enum Keys {
         enum Plist {
+            static let baseURL = "BASE_URL"
             static let rootURL = "ROOT_URL"
             static let clientSecret = "CLIENT_SECRET"
             static let clientID = "CLIENT_ID"
@@ -23,6 +24,13 @@ public enum Environment {
             fatalError("Plist file not found")
         }
         return dict
+    }()
+    
+    static let baseURL: String = {
+        guard let baseURLstring = Environment.infoDictionary[Keys.Plist.baseURL] as? String else {
+            fatalError("Base URL not set in plist for this environment")
+        }
+        return baseURLstring
     }()
     
     static let rootURL: String = {
@@ -40,10 +48,10 @@ public enum Environment {
     }()
     
     static let clientID: Int = {
-        guard let clientID = Environment.infoDictionary[Keys.Plist.clientID] as? Int else {
+        guard let clientIDString = Environment.infoDictionary[Keys.Plist.clientID] as? String else {
             fatalError("API Key not set in plist for this environment")
         }
-        return clientID
+        return (clientIDString as NSString).integerValue
     }()
     
 }

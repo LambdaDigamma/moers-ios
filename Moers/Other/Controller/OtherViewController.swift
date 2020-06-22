@@ -12,6 +12,7 @@ import MessageUI
 import Alertift
 import MMAPI
 import MMUI
+import SwiftUI
 
 class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
@@ -44,28 +45,42 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     lazy var data: [Section] = {
         
-        return [Section(title: String.localized("OtherSectionDataTitle"),
-                        rows: [NavigationRow(title: String.localized("OtherSectionDataAddEntry"),
-                                             action: showAddEntry)]),
-                Section(title: String.localized("SettingsTitle"),
-                        rows: [NavigationRow(title: String.localized("SettingsTitle"),
-                                             action: showSettings),
-                               NavigationRow(title: "Siri Shortcuts",
-                                             action: showSiriShortcuts)]),
-                Section(title: "Info",
-                        rows: [NavigationRow(title: String.localized("AboutTitle"),
-                                             action: showAbout),
-                               NavigationRow(title: String.localized("Feedback"),
-                                             action: showFeedback),
-                               NavigationRow(title: Bundle.main.versionString,
-                                             action: nil)]),
-                Section(title: String.localized("Legal"),
-                        rows: [NavigationRow(title: String.localized("TandC"),
-                                             action: showTaC),
-                               NavigationRow(title: String.localized("PrivacyPolicy"),
-                                             action: showPrivacy),
-                               NavigationRow(title: String.localized("Licences"),
-                                             action: showLicences)])]
+        var additionalData: [Section] = []
+        
+        if #available(iOS 13.0, *) {
+            additionalData.append(contentsOf: [
+                Section(title: "Moers Funk", rows: [
+                    NavigationRow(title: "Bettenkamper Wassertemperatur", action: showWaterTemperature)
+                ])
+            ])
+        }
+        
+        let normalData = [
+            Section(title: String.localized("OtherSectionDataTitle"),
+                    rows: [NavigationRow(title: String.localized("OtherSectionDataAddEntry"),
+                                         action: showAddEntry)]),
+            Section(title: String.localized("SettingsTitle"),
+                    rows: [NavigationRow(title: String.localized("SettingsTitle"),
+                                         action: showSettings),
+                           NavigationRow(title: "Siri Shortcuts",
+                                         action: showSiriShortcuts)]),
+            Section(title: "Info",
+                    rows: [NavigationRow(title: String.localized("AboutTitle"),
+                                         action: showAbout),
+                           NavigationRow(title: String.localized("Feedback"),
+                                         action: showFeedback),
+                           NavigationRow(title: Bundle.main.versionString,
+                                         action: nil)]),
+            Section(title: String.localized("Legal"),
+                    rows: [NavigationRow(title: String.localized("TandC"),
+                                         action: showTaC),
+                           NavigationRow(title: String.localized("PrivacyPolicy"),
+                                         action: showPrivacy),
+                           NavigationRow(title: String.localized("Licences"),
+                                         action: showLicences)])
+        ]
+        
+        return additionalData + normalData
         
     }()
     
@@ -232,6 +247,20 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     private func showLicences() {
         push(viewController: LicensesViewController.self)
+    }
+    
+    // MARK: - Moers Funk
+    
+    @available(iOS 13.0, *)
+    private func showWaterTemperature() {
+        
+        let temperatureView = TemperatureView()
+        let hosting = UIHostingController(rootView: temperatureView)
+        
+        hosting.title = "Temperatur"
+        
+        self.navigationController?.pushViewController(hosting, animated: true)
+        
     }
     
     private func push(viewController: UIViewController.Type) {

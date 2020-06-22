@@ -62,6 +62,17 @@
 		DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */; };
 		DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C3208C64F1003ECF41 /* PickerView.swift */; };
 		DF4BD1C6208CF76C003ECF41 /* RubbishReminderBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C5208CF76C003ECF41 /* RubbishReminderBulletinItem.swift */; };
+		DF4CB7DE248501DD00D20986 /* TemperatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7DD248501DD00D20986 /* TemperatureView.swift */; };
+		DF4CB7E12485032600D20986 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7E02485032600D20986 /* Helpers.swift */; };
+		DF4CB7FB248504C300D20986 /* MultiLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7F3248504C200D20986 /* MultiLineChartView.swift */; };
+		DF4CB7FC248504C300D20986 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7F4248504C200D20986 /* Line.swift */; };
+		DF4CB7FD248504C300D20986 /* MagnifierRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7F5248504C300D20986 /* MagnifierRect.swift */; };
+		DF4CB7FE248504C300D20986 /* Path+QuadCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7F6248504C300D20986 /* Path+QuadCurve.swift */; };
+		DF4CB7FF248504C300D20986 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7F7248504C300D20986 /* LineView.swift */; };
+		DF4CB800248504C300D20986 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7F8248504C300D20986 /* LineChartView.swift */; };
+		DF4CB801248504C300D20986 /* Legend.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7F9248504C300D20986 /* Legend.swift */; };
+		DF4CB802248504C300D20986 /* IndicatorPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7FA248504C300D20986 /* IndicatorPoint.swift */; };
+		DF4D437924309418003A771D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D437824309418003A771D /* LoginViewController.swift */; };
 		DF4D8953210388D5008609A1 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D8952210388D5008609A1 /* CameraViewController.swift */; };
 		DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D89562104A6F0008609A1 /* Datasources.swift */; };
 		DF500153235A3D2D00ED39B2 /* SearchDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF500152235A3D2D00ED39B2 /* SearchDrawerView.swift */; };
@@ -107,6 +118,7 @@
 		DF77DA1823B5491D001FCA29 /* EventBus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0623B533E5001FCA29 /* EventBus.framework */; };
 		DF78DFE423BD50A2000A78AE /* OnboardingOverviewNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF78DFE323BD50A2000A78AE /* OnboardingOverviewNotice.swift */; };
 		DF79985123CCD3C6007E7186 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF79985023CCD3C6007E7186 /* MapCoordinator.swift */; };
+		DF7BD96524841FB60062505B /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = DF7BD96424841FB60062505B /* SwiftUICharts */; };
 		DF7D4B5E22F0D53400126AF7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7D4B5D22F0D53400126AF7 /* Constants.swift */; };
 		DF7E702A21DA39A300A43B84 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF7E702921DA39A300A43B84 /* FirebaseMessaging.framework */; };
 		DF8281B621CFA74F00C3B3CE /* TweetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8281B521CFA74F00C3B3CE /* TweetCollectionViewCell.swift */; };
@@ -296,6 +308,17 @@
 		DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishStreetPickerItem.swift; sourceTree = "<group>"; };
 		DF4BD1C3208C64F1003ECF41 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		DF4BD1C5208CF76C003ECF41 /* RubbishReminderBulletinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishReminderBulletinItem.swift; sourceTree = "<group>"; };
+		DF4CB7DD248501DD00D20986 /* TemperatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureView.swift; sourceTree = "<group>"; };
+		DF4CB7E02485032600D20986 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		DF4CB7F3248504C200D20986 /* MultiLineChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiLineChartView.swift; sourceTree = "<group>"; };
+		DF4CB7F4248504C200D20986 /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		DF4CB7F5248504C300D20986 /* MagnifierRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagnifierRect.swift; sourceTree = "<group>"; };
+		DF4CB7F6248504C300D20986 /* Path+QuadCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Path+QuadCurve.swift"; sourceTree = "<group>"; };
+		DF4CB7F7248504C300D20986 /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
+		DF4CB7F8248504C300D20986 /* LineChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
+		DF4CB7F9248504C300D20986 /* Legend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Legend.swift; sourceTree = "<group>"; };
+		DF4CB7FA248504C300D20986 /* IndicatorPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorPoint.swift; sourceTree = "<group>"; };
+		DF4D437824309418003A771D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DF4D8952210388D5008609A1 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		DF4D89562104A6F0008609A1 /* Datasources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datasources.swift; sourceTree = "<group>"; };
 		DF500152235A3D2D00ED39B2 /* SearchDrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDrawerView.swift; sourceTree = "<group>"; };
@@ -362,6 +385,7 @@
 		DF86AB9C217387E700EFC7EA /* OnboardingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingProgressView.swift; sourceTree = "<group>"; };
 		DF86ABA02174900400EFC7EA /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		DF86ABA22174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryOnboardingOpeningHoursViewController.swift; sourceTree = "<group>"; };
+		DF8F4445249F588E00BF3412 /* BasicNetworking */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BasicNetworking; path = ../BasicNetworking; sourceTree = "<group>"; };
 		DF94B11723F0A7E5009C57ED /* Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF94B11A23F0A7E5009C57ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		DF94B11C23F0A7E7009C57ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -441,6 +465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF409CFC2352453C001A473E /* MMAPI in Frameworks */,
+				DF7BD96524841FB60062505B /* SwiftUICharts in Frameworks */,
 				DF2CF1C223BBB2EA003497C5 /* TextFieldEffects in Frameworks */,
 				DF777BBD2414361500C7C9D5 /* MarkdownKit in Frameworks */,
 				DF409CF82352453C001A473E /* MMUI in Frameworks */,
@@ -591,8 +616,10 @@
 		DF11BFBF22BA68650051C3B3 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				DF4CB7E2248503AC00D20986 /* Charting */,
 				DF11BFC122BA6E710051C3B3 /* Model */,
 				DF11BFC422BA6F020051C3B3 /* View */,
+				DF4CB7DF2485030E00D20986 /* Utility */,
 				DF461CB520E2241400600C0E /* Controller */,
 			);
 			path = Other;
@@ -652,6 +679,7 @@
 				DF86AB9C217387E700EFC7EA /* OnboardingProgressView.swift */,
 				DF21B2FF20BA0DB400478A33 /* SwitchTableViewCell.swift */,
 				DF78DFE323BD50A2000A78AE /* OnboardingOverviewNotice.swift */,
+				DF4CB7DD248501DD00D20986 /* TemperatureView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -747,6 +775,7 @@
 		DF1A49561F6AAB7000E9108B = {
 			isa = PBXGroup;
 			children = (
+				DF8F4445249F588E00BF3412 /* BasicNetworking */,
 				DF9A4D4423F48DC500EE5356 /* mmui-ios */,
 				DF9A4D4323F48D5800EE5356 /* mmapi-ios */,
 				DF2CF1C323BBB315003497C5 /* TextFieldEffects */,
@@ -893,6 +922,7 @@
 				DFC7126821DFC863006D05DB /* ShortcutsViewController.swift */,
 				DFD890862124860A006B5610 /* TandCViewController.swift */,
 				DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */,
+				DF4D437824309418003A771D /* LoginViewController.swift */,
 				DF86AB952172782F00EFC7EA /* Onboarding */,
 			);
 			path = Controller;
@@ -908,6 +938,29 @@
 				DFD728AB20A880C6005FA9F1 /* DetailViewController.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		DF4CB7DF2485030E00D20986 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				DF4CB7E02485032600D20986 /* Helpers.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		DF4CB7E2248503AC00D20986 /* Charting */ = {
+			isa = PBXGroup;
+			children = (
+				DF4CB7FA248504C300D20986 /* IndicatorPoint.swift */,
+				DF4CB7F9248504C300D20986 /* Legend.swift */,
+				DF4CB7F4248504C200D20986 /* Line.swift */,
+				DF4CB7F8248504C300D20986 /* LineChartView.swift */,
+				DF4CB7F7248504C300D20986 /* LineView.swift */,
+				DF4CB7F5248504C300D20986 /* MagnifierRect.swift */,
+				DF4CB7F3248504C200D20986 /* MultiLineChartView.swift */,
+				DF4CB7F6248504C300D20986 /* Path+QuadCurve.swift */,
+			);
+			path = Charting;
 			sourceTree = "<group>";
 		};
 		DF57D66C2187383000E6A0A9 /* MoersTests */ = {
@@ -1101,6 +1154,7 @@
 				DF2CF1C123BBB2EA003497C5 /* TextFieldEffects */,
 				DF777BBC2414361500C7C9D5 /* MarkdownKit */,
 				DF777BBF24143A9D00C7C9D5 /* SwiftyMarkdown */,
+				DF7BD96424841FB60062505B /* SwiftUICharts */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1246,6 +1300,7 @@
 				DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 				DF777BBB2414361500C7C9D5 /* XCRemoteSwiftPackageReference "MarkdownKit" */,
 				DF777BBE24143A9D00C7C9D5 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */,
+				DF7BD96324841FB60062505B /* XCRemoteSwiftPackageReference "ChartView" */,
 			);
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
@@ -1380,6 +1435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF1207BA23C0C777003285C1 /* Form.swift in Sources */,
+				DF4CB7E12485032600D20986 /* Helpers.swift in Sources */,
 				DF503CEF21431503006EE226 /* DebugViewController.swift in Sources */,
 				DFCB431F20E02D0300E7AD3F /* NewsManager.swift in Sources */,
 				DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */,
@@ -1389,6 +1445,7 @@
 				DF541389217FCD25007FDEC8 /* EntryValidationViewController.swift in Sources */,
 				DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */,
 				DF5D82732258DBD900A19B01 /* UIProperties.swift in Sources */,
+				DF4CB800248504C300D20986 /* LineChartView.swift in Sources */,
 				DF78DFE423BD50A2000A78AE /* OnboardingOverviewNotice.swift in Sources */,
 				DFA96A6320BD8A390009B279 /* AveragePetrolPriceComponent.swift in Sources */,
 				DF3EE0C320E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift in Sources */,
@@ -1407,6 +1464,7 @@
 				DFC7126921DFC863006D05DB /* ShortcutsViewController.swift in Sources */,
 				DFEE2E0A20BB117A00A130CB /* BaseComponent.swift in Sources */,
 				DFD7ACBA20A6C6BC00D49BE2 /* RubbishCollectionView.swift in Sources */,
+				DF4D437924309418003A771D /* LoginViewController.swift in Sources */,
 				DF4BD1C6208CF76C003ECF41 /* RubbishReminderBulletinItem.swift in Sources */,
 				DF2D6DA320B88BFA00176614 /* Licence.swift in Sources */,
 				DF75734021771CC900953DA1 /* LFSearchViewController.swift in Sources */,
@@ -1414,11 +1472,13 @@
 				DF86AB9B2173837B00EFC7EA /* EntryOnboardingGeneralViewController.swift in Sources */,
 				DFD7ACBD20A795AF00D49BE2 /* DashboardNotificationCardView.swift in Sources */,
 				DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */,
+				DF4CB7FC248504C300D20986 /* Line.swift in Sources */,
 				DF2D6DA120B83C1E00176614 /* AnalyticsManager.swift in Sources */,
 				DF855C2420C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift in Sources */,
 				DF4BD1BE208A72C5003ECF41 /* DashboardViewController.swift in Sources */,
 				DF0CB4B12085B66600CC0AA8 /* ContentViewController.swift in Sources */,
 				DF757347217725AC00953DA1 /* LFSearchViewDefaults.swift in Sources */,
+				DF4CB801248504C300D20986 /* Legend.swift in Sources */,
 				DF61DCCD212ECD850093915F /* DetailPetrolStationViewController.swift in Sources */,
 				DFD890872124860A006B5610 /* TandCViewController.swift in Sources */,
 				DFDD3F7420B2F30A005602E3 /* AboutViewController.swift in Sources */,
@@ -1467,18 +1527,23 @@
 				DF29FB4F20B19BE600741A63 /* ThemeCardView.swift in Sources */,
 				DF04D60A23CBD5EC008AE677 /* DashboardCoordinator.swift in Sources */,
 				DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */,
+				DF4CB7FE248504C300D20986 /* Path+QuadCurve.swift in Sources */,
 				DFD7ACB220A44C5A00D49BE2 /* SelectionViewController.swift in Sources */,
 				DF2D6DAB20B8A02B00176614 /* OnboardingManager.swift in Sources */,
 				DF75734321771D3100953DA1 /* LFSearchViewDelegate.swift in Sources */,
 				DF8281B621CFA74F00C3B3CE /* TweetCollectionViewCell.swift in Sources */,
 				DF54138D2180955B007FDEC8 /* NewsCollectionViewCell.swift in Sources */,
+				DF4CB7FB248504C300D20986 /* MultiLineChartView.swift in Sources */,
+				DF4CB7DE248501DD00D20986 /* TemperatureView.swift in Sources */,
 				DF86AB9721728A1E00EFC7EA /* EntryOnboardingLocationMenuViewController.swift in Sources */,
 				DF69B73C21D986AD00F910D8 /* EntryHistoryViewController.swift in Sources */,
 				DF174FA723BC361B00812BDD /* AuditTableViewCell.swift in Sources */,
+				DF4CB802248504C300D20986 /* IndicatorPoint.swift in Sources */,
 				DF2D6DA720B8983400176614 /* UserManager.swift in Sources */,
 				DF4D8953210388D5008609A1 /* CameraViewController.swift in Sources */,
 				DFD7ACC120A842F400D49BE2 /* DateCardView.swift in Sources */,
 				DFB92D691F6B96E400669F73 /* ClusterAnnotationView.swift in Sources */,
+				DF4CB7FD248504C300D20986 /* MagnifierRect.swift in Sources */,
 				DF552FC72184D2210062EB2B /* CheckmarkView.swift in Sources */,
 				DF3EE0C520E382EC00CA9279 /* MapLocationPickerViewController.swift in Sources */,
 				DFD8908921248DD9006B5610 /* PrivacyViewController.swift in Sources */,
@@ -1489,6 +1554,7 @@
 				DF500155235A4E1E00ED39B2 /* SearchDrawerViewController.swift in Sources */,
 				DF0CB49F2082B90900CC0AA8 /* FeedbackGenerators.swift in Sources */,
 				DF51F78D22E26A9200A0CF00 /* TabControllerFactory.swift in Sources */,
+				DF4CB7FF248504C300D20986 /* LineView.swift in Sources */,
 				DFD728AC20A880C6005FA9F1 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2253,7 +2319,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -2345,6 +2411,7 @@
 		};
 		DF284F0523F4C17100EC999B /* Debug (Development) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2418,6 +2485,7 @@
 		};
 		DF284F0623F4C17100EC999B /* Debug (Staging) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2491,6 +2559,7 @@
 		};
 		DF284F0723F4C17100EC999B /* Debug (Production) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2564,6 +2633,7 @@
 		};
 		DF284F0823F4C17100EC999B /* Release (Development) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2631,6 +2701,7 @@
 		};
 		DF284F0923F4C17100EC999B /* Release (Staging) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2698,6 +2769,7 @@
 		};
 		DF284F0A23F4C17100EC999B /* Release (Production) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3851,6 +3923,14 @@
 				minimumVersion = 1.1.0;
 			};
 		};
+		DF7BD96324841FB60062505B /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -3883,6 +3963,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DF777BBE24143A9D00C7C9D5 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */;
 			productName = SwiftyMarkdown;
+		};
+		DF7BD96424841FB60062505B /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF7BD96324841FB60062505B /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
