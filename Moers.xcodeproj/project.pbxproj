@@ -1243,7 +1243,7 @@
 			attributes = {
 				DefaultBuildSystemTypeForWorkspace = Latest;
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1110;
+				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = "Lennart Fischer";
 				TargetAttributes = {
 					DF1A495E1F6AAB7000E9108B = {
@@ -2319,7 +2319,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
