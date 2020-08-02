@@ -2,24 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "BasicNetworking",
-        "repositoryURL": "https://github.com/LambdaDigamma/BasicNetworking",
-        "state": {
-          "branch": null,
-          "revision": "f782d8d55c8b20a50bbd78b7f5f5840a515824b2",
-          "version": "0.0.2"
-        }
-      },
-      {
-        "package": "Bond",
-        "repositoryURL": "https://github.com/DeclarativeHub/Bond.git",
-        "state": {
-          "branch": null,
-          "revision": "f89bb719065848f976999daa6ae71fca39df010e",
-          "version": "7.7.1"
-        }
-      },
-      {
         "package": "SwiftUICharts",
         "repositoryURL": "https://github.com/AppPear/ChartView",
         "state": {
@@ -92,6 +74,15 @@
         }
       },
       {
+        "package": "MMAPI",
+        "repositoryURL": "https://github.com/LambdaDigamma/mmapi-ios",
+        "state": {
+          "branch": "master",
+          "revision": "47d23ebfe1a520bd3b383f11c63cf66025c015cd",
+          "version": null
+        }
+      },
+      {
         "package": "Reachability",
         "repositoryURL": "https://github.com/ashleymills/Reachability.swift.git",
         "state": {
@@ -107,6 +98,15 @@
           "branch": null,
           "revision": "fe00e0f30b9235f072647eb75a6a7328514bf24e",
           "version": "3.17.2"
+        }
+      },
+      {
+        "package": "Resolver",
+        "repositoryURL": "https://github.com/hmlongco/Resolver",
+        "state": {
+          "branch": null,
+          "revision": "cb5b4e1e60046120de87fee14af257e07ad74a62",
+          "version": "1.1.4"
         }
       },
       {

@@ -43,35 +43,35 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
     }()
     
-    lazy var data: [Section] = {
+    lazy var data: [TableViewSection] = {
         
-        var additionalData: [Section] = []
+        var additionalData: [TableViewSection] = []
         
         if #available(iOS 13.0, *) {
             additionalData.append(contentsOf: [
-                Section(title: "Moers Funk", rows: [
+                TableViewSection(title: "Moers Funk", rows: [
                     NavigationRow(title: "Bettenkamper Wassertemperatur", action: showWaterTemperature)
                 ])
             ])
         }
         
         let normalData = [
-            Section(title: String.localized("OtherSectionDataTitle"),
+            TableViewSection(title: String.localized("OtherSectionDataTitle"),
                     rows: [NavigationRow(title: String.localized("OtherSectionDataAddEntry"),
                                          action: showAddEntry)]),
-            Section(title: String.localized("SettingsTitle"),
+            TableViewSection(title: String.localized("SettingsTitle"),
                     rows: [NavigationRow(title: String.localized("SettingsTitle"),
                                          action: showSettings),
                            NavigationRow(title: "Siri Shortcuts",
                                          action: showSiriShortcuts)]),
-            Section(title: "Info",
+            TableViewSection(title: "Info",
                     rows: [NavigationRow(title: String.localized("AboutTitle"),
                                          action: showAbout),
                            NavigationRow(title: String.localized("Feedback"),
                                          action: showFeedback),
                            NavigationRow(title: Bundle.main.versionString,
                                          action: nil)]),
-            Section(title: String.localized("Legal"),
+            TableViewSection(title: String.localized("Legal"),
                     rows: [NavigationRow(title: String.localized("TandC"),
                                          action: showTaC),
                            NavigationRow(title: String.localized("PrivacyPolicy"),

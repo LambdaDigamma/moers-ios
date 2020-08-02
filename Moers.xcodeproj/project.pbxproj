@@ -19,6 +19,8 @@
 		DF0CB4AF2085B65200CC0AA8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4AE2085B65200CC0AA8 /* MapViewController.swift */; };
 		DF0CB4B12085B66600CC0AA8 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4B02085B66600CC0AA8 /* ContentViewController.swift */; };
 		DF0CB4B32087092F00CC0AA8 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4B22087092F00CC0AA8 /* SearchResultTableViewCell.swift */; };
+		DF0EAC9C24C63FB0009BE489 /* ModernNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = DF0EAC9B24C63FB0009BE489 /* ModernNetworking */; };
+		DF0EACA224C6491A009BE489 /* OrganisationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0EACA124C6491A009BE489 /* OrganisationList.swift */; };
 		DF1116BF23F35F6C003C6CCD /* StorageManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1116BE23F35F6C003C6CCD /* StorageManagerTests.swift */; };
 		DF1207BA23C0C777003285C1 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1207B923C0C777003285C1 /* Form.swift */; };
 		DF1207BC23C0CA1C003285C1 /* FormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1207BB23C0CA1C003285C1 /* FormTests.swift */; };
@@ -32,6 +34,8 @@
 		DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */; };
 		DF21B2FE20B9D8A900478A33 /* Licenses.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF21B2FD20B9D8A900478A33 /* Licenses.plist */; };
 		DF21B30020BA0DB400478A33 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF21B2FF20BA0DB400478A33 /* SwitchTableViewCell.swift */; };
+		DF21FA9124C634D8001C278D /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = DF21FA9024C634D8001C278D /* Resolver */; };
+		DF21FA9324C63502001C278D /* AppDelegate+Resolving.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF21FA9224C63502001C278D /* AppDelegate+Resolving.swift */; };
 		DF284F0023F4C17100EC999B /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF284EFF23F4C17100EC999B /* OnboardingUITests.swift */; };
 		DF284F0C23F4C2F700EC999B /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF284F0B23F4C2F700EC999B /* SnapshotHelper.swift */; };
 		DF284F0E23F54C6900EC999B /* AccessibleBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF284F0D23F54C6900EC999B /* AccessibleBulletinItem.swift */; };
@@ -79,6 +83,14 @@
 		DF500155235A4E1E00ED39B2 /* SearchDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF500154235A4E1E00ED39B2 /* SearchDrawerViewController.swift */; };
 		DF503CEF21431503006EE226 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF503CEE21431503006EE226 /* DebugViewController.swift */; };
 		DF51F78D22E26A9200A0CF00 /* TabControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF51F78C22E26A9200A0CF00 /* TabControllerFactory.swift */; };
+		DF52868224A7C07300A6939E /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868124A7C07300A6939E /* AppView.swift */; };
+		DF52868424A7C0B600A6939E /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868324A7C0B600A6939E /* DashboardView.swift */; };
+		DF52868624A7C0CC00A6939E /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868524A7C0CC00A6939E /* NewsView.swift */; };
+		DF52868824A7C37C00A6939E /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868724A7C37C00A6939E /* MapView.swift */; };
+		DF52868A24A7C3D300A6939E /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868924A7C3D300A6939E /* EventsView.swift */; };
+		DF52868C24A7C3EF00A6939E /* OtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868B24A7C3EF00A6939E /* OtherView.swift */; };
+		DF52868E24A7C65F00A6939E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF52868D24A7C65F00A6939E /* Colors.xcassets */; };
+		DF52869124A7CE8900A6939E /* PetrolDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52869024A7CE8900A6939E /* PetrolDashboardView.swift */; };
 		DF541389217FCD25007FDEC8 /* EntryValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF541388217FCD25007FDEC8 /* EntryValidationViewController.swift */; };
 		DF54138B217FD733007FDEC8 /* EntryValidationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF54138A217FD733007FDEC8 /* EntryValidationTableViewCell.swift */; };
 		DF54138D2180955B007FDEC8 /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF54138C2180955A007FDEC8 /* NewsCollectionViewCell.swift */; };
@@ -94,6 +106,7 @@
 		DF57D69921875FE900E6A0A9 /* TabBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF57D69821875FE900E6A0A9 /* TabBarControllerTests.swift */; };
 		DF5D81CA2256832600A19B01 /* MockConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5D81C92256832600A19B01 /* MockConfig.swift */; };
 		DF5D82732258DBD900A19B01 /* UIProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5D82722258DBD900A19B01 /* UIProperties.swift */; };
+		DF5F888E24C64A83002FC0F5 /* OrganisationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5F888D24C64A83002FC0F5 /* OrganisationListViewModel.swift */; };
 		DF61DCCD212ECD850093915F /* DetailPetrolStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */; };
 		DF6279792100CDE400F81A70 /* DetailParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6279782100CDE400F81A70 /* DetailParkingViewController.swift */; };
 		DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */; };
@@ -169,6 +182,8 @@
 		DFB92D691F6B96E400669F73 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D681F6B96E400669F73 /* ClusterAnnotationView.swift */; };
 		DFBB9DE3212BF63600038943 /* PetrolStationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBB9DE2212BF63600038943 /* PetrolStationAnnotationView.swift */; };
 		DFC7126921DFC863006D05DB /* ShortcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC7126821DFC863006D05DB /* ShortcutsViewController.swift */; };
+		DFCA005B24A88A5500EACE9F /* CardPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCA005A24A88A5500EACE9F /* CardPanelView.swift */; };
+		DFCA005D24A8B36D00EACE9F /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCA005C24A8B36D00EACE9F /* Sidebar.swift */; };
 		DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431C20E0283000E7AD3F /* NewsViewController.swift */; };
 		DFCB431F20E02D0300E7AD3F /* NewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431E20E02D0300E7AD3F /* NewsManager.swift */; };
 		DFCB432120E0344800E7AD3F /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFCB432020E0344700E7AD3F /* TwitterKit.framework */; };
@@ -261,6 +276,7 @@
 		DF0CB4AE2085B65200CC0AA8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DF0CB4B02085B66600CC0AA8 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		DF0CB4B22087092F00CC0AA8 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		DF0EACA124C6491A009BE489 /* OrganisationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationList.swift; sourceTree = "<group>"; };
 		DF1116BE23F35F6C003C6CCD /* StorageManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageManagerTests.swift; sourceTree = "<group>"; };
 		DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
@@ -279,6 +295,8 @@
 		DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnnotationView.swift; sourceTree = "<group>"; };
 		DF21B2FD20B9D8A900478A33 /* Licenses.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Licenses.plist; path = Moers/Assets/Licenses.plist; sourceTree = SOURCE_ROOT; };
 		DF21B2FF20BA0DB400478A33 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwitchTableViewCell.swift; path = ../../View/UITableViewCells/SwitchTableViewCell.swift; sourceTree = "<group>"; };
+		DF21FA9224C63502001C278D /* AppDelegate+Resolving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Resolving.swift"; sourceTree = "<group>"; };
+		DF21FA9724C63F66001C278D /* ModernNetworking */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ModernNetworking; path = ../ModernNetworking; sourceTree = "<group>"; };
 		DF284EFD23F4C17100EC999B /* MoersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF284EFF23F4C17100EC999B /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
 		DF284F0123F4C17100EC999B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -325,6 +343,15 @@
 		DF500154235A4E1E00ED39B2 /* SearchDrawerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDrawerViewController.swift; sourceTree = "<group>"; };
 		DF503CEE21431503006EE226 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		DF51F78C22E26A9200A0CF00 /* TabControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabControllerFactory.swift; path = ../../../../../../../../../System/Volumes/Data/Users/lennart/Documents/Development/iOS/Moers/Moers/Common/Controller/TabControllerFactory.swift; sourceTree = "<group>"; };
+		DF52867E24A7B94D00A6939E /* Bond */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Bond; path = ../Bond; sourceTree = "<group>"; };
+		DF52868124A7C07300A6939E /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		DF52868324A7C0B600A6939E /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		DF52868524A7C0CC00A6939E /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		DF52868724A7C37C00A6939E /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		DF52868924A7C3D300A6939E /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
+		DF52868B24A7C3EF00A6939E /* OtherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherView.swift; sourceTree = "<group>"; };
+		DF52868D24A7C65F00A6939E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		DF52869024A7CE8900A6939E /* PetrolDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolDashboardView.swift; sourceTree = "<group>"; };
 		DF541388217FCD25007FDEC8 /* EntryValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryValidationViewController.swift; sourceTree = "<group>"; };
 		DF54138A217FD733007FDEC8 /* EntryValidationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryValidationTableViewCell.swift; sourceTree = "<group>"; };
 		DF54138C2180955A007FDEC8 /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -351,6 +378,7 @@
 		DF57D69821875FE900E6A0A9 /* TabBarControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerTests.swift; sourceTree = "<group>"; };
 		DF5D81C92256832600A19B01 /* MockConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConfig.swift; sourceTree = "<group>"; };
 		DF5D82722258DBD900A19B01 /* UIProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIProperties.swift; path = ../UIProperties.swift; sourceTree = "<group>"; };
+		DF5F888D24C64A83002FC0F5 /* OrganisationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationListViewModel.swift; sourceTree = "<group>"; };
 		DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPetrolStationViewController.swift; sourceTree = "<group>"; };
 		DF6279782100CDE400F81A70 /* DetailParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailParkingViewController.swift; sourceTree = "<group>"; };
 		DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLotAnnotationView.swift; sourceTree = "<group>"; };
@@ -428,6 +456,8 @@
 		DFB92D681F6B96E400669F73 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
 		DFBB9DE2212BF63600038943 /* PetrolStationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolStationAnnotationView.swift; sourceTree = "<group>"; };
 		DFC7126821DFC863006D05DB /* ShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsViewController.swift; sourceTree = "<group>"; };
+		DFCA005A24A88A5500EACE9F /* CardPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPanelView.swift; sourceTree = "<group>"; };
+		DFCA005C24A8B36D00EACE9F /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		DFCB431C20E0283000E7AD3F /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewsViewController.swift; path = ../../Controller/News/NewsViewController.swift; sourceTree = "<group>"; };
 		DFCB431E20E02D0300E7AD3F /* NewsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsManager.swift; sourceTree = "<group>"; };
 		DFCB432020E0344700E7AD3F /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Carthage/Build/iOS/TwitterKit.framework; sourceTree = "<group>"; };
@@ -469,11 +499,13 @@
 				DF2CF1C223BBB2EA003497C5 /* TextFieldEffects in Frameworks */,
 				DF777BBD2414361500C7C9D5 /* MarkdownKit in Frameworks */,
 				DF409CF82352453C001A473E /* MMUI in Frameworks */,
+				DF0EAC9C24C63FB0009BE489 /* ModernNetworking in Frameworks */,
 				DF7E702A21DA39A300A43B84 /* FirebaseMessaging.framework in Frameworks */,
 				DF69B74021DA2AFB00F910D8 /* Protobuf.framework in Frameworks */,
 				DF57D6902187397F00E6A0A9 /* FirebaseAnalytics.framework in Frameworks */,
 				DF57D68D2187397F00E6A0A9 /* GoogleUtilities.framework in Frameworks */,
 				DF57D68E2187397F00E6A0A9 /* nanopb.framework in Frameworks */,
+				DF21FA9124C634D8001C278D /* Resolver in Frameworks */,
 				DF57D68F2187397F00E6A0A9 /* FIRAnalyticsConnector.framework in Frameworks */,
 				DF57D6912187397F00E6A0A9 /* GoogleAppMeasurement.framework in Frameworks */,
 				DF57D6922187397F00E6A0A9 /* FirebaseCore.framework in Frameworks */,
@@ -586,6 +618,7 @@
 				DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */,
 				DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */,
 				DF1A49621F6AAB7000E9108B /* AppDelegate.swift */,
+				DF21FA9224C63502001C278D /* AppDelegate+Resolving.swift */,
 				DF9A914A2160DA840054A2B8 /* Environment.swift */,
 				DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */,
 				DF7D4B5D22F0D53400126AF7 /* Constants.swift */,
@@ -775,6 +808,8 @@
 		DF1A49561F6AAB7000E9108B = {
 			isa = PBXGroup;
 			children = (
+				DF21FA9724C63F66001C278D /* ModernNetworking */,
+				DF52867E24A7B94D00A6939E /* Bond */,
 				DF8F4445249F588E00BF3412 /* BasicNetworking */,
 				DF9A4D4423F48DC500EE5356 /* mmui-ios */,
 				DF9A4D4323F48D5800EE5356 /* mmapi-ios */,
@@ -805,6 +840,7 @@
 		DF1A49611F6AAB7000E9108B /* Moers */ = {
 			isa = PBXGroup;
 			children = (
+				DF52867F24A7C06600A6939E /* New */,
 				DF11BF9622B94E410051C3B3 /* Config */,
 				DF11BFC222BA6E960051C3B3 /* Common */,
 				DF04D60423CBD4F0008AE677 /* Coordinators */,
@@ -963,6 +999,41 @@
 			path = Charting;
 			sourceTree = "<group>";
 		};
+		DF52867F24A7C06600A6939E /* New */ = {
+			isa = PBXGroup;
+			children = (
+				DF5F888C24C64A5B002FC0F5 /* ViewModels */,
+				DF52868024A7C06A00A6939E /* Views */,
+				DF52868D24A7C65F00A6939E /* Colors.xcassets */,
+			);
+			path = New;
+			sourceTree = "<group>";
+		};
+		DF52868024A7C06A00A6939E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DF52868124A7C07300A6939E /* AppView.swift */,
+				DFCA005924A88A4600EACE9F /* Common */,
+				DF52868F24A7CE7400A6939E /* Dashboard */,
+				DF52868524A7C0CC00A6939E /* NewsView.swift */,
+				DF52868724A7C37C00A6939E /* MapView.swift */,
+				DF52868924A7C3D300A6939E /* EventsView.swift */,
+				DF52868B24A7C3EF00A6939E /* OtherView.swift */,
+				DFCA005C24A8B36D00EACE9F /* Sidebar.swift */,
+				DF0EACA124C6491A009BE489 /* OrganisationList.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DF52868F24A7CE7400A6939E /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				DF52868324A7C0B600A6939E /* DashboardView.swift */,
+				DF52869024A7CE8900A6939E /* PetrolDashboardView.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
 		DF57D66C2187383000E6A0A9 /* MoersTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -980,6 +1051,14 @@
 				DF57D69821875FE900E6A0A9 /* TabBarControllerTests.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DF5F888C24C64A5B002FC0F5 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DF5F888D24C64A83002FC0F5 /* OrganisationListViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		DF6D9E4622BB6EBD00BD3132 /* Controller */ = {
@@ -1106,6 +1185,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		DFCA005924A88A4600EACE9F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DFCA005A24A88A5500EACE9F /* CardPanelView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		DFD7ACBB20A794D700D49BE2 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
@@ -1155,6 +1242,8 @@
 				DF777BBC2414361500C7C9D5 /* MarkdownKit */,
 				DF777BBF24143A9D00C7C9D5 /* SwiftyMarkdown */,
 				DF7BD96424841FB60062505B /* SwiftUICharts */,
+				DF21FA9024C634D8001C278D /* Resolver */,
+				DF0EAC9B24C63FB0009BE489 /* ModernNetworking */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1243,7 +1332,7 @@
 			attributes = {
 				DefaultBuildSystemTypeForWorkspace = Latest;
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Lennart Fischer";
 				TargetAttributes = {
 					DF1A495E1F6AAB7000E9108B = {
@@ -1301,6 +1390,7 @@
 				DF777BBB2414361500C7C9D5 /* XCRemoteSwiftPackageReference "MarkdownKit" */,
 				DF777BBE24143A9D00C7C9D5 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */,
 				DF7BD96324841FB60062505B /* XCRemoteSwiftPackageReference "ChartView" */,
+				DF21FA8F24C634D8001C278D /* XCRemoteSwiftPackageReference "Resolver" */,
 			);
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
@@ -1322,6 +1412,7 @@
 			files = (
 				DF16582E22EF8C990033D218 /* Localizable.strings in Resources */,
 				DF16583022EF90D90033D218 /* Launch Screen.storyboard in Resources */,
+				DF52868E24A7C65F00A6939E /* Colors.xcassets in Resources */,
 				DF44D58F2126F83B00F8AC0C /* DetailViewControllers.storyboard in Resources */,
 				DF77DA0523B52FD9001FCA29 /* output.xcfilelist in Resources */,
 				DFE1B59C235323D3009CA2EC /* MMUI.xcassets in Resources */,
@@ -1441,16 +1532,20 @@
 				DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */,
 				DF75734521771D6800953DA1 /* LFSearchViewDataSource.swift in Sources */,
 				DF0CB4A12082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift in Sources */,
+				DF52868C24A7C3EF00A6939E /* OtherView.swift in Sources */,
+				DF52868824A7C37C00A6939E /* MapView.swift in Sources */,
 				DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */,
 				DF541389217FCD25007FDEC8 /* EntryValidationViewController.swift in Sources */,
 				DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */,
 				DF5D82732258DBD900A19B01 /* UIProperties.swift in Sources */,
 				DF4CB800248504C300D20986 /* LineChartView.swift in Sources */,
 				DF78DFE423BD50A2000A78AE /* OnboardingOverviewNotice.swift in Sources */,
+				DF52868624A7C0CC00A6939E /* NewsView.swift in Sources */,
 				DFA96A6320BD8A390009B279 /* AveragePetrolPriceComponent.swift in Sources */,
 				DF3EE0C320E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift in Sources */,
 				DF21B30020BA0DB400478A33 /* SwitchTableViewCell.swift in Sources */,
 				DFDD3F7220B2E525005602E3 /* MonthHeaderView.swift in Sources */,
+				DF52868224A7C07300A6939E /* AppView.swift in Sources */,
 				DF29FB4D20B1954B00741A63 /* ThemeViewController.swift in Sources */,
 				DF46E0E22177E28E003545F6 /* EntryOnboardingOverviewViewController.swift in Sources */,
 				DF0CB4AB208357A800CC0AA8 /* MapItemContentView.swift in Sources */,
@@ -1458,6 +1553,7 @@
 				DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */,
 				DF86AB9921729DDD00EFC7EA /* EntryOnboardingAddressViewController.swift in Sources */,
 				DFA17DF420DEF9DE00BBD838 /* UIButton+Extensions.swift in Sources */,
+				DF52868424A7C0B600A6939E /* DashboardView.swift in Sources */,
 				DFB0325D23F34A6A00A8326E /* StorageManager.swift in Sources */,
 				DF2D6DA520B88E1700176614 /* LicencesViewController.swift in Sources */,
 				DF95197F20C8B6F3001D13DC /* PetrolStationViewController.swift in Sources */,
@@ -1470,6 +1566,7 @@
 				DF75734021771CC900953DA1 /* LFSearchViewController.swift in Sources */,
 				DF500153235A3D2D00ED39B2 /* SearchDrawerView.swift in Sources */,
 				DF86AB9B2173837B00EFC7EA /* EntryOnboardingGeneralViewController.swift in Sources */,
+				DF0EACA224C6491A009BE489 /* OrganisationList.swift in Sources */,
 				DFD7ACBD20A795AF00D49BE2 /* DashboardNotificationCardView.swift in Sources */,
 				DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */,
 				DF4CB7FC248504C300D20986 /* Line.swift in Sources */,
@@ -1511,6 +1608,7 @@
 				DF0CB4AD20838FD100CC0AA8 /* MainViewController.swift in Sources */,
 				DF86ABA32174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift in Sources */,
 				DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */,
+				DFCA005D24A8B36D00EACE9F /* Sidebar.swift in Sources */,
 				DF86AB9D217387E700EFC7EA /* OnboardingProgressView.swift in Sources */,
 				DFD7ACB420A6BCA000D49BE2 /* DashboardRubbishCardView.swift in Sources */,
 				DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */,
@@ -1526,6 +1624,7 @@
 				DFB6A0BF21033C7800D5C12B /* DetailCameraViewController.swift in Sources */,
 				DF29FB4F20B19BE600741A63 /* ThemeCardView.swift in Sources */,
 				DF04D60A23CBD5EC008AE677 /* DashboardCoordinator.swift in Sources */,
+				DF21FA9324C63502001C278D /* AppDelegate+Resolving.swift in Sources */,
 				DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */,
 				DF4CB7FE248504C300D20986 /* Path+QuadCurve.swift in Sources */,
 				DFD7ACB220A44C5A00D49BE2 /* SelectionViewController.swift in Sources */,
@@ -1548,13 +1647,17 @@
 				DF3EE0C520E382EC00CA9279 /* MapLocationPickerViewController.swift in Sources */,
 				DFD8908921248DD9006B5610 /* PrivacyViewController.swift in Sources */,
 				DF9A914B2160DA840054A2B8 /* Environment.swift in Sources */,
+				DF52869124A7CE8900A6939E /* PetrolDashboardView.swift in Sources */,
 				DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */,
+				DF52868A24A7C3D300A6939E /* EventsView.swift in Sources */,
 				DFA9EF0A20B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift in Sources */,
 				DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */,
+				DFCA005B24A88A5500EACE9F /* CardPanelView.swift in Sources */,
 				DF500155235A4E1E00ED39B2 /* SearchDrawerViewController.swift in Sources */,
 				DF0CB49F2082B90900CC0AA8 /* FeedbackGenerators.swift in Sources */,
 				DF51F78D22E26A9200A0CF00 /* TabControllerFactory.swift in Sources */,
 				DF4CB7FF248504C300D20986 /* LineView.swift in Sources */,
+				DF5F888E24C64A83002FC0F5 /* OrganisationListViewModel.swift in Sources */,
 				DFD728AC20A880C6005FA9F1 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1677,6 +1780,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1702,7 +1806,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1731,7 +1835,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1820,6 +1924,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1839,7 +1944,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1869,7 +1974,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1956,6 +2061,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1981,7 +2087,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2010,7 +2116,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2099,6 +2205,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2118,7 +2225,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -2148,7 +2255,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2235,6 +2342,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2260,7 +2368,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2297,6 +2405,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2317,7 +2426,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2347,7 +2456,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2388,7 +2497,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3875,6 +3984,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DF21FA8F24C634D8001C278D /* XCRemoteSwiftPackageReference "Resolver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Resolver";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.4;
+			};
+		};
 		DF22FC1123522756003F1B3A /* XCRemoteSwiftPackageReference "Gestalt" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/regexident/Gestalt.git";
@@ -3934,6 +4051,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DF0EAC9B24C63FB0009BE489 /* ModernNetworking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ModernNetworking;
+		};
+		DF21FA9024C634D8001C278D /* Resolver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF21FA8F24C634D8001C278D /* XCRemoteSwiftPackageReference "Resolver" */;
+			productName = Resolver;
+		};
 		DF2CF1C123BBB2EA003497C5 /* TextFieldEffects */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;

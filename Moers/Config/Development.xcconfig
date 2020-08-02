@@ -7,7 +7,7 @@
 //
 
 // Server URL
-ROOT_URL = https:/$()/mein-moers.localhost/api/v2/
+ROOT_URL = mein-moers.localhost
 BASE_URL = https:/$()/mein-moers.localhost/
 
 // Auth

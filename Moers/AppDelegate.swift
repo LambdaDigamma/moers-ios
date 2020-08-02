@@ -18,6 +18,7 @@ import MMAPI
 import MMUI
 import Haneke
 import BasicNetworking
+import SwiftUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -61,9 +62,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let applicationController = ApplicationController(apiClient: client)
         
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window!.rootViewController = applicationController
-        window!.makeKeyAndVisible()
+        if #available(iOS 14.0, *) {
+            window = UIWindow(frame: UIScreen.main.bounds)
+            window!.rootViewController = UIHostingController(rootView: AppView())
+            window!.makeKeyAndVisible()
+        } else {
+            window = UIWindow(frame: UIScreen.main.bounds)
+            window!.rootViewController = applicationController
+            window!.makeKeyAndVisible()
+        }
+        
+        
+        
         
         UNUserNotificationCenter.current().delegate = self
         

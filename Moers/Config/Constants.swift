@@ -8,6 +8,9 @@
 
 import Foundation
 
-struct Constants {
-    static let firstLaunch = "FirstLaunch.WasLaunchedBefore"
+public struct Constants {
+    public static let firstLaunch = "FirstLaunch.WasLaunchedBefore"
+    public struct UserDefaults {
+        public static var authToken = "authToken"
+    }
 }

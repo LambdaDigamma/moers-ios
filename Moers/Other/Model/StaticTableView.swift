@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Section {
+struct TableViewSection {
     let title: String
     let rows: [Row]
 }
