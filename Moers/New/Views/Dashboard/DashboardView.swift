@@ -22,12 +22,12 @@ struct DashboardView: View {
     var body: some View {
         ScrollView {
             
-            PetrolDashboardView(rubbishItems: rubbishItems)
+            RubbishDashboardView(items: .success([RubbishPickupItem(date: .somedayInFuture, type: .paper)]))
             
         }
         .background(Color("Background"))
         .accentColor(Color("Accent"))
-        .navigationBarTitle(Text("Dashboard"), displayMode: .automatic)
+        .navigationBarTitle(Text("DashboardTabItem"), displayMode: .automatic)
         .navigationViewStyle(StackNavigationViewStyle())
     }
 }
@@ -48,9 +48,14 @@ struct DashboardView_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            DashboardView(rubbishItems: schedule)
-            DashboardView(rubbishItems: schedule)
-                .environment(\.colorScheme, .dark)
+            NavigationView {
+                DashboardView(rubbishItems: schedule)
+            }
+            .environment(\.locale, .init(identifier: "de"))
+            NavigationView {
+                DashboardView(rubbishItems: schedule)
+            }
+            .environment(\.colorScheme, .dark)
         }
         
     }

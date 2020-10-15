@@ -1,10 +1,10 @@
 github "52inc/Pulley"
-github "alexaubry/BulletinBoard" "master"
+github "alexaubry/BulletinBoard"
 github "eggswift/ESTabBarController"
 github "facebook/pop" ~> 1.0.10
-github "regexident/EventBus"
+github "LambdaDigamma/EventBus"
 binary "https://ton.twimg.com/syndication/twitterkit/ios/TwitterKit.json"
 binary "https://ton.twimg.com/syndication/twitterkit/ios/TwitterCore.json"
-github "sgr-ksmt/Alertift" ~> 3.2
-github "ElaWorkshop/TagListView" ~> 1.0
-github "nmdias/FeedKit" ~> 8.0
+github "sgr-ksmt/Alertift" ~> 4.1
+github "ElaWorkshop/TagListView" ~> 1.4
+github "nmdias/FeedKit" ~> 9.0

@@ -84,12 +84,13 @@ struct NewsManager {
         
         parser.parseAsync(queue: DispatchQueue.global(qos: .userInitiated)) { (result) in
             
-            guard let feed = result.rssFeed else { return }
-            
-            DispatchQueue.main.async {
-                
-                completion(nil, feed)
-                
+            switch result {
+                case .success(let feed):
+                    DispatchQueue.main.async {
+                        completion(nil, feed.rssFeed)
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
             }
             
         }
@@ -104,12 +105,13 @@ struct NewsManager {
         
         parser.parseAsync(queue: .global(qos: .userInitiated)) { (result) in
             
-            guard let feed = result.rssFeed else { return }
-            
-            DispatchQueue.main.async {
-                
-                completion(nil, feed)
-                
+            switch result {
+                case .success(let feed):
+                    DispatchQueue.main.async {
+                        completion(nil, feed.rssFeed)
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
             }
             
         }
@@ -124,10 +126,13 @@ struct NewsManager {
         
         parser.parseAsync(queue: DispatchQueue.global(qos: .userInitiated)) { (result) in
             
-            guard let feed = result.rssFeed else { return }
-            
-            DispatchQueue.main.async {
-                completion(nil, feed)
+            switch result {
+                case .success(let feed):
+                    DispatchQueue.main.async {
+                        completion(nil, feed.rssFeed)
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
             }
             
         }

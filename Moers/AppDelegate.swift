@@ -62,15 +62,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let applicationController = ApplicationController(apiClient: client)
         
-        if #available(iOS 14.0, *) {
-            window = UIWindow(frame: UIScreen.main.bounds)
-            window!.rootViewController = UIHostingController(rootView: AppView())
-            window!.makeKeyAndVisible()
-        } else {
-            window = UIWindow(frame: UIScreen.main.bounds)
-            window!.rootViewController = applicationController
-            window!.makeKeyAndVisible()
-        }
+//        if #available(iOS 14.0, *) {
+//            window = UIWindow(frame: UIScreen.main.bounds)
+//            window!.rootViewController = UIHostingController(rootView: AppView())
+//            window!.makeKeyAndVisible()
+//        } else {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window!.rootViewController = applicationController
+        window!.makeKeyAndVisible()
+//        }
         
         
         
