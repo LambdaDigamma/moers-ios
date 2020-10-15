@@ -1,4 +1,3 @@
-github "eggswift/ESTabBarController"
 github "facebook/pop" ~> 1.0.10
 github "LambdaDigamma/EventBus"
 binary "https://ton.twimg.com/syndication/twitterkit/ios/TwitterKit.json"

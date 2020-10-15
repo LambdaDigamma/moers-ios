@@ -38,6 +38,15 @@
         }
       },
       {
+        "package": "ESTabBarController",
+        "repositoryURL": "https://github.com/eggswift/ESTabBarController.git",
+        "state": {
+          "branch": null,
+          "revision": "2acc5e5844efcb3259ace475e012c75de5c90658",
+          "version": "2.8.0"
+        }
+      },
+      {
         "package": "Fuse",
         "repositoryURL": "https://github.com/LambdaDigamma/fuse-swift",
         "state": {
