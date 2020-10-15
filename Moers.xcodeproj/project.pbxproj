@@ -124,7 +124,6 @@
 		DF77DA0323B52FB9001FCA29 /* input.xcfilelist in Resources */ = {isa = PBXBuildFile; fileRef = DF77DA0223B52FB9001FCA29 /* input.xcfilelist */; };
 		DF77DA0523B52FD9001FCA29 /* output.xcfilelist in Resources */ = {isa = PBXBuildFile; fileRef = DF77DA0423B52FD9001FCA29 /* output.xcfilelist */; };
 		DF77DA0D23B53458001FCA29 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0C23B53458001FCA29 /* pop.framework */; };
-		DF77DA0F23B53470001FCA29 /* FeedKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0E23B53470001FCA29 /* FeedKit.framework */; };
 		DF77DA1823B5491D001FCA29 /* EventBus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0623B533E5001FCA29 /* EventBus.framework */; };
 		DF78DFE423BD50A2000A78AE /* OnboardingOverviewNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF78DFE323BD50A2000A78AE /* OnboardingOverviewNotice.swift */; };
 		DF79985123CCD3C6007E7186 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF79985023CCD3C6007E7186 /* MapCoordinator.swift */; };
@@ -185,6 +184,7 @@
 		DFCB432120E0344800E7AD3F /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFCB432020E0344700E7AD3F /* TwitterKit.framework */; };
 		DFCB432320E038AB00E7AD3F /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB432220E038AB00E7AD3F /* TweetTableViewCell.swift */; };
 		DFCE12882538F3D600B45EB7 /* TagListView in Frameworks */ = {isa = PBXBuildFile; productRef = DFCE12872538F3D600B45EB7 /* TagListView */; };
+		DFCE12952538F7F600B45EB7 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = DFCE12942538F7F600B45EB7 /* FeedKit */; };
 		DFD39A3322B7578B0085F06E /* MMEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD39A3222B7578B0085F06E /* MMEventsViewController.swift */; };
 		DFD728AC20A880C6005FA9F1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD728AB20A880C6005FA9F1 /* DetailViewController.swift */; };
 		DFD73690211E424E00826C47 /* SelectorBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7368F211E424E00826C47 /* SelectorBulletinPage.swift */; };
@@ -510,6 +510,7 @@
 				DFCE12882538F3D600B45EB7 /* TagListView in Frameworks */,
 				DFE1ED6B2538C24800FDD44A /* BLTNBoard in Frameworks */,
 				DF57D68D2187397F00E6A0A9 /* GoogleUtilities.framework in Frameworks */,
+				DFCE12952538F7F600B45EB7 /* FeedKit in Frameworks */,
 				DF57D68E2187397F00E6A0A9 /* nanopb.framework in Frameworks */,
 				DF21FA9124C634D8001C278D /* Resolver in Frameworks */,
 				DF57D68F2187397F00E6A0A9 /* FIRAnalyticsConnector.framework in Frameworks */,
@@ -522,7 +523,6 @@
 				DF409CFA2352453C001A473E /* Gestalt in Frameworks */,
 				DFB64DCE20389FDC00173A80 /* Crashlytics.framework in Frameworks */,
 				DFCB432120E0344800E7AD3F /* TwitterKit.framework in Frameworks */,
-				DF77DA0F23B53470001FCA29 /* FeedKit.framework in Frameworks */,
 				DF77DA0D23B53458001FCA29 /* pop.framework in Frameworks */,
 				DF77DA1823B5491D001FCA29 /* EventBus.framework in Frameworks */,
 				DF777BC024143A9D00C7C9D5 /* SwiftyMarkdown in Frameworks */,
@@ -1252,6 +1252,7 @@
 				DFE1ED842538C86C00FDD44A /* Alertift */,
 				DFE1ED942538CBD000FDD44A /* ESTabBarController */,
 				DFCE12872538F3D600B45EB7 /* TagListView */,
+				DFCE12942538F7F600B45EB7 /* FeedKit */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1404,6 +1405,7 @@
 				DFE1ED832538C86C00FDD44A /* XCRemoteSwiftPackageReference "Alertift" */,
 				DFE1ED932538CBD000FDD44A /* XCRemoteSwiftPackageReference "ESTabBarController" */,
 				DFCE12862538F3D600B45EB7 /* XCRemoteSwiftPackageReference "TagListView" */,
+				DFCE12932538F7F600B45EB7 /* XCRemoteSwiftPackageReference "FeedKit" */,
 			);
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
@@ -4070,6 +4072,14 @@
 				minimumVersion = 1.4.1;
 			};
 		};
+		DFCE12932538F7F600B45EB7 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nmdias/FeedKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.1.2;
+			};
+		};
 		DFE1ED692538C24800FDD44A /* XCRemoteSwiftPackageReference "BulletinBoard" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/alexaubry/BulletinBoard.git";
@@ -4153,6 +4163,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DFCE12862538F3D600B45EB7 /* XCRemoteSwiftPackageReference "TagListView" */;
 			productName = TagListView;
+		};
+		DFCE12942538F7F600B45EB7 /* FeedKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFCE12932538F7F600B45EB7 /* XCRemoteSwiftPackageReference "FeedKit" */;
+			productName = FeedKit;
 		};
 		DFE1ED6A2538C24800FDD44A /* BLTNBoard */ = {
 			isa = XCSwiftPackageProductDependency;
