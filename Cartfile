@@ -3,6 +3,5 @@ github "facebook/pop" ~> 1.0.10
 github "LambdaDigamma/EventBus"
 binary "https://ton.twimg.com/syndication/twitterkit/ios/TwitterKit.json"
 binary "https://ton.twimg.com/syndication/twitterkit/ios/TwitterCore.json"
-github "sgr-ksmt/Alertift" ~> 4.1
 github "ElaWorkshop/TagListView" ~> 1.4
 github "nmdias/FeedKit" ~> 9.0

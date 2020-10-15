@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Alertift",
+        "repositoryURL": "https://github.com/LambdaDigamma/Alertift",
+        "state": {
+          "branch": null,
+          "revision": "1b60d81f427ac7fa69a428eb82a474fcce3a8414",
+          "version": "4.2.0"
+        }
+      },
+      {
         "package": "BLTNBoard",
         "repositoryURL": "https://github.com/alexaubry/BulletinBoard.git",
         "state": {
