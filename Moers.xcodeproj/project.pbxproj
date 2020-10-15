@@ -151,14 +151,8 @@
 		DF94B13823F0A7E8009C57ED /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF94B13723F0A7E8009C57ED /* Preview Assets.xcassets */; };
 		DF95197F20C8B6F3001D13DC /* PetrolStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95197E20C8B6F3001D13DC /* PetrolStationViewController.swift */; };
 		DF9605A923BD06A800E24959 /* AuditChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9605A823BD06A800E24959 /* AuditChangeView.swift */; };
-		DF9A4D3623F45BAA00EE5356 /* Alertift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA1023B53484001FCA29 /* Alertift.framework */; };
-		DF9A4D3723F45BAA00EE5356 /* BLTNBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA1423B534B4001FCA29 /* BLTNBoard.framework */; };
-		DF9A4D3823F45BAA00EE5356 /* ESTabBarController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA1223B5349D001FCA29 /* ESTabBarController.framework */; };
 		DF9A4D3923F45BAA00EE5356 /* EventBus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0623B533E5001FCA29 /* EventBus.framework */; };
-		DF9A4D3A23F45BAA00EE5356 /* FeedKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0E23B53470001FCA29 /* FeedKit.framework */; };
 		DF9A4D3B23F45BAA00EE5356 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0C23B53458001FCA29 /* pop.framework */; };
-		DF9A4D3C23F45BAA00EE5356 /* Pulley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB618571FAE144000C98EB6 /* Pulley.framework */; };
-		DF9A4D3D23F45BAA00EE5356 /* TagListView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0A23B53440001FCA29 /* TagListView.framework */; };
 		DF9A4D3E23F45BAA00EE5356 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFCB432020E0344700E7AD3F /* TwitterKit.framework */; };
 		DF9A4D4023F45BAA00EE5356 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9A4D3F23F45BAA00EE5356 /* TwitterCore.framework */; };
 		DF9A914B2160DA840054A2B8 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9A914A2160DA840054A2B8 /* Environment.swift */; };
@@ -541,14 +535,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF9A4D4023F45BAA00EE5356 /* TwitterCore.framework in Frameworks */,
-				DF9A4D3623F45BAA00EE5356 /* Alertift.framework in Frameworks */,
-				DF9A4D3723F45BAA00EE5356 /* BLTNBoard.framework in Frameworks */,
-				DF9A4D3823F45BAA00EE5356 /* ESTabBarController.framework in Frameworks */,
 				DF9A4D3923F45BAA00EE5356 /* EventBus.framework in Frameworks */,
-				DF9A4D3A23F45BAA00EE5356 /* FeedKit.framework in Frameworks */,
 				DF9A4D3B23F45BAA00EE5356 /* pop.framework in Frameworks */,
-				DF9A4D3C23F45BAA00EE5356 /* Pulley.framework in Frameworks */,
-				DF9A4D3D23F45BAA00EE5356 /* TagListView.framework in Frameworks */,
 				DF9A4D3E23F45BAA00EE5356 /* TwitterKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1891,7 +1879,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = MoersTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2029,7 +2017,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = MoersTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2172,7 +2160,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = MoersTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2310,7 +2298,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = MoersTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2588,7 +2576,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2662,7 +2650,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2736,7 +2724,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2804,7 +2792,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2872,7 +2860,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2940,7 +2928,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2978,7 +2966,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = MoersTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3018,7 +3006,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = MoersTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
