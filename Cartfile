@@ -1,4 +1,3 @@
-github "52inc/Pulley"
 github "eggswift/ESTabBarController"
 github "facebook/pop" ~> 1.0.10
 github "LambdaDigamma/EventBus"

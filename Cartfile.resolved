@@ -1,6 +1,5 @@
 binary "https://ton.twimg.com/syndication/twitterkit/ios/TwitterCore.json" "3.2.0"
 binary "https://ton.twimg.com/syndication/twitterkit/ios/TwitterKit.json" "3.4.2"
-github "52inc/Pulley" "2.8.5"
 github "ElaWorkshop/TagListView" "1.4.1"
 github "LambdaDigamma/EventBus" "0.5.0"
 github "eggswift/ESTabBarController" "2.8.0"

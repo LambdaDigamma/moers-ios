@@ -175,7 +175,6 @@
 		DFB4D76720B03B9000C8D179 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D76620B03B9000C8D179 /* OtherViewController.swift */; };
 		DFB4D76920B062BE00C8D179 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D76820B062BE00C8D179 /* SettingsViewController.swift */; };
 		DFB4D76B20B064CA00C8D179 /* StaticTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D76A20B064CA00C8D179 /* StaticTableView.swift */; };
-		DFB618581FAE144000C98EB6 /* Pulley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB618571FAE144000C98EB6 /* Pulley.framework */; };
 		DFB64DCE20389FDC00173A80 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB64DCC20389FDB00173A80 /* Crashlytics.framework */; };
 		DFB6A0BF21033C7800D5C12B /* DetailCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6A0BE21033C7800D5C12B /* DetailCameraViewController.swift */; };
 		DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D631F6B109C00669F73 /* Extensions.swift */; };
@@ -206,6 +205,7 @@
 		DFE1B5932353165F009CA2EC /* MMAPI.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFE1B5952353165F009CA2EC /* MMAPI.strings */; };
 		DFE1B59C235323D3009CA2EC /* MMUI.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFE1B59B235323D3009CA2EC /* MMUI.xcassets */; };
 		DFE1ED6B2538C24800FDD44A /* BLTNBoard in Frameworks */ = {isa = PBXBuildFile; productRef = DFE1ED6A2538C24800FDD44A /* BLTNBoard */; };
+		DFE1ED782538C4E200FDD44A /* Pulley in Frameworks */ = {isa = PBXBuildFile; productRef = DFE1ED772538C4E200FDD44A /* Pulley */; };
 		DFEE2E0A20BB117A00A130CB /* BaseComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEE2E0920BB117A00A130CB /* BaseComponent.swift */; };
 		DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */; };
 		DFF5DDCB20094A920075A2F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */; };
@@ -496,6 +496,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFE1ED782538C4E200FDD44A /* Pulley in Frameworks */,
 				DF409CFC2352453C001A473E /* MMAPI in Frameworks */,
 				DF7BD96524841FB60062505B /* SwiftUICharts in Frameworks */,
 				DF2CF1C223BBB2EA003497C5 /* TextFieldEffects in Frameworks */,
@@ -515,7 +516,6 @@
 				DF57D6932187397F00E6A0A9 /* FirebaseInstanceID.framework in Frameworks */,
 				DF57D6942187397F00E6A0A9 /* FirebaseCoreDiagnostics.framework in Frameworks */,
 				DF86ABA12174900400EFC7EA /* Intents.framework in Frameworks */,
-				DFB618581FAE144000C98EB6 /* Pulley.framework in Frameworks */,
 				DF409CFA2352453C001A473E /* Gestalt in Frameworks */,
 				DFB64DCE20389FDC00173A80 /* Crashlytics.framework in Frameworks */,
 				DF77DA0B23B53440001FCA29 /* TagListView.framework in Frameworks */,
@@ -1248,6 +1248,7 @@
 				DF21FA9024C634D8001C278D /* Resolver */,
 				DF0EAC9B24C63FB0009BE489 /* ModernNetworking */,
 				DFE1ED6A2538C24800FDD44A /* BLTNBoard */,
+				DFE1ED772538C4E200FDD44A /* Pulley */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1396,6 +1397,7 @@
 				DF7BD96324841FB60062505B /* XCRemoteSwiftPackageReference "ChartView" */,
 				DF21FA8F24C634D8001C278D /* XCRemoteSwiftPackageReference "Resolver" */,
 				DFE1ED692538C24800FDD44A /* XCRemoteSwiftPackageReference "BulletinBoard" */,
+				DFE1ED762538C4E200FDD44A /* XCRemoteSwiftPackageReference "Pulley" */,
 			);
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
@@ -4062,6 +4064,14 @@
 				kind = branch;
 			};
 		};
+		DFE1ED762538C4E200FDD44A /* XCRemoteSwiftPackageReference "Pulley" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/52inc/Pulley";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.5;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -4113,6 +4123,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DFE1ED692538C24800FDD44A /* XCRemoteSwiftPackageReference "BulletinBoard" */;
 			productName = BLTNBoard;
+		};
+		DFE1ED772538C4E200FDD44A /* Pulley */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFE1ED762538C4E200FDD44A /* XCRemoteSwiftPackageReference "Pulley" */;
+			productName = Pulley;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
