@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/johnsundell/ink.git",
         "state": {
           "branch": null,
-          "revision": "878fd897945500be1885f2c88f81f8f909224796",
-          "version": "0.4.0"
+          "revision": "bd223a2482449507bd3286cb262c962d32d81e4b",
+          "version": "0.5.0"
         }
       },
       {
@@ -60,8 +60,8 @@
         "repositoryURL": "https://github.com/onevcat/Kingfisher",
         "state": {
           "branch": null,
-          "revision": "910d808ade2a576e1a292ceb458a6fa43f67f594",
-          "version": "5.14.0"
+          "revision": "1aa9889e5f7d9d92acda014eea9cdc7338d3d7d6",
+          "version": "5.15.6"
         }
       },
       {
@@ -87,8 +87,8 @@
         "repositoryURL": "https://github.com/DeclarativeHub/ReactiveKit.git",
         "state": {
           "branch": null,
-          "revision": "fe00e0f30b9235f072647eb75a6a7328514bf24e",
-          "version": "3.17.2"
+          "revision": "5b167a3fa7288395cfcba23dac84489b01d3b2f0",
+          "version": "3.18.1"
         }
       },
       {
@@ -114,8 +114,8 @@
         "repositoryURL": "https://github.com/SimonFairbairn/SwiftyMarkdown",
         "state": {
           "branch": null,
-          "revision": "6c64c1647581bd469f8e720f4474e53f1111c3bc",
-          "version": "1.2.2"
+          "revision": "5b0a1e76332a633726f9f9a00b4bbd840166bccf",
+          "version": "1.2.3"
         }
       }
     ]
