@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "BLTNBoard",
+        "repositoryURL": "https://github.com/alexaubry/BulletinBoard.git",
+        "state": {
+          "branch": "develop",
+          "revision": "69a7bd2620ec374743f4d288730321b21a576225",
+          "version": null
+        }
+      },
+      {
         "package": "SwiftUICharts",
         "repositoryURL": "https://github.com/AppPear/ChartView",
         "state": {

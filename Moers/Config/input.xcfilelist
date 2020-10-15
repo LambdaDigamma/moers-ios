@@ -9,7 +9,6 @@
 # Build settings will be expanded, e.g. $(SRCROOT)/fileName
 
 $(SRCROOT)/Carthage/Build/iOS/Pulley.framework
-$(SRCROOT)/Carthage/Build/iOS/BLTNBoard.framework
 $(SRCROOT)/Carthage/Build/iOS/ESTabBarController.framework
 $(SRCROOT)/Carthage/Build/iOS/pop.framework
 $(SRCROOT)/Carthage/Build/iOS/EventBus.framework

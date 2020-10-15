@@ -22,13 +22,6 @@ class AccessibleBulletinPageItem: BLTNPageItem {
         
     }
     
-    override init() {
-        super.init()
-        
-        self.setupPresentationHandler()
-        
-    }
-    
     private func setupPresentationHandler() {
         
         self.presentationHandler = { item in
@@ -36,7 +29,7 @@ class AccessibleBulletinPageItem: BLTNPageItem {
             
             item?.actionButton?.accessibilityIdentifier = self.actionButtonAccessibilityIdentifier
             item?.alternativeButton?.accessibilityIdentifier = self.alternativeButtonAccessibilityIdentifier
-            item?.titleLabel.label.accessibilityIdentifier = self.titleLabelAccessibilityIdentifier
+            item?.titleLabel?.label.accessibilityIdentifier = self.titleLabelAccessibilityIdentifier
             
         }
         

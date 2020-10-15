@@ -128,7 +128,6 @@
 		DF77DA0F23B53470001FCA29 /* FeedKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0E23B53470001FCA29 /* FeedKit.framework */; };
 		DF77DA1123B53484001FCA29 /* Alertift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA1023B53484001FCA29 /* Alertift.framework */; };
 		DF77DA1323B5349D001FCA29 /* ESTabBarController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA1223B5349D001FCA29 /* ESTabBarController.framework */; };
-		DF77DA1523B534B4001FCA29 /* BLTNBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA1423B534B4001FCA29 /* BLTNBoard.framework */; };
 		DF77DA1823B5491D001FCA29 /* EventBus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77DA0623B533E5001FCA29 /* EventBus.framework */; };
 		DF78DFE423BD50A2000A78AE /* OnboardingOverviewNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF78DFE323BD50A2000A78AE /* OnboardingOverviewNotice.swift */; };
 		DF79985123CCD3C6007E7186 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF79985023CCD3C6007E7186 /* MapCoordinator.swift */; };
@@ -206,6 +205,7 @@
 		DFE1B58D235315E2009CA2EC /* MMUI.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFE1B58F235315E2009CA2EC /* MMUI.strings */; };
 		DFE1B5932353165F009CA2EC /* MMAPI.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFE1B5952353165F009CA2EC /* MMAPI.strings */; };
 		DFE1B59C235323D3009CA2EC /* MMUI.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFE1B59B235323D3009CA2EC /* MMUI.xcassets */; };
+		DFE1ED6B2538C24800FDD44A /* BLTNBoard in Frameworks */ = {isa = PBXBuildFile; productRef = DFE1ED6A2538C24800FDD44A /* BLTNBoard */; };
 		DFEE2E0A20BB117A00A130CB /* BaseComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEE2E0920BB117A00A130CB /* BaseComponent.swift */; };
 		DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */; };
 		DFF5DDCB20094A920075A2F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */; };
@@ -505,6 +505,7 @@
 				DF7E702A21DA39A300A43B84 /* FirebaseMessaging.framework in Frameworks */,
 				DF69B74021DA2AFB00F910D8 /* Protobuf.framework in Frameworks */,
 				DF57D6902187397F00E6A0A9 /* FirebaseAnalytics.framework in Frameworks */,
+				DFE1ED6B2538C24800FDD44A /* BLTNBoard in Frameworks */,
 				DF57D68D2187397F00E6A0A9 /* GoogleUtilities.framework in Frameworks */,
 				DF57D68E2187397F00E6A0A9 /* nanopb.framework in Frameworks */,
 				DF21FA9124C634D8001C278D /* Resolver in Frameworks */,
@@ -523,7 +524,6 @@
 				DF77DA0D23B53458001FCA29 /* pop.framework in Frameworks */,
 				DF77DA1123B53484001FCA29 /* Alertift.framework in Frameworks */,
 				DF77DA1323B5349D001FCA29 /* ESTabBarController.framework in Frameworks */,
-				DF77DA1523B534B4001FCA29 /* BLTNBoard.framework in Frameworks */,
 				DF77DA1823B5491D001FCA29 /* EventBus.framework in Frameworks */,
 				DF777BC024143A9D00C7C9D5 /* SwiftyMarkdown in Frameworks */,
 			);
@@ -1247,6 +1247,7 @@
 				DF7BD96424841FB60062505B /* SwiftUICharts */,
 				DF21FA9024C634D8001C278D /* Resolver */,
 				DF0EAC9B24C63FB0009BE489 /* ModernNetworking */,
+				DFE1ED6A2538C24800FDD44A /* BLTNBoard */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1394,6 +1395,7 @@
 				DF777BBE24143A9D00C7C9D5 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */,
 				DF7BD96324841FB60062505B /* XCRemoteSwiftPackageReference "ChartView" */,
 				DF21FA8F24C634D8001C278D /* XCRemoteSwiftPackageReference "Resolver" */,
+				DFE1ED692538C24800FDD44A /* XCRemoteSwiftPackageReference "BulletinBoard" */,
 			);
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
@@ -4052,6 +4054,14 @@
 				minimumVersion = 1.5.0;
 			};
 		};
+		DFE1ED692538C24800FDD44A /* XCRemoteSwiftPackageReference "BulletinBoard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexaubry/BulletinBoard.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -4098,6 +4108,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DF7BD96324841FB60062505B /* XCRemoteSwiftPackageReference "ChartView" */;
 			productName = SwiftUICharts;
+		};
+		DFE1ED6A2538C24800FDD44A /* BLTNBoard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFE1ED692538C24800FDD44A /* XCRemoteSwiftPackageReference "BulletinBoard" */;
+			productName = BLTNBoard;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
