@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/AppPear/ChartView",
         "state": {
           "branch": null,
-          "revision": "c12c773af0b18be3abc30a5e39fc8370a6498502",
-          "version": "1.5.0"
+          "revision": "4699847a9ac0c694666cea3acef133498952566e",
+          "version": "1.5.4"
         }
       },
       {
@@ -74,15 +74,6 @@
         }
       },
       {
-        "package": "MMAPI",
-        "repositoryURL": "https://github.com/LambdaDigamma/mmapi-ios",
-        "state": {
-          "branch": "master",
-          "revision": "47d23ebfe1a520bd3b383f11c63cf66025c015cd",
-          "version": null
-        }
-      },
-      {
         "package": "Reachability",
         "repositoryURL": "https://github.com/ashleymills/Reachability.swift.git",
         "state": {
@@ -123,8 +114,8 @@
         "repositoryURL": "https://github.com/SimonFairbairn/SwiftyMarkdown",
         "state": {
           "branch": null,
-          "revision": "a06d690000d0877e61cc7632b4b230300acaa5a5",
-          "version": "1.1.0"
+          "revision": "6c64c1647581bd469f8e720f4474e53f1111c3bc",
+          "version": "1.2.2"
         }
       }
     ]
