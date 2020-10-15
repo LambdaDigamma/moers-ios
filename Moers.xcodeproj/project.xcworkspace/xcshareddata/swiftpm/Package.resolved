@@ -153,6 +153,15 @@
           "revision": "5b0a1e76332a633726f9f9a00b4bbd840166bccf",
           "version": "1.2.3"
         }
+      },
+      {
+        "package": "TagListView",
+        "repositoryURL": "https://github.com/ElaWorkshop/TagListView.git",
+        "state": {
+          "branch": null,
+          "revision": "b30b61826736f4d9ec04aef5df891f3914423f16",
+          "version": "1.4.1"
+        }
       }
     ]
   },

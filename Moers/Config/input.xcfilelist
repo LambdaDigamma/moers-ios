@@ -12,5 +12,4 @@ $(SRCROOT)/Carthage/Build/iOS/pop.framework
 $(SRCROOT)/Carthage/Build/iOS/EventBus.framework
 $(SRCROOT)/Carthage/Build/iOS/TwitterCore.framework
 $(SRCROOT)/Carthage/Build/iOS/TwitterKit.framework
-$(SRCROOT)/Carthage/Build/iOS/TagListView.framework
 $(SRCROOT)/Carthage/Build/iOS/FeedKit.framework
