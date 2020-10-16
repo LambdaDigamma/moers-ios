@@ -48,8 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         
         let sessionConfig = URLSessionConfiguration.default
-        let _ = "ey...."
-        
+//        let apiKey = "ey...."
 //        sessionConfig.httpAdditionalHeaders = [
 //            "Authorization": "Bearer \(apiKey)"
 //        ]
@@ -59,18 +58,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let applicationController = ApplicationController(apiClient: client)
         
-//        if #available(iOS 14.0, *) {
-//            window = UIWindow(frame: UIScreen.main.bounds)
-//            window!.rootViewController = UIHostingController(rootView: AppView())
-//            window!.makeKeyAndVisible()
-//        } else {
         window = UIWindow(frame: UIScreen.main.bounds)
         window!.rootViewController = applicationController
         window!.makeKeyAndVisible()
-//        }
-        
-        
-        
         
         UNUserNotificationCenter.current().delegate = self
         
@@ -81,38 +71,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         application.applicationIconBadgeNumber = 0
         
         return true
-    }
-    
-    // MARK: - Notifications
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        
-        completionHandler()
-        
-    }
-    
-    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        print("Received data message: \(remoteMessage.appData)")
-    }
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        
-        print(userInfo)
-    }
-    
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("Unable to register for remote notifications: \(error.localizedDescription)")
-    }
-    
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        print("Firebase registration token: \(fcmToken)")
-        
-        let data: [String: String] = ["token": fcmToken]
-        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: data)
-        
     }
     
     // MARK: - NSUserActivity
@@ -158,16 +116,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
     }
 
+    // MARK: - Notifications
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        completionHandler()
+        
+    }
+    
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        print("Received data message: \(remoteMessage.appData)")
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        
+        print(userInfo)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Unable to register for remote notifications: \(error.localizedDescription)")
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+        
+        let data: [String: String] = ["token": fcmToken]
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: data)
+        
+    }
+    
     // MARK: - Helper
     
     private func setup() {
-        
         AnalyticsManager.shared.numberOfAppRuns += 1
-        
-        OperationQueue.main.addOperation {
-            UIApplication.configureLinearNetworkActivityIndicatorIfNeeded()
-        }
-        
     }
     
     private func setupThirdParties() {
@@ -176,7 +160,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Analytics.setAnalyticsCollectionEnabled(true)
         FirebaseApp.configure()
         
+        
         Messaging.messaging().delegate = self
+        
+        
+        
         
         InstanceID.instanceID().instanceID { (result, error) in
             if let error = error {

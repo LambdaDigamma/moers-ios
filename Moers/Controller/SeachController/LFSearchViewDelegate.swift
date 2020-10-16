@@ -18,7 +18,8 @@ public protocol LFSearchViewDelegate {
     
     func searchView(_ searchView: LFSearchViewController, didDismissWithText text: String)
     
-    func searchView(_ searchView: LFSearchViewController, tableView: UITableView, editActionsForRowAtIndexPath indexPath: IndexPath) -> [UITableViewRowAction]?
+    func searchView(_ searchView: LFSearchViewController, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    
     
     func searchView(_ searchView: LFSearchViewController, tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     
@@ -30,8 +31,8 @@ public extension LFSearchViewDelegate {
         
     }
     
-    func searchView(_ searchView: LFSearchViewController, tableView: UITableView, editActionsForRowAtIndexPath indexPath: IndexPath) -> [UITableViewRowAction]? {
-        return []
+    func searchView(_ searchView: LFSearchViewController, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        return nil
     }
     
     func searchView(_ searchView: LFSearchViewController, tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

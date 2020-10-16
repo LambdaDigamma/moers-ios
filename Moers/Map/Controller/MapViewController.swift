@@ -166,7 +166,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
         
         map.showsUserLocation = true
         map.showsBuildings = false
-        map.showsPointsOfInterest = false
+        map.pointOfInterestFilter = .none
         map.mapType = .standard
         
         let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.451667, longitude: 6.626389),

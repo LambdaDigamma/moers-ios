@@ -53,8 +53,6 @@
 		DF310DA421710887004C69BA /* TagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF310DA321710887004C69BA /* TagTableViewCell.swift */; };
 		DF3BE04D22E749FD001726A3 /* LaunchArgumentsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */; };
 		DF3DEE3B24D6C5AF007954A7 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3DEE3A24D6C5AF007954A7 /* LoadingIndicator.swift */; };
-		DF3EE0C220E37E4900CA9279 /* FTLinearActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C020E37E4800CA9279 /* FTLinearActivityIndicator.swift */; };
-		DF3EE0C320E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C120E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift */; };
 		DF3EE0C520E382EC00CA9279 /* MapLocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */; };
 		DF409CF82352453C001A473E /* MMUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF409CF72352453C001A473E /* MMUI */; };
 		DF409CFA2352453C001A473E /* Gestalt in Frameworks */ = {isa = PBXBuildFile; productRef = DF409CF92352453C001A473E /* Gestalt */; };
@@ -313,8 +311,6 @@
 		DF310DA321710887004C69BA /* TagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TagTableViewCell.swift; path = ../../View/UITableViewCells/TagTableViewCell.swift; sourceTree = "<group>"; };
 		DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LaunchArgumentsHandler.swift; path = ../../../../../../../../System/Volumes/Data/Users/lennart/Documents/Development/iOS/Moers/Moers/Config/LaunchArgumentsHandler.swift; sourceTree = "<group>"; };
 		DF3DEE3A24D6C5AF007954A7 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
-		DF3EE0C020E37E4800CA9279 /* FTLinearActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FTLinearActivityIndicator.swift; path = ../../View/FTLinearActivityIndicator.swift; sourceTree = "<group>"; };
-		DF3EE0C120E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIApplication+LinearNetworkActivityIndicator.swift"; path = "../../View/UIApplication+LinearNetworkActivityIndicator.swift"; sourceTree = "<group>"; };
 		DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapLocationPickerViewController.swift; path = ../../../Controller/Community/MapLocationPickerViewController.swift; sourceTree = "<group>"; };
 		DF44D58C2125FE9700F8AC0C /* ContentDrawer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContentDrawer.storyboard; sourceTree = "<group>"; };
 		DF44D58E2126F83B00F8AC0C /* DetailViewControllers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewControllers.storyboard; sourceTree = "<group>"; };
@@ -696,10 +692,8 @@
 			children = (
 				DF552FC62184D2210062EB2B /* CheckmarkView.swift */,
 				DF632B451F6EA0370022FA8E /* DesignableButton.swift */,
-				DF3EE0C020E37E4800CA9279 /* FTLinearActivityIndicator.swift */,
 				DF0CB4AA208357A800CC0AA8 /* MapItemContentView.swift */,
 				DF4BD1C3208C64F1003ECF41 /* PickerView.swift */,
-				DF3EE0C120E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift */,
 				DF461CB920E226DE00600C0E /* ViewFactory.swift */,
 				DF1207D123C14B97003285C1 /* TextFieldFormView.swift */,
 				DFD7ACBB20A794D700D49BE2 /* Cards */,
@@ -1546,7 +1540,6 @@
 				DF78DFE423BD50A2000A78AE /* OnboardingOverviewNotice.swift in Sources */,
 				DF52868624A7C0CC00A6939E /* NewsView.swift in Sources */,
 				DFA96A6320BD8A390009B279 /* AveragePetrolPriceComponent.swift in Sources */,
-				DF3EE0C320E37E4900CA9279 /* UIApplication+LinearNetworkActivityIndicator.swift in Sources */,
 				DF21B30020BA0DB400478A33 /* SwitchTableViewCell.swift in Sources */,
 				DFDD3F7220B2E525005602E3 /* MonthHeaderView.swift in Sources */,
 				DF52868224A7C07300A6939E /* AppView.swift in Sources */,
@@ -1597,7 +1590,6 @@
 				DF9605A923BD06A800E24959 /* AuditChangeView.swift in Sources */,
 				DF75733E2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift in Sources */,
 				DFBB9DE3212BF63600038943 /* PetrolStationAnnotationView.swift in Sources */,
-				DF3EE0C220E37E4900CA9279 /* FTLinearActivityIndicator.swift in Sources */,
 				DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */,
 				DF5D81CA2256832600A19B01 /* MockConfig.swift in Sources */,
 				DFCB432320E038AB00E7AD3F /* TweetTableViewCell.swift in Sources */,
