@@ -10,7 +10,6 @@ import UIKit
 import MapKit
 import Gestalt
 import Pulley
-import Crashlytics
 import MMAPI
 import MMUI
 

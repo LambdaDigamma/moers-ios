@@ -8,7 +8,7 @@
 
 import UIKit
 import Gestalt
-import Crashlytics
+import FirebaseAnalytics
 import MMAPI
 import MMUI
 

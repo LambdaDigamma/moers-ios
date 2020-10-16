@@ -10,9 +10,6 @@ import UIKit
 import TwitterKit
 import UserNotifications
 import Firebase
-import FirebaseInstanceID
-import FirebaseMessaging
-import Crashlytics
 import Gestalt
 import MMAPI
 import MMUI
@@ -176,7 +173,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private func setupThirdParties() {
         
         FirebaseConfiguration.shared.setLoggerLevel(.warning)
-        FirebaseConfiguration.shared.analyticsConfiguration.setAnalyticsCollectionEnabled(true)
+        Analytics.setAnalyticsCollectionEnabled(true)
         FirebaseApp.configure()
         
         Messaging.messaging().delegate = self

@@ -9,7 +9,7 @@
 import UIKit
 import Gestalt
 import SafariServices
-import Crashlytics
+import FirebaseAnalytics
 import TagListView
 import MMAPI
 import MMUI
