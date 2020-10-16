@@ -18,6 +18,8 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
 
     var coordinator: OtherCoordinator?
     
+    private let isWaterTemperatureEnabled = false
+    
     private let standardCellIdentifier = "standard"
     private let accountCellIdentifier = "account"
     private var backgroundColor: UIColor = .clear
@@ -48,11 +50,13 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         var additionalData: [TableViewSection] = []
         
         if #available(iOS 13.0, *) {
-            additionalData.append(contentsOf: [
-                TableViewSection(title: "Moers Funk", rows: [
-                    NavigationRow(title: "Bettenkamper Wassertemperatur", action: showWaterTemperature)
+            if isWaterTemperatureEnabled {
+                additionalData.append(contentsOf: [
+                    TableViewSection(title: "Moers Funk", rows: [
+                        NavigationRow(title: "Bettenkamper Wassertemperatur", action: showWaterTemperature)
+                    ])
                 ])
-            ])
+            }
         }
         
         let normalData = [
