@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BASE_URL</key>
+	<string>$(BASE_URL)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -15,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.0.3</string>
+	<string>3.1.0</string>
 	<key>CFBundleVersion</key>
-	<string>46</string>
+	<string>47</string>
 	<key>CLIENT_ID</key>
 	<string>$(CLIENT_ID)</string>
 	<key>CLIENT_SECRET</key>
@@ -40,6 +42,10 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
 		<key>NSAllowsLocalNetworkingUsageDescription</key>
 		<dict/>
 		<key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -49,10 +55,6 @@
 			<key>mein-moers.localhost</key>
 			<string></string>
 		</dict>
-		<key>NSAllowsLocalNetworking</key>
-		<true/>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Moers uses your location to get directions.</string>
@@ -63,8 +65,6 @@
 	</dict>
 	<key>ROOT_URL</key>
 	<string>$(ROOT_URL)</string>
-	<key>BASE_URL</key>
-	<string>$(BASE_URL)</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
 	<key>UIRequiredDeviceCapabilities</key>
