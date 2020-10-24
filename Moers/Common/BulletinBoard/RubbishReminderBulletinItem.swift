@@ -46,7 +46,17 @@ extension RubbishReminderBulletinItem: Themeable {
     func apply(theme: Theme) {
         self.appearance.actionButtonColor = theme.accentColor
         self.picker.backgroundColor = theme.backgroundColor
-        self.picker.performSelector(inBackground: Selector(("setHighlightsToday:")), with: theme.accentColor)
+        
+        if #available(iOS 13.4, *) {
+            self.picker.preferredDatePickerStyle = UIDatePickerStyle.wheels
+        }
+        
+        if #available(iOS 14.0, *) {
+            self.picker.tintColor = theme.accentColor
+        } else {
+            self.picker.performSelector(inBackground: Selector(("setHighlightsToday:")), with: theme.accentColor)
+        }
+        
         self.picker.setValue(theme.decentColor, forKey: "textColor")
     }
     

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FirebaseAnalytics
 import StoreKit
 import MMAPI
 import MMUI

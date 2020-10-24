@@ -2,21 +2,21 @@
   "object": {
     "pins": [
       {
-        "package": "BasicNetworking",
-        "repositoryURL": "https://github.com/LambdaDigamma/BasicNetworking",
+        "package": "Alertift",
+        "repositoryURL": "https://github.com/LambdaDigamma/Alertift",
         "state": {
           "branch": null,
-          "revision": "f782d8d55c8b20a50bbd78b7f5f5840a515824b2",
-          "version": "0.0.2"
+          "revision": "1b60d81f427ac7fa69a428eb82a474fcce3a8414",
+          "version": "4.2.0"
         }
       },
       {
-        "package": "Bond",
-        "repositoryURL": "https://github.com/DeclarativeHub/Bond.git",
+        "package": "BLTNBoard",
+        "repositoryURL": "https://github.com/alexaubry/BulletinBoard.git",
         "state": {
-          "branch": null,
-          "revision": "f89bb719065848f976999daa6ae71fca39df010e",
-          "version": "7.7.1"
+          "branch": "develop",
+          "revision": "69a7bd2620ec374743f4d288730321b21a576225",
+          "version": null
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/AppPear/ChartView",
         "state": {
           "branch": null,
-          "revision": "c12c773af0b18be3abc30a5e39fc8370a6498502",
-          "version": "1.5.0"
+          "revision": "4699847a9ac0c694666cea3acef133498952566e",
+          "version": "1.5.4"
         }
       },
       {
@@ -38,12 +38,30 @@
         }
       },
       {
-        "package": "Fuse",
-        "repositoryURL": "https://github.com/LambdaDigamma/fuse-swift",
+        "package": "ESTabBarController",
+        "repositoryURL": "https://github.com/eggswift/ESTabBarController.git",
         "state": {
           "branch": null,
-          "revision": "271a3b32d268605a222615d3d8ec8f88ad5cb831",
-          "version": "1.2.2"
+          "revision": "2acc5e5844efcb3259ace475e012c75de5c90658",
+          "version": "2.8.0"
+        }
+      },
+      {
+        "package": "FeedKit",
+        "repositoryURL": "https://github.com/nmdias/FeedKit",
+        "state": {
+          "branch": null,
+          "revision": "68493a33d862c33c9a9f67ec729b3b7df1b20ade",
+          "version": "9.1.2"
+        }
+      },
+      {
+        "package": "Fuse",
+        "repositoryURL": "https://github.com/krisk/fuse-swift",
+        "state": {
+          "branch": null,
+          "revision": "26ba868691b2d8b7bf2b1322951eb591be70ccca",
+          "version": "1.4.0"
         }
       },
       {
@@ -60,7 +78,7 @@
         "repositoryURL": "https://github.com/LambdaDigamma/HanekeSwift",
         "state": {
           "branch": null,
-          "revision": "1fcd8e27a638c3005760d463bec76cc647db3fea",
+          "revision": "6dd6a8fb7cfa9b245cd7a8cab688a8f2cecb9d15",
           "version": null
         }
       },
@@ -69,8 +87,8 @@
         "repositoryURL": "https://github.com/johnsundell/ink.git",
         "state": {
           "branch": null,
-          "revision": "878fd897945500be1885f2c88f81f8f909224796",
-          "version": "0.4.0"
+          "revision": "bd223a2482449507bd3286cb262c962d32d81e4b",
+          "version": "0.5.0"
         }
       },
       {
@@ -78,8 +96,8 @@
         "repositoryURL": "https://github.com/onevcat/Kingfisher",
         "state": {
           "branch": null,
-          "revision": "910d808ade2a576e1a292ceb458a6fa43f67f594",
-          "version": "5.14.0"
+          "revision": "1aa9889e5f7d9d92acda014eea9cdc7338d3d7d6",
+          "version": "5.15.6"
         }
       },
       {
@@ -89,6 +107,24 @@
           "branch": null,
           "revision": "c64728dedf6dbcac463cf5e53e93d210ab825793",
           "version": "1.6.0"
+        }
+      },
+      {
+        "package": "MMUI",
+        "repositoryURL": "https://github.com/LambdaDigamma/mmui-ios",
+        "state": {
+          "branch": "master",
+          "revision": "3a1bc5502e04859a7d738c231f7f818267851da0",
+          "version": null
+        }
+      },
+      {
+        "package": "Pulley",
+        "repositoryURL": "https://github.com/52inc/Pulley",
+        "state": {
+          "branch": null,
+          "revision": "780234b91cc853ebd4e5c5094bfa52428f63e4e6",
+          "version": "2.8.5"
         }
       },
       {
@@ -105,8 +141,17 @@
         "repositoryURL": "https://github.com/DeclarativeHub/ReactiveKit.git",
         "state": {
           "branch": null,
-          "revision": "fe00e0f30b9235f072647eb75a6a7328514bf24e",
-          "version": "3.17.2"
+          "revision": "5b167a3fa7288395cfcba23dac84489b01d3b2f0",
+          "version": "3.18.1"
+        }
+      },
+      {
+        "package": "Resolver",
+        "repositoryURL": "https://github.com/hmlongco/Resolver",
+        "state": {
+          "branch": null,
+          "revision": "cb5b4e1e60046120de87fee14af257e07ad74a62",
+          "version": "1.1.4"
         }
       },
       {
@@ -123,8 +168,17 @@
         "repositoryURL": "https://github.com/SimonFairbairn/SwiftyMarkdown",
         "state": {
           "branch": null,
-          "revision": "a06d690000d0877e61cc7632b4b230300acaa5a5",
-          "version": "1.1.0"
+          "revision": "5b0a1e76332a633726f9f9a00b4bbd840166bccf",
+          "version": "1.2.3"
+        }
+      },
+      {
+        "package": "TagListView",
+        "repositoryURL": "https://github.com/ElaWorkshop/TagListView.git",
+        "state": {
+          "branch": null,
+          "revision": "b30b61826736f4d9ec04aef5df891f3914423f16",
+          "version": "1.4.1"
         }
       }
     ]

@@ -20,7 +20,7 @@ class SettingsViewController: UIViewController {
     lazy var tableView = { ViewFactory.tableView(with: .grouped) }()
     lazy var manager = { makeManager(with: BLTNPageItem(title: "")) }()
     
-    var data: [Section] = []
+    var data: [TableViewSection] = []
     
     private let locationManager: LocationManagerProtocol
     private let geocodingManager: GeocodingManagerProtocol
@@ -237,20 +237,20 @@ class SettingsViewController: UIViewController {
         
         let userType = UserManager.shared.user.type
         
-        var sections: [Section] = []
+        var sections: [TableViewSection] = []
         
-        sections.append(Section(title: String.localized("UIAdjustments"),
+        sections.append(TableViewSection(title: String.localized("UIAdjustments"),
                                 rows: [NavigationRow(title: String.localized("ThemeTitle"), action: showThemes)]))
         
-        sections.append(Section(title: String.localized("User"),
+        sections.append(TableViewSection(title: String.localized("User"),
                                 rows: [NavigationRow(title: String.localized("UserType") + ": " + User.UserType.localizedForCase(userType), action: showUserType)]))
         
-        sections.append(Section(title: String.localized("Petrol"),
+        sections.append(TableViewSection(title: String.localized("Petrol"),
                                 rows: [NavigationRow(title: String.localized("PetrolType") + ": " + PetrolType.localizedForCase(petrolManager.petrolType), action: showPetrolType)]))
         
         if UserManager.shared.user.type == .citizen {
             
-            sections.append(Section(title: String.localized("SettingsRubbishCollectionTitle"),
+            sections.append(TableViewSection(title: String.localized("SettingsRubbishCollectionTitle"),
                                     rows: [SwitchRow(title: String.localized("Activated"),
                                                      switchOn: rubbishManager.isEnabled,
                                                      action: triggerRubbishCollection),

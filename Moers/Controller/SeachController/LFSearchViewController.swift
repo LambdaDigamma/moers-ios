@@ -236,10 +236,8 @@ extension LFSearchViewController: UITableViewDelegate {
         
     }
     
-    public func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
-        return self.delegate?.searchView(self, tableView: tableView, editActionsForRowAtIndexPath: indexPath)
-        
+    public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        return self.delegate?.searchView(self, trailingSwipeActionsConfigurationForRowAt: indexPath)
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -9,7 +9,6 @@
 import UIKit
 import Gestalt
 import Pulley
-import Crashlytics
 import MapKit
 import TagListView
 import MMAPI

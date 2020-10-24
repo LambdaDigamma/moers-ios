@@ -76,7 +76,8 @@ class RubbishCollectionComponent: BaseComponent, UIViewControllerPreviewingDeleg
         
         self.rubbishCardView.startLoading()
         
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        // TODO: Implement Loading Indicator
+//        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         let queue = OperationQueue()
         
@@ -102,7 +103,8 @@ class RubbishCollectionComponent: BaseComponent, UIViewControllerPreviewingDeleg
                 
                 OperationQueue.main.addOperation {
                     
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    // TODO: Implement Loading Indicator
+//                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     
                     self.rubbishCardView.stopLoading()
                     self.rubbishCardView.dismissError()
