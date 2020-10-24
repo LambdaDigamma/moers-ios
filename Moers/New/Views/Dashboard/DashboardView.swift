@@ -32,14 +32,11 @@ struct DashboardView: View {
     }
 }
 
-
-#if DEBUG
 var schedule: [RubbishPickupItem] = [
     RubbishPickupItem(date: Date(timeIntervalSinceNow: 60 * 120), type: .organic),
     RubbishPickupItem(date: Date(timeIntervalSinceNow: 60 * 120), type: .plastic),
     RubbishPickupItem(date: Date(timeIntervalSinceNow: 60 * 120), type: .paper)
 ]
-#endif
 
 @available(iOS 13.0, *)
 struct DashboardView_Previews: PreviewProvider {
