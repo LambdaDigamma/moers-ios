@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DF04D60A23CBD5EC008AE677 /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF04D60923CBD5EC008AE677 /* DashboardCoordinator.swift */; };
+		DF05E6CF25447023005DDF57 /* Fuse in Frameworks */ = {isa = PBXBuildFile; productRef = DF05E6CE25447023005DDF57 /* Fuse */; };
 		DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */; };
 		DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4952082AFD000CC0AA8 /* FirstLaunchManager.swift */; };
 		DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */; };
@@ -52,9 +53,9 @@
 		DF310D9F216FF2AE004C69BA /* DetailEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF310D9E216FF2AE004C69BA /* DetailEntryViewController.swift */; };
 		DF310DA421710887004C69BA /* TagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF310DA321710887004C69BA /* TagTableViewCell.swift */; };
 		DF3BE04D22E749FD001726A3 /* LaunchArgumentsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */; };
+		DF3C180B254489EF0047C898 /* MMUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF3C180A254489EF0047C898 /* MMUI */; };
 		DF3DEE3B24D6C5AF007954A7 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3DEE3A24D6C5AF007954A7 /* LoadingIndicator.swift */; };
 		DF3EE0C520E382EC00CA9279 /* MapLocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */; };
-		DF409CF82352453C001A473E /* MMUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF409CF72352453C001A473E /* MMUI */; };
 		DF409CFA2352453C001A473E /* Gestalt in Frameworks */ = {isa = PBXBuildFile; productRef = DF409CF92352453C001A473E /* Gestalt */; };
 		DF409CFC2352453C001A473E /* MMAPI in Frameworks */ = {isa = PBXBuildFile; productRef = DF409CFB2352453C001A473E /* MMAPI */; };
 		DF44D58D2125FE9700F8AC0C /* ContentDrawer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF44D58C2125FE9700F8AC0C /* ContentDrawer.storyboard */; };
@@ -502,14 +503,15 @@
 				DFF939022539DBAB002E5747 /* GoogleAppMeasurement.framework in Frameworks */,
 				DFF939132539DBAC002E5747 /* PromisesObjC.xcframework in Frameworks */,
 				DF7BD96524841FB60062505B /* SwiftUICharts in Frameworks */,
+				DF05E6CF25447023005DDF57 /* Fuse in Frameworks */,
 				DFF9390F2539DBAC002E5747 /* GoogleDataTransport.xcframework in Frameworks */,
 				DFF938FE2539DBAB002E5747 /* FIRAnalyticsConnector.framework in Frameworks */,
 				DF2CF1C223BBB2EA003497C5 /* TextFieldEffects in Frameworks */,
 				DFE1ED852538C86C00FDD44A /* Alertift in Frameworks */,
 				DFF9391B2539DBAD002E5747 /* FirebaseInstanceID.xcframework in Frameworks */,
+				DF3C180B254489EF0047C898 /* MMUI in Frameworks */,
 				DFF939212539DBAD002E5747 /* GoogleUtilities.xcframework in Frameworks */,
 				DF777BBD2414361500C7C9D5 /* MarkdownKit in Frameworks */,
-				DF409CF82352453C001A473E /* MMUI in Frameworks */,
 				DF0EAC9C24C63FB0009BE489 /* ModernNetworking in Frameworks */,
 				DFCE12882538F3D600B45EB7 /* TagListView in Frameworks */,
 				DFE1ED6B2538C24800FDD44A /* BLTNBoard in Frameworks */,
@@ -1239,7 +1241,6 @@
 			);
 			name = Moers;
 			packageProductDependencies = (
-				DF409CF72352453C001A473E /* MMUI */,
 				DF409CF92352453C001A473E /* Gestalt */,
 				DF409CFB2352453C001A473E /* MMAPI */,
 				DF2CF1C123BBB2EA003497C5 /* TextFieldEffects */,
@@ -1254,6 +1255,8 @@
 				DFE1ED942538CBD000FDD44A /* ESTabBarController */,
 				DFCE12872538F3D600B45EB7 /* TagListView */,
 				DFCE12942538F7F600B45EB7 /* FeedKit */,
+				DF05E6CE25447023005DDF57 /* Fuse */,
+				DF3C180A254489EF0047C898 /* MMUI */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1393,7 +1396,6 @@
 			);
 			mainGroup = DF1A49561F6AAB7000E9108B;
 			packageReferences = (
-				DF31C63D23521E4F0085DA6F /* XCRemoteSwiftPackageReference "mmui-ios" */,
 				DF22FC1123522756003F1B3A /* XCRemoteSwiftPackageReference "Gestalt" */,
 				DF409CF023522AD9001A473E /* XCRemoteSwiftPackageReference "mmapi-ios" */,
 				DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
@@ -1407,6 +1409,8 @@
 				DFE1ED932538CBD000FDD44A /* XCRemoteSwiftPackageReference "ESTabBarController" */,
 				DFCE12862538F3D600B45EB7 /* XCRemoteSwiftPackageReference "TagListView" */,
 				DFCE12932538F7F600B45EB7 /* XCRemoteSwiftPackageReference "FeedKit" */,
+				DF05E6CD25447023005DDF57 /* XCRemoteSwiftPackageReference "fuse-swift" */,
+				DF3C1809254489EF0047C898 /* XCRemoteSwiftPackageReference "mmui-ios" */,
 			);
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
@@ -3981,6 +3985,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DF05E6CD25447023005DDF57 /* XCRemoteSwiftPackageReference "fuse-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krisk/fuse-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.0;
+			};
+		};
 		DF21FA8F24C634D8001C278D /* XCRemoteSwiftPackageReference "Resolver" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hmlongco/Resolver";
@@ -4005,7 +4017,7 @@
 				kind = branch;
 			};
 		};
-		DF31C63D23521E4F0085DA6F /* XCRemoteSwiftPackageReference "mmui-ios" */ = {
+		DF3C1809254489EF0047C898 /* XCRemoteSwiftPackageReference "mmui-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/LambdaDigamma/mmui-ios";
 			requirement = {
@@ -4096,6 +4108,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DF05E6CE25447023005DDF57 /* Fuse */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF05E6CD25447023005DDF57 /* XCRemoteSwiftPackageReference "fuse-swift" */;
+			productName = Fuse;
+		};
 		DF0EAC9B24C63FB0009BE489 /* ModernNetworking */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ModernNetworking;
@@ -4110,9 +4127,9 @@
 			package = DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
 			productName = TextFieldEffects;
 		};
-		DF409CF72352453C001A473E /* MMUI */ = {
+		DF3C180A254489EF0047C898 /* MMUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DF31C63D23521E4F0085DA6F /* XCRemoteSwiftPackageReference "mmui-ios" */;
+			package = DF3C1809254489EF0047C898 /* XCRemoteSwiftPackageReference "mmui-ios" */;
 			productName = MMUI;
 		};
 		DF409CF92352453C001A473E /* Gestalt */ = {

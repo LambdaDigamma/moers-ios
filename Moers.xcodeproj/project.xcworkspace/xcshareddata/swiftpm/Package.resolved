@@ -57,11 +57,11 @@
       },
       {
         "package": "Fuse",
-        "repositoryURL": "https://github.com/LambdaDigamma/fuse-swift",
+        "repositoryURL": "https://github.com/krisk/fuse-swift",
         "state": {
           "branch": null,
-          "revision": "271a3b32d268605a222615d3d8ec8f88ad5cb831",
-          "version": "1.2.2"
+          "revision": "26ba868691b2d8b7bf2b1322951eb591be70ccca",
+          "version": "1.4.0"
         }
       },
       {
@@ -78,7 +78,7 @@
         "repositoryURL": "https://github.com/LambdaDigamma/HanekeSwift",
         "state": {
           "branch": null,
-          "revision": "1fcd8e27a638c3005760d463bec76cc647db3fea",
+          "revision": "6dd6a8fb7cfa9b245cd7a8cab688a8f2cecb9d15",
           "version": null
         }
       },
@@ -107,6 +107,15 @@
           "branch": null,
           "revision": "c64728dedf6dbcac463cf5e53e93d210ab825793",
           "version": "1.6.0"
+        }
+      },
+      {
+        "package": "MMUI",
+        "repositoryURL": "https://github.com/LambdaDigamma/mmui-ios",
+        "state": {
+          "branch": "master",
+          "revision": "3a1bc5502e04859a7d738c231f7f818267851da0",
+          "version": null
         }
       },
       {
