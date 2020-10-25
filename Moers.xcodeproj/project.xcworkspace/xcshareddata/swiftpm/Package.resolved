@@ -47,6 +47,15 @@
         }
       },
       {
+        "package": "EventBus",
+        "repositoryURL": "https://github.com/lambdadigamma/eventbus",
+        "state": {
+          "branch": null,
+          "revision": "7dfc2b53edeafd3ef51d4a752f3df72508c14376",
+          "version": "0.5.1"
+        }
+      },
+      {
         "package": "FeedKit",
         "repositoryURL": "https://github.com/nmdias/FeedKit",
         "state": {
@@ -107,15 +116,6 @@
           "branch": null,
           "revision": "c64728dedf6dbcac463cf5e53e93d210ab825793",
           "version": "1.6.0"
-        }
-      },
-      {
-        "package": "MMUI",
-        "repositoryURL": "https://github.com/LambdaDigamma/mmui-ios",
-        "state": {
-          "branch": "master",
-          "revision": "3a1bc5502e04859a7d738c231f7f818267851da0",
-          "version": null
         }
       },
       {

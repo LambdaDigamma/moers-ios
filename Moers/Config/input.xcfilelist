@@ -8,7 +8,5 @@
 # List file paths below; one per line. These paths will be considered inputs or outputs for the script phase.
 # Build settings will be expanded, e.g. $(SRCROOT)/fileName
 
-$(SRCROOT)/Carthage/Build/iOS/TwitterCore.framework
-$(SRCROOT)/Carthage/Build/iOS/TwitterKit.framework
-$(SRCROOT)/Carthage/Build/iOS/pop.framework
-$(SRCROOT)/Carthage/Build/iOS/EventBus.framework
+# $(SRCROOT)/Carthage/Build/iOS/TwitterCore.framework
+# $(SRCROOT)/Carthage/Build/iOS/TwitterKit.framework
