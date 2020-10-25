@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import MMUI
 import MMAPI
 import CoreLocation
 import Combine
+import SwiftUI
 
 class CovidComponent: BaseComponent {
     
@@ -21,11 +23,21 @@ class CovidComponent: BaseComponent {
     
     var locationObject: CoreLocationObject
     
-    lazy var covidCardView: DashboardCovidCardView = {
+    lazy var covidCardView: CardView = {
         
-        let cardView = DashboardCovidCardView()
+        let cardView = CardView()
         
-        cardView.translatesAutoresizingMaskIntoConstraints = false
+        if let viewController = viewController {
+            let childView = UIHostingController(rootView: Text("Test"))
+            viewController.addChild(childView)
+            childView.view.frame = cardView.bounds
+            cardView.addConstrained(subview: childView.view)
+            childView.didMove(toParent: viewController)
+            
+            let cardView = DashboardCovidCardView()
+            
+            cardView.translatesAutoresizingMaskIntoConstraints = false
+        }
         
         return cardView
         
@@ -130,7 +142,7 @@ class CovidComponent: BaseComponent {
         
         self.covidCardView.isUserInteractionEnabled = true
         
-        covidManager.getData(location: location.coordinate)
+        covidManager.getCovidDataWithTrends(for: location.coordinate)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { (completion) in
             
@@ -140,9 +152,11 @@ class CovidComponent: BaseComponent {
             
             print(response)
             
-            if let attributes = response.features.first?.attributes {
-                self.covidCardView.viewModel = CovidIncidenceViewModel(rkiAttributes: attributes)
-            }
+//            self.covidCardView.viewModel = CovidIncidenceViewModel(incidenceResponse: response)
+            
+//            if let attributes = response.features.first?.attributes {
+//                self.covidCardView.viewModel = CovidIncidenceViewModel(rkiAttributes: attributes)
+//            }
             
             self.covidCardView.stopLoading()
             

@@ -15,6 +15,7 @@ class DashboardCovidCardView: CardView {
     
     private lazy var titleLabel: UILabel = { ViewFactory.label() }()
     public lazy var landkreisIncidenceLabel: UILabel = { ViewFactory.label() }()
+    public lazy var countyNameLabel: UILabel = { ViewFactory.label() }()
     
     public var viewModel: CovidIncidenceViewModel? {
         didSet {
@@ -29,6 +30,7 @@ class DashboardCovidCardView: CardView {
         
         self.addSubview(titleLabel)
         self.addSubview(landkreisIncidenceLabel)
+        self.addSubview(countyNameLabel)
         
         self.setupUI()
         self.setupAccessibility()

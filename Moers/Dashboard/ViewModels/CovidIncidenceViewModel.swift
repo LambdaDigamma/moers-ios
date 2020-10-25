@@ -12,7 +12,7 @@ import MMAPI
 
 struct CovidIncidenceViewModel {
     
-    let rkiAttributes: RKIResponseFeatures.Attributes
+    let incidenceResponse: IncidenceResponse
     
     private lazy var incidenceFormatter: NumberFormatter = {
         let incidenceFormatter = NumberFormatter()
@@ -24,14 +24,17 @@ struct CovidIncidenceViewModel {
         return incidenceFormatter
     }()
     
-//    var countyIncidenceWithTrend
-    
     var countyIncidence: String = ""
+    var countyName: String = ""
     
-    init(rkiAttributes: RKIResponseFeatures.Attributes) {
-        self.rkiAttributes = rkiAttributes
+    init(incidenceResponse: IncidenceResponse) {
+        self.incidenceResponse = incidenceResponse
         
-        self.countyIncidence = incidenceFormatter.string(from: NSNumber(value: rkiAttributes.incidenceCity)) ?? "keine Daten"
+        let countyIncidence = incidenceFormatter.string(from: NSNumber(value: incidenceResponse.countyIncidence.countyCases7Per100k)) ?? "keine Daten"
+        let countyIncidenceTrend = self.visualizeInfectionTrend(slope: incidenceResponse.countyIncidence.countyCases7Per100kTrend.slope)
+        
+        self.countyIncidence = "\(countyIncidence) \(countyIncidenceTrend)"
+        self.countyName = incidenceResponse.countyIncidence.county
         
     }
     

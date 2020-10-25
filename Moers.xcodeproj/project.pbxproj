@@ -80,6 +80,7 @@
 		DF500153235A3D2D00ED39B2 /* SearchDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF500152235A3D2D00ED39B2 /* SearchDrawerView.swift */; };
 		DF500155235A4E1E00ED39B2 /* SearchDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF500154235A4E1E00ED39B2 /* SearchDrawerViewController.swift */; };
 		DF503CEF21431503006EE226 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF503CEE21431503006EE226 /* DebugViewController.swift */; };
+		DF51614A2545F6290094DEEB /* CovidMediumWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5161492545F6290094DEEB /* CovidMediumWidget.swift */; };
 		DF51F78D22E26A9200A0CF00 /* TabControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF51F78C22E26A9200A0CF00 /* TabControllerFactory.swift */; };
 		DF52868224A7C07300A6939E /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868124A7C07300A6939E /* AppView.swift */; };
 		DF52868424A7C0B600A6939E /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868324A7C0B600A6939E /* DashboardView.swift */; };
@@ -350,6 +351,7 @@
 		DF500152235A3D2D00ED39B2 /* SearchDrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDrawerView.swift; sourceTree = "<group>"; };
 		DF500154235A4E1E00ED39B2 /* SearchDrawerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDrawerViewController.swift; sourceTree = "<group>"; };
 		DF503CEE21431503006EE226 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
+		DF5161492545F6290094DEEB /* CovidMediumWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidMediumWidget.swift; sourceTree = "<group>"; };
 		DF51F78C22E26A9200A0CF00 /* TabControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabControllerFactory.swift; sourceTree = "<group>"; };
 		DF52867E24A7B94D00A6939E /* Bond */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Bond; path = ../Bond; sourceTree = "<group>"; };
 		DF52868124A7C07300A6939E /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
@@ -735,6 +737,7 @@
 		DF11BFC522BA6FE40051C3B3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DF5161482545F5EB0094DEEB /* Widgets */,
 				DFDD3F7120B2E525005602E3 /* MonthHeaderView.swift */,
 				DF855C2320C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift */,
 				DFDD3F6F20B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift */,
@@ -1022,6 +1025,14 @@
 				DF4CB7F6248504C300D20986 /* Path+QuadCurve.swift */,
 			);
 			path = Charting;
+			sourceTree = "<group>";
+		};
+		DF5161482545F5EB0094DEEB /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				DF5161492545F6290094DEEB /* CovidMediumWidget.swift */,
+			);
+			path = Widgets;
 			sourceTree = "<group>";
 		};
 		DF52867F24A7C06600A6939E /* New */ = {
@@ -1628,6 +1639,7 @@
 				DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */,
 				DF5D81CA2256832600A19B01 /* MockConfig.swift in Sources */,
 				DFCB432320E038AB00E7AD3F /* TweetTableViewCell.swift in Sources */,
+				DF51614A2545F6290094DEEB /* CovidMediumWidget.swift in Sources */,
 				DFD39A3322B7578B0085F06E /* MMEventsViewController.swift in Sources */,
 				DF310DA421710887004C69BA /* TagTableViewCell.swift in Sources */,
 				DFAC73FA2545A0F9005827B6 /* CovidComponent.swift in Sources */,
