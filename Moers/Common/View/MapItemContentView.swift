@@ -8,7 +8,6 @@
 
 import UIKit
 import ESTabBarController
-import pop
 import Gestalt
 import MMUI
 
@@ -152,30 +151,30 @@ class MapItemContentView: ESTabBarItemContentView {
     }
     
     private func playMaskAnimation(animateView view: UIView, target: UIView, completion: (() -> ())?) {
-        view.center = CGPoint.init(x: target.frame.origin.x + target.frame.size.width / 2.0, y: target.frame.origin.y + target.frame.size.height / 2.0)
-        
-        let scale = POPBasicAnimation(propertyNamed: kPOPLayerScaleXY)
-        scale?.fromValue = NSValue(cgSize: CGSize.init(width: 1.0, height: 1.0))
-        scale?.toValue = NSValue(cgSize: CGSize.init(width: 36.0, height: 36.0))
-        scale?.beginTime = CACurrentMediaTime()
-        scale?.duration = 0.3
-        scale?.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
-        scale?.removedOnCompletion = true
-        
-        let alpha = POPBasicAnimation(propertyNamed: kPOPLayerOpacity)
-        alpha?.fromValue = 0.6
-        alpha?.toValue = 0.6
-        alpha?.beginTime = CACurrentMediaTime()
-        alpha?.duration = 0.25
-        alpha?.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
-        alpha?.removedOnCompletion = true
-        
-        view.layer.pop_add(scale, forKey: "scale")
-        view.layer.pop_add(alpha, forKey: "alpha")
-        
-        scale?.completionBlock = ({ animation, finished in
-            completion?()
-        })
+//        view.center = CGPoint.init(x: target.frame.origin.x + target.frame.size.width / 2.0, y: target.frame.origin.y + target.frame.size.height / 2.0)
+//
+//        let scale = POPBasicAnimation(propertyNamed: kPOPLayerScaleXY)
+//        scale?.fromValue = NSValue(cgSize: CGSize.init(width: 1.0, height: 1.0))
+//        scale?.toValue = NSValue(cgSize: CGSize.init(width: 36.0, height: 36.0))
+//        scale?.beginTime = CACurrentMediaTime()
+//        scale?.duration = 0.3
+//        scale?.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+//        scale?.removedOnCompletion = true
+//
+//        let alpha = POPBasicAnimation(propertyNamed: kPOPLayerOpacity)
+//        alpha?.fromValue = 0.6
+//        alpha?.toValue = 0.6
+//        alpha?.beginTime = CACurrentMediaTime()
+//        alpha?.duration = 0.25
+//        alpha?.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+//        alpha?.removedOnCompletion = true
+//
+//        view.layer.pop_add(scale, forKey: "scale")
+//        view.layer.pop_add(alpha, forKey: "alpha")
+//
+//        scale?.completionBlock = ({ animation, finished in
+//            completion?()
+//        })
     }
     
 }

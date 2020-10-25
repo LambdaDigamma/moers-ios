@@ -163,7 +163,6 @@
 		DFCA005D24A8B36D00EACE9F /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCA005C24A8B36D00EACE9F /* Sidebar.swift */; };
 		DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431C20E0283000E7AD3F /* NewsViewController.swift */; };
 		DFCB431F20E02D0300E7AD3F /* NewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431E20E02D0300E7AD3F /* NewsManager.swift */; };
-		DFCB432120E0344800E7AD3F /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFCB432020E0344700E7AD3F /* TwitterKit.framework */; };
 		DFCB432320E038AB00E7AD3F /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB432220E038AB00E7AD3F /* TweetTableViewCell.swift */; };
 		DFCE12882538F3D600B45EB7 /* TagListView in Frameworks */ = {isa = PBXBuildFile; productRef = DFCE12872538F3D600B45EB7 /* TagListView */; };
 		DFCE12952538F7F600B45EB7 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = DFCE12942538F7F600B45EB7 /* FeedKit */; };
@@ -181,6 +180,8 @@
 		DFDD3F7020B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F6F20B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift */; };
 		DFDD3F7220B2E525005602E3 /* MonthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F7120B2E525005602E3 /* MonthHeaderView.swift */; };
 		DFDD3F7420B2F30A005602E3 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */; };
+		DFDE88082545789900429765 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9A4D3F23F45BAA00EE5356 /* TwitterCore.framework */; };
+		DFDE880A2545789900429765 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFCB432020E0344700E7AD3F /* TwitterKit.framework */; };
 		DFE1B58D235315E2009CA2EC /* MMUI.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFE1B58F235315E2009CA2EC /* MMUI.strings */; };
 		DFE1B5932353165F009CA2EC /* MMAPI.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFE1B5952353165F009CA2EC /* MMAPI.strings */; };
 		DFE1B59C235323D3009CA2EC /* MMUI.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFE1B59B235323D3009CA2EC /* MMUI.xcassets */; };
@@ -510,9 +511,11 @@
 				DFE1ED852538C86C00FDD44A /* Alertift in Frameworks */,
 				DFF9391B2539DBAD002E5747 /* FirebaseInstanceID.xcframework in Frameworks */,
 				DF3C180B254489EF0047C898 /* MMUI in Frameworks */,
+				DFDE880A2545789900429765 /* TwitterKit.framework in Frameworks */,
 				DFF939212539DBAD002E5747 /* GoogleUtilities.xcframework in Frameworks */,
 				DF777BBD2414361500C7C9D5 /* MarkdownKit in Frameworks */,
 				DF0EAC9C24C63FB0009BE489 /* ModernNetworking in Frameworks */,
+				DFDE88082545789900429765 /* TwitterCore.framework in Frameworks */,
 				DFCE12882538F3D600B45EB7 /* TagListView in Frameworks */,
 				DFE1ED6B2538C24800FDD44A /* BLTNBoard in Frameworks */,
 				DFF939002539DBAB002E5747 /* FirebaseAnalytics.framework in Frameworks */,
@@ -525,7 +528,6 @@
 				DF86ABA12174900400EFC7EA /* Intents.framework in Frameworks */,
 				DF409CFA2352453C001A473E /* Gestalt in Frameworks */,
 				DFF9391F2539DBAD002E5747 /* nanopb.xcframework in Frameworks */,
-				DFCB432120E0344800E7AD3F /* TwitterKit.framework in Frameworks */,
 				DFF939152539DBAD002E5747 /* Protobuf.xcframework in Frameworks */,
 				DF77DA0D23B53458001FCA29 /* pop.framework in Frameworks */,
 				DF77DA1823B5491D001FCA29 /* EventBus.framework in Frameworks */,
@@ -1518,7 +1520,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sudo /usr/local/bin/carthage.sh copy-frameworks\n";
+			shellScript = "SUDO_ASKPASS=/Users/lennart/.secret-pass.sh sudo -A carthage.sh copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
