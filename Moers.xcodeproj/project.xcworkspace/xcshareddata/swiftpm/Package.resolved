@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/alexaubry/BulletinBoard.git",
         "state": {
           "branch": "develop",
-          "revision": "69a7bd2620ec374743f4d288730321b21a576225",
+          "revision": "d52de54d1010b2c660f03ac888b892ec273ee6f4",
           "version": null
         }
       },
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/lambdadigamma/eventbus",
         "state": {
           "branch": null,
-          "revision": "7dfc2b53edeafd3ef51d4a752f3df72508c14376",
-          "version": "0.5.1"
+          "revision": "f4b1b7a35bc20165e7d3aaeebc808dd3ab14874b",
+          "version": "0.5.2"
         }
       },
       {
@@ -75,18 +75,18 @@
       },
       {
         "package": "Gestalt",
-        "repositoryURL": "https://github.com/regexident/Gestalt.git",
+        "repositoryURL": "https://github.com/regexident/Gestalt",
         "state": {
-          "branch": "swift-5",
-          "revision": "77957e0d336e7c1bb53edaa23f6bd70c5ec506bc",
-          "version": null
+          "branch": null,
+          "revision": "74619093a79c380f795d7b9c9005301fe12542c8",
+          "version": "2.1.0"
         }
       },
       {
         "package": "Haneke",
         "repositoryURL": "https://github.com/LambdaDigamma/HanekeSwift",
         "state": {
-          "branch": null,
+          "branch": "master",
           "revision": "6dd6a8fb7cfa9b245cd7a8cab688a8f2cecb9d15",
           "version": null
         }
@@ -105,8 +105,8 @@
         "repositoryURL": "https://github.com/onevcat/Kingfisher",
         "state": {
           "branch": null,
-          "revision": "1aa9889e5f7d9d92acda014eea9cdc7338d3d7d6",
-          "version": "5.15.6"
+          "revision": "0e548b700c7c123dd3b2ac776e90d63a540f084d",
+          "version": "5.15.7"
         }
       },
       {
@@ -123,8 +123,8 @@
         "repositoryURL": "https://github.com/52inc/Pulley",
         "state": {
           "branch": null,
-          "revision": "780234b91cc853ebd4e5c5094bfa52428f63e4e6",
-          "version": "2.8.5"
+          "revision": "5d5ec9c9c2a2ab3c1d76d5c7a7ce6eff20410719",
+          "version": "2.9.0"
         }
       },
       {
