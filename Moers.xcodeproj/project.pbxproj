@@ -54,7 +54,6 @@
 		DF3C180B254489EF0047C898 /* MMUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF3C180A254489EF0047C898 /* MMUI */; };
 		DF3DEE3B24D6C5AF007954A7 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3DEE3A24D6C5AF007954A7 /* LoadingIndicator.swift */; };
 		DF3EE0C520E382EC00CA9279 /* MapLocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */; };
-		DF409CFA2352453C001A473E /* Gestalt in Frameworks */ = {isa = PBXBuildFile; productRef = DF409CF92352453C001A473E /* Gestalt */; };
 		DF409CFC2352453C001A473E /* MMAPI in Frameworks */ = {isa = PBXBuildFile; productRef = DF409CFB2352453C001A473E /* MMAPI */; };
 		DF44D58D2125FE9700F8AC0C /* ContentDrawer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF44D58C2125FE9700F8AC0C /* ContentDrawer.storyboard */; };
 		DF44D58F2126F83B00F8AC0C /* DetailViewControllers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF44D58E2126F83B00F8AC0C /* DetailViewControllers.storyboard */; };
@@ -537,7 +536,6 @@
 				DFE6254025459556005FAC1C /* FirebaseInstallations.xcframework in Frameworks */,
 				DFE6254425459559005FAC1C /* FirebaseCore.xcframework in Frameworks */,
 				DFE6251C25459548005FAC1C /* Protobuf.xcframework in Frameworks */,
-				DF409CFA2352453C001A473E /* Gestalt in Frameworks */,
 				DFE6254225459558005FAC1C /* FirebaseCoreDiagnostics.xcframework in Frameworks */,
 				DF777BC024143A9D00C7C9D5 /* SwiftyMarkdown in Frameworks */,
 				DFE6253225459552005FAC1C /* GoogleAppMeasurement.framework in Frameworks */,
@@ -1255,7 +1253,6 @@
 			);
 			name = Moers;
 			packageProductDependencies = (
-				DF409CF92352453C001A473E /* Gestalt */,
 				DF409CFB2352453C001A473E /* MMAPI */,
 				DF2CF1C123BBB2EA003497C5 /* TextFieldEffects */,
 				DF777BBC2414361500C7C9D5 /* MarkdownKit */,
@@ -1411,7 +1408,6 @@
 			);
 			mainGroup = DF1A49561F6AAB7000E9108B;
 			packageReferences = (
-				DF22FC1123522756003F1B3A /* XCRemoteSwiftPackageReference "Gestalt" */,
 				DF409CF023522AD9001A473E /* XCRemoteSwiftPackageReference "mmapi-ios" */,
 				DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 				DF777BBB2414361500C7C9D5 /* XCRemoteSwiftPackageReference "MarkdownKit" */,
@@ -4024,14 +4020,6 @@
 				minimumVersion = 1.1.4;
 			};
 		};
-		DF22FC1123522756003F1B3A /* XCRemoteSwiftPackageReference "Gestalt" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/regexident/Gestalt.git";
-			requirement = {
-				branch = "swift-5";
-				kind = branch;
-			};
-		};
 		DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/LambdaDigamma/TextFieldEffects";
@@ -4162,11 +4150,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DF3C1809254489EF0047C898 /* XCRemoteSwiftPackageReference "mmui-ios" */;
 			productName = MMUI;
-		};
-		DF409CF92352453C001A473E /* Gestalt */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF22FC1123522756003F1B3A /* XCRemoteSwiftPackageReference "Gestalt" */;
-			productName = Gestalt;
 		};
 		DF409CFB2352453C001A473E /* MMAPI */ = {
 			isa = XCSwiftPackageProductDependency;
