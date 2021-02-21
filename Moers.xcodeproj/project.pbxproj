@@ -168,6 +168,8 @@
 		DFD7ACBA20A6C6BC00D49BE2 /* RubbishCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACB920A6C6BC00D49BE2 /* RubbishCollectionView.swift */; };
 		DFD7ACBD20A795AF00D49BE2 /* DashboardNotificationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACBC20A795AF00D49BE2 /* DashboardNotificationCardView.swift */; };
 		DFD7ACC120A842F400D49BE2 /* DateCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACC020A842F400D49BE2 /* DateCardView.swift */; };
+		DFD8632C25E25F60006164E5 /* AppScaffold in Frameworks */ = {isa = PBXBuildFile; productRef = DFD8632B25E25F60006164E5 /* AppScaffold */; };
+		DFD8633325E26053006164E5 /* MMCommon in Frameworks */ = {isa = PBXBuildFile; productRef = DFD8633225E26053006164E5 /* MMCommon */; };
 		DFD890872124860A006B5610 /* TandCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD890862124860A006B5610 /* TandCViewController.swift */; };
 		DFD8908921248DD9006B5610 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8908821248DD9006B5610 /* PrivacyViewController.swift */; };
 		DFDD3F6E20B22230005602E3 /* RubbishCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F6D20B22230005602E3 /* RubbishCollectionViewController.swift */; };
@@ -492,6 +494,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFD8633325E26053006164E5 /* MMCommon in Frameworks */,
 				DFE6254A2545955B005FAC1C /* FirebaseAnalytics.framework in Frameworks */,
 				DFE1ED782538C4E200FDD44A /* Pulley in Frameworks */,
 				DF409CFC2352453C001A473E /* MMAPI in Frameworks */,
@@ -506,6 +509,7 @@
 				DF777BBD2414361500C7C9D5 /* MarkdownKit in Frameworks */,
 				DF0EAC9C24C63FB0009BE489 /* ModernNetworking in Frameworks */,
 				DFCE12882538F3D600B45EB7 /* TagListView in Frameworks */,
+				DFD8632C25E25F60006164E5 /* AppScaffold in Frameworks */,
 				DFE1ED6B2538C24800FDD44A /* BLTNBoard in Frameworks */,
 				DFE6254C2545955D005FAC1C /* FIRAnalyticsConnector.framework in Frameworks */,
 				DFDE88712545834B00429765 /* EventBus in Frameworks */,
@@ -1235,6 +1239,8 @@
 				DF05E6CE25447023005DDF57 /* Fuse */,
 				DF3C180A254489EF0047C898 /* MMUI */,
 				DFDE88702545834B00429765 /* EventBus */,
+				DFD8632B25E25F60006164E5 /* AppScaffold */,
+				DFD8633225E26053006164E5 /* MMCommon */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1389,6 +1395,8 @@
 				DF05E6CD25447023005DDF57 /* XCRemoteSwiftPackageReference "fuse-swift" */,
 				DF3C1809254489EF0047C898 /* XCRemoteSwiftPackageReference "mmui-ios" */,
 				DFDE886F2545834B00429765 /* XCRemoteSwiftPackageReference "eventbus" */,
+				DFD8632A25E25F5F006164E5 /* XCRemoteSwiftPackageReference "app-scaffold-ios" */,
+				DFD8633125E26053006164E5 /* XCRemoteSwiftPackageReference "mmcommon-ios" */,
 			);
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
@@ -1816,7 +1824,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1956,7 +1964,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2099,7 +2107,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2239,7 +2247,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2441,7 +2449,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2483,7 +2491,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4050,6 +4058,22 @@
 				minimumVersion = 9.1.2;
 			};
 		};
+		DFD8632A25E25F5F006164E5 /* XCRemoteSwiftPackageReference "app-scaffold-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lambdadigamma/app-scaffold-ios";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		DFD8633125E26053006164E5 /* XCRemoteSwiftPackageReference "mmcommon-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lambdadigamma/mmcommon-ios";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		DFDE886F2545834B00429765 /* XCRemoteSwiftPackageReference "eventbus" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lambdadigamma/eventbus";
@@ -4146,6 +4170,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DFCE12932538F7F600B45EB7 /* XCRemoteSwiftPackageReference "FeedKit" */;
 			productName = FeedKit;
+		};
+		DFD8632B25E25F60006164E5 /* AppScaffold */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFD8632A25E25F5F006164E5 /* XCRemoteSwiftPackageReference "app-scaffold-ios" */;
+			productName = AppScaffold;
+		};
+		DFD8633225E26053006164E5 /* MMCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFD8633125E26053006164E5 /* XCRemoteSwiftPackageReference "mmcommon-ios" */;
+			productName = MMCommon;
 		};
 		DFDE88702545834B00429765 /* EventBus */ = {
 			isa = XCSwiftPackageProductDependency;

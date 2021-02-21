@@ -11,6 +11,7 @@ import UIKit
 import Haneke
 
 struct LaunchArgumentsHandler {
+    
     let userDefaults: UserDefaults
     
     func handle() {

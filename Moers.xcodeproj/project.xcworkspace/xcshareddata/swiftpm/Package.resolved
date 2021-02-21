@@ -11,12 +11,30 @@
         }
       },
       {
+        "package": "AppScaffold",
+        "repositoryURL": "https://github.com/lambdadigamma/app-scaffold-ios",
+        "state": {
+          "branch": "main",
+          "revision": "7770779a55948d1e8b83c631d24e4c1fe0bf76ee",
+          "version": null
+        }
+      },
+      {
         "package": "BLTNBoard",
         "repositoryURL": "https://github.com/alexaubry/BulletinBoard.git",
         "state": {
           "branch": "develop",
-          "revision": "d52de54d1010b2c660f03ac888b892ec273ee6f4",
+          "revision": "7b35bb98d776f869851f345696215def30814de2",
           "version": null
+        }
+      },
+      {
+        "package": "Cache",
+        "repositoryURL": "https://github.com/hyperoslo/Cache",
+        "state": {
+          "branch": null,
+          "revision": "c7f4d633049c3bd649a353bad36f6c17e9df085f",
+          "version": "6.0.0"
         }
       },
       {
@@ -42,8 +60,8 @@
         "repositoryURL": "https://github.com/eggswift/ESTabBarController.git",
         "state": {
           "branch": null,
-          "revision": "2acc5e5844efcb3259ace475e012c75de5c90658",
-          "version": "2.8.0"
+          "revision": "93a30b833a05fd916c6d4c5d6e94a270cf3b6636",
+          "version": "2.9.0"
         }
       },
       {
@@ -78,8 +96,8 @@
         "repositoryURL": "https://github.com/regexident/Gestalt",
         "state": {
           "branch": null,
-          "revision": "74619093a79c380f795d7b9c9005301fe12542c8",
-          "version": "2.1.0"
+          "revision": "6469230fb1b81ea449312a855b410425030b287e",
+          "version": "2.1.1"
         }
       },
       {
@@ -105,8 +123,8 @@
         "repositoryURL": "https://github.com/onevcat/Kingfisher",
         "state": {
           "branch": null,
-          "revision": "0e548b700c7c123dd3b2ac776e90d63a540f084d",
-          "version": "5.15.7"
+          "revision": "2a10bf41da75599a9f8e872dbd44fe0155a2e00c",
+          "version": "5.15.8"
         }
       },
       {
@@ -116,6 +134,15 @@
           "branch": null,
           "revision": "c64728dedf6dbcac463cf5e53e93d210ab825793",
           "version": "1.6.0"
+        }
+      },
+      {
+        "package": "MMCommon",
+        "repositoryURL": "https://github.com/lambdadigamma/mmcommon-ios",
+        "state": {
+          "branch": "master",
+          "revision": "419b8428a2dd9bd56cb1e48282939ce481401e71",
+          "version": null
         }
       },
       {
@@ -150,8 +177,8 @@
         "repositoryURL": "https://github.com/hmlongco/Resolver",
         "state": {
           "branch": null,
-          "revision": "cb5b4e1e60046120de87fee14af257e07ad74a62",
-          "version": "1.1.4"
+          "revision": "2d15bf5b33b3c95704e84a5b2a43485606bdd5c4",
+          "version": "1.4.0"
         }
       },
       {
@@ -159,8 +186,8 @@
         "repositoryURL": "https://github.com/swiftcsv/SwiftCSV",
         "state": {
           "branch": null,
-          "revision": "8ae14758a2019fd55dc6f9b6ecbbe246bcef179f",
-          "version": "0.5.6"
+          "revision": "ad2042d0ba2ea260246b0e1b1d5710cbc53e2836",
+          "version": "0.6.0"
         }
       },
       {

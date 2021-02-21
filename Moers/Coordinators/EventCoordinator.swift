@@ -9,6 +9,7 @@
 import UIKit
 import MMUI
 import MMAPI
+import AppScaffold
 
 class EventCoordinator: Coordinator {
     

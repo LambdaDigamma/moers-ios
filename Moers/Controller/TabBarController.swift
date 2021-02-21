@@ -176,7 +176,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
                 item.accessibilityIdentifier = "TabMapSearch"
                 item.accessibilityLabel = String.localized("SearchMap")
                 
-                item.contentView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(search)))
+                item.contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(search)))
                 
                 self.shouldHijackHandler = { _, _, index in
                     

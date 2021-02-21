@@ -191,7 +191,10 @@ class OnboardingManager {
     
     func makePetrolType(preSelected: PetrolType?) -> BLTNPageItem {
         
-        let page = SelectorBulletinPage<PetrolType>(title: String.localized("OnboardingPetrolTypePageTitle"), preSelected: preSelected)
+        let page = SelectorBulletinPage<PetrolType>(
+            title: String.localized("OnboardingPetrolTypePageTitle"),
+            preSelected: preSelected
+        )
         
         page.appearance = appearance
         page.descriptionText = String.localized("OnboardingPetrolTypePageDescription")
