@@ -459,6 +459,7 @@
 		DFD7ACB920A6C6BC00D49BE2 /* RubbishCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionView.swift; sourceTree = "<group>"; };
 		DFD7ACBC20A795AF00D49BE2 /* DashboardNotificationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardNotificationCardView.swift; sourceTree = "<group>"; };
 		DFD7ACC020A842F400D49BE2 /* DateCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCardView.swift; sourceTree = "<group>"; };
+		DFD8635425E27141006164E5 /* mmrubbish-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "mmrubbish-ios"; path = "../mmrubbish-ios"; sourceTree = "<group>"; };
 		DFD890862124860A006B5610 /* TandCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TandCViewController.swift; sourceTree = "<group>"; };
 		DFD8908821248DD9006B5610 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		DFDB87A02545901900347550 /* TwitterKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TwitterKit.xcframework; path = "../twitter-kit-ios/output/TwitterKit.xcframework"; sourceTree = "<group>"; };
@@ -804,6 +805,7 @@
 		DF1A49561F6AAB7000E9108B = {
 			isa = PBXGroup;
 			children = (
+				DFD8635425E27141006164E5 /* mmrubbish-ios */,
 				DF21FA9724C63F66001C278D /* ModernNetworking */,
 				DF52867E24A7B94D00A6939E /* Bond */,
 				DF8F4445249F588E00BF3412 /* BasicNetworking */,
