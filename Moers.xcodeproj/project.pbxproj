@@ -65,15 +65,6 @@
 		DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C3208C64F1003ECF41 /* PickerView.swift */; };
 		DF4BD1C6208CF76C003ECF41 /* RubbishReminderBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C5208CF76C003ECF41 /* RubbishReminderBulletinItem.swift */; };
 		DF4CB7DE248501DD00D20986 /* TemperatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7DD248501DD00D20986 /* TemperatureView.swift */; };
-		DF4CB7E12485032600D20986 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7E02485032600D20986 /* Helpers.swift */; };
-		DF4CB7FB248504C300D20986 /* MultiLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7F3248504C200D20986 /* MultiLineChartView.swift */; };
-		DF4CB7FC248504C300D20986 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7F4248504C200D20986 /* Line.swift */; };
-		DF4CB7FD248504C300D20986 /* MagnifierRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7F5248504C300D20986 /* MagnifierRect.swift */; };
-		DF4CB7FE248504C300D20986 /* Path+QuadCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7F6248504C300D20986 /* Path+QuadCurve.swift */; };
-		DF4CB7FF248504C300D20986 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7F7248504C300D20986 /* LineView.swift */; };
-		DF4CB800248504C300D20986 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7F8248504C300D20986 /* LineChartView.swift */; };
-		DF4CB801248504C300D20986 /* Legend.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7F9248504C300D20986 /* Legend.swift */; };
-		DF4CB802248504C300D20986 /* IndicatorPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB7FA248504C300D20986 /* IndicatorPoint.swift */; };
 		DF4D437924309418003A771D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D437824309418003A771D /* LoginViewController.swift */; };
 		DF4D8953210388D5008609A1 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D8952210388D5008609A1 /* CameraViewController.swift */; };
 		DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D89562104A6F0008609A1 /* Datasources.swift */; };
@@ -81,6 +72,7 @@
 		DF500155235A4E1E00ED39B2 /* SearchDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF500154235A4E1E00ED39B2 /* SearchDrawerViewController.swift */; };
 		DF503CEF21431503006EE226 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF503CEE21431503006EE226 /* DebugViewController.swift */; };
 		DF51614A2545F6290094DEEB /* CovidMediumWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5161492545F6290094DEEB /* CovidMediumWidget.swift */; };
+		DF516161254603220094DEEB /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = DF516160254603220094DEEB /* Charts */; };
 		DF51F78D22E26A9200A0CF00 /* TabControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF51F78C22E26A9200A0CF00 /* TabControllerFactory.swift */; };
 		DF52868224A7C07300A6939E /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868124A7C07300A6939E /* AppView.swift */; };
 		DF52868424A7C0B600A6939E /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868324A7C0B600A6939E /* DashboardView.swift */; };
@@ -336,15 +328,6 @@
 		DF4BD1C3208C64F1003ECF41 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		DF4BD1C5208CF76C003ECF41 /* RubbishReminderBulletinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishReminderBulletinItem.swift; sourceTree = "<group>"; };
 		DF4CB7DD248501DD00D20986 /* TemperatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureView.swift; sourceTree = "<group>"; };
-		DF4CB7E02485032600D20986 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		DF4CB7F3248504C200D20986 /* MultiLineChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiLineChartView.swift; sourceTree = "<group>"; };
-		DF4CB7F4248504C200D20986 /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
-		DF4CB7F5248504C300D20986 /* MagnifierRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagnifierRect.swift; sourceTree = "<group>"; };
-		DF4CB7F6248504C300D20986 /* Path+QuadCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Path+QuadCurve.swift"; sourceTree = "<group>"; };
-		DF4CB7F7248504C300D20986 /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
-		DF4CB7F8248504C300D20986 /* LineChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
-		DF4CB7F9248504C300D20986 /* Legend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Legend.swift; sourceTree = "<group>"; };
-		DF4CB7FA248504C300D20986 /* IndicatorPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorPoint.swift; sourceTree = "<group>"; };
 		DF4D437824309418003A771D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DF4D8952210388D5008609A1 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		DF4D89562104A6F0008609A1 /* Datasources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datasources.swift; sourceTree = "<group>"; };
@@ -532,6 +515,7 @@
 				DFCE12882538F3D600B45EB7 /* TagListView in Frameworks */,
 				DFE1ED6B2538C24800FDD44A /* BLTNBoard in Frameworks */,
 				DFE6254C2545955D005FAC1C /* FIRAnalyticsConnector.framework in Frameworks */,
+				DF516161254603220094DEEB /* Charts in Frameworks */,
 				DFDE88712545834B00429765 /* EventBus in Frameworks */,
 				DFE6253825459553005FAC1C /* FirebaseMessaging.xcframework in Frameworks */,
 				DFCE12952538F7F600B45EB7 /* FeedKit in Frameworks */,
@@ -667,10 +651,8 @@
 		DF11BFBF22BA68650051C3B3 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				DF4CB7E2248503AC00D20986 /* Charting */,
 				DF11BFC122BA6E710051C3B3 /* Model */,
 				DF11BFC422BA6F020051C3B3 /* View */,
-				DF4CB7DF2485030E00D20986 /* Utility */,
 				DF461CB520E2241400600C0E /* Controller */,
 			);
 			path = Other;
@@ -1004,29 +986,6 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
-		DF4CB7DF2485030E00D20986 /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-				DF4CB7E02485032600D20986 /* Helpers.swift */,
-			);
-			path = Utility;
-			sourceTree = "<group>";
-		};
-		DF4CB7E2248503AC00D20986 /* Charting */ = {
-			isa = PBXGroup;
-			children = (
-				DF4CB7FA248504C300D20986 /* IndicatorPoint.swift */,
-				DF4CB7F9248504C300D20986 /* Legend.swift */,
-				DF4CB7F4248504C200D20986 /* Line.swift */,
-				DF4CB7F8248504C300D20986 /* LineChartView.swift */,
-				DF4CB7F7248504C300D20986 /* LineView.swift */,
-				DF4CB7F5248504C300D20986 /* MagnifierRect.swift */,
-				DF4CB7F3248504C200D20986 /* MultiLineChartView.swift */,
-				DF4CB7F6248504C300D20986 /* Path+QuadCurve.swift */,
-			);
-			path = Charting;
-			sourceTree = "<group>";
-		};
 		DF5161482545F5EB0094DEEB /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
@@ -1297,6 +1256,7 @@
 				DF05E6CE25447023005DDF57 /* Fuse */,
 				DF3C180A254489EF0047C898 /* MMUI */,
 				DFDE88702545834B00429765 /* EventBus */,
+				DF516160254603220094DEEB /* Charts */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1452,6 +1412,7 @@
 				DF05E6CD25447023005DDF57 /* XCRemoteSwiftPackageReference "fuse-swift" */,
 				DF3C1809254489EF0047C898 /* XCRemoteSwiftPackageReference "mmui-ios" */,
 				DFDE886F2545834B00429765 /* XCRemoteSwiftPackageReference "eventbus" */,
+				DF51615F254603220094DEEB /* XCRemoteSwiftPackageReference "swiftui-charts" */,
 			);
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
@@ -1569,7 +1530,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF1207BA23C0C777003285C1 /* Form.swift in Sources */,
-				DF4CB7E12485032600D20986 /* Helpers.swift in Sources */,
 				DF503CEF21431503006EE226 /* DebugViewController.swift in Sources */,
 				DFCB431F20E02D0300E7AD3F /* NewsManager.swift in Sources */,
 				DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */,
@@ -1582,7 +1542,6 @@
 				DF541389217FCD25007FDEC8 /* EntryValidationViewController.swift in Sources */,
 				DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */,
 				DF5D82732258DBD900A19B01 /* UIProperties.swift in Sources */,
-				DF4CB800248504C300D20986 /* LineChartView.swift in Sources */,
 				DF78DFE423BD50A2000A78AE /* OnboardingOverviewNotice.swift in Sources */,
 				DF52868624A7C0CC00A6939E /* NewsView.swift in Sources */,
 				DFA96A6320BD8A390009B279 /* AveragePetrolPriceComponent.swift in Sources */,
@@ -1613,13 +1572,11 @@
 				DF0EACA224C6491A009BE489 /* OrganisationList.swift in Sources */,
 				DFD7ACBD20A795AF00D49BE2 /* DashboardNotificationCardView.swift in Sources */,
 				DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */,
-				DF4CB7FC248504C300D20986 /* Line.swift in Sources */,
 				DF2D6DA120B83C1E00176614 /* AnalyticsManager.swift in Sources */,
 				DF855C2420C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift in Sources */,
 				DF4BD1BE208A72C5003ECF41 /* DashboardViewController.swift in Sources */,
 				DF0CB4B12085B66600CC0AA8 /* ContentViewController.swift in Sources */,
 				DF757347217725AC00953DA1 /* LFSearchViewDefaults.swift in Sources */,
-				DF4CB801248504C300D20986 /* Legend.swift in Sources */,
 				DF61DCCD212ECD850093915F /* DetailPetrolStationViewController.swift in Sources */,
 				DFD890872124860A006B5610 /* TandCViewController.swift in Sources */,
 				DFDD3F7420B2F30A005602E3 /* AboutViewController.swift in Sources */,
@@ -1672,23 +1629,19 @@
 				DF04D60A23CBD5EC008AE677 /* DashboardCoordinator.swift in Sources */,
 				DF21FA9324C63502001C278D /* AppDelegate+Resolving.swift in Sources */,
 				DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */,
-				DF4CB7FE248504C300D20986 /* Path+QuadCurve.swift in Sources */,
 				DFD7ACB220A44C5A00D49BE2 /* SelectionViewController.swift in Sources */,
 				DF2D6DAB20B8A02B00176614 /* OnboardingManager.swift in Sources */,
 				DF75734321771D3100953DA1 /* LFSearchViewDelegate.swift in Sources */,
 				DF8281B621CFA74F00C3B3CE /* TweetCollectionViewCell.swift in Sources */,
 				DF54138D2180955B007FDEC8 /* NewsCollectionViewCell.swift in Sources */,
-				DF4CB7FB248504C300D20986 /* MultiLineChartView.swift in Sources */,
 				DF4CB7DE248501DD00D20986 /* TemperatureView.swift in Sources */,
 				DF86AB9721728A1E00EFC7EA /* EntryOnboardingLocationMenuViewController.swift in Sources */,
 				DF69B73C21D986AD00F910D8 /* EntryHistoryViewController.swift in Sources */,
 				DF174FA723BC361B00812BDD /* AuditTableViewCell.swift in Sources */,
-				DF4CB802248504C300D20986 /* IndicatorPoint.swift in Sources */,
 				DF2D6DA720B8983400176614 /* UserManager.swift in Sources */,
 				DF4D8953210388D5008609A1 /* CameraViewController.swift in Sources */,
 				DFD7ACC120A842F400D49BE2 /* DateCardView.swift in Sources */,
 				DFB92D691F6B96E400669F73 /* ClusterAnnotationView.swift in Sources */,
-				DF4CB7FD248504C300D20986 /* MagnifierRect.swift in Sources */,
 				DF552FC72184D2210062EB2B /* CheckmarkView.swift in Sources */,
 				DF3EE0C520E382EC00CA9279 /* MapLocationPickerViewController.swift in Sources */,
 				DFD8908921248DD9006B5610 /* PrivacyViewController.swift in Sources */,
@@ -1702,7 +1655,6 @@
 				DF500155235A4E1E00ED39B2 /* SearchDrawerViewController.swift in Sources */,
 				DF0CB49F2082B90900CC0AA8 /* FeedbackGenerators.swift in Sources */,
 				DF51F78D22E26A9200A0CF00 /* TabControllerFactory.swift in Sources */,
-				DF4CB7FF248504C300D20986 /* LineView.swift in Sources */,
 				DF5F888E24C64A83002FC0F5 /* OrganisationListViewModel.swift in Sources */,
 				DFD728AC20A880C6005FA9F1 /* DetailViewController.swift in Sources */,
 			);
@@ -4084,6 +4036,14 @@
 				kind = branch;
 			};
 		};
+		DF51615F254603220094DEEB /* XCRemoteSwiftPackageReference "swiftui-charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swift-extensions/swiftui-charts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		DF777BBB2414361500C7C9D5 /* XCRemoteSwiftPackageReference "MarkdownKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/OscarGorog/MarkdownKit";
@@ -4200,6 +4160,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DF409CF023522AD9001A473E /* XCRemoteSwiftPackageReference "mmapi-ios" */;
 			productName = MMAPI;
+		};
+		DF516160254603220094DEEB /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF51615F254603220094DEEB /* XCRemoteSwiftPackageReference "swiftui-charts" */;
+			productName = Charts;
 		};
 		DF777BBC2414361500C7C9D5 /* MarkdownKit */ = {
 			isa = XCSwiftPackageProductDependency;

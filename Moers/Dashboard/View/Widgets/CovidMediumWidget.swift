@@ -8,16 +8,21 @@
 
 import SwiftUI
 import WidgetKit
-import SwiftUICharts
+import Charts
 
 struct CovidMediumWidget: View {
+    
+    var data = [
+        1, 1, 1, 0.84, 0.9
+    ]
+    
     var body: some View {
         ZStack {
-            Color.clear
+            Color.systemBackground
             
             GeometryReader { geometry in
                 
-                HStack {
+                HStack(alignment: .top) {
                  
                     VStack(alignment: .leading, spacing: 8) {
                         
@@ -29,7 +34,7 @@ struct CovidMediumWidget: View {
                                 
                                 HStack(alignment: VerticalAlignment.center) {
                                     Group {
-                                        Text("95,0").font(.title)
+                                        Text("56,3").font(.title)
                                             .fontWeight(.bold)
                                         Text("▲")
                                             .font(.headline)
@@ -38,7 +43,7 @@ struct CovidMediumWidget: View {
                                         .foregroundColor(.secondary)
                                         .font(.callout)
                                 }
-                                Text("Wesel")
+                                Text("Kreis Wesel")
                                 
                             }
                             
@@ -47,7 +52,7 @@ struct CovidMediumWidget: View {
                         VStack(alignment: .leading) {
                             HStack(alignment: VerticalAlignment.center) {
                                 Group {
-                                    Text("67,5")
+                                    Text("95,9")
                                         .font(.system(size: 14, weight: .bold, design: .default))
                                     
                                     Text("▲")
@@ -58,14 +63,14 @@ struct CovidMediumWidget: View {
                                     .font(.system(size: 14, weight: .regular, design: .default))
                             }
                             
-                            Text("Stand: 24.10.2020")
+                            Text("Stand: 25.10.2020")
                                 .foregroundColor(.secondary)
                                 .font(.system(size: 10, weight: Font.Weight.regular, design: Font.Design.default))
                         }
                         
                     }
                     .padding()
-                    .frame(maxWidth: geometry.size.width / 2)
+                    .frame(maxWidth: geometry.size.width / 2, maxHeight: geometry.size.height)
                     
                     Spacer()
                     Rectangle()
@@ -76,10 +81,27 @@ struct CovidMediumWidget: View {
                     Spacer()
                     
                     VStack {
-                        MultiLineChartView(data: [([8,32,11,23,40,28], GradientColors.green), ([90,99,78,111,70,60,77], GradientColors.purple), ([34,56,72,38,43,100,50], GradientColors.orngPink)], title: "Title")
+                        VStack {
+//                            Text("Verlauf")
+                            Chart(data: data)
+                                .chartStyle(
+                                    LineChartStyle(.quadCurve, lineColor: .red, lineWidth: 3)
+                                )
+                            
+                            HStack {
+                                Text("64,3")
+                                    .font(.system(size: 8, weight: .regular, design: .rounded))
+                                Spacer()
+                                Text("56,3")
+                                    .font(.system(size: 8, weight: .regular, design: .rounded))
+                            }
+                        }.padding()
+                        
+                        
                     }
+                    
                     .padding()
-                    .frame(maxWidth: geometry.size.width / 2)
+                    .frame(maxWidth: geometry.size.width / 2, maxHeight: geometry.size.height)
                     
                 }
                 
@@ -96,6 +118,9 @@ struct CovidMediumWidget_Previews: PreviewProvider {
     static var previews: some View {
         CovidMediumWidget()
             .previewLayout(.fixed(width: 360, height: 169))
-            .previewDisplayName("Medium widget")
+            .makeForPreviewProvider(includeLightMode: true,
+                                    includeDarkMode: true,
+                                    includeRightToLeftMode: false,
+                                    includeLargeTextMode: false)
     }
 }
