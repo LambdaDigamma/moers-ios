@@ -118,9 +118,9 @@ struct CovidMediumWidget_Previews: PreviewProvider {
     static var previews: some View {
         CovidMediumWidget()
             .previewLayout(.fixed(width: 360, height: 169))
-            .makeForPreviewProvider(includeLightMode: true,
-                                    includeDarkMode: true,
-                                    includeRightToLeftMode: false,
-                                    includeLargeTextMode: false)
+//            .makeForPreviewProvider(includeLightMode: true,
+//                                    includeDarkMode: true,
+//                                    includeRightToLeftMode: false,
+//                                    includeLargeTextMode: false)
     }
 }
