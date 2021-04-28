@@ -59,8 +59,8 @@ struct AnalyticsManager {
     }
     
     public func requestReview() {
-        if #available(iOS 10.3, *) {
-            SKStoreReviewController.requestReview()
+        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            SKStoreReviewController.requestReview(in: scene)
         }
     }
     

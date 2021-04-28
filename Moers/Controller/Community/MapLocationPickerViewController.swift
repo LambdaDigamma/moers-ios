@@ -12,7 +12,7 @@ import CoreLocation
 import MMAPI
 import MMUI
 
-protocol MapLocationPickerViewControllerDelegate:class {
+protocol MapLocationPickerViewControllerDelegate: AnyObject {
     
     func selectedCoordinate(_ coordinate: CLLocationCoordinate2D)
     

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		DF04D60A23CBD5EC008AE677 /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF04D60923CBD5EC008AE677 /* DashboardCoordinator.swift */; };
-		DF05E6CF25447023005DDF57 /* Fuse in Frameworks */ = {isa = PBXBuildFile; productRef = DF05E6CE25447023005DDF57 /* Fuse */; };
 		DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */; };
 		DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4952082AFD000CC0AA8 /* FirstLaunchManager.swift */; };
 		DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */; };
@@ -137,6 +136,8 @@
 		DF9A4D4023F45BAA00EE5356 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9A4D3F23F45BAA00EE5356 /* TwitterCore.framework */; };
 		DF9A914B2160DA840054A2B8 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9A914A2160DA840054A2B8 /* Environment.swift */; };
 		DFA17DF420DEF9DE00BBD838 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA17DF320DEF9DE00BBD838 /* UIButton+Extensions.swift */; };
+		DFA4BC45263A26180014C7F9 /* ESTabBarController in Frameworks */ = {isa = PBXBuildFile; productRef = DFA4BC44263A26180014C7F9 /* ESTabBarController */; };
+		DFA4BC48263A28530014C7F9 /* TagListView in Frameworks */ = {isa = PBXBuildFile; productRef = DFA4BC47263A28530014C7F9 /* TagListView */; };
 		DFA96A6320BD8A390009B279 /* AveragePetrolPriceComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA96A6220BD8A390009B279 /* AveragePetrolPriceComponent.swift */; };
 		DFA9EF0A20B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0920B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift */; };
 		DFA9EF0C20B56BA8008590EA /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0B20B56BA8008590EA /* UIImage+Extensions.swift */; };
@@ -156,7 +157,6 @@
 		DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431C20E0283000E7AD3F /* NewsViewController.swift */; };
 		DFCB431F20E02D0300E7AD3F /* NewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431E20E02D0300E7AD3F /* NewsManager.swift */; };
 		DFCB432320E038AB00E7AD3F /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB432220E038AB00E7AD3F /* TweetTableViewCell.swift */; };
-		DFCE12882538F3D600B45EB7 /* TagListView in Frameworks */ = {isa = PBXBuildFile; productRef = DFCE12872538F3D600B45EB7 /* TagListView */; };
 		DFCE12952538F7F600B45EB7 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = DFCE12942538F7F600B45EB7 /* FeedKit */; };
 		DFD39A3322B7578B0085F06E /* MMEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD39A3222B7578B0085F06E /* MMEventsViewController.swift */; };
 		DFD728AC20A880C6005FA9F1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD728AB20A880C6005FA9F1 /* DetailViewController.swift */; };
@@ -184,7 +184,6 @@
 		DFE1ED6B2538C24800FDD44A /* BLTNBoard in Frameworks */ = {isa = PBXBuildFile; productRef = DFE1ED6A2538C24800FDD44A /* BLTNBoard */; };
 		DFE1ED782538C4E200FDD44A /* Pulley in Frameworks */ = {isa = PBXBuildFile; productRef = DFE1ED772538C4E200FDD44A /* Pulley */; };
 		DFE1ED852538C86C00FDD44A /* Alertift in Frameworks */ = {isa = PBXBuildFile; productRef = DFE1ED842538C86C00FDD44A /* Alertift */; };
-		DFE1ED952538CBD000FDD44A /* ESTabBarController in Frameworks */ = {isa = PBXBuildFile; productRef = DFE1ED942538CBD000FDD44A /* ESTabBarController */; };
 		DFE6251C25459548005FAC1C /* Protobuf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFF939082539DBAC002E5747 /* Protobuf.xcframework */; };
 		DFE6252225459549005FAC1C /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFF939072539DBAC002E5747 /* PromisesObjC.xcframework */; };
 		DFE625242545954B005FAC1C /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFF9390D2539DBAC002E5747 /* nanopb.xcframework */; };
@@ -493,7 +492,6 @@
 				DFE1ED782538C4E200FDD44A /* Pulley in Frameworks */,
 				DF409CFC2352453C001A473E /* MMAPI in Frameworks */,
 				DF7BD96524841FB60062505B /* SwiftUICharts in Frameworks */,
-				DF05E6CF25447023005DDF57 /* Fuse in Frameworks */,
 				DFE625242545954B005FAC1C /* nanopb.xcframework in Frameworks */,
 				DF2CF1C223BBB2EA003497C5 /* TextFieldEffects in Frameworks */,
 				DFE625262545954E005FAC1C /* GoogleUtilities.xcframework in Frameworks */,
@@ -502,7 +500,6 @@
 				DF3C180B254489EF0047C898 /* MMUI in Frameworks */,
 				DF777BBD2414361500C7C9D5 /* MarkdownKit in Frameworks */,
 				DF0EAC9C24C63FB0009BE489 /* ModernNetworking in Frameworks */,
-				DFCE12882538F3D600B45EB7 /* TagListView in Frameworks */,
 				DFD8632C25E25F60006164E5 /* AppScaffold in Frameworks */,
 				DFE1ED6B2538C24800FDD44A /* BLTNBoard in Frameworks */,
 				DFE6254C2545955D005FAC1C /* FIRAnalyticsConnector.framework in Frameworks */,
@@ -511,11 +508,12 @@
 				DFE6253825459553005FAC1C /* FirebaseMessaging.xcframework in Frameworks */,
 				DFCE12952538F7F600B45EB7 /* FeedKit in Frameworks */,
 				DF21FA9124C634D8001C278D /* Resolver in Frameworks */,
-				DFE1ED952538CBD000FDD44A /* ESTabBarController in Frameworks */,
+				DFA4BC45263A26180014C7F9 /* ESTabBarController in Frameworks */,
 				DFE6253E25459555005FAC1C /* FirebaseInstanceID.xcframework in Frameworks */,
 				DFE6252C25459550005FAC1C /* GoogleDataTransport.xcframework in Frameworks */,
 				DF86ABA12174900400EFC7EA /* Intents.framework in Frameworks */,
 				DFE6254025459556005FAC1C /* FirebaseInstallations.xcframework in Frameworks */,
+				DFA4BC48263A28530014C7F9 /* TagListView in Frameworks */,
 				DFE6254425459559005FAC1C /* FirebaseCore.xcframework in Frameworks */,
 				DFE6251C25459548005FAC1C /* Protobuf.xcframework in Frameworks */,
 				DFE6254225459558005FAC1C /* FirebaseCoreDiagnostics.xcframework in Frameworks */,
@@ -1225,15 +1223,14 @@
 				DFE1ED6A2538C24800FDD44A /* BLTNBoard */,
 				DFE1ED772538C4E200FDD44A /* Pulley */,
 				DFE1ED842538C86C00FDD44A /* Alertift */,
-				DFE1ED942538CBD000FDD44A /* ESTabBarController */,
-				DFCE12872538F3D600B45EB7 /* TagListView */,
 				DFCE12942538F7F600B45EB7 /* FeedKit */,
-				DF05E6CE25447023005DDF57 /* Fuse */,
 				DF3C180A254489EF0047C898 /* MMUI */,
 				DFDE88702545834B00429765 /* EventBus */,
 				DFD8632B25E25F60006164E5 /* AppScaffold */,
 				DFD8633225E26053006164E5 /* MMCommon */,
 				DF516160254603220094DEEB /* Charts */,
+				DFA4BC44263A26180014C7F9 /* ESTabBarController */,
+				DFA4BC47263A28530014C7F9 /* TagListView */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1382,15 +1379,14 @@
 				DFE1ED692538C24800FDD44A /* XCRemoteSwiftPackageReference "BulletinBoard" */,
 				DFE1ED762538C4E200FDD44A /* XCRemoteSwiftPackageReference "Pulley" */,
 				DFE1ED832538C86C00FDD44A /* XCRemoteSwiftPackageReference "Alertift" */,
-				DFE1ED932538CBD000FDD44A /* XCRemoteSwiftPackageReference "ESTabBarController" */,
-				DFCE12862538F3D600B45EB7 /* XCRemoteSwiftPackageReference "TagListView" */,
 				DFCE12932538F7F600B45EB7 /* XCRemoteSwiftPackageReference "FeedKit" */,
-				DF05E6CD25447023005DDF57 /* XCRemoteSwiftPackageReference "fuse-swift" */,
 				DF3C1809254489EF0047C898 /* XCRemoteSwiftPackageReference "mmui-ios" */,
 				DFDE886F2545834B00429765 /* XCRemoteSwiftPackageReference "eventbus" */,
 				DFD8632A25E25F5F006164E5 /* XCRemoteSwiftPackageReference "app-scaffold-ios" */,
 				DFD8633125E26053006164E5 /* XCRemoteSwiftPackageReference "mmcommon-ios" */,
 				DF51615F254603220094DEEB /* XCRemoteSwiftPackageReference "swiftui-charts" */,
+				DFA4BC43263A26180014C7F9 /* XCRemoteSwiftPackageReference "ESTabBarController" */,
+				DFA4BC46263A28530014C7F9 /* XCRemoteSwiftPackageReference "TagListView" */,
 			);
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
@@ -3968,14 +3964,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		DF05E6CD25447023005DDF57 /* XCRemoteSwiftPackageReference "fuse-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/krisk/fuse-swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.0;
-			};
-		};
 		DF21FA8F24C634D8001C278D /* XCRemoteSwiftPackageReference "Resolver" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hmlongco/Resolver";
@@ -4040,12 +4028,20 @@
 				minimumVersion = 1.5.0;
 			};
 		};
-		DFCE12862538F3D600B45EB7 /* XCRemoteSwiftPackageReference "TagListView" */ = {
+		DFA4BC43263A26180014C7F9 /* XCRemoteSwiftPackageReference "ESTabBarController" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ElaWorkshop/TagListView.git";
+			repositoryURL = "https://github.com/LambdaDigamma/ESTabBarController";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.1;
+				minimumVersion = 2.9.1;
+			};
+		};
+		DFA4BC46263A28530014C7F9 /* XCRemoteSwiftPackageReference "TagListView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LambdaDigamma/TagListView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.2;
 			};
 		};
 		DFCE12932538F7F600B45EB7 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
@@ -4104,22 +4100,9 @@
 				minimumVersion = 4.2.0;
 			};
 		};
-		DFE1ED932538CBD000FDD44A /* XCRemoteSwiftPackageReference "ESTabBarController" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/eggswift/ESTabBarController.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.8.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DF05E6CE25447023005DDF57 /* Fuse */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF05E6CD25447023005DDF57 /* XCRemoteSwiftPackageReference "fuse-swift" */;
-			productName = Fuse;
-		};
 		DF0EAC9B24C63FB0009BE489 /* ModernNetworking */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ModernNetworking;
@@ -4164,9 +4147,14 @@
 			package = DF7BD96324841FB60062505B /* XCRemoteSwiftPackageReference "ChartView" */;
 			productName = SwiftUICharts;
 		};
-		DFCE12872538F3D600B45EB7 /* TagListView */ = {
+		DFA4BC44263A26180014C7F9 /* ESTabBarController */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DFCE12862538F3D600B45EB7 /* XCRemoteSwiftPackageReference "TagListView" */;
+			package = DFA4BC43263A26180014C7F9 /* XCRemoteSwiftPackageReference "ESTabBarController" */;
+			productName = ESTabBarController;
+		};
+		DFA4BC47263A28530014C7F9 /* TagListView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFA4BC46263A28530014C7F9 /* XCRemoteSwiftPackageReference "TagListView" */;
 			productName = TagListView;
 		};
 		DFCE12942538F7F600B45EB7 /* FeedKit */ = {
@@ -4203,11 +4191,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DFE1ED832538C86C00FDD44A /* XCRemoteSwiftPackageReference "Alertift" */;
 			productName = Alertift;
-		};
-		DFE1ED942538CBD000FDD44A /* ESTabBarController */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DFE1ED932538CBD000FDD44A /* XCRemoteSwiftPackageReference "ESTabBarController" */;
-			productName = ESTabBarController;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

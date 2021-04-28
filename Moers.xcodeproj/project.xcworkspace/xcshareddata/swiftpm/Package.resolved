@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/AppPear/ChartView",
         "state": {
           "branch": null,
-          "revision": "4699847a9ac0c694666cea3acef133498952566e",
-          "version": "1.5.4"
+          "revision": "9115a992c91fa19cbb4f2241084240d38654a1fc",
+          "version": "1.5.5"
         }
       },
       {
@@ -57,11 +57,11 @@
       },
       {
         "package": "ESTabBarController",
-        "repositoryURL": "https://github.com/eggswift/ESTabBarController.git",
+        "repositoryURL": "https://github.com/LambdaDigamma/ESTabBarController",
         "state": {
           "branch": null,
-          "revision": "93a30b833a05fd916c6d4c5d6e94a270cf3b6636",
-          "version": "2.9.0"
+          "revision": "8f7a49e835d83e23dbc985306250e41bf99c19b5",
+          "version": "2.9.1"
         }
       },
       {
@@ -84,11 +84,11 @@
       },
       {
         "package": "Fuse",
-        "repositoryURL": "https://github.com/krisk/fuse-swift",
+        "repositoryURL": "https://github.com/LambdaDigamma/fuse-swift",
         "state": {
           "branch": null,
-          "revision": "26ba868691b2d8b7bf2b1322951eb591be70ccca",
-          "version": "1.4.0"
+          "revision": "a1f44a59d94393f7461745ccc977b5005c8438a5",
+          "version": "1.4.2"
         }
       },
       {
@@ -114,8 +114,8 @@
         "repositoryURL": "https://github.com/johnsundell/ink.git",
         "state": {
           "branch": null,
-          "revision": "bd223a2482449507bd3286cb262c962d32d81e4b",
-          "version": "0.5.0"
+          "revision": "77c3d8953374a9cf5418ef0bd7108524999de85a",
+          "version": "0.5.1"
         }
       },
       {
@@ -141,7 +141,7 @@
         "repositoryURL": "https://github.com/lambdadigamma/mmcommon-ios",
         "state": {
           "branch": "master",
-          "revision": "419b8428a2dd9bd56cb1e48282939ce481401e71",
+          "revision": "2459476fcab3a2d416bd25d1d552d3d5644c7ce4",
           "version": null
         }
       },
@@ -177,8 +177,8 @@
         "repositoryURL": "https://github.com/hmlongco/Resolver",
         "state": {
           "branch": null,
-          "revision": "2d15bf5b33b3c95704e84a5b2a43485606bdd5c4",
-          "version": "1.4.0"
+          "revision": "e0bcbc721818328c192a1eb22c6a6ca48029e550",
+          "version": "1.4.1"
         }
       },
       {
@@ -219,11 +219,11 @@
       },
       {
         "package": "TagListView",
-        "repositoryURL": "https://github.com/ElaWorkshop/TagListView.git",
+        "repositoryURL": "https://github.com/LambdaDigamma/TagListView",
         "state": {
           "branch": null,
-          "revision": "b30b61826736f4d9ec04aef5df891f3914423f16",
-          "version": "1.4.1"
+          "revision": "9cc6ceb34cffa5c6fa175d87351d20950a7704c0",
+          "version": "1.4.2"
         }
       }
     ]
