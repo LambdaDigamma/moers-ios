@@ -69,8 +69,8 @@ class DashboardViewController: CardCollectionViewController {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         self.triggerUpdate()
         
@@ -102,11 +102,11 @@ class DashboardViewController: CardCollectionViewController {
             components.append(RubbishCollectionComponent(viewController: self))
         }
         
-        let covidComponent = CovidComponent(viewController: self,
-                                            locationManager: locationManager,
-                                            geocodingManager: geocodingManager, covidManager: CovidManager())
-        
-        components.append(covidComponent)
+//        let covidComponent = CovidComponent(viewController: self,
+//                                            locationManager: locationManager,
+//                                            geocodingManager: geocodingManager, covidManager: CovidManager())
+//
+//        components.append(covidComponent)
         
         registerCardViews(components.map { $0.view })
         
