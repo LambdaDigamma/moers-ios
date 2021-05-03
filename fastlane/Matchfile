@@ -1,4 +1,4 @@
-git_url("https://github.com/LambdaDigamma/moers-certificates.git")
+git_url("https://github.com/LambdaDigamma/personal-ios-certificates.git")
 
 storage_mode("git")
 
