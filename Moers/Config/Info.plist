@@ -55,7 +55,7 @@
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>mein-moers.localhost</key>
-			<string/>
+			<string></string>
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -65,6 +65,8 @@
 		<key>Item</key>
 		<string>de.okfn.niederrhein.Moers.nextRubbish</string>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Mein Moers uses your camera to scan QR codes.</string>
 	<key>ROOT_URL</key>
 	<string>$(ROOT_URL)</string>
 	<key>UILaunchStoryboardName</key>
