@@ -178,7 +178,7 @@
 "EntryOnboardingOverviewPostcode" = "Postcode";
 "EntryOnboardingOverviewPlace" = "Place";
 "EntryOnboardingOverviewContact" = "Contact information";
-"EntryOnboardingOverviewWebsite" = "Website (with http://)";
+"EntryOnboardingOverviewWebsite" = "Website (with https://)";
 "EntryOnboardingOverviewPhone" = "Phone";
 "EntryOnboardingOverviewOpeningHoursHeader" = "Opening Hours";
 "EntryOnboardingOverviewOpeningHoursMonday" = "Monday";

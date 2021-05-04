@@ -178,7 +178,7 @@
 "EntryOnboardingOverviewPostcode" = "PLZ";
 "EntryOnboardingOverviewPlace" = "Ort";
 "EntryOnboardingOverviewContact" = "Kontakt";
-"EntryOnboardingOverviewWebsite" = "Webseite (http:// vorangestellt)";
+"EntryOnboardingOverviewWebsite" = "Webseite (https:// vorangestellt)";
 "EntryOnboardingOverviewPhone" = "Telefon";
 "EntryOnboardingOverviewOpeningHoursHeader" = "Öffnungszeiten";
 "EntryOnboardingOverviewOpeningHoursMonday" = "Montag";

@@ -191,7 +191,7 @@ class DetailEntryViewController: UIViewController {
         guard var urlString = entry.url else { return }
         
         if !urlString.starts(with: "https://") && !urlString.starts(with: "http://") {
-            urlString = "http://" + urlString
+            urlString = "https://" + urlString
         }
         
         guard let url = URL(string: urlString) else { return }

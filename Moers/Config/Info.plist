@@ -54,8 +54,10 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>download.moers.de</key>
+			<string></string>
 			<key>mein-moers.localhost</key>
-			<string/>
+			<string></string>
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
