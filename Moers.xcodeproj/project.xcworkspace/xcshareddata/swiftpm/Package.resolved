@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/alexaubry/BulletinBoard.git",
         "state": {
           "branch": "develop",
-          "revision": "d52de54d1010b2c660f03ac888b892ec273ee6f4",
+          "revision": "7b35bb98d776f869851f345696215def30814de2",
           "version": null
         }
       },
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/AppPear/ChartView",
         "state": {
           "branch": null,
-          "revision": "4699847a9ac0c694666cea3acef133498952566e",
-          "version": "1.5.4"
+          "revision": "9115a992c91fa19cbb4f2241084240d38654a1fc",
+          "version": "1.5.5"
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/eggswift/ESTabBarController.git",
         "state": {
           "branch": null,
-          "revision": "2acc5e5844efcb3259ace475e012c75de5c90658",
-          "version": "2.8.0"
+          "revision": "93a30b833a05fd916c6d4c5d6e94a270cf3b6636",
+          "version": "2.9.0"
         }
       },
       {
@@ -65,21 +65,12 @@
         }
       },
       {
-        "package": "Fuse",
-        "repositoryURL": "https://github.com/krisk/fuse-swift",
-        "state": {
-          "branch": null,
-          "revision": "26ba868691b2d8b7bf2b1322951eb591be70ccca",
-          "version": "1.4.0"
-        }
-      },
-      {
         "package": "Gestalt",
         "repositoryURL": "https://github.com/regexident/Gestalt",
         "state": {
           "branch": null,
-          "revision": "74619093a79c380f795d7b9c9005301fe12542c8",
-          "version": "2.1.0"
+          "revision": "6469230fb1b81ea449312a855b410425030b287e",
+          "version": "2.1.1"
         }
       },
       {
@@ -96,8 +87,8 @@
         "repositoryURL": "https://github.com/johnsundell/ink.git",
         "state": {
           "branch": null,
-          "revision": "bd223a2482449507bd3286cb262c962d32d81e4b",
-          "version": "0.5.0"
+          "revision": "77c3d8953374a9cf5418ef0bd7108524999de85a",
+          "version": "0.5.1"
         }
       },
       {
@@ -105,8 +96,8 @@
         "repositoryURL": "https://github.com/onevcat/Kingfisher",
         "state": {
           "branch": null,
-          "revision": "0e548b700c7c123dd3b2ac776e90d63a540f084d",
-          "version": "5.15.7"
+          "revision": "1a0c2df04b31ed7aa318354f3583faea24f006fc",
+          "version": "5.15.8"
         }
       },
       {
@@ -150,8 +141,8 @@
         "repositoryURL": "https://github.com/hmlongco/Resolver",
         "state": {
           "branch": null,
-          "revision": "cb5b4e1e60046120de87fee14af257e07ad74a62",
-          "version": "1.1.4"
+          "revision": "e0bcbc721818328c192a1eb22c6a6ca48029e550",
+          "version": "1.4.1"
         }
       },
       {
@@ -159,8 +150,8 @@
         "repositoryURL": "https://github.com/swiftcsv/SwiftCSV",
         "state": {
           "branch": null,
-          "revision": "8ae14758a2019fd55dc6f9b6ecbbe246bcef179f",
-          "version": "0.5.6"
+          "revision": "ad2042d0ba2ea260246b0e1b1d5710cbc53e2836",
+          "version": "0.6.0"
         }
       },
       {
