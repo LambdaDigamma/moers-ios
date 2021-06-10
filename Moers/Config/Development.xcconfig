@@ -15,5 +15,5 @@ CLIENT_ID = 2
 CLIENT_SECRET = 3hgDVmklXAqPrgS8OXo3claU7eD7sERBn0ZiroSZ
 
 // App Settings
-APP_NAME = Moers (dev)
+APP_NAME = Mein Moers (dev)
 APP_BUNDLE_ID = de.okfn.niederrhein.Moers.dev
