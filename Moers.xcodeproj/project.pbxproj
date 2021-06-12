@@ -203,6 +203,7 @@
 		DFE1ED6B2538C24800FDD44A /* BLTNBoard in Frameworks */ = {isa = PBXBuildFile; productRef = DFE1ED6A2538C24800FDD44A /* BLTNBoard */; };
 		DFE1ED782538C4E200FDD44A /* Pulley in Frameworks */ = {isa = PBXBuildFile; productRef = DFE1ED772538C4E200FDD44A /* Pulley */; };
 		DFE1ED852538C86C00FDD44A /* Alertift in Frameworks */ = {isa = PBXBuildFile; productRef = DFE1ED842538C86C00FDD44A /* Alertift */; };
+		DFE3D9012674035400BE29E7 /* NetworkingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE3D9002674035400BE29E7 /* NetworkingConfiguration.swift */; };
 		DFE6251C25459548005FAC1C /* Protobuf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFF939082539DBAC002E5747 /* Protobuf.xcframework */; };
 		DFE6252225459549005FAC1C /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFF939072539DBAC002E5747 /* PromisesObjC.xcframework */; };
 		DFE625242545954B005FAC1C /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFF9390D2539DBAC002E5747 /* nanopb.xcframework */; };
@@ -453,7 +454,6 @@
 		DF86AB9C217387E700EFC7EA /* OnboardingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingProgressView.swift; sourceTree = "<group>"; };
 		DF86ABA02174900400EFC7EA /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		DF86ABA22174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryOnboardingOpeningHoursViewController.swift; sourceTree = "<group>"; };
-		DF8F4445249F588E00BF3412 /* BasicNetworking */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BasicNetworking; path = ../BasicNetworking; sourceTree = "<group>"; };
 		DF94B11723F0A7E5009C57ED /* Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF94B11A23F0A7E5009C57ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		DF94B11C23F0A7E7009C57ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -522,6 +522,7 @@
 		DFE1B5942353165F009CA2EC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MMAPI.strings; sourceTree = "<group>"; };
 		DFE1B59623531663009CA2EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MMAPI.strings; sourceTree = "<group>"; };
 		DFE1B59B235323D3009CA2EC /* MMUI.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MMUI.xcassets; sourceTree = "<group>"; };
+		DFE3D9002674035400BE29E7 /* NetworkingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingConfiguration.swift; sourceTree = "<group>"; };
 		DFEE2E0920BB117A00A130CB /* BaseComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseComponent.swift; sourceTree = "<group>"; };
 		DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionComponent.swift; sourceTree = "<group>"; };
 		DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -678,6 +679,7 @@
 				DF1A49621F6AAB7000E9108B /* AppDelegate.swift */,
 				DF21FA9224C63502001C278D /* AppDelegate+Resolving.swift */,
 				DF9A914A2160DA840054A2B8 /* Environment.swift */,
+				DFE3D9002674035400BE29E7 /* NetworkingConfiguration.swift */,
 				DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */,
 				DF7D4B5D22F0D53400126AF7 /* Constants.swift */,
 				DF77DA0223B52FB9001FCA29 /* input.xcfilelist */,
@@ -870,7 +872,6 @@
 				DFD8635425E27141006164E5 /* mmrubbish-ios */,
 				DF21FA9724C63F66001C278D /* ModernNetworking */,
 				DF52867E24A7B94D00A6939E /* Bond */,
-				DF8F4445249F588E00BF3412 /* BasicNetworking */,
 				DF9A4D4423F48DC500EE5356 /* mmui-ios */,
 				DF9A4D4323F48D5800EE5356 /* mmapi-ios */,
 				DF2CF1C323BBB315003497C5 /* TextFieldEffects */,
@@ -1722,6 +1723,7 @@
 				DF54138B217FD733007FDEC8 /* EntryValidationTableViewCell.swift in Sources */,
 				DF310D9F216FF2AE004C69BA /* DetailEntryViewController.swift in Sources */,
 				DF6B0ED725F430A6003D88CE /* ParkingLotWidget.swift in Sources */,
+				DFE3D9012674035400BE29E7 /* NetworkingConfiguration.swift in Sources */,
 				DF9605A923BD06A800E24959 /* AuditChangeView.swift in Sources */,
 				DF75733E2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift in Sources */,
 				DFBB9DE3212BF63600038943 /* PetrolStationAnnotationView.swift in Sources */,

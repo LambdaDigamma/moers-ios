@@ -12,10 +12,12 @@ import MMUI
 import MMAPI
 import MarkdownKit
 import SwiftyMarkdown
-import BasicNetworking
+import ModernNetworking
 
 class ApplicationController: UIViewController {
 
+    let loader: HTTPLoader
+    
     let locationManager: LocationManagerProtocol
     let petrolManager: PetrolManagerProtocol
     let rubbishManager: RubbishManagerProtocol
@@ -24,12 +26,12 @@ class ApplicationController: UIViewController {
     let entryManager: EntryManagerProtocol
     let parkingLotManager: ParkingLotManagerProtocol
     
-    convenience init(apiClient: APIClient) {
-        self.init(entryManager: EntryManager(apiClient: apiClient))
-        
+    convenience init(loader: HTTPLoader) {
+        self.init(loader: loader, entryManager: EntryManager(loader: loader))
     }
     
-    init(locationManager: LocationManagerProtocol = LocationManager(),
+    init(loader: HTTPLoader,
+         locationManager: LocationManagerProtocol = LocationManager(),
          petrolManager: PetrolManagerProtocol = PetrolManager(storageManager: StorageManager()),
          rubbishManager: RubbishManagerProtocol = RubbishManager(storagePickupItemsManager: StorageManager(),
                                                                  storageStreetsManager: StorageManager()),
@@ -38,6 +40,7 @@ class ApplicationController: UIViewController {
          entryManager: EntryManagerProtocol,
          parkingLotManager: ParkingLotManagerProtocol = ParkingLotManager()) {
         
+        self.loader = loader
         self.locationManager = locationManager
         self.petrolManager = petrolManager
         self.rubbishManager = rubbishManager

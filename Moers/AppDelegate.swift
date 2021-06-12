@@ -13,9 +13,12 @@ import Firebase
 import Gestalt
 import MMAPI
 import MMUI
+import MMCommon
 import Haneke
-import BasicNetworking
 import SwiftUI
+import AppScaffold
+import Resolver
+import ModernNetworking
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -33,6 +36,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         #endif
         
         self.resetIfNeeded()
+        
+//        let bootstrappingProcedure: BootstrappingProcedure = [
+//            LaunchArgumentsHandler(),
+//            NetworkingConfiguration(),
+//        ]
+//
+//        bootstrappingProcedure.execute(with: application)
         
         ThemeManager.default.theme = UserManager.shared.theme
         ThemeManager.default.animated = true
@@ -54,9 +64,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 //        ]
         
         let config = MMAPIConfig(baseURL: URL(string: Environment.baseURL)!)
-        let client = APIClient(config: config, urlSessionConfiguration: sessionConfig, adapters: [LoggingAdapter()])
+//        let client = APIClient(config: config, urlSessionConfiguration: sessionConfig, adapters: [LoggingAdapter()])
         
-        let applicationController = ApplicationController(apiClient: client)
+        let configuration = NetworkingConfiguration()
+        let loader = configuration.setupEnvironmentAndLoader()
+        
+        let applicationController = ApplicationController(loader: loader)
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window!.rootViewController = applicationController
@@ -158,17 +171,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         
         Messaging.messaging().delegate = self
-        
-        
-        
-        
-        InstanceID.instanceID().instanceID { (result, error) in
-            if let error = error {
-                print("Error fetching remote instance ID: \(error)")
-            } else if let result = result {
-                print("Remote instance ID token: \(result.token)")
-            }
-        }
         
         TWTRTwitter.sharedInstance().start(withConsumerKey: consumerKey, consumerSecret: consumerSecret)
         
