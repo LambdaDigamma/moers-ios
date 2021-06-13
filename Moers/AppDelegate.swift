@@ -55,17 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         RubbishManager.shared.rubbishStreetURL = URL(string: "https://moers.app/abfallkalender-strassenverzeichnis-2020-01.csv")
         RubbishManager.shared.rubbishDateURL = URL(string: "https://moers.app/abfallkalender-termine-2020-01.csv")
         
-        
-        
-        let sessionConfig = URLSessionConfiguration.default
-//        let apiKey = "ey...."
-//        sessionConfig.httpAdditionalHeaders = [
-//            "Authorization": "Bearer \(apiKey)"
-//        ]
-        
-        let config = MMAPIConfig(baseURL: URL(string: Environment.baseURL)!)
-//        let client = APIClient(config: config, urlSessionConfiguration: sessionConfig, adapters: [LoggingAdapter()])
-        
         let configuration = NetworkingConfiguration()
         let loader = configuration.setupEnvironmentAndLoader()
         

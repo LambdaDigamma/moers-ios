@@ -9,7 +9,7 @@
 import UIKit
 import MMAPI
 
-class RubbishCollectionComponent: BaseComponent, UIViewControllerPreviewingDelegate {
+class RubbishCollectionComponent: BaseComponent {
     
     var rubbishItems: [RubbishPickupItem] = []
     
@@ -27,8 +27,6 @@ class RubbishCollectionComponent: BaseComponent, UIViewControllerPreviewingDeleg
         super.init(viewController: viewController)
         
         self.register(view: rubbishCardView)
-        
-        self.viewController?.registerForPreviewing(with: self, sourceView: rubbishCardView)
         
         self.rubbishCardView.isUserInteractionEnabled = true
         self.rubbishCardView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showRubbishCollectionViewController)))
@@ -149,20 +147,6 @@ class RubbishCollectionComponent: BaseComponent, UIViewControllerPreviewingDeleg
         
         self.rubbishCardView.stopLoading()
         self.rubbishCardView.showError(withTitle: String.localized("WasteErrorTitle"), message: String.localized("WasteErrorMessage"))
-        
-    }
-    
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        
-        previewingContext.sourceRect = rubbishCardView.frame
-        
-        return generateDetailVC()
-        
-    }
-    
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        
-        showRubbishCollectionViewController()
         
     }
     

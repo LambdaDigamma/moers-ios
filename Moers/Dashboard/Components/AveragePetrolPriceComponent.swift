@@ -11,7 +11,7 @@ import CoreLocation
 import MMAPI
 import MMUI
 
-class AveragePetrolPriceComponent: BaseComponent, UIViewControllerPreviewingDelegate {
+class AveragePetrolPriceComponent: BaseComponent {
 
     private var petrolStations: [PetrolStation] = []
     private let locationManager: LocationManagerProtocol
@@ -40,7 +40,6 @@ class AveragePetrolPriceComponent: BaseComponent, UIViewControllerPreviewingDele
         super.init(viewController: viewController)
         
         self.register(view: averagePetrolCardView)
-        self.viewController?.registerForPreviewing(with: self, sourceView: averagePetrolCardView)
         
         self.averagePetrolCardView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showPetrolStationViewController)))
         self.averagePetrolCardView.petrolType = petrolManager.petrolType
@@ -212,22 +211,6 @@ class AveragePetrolPriceComponent: BaseComponent, UIViewControllerPreviewingDele
         let petrolStationViewController = petrolStationVC()
         
         viewController?.navigationController?.pushViewController(petrolStationViewController, animated: true)
-        
-    }
-    
-    // MARK: - UIViewControllerPreviewingDelegate
-    
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        
-        previewingContext.sourceRect = averagePetrolCardView.frame
-        
-        return petrolStationVC()
-        
-    }
-    
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        
-        showPetrolStationViewController()
         
     }
     
