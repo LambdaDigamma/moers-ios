@@ -104,9 +104,9 @@
         "package": "Haneke",
         "repositoryURL": "https://github.com/LambdaDigamma/HanekeSwift",
         "state": {
-          "branch": "master",
+          "branch": null,
           "revision": "6dd6a8fb7cfa9b245cd7a8cab688a8f2cecb9d15",
-          "version": null
+          "version": "0.14.0"
         }
       },
       {
@@ -137,12 +137,48 @@
         }
       },
       {
+        "package": "MMAPI",
+        "repositoryURL": "https://github.com/LambdaDigamma/mmapi-ios",
+        "state": {
+          "branch": null,
+          "revision": "17a459b9277b5a86e18cbbfed9da059c3416f9ca",
+          "version": "0.2.1"
+        }
+      },
+      {
         "package": "MMCommon",
         "repositoryURL": "https://github.com/lambdadigamma/mmcommon-ios",
         "state": {
-          "branch": "master",
-          "revision": "2459476fcab3a2d416bd25d1d552d3d5644c7ce4",
-          "version": null
+          "branch": null,
+          "revision": "d1ab76ad0316dcf58a23196f69ec07e2f8ba6702",
+          "version": "0.0.1"
+        }
+      },
+      {
+        "package": "MMEvents",
+        "repositoryURL": "https://github.com/LambdaDigamma/mmevents-ios",
+        "state": {
+          "branch": null,
+          "revision": "2855bf7a86ab20f9f869ad02c8ed04600d7e6589",
+          "version": "0.0.3"
+        }
+      },
+      {
+        "package": "MMPages",
+        "repositoryURL": "https://github.com/lambdadigamma/mmpages-ios",
+        "state": {
+          "branch": null,
+          "revision": "7cf7700084b11fcb605d36e7f0373894ef62a55b",
+          "version": "0.0.2"
+        }
+      },
+      {
+        "package": "MMUI",
+        "repositoryURL": "https://github.com/LambdaDigamma/mmui-ios",
+        "state": {
+          "branch": null,
+          "revision": "927e051fc527ee276da179c96909eec126a20ecb",
+          "version": "0.2.1"
         }
       },
       {
@@ -168,8 +204,8 @@
         "repositoryURL": "https://github.com/DeclarativeHub/ReactiveKit.git",
         "state": {
           "branch": null,
-          "revision": "5b167a3fa7288395cfcba23dac84489b01d3b2f0",
-          "version": "3.18.1"
+          "revision": "224225f1b4c062ecfd0707f5e156027579630a79",
+          "version": "3.18.2"
         }
       },
       {
@@ -177,8 +213,8 @@
         "repositoryURL": "https://github.com/hmlongco/Resolver",
         "state": {
           "branch": null,
-          "revision": "e0bcbc721818328c192a1eb22c6a6ca48029e550",
-          "version": "1.4.1"
+          "revision": "730a02bc3c861524e4f0e496ec3d9a907984be0d",
+          "version": "1.4.2"
         }
       },
       {

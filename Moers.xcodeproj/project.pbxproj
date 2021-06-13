@@ -49,6 +49,7 @@
 		DF310D9B216FE72E004C69BA /* EntryAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF310D9A216FE72E004C69BA /* EntryAnnotationView.swift */; };
 		DF310D9F216FF2AE004C69BA /* DetailEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF310D9E216FF2AE004C69BA /* DetailEntryViewController.swift */; };
 		DF310DA421710887004C69BA /* TagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF310DA321710887004C69BA /* TagTableViewCell.swift */; };
+		DF32ACF32676AABA00B943DB /* MMEvents in Frameworks */ = {isa = PBXBuildFile; productRef = DF32ACF22676AABA00B943DB /* MMEvents */; };
 		DF3C180B254489EF0047C898 /* MMUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF3C180A254489EF0047C898 /* MMUI */; };
 		DF3DEE3B24D6C5AF007954A7 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3DEE3A24D6C5AF007954A7 /* LoadingIndicator.swift */; };
 		DF3EE0C520E382EC00CA9279 /* MapLocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */; };
@@ -461,8 +462,6 @@
 		DF95197E20C8B6F3001D13DC /* PetrolStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PetrolStationViewController.swift; path = ../../Controller/Dashboard/PetrolStationViewController.swift; sourceTree = "<group>"; };
 		DF9605A823BD06A800E24959 /* AuditChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditChangeView.swift; sourceTree = "<group>"; };
 		DF9A4D3F23F45BAA00EE5356 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = Carthage/Build/iOS/TwitterCore.framework; sourceTree = "<group>"; };
-		DF9A4D4323F48D5800EE5356 /* mmapi-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "mmapi-ios"; path = "../mmapi-ios"; sourceTree = "<group>"; };
-		DF9A4D4423F48DC500EE5356 /* mmui-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "mmui-ios"; path = "../mmui-ios"; sourceTree = "<group>"; };
 		DF9A914A2160DA840054A2B8 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		DFA17DF320DEF9DE00BBD838 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		DFA96A6220BD8A390009B279 /* AveragePetrolPriceComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AveragePetrolPriceComponent.swift; sourceTree = "<group>"; };
@@ -499,7 +498,6 @@
 		DFD7ACB920A6C6BC00D49BE2 /* RubbishCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionView.swift; sourceTree = "<group>"; };
 		DFD7ACBC20A795AF00D49BE2 /* DashboardNotificationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardNotificationCardView.swift; sourceTree = "<group>"; };
 		DFD7ACC020A842F400D49BE2 /* DateCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCardView.swift; sourceTree = "<group>"; };
-		DFD8635425E27141006164E5 /* mmrubbish-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "mmrubbish-ios"; path = "../mmrubbish-ios"; sourceTree = "<group>"; };
 		DFD890862124860A006B5610 /* TandCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TandCViewController.swift; sourceTree = "<group>"; };
 		DFD8908821248DD9006B5610 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		DFDB87A02545901900347550 /* TwitterKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TwitterKit.xcframework; path = "../twitter-kit-ios/output/TwitterKit.xcframework"; sourceTree = "<group>"; };
@@ -538,6 +536,7 @@
 				DFD8633325E26053006164E5 /* MMCommon in Frameworks */,
 				DFE6254A2545955B005FAC1C /* FirebaseAnalytics.framework in Frameworks */,
 				DFE1ED782538C4E200FDD44A /* Pulley in Frameworks */,
+				DF32ACF32676AABA00B943DB /* MMEvents in Frameworks */,
 				DF409CFC2352453C001A473E /* MMAPI in Frameworks */,
 				DF7BD96524841FB60062505B /* SwiftUICharts in Frameworks */,
 				DFE625242545954B005FAC1C /* nanopb.xcframework in Frameworks */,
@@ -854,10 +853,7 @@
 			isa = PBXGroup;
 			children = (
 				DF5E1B6726726E43005FADA4 /* NewsWidgets */,
-				DFD8635425E27141006164E5 /* mmrubbish-ios */,
 				DF21FA9724C63F66001C278D /* ModernNetworking */,
-				DF9A4D4423F48DC500EE5356 /* mmui-ios */,
-				DF9A4D4323F48D5800EE5356 /* mmapi-ios */,
 				DF2CF1C323BBB315003497C5 /* TextFieldEffects */,
 				DF1A49611F6AAB7000E9108B /* Moers */,
 				DF5E1B5326726AF3005FADA4 /* Widgets */,
@@ -1293,6 +1289,7 @@
 				DF516160254603220094DEEB /* Charts */,
 				DFA4BC44263A26180014C7F9 /* ESTabBarController */,
 				DFA4BC47263A28530014C7F9 /* TagListView */,
+				DF32ACF22676AABA00B943DB /* MMEvents */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1467,6 +1464,7 @@
 				DF51615F254603220094DEEB /* XCRemoteSwiftPackageReference "swiftui-charts" */,
 				DFA4BC43263A26180014C7F9 /* XCRemoteSwiftPackageReference "ESTabBarController" */,
 				DFA4BC46263A28530014C7F9 /* XCRemoteSwiftPackageReference "TagListView" */,
+				DF32ACF12676AABA00B943DB /* XCRemoteSwiftPackageReference "mmevents-ios" */,
 			);
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
@@ -4748,20 +4746,28 @@
 				kind = branch;
 			};
 		};
+		DF32ACF12676AABA00B943DB /* XCRemoteSwiftPackageReference "mmevents-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LambdaDigamma/mmevents-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.3;
+			};
+		};
 		DF3C1809254489EF0047C898 /* XCRemoteSwiftPackageReference "mmui-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/LambdaDigamma/mmui-ios";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.1;
 			};
 		};
 		DF409CF023522AD9001A473E /* XCRemoteSwiftPackageReference "mmapi-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/LambdaDigamma/mmapi-ios";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.1;
 			};
 		};
 		DF51615F254603220094DEEB /* XCRemoteSwiftPackageReference "swiftui-charts" */ = {
@@ -4832,8 +4838,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lambdadigamma/mmcommon-ios";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.1;
 			};
 		};
 		DFDE886F2545834B00429765 /* XCRemoteSwiftPackageReference "eventbus" */ = {
@@ -4876,6 +4882,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
 			productName = TextFieldEffects;
+		};
+		DF32ACF22676AABA00B943DB /* MMEvents */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF32ACF12676AABA00B943DB /* XCRemoteSwiftPackageReference "mmevents-ios" */;
+			productName = MMEvents;
 		};
 		DF3C180A254489EF0047C898 /* MMUI */ = {
 			isa = XCSwiftPackageProductDependency;
