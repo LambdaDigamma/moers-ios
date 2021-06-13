@@ -9,7 +9,6 @@
 import UIKit
 import Gestalt
 import MessageUI
-import Alertift
 import MMAPI
 import MMUI
 import SwiftUI
@@ -154,31 +153,43 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
         if entryManager.entryStreet != nil || entryManager.entryLat != nil {
             
-            Alertift
-                .alert(title: String.localized("OtherDataTakeOldDataTitle"), message: String.localized("OtherDataTakeOldDataMessage"))
-                .titleTextColor(textColor)
-                .messageTextColor(textColor)
-                .buttonTextColor(textColor)
-                .backgroundColor(backgroundColor)
-                .action(Alertift.Action.cancel(String.localized("OtherDataTakeOldDataNo")), handler: { (action, i, textFields) in
-                    
-                    self.entryManager.resetData()
-                    
-                    let viewController = EntryOnboardingLocationMenuViewController(locationManager: self.locationManager,
-                                                                                   entryManager: self.entryManager)
-                    
-                    self.navigationController?.pushViewController(viewController, animated: true)
-                    
-                })
-                .action(.default(String.localized("OtherDataTakeOldDataYes")), isPreferred: true, handler: { (action, i, textFields) in
-                    
-                    let viewController = EntryOnboardingLocationMenuViewController(locationManager: self.locationManager,
-                                                                                   entryManager: self.entryManager)
-                    
-                    self.navigationController?.pushViewController(viewController, animated: true)
-                    
-                })
-                .show()
+            let alert = UIAlertController(
+                title: String.localized("OtherDataTakeOldDataTitle"),
+                message: String.localized("OtherDataTakeOldDataMessage"),
+                preferredStyle: .alert
+            )
+            
+            alert.overrideUserInterfaceStyle = .dark
+            
+            alert.addAction(
+                UIAlertAction(
+                    title: String.localized("OtherDataTakeOldDataNo"),
+                    style: .cancel,
+                    handler: { action in
+                        self.entryManager.resetData()
+                        
+                        let viewController = EntryOnboardingLocationMenuViewController(locationManager: self.locationManager,
+                                                                                       entryManager: self.entryManager)
+                        
+                        self.navigationController?.pushViewController(viewController, animated: true)
+                    }
+                )
+            )
+            
+            alert.addAction(
+                UIAlertAction(
+                    title: String.localized("OtherDataTakeOldDataYes"),
+                    style: .default,
+                    handler: { action in
+                        let viewController = EntryOnboardingLocationMenuViewController(locationManager: self.locationManager,
+                                                                                       entryManager: self.entryManager)
+                        
+                        self.navigationController?.pushViewController(viewController, animated: true)
+                    }
+                )
+            )
+            
+            present(alert, animated: true, completion: nil)
             
         } else {
             

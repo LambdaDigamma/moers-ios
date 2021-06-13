@@ -2,21 +2,21 @@
   "object": {
     "pins": [
       {
-        "package": "Alertift",
-        "repositoryURL": "https://github.com/LambdaDigamma/Alertift",
-        "state": {
-          "branch": null,
-          "revision": "1b60d81f427ac7fa69a428eb82a474fcce3a8414",
-          "version": "4.2.0"
-        }
-      },
-      {
         "package": "AppScaffold",
         "repositoryURL": "https://github.com/lambdadigamma/app-scaffold-ios",
         "state": {
-          "branch": "main",
+          "branch": null,
           "revision": "7770779a55948d1e8b83c631d24e4c1fe0bf76ee",
-          "version": null
+          "version": "0.1.0"
+        }
+      },
+      {
+        "package": "Bond",
+        "repositoryURL": "https://github.com/DeclarativeHub/Bond.git",
+        "state": {
+          "branch": null,
+          "revision": "146943c0bc03a93c48fb6c57db4e39f4b38ba74b",
+          "version": "7.8.1"
         }
       },
       {
