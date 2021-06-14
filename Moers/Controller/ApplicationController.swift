@@ -13,6 +13,8 @@ import MMAPI
 import MarkdownKit
 import SwiftyMarkdown
 import ModernNetworking
+import MMEvents
+import Cache
 
 class ApplicationController: UIViewController {
 
@@ -25,20 +27,25 @@ class ApplicationController: UIViewController {
     let cameraManager: CameraManagerProtocol
     let entryManager: EntryManagerProtocol
     let parkingLotManager: ParkingLotManagerProtocol
+    let eventService: EventServiceProtocol
     
     convenience init(loader: HTTPLoader) {
         self.init(loader: loader, entryManager: EntryManager(loader: loader))
     }
     
-    init(loader: HTTPLoader,
-         locationManager: LocationManagerProtocol = LocationManager(),
-         petrolManager: PetrolManagerProtocol = PetrolManager(storageManager: StorageManager()),
-         rubbishManager: RubbishManagerProtocol = RubbishManager(storagePickupItemsManager: StorageManager(),
-                                                                 storageStreetsManager: StorageManager()),
-         geocodingManager: GeocodingManagerProtocol = GeocodingManager(),
-         cameraManager: CameraManagerProtocol = CameraManager(storageManager: StorageManager()),
-         entryManager: EntryManagerProtocol,
-         parkingLotManager: ParkingLotManagerProtocol = ParkingLotManager()) {
+    init(
+        loader: HTTPLoader,
+        locationManager: LocationManagerProtocol = LocationManager(),
+        petrolManager: PetrolManagerProtocol = PetrolManager(storageManager: StorageManager()),
+        rubbishManager: RubbishManagerProtocol = RubbishManager(
+            storagePickupItemsManager: StorageManager(),
+            storageStreetsManager: StorageManager()
+        ),
+        geocodingManager: GeocodingManagerProtocol = GeocodingManager(),
+        cameraManager: CameraManagerProtocol = CameraManager(storageManager: StorageManager()),
+        entryManager: EntryManagerProtocol,
+        parkingLotManager: ParkingLotManagerProtocol = ParkingLotManager()
+    ) {
         
         self.loader = loader
         self.locationManager = locationManager
@@ -48,6 +55,13 @@ class ApplicationController: UIViewController {
         self.cameraManager = cameraManager
         self.entryManager = entryManager
         self.parkingLotManager = parkingLotManager
+        
+        let cache = try! Storage<String, [MMEvents.Event]>(
+            diskConfig: DiskConfig(name: "EventService"),
+            memoryConfig: MemoryConfig(),
+            transformer: TransformerFactory.forCodable(ofType: [MMEvents.Event].self))
+        
+        self.eventService = EventService(loader, cache)
         
         super.init(nibName: nil, bundle: nil)
         
@@ -84,7 +98,8 @@ class ApplicationController: UIViewController {
                                                 geocodingManager: geocodingManager,
                                                 cameraManager: cameraManager,
                                                 entryManager: entryManager,
-                                                parkingLotManager: parkingLotManager)
+                                                parkingLotManager: parkingLotManager,
+                                                eventService: eventService)
         
         (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = tabBarController
         

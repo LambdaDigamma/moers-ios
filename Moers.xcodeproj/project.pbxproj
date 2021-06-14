@@ -514,6 +514,7 @@
 		DFEE2E0920BB117A00A130CB /* BaseComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseComponent.swift; sourceTree = "<group>"; };
 		DFEE2E0B20BB146300A130CB /* RubbishCollectionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionComponent.swift; sourceTree = "<group>"; };
 		DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DFF654E52677C60B0026FBCF /* mmevents-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "mmevents-ios"; path = "../mmevents-ios"; sourceTree = "<group>"; };
 		DFF8F0B623CD8EC60066220D /* EventCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCoordinator.swift; sourceTree = "<group>"; };
 		DFF8F0B823CD93E80066220D /* OtherCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCoordinator.swift; sourceTree = "<group>"; };
 		DFF939052539DBAC002E5747 /* GoogleDataTransport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleDataTransport.xcframework; path = Frameworks/GoogleDataTransport.xcframework; sourceTree = "<group>"; };
@@ -852,6 +853,7 @@
 		DF1A49561F6AAB7000E9108B = {
 			isa = PBXGroup;
 			children = (
+				DFF654E52677C60B0026FBCF /* mmevents-ios */,
 				DF5E1B6726726E43005FADA4 /* NewsWidgets */,
 				DF21FA9724C63F66001C278D /* ModernNetworking */,
 				DF2CF1C323BBB315003497C5 /* TextFieldEffects */,
@@ -4767,7 +4769,7 @@
 			repositoryURL = "https://github.com/LambdaDigamma/mmapi-ios";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.1;
+				minimumVersion = 0.2.2;
 			};
 		};
 		DF51615F254603220094DEEB /* XCRemoteSwiftPackageReference "swiftui-charts" */ = {

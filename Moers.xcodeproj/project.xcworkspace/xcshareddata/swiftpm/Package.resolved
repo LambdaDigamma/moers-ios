@@ -141,8 +141,8 @@
         "repositoryURL": "https://github.com/LambdaDigamma/mmapi-ios",
         "state": {
           "branch": null,
-          "revision": "17a459b9277b5a86e18cbbfed9da059c3416f9ca",
-          "version": "0.2.1"
+          "revision": "2c9bce90e8e351a49dc82e53ecb3c09f18aea414",
+          "version": "0.2.2"
         }
       },
       {
@@ -152,15 +152,6 @@
           "branch": null,
           "revision": "d1ab76ad0316dcf58a23196f69ec07e2f8ba6702",
           "version": "0.0.1"
-        }
-      },
-      {
-        "package": "MMEvents",
-        "repositoryURL": "https://github.com/LambdaDigamma/mmevents-ios",
-        "state": {
-          "branch": null,
-          "revision": "2855bf7a86ab20f9f869ad02c8ed04600d7e6589",
-          "version": "0.0.3"
         }
       },
       {
