@@ -38,9 +38,9 @@ extension RubbishDisplayError: LocalizedError {
 @available(iOS 13.0, *)
 struct RubbishDashboardView: View {
     
-    var items: Resource<[RubbishPickupItem]>
+    var items: UIResource<[RubbishPickupItem]>
     
-    init(items: Resource<[RubbishPickupItem]> = .loading) {
+    init(items: UIResource<[RubbishPickupItem]> = .loading) {
         self.items = items
     }
     

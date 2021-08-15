@@ -8,6 +8,7 @@
 
 import SwiftUI
 import MMAPI
+import ModernNetworking
 
 @available(iOS 13.0, *)
 struct DashboardView: View {

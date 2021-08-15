@@ -17,7 +17,7 @@ class OrganisationListViewModel: ObservableObject {
     
     
     @Published var organisationRepository: OrganisationRepository
-    @Published var organisations = Resource<[Organisation]>.loading
+    @Published var organisations = UIResource<[Organisation]>.loading
     
     private var cancellables = Set<AnyCancellable>()
     

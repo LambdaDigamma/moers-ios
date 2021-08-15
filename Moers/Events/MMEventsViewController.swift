@@ -7,12 +7,15 @@
 //
 
 import UIKit
-import MMAPI
-import MMUI
+import MMEvents
+import Combine
+import OSLog
 
 class MMEventsViewController: EventsViewController {
 
+    var cancellables = Set<AnyCancellable>()
     var coordinator: EventCoordinator?
+    let logger = Logger(subsystem: subsystem, category: "MMEventsViewController")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,30 +28,40 @@ class MMEventsViewController: EventsViewController {
     
     override func loadData() {
         
-        guard let eventManager = coordinator?.eventManager else { return }
+        guard let eventService = coordinator?.eventService else { return }
         
-        let eventObserver = eventManager.getEvents(shouldReload: true)
+        let eventObserver = eventService.loadEvents()
         
-        eventObserver.observeNext { events in
-            self.events = events
+        eventObserver.sink { [weak self] completion in
+            
+            switch completion {
+                case .failure(let error):
+                    
+                    self?.logger.error("Error while loading: \(error.localizedDescription)")
+                    
+                default:
+                    break
+            }
+            
+        } receiveValue: { events in
+            
+            self.events = events.map({ e in
+                return EventViewModel<MMEvents.Event>(event: e)
+            })
+            
             self.rebuildData()
-        }.dispose(in: bag)
-        
-        eventObserver.observeFailed { error in
-            print(error.localizedDescription)
-        }.dispose(in: bag)
+            
+        }.store(in: &cancellables)
         
     }
     
-    override func filterActive(events: [Event]) -> [Event] {
-        
+    override func filterActive(events: [EventViewModel<Event>]) -> [EventViewModel<Event>] {
         return events.filter { (event) -> Bool in
             return isActive(event: event)
         }
-        
     }
     
-    override func filterUpcoming(events: [Event]) -> [Event] {
+    override func filterUpcoming(events: [EventViewModel<Event>]) -> [EventViewModel<Event>] {
         
         return events.filter({ !$0.isLongEvent }).filter { (event) -> Bool in
             return !isActive(event: event)
@@ -56,13 +69,22 @@ class MMEventsViewController: EventsViewController {
         
     }
     
-    private func isActive(event: Event) -> Bool {
+    override func showEventDetailViewController(for event: EventViewModel<Event>) {
         
-        if let startDate = event.startDate {
+//        let viewModel = EventDetailsViewModel(model: event.model)
+//        let detailViewController = MMUI.EventDetailViewController(viewModel: viewModel)
+//
+//        self.navigationController?.pushViewController(detailViewController, animated: true)
+        
+    }
+    
+    private func isActive(event: EventViewModel<Event>) -> Bool {
+        
+        if let startDate = event.model.startDate {
             return startDate.isToday
-        } else if let startDate = event.startDate, let endDate = event.endDate {
+        } else if let startDate = event.model.startDate, let endDate = event.model.endDate {
             return (startDate...endDate).contains(Date())
-        } else if event.startDate == nil {
+        } else if event.model.startDate == nil {
             return false
         } else {
             return false

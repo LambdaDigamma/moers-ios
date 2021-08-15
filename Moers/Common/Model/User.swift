@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import MMAPI
+import MMCommon
 
 struct User {
     
@@ -16,7 +16,7 @@ struct User {
     var name: String?
     var description: String?
     
-    enum UserType: String, EnumCollection, Localizable, CaseIterable {
+    enum UserType: String, Localizable, CaseIterable {
         
         case citizen = "citizen"
         case tourist = "tourist"

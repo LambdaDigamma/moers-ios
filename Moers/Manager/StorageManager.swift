@@ -10,6 +10,7 @@ import Foundation
 import ReactiveKit
 import MMAPI
 import Haneke
+import Combine
 
 public class StorageManager<D: Codable>: AnyStoragable<D> {
     
@@ -54,7 +55,7 @@ public class StorageManager<D: Codable>: AnyStoragable<D> {
         
     }
     
-    override public func read(forKey key: String, with decoder: JSONDecoder) -> Signal<[D], Error> {
+    override public func read(forKey key: String, with decoder: JSONDecoder) -> AnyPublisher<[D], Error> {
         
         print("StorageManager: Loading \(key.localizedCapitalized) from Cache")
             
@@ -66,11 +67,11 @@ public class StorageManager<D: Codable>: AnyStoragable<D> {
                     
                     if let customDecoder = self.decoder {
                         
-                        customDecoder(data).observeNext(with: { items in
+                        customDecoder(data).toSignal().observeNext(with: { items in
                             observer.receive(lastElement: items)
                         }).dispose(in: self.bag)
                         
-                        customDecoder(data).observeFailed(with: { error in
+                        customDecoder(data).toSignal().observeFailed(with: { error in
                             observer.receive(lastElement: [])
                             if let error = error as? DecodingError {
                                 print("StorageManager: Custom Decoding failed for \(D.self) - \(error)")
@@ -105,6 +106,8 @@ public class StorageManager<D: Codable>: AnyStoragable<D> {
             return BlockDisposable {}
             
         }
+        .toPublisher()
+        .eraseToAnyPublisher()
         
     }
     

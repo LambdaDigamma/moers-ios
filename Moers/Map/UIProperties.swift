@@ -69,9 +69,10 @@ struct UIProperties {
         
         if let location = location as? Entry {
 
-            if location.distance != 0 {
+            if location.distance.value != 0 {
                 
-                let dist = prettifyDistance(distance: location.distance)
+                // TODO: Refactor this to use measurement
+                let dist = prettifyDistance(distance: location.distance.converted(to: .meters).value)
                 
                 return "\(dist) • \(location.street) \(location.houseNumber)"
                 
@@ -83,9 +84,9 @@ struct UIProperties {
             
             let open = location.isOpen ? String.localized("LocalityOpen") : String.localized("LocalityClosed")
             
-            if location.distance != 0 {
+            if location.distance.value != 0 {
                 
-                let dist = prettifyDistance(distance: location.distance)
+                let dist = prettifyDistance(distance: location.distance.converted(to: .meters).value)
                 
                 return dist + " • " + open + " • " + location.localizedCategory
                 
@@ -96,9 +97,9 @@ struct UIProperties {
             
         } else {
             
-            if location.distance != 0 {
+            if location.distance.value != 0 {
                 
-                let dist = prettifyDistance(distance: location.distance)
+                let dist = prettifyDistance(distance: location.distance.converted(to: .meters).value)
                 
                 return "\(dist) • \(location.localizedCategory)"
                 

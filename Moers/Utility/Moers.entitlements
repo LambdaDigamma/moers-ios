@@ -6,6 +6,7 @@
 	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
+		<string>applinks:moers.app</string>
 		<string>applinks:meinmoers.lambdadigamma.com</string>
 		<string>applinks:beta.meinmoers.lambdadigamma.com</string>
 	</array>

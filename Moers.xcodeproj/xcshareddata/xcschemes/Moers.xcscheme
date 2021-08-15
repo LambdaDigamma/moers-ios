@@ -67,13 +67,33 @@
                ReferencedContainer = "container:Moers.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "MMRubbishTests"
+               BuildableName = "MMRubbishTests"
+               BlueprintName = "MMRubbishTests"
+               ReferencedContainer = "container:../mmrubbish-ios">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DFB161B2267651D6009D2754"
+               BuildableName = "Moers Unit Tests.xctest"
+               BlueprintName = "Moers Unit Tests"
+               ReferencedContainer = "container:Moers.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug (Production)"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = "en"
+      language = "de"
       region = "GB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"

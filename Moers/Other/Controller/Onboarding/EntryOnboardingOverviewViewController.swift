@@ -10,7 +10,6 @@ import UIKit
 import Gestalt
 import TextFieldEffects
 import MapKit
-import Alertift
 import MMAPI
 import MMUI
 import TagListView
@@ -210,69 +209,71 @@ class EntryOnboardingOverviewViewController: UIViewController {
     
     private func setupConstraints() {
         
-        let constraints = [scrollView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 0),
-                           scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
-                           scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-                           scrollView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: 0),
-                           contentView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
-                           contentView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
-                           contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
-                           contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
-                           contentView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
-                           noticeView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 0),
-                           noticeView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
-                           noticeView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-                           generalHeaderLabel.topAnchor.constraint(equalTo: self.noticeView.bottomAnchor, constant: 16),
-                           generalHeaderLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           generalHeaderLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           nameTextField.topAnchor.constraint(equalTo: self.generalHeaderLabel.bottomAnchor, constant: 0),
-                           nameTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           nameTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           tagsHeaderLabel.topAnchor.constraint(equalTo: self.nameTextField.bottomAnchor, constant: 16),
-                           tagsHeaderLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           tagsHeaderLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           tagsListView.topAnchor.constraint(equalTo: self.tagsHeaderLabel.bottomAnchor, constant: 8),
-                           tagsListView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           tagsListView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           addressHeaderLabel.topAnchor.constraint(equalTo: self.tagsListView.bottomAnchor, constant: 16),
-                           addressHeaderLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           addressHeaderLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           streetTextField.topAnchor.constraint(equalTo: self.addressHeaderLabel.bottomAnchor, constant: 0),
-                           streetTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           streetTextField.trailingAnchor.constraint(equalTo: self.houseNrTextField.leadingAnchor, constant: -8),
-                           houseNrTextField.topAnchor.constraint(equalTo: self.streetTextField.topAnchor),
-                           houseNrTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           houseNrTextField.widthAnchor.constraint(equalToConstant: 55),
-                           postcodeTextField.topAnchor.constraint(equalTo: self.houseNrTextField.bottomAnchor, constant: 8),
-                           postcodeTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           postcodeTextField.trailingAnchor.constraint(equalTo: self.placeTextField.leadingAnchor, constant: -8),
-                           postcodeTextField.widthAnchor.constraint(equalToConstant: 80),
-                           placeTextField.topAnchor.constraint(equalTo: self.houseNrTextField.bottomAnchor, constant: 8),
-                           placeTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           mapView.topAnchor.constraint(equalTo: self.placeTextField.bottomAnchor, constant: 20),
-                           mapView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           mapView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           mapView.heightAnchor.constraint(equalToConstant: 180),
-                           contactHeaderLabel.topAnchor.constraint(equalTo: self.mapView.bottomAnchor, constant: 20),
-                           contactHeaderLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           contactHeaderLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           websiteTextField.topAnchor.constraint(equalTo: self.contactHeaderLabel.bottomAnchor, constant: 0),
-                           websiteTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           websiteTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           phoneTextField.topAnchor.constraint(equalTo: self.websiteTextField.bottomAnchor, constant: 16),
-                           phoneTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           phoneTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           openingHoursHeaderLabel.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: 16),
-                           openingHoursHeaderLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           openingHoursHeaderLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           openingHoursStackView.topAnchor.constraint(equalTo: openingHoursHeaderLabel.bottomAnchor, constant: 0),
-                           openingHoursStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           openingHoursStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           saveButton.topAnchor.constraint(equalTo: self.openingHoursStackView.bottomAnchor, constant: 16),
-                           saveButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           saveButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           saveButton.heightAnchor.constraint(equalToConstant: 45),
-                           saveButton.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -50)]
+        let constraints = [
+            scrollView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 0),
+            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
+            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
+            scrollView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: 0),
+            contentView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+            noticeView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 0),
+            noticeView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
+            noticeView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
+            generalHeaderLabel.topAnchor.constraint(equalTo: self.noticeView.bottomAnchor, constant: 16),
+            generalHeaderLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            generalHeaderLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            nameTextField.topAnchor.constraint(equalTo: self.generalHeaderLabel.bottomAnchor, constant: 0),
+            nameTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            nameTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            tagsHeaderLabel.topAnchor.constraint(equalTo: self.nameTextField.bottomAnchor, constant: 16),
+            tagsHeaderLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            tagsHeaderLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            tagsListView.topAnchor.constraint(equalTo: self.tagsHeaderLabel.bottomAnchor, constant: 8),
+            tagsListView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            tagsListView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            addressHeaderLabel.topAnchor.constraint(equalTo: self.tagsListView.bottomAnchor, constant: 16),
+            addressHeaderLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            addressHeaderLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            streetTextField.topAnchor.constraint(equalTo: self.addressHeaderLabel.bottomAnchor, constant: 0),
+            streetTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            streetTextField.trailingAnchor.constraint(equalTo: self.houseNrTextField.leadingAnchor, constant: -8),
+            houseNrTextField.topAnchor.constraint(equalTo: self.streetTextField.topAnchor),
+            houseNrTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            houseNrTextField.widthAnchor.constraint(equalToConstant: 55),
+            postcodeTextField.topAnchor.constraint(equalTo: self.houseNrTextField.bottomAnchor, constant: 8),
+            postcodeTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            postcodeTextField.trailingAnchor.constraint(equalTo: self.placeTextField.leadingAnchor, constant: -8),
+            postcodeTextField.widthAnchor.constraint(equalToConstant: 80),
+            placeTextField.topAnchor.constraint(equalTo: self.houseNrTextField.bottomAnchor, constant: 8),
+            placeTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            mapView.topAnchor.constraint(equalTo: self.placeTextField.bottomAnchor, constant: 20),
+            mapView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            mapView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            mapView.heightAnchor.constraint(equalToConstant: 180),
+            contactHeaderLabel.topAnchor.constraint(equalTo: self.mapView.bottomAnchor, constant: 20),
+            contactHeaderLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            contactHeaderLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            websiteTextField.topAnchor.constraint(equalTo: self.contactHeaderLabel.bottomAnchor, constant: 0),
+            websiteTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            websiteTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            phoneTextField.topAnchor.constraint(equalTo: self.websiteTextField.bottomAnchor, constant: 16),
+            phoneTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            phoneTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            openingHoursHeaderLabel.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: 16),
+            openingHoursHeaderLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            openingHoursHeaderLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            openingHoursStackView.topAnchor.constraint(equalTo: openingHoursHeaderLabel.bottomAnchor, constant: 0),
+            openingHoursStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            openingHoursStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            saveButton.topAnchor.constraint(equalTo: self.openingHoursStackView.bottomAnchor, constant: 16),
+            saveButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            saveButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            saveButton.heightAnchor.constraint(equalToConstant: 45),
+            saveButton.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -50)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         
@@ -634,21 +635,25 @@ class EntryOnboardingOverviewViewController: UIViewController {
             String.localized("EntryOnboardingOverviewAlertConfirmStoreMessage") :
             String.localized("EntryOnboardingOverviewAlertConfirmUpdateMessage")
         
+        let alert = UIAlertController(title: String.localized("EntryOnboardingOverviewAlertConfirmTitle"),
+                                      message: message,
+                                      preferredStyle: .alert)
         
-        Alertift
-            .alert(title: String.localized("EntryOnboardingOverviewAlertConfirmTitle"),
-                   message: message)
-            .titleTextColor(nameTextField.textColor)
-            .messageTextColor(nameTextField.textColor)
-            .buttonTextColor(nameTextField.textColor)
-            .backgroundColor(view.backgroundColor)
-            .action(Alertift.Action.cancel(String.localized("EntryOnboardingOverviewAlertConfirmCancel")))
-            .action(.default(String.localized("EntryOnboardingOverviewAlertConfirmYes")), isPreferred: true, handler: { (action, i, textFields) in
-                
-                self.save()
-                
-            })
-            .show()
+        alert.addAction(UIAlertAction(title: String.localized("EntryOnboardingOverviewAlertConfirmCancel"),
+                                      style: .cancel,
+                                      handler: nil))
+        
+        let saveAction = UIAlertAction(title: String.localized("EntryOnboardingOverviewAlertConfirmYes"),
+                                       style: .default) { action in
+            
+            self.save()
+            
+        }
+        
+        alert.overrideUserInterfaceStyle = .dark
+        alert.addAction(saveAction)
+        
+        present(alert, animated: true, completion: nil)
         
     }
     
@@ -658,30 +663,33 @@ class EntryOnboardingOverviewViewController: UIViewController {
             String.localized("EntryOnboardingOverviewAlertSuccessTitleAdded") :
             String.localized("EntryOnboardingOverviewAlertSuccessTitleUpdated")
         
-        Alertift
-            .alert(title: title,
-                   message: String.localized("EntryOnboardingOverviewAlertSuccessMessage"))
-            .titleTextColor(nameTextField.textColor)
-            .messageTextColor(nameTextField.textColor)
-            .buttonTextColor(nameTextField.textColor)
-            .backgroundColor(view.backgroundColor)
-            .action(.default(String.localized("EntryOnboardingOverviewAlertSuccessOkay")),
-                    handler: { (action, i, textFields) in
-                
-                if self.overviewType == .summary {
+        let alert = UIAlertController(title: title,
+                                      message: String.localized("EntryOnboardingOverviewAlertSuccessMessage"),
+                                      preferredStyle: .alert)
+        
+        alert.addAction(
+            UIAlertAction(
+                title: String.localized("EntryOnboardingOverviewAlertSuccessOkay"),
+                style: .default, handler: { action in
                     
-                    guard let otherVC = self.navigationController?.children.first else { return }
-                    
-                    self.navigationController?.popToViewController(otherVC, animated: true)
-                    
-                } else {
-                    
-                    self.navigationController?.popViewController(animated: true)
+                    if self.overviewType == .summary {
+                        
+                        guard let otherVC = self.navigationController?.children.first else { return }
+                        
+                        self.navigationController?.popToViewController(otherVC, animated: true)
+                        
+                    } else {
+                        
+                        self.navigationController?.popViewController(animated: true)
+                        
+                    }
                     
                 }
-                
-            })
-            .show()
+            )
+        )
+        alert.overrideUserInterfaceStyle = .dark
+        
+        present(alert, animated: true, completion: nil)
         
     }
     
@@ -689,15 +697,25 @@ class EntryOnboardingOverviewViewController: UIViewController {
         
         DispatchQueue.main.async {
             
-            Alertift
-                .alert(title: String.localized("EntryOnboardingOverviewAlertUnknownErrorTitle"),
-                       message: String.localized("EntryOnboardingOverviewAlertUnknownErrorMessage"))
-                .titleTextColor(self.nameTextField.textColor)
-                .messageTextColor(self.nameTextField.textColor)
-                .buttonTextColor(self.nameTextField.textColor)
-                .backgroundColor(self.view.backgroundColor)
-                .action(.default(String.localized("EntryOnboardingOverviewAlertUnknownErrorOkay")))
-                .show()
+            let alert = UIAlertController(
+                title: String.localized("EntryOnboardingOverviewAlertUnknownErrorTitle"),
+                message: String.localized("EntryOnboardingOverviewAlertUnknownErrorMessage"),
+                preferredStyle: .alert
+            )
+            
+            alert.overrideUserInterfaceStyle = .dark
+            
+            alert.addAction(
+                UIAlertAction(
+                    title: String.localized("EntryOnboardingOverviewAlertUnknownErrorOkay"),
+                    style: .default,
+                    handler: { action in
+                        
+                    }
+                )
+            )
+            
+            self.present(alert, animated: true, completion: nil)
             
         }
         
@@ -705,22 +723,29 @@ class EntryOnboardingOverviewViewController: UIViewController {
     
     private func alertNotAuthorized() {
         
-        Alertift
-            .alert(title: String.localized("EntryOnboardingOverviewAlertNotAllowedTitle"),
-                   message: String.localized("EntryOnboardingOverviewAlertNotAllowedMessage"))
-            .titleTextColor(nameTextField.textColor)
-            .messageTextColor(nameTextField.textColor)
-            .buttonTextColor(nameTextField.textColor)
-            .backgroundColor(view.backgroundColor)
-            .action(.default(String.localized("EntryOnboardingOverviewAlertNotAllowedErrorOkay")),
-                    handler: { (action, i, textFields) in
-                
-                guard let otherVC = self.navigationController?.children.first else { return }
-                
-                self.navigationController?.popToViewController(otherVC, animated: true)
-                
-            })
-            .show()
+        let alert = UIAlertController(
+            title: String.localized("EntryOnboardingOverviewAlertNotAllowedTitle"),
+            message: String.localized("EntryOnboardingOverviewAlertNotAllowedMessage"),
+            preferredStyle: .alert
+        )
+        
+        alert.overrideUserInterfaceStyle = .dark
+        
+        alert.addAction(
+            UIAlertAction(
+                title: String.localized("EntryOnboardingOverviewAlertNotAllowedErrorOkay"),
+                style: .default,
+                handler: { action in
+                    
+                    guard let otherVC = self.navigationController?.children.first else { return }
+                    
+                    self.navigationController?.popToViewController(otherVC, animated: true)
+                    
+                }
+            )
+        )
+        
+        present(alert, animated: true, completion: nil)
         
     }
     
@@ -728,15 +753,23 @@ class EntryOnboardingOverviewViewController: UIViewController {
         
         DispatchQueue.main.async {
             
-            Alertift
-                .alert(title: String.localized("EntryOnboardingOverviewAlertFormErrorTitle"),
-                       message: String.localized("EntryOnboardingOverviewAlertFormErrorMessage"))
-                .titleTextColor(self.nameTextField.textColor)
-                .messageTextColor(self.nameTextField.textColor)
-                .buttonTextColor(self.nameTextField.textColor)
-                .backgroundColor(self.view.backgroundColor)
-                .action(.default(String.localized("EntryOnboardingOverviewAlertFormErrorOkay")))
-                .show()
+            let alert = UIAlertController(
+                title: String.localized("EntryOnboardingOverviewAlertFormErrorTitle"),
+                message: String.localized("EntryOnboardingOverviewAlertFormErrorMessage"),
+                preferredStyle: .alert
+            )
+            
+            alert.overrideUserInterfaceStyle = .dark
+            
+            alert.addAction(
+                UIAlertAction(
+                    title: String.localized("EntryOnboardingOverviewAlertFormErrorOkay"),
+                    style: .default,
+                    handler: { action in
+                        
+                    }
+                )
+            )
             
         }
         

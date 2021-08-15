@@ -9,7 +9,6 @@
 import UIKit
 import Gestalt
 import TagListView
-import Alertift
 import Fuse
 import MMAPI
 import MMUI
@@ -103,28 +102,30 @@ class EntryOnboardingTagsViewController: UIViewController {
     
     private func setupConstraints() {
         
-        let constraints = [scrollView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 0),
-                           scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
-                           scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-                           scrollView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: 0),
-                           contentView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
-                           contentView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
-                           contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
-                           contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
-                           contentView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
-                           progressView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 20),
-                           progressView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           progressView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           tagsHeaderLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20),
-                           tagsHeaderLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           tagsHeaderLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           tagsListView.topAnchor.constraint(equalTo: tagsHeaderLabel.bottomAnchor, constant: 20),
-                           tagsListView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-                           tagsListView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-                           infoLabel.topAnchor.constraint(equalTo: tagsListView.bottomAnchor, constant: 20),
-                           infoLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           infoLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           infoLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50),]
+        let constraints = [
+            scrollView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 0),
+            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
+            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
+            scrollView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: 0),
+            contentView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+            progressView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 20),
+            progressView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            progressView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            tagsHeaderLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20),
+            tagsHeaderLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            tagsHeaderLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            tagsListView.topAnchor.constraint(equalTo: tagsHeaderLabel.bottomAnchor, constant: 20),
+            tagsListView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            tagsListView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            infoLabel.topAnchor.constraint(equalTo: tagsListView.bottomAnchor, constant: 20),
+            infoLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            infoLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            infoLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         

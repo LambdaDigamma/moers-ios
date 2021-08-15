@@ -12,6 +12,7 @@ import Gestalt
 import ESTabBarController
 import MMAPI
 import MMUI
+import MMEvents
 
 class TabBarController: ESTabBarController, UITabBarControllerDelegate {
 
@@ -31,6 +32,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     let parkingLotManager: ParkingLotManagerProtocol
     var petrolManager: PetrolManagerProtocol
     var rubbishManager: RubbishManagerProtocol
+    let eventService: EventServiceProtocol
     
     lazy var onboardingManager: OnboardingManager = {
        
@@ -57,7 +59,8 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
          geocodingManager: GeocodingManagerProtocol,
          cameraManager: CameraManagerProtocol,
          entryManager: EntryManagerProtocol,
-         parkingLotManager: ParkingLotManagerProtocol) {
+         parkingLotManager: ParkingLotManagerProtocol,
+         eventService: EventServiceProtocol) {
         
         self.firstLaunch = FirstLaunch(userDefaults: .standard, key: Constants.firstLaunch)
         self.locationManager = locationManager
@@ -67,6 +70,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         self.cameraManager = cameraManager
         self.entryManager = entryManager
         self.parkingLotManager = parkingLotManager
+        self.eventService = eventService
         
         self.dashboard = DashboardCoordinator(
             locationManager: locationManager,
@@ -84,7 +88,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         )
         
         self.events = EventCoordinator(
-            eventManager: EventManager()
+            eventService: eventService
         )
         
         self.other = OtherCoordinator(
@@ -176,7 +180,7 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
                 item.accessibilityIdentifier = "TabMapSearch"
                 item.accessibilityLabel = String.localized("SearchMap")
                 
-                item.contentView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(search)))
+                item.contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(search)))
                 
                 self.shouldHijackHandler = { _, _, index in
                     

@@ -9,6 +9,7 @@
 import UIKit
 import MMAPI
 import MMUI
+import AppScaffold
 
 class MapCoordintor: Coordinator {
     

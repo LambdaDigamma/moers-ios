@@ -9,18 +9,22 @@
 import UIKit
 import MMUI
 import MMAPI
+import AppScaffold
+import MMEvents
 
 class EventCoordinator: Coordinator {
     
     var navigationController: CoordinatedNavigationController
-    var eventManager: EventManagerProtocol
+    var eventService: EventServiceProtocol
     var eventViewController: MMEventsViewController?
     
-    init(navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
-         eventManager: EventManagerProtocol) {
+    init(
+        navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
+        eventService: EventServiceProtocol
+    ) {
         
         self.navigationController = navigationController
-        self.eventManager = eventManager
+        self.eventService = eventService
         
         let eventViewController = MMEventsViewController()
         

@@ -26,12 +26,12 @@ import UIKit
 
 // MARK: - Protocols
 
-@objc public protocol PickerViewDataSource: class {
+@objc public protocol PickerViewDataSource: AnyObject {
     func pickerViewNumberOfRows(_ pickerView: PickerView) -> Int
     func pickerView(_ pickerView: PickerView, titleForRow row: Int, index: Int) -> String
 }
 
-@objc public protocol PickerViewDelegate: class {
+@objc public protocol PickerViewDelegate: AnyObject {
     func pickerViewHeightForRows(_ pickerView: PickerView) -> CGFloat
     @objc optional func pickerView(_ pickerView: PickerView, didSelectRow row: Int, index: Int)
     @objc optional func pickerView(_ pickerView: PickerView, didTapRow row: Int, index: Int)

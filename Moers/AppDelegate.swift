@@ -13,9 +13,12 @@ import Firebase
 import Gestalt
 import MMAPI
 import MMUI
+import MMCommon
 import Haneke
-import BasicNetworking
 import SwiftUI
+import AppScaffold
+import Resolver
+import ModernNetworking
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -34,6 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         self.resetIfNeeded()
         
+//        let bootstrappingProcedure: BootstrappingProcedure = [
+//            LaunchArgumentsHandler(),
+//            NetworkingConfiguration(),
+//        ]
+//
+//        bootstrappingProcedure.execute(with: application)
+        
         ThemeManager.default.theme = UserManager.shared.theme
         ThemeManager.default.animated = true
         
@@ -42,21 +52,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         MMAPIConfig.registerPetrolAPIKey("0dfdfad3-7385-ef47-2ff6-ec0477872677")
         MMAPIConfig.isMoersFestivalModeEnabled = false
         
-        RubbishManager.shared.rubbishStreetURL = URL(string: "https://beta.meinmoers.lambdadigamma.com/abfallkalender-strassenverzeichnis-2020-01.csv")
-        RubbishManager.shared.rubbishDateURL = URL(string: "https://beta.meinmoers.lambdadigamma.com/abfallkalender-termine-2020-01.csv")
+        RubbishManager.shared.rubbishStreetURL = URL(string: "https://moers.app/abfallkalender-strassenverzeichnis-2020-01.csv")
+        RubbishManager.shared.rubbishDateURL = URL(string: "https://moers.app/abfallkalender-termine-2020-01.csv")
         
+        let configuration = NetworkingConfiguration()
+        let loader = configuration.setupEnvironmentAndLoader()
         
-        
-        let sessionConfig = URLSessionConfiguration.default
-//        let apiKey = "ey...."
-//        sessionConfig.httpAdditionalHeaders = [
-//            "Authorization": "Bearer \(apiKey)"
-//        ]
-        
-        let config = MMAPIConfig(baseURL: URL(string: Environment.baseURL)!)
-        let client = APIClient(config: config, urlSessionConfiguration: sessionConfig, adapters: [LoggingAdapter()])
-        
-        let applicationController = ApplicationController(apiClient: client)
+        let applicationController = ApplicationController(loader: loader)
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window!.rootViewController = applicationController
@@ -124,10 +126,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
     }
     
-    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        print("Received data message: \(remoteMessage.appData)")
-    }
-    
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
@@ -162,17 +160,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         
         Messaging.messaging().delegate = self
-        
-        
-        
-        
-        InstanceID.instanceID().instanceID { (result, error) in
-            if let error = error {
-                print("Error fetching remote instance ID: \(error)")
-            } else if let result = result {
-                print("Remote instance ID token: \(result.token)")
-            }
-        }
         
         TWTRTwitter.sharedInstance().start(withConsumerKey: consumerKey, consumerSecret: consumerSecret)
         
