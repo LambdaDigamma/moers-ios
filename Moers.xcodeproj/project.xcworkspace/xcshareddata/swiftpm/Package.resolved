@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/lambdadigamma/app-scaffold-ios",
         "state": {
           "branch": null,
-          "revision": "7770779a55948d1e8b83c631d24e4c1fe0bf76ee",
-          "version": "0.1.0"
+          "revision": "92f36e0f7309f5752454de68f9b6064ac0d87528",
+          "version": "0.1.2"
         }
       },
       {
@@ -177,8 +177,8 @@
         "repositoryURL": "https://github.com/52inc/Pulley",
         "state": {
           "branch": null,
-          "revision": "5d5ec9c9c2a2ab3c1d76d5c7a7ce6eff20410719",
-          "version": "2.9.0"
+          "revision": "355bb7c53d4d430334422ad05a97fbe43ce326db",
+          "version": "2.9.1"
         }
       },
       {
@@ -204,8 +204,8 @@
         "repositoryURL": "https://github.com/hmlongco/Resolver",
         "state": {
           "branch": null,
-          "revision": "730a02bc3c861524e4f0e496ec3d9a907984be0d",
-          "version": "1.4.2"
+          "revision": "48e26b8fdf22877cd89b4a1f3927a56cc9f34d46",
+          "version": "1.4.3"
         }
       },
       {

@@ -262,8 +262,10 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             RubbishManager.shared.isEnabled = true
             
             if RubbishManager.shared.remindersEnabled {
-                RubbishManager.shared.registerNotifications(at: RubbishManager.shared.reminderHour ?? 20,
-                                                            minute: RubbishManager.shared.reminderHour ?? 00)
+                RubbishManager.shared.registerNotifications(
+                    at: RubbishManager.shared.reminderHour ?? 20,
+                    minute: RubbishManager.shared.reminderHour ?? 00
+                )
             }
             
             item.manager?.dismissBulletin(animated: true)
@@ -321,8 +323,10 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
                     RubbishManager.shared.register(filteredStreet)
                     
                     if RubbishManager.shared.remindersEnabled {
-                        RubbishManager.shared.registerNotifications(at: RubbishManager.shared.reminderHour ?? 20,
-                                                                    minute: RubbishManager.shared.reminderMinute ?? 00)
+                        RubbishManager.shared.registerNotifications(
+                            at: RubbishManager.shared.reminderHour ?? 20,
+                            minute: RubbishManager.shared.reminderMinute ?? 00
+                        )
                     }
                     
                 } else {
@@ -349,16 +353,18 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     
     private func setupMocked() {
         
-        let rubbishCollectionStreet = RubbishCollectionStreet(id: 2,
-                                                              street: "Adlerstraße",
-                                                              streetAddition: nil,
-                                                              residualWaste: 3,
-                                                              organicWaste: 2,
-                                                              paperWaste: 8,
-                                                              yellowBag: 3,
-                                                              greenWaste: 2,
-                                                              sweeperDay: "",
-                                                              year: 2020)
+        let rubbishCollectionStreet = RubbishCollectionStreet(
+            id: 2,
+            street: "Adlerstraße",
+            streetAddition: nil,
+            residualWaste: 3,
+            organicWaste: 2,
+            paperWaste: 8,
+            yellowBag: 3,
+            greenWaste: 2,
+            sweeperDay: "",
+            year: 2020
+        )
         
         UserManager.shared.register(User(type: .citizen, id: nil, name: nil, description: nil))
         petrolManager.petrolType = .diesel
