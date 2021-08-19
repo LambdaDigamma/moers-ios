@@ -81,14 +81,12 @@ class EntryValidationViewController: UIViewController {
             case .success(let entries):
                 
                 self.entries = entries.filter { !$0.isValidated }
-                
                 self.tableView.reloadData()
                 
             case .failure(let error):
                 print(error.localizedDescription)
                 
             }
-            
             
         }
         
@@ -104,7 +102,7 @@ extension EntryValidationViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "entryCell", for: indexPath) as! EntryValidationTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "entryCell", for: indexPath) as? EntryValidationTableViewCell else { return UITableViewCell() }
         
         let entry = entries[indexPath.row]
         

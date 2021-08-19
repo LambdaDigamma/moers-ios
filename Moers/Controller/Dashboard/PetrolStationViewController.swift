@@ -87,7 +87,7 @@ class PetrolStationViewController: CardCollectionViewController {
                                                              type: preferredPetrolType,
                                                              shouldReload: true)
         
-        petrolStations.observeNext { stations in
+        petrolStations.observeNext { _ in
             self.updateUI()
         }.dispose(in: bag)
         
@@ -106,15 +106,15 @@ class PetrolStationViewController: CardCollectionViewController {
     
     private func sortStationsWithPriceAndOpenStatus() {
         
-        self.stations = stations.sorted(by: { (p1, p2) -> Bool in
-            p1.isOpen == p2.isOpen
+        self.stations = stations.sorted(by: { (station1, station2) -> Bool in
+            station1.isOpen == station2.isOpen
         }).reversed()
         
-        self.stations = stations.sorted { p1, p2 in
-            if p1.isOpen == p2.isOpen {
-                return (p1.price ?? 10) < (p2.price ?? 10)
+        self.stations = stations.sorted { station1, station2 in
+            if station1.isOpen == station2.isOpen {
+                return (station1.price ?? 10) < (station2.price ?? 10)
             }
-            return p1.isOpen && !p2.isOpen
+            return station1.isOpen && !station2.isOpen
         }
         
     }

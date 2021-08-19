@@ -196,7 +196,7 @@ class MapLocationPickerViewController: UIViewController {
         
         let geocoder = CLGeocoder()
         
-        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+        geocoder.reverseGeocodeLocation(location) { (placemarks, _) in
             
             guard let placemark = placemarks?.first else { return }
             

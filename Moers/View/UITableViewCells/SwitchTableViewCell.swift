@@ -25,7 +25,7 @@ class SwitchTableViewCell: UITableViewCell {
         
     }()
     
-    var action: ((Bool) -> ())?
+    var action: ((Bool) -> Void)?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

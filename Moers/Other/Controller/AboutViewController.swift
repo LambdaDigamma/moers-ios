@@ -174,7 +174,6 @@ class AboutViewController: UIViewController {
         let debugViewController = DebugViewController()
         
         self.navigationController?.pushViewController(debugViewController, animated: true)
-
         
     }
 

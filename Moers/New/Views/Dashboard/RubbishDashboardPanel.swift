@@ -34,9 +34,6 @@ extension RubbishDisplayError: LocalizedError {
     
 }
 
-
-
-@available(iOS 13.0, *)
 struct RubbishDashboardPanel: View {
     
     var items: UIResource<[RubbishPickupItem]>
@@ -76,7 +73,7 @@ struct RubbishDashboardPanel: View {
                     .padding(.top)
                     .padding(.horizontal, 20)
                     
-                    if items.count != 0 {
+                    if !items.isEmpty {
                         
                         ForEach(items, id: \.id) { (item) in
                             
@@ -139,55 +136,9 @@ struct RubbishDashboardPanel: View {
         }
         .padding()
     }
-}
-
-public struct RubbishTypeIcon: View {
-    
-    public var type: RubbishWasteType
-    
-    public init(type: RubbishWasteType) {
-        self.type = type
-    }
-    
-    public var body: some View {
-        
-        ZStack {
-            switch type {
-                
-                case .organic:
-                    Image("greenWaste")
-                        .resizable()
-                case .residual:
-                    Image("residualWaste")
-                        .resizable()
-                case .paper:
-                    Image("paperWaste")
-                        .resizable()
-                case .cuttings:
-                    Image("greenWaste")
-                        .resizable()
-                case .plastic:
-                    Image("yellowWaste")
-                        .resizable()
-            }
-        }
-        .aspectRatio(1, contentMode: .fit)
-        
-    }
     
 }
 
-struct RubbishTypeIcon_Previews: PreviewProvider {
-    static var previews: some View {
-        RubbishTypeIcon(type: .organic)
-            .frame(width: 50)
-            .padding()
-            .previewLayout(.sizeThatFits)
-    }
-}
-
-
-@available(iOS 13.0, *)
 struct PetrolDashboardView_Previews: PreviewProvider {
     static var previews: some View {
         Group {

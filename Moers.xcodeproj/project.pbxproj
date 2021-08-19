@@ -137,6 +137,7 @@
 		DF86ABA12174900400EFC7EA /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF86ABA02174900400EFC7EA /* Intents.framework */; };
 		DF86ABA32174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF86ABA22174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift */; };
 		DF8861C826CEE35C00C895B4 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8861C726CEE35C00C895B4 /* AppStrings.swift */; };
+		DF8861CB26CEF1F400C895B4 /* RubbishTypeIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8861CA26CEF1F400C895B4 /* RubbishTypeIcon.swift */; };
 		DF94B11B23F0A7E5009C57ED /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF94B11923F0A7E5009C57ED /* Interface.storyboard */; };
 		DF94B11D23F0A7E7009C57ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF94B11C23F0A7E7009C57ED /* Assets.xcassets */; };
 		DF94B12423F0A7E8009C57ED /* Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DF94B12323F0A7E7009C57ED /* Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -450,6 +451,7 @@
 		DF86ABA02174900400EFC7EA /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		DF86ABA22174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryOnboardingOpeningHoursViewController.swift; sourceTree = "<group>"; };
 		DF8861C726CEE35C00C895B4 /* AppStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
+		DF8861CA26CEF1F400C895B4 /* RubbishTypeIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishTypeIcon.swift; sourceTree = "<group>"; };
 		DF94B11723F0A7E5009C57ED /* Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF94B11A23F0A7E5009C57ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		DF94B11C23F0A7E7009C57ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1048,6 +1050,7 @@
 			children = (
 				DF52868324A7C0B600A6939E /* DashboardView.swift */,
 				DF52869024A7CE8900A6939E /* RubbishDashboardPanel.swift */,
+				DF8861CA26CEF1F400C895B4 /* RubbishTypeIcon.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1275,6 +1278,7 @@
 				DF94B14D23F0A7E8009C57ED /* Embed Watch Content */,
 				DFE62576254595E1005FAC1C /* Embed Frameworks */,
 				DF5E1B5F26726AF7005FADA4 /* Embed App Extensions */,
+				DF8861C926CEF0CC00C895B4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1558,6 +1562,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		DF8861C926CEF0CC00C895B4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		DFB618591FAE144D00C98EB6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1709,6 +1730,7 @@
 				DF52869124A7CE8900A6939E /* RubbishDashboardPanel.swift in Sources */,
 				DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */,
 				DF52868A24A7C3D300A6939E /* EventsView.swift in Sources */,
+				DF8861CB26CEF1F400C895B4 /* RubbishTypeIcon.swift in Sources */,
 				DFA9EF0A20B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift in Sources */,
 				DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */,
 				DFCA005B24A88A5500EACE9F /* CardPanelView.swift in Sources */,

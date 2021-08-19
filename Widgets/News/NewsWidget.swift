@@ -30,7 +30,6 @@ struct NewsWidgets: Widget {
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
     
-    
 }
 
 struct NewsWidgetView: View {

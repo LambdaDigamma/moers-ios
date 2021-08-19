@@ -10,6 +10,7 @@ import UIKit
 import Gestalt
 import MMUI
 
+// swiftlint:disable line_length
 class TandCViewController: UIViewController {
 
     lazy var textView: UITextView = {

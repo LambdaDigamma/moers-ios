@@ -15,8 +15,6 @@ import MMAPI
 import Fuse
 import MMUI
 
-
-
 public struct CellIdentifier {
     
     static let searchResultCell = "searchResult"
@@ -149,8 +147,8 @@ class ContentViewController: UIViewController {
         
         updatedLocations.observeNext { locations in
             
-            self.locations = locations.sorted(by: { (l1, l2) -> Bool in
-                l1.distance < l2.distance
+            self.locations = locations.sorted(by: { (location1, location2) -> Bool in
+                location1.distance < location2.distance
             })
             
             self.datasource = self.locations
@@ -320,7 +318,7 @@ extension ContentViewController: UISearchBarDelegate {
         
         tableView.reloadData()
         
-        //Answers.logSearch(withQuery: searchBar.text, customAttributes: nil)
+        // Answers.logSearch(withQuery: searchBar.text, customAttributes: nil)
         
     }
     
@@ -519,7 +517,7 @@ extension ContentViewController: TagListViewDelegate {
         
         sender.removeTagView(tagView)
         
-        if sender.tagViews.count == 0 {
+        if sender.tagViews.isEmpty {
             self.headerSectionHeightConstraint.constant = 68.0
             self.displayMode = .list
             self.tableView.reloadData()

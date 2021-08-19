@@ -121,8 +121,6 @@ class CovidComponent: BaseComponent {
         
         let location = locationManager.location
         
-        
-        
         location.observeNext { location in
             print("Location: \(location)")
             self.loadPetrolPrice(for: location)

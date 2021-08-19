@@ -13,6 +13,7 @@ import MapKit
 import MMAPI
 import MMUI
 
+// swiftlint:disable function_body_length
 class EntryOnboardingAddressViewController: UIViewController {
 
     lazy var scrollView = { ViewFactory.scrollView() }()
@@ -26,7 +27,7 @@ class EntryOnboardingAddressViewController: UIViewController {
     lazy var mapView = { ViewFactory.map() }()
     lazy var infoLabel = { ViewFactory.label() }()
     
-    private var coordinate: CLLocationCoordinate2D? = nil
+    private var coordinate: CLLocationCoordinate2D?
     
     private var entryManager: EntryManagerProtocol
     

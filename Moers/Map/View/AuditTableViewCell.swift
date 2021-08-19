@@ -131,7 +131,6 @@ class AuditTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate(constraints)
         
-        
     }
 
     private func setupTheming() {

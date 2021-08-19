@@ -149,4 +149,3 @@ extension CardCollectionViewController: Themeable {
     }
     
 }
-

@@ -14,13 +14,13 @@ public class LFSearchViewController: UIViewController {
     
     public var tableView: UITableView!
     
-    open var delegate: LFSearchViewDelegate?
+    open weak var delegate: LFSearchViewDelegate?
     
     open var dataSource: LFSearchViewDataSource?
     
     open var navigationBarClosure: ((UINavigationBar) -> Void)?
     
-    internal var searchBarOffset: UIOffset{
+    internal var searchBarOffset: UIOffset {
         get {
             return self.searchBar.searchFieldBackgroundPositionAdjustment
         }
@@ -31,8 +31,8 @@ public class LFSearchViewController: UIViewController {
     
     open var searchBarBackgroundColor: UIColor = LFSearchViewDefaults.searchBarColor {
         didSet {
-            if let _ = searchBar, let searchField = searchBar.value(forKey: "searchField") {
-                (searchField as! UITextField).backgroundColor = searchBarBackgroundColor
+            if searchBar != nil, let searchField = searchBar.value(forKey: "searchField") as? UITextField {
+                searchField.backgroundColor = searchBarBackgroundColor
             }
         }
     }
@@ -45,13 +45,13 @@ public class LFSearchViewController: UIViewController {
     
     open var searchBarPlaceHolder: String = "Search" {
         didSet {
-            if let _ = self.searchBar {
+            if self.searchBar != nil {
                 self.searchBar.placeholder = searchBarPlaceHolder
             }
         }
     }
     
-    open var statusBarStyle: UIStatusBarStyle = .default{
+    open var statusBarStyle: UIStatusBarStyle = .default {
         didSet {
             setNeedsStatusBarAppearanceUpdate()
         }
@@ -109,7 +109,11 @@ public class LFSearchViewController: UIViewController {
         
     }
     
-    open func show(in controller: UIViewController, animated: Bool = true, completion: (() -> Void)? = nil){
+    open func show(
+        in controller: UIViewController,
+        animated: Bool = true,
+        completion: (() -> Void)? = nil
+    ) {
         
         let navgation = WrapperNavigationController(rootViewController: self)
         navgation.dataSource = self
@@ -144,7 +148,9 @@ public class LFSearchViewController: UIViewController {
         
         self.searchBar.placeholder = self.searchBarPlaceHolder
         
-        if let searchField = searchBar.value(forKey: "searchField"){(searchField as! UITextField).backgroundColor = self.searchBarBackgroundColor}
+        if let searchField = searchBar.value(forKey: "searchField") as? UITextField {
+            searchField.backgroundColor = self.searchBarBackgroundColor
+        }
         
         self.navigationItem.titleView = self.searchBar
         
@@ -154,8 +160,19 @@ public class LFSearchViewController: UIViewController {
         tap.delegate = self
         self.view.addGestureRecognizer(tap)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(LFSearchViewController.keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(LFSearchViewController.keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LFSearchViewController.keyboardWillShow(notification:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LFSearchViewController.keyboardWillHide(notification:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
         
     }
     
@@ -166,8 +183,7 @@ public class LFSearchViewController: UIViewController {
         
     }
     
-    
-    fileprivate func setup() {
+    private func setup() {
         
         self.modalPresentationStyle = .overCurrentContext
         self.modalTransitionStyle = .crossDissolve
@@ -183,7 +199,7 @@ public class LFSearchViewController: UIViewController {
         
     }
     
-    //MARK: - Selectors
+    // MARK: - Selectors
     
     @objc func didTapBackground(sender: AnyObject?) {
         self.dismiss(animated: true, completion: nil)
@@ -217,7 +233,7 @@ extension LFSearchViewController: UIGestureRecognizerDelegate {
     
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         
-        if (touch.view?.isDescendant(of: self.tableView))!{
+        if let isDescendant = touch.view?.isDescendant(of: self.tableView), isDescendant {
             return false
         }
         
@@ -300,13 +316,13 @@ extension LFSearchViewController: WrapperDataSource {
     
 }
 
-fileprivate protocol WrapperDataSource {
+private protocol WrapperDataSource {
     
     func statusBar() -> UIStatusBarStyle
     
 }
 
-fileprivate class WrapperNavigationController: UINavigationController{
+private class WrapperNavigationController: UINavigationController {
     
     open var dataSource: WrapperDataSource?
     

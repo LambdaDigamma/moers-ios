@@ -45,8 +45,8 @@ class MMEventsViewController: EventsViewController {
             
         } receiveValue: { events in
             
-            self.events = events.map({ e in
-                return EventViewModel<MMEvents.Event>(event: e)
+            self.events = events.map({ event in
+                return EventViewModel<MMEvents.Event>(event: event)
             })
             
             self.rebuildData()

@@ -97,7 +97,6 @@ struct CovidMediumWidget: View {
                             }
                         }.padding()
                         
-                        
                     }
                     
                     .padding()
@@ -107,10 +106,10 @@ struct CovidMediumWidget: View {
                 
             }
             
-            
         }
             
     }
+    
 }
 
 @available(iOS 14.0, *)

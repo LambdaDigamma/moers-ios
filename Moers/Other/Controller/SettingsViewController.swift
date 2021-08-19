@@ -245,8 +245,12 @@ class SettingsViewController: UIViewController {
         sections.append(TableViewSection(title: String.localized("User"),
                                 rows: [NavigationRow(title: String.localized("UserType") + ": " + User.UserType.localizedForCase(userType), action: showUserType)]))
         
-        sections.append(TableViewSection(title: String.localized("Petrol"),
-                                rows: [NavigationRow(title: String.localized("PetrolType") + ": " + PetrolType.localizedForCase(petrolManager.petrolType), action: showPetrolType)]))
+        sections.append(TableViewSection(
+                            title: String.localized("Petrol"),
+                            rows: [
+                                NavigationRow(title: String.localized("PetrolType") + ": " + PetrolType.localizedForCase(petrolManager.petrolType), action: showPetrolType)
+                            ]
+        ))
         
         if UserManager.shared.user.type == .citizen {
             

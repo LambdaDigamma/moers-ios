@@ -52,7 +52,11 @@ class DebugViewController: UIViewController {
             DispatchQueue.main.async {
                 
                 self.notificationItemsTextView.text = "Notifications: \(requests.count)\n\n"
-                self.notificationItemsTextView.text = self.notificationItemsTextView.text + requests.map { $0.identifier.replacingOccurrences(of: "RubbishReminder-", with: "") }.reversed().joined(separator: "\n")
+                self.notificationItemsTextView.text += requests.map {
+                    $0.identifier.replacingOccurrences(of: "RubbishReminder-", with: "")
+                }
+                .reversed()
+                .joined(separator: "\n")
                 
             }
             
@@ -69,7 +73,10 @@ class DebugViewController: UIViewController {
             .observeNext { (items: [RubbishPickupItem]) in
             
             self.rubbishItemsTextView.text = "Collections: \(items.count)\n\n"
-            self.rubbishItemsTextView.text = self.rubbishItemsTextView.text + items.map { $0.date.format(format: "dd.MM.yyyy") + " " + RubbishWasteType.localizedForCase($0.type) }.joined(separator: "\n")
+            self.rubbishItemsTextView.text += items.map {
+                $0.date.format(format: "dd.MM.yyyy") + " " + RubbishWasteType.localizedForCase($0.type)
+            }
+            .joined(separator: "\n")
             
         }.dispose(in: self.bag)
         

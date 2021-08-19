@@ -8,7 +8,6 @@
 
 import UIKit
 import Gestalt
-//import BetterSegmentedControl
 import TextFieldEffects
 
 class LoginViewController: UIViewController {
@@ -44,7 +43,7 @@ class LoginViewController: UIViewController {
 //        label.translatesAutoresizingMaskIntoConstraints = false
 //        label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.regular)
 //        label.textAlignment = .center
-//        label.numberOfLines = 0 // TODO: Add Localization
+//        label.numberOfLines = 0 
 //        label.text = "Werde Teil der Community und bekomme Zugriff auf erweiterte Funktionen!"
 //
 //        return label

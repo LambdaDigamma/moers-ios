@@ -213,7 +213,7 @@ class DetailViewController: UIViewController {
         
         guard let destinationCoordinate = selectedLocation?.location.coordinate else { return }
         
-        locationManager.authorizationStatus.observeNext { authorizationStatus in
+        locationManager.authorizationStatus.observeNext { _ in
             self.setupDistance(to: destinationCoordinate)
         }.dispose(in: bag)
         

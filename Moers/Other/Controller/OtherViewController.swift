@@ -165,7 +165,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                 UIAlertAction(
                     title: String.localized("OtherDataTakeOldDataNo"),
                     style: .cancel,
-                    handler: { action in
+                    handler: { _ in
                         self.entryManager.resetData()
                         
                         let viewController = EntryOnboardingLocationMenuViewController(locationManager: self.locationManager,
@@ -180,7 +180,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                 UIAlertAction(
                     title: String.localized("OtherDataTakeOldDataYes"),
                     style: .default,
-                    handler: { action in
+                    handler: { _ in
                         let viewController = EntryOnboardingLocationMenuViewController(locationManager: self.locationManager,
                                                                                        entryManager: self.entryManager)
                         
@@ -238,9 +238,13 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
             
         } else {
             
-            let alert = UIAlertController(title: "Feedback fehlgeschlagen", message: "Du hast scheinbar keine Email-Accounts auf deinem Gerät eingerichtet.", preferredStyle: .alert)
+            let alert = UIAlertController(
+                title: "Feedback fehlgeschlagen",
+                message: "Du hast scheinbar keine Email-Accounts auf deinem Gerät eingerichtet.",
+                preferredStyle: .alert
+            )
             
-            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
+            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (_) in
                 
                 alert.dismiss(animated: true, completion: nil)
                 
@@ -347,8 +351,6 @@ extension OtherViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 public class OtherTableViewCell: UITableViewCell {
-    
-    
     
 }
 

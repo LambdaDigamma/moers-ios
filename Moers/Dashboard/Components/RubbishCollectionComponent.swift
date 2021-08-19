@@ -39,7 +39,7 @@ class RubbishCollectionComponent: BaseComponent {
         
         self.reloadUI()
         
-        if rubbishItems.count == 0 && RubbishManager.shared.isEnabled {
+        if rubbishItems.isEmpty && RubbishManager.shared.isEnabled {
             self.rubbishCardView.dismissError()
             self.loadRubbishData()
         } else if !RubbishManager.shared.isEnabled {
@@ -136,9 +136,12 @@ class RubbishCollectionComponent: BaseComponent {
             self.rubbishCardView.itemView2.rubbishCollectionItem = rubbishItems[1]
         } else if rubbishItems.count >= 1 {
             self.rubbishCardView.itemView1.rubbishCollectionItem = rubbishItems[0]
-        } else if rubbishItems.count == 0 {
+        } else if rubbishItems.isEmpty {
             self.rubbishCardView.stopLoading()
-            self.rubbishCardView.showError(withTitle: "Warnung", message: "Leider können momentan keine weiteren Abholtermine angezeigt werden, da die Daten für dieses Jahr noch nicht zur Verfügung stehen. Wir arbeiten daran, so schnell wie möglich aktuelle Termine bereitstellen zu können!")
+            self.rubbishCardView.showError(
+                withTitle: "Warnung",
+                message: "Leider können momentan keine weiteren Abholtermine angezeigt werden, da die Daten für dieses Jahr noch nicht zur Verfügung stehen. Wir arbeiten daran, so schnell wie möglich aktuelle Termine bereitstellen zu können!"
+            )
         }
         
     }

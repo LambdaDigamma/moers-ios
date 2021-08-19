@@ -164,7 +164,7 @@ class AveragePetrolPriceComponent: BaseComponent {
                 self.handleReceivedPetrolStations(petrolStations)
             }.dispose(in: bag)
         
-        petrolStations.observeFailed { error in
+        petrolStations.observeFailed { _ in
             // TODO: Add Error Handling
         }.dispose(in: bag)
         

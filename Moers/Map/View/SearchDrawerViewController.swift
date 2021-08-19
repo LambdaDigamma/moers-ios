@@ -90,8 +90,8 @@ class SearchDrawerViewController: UIViewController {
         
         updatedLocations.observeNext { locations in
             
-            self.locations = locations.sorted(by: { (l1, l2) -> Bool in
-                l1.distance < l2.distance
+            self.locations = locations.sorted(by: { (location1, location2) -> Bool in
+                location1.distance < location2.distance
             })
             
             self.datasource = self.locations
@@ -211,7 +211,6 @@ extension SearchDrawerViewController: PulleyDrawerViewControllerDelegate {
     
 }
 
-
 extension SearchDrawerViewController: TagListViewDelegate {
     
     func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
@@ -220,7 +219,7 @@ extension SearchDrawerViewController: TagListViewDelegate {
         
         sender.removeTagView(tagView)
         
-        if sender.tagViews.count == 0 {
+        if sender.tagViews.isEmpty {
             self.searchDrawer.searchWrapperHeight.constant = 68.0
             self.displayMode = .list
             self.searchDrawer.tableView.reloadData()
