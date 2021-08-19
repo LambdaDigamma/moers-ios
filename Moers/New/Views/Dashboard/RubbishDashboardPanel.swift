@@ -25,9 +25,10 @@ extension RubbishDisplayError: LocalizedError {
             case .noUpcomingRubbishItems:
                 return "Leider können momentan keine weiteren Abholtermine angezeigt werden, da die Daten für dieses Jahr noch nicht zur Verfügung stehen. Wir arbeiten daran, so schnell wie möglich aktuelle Termine bereitstellen zu können!"
             case .loadingFailed:
-                return "Das Laden des Abfallkalenders ist konnte nicht abgeschlossen werden."
+                return AppStrings.Waste.loadingFailed
+                
             case .wasteScheduleDeactivated:
-                return String.localized("WasteErrorMessage")
+                return AppStrings.Waste.errorMessage
         }
     }
     
@@ -36,7 +37,7 @@ extension RubbishDisplayError: LocalizedError {
 
 
 @available(iOS 13.0, *)
-struct RubbishDashboardView: View {
+struct RubbishDashboardPanel: View {
     
     var items: UIResource<[RubbishPickupItem]>
     
@@ -68,7 +69,7 @@ struct RubbishDashboardView: View {
                     
                     HStack {
                         Text("DashboardTitleRubbishCollection")
-                            .font(.title)
+                            .font(.title2)
                             .fontWeight(.semibold)
                         Spacer()
                     }
@@ -81,37 +82,18 @@ struct RubbishDashboardView: View {
                             
                             HStack(alignment: .center) {
                                 
-                                switch item.type {
-                                    case .organic:
-                                        Image("greenWaste")
-                                            .resizable()
-                                            .frame(width: 50, height: 50)
-                                    case .residual:
-                                        Image("residualWaste")
-                                            .resizable()
-                                            .frame(width: 50, height: 50)
-                                    case .paper:
-                                        Image("paperWaste")
-                                            .resizable()
-                                            .frame(width: 50, height: 50)
-                                    case .cuttings:
-                                        Image("greenWaste")
-                                            .resizable()
-                                            .frame(width: 50, height: 50)
-                                    case .plastic:
-                                        Image("yellowWaste")
-                                            .resizable()
-                                            .frame(width: 50, height: 50)
-                                }
+                                RubbishTypeIcon(type: item.type)
+                                    .frame(width: 50)
                                 
-                                VStack(alignment: .leading) {
+                                VStack(alignment: .leading, spacing: 4) {
                                     Text(RubbishWasteType.localizedForCase(item.type))
                                         .font(.headline)
                                         .fontWeight(.semibold)
-                                        .padding(.bottom, 4)
-                                    Text(DateFormatter.localizedString(from: item.date,
-                                                                       dateStyle: .full,
-                                                                       timeStyle: .none))
+                                    Text(DateFormatter.localizedString(
+                                            from: item.date,
+                                            dateStyle: .full,
+                                            timeStyle: .none)
+                                    )
                                         .font(.callout)
                                 }
                                 
@@ -145,6 +127,7 @@ struct RubbishDashboardView: View {
                                 Text(error.localizedDescription)
                                     .fontWeight(.semibold)
                                     .font(.callout)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                             }.padding()
                         }
                     }
@@ -158,21 +141,67 @@ struct RubbishDashboardView: View {
     }
 }
 
+public struct RubbishTypeIcon: View {
+    
+    public var type: RubbishWasteType
+    
+    public init(type: RubbishWasteType) {
+        self.type = type
+    }
+    
+    public var body: some View {
+        
+        ZStack {
+            switch type {
+                
+                case .organic:
+                    Image("greenWaste")
+                        .resizable()
+                case .residual:
+                    Image("residualWaste")
+                        .resizable()
+                case .paper:
+                    Image("paperWaste")
+                        .resizable()
+                case .cuttings:
+                    Image("greenWaste")
+                        .resizable()
+                case .plastic:
+                    Image("yellowWaste")
+                        .resizable()
+            }
+        }
+        .aspectRatio(1, contentMode: .fit)
+        
+    }
+    
+}
+
+struct RubbishTypeIcon_Previews: PreviewProvider {
+    static var previews: some View {
+        RubbishTypeIcon(type: .organic)
+            .frame(width: 50)
+            .padding()
+            .previewLayout(.sizeThatFits)
+    }
+}
+
+
 @available(iOS 13.0, *)
 struct PetrolDashboardView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             
-            RubbishDashboardView()
+            RubbishDashboardPanel()
                 .environment(\.locale, .init(identifier: "de"))
                 .previewLayout(.sizeThatFits)
             
-            RubbishDashboardView()
+            RubbishDashboardPanel()
                 .environment(\.locale, .init(identifier: "de"))
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)
             
-            RubbishDashboardView(items: .success([RubbishPickupItem(date: .init(timeIntervalSinceNow: 86400),
+            RubbishDashboardPanel(items: .success([RubbishPickupItem(date: .init(timeIntervalSinceNow: 86400),
                                                                     type: .paper),
                                                   RubbishPickupItem(date: .init(timeIntervalSinceNow: 86400 * 2),
                                                                     type: .organic),
@@ -182,7 +211,7 @@ struct PetrolDashboardView_Previews: PreviewProvider {
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)
             
-            RubbishDashboardView(items: .success([RubbishPickupItem(date: .init(timeIntervalSinceNow: 86400),
+            RubbishDashboardPanel(items: .success([RubbishPickupItem(date: .init(timeIntervalSinceNow: 86400),
                                                                     type: .paper),
                                                   RubbishPickupItem(date: .init(timeIntervalSinceNow: 86400 * 2),
                                                                     type: .organic),
@@ -191,7 +220,7 @@ struct PetrolDashboardView_Previews: PreviewProvider {
                 .environment(\.locale, .init(identifier: "de"))
                 .previewLayout(.sizeThatFits)
             
-            RubbishDashboardView(items: .error(RubbishDisplayError.wasteScheduleDeactivated))
+            RubbishDashboardPanel(items: .error(RubbishDisplayError.wasteScheduleDeactivated))
                 .environment(\.locale, .init(identifier: "de"))
                 .previewLayout(.sizeThatFits)
             

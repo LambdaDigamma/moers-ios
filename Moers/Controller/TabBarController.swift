@@ -35,12 +35,12 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     let eventService: EventServiceProtocol
     
     lazy var onboardingManager: OnboardingManager = {
-       
-        return OnboardingManager(locationManager: locationManager,
-                                 geocodingManager: geocodingManager,
-                                 rubbishManager: rubbishManager,
-                                 petrolManager: petrolManager)
-        
+        return OnboardingManager(
+            locationManager: locationManager,
+            geocodingManager: geocodingManager,
+            rubbishManager: rubbishManager,
+            petrolManager: petrolManager
+        )
     }()
     
     lazy var bulletinManager: BLTNItemManager = {
@@ -384,13 +384,21 @@ extension TabBarController: Themeable {
         UIApplication.shared.statusBarStyle = theme.statusBarStyle
         self.view.backgroundColor = theme.backgroundColor
         self.tabBar.tintColor = theme.accentColor
-        self.tabBar.barTintColor = theme.navigationBarColor
+        self.tabBar.barTintColor = UIColor.black // UIColor.systemBackground //theme.navigationBarColor
         self.bulletinManager.backgroundColor = theme.backgroundColor
         self.bulletinManager.hidesHomeIndicator = false
         self.bulletinManager.edgeSpacing = .compact
         self.rubbishMigrationManager.backgroundColor = theme.backgroundColor
         self.rubbishMigrationManager.hidesHomeIndicator = false
         self.rubbishMigrationManager.edgeSpacing = .compact
+        
+        self.tabBar.barStyle = .black
+        
+        let barAppearance = UIBarAppearance()
+        barAppearance.configureWithDefaultBackground()
+        barAppearance.backgroundColor = UIColor.black
+        
+        self.tabBar.standardAppearance = UITabBarAppearance(barAppearance: barAppearance)
         
         if let viewControllers = self.viewControllers {
             
@@ -400,13 +408,10 @@ extension TabBarController: Themeable {
                 
                 nav.navigationBar.barTintColor = theme.navigationBarColor
                 nav.navigationBar.tintColor = theme.accentColor
-                nav.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
-                nav.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
+                nav.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
+                nav.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
                 nav.navigationBar.isTranslucent = true
-                
-                if #available(iOS 13, *) {
-                    nav.navigationBar.prefersLargeTitles = true
-                }
+                nav.navigationBar.prefersLargeTitles = true
                 
                 if theme.statusBarStyle == .lightContent {
                     self.tabBar.barStyle = .black

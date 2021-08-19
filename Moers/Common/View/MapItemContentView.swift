@@ -33,10 +33,10 @@ extension BasicItemContentView: Themeable {
     func apply(theme: Theme) {
         self.backdropColor = UIColor.clear
         self.highlightBackdropColor = UIColor.clear
-        self.iconColor = theme.decentColor
-        self.textColor = theme.decentColor
-        self.highlightIconColor = theme.accentColor
-        self.highlightTextColor = theme.accentColor
+        self.iconColor = UIColor.secondaryLabel // theme.decentColor
+        self.textColor = UIColor.secondaryLabel // theme.decentColor
+        self.highlightIconColor = UIColor.label // theme.accentColor
+        self.highlightTextColor = UIColor.label // theme.accentColor
     }
     
 }

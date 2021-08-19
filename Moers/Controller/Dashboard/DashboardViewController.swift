@@ -72,6 +72,9 @@ class DashboardViewController: CardCollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.view.backgroundColor = UIColor.systemBackground
+        self.collectionView.backgroundColor = UIColor.systemBackground
+        
         self.triggerUpdate()
         
         AnalyticsManager.shared.logOpenedDashboard()
@@ -164,3 +167,4 @@ class DashboardViewController: CardCollectionViewController {
     }
     
 }
+

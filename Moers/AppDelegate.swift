@@ -37,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         self.resetIfNeeded()
         
+        self.window?.overrideUserInterfaceStyle = .light
+        
 //        let bootstrappingProcedure: BootstrappingProcedure = [
 //            LaunchArgumentsHandler(),
 //            NetworkingConfiguration(),
