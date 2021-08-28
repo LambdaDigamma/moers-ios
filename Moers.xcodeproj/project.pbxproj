@@ -138,6 +138,7 @@
 		DF86ABA32174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF86ABA22174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift */; };
 		DF8861C826CEE35C00C895B4 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8861C726CEE35C00C895B4 /* AppStrings.swift */; };
 		DF8861CB26CEF1F400C895B4 /* RubbishTypeIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8861CA26CEF1F400C895B4 /* RubbishTypeIcon.swift */; };
+		DF8861CD26CEFDA000C895B4 /* AccessibilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8861CC26CEFDA000C895B4 /* AccessibilityIdentifiers.swift */; };
 		DF94B11B23F0A7E5009C57ED /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF94B11923F0A7E5009C57ED /* Interface.storyboard */; };
 		DF94B11D23F0A7E7009C57ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF94B11C23F0A7E7009C57ED /* Assets.xcassets */; };
 		DF94B12423F0A7E8009C57ED /* Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DF94B12323F0A7E7009C57ED /* Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -452,6 +453,7 @@
 		DF86ABA22174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryOnboardingOpeningHoursViewController.swift; sourceTree = "<group>"; };
 		DF8861C726CEE35C00C895B4 /* AppStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
 		DF8861CA26CEF1F400C895B4 /* RubbishTypeIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishTypeIcon.swift; sourceTree = "<group>"; };
+		DF8861CC26CEFDA000C895B4 /* AccessibilityIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifiers.swift; sourceTree = "<group>"; };
 		DF94B11723F0A7E5009C57ED /* Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF94B11A23F0A7E5009C57ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		DF94B11C23F0A7E7009C57ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1022,6 +1024,7 @@
 			isa = PBXGroup;
 			children = (
 				DF8861C726CEE35C00C895B4 /* AppStrings.swift */,
+				DF8861CC26CEFDA000C895B4 /* AccessibilityIdentifiers.swift */,
 				DF5F888C24C64A5B002FC0F5 /* ViewModels */,
 				DF52868024A7C06A00A6939E /* Views */,
 				DF52868D24A7C65F00A6939E /* Colors.xcassets */,
@@ -1632,6 +1635,7 @@
 				DF0CB4AB208357A800CC0AA8 /* MapItemContentView.swift in Sources */,
 				DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */,
 				DF86AB9921729DDD00EFC7EA /* EntryOnboardingAddressViewController.swift in Sources */,
+				DF8861CD26CEFDA000C895B4 /* AccessibilityIdentifiers.swift in Sources */,
 				DF3DEE3B24D6C5AF007954A7 /* LoadingIndicator.swift in Sources */,
 				DFA17DF420DEF9DE00BBD838 /* UIButton+Extensions.swift in Sources */,
 				DF52868424A7C0B600A6939E /* DashboardView.swift in Sources */,
