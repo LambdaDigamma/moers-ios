@@ -16,6 +16,11 @@ or alternatively using `brew install fastlane`
 
 # Available Actions
 ## iOS
+### ios signing
+```
+fastlane ios signing
+```
+Sync signing
 ### ios increment
 ```
 fastlane ios increment
@@ -36,6 +41,11 @@ Run All Unit Tests
 fastlane ios test_ui
 ```
 Run All UI Tests
+### ios build
+```
+fastlane ios build
+```
+Build binary
 ### ios release
 ```
 fastlane ios release
@@ -49,6 +59,6 @@ Take Screenshots and upload them to AppStore Connect
 
 ----
 
-This README.md is auto-generated and will be re-generated every time [fastlane](https://fastlane.tools) is run.
+This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
 More information about fastlane can be found on [fastlane.tools](https://fastlane.tools).
 The documentation of fastlane can be found on [docs.fastlane.tools](https://docs.fastlane.tools).
