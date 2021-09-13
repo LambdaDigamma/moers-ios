@@ -12,6 +12,7 @@ import MMAPI
 import CoreLocation
 import Combine
 import SwiftUI
+import OSLog
 
 class CovidComponent: BaseComponent {
     
@@ -20,6 +21,7 @@ class CovidComponent: BaseComponent {
     private let covidManager: CovidManagerProtocol
     
     private var cancellableBag = Set<AnyCancellable>()
+    private let logger = Logger(.ui)
     
     var locationObject: CoreLocationObject
     
@@ -63,7 +65,6 @@ class CovidComponent: BaseComponent {
             
             self.covidCardView.dismissError()
             self.covidCardView.stopLoading()
-            // TODO: Set something
             
             return
             
@@ -105,8 +106,10 @@ class CovidComponent: BaseComponent {
                     self.covidCardView.isUserInteractionEnabled = true
                     self.loadCurrentLocation()
                 } else {
-                    self.covidCardView.showError(withTitle: "Die App hat keine Erlaubnis, Deinen Standort zu benutzen.",
-                                                         message: "Erlaube dies in den Einstellungen.")
+                    self.covidCardView.showError(
+                        withTitle: "Die App hat keine Erlaubnis, Deinen Standort zu benutzen.",
+                        message: "Erlaube dies in den Einstellungen."
+                    )
                     self.covidCardView.isUserInteractionEnabled = false
                 }
                 
@@ -128,10 +131,13 @@ class CovidComponent: BaseComponent {
         
         location
             .receive(on: DispatchQueue.main)
-            .observeFailed { error in
+            .observeFailed { (error: Error) in
                 // TODO: Show standard price for Moers
-                print(error.localizedDescription)
-                self.covidCardView.showError(withTitle: "Deine Position konnte nicht bestimmt werden.", message: "")
+                self.logger.error("Loading current location failed: \(error.localizedDescription)")
+                self.covidCardView.showError(
+                    withTitle: "Deine Position konnte nicht bestimmt werden.",
+                    message: ""
+                )
             }.dispose(in: bag)
         
     }

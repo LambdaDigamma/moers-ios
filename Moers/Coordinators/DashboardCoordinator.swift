@@ -10,6 +10,7 @@ import UIKit
 import MMUI
 import MMAPI
 import AppScaffold
+import SwiftUI
 
 class DashboardCoordinator: Coordinator {
     
@@ -21,11 +22,13 @@ class DashboardCoordinator: Coordinator {
     
     var dashboardViewController: DashboardViewController?
     
-    init(navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
-         locationManager: LocationManagerProtocol,
-         rubbishManager: RubbishManagerProtocol,
-         geocodingManager: GeocodingManagerProtocol,
-         petrolManager: PetrolManagerProtocol) {
+    init(
+        navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
+        locationManager: LocationManagerProtocol,
+        rubbishManager: RubbishManagerProtocol,
+        geocodingManager: GeocodingManagerProtocol,
+        petrolManager: PetrolManagerProtocol
+    ) {
         
         self.navigationController = navigationController
         self.rubbishManager = rubbishManager
@@ -35,12 +38,17 @@ class DashboardCoordinator: Coordinator {
         
         self.navigationController.coordinator = self
         
-        let dashboardViewController = DashboardViewController(coordinator: self)
+        let dashboard = DashboardView()
+        let hostingController = UIHostingController(rootView: dashboard)
         
-        dashboardViewController.tabBarItem = generateTabBarItem()
+        hostingController.tabBarItem = generateTabBarItem()
+        self.navigationController.viewControllers = [hostingController]
         
-        self.navigationController.viewControllers = [dashboardViewController]
-        self.dashboardViewController = dashboardViewController
+//        let dashboardViewController = DashboardViewController(coordinator: self)
+//        dashboardViewController.tabBarItem = generateTabBarItem()
+//
+//        self.navigationController.viewControllers = [dashboardViewController]
+//        self.dashboardViewController = dashboardViewController
         
     }
     

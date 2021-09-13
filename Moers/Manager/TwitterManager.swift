@@ -21,7 +21,7 @@ struct NewsManager {
     
     private let client = TWTRAPIClient()
     
-    public var delegate: TwitterManagerDelegate?
+    public weak var delegate: TwitterManagerDelegate?
     
     public func getTweets() {
         
@@ -50,7 +50,7 @@ struct NewsManager {
             
             do {
                 
-                let json = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[AnyHashable: Any]>
+                let json = try JSONSerialization.jsonObject(with: data!, options: []) as! [AnyHashable: Any]
                 
                 for jsonTweet in json {
 

@@ -51,11 +51,11 @@ class ItemBounceContentView: BasicItemContentView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func selectAnimation(animated: Bool, completion: (() -> ())?) {
+    override func selectAnimation(animated: Bool, completion: (() -> Void)?) {
         completion?()
     }
     
-    override func reselectAnimation(animated: Bool, completion: (() -> ())?) {
+    override func reselectAnimation(animated: Bool, completion: (() -> Void)?) {
         completion?()
     }
     
@@ -105,15 +105,15 @@ class MapItemContentView: ESTabBarItemContentView {
         })
     }
     
-    public override func reselectAnimation(animated: Bool, completion: (() -> ())?) {
+    public override func reselectAnimation(animated: Bool, completion: (() -> Void)?) {
         completion?()
     }
     
-    public override func deselectAnimation(animated: Bool, completion: (() -> ())?) {
+    public override func deselectAnimation(animated: Bool, completion: (() -> Void)?) {
         completion?()
     }
     
-    public override func highlightAnimation(animated: Bool, completion: (() -> ())?) {
+    public override func highlightAnimation(animated: Bool, completion: (() -> Void)?) {
         
         UIView.animate(withDuration: 0.2) {
             let transform = self.imageView.transform.scaledBy(x: 0.8, y: 0.8)
@@ -126,7 +126,7 @@ class MapItemContentView: ESTabBarItemContentView {
 
     }
     
-    public override func dehighlightAnimation(animated: Bool, completion: (() -> ())?) {
+    public override func dehighlightAnimation(animated: Bool, completion: (() -> Void)?) {
         
         UIView.animate(withDuration: 0.2) {
             let transform = CGAffineTransform.identity
@@ -139,7 +139,7 @@ class MapItemContentView: ESTabBarItemContentView {
         
     }
     
-    private func playMaskAnimation(animateView view: UIView, target: UIView, completion: (() -> ())?) {
+    private func playMaskAnimation(animateView view: UIView, target: UIView, completion: (() -> Void)?) {
 //        view.center = CGPoint.init(x: target.frame.origin.x + target.frame.size.width / 2.0, y: target.frame.origin.y + target.frame.size.height / 2.0)
 //
 //        let scale = POPBasicAnimation(propertyNamed: kPOPLayerScaleXY)

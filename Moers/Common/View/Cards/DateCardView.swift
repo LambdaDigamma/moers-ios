@@ -47,15 +47,17 @@ class DetailsCardView: CardView {
     
     private func setupConstraints() {
         
-        let constraints = [subtitleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-                           subtitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-                           subtitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-                           subtitleLabel.heightAnchor.constraint(equalToConstant: 20),
-                           titleLabel.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 4),
-                           titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-                           titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-                           titleLabel.heightAnchor.constraint(equalToConstant: 26)]
-        
+        let constraints: [NSLayoutConstraint] = [
+            subtitleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            subtitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            subtitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            subtitleLabel.heightAnchor.constraint(equalToConstant: 20),
+            titleLabel.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 4),
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            titleLabel.heightAnchor.constraint(equalToConstant: 26)
+        ]
+
         NSLayoutConstraint.activate(constraints)
         
     }

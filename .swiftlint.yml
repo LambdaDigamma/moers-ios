@@ -47,7 +47,7 @@ nesting:
 # naming rules can set warnings/errors for min_length and max_length
 # additionally they can set excluded names
 type_name:
-  min_length: 4 # only warning
+  min_length: 3 # only warning
   max_length: # warning and error
     warning: 50
     error: 60
@@ -79,4 +79,5 @@ identifier_name:
     - GlobalAPIKey
     - de
     - en
+    - ui
 reporter: "xcode"

@@ -224,10 +224,12 @@ class OnboardingManager {
     
     func makeRubbishStreetPage() -> BLTNPageItem {
         
-        let page = RubbishStreetPickerItem(title: String.localized("RubbishCollectionPageTitle"),
-                                           locationManager: locationManager,
-                                           geocodingManager: geocodingManager,
-                                           rubbishManager: rubbishManager)
+        let page = RubbishStreetPickerItem(
+            title: String.localized("RubbishCollectionPageTitle"),
+            locationManager: locationManager,
+            geocodingManager: geocodingManager,
+            rubbishManager: rubbishManager
+        )
         
         page.appearance = appearance
         page.descriptionText = String.localized("RubbishCollectionPageDescription")

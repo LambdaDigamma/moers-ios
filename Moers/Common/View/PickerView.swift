@@ -26,6 +26,7 @@ import UIKit
 
 // MARK: - Protocols
 
+// swiftlint:disable file_length
 @objc public protocol PickerViewDataSource: AnyObject {
     func pickerViewNumberOfRows(_ pickerView: PickerView) -> Int
     func pickerView(_ pickerView: PickerView, titleForRow row: Int, index: Int) -> String
@@ -72,17 +73,18 @@ open class PickerView: UIView {
         - parameter None: Don't uses any aditional view to highlight the selection, only the label style customization provided by delegate.
     
         - parameter DefaultIndicator: Provide a simple selection indicator on the bottom of the highlighted row with full width and 2pt of height.
-                                  The default color is its superview `tintColor` but you have free access to customize the DefaultIndicator through the `defaultSelectionIndicator` property.
+          The default color is its superview `tintColor` but you have free access to customize the DefaultIndicator through the `defaultSelectionIndicator` property.
     
         - parameter Overlay: Provide a full width and height (the height you provided on delegate) view that overlay the highlighted row.
-                         The default color is its superview `tintColor` and the alpha is set to 0.25, but you have free access to customize it through the `selectionOverlay` property.
-                         Tip: You can set the alpha to 1.0 and background color to .clearColor() and add your custom selection view to make it looks as you want 
-                         (don't forget to properly add the constraints related to `selectionOverlay` to keep your experience with any screen size).
+         The default color is its superview `tintColor` and the alpha is set to 0.25, but you have free access to customize it through the `selectionOverlay` property.
+         Tip: You can set the alpha to 1.0 and background color to .clearColor() and add your custom selection view to make it looks as you want
+         (don't forget to properly add the constraints related to `selectionOverlay` to keep your experience with any screen size).
     
         - parameter Image: Provide a full width and height image view selection indicator (the height you provided on delegate) without any image.
                        You must have a selection indicator as a image and set it to the image view through the `selectionImageView` property.
     */
     
+    /// SelectionStyle Enum.
     @objc public enum SelectionStyle: Int {
         case none, defaultIndicator, overlay, image
     }
@@ -105,15 +107,11 @@ open class PickerView: UIView {
     fileprivate var pickerCellBackgroundColor: UIColor?
     
     var numberOfRowsByDataSource: Int {
-        get {
-            return dataSource?.pickerViewNumberOfRows(self) ?? 0
-        }
+        return dataSource?.pickerViewNumberOfRows(self) ?? 0
     }
     
     var rowHeight: CGFloat {
-        get {
-            return delegate?.pickerViewHeightForRows(self) ?? 0
-        }
+        return delegate?.pickerViewHeightForRows(self) ?? 0
     }
     
     override open var backgroundColor: UIColor? {
@@ -161,9 +159,7 @@ open class PickerView: UIView {
     fileprivate var hasTouchedPickerViewYet = false
     open var currentSelectedRow: Int!
     open var currentSelectedIndex: Int {
-        get {
-            return indexForRow(currentSelectedRow)
-        }
+        return indexForRow(currentSelectedRow)
     }
     
     fileprivate var firstTimeOrientationChanged = true
@@ -385,11 +381,19 @@ open class PickerView: UIView {
     open override func willMove(toWindow newWindow: UIWindow?) {
         super.willMove(toWindow: newWindow)
         
-        if let _ = newWindow {
-            NotificationCenter.default.addObserver(self, selector: #selector(PickerView.adjustCurrentSelectedAfterOrientationChanges),
-                                                            name: UIDevice.orientationDidChangeNotification, object: nil)
+        if newWindow != nil {
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(PickerView.adjustCurrentSelectedAfterOrientationChanges),
+                name: UIDevice.orientationDidChangeNotification,
+                object: nil
+            )
         } else {
-            NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
+            NotificationCenter.default.removeObserver(
+                self,
+                name: UIDevice.orientationDidChangeNotification,
+                object: nil
+            )
         }
     }
     
@@ -489,9 +493,9 @@ open class PickerView: UIView {
         let middleIndex = numberOfRowsByDataSource * middleMultiplier
         let indexForSelectedRow: Int
     
-        if let _ = currentSelectedRow , scrollingStyle == .default && currentSelectedRow == 0 {
+        if currentSelectedRow != nil, scrollingStyle == .default && currentSelectedRow == 0 {
             indexForSelectedRow = 0
-        } else if let _ = currentSelectedRow {
+        } else if currentSelectedRow != nil {
             indexForSelectedRow = middleIndex - (numberOfRowsByDataSource - currentSelectedRow)
         } else {
             let middleRow = Int(ceil(Float(numberOfRowsByDataSource) / 2.0))
@@ -556,9 +560,18 @@ extension PickerView: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let indexOfSelectedRow = visibleIndexOfSelectedRow()
         
-        let pickerViewCell = tableView.dequeueReusableCell(withIdentifier: pickerViewCellIdentifier, for: indexPath) as! SimplePickerTableViewCell
+        let pickerViewCell = tableView.dequeueReusableCell(
+            withIdentifier: pickerViewCellIdentifier,
+            for: indexPath
+        ) as! SimplePickerTableViewCell
         
-        let view = delegate?.pickerView?(self, viewForRow: (indexPath as NSIndexPath).row, index: indexForRow((indexPath as NSIndexPath).row), highlighted: (indexPath as NSIndexPath).row == indexOfSelectedRow, reusingView: pickerViewCell.customView)
+        let view = delegate?.pickerView?(
+            self,
+            viewForRow: (indexPath as NSIndexPath).row,
+            index: indexForRow((indexPath as NSIndexPath).row),
+            highlighted: (indexPath as NSIndexPath).row == indexOfSelectedRow,
+            reusingView: pickerViewCell.customView
+        )
         
         pickerViewCell.selectionStyle = .none
         pickerViewCell.backgroundColor = pickerCellBackgroundColor ?? UIColor.white
@@ -619,14 +632,20 @@ extension PickerView: UIScrollViewDelegate {
         isScrolling = true
     }
     
-    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let partialRow = Float(targetContentOffset.pointee.y / rowHeight) // Get the estimative of what row will be the selected when the scroll animation ends.
+    public func scrollViewWillEndDragging(
+        _ scrollView: UIScrollView,
+        withVelocity velocity: CGPoint,
+        targetContentOffset: UnsafeMutablePointer<CGPoint>
+    ) {
+        // Get the estimative of what row will be the selected when the scroll animation ends.
+        let partialRow = Float(targetContentOffset.pointee.y / rowHeight)
         var roundedRow = Int(lroundf(partialRow)) // Round the estimative to a row
         
         if roundedRow < 0 {
             roundedRow = 0
         } else {
-            targetContentOffset.pointee.y = CGFloat(roundedRow) * rowHeight // Set the targetContentOffset (where the scrolling position will be when the animation ends) to a rounded value.
+            // Set the targetContentOffset (where the scrolling position will be when the animation ends) to a rounded value.
+            targetContentOffset.pointee.y = CGFloat(roundedRow) * rowHeight
         }
         
         // Update the currentSelectedRow and notify the delegate that we have a new selected row.
@@ -653,16 +672,36 @@ extension PickerView: UIScrollViewDelegate {
         if let visibleRows = tableView.indexPathsForVisibleRows {
             for indexPath in visibleRows {
                 if let cellToUnhighlight = tableView.cellForRow(at: indexPath) as? SimplePickerTableViewCell , (indexPath as NSIndexPath).row != roundedRow {
-                    let _ = delegate?.pickerView?(self, viewForRow: (indexPath as NSIndexPath).row, index: indexForRow((indexPath as NSIndexPath).row), highlighted: false, reusingView: cellToUnhighlight.customView)
-                    delegate?.pickerView?(self, styleForLabel: cellToUnhighlight.titleLabel, highlighted: false)
+                    _ = delegate?.pickerView?(
+                        self,
+                        viewForRow: (indexPath as NSIndexPath).row,
+                        index: indexForRow((indexPath as NSIndexPath).row),
+                        highlighted: false,
+                        reusingView: cellToUnhighlight.customView
+                    )
+                    delegate?.pickerView?(
+                        self,
+                        styleForLabel: cellToUnhighlight.titleLabel,
+                        highlighted: false
+                    )
                 }
             }
         }
         
         // Highlight the current selected cell during scroll
         if let cellToHighlight = tableView.cellForRow(at: IndexPath(row: roundedRow, section: 0)) as? SimplePickerTableViewCell {
-            let _ = delegate?.pickerView?(self, viewForRow: roundedRow, index: indexForRow(roundedRow), highlighted: true, reusingView: cellToHighlight.customView)
-            let _ = delegate?.pickerView?(self, styleForLabel: cellToHighlight.titleLabel, highlighted: true)
+            _ = delegate?.pickerView?(
+                self,
+                viewForRow: roundedRow,
+                index: indexForRow(roundedRow),
+                highlighted: true,
+                reusingView: cellToHighlight.customView
+            )
+            _ = delegate?.pickerView?(
+                self,
+                styleForLabel: cellToHighlight.titleLabel,
+                highlighted: true
+            )
         }
     }
     

@@ -25,7 +25,7 @@ class ParkingLotAnnotationView: MKMarkerAnnotationView {
         
         willSet {
             
-            if let _ = newValue as? ParkingLot {
+            if newValue is ParkingLot {
                 
                 clusteringIdentifier = AnnotationIdentifier.cluster
                 collisionMode = .circle

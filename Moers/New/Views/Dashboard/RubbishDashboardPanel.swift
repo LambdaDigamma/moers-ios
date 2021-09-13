@@ -9,57 +9,24 @@
 import SwiftUI
 import MMAPI
 import ModernNetworking
+import Core
 
-enum RubbishDisplayError: Error {
+public struct RubbishDashboardPanel: View {
     
-    case loadingFailed
-    case noUpcomingRubbishItems
-    case wasteScheduleDeactivated
+    public var items: UIResource<[RubbishPickupItem]>
     
-}
-
-extension RubbishDisplayError: LocalizedError {
-    
-    var errorDescription: String? {
-        switch self {
-            case .noUpcomingRubbishItems:
-                return "Leider können momentan keine weiteren Abholtermine angezeigt werden, da die Daten für dieses Jahr noch nicht zur Verfügung stehen. Wir arbeiten daran, so schnell wie möglich aktuelle Termine bereitstellen zu können!"
-            case .loadingFailed:
-                return AppStrings.Waste.loadingFailed
-                
-            case .wasteScheduleDeactivated:
-                return AppStrings.Waste.errorMessage
-        }
-    }
-    
-}
-
-struct RubbishDashboardPanel: View {
-    
-    var items: UIResource<[RubbishPickupItem]>
-    
-    init(items: UIResource<[RubbishPickupItem]> = .loading) {
+    public init(items: UIResource<[RubbishPickupItem]> = .loading) {
         self.items = items
     }
     
-    var body: some View {
+    public var body: some View {
+        
         CardPanelView {
             
             VStack(alignment: .leading, spacing: 0) {
                 
                 items.isLoading {
-                    
-                    HStack {
-                        Spacer()
-                        VStack(spacing: 12) {
-                            LoadingIndicator(style: .medium)
-                            Text("Lädt Abfallkalender...")
-                                .fontWeight(.semibold)
-                                .font(.callout)
-                        }
-                        Spacer()
-                    }.padding()
-                    
+                    loading()
                 }
                 
                 items.hasResource { (items) in
@@ -101,16 +68,7 @@ struct RubbishDashboardPanel: View {
                         
                     } else {
                         
-                        VStack {
-                            HStack(spacing: 12) {
-                                Image(systemName: "calendar.badge.exclamationmark").font(.largeTitle)
-                                Text("There are no other known collection dates.")
-                            }
-                        }
-                        .padding(.top, 8)
-                        .padding(.horizontal)
-                        .padding(.bottom)
-                        
+                        empty()
                         
                     }
                     
@@ -134,52 +92,101 @@ struct RubbishDashboardPanel: View {
             }
             
         }
+        
+    }
+    
+    @ViewBuilder
+    private func loading() -> some View {
+        
+        HStack {
+            Spacer()
+            VStack(spacing: 12) {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+                Text("Lädt Abfallkalender...")
+                    .fontWeight(.semibold)
+                    .font(.callout)
+            }
+            Spacer()
+        }
         .padding()
+        
+    }
+    
+    @ViewBuilder
+    private func empty() -> some View {
+        
+        VStack {
+            HStack(spacing: 12) {
+                Image(systemName: "calendar.badge.exclamationmark")
+                    .font(.largeTitle)
+                Text("There are no other known collection dates.")
+            }
+        }
+        .padding(.top, 8)
+        .padding(.horizontal)
+        .padding(.bottom)
+        
     }
     
 }
 
 struct PetrolDashboardView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        Group {
+        
+        let items = [
+            RubbishPickupItem(
+                date: .init(timeIntervalSinceNow: 86400),
+                type: .paper
+            ),
+            RubbishPickupItem(
+                date: .init(timeIntervalSinceNow: 86400 * 2),
+                type: .organic
+            ),
+            RubbishPickupItem(
+                date: .init(timeIntervalSinceNow: 86400 * 3),
+                type: .plastic
+            )
+        ]
+        
+        return Group {
             
             RubbishDashboardPanel()
                 .environment(\.locale, .init(identifier: "de"))
+                .padding()
                 .previewLayout(.sizeThatFits)
             
             RubbishDashboardPanel()
                 .environment(\.locale, .init(identifier: "de"))
+                .padding()
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)
             
-            RubbishDashboardPanel(items: .success([RubbishPickupItem(date: .init(timeIntervalSinceNow: 86400),
-                                                                    type: .paper),
-                                                  RubbishPickupItem(date: .init(timeIntervalSinceNow: 86400 * 2),
-                                                                    type: .organic),
-                                                  RubbishPickupItem(date: .init(timeIntervalSinceNow: 86400 * 3),
-                                                                    type: .plastic)]))
+            RubbishDashboardPanel(items: .success(items))
                 .environment(\.locale, .init(identifier: "de"))
+                .padding()
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)
             
-            RubbishDashboardPanel(items: .success([RubbishPickupItem(date: .init(timeIntervalSinceNow: 86400),
-                                                                    type: .paper),
-                                                  RubbishPickupItem(date: .init(timeIntervalSinceNow: 86400 * 2),
-                                                                    type: .organic),
-                                                  RubbishPickupItem(date: .init(timeIntervalSinceNow: 86400 * 3),
-                                                                    type: .plastic)]))
+            RubbishDashboardPanel(items: .success([]))
                 .environment(\.locale, .init(identifier: "de"))
+                .padding()
+                .preferredColorScheme(.dark)
+                .previewLayout(.sizeThatFits)
+            
+            RubbishDashboardPanel(items: .success(items))
+                .environment(\.locale, .init(identifier: "de"))
+                .padding()
                 .previewLayout(.sizeThatFits)
             
             RubbishDashboardPanel(items: .error(RubbishDisplayError.wasteScheduleDeactivated))
+                .padding()
                 .environment(\.locale, .init(identifier: "de"))
                 .previewLayout(.sizeThatFits)
             
-//            RubbishDashboardView()
-//                .environment(\.locale, .init(identifier: "de"))
-//                .preferredColorScheme(.dark)
-//                .previewLayout(.sizeThatFits)
-            
         }
+        
     }
+    
 }

@@ -18,11 +18,12 @@ struct OrganisationList: View {
         
         VStack {
             
-            organisationListViewModel.organisations.isLoading() {
+            organisationListViewModel.organisations.isLoading {
                 Group {
                     Spacer()
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
                     Text("Loading...")
-//                    LoadingIndicator(style: .medium)
                     Spacer()
                 }
             }

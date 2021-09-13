@@ -38,33 +38,6 @@ struct AppView: View {
                 }
                 .tag(Tab.news)
                 
-                NavigationView {
-                    MapView()
-                }
-                .tabItem {
-                    Image(systemName: "map")
-                    Text("Map")
-                }
-                .tag(Tab.map)
-                
-                NavigationView {
-                    EventsView()
-                }
-                .tabItem {
-                    Image(systemName: "calendar")
-                    Text("Events")
-                }
-                .tag(Tab.events)
-                
-                NavigationView {
-                    OtherView()
-                }
-                .tabItem {
-                    Image(systemName: "square.fill.text.grid.1x2")
-                    Text("Other")
-                }
-                .tag(Tab.other)
-                
             }
             .background(Color("TabBar"))
             .accentColor(Color("Accent"))

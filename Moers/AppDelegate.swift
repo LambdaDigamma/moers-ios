@@ -159,10 +159,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         FirebaseConfiguration.shared.setLoggerLevel(.warning)
         Analytics.setAnalyticsCollectionEnabled(true)
         FirebaseApp.configure()
-        
-        
         Messaging.messaging().delegate = self
-        
         TWTRTwitter.sharedInstance().start(withConsumerKey: consumerKey, consumerSecret: consumerSecret)
         
     }

@@ -86,8 +86,6 @@ public class RSSLoader: NewsLoader {
                 .eraseToAnyPublisher()
         }
         
-        
-        
     }
     
     private func fetchRSSFeedItems() -> AnyPublisher<[RSSFeedItem], Error> {

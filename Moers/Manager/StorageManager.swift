@@ -11,6 +11,7 @@ import ReactiveKit
 import MMAPI
 import Haneke
 import Combine
+import OSLog
 
 public class StorageManager<D: Codable>: AnyStoragable<D> {
     

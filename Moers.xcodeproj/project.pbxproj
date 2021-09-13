@@ -29,6 +29,7 @@
 		DF199BE021CF9C7000C89966 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF199BDF21CF9C7000C89966 /* NewsItem.swift */; };
 		DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A49621F6AAB7000E9108B /* AppDelegate.swift */; };
 		DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49691F6AAB7000E9108B /* Assets.xcassets */; };
+		DF1A9B9E26ECB12E00D3CAD0 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A9B9D26ECB12E00D3CAD0 /* Logging.swift */; };
 		DF1EC3EE1F78C5040090809A /* CameraAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */; };
 		DF21B2FE20B9D8A900478A33 /* Licenses.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF21B2FD20B9D8A900478A33 /* Licenses.plist */; };
 		DF21B30020BA0DB400478A33 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF21B2FF20BA0DB400478A33 /* SwitchTableViewCell.swift */; };
@@ -51,7 +52,6 @@
 		DF310DA421710887004C69BA /* TagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF310DA321710887004C69BA /* TagTableViewCell.swift */; };
 		DF32ACF32676AABA00B943DB /* MMEvents in Frameworks */ = {isa = PBXBuildFile; productRef = DF32ACF22676AABA00B943DB /* MMEvents */; };
 		DF3C180B254489EF0047C898 /* MMUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF3C180A254489EF0047C898 /* MMUI */; };
-		DF3DEE3B24D6C5AF007954A7 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3DEE3A24D6C5AF007954A7 /* LoadingIndicator.swift */; };
 		DF3EE0C520E382EC00CA9279 /* MapLocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */; };
 		DF409CFC2352453C001A473E /* MMAPI in Frameworks */ = {isa = PBXBuildFile; productRef = DF409CFB2352453C001A473E /* MMAPI */; };
 		DF428E0225F4240E007C686C /* RubbishMediumWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF428E0125F4240E007C686C /* RubbishMediumWidget.swift */; };
@@ -76,9 +76,6 @@
 		DF52868224A7C07300A6939E /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868124A7C07300A6939E /* AppView.swift */; };
 		DF52868424A7C0B600A6939E /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868324A7C0B600A6939E /* DashboardView.swift */; };
 		DF52868624A7C0CC00A6939E /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868524A7C0CC00A6939E /* NewsView.swift */; };
-		DF52868824A7C37C00A6939E /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868724A7C37C00A6939E /* MapView.swift */; };
-		DF52868A24A7C3D300A6939E /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868924A7C3D300A6939E /* EventsView.swift */; };
-		DF52868C24A7C3EF00A6939E /* OtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868B24A7C3EF00A6939E /* OtherView.swift */; };
 		DF52868E24A7C65F00A6939E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF52868D24A7C65F00A6939E /* Colors.xcassets */; };
 		DF52869124A7CE8900A6939E /* RubbishDashboardPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52869024A7CE8900A6939E /* RubbishDashboardPanel.swift */; };
 		DF541389217FCD25007FDEC8 /* EntryValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF541388217FCD25007FDEC8 /* EntryValidationViewController.swift */; };
@@ -136,9 +133,7 @@
 		DF86AB9D217387E700EFC7EA /* OnboardingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF86AB9C217387E700EFC7EA /* OnboardingProgressView.swift */; };
 		DF86ABA12174900400EFC7EA /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF86ABA02174900400EFC7EA /* Intents.framework */; };
 		DF86ABA32174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF86ABA22174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift */; };
-		DF8861C826CEE35C00C895B4 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8861C726CEE35C00C895B4 /* AppStrings.swift */; };
 		DF8861CB26CEF1F400C895B4 /* RubbishTypeIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8861CA26CEF1F400C895B4 /* RubbishTypeIcon.swift */; };
-		DF8861CD26CEFDA000C895B4 /* AccessibilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8861CC26CEFDA000C895B4 /* AccessibilityIdentifiers.swift */; };
 		DF94B11B23F0A7E5009C57ED /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF94B11923F0A7E5009C57ED /* Interface.storyboard */; };
 		DF94B11D23F0A7E7009C57ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF94B11C23F0A7E7009C57ED /* Assets.xcassets */; };
 		DF94B12423F0A7E8009C57ED /* Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DF94B12323F0A7E7009C57ED /* Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -152,6 +147,7 @@
 		DF94B13823F0A7E8009C57ED /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF94B13723F0A7E8009C57ED /* Preview Assets.xcassets */; };
 		DF95197F20C8B6F3001D13DC /* PetrolStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95197E20C8B6F3001D13DC /* PetrolStationViewController.swift */; };
 		DF9605A923BD06A800E24959 /* AuditChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9605A823BD06A800E24959 /* AuditChangeView.swift */; };
+		DF97AD0F26EFEC5F009DFF71 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = DF97AD0E26EFEC5F009DFF71 /* Core */; };
 		DF9A914B2160DA840054A2B8 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9A914A2160DA840054A2B8 /* Environment.swift */; };
 		DFA17DF420DEF9DE00BBD838 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA17DF320DEF9DE00BBD838 /* UIButton+Extensions.swift */; };
 		DFA4BC45263A26180014C7F9 /* ESTabBarController in Frameworks */ = {isa = PBXBuildFile; productRef = DFA4BC44263A26180014C7F9 /* ESTabBarController */; };
@@ -171,8 +167,8 @@
 		DFB92D691F6B96E400669F73 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D681F6B96E400669F73 /* ClusterAnnotationView.swift */; };
 		DFBB9DE3212BF63600038943 /* PetrolStationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBB9DE2212BF63600038943 /* PetrolStationAnnotationView.swift */; };
 		DFC7126921DFC863006D05DB /* ShortcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC7126821DFC863006D05DB /* ShortcutsViewController.swift */; };
+		DFC8507926EFE6E400F9FB39 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC8507826EFE6E400F9FB39 /* AppStrings.swift */; };
 		DFCA005B24A88A5500EACE9F /* CardPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCA005A24A88A5500EACE9F /* CardPanelView.swift */; };
-		DFCA005D24A8B36D00EACE9F /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCA005C24A8B36D00EACE9F /* Sidebar.swift */; };
 		DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431C20E0283000E7AD3F /* NewsViewController.swift */; };
 		DFCB431F20E02D0300E7AD3F /* NewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431E20E02D0300E7AD3F /* NewsManager.swift */; };
 		DFCB432320E038AB00E7AD3F /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB432220E038AB00E7AD3F /* TweetTableViewCell.swift */; };
@@ -334,6 +330,8 @@
 		DF1A49621F6AAB7000E9108B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		DF1A49691F6AAB7000E9108B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF1A496E1F6AAB7000E9108B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DF1A9B9D26ECB12E00D3CAD0 /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
+		DF1A9B9F26ECB2A600D3CAD0 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		DF1EC3ED1F78C5040090809A /* CameraAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnnotationView.swift; sourceTree = "<group>"; };
 		DF21B2FD20B9D8A900478A33 /* Licenses.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Licenses.plist; path = Moers/Assets/Licenses.plist; sourceTree = SOURCE_ROOT; };
 		DF21B2FF20BA0DB400478A33 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwitchTableViewCell.swift; path = ../../View/UITableViewCells/SwitchTableViewCell.swift; sourceTree = "<group>"; };
@@ -357,7 +355,6 @@
 		DF310D9E216FF2AE004C69BA /* DetailEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEntryViewController.swift; sourceTree = "<group>"; };
 		DF310DA321710887004C69BA /* TagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TagTableViewCell.swift; path = ../../View/UITableViewCells/TagTableViewCell.swift; sourceTree = "<group>"; };
 		DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchArgumentsHandler.swift; sourceTree = "<group>"; };
-		DF3DEE3A24D6C5AF007954A7 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapLocationPickerViewController.swift; path = ../../../Controller/Community/MapLocationPickerViewController.swift; sourceTree = "<group>"; };
 		DF428E0125F4240E007C686C /* RubbishMediumWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishMediumWidget.swift; sourceTree = "<group>"; };
 		DF44D58C2125FE9700F8AC0C /* ContentDrawer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContentDrawer.storyboard; sourceTree = "<group>"; };
@@ -380,9 +377,6 @@
 		DF52868124A7C07300A6939E /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		DF52868324A7C0B600A6939E /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		DF52868524A7C0CC00A6939E /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
-		DF52868724A7C37C00A6939E /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		DF52868924A7C3D300A6939E /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
-		DF52868B24A7C3EF00A6939E /* OtherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherView.swift; sourceTree = "<group>"; };
 		DF52868D24A7C65F00A6939E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		DF52869024A7CE8900A6939E /* RubbishDashboardPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishDashboardPanel.swift; sourceTree = "<group>"; };
 		DF541388217FCD25007FDEC8 /* EntryValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryValidationViewController.swift; sourceTree = "<group>"; };
@@ -451,9 +445,7 @@
 		DF86AB9C217387E700EFC7EA /* OnboardingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingProgressView.swift; sourceTree = "<group>"; };
 		DF86ABA02174900400EFC7EA /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		DF86ABA22174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryOnboardingOpeningHoursViewController.swift; sourceTree = "<group>"; };
-		DF8861C726CEE35C00C895B4 /* AppStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
 		DF8861CA26CEF1F400C895B4 /* RubbishTypeIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishTypeIcon.swift; sourceTree = "<group>"; };
-		DF8861CC26CEFDA000C895B4 /* AccessibilityIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifiers.swift; sourceTree = "<group>"; };
 		DF94B11723F0A7E5009C57ED /* Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF94B11A23F0A7E5009C57ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		DF94B11C23F0A7E7009C57ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -494,8 +486,9 @@
 		DFB92D681F6B96E400669F73 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
 		DFBB9DE2212BF63600038943 /* PetrolStationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolStationAnnotationView.swift; sourceTree = "<group>"; };
 		DFC7126821DFC863006D05DB /* ShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsViewController.swift; sourceTree = "<group>"; };
+		DFC8507726EFE62400F9FB39 /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Core; sourceTree = "<group>"; };
+		DFC8507826EFE6E400F9FB39 /* AppStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
 		DFCA005A24A88A5500EACE9F /* CardPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPanelView.swift; sourceTree = "<group>"; };
-		DFCA005C24A8B36D00EACE9F /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		DFCB431C20E0283000E7AD3F /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewsViewController.swift; path = ../../Controller/News/NewsViewController.swift; sourceTree = "<group>"; };
 		DFCB431E20E02D0300E7AD3F /* NewsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsManager.swift; sourceTree = "<group>"; };
 		DFCB432020E0344700E7AD3F /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Carthage/Build/iOS/TwitterKit.framework; sourceTree = "<group>"; };
@@ -561,6 +554,7 @@
 				DFE1ED6B2538C24800FDD44A /* BLTNBoard in Frameworks */,
 				DFE6254C2545955D005FAC1C /* FIRAnalyticsConnector.framework in Frameworks */,
 				DF516161254603220094DEEB /* Charts in Frameworks */,
+				DF97AD0F26EFEC5F009DFF71 /* Core in Frameworks */,
 				DFDE88712545834B00429765 /* EventBus in Frameworks */,
 				DFE6253825459553005FAC1C /* FirebaseMessaging.xcframework in Frameworks */,
 				DFCE12952538F7F600B45EB7 /* FeedKit in Frameworks */,
@@ -636,6 +630,7 @@
 				DF2D6DA620B8983400176614 /* UserManager.swift */,
 				DF2D6DAA20B8A02B00176614 /* OnboardingManager.swift */,
 				DFCB431E20E02D0300E7AD3F /* NewsManager.swift */,
+				DF1A9B9D26ECB12E00D3CAD0 /* Logging.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -863,6 +858,8 @@
 		DF1A49561F6AAB7000E9108B = {
 			isa = PBXGroup;
 			children = (
+				DF1A9B9F26ECB2A600D3CAD0 /* .swiftlint.yml */,
+				DFC8507726EFE62400F9FB39 /* Core */,
 				DFF654E52677C60B0026FBCF /* mmevents-ios */,
 				DF5E1B6726726E43005FADA4 /* NewsWidgets */,
 				DF21FA9724C63F66001C278D /* ModernNetworking */,
@@ -1023,8 +1020,7 @@
 		DF52867F24A7C06600A6939E /* New */ = {
 			isa = PBXGroup;
 			children = (
-				DF8861C726CEE35C00C895B4 /* AppStrings.swift */,
-				DF8861CC26CEFDA000C895B4 /* AccessibilityIdentifiers.swift */,
+				DFC8507826EFE6E400F9FB39 /* AppStrings.swift */,
 				DF5F888C24C64A5B002FC0F5 /* ViewModels */,
 				DF52868024A7C06A00A6939E /* Views */,
 				DF52868D24A7C65F00A6939E /* Colors.xcassets */,
@@ -1039,10 +1035,6 @@
 				DFCA005924A88A4600EACE9F /* Common */,
 				DF52868F24A7CE7400A6939E /* Dashboard */,
 				DF52868524A7C0CC00A6939E /* NewsView.swift */,
-				DF52868724A7C37C00A6939E /* MapView.swift */,
-				DF52868924A7C3D300A6939E /* EventsView.swift */,
-				DF52868B24A7C3EF00A6939E /* OtherView.swift */,
-				DFCA005C24A8B36D00EACE9F /* Sidebar.swift */,
 				DF0EACA124C6491A009BE489 /* OrganisationList.swift */,
 			);
 			path = Views;
@@ -1250,7 +1242,6 @@
 			isa = PBXGroup;
 			children = (
 				DFCA005A24A88A5500EACE9F /* CardPanelView.swift */,
-				DF3DEE3A24D6C5AF007954A7 /* LoadingIndicator.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1308,6 +1299,7 @@
 				DFA4BC44263A26180014C7F9 /* ESTabBarController */,
 				DFA4BC47263A28530014C7F9 /* TagListView */,
 				DF32ACF22676AABA00B943DB /* MMEvents */,
+				DF97AD0E26EFEC5F009DFF71 /* Core */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1616,10 +1608,7 @@
 				DF5E1B5B26726AF7005FADA4 /* Widgets.intentdefinition in Sources */,
 				DF75734521771D6800953DA1 /* LFSearchViewDataSource.swift in Sources */,
 				DF0CB4A12082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift in Sources */,
-				DF52868C24A7C3EF00A6939E /* OtherView.swift in Sources */,
-				DF52868824A7C37C00A6939E /* MapView.swift in Sources */,
 				DFDE883F25457CA600429765 /* Constants.swift in Sources */,
-				DF8861C826CEE35C00C895B4 /* AppStrings.swift in Sources */,
 				DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */,
 				DF541389217FCD25007FDEC8 /* EntryValidationViewController.swift in Sources */,
 				DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */,
@@ -1635,8 +1624,6 @@
 				DF0CB4AB208357A800CC0AA8 /* MapItemContentView.swift in Sources */,
 				DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */,
 				DF86AB9921729DDD00EFC7EA /* EntryOnboardingAddressViewController.swift in Sources */,
-				DF8861CD26CEFDA000C895B4 /* AccessibilityIdentifiers.swift in Sources */,
-				DF3DEE3B24D6C5AF007954A7 /* LoadingIndicator.swift in Sources */,
 				DFA17DF420DEF9DE00BBD838 /* UIButton+Extensions.swift in Sources */,
 				DF52868424A7C0B600A6939E /* DashboardView.swift in Sources */,
 				DFB0325D23F34A6A00A8326E /* StorageManager.swift in Sources */,
@@ -1663,6 +1650,7 @@
 				DF61DCCD212ECD850093915F /* DetailPetrolStationViewController.swift in Sources */,
 				DFD890872124860A006B5610 /* TandCViewController.swift in Sources */,
 				DFDD3F7420B2F30A005602E3 /* AboutViewController.swift in Sources */,
+				DF1A9B9E26ECB12E00D3CAD0 /* Logging.swift in Sources */,
 				DF0CB49D2082B78C00CC0AA8 /* PermissionsManager.swift in Sources */,
 				DF1207D223C14B97003285C1 /* TextFieldFormView.swift in Sources */,
 				DFD73690211E424E00826C47 /* SelectorBulletinPage.swift in Sources */,
@@ -1686,6 +1674,7 @@
 				DF310DA421710887004C69BA /* TagTableViewCell.swift in Sources */,
 				DFAC73FA2545A0F9005827B6 /* CovidComponent.swift in Sources */,
 				DFF8F0B723CD8EC60066220D /* EventCoordinator.swift in Sources */,
+				DFC8507926EFE6E400F9FB39 /* AppStrings.swift in Sources */,
 				DFF8F0B923CD93E80066220D /* OtherCoordinator.swift in Sources */,
 				DF284F0E23F54C6900EC999B /* AccessibleBulletinItem.swift in Sources */,
 				DFB4D76720B03B9000C8D179 /* OtherViewController.swift in Sources */,
@@ -1695,7 +1684,6 @@
 				DF86ABA32174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift in Sources */,
 				DF8269272545BEEA0025C835 /* DashboardCovidCardView.swift in Sources */,
 				DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */,
-				DFCA005D24A8B36D00EACE9F /* Sidebar.swift in Sources */,
 				DF86AB9D217387E700EFC7EA /* OnboardingProgressView.swift in Sources */,
 				DFD7ACB420A6BCA000D49BE2 /* DashboardRubbishCardView.swift in Sources */,
 				DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */,
@@ -1733,7 +1721,6 @@
 				DF9A914B2160DA840054A2B8 /* Environment.swift in Sources */,
 				DF52869124A7CE8900A6939E /* RubbishDashboardPanel.swift in Sources */,
 				DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */,
-				DF52868A24A7C3D300A6939E /* EventsView.swift in Sources */,
 				DF8861CB26CEF1F400C895B4 /* RubbishTypeIcon.swift in Sources */,
 				DFA9EF0A20B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift in Sources */,
 				DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */,
@@ -4972,6 +4959,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DF7BD96324841FB60062505B /* XCRemoteSwiftPackageReference "ChartView" */;
 			productName = SwiftUICharts;
+		};
+		DF97AD0E26EFEC5F009DFF71 /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
 		};
 		DFA4BC44263A26180014C7F9 /* ESTabBarController */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -12,6 +12,7 @@ import Gestalt
 import CoreLocation
 import MMAPI
 import MMUI
+import OSLog
 
 class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataSource {
 
@@ -22,6 +23,8 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     private var streets: [RubbishCollectionStreet] = []
     private var accentColor = UIColor.clear
     private var decentColor = UIColor.clear
+    
+    private let logger = Logger(.ui)
     
     private lazy var picker = PickerView()
     
@@ -58,19 +61,23 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
         
         let streets = rubbishManager.loadRubbishCollectionStreets()
         
-        streets.receive(on: DispatchQueue.main)
+        streets
+            .receive(on: DispatchQueue.main)
             .observeNext { (streets: [RubbishCollectionStreet]) in
             
-            self.streets = streets
-            self.picker.reloadPickerView()
-            
-            self.loadUserLocationForStreetEstimation()
-            
-        }.dispose(in: self.bag)
+                self.streets = streets
+                self.picker.reloadPickerView()
+                
+                self.loadUserLocationForStreetEstimation()
+                
+            }
+            .dispose(in: self.bag)
         
-        streets.observeFailed { (error: Error) in
-            print("Loading Rubbish Collection Streets Failed: \(error.localizedDescription)")
-        }.dispose(in: bag)
+        streets
+            .observeFailed { [weak self] (error: Error) in
+                self?.logger.error("Loading rubbish collection streets failed: \(error.localizedDescription)")
+            }
+            .dispose(in: bag)
         
     }
     

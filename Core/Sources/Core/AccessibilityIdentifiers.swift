@@ -11,7 +11,7 @@ import Foundation
 public enum AccessibilityIdentifiers {
     
     public enum Dashboard {
-        
+        public static let dashboardList = "Dashboard.dashboardList"
     }
     
 }

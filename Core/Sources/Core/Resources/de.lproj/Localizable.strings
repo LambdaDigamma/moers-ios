@@ -1,0 +1,6 @@
+"AppName" = "Mein Moers";
+
+"Waste.errorTitle" = "Abfallkalender deaktiviert";
+"Waste.errorMessage" = "Du kannst den Abfallkalender in den Einstellungen aktivieren.";
+"Waste.loadingFailed" = "Das Laden des Abfallkalenders konnte nicht abgeschlossen werden.";
+"Waste.noUpcomingRubbishItems" = "Das Laden des Abfallkalenders konnte nicht abgeschlossen werden.";

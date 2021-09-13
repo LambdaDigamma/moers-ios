@@ -151,9 +151,9 @@ extension UIView {
 
 extension PetrolType: MMCommon.Localizable {
     
-    public static func localizedForCase(_ c: PetrolType) -> String {
+    public static func localizedForCase(_ type: PetrolType) -> String {
         
-        switch c {
+        switch type {
             case .diesel: return String.localized("Diesel") // TODO: Check this localization, this should be moved
             case .e10: return String.localized("E5")
             case .e5: return String.localized("E10")

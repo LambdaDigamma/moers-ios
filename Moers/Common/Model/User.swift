@@ -21,10 +21,10 @@ struct User {
         case citizen = "citizen"
         case tourist = "tourist"
         
-        static func localizedForCase(_ c: User.UserType) -> String {
-            switch c {
-            case .citizen: return String.localized("Citizen")
-            case .tourist: return String.localized("Tourist")
+        static func localizedForCase(_ type: User.UserType) -> String {
+            switch type {
+                case .citizen: return String.localized("Citizen")
+                case .tourist: return String.localized("Tourist")
             }
         }
         

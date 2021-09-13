@@ -386,7 +386,10 @@ extension SearchDrawerViewController: UITableViewDataSource, UITableViewDelegate
             
             if indexPath.row < numberOfTags {
             
-                let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.tagCell, for: indexPath) as! TagTableViewCell
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: CellIdentifier.tagCell,
+                    for: indexPath
+                ) as! TagTableViewCell
                 
                 cell.titleLabel.attributedText = tags[indexPath.row]
                 
@@ -394,7 +397,10 @@ extension SearchDrawerViewController: UITableViewDataSource, UITableViewDelegate
                 
             } else {
                 
-                let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: CellIdentifier.searchResultCell,
+                    for: indexPath
+                ) as! SearchResultTableViewCell
                 
                 return setupSearchResultCell(cell, items[indexPath.row - numberOfTags])
                 

@@ -10,7 +10,7 @@ import Foundation
 import TwitterKit
 import FeedKit
 
-protocol NewsManagerDelegate {
+protocol NewsManagerDelegate: AnyObject {
     
     func receivedTweets(tweets: [TWTRTweet])
     
@@ -22,17 +22,22 @@ struct NewsManager {
     
     private let client = TWTRAPIClient()
     
-    public var delegate: NewsManagerDelegate? = nil
+    public weak var delegate: NewsManagerDelegate?
     
     public func getTweets() {
         
         var clientError: NSError?
         let params: [String: String] = [:]
-        let request = client.urlRequest(withMethod: "GET", urlString: "https://api.twitter.com/1.1/lists/statuses.json?slug=MeinMoers&owner_screen_name=LambdaDigamma&include_rts=false&count=100", parameters: params, error: &clientError)
+        let request = client.urlRequest(
+            withMethod: "GET",
+            urlString: "https://api.twitter.com/1.1/lists/statuses.json?slug=MeinMoers&owner_screen_name=LambdaDigamma&include_rts=false&count=100",
+            parameters: params,
+            error: &clientError
+        )
         
         var tweets: [TWTRTweet] = []
         
-        client.sendTwitterRequest(request) { (response, data, error) in
+        client.sendTwitterRequest(request) { (_, data, error) in
             
             if let error = error {
                 

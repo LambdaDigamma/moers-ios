@@ -10,28 +10,15 @@ import SwiftUI
 import MMAPI
 import ModernNetworking
 
-
 public struct DashboardView: View {
     
     public var body: some View {
-        
-//        List {
-//            Text("Test")
-//        }
-//        .listStyle(InsetGroupedListStyle())
-        
         
         ScrollView {
             
             LazyVStack {
                 
                 RubbishPanel()
-                
-//                Text("Placeholder")
-//                    .padding()
-////                    .background(Color.systemGroupedBackground)
-//                    .background(Color.secondarySystemGroupedBackground)
-////                    .background(Color.systemGroupedBackground)
                 
             }
             .padding()
@@ -41,23 +28,6 @@ public struct DashboardView: View {
         
     }
     
-//    init(rubbishItems: [RubbishPickupItem] = []) {
-//        self.rubbishItems = Array(rubbishItems.prefix(3))
-//    }
-//
-//    var rubbishItems: [RubbishPickupItem] = []
-//
-//    var body: some View {
-//        ScrollView {
-//
-//            RubbishDashboardView(items: .success([RubbishPickupItem(date: .somedayInFuture, type: .paper)]))
-//
-//        }
-//        .background(Color("Background"))
-//        .accentColor(Color("Accent"))
-//        .navigationBarTitle(Text("DashboardTabItem"), displayMode: .automatic)
-//        .navigationViewStyle(StackNavigationViewStyle())
-//    }
 }
 
 var schedule: [RubbishPickupItem] = [
@@ -70,18 +40,15 @@ public struct RubbishPanel: View {
     
     public var body: some View {
         
-        VStack {
-            Text("Test")
+        ScrollView {
+            
+            LazyVStack {
+
+                RubbishDashboardPanel(items: .success(schedule))
+                
+            }
+            
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
-        .background(Color.secondarySystemGroupedBackground)
-        .cornerRadius(20)
-        
-    }
-    
-    @ViewBuilder
-    public func rubbishRow() -> some View {
         
     }
     
@@ -90,20 +57,13 @@ public struct RubbishPanel: View {
 @available(iOS 13.0, *)
 struct DashboardView_Previews: PreviewProvider {
     
-    
-    
     static var previews: some View {
         Group {
             NavigationView {
                 DashboardView()
-//                DashboardView(rubbishItems: schedule)
             }
             .environment(\.locale, .init(identifier: "de"))
-//            NavigationView {
-//                DashboardView(rubbishItems: schedule)
-//            }
-//            .environment(\.colorScheme, .dark)
         }
-        
     }
+    
 }

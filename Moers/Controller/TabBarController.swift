@@ -53,14 +53,16 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         return BLTNItemManager(rootItem: page)
     }()
     
-    init(locationManager: LocationManagerProtocol,
-         petrolManager: PetrolManagerProtocol,
-         rubbishManager: RubbishManagerProtocol,
-         geocodingManager: GeocodingManagerProtocol,
-         cameraManager: CameraManagerProtocol,
-         entryManager: EntryManagerProtocol,
-         parkingLotManager: ParkingLotManagerProtocol,
-         eventService: EventServiceProtocol) {
+    init(
+        locationManager: LocationManagerProtocol,
+        petrolManager: PetrolManagerProtocol,
+        rubbishManager: RubbishManagerProtocol,
+        geocodingManager: GeocodingManagerProtocol,
+        cameraManager: CameraManagerProtocol,
+        entryManager: EntryManagerProtocol,
+        parkingLotManager: ParkingLotManagerProtocol,
+        eventService: EventServiceProtocol
+    ) {
         
         self.firstLaunch = FirstLaunch(userDefaults: .standard, key: Constants.firstLaunch)
         self.locationManager = locationManager

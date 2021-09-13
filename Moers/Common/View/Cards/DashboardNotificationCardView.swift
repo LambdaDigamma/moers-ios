@@ -79,15 +79,17 @@ class DashboardNotificationCardView: CardView {
     
     private func setupConstraints() {
         
-        let constraints = [imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-                           imageView.heightAnchor.constraint(equalToConstant: 50),
-                           titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-                           titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
-                           titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-                           subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-                           subtitleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
-                           subtitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-                           subtitleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)]
+        let constraints: [NSLayoutConstraint] = [
+            imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            imageView.heightAnchor.constraint(equalToConstant: 50),
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+            subtitleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
+            subtitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            subtitleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         

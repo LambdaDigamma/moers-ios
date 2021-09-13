@@ -13,7 +13,7 @@ import Charts
 struct CovidMediumWidget: View {
     
     var data = [
-        1, 1, 1, 0.84, 0.9
+        1, 1.2, 1, 0.84, 0.9
     ]
     
     var body: some View {
