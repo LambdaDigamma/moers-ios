@@ -46,13 +46,15 @@ class SwitchTableViewCell: UITableViewCell {
         
         let margins = contentView.layoutMarginsGuide
         
-        let constraints = [descriptionLabel.topAnchor.constraint(equalTo: margins.topAnchor),
-                           descriptionLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-                           descriptionLabel.trailingAnchor.constraint(equalTo: switchControl.leadingAnchor, constant: -8),
-                           descriptionLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
-                           switchControl.topAnchor.constraint(equalTo: margins.topAnchor),
-                           switchControl.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-                           switchControl.bottomAnchor.constraint(equalTo: margins.bottomAnchor)]
+        let constraints: [NSLayoutConstraint] = [
+            descriptionLabel.topAnchor.constraint(equalTo: margins.topAnchor),
+            descriptionLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: switchControl.leadingAnchor, constant: -8),
+            descriptionLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
+            switchControl.topAnchor.constraint(equalTo: margins.topAnchor),
+            switchControl.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            switchControl.bottomAnchor.constraint(equalTo: margins.bottomAnchor)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         
@@ -75,7 +77,7 @@ extension SwitchTableViewCell: Themeable {
     typealias Theme = ApplicationTheme
     
     func apply(theme: Theme) {
-        self.backgroundColor = theme.backgroundColor
+        self.backgroundColor = UIColor.systemBackground // theme.backgroundColor
         self.descriptionLabel.textColor = theme.color
     }
     

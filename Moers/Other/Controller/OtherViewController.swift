@@ -87,12 +87,14 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
     }()
     
-    init(locationManager: LocationManagerProtocol,
-         geocodingManager: GeocodingManagerProtocol,
-         rubbishManager: RubbishManagerProtocol,
-         petrolManager: PetrolManagerProtocol,
-         entryManager: EntryManagerProtocol) {
-        
+    init(
+        locationManager: LocationManagerProtocol,
+        geocodingManager: GeocodingManagerProtocol,
+        rubbishManager: RubbishManagerProtocol,
+        petrolManager: PetrolManagerProtocol,
+        entryManager: EntryManagerProtocol
+    ) {
+    
         self.locationManager = locationManager
         self.geocodingManager = geocodingManager
         self.rubbishManager = rubbishManager
@@ -132,10 +134,12 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     private func setupConstraints() {
         
-        let constraints = [tableView.topAnchor.constraint(equalTo: self.safeTopAnchor),
-                           tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                           tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                           tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)]
+        let constraints: [NSLayoutConstraint] = [
+            tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         
@@ -360,9 +364,9 @@ extension OtherViewController: Themeable {
     
     func apply(theme: Theme) {
         self.textColor = theme.color
-        self.backgroundColor = theme.backgroundColor
-        self.tableView.backgroundColor = theme.backgroundColor
-        self.tableView.separatorColor = theme.separatorColor
+        self.backgroundColor = UIColor.systemBackground // theme.backgroundColor
+        self.tableView.backgroundColor = UIColor.systemBackground // theme.backgroundColor
+        self.tableView.separatorColor = UIColor.separator // theme.separatorColor
     }
     
 }
@@ -372,7 +376,7 @@ extension OtherTableViewCell: Themeable {
     public typealias Theme = ApplicationTheme
     
     public func apply(theme: Theme) {
-        self.backgroundColor = theme.backgroundColor
+        self.backgroundColor = UIColor.systemBackground // theme.backgroundColor
         self.textLabel?.textColor = theme.color
     }
     

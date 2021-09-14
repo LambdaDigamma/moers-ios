@@ -9,7 +9,7 @@ import Foundation
 
 extension String {
     
-    public static func localized(_ key: String) -> String {
+    internal static func localized(_ key: String) -> String {
         return NSLocalizedString(key, tableName: nil, bundle: .module, value: "", comment: "")
     }
     

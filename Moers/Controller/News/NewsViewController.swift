@@ -252,8 +252,8 @@ extension NewsViewController: Themeable {
     
     func apply(theme: Theme) {
         
-        self.view.backgroundColor = theme.backgroundColor
-        self.collectionView.backgroundColor = theme.backgroundColor
+        self.view.backgroundColor = UIColor.systemBackground // theme.backgroundColor
+        self.collectionView.backgroundColor = UIColor.systemBackground // theme.backgroundColor
         
         self.reloadData()
         
