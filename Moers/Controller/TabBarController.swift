@@ -9,12 +9,11 @@
 import UIKit
 import BLTNBoard
 import Gestalt
-import ESTabBarController
 import MMAPI
 import MMUI
 import MMEvents
 
-class TabBarController: ESTabBarController, UITabBarControllerDelegate {
+class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
     var firstLaunch: FirstLaunch
     
@@ -128,24 +127,27 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         self.loadCurrentLocation()
         
-        let tabControllerFactory = TabControllerFactory()
-        
-        let newsTab = tabControllerFactory.buildTabItem(
-            using: ItemBounceContentView(),
+        let configuration = UIImage.SymbolConfiguration(scale: .large)
+        let tabItem = UITabBarItem(
             title: String.localized("NewsTitle"),
-            image: #imageLiteral(resourceName: "news"),
-            accessibilityLabel: String.localized("NewsTitle"),
-            accessibilityIdentifier: "TabNews")
+            image: UIImage(systemName: "newspaper", withConfiguration: configuration),
+            selectedImage: UIImage(systemName: "newspaper.fill")
+        )
         
-        let news = tabControllerFactory.buildNavigationController(
+        tabItem.accessibilityIdentifier = "TabNews"
+        
+        let news = TabControllerFactory().buildNavigationController(
             using: newsViewController,
-            tabItem: newsTab)
+            tabItem: tabItem
+        )
         
-        self.viewControllers = [dashboard.navigationController,
-                                news,
-                                map.navigationController,
-                                events.navigationController,
-                                other.navigationController]
+        self.viewControllers = [
+            dashboard.navigationController,
+            news,
+            map.navigationController,
+            events.navigationController,
+            other.navigationController
+        ]
         
     }
 
@@ -164,51 +166,6 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         if (firstLaunch.isFirstLaunch || !onboardingManager.userDidCompleteSetup) && !isSnapshotting() {
             showBulletin()
-        }
-        
-    }
-    
-    // MARK: - UITabBarDelegate
-    
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        super.tabBar(tabBar, didSelect: item)
-        
-        if let item = item as? ESTabBarItem {
-            
-            if item.contentView is MapItemContentView {
-                
-                item.image = #imageLiteral(resourceName: "search")
-                item.selectedImage = #imageLiteral(resourceName: "search")
-                item.accessibilityIdentifier = "TabMapSearch"
-                item.accessibilityLabel = String.localized("SearchMap")
-                
-                item.contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(search)))
-                
-                self.shouldHijackHandler = { _, _, index in
-                    
-                    return index == 2
-                    
-                }
-                
-                self.didHijackHandler = { _, _, _ in
-                    
-                    self.search()
-                    
-                }
-                
-            } else {
-                
-                self.shouldHijackHandler = nil
-                
-                guard let item = viewControllers?[2].tabBarItem else { return }
-                
-                item.image = #imageLiteral(resourceName: "map_marker")
-                item.selectedImage = #imageLiteral(resourceName: "map_marker")
-                item.accessibilityLabel = String.localized("MapTabItem")
-                item.accessibilityIdentifier = "TabMap"
-                
-            }
-            
         }
         
     }
@@ -401,6 +358,10 @@ extension TabBarController: Themeable {
         barAppearance.backgroundColor = UIColor.black
         
         self.tabBar.standardAppearance = UITabBarAppearance(barAppearance: barAppearance)
+        
+        if #available(iOS 15.0, *) {
+            self.tabBar.scrollEdgeAppearance = UITabBarAppearance(barAppearance: barAppearance)
+        }
         
         if let viewControllers = self.viewControllers {
             

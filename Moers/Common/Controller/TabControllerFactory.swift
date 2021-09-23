@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ESTabBarController
 
 struct TabControllerFactory {
     
@@ -26,17 +25,17 @@ struct TabControllerFactory {
     }
     
     func buildTabItem(
-        using contentView: ESTabBarItemContentView,
         title: String? = nil,
         image: UIImage? = nil,
         accessibilityLabel: String = "",
         accessibilityIdentifier: String = ""
     ) -> UITabBarItem {
         
-        let tabBarItem = ESTabBarItem(contentView,
-                                      title: title,
-                                      image: image,
-                                      selectedImage: image)
+        let tabBarItem = UITabBarItem(
+            title: title,
+            image: image,
+            selectedImage: image
+        )
         
         tabBarItem.accessibilityTraits = [.tabBar, .button]
         tabBarItem.accessibilityLabel = accessibilityLabel

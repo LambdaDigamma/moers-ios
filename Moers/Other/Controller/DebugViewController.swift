@@ -66,7 +66,7 @@ class DebugViewController: UIViewController {
             return
         }
         
-        let pickupItems = RubbishManager.shared.loadRubbishPickupItems(for: street) // TODO: Refactor this!
+        let pickupItems = RubbishManager.shared.loadRubbishPickupItems(for: street)
         
         pickupItems
             .receive(on: DispatchQueue.main)

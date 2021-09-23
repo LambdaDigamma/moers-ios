@@ -42,14 +42,17 @@ class MapCoordintor: Coordinator {
         let mapViewController = MapViewController(locationManager: locationManager)
         let contentViewController = SearchDrawerViewController(locationManager: locationManager)
         
-        let mainViewController = MainViewController(contentViewController: mapViewController,
-                                                    drawerViewController: contentViewController,
-                                                    locationManager: locationManager,
-                                                    petrolManager: petrolManager,
-                                                    cameraManager: cameraManager,
-                                                    entryManager: entryManager,
-                                                    parkingLotManager: parkingLotManager)
+        let mainViewController = MainViewController(
+            contentViewController: mapViewController,
+            drawerViewController: contentViewController,
+            locationManager: locationManager,
+            petrolManager: petrolManager,
+            cameraManager: cameraManager,
+            entryManager: entryManager,
+            parkingLotManager: parkingLotManager
+        )
         
+        mainViewController.navigationItem.largeTitleDisplayMode = .never
         mainViewController.tabBarItem = generateTabBarItem()
         mainViewController.coordinator = self
         
@@ -60,15 +63,15 @@ class MapCoordintor: Coordinator {
     
     private func generateTabBarItem() -> UITabBarItem {
         
-        let tabControllerFactory = TabControllerFactory()
+        let tabBarItem = UITabBarItem(
+            title: String.localized("MapTabItem"),
+            image: UIImage(systemName: "map"),
+            selectedImage: UIImage(systemName: "map.fill")
+        )
+        tabBarItem.accessibilityLabel = String.localized("MapTabItem")
+        tabBarItem.accessibilityIdentifier = "TabMap"
         
-        let mapTabBarItem = tabControllerFactory.buildTabItem(
-            using: MapItemContentView(),
-            image: #imageLiteral(resourceName: "map_marker"),
-            accessibilityLabel: String.localized("MapTabItem"),
-            accessibilityIdentifier: "TabMap")
-        
-        return mapTabBarItem
+        return tabBarItem
         
     }
     

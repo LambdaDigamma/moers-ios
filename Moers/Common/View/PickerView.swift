@@ -560,10 +560,12 @@ extension PickerView: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let indexOfSelectedRow = visibleIndexOfSelectedRow()
         
+        // swiftlint:disable force_cast
         let pickerViewCell = tableView.dequeueReusableCell(
             withIdentifier: pickerViewCellIdentifier,
             for: indexPath
         ) as! SimplePickerTableViewCell
+        // swiftlint:enable force_cast
         
         let view = delegate?.pickerView?(
             self,

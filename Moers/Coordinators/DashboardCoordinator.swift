@@ -38,32 +38,31 @@ class DashboardCoordinator: Coordinator {
         
         self.navigationController.coordinator = self
         
-        let dashboard = DashboardView()
-        let hostingController = UIHostingController(rootView: dashboard)
-        
-        hostingController.tabBarItem = generateTabBarItem()
-        self.navigationController.viewControllers = [hostingController]
-        
-//        let dashboardViewController = DashboardViewController(coordinator: self)
-//        dashboardViewController.tabBarItem = generateTabBarItem()
+//        let dashboard = DashboardView()
+//        let hostingController = UIHostingController(rootView: dashboard)
 //
-//        self.navigationController.viewControllers = [dashboardViewController]
-//        self.dashboardViewController = dashboardViewController
+//        hostingController.tabBarItem = generateTabBarItem()
+//        self.navigationController.viewControllers = [hostingController]
+        
+        let dashboardViewController = DashboardViewController(coordinator: self)
+        dashboardViewController.tabBarItem = generateTabBarItem()
+
+        self.navigationController.viewControllers = [dashboardViewController]
+        self.dashboardViewController = dashboardViewController
         
     }
     
     private func generateTabBarItem() -> UITabBarItem {
         
-        let tabControllerFactory = TabControllerFactory()
-        
-        let dashboardTabBarItem = tabControllerFactory.buildTabItem(
-            using: ItemBounceContentView(),
+        let tabBarItem = UITabBarItem.init(
             title: String.localized("DashboardTabItem"),
-            image: #imageLiteral(resourceName: "dashboard"),
-            accessibilityLabel: String.localized("DashboardTabItem"),
-            accessibilityIdentifier: "TabDashboard")
+            image: UIImage(systemName: "rectangle.grid.2x2"),
+            selectedImage: UIImage(systemName: "rectangle.grid.2x2.fill")
+        )
         
-        return dashboardTabBarItem
+        tabBarItem.accessibilityIdentifier = "TabDashboard"
+        
+        return tabBarItem
         
     }
     

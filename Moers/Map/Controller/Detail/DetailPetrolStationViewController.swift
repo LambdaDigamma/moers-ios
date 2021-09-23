@@ -86,6 +86,7 @@ class DetailPetrolStationViewController: UIViewController {
         
         let storyboard = UIStoryboard(name: "DetailViewControllers", bundle: nil)
         
+        // swiftlint:disable force_cast
         return storyboard.instantiateViewController(withIdentifier: "DetailPetrolStationViewController") as! DetailPetrolStationViewController
         
     }

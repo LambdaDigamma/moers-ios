@@ -58,7 +58,12 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
             }
         }
         
-        let normalData = [
+        var normalData = [
+            
+            TableViewSection(title: "Radio",
+                             rows: [NavigationRow(title: "Bürgerfunk",
+                                                  action: showBuergerfunkSchedule)]),
+            
             TableViewSection(title: String.localized("OtherSectionDataTitle"),
                     rows: [NavigationRow(title: String.localized("OtherSectionDataAddEntry"),
                                          action: showAddEntry)]),
@@ -74,6 +79,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                                          action: showFeedback),
                            NavigationRow(title: Bundle.main.versionString,
                                          action: nil)]),
+            
             TableViewSection(title: String.localized("Legal"),
                     rows: [NavigationRow(title: String.localized("TandC"),
                                          action: showTaC),
@@ -82,6 +88,18 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                            NavigationRow(title: String.localized("Licences"),
                                          action: showLicences)])
         ]
+        
+        #if DEBUG
+        normalData.append(TableViewSection(
+            title: "Debug",
+            rows: [
+                NavigationRow(
+                    title: "Notifications",
+                    action: showDebugNotifications
+                )
+            ]
+        ))
+        #endif
         
         return additionalData + normalData
         
@@ -152,7 +170,16 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     }
     
     // MARK: - Row Action
+    
+    private func showBuergerfunkSchedule() {
         
+        let viewController = RadioBroadcastsViewController()
+//        let viewController = RadioViewController()
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
+        
+    }
+    
     private func showAddEntry() {
         
         if entryManager.entryStreet != nil || entryManager.entryLat != nil {
@@ -270,6 +297,12 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     private func showLicences() {
         push(viewController: LicensesViewController.self)
+    }
+    
+    private func showDebugNotifications() {
+        
+        push(viewController: DebugNotificationViewController.self)
+        
     }
     
     // MARK: - Moers Funk

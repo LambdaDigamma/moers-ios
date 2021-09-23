@@ -51,6 +51,7 @@ struct NewsManager {
             
             do {
                 
+                // swiftlint:disable:next force_cast
                 let json = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[AnyHashable: Any]>
                 
                 for jsonTweet in json {

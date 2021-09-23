@@ -56,6 +56,7 @@ class ApplicationController: UIViewController {
         self.entryManager = entryManager
         self.parkingLotManager = parkingLotManager
         
+        // swiftlint:disable:next force_cast
         let cache = try! Storage<String, [MMEvents.Event]>(
             diskConfig: DiskConfig(name: "EventService"),
             memoryConfig: MemoryConfig(),
@@ -85,7 +86,7 @@ class ApplicationController: UIViewController {
             markdown.h1.fontStyle = FontStyle.bold
             markdown.h2.fontStyle = FontStyle.bold
             markdown.h3.fontStyle = FontStyle.boldItalic
-            markdown.link.color = UIColor.yellow
+            markdown.link.color = UIColor.systemYellow
             markdown.underlineLinks = false
             markdown.bullet = "•"
             

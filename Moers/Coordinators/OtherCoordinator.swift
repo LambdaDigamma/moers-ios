@@ -57,9 +57,8 @@ class OtherCoordinator: Coordinator {
         let tabControllerFactory = TabControllerFactory()
         
         let otherTabBarItem = tabControllerFactory.buildTabItem(
-            using: ItemBounceContentView(),
             title: String.localized("OtherTabItem"),
-            image: #imageLiteral(resourceName: "list"),
+            image: UIImage(systemName: "list.bullet"),
             accessibilityLabel: String.localized("OtherTabItem"),
             accessibilityIdentifier: "TabOther")
         

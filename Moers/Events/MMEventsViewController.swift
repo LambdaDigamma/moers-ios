@@ -71,10 +71,10 @@ class MMEventsViewController: EventsViewController {
     
     override func showEventDetailViewController(for event: EventViewModel<Event>) {
         
-//        let viewModel = EventDetailsViewModel(model: event.model)
-//        let detailViewController = MMUI.EventDetailViewController(viewModel: viewModel)
-//
-//        self.navigationController?.pushViewController(detailViewController, animated: true)
+        let viewModel = EventDetailsViewModel(model: event.model)
+        let detailViewController = EventDetailViewController(viewModel: viewModel)
+
+        self.navigationController?.pushViewController(detailViewController, animated: true)
         
     }
     

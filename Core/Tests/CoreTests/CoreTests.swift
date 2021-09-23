@@ -1,11 +1,16 @@
-    import XCTest
-    @testable import Core
+import XCTest
+@testable import Core
 
-    final class CoreTests: XCTestCase {
-        func testExample() {
-            // This is an example of a functional test case.
-            // Use XCTAssert and related functions to verify your tests produce the correct
-            // results.
-            XCTAssertEqual(Core().text, "Hello, World!")
-        }
+final class RadioManagerTests: XCTestCase {
+    
+    func testLoad() {
+        
+        expectation(description: "loading")
+        
+        RadioService.shared.load()
+        
+        waitForExpectations(timeout: 10, handler: nil)
+        
     }
+    
+}

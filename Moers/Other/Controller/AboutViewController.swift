@@ -9,6 +9,7 @@
 import UIKit
 import Gestalt
 import MMUI
+import Core
 
 class AboutViewController: UIViewController {
 
@@ -95,7 +96,7 @@ class AboutViewController: UIViewController {
         let textView = UITextView()
         
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.font = UIFont.boldSystemFont(ofSize: 14)
+        textView.font = UIFont.preferredFont(forTextStyle: .body, compatibleWith: .current) // UIFont.boldSystemFont(ofSize: 14)
         textView.text = "Diese App ist ein Projekt der Gruppe CodeForNiederrhein und wurde von Lennart Fischer entwickelt. Die Daten stammen aus dem OpenData-Portal der Stadt Moers (offenesdatenportal.de) und die 360° Panoramen werden von der Moerser Firma Telepano (telepano.de) zur Verfügung gestellt.\n\nSie vermissen Ihr Geschäft in dieser App, Daten sind nicht aktuell oder wollen Feedback geben?\n Kein Problem: Schreiben Sie einfach eine Email an moersapp@lambdadigamma.com!\n\nAlle Angaben zu Daten sind ohne Gewähr."
         textView.isEditable = false
         
@@ -132,32 +133,34 @@ class AboutViewController: UIViewController {
     
     private func setupConstraints() {
         
-        let constraints = [cfnImageView.widthAnchor.constraint(equalToConstant: 70),
-                           cfnImageView.heightAnchor.constraint(equalTo: cfnImageView.widthAnchor),
-                           cfnImageView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 16),
-                           cfnImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           cfnLabel.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 16),
-                           cfnLabel.leadingAnchor.constraint(equalTo: cfnImageView.trailingAnchor, constant: 8),
-                           cfnLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           cfnTextView.topAnchor.constraint(equalTo: cfnLabel.bottomAnchor),
-                           cfnTextView.leadingAnchor.constraint(equalTo: cfnImageView.trailingAnchor, constant: 4),
-                           cfnTextView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           cfnTextView.heightAnchor.constraint(equalToConstant: 50),
-                           meAvatarImageView.widthAnchor.constraint(equalTo: cfnImageView.widthAnchor),
-                           meAvatarImageView.heightAnchor.constraint(equalTo: meAvatarImageView.widthAnchor),
-                           meAvatarImageView.topAnchor.constraint(equalTo: cfnImageView.bottomAnchor, constant: 16),
-                           meAvatarImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           nameLabel.topAnchor.constraint(equalTo: meAvatarImageView.topAnchor, constant: 0),
-                           nameLabel.leadingAnchor.constraint(equalTo: meAvatarImageView.trailingAnchor, constant: 8),
-                           nameLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           meTextView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
-                           meTextView.leadingAnchor.constraint(equalTo: meAvatarImageView.trailingAnchor, constant: 4),
-                           meTextView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           meTextView.heightAnchor.constraint(equalToConstant: 50),
-                           infoTextView.topAnchor.constraint(equalTo: meTextView.bottomAnchor, constant: 16),
-                           infoTextView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           infoTextView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           infoTextView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -16)]
+        let constraints: [NSLayoutConstraint] = [
+            cfnImageView.widthAnchor.constraint(equalToConstant: 70),
+            cfnImageView.heightAnchor.constraint(equalTo: cfnImageView.widthAnchor),
+            cfnImageView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 16),
+            cfnImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            cfnLabel.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 16),
+            cfnLabel.leadingAnchor.constraint(equalTo: cfnImageView.trailingAnchor, constant: 8),
+            cfnLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            cfnTextView.topAnchor.constraint(equalTo: cfnLabel.bottomAnchor),
+            cfnTextView.leadingAnchor.constraint(equalTo: cfnImageView.trailingAnchor, constant: 4),
+            cfnTextView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            cfnTextView.heightAnchor.constraint(equalToConstant: 50),
+            meAvatarImageView.widthAnchor.constraint(equalTo: cfnImageView.widthAnchor),
+            meAvatarImageView.heightAnchor.constraint(equalTo: meAvatarImageView.widthAnchor),
+            meAvatarImageView.topAnchor.constraint(equalTo: cfnImageView.bottomAnchor, constant: 16),
+            meAvatarImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            nameLabel.topAnchor.constraint(equalTo: meAvatarImageView.topAnchor, constant: 0),
+            nameLabel.leadingAnchor.constraint(equalTo: meAvatarImageView.trailingAnchor, constant: 8),
+            nameLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            meTextView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
+            meTextView.leadingAnchor.constraint(equalTo: meAvatarImageView.trailingAnchor, constant: 4),
+            meTextView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            meTextView.heightAnchor.constraint(equalToConstant: 50),
+            infoTextView.topAnchor.constraint(equalTo: meTextView.bottomAnchor, constant: 16),
+            infoTextView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            infoTextView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            infoTextView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -16)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         
@@ -185,15 +188,15 @@ extension AboutViewController: Themeable {
     
     func apply(theme: Theme) {
         
-        self.view.backgroundColor = theme.backgroundColor
-        self.cfnLabel.textColor = theme.color
-        self.cfnTextView.textColor = theme.color
-        self.cfnTextView.backgroundColor = theme.backgroundColor
-        self.nameLabel.textColor = theme.color
-        self.meTextView.textColor = theme.color
-        self.meTextView.backgroundColor = theme.backgroundColor
-        self.infoTextView.textColor = theme.color
-        self.infoTextView.backgroundColor = theme.backgroundColor
+        self.view.backgroundColor = UIColor.systemBackground // theme.backgroundColor
+        self.cfnLabel.textColor = UIColor.label // theme.color
+        self.cfnTextView.textColor = UIColor.label // theme.color
+        self.cfnTextView.backgroundColor = .clear
+        self.nameLabel.textColor = UIColor.label // theme.color
+        self.meTextView.textColor = UIColor.label // theme.color
+        self.meTextView.backgroundColor = .clear
+        self.infoTextView.textColor = UIColor.label // theme.color
+        self.infoTextView.backgroundColor = .clear
         
     }
     

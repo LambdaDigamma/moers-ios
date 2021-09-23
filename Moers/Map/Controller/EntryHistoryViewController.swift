@@ -102,14 +102,12 @@ class EntryHistoryViewController: UIViewController {
                     self.tableView.reloadData()
                 }
                 
-                
             case .failure(let error):
                 print(error.localizedDescription)
                 
             }
             
         }
-        
         
     }
     
@@ -123,12 +121,12 @@ extension EntryHistoryViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AuditTableViewCell
         
         cell.audit = audits[indexPath.row]
         
         return cell
-        
         
     }
     

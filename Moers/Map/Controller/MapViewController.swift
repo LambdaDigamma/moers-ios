@@ -186,10 +186,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
     
     private func setupConstraints() {
         
-        let constraints = [map.topAnchor.constraint(equalTo: self.view.topAnchor),
-                           map.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                           map.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                           map.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)]
+        let constraints: [NSLayoutConstraint] = [
+            map.topAnchor.constraint(equalTo: self.view.topAnchor),
+            map.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            map.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            map.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         

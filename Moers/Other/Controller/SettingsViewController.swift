@@ -351,6 +351,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             
             let switchRow = data[indexPath.section].rows[indexPath.row] as? SwitchRow
             
+            // swiftlint:disable:next force_cast
             let switchCell = tableView.dequeueReusableCell(withIdentifier: switchCellIdentifier) as! SwitchTableViewCell
             
             switchCell.descriptionLabel.text = switchRow?.title

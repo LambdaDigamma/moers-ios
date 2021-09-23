@@ -381,6 +381,7 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
             
         case .list:
             
+            // swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
             
             let location = datasource[indexPath.row]
@@ -389,6 +390,7 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
             
         case .filter(_, _, let items):
             
+            // swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
             
             let location = items[indexPath.row]
@@ -403,6 +405,7 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
             
             if indexPath.row < numberOfTags {
             
+                // swiftlint:disable force_cast
                 let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.tagCell, for: indexPath) as! TagTableViewCell
                 
                 cell.titleLabel.attributedText = tags[indexPath.row]
@@ -411,6 +414,7 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
                 
             } else {
                 
+                // swiftlint:disable force_cast
                 let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
                 
                 return setupSearchResultCell(cell, items[indexPath.row - numberOfTags])

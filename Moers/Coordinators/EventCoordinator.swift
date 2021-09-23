@@ -42,11 +42,11 @@ class EventCoordinator: Coordinator {
         let tabControllerFactory = TabControllerFactory()
         
         let eventsTab = tabControllerFactory.buildTabItem(
-            using: ItemBounceContentView(),
             title: String.localized("Events"),
-            image: #imageLiteral(resourceName: "calendar"),
+            image: UIImage(systemName: "calendar"),
             accessibilityLabel: String.localized("Events"),
-            accessibilityIdentifier: "TabEvents")
+            accessibilityIdentifier: "TabEvents"
+        )
         
         return eventsTab
         
