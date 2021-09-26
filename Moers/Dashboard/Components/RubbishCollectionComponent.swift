@@ -8,10 +8,12 @@
 
 import UIKit
 import MMAPI
+import Combine
 
 class RubbishCollectionComponent: BaseComponent {
     
     var rubbishItems: [RubbishPickupItem] = []
+    private var cancellables = Set<AnyCancellable>()
     
     lazy var rubbishCardView: DashboardRubbishCardView = {
         
@@ -74,9 +76,6 @@ class RubbishCollectionComponent: BaseComponent {
         
         self.rubbishCardView.startLoading()
         
-        // TODO: Implement Loading Indicator
-//        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
         let queue = OperationQueue()
         
         queue.addOperation {
@@ -95,23 +94,24 @@ class RubbishCollectionComponent: BaseComponent {
             
             let pickupItems = RubbishManager.shared.loadRubbishPickupItems(for: street)
             
-            pickupItems.observeNext { (items: [RubbishPickupItem]) in
-                
-                self.rubbishItems = items
-                
-                OperationQueue.main.addOperation {
+            pickupItems.receive(on: DispatchQueue.main)
+                .sink { (_: Subscribers.Completion<Error>) in
                     
-                    // TODO: Implement Loading Indicator
-//                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                } receiveValue: { (items: [RubbishPickupItem]) in
                     
-                    self.rubbishCardView.stopLoading()
-                    self.rubbishCardView.dismissError()
+                    self.rubbishItems = items
                     
-                    self.reloadUI()
+                    OperationQueue.main.addOperation {
+                        
+                        self.rubbishCardView.stopLoading()
+                        self.rubbishCardView.dismissError()
+                        
+                        self.reloadUI()
+                        
+                    }
                     
                 }
-                
-            }.dispose(in: self.bag)
+                .store(in: &cancellables)
             
         } else {
             

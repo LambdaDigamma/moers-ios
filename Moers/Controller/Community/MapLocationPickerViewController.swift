@@ -11,6 +11,7 @@ import MapKit
 import CoreLocation
 import MMAPI
 import MMUI
+import Combine
 
 protocol MapLocationPickerViewControllerDelegate: AnyObject {
     
@@ -30,6 +31,7 @@ class MapLocationPickerViewController: UIViewController {
     private var currentHouseNumber: String = ""
     private var currentPlace: String = ""
     private var currentPostcode: String = ""
+    private var cancellables = Set<AnyCancellable>()
     
     private let locationManager: LocationManagerProtocol
     private var entryManager: EntryManagerProtocol
@@ -79,17 +81,20 @@ class MapLocationPickerViewController: UIViewController {
         
         self.setupMap(centeringOn: CLLocationCoordinate2D(latitude: 51.4516, longitude: 6.6255))
         
-        locationManager.authorizationStatus.observeNext { authorizationStatus in
+        locationManager.authorizationStatus.sink { authorizationStatus in
             
             if authorizationStatus == .authorizedWhenInUse {
                 self.locationManager.requestCurrentLocation()
                 self.locationManager.location.receive(on: DispatchQueue.main)
-                    .observeNext(with: { location in
-                    self.setupMap(centeringOn: location.coordinate)
-                }).dispose(in: self.bag)
+                    .sink(receiveCompletion: { (_: Subscribers.Completion<Error>) in
+                        
+                    }, receiveValue: { (location: CLLocation) in
+                        self.setupMap(centeringOn: location.coordinate)
+                    })
+                    .store(in: &self.cancellables)
             }
             
-        }.dispose(in: bag)
+        }.store(in: &cancellables)
         
         mapView.delegate = self
         mapView.showsUserLocation = true
@@ -163,12 +168,13 @@ class MapLocationPickerViewController: UIViewController {
         locationManager.requestCurrentLocation()
         locationManager.location
             .receive(on: DispatchQueue.main)
-            .observeNext { location in
-            
-            self.setupMap(centeringOn: location.coordinate)
-            self.executeReverseGeocode()
-            
-        }.dispose(in: bag)
+            .sink(receiveCompletion: { (_: Subscribers.Completion<Error>) in
+                
+            }, receiveValue: { (location: CLLocation) in
+                self.setupMap(centeringOn: location.coordinate)
+                self.executeReverseGeocode()
+            })
+            .store(in: &cancellables)
         
     }
     

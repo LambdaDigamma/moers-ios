@@ -56,7 +56,7 @@ class ApplicationController: UIViewController {
         self.entryManager = entryManager
         self.parkingLotManager = parkingLotManager
         
-        // swiftlint:disable:next force_cast
+        // swiftlint:disable:next force_try
         let cache = try! Storage<String, [MMEvents.Event]>(
             diskConfig: DiskConfig(name: "EventService"),
             memoryConfig: MemoryConfig(),

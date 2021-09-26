@@ -10,11 +10,13 @@ import UIKit
 import TextFieldEffects
 import MMUI
 import Gestalt
+import Combine
 
 class TextFieldFormView: UIView, FormView {
     
     public private(set) lazy var textField: HoshiTextField = { ViewFactory.textField() }()
     private lazy var errorStackView: UIStackView = { ViewFactory.stackView() }()
+    private var cancellables = Set<AnyCancellable>()
     
     var isEnabled: Bool {
         get {
@@ -79,14 +81,14 @@ class TextFieldFormView: UIView, FormView {
         
         self.errorStackView.distribution = .fillProportionally
         
-        self.textField.reactive.text
+        self.textField.publisher(for: \.text)
             .receive(on: DispatchQueue.main)
-            .observeNext { (_) in
+            .sink { _ in
                 if !self.errors.isEmpty {
                     self.displayErrors([])
                 }
             }
-            .dispose(in: bag)
+            .store(in: &cancellables)
         
     }
     

@@ -212,7 +212,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
     
     private func setupConstraints() {
         
-        let constraints = [
+        let constraints: [NSLayoutConstraint] = [
             scrollView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 0),
             scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
             scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),

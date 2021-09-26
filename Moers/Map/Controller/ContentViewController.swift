@@ -14,6 +14,9 @@ import TagListView
 import MMAPI
 import Fuse
 import MMUI
+import Combine
+
+// swiftlint:disable file_length
 
 public struct CellIdentifier {
     
@@ -44,10 +47,12 @@ class ContentViewController: UIViewController {
         }
     }
     
+    // swiftlint:disable:next force_cast
     private lazy var drawer = { self.parent as! MainViewController }()
     private var normalColor = UIColor.clear
     private var highlightedColor = UIColor.clear
     private let fuse = Fuse(location: 0, distance: 100, threshold: 0.45, maxPatternLength: 32, isCaseSensitive: false)
+    private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Data
     
@@ -145,7 +150,9 @@ class ContentViewController: UIViewController {
         
         let updatedLocations = self.locationManager.updateDistances(locations: locations)
         
-        updatedLocations.observeNext { locations in
+        updatedLocations.sink { _ in
+            
+        } receiveValue: { (locations: [Location]) in
             
             self.locations = locations.sorted(by: { (location1, location2) -> Bool in
                 location1.distance < location2.distance
@@ -157,7 +164,8 @@ class ContentViewController: UIViewController {
                 self.tableView.reloadData()
             }
             
-        }.dispose(in: bag)
+        }
+        .store(in: &cancellables)
         
     }
     

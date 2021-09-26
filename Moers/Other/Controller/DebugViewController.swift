@@ -11,6 +11,7 @@ import Gestalt
 import UserNotifications
 import MMAPI
 import MMUI
+import Combine
 
 class DebugViewController: UIViewController {
     
@@ -39,6 +40,8 @@ class DebugViewController: UIViewController {
         return textView
         
     }()
+    
+    private var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,15 +73,18 @@ class DebugViewController: UIViewController {
         
         pickupItems
             .receive(on: DispatchQueue.main)
-            .observeNext { (items: [RubbishPickupItem]) in
-            
-            self.rubbishItemsTextView.text = "Collections: \(items.count)\n\n"
-            self.rubbishItemsTextView.text += items.map {
-                $0.date.format(format: "dd.MM.yyyy") + " " + RubbishWasteType.localizedForCase($0.type)
-            }
-            .joined(separator: "\n")
-            
-        }.dispose(in: self.bag)
+            .sink(receiveCompletion: { (_: Subscribers.Completion<Error>) in
+                
+            }, receiveValue: { (items: [RubbishPickupItem]) in
+                
+                self.rubbishItemsTextView.text = "Collections: \(items.count)\n\n"
+                self.rubbishItemsTextView.text += items.map {
+                    $0.date.format(format: "dd.MM.yyyy") + " " + RubbishWasteType.localizedForCase($0.type)
+                }
+                .joined(separator: "\n")
+                
+            })
+            .store(in: &cancellables)
         
     }
     

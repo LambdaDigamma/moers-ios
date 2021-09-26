@@ -26,6 +26,8 @@ struct AnnotationIdentifier {
 class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryContentControllerDelegate {
 
     lazy var map = { return ViewFactory.map() }()
+    
+    // swiftlint:disable:next force_cast
     lazy var drawer = { return self.parent as! MainViewController }()
     
     private let locationManager: LocationManagerProtocol

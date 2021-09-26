@@ -11,6 +11,7 @@ import Gestalt
 import CoreLocation
 import MMAPI
 import MMUI
+import Combine
 
 class PetrolStationViewController: CardCollectionViewController {
 
@@ -20,10 +21,13 @@ class PetrolStationViewController: CardCollectionViewController {
     
     private var stations: [PetrolStation] = []
     private var averagePrice: Double = 0.0
+    private var cancellables = Set<AnyCancellable>()
     
-    init(locationManager: LocationManagerProtocol,
-         petrolManager: PetrolManagerProtocol,
-         stations: [PetrolStation] = []) {
+    init(
+        locationManager: LocationManagerProtocol,
+        petrolManager: PetrolManagerProtocol,
+        stations: [PetrolStation] = []
+    ) {
         
         self.locationManager = locationManager
         self.petrolManager = petrolManager
@@ -70,11 +74,14 @@ class PetrolStationViewController: CardCollectionViewController {
         locationManager.requestCurrentLocation()
         
         locationManager.location
-            .debounce(for: 2)
-            .observeNext { location in
+            .debounce(for: 2, scheduler: RunLoop.main)
+            .sink(receiveCompletion: { (_: Subscribers.Completion<Error>) in
+                
+            }, receiveValue: { location in
                 self.loadPetrolStations(for: location.coordinate)
-            }.dispose(in: bag)
-        
+            })
+            .store(in: &cancellables)
+            
     }
     
     private func loadPetrolStations(for coordinate: CLLocationCoordinate2D) {
@@ -87,9 +94,12 @@ class PetrolStationViewController: CardCollectionViewController {
                                                              type: preferredPetrolType,
                                                              shouldReload: true)
         
-        petrolStations.observeNext { _ in
+        petrolStations.sink { _ in
+            
+        } receiveValue: { _ in
             self.updateUI()
-        }.dispose(in: bag)
+        }
+        .store(in: &cancellables)
         
     }
     
@@ -135,6 +145,7 @@ class PetrolStationViewController: CardCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        // swiftlint:disable:next force_cast
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! PetrolStationCollectionViewCell
         
         cell.averagePrice = averagePrice

@@ -11,6 +11,7 @@ import Gestalt
 import MMAPI
 import MMUI
 import OSLog
+import Combine
 
 class RubbishCollectionViewController: UIViewController {
 
@@ -36,6 +37,7 @@ class RubbishCollectionViewController: UIViewController {
     private let logger = Logger(.ui)
     private var sections: [Section] = []
     private var items: [RubbishPickupItem] = []
+    private var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,8 +84,16 @@ class RubbishCollectionViewController: UIViewController {
         let pickupItems = RubbishManager.shared.loadRubbishPickupItems(for: street)
         
         pickupItems
-            .observeNext { (items: [RubbishPickupItem]) in
-            
+            .sink(receiveCompletion: { [weak self] (completion: Subscribers.Completion<Error>) in
+                
+                switch completion {
+                    case .failure(let error):
+                        self?.logger.error("Loading rubbish pickup items failed: \(error.localizedDescription)")
+                    default: break
+                }
+                
+            }, receiveValue: { (items: [RubbishPickupItem]) in
+                
                 OperationQueue.main.addOperation {
                     
                     self.items = items
@@ -94,14 +104,8 @@ class RubbishCollectionViewController: UIViewController {
                     
                 }
                 
-            }
-            .dispose(in: self.bag)
-        
-        pickupItems
-            .observeFailed { [weak self] (error: Error) in
-                self?.logger.error("Loading rubbish pickup items failed: \(error.localizedDescription)")
-            }
-            .dispose(in: self.bag)
+            })
+            .store(in: &cancellables)
         
     }
     
@@ -184,6 +188,7 @@ extension RubbishCollectionViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        // swiftlint:disable:next force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! RubbishCollectionItemTableViewCell
         
         let section = sections[indexPath.section]

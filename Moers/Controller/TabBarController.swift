@@ -12,6 +12,8 @@ import Gestalt
 import MMAPI
 import MMUI
 import MMEvents
+import CoreLocation
+import Combine
 
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
@@ -32,6 +34,8 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     var petrolManager: PetrolManagerProtocol
     var rubbishManager: RubbishManagerProtocol
     let eventService: EventServiceProtocol
+    
+    private var cancellables = Set<AnyCancellable>()
     
     lazy var onboardingManager: OnboardingManager = {
         return OnboardingManager(
@@ -253,11 +257,12 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     private func loadCurrentLocation() {
         
-        locationManager.authorizationStatus.observeNext { authorizationStatus in
+        locationManager.authorizationStatus.sink { (authorizationStatus: CLAuthorizationStatus) in
             if authorizationStatus == .authorizedWhenInUse {
                 self.locationManager.requestCurrentLocation()
             }
-        }.dispose(in: bag)
+        }
+        .store(in: &cancellables)
         
     }
     
@@ -272,33 +277,38 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             
             let streets = RubbishManager.shared.loadRubbishCollectionStreets()
             
-            streets.receive(on: DispatchQueue.main).observeNext { (streets: [RubbishCollectionStreet]) in
-                
-                let currentStreetName = RubbishManager.shared.rubbishStreet?.street ?? ""
-                let currentStreetAddition = RubbishManager.shared.rubbishStreet?.streetAddition ?? ""
-                
-                if let filteredStreet = streets.filter({ $0.street == currentStreetName && $0.streetAddition == currentStreetAddition }).first {
+            streets
+                .receive(on: DispatchQueue.main)
+                .sink { (_: Subscribers.Completion<Error>) in
                     
-                    RubbishManager.shared.register(filteredStreet)
+                } receiveValue: { (streets: [RubbishCollectionStreet]) in
                     
-                    if RubbishManager.shared.remindersEnabled {
-                        RubbishManager.shared.registerNotifications(
-                            at: RubbishManager.shared.reminderHour ?? 20,
-                            minute: RubbishManager.shared.reminderMinute ?? 00
-                        )
+                    let currentStreetName = RubbishManager.shared.rubbishStreet?.street ?? ""
+                    let currentStreetAddition = RubbishManager.shared.rubbishStreet?.streetAddition ?? ""
+                    
+                    if let filteredStreet = streets.filter({ $0.street == currentStreetName && $0.streetAddition == currentStreetAddition }).first {
+                        
+                        RubbishManager.shared.register(filteredStreet)
+                        
+                        if RubbishManager.shared.remindersEnabled {
+                            RubbishManager.shared.registerNotifications(
+                                at: RubbishManager.shared.reminderHour ?? 20,
+                                minute: RubbishManager.shared.reminderMinute ?? 00
+                            )
+                        }
+                        
+                    } else {
+                        
+                        RubbishManager.shared.disableStreet()
+                        
+                        self.rubbishMigrationManager.backgroundViewStyle = .dimmed
+                        self.rubbishMigrationManager.statusBarAppearance = .hidden
+                        self.rubbishMigrationManager.showBulletin(above: self)
+                        
                     }
                     
-                } else {
-                    
-                    RubbishManager.shared.disableStreet()
-                    
-                    self.rubbishMigrationManager.backgroundViewStyle = .dimmed
-                    self.rubbishMigrationManager.statusBarAppearance = .hidden
-                    self.rubbishMigrationManager.showBulletin(above: self)
-                    
                 }
-                
-            }.dispose(in: self.bag)
+                .store(in: &cancellables)
             
         }
         

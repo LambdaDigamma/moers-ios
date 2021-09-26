@@ -19,7 +19,6 @@ extension UISearchBar {
     
 }
 
-
 extension Bundle {
     
     private var releaseVersionNumber: String {
@@ -62,39 +61,22 @@ public extension Sequence where Element: Equatable {
     }
 }
 
-
 extension UIViewController {
     
     var safeTopAnchor: NSLayoutYAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return view.safeAreaLayoutGuide.topAnchor
-        } else {
-            return topLayoutGuide.topAnchor
-        }
+        return view.safeAreaLayoutGuide.topAnchor
     }
     
     var safeBottomAnchor: NSLayoutYAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return view.safeAreaLayoutGuide.bottomAnchor
-        } else {
-            return bottomLayoutGuide.topAnchor
-        }
+        return view.safeAreaLayoutGuide.bottomAnchor
     }
     
     var safeLeftAnchor: NSLayoutXAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return view.safeAreaLayoutGuide.leadingAnchor
-        } else {
-            return view.leadingAnchor
-        }
+        return view.safeAreaLayoutGuide.leadingAnchor
     }
     
     var safeRightAnchor: NSLayoutXAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return view.safeAreaLayoutGuide.trailingAnchor
-        } else {
-            return view.trailingAnchor
-        }
+        return view.safeAreaLayoutGuide.trailingAnchor
     }
     
 }
@@ -108,10 +90,21 @@ extension UIImage {
         
         UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
         
-        imageObj.draw(in: CGRect(origin: CGPoint(x: (size.width / 2) - (size.width * scaleFactor) / 2, y: (size.height / 2) - (size.height * scaleFactor) / 2), size: CGSize(width: size.width * scaleFactor, height: size.height * scaleFactor)))
+        let origin = CGPoint(
+            x: (size.width / 2) - (size.width * scaleFactor) / 2,
+            y: (size.height / 2) - (size.height * scaleFactor) / 2
+        )
+        
+        let size = CGSize(
+            width: size.width * scaleFactor,
+            height: size.height * scaleFactor
+        )
+        
+        imageObj.draw(in: CGRect(origin: origin, size: size))
         
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext() // !!!
+        UIGraphicsEndImageContext()
+        
         return scaledImage
     }
     

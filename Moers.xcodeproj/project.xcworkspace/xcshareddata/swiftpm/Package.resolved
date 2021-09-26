@@ -11,15 +11,6 @@
         }
       },
       {
-        "package": "Bond",
-        "repositoryURL": "https://github.com/DeclarativeHub/Bond.git",
-        "state": {
-          "branch": null,
-          "revision": "146943c0bc03a93c48fb6c57db4e39f4b38ba74b",
-          "version": "7.8.1"
-        }
-      },
-      {
         "package": "BLTNBoard",
         "repositoryURL": "https://github.com/alexaubry/BulletinBoard.git",
         "state": {
@@ -35,15 +26,6 @@
           "branch": null,
           "revision": "c7f4d633049c3bd649a353bad36f6c17e9df085f",
           "version": "6.0.0"
-        }
-      },
-      {
-        "package": "Differ",
-        "repositoryURL": "https://github.com/tonyarnold/Differ.git",
-        "state": {
-          "branch": null,
-          "revision": "4c3eb4d76ad5c14075829397a5741b0badb08dce",
-          "version": "1.4.5"
         }
       },
       {
@@ -101,15 +83,6 @@
         }
       },
       {
-        "package": "Ink",
-        "repositoryURL": "https://github.com/johnsundell/ink.git",
-        "state": {
-          "branch": null,
-          "revision": "77c3d8953374a9cf5418ef0bd7108524999de85a",
-          "version": "0.5.1"
-        }
-      },
-      {
         "package": "MarkdownKit",
         "repositoryURL": "https://github.com/OscarGorog/MarkdownKit",
         "state": {
@@ -125,15 +98,6 @@
           "branch": null,
           "revision": "94f8d377221829f292df0e707937032bcb95c7f1",
           "version": "0.0.2"
-        }
-      },
-      {
-        "package": "MMCommon",
-        "repositoryURL": "https://github.com/lambdadigamma/mmcommon-ios",
-        "state": {
-          "branch": null,
-          "revision": "d1ab76ad0316dcf58a23196f69ec07e2f8ba6702",
-          "version": "0.0.1"
         }
       },
       {
@@ -170,24 +134,6 @@
           "branch": null,
           "revision": "355bb7c53d4d430334422ad05a97fbe43ce326db",
           "version": "2.9.1"
-        }
-      },
-      {
-        "package": "Reachability",
-        "repositoryURL": "https://github.com/ashleymills/Reachability.swift",
-        "state": {
-          "branch": null,
-          "revision": "6c8652a8ea35a64cf36367d07b3d6e5e6a24b272",
-          "version": "4.3.1"
-        }
-      },
-      {
-        "package": "ReactiveKit",
-        "repositoryURL": "https://github.com/DeclarativeHub/ReactiveKit.git",
-        "state": {
-          "branch": null,
-          "revision": "224225f1b4c062ecfd0707f5e156027579630a79",
-          "version": "3.18.2"
         }
       },
       {
@@ -233,6 +179,15 @@
           "branch": null,
           "revision": "9cc6ceb34cffa5c6fa175d87351d20950a7704c0",
           "version": "1.4.2"
+        }
+      },
+      {
+        "package": "TextFieldEffects",
+        "repositoryURL": "https://github.com/LambdaDigamma/TextFieldEffects",
+        "state": {
+          "branch": "master",
+          "revision": "e8513be1fc758e6107ee3ea5a61371d84499efd5",
+          "version": null
         }
       }
     ]
