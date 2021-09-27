@@ -41,6 +41,11 @@ Run All Unit Tests
 fastlane ios test_ui
 ```
 Run All UI Tests
+### ios upload_metadata
+```
+fastlane ios upload_metadata
+```
+Upload metadata
 ### ios build
 ```
 fastlane ios build
@@ -56,6 +61,11 @@ Release a new version of Mein Moers
 fastlane ios screenshots
 ```
 Take Screenshots and upload them to AppStore Connect
+### ios upload_screenshots
+```
+fastlane ios upload_screenshots
+```
+Upload screenshots
 
 ----
 

@@ -62,7 +62,7 @@
 				<true/>
 			</dict>
 			<key>buergerfunk-moers.de</key>
-			<string></string>
+			<string/>
 			<key>download.moers.de</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -71,7 +71,7 @@
 				<true/>
 			</dict>
 			<key>mein-moers.localhost</key>
-			<string></string>
+			<string/>
 			<key>www.buergerfunk-moers.de</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>

@@ -85,7 +85,6 @@
 		DF5E1B5826726AF7005FADA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF5E1B5726726AF7005FADA4 /* Assets.xcassets */; };
 		DF5E1B5A26726AF7005FADA4 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = DF5E1B5626726AF3005FADA4 /* Widgets.intentdefinition */; };
 		DF5E1B5B26726AF7005FADA4 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = DF5E1B5626726AF3005FADA4 /* Widgets.intentdefinition */; };
-		DF5E1B5E26726AF7005FADA4 /* WidgetsExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DF5E1B4E26726AF3005FADA4 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DF5E1B6926726E8F005FADA4 /* NewsWidgets in Frameworks */ = {isa = PBXBuildFile; productRef = DF5E1B6826726E8F005FADA4 /* NewsWidgets */; };
 		DF5E1B6C26726F2B005FADA4 /* WidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5E1B6A26726EA3005FADA4 /* WidgetsBundle.swift */; };
 		DF5E1B7026727642005FADA4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF5E1B7226727642005FADA4 /* Localizable.strings */; };
@@ -251,7 +250,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				DF5E1B5E26726AF7005FADA4 /* WidgetsExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
