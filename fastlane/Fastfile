@@ -57,7 +57,7 @@ platform :ios do
       path: [
         "Moers/Config/Info.plist",
         "MoersUITests/Info.plist",
-        "MoersTests/Info.plist"
+        "Moers Unit Tests/Info.plist"
       ],
       message: "Mein Moers Version #{version} 🚀"
     )
@@ -67,7 +67,7 @@ platform :ios do
   desc "Increment Build Number"
   lane :increment_build do
     increment_build_number_in_plist(target: 'Moers')
-    increment_build_number_in_plist(target: 'MoersTests')
+    increment_build_number_in_plist(target: 'Moers Unit Tests')
     increment_build_number_in_plist(target: 'MoersUITests')
   end
 
