@@ -12,7 +12,7 @@ import Gestalt
 import CoreLocation
 import MMAPI
 import MMUI
-import ReactiveKit
+import Combine
 
 // TODO: Move Privacy Consent to Front of Onboarding
 class OnboardingManager {
@@ -22,19 +22,20 @@ class OnboardingManager {
     private let rubbishManager: RubbishManagerProtocol
     private var petrolManager: PetrolManagerProtocol
     private let appearance: BLTNItemAppearance
-    private let bag: DisposeBag
+    private var cancellables = Set<AnyCancellable>()
     
-    init(locationManager: LocationManagerProtocol,
-         geocodingManager: GeocodingManagerProtocol,
-         rubbishManager: RubbishManagerProtocol,
-         petrolManager: PetrolManagerProtocol) {
+    init(
+        locationManager: LocationManagerProtocol,
+        geocodingManager: GeocodingManagerProtocol,
+        rubbishManager: RubbishManagerProtocol,
+        petrolManager: PetrolManagerProtocol
+    ) {
         
         self.locationManager = locationManager
         self.geocodingManager = geocodingManager
         self.rubbishManager = rubbishManager
         self.petrolManager = petrolManager
         self.appearance = OnboardingManager.makeAppearance()
-        self.bag = DisposeBag()
         
     }
     
@@ -152,15 +153,16 @@ class OnboardingManager {
             
             AnalyticsManager.shared.logEnabledLocation()
             
-            self.locationManager.authorizationStatus.observeNext(with: { authorizationStatus in
+            self.locationManager.authorizationStatus.sink { (authorizationStatus: CLAuthorizationStatus) in
                 
                 if authorizationStatus == .notDetermined {
                     self.locationManager.requestWhenInUseAuthorization()
                 } else {
                     item.manager?.displayNextItem()
                 }
-                
-            }).dispose(in: self.bag)
+
+            }
+            .store(in: &self.cancellables)
             
         }
         
@@ -224,10 +226,12 @@ class OnboardingManager {
     
     func makeRubbishStreetPage() -> BLTNPageItem {
         
-        let page = RubbishStreetPickerItem(title: String.localized("RubbishCollectionPageTitle"),
-                                           locationManager: locationManager,
-                                           geocodingManager: geocodingManager,
-                                           rubbishManager: rubbishManager)
+        let page = RubbishStreetPickerItem(
+            title: String.localized("RubbishCollectionPageTitle"),
+            locationManager: locationManager,
+            geocodingManager: geocodingManager,
+            rubbishManager: rubbishManager
+        )
         
         page.appearance = appearance
         page.descriptionText = String.localized("RubbishCollectionPageDescription")

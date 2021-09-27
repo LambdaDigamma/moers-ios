@@ -42,7 +42,6 @@ class DashboardRubbishCardView: TitleCardView {
         self.setupConstraints()
         self.setupTheming()
         
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -57,10 +56,12 @@ class DashboardRubbishCardView: TitleCardView {
     
     private func setupConstraints() {
         
-        let constraints = [rubbishList.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-                           rubbishList.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
-                           rubbishList.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
-                           rubbishList.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8)]
+        let constraints: [NSLayoutConstraint] = [
+            rubbishList.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+            rubbishList.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
+            rubbishList.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
+            rubbishList.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8)
+        ]
 
         NSLayoutConstraint.activate(constraints)
         

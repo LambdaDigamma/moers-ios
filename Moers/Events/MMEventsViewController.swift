@@ -13,9 +13,9 @@ import OSLog
 
 class MMEventsViewController: EventsViewController {
 
-    var cancellables = Set<AnyCancellable>()
-    var coordinator: EventCoordinator?
-    let logger = Logger(subsystem: subsystem, category: "MMEventsViewController")
+    private var cancellables = Set<AnyCancellable>()
+    public var coordinator: EventCoordinator?
+    private let logger = Logger(subsystem: subsystem, category: "MMEventsViewController")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +45,8 @@ class MMEventsViewController: EventsViewController {
             
         } receiveValue: { events in
             
-            self.events = events.map({ e in
-                return EventViewModel<MMEvents.Event>(event: e)
+            self.events = events.map({ event in
+                return EventViewModel<MMEvents.Event>(event: event)
             })
             
             self.rebuildData()
@@ -71,10 +71,10 @@ class MMEventsViewController: EventsViewController {
     
     override func showEventDetailViewController(for event: EventViewModel<Event>) {
         
-//        let viewModel = EventDetailsViewModel(model: event.model)
-//        let detailViewController = MMUI.EventDetailViewController(viewModel: viewModel)
-//
-//        self.navigationController?.pushViewController(detailViewController, animated: true)
+        let viewModel = EventDetailsViewModel(model: event.model)
+        let detailViewController = EventDetailViewController(viewModel: viewModel)
+
+        self.navigationController?.pushViewController(detailViewController, animated: true)
         
     }
     

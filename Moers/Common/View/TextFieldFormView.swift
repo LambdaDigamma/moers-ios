@@ -10,44 +10,50 @@ import UIKit
 import TextFieldEffects
 import MMUI
 import Gestalt
+import Combine
 
 class TextFieldFormView: UIView, FormView {
     
     public private(set) lazy var textField: HoshiTextField = { ViewFactory.textField() }()
     private lazy var errorStackView: UIStackView = { ViewFactory.stackView() }()
+    private var cancellables = Set<AnyCancellable>()
     
     var isEnabled: Bool {
-        set {
-            textField.isEnabled = newValue
-        }
         get {
             return textField.isEnabled
         }
-    }
-    var text: String? {
         set {
-            textField.text = newValue
+            textField.isEnabled = newValue
         }
+    }
+    
+    var text: String? {
         get {
             return textField.text
         }
+        set {
+            textField.text = newValue
+        }
     }
+    
     var placeholder: String = "" {
         didSet {
             textField.placeholder = placeholder
         }
     }
+    
     var textFieldDelegate: UITextFieldDelegate? = nil {
         didSet {
             textField.delegate = textFieldDelegate
         }
     }
+    
     var textColor: UIColor? {
-        set {
-            textField.textColor = newValue
-        }
         get {
             return textField.textColor
+        }
+        set {
+            textField.textColor = newValue
         }
     }
     
@@ -75,19 +81,20 @@ class TextFieldFormView: UIView, FormView {
         
         self.errorStackView.distribution = .fillProportionally
         
-        
-        self.textField.reactive.text.receive(on: DispatchQueue.main).observeNext { (_) in
-            if !self.errors.isEmpty {
-                self.displayErrors([])
-                print("Changes")
+        self.textField.publisher(for: \.text)
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                if !self.errors.isEmpty {
+                    self.displayErrors([])
+                }
             }
-        }.dispose(in: bag)
+            .store(in: &cancellables)
         
     }
     
     private func setupConstraints() {
         
-        let constraints = [
+        let constraints: [NSLayoutConstraint] = [
             textField.topAnchor.constraint(equalTo: self.topAnchor),
             textField.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             textField.trailingAnchor.constraint(equalTo: self.trailingAnchor),
@@ -114,7 +121,6 @@ class TextFieldFormView: UIView, FormView {
         
         self.errors = errors
         
-        print(errorStackView.arrangedSubviews.count)
         errorStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         errorStackView.layoutIfNeeded()
         

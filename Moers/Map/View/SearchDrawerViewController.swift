@@ -13,6 +13,7 @@ import Gestalt
 import Pulley
 import TagListView
 import Fuse
+import Combine
 
 enum DisplayMode {
     case list
@@ -32,6 +33,7 @@ class SearchDrawerViewController: UIViewController {
     private var selectedTags: [String] = []
     private var tags: [String] = []
     
+    private var cancellables = Set<AnyCancellable>()
     private var normalColor = UIColor.clear
     private var highlightedColor = UIColor.clear
     
@@ -88,19 +90,24 @@ class SearchDrawerViewController: UIViewController {
         
         let updatedLocations = self.locationManager.updateDistances(locations: locations)
         
-        updatedLocations.observeNext { locations in
-            
-            self.locations = locations.sorted(by: { (l1, l2) -> Bool in
-                l1.distance < l2.distance
-            })
-            
-            self.datasource = self.locations
-            
-            DispatchQueue.main.async {
-                self.searchDrawer.tableView.reloadData()
+        updatedLocations
+            .receive(on: DispatchQueue.main)
+            .sink { (_: Subscribers.Completion<Error>) in
+                
+             } receiveValue: { (locations: [Location]) in
+                
+                self.locations = locations.sorted(by: { (location1, location2) -> Bool in
+                    location1.distance < location2.distance
+                })
+                
+                self.datasource = self.locations
+                
+                DispatchQueue.main.async {
+                    self.searchDrawer.tableView.reloadData()
+                }
+                
             }
-            
-        }.dispose(in: bag)
+            .store(in: &cancellables)
         
     }
     
@@ -211,7 +218,6 @@ extension SearchDrawerViewController: PulleyDrawerViewControllerDelegate {
     
 }
 
-
 extension SearchDrawerViewController: TagListViewDelegate {
     
     func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
@@ -220,7 +226,7 @@ extension SearchDrawerViewController: TagListViewDelegate {
         
         sender.removeTagView(tagView)
         
-        if sender.tagViews.count == 0 {
+        if sender.tagViews.isEmpty {
             self.searchDrawer.searchWrapperHeight.constant = 68.0
             self.displayMode = .list
             self.searchDrawer.tableView.reloadData()
@@ -387,7 +393,10 @@ extension SearchDrawerViewController: UITableViewDataSource, UITableViewDelegate
             
             if indexPath.row < numberOfTags {
             
-                let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.tagCell, for: indexPath) as! TagTableViewCell
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: CellIdentifier.tagCell,
+                    for: indexPath
+                ) as! TagTableViewCell
                 
                 cell.titleLabel.attributedText = tags[indexPath.row]
                 
@@ -395,7 +404,10 @@ extension SearchDrawerViewController: UITableViewDataSource, UITableViewDelegate
                 
             } else {
                 
-                let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: CellIdentifier.searchResultCell,
+                    for: indexPath
+                ) as! SearchResultTableViewCell
                 
                 return setupSearchResultCell(cell, items[indexPath.row - numberOfTags])
                 

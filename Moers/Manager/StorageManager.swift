@@ -6,16 +6,16 @@
 //  Copyright © 2020 Lennart Fischer. All rights reserved.
 //
 
-import Foundation
-import ReactiveKit
 import MMAPI
 import Haneke
 import Combine
+import OSLog
 
 public class StorageManager<D: Codable>: AnyStoragable<D> {
     
     private let format = "dd.MM.yyyy HH:mm:ss"
-    private let bag = DisposeBag()
+    
+    private var cancellables = Set<AnyCancellable>()
     
     public override init() {
         super.init()
@@ -59,55 +59,64 @@ public class StorageManager<D: Codable>: AnyStoragable<D> {
         
         print("StorageManager: Loading \(key.localizedCapitalized) from Cache")
             
-        return Signal { observer in
-            
-            Shared.dataCache
-                .fetch(key: key)
-                .onSuccess { data in
-                    
-                    if let customDecoder = self.decoder {
+        return Deferred {
+            Future { promise in
+                
+                Shared.dataCache
+                    .fetch(key: key)
+                    .onSuccess { data in
                         
-                        customDecoder(data).toSignal().observeNext(with: { items in
-                            observer.receive(lastElement: items)
-                        }).dispose(in: self.bag)
-                        
-                        customDecoder(data).toSignal().observeFailed(with: { error in
-                            observer.receive(lastElement: [])
-                            if let error = error as? DecodingError {
-                                print("StorageManager: Custom Decoding failed for \(D.self) - \(error)")
+                        if let customDecoder = self.decoder {
+                            
+                            customDecoder(data).sink { (completion: Subscribers.Completion<Error>) in
+                                
+                                switch completion {
+                                    case .failure(let error):
+                                        
+                                        if let error = error as? DecodingError {
+                                            print("StorageManager: Custom Decoding failed for \(D.self) - \(error)")
+                                        }
+                                        
+                                        promise(.success([]))
+                                        
+                                    default: break
+                                }
+                                
+                            } receiveValue: { items in
+                                promise(.success(items))
                             }
-                        }).dispose(in: self.bag)
-                        
-                    } else {
-                        
-                        do {
-                            let items = try decoder.decode([D].self, from: data)
-                            observer.receive(lastElement: items)
-                        } catch {
-                            observer.receive(lastElement: [])
-                            if let error = error as? DecodingError {
-                                print("StorageManager: \(D.self) Reading failed - \(error)")
+                            .store(in: &self.cancellables)
+                            
+                        } else {
+                            
+                            do {
+                                let items = try decoder.decode([D].self, from: data)
+                                promise(.success(items))
+                            } catch {
+                                
+                                if let error = error as? DecodingError {
+                                    print("StorageManager: \(D.self) Reading failed - \(error)")
+                                }
+                                
+                                promise(.success([]))
+                                
                             }
+                            
                         }
                         
                     }
-                    
-                }
-                .onFailure { error in
-                    
-                    if let error = error {
-                        print(error.localizedDescription)
+                    .onFailure { error in
+                        
+                        if let error = error {
+                            print(error.localizedDescription)
+                        }
+                        
+                        promise(.success([]))
+                        
                     }
-                    
-                    observer.receive(lastElement: [])
-                    
-                }
-            
-            return BlockDisposable {}
-            
-        }
-        .toPublisher()
-        .eraseToAnyPublisher()
+                
+            }
+        }.eraseToAnyPublisher()
         
     }
     

@@ -9,8 +9,9 @@
 import UIKit
 import Gestalt
 import FeedKit
-import Kingfisher
 import MMUI
+import Nuke
+import NukeUI
 
 class NewsCollectionViewCell: UICollectionViewCell {
     
@@ -24,14 +25,14 @@ class NewsCollectionViewCell: UICollectionViewCell {
             
             if let enclosure = feedItem.enclosure {
                 if let url = URL(string: enclosure.attributes?.url ?? "") {
-                    imageView.kf.setImage(with: ImageResource(downloadURL: url))
+                    Nuke.loadImage(with: url, into: imageView)
                 }
             } else {
                 if let description = feedItem.description {
                     let components = description.components(separatedBy: "\"")
                     if components.count > 1 {
                         if let url = URL(string: components[1]) {
-                            imageView.kf.setImage(with: ImageResource(downloadURL: url))
+                            Nuke.loadImage(with: url, into: imageView)
                         }
                     }
                 }
@@ -86,21 +87,23 @@ class NewsCollectionViewCell: UICollectionViewCell {
     
     private func setupConstraints() {
         
-        let constraints = [heightAnchor.constraint(equalToConstant: 250),
-                           imageView.topAnchor.constraint(equalTo: self.topAnchor),
-                           imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-                           imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-                           imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-                           titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-                           titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-                           titleLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -4),
-                           descriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-                           descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-                           descriptionLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
-                           blurView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-                           blurView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-                           blurView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-                           blurView.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -10)]
+        let constraints: [NSLayoutConstraint] = [
+            heightAnchor.constraint(equalToConstant: 250),
+            imageView.topAnchor.constraint(equalTo: self.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            titleLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -4),
+            descriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            descriptionLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
+            blurView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            blurView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            blurView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            blurView.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -10)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         

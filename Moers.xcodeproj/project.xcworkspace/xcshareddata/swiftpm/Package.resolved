@@ -6,17 +6,8 @@
         "repositoryURL": "https://github.com/lambdadigamma/app-scaffold-ios",
         "state": {
           "branch": null,
-          "revision": "7770779a55948d1e8b83c631d24e4c1fe0bf76ee",
-          "version": "0.1.0"
-        }
-      },
-      {
-        "package": "Bond",
-        "repositoryURL": "https://github.com/DeclarativeHub/Bond.git",
-        "state": {
-          "branch": null,
-          "revision": "146943c0bc03a93c48fb6c57db4e39f4b38ba74b",
-          "version": "7.8.1"
+          "revision": "92f36e0f7309f5752454de68f9b6064ac0d87528",
+          "version": "0.1.2"
         }
       },
       {
@@ -35,33 +26,6 @@
           "branch": null,
           "revision": "c7f4d633049c3bd649a353bad36f6c17e9df085f",
           "version": "6.0.0"
-        }
-      },
-      {
-        "package": "SwiftUICharts",
-        "repositoryURL": "https://github.com/AppPear/ChartView",
-        "state": {
-          "branch": null,
-          "revision": "9115a992c91fa19cbb4f2241084240d38654a1fc",
-          "version": "1.5.5"
-        }
-      },
-      {
-        "package": "Differ",
-        "repositoryURL": "https://github.com/tonyarnold/Differ.git",
-        "state": {
-          "branch": null,
-          "revision": "4c3eb4d76ad5c14075829397a5741b0badb08dce",
-          "version": "1.4.5"
-        }
-      },
-      {
-        "package": "ESTabBarController",
-        "repositoryURL": "https://github.com/LambdaDigamma/ESTabBarController",
-        "state": {
-          "branch": null,
-          "revision": "8f7a49e835d83e23dbc985306250e41bf99c19b5",
-          "version": "2.9.1"
         }
       },
       {
@@ -101,30 +65,21 @@
         }
       },
       {
+        "package": "Gifu",
+        "repositoryURL": "https://github.com/kaishin/Gifu",
+        "state": {
+          "branch": null,
+          "revision": "51f2eab32903e336f590c013267cfa4d7f8b06c4",
+          "version": "3.3.1"
+        }
+      },
+      {
         "package": "Haneke",
         "repositoryURL": "https://github.com/LambdaDigamma/HanekeSwift",
         "state": {
           "branch": null,
           "revision": "6dd6a8fb7cfa9b245cd7a8cab688a8f2cecb9d15",
           "version": "0.14.0"
-        }
-      },
-      {
-        "package": "Ink",
-        "repositoryURL": "https://github.com/johnsundell/ink.git",
-        "state": {
-          "branch": null,
-          "revision": "77c3d8953374a9cf5418ef0bd7108524999de85a",
-          "version": "0.5.1"
-        }
-      },
-      {
-        "package": "Kingfisher",
-        "repositoryURL": "https://github.com/onevcat/Kingfisher",
-        "state": {
-          "branch": null,
-          "revision": "1a0c2df04b31ed7aa318354f3583faea24f006fc",
-          "version": "5.15.8"
         }
       },
       {
@@ -137,21 +92,12 @@
         }
       },
       {
-        "package": "MMAPI",
-        "repositoryURL": "https://github.com/LambdaDigamma/mmapi-ios",
+        "package": "MediaLibrary",
+        "repositoryURL": "https://github.com/lambdadigamma/medialibrary-ios",
         "state": {
           "branch": null,
-          "revision": "2c9bce90e8e351a49dc82e53ecb3c09f18aea414",
-          "version": "0.2.2"
-        }
-      },
-      {
-        "package": "MMCommon",
-        "repositoryURL": "https://github.com/lambdadigamma/mmcommon-ios",
-        "state": {
-          "branch": null,
-          "revision": "d1ab76ad0316dcf58a23196f69ec07e2f8ba6702",
-          "version": "0.0.1"
+          "revision": "94f8d377221829f292df0e707937032bcb95c7f1",
+          "version": "0.0.2"
         }
       },
       {
@@ -164,12 +110,21 @@
         }
       },
       {
-        "package": "MMUI",
-        "repositoryURL": "https://github.com/LambdaDigamma/mmui-ios",
+        "package": "Nuke",
+        "repositoryURL": "https://github.com/kean/Nuke.git",
         "state": {
           "branch": null,
-          "revision": "927e051fc527ee276da179c96909eec126a20ecb",
-          "version": "0.2.1"
+          "revision": "0db18dd34998cca18e9a28bcee136f84518007a0",
+          "version": "10.4.1"
+        }
+      },
+      {
+        "package": "NukeUI",
+        "repositoryURL": "https://github.com/kean/NukeUI",
+        "state": {
+          "branch": null,
+          "revision": "0130ce2c1d140a426ced903a9abd68b4b8bf9790",
+          "version": "0.6.8"
         }
       },
       {
@@ -177,26 +132,8 @@
         "repositoryURL": "https://github.com/52inc/Pulley",
         "state": {
           "branch": null,
-          "revision": "5d5ec9c9c2a2ab3c1d76d5c7a7ce6eff20410719",
-          "version": "2.9.0"
-        }
-      },
-      {
-        "package": "Reachability",
-        "repositoryURL": "https://github.com/ashleymills/Reachability.swift.git",
-        "state": {
-          "branch": null,
-          "revision": "6c8652a8ea35a64cf36367d07b3d6e5e6a24b272",
-          "version": "4.3.1"
-        }
-      },
-      {
-        "package": "ReactiveKit",
-        "repositoryURL": "https://github.com/DeclarativeHub/ReactiveKit.git",
-        "state": {
-          "branch": null,
-          "revision": "224225f1b4c062ecfd0707f5e156027579630a79",
-          "version": "3.18.2"
+          "revision": "355bb7c53d4d430334422ad05a97fbe43ce326db",
+          "version": "2.9.1"
         }
       },
       {
@@ -204,17 +141,8 @@
         "repositoryURL": "https://github.com/hmlongco/Resolver",
         "state": {
           "branch": null,
-          "revision": "730a02bc3c861524e4f0e496ec3d9a907984be0d",
-          "version": "1.4.2"
-        }
-      },
-      {
-        "package": "SwiftCSV",
-        "repositoryURL": "https://github.com/swiftcsv/SwiftCSV",
-        "state": {
-          "branch": null,
-          "revision": "ad2042d0ba2ea260246b0e1b1d5710cbc53e2836",
-          "version": "0.6.0"
+          "revision": "609908e0b67911ebf7386609552a48d4ec07958e",
+          "version": "1.4.4"
         }
       },
       {
@@ -251,6 +179,15 @@
           "branch": null,
           "revision": "9cc6ceb34cffa5c6fa175d87351d20950a7704c0",
           "version": "1.4.2"
+        }
+      },
+      {
+        "package": "TextFieldEffects",
+        "repositoryURL": "https://github.com/LambdaDigamma/TextFieldEffects",
+        "state": {
+          "branch": "master",
+          "revision": "e8513be1fc758e6107ee3ea5a61371d84499efd5",
+          "version": null
         }
       }
     ]

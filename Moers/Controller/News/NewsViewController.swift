@@ -175,6 +175,7 @@ extension NewsViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         if let newsItem = newsItems[indexPath.row] as? RSSFeedItem {
             
+            // swiftlint:disable:next force_cast
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newsCell", for: indexPath) as! NewsCollectionViewCell
             
             cell.feedItem = newsItem
@@ -183,11 +184,11 @@ extension NewsViewController: UICollectionViewDataSource, UICollectionViewDelega
             
         } else if let newsItem = newsItems[indexPath.row] as? TWTRTweet {
             
+            // swiftlint:disable:next force_cast
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tweetCell", for: indexPath) as! TweetCollectionViewCell
 
             cell.tweetView.showBorder = false
             cell.tweetView.showActionButtons = false
-            
             cell.tweetView.configure(with: newsItem)
             
             return cell
@@ -205,14 +206,13 @@ extension NewsViewController: UICollectionViewDataSource, UICollectionViewDelega
             guard let url = URL(string: newsItem.link ?? "") else { return }
             
             let svc = SFSafariViewController(url: url)
-            svc.preferredBarTintColor = navigationController?.navigationBar.barTintColor
-            svc.preferredControlTintColor = navigationController?.navigationBar.tintColor
+            svc.preferredBarTintColor = UIColor.systemBackground // navigationController?.navigationBar.barTintColor
+            svc.preferredControlTintColor = UIColor.label // navigationController?.navigationBar.tintColor
             svc.configuration.entersReaderIfAvailable = true
             svc.delegate = self
+            
             self.present(svc, animated: true) {
-                
                 self.navigationItem.largeTitleDisplayMode = .never
-                
             }
             
         }
@@ -252,8 +252,8 @@ extension NewsViewController: Themeable {
     
     func apply(theme: Theme) {
         
-        self.view.backgroundColor = theme.backgroundColor
-        self.collectionView.backgroundColor = theme.backgroundColor
+        self.view.backgroundColor = UIColor.systemBackground // theme.backgroundColor
+        self.collectionView.backgroundColor = UIColor.systemBackground // theme.backgroundColor
         
         self.reloadData()
         

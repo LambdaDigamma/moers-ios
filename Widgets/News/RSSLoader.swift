@@ -28,7 +28,7 @@ public class RSSLoader: NewsLoader {
                     .prefix(4)
                     .map { item in
                         
-                        var imageURL: URL? = nil
+                        var imageURL: URL?
                         
                         if let enclosure = item.enclosure?.attributes?.url {
                             imageURL = URL(string: enclosure)
@@ -53,7 +53,6 @@ public class RSSLoader: NewsLoader {
                     .flatMap({ $0 })
                     .collect()
                     .eraseToAnyPublisher()
-                
                 
             })
             .map({ newsViewModels in
@@ -86,8 +85,6 @@ public class RSSLoader: NewsLoader {
             return Just(viewModel)
                 .eraseToAnyPublisher()
         }
-        
-        
         
     }
     

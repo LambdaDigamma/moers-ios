@@ -12,6 +12,7 @@ import Gestalt
 import Pulley
 import MMAPI
 import MMUI
+import Combine
 
 class DetailViewController: UIViewController {
     
@@ -25,6 +26,7 @@ class DetailViewController: UIViewController {
     private lazy var closeButton: UIButton = { ViewFactory.button() }()
     private lazy var routeButton: UIButton = { ViewFactory.button() }()
     
+    private var cancellables = Set<AnyCancellable>()
     private let locationManager: LocationManagerProtocol
     private let entryManager: EntryManagerProtocol
     
@@ -104,29 +106,31 @@ class DetailViewController: UIViewController {
     
     private func setupConstraints() {
         
-        let constraints = [gripperView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 6),
-                           gripperView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-                           gripperView.heightAnchor.constraint(equalToConstant: 5),
-                           gripperView.widthAnchor.constraint(equalToConstant: 36),
-                           closeButton.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 16),
-                           closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           closeButton.heightAnchor.constraint(equalToConstant: 25),
-                           closeButton.widthAnchor.constraint(equalToConstant: 25),
-                           imageView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 16),
-                           imageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           imageView.widthAnchor.constraint(equalToConstant: 47),
-                           imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
-                           nameLabel.topAnchor.constraint(equalTo: imageView.topAnchor),
-                           nameLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
-                           nameLabel.trailingAnchor.constraint(equalTo: closeButton.leadingAnchor, constant: -8),
-                           subtitleLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
-                           subtitleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
-                           subtitleLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           subtitleLabel.heightAnchor.constraint(equalToConstant: 21),
-                           routeButton.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 32),
-                           routeButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           routeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           routeButton.heightAnchor.constraint(equalToConstant: 50)]
+        let constraints: [NSLayoutConstraint] = [
+            gripperView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 6),
+            gripperView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            gripperView.heightAnchor.constraint(equalToConstant: 5),
+            gripperView.widthAnchor.constraint(equalToConstant: 36),
+            closeButton.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 16),
+            closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            closeButton.heightAnchor.constraint(equalToConstant: 25),
+            closeButton.widthAnchor.constraint(equalToConstant: 25),
+            imageView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 16),
+            imageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            imageView.widthAnchor.constraint(equalToConstant: 47),
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
+            nameLabel.topAnchor.constraint(equalTo: imageView.topAnchor),
+            nameLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
+            nameLabel.trailingAnchor.constraint(equalTo: closeButton.leadingAnchor, constant: -8),
+            subtitleLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
+            subtitleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
+            subtitleLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            subtitleLabel.heightAnchor.constraint(equalToConstant: 21),
+            routeButton.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 32),
+            routeButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            routeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            routeButton.heightAnchor.constraint(equalToConstant: 50)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         
@@ -187,7 +191,7 @@ class DetailViewController: UIViewController {
         
         // TODO: Generify Detail Morphing
         
-        if let _ = location as? Entry {
+        if location is Entry {
             
             morphDetailEntry()
             
@@ -213,16 +217,19 @@ class DetailViewController: UIViewController {
         
         guard let destinationCoordinate = selectedLocation?.location.coordinate else { return }
         
-        locationManager.authorizationStatus.observeNext { authorizationStatus in
+        locationManager.authorizationStatus.sink { _ in
             self.setupDistance(to: destinationCoordinate)
-        }.dispose(in: bag)
+        }
+        .store(in: &cancellables)
         
     }
     
     private func setupDistance(to destinationCoordinate: CLLocationCoordinate2D) {
         
         locationManager.requestCurrentLocation()
-        locationManager.location.observeNext { location in
+        locationManager.location.sink { _ in
+            
+        } receiveValue: { (location: CLLocation) in
             
             let directions = self.buildDirectionRequest(from: location.coordinate, to: destinationCoordinate)
             
@@ -238,7 +245,8 @@ class DetailViewController: UIViewController {
                 
             })
             
-        }.dispose(in: bag)
+        }
+        .store(in: &cancellables)
         
     }
     

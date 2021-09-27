@@ -94,6 +94,7 @@ class CardCollectionViewController: UIViewController, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        // swiftlint:disable:next force_cast
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! WrapperCardCollectionViewCell
         
         cell.view = views[indexPath.row]
@@ -149,4 +150,3 @@ extension CardCollectionViewController: Themeable {
     }
     
 }
-

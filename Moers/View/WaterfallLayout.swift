@@ -152,12 +152,21 @@ public class WaterfallLayout: UICollectionViewLayout {
         return newBounds.width != (collectionView?.bounds ?? .zero).width
     }
 
-    override public func shouldInvalidateLayout(forPreferredLayoutAttributes preferredAttributes: UICollectionViewLayoutAttributes, withOriginalAttributes originalAttributes: UICollectionViewLayoutAttributes) -> Bool {
+    override public func shouldInvalidateLayout(
+        forPreferredLayoutAttributes preferredAttributes: UICollectionViewLayoutAttributes,
+        withOriginalAttributes originalAttributes: UICollectionViewLayoutAttributes
+    ) -> Bool {
         return cachedItemSizes[originalAttributes.indexPath] != preferredAttributes.size
     }
 
-    override public func invalidationContext(forPreferredLayoutAttributes preferredAttributes: UICollectionViewLayoutAttributes, withOriginalAttributes originalAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutInvalidationContext {
-        let context = super.invalidationContext(forPreferredLayoutAttributes: preferredAttributes, withOriginalAttributes: originalAttributes)
+    override public func invalidationContext(
+        forPreferredLayoutAttributes preferredAttributes: UICollectionViewLayoutAttributes,
+        withOriginalAttributes originalAttributes: UICollectionViewLayoutAttributes
+    ) -> UICollectionViewLayoutInvalidationContext {
+        let context = super.invalidationContext(
+            forPreferredLayoutAttributes: preferredAttributes,
+            withOriginalAttributes: originalAttributes
+        )
 
         guard let collectionView = collectionView else { return context }
 
@@ -235,8 +244,7 @@ public class WaterfallLayout: UICollectionViewLayout {
                 cachedItemSizes[indexPath] = itemSize
                 itemHeight = itemSize.height > 0 && itemSize.width > 0 ? floor(itemSize.height * itemWidth / itemSize.width) : 0.0
             }
-
-
+            
             let offsetY: CGFloat
             let layout = delegate.collectionViewLayout(for: section)
             switch layout {
@@ -271,7 +279,7 @@ public class WaterfallLayout: UICollectionViewLayout {
         let columnCount = delegate.collectionViewLayout(for: section).column
         let longestColumnIndex = columnHeights[section].enumerated().sorted { $0.element > $1.element }.first?.offset ?? 0
 
-        if columnHeights[section].count > 0 {
+        if !columnHeights[section].isEmpty {
             position = columnHeights[section][longestColumnIndex] - minimumInteritemSpacing + sectionInset.bottom
         } else {
             position = 0.0
@@ -321,5 +329,5 @@ public class WaterfallLayout: UICollectionViewLayout {
     private func estimatedSizeForItemAt(_ indexPath: IndexPath) -> CGSize {
         return collectionView.flatMap { delegate?.collectionView($0, layout: self, estimatedSizeForItemAt: indexPath) } ?? estimatedItemSize
     }
+    
 }
-

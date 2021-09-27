@@ -30,7 +30,6 @@ struct NewsWidgets: Widget {
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
     
-    
 }
 
 struct NewsWidgetView: View {
@@ -53,7 +52,8 @@ struct NewsWidgetView: View {
                 MediumNewsListWidget(news: entry.viewModels)
             case .systemLarge:
                 BigNewsTilesWidget(viewModels: entry.viewModels)
-            @unknown default:
+            
+            default:
                 fatalError("This widget size is not supported")
         }
         

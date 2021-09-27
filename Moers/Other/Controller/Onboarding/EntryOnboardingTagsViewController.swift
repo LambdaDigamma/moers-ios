@@ -248,12 +248,14 @@ class EntryOnboardingTagsViewController: UIViewController {
     
     private func updateNextButton() {
         
-        if selectedTags.count != 0 {
+        if !selectedTags.isEmpty {
             
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: String.localized("EntryOnboardingTagsViewControllerNext"),
-                                                                     style: .plain,
-                                                                     target: self,
-                                                                     action: #selector(self.continueOnboarding))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+                title: String.localized("EntryOnboardingTagsViewControllerNext"),
+                style: .plain,
+                target: self,
+                action: #selector(self.continueOnboarding)
+            )
             
         } else {
             

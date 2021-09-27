@@ -10,6 +10,8 @@ import UIKit
 import Gestalt
 import MMAPI
 import MMUI
+import OSLog
+import Combine
 
 class RubbishCollectionViewController: UIViewController {
 
@@ -32,8 +34,10 @@ class RubbishCollectionViewController: UIViewController {
         
     }()
     
-    var sections: [Section] = []
-    var items: [RubbishPickupItem] = []
+    private let logger = Logger(.ui)
+    private var sections: [Section] = []
+    private var items: [RubbishPickupItem] = []
+    private var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,23 +83,29 @@ class RubbishCollectionViewController: UIViewController {
         
         let pickupItems = RubbishManager.shared.loadRubbishPickupItems(for: street)
         
-        pickupItems.observeNext { (items: [RubbishPickupItem]) in
-            
-            OperationQueue.main.addOperation {
+        pickupItems
+            .sink(receiveCompletion: { [weak self] (completion: Subscribers.Completion<Error>) in
                 
-                self.items = items
-                self.buildSections()
-                self.tableView.reloadData()
+                switch completion {
+                    case .failure(let error):
+                        self?.logger.error("Loading rubbish pickup items failed: \(error.localizedDescription)")
+                    default: break
+                }
                 
-                UIAccessibility.post(notification: .layoutChanged, argument: nil)
+            }, receiveValue: { (items: [RubbishPickupItem]) in
                 
-            }
-            
-        }.dispose(in: self.bag)
-        
-        pickupItems.observeFailed { (error: Error) in
-            print("Loading Rubbish Pickup Items failed: \(error.localizedDescription)")
-        }.dispose(in: self.bag)
+                OperationQueue.main.addOperation {
+                    
+                    self.items = items
+                    self.buildSections()
+                    self.tableView.reloadData()
+                    
+                    UIAccessibility.post(notification: .layoutChanged, argument: nil)
+                    
+                }
+                
+            })
+            .store(in: &cancellables)
         
     }
     
@@ -163,7 +173,10 @@ extension RubbishCollectionViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerIdentifier) as! MonthHeaderView
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(
+                withIdentifier: headerIdentifier
+        ) as? MonthHeaderView else { return nil }
+        
         let section = sections[section]
         let date = Date.from("\(section.month) \(section.year)", withFormat: "M yyyy")?.format(format: "MMMM yyyy")
         
@@ -175,6 +188,7 @@ extension RubbishCollectionViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        // swiftlint:disable:next force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! RubbishCollectionItemTableViewCell
         
         let section = sections[indexPath.section]

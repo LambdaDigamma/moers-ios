@@ -11,6 +11,7 @@ import Gestalt
 import UserNotifications
 import MMAPI
 import MMUI
+import Combine
 
 class DebugViewController: UIViewController {
     
@@ -40,6 +41,8 @@ class DebugViewController: UIViewController {
         
     }()
     
+    private var cancellables = Set<AnyCancellable>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -52,7 +55,11 @@ class DebugViewController: UIViewController {
             DispatchQueue.main.async {
                 
                 self.notificationItemsTextView.text = "Notifications: \(requests.count)\n\n"
-                self.notificationItemsTextView.text = self.notificationItemsTextView.text + requests.map { $0.identifier.replacingOccurrences(of: "RubbishReminder-", with: "") }.reversed().joined(separator: "\n")
+                self.notificationItemsTextView.text += requests.map {
+                    $0.identifier.replacingOccurrences(of: "RubbishReminder-", with: "")
+                }
+                .reversed()
+                .joined(separator: "\n")
                 
             }
             
@@ -62,16 +69,22 @@ class DebugViewController: UIViewController {
             return
         }
         
-        let pickupItems = RubbishManager.shared.loadRubbishPickupItems(for: street) // TODO: Refactor this!
+        let pickupItems = RubbishManager.shared.loadRubbishPickupItems(for: street)
         
         pickupItems
             .receive(on: DispatchQueue.main)
-            .observeNext { (items: [RubbishPickupItem]) in
-            
-            self.rubbishItemsTextView.text = "Collections: \(items.count)\n\n"
-            self.rubbishItemsTextView.text = self.rubbishItemsTextView.text + items.map { $0.date.format(format: "dd.MM.yyyy") + " " + RubbishWasteType.localizedForCase($0.type) }.joined(separator: "\n")
-            
-        }.dispose(in: self.bag)
+            .sink(receiveCompletion: { (_: Subscribers.Completion<Error>) in
+                
+            }, receiveValue: { (items: [RubbishPickupItem]) in
+                
+                self.rubbishItemsTextView.text = "Collections: \(items.count)\n\n"
+                self.rubbishItemsTextView.text += items.map {
+                    $0.date.format(format: "dd.MM.yyyy") + " " + RubbishWasteType.localizedForCase($0.type)
+                }
+                .joined(separator: "\n")
+                
+            })
+            .store(in: &cancellables)
         
     }
     

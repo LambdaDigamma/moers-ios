@@ -56,10 +56,12 @@ class ApplicationController: UIViewController {
         self.entryManager = entryManager
         self.parkingLotManager = parkingLotManager
         
+        // swiftlint:disable:next force_try
         let cache = try! Storage<String, [MMEvents.Event]>(
             diskConfig: DiskConfig(name: "EventService"),
             memoryConfig: MemoryConfig(),
-            transformer: TransformerFactory.forCodable(ofType: [MMEvents.Event].self))
+            transformer: TransformerFactory.forCodable(ofType: [MMEvents.Event].self)
+        )
         
         self.eventService = EventService(loader, cache)
         
@@ -84,7 +86,7 @@ class ApplicationController: UIViewController {
             markdown.h1.fontStyle = FontStyle.bold
             markdown.h2.fontStyle = FontStyle.bold
             markdown.h3.fontStyle = FontStyle.boldItalic
-            markdown.link.color = UIColor.yellow
+            markdown.link.color = UIColor.systemYellow
             markdown.underlineLinks = false
             markdown.bullet = "•"
             
@@ -92,14 +94,16 @@ class ApplicationController: UIViewController {
             
         }
         
-        let tabBarController = TabBarController(locationManager: locationManager,
-                                                petrolManager: petrolManager,
-                                                rubbishManager: rubbishManager,
-                                                geocodingManager: geocodingManager,
-                                                cameraManager: cameraManager,
-                                                entryManager: entryManager,
-                                                parkingLotManager: parkingLotManager,
-                                                eventService: eventService)
+        let tabBarController = TabBarController(
+            locationManager: locationManager,
+            petrolManager: petrolManager,
+            rubbishManager: rubbishManager,
+            geocodingManager: geocodingManager,
+            cameraManager: cameraManager,
+            entryManager: entryManager,
+            parkingLotManager: parkingLotManager,
+            eventService: eventService
+        )
         
         (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = tabBarController
         

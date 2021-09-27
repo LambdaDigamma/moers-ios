@@ -238,6 +238,7 @@ open class Snapshot: NSObject {
 }
 
 private extension XCUIElementAttributes {
+    
     var isNetworkLoadingIndicator: Bool {
         if hasWhiteListedIdentifier { return false }
 

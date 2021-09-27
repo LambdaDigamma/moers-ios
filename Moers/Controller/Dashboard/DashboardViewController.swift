@@ -11,16 +11,15 @@ import Gestalt
 import UserNotifications
 import CoreLocation
 import MapKit
-import Reachability
 import Intents
 import MMAPI
 import MMUI
 
 class DashboardViewController: CardCollectionViewController {
     
-    var coordinator: DashboardCoordinator?
+    public var coordinator: DashboardCoordinator?
     
-    var components: [BaseComponent] = []
+    private var components: [BaseComponent] = []
     
     private let locationManager: LocationManagerProtocol
     private let geocodingManager: GeocodingManagerProtocol
@@ -37,11 +36,13 @@ class DashboardViewController: CardCollectionViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    init(locationManager: LocationManagerProtocol,
-         geocodingManager: GeocodingManagerProtocol,
-         petrolManager: PetrolManagerProtocol,
-         rubbishManager: RubbishManagerProtocol) {
-        
+    init(
+        locationManager: LocationManagerProtocol,
+        geocodingManager: GeocodingManagerProtocol,
+        petrolManager: PetrolManagerProtocol,
+        rubbishManager: RubbishManagerProtocol
+    ) {
+    
         self.locationManager = locationManager
         self.geocodingManager = geocodingManager
         self.petrolManager = petrolManager
@@ -71,6 +72,9 @@ class DashboardViewController: CardCollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.view.backgroundColor = UIColor.systemBackground
+        self.collectionView.backgroundColor = UIColor.systemBackground
         
         self.triggerUpdate()
         
@@ -134,16 +138,12 @@ class DashboardViewController: CardCollectionViewController {
     
     override func refresh() {
         
-        UIView.animate(withDuration: 1, animations: {
-            
+        UIView.animate(withDuration: 1) {
             self.collectionView.refreshControl?.endRefreshing()
-            
-        }) { (_) in
-            
+        } completion: { _ in
             self.triggerRefresh()
-            
         }
-        
+
     }
     
     public func openRubbishViewController() {

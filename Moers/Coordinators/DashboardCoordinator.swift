@@ -10,6 +10,7 @@ import UIKit
 import MMUI
 import MMAPI
 import AppScaffold
+import SwiftUI
 
 class DashboardCoordinator: Coordinator {
     
@@ -21,11 +22,13 @@ class DashboardCoordinator: Coordinator {
     
     var dashboardViewController: DashboardViewController?
     
-    init(navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
-         locationManager: LocationManagerProtocol,
-         rubbishManager: RubbishManagerProtocol,
-         geocodingManager: GeocodingManagerProtocol,
-         petrolManager: PetrolManagerProtocol) {
+    init(
+        navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
+        locationManager: LocationManagerProtocol,
+        rubbishManager: RubbishManagerProtocol,
+        geocodingManager: GeocodingManagerProtocol,
+        petrolManager: PetrolManagerProtocol
+    ) {
         
         self.navigationController = navigationController
         self.rubbishManager = rubbishManager
@@ -35,10 +38,15 @@ class DashboardCoordinator: Coordinator {
         
         self.navigationController.coordinator = self
         
+//        let dashboard = DashboardView()
+//        let hostingController = UIHostingController(rootView: dashboard)
+//
+//        hostingController.tabBarItem = generateTabBarItem()
+//        self.navigationController.viewControllers = [hostingController]
+        
         let dashboardViewController = DashboardViewController(coordinator: self)
-        
         dashboardViewController.tabBarItem = generateTabBarItem()
-        
+
         self.navigationController.viewControllers = [dashboardViewController]
         self.dashboardViewController = dashboardViewController
         
@@ -46,16 +54,15 @@ class DashboardCoordinator: Coordinator {
     
     private func generateTabBarItem() -> UITabBarItem {
         
-        let tabControllerFactory = TabControllerFactory()
-        
-        let dashboardTabBarItem = tabControllerFactory.buildTabItem(
-            using: ItemBounceContentView(),
+        let tabBarItem = UITabBarItem(
             title: String.localized("DashboardTabItem"),
-            image: #imageLiteral(resourceName: "dashboard"),
-            accessibilityLabel: String.localized("DashboardTabItem"),
-            accessibilityIdentifier: "TabDashboard")
+            image: UIImage(systemName: "rectangle.grid.2x2"),
+            selectedImage: UIImage(systemName: "rectangle.grid.2x2.fill")
+        )
         
-        return dashboardTabBarItem
+        tabBarItem.accessibilityIdentifier = "TabDashboard"
+        
+        return tabBarItem
         
     }
     

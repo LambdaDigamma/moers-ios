@@ -1,14 +1,3 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
-
 before_all do
   ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
 end
@@ -16,14 +5,45 @@ end
 default_platform(:ios)
 
 platform :ios do
-  setup_travis
 
-  # --- Utilies ---
+  desc "Sync signing"
+  lane :signing do
+    register_devices(
+      team_id: "77N8D7LGCZ",
+      devices: {
+        "Lennarts iPhone 8" => "e3f6fe313610d72f847e010d17af266b64781acf",
+        "Lennarts iPhone XS" => "00008020-000C584C2690003A",
+      }
+    )
+    sync_code_signing(
+      type: "development",
+      force_for_new_devices: true,
+      app_identifier: [
+        "de.okfn.niederrhein.Moers", 
+        # "de.okfn.niederrhein.Moers.staging",
+        # "de.okfn.niederrhein.Moers.dev",
+        "de.okfn.niederrhein.Moers.widgets"
+      ]
+    )
+
+    sync_code_signing(
+      type: "appstore",
+      app_identifier: [
+        "de.okfn.niederrhein.Moers", 
+        # "de.okfn.niederrhein.Moers.staging",
+        # "de.okfn.niederrhein.Moers.dev",
+        "de.okfn.niederrhein.Moers.widgets"
+      ]
+    )
+
+    mapping = Actions.lane_context[
+      SharedValues::MATCH_PROVISIONING_PROFILE_MAPPING
+    ]
+  end
 
   desc "Increment Version"
   lane :increment do |options|
-
-    version = options[:version]
+  version = options[:version]
 
     # Set App plist version
     set_info_plist_value(
@@ -64,15 +84,27 @@ platform :ios do
     run_tests(scheme: "MoersUITests")
   end
 
-  # --- Distribution ---
+  desc "Upload metadata"
+  lane :upload_metadata do
+    deliver(
+      skip_metadata: false,
+      skip_screenshots: true,
+      force: true
+    )
+  end
+
+  desc "Build binary"
+  lane :build do
+    signing
+    build_ios_app
+  end
+
 
   desc "Release a new version of Mein Moers"
   lane :release do |options|
 
     ensure_git_status_clean
-    
     ensure_git_branch(branch: 'master')
-
     version = options[:version]
 
     increment_build()
@@ -93,8 +125,6 @@ platform :ios do
 
   end
 
-  # --- Screenshots ---
-
   desc "Take Screenshots and upload them to AppStore Connect"
   lane :screenshots do
     take_screenshots
@@ -102,14 +132,21 @@ platform :ios do
     deliver(skip_binary_upload: true)
   end
 
+  desc "Upload screenshots"
+  lane :upload_screenshots do
+    deliver(
+      # sync_screenshots: true
+      skip_binary_upload: true,
+      overwrite_screenshots: true
+    )
+  end
+
   error do |lane, exception|
-    
     slack(
       message: exception.message,
       channel: "#mein-moers",
       success: false
     )
-
   end
 
 end

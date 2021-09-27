@@ -14,8 +14,9 @@ import TagListView
 import MMAPI
 import Fuse
 import MMUI
+import Combine
 
-
+// swiftlint:disable file_length
 
 public struct CellIdentifier {
     
@@ -46,10 +47,12 @@ class ContentViewController: UIViewController {
         }
     }
     
+    // swiftlint:disable:next force_cast
     private lazy var drawer = { self.parent as! MainViewController }()
     private var normalColor = UIColor.clear
     private var highlightedColor = UIColor.clear
     private let fuse = Fuse(location: 0, distance: 100, threshold: 0.45, maxPatternLength: 32, isCaseSensitive: false)
+    private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Data
     
@@ -147,10 +150,12 @@ class ContentViewController: UIViewController {
         
         let updatedLocations = self.locationManager.updateDistances(locations: locations)
         
-        updatedLocations.observeNext { locations in
+        updatedLocations.sink { _ in
             
-            self.locations = locations.sorted(by: { (l1, l2) -> Bool in
-                l1.distance < l2.distance
+        } receiveValue: { (locations: [Location]) in
+            
+            self.locations = locations.sorted(by: { (location1, location2) -> Bool in
+                location1.distance < location2.distance
             })
             
             self.datasource = self.locations
@@ -159,7 +164,8 @@ class ContentViewController: UIViewController {
                 self.tableView.reloadData()
             }
             
-        }.dispose(in: bag)
+        }
+        .store(in: &cancellables)
         
     }
     
@@ -320,7 +326,7 @@ extension ContentViewController: UISearchBarDelegate {
         
         tableView.reloadData()
         
-        //Answers.logSearch(withQuery: searchBar.text, customAttributes: nil)
+        // Answers.logSearch(withQuery: searchBar.text, customAttributes: nil)
         
     }
     
@@ -383,6 +389,7 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
             
         case .list:
             
+            // swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
             
             let location = datasource[indexPath.row]
@@ -391,6 +398,7 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
             
         case .filter(_, _, let items):
             
+            // swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
             
             let location = items[indexPath.row]
@@ -405,6 +413,7 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
             
             if indexPath.row < numberOfTags {
             
+                // swiftlint:disable force_cast
                 let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.tagCell, for: indexPath) as! TagTableViewCell
                 
                 cell.titleLabel.attributedText = tags[indexPath.row]
@@ -413,6 +422,7 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
                 
             } else {
                 
+                // swiftlint:disable force_cast
                 let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
                 
                 return setupSearchResultCell(cell, items[indexPath.row - numberOfTags])
@@ -519,7 +529,7 @@ extension ContentViewController: TagListViewDelegate {
         
         sender.removeTagView(tagView)
         
-        if sender.tagViews.count == 0 {
+        if sender.tagViews.isEmpty {
             self.headerSectionHeightConstraint.constant = 68.0
             self.displayMode = .list
             self.tableView.reloadData()

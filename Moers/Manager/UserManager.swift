@@ -76,7 +76,7 @@ struct UserManager {
         
         DispatchQueue.global(qos: .background).async {
             
-            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, _, error) in
                 
                 if let error = error {
                     print(error.localizedDescription)

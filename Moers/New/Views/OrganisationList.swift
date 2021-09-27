@@ -14,23 +14,23 @@ struct OrganisationList: View {
     
     @ObservedObject var organisationListViewModel = OrganisationListViewModel()
     
-    
     var body: some View {
         
         VStack {
             
-            organisationListViewModel.organisations.isLoading() {
-                Group  {
+            organisationListViewModel.organisations.isLoading {
+                Group {
                     Spacer()
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
                     Text("Loading...")
-//                    LoadingIndicator(style: .medium)
                     Spacer()
                 }
             }
             
             organisationListViewModel.organisations.hasResource { (organisations: [Organisation]) in
                 List {
-                    ForEach (organisations, id: \.id) { organisation in
+                    ForEach(organisations, id: \.id) { organisation in
                         VStack(alignment: .leading) {
                             Text(organisation.name)
                             Text(organisation.description)
@@ -44,9 +44,7 @@ struct OrganisationList: View {
         }
         .navigationBarTitle("Organisations")
         
-        
     }
-    
     
 }
 

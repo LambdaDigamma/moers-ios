@@ -26,6 +26,8 @@ struct AnnotationIdentifier {
 class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryContentControllerDelegate {
 
     lazy var map = { return ViewFactory.map() }()
+    
+    // swiftlint:disable:next force_cast
     lazy var drawer = { return self.parent as! MainViewController }()
     
     private let locationManager: LocationManagerProtocol
@@ -186,10 +188,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
     
     private func setupConstraints() {
         
-        let constraints = [map.topAnchor.constraint(equalTo: self.view.topAnchor),
-                           map.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                           map.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                           map.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)]
+        let constraints: [NSLayoutConstraint] = [
+            map.topAnchor.constraint(equalTo: self.view.topAnchor),
+            map.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            map.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            map.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         

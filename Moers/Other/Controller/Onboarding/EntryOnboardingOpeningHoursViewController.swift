@@ -197,8 +197,9 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
     @objc private func adjustForKeyboard(notification: Notification) {
         
         guard let userInfo = notification.userInfo else { return }
+        guard let value = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         
-        let keyboardScreenEndFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let keyboardScreenEndFrame = value.cgRectValue
         let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
         
         if notification.name == UIResponder.keyboardWillHideNotification {

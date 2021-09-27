@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import MMAPI
 import MMUI
+import Combine
 
 class AveragePetrolPriceComponent: BaseComponent {
 
@@ -17,6 +18,7 @@ class AveragePetrolPriceComponent: BaseComponent {
     private let locationManager: LocationManagerProtocol
     private let geocodingManager: GeocodingManagerProtocol
     private let petrolManager: PetrolManagerProtocol
+    private var cancellables = Set<AnyCancellable>()
     
     lazy var averagePetrolCardView: DashboardAveragePetrolPriceCardView = {
         
@@ -89,8 +91,8 @@ class AveragePetrolPriceComponent: BaseComponent {
         
         locationManager.authorizationStatus
             .receive(on: DispatchQueue.main)
-            .observeNext { authorizationStatus in
-            
+            .sink(receiveValue: { authorizationStatus in
+                
                 if authorizationStatus == .authorizedWhenInUse {
                     self.averagePetrolCardView.dismissError()
                     self.averagePetrolCardView.isUserInteractionEnabled = true
@@ -101,7 +103,8 @@ class AveragePetrolPriceComponent: BaseComponent {
                     self.averagePetrolCardView.isUserInteractionEnabled = false
                 }
                 
-        }.dispose(in: bag)
+            })
+            .store(in: &cancellables)
         
     }
     
@@ -112,17 +115,21 @@ class AveragePetrolPriceComponent: BaseComponent {
         
         let location = locationManager.location
         
-        location.observeNext { location in
-            self.loadPlacemark(for: location)
-        }.dispose(in: bag) // Add Throtteling here
-        
         location
             .receive(on: DispatchQueue.main)
-            .observeFailed { error in
-                // TODO: Show standard price for Moers
-                print(error.localizedDescription)
-                self.averagePetrolCardView.showError(withTitle: "Loading Location Failed.", message: "")
-            }.dispose(in: bag)
+            .sink { (completion: Subscribers.Completion<Error>) in
+            
+                switch completion {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        self.averagePetrolCardView.showError(withTitle: "Loading Location Failed.", message: "")
+                    default: break
+                }
+                
+            } receiveValue: { (location: CLLocation) in
+                self.loadPlacemark(for: location)
+            }
+            .store(in: &cancellables)
         
     }
     
@@ -130,8 +137,10 @@ class AveragePetrolPriceComponent: BaseComponent {
         
         geocodingManager.placemark(from: location)
             .receive(on: DispatchQueue.main)
-            .observeNext { placemark in
-            
+            .sink { (_: Subscribers.Completion<Error>) in
+                
+            } receiveValue: { (placemark: CLPlacemark) in
+                
                 self.averagePetrolCardView.locationLabel.text = placemark.city
                 
                 if placemark.countryCode == "DE" {
@@ -141,9 +150,10 @@ class AveragePetrolPriceComponent: BaseComponent {
                     self.averagePetrolCardView.showError(withTitle: String.localized("PetrolErrorLocationTitle"),
                                                          message: String.localized("PetrolErrorLocationMessage"))
                 }
-            
-            }.dispose(in: bag)
-        
+                
+            }
+            .store(in: &cancellables)
+
     }
     
     private func loadPetrolPrice(for location: CLLocation) {
@@ -160,13 +170,12 @@ class AveragePetrolPriceComponent: BaseComponent {
         
         petrolStations
             .receive(on: DispatchQueue.main)
-            .observeNext { petrolStations in
+            .sink { (_: Subscribers.Completion<Error>) in
+                // TODO: Add Error Handling
+            } receiveValue: { (petrolStations: [PetrolStation]) in
                 self.handleReceivedPetrolStations(petrolStations)
-            }.dispose(in: bag)
-        
-        petrolStations.observeFailed { error in
-            // TODO: Add Error Handling
-        }.dispose(in: bag)
+            }
+            .store(in: &cancellables)
         
     }
     
@@ -198,9 +207,11 @@ class AveragePetrolPriceComponent: BaseComponent {
         // TODO: Rebuild Analytics
         // AnalyticsManager.shared.logOpenedPetrolPrices(for: place)
         
-        let petrolStationViewController = PetrolStationViewController(locationManager: locationManager,
-                                                                      petrolManager: petrolManager,
-                                                                      stations: petrolStations)
+        let petrolStationViewController = PetrolStationViewController(
+            locationManager: locationManager,
+            petrolManager: petrolManager,
+            stations: petrolStations
+        )
         
         return petrolStationViewController
         

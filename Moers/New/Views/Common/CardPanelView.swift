@@ -23,7 +23,8 @@ struct CardPanelView<Content: View>: View {
             self.content
         }
         .frame(maxWidth: .infinity)
-        .background(Color("Card"))
+//        .background(Color("Card"))
+        .background(Color.secondarySystemGroupedBackground)
         .cornerRadius(12)
         .shadow(radius: 8)
         

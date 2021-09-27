@@ -20,7 +20,7 @@ struct RubbishMediumWidget: View {
                 Text("Adlerstraße")
                     .font(.title).fontWeight(.semibold)
                 
-                HStack() {
+                HStack {
                     
                     VStack {
                         
@@ -70,8 +70,6 @@ struct RubbishMediumWidget: View {
                         
                     }
                     
-                    
-                    
                 }.frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding()
@@ -79,13 +77,10 @@ struct RubbishMediumWidget: View {
                    maxHeight: .infinity,
                    alignment: .topLeading)
             
-            
-            
         }
         
-        
-        
     }
+    
 }
 
 struct RubbishMediumWidget_Previews: PreviewProvider {

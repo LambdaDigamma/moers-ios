@@ -19,7 +19,6 @@ extension UISearchBar {
     
 }
 
-
 extension Bundle {
     
     private var releaseVersionNumber: String {
@@ -50,69 +49,22 @@ extension Bundle {
     
 }
 
-public extension Sequence where Element: Equatable {
-    var uniqueElements: [Element] {
-        return self.reduce(into: []) {
-            uniqueElements, element in
-            
-            if !uniqueElements.contains(element) {
-                uniqueElements.append(element)
-            }
-        }
-    }
-}
-
-
 extension UIViewController {
     
     var safeTopAnchor: NSLayoutYAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return view.safeAreaLayoutGuide.topAnchor
-        } else {
-            return topLayoutGuide.topAnchor
-        }
+        return view.safeAreaLayoutGuide.topAnchor
     }
     
     var safeBottomAnchor: NSLayoutYAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return view.safeAreaLayoutGuide.bottomAnchor
-        } else {
-            return bottomLayoutGuide.topAnchor
-        }
+        return view.safeAreaLayoutGuide.bottomAnchor
     }
     
     var safeLeftAnchor: NSLayoutXAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return view.safeAreaLayoutGuide.leadingAnchor
-        } else {
-            return view.leadingAnchor
-        }
+        return view.safeAreaLayoutGuide.leadingAnchor
     }
     
     var safeRightAnchor: NSLayoutXAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return view.safeAreaLayoutGuide.trailingAnchor
-        } else {
-            return view.trailingAnchor
-        }
-    }
-    
-}
-
-extension UIImage {
-    
-    class func imageResize(imageObj: UIImage, size: CGSize, scaleFactor: CGFloat) -> UIImage? {
-        
-        let hasAlpha = true
-        let scale: CGFloat = 6.0 // Automatically use scale factor of main screen
-        
-        UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
-        
-        imageObj.draw(in: CGRect(origin: CGPoint(x: (size.width / 2) - (size.width * scaleFactor) / 2, y: (size.height / 2) - (size.height * scaleFactor) / 2), size: CGSize(width: size.width * scaleFactor, height: size.height * scaleFactor)))
-        
-        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext() // !!!
-        return scaledImage
+        return view.safeAreaLayoutGuide.trailingAnchor
     }
     
 }
@@ -120,11 +72,13 @@ extension UIImage {
 protocol Formattable {
     func format(pattern: String) -> String
 }
+
 extension Formattable where Self: CVarArg {
     func format(pattern: String) -> String {
         return String(format: pattern, arguments: [self])
     }
 }
+
 extension Int: Formattable { }
 extension Double: Formattable { }
 extension Float: Formattable { }
@@ -151,10 +105,10 @@ extension UIView {
 
 extension PetrolType: MMCommon.Localizable {
     
-    public static func localizedForCase(_ c: PetrolType) -> String {
+    public static func localizedForCase(_ type: PetrolType) -> String {
         
-        switch c {
-            case .diesel: return String.localized("Diesel") // TODO: Check this localization, this should be moved
+        switch type {
+            case .diesel: return String.localized("Diesel")
             case .e10: return String.localized("E5")
             case .e5: return String.localized("E10")
         }

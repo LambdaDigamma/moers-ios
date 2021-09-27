@@ -12,6 +12,7 @@ import MMAPI
 import CoreLocation
 import Combine
 import SwiftUI
+import OSLog
 
 class CovidComponent: BaseComponent {
     
@@ -19,7 +20,8 @@ class CovidComponent: BaseComponent {
     private let geocodingManager: GeocodingManagerProtocol
     private let covidManager: CovidManagerProtocol
     
-    private var cancellableBag = Set<AnyCancellable>()
+    private var cancellables = Set<AnyCancellable>()
+    private let logger = Logger(.ui)
     
     var locationObject: CoreLocationObject
     
@@ -63,7 +65,6 @@ class CovidComponent: BaseComponent {
             
             self.covidCardView.dismissError()
             self.covidCardView.stopLoading()
-            // TODO: Set something
             
             return
             
@@ -87,7 +88,7 @@ class CovidComponent: BaseComponent {
     
     override func invalidate() {
         
-        // TODO: Stop Monitoring of LocationManager?!
+        self.locationManager.stopMonitoring() // is this right?
         self.covidCardView.stopLoading()
         
     }
@@ -98,19 +99,20 @@ class CovidComponent: BaseComponent {
         
         locationManager.authorizationStatus
             .receive(on: DispatchQueue.main)
-            .observeNext { authorizationStatus in
-                
+            .sink(receiveValue: { authorizationStatus in
                 if authorizationStatus == .authorizedWhenInUse {
                     self.covidCardView.dismissError()
                     self.covidCardView.isUserInteractionEnabled = true
                     self.loadCurrentLocation()
                 } else {
-                    self.covidCardView.showError(withTitle: "Die App hat keine Erlaubnis, Deinen Standort zu benutzen.",
-                                                         message: "Erlaube dies in den Einstellungen.")
+                    self.covidCardView.showError(
+                        withTitle: "Die App hat keine Erlaubnis, Deinen Standort zu benutzen.",
+                        message: "Erlaube dies in den Einstellungen."
+                    )
                     self.covidCardView.isUserInteractionEnabled = false
                 }
-                
-            }.dispose(in: bag)
+            })
+            .store(in: &cancellables)
         
     }
     
@@ -121,20 +123,24 @@ class CovidComponent: BaseComponent {
         
         let location = locationManager.location
         
+        location.sink { (completion: Subscribers.Completion<Error>) in
         
-        
-        location.observeNext { location in
+            switch completion {
+                case .failure(let error):
+                    // TODO: Show standard price for Moers
+                    self.logger.error("Loading current location failed: \(error.localizedDescription)")
+                    self.covidCardView.showError(
+                        withTitle: "Deine Position konnte nicht bestimmt werden.",
+                        message: ""
+                    )
+                default: break
+            }
+            
+        } receiveValue: { (location: CLLocation) in
             print("Location: \(location)")
             self.loadPetrolPrice(for: location)
-        }.dispose(in: bag) // Add Throtteling here
-        
-        location
-            .receive(on: DispatchQueue.main)
-            .observeFailed { error in
-                // TODO: Show standard price for Moers
-                print(error.localizedDescription)
-                self.covidCardView.showError(withTitle: "Deine Position konnte nicht bestimmt werden.", message: "")
-            }.dispose(in: bag)
+        }
+        .store(in: &cancellables)
         
     }
     
@@ -160,7 +166,7 @@ class CovidComponent: BaseComponent {
             
             self.covidCardView.stopLoading()
             
-        }).store(in: &cancellableBag)
+        }).store(in: &cancellables)
         
     }
     

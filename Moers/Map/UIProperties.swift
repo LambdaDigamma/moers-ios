@@ -93,7 +93,6 @@ struct UIProperties {
             } else {
                 return open + " • " + location.localizedCategory
             }
-
             
         } else {
             

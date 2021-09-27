@@ -15,7 +15,6 @@ import MMAPI
 @available(iOS 13.0, *)
 class OrganisationListViewModel: ObservableObject {
     
-    
     @Published var organisationRepository: OrganisationRepository
     @Published var organisations = UIResource<[Organisation]>.loading
     

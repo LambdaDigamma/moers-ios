@@ -20,8 +20,6 @@ class BaseOrganisationRepository {
 @available(iOS 13.0, *)
 protocol OrganisationRepository: BaseOrganisationRepository {
     
-    
-    
 }
 
 extension Organisation: Model {

@@ -12,9 +12,7 @@ import MMAPI
 
 extension Resolver: ResolverRegistering {
     public static func registerAllServices() {
-        if #available(iOS 13.0, *) {
-            register { NetworkingAPI.default as API }.scope(.application)
-            register { RemoteOrganisationRepository() as OrganisationRepository }.scope(.application)
-        }
+        register { NetworkingAPI.default as API }.scope(.application)
+        register { RemoteOrganisationRepository() as OrganisationRepository }.scope(.application)
     }
 }

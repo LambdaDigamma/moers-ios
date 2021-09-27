@@ -45,7 +45,6 @@ class ShortcutsViewController: UIViewController {
         intentStackView.distribution = .fillEqually
         intentStackView.spacing = 8
         
-        
         let activity = UserManager.shared.nextRubbishActivity()
         let shortcut = INShortcut(userActivity: activity)
         

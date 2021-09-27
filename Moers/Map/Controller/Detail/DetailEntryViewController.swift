@@ -233,6 +233,7 @@ class DetailEntryViewController: UIViewController {
         
         let storyboard = UIStoryboard(name: "DetailViewControllers", bundle: nil)
         
+        // swiftlint:disable:next force_cast
         return storyboard.instantiateViewController(withIdentifier: "DetailEntryViewController") as! DetailEntryViewController
         
     }
@@ -248,6 +249,7 @@ extension DetailEntryViewController: Themeable {
     
     typealias Theme = ApplicationTheme
     
+    // swiftlint:disable function_body_length
     func apply(theme: Theme) {
         
         self.topSeparator.backgroundColor = theme.decentColor

@@ -80,10 +80,12 @@ class SettingsViewController: UIViewController {
     
     private func setupConstraints() {
         
-        let constraints = [tableView.topAnchor.constraint(equalTo: self.safeTopAnchor),
-                           tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                           tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                           tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)]
+        let constraints: [NSLayoutConstraint] = [
+            tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         
@@ -245,8 +247,12 @@ class SettingsViewController: UIViewController {
         sections.append(TableViewSection(title: String.localized("User"),
                                 rows: [NavigationRow(title: String.localized("UserType") + ": " + User.UserType.localizedForCase(userType), action: showUserType)]))
         
-        sections.append(TableViewSection(title: String.localized("Petrol"),
-                                rows: [NavigationRow(title: String.localized("PetrolType") + ": " + PetrolType.localizedForCase(petrolManager.petrolType), action: showPetrolType)]))
+        sections.append(TableViewSection(
+                            title: String.localized("Petrol"),
+                            rows: [
+                                NavigationRow(title: String.localized("PetrolType") + ": " + PetrolType.localizedForCase(petrolManager.petrolType), action: showPetrolType)
+                            ]
+        ))
         
         if UserManager.shared.user.type == .citizen {
             
@@ -345,6 +351,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             
             let switchRow = data[indexPath.section].rows[indexPath.row] as? SwitchRow
             
+            // swiftlint:disable:next force_cast
             let switchCell = tableView.dequeueReusableCell(withIdentifier: switchCellIdentifier) as! SwitchTableViewCell
             
             switchCell.descriptionLabel.text = switchRow?.title
@@ -378,8 +385,8 @@ extension SettingsViewController: Themeable {
     typealias Theme = ApplicationTheme
     
     func apply(theme: Theme) {
-        self.tableView.backgroundColor = theme.backgroundColor
-        self.tableView.separatorColor = theme.separatorColor
+        self.tableView.backgroundColor = UIColor.systemBackground // theme.backgroundColor
+        self.tableView.separatorColor = UIColor.separator // theme.separatorColor
     }
     
 }

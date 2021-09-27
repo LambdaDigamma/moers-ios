@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol LFSearchViewDelegate {
+public protocol LFSearchViewDelegate: AnyObject {
     
     func searchView(_ searchView: LFSearchViewController, didTextChangeTo text: String, textLength: Int)
     
@@ -19,7 +19,6 @@ public protocol LFSearchViewDelegate {
     func searchView(_ searchView: LFSearchViewController, didDismissWithText text: String)
     
     func searchView(_ searchView: LFSearchViewController, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
-    
     
     func searchView(_ searchView: LFSearchViewController, tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     

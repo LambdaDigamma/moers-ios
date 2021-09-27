@@ -12,6 +12,8 @@ import Gestalt
 import CoreLocation
 import MMAPI
 import MMUI
+import OSLog
+import Combine
 
 class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataSource {
 
@@ -22,6 +24,9 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     private var streets: [RubbishCollectionStreet] = []
     private var accentColor = UIColor.clear
     private var decentColor = UIColor.clear
+    private var cancellables = Set<AnyCancellable>()
+    
+    private let logger = Logger(.ui)
     
     private lazy var picker = PickerView()
     
@@ -58,59 +63,72 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
         
         let streets = rubbishManager.loadRubbishCollectionStreets()
         
-        streets.receive(on: DispatchQueue.main)
-            .observeNext { (streets: [RubbishCollectionStreet]) in
-            
-            self.streets = streets
-            self.picker.reloadPickerView()
-            
-            self.loadUserLocationForStreetEstimation()
-            
-        }.dispose(in: self.bag)
-        
-        streets.observeFailed { (error: Error) in
-            print("Loading Rubbish Collection Streets Failed: \(error.localizedDescription)")
-        }.dispose(in: bag)
+        streets
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] (completion: Subscribers.Completion<Error>) in
+                
+                switch completion {
+                    case .failure(let error):
+                        self?.logger.error("Loading rubbish collection streets failed: \(error.localizedDescription)")
+                    default: break
+                }
+                
+            }, receiveValue: { (streets: [RubbishCollectionStreet]) in
+                
+                self.streets = streets
+                self.picker.reloadPickerView()
+                
+                self.loadUserLocationForStreetEstimation()
+                
+            })
+            .store(in: &cancellables)
         
     }
     
     private func loadUserLocationForStreetEstimation() {
         
-        locationManager.authorizationStatus.observeNext { authorizationStatus in
-            
+        locationManager.authorizationStatus.sink { (authorizationStatus: CLAuthorizationStatus) in
             if authorizationStatus == .authorizedWhenInUse {
                 self.estimateUserStreet()
             }
-            
-        }.dispose(in: bag)
+        }
+        .store(in: &cancellables)
         
     }
     
     private func estimateUserStreet() {
         
         locationManager.requestCurrentLocation()
-        locationManager.location.observeNext { location in
+        
+        locationManager.location.sink { (_: Subscribers.Completion<Error>) in
             
+        } receiveValue: { (location: CLLocation) in
             self.checkStreetExistance(for: location)
-            
-        }.dispose(in: bag)
+        }
+        .store(in: &cancellables)
         
     }
     
     private func checkStreetExistance(for location: CLLocation) {
         
-        geocodingManager.placemark(from: location).observeNext { placemark in
-            
-            let userStreet = placemark.street
-            
-            if let rubbishStreet = self.streets.filter({ $0.street.contains(userStreet) }).first {
+        geocodingManager
+            .placemark(from: location)
+            .receive(on: DispatchQueue.main)
+            .sink { (_: Subscribers.Completion<Error>) in
                 
-                self.picker.selectRow(self.streets.firstIndex(of: rubbishStreet) ?? 0, animated: true)
-                self.picker.adjustCurrentSelectedAfterOrientationChanges()
+            } receiveValue: { placemark in
+                
+                let userStreet = placemark.street
+                
+                if let rubbishStreet = self.streets.filter({ $0.street.contains(userStreet) }).first {
+                    
+                    self.picker.selectRow(self.streets.firstIndex(of: rubbishStreet) ?? 0, animated: true)
+                    self.picker.adjustCurrentSelectedAfterOrientationChanges()
+                    
+                }
                 
             }
-            
-        }.dispose(in: bag)
+            .store(in: &cancellables)
         
     }
     

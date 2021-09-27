@@ -10,6 +10,7 @@ import UIKit
 import Gestalt
 import MMUI
 
+// swiftlint:disable line_length
 class TandCViewController: UIViewController {
 
     lazy var textView: UITextView = {
@@ -90,9 +91,9 @@ extension TandCViewController: Themeable {
     typealias Theme = ApplicationTheme
     
     func apply(theme: Theme) {
-        self.view.backgroundColor = theme.backgroundColor
-        self.textView.backgroundColor = theme.backgroundColor
-        self.textView.textColor = theme.color
+        self.view.backgroundColor = UIColor.systemBackground // theme.backgroundColor
+        self.textView.backgroundColor = UIColor.systemBackground // theme.backgroundColor
+        self.textView.textColor = UIColor.label // theme.color
     }
     
 }

@@ -13,21 +13,17 @@ class SelectionFeedbackGenerator {
     private let anyObject: AnyObject?
     
     init() {
-        
         anyObject = UISelectionFeedbackGenerator()
-        
     }
     
     func prepare() {
-        
-        (anyObject as! UISelectionFeedbackGenerator).prepare()
-        
+        guard let feedbackGenerator = anyObject as? UISelectionFeedbackGenerator else { return }
+        feedbackGenerator.prepare()
     }
     
     func selectionChanged() {
-        
-        (anyObject as! UISelectionFeedbackGenerator).selectionChanged()
-        
+        guard let feedbackGenerator = anyObject as? UISelectionFeedbackGenerator else { return }
+        feedbackGenerator.selectionChanged()
     }
     
 }
@@ -37,21 +33,17 @@ class SuccessFeedbackGenerator {
     private let anyObject: AnyObject?
     
     init() {
-        
         anyObject = UINotificationFeedbackGenerator()
-        
     }
     
     func prepare() {
-        
-        (anyObject as! UINotificationFeedbackGenerator).prepare()
-        
+        guard let feedbackGenerator = anyObject as? UINotificationFeedbackGenerator else { return }
+        feedbackGenerator.prepare()
     }
     
     func success() {
-        
-        (anyObject as! UINotificationFeedbackGenerator).notificationOccurred(.success)
-        
+        guard let feedbackGenerator = anyObject as? UINotificationFeedbackGenerator else { return }
+        feedbackGenerator.notificationOccurred(.success)
     }
     
 }

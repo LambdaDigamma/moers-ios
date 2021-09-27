@@ -13,6 +13,7 @@ import MapKit
 import MMAPI
 import MMUI
 
+// swiftlint:disable function_body_length
 class EntryOnboardingAddressViewController: UIViewController {
 
     lazy var scrollView = { ViewFactory.scrollView() }()
@@ -26,7 +27,7 @@ class EntryOnboardingAddressViewController: UIViewController {
     lazy var mapView = { ViewFactory.map() }()
     lazy var infoLabel = { ViewFactory.label() }()
     
-    private var coordinate: CLLocationCoordinate2D? = nil
+    private var coordinate: CLLocationCoordinate2D?
     
     private var entryManager: EntryManagerProtocol
     
@@ -182,8 +183,8 @@ class EntryOnboardingAddressViewController: UIViewController {
     @objc private func adjustForKeyboard(notification: Notification) {
         
         guard let userInfo = notification.userInfo else { return }
+        guard let keyboardScreenEndFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         
-        let keyboardScreenEndFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
         
         if notification.name == UIResponder.keyboardWillHideNotification {

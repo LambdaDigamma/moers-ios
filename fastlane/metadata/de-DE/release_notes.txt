@@ -1,1 +1,1 @@
-Die Veranstaltungsansicht wurde überarbeitet und zeigt die Veranstaltungen nun in einer übersichtlicheren Form an. Auch unter der Haube wurden einige Verbesserungen vorgenommen.
+Kleinere Verbesserungen und bessere Performance.

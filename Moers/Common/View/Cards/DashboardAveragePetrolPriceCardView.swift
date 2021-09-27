@@ -111,7 +111,6 @@ class DashboardAveragePetrolPriceCardView: CardView {
         self.accessibilityLabel =
             String.localized("") +
             "\"\(locationLabel.text ?? String.localized("Unknown"))\""
-            
         
         self.accessibilityHint = String.localized("DashboardAction")
         
@@ -119,32 +118,34 @@ class DashboardAveragePetrolPriceCardView: CardView {
     
     private func setupConstraints() {
         
-        let constraints = [locationImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-                           locationImageView.heightAnchor.constraint(equalToConstant: 16),
-                           locationImageView.widthAnchor.constraint(equalTo: locationImageView.heightAnchor),
-                           locationImageView.centerYAnchor.constraint(equalTo: locationDescriptionLabel.centerYAnchor),
-                           locationDescriptionLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-                           locationDescriptionLabel.leadingAnchor.constraint(equalTo: locationImageView.trailingAnchor, constant: 8),
-                           locationDescriptionLabel.trailingAnchor.constraint(equalTo: averageImageView.leadingAnchor, constant: -8),
-                           locationLabel.topAnchor.constraint(equalTo: locationDescriptionLabel.bottomAnchor, constant: 8),
-                           locationLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-                           locationLabel.trailingAnchor.constraint(equalTo: priceLabel.leadingAnchor, constant: -16),
-                           averageImageView.trailingAnchor.constraint(equalTo: priceLabel.leadingAnchor, constant: -4),
-                           averageImageView.centerYAnchor.constraint(equalTo: priceLabel.centerYAnchor),
-                           averageImageView.heightAnchor.constraint(equalToConstant: 15),
-                           averageImageView.widthAnchor.constraint(equalTo: averageImageView.heightAnchor),
-                           priceLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
-                           priceLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-                           priceLabel.heightAnchor.constraint(equalToConstant: 32),
-                           priceLabel.widthAnchor.constraint(equalToConstant: 104),
-                           petrolTypeLabel.leadingAnchor.constraint(equalTo: priceLabel.leadingAnchor, constant: 4),
-                           petrolTypeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-                           petrolTypeLabel.bottomAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: -16),
-                           infoLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 8),
-                           infoLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-                           infoLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-                           infoLabel.heightAnchor.constraint(equalToConstant: 36),
-                           infoLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)]
+        let constraints: [NSLayoutConstraint] = [
+            locationImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            locationImageView.heightAnchor.constraint(equalToConstant: 16),
+            locationImageView.widthAnchor.constraint(equalTo: locationImageView.heightAnchor),
+            locationImageView.centerYAnchor.constraint(equalTo: locationDescriptionLabel.centerYAnchor),
+            locationDescriptionLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            locationDescriptionLabel.leadingAnchor.constraint(equalTo: locationImageView.trailingAnchor, constant: 8),
+            locationDescriptionLabel.trailingAnchor.constraint(equalTo: averageImageView.leadingAnchor, constant: -8),
+            locationLabel.topAnchor.constraint(equalTo: locationDescriptionLabel.bottomAnchor, constant: 8),
+            locationLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            locationLabel.trailingAnchor.constraint(equalTo: priceLabel.leadingAnchor, constant: -16),
+            averageImageView.trailingAnchor.constraint(equalTo: priceLabel.leadingAnchor, constant: -4),
+            averageImageView.centerYAnchor.constraint(equalTo: priceLabel.centerYAnchor),
+            averageImageView.heightAnchor.constraint(equalToConstant: 15),
+            averageImageView.widthAnchor.constraint(equalTo: averageImageView.heightAnchor),
+            priceLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
+            priceLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            priceLabel.heightAnchor.constraint(equalToConstant: 32),
+            priceLabel.widthAnchor.constraint(equalToConstant: 104),
+            petrolTypeLabel.leadingAnchor.constraint(equalTo: priceLabel.leadingAnchor, constant: 4),
+            petrolTypeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            petrolTypeLabel.bottomAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: -16),
+            infoLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 8),
+            infoLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            infoLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            infoLabel.heightAnchor.constraint(equalToConstant: 36),
+            infoLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)
+        ]
         
         constraints.forEach { $0.priority = UILayoutPriority.required }
         
@@ -172,8 +173,8 @@ extension DashboardAveragePetrolPriceCardView: Themeable {
         self.locationDescriptionLabel.textColor = theme.color
         self.locationLabel.textColor = theme.color
         self.priceLabel.textColor = theme.color
-        self.infoLabel.textColor = theme.decentColor //.darker(by: 20)
-        self.petrolTypeLabel.textColor = theme.decentColor //.darker(by: 20)
+        self.infoLabel.textColor = theme.decentColor // .darker(by: 20)
+        self.petrolTypeLabel.textColor = theme.decentColor // .darker(by: 20)
         self.averageImageView.image = #imageLiteral(resourceName: "average").tinted(color: theme.color)
         
     }

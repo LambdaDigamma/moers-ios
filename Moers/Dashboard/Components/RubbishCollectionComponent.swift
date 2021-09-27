@@ -8,10 +8,12 @@
 
 import UIKit
 import MMAPI
+import Combine
 
 class RubbishCollectionComponent: BaseComponent {
     
     var rubbishItems: [RubbishPickupItem] = []
+    private var cancellables = Set<AnyCancellable>()
     
     lazy var rubbishCardView: DashboardRubbishCardView = {
         
@@ -39,7 +41,7 @@ class RubbishCollectionComponent: BaseComponent {
         
         self.reloadUI()
         
-        if rubbishItems.count == 0 && RubbishManager.shared.isEnabled {
+        if rubbishItems.isEmpty && RubbishManager.shared.isEnabled {
             self.rubbishCardView.dismissError()
             self.loadRubbishData()
         } else if !RubbishManager.shared.isEnabled {
@@ -74,9 +76,6 @@ class RubbishCollectionComponent: BaseComponent {
         
         self.rubbishCardView.startLoading()
         
-        // TODO: Implement Loading Indicator
-//        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
         let queue = OperationQueue()
         
         queue.addOperation {
@@ -95,23 +94,24 @@ class RubbishCollectionComponent: BaseComponent {
             
             let pickupItems = RubbishManager.shared.loadRubbishPickupItems(for: street)
             
-            pickupItems.observeNext { (items: [RubbishPickupItem]) in
-                
-                self.rubbishItems = items
-                
-                OperationQueue.main.addOperation {
+            pickupItems.receive(on: DispatchQueue.main)
+                .sink { (_: Subscribers.Completion<Error>) in
                     
-                    // TODO: Implement Loading Indicator
-//                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                } receiveValue: { (items: [RubbishPickupItem]) in
                     
-                    self.rubbishCardView.stopLoading()
-                    self.rubbishCardView.dismissError()
+                    self.rubbishItems = items
                     
-                    self.reloadUI()
+                    OperationQueue.main.addOperation {
+                        
+                        self.rubbishCardView.stopLoading()
+                        self.rubbishCardView.dismissError()
+                        
+                        self.reloadUI()
+                        
+                    }
                     
                 }
-                
-            }.dispose(in: self.bag)
+                .store(in: &cancellables)
             
         } else {
             
@@ -136,9 +136,12 @@ class RubbishCollectionComponent: BaseComponent {
             self.rubbishCardView.itemView2.rubbishCollectionItem = rubbishItems[1]
         } else if rubbishItems.count >= 1 {
             self.rubbishCardView.itemView1.rubbishCollectionItem = rubbishItems[0]
-        } else if rubbishItems.count == 0 {
+        } else if rubbishItems.isEmpty {
             self.rubbishCardView.stopLoading()
-            self.rubbishCardView.showError(withTitle: "Warnung", message: "Leider können momentan keine weiteren Abholtermine angezeigt werden, da die Daten für dieses Jahr noch nicht zur Verfügung stehen. Wir arbeiten daran, so schnell wie möglich aktuelle Termine bereitstellen zu können!")
+            self.rubbishCardView.showError(
+                withTitle: "Warnung",
+                message: "Leider können momentan keine weiteren Abholtermine angezeigt werden, da die Daten für dieses Jahr noch nicht zur Verfügung stehen. Wir arbeiten daran, so schnell wie möglich aktuelle Termine bereitstellen zu können!"
+            )
         }
         
     }

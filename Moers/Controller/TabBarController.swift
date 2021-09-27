@@ -9,12 +9,13 @@
 import UIKit
 import BLTNBoard
 import Gestalt
-import ESTabBarController
 import MMAPI
 import MMUI
 import MMEvents
+import CoreLocation
+import Combine
 
-class TabBarController: ESTabBarController, UITabBarControllerDelegate {
+class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
     var firstLaunch: FirstLaunch
     
@@ -34,13 +35,15 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     var rubbishManager: RubbishManagerProtocol
     let eventService: EventServiceProtocol
     
+    private var cancellables = Set<AnyCancellable>()
+    
     lazy var onboardingManager: OnboardingManager = {
-       
-        return OnboardingManager(locationManager: locationManager,
-                                 geocodingManager: geocodingManager,
-                                 rubbishManager: rubbishManager,
-                                 petrolManager: petrolManager)
-        
+        return OnboardingManager(
+            locationManager: locationManager,
+            geocodingManager: geocodingManager,
+            rubbishManager: rubbishManager,
+            petrolManager: petrolManager
+        )
     }()
     
     lazy var bulletinManager: BLTNItemManager = {
@@ -53,14 +56,16 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         return BLTNItemManager(rootItem: page)
     }()
     
-    init(locationManager: LocationManagerProtocol,
-         petrolManager: PetrolManagerProtocol,
-         rubbishManager: RubbishManagerProtocol,
-         geocodingManager: GeocodingManagerProtocol,
-         cameraManager: CameraManagerProtocol,
-         entryManager: EntryManagerProtocol,
-         parkingLotManager: ParkingLotManagerProtocol,
-         eventService: EventServiceProtocol) {
+    init(
+        locationManager: LocationManagerProtocol,
+        petrolManager: PetrolManagerProtocol,
+        rubbishManager: RubbishManagerProtocol,
+        geocodingManager: GeocodingManagerProtocol,
+        cameraManager: CameraManagerProtocol,
+        entryManager: EntryManagerProtocol,
+        parkingLotManager: ParkingLotManagerProtocol,
+        eventService: EventServiceProtocol
+    ) {
         
         self.firstLaunch = FirstLaunch(userDefaults: .standard, key: Constants.firstLaunch)
         self.locationManager = locationManager
@@ -126,24 +131,26 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         self.loadCurrentLocation()
         
-        let tabControllerFactory = TabControllerFactory()
-        
-        let newsTab = tabControllerFactory.buildTabItem(
-            using: ItemBounceContentView(),
+        let configuration = UIImage.SymbolConfiguration(scale: .large)
+        let tabItem = UITabBarItem(
             title: String.localized("NewsTitle"),
-            image: #imageLiteral(resourceName: "news"),
-            accessibilityLabel: String.localized("NewsTitle"),
-            accessibilityIdentifier: "TabNews")
+            image: UIImage(systemName: "newspaper", withConfiguration: configuration),
+            selectedImage: UIImage(systemName: "newspaper.fill")
+        )
         
-        let news = tabControllerFactory.buildNavigationController(
-            using: newsViewController,
-            tabItem: newsTab)
+        tabItem.accessibilityIdentifier = "TabNews"
         
-        self.viewControllers = [dashboard.navigationController,
-                                news,
-                                map.navigationController,
-                                events.navigationController,
-                                other.navigationController]
+        let newsNavigationController = UINavigationController()
+        newsNavigationController.viewControllers = [newsViewController]
+        newsNavigationController.tabBarItem = tabItem
+        
+        self.viewControllers = [
+            dashboard.navigationController,
+            newsNavigationController,
+            map.navigationController,
+            events.navigationController,
+            other.navigationController
+        ]
         
     }
 
@@ -162,51 +169,6 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
         
         if (firstLaunch.isFirstLaunch || !onboardingManager.userDidCompleteSetup) && !isSnapshotting() {
             showBulletin()
-        }
-        
-    }
-    
-    // MARK: - UITabBarDelegate
-    
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        super.tabBar(tabBar, didSelect: item)
-        
-        if let item = item as? ESTabBarItem {
-            
-            if item.contentView is MapItemContentView {
-                
-                item.image = #imageLiteral(resourceName: "search")
-                item.selectedImage = #imageLiteral(resourceName: "search")
-                item.accessibilityIdentifier = "TabMapSearch"
-                item.accessibilityLabel = String.localized("SearchMap")
-                
-                item.contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(search)))
-                
-                self.shouldHijackHandler = { _, _, index in
-                    
-                    return index == 2
-                    
-                }
-                
-                self.didHijackHandler = { _, _, _ in
-                    
-                    self.search()
-                    
-                }
-                
-            } else {
-                
-                self.shouldHijackHandler = nil
-                
-                guard let item = viewControllers?[2].tabBarItem else { return }
-                
-                item.image = #imageLiteral(resourceName: "map_marker")
-                item.selectedImage = #imageLiteral(resourceName: "map_marker")
-                item.accessibilityLabel = String.localized("MapTabItem")
-                item.accessibilityIdentifier = "TabMap"
-                
-            }
-            
         }
         
     }
@@ -262,8 +224,10 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             RubbishManager.shared.isEnabled = true
             
             if RubbishManager.shared.remindersEnabled {
-                RubbishManager.shared.registerNotifications(at: RubbishManager.shared.reminderHour ?? 20,
-                                                            minute: RubbishManager.shared.reminderHour ?? 00)
+                RubbishManager.shared.registerNotifications(
+                    at: RubbishManager.shared.reminderHour ?? 20,
+                    minute: RubbishManager.shared.reminderHour ?? 00
+                )
             }
             
             item.manager?.dismissBulletin(animated: true)
@@ -292,11 +256,12 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     
     private func loadCurrentLocation() {
         
-        locationManager.authorizationStatus.observeNext { authorizationStatus in
+        locationManager.authorizationStatus.sink { (authorizationStatus: CLAuthorizationStatus) in
             if authorizationStatus == .authorizedWhenInUse {
                 self.locationManager.requestCurrentLocation()
             }
-        }.dispose(in: bag)
+        }
+        .store(in: &cancellables)
         
     }
     
@@ -311,31 +276,38 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
             
             let streets = RubbishManager.shared.loadRubbishCollectionStreets()
             
-            streets.receive(on: DispatchQueue.main).observeNext { (streets: [RubbishCollectionStreet]) in
-                
-                let currentStreetName = RubbishManager.shared.rubbishStreet?.street ?? ""
-                let currentStreetAddition = RubbishManager.shared.rubbishStreet?.streetAddition ?? ""
-                
-                if let filteredStreet = streets.filter({ $0.street == currentStreetName && $0.streetAddition == currentStreetAddition }).first {
+            streets
+                .receive(on: DispatchQueue.main)
+                .sink { (_: Subscribers.Completion<Error>) in
                     
-                    RubbishManager.shared.register(filteredStreet)
+                } receiveValue: { (streets: [RubbishCollectionStreet]) in
                     
-                    if RubbishManager.shared.remindersEnabled {
-                        RubbishManager.shared.registerNotifications(at: RubbishManager.shared.reminderHour ?? 20,
-                                                                    minute: RubbishManager.shared.reminderMinute ?? 00)
+                    let currentStreetName = RubbishManager.shared.rubbishStreet?.street ?? ""
+                    let currentStreetAddition = RubbishManager.shared.rubbishStreet?.streetAddition ?? ""
+                    
+                    if let filteredStreet = streets.filter({ $0.street == currentStreetName && $0.streetAddition == currentStreetAddition }).first {
+                        
+                        RubbishManager.shared.register(filteredStreet)
+                        
+                        if RubbishManager.shared.remindersEnabled {
+                            RubbishManager.shared.registerNotifications(
+                                at: RubbishManager.shared.reminderHour ?? 20,
+                                minute: RubbishManager.shared.reminderMinute ?? 00
+                            )
+                        }
+                        
+                    } else {
+                        
+                        RubbishManager.shared.disableStreet()
+                        
+                        self.rubbishMigrationManager.backgroundViewStyle = .dimmed
+                        self.rubbishMigrationManager.statusBarAppearance = .hidden
+                        self.rubbishMigrationManager.showBulletin(above: self)
+                        
                     }
                     
-                } else {
-                    
-                    RubbishManager.shared.disableStreet()
-                    
-                    self.rubbishMigrationManager.backgroundViewStyle = .dimmed
-                    self.rubbishMigrationManager.statusBarAppearance = .hidden
-                    self.rubbishMigrationManager.showBulletin(above: self)
-                    
                 }
-                
-            }.dispose(in: self.bag)
+                .store(in: &cancellables)
             
         }
         
@@ -349,16 +321,18 @@ class TabBarController: ESTabBarController, UITabBarControllerDelegate {
     
     private func setupMocked() {
         
-        let rubbishCollectionStreet = RubbishCollectionStreet(id: 2,
-                                                              street: "Adlerstraße",
-                                                              streetAddition: nil,
-                                                              residualWaste: 3,
-                                                              organicWaste: 2,
-                                                              paperWaste: 8,
-                                                              yellowBag: 3,
-                                                              greenWaste: 2,
-                                                              sweeperDay: "",
-                                                              year: 2020)
+        let rubbishCollectionStreet = RubbishCollectionStreet(
+            id: 2,
+            street: "Adlerstraße",
+            streetAddition: nil,
+            residualWaste: 3,
+            organicWaste: 2,
+            paperWaste: 8,
+            yellowBag: 3,
+            greenWaste: 2,
+            sweeperDay: "",
+            year: 2020
+        )
         
         UserManager.shared.register(User(type: .citizen, id: nil, name: nil, description: nil))
         petrolManager.petrolType = .diesel
@@ -378,13 +352,25 @@ extension TabBarController: Themeable {
         UIApplication.shared.statusBarStyle = theme.statusBarStyle
         self.view.backgroundColor = theme.backgroundColor
         self.tabBar.tintColor = theme.accentColor
-        self.tabBar.barTintColor = theme.navigationBarColor
+        self.tabBar.barTintColor = UIColor.black // UIColor.systemBackground //theme.navigationBarColor
         self.bulletinManager.backgroundColor = theme.backgroundColor
         self.bulletinManager.hidesHomeIndicator = false
         self.bulletinManager.edgeSpacing = .compact
         self.rubbishMigrationManager.backgroundColor = theme.backgroundColor
         self.rubbishMigrationManager.hidesHomeIndicator = false
         self.rubbishMigrationManager.edgeSpacing = .compact
+        
+        self.tabBar.barStyle = .black
+        
+        let barAppearance = UIBarAppearance()
+        barAppearance.configureWithDefaultBackground()
+        barAppearance.backgroundColor = UIColor.black
+        
+        self.tabBar.standardAppearance = UITabBarAppearance(barAppearance: barAppearance)
+        
+        if #available(iOS 15.0, *) {
+            self.tabBar.scrollEdgeAppearance = UITabBarAppearance(barAppearance: barAppearance)
+        }
         
         if let viewControllers = self.viewControllers {
             
@@ -394,13 +380,10 @@ extension TabBarController: Themeable {
                 
                 nav.navigationBar.barTintColor = theme.navigationBarColor
                 nav.navigationBar.tintColor = theme.accentColor
-                nav.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
-                nav.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
+                nav.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
+                nav.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
                 nav.navigationBar.isTranslucent = true
-                
-                if #available(iOS 13, *) {
-                    nav.navigationBar.prefersLargeTitles = true
-                }
+                nav.navigationBar.prefersLargeTitles = true
                 
                 if theme.statusBarStyle == .lightContent {
                     self.tabBar.barStyle = .black

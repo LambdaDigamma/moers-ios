@@ -20,6 +20,8 @@ enum EntryOverviewType: Equatable {
     case edit(entry: Entry)
 }
 
+// swiftlint:disable type_body_length
+// swiftlint:disable function_body_length
 class EntryOnboardingOverviewViewController: UIViewController {
 
     lazy var searchController = { LFSearchViewController() }()
@@ -187,8 +189,9 @@ class EntryOnboardingOverviewViewController: UIViewController {
             addressHeaderLabel,
             contactHeaderLabel,
             openingHoursHeaderLabel,
-        ].forEach { $0.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.semibold) }
-        
+        ].forEach {
+            $0.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.semibold)
+        }
         
         self.mapView.isScrollEnabled = false
         self.mapView.isZoomEnabled = false
@@ -209,7 +212,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
     
     private func setupConstraints() {
         
-        let constraints = [
+        let constraints: [NSLayoutConstraint] = [
             scrollView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 0),
             scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
             scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
@@ -337,8 +340,9 @@ class EntryOnboardingOverviewViewController: UIViewController {
     @objc private func adjustForKeyboard(notification: Notification) {
         
         guard let userInfo = notification.userInfo else { return }
+        guard let value = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         
-        let keyboardScreenEndFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let keyboardScreenEndFrame = value.cgRectValue
         let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
         
         if notification.name == UIResponder.keyboardWillHideNotification {
@@ -388,8 +392,6 @@ class EntryOnboardingOverviewViewController: UIViewController {
         self.otherOHTextField.text = entryManager.entryOtherOH
         
         disableTextFields([streetTextField, houseNrTextField, postcodeTextField, placeTextField])
-        
-        // disableTextFields([nameTextField, phoneTextField, websiteTextField, streetTextField, houseNrTextField, postcodeTextField, placeTextField, mondayOHTextField, tuesdayOHTextField, wednesdayOHTextField, thursdayOHTextField, fridayOHTextField, saturdayOHTextField, sundayOHTextField, otherOHTextField])
         
         let coordinate = CLLocationCoordinate2D(latitude: entryManager.entryLat ?? 0, longitude: entryManager.entryLng ?? 0)
         
@@ -475,7 +477,6 @@ class EntryOnboardingOverviewViewController: UIViewController {
             addTagView.enableRemoveButton = false
             
             addTagView.onTap = showSearch
-
             
         }
         
@@ -635,19 +636,25 @@ class EntryOnboardingOverviewViewController: UIViewController {
             String.localized("EntryOnboardingOverviewAlertConfirmStoreMessage") :
             String.localized("EntryOnboardingOverviewAlertConfirmUpdateMessage")
         
-        let alert = UIAlertController(title: String.localized("EntryOnboardingOverviewAlertConfirmTitle"),
-                                      message: message,
-                                      preferredStyle: .alert)
+        let alert = UIAlertController(
+            title: String.localized("EntryOnboardingOverviewAlertConfirmTitle"),
+            message: message,
+            preferredStyle: .alert
+        )
         
-        alert.addAction(UIAlertAction(title: String.localized("EntryOnboardingOverviewAlertConfirmCancel"),
-                                      style: .cancel,
-                                      handler: nil))
+        let action = UIAlertAction(
+            title: String.localized("EntryOnboardingOverviewAlertConfirmCancel"),
+            style: .cancel,
+            handler: nil
+        )
         
-        let saveAction = UIAlertAction(title: String.localized("EntryOnboardingOverviewAlertConfirmYes"),
-                                       style: .default) { action in
-            
+        alert.addAction(action)
+        
+        let saveAction = UIAlertAction(
+            title: String.localized("EntryOnboardingOverviewAlertConfirmYes"),
+            style: .default
+        ) { _ in
             self.save()
-            
         }
         
         alert.overrideUserInterfaceStyle = .dark
@@ -670,7 +677,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
         alert.addAction(
             UIAlertAction(
                 title: String.localized("EntryOnboardingOverviewAlertSuccessOkay"),
-                style: .default, handler: { action in
+                style: .default, handler: { _ in
                     
                     if self.overviewType == .summary {
                         
@@ -687,6 +694,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
                 }
             )
         )
+        
         alert.overrideUserInterfaceStyle = .dark
         
         present(alert, animated: true, completion: nil)
@@ -709,7 +717,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
                 UIAlertAction(
                     title: String.localized("EntryOnboardingOverviewAlertUnknownErrorOkay"),
                     style: .default,
-                    handler: { action in
+                    handler: { _ in
                         
                     }
                 )
@@ -735,7 +743,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
             UIAlertAction(
                 title: String.localized("EntryOnboardingOverviewAlertNotAllowedErrorOkay"),
                 style: .default,
-                handler: { action in
+                handler: { _ in
                     
                     guard let otherVC = self.navigationController?.children.first else { return }
                     
@@ -765,7 +773,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
                 UIAlertAction(
                     title: String.localized("EntryOnboardingOverviewAlertFormErrorOkay"),
                     style: .default,
-                    handler: { action in
+                    handler: { _ in
                         
                     }
                 )
@@ -780,11 +788,13 @@ class EntryOnboardingOverviewViewController: UIViewController {
     private var selectedTags: [String] = []
     private var allLoadedTags: [String] = []
     private var searchResultTags: [NSAttributedString] = []
-    private let fuse = Fuse(location: 0,
-                            distance: 100,
-                            threshold: 0.45,
-                            maxPatternLength: 32,
-                            isCaseSensitive: false)
+    private let fuse = Fuse(
+        location: 0,
+        distance: 100,
+        threshold: 0.45,
+        maxPatternLength: 32,
+        isCaseSensitive: false
+    )
     
     private var cellTextColor = UIColor.black
     private var cellBackgroundColor = UIColor.white

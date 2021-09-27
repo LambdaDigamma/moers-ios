@@ -16,7 +16,7 @@ struct ParkingLotWidget: View {
         ZStack {
             Color.systemBackground
             
-            HStack() {
+            HStack {
                 
                 ZStack {
                     
@@ -24,13 +24,12 @@ struct ParkingLotWidget: View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10.0)
                                 .fill(Color.blue)
-                    //                            .stroke(Color.white)
+                                
                                 .aspectRatio(1, contentMode: .fit)
                             Text("P")
                                 .font(.largeTitle).fontWeight(.heavy)
                                 .foregroundColor(.white)
                         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                        
                         
                         Text("vor 3min")
                             .foregroundColor(.secondary)
@@ -54,7 +53,6 @@ struct ParkingLotWidget: View {
                     }
                     .font(.headline)
                     
-                    
                 }.padding()
                 .frame(maxWidth: .infinity,
                        maxHeight: .infinity,
@@ -64,15 +62,10 @@ struct ParkingLotWidget: View {
                     maxHeight: .infinity,
                     alignment: .topLeading)
             
-//            VStack(alignment: .leading) {
-//                Text("Test")
-//            }
-//            .padding()
-//            .frame(maxWidth: .infinity,
-//                   maxHeight: .infinity,
-//                   alignment: .topLeading)
         }
+        
     }
+    
 }
 
 struct ParkingLotWidget_Previews: PreviewProvider {

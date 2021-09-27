@@ -11,6 +11,7 @@ import Pulley
 import EventBus
 import MMAPI
 import CoreLocation
+import Combine
 
 class MainViewController: PulleyViewController {
 
@@ -31,14 +32,17 @@ class MainViewController: PulleyViewController {
     private let entryManager: EntryManagerProtocol
     private let parkingLotManager: ParkingLotManagerProtocol
     private let eventBus: EventBus
+    private var cancellables = Set<AnyCancellable>()
     
-    required init(contentViewController: UIViewController,
-                  drawerViewController: UIViewController,
-                  locationManager: LocationManagerProtocol,
-                  petrolManager: PetrolManagerProtocol,
-                  cameraManager: CameraManagerProtocol,
-                  entryManager: EntryManagerProtocol,
-                  parkingLotManager: ParkingLotManagerProtocol) {
+    required init(
+        contentViewController: UIViewController,
+        drawerViewController: UIViewController,
+        locationManager: LocationManagerProtocol,
+        petrolManager: PetrolManagerProtocol,
+        cameraManager: CameraManagerProtocol,
+        entryManager: EntryManagerProtocol,
+        parkingLotManager: ParkingLotManagerProtocol
+    ) {
         
         self.eventBus = EventBus()
         self.locationManager = locationManager
@@ -158,7 +162,6 @@ class MainViewController: PulleyViewController {
                 
             }
             
-            
         }
         
     }
@@ -167,7 +170,15 @@ class MainViewController: PulleyViewController {
         
         let cameras = cameraManager.getCameras(shouldReload: false)
         
-        cameras.observeNext { (cameras: [Camera]) in
+        cameras.sink { (completion: Subscribers.Completion<Error>) in
+            
+            switch completion {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                default: break
+            }
+            
+        } receiveValue: { (cameras: [Camera]) in
             
             self.eventBus.notify(CameraDatasource.self) { subscriber in
                 subscriber.didReceiveCameras(cameras)
@@ -176,11 +187,8 @@ class MainViewController: PulleyViewController {
             self.locations = self.locations.filter { !($0 is Camera) }
             self.locations.append(contentsOf: cameras)
             
-        }.dispose(in: bag)
-        
-        cameras.observeFailed { (error: Error) in
-            print(error.localizedDescription)
-        }.dispose(in: bag)
+        }
+        .store(in: &cancellables)
         
     }
     
@@ -194,16 +202,21 @@ class MainViewController: PulleyViewController {
                                                              type: preferredPetrolType,
                                                              shouldReload: false)
         
-        petrolStations.observeNext { stations in
-            
-            self.eventBus.notify(PetrolDatasource.self) { subscriber in
-                subscriber.didReceivePetrolStations(stations)
+        petrolStations
+            .receive(on: DispatchQueue.main)
+            .sink { (_: Subscribers.Completion<Error>) in
+                
+            } receiveValue: { (stations: [PetrolStation]) in
+                
+                self.eventBus.notify(PetrolDatasource.self) { subscriber in
+                    subscriber.didReceivePetrolStations(stations)
+                }
+                
+                self.locations = self.locations.filter { !($0 is PetrolStation) }
+                self.locations.append(contentsOf: stations)
+                
             }
-            
-            self.locations = self.locations.filter { !($0 is PetrolStation) }
-            self.locations.append(contentsOf: stations)
-            
-        }.dispose(in: bag)
+            .store(in: &cancellables)
         
     }
     

@@ -37,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         self.resetIfNeeded()
         
+        self.window?.overrideUserInterfaceStyle = .light
+        
 //        let bootstrappingProcedure: BootstrappingProcedure = [
 //            LaunchArgumentsHandler(),
 //            NetworkingConfiguration(),
@@ -44,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 //
 //        bootstrappingProcedure.execute(with: application)
         
-        ThemeManager.default.theme = UserManager.shared.theme
+        ThemeManager.default.theme = ApplicationTheme.dark // ThemeManager.default // UserManager.shared.theme
         ThemeManager.default.animated = true
         
         MMUIConfig.registerThemeManager(ThemeManager.default)
@@ -157,10 +159,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         FirebaseConfiguration.shared.setLoggerLevel(.warning)
         Analytics.setAnalyticsCollectionEnabled(true)
         FirebaseApp.configure()
-        
-        
         Messaging.messaging().delegate = self
-        
         TWTRTwitter.sharedInstance().start(withConsumerKey: consumerKey, consumerSecret: consumerSecret)
         
     }

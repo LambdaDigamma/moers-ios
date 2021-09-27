@@ -10,27 +10,24 @@ import SwiftUI
 import MMAPI
 import ModernNetworking
 
-@available(iOS 13.0, *)
-struct DashboardView: View {
+public struct DashboardView: View {
     
-    
-    init(rubbishItems: [RubbishPickupItem] = []) {
-        self.rubbishItems = Array(rubbishItems.prefix(3))
-    }
-    
-    var rubbishItems: [RubbishPickupItem] = []
-    
-    var body: some View {
+    public var body: some View {
+        
         ScrollView {
             
-            RubbishDashboardView(items: .success([RubbishPickupItem(date: .somedayInFuture, type: .paper)]))
+            LazyVStack {
+                
+                RubbishPanel()
+                
+            }
+            .padding()
             
         }
-        .background(Color("Background"))
-        .accentColor(Color("Accent"))
-        .navigationBarTitle(Text("DashboardTabItem"), displayMode: .automatic)
-        .navigationViewStyle(StackNavigationViewStyle())
+        .navigationBarTitle(Text("DashboardTabItem"))
+        
     }
+    
 }
 
 var schedule: [RubbishPickupItem] = [
@@ -39,22 +36,34 @@ var schedule: [RubbishPickupItem] = [
     RubbishPickupItem(date: Date(timeIntervalSinceNow: 60 * 120), type: .paper)
 ]
 
+public struct RubbishPanel: View {
+    
+    public var body: some View {
+        
+        ScrollView {
+            
+            LazyVStack {
+
+                RubbishDashboardPanel(items: .success(schedule))
+                
+            }
+            
+        }
+        
+    }
+    
+}
+
 @available(iOS 13.0, *)
 struct DashboardView_Previews: PreviewProvider {
-    
-    
     
     static var previews: some View {
         Group {
             NavigationView {
-                DashboardView(rubbishItems: schedule)
+                DashboardView()
             }
             .environment(\.locale, .init(identifier: "de"))
-            NavigationView {
-                DashboardView(rubbishItems: schedule)
-            }
-            .environment(\.colorScheme, .dark)
         }
-        
     }
+    
 }
