@@ -48,21 +48,19 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
         var additionalData: [TableViewSection] = []
         
-        if #available(iOS 13.0, *) {
-            if isWaterTemperatureEnabled {
-                additionalData.append(contentsOf: [
-                    TableViewSection(title: "Moers Funk", rows: [
-                        NavigationRow(title: "Bettenkamper Wassertemperatur", action: showWaterTemperature)
-                    ])
+        if isWaterTemperatureEnabled {
+            additionalData.append(contentsOf: [
+                TableViewSection(title: "Moers Funk", rows: [
+                    NavigationRow(title: "Bettenkamper Wassertemperatur", action: showWaterTemperature)
                 ])
-            }
+            ])
         }
         
         var normalData = [
             
-            TableViewSection(title: "Radio",
-                             rows: [NavigationRow(title: "Bürgerfunk",
-                                                  action: showBuergerfunkSchedule)]),
+//            TableViewSection(title: "Radio",
+//                             rows: [NavigationRow(title: "Bürgerfunk",
+//                                                  action: showBuergerfunkSchedule)]),
             
             TableViewSection(title: String.localized("OtherSectionDataTitle"),
                     rows: [NavigationRow(title: String.localized("OtherSectionDataAddEntry"),

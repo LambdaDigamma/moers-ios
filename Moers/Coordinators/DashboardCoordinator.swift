@@ -54,7 +54,7 @@ class DashboardCoordinator: Coordinator {
     
     private func generateTabBarItem() -> UITabBarItem {
         
-        let tabBarItem = UITabBarItem.init(
+        let tabBarItem = UITabBarItem(
             title: String.localized("DashboardTabItem"),
             image: UIImage(systemName: "rectangle.grid.2x2"),
             selectedImage: UIImage(systemName: "rectangle.grid.2x2.fill")

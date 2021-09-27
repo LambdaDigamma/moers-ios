@@ -1,5 +1,5 @@
 //
-//  FirstLaunchManager.swift
+//  FirstLaunch.swift
 //  Moers
 //
 //  Created by Lennart Fischer on 14.04.18.

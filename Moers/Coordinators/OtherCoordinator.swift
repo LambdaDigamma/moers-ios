@@ -54,15 +54,15 @@ class OtherCoordinator: Coordinator {
     
     private func generateTabBarItem() -> UITabBarItem {
         
-        let tabControllerFactory = TabControllerFactory()
-        
-        let otherTabBarItem = tabControllerFactory.buildTabItem(
+        let tabBarItem = UITabBarItem(
             title: String.localized("OtherTabItem"),
             image: UIImage(systemName: "list.bullet"),
-            accessibilityLabel: String.localized("OtherTabItem"),
-            accessibilityIdentifier: "TabOther")
+            selectedImage: UIImage(systemName: "list.bullet")
+        )
         
-        return otherTabBarItem
+        tabBarItem.accessibilityIdentifier = "TabOther"
+        
+        return tabBarItem
         
     }
     

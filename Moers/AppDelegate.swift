@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 //
 //        bootstrappingProcedure.execute(with: application)
         
-        ThemeManager.default.theme = UserManager.shared.theme
+        ThemeManager.default.theme = ApplicationTheme.dark // ThemeManager.default // UserManager.shared.theme
         ThemeManager.default.animated = true
         
         MMUIConfig.registerThemeManager(ThemeManager.default)

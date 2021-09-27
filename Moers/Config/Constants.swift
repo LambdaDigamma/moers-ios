@@ -10,7 +10,4 @@ import Foundation
 
 public struct Constants {
     public static let firstLaunch = "FirstLaunch.WasLaunchedBefore"
-    public struct UserDefaults {
-        public static var authToken = "authToken"
-    }
 }

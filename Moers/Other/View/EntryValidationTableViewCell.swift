@@ -46,16 +46,18 @@ class EntryValidationTableViewCell: UITableViewCell {
         
         let margins = contentView.layoutMarginsGuide
         
-        let constraints = [validationImageView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-                           validationImageView.topAnchor.constraint(equalTo: margins.topAnchor),
-                           validationImageView.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
-                           validationImageView.widthAnchor.constraint(equalTo: validationImageView.heightAnchor),
-                           titleLabel.topAnchor.constraint(equalTo: margins.topAnchor),
-                           titleLabel.leadingAnchor.constraint(equalTo: validationImageView.trailingAnchor, constant: 8),
-                           titleLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-                           descriptionLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
-                           descriptionLabel.leadingAnchor.constraint(equalTo: validationImageView.trailingAnchor, constant: 8),
-                           descriptionLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor)]
+        let constraints: [NSLayoutConstraint] = [
+            validationImageView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            validationImageView.topAnchor.constraint(equalTo: margins.topAnchor),
+            validationImageView.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
+            validationImageView.widthAnchor.constraint(equalTo: validationImageView.heightAnchor),
+            titleLabel.topAnchor.constraint(equalTo: margins.topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: validationImageView.trailingAnchor, constant: 8),
+            titleLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            descriptionLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
+            descriptionLabel.leadingAnchor.constraint(equalTo: validationImageView.trailingAnchor, constant: 8),
+            descriptionLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         

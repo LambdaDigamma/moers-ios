@@ -10,7 +10,7 @@
 		DF007B772640843E00DAFA6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF007B792640843E00DAFA6F /* InfoPlist.strings */; };
 		DF04D60A23CBD5EC008AE677 /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF04D60923CBD5EC008AE677 /* DashboardCoordinator.swift */; };
 		DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */; };
-		DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4952082AFD000CC0AA8 /* FirstLaunchManager.swift */; };
+		DF0CB4962082AFD000CC0AA8 /* FirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4952082AFD000CC0AA8 /* FirstLaunch.swift */; };
 		DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */; };
 		DF0CB49D2082B78C00CC0AA8 /* PermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB49C2082B78C00CC0AA8 /* PermissionsManager.swift */; };
 		DF0CB49F2082B90900CC0AA8 /* FeedbackGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB49E2082B90900CC0AA8 /* FeedbackGenerators.swift */; };
@@ -70,8 +70,6 @@
 		DF503CEF21431503006EE226 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF503CEE21431503006EE226 /* DebugViewController.swift */; };
 		DF51614A2545F6290094DEEB /* CovidMediumWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5161492545F6290094DEEB /* CovidMediumWidget.swift */; };
 		DF516161254603220094DEEB /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = DF516160254603220094DEEB /* Charts */; };
-		DF51F78D22E26A9200A0CF00 /* TabControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF51F78C22E26A9200A0CF00 /* TabControllerFactory.swift */; };
-		DF52868224A7C07300A6939E /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868124A7C07300A6939E /* AppView.swift */; };
 		DF52868424A7C0B600A6939E /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868324A7C0B600A6939E /* DashboardView.swift */; };
 		DF52868624A7C0CC00A6939E /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868524A7C0CC00A6939E /* NewsView.swift */; };
 		DF52868E24A7C65F00A6939E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF52868D24A7C65F00A6939E /* Colors.xcassets */; };
@@ -115,8 +113,6 @@
 		DF757347217725AC00953DA1 /* LFSearchViewDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF757346217725AC00953DA1 /* LFSearchViewDefaults.swift */; };
 		DF777BBD2414361500C7C9D5 /* MarkdownKit in Frameworks */ = {isa = PBXBuildFile; productRef = DF777BBC2414361500C7C9D5 /* MarkdownKit */; };
 		DF777BC024143A9D00C7C9D5 /* SwiftyMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = DF777BBF24143A9D00C7C9D5 /* SwiftyMarkdown */; };
-		DF77DA0323B52FB9001FCA29 /* input.xcfilelist in Resources */ = {isa = PBXBuildFile; fileRef = DF77DA0223B52FB9001FCA29 /* input.xcfilelist */; };
-		DF77DA0523B52FD9001FCA29 /* output.xcfilelist in Resources */ = {isa = PBXBuildFile; fileRef = DF77DA0423B52FD9001FCA29 /* output.xcfilelist */; };
 		DF78DFE423BD50A2000A78AE /* OnboardingOverviewNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF78DFE323BD50A2000A78AE /* OnboardingOverviewNotice.swift */; };
 		DF79985123CCD3C6007E7186 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF79985023CCD3C6007E7186 /* MapCoordinator.swift */; };
 		DF8269272545BEEA0025C835 /* DashboardCovidCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8269262545BEEA0025C835 /* DashboardCovidCardView.swift */; };
@@ -299,7 +295,7 @@
 		DF007B7A2640844600DAFA6F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DF04D60923CBD5EC008AE677 /* DashboardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
 		DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ApplicationController.swift; path = ../../Controller/ApplicationController.swift; sourceTree = "<group>"; };
-		DF0CB4952082AFD000CC0AA8 /* FirstLaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchManager.swift; sourceTree = "<group>"; };
+		DF0CB4952082AFD000CC0AA8 /* FirstLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunch.swift; sourceTree = "<group>"; };
 		DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = ../../Controller/TabBarController.swift; sourceTree = "<group>"; };
 		DF0CB49C2082B78C00CC0AA8 /* PermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsManager.swift; sourceTree = "<group>"; };
 		DF0CB49E2082B90900CC0AA8 /* FeedbackGenerators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeedbackGenerators.swift; path = ../../View/FeedbackGenerators.swift; sourceTree = "<group>"; };
@@ -366,8 +362,6 @@
 		DF500154235A4E1E00ED39B2 /* SearchDrawerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDrawerViewController.swift; sourceTree = "<group>"; };
 		DF503CEE21431503006EE226 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		DF5161492545F6290094DEEB /* CovidMediumWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidMediumWidget.swift; sourceTree = "<group>"; };
-		DF51F78C22E26A9200A0CF00 /* TabControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabControllerFactory.swift; sourceTree = "<group>"; };
-		DF52868124A7C07300A6939E /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		DF52868324A7C0B600A6939E /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		DF52868524A7C0CC00A6939E /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		DF52868D24A7C65F00A6939E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -413,8 +407,6 @@
 		DF75734221771D3100953DA1 /* LFSearchViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewDelegate.swift; sourceTree = "<group>"; };
 		DF75734421771D6800953DA1 /* LFSearchViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewDataSource.swift; sourceTree = "<group>"; };
 		DF757346217725AC00953DA1 /* LFSearchViewDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewDefaults.swift; sourceTree = "<group>"; };
-		DF77DA0223B52FB9001FCA29 /* input.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = input.xcfilelist; sourceTree = "<group>"; };
-		DF77DA0423B52FD9001FCA29 /* output.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = output.xcfilelist; sourceTree = "<group>"; };
 		DF78DFE323BD50A2000A78AE /* OnboardingOverviewNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingOverviewNotice.swift; sourceTree = "<group>"; };
 		DF79985023CCD3C6007E7186 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
 		DF7D4B5D22F0D53400126AF7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -606,7 +598,7 @@
 			isa = PBXGroup;
 			children = (
 				DFB0325C23F34A6A00A8326E /* StorageManager.swift */,
-				DF0CB4952082AFD000CC0AA8 /* FirstLaunchManager.swift */,
+				DF0CB4952082AFD000CC0AA8 /* FirstLaunch.swift */,
 				DF0CB49C2082B78C00CC0AA8 /* PermissionsManager.swift */,
 				DF2D6DA020B83C1E00176614 /* AnalyticsManager.swift */,
 				DF2D6DA620B8983400176614 /* UserManager.swift */,
@@ -654,8 +646,6 @@
 				DFE3D9002674035400BE29E7 /* NetworkingConfiguration.swift */,
 				DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */,
 				DF7D4B5D22F0D53400126AF7 /* Constants.swift */,
-				DF77DA0223B52FB9001FCA29 /* input.xcfilelist */,
-				DF77DA0423B52FD9001FCA29 /* output.xcfilelist */,
 				DF007B792640843E00DAFA6F /* InfoPlist.strings */,
 			);
 			path = Config;
@@ -1007,7 +997,6 @@
 		DF52868024A7C06A00A6939E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DF52868124A7C07300A6939E /* AppView.swift */,
 				DFCA005924A88A4600EACE9F /* Common */,
 				DF52868F24A7CE7400A6939E /* Dashboard */,
 				DF52868524A7C0CC00A6939E /* NewsView.swift */,
@@ -1101,7 +1090,6 @@
 			children = (
 				DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */,
 				DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */,
-				DF51F78C22E26A9200A0CF00 /* TabControllerFactory.swift */,
 				DF75734121771D1500953DA1 /* SeachController */,
 			);
 			path = Controller;
@@ -1248,7 +1236,6 @@
 				DF1A495C1F6AAB7000E9108B /* Frameworks */,
 				DF1A495B1F6AAB7000E9108B /* Sources */,
 				DF1A495D1F6AAB7000E9108B /* Resources */,
-				DFB618591FAE144D00C98EB6 /* ShellScript */,
 				DF94B14D23F0A7E8009C57ED /* Embed Watch Content */,
 				DFE62576254595E1005FAC1C /* Embed Frameworks */,
 				DF5E1B5F26726AF7005FADA4 /* Embed App Extensions */,
@@ -1477,10 +1464,8 @@
 				DF16582E22EF8C990033D218 /* Localizable.strings in Resources */,
 				DF52868E24A7C65F00A6939E /* Colors.xcassets in Resources */,
 				DF44D58F2126F83B00F8AC0C /* DetailViewControllers.storyboard in Resources */,
-				DF77DA0523B52FD9001FCA29 /* output.xcfilelist in Resources */,
 				DF44D58D2125FE9700F8AC0C /* ContentDrawer.storyboard in Resources */,
 				DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */,
-				DF77DA0323B52FB9001FCA29 /* input.xcfilelist in Resources */,
 				DF89BA1B26FE12AE003A6C64 /* IDEAS.md in Resources */,
 				DF21B2FE20B9D8A900478A33 /* Licenses.plist in Resources */,
 				DFF5DDCB20094A920075A2F4 /* GoogleService-Info.plist in Resources */,
@@ -1548,25 +1533,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		DFB618591FAE144D00C98EB6 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"$(SRCROOT)/Moers/Config/input.xcfilelist",
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-				"$(SRCROOT)/Moers/Config/output.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# SUDO_ASKPASS=/Users/lennart/.secret-pass.sh sudo -A carthage.sh copy-frameworks\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1591,7 +1557,6 @@
 				DFA96A6320BD8A390009B279 /* AveragePetrolPriceComponent.swift in Sources */,
 				DF21B30020BA0DB400478A33 /* SwitchTableViewCell.swift in Sources */,
 				DFDD3F7220B2E525005602E3 /* MonthHeaderView.swift in Sources */,
-				DF52868224A7C07300A6939E /* AppView.swift in Sources */,
 				DF29FB4D20B1954B00741A63 /* ThemeViewController.swift in Sources */,
 				DF46E0E22177E28E003545F6 /* EntryOnboardingOverviewViewController.swift in Sources */,
 				DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */,
@@ -1655,7 +1620,7 @@
 				DF0CB4AD20838FD100CC0AA8 /* MainViewController.swift in Sources */,
 				DF86ABA32174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift in Sources */,
 				DF8269272545BEEA0025C835 /* DashboardCovidCardView.swift in Sources */,
-				DF0CB4962082AFD000CC0AA8 /* FirstLaunchManager.swift in Sources */,
+				DF0CB4962082AFD000CC0AA8 /* FirstLaunch.swift in Sources */,
 				DF86AB9D217387E700EFC7EA /* OnboardingProgressView.swift in Sources */,
 				DF96445F26FDB9B8006E6D2E /* RadioBroadcastsViewController.swift in Sources */,
 				DFD7ACB420A6BCA000D49BE2 /* DashboardRubbishCardView.swift in Sources */,
@@ -1701,7 +1666,6 @@
 				DFCA005B24A88A5500EACE9F /* CardPanelView.swift in Sources */,
 				DF500155235A4E1E00ED39B2 /* SearchDrawerViewController.swift in Sources */,
 				DF0CB49F2082B90900CC0AA8 /* FeedbackGenerators.swift in Sources */,
-				DF51F78D22E26A9200A0CF00 /* TabControllerFactory.swift in Sources */,
 				DF5F888E24C64A83002FC0F5 /* OrganisationListViewModel.swift in Sources */,
 				DFD728AC20A880C6005FA9F1 /* DetailViewController.swift in Sources */,
 			);

@@ -49,18 +49,6 @@ extension Bundle {
     
 }
 
-public extension Sequence where Element: Equatable {
-    var uniqueElements: [Element] {
-        return self.reduce(into: []) {
-            uniqueElements, element in
-            
-            if !uniqueElements.contains(element) {
-                uniqueElements.append(element)
-            }
-        }
-    }
-}
-
 extension UIViewController {
     
     var safeTopAnchor: NSLayoutYAxisAnchor {
@@ -81,43 +69,16 @@ extension UIViewController {
     
 }
 
-extension UIImage {
-    
-    class func imageResize(imageObj: UIImage, size: CGSize, scaleFactor: CGFloat) -> UIImage? {
-        
-        let hasAlpha = true
-        let scale: CGFloat = 6.0 // Automatically use scale factor of main screen
-        
-        UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
-        
-        let origin = CGPoint(
-            x: (size.width / 2) - (size.width * scaleFactor) / 2,
-            y: (size.height / 2) - (size.height * scaleFactor) / 2
-        )
-        
-        let size = CGSize(
-            width: size.width * scaleFactor,
-            height: size.height * scaleFactor
-        )
-        
-        imageObj.draw(in: CGRect(origin: origin, size: size))
-        
-        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return scaledImage
-    }
-    
-}
-
 protocol Formattable {
     func format(pattern: String) -> String
 }
+
 extension Formattable where Self: CVarArg {
     func format(pattern: String) -> String {
         return String(format: pattern, arguments: [self])
     }
 }
+
 extension Int: Formattable { }
 extension Double: Formattable { }
 extension Float: Formattable { }
@@ -147,7 +108,7 @@ extension PetrolType: MMCommon.Localizable {
     public static func localizedForCase(_ type: PetrolType) -> String {
         
         switch type {
-            case .diesel: return String.localized("Diesel") // TODO: Check this localization, this should be moved
+            case .diesel: return String.localized("Diesel")
             case .e10: return String.localized("E5")
             case .e5: return String.localized("E10")
         }

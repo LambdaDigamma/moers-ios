@@ -140,14 +140,13 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
         tabItem.accessibilityIdentifier = "TabNews"
         
-        let news = TabControllerFactory().buildNavigationController(
-            using: newsViewController,
-            tabItem: tabItem
-        )
+        let newsNavigationController = UINavigationController()
+        newsNavigationController.viewControllers = [newsViewController]
+        newsNavigationController.tabBarItem = tabItem
         
         self.viewControllers = [
             dashboard.navigationController,
-            news,
+            newsNavigationController,
             map.navigationController,
             events.navigationController,
             other.navigationController

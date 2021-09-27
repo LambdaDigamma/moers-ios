@@ -39,16 +39,15 @@ class EventCoordinator: Coordinator {
     
     private func generateTabBarItem() -> UITabBarItem {
         
-        let tabControllerFactory = TabControllerFactory()
-        
-        let eventsTab = tabControllerFactory.buildTabItem(
+        let eventsTabItem = UITabBarItem(
             title: String.localized("Events"),
             image: UIImage(systemName: "calendar"),
-            accessibilityLabel: String.localized("Events"),
-            accessibilityIdentifier: "TabEvents"
+            selectedImage: UIImage(systemName: "calendar")
         )
         
-        return eventsTab
+        eventsTabItem.accessibilityIdentifier = "TabEvents"
+        
+        return eventsTabItem
         
     }
     

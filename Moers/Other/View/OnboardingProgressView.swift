@@ -67,18 +67,20 @@ class OnboardingProgressView: UIView {
     
     private func setupConstraints() {
         
-        let constraints = [currentStepLabel.topAnchor.constraint(equalTo: self.topAnchor),
-                           currentStepLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-                           currentStepLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-                           progressView.topAnchor.constraint(equalTo: self.currentStepLabel.bottomAnchor, constant: 16),
-                           progressView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-                           progressView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-                           progressView.heightAnchor.constraint(equalToConstant: 3),
-                           separatorView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20),
-                           separatorView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                           separatorView.heightAnchor.constraint(equalToConstant: 1),
-                           separatorView.widthAnchor.constraint(equalToConstant: 48),
-                           separatorView.bottomAnchor.constraint(equalTo: self.bottomAnchor)]
+        let constraints: [NSLayoutConstraint] = [
+            currentStepLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            currentStepLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            currentStepLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            progressView.topAnchor.constraint(equalTo: self.currentStepLabel.bottomAnchor, constant: 16),
+            progressView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            progressView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            progressView.heightAnchor.constraint(equalToConstant: 3),
+            separatorView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20),
+            separatorView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            separatorView.heightAnchor.constraint(equalToConstant: 1),
+            separatorView.widthAnchor.constraint(equalToConstant: 48),
+            separatorView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         

@@ -23,13 +23,15 @@ class MapCoordintor: Coordinator {
     
     var mainViewController: MainViewController?
     
-    init(navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
-         locationManager: LocationManagerProtocol,
-         petrolManager: PetrolManagerProtocol,
-         cameraManager: CameraManagerProtocol,
-         entryManager: EntryManagerProtocol,
-         parkingLotManager: ParkingLotManagerProtocol) {
-        
+    init(
+        navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
+        locationManager: LocationManagerProtocol,
+        petrolManager: PetrolManagerProtocol,
+        cameraManager: CameraManagerProtocol,
+        entryManager: EntryManagerProtocol,
+        parkingLotManager: ParkingLotManagerProtocol
+    ) {
+    
         self.navigationController = navigationController
         self.locationManager = locationManager
         self.petrolManager = petrolManager

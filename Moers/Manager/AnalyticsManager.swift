@@ -20,7 +20,11 @@ struct AnalyticsManager {
     private let kAppRuns = "kAppRuns"
     private let reviewRate = 5
     
+    #if DEBUG
+    private var shouldLog = false
+    #else
     private var shouldLog = true
+    #endif
     
     init() {
         
