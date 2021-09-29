@@ -115,7 +115,7 @@ class OnboardingManager {
         page.imageAccessibilityLabel = "Notifications Icon"
         page.descriptionText = String.localized("OnboardingNotificationPageDescription")
         page.actionButtonTitle = String.localized("OnboardingNotificationPageActionButtonTitle")
-        page.alternativeButtonTitle = String.localized("OnboardingNotificationPageAlternativeButtonTitle")
+//        page.alternativeButtonTitle = String.localized("OnboardingNotificationPageAlternativeButtonTitle")
         page.appearance = appearance
         page.isDismissable = false
         
@@ -125,13 +125,13 @@ class OnboardingManager {
             item.manager?.displayNextItem()
         }
         
-        page.alternativeHandler = { item in
-            item.manager?.displayNextItem()
-        }
+//        page.alternativeHandler = { item in
+//            item.manager?.displayNextItem()
+//        }
         
         page.titleLabelAccessibilityIdentifier = "NotificationsTitleLabel"
         page.actionButtonAccessibilityIdentifier = "SubscribeNotificationsButton"
-        page.alternativeButtonAccessibilityIdentifier = "NotNowNotificationsButton"
+//        page.alternativeButtonAccessibilityIdentifier = "NotNowNotificationsButton"
         
         return page
         
@@ -144,8 +144,8 @@ class OnboardingManager {
         page.image = #imageLiteral(resourceName: "LocationPrompt")
         page.imageAccessibilityLabel = "Location Icon"
         page.descriptionText = String.localized("OnboardingLocationPageDescription")
-        page.actionButtonTitle = String.localized("Allow")
-        page.alternativeButtonTitle = String.localized("Later")
+        page.actionButtonTitle = String.localized("OnboardingLocationPageActionButtonTitle")
+//        page.alternativeButtonTitle = String.localized("Later")
         page.appearance = appearance
         page.isDismissable = false
         
@@ -166,9 +166,9 @@ class OnboardingManager {
             
         }
         
-        page.alternativeHandler = { item in
-            item.manager?.displayNextItem()
-        }
+//        page.alternativeHandler = { item in
+//            item.manager?.displayNextItem()
+//        }
         
         return page
         

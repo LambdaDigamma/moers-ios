@@ -23,12 +23,13 @@
 /* Onboarding: Notifications */
 "OnboardingNotificationPageTitle" = "Push Notifications";
 "OnboardingNotificationPageDescription" = "Receive push notifications to keep up to date and be reminded of collection dates.";
-"OnboardingNotificationPageActionButtonTitle" = "Subscribe";
+"OnboardingNotificationPageActionButtonTitle" = "Continue";
 "OnboardingNotificationPageAlternativeButtonTitle" = "Not now";
 
 /* Onboarding: Location */
 "OnboardingLocationPageTitle" = "Location";
 "OnboardingLocationPageDescription" = "Mein Moers can use your location to find shops close to you and display nearby petrol prices.";
+"OnboardingLocationPageActionButtonTitle" = "Continue";
 "Allow" = "Allow";
 "Later" = "Later";
 

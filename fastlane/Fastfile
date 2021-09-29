@@ -96,7 +96,10 @@ platform :ios do
   desc "Build binary"
   lane :build do
     signing
-    build_ios_app
+    build_ios_app(
+      include_bitcode: true,
+      include_symbols: true,
+    )
   end
 
 

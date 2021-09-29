@@ -23,12 +23,13 @@
 /* Onboarding: Notifications */
 "OnboardingNotificationPageTitle" = "Push-Mitteilungen";
 "OnboardingNotificationPageDescription" = "Erhalte Push Notifications, um auf dem Laufenden zu bleiben und an Leerungstermine erinnert zu werden.";
-"OnboardingNotificationPageActionButtonTitle" = "Erhalten";
+"OnboardingNotificationPageActionButtonTitle" = "Fortfahren";
 "OnboardingNotificationPageAlternativeButtonTitle" = "Nicht jetzt";
 
 /* Onboarding: Location */
 "OnboardingLocationPageTitle" = "Standort";
 "OnboardingLocationPageDescription" = "Mein Moers benutzt Deinen Standort, um Geschäfte in deiner Nähe zu finden und Dir Kraftstoffpreise in der Umgebung anzuzeigen.";
+"OnboardingLocationPageActionButtonTitle" = "Fortfahren";
 "Allow" = "Erlauben";
 "Later" = "Später";
 
