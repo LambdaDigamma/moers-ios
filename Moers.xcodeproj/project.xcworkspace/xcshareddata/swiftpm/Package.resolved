@@ -101,6 +101,15 @@
         }
       },
       {
+        "package": "MMCommon",
+        "repositoryURL": "https://github.com/lambdadigamma/mmcommon-ios",
+        "state": {
+          "branch": null,
+          "revision": "d1ab76ad0316dcf58a23196f69ec07e2f8ba6702",
+          "version": "0.0.1"
+        }
+      },
+      {
         "package": "MMPages",
         "repositoryURL": "https://github.com/lambdadigamma/mmpages-ios",
         "state": {

@@ -28,20 +28,24 @@ class SettingsViewController: UIViewController {
     private let petrolManager: PetrolManagerProtocol
     private let onboardingManager: OnboardingManager
     
-    init(locationManager: LocationManagerProtocol,
-         geocodingManager: GeocodingManagerProtocol,
-         rubbishMananger: RubbishManagerProtocol,
-         petrolManager: PetrolManagerProtocol) {
+    init(
+        locationManager: LocationManagerProtocol,
+        geocodingManager: GeocodingManagerProtocol,
+        rubbishMananger: RubbishManagerProtocol,
+        petrolManager: PetrolManagerProtocol
+    ) {
         
         self.locationManager = locationManager
         self.geocodingManager = geocodingManager
         self.rubbishManager = rubbishMananger
         self.petrolManager = petrolManager
         
-        self.onboardingManager = OnboardingManager(locationManager: locationManager,
-                                                   geocodingManager: geocodingManager,
-                                                   rubbishManager: rubbishMananger,
-                                                   petrolManager: petrolManager)
+        self.onboardingManager = OnboardingManager(
+            locationManager: locationManager,
+            geocodingManager: geocodingManager,
+            rubbishManager: rubbishMananger,
+            petrolManager: petrolManager
+        )
         
         super.init(nibName: nil, bundle: nil)
         
@@ -241,8 +245,8 @@ class SettingsViewController: UIViewController {
         
         var sections: [TableViewSection] = []
         
-        sections.append(TableViewSection(title: String.localized("UIAdjustments"),
-                                rows: [NavigationRow(title: String.localized("ThemeTitle"), action: showThemes)]))
+//        sections.append(TableViewSection(title: String.localized("UIAdjustments"),
+//                                rows: [NavigationRow(title: String.localized("ThemeTitle"), action: showThemes)]))
         
         sections.append(TableViewSection(title: String.localized("User"),
                                 rows: [NavigationRow(title: String.localized("UserType") + ": " + User.UserType.localizedForCase(userType), action: showUserType)]))
