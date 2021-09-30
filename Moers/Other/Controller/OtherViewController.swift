@@ -12,6 +12,7 @@ import MessageUI
 import MMAPI
 import MMUI
 import SwiftUI
+import AppFeedback
 
 class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
@@ -256,32 +257,15 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     private func showFeedback() {
         
-        if MFMailComposeViewController.canSendMail() {
-            
-            let mail = MFMailComposeViewController()
-            mail.mailComposeDelegate = self
-            mail.setToRecipients(["meinmoers@lambdadigamma.com"])
-            mail.setSubject("Rückmeldung zur Moers-App")
-            
-            present(mail, animated: true)
-            
-        } else {
-            
-            let alert = UIAlertController(
-                title: "Feedback fehlgeschlagen",
-                message: "Du hast scheinbar keine Email-Accounts auf deinem Gerät eingerichtet.",
-                preferredStyle: .alert
-            )
-            
-            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (_) in
-                
-                alert.dismiss(animated: true, completion: nil)
-                
-            }))
-            
-            present(alert, animated: true, completion: nil)
-            
-        }
+        let configuration = FeedbackConfiguration(
+            receiver: "meinmoers@lambdadigamma.com",
+            subject: "Rückmeldung zur Moers-App",
+            appStoreID: "1305862555"
+        )
+        
+        let feedbackView = FeedbackViewController(configuration: configuration)
+        
+        self.navigationController?.pushViewController(feedbackView, animated: true)
         
     }
     

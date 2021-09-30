@@ -210,6 +210,7 @@
 		DFF5DDCB20094A920075A2F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */; };
 		DFF8F0B723CD8EC60066220D /* EventCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8F0B623CD8EC60066220D /* EventCoordinator.swift */; };
 		DFF8F0B923CD93E80066220D /* OtherCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8F0B823CD93E80066220D /* OtherCoordinator.swift */; };
+		DFFA7EA12706638D00E27E7B /* AppFeedback in Frameworks */ = {isa = PBXBuildFile; productRef = DFFA7EA02706638D00E27E7B /* AppFeedback */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -526,6 +527,7 @@
 				DFD8632C25E25F60006164E5 /* AppScaffold in Frameworks */,
 				DFE1ED6B2538C24800FDD44A /* BLTNBoard in Frameworks */,
 				DFE6254C2545955D005FAC1C /* FIRAnalyticsConnector.framework in Frameworks */,
+				DFFA7EA12706638D00E27E7B /* AppFeedback in Frameworks */,
 				DF516161254603220094DEEB /* Charts in Frameworks */,
 				DF97AD0F26EFEC5F009DFF71 /* Core in Frameworks */,
 				DFDE88712545834B00429765 /* EventBus in Frameworks */,
@@ -1263,6 +1265,7 @@
 				DFA4BC47263A28530014C7F9 /* TagListView */,
 				DF32ACF22676AABA00B943DB /* MMEvents */,
 				DF97AD0E26EFEC5F009DFF71 /* Core */,
+				DFFA7EA02706638D00E27E7B /* AppFeedback */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1436,6 +1439,7 @@
 				DF51615F254603220094DEEB /* XCRemoteSwiftPackageReference "swiftui-charts" */,
 				DFA4BC46263A28530014C7F9 /* XCRemoteSwiftPackageReference "TagListView" */,
 				DF32ACF12676AABA00B943DB /* XCRemoteSwiftPackageReference "mmevents-ios" */,
+				DFFA7E9F2706638D00E27E7B /* XCRemoteSwiftPackageReference "swift-app-feedback" */,
 			);
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
@@ -4801,6 +4805,14 @@
 				minimumVersion = 2.8.5;
 			};
 		};
+		DFFA7E9F2706638D00E27E7B /* XCRemoteSwiftPackageReference "swift-app-feedback" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LambdaDigamma/swift-app-feedback";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -4895,6 +4907,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DFE1ED762538C4E200FDD44A /* XCRemoteSwiftPackageReference "Pulley" */;
 			productName = Pulley;
+		};
+		DFFA7EA02706638D00E27E7B /* AppFeedback */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFFA7E9F2706638D00E27E7B /* XCRemoteSwiftPackageReference "swift-app-feedback" */;
+			productName = AppFeedback;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

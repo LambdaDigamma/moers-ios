@@ -146,6 +146,15 @@
         }
       },
       {
+        "package": "AppFeedback",
+        "repositoryURL": "https://github.com/LambdaDigamma/swift-app-feedback",
+        "state": {
+          "branch": null,
+          "revision": "280f004df85c7d6251a3ebbd9c547d992df439a9",
+          "version": "1.0.0"
+        }
+      },
+      {
         "package": "Charts",
         "repositoryURL": "https://github.com/swift-extensions/swiftui-charts",
         "state": {
