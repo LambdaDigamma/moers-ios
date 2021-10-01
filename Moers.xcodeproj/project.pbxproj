@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		DF007B772640843E00DAFA6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF007B792640843E00DAFA6F /* InfoPlist.strings */; };
 		DF04D60A23CBD5EC008AE677 /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF04D60923CBD5EC008AE677 /* DashboardCoordinator.swift */; };
-		DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */; };
 		DF0CB4962082AFD000CC0AA8 /* FirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4952082AFD000CC0AA8 /* FirstLaunch.swift */; };
-		DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */; };
 		DF0CB49D2082B78C00CC0AA8 /* PermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB49C2082B78C00CC0AA8 /* PermissionsManager.swift */; };
 		DF0CB49F2082B90900CC0AA8 /* FeedbackGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB49E2082B90900CC0AA8 /* FeedbackGenerators.swift */; };
 		DF0CB4A12082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4A02082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift */; };
@@ -106,10 +104,6 @@
 		DF69B73C21D986AD00F910D8 /* EntryHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF69B73B21D986AD00F910D8 /* EntryHistoryViewController.swift */; };
 		DF6B0ED725F430A6003D88CE /* ParkingLotWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B0ED625F430A6003D88CE /* ParkingLotWidget.swift */; };
 		DF75733E2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75733D2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift */; };
-		DF75734021771CC900953DA1 /* LFSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75733F21771CC800953DA1 /* LFSearchViewController.swift */; };
-		DF75734321771D3100953DA1 /* LFSearchViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75734221771D3100953DA1 /* LFSearchViewDelegate.swift */; };
-		DF75734521771D6800953DA1 /* LFSearchViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75734421771D6800953DA1 /* LFSearchViewDataSource.swift */; };
-		DF757347217725AC00953DA1 /* LFSearchViewDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF757346217725AC00953DA1 /* LFSearchViewDefaults.swift */; };
 		DF777BBD2414361500C7C9D5 /* MarkdownKit in Frameworks */ = {isa = PBXBuildFile; productRef = DF777BBC2414361500C7C9D5 /* MarkdownKit */; };
 		DF777BC024143A9D00C7C9D5 /* SwiftyMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = DF777BBF24143A9D00C7C9D5 /* SwiftyMarkdown */; };
 		DF78DFE423BD50A2000A78AE /* OnboardingOverviewNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF78DFE323BD50A2000A78AE /* OnboardingOverviewNotice.swift */; };
@@ -150,6 +144,13 @@
 		DFA9EF0A20B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0920B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift */; };
 		DFA9EF0C20B56BA8008590EA /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0B20B56BA8008590EA /* UIImage+Extensions.swift */; };
 		DFAC73FA2545A0F9005827B6 /* CovidComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAC73F92545A0F9005827B6 /* CovidComponent.swift */; };
+		DFB02B8727066B35000196D8 /* LFSearchViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB02B7D27066B35000196D8 /* LFSearchViewDataSource.swift */; };
+		DFB02B8827066B35000196D8 /* LFSearchViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB02B7E27066B35000196D8 /* LFSearchViewDelegate.swift */; };
+		DFB02B8927066B35000196D8 /* LFSearchViewDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB02B7F27066B35000196D8 /* LFSearchViewDefaults.swift */; };
+		DFB02B8A27066B35000196D8 /* LFSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB02B8027066B35000196D8 /* LFSearchViewController.swift */; };
+		DFB02B8D27066B35000196D8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB02B8327066B35000196D8 /* TabBarController.swift */; };
+		DFB02B8F27066B35000196D8 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB02B8527066B35000196D8 /* ApplicationController.swift */; };
+		DFB02B9227066BC4000196D8 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB02B9127066BC4000196D8 /* FeatureFlags.swift */; };
 		DFB0325D23F34A6A00A8326E /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB0325C23F34A6A00A8326E /* StorageManager.swift */; };
 		DFB161C126765250009D2754 /* FormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1207BB23C0CA1C003285C1 /* FormTests.swift */; };
 		DFB161C2267652B4009D2754 /* StorageManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1116BE23F35F6C003C6CCD /* StorageManagerTests.swift */; };
@@ -293,9 +294,7 @@
 		DF007B782640843E00DAFA6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DF007B7A2640844600DAFA6F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DF04D60923CBD5EC008AE677 /* DashboardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
-		DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ApplicationController.swift; path = ../../Controller/ApplicationController.swift; sourceTree = "<group>"; };
 		DF0CB4952082AFD000CC0AA8 /* FirstLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunch.swift; sourceTree = "<group>"; };
-		DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = ../../Controller/TabBarController.swift; sourceTree = "<group>"; };
 		DF0CB49C2082B78C00CC0AA8 /* PermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsManager.swift; sourceTree = "<group>"; };
 		DF0CB49E2082B90900CC0AA8 /* FeedbackGenerators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeedbackGenerators.swift; path = ../../View/FeedbackGenerators.swift; sourceTree = "<group>"; };
 		DF0CB4A02082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackPageBulletinItem.swift; sourceTree = "<group>"; };
@@ -402,10 +401,6 @@
 		DF69B73B21D986AD00F910D8 /* EntryHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryHistoryViewController.swift; sourceTree = "<group>"; };
 		DF6B0ED625F430A6003D88CE /* ParkingLotWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLotWidget.swift; sourceTree = "<group>"; };
 		DF75733D2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryOnboardingTagsViewController.swift; sourceTree = "<group>"; };
-		DF75733F21771CC800953DA1 /* LFSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewController.swift; sourceTree = "<group>"; };
-		DF75734221771D3100953DA1 /* LFSearchViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewDelegate.swift; sourceTree = "<group>"; };
-		DF75734421771D6800953DA1 /* LFSearchViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewDataSource.swift; sourceTree = "<group>"; };
-		DF757346217725AC00953DA1 /* LFSearchViewDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFSearchViewDefaults.swift; sourceTree = "<group>"; };
 		DF78DFE323BD50A2000A78AE /* OnboardingOverviewNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingOverviewNotice.swift; sourceTree = "<group>"; };
 		DF79985023CCD3C6007E7186 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
 		DF7D4B5D22F0D53400126AF7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -453,6 +448,13 @@
 		DFA9EF0B20B56BA8008590EA /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DFAC73F92545A0F9005827B6 /* CovidComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidComponent.swift; sourceTree = "<group>"; };
 		DFAEF41120E8ECF7001B0756 /* Moers.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Moers.entitlements; sourceTree = "<group>"; };
+		DFB02B7D27066B35000196D8 /* LFSearchViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSearchViewDataSource.swift; sourceTree = "<group>"; };
+		DFB02B7E27066B35000196D8 /* LFSearchViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSearchViewDelegate.swift; sourceTree = "<group>"; };
+		DFB02B7F27066B35000196D8 /* LFSearchViewDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSearchViewDefaults.swift; sourceTree = "<group>"; };
+		DFB02B8027066B35000196D8 /* LFSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSearchViewController.swift; sourceTree = "<group>"; };
+		DFB02B8327066B35000196D8 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = Moers/Controller/TabBarController.swift; sourceTree = SOURCE_ROOT; };
+		DFB02B8527066B35000196D8 /* ApplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationController.swift; path = Moers/Controller/ApplicationController.swift; sourceTree = SOURCE_ROOT; };
+		DFB02B9127066BC4000196D8 /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
 		DFB0325C23F34A6A00A8326E /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		DFB161B3267651D6009D2754 /* Moers Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Moers Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFB161B7267651D7009D2754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -647,6 +649,7 @@
 				DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */,
 				DF7D4B5D22F0D53400126AF7 /* Constants.swift */,
 				DF007B792640843E00DAFA6F /* InfoPlist.strings */,
+				DFB02B9127066BC4000196D8 /* FeatureFlags.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -702,9 +705,11 @@
 		DF11BFC222BA6E960051C3B3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				DFB02B8527066B35000196D8 /* ApplicationController.swift */,
+				DFB02B8327066B35000196D8 /* TabBarController.swift */,
+				DFB02B7C27066B35000196D8 /* SeachController */,
 				DF11BFC622BA70C70051C3B3 /* Model */,
 				DF11BFC322BA6EA70051C3B3 /* View */,
-				DF6D9E4B22BB6F3F00BD3132 /* Controller */,
 				DF0CB4992082B63500CC0AA8 /* BulletinBoard */,
 				DFA9EF0D20B56BB2008590EA /* Extensions */,
 			);
@@ -1085,16 +1090,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		DF6D9E4B22BB6F3F00BD3132 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				DF0CB4902082A94F00CC0AA8 /* ApplicationController.swift */,
-				DF0CB4972082B5D100CC0AA8 /* TabBarController.swift */,
-				DF75734121771D1500953DA1 /* SeachController */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		DF6D9E4D22BB7BCA00BD3132 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -1106,18 +1101,6 @@
 				DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */,
 			);
 			path = Assets;
-			sourceTree = "<group>";
-		};
-		DF75734121771D1500953DA1 /* SeachController */ = {
-			isa = PBXGroup;
-			children = (
-				DF75733F21771CC800953DA1 /* LFSearchViewController.swift */,
-				DF75734221771D3100953DA1 /* LFSearchViewDelegate.swift */,
-				DF75734421771D6800953DA1 /* LFSearchViewDataSource.swift */,
-				DF757346217725AC00953DA1 /* LFSearchViewDefaults.swift */,
-			);
-			name = SeachController;
-			path = ../../Controller/SeachController;
 			sourceTree = "<group>";
 		};
 		DF8269312545D97F0025C835 /* ViewModels */ = {
@@ -1195,6 +1178,18 @@
 			);
 			path = Extensions;
 			sourceTree = "<group>";
+		};
+		DFB02B7C27066B35000196D8 /* SeachController */ = {
+			isa = PBXGroup;
+			children = (
+				DFB02B7D27066B35000196D8 /* LFSearchViewDataSource.swift */,
+				DFB02B7E27066B35000196D8 /* LFSearchViewDelegate.swift */,
+				DFB02B7F27066B35000196D8 /* LFSearchViewDefaults.swift */,
+				DFB02B8027066B35000196D8 /* LFSearchViewController.swift */,
+			);
+			name = SeachController;
+			path = Moers/Controller/SeachController;
+			sourceTree = SOURCE_ROOT;
 		};
 		DFB161B4267651D7009D2754 /* Moers Unit Tests */ = {
 			isa = PBXGroup;
@@ -1544,12 +1539,13 @@
 			files = (
 				DF1207BA23C0C777003285C1 /* Form.swift in Sources */,
 				DF503CEF21431503006EE226 /* DebugViewController.swift in Sources */,
+				DFB02B8927066B35000196D8 /* LFSearchViewDefaults.swift in Sources */,
 				DFCB431F20E02D0300E7AD3F /* NewsManager.swift in Sources */,
 				DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */,
 				DF5E1B5B26726AF7005FADA4 /* Widgets.intentdefinition in Sources */,
-				DF75734521771D6800953DA1 /* LFSearchViewDataSource.swift in Sources */,
 				DF0CB4A12082B97C00CC0AA8 /* FeedbackPageBulletinItem.swift in Sources */,
 				DFDE883F25457CA600429765 /* Constants.swift in Sources */,
+				DFB02B8827066B35000196D8 /* LFSearchViewDelegate.swift in Sources */,
 				DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */,
 				DF541389217FCD25007FDEC8 /* EntryValidationViewController.swift in Sources */,
 				DF4D89572104A6F0008609A1 /* Datasources.swift in Sources */,
@@ -1566,6 +1562,7 @@
 				DFA17DF420DEF9DE00BBD838 /* UIButton+Extensions.swift in Sources */,
 				DF52868424A7C0B600A6939E /* DashboardView.swift in Sources */,
 				DFB0325D23F34A6A00A8326E /* StorageManager.swift in Sources */,
+				DFB02B8F27066B35000196D8 /* ApplicationController.swift in Sources */,
 				DF2D6DA520B88E1700176614 /* LicencesViewController.swift in Sources */,
 				DF95197F20C8B6F3001D13DC /* PetrolStationViewController.swift in Sources */,
 				DFC7126921DFC863006D05DB /* ShortcutsViewController.swift in Sources */,
@@ -1575,7 +1572,6 @@
 				DF428E0225F4240E007C686C /* RubbishMediumWidget.swift in Sources */,
 				DF4BD1C6208CF76C003ECF41 /* RubbishReminderBulletinItem.swift in Sources */,
 				DF2D6DA320B88BFA00176614 /* Licence.swift in Sources */,
-				DF75734021771CC900953DA1 /* LFSearchViewController.swift in Sources */,
 				DF500153235A3D2D00ED39B2 /* SearchDrawerView.swift in Sources */,
 				DF86AB9B2173837B00EFC7EA /* EntryOnboardingGeneralViewController.swift in Sources */,
 				DF0EACA224C6491A009BE489 /* OrganisationList.swift in Sources */,
@@ -1585,7 +1581,6 @@
 				DF855C2420C9DA3500B7F7C7 /* PetrolStationCollectionViewCell.swift in Sources */,
 				DF4BD1BE208A72C5003ECF41 /* DashboardViewController.swift in Sources */,
 				DF0CB4B12085B66600CC0AA8 /* ContentViewController.swift in Sources */,
-				DF757347217725AC00953DA1 /* LFSearchViewDefaults.swift in Sources */,
 				DF61DCCD212ECD850093915F /* DetailPetrolStationViewController.swift in Sources */,
 				DFD890872124860A006B5610 /* TandCViewController.swift in Sources */,
 				DFDD3F7420B2F30A005602E3 /* AboutViewController.swift in Sources */,
@@ -1603,9 +1598,9 @@
 				DF6B0ED725F430A6003D88CE /* ParkingLotWidget.swift in Sources */,
 				DFE3D9012674035400BE29E7 /* NetworkingConfiguration.swift in Sources */,
 				DF9605A923BD06A800E24959 /* AuditChangeView.swift in Sources */,
+				DFB02B8727066B35000196D8 /* LFSearchViewDataSource.swift in Sources */,
 				DF75733E2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift in Sources */,
 				DFBB9DE3212BF63600038943 /* PetrolStationAnnotationView.swift in Sources */,
-				DF0CB4912082A94F00CC0AA8 /* ApplicationController.swift in Sources */,
 				DF5D81CA2256832600A19B01 /* MockConfig.swift in Sources */,
 				DFCB432320E038AB00E7AD3F /* TweetTableViewCell.swift in Sources */,
 				DF51614A2545F6290094DEEB /* CovidMediumWidget.swift in Sources */,
@@ -1620,6 +1615,7 @@
 				DF79985123CCD3C6007E7186 /* MapCoordinator.swift in Sources */,
 				DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */,
 				DF0CB4AD20838FD100CC0AA8 /* MainViewController.swift in Sources */,
+				DFB02B9227066BC4000196D8 /* FeatureFlags.swift in Sources */,
 				DF86ABA32174BD0100EFC7EA /* EntryOnboardingOpeningHoursViewController.swift in Sources */,
 				DF8269272545BEEA0025C835 /* DashboardCovidCardView.swift in Sources */,
 				DF0CB4962082AFD000CC0AA8 /* FirstLaunch.swift in Sources */,
@@ -1642,10 +1638,8 @@
 				DF29FB4F20B19BE600741A63 /* ThemeCardView.swift in Sources */,
 				DF04D60A23CBD5EC008AE677 /* DashboardCoordinator.swift in Sources */,
 				DF21FA9324C63502001C278D /* AppDelegate+Resolving.swift in Sources */,
-				DF0CB4982082B5D100CC0AA8 /* TabBarController.swift in Sources */,
 				DFD7ACB220A44C5A00D49BE2 /* SelectionViewController.swift in Sources */,
 				DF2D6DAB20B8A02B00176614 /* OnboardingManager.swift in Sources */,
-				DF75734321771D3100953DA1 /* LFSearchViewDelegate.swift in Sources */,
 				DF8281B621CFA74F00C3B3CE /* TweetCollectionViewCell.swift in Sources */,
 				DF54138D2180955B007FDEC8 /* NewsCollectionViewCell.swift in Sources */,
 				DF4CB7DE248501DD00D20986 /* TemperatureView.swift in Sources */,
@@ -1654,6 +1648,7 @@
 				DF174FA723BC361B00812BDD /* AuditTableViewCell.swift in Sources */,
 				DF2D6DA720B8983400176614 /* UserManager.swift in Sources */,
 				DF4D8953210388D5008609A1 /* CameraViewController.swift in Sources */,
+				DFB02B8D27066B35000196D8 /* TabBarController.swift in Sources */,
 				DFD7ACC120A842F400D49BE2 /* DateCardView.swift in Sources */,
 				DFB92D691F6B96E400669F73 /* ClusterAnnotationView.swift in Sources */,
 				DF552FC72184D2210062EB2B /* CheckmarkView.swift in Sources */,
@@ -1669,6 +1664,7 @@
 				DF500155235A4E1E00ED39B2 /* SearchDrawerViewController.swift in Sources */,
 				DF0CB49F2082B90900CC0AA8 /* FeedbackGenerators.swift in Sources */,
 				DF5F888E24C64A83002FC0F5 /* OrganisationListViewModel.swift in Sources */,
+				DFB02B8A27066B35000196D8 /* LFSearchViewController.swift in Sources */,
 				DFD728AC20A880C6005FA9F1 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -44,7 +44,7 @@ public struct BroadcastList: View {
                 
                 nextBroadcasts()
                 
-                pastBroadcasts()
+//                pastBroadcasts()
                 
                 Text(AppStrings.Buergerfunk.disclaimer)
                     .font(.caption)
@@ -98,13 +98,13 @@ public struct BroadcastList: View {
                 
                 Spacer()
                 
-                Button(action: {
-                    
-                }) {
-                    Text("\(AppStrings.Buergerfunk.allAction) \(Image(systemName: "chevron.forward"))")
-                        .font(.body.weight(.medium))
-                        .foregroundColor(.yellow)
-                }
+//                Button(action: {
+//
+//                }) {
+//                    Text("\(AppStrings.Buergerfunk.allAction) \(Image(systemName: "chevron.forward"))")
+//                        .font(.body.weight(.medium))
+//                        .foregroundColor(.yellow)
+//                }
                 
             }
             .padding(.bottom, 20)

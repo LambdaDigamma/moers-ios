@@ -59,34 +59,68 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
         var normalData = [
             
-//            TableViewSection(title: "Radio",
-//                             rows: [NavigationRow(title: "Bürgerfunk",
-//                                                  action: showBuergerfunkSchedule)]),
+            FeatureFlags.radioBuergerfunkEnabled ?
+                TableViewSection(
+                    title: "Radio",
+                    rows: [
+                        NavigationRow(
+                            title: "Bürgerfunk",
+                            action: showBuergerfunkSchedule
+                        )
+                    ]
+                ) : nil,
             
-            TableViewSection(title: String.localized("OtherSectionDataTitle"),
-                    rows: [NavigationRow(title: String.localized("OtherSectionDataAddEntry"),
-                                         action: showAddEntry)]),
-            TableViewSection(title: String.localized("SettingsTitle"),
-                    rows: [NavigationRow(title: String.localized("SettingsTitle"),
-                                         action: showSettings),
-                           NavigationRow(title: "Siri Shortcuts",
-                                         action: showSiriShortcuts)]),
-            TableViewSection(title: "Info",
-                    rows: [NavigationRow(title: String.localized("AboutTitle"),
-                                         action: showAbout),
-                           NavigationRow(title: String.localized("Feedback"),
-                                         action: showFeedback),
-                           NavigationRow(title: Bundle.main.versionString,
-                                         action: nil)]),
-            
-            TableViewSection(title: String.localized("Legal"),
-                    rows: [NavigationRow(title: String.localized("TandC"),
-                                         action: showTaC),
-                           NavigationRow(title: String.localized("PrivacyPolicy"),
-                                         action: showPrivacy),
-                           NavigationRow(title: String.localized("Licences"),
-                                         action: showLicences)])
-        ]
+            TableViewSection(
+                title: String.localized("OtherSectionDataTitle"),
+                rows: [
+                    NavigationRow(
+                        title: String.localized("OtherSectionDataAddEntry"),
+                        action: showAddEntry
+                    )
+                ]
+            ),
+            TableViewSection(
+                title: String.localized("SettingsTitle"),
+                rows: [
+                    NavigationRow(
+                        title: String.localized("SettingsTitle"),
+                        action: showSettings
+                    ),
+                    NavigationRow(
+                        title: "Siri Shortcuts",
+                        action: showSiriShortcuts
+                    )
+                ]
+            ),
+            TableViewSection(
+                title: "Info",
+                rows: [
+                    NavigationRow(
+                        title: String.localized("AboutTitle"),
+                        action: showAbout
+                    ),
+                    NavigationRow(
+                        title: String.localized("Feedback"),
+                        action: showFeedback
+                    ),
+                    NavigationRow(
+                        title: Bundle.main.versionString,
+                        action: nil
+                    )
+                ]
+            ),
+            TableViewSection(
+                title: String.localized("Legal"),
+                rows: [
+                    NavigationRow(title: String.localized("TandC"),
+                                  action: showTaC),
+                    NavigationRow(title: String.localized("PrivacyPolicy"),
+                                  action: showPrivacy),
+                    NavigationRow(title: String.localized("Licences"),
+                                  action: showLicences)
+                ]
+            )
+        ].compactMap { $0 }
         
         #if DEBUG
         normalData.append(TableViewSection(

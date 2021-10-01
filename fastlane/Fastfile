@@ -112,6 +112,10 @@ platform :ios do
 
     increment_build()
     increment(version: version)
+    add_git_tag(
+      grouping: "ios",
+      includes_lane: false,
+    )
 
     match(type: "appstore")
     gym(scheme: "Moers")
