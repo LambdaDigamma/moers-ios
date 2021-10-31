@@ -60,4 +60,8 @@ public struct RadioBroadcast: Codable, Identifiable {
         case updatedAt = "updated_at"
     }
     
+    public func toViewModel() -> RadioBroadcastViewModel {
+        return RadioBroadcastViewModel(from: self)
+    }
+    
 }

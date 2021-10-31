@@ -4,3 +4,15 @@
 "Waste.errorMessage" = "Du kannst den Abfallkalender in den Einstellungen aktivieren.";
 "Waste.loadingFailed" = "Das Laden des Abfallkalenders konnte nicht abgeschlossen werden.";
 "Waste.noUpcomingRubbishItems" = "Das Laden des Abfallkalenders konnte nicht abgeschlossen werden.";
+
+"Buergerfunk.title" = "Bürgerfunk";
+"Buergerfunk.description" = "Täglich gibt es zwischen 20 und 21 Uhr auf Radio K.W. (sonn- und feiertags ab 19:04 Uhr) ein etwas anderes Radio – den Bürgerfunk. Menschen aus dem Kreis Wesel verbringen viele Stunden ihrer Freizeit in Produktionsstudios, um täglich eine Stunde Programm über den Äther zu schicken.";
+"Buergerfunk.nextBroadcasts" = "Nächste Sendungen";
+"Buergerfunk.contactAction" = "Kontaktieren";
+"Buergerfunk.disclaimer" = "Die Daten werden vom Bürgerfunk Moers zur Verfügung gestellt. Es besteht keine Garantie auf Richtigkeit bzw. Vollständigkeit.";
+"Buergerfunk.allAction" = "Alle";
+"Buergerfunk.listenToPastBroadcasts" = "Vergangene Sendungen hören";
+"Buergerfunk.unknownTime" = "Uhrzeit nicht bekannt";
+"Buergerfunk.listenNowAction" = "Jetzt hören";
+"Buergerfunk.remindMeAction" = "Erinnerung erstellen";
+"Buergerfunk.disableReminderInfo" = "Tippe erneut, um die Erinnerung wieder zu löschen.";

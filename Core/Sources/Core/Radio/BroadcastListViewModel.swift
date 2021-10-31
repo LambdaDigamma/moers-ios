@@ -12,6 +12,7 @@ public class BroadcastListViewModel: StandardViewModel {
     
     @Published public var upcomingBroadcasts: [RadioBroadcast] = []
     @Published public var broadcasts: [RadioBroadcast] = []
+    @Published public var viewModels: [RadioBroadcastViewModel] = []
     
     private let service: RadioServiceProtocol
     
@@ -27,6 +28,7 @@ public class BroadcastListViewModel: StandardViewModel {
             } receiveValue: { (broadcasts: [RadioBroadcast]) in
                 self.upcomingBroadcasts = Array(broadcasts.prefix(8))
                 self.broadcasts = broadcasts
+                self.viewModels = self.upcomingBroadcasts.map { $0.toViewModel() }
             }
             .store(in: &cancellables)
         

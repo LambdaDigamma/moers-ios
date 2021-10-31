@@ -10,18 +10,6 @@ import Combine
 import Nuke
 import NukeUI
 
-public class RadioBroadcastViewModel {
-    
-    public var title: String
-    public var subtitle: String
-    
-    public init(from broadcast: RadioBroadcast) {
-        self.title = broadcast.title
-        self.subtitle = "" // broadcast.startsAt
-    }
-    
-}
-
 public struct BroadcastList: View {
     
     @ObservedObject private var viewModel: BroadcastListViewModel
@@ -30,7 +18,6 @@ public struct BroadcastList: View {
         viewModel: BroadcastListViewModel
     ) {
         self.viewModel = viewModel
-        self.viewModel.load()
     }
     
     public var body: some View {
@@ -109,17 +96,18 @@ public struct BroadcastList: View {
             }
             .padding(.bottom, 20)
             
-            ForEach(viewModel.upcomingBroadcasts) { broadcast in
+            ForEach(viewModel.viewModels) { broadcast in
                 
                 NavigationLink {
-                    BroadcastDetail(broadcast: broadcast, listenNowAction: {}, createReminderAction: {})
-                } label: {
-                    BroadcastRow(
-                        title: broadcast.title,
-                        imageURL: broadcast.attach,
-                        startDate: broadcast.startsAt,
-                        endDate: broadcast.endsAt
+                    BroadcastDetail(
+                        viewModel: broadcast,
+                        listenNowAction: {},
+                        toggleReminderAction: {
+                            
+                        }
                     )
+                } label: {
+                    BroadcastRow(viewModel: broadcast)
                         .padding(.vertical, 8)
                 }
                 

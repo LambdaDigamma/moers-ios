@@ -11,11 +11,27 @@ import NukeUI
 
 public struct BroadcastRow: View {
     
-    public let title: String
-    public let imageURL: String?
+    private let title: String
+    private let subtitle: String
+    private let imageURL: String?
     
-    public let startDate: Date?
-    public let endDate: Date?
+    public init(
+        viewModel: RadioBroadcastViewModel
+    ) {
+        self.title = viewModel.title
+        self.subtitle = viewModel.subtitle
+        self.imageURL = viewModel.imageURL
+    }
+    
+    public init(
+        title: String,
+        subtitle: String,
+        imageURL: String?
+    ) {
+        self.title = title
+        self.subtitle = subtitle
+        self.imageURL = imageURL
+    }
     
     public var body: some View {
         
@@ -67,26 +83,6 @@ public struct BroadcastRow: View {
         
     }
     
-    var subtitle: String {
-        
-        if let startDate = startDate, let endDate = endDate {
-            return Self.intervalFormatter.string(from: startDate, to: endDate)
-        } else {
-            return "Uhrzeit nicht bekannt"
-        }
-        
-    }
-    
-    static let intervalFormatter: DateIntervalFormatter = {
-        
-        let formatter = DateIntervalFormatter()
-        formatter.dateStyle = .short
-        formatter.timeStyle = .short
-        
-        return formatter
-        
-    }()
-    
 }
 
 public struct BroadcastRow_Preview: PreviewProvider {
@@ -94,9 +90,8 @@ public struct BroadcastRow_Preview: PreviewProvider {
     public static var previews: some View {
         BroadcastRow(
             title: "Landeskirchschicht in Kamp-Lintfort",
-            imageURL: nil,
-            startDate: Date(),
-            endDate: Date(timeIntervalSinceNow: 60 * 60)
+            subtitle: "9/10/21, 6:04 – 7:24 PM",
+            imageURL: nil
         )
             .padding()
             .previewLayout(.sizeThatFits)

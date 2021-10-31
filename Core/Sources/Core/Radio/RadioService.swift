@@ -66,6 +66,7 @@ public class RadioService: RadioServiceProtocol {
     private let logger: Logger = Logger(subsystem: "Core", category: "RadioService")
     private let notificationThreshold: TimeInterval = 5 * 60 // 5 min
     private let radioThreadIdentifier = "threadRadio"
+    private let notificationCenter: UNUserNotificationCenter = .current()
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -102,6 +103,24 @@ public class RadioService: RadioServiceProtocol {
     // MARK: - Reminder
     
     #if canImport(UserNotifications)
+    
+    public func toggleReminder(for broadcast: RadioBroadcast, completion: (_ reminderIsEnabled: Bool) -> Void) {
+        
+        notificationCenter.getPendingNotificationRequests { (requests: [UNNotificationRequest]) in
+            
+            let broadcastIdentifier = self.reminderIdentifier(for: broadcast)
+            
+            if requests.contains(where: { $0.identifier == broadcastIdentifier }) {
+                self.notificationCenter.removePendingNotificationRequests(withIdentifiers: [broadcastIdentifier])
+                completion(false)
+            } else {
+                self.scheduleReminder(for: broadcast)
+                completion(true)
+            }
+            
+        }
+        
+    }
     
     public func scheduleReminder(for broadcast: RadioBroadcast) {
         

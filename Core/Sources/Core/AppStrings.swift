@@ -7,7 +7,6 @@
 
 import Foundation
 
-// swiftlint:disable line_length
 public enum AppStrings {
     
     public static let appName = String.localized("AppName")
@@ -19,16 +18,20 @@ public enum AppStrings {
     }
     
     public enum Buergerfunk {
-        public static let title = "Bürgerfunk"
-        public static let description = "Täglich gibt es zwischen 20 und 21 Uhr auf Radio K.W. (sonn- und feiertags ab 19:04 Uhr) ein etwas anderes Radio – den Bürgerfunk. Menschen aus dem Kreis Wesel verbringen viele Stunden ihrer Freizeit in Produktionsstudios, um täglich eine Stunde Programm über den Äther zu schicken."
-        public static let nextBroadcasts = "Nächste Sendungen"
-        public static let contactAction = "Kontaktieren"
-        public static let disclaimer = "Die Daten werden vom Bürgerfunk Moers zur Verfügung gestellt. Es besteht keine Garantie auf Richtigkeit bzw. Vollständigkeit."
-        public static let allAction = "Alle"
-        public static let listenToPastBroadcasts = "Vergangene Sendungen hören"
+        public static let title = String.localized("Buergerfunk.title")
+        public static let description = String.localized("Buergerfunk.description")
+        public static let nextBroadcasts = String.localized("Buergerfunk.nextBroadcasts")
+        public static let contactAction = String.localized("Buergerfunk.contactAction")
+        public static let disclaimer = String.localized("Buergerfunk.disclaimer")
+        public static let allAction = String.localized("Buergerfunk.allAction")
+        public static let listenToPastBroadcasts = String.localized("Buergerfunk.listenToPastBroadcasts")
+        public static let unknownTime = String.localized("Buergerfunk.unknownTime")
         
-        public static let listenNowAction = "Jetzt hören"
-        public static let remindMeAction = "Erinnerung erstellen"
+        public static let listenNowAction = String.localized("Buergerfunk.listenNowAction")
+        public static let remindMeAction = String.localized("Buergerfunk.remindMeAction")
+        public static let reminderActiveAction = "Erinnerung aktiv" // String.localized("")
+        
+        public static let disableReminderInfo = String.localized("Buergerfunk.disableReminderInfo")
     }
     
 }

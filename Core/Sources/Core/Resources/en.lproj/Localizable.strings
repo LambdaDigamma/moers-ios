@@ -1,1 +1,13 @@
 "AppName" = "Mein Moers";
+
+"Buergerfunk.title" = "Community radio";
+"Buergerfunk.description" = "Every day between 8 p.m. and 9 p.m. on Radio K.W. (Sundays and holidays from 7:04 p.m.), there is a slightly different kind of radio - community radio. People from the county of Wesel spend many hours of their free time in production studios to send an hour of radio programming over the airwaves every day.";
+"Buergerfunk.nextBroadcasts" = "Next broadcasts";
+"Buergerfunk.contactAction" = "Contact";
+"Buergerfunk.disclaimer" = "The information is supplied by Bürgerfunk Moers. There is no guarantee for correctness or completeness.";
+"Buergerfunk.allAction" = "All";
+"Buergerfunk.listenToPastBroadcasts" = "Listen to recent broadcasts";
+"Buergerfunk.unknownTime" = "Time not known";
+"Buergerfunk.listenNowAction" = "Listen now";
+"Buergerfunk.remindMeAction" = "Remind me";
+"Buergerfunk.disableReminderInfo" = "Tap again to remove the reminder.";

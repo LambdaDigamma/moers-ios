@@ -11,50 +11,19 @@ import NukeUI
 
 public struct BroadcastDetail: View {
     
-    private let title: String
-    private let description: String?
-    private var imageURL: String? = nil
-    public let startDate: Date?
-    public let endDate: Date?
+    @ObservedObject private var viewModel: RadioBroadcastViewModel
+    
     private let listenNowAction: () -> Void
-    private let createReminderAction: () -> Void
+    private let toggleReminderAction: () -> Void
     
     public init(
-        imageURL: String? = nil,
+        viewModel: RadioBroadcastViewModel,
         listenNowAction: @escaping () -> Void,
-        createReminderAction: @escaping () -> Void
+        toggleReminderAction: @escaping () -> Void
     ) {
-        self.title = "Platzhalter"
-        self.description = nil
-        self.imageURL = imageURL
-        self.startDate = Date()
-        self.endDate = Date(timeIntervalSinceNow: 60 * 60)
+        self.viewModel = viewModel
         self.listenNowAction = listenNowAction
-        self.createReminderAction = createReminderAction
-    }
-    
-    public init(
-        broadcast: RadioBroadcast,
-        listenNowAction: @escaping () -> Void,
-        createReminderAction: @escaping () -> Void
-    ) {
-        self.title = broadcast.title
-        self.description = broadcast.description
-        self.startDate = broadcast.startsAt
-        self.endDate = broadcast.endsAt
-        self.imageURL = broadcast.attach
-        self.listenNowAction = listenNowAction
-        self.createReminderAction = createReminderAction
-    }
-    
-    private var subtitle: String {
-        
-        if let startDate = startDate, let endDate = endDate {
-            return BroadcastRow.intervalFormatter.string(from: startDate, to: endDate)
-        } else {
-            return "Uhrzeit nicht bekannt"
-        }
-        
+        self.toggleReminderAction = toggleReminderAction
     }
     
     public var body: some View {
@@ -96,7 +65,7 @@ public struct BroadcastDetail: View {
         
         ZStack {
             
-            if let imageURL = imageURL {
+            if let imageURL = viewModel.imageURL {
                 LazyImage(source: imageURL)
                     .aspectRatio(1, contentMode: .fit)
                     .frame(maxWidth: 200, maxHeight: 200)
@@ -118,13 +87,13 @@ public struct BroadcastDetail: View {
         
         VStack(alignment: .leading, spacing: 8) {
             
-            Text(title)
+            Text(viewModel.title)
                 .font(.title2.weight(.bold))
             
-            Text(subtitle)
+            Text(viewModel.subtitle)
                 .fontWeight(.medium)
             
-            if let description = description {
+            if let description = viewModel.description {
                 
                 Text(description)
                     .font(.callout)
@@ -148,14 +117,31 @@ public struct BroadcastDetail: View {
 //            }
 //            .buttonStyle(PrimaryButtonStyle())
             
-            Button(action: createReminderAction) {
-                Text("\(Image(systemName: "bell.circle.fill")) \(AppStrings.Buergerfunk.remindMeAction)")
+            Button(action: {
+                withAnimation {
+                    self.viewModel.enabledReminder.toggle()
+                    print("Enabled reminder: \(self.viewModel.enabledReminder)")
+                }
+                toggleReminderAction()
+            }) {
+                
+                if !viewModel.enabledReminder {
+                    Text("\(Image(systemName: "bell.circle.fill")) \(AppStrings.Buergerfunk.remindMeAction)")
+                } else {
+                    Text("\(Image(systemName: "bell.slash.circle.fill")) \(AppStrings.Buergerfunk.reminderActiveAction)")
+                }
+                
             }
             .buttonStyle(SecondaryButtonStyle())
             
-            Text("Tippe erneut, um die Erinnerung wieder zu löschen.")
-                .foregroundColor(.secondary)
-                .frame(maxWidth: .infinity, alignment: .leading)
+            if viewModel.enabledReminder {
+                
+                Text(AppStrings.Buergerfunk.disableReminderInfo)
+                    .font(.footnote)
+                    .foregroundColor(Color(UIColor.tertiaryLabel))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+            }
             
         }
         
@@ -191,12 +177,22 @@ public struct BroadcastDetail: View {
 
 struct BroadcastDetail_Previews: PreviewProvider {
     static var previews: some View {
+        
+        let viewModel = RadioBroadcastViewModel(
+            id: 1,
+            title: "What's up?!",
+            subtitle: "9/10/21, 6:04 – 7:24 PM",
+            imageURL: "http://www.buergerfunk-moers.de/wp-content/uploads/2021/08/Bild_2021-08-24_221932-e1630172834136.png",
+            description: "Lorem ipsum…"
+        )
+        
         NavigationView {
             BroadcastDetail(
-                imageURL: "http://www.buergerfunk-moers.de/wp-content/uploads/2021/08/Bild_2021-08-24_221932-e1630172834136.png",
+                viewModel: viewModel,
                 listenNowAction: {},
-                createReminderAction: {}
+                toggleReminderAction: {}
             )
         }.preferredColorScheme(.dark)
+        
     }
 }
