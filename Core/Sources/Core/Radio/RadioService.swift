@@ -106,19 +106,19 @@ public class RadioService: RadioServiceProtocol {
     
     public func toggleReminder(for broadcast: RadioBroadcast, completion: (_ reminderIsEnabled: Bool) -> Void) {
         
-        notificationCenter.getPendingNotificationRequests { (requests: [UNNotificationRequest]) in
-            
-            let broadcastIdentifier = self.reminderIdentifier(for: broadcast)
-            
-            if requests.contains(where: { $0.identifier == broadcastIdentifier }) {
-                self.notificationCenter.removePendingNotificationRequests(withIdentifiers: [broadcastIdentifier])
-                completion(false)
-            } else {
-                self.scheduleReminder(for: broadcast)
-                completion(true)
-            }
-            
-        }
+//        notificationCenter.getPendingNotificationRequests { (requests: [UNNotificationRequest]) in
+//
+//            let broadcastIdentifier = self.reminderIdentifier(for: broadcast)
+//
+//            if requests.contains(where: { $0.identifier == broadcastIdentifier }) {
+//                self.notificationCenter.removePendingNotificationRequests(withIdentifiers: [broadcastIdentifier])
+//                completion(false)
+//            } else {
+//                self.scheduleReminder(for: broadcast)
+//                completion(true)
+//            }
+//
+//        }
         
     }
     

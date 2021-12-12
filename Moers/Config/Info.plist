@@ -38,6 +38,10 @@
 			</dict>
 		</array>
 	</dict>
+	<key>INIntentsSupported</key>
+	<array>
+		<string>SelectDepartureMonitorStopIntent</string>
+	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -62,7 +66,7 @@
 				<true/>
 			</dict>
 			<key>buergerfunk-moers.de</key>
-			<string/>
+			<string></string>
 			<key>download.moers.de</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -71,7 +75,7 @@
 				<true/>
 			</dict>
 			<key>mein-moers.localhost</key>
-			<string/>
+			<string></string>
 			<key>www.buergerfunk-moers.de</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -86,10 +90,9 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Moers uses your location to get directions.</string>
 	<key>NSUserActivityTypes</key>
-	<dict>
-		<key>Item</key>
-		<string>de.okfn.niederrhein.Moers.nextRubbish</string>
-	</dict>
+	<array>
+		<string>SelectDepartureMonitorStopIntent</string>
+	</array>
 	<key>ROOT_URL</key>
 	<string>$(ROOT_URL)</string>
 	<key>UIBackgroundModes</key>

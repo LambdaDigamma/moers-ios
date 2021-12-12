@@ -8,11 +8,14 @@
 
 import XCTest
 import MMAPI
+import Combine
 @testable import Moers
 
 final class StorageManagerTests: XCTestCase {
     
     var storageManager: StorageManager<Event>!
+    
+    private var bag = Set<AnyCancellable>()
     
     override func setUp() {
         super.setUp()
@@ -85,14 +88,19 @@ final class StorageManagerTests: XCTestCase {
         
         let loaded = storageManager.read(forKey: storageKey, with: JSONDecoder())
         
-        loaded.observeNext { loadedEvents in
+        loaded.sink { (completion: Subscribers.Completion<Error>) in
+            
+            switch completion {
+                case .failure(let error):
+                    XCTFail(error.localizedDescription)
+                default: break
+            }
+            
+        } receiveValue: { (loadedEvents: [Event]) in
             XCTAssert(loadedEvents.count == events.count)
             expectation.fulfill()
-        }.dispose(in: bag)
-        
-        loaded.observeFailed { error in
-            XCTFail(error.localizedDescription)
-        }.dispose(in: bag)
+            
+        }.store(in: &bag)
         
         wait(for: [expectation], timeout: 10)
         

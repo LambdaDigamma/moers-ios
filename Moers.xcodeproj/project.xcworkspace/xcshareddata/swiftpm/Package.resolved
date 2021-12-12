@@ -29,6 +29,15 @@
         }
       },
       {
+        "package": "EFAAPI",
+        "repositoryURL": "https://github.com/LambdaDigamma/efaapi-ios",
+        "state": {
+          "branch": null,
+          "revision": "060fd07c87d56d3280dd78aa72be959f5632a691",
+          "version": "0.0.2"
+        }
+      },
+      {
         "package": "EventBus",
         "repositoryURL": "https://github.com/lambdadigamma/eventbus",
         "state": {
@@ -83,6 +92,15 @@
         }
       },
       {
+        "package": "Ink",
+        "repositoryURL": "https://github.com/johnsundell/ink.git",
+        "state": {
+          "branch": null,
+          "revision": "77c3d8953374a9cf5418ef0bd7108524999de85a",
+          "version": "0.5.1"
+        }
+      },
+      {
         "package": "MarkdownKit",
         "repositoryURL": "https://github.com/OscarGorog/MarkdownKit",
         "state": {
@@ -123,8 +141,8 @@
         "repositoryURL": "https://github.com/kean/Nuke.git",
         "state": {
           "branch": null,
-          "revision": "0db18dd34998cca18e9a28bcee136f84518007a0",
-          "version": "10.4.1"
+          "revision": "6be3e778f1663b16dd645b7e8a0a01f73b5ed7f3",
+          "version": "10.5.2"
         }
       },
       {
@@ -132,8 +150,8 @@
         "repositoryURL": "https://github.com/kean/NukeUI",
         "state": {
           "branch": null,
-          "revision": "0130ce2c1d140a426ced903a9abd68b4b8bf9790",
-          "version": "0.6.8"
+          "revision": "08e953d8d80b409bebcd95ba0635fdd748934ce0",
+          "version": "0.7.0"
         }
       },
       {
@@ -150,8 +168,8 @@
         "repositoryURL": "https://github.com/hmlongco/Resolver",
         "state": {
           "branch": null,
-          "revision": "473a53747489e48da848fbec8cc8ee944c28f3b2",
-          "version": "1.4.5"
+          "revision": "97de0b0320036607564af4a60025b48f8d041221",
+          "version": "1.5.0"
         }
       },
       {
@@ -159,8 +177,8 @@
         "repositoryURL": "https://github.com/LambdaDigamma/swift-app-feedback",
         "state": {
           "branch": null,
-          "revision": "280f004df85c7d6251a3ebbd9c547d992df439a9",
-          "version": "1.0.0"
+          "revision": "5da607f72e033173ab92bd2718d2f95ae68ff64a",
+          "version": "1.0.1"
         }
       },
       {
@@ -206,6 +224,15 @@
           "branch": "master",
           "revision": "e8513be1fc758e6107ee3ea5a61371d84499efd5",
           "version": null
+        }
+      },
+      {
+        "package": "XMLCoder",
+        "repositoryURL": "https://github.com/MaxDesiatov/XMLCoder.git",
+        "state": {
+          "branch": null,
+          "revision": "f30119af03996939cc4f54e0bf0dda9f88a84da5",
+          "version": "0.13.1"
         }
       }
     ]
