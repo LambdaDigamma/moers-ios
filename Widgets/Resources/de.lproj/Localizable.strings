@@ -8,3 +8,6 @@
 
 "NewsWidgetTitle" = "Nachrichten aus Moers";
 "NewsWidgetDescription" = "Sei immer informiert, was in und um Moers passiert";
+
+"DepartureMonitorWidget.title" = "Abfahrsmonitor";
+"DepartureMonitorWidget.description" = "Abfahrsmonitor";

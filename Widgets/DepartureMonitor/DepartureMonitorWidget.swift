@@ -21,16 +21,11 @@ struct DepartureMonitorWidget: Widget {
             intent: SelectDepartureMonitorStopIntent.self,
             provider: DepartureMonitorProvider()
         ) { entry in
-                DepartureMonitorViewNew(entry: entry)
-            }
-//            .configurationDisplayName("Abfahrtsmonitor")
-//            .description("This is an example widget.")
-        
-//        StaticConfiguration(kind: kind, provider: DepartureMonitorProvider()) { entry in
-//            DepartureMonitorViewNew(entry: entry)
-//        }
-//        .configurationDisplayName("Abfahrtsmonitor")
-//        .description("This is an example widget.")
+            DepartureMonitorView(entry: entry)
+        }
+            .configurationDisplayName("Abfahrtsmonitor")
+            .description("Sehe Dir die nächsten Abfahrten von der ausgewählen Haltestelle an.")
+            .supportedFamilies([.systemMedium])
         
     }
     

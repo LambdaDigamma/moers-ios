@@ -39,6 +39,8 @@ class IntentHandler: INExtension, SelectDepartureMonitorStopIntentHandling {
         return self
     }
     
+    // MARK: - Handler
+    
     func resolveTransitStation(
         for intent: SelectDepartureMonitorStopIntent,
         with completion: @escaping (TransitStationResolutionResult) -> Void
@@ -76,7 +78,14 @@ class IntentHandler: INExtension, SelectDepartureMonitorStopIntentHandling {
                 
             } receiveValue: { (locations: [TransitLocation]) in
                 
-                let stations = locations.map({ TransitStation(identifier: $0.name, display: $0.name) })
+                let stations: [TransitStation] = locations.map { (location: TransitLocation) in
+                    let station = TransitStation(identifier: "\(location.stationID ?? 0)", display: location.name)
+                    if let stationID = location.stationID {
+                        station.stationID = NSNumber(value: stationID)
+                    }
+                    return station
+                }
+                
                 let collection = INObjectCollection(items: stations)
                 
                 completion(collection, nil)

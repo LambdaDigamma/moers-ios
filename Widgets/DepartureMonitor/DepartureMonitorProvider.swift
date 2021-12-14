@@ -21,6 +21,19 @@ final class DepartureMonitorProvider: IntentTimelineProvider {
     
     var cancellable: AnyCancellable?
     
+    private let transitService: DefaultTransitService
+    
+    public init() {
+        
+        let serverEnvironment = ServerEnvironment(scheme: "https", host: "openservice.vrr.de", pathPrefix: "vrr")
+        let serverEnvironmentLoader = ApplyEnvironmentLoader(environment: serverEnvironment)
+        let loader = URLSessionLoader()
+        transitService = DefaultTransitService(loader: (serverEnvironmentLoader --> loader)!)
+        
+    }
+    
+    // MARK: - UI
+    
     func placeholder(in context: Context) -> DepartureMonitorEntry {
         DepartureMonitorEntry(date: Date(), departures: [])
     }
@@ -49,25 +62,31 @@ final class DepartureMonitorProvider: IntentTimelineProvider {
         let currentDate = Date()
         let refreshDate = Calendar.current.date(byAdding: .minute, value: 5, to: currentDate)!
         
-        cancellable = DepartureMonitorLoader().fetch()
-            .sink { (_: Subscribers.Completion<HTTPError>) in
-                
-            } receiveValue: { (response: DepartureMonitorResponse) in
-                
-                let departures = response.departureMonitorRequest.departures
-                    .departures
-                    .map { DepartureViewModel(departure: $0) }
-//                    .sorted { (vm1: DepartureViewModel, vm2: DepartureViewModel) in
-//                    }
-                
-                let name = response.departureMonitorRequest.odv.name?.elements?.first?.name ?? "unbekannt"
-                
-                let entry = DepartureMonitorEntry(date: response.now, name: name, departures: departures)
-                
-                let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
-                completion(timeline)
-                
-            }
+        print("Transit station: \(configuration.transitStation?.identifier ?? "") \(configuration.transitStation?.displayString ?? "")")
+        
+        if let transitStation = configuration.transitStation, let identifier = transitStation.identifier, let stationID = Int(identifier) {
+            
+            cancellable = DepartureMonitorLoader().fetch(station: stationID) // 20016032
+                .sink { (_: Subscribers.Completion<HTTPError>) in
+                    
+                } receiveValue: { (response: DepartureMonitorResponse) in
+                    
+                    let departures = response.departureMonitorRequest.departures
+                        .departures
+                        .map { DepartureViewModel(departure: $0) }
+                    
+                    let name = response.departureMonitorRequest.odv.name?.elements?.first?.name ?? "Unbekannt"
+                    
+                    let entry = DepartureMonitorEntry(date: response.now, name: name, departures: departures)
+                    
+                    let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
+                    completion(timeline)
+                    
+                }
+            
+        } else {
+            
+        }
         
     }
     

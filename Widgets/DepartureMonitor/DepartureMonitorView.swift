@@ -25,73 +25,7 @@ struct DepartureMonitorView: View {
     
     var body: some View {
         
-        Text("ABC")
-        
-//        EFAUI.DepartureMonitorView
-        
-//        ZStack {
-//
-//            Color(UIColor.systemBackground)
-//
-//            VStack(alignment: .leading) {
-//
-//                VStack(alignment: .leading, spacing: 4) {
-//
-//                    let departures = entry.departures.prefix(4)
-//
-//                    ForEach(departures) { departure in
-//
-//                        HStack {
-//
-//                            Text("\(departure.actual ?? departure.time ?? Date(), formatter: timeFormatter)")
-//                                .font(.system(.caption2, design: Font.Design.monospaced))
-//                                .fontWeight(.semibold)
-//                                .padding(4)
-//                                .padding(.horizontal, 4)
-//                                .background(Color(UIColor.secondarySystemBackground))
-//                                .foregroundColor(timeForegroundColor(for: departure))
-//                                .cornerRadius(6)
-//
-//                            Text(departure.direction)
-//                                .font(.system(.caption2))
-//
-//                            Spacer()
-//
-//                            Text(String(departure.symbol.prefix(7)))
-//                                .font(.system(.caption2, design: Font.Design.monospaced))
-//                                .fontWeight(.semibold)
-//                                .padding(4)
-//                                .padding(.horizontal, 4)
-//                                .background(Color.blue)
-//                                .foregroundColor(Color(UIColor.label))
-//                                .cornerRadius(6)
-//
-//                        }
-//                    }
-//
-//                }
-//
-//                Spacer()
-//
-//                HStack {
-//
-//                    Group {
-//                        Text(entry.name) +
-//                        Text(" • ") +
-//                        Text("Last update: ") +
-//                        Text(entry.date, style: .relative)
-//                    }
-//                    .foregroundColor(.secondary)
-//                    .font(.system(size: 8, weight: .regular, design: .default))
-//
-//                }
-//
-//            }
-//            .frame(maxWidth: .infinity, alignment: .leading)
-//            .padding(.horizontal, 16)
-//            .padding(.vertical, 16)
-//
-//        }
+        EFAUI.DepartureMonitorView(viewModel: .init(stationName: entry.name, departures: entry.departures))
         
     }
     
@@ -118,29 +52,38 @@ struct DepartureMonitorView_Previews: PreviewProvider {
         
         let entry = DepartureMonitorEntry(
             date: Date(timeIntervalSinceNow: -60 * 8),
+            name: "Duisburg Hbf",
             departures: [
                 DepartureViewModel(
                     departure: ITDDeparture.stub()
                         .setting(\.actualDateTime,
                                   to: ITDDateTime.stub(date: .init(timeIntervalSinceNow: 60 * 2)))
-                        .setting(\.servingLine,
-                                  to: ITDServingLine.stub().setting(\.symbol, to: "ICE 972"))
+                        .setting(\.servingLine.direction, to: "Münster (Westf) Hbf")
+                        .setting(\.servingLine.symbol, to: "S1")
                 ),
                 DepartureViewModel(
                     departure: ITDDeparture.stub()
                         .setting(\.regularDateTime,
                                   to: ITDDateTime.stub(date: .init(timeIntervalSinceNow: 60 * 5)))
+                        .setting(\.servingLine.direction, to: "Dortmund Hbf")
+                        .setting(\.servingLine.symbol, to: "ICE 933")
                 ),
                 DepartureViewModel(
                     departure: ITDDeparture.stub()
                         .setting(\.regularDateTime,
                                   to: ITDDateTime.stub(date: .init(timeIntervalSinceNow: 60 * 10)))
+                        .setting(\.servingLine.direction, to: "Rheurdt Kirche")
+                        .setting(\.servingLine.symbol, to: "SB 30")
+                        .setting(\.platformName, to: "1")
                 ),
                 DepartureViewModel(
                     departure: ITDDeparture.stub()
                         .setting(\.regularDateTime,
                                   to: ITDDateTime.stub(date: .init(timeIntervalSinceNow: 60 * 20)))
+                        .setting(\.servingLine.direction, to: "Duisburg Ruhrau")
+                        .setting(\.servingLine.symbol, to: "RE 1")
                 )
+                
             ])
         
         DepartureMonitorView(entry: entry)

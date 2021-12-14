@@ -11,11 +11,11 @@ import EFAAPI
 import ModernNetworking
 import Combine
 
-class DepartureMonitorLoader: ObservableObject {
+public class DepartureMonitorLoader: ObservableObject {
     
     private let transitService: DefaultTransitService
     
-    init() {
+    public init() {
         
         let serverEnvironment = ServerEnvironment(scheme: "https", host: "openservice.vrr.de", pathPrefix: "vrr")
         let serverEnvironmentLoader = ApplyEnvironmentLoader(environment: serverEnvironment)
@@ -24,24 +24,9 @@ class DepartureMonitorLoader: ObservableObject {
         
     }
     
-    func fetch() -> AnyPublisher<DepartureMonitorResponse, HTTPError> {
+    public func fetch(station id: Station.ID) -> AnyPublisher<DepartureMonitorResponse, HTTPError> {
         
-        return transitService.sendRawDepartureMonitorRequest(id: 20016032)
-        
-//        do {
-//
-//
-//
-//            let manager = try EFAManager(
-//                efaEndpoint: "https://openservice.vrr.de/vrr/",
-//                host: "openservice.vrr.de"
-//            )
-//
-//            return manager.sendDepartureMonitorRequest(id: 20016032) // 20036298
-//
-//        } catch {
-//            return Fail(error: error).eraseToAnyPublisher()
-//        }
+        return transitService.sendRawDepartureMonitorRequest(id: id)
         
     }
     

@@ -76,7 +76,6 @@
 		DF54138B217FD733007FDEC8 /* EntryValidationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF54138A217FD733007FDEC8 /* EntryValidationTableViewCell.swift */; };
 		DF54138D2180955B007FDEC8 /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF54138C2180955A007FDEC8 /* NewsCollectionViewCell.swift */; };
 		DF552FC72184D2210062EB2B /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF552FC62184D2210062EB2B /* CheckmarkView.swift */; };
-		DF5608C82760E2DA0053BD54 /* DepartureMonitorViewNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5608C72760E2DA0053BD54 /* DepartureMonitorViewNew.swift */; };
 		DF5D81CA2256832600A19B01 /* MockConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5D81C92256832600A19B01 /* MockConfig.swift */; };
 		DF5D82732258DBD900A19B01 /* UIProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5D82722258DBD900A19B01 /* UIProperties.swift */; };
 		DF5E1B5026726AF3005FADA4 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF5E1B4F26726AF3005FADA4 /* WidgetKit.framework */; };
@@ -404,7 +403,6 @@
 		DF54138A217FD733007FDEC8 /* EntryValidationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryValidationTableViewCell.swift; sourceTree = "<group>"; };
 		DF54138C2180955A007FDEC8 /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		DF552FC62184D2210062EB2B /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
-		DF5608C72760E2DA0053BD54 /* DepartureMonitorViewNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureMonitorViewNew.swift; sourceTree = "<group>"; };
 		DF57D6872187397F00E6A0A9 /* FIRAnalyticsConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FIRAnalyticsConnector.framework; path = Frameworks/FIRAnalyticsConnector.framework; sourceTree = "<group>"; };
 		DF57D6882187397F00E6A0A9 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
 		DF57D6892187397F00E6A0A9 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = Frameworks/GoogleAppMeasurement.framework; sourceTree = "<group>"; };
@@ -490,6 +488,7 @@
 		DF9F19EB27668CDD00B74E13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/SelectDepartureMonitorStop.intentdefinition; sourceTree = "<group>"; };
 		DF9F19EE27668CDF00B74E13 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SelectDepartureMonitorStop.strings; sourceTree = "<group>"; };
 		DF9F19F027668CE300B74E13 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SelectDepartureMonitorStop.strings; sourceTree = "<group>"; };
+		DF9F19FC276693BB00B74E13 /* efaapi-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "efaapi-ios"; path = "../efaapi-ios"; sourceTree = "<group>"; };
 		DFA17DF320DEF9DE00BBD838 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		DFA314CD26FD043C002C5A59 /* RadioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioViewController.swift; sourceTree = "<group>"; };
 		DFA96A6220BD8A390009B279 /* AveragePetrolPriceComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AveragePetrolPriceComponent.swift; sourceTree = "<group>"; };
@@ -900,6 +899,7 @@
 				DF89BA1926FE1280003A6C64 /* README.md */,
 				DF89BA1A26FE12AE003A6C64 /* IDEAS.md */,
 				DF1A9B9F26ECB2A600D3CAD0 /* .swiftlint.yml */,
+				DF9F19FC276693BB00B74E13 /* efaapi-ios */,
 				DF89BA1C26FE1E49003A6C64 /* mmapi-ios */,
 				DF89BA1826FE1084003A6C64 /* mmui-ios */,
 				DFC8507726EFE62400F9FB39 /* Core */,
@@ -1236,7 +1236,6 @@
 				DF99F184275FF8A300D279AB /* DepartureMonitorEntry.swift */,
 				DF99F186275FFA1900D279AB /* DepartureViewModel.swift */,
 				DF99F18F276005A200D279AB /* DepartureMonitorLoader.swift */,
-				DF5608C72760E2DA0053BD54 /* DepartureMonitorViewNew.swift */,
 				DF76473E2760FFBE008749F8 /* DepartureRow.swift */,
 			);
 			path = DepartureMonitor;
@@ -1815,7 +1814,6 @@
 				DF99F18A2760023000D279AB /* DepartureMonitorView.swift in Sources */,
 				DF99F19527600B9A00D279AB /* DepartureMonitorProvider.swift in Sources */,
 				DF5E1B8926729FB5005FADA4 /* MediumNewsListWidget.swift in Sources */,
-				DF5608C82760E2DA0053BD54 /* DepartureMonitorViewNew.swift in Sources */,
 				DF76473F2760FFBE008749F8 /* DepartureRow.swift in Sources */,
 				DF5E1B8F2672A782005FADA4 /* ImageNewsView.swift in Sources */,
 				DF5E1B8D2672A746005FADA4 /* SmallNewsImageWidget.swift in Sources */,
