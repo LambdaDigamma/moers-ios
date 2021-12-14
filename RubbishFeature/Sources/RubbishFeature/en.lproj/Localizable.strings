@@ -1,0 +1,13 @@
+/* Waste */
+"ResidualWaste" = "Residual Waste";
+"OrganicWaste" = "Organic Waste";
+"PaperWaste" = "Paper Waste";
+"YellowWaste" = "Yellow Bag";
+"GreenWaste" = "Green Cuttings";
+
+"Waste.dashboardTitle" = "Next collection dates";
+"Waste.errorTitle" = "Rubbish schedule deactivated";
+"Waste.scheduleDeactivated" = "You can activate the waste calendar in the settings.";
+"Waste.loadingFailed" = "Loading the waste calendar could not be completed.";
+"Waste.noUpcomingRubbishItems" = "No further dates could be found in the waste calendar.";
+"Waste.loadingDashboard" = "Loading waste schedule…";

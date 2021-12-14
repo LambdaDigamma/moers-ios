@@ -21,13 +21,13 @@ extension RubbishDisplayError: LocalizedError {
         
         switch self {
             case .noUpcomingRubbishItems:
-                return AppStrings.Waste.noUpcomingRubbishItems
+                return PackageStrings.Waste.noUpcomingRubbishItems
                 
             case .loadingFailed:
-                return AppStrings.Waste.loadingFailed
+                return PackageStrings.Waste.loadingFailed
                 
             case .wasteScheduleDeactivated:
-                return AppStrings.Waste.errorMessage
+                return PackageStrings.Waste.scheduleDeactivated
         }
         
     }

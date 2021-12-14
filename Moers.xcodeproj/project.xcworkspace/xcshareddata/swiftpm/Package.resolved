@@ -29,15 +29,6 @@
         }
       },
       {
-        "package": "EFAAPI",
-        "repositoryURL": "https://github.com/LambdaDigamma/efaapi-ios",
-        "state": {
-          "branch": null,
-          "revision": "060fd07c87d56d3280dd78aa72be959f5632a691",
-          "version": "0.0.2"
-        }
-      },
-      {
         "package": "EventBus",
         "repositoryURL": "https://github.com/lambdadigamma/eventbus",
         "state": {
@@ -92,15 +83,6 @@
         }
       },
       {
-        "package": "Ink",
-        "repositoryURL": "https://github.com/johnsundell/ink.git",
-        "state": {
-          "branch": null,
-          "revision": "77c3d8953374a9cf5418ef0bd7108524999de85a",
-          "version": "0.5.1"
-        }
-      },
-      {
         "package": "MarkdownKit",
         "repositoryURL": "https://github.com/OscarGorog/MarkdownKit",
         "state": {
@@ -122,9 +104,9 @@
         "package": "MMCommon",
         "repositoryURL": "https://github.com/lambdadigamma/mmcommon-ios",
         "state": {
-          "branch": null,
+          "branch": "master",
           "revision": "d1ab76ad0316dcf58a23196f69ec07e2f8ba6702",
-          "version": "0.0.1"
+          "version": null
         }
       },
       {

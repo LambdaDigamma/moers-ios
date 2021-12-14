@@ -18,7 +18,7 @@ public struct DashboardView: View {
             
             LazyVStack {
                 
-                RubbishPanel()
+//                RubbishPanel()
                 
             }
             .padding()

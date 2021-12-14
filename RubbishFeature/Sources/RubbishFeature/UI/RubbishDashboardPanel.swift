@@ -7,9 +7,8 @@
 //
 
 import SwiftUI
-import MMAPI
 import ModernNetworking
-import Core
+//import Core
 
 public struct RubbishDashboardPanel: View {
     
@@ -32,7 +31,7 @@ public struct RubbishDashboardPanel: View {
                 items.hasResource { (items) in
                     
                     HStack {
-                        Text("DashboardTitleRubbishCollection")
+                        Text(PackageStrings.Waste.dashboardTitle)
                             .font(.title2)
                             .fontWeight(.semibold)
                         Spacer()
@@ -44,25 +43,8 @@ public struct RubbishDashboardPanel: View {
                         
                         ForEach(items, id: \.id) { (item) in
                             
-                            HStack(alignment: .center) {
-                                
-                                RubbishTypeIcon(type: item.type)
-                                    .frame(width: 50)
-                                
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(RubbishWasteType.localizedForCase(item.type))
-                                        .font(.headline)
-                                        .fontWeight(.semibold)
-                                    Text(DateFormatter.localizedString(
-                                            from: item.date,
-                                            dateStyle: .full,
-                                            timeStyle: .none)
-                                    )
-                                        .font(.callout)
-                                }
-                                
-                            }
-                            .padding(.all, 12)
+                            RubbishPickupRow(item: item)
+                                .padding(.all, 12)
                             
                         }
                         
@@ -103,7 +85,7 @@ public struct RubbishDashboardPanel: View {
             VStack(spacing: 12) {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle())
-                Text("Lädt Abfallkalender...")
+                Text(PackageStrings.Waste.loadingDashboard)
                     .fontWeight(.semibold)
                     .font(.callout)
             }
@@ -120,7 +102,7 @@ public struct RubbishDashboardPanel: View {
             HStack(spacing: 12) {
                 Image(systemName: "calendar.badge.exclamationmark")
                     .font(.largeTitle)
-                Text("There are no other known collection dates.")
+                Text(PackageStrings.Waste.noUpcomingRubbishItems)
             }
         }
         .padding(.top, 8)

@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import MMAPI
 import ModernNetworking
 
 public struct RubbishTypeIcon: View {
@@ -24,20 +23,21 @@ public struct RubbishTypeIcon: View {
             switch type {
                 
                 case .organic:
-                    Image("greenWaste")
+                    Image("greenWaste", bundle: .module)
                         .resizable()
                 case .residual:
-                    Image("residualWaste")
+                    Image("residualWaste", bundle: .module)
                         .resizable()
                 case .paper:
-                    Image("paperWaste")
+                    Image("paperWaste", bundle: .module)
                         .resizable()
                 case .cuttings:
-                    Image("greenWaste")
+                    Image("greenWaste", bundle: .module)
                         .resizable()
                 case .plastic:
-                    Image("yellowWaste")
+                    Image("yellowWaste", bundle: .module)
                         .resizable()
+                    
             }
         }
         .aspectRatio(1, contentMode: .fit)
@@ -48,9 +48,13 @@ public struct RubbishTypeIcon: View {
 
 struct RubbishTypeIcon_Previews: PreviewProvider {
     static var previews: some View {
-        RubbishTypeIcon(type: .organic)
-            .frame(width: 50)
-            .padding()
-            .previewLayout(.sizeThatFits)
+        
+        ForEach(RubbishWasteType.allCases, id: \.self) { type in
+            RubbishTypeIcon(type: type)
+                .frame(width: 50)
+                .padding()
+                .previewLayout(.sizeThatFits)
+        }
+        
     }
 }
