@@ -44,7 +44,7 @@ public struct RubbishPanel: View {
             
             LazyVStack {
 
-                RubbishDashboardPanel(items: .success(schedule))
+//                RubbishDashboardPanel(items: .success(schedule))
                 
             }
             

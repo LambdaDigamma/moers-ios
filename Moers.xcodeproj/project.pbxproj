@@ -376,6 +376,7 @@
 		DF310DA321710887004C69BA /* TagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TagTableViewCell.swift; path = ../../View/UITableViewCells/TagTableViewCell.swift; sourceTree = "<group>"; };
 		DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchArgumentsHandler.swift; sourceTree = "<group>"; };
 		DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapLocationPickerViewController.swift; path = ../../../Controller/Community/MapLocationPickerViewController.swift; sourceTree = "<group>"; };
+		DF4116BB276FA43E0068B4BB /* PlaybackKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PlaybackKit; sourceTree = "<group>"; };
 		DF428E0125F4240E007C686C /* RubbishMediumWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishMediumWidget.swift; sourceTree = "<group>"; };
 		DF44D58C2125FE9700F8AC0C /* ContentDrawer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContentDrawer.storyboard; sourceTree = "<group>"; };
 		DF44D58E2126F83B00F8AC0C /* DetailViewControllers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewControllers.storyboard; sourceTree = "<group>"; };
@@ -552,6 +553,7 @@
 		DFF9390E2539DBAC002E5747 /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleUtilities.xcframework; path = Frameworks/GoogleUtilities.xcframework; sourceTree = "<group>"; };
 		DFFBAA2727693755003728CF /* RubbishFeature */ = {isa = PBXFileReference; lastKnownFileType = folder; path = RubbishFeature; sourceTree = "<group>"; };
 		DFFBAA28276939AD003728CF /* mmcommon-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "mmcommon-ios"; path = "../mmcommon-ios"; sourceTree = "<group>"; };
+		DFFBAA2927696353003728CF /* FuelFeature */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FuelFeature; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -706,8 +708,8 @@
 				DFE3D9002674035400BE29E7 /* NetworkingConfiguration.swift */,
 				DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */,
 				DF7D4B5D22F0D53400126AF7 /* Constants.swift */,
-				DF007B792640843E00DAFA6F /* InfoPlist.strings */,
 				DFB02B9127066BC4000196D8 /* FeatureFlags.swift */,
+				DF007B792640843E00DAFA6F /* InfoPlist.strings */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -897,6 +899,8 @@
 				DF1A9B9F26ECB2A600D3CAD0 /* .swiftlint.yml */,
 				DFC8507726EFE62400F9FB39 /* Core */,
 				DFFBAA2727693755003728CF /* RubbishFeature */,
+				DFFBAA2927696353003728CF /* FuelFeature */,
+				DF4116BB276FA43E0068B4BB /* PlaybackKit */,
 				DF9F19FC276693BB00B74E13 /* efaapi-ios */,
 				DF89BA1C26FE1E49003A6C64 /* mmapi-ios */,
 				DF89BA1826FE1084003A6C64 /* mmui-ios */,
@@ -1065,20 +1069,11 @@
 		DF52868024A7C06A00A6939E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DFCA005924A88A4600EACE9F /* Common */,
-				DF52868F24A7CE7400A6939E /* Dashboard */,
+				DF52868324A7C0B600A6939E /* DashboardView.swift */,
 				DF52868524A7C0CC00A6939E /* NewsView.swift */,
 				DF0EACA124C6491A009BE489 /* OrganisationList.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		DF52868F24A7CE7400A6939E /* Dashboard */ = {
-			isa = PBXGroup;
-			children = (
-				DF52868324A7C0B600A6939E /* DashboardView.swift */,
-			);
-			path = Dashboard;
 			sourceTree = "<group>";
 		};
 		DF5E1B5326726AF3005FADA4 /* Widgets */ = {
@@ -1277,13 +1272,6 @@
 				DFB161B7267651D7009D2754 /* Info.plist */,
 			);
 			path = "Moers Unit Tests";
-			sourceTree = "<group>";
-		};
-		DFCA005924A88A4600EACE9F /* Common */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Common;
 			sourceTree = "<group>";
 		};
 		DFD7ACBB20A794D700D49BE2 /* Cards */ = {
