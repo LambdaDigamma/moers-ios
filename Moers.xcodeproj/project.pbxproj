@@ -70,13 +70,13 @@
 		DF503CEF21431503006EE226 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF503CEE21431503006EE226 /* DebugViewController.swift */; };
 		DF51614A2545F6290094DEEB /* CovidMediumWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5161492545F6290094DEEB /* CovidMediumWidget.swift */; };
 		DF516161254603220094DEEB /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = DF516160254603220094DEEB /* Charts */; };
-		DF52868424A7C0B600A6939E /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868324A7C0B600A6939E /* DashboardView.swift */; };
 		DF52868624A7C0CC00A6939E /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF52868524A7C0CC00A6939E /* NewsView.swift */; };
 		DF52868E24A7C65F00A6939E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF52868D24A7C65F00A6939E /* Colors.xcassets */; };
 		DF541389217FCD25007FDEC8 /* EntryValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF541388217FCD25007FDEC8 /* EntryValidationViewController.swift */; };
 		DF54138B217FD733007FDEC8 /* EntryValidationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF54138A217FD733007FDEC8 /* EntryValidationTableViewCell.swift */; };
 		DF54138D2180955B007FDEC8 /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF54138C2180955A007FDEC8 /* NewsCollectionViewCell.swift */; };
 		DF552FC72184D2210062EB2B /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF552FC62184D2210062EB2B /* CheckmarkView.swift */; };
+		DF55F25F27709B410024300B /* RubbishFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF55F25E27709B410024300B /* RubbishFeature */; };
 		DF5D81CA2256832600A19B01 /* MockConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5D81C92256832600A19B01 /* MockConfig.swift */; };
 		DF5D82732258DBD900A19B01 /* UIProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5D82722258DBD900A19B01 /* UIProperties.swift */; };
 		DF5E1B5026726AF3005FADA4 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF5E1B4F26726AF3005FADA4 /* WidgetKit.framework */; };
@@ -392,13 +392,13 @@
 		DF500154235A4E1E00ED39B2 /* SearchDrawerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDrawerViewController.swift; sourceTree = "<group>"; };
 		DF503CEE21431503006EE226 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		DF5161492545F6290094DEEB /* CovidMediumWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidMediumWidget.swift; sourceTree = "<group>"; };
-		DF52868324A7C0B600A6939E /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		DF52868524A7C0CC00A6939E /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		DF52868D24A7C65F00A6939E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		DF541388217FCD25007FDEC8 /* EntryValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryValidationViewController.swift; sourceTree = "<group>"; };
 		DF54138A217FD733007FDEC8 /* EntryValidationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryValidationTableViewCell.swift; sourceTree = "<group>"; };
 		DF54138C2180955A007FDEC8 /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		DF552FC62184D2210062EB2B /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
+		DF55F2622770ABE80024300B /* DashboardFeature */ = {isa = PBXFileReference; lastKnownFileType = text; path = DashboardFeature; sourceTree = SOURCE_ROOT; };
 		DF57D6872187397F00E6A0A9 /* FIRAnalyticsConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FIRAnalyticsConnector.framework; path = Frameworks/FIRAnalyticsConnector.framework; sourceTree = "<group>"; };
 		DF57D6882187397F00E6A0A9 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
 		DF57D6892187397F00E6A0A9 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = Frameworks/GoogleAppMeasurement.framework; sourceTree = "<group>"; };
@@ -585,6 +585,7 @@
 				DFE6252C25459550005FAC1C /* GoogleDataTransport.xcframework in Frameworks */,
 				DF9F19F32766920C00B74E13 /* EFAAPI in Frameworks */,
 				DF86ABA12174900400EFC7EA /* Intents.framework in Frameworks */,
+				DF55F25F27709B410024300B /* RubbishFeature in Frameworks */,
 				DFE6254025459556005FAC1C /* FirebaseInstallations.xcframework in Frameworks */,
 				DFA4BC48263A28530014C7F9 /* TagListView in Frameworks */,
 				DFE6254425459559005FAC1C /* FirebaseCore.xcframework in Frameworks */,
@@ -897,6 +898,7 @@
 				DFC8507726EFE62400F9FB39 /* Core */,
 				DFFBAA2727693755003728CF /* RubbishFeature */,
 				DFFBAA2927696353003728CF /* FuelFeature */,
+				DF55F2622770ABE80024300B /* DashboardFeature */,
 				DF4116BB276FA43E0068B4BB /* PlaybackKit */,
 				DF9F19FC276693BB00B74E13 /* efaapi-ios */,
 				DF89BA1C26FE1E49003A6C64 /* mmapi-ios */,
@@ -1066,7 +1068,6 @@
 		DF52868024A7C06A00A6939E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DF52868324A7C0B600A6939E /* DashboardView.swift */,
 				DF52868524A7C0CC00A6939E /* NewsView.swift */,
 				DF0EACA124C6491A009BE489 /* OrganisationList.swift */,
 			);
@@ -1326,6 +1327,7 @@
 				DF9F19F22766920C00B74E13 /* EFAAPI */,
 				DF9F19F42766920C00B74E13 /* EFAUI */,
 				DF4116BC276FED840068B4BB /* PlaybackKit */,
+				DF55F25E27709B410024300B /* RubbishFeature */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1658,7 +1660,6 @@
 				DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */,
 				DF86AB9921729DDD00EFC7EA /* EntryOnboardingAddressViewController.swift in Sources */,
 				DFA17DF420DEF9DE00BBD838 /* UIButton+Extensions.swift in Sources */,
-				DF52868424A7C0B600A6939E /* DashboardView.swift in Sources */,
 				DFB0325D23F34A6A00A8326E /* StorageManager.swift in Sources */,
 				DFB02B8F27066B35000196D8 /* ApplicationController.swift in Sources */,
 				DF2D6DA520B88E1700176614 /* LicencesViewController.swift in Sources */,
@@ -5475,6 +5476,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DF51615F254603220094DEEB /* XCRemoteSwiftPackageReference "swiftui-charts" */;
 			productName = Charts;
+		};
+		DF55F25E27709B410024300B /* RubbishFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RubbishFeature;
 		};
 		DF5E1B6826726E8F005FADA4 /* NewsWidgets */ = {
 			isa = XCSwiftPackageProductDependency;

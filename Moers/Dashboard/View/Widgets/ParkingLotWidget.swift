@@ -53,14 +53,20 @@ struct ParkingLotWidget: View {
                     }
                     .font(.headline)
                     
-                }.padding()
-                .frame(maxWidth: .infinity,
-                       maxHeight: .infinity,
-                       alignment: .topLeading)
-                
-            }.frame(maxWidth: .infinity,
+                }
+                .padding()
+                .frame(
+                    maxWidth: .infinity,
                     maxHeight: .infinity,
-                    alignment: .topLeading)
+                    alignment: .topLeading
+                )
+                
+            }
+            .frame(
+                maxWidth: .infinity,
+                maxHeight: .infinity,
+                alignment: .topLeading
+            )
             
         }
         

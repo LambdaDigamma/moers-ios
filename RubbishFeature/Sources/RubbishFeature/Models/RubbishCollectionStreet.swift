@@ -10,7 +10,9 @@ import Foundation
 
 public struct RubbishCollectionStreet: Codable, Equatable {
     
-    public var id: Int
+    public typealias ID = Int
+    
+    public var id: ID
     public var street: String
     public var streetAddition: String?
     public var residualWaste: Int

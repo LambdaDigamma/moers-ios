@@ -73,9 +73,11 @@ struct RubbishMediumWidget: View {
                 }.frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding()
-            .frame(maxWidth: .infinity,
-                   maxHeight: .infinity,
-                   alignment: .topLeading)
+            .frame(
+                maxWidth: .infinity,
+                maxHeight: .infinity,
+                alignment: .topLeading
+            )
             
         }
         

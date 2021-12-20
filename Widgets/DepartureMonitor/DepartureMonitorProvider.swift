@@ -35,7 +35,11 @@ final class DepartureMonitorProvider: IntentTimelineProvider {
     // MARK: - UI
     
     func placeholder(in context: Context) -> DepartureMonitorEntry {
-        DepartureMonitorEntry(date: Date(), departures: [])
+        return DepartureMonitorEntry(date: Date(), name: "Moers Hbf", departures: [
+            .init(departure: .stub()),
+            .init(departure: .stub()),
+            .init(departure: .stub())
+        ])
     }
     
     func getSnapshot(
@@ -44,7 +48,7 @@ final class DepartureMonitorProvider: IntentTimelineProvider {
         completion: @escaping (DepartureMonitorEntry) -> Void
     ) {
         
-        let entry = DepartureMonitorEntry(date: Date(), departures: [
+        let entry = DepartureMonitorEntry(date: Date(), name: "Moers Hbf", departures: [
             .init(departure: .stub()),
             .init(departure: .stub()),
             .init(departure: .stub())

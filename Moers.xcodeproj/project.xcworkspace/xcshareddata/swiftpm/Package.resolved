@@ -83,6 +83,15 @@
         }
       },
       {
+        "package": "Ink",
+        "repositoryURL": "https://github.com/johnsundell/ink.git",
+        "state": {
+          "branch": null,
+          "revision": "77c3d8953374a9cf5418ef0bd7108524999de85a",
+          "version": "0.5.1"
+        }
+      },
+      {
         "package": "MarkdownKit",
         "repositoryURL": "https://github.com/OscarGorog/MarkdownKit",
         "state": {
@@ -98,15 +107,6 @@
           "branch": null,
           "revision": "94f8d377221829f292df0e707937032bcb95c7f1",
           "version": "0.0.2"
-        }
-      },
-      {
-        "package": "MMCommon",
-        "repositoryURL": "https://github.com/lambdadigamma/mmcommon-ios",
-        "state": {
-          "branch": "master",
-          "revision": "d1ab76ad0316dcf58a23196f69ec07e2f8ba6702",
-          "version": null
         }
       },
       {

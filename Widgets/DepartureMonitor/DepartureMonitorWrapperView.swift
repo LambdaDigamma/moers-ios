@@ -75,5 +75,11 @@ struct DepartureMonitorWrapperView_Previews: PreviewProvider {
             .environment(\.locale, Locale(identifier: "de"))
             .environment(\.colorScheme, .dark)
             .previewContext(WidgetPreviewContext(family: .systemMedium))
+        
+        DepartureMonitorWrapperView(entry: entry)
+            .environment(\.locale, Locale(identifier: "de"))
+            .environment(\.colorScheme, .dark)
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
+            .redacted(reason: .placeholder) 
     }
 }
