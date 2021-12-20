@@ -8,10 +8,13 @@
 import Foundation
 import OSLog
 import MediaPlayer
+import Combine
 
 public class PlaybackCenter {
     
     private let logger: Logger = Logger(.default)
+    
+    private let onPlay = PassthroughSubject<Void, Never>()
     
     public init() {
         

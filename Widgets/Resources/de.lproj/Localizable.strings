@@ -6,8 +6,8 @@
   Copyright © 2021 Lennart Fischer. All rights reserved.
 */
 
-"NewsWidgetTitle" = "Nachrichten aus Moers";
-"NewsWidgetDescription" = "Sei immer informiert, was in und um Moers passiert";
+"News.widgetTitle" = "Nachrichten aus Moers";
+"News.widgetDescription" = "Sei immer informiert, was in und um Moers passiert";
 
-"DepartureMonitorWidget.title" = "Abfahrsmonitor";
-"DepartureMonitorWidget.description" = "Abfahrsmonitor";
+"DepartureMonitor.widgetTitle" = "Abfahrsmonitor";
+"DepartureMonitor.widgetDescription" = "Lasse Dir die nächsten Abfahrten von der ausgewählten Haltestelle anzeigen.";

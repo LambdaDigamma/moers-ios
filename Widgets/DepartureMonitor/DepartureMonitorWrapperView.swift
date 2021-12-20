@@ -1,5 +1,5 @@
 //
-//  DepartureMonitorView.swift
+//  DepartureMonitorWrapperView.swift
 //  Moers
 //
 //  Created by Lennart Fischer on 07.12.21.
@@ -11,43 +11,24 @@ import SwiftUI
 import EFAAPI
 import EFAUI
 
-struct DepartureMonitorView: View {
+struct DepartureMonitorWrapperView: View {
     
     var entry: DepartureMonitorEntry
-    
-    static let taskDateFormat: RelativeDateTimeFormatter = {
-        let formatter = RelativeDateTimeFormatter()
-        formatter.formattingContext = .standalone
-        formatter.unitsStyle = .abbreviated
-        formatter.dateTimeStyle = .numeric
-        return formatter
-    }()
-    
+        
     var body: some View {
         
-        EFAUI.DepartureMonitorView(viewModel: .init(stationName: entry.name, departures: entry.departures))
+        DepartureMonitorView(
+            viewModel: .init(
+                stationName: entry.name,
+                departures: entry.departures
+            )
+        ).preferredColorScheme(.dark)
         
-    }
-    
-    func timeForegroundColor(for departure: DepartureViewModel) -> Color {
-        if departure.actual != nil {
-            return Color.green
-        } else {
-            return Color(UIColor.label)
-        }
     }
     
 }
 
-var timeFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    
-    formatter.dateStyle = .none
-    formatter.timeStyle = .short
-    return formatter
-}()
-
-struct DepartureMonitorView_Previews: PreviewProvider {
+struct DepartureMonitorWrapperView_Previews: PreviewProvider {
     static var previews: some View {
         
         let entry = DepartureMonitorEntry(
@@ -86,11 +67,11 @@ struct DepartureMonitorView_Previews: PreviewProvider {
                 
             ])
         
-        DepartureMonitorView(entry: entry)
+        DepartureMonitorWrapperView(entry: entry)
             .previewContext(WidgetPreviewContext(family: .systemMedium))
             .environment(\.locale, Locale(identifier: "de"))
         
-        DepartureMonitorView(entry: entry)
+        DepartureMonitorWrapperView(entry: entry)
             .environment(\.locale, Locale(identifier: "de"))
             .environment(\.colorScheme, .dark)
             .previewContext(WidgetPreviewContext(family: .systemMedium))

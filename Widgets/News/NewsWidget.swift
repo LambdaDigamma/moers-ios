@@ -25,8 +25,8 @@ struct NewsWidgets: Widget {
         StaticConfiguration(kind: kind, provider: provider) { entry in
             NewsWidgetView(entry: entry)
         }
-        .configurationDisplayName(NSLocalizedString("NewsWidgetTitle", comment: ""))
-        .description(NSLocalizedString("NewsWidgetDescription", comment: ""))
+        .configurationDisplayName(WidgetStrings.News.widgetTitle)
+        .description(WidgetStrings.News.widgetDescription)
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
     

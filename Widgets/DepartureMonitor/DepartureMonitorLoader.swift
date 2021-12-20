@@ -20,7 +20,7 @@ public class DepartureMonitorLoader: ObservableObject {
         let serverEnvironment = ServerEnvironment(scheme: "https", host: "openservice.vrr.de", pathPrefix: "vrr")
         let serverEnvironmentLoader = ApplyEnvironmentLoader(environment: serverEnvironment)
         let loader = URLSessionLoader()
-        transitService = DefaultTransitService(loader: (serverEnvironmentLoader --> loader)!)
+        transitService = DefaultTransitService(loader: (serverEnvironmentLoader --> PrintLoader() --> loader)!)
         
     }
     

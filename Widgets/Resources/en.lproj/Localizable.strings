@@ -6,5 +6,8 @@
   Copyright © 2021 Lennart Fischer. All rights reserved.
 */
 
-"NewsWidgetTitle" = "News from Moers";
-"NewsWidgetDescription" = "Keep up to date with whats happening in and around Moers";
+"News.widgetTitle" = "News from Moers";
+"News.widgetDescription" = "Keep up to date with whats happening in and around Moers";
+
+"DepartureMonitor.widgetTitle" = "Departure Monitor";
+"DepartureMonitor.widgetDescription" = "View the next departures from the selected stop.";
