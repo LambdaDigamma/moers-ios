@@ -33,7 +33,7 @@ struct RubbishCollectionWrapperView: View {
         
         ZStack {
             
-            Color(UIColor.systemBackground)
+            Color(UIColor.black)
             
             if widgetFamily == .systemSmall {
                 
@@ -44,12 +44,37 @@ struct RubbishCollectionWrapperView: View {
                 
             } else if widgetFamily == .systemMedium {
                 
-                HorizontalPickupItems(items: items)
-                    .padding()
+                HStack() {
+                    
+                    RubbishDayPanel(date: "Morgen", items: [
+                        .init(date: Date(), type: .plastic),
+                        .init(date: Date(), type: .paper),
+                    ])
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                    
+                    Divider()
+                    
+                    RubbishDayPanel(date: "24.12.", items: [
+                        .init(date: Date(), type: .organic),
+                    ])
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                    
+                    Divider()
+                    
+                    RubbishDayPanel(date: "25.12.", items: [
+                    ])
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                    
+                }
+                
+                
+//                HorizontalPickupItems(items: items)
+//                    .padding()
                 
             }
-            
-            
             
         }
         

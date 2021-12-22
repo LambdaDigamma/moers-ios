@@ -32,7 +32,7 @@ public struct RubbishCalendarItem: View {
                 .padding(.vertical, 6)
                 .padding(.horizontal, 4)
                 .foregroundColor(Color.white)
-                .background(Color(UIColor.tertiarySystemBackground))
+                .background(Color(UIColor.secondarySystemBackground))
             
             VStack {
                 
@@ -51,7 +51,7 @@ public struct RubbishCalendarItem: View {
             
         }
         .frame(maxWidth: .infinity)
-        .background(Color(UIColor.quaternarySystemFill))
+        .background(Color(UIColor.systemBackground))
         .cornerRadius(8)
         
     }

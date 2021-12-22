@@ -8,6 +8,7 @@
 
 import Foundation
 import MMCommon
+import SwiftUI
 
 public enum RubbishWasteType: String, Localizable, Codable, Equatable, Hashable, CaseIterable {
     
@@ -29,7 +30,7 @@ public enum RubbishWasteType: String, Localizable, Codable, Equatable, Hashable,
         
     }
     
-    var title: String {
+    public var title: String {
         
         switch self {
             case .cuttings: return String.localized("GreenWaste")
@@ -41,7 +42,7 @@ public enum RubbishWasteType: String, Localizable, Codable, Equatable, Hashable,
         
     }
     
-    var shortName: String {
+    public var shortName: String {
         
         switch self {
             case .cuttings: return PackageStrings.WasteShort.green
@@ -49,6 +50,23 @@ public enum RubbishWasteType: String, Localizable, Codable, Equatable, Hashable,
             case .paper: return PackageStrings.WasteShort.paper
             case .residual: return PackageStrings.WasteShort.residual
             case .plastic: return PackageStrings.WasteShort.yellow
+        }
+        
+    }
+    
+    public var backgroundColor: Color {
+        
+        switch self {
+            case .cuttings:
+                return Color.green
+            case .organic:
+                return Color.green
+            case .paper:
+                return Color.blue
+            case .residual:
+                return Color.gray
+            case .plastic:
+                return Color.yellow
         }
         
     }
