@@ -64,7 +64,13 @@ struct BigNewsTilesWidget: View {
                                         .padding(.vertical, 4)
                                         .padding(.top, 80)
                                         .padding(.bottom, 8)
-                                        .background(LinearGradient(gradient: Gradient(colors: [Color.clear, Color.black.opacity(0.6), Color.black]), startPoint: .top, endPoint: .bottom))
+                                        .background(
+                                            LinearGradient(
+                                                gradient: Gradient(colors: [Color.clear, Color.black.opacity(0.6), Color.black]),
+                                                startPoint: .top,
+                                                endPoint: .bottom
+                                            )
+                                        )
                                     }
                                 })
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)

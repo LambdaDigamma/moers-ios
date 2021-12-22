@@ -20,4 +20,9 @@ internal enum WidgetStrings {
         internal static let widgetDescription = String.localized("DepartureMonitor.widgetDescription")
     }
     
+    internal enum RubbishCollection {
+        internal static let widgetTitle = String.localized("RubbishCollection.widgetTitle")
+        internal static let widgetDescription = String.localized("RubbishCollection.widgetDescription")
+    }
+    
 }

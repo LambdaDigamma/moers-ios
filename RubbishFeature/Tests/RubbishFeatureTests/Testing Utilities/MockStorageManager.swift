@@ -10,7 +10,7 @@ import Foundation
 
 @testable import RubbishFeature
 
-//class MockStorageManager<T: Codable>: AnyStoragable<T> {
+// class MockStorageManager<T: Codable>: AnyStoragable<T> {
 //
 //    public let shouldReload: Bool
 //
@@ -45,4 +45,4 @@ import Foundation
 //
 //    }
 //
-//}
+// }

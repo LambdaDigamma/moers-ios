@@ -11,6 +11,7 @@ import MapKit
 import Fuse
 import MMAPI
 
+// swiftlint:disable identifier_name
 final public class PetrolStation: NSObject, Location, Identifiable, Codable, MKAnnotation {
     
     public typealias ID = String
@@ -25,15 +26,15 @@ final public class PetrolStation: NSObject, Location, Identifiable, Codable, MKA
     public var lat: Double
     public var lng: Double
     public var dist: Double?
-    public var diesel: Double? = nil
-    public var e5: Double? = nil
-    public var e10: Double? = nil
-    public var price: Double? = nil
+    public var diesel: Double?
+    public var e5: Double?
+    public var e10: Double?
+    public var price: Double?
     public var isOpen: Bool
-    public var wholeDay: Bool? = nil
-    public var openingTimes: [PetrolStationTimeEntry]? = nil
-    public var overrides: [String]? = nil
-    public var state: String? = nil
+    public var wholeDay: Bool?
+    public var openingTimes: [PetrolStationTimeEntry]?
+    public var overrides: [String]?
+    public var state: String?
     
     public init(
         id: PetrolStation.ID,

@@ -24,14 +24,11 @@ public class DashboardViewModel: ObservableObject {
     /// and transforms them into dashboard config models.
     public func load() {
         
-        loader.load()
+        loader
+            .load()
             .sink { [weak self] (config: DashboardConfig) in
                 
-//                print(config)
-//                
-                self?.displayables = [
-                    RubbishDashboardConfiguration()
-                ]
+                self?.displayables = config.items
                 
             }
             .store(in: &cancellables)

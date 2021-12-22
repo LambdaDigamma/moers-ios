@@ -11,6 +11,7 @@ import MMUI
 import MMAPI
 import AppScaffold
 import SwiftUI
+import DashboardFeature
 
 class DashboardCoordinator: Coordinator {
     
@@ -44,11 +45,19 @@ class DashboardCoordinator: Coordinator {
 //        hostingController.tabBarItem = generateTabBarItem()
 //        self.navigationController.viewControllers = [hostingController]
         
-        let dashboardViewController = DashboardViewController(coordinator: self)
-        dashboardViewController.tabBarItem = generateTabBarItem()
-
-        self.navigationController.viewControllers = [dashboardViewController]
-        self.dashboardViewController = dashboardViewController
+        let dashboard = DashboardView()
+        let controller = UIHostingController(rootView: dashboard)
+        
+        controller.tabBarItem = generateTabBarItem()
+        
+        self.navigationController.viewControllers = [controller]
+//        self.dashboardViewController = controller
+        
+//        let dashboardViewController = DashboardViewController(coordinator: self)
+//        dashboardViewController.tabBarItem = generateTabBarItem()
+//
+//        self.navigationController.viewControllers = [dashboardViewController]
+//        self.dashboardViewController = dashboardViewController
         
     }
     

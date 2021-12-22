@@ -9,6 +9,7 @@ import AVFoundation
 import MediaPlayer
 import OSLog
 
+// swiftlint:disable file_length
 public class AssetPlayer {
 
     private let logger: Logger = Logger(.default)

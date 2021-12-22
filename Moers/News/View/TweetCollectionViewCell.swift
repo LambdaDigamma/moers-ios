@@ -124,7 +124,6 @@ class TweetCollectionViewCell: UICollectionViewCell, TWTRTweetViewDelegate {
         
         self.clipsToBounds = false
         
-        
     }
     
     private func setupTheming() {

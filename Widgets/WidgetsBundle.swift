@@ -17,6 +17,7 @@ struct WidgetsBundle: WidgetBundle {
     var body: some Widget {
         NewsWidgets()
         DepartureMonitorWidget()
+        RubbishWidget()
     }
     
 }

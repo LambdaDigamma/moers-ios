@@ -21,7 +21,7 @@ final class DashboardConfigDiskLoaderTest: XCTestCase {
         
         loader
             .load()
-            .sink(receiveValue: { (config: DashboardConfig) in
+            .sink(receiveValue: { (_: DashboardConfig) in
                 expectation.fulfill()
             })
             .store(in: &cancellables)

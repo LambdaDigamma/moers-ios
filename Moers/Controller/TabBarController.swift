@@ -341,6 +341,10 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
+    
 }
 
 extension TabBarController: Themeable {
@@ -349,7 +353,7 @@ extension TabBarController: Themeable {
     
     func apply(theme: Theme) {
         
-        UIApplication.shared.statusBarStyle = theme.statusBarStyle
+//        UIApplication.shared.statusBarStyle = theme.statusBarStyle
         self.view.backgroundColor = theme.backgroundColor
         self.tabBar.tintColor = theme.accentColor
         self.tabBar.barTintColor = UIColor.black // UIColor.systemBackground //theme.navigationBarColor

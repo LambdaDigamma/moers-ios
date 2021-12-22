@@ -239,9 +239,6 @@ public class DefaultRubbishService: RubbishService {
     
     private func registerDefaultURLs() {
         
-        self.rubbishStreetURL = URL(string: "https://moers.app/abfallkalender-strassenverzeichnis-2019.csv")
-        self.rubbishDateURL = URL(string: "https://www.offenesdatenportal.de/dataset/fe92e461-9db4-4d12-ba58-8d4439084e90/resource/7a2fd251-e470-4ebb-a092-73cd1d3499ac/download/abfk-2019-termine.csv")
-        
     }
     
     // MARK: - Notifications
@@ -364,7 +361,7 @@ public class DefaultRubbishService: RubbishService {
         
         if let request = requests.popLast() {
             self.scheduleNotification(request: request, completion: scheduleNextNotification)
-        } else  {
+        } else {
             notificationCenter.getPendingNotificationRequests { (requests) in
                 print("Scheduled \(requests.count) notifications")
             }

@@ -250,7 +250,7 @@ public class DefaultPetrolService: PetrolService {
                     } receiveValue: { (stations: [PetrolStation]) in
                         
                         let encoder = JSONEncoder()
-                        let encodedData = try? encoder.encode(stations)
+                        _ = try? encoder.encode(stations)
                         
 //                        if let data = encodedData {
 //                            self.storageManager.setLastReload(Date(), forKey: self.storageKey)

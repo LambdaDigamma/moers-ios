@@ -8,16 +8,21 @@
 
 import SwiftUI
 import RubbishFeature
+import FuelFeature
 
 public struct DashboardView: View {
     
     @StateObject var viewModel: DashboardViewModel = .init(loader: DashboardConfigDiskLoader())
     
+    public init() {
+        
+    }
+    
     public var body: some View {
         
         ScrollView {
             
-            LazyVStack {
+            LazyVStack(spacing: 20) {
                 
                 ForEach(viewModel.displayables, id: \.id) { item in
                     dashboardItem(for: item)
@@ -26,6 +31,16 @@ public struct DashboardView: View {
             }
             .padding()
             
+        }
+        
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button(action: {}) {
+                    Image(systemName: "gear")
+                        .foregroundColor(Color.yellow)
+                }
+                .foregroundColor(Color.yellow)
+            }
         }
         .navigationBarTitle("Übersicht")
         .onAppear {
@@ -39,10 +54,18 @@ public struct DashboardView: View {
         for item: DashboardItemConfigurable
     ) -> some View {
         
-        if let rubbishItem = item as? RubbishDashboardConfiguration {
-            Text("Rubbish")
-        } else if let petrolItem = item as? PetrolDashboardConfiguration {
-            Text("Petrol")
+        if item is RubbishDashboardConfiguration {
+            
+            RubbishDashboardPanel(items: .success([
+                RubbishPickupItem(date: Date(timeIntervalSinceNow: 1 * 24 * 60 * 60), type: .organic),
+                RubbishPickupItem(date: Date(timeIntervalSinceNow: 2 * 24 * 60 * 60), type: .residual),
+                RubbishPickupItem(date: Date(timeIntervalSinceNow: 3 * 24 * 60 * 60), type: .paper),
+            ]))
+            
+        } else if item is PetrolDashboardConfiguration {
+            
+            PetrolPriceDashboardView.init()
+            
         }
         
     }

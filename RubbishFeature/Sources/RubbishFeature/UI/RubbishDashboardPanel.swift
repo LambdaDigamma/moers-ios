@@ -8,7 +8,6 @@
 
 import SwiftUI
 import ModernNetworking
-//import Core
 
 public struct RubbishDashboardPanel: View {
     
@@ -32,27 +31,44 @@ public struct RubbishDashboardPanel: View {
                     
                     HStack {
                         Text(PackageStrings.Waste.dashboardTitle)
-                            .font(.title2)
+                            .font(.title3)
                             .fontWeight(.semibold)
                         Spacer()
                     }
-                    .padding(.top)
+                    .padding(.top, 12)
                     .padding(.horizontal, 20)
+                    .padding(.bottom, 12)
+                    
+                    Divider()
                     
                     if !items.isEmpty {
                         
-                        ForEach(items, id: \.id) { (item) in
-                            
-                            RubbishPickupRow(item: item)
-                                .padding(.all, 12)
-                            
+                        VStack(alignment: .leading, spacing: 4) {
+                            ForEach(items, id: \.id) { (item) in
+                                
+                                RubbishPickupRow(item: item)
+                                    .padding(.vertical, 4)
+                                    .padding(.horizontal, 12)
+                                
+                            }
                         }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top, 8)
+                        .padding(.bottom, 12)
                         
                     } else {
                         
                         empty()
                         
                     }
+                    
+                    Divider()
+                    
+                    Text("\(Image(systemName: "signpost.right.fill"))  Adlerstraße")
+                        .font(.caption2.weight(.medium))
+                        .foregroundColor(.secondary)
+                        .padding(.horizontal)
+                        .padding(.vertical, 12)
                     
                 }
                 

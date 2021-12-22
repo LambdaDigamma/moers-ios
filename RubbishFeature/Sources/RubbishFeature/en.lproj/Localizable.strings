@@ -5,6 +5,12 @@
 "YellowWaste" = "Yellow Bag";
 "GreenWaste" = "Green Cuttings";
 
+"WasteTypeShort.residual" = "Residual";
+"WasteTypeShort.organic" = "Organic";
+"WasteTypeShort.paper" = "Paper";
+"WasteTypeShort.yellow" = "Yellow";
+"WasteTypeShort.green" = "Cuttings";
+
 "Waste.dashboardTitle" = "Next collection dates";
 "Waste.errorTitle" = "Rubbish schedule deactivated";
 "Waste.scheduleDeactivated" = "You can activate the waste calendar in the settings.";

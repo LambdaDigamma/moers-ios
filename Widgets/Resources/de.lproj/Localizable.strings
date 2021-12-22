@@ -11,3 +11,6 @@
 
 "DepartureMonitor.widgetTitle" = "Abfahrsmonitor";
 "DepartureMonitor.widgetDescription" = "Lasse Dir die nächsten Abfahrten von der ausgewählten Haltestelle anzeigen.";
+
+"RubbishCollection.widgetTitle" = "Abfallkalender";
+"RubbishCollection.widgetDescription" = "Lasse Dir die nächsten Abholtermine aus dem Abfallkalender für Deine Straße anzeigen.";

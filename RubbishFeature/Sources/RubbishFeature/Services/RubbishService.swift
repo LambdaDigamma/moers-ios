@@ -25,4 +25,3 @@ public protocol RubbishService {
     func disableStreet()
     
 }
-

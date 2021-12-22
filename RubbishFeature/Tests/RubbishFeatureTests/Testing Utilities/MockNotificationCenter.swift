@@ -16,11 +16,15 @@ class MockNotificationCenter: UNUserNotificationCenterProtocol {
     var addRequestExpectation: XCTestExpectation?
     var removeAllExpectation: XCTestExpectation?
     
-    func add(_ request: UNNotificationRequest,
-             withCompletionHandler completionHandler: ((Error?) -> Void)?) {
+    var pendingNotifications: [UNNotificationRequest] = []
+    
+    func add(
+        _ request: UNNotificationRequest,
+        withCompletionHandler completionHandler: ((Error?) -> Void)?
+    ) {
         
         addRequestExpectation?.fulfill()
-        
+        pendingNotifications.append(request)
         completionHandler?(nil)
         
     }
@@ -33,7 +37,7 @@ class MockNotificationCenter: UNUserNotificationCenterProtocol {
     
     func getPendingNotificationRequests(completionHandler: @escaping ([UNNotificationRequest]) -> Void) {
         
-        // TODO: Implement this
+        completionHandler(pendingNotifications)
         
     }
     

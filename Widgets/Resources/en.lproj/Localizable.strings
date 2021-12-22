@@ -11,3 +11,6 @@
 
 "DepartureMonitor.widgetTitle" = "Departure Monitor";
 "DepartureMonitor.widgetDescription" = "View the next departures from the selected stop.";
+
+"RubbishCollection.widgetTitle" = "Pickup Schedule";
+"RubbishCollection.widgetDescription" = "View the next pickup dates of your rubbish for your selected street.";

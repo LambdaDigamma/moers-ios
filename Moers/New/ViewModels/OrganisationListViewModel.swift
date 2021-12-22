@@ -30,5 +30,4 @@ class OrganisationListViewModel: ObservableObject {
         
     }
     
-    
 }

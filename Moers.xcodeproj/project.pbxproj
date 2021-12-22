@@ -102,6 +102,11 @@
 		DF65CF0226C97E0D00078232 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF65CF0126C97E0D00078232 /* Colors.xcassets */; };
 		DF69B73C21D986AD00F910D8 /* EntryHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF69B73B21D986AD00F910D8 /* EntryHistoryViewController.swift */; };
 		DF6B0ED725F430A6003D88CE /* ParkingLotWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B0ED625F430A6003D88CE /* ParkingLotWidget.swift */; };
+		DF75345427727CEE0086B292 /* RubbishWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75345327727CEE0086B292 /* RubbishWidget.swift */; };
+		DF75345627727D6E0086B292 /* RubbishCollectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75345527727D6E0086B292 /* RubbishCollectionProvider.swift */; };
+		DF75345827727E1B0086B292 /* RubbishCollectionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75345727727E1B0086B292 /* RubbishCollectionEntry.swift */; };
+		DF75345A277280320086B292 /* RubbishCollectionWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF753459277280320086B292 /* RubbishCollectionWrapperView.swift */; };
+		DF75345C277280710086B292 /* RubbishFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF75345B277280710086B292 /* RubbishFeature */; };
 		DF75733E2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75733D2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift */; };
 		DF777BBD2414361500C7C9D5 /* MarkdownKit in Frameworks */ = {isa = PBXBuildFile; productRef = DF777BBC2414361500C7C9D5 /* MarkdownKit */; };
 		DF777BC024143A9D00C7C9D5 /* SwiftyMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = DF777BBF24143A9D00C7C9D5 /* SwiftyMarkdown */; };
@@ -202,6 +207,7 @@
 		DFDE884F25457CD000429765 /* LaunchArgumentsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */; };
 		DFDE886425457D4600429765 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF16583122EF918A0033D218 /* Launch Screen.storyboard */; };
 		DFDE88712545834B00429765 /* EventBus in Frameworks */ = {isa = PBXBuildFile; productRef = DFDE88702545834B00429765 /* EventBus */; };
+		DFE06E352771360E00466246 /* DashboardFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DFE06E342771360E00466246 /* DashboardFeature */; };
 		DFE1ED6B2538C24800FDD44A /* BLTNBoard in Frameworks */ = {isa = PBXBuildFile; productRef = DFE1ED6A2538C24800FDD44A /* BLTNBoard */; };
 		DFE1ED782538C4E200FDD44A /* Pulley in Frameworks */ = {isa = PBXBuildFile; productRef = DFE1ED772538C4E200FDD44A /* Pulley */; };
 		DFE3D9012674035400BE29E7 /* NetworkingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE3D9002674035400BE29E7 /* NetworkingConfiguration.swift */; };
@@ -430,6 +436,10 @@
 		DF65CF0126C97E0D00078232 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		DF69B73B21D986AD00F910D8 /* EntryHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryHistoryViewController.swift; sourceTree = "<group>"; };
 		DF6B0ED625F430A6003D88CE /* ParkingLotWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLotWidget.swift; sourceTree = "<group>"; };
+		DF75345327727CEE0086B292 /* RubbishWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishWidget.swift; sourceTree = "<group>"; };
+		DF75345527727D6E0086B292 /* RubbishCollectionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionProvider.swift; sourceTree = "<group>"; };
+		DF75345727727E1B0086B292 /* RubbishCollectionEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionEntry.swift; sourceTree = "<group>"; };
+		DF753459277280320086B292 /* RubbishCollectionWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionWrapperView.swift; sourceTree = "<group>"; };
 		DF75733D2175E7F700953DA1 /* EntryOnboardingTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryOnboardingTagsViewController.swift; sourceTree = "<group>"; };
 		DF78DFE323BD50A2000A78AE /* OnboardingOverviewNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingOverviewNotice.swift; sourceTree = "<group>"; };
 		DF79985023CCD3C6007E7186 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
@@ -525,6 +535,7 @@
 		DFD7ACC020A842F400D49BE2 /* DateCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCardView.swift; sourceTree = "<group>"; };
 		DFD890862124860A006B5610 /* TandCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TandCViewController.swift; sourceTree = "<group>"; };
 		DFD8908821248DD9006B5610 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
+		DFDABCA82772A3280079F741 /* FullTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = FullTestPlan.xctestplan; sourceTree = "<group>"; };
 		DFDB87A02545901900347550 /* TwitterKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TwitterKit.xcframework; path = "../twitter-kit-ios/output/TwitterKit.xcframework"; sourceTree = "<group>"; };
 		DFDD3F6D20B22230005602E3 /* RubbishCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RubbishCollectionViewController.swift; path = ../../Controller/Dashboard/RubbishCollectionViewController.swift; sourceTree = "<group>"; };
 		DFDD3F6F20B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionItemTableViewCell.swift; sourceTree = "<group>"; };
@@ -575,6 +586,7 @@
 				DFE6254C2545955D005FAC1C /* FIRAnalyticsConnector.framework in Frameworks */,
 				DFFA7EA12706638D00E27E7B /* AppFeedback in Frameworks */,
 				DF9F19F52766920C00B74E13 /* EFAUI in Frameworks */,
+				DFE06E352771360E00466246 /* DashboardFeature in Frameworks */,
 				DF516161254603220094DEEB /* Charts in Frameworks */,
 				DF97AD0F26EFEC5F009DFF71 /* Core in Frameworks */,
 				DFDE88712545834B00429765 /* EventBus in Frameworks */,
@@ -609,6 +621,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF9F19F72766923700B74E13 /* EFAAPI in Frameworks */,
+				DF75345C277280710086B292 /* RubbishFeature in Frameworks */,
 				DF5E1B5226726AF3005FADA4 /* SwiftUI.framework in Frameworks */,
 				DF5E1B6926726E8F005FADA4 /* NewsWidgets in Frameworks */,
 				DF9F19F92766923700B74E13 /* EFAUI in Frameworks */,
@@ -914,6 +927,7 @@
 				DF94B12723F0A7E8009C57ED /* Watch Extension */,
 				DFB161B4267651D7009D2754 /* Moers Unit Tests */,
 				DF284EFE23F4C17100EC999B /* MoersUITests */,
+				DFDABCA72772A30F0079F741 /* Test Plans */,
 				DF1A49601F6AAB7000E9108B /* Products */,
 				DF1A497D1F6ABD7100E9108B /* Frameworks */,
 			);
@@ -1081,6 +1095,7 @@
 				DF4116C4276FF45F0068B4BB /* WidgetStrings.swift */,
 				DF5E1B8626729B0A005FADA4 /* News */,
 				DF99F181275FF77300D279AB /* DepartureMonitor */,
+				DF75345227727CB30086B292 /* Rubbish */,
 				DF5E1B7B267290D6005FADA4 /* Resources */,
 				DF5E1B7F2672936F005FADA4 /* Extensions.swift */,
 				DF9F19EC27668CDD00B74E13 /* SelectDepartureMonitorStop.intentdefinition */,
@@ -1149,6 +1164,17 @@
 				DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		DF75345227727CB30086B292 /* Rubbish */ = {
+			isa = PBXGroup;
+			children = (
+				DF75345327727CEE0086B292 /* RubbishWidget.swift */,
+				DF75345527727D6E0086B292 /* RubbishCollectionProvider.swift */,
+				DF75345727727E1B0086B292 /* RubbishCollectionEntry.swift */,
+				DF753459277280320086B292 /* RubbishCollectionWrapperView.swift */,
+			);
+			path = Rubbish;
 			sourceTree = "<group>";
 		};
 		DF8269312545D97F0025C835 /* ViewModels */ = {
@@ -1282,6 +1308,14 @@
 			path = Cards;
 			sourceTree = "<group>";
 		};
+		DFDABCA72772A30F0079F741 /* Test Plans */ = {
+			isa = PBXGroup;
+			children = (
+				DFDABCA82772A3280079F741 /* FullTestPlan.xctestplan */,
+			);
+			path = "Test Plans";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1328,6 +1362,7 @@
 				DF9F19F42766920C00B74E13 /* EFAUI */,
 				DF4116BC276FED840068B4BB /* PlaybackKit */,
 				DF55F25E27709B410024300B /* RubbishFeature */,
+				DFE06E342771360E00466246 /* DashboardFeature */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1369,6 +1404,7 @@
 				DF5E1B7426727973005FADA4 /* FeedKit */,
 				DF9F19F62766923700B74E13 /* EFAAPI */,
 				DF9F19F82766923700B74E13 /* EFAUI */,
+				DF75345B277280710086B292 /* RubbishFeature */,
 			);
 			productName = WidgetsExtension;
 			productReference = DF5E1B4E26726AF3005FADA4 /* WidgetsExtension.appex */;
@@ -1785,12 +1821,16 @@
 				DF5E1B812672939B005FADA4 /* Extensions.swift in Sources */,
 				DF99F19327600A3600D279AB /* DepartureMonitorWidget.swift in Sources */,
 				DF5E1B6C26726F2B005FADA4 /* WidgetsBundle.swift in Sources */,
+				DF75345827727E1B0086B292 /* RubbishCollectionEntry.swift in Sources */,
 				DF99F18B2760023700D279AB /* DepartureMonitorEntry.swift in Sources */,
 				DF99F18A2760023000D279AB /* DepartureMonitorWrapperView.swift in Sources */,
+				DF75345627727D6E0086B292 /* RubbishCollectionProvider.swift in Sources */,
 				DF99F19527600B9A00D279AB /* DepartureMonitorProvider.swift in Sources */,
 				DF4116C5276FF45F0068B4BB /* WidgetStrings.swift in Sources */,
+				DF75345A277280320086B292 /* RubbishCollectionWrapperView.swift in Sources */,
 				DF5E1B8926729FB5005FADA4 /* MediumNewsListWidget.swift in Sources */,
 				DF5E1B8F2672A782005FADA4 /* ImageNewsView.swift in Sources */,
+				DF75345427727CEE0086B292 /* RubbishWidget.swift in Sources */,
 				DF5E1B8D2672A746005FADA4 /* SmallNewsImageWidget.swift in Sources */,
 				DF5E1B8B2672A003005FADA4 /* InsetNewsListItem.swift in Sources */,
 				DF5E1B782672823C005FADA4 /* RSSLoader.swift in Sources */,
@@ -5490,6 +5530,10 @@
 			package = DFCE12932538F7F600B45EB7 /* XCRemoteSwiftPackageReference "FeedKit" */;
 			productName = FeedKit;
 		};
+		DF75345B277280710086B292 /* RubbishFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RubbishFeature;
+		};
 		DF777BBC2414361500C7C9D5 /* MarkdownKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DF777BBB2414361500C7C9D5 /* XCRemoteSwiftPackageReference "MarkdownKit" */;
@@ -5553,6 +5597,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DFDE886F2545834B00429765 /* XCRemoteSwiftPackageReference "eventbus" */;
 			productName = EventBus;
+		};
+		DFE06E342771360E00466246 /* DashboardFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DashboardFeature;
 		};
 		DFE1ED6A2538C24800FDD44A /* BLTNBoard */ = {
 			isa = XCSwiftPackageProductDependency;

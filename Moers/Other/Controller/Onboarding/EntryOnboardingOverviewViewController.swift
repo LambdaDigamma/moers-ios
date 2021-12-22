@@ -22,6 +22,7 @@ enum EntryOverviewType: Equatable {
 
 // swiftlint:disable type_body_length
 // swiftlint:disable function_body_length
+// swiftlint:disable file_length
 class EntryOnboardingOverviewViewController: UIViewController {
 
     lazy var searchController = { LFSearchViewController() }()

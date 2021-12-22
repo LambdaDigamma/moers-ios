@@ -17,14 +17,38 @@ public enum RubbishWasteType: String, Localizable, Codable, Equatable, Hashable,
     case plastic // = "Gelber Sack"
     case cuttings // = "Grünschnitt"
     
-    public static func localizedForCase(_ c: RubbishWasteType) -> String {
+    public static func localizedForCase(_ wasteType: RubbishWasteType) -> String {
         
-        switch c {
+        switch wasteType {
             case .cuttings: return String.localized("GreenWaste")
             case .organic: return String.localized("OrganicWaste")
             case .paper: return String.localized("PaperWaste")
             case .residual: return String.localized("ResidualWaste")
             case .plastic: return String.localized("YellowWaste")
+        }
+        
+    }
+    
+    var title: String {
+        
+        switch self {
+            case .cuttings: return String.localized("GreenWaste")
+            case .organic: return String.localized("OrganicWaste")
+            case .paper: return String.localized("PaperWaste")
+            case .residual: return String.localized("ResidualWaste")
+            case .plastic: return String.localized("YellowWaste")
+        }
+        
+    }
+    
+    var shortName: String {
+        
+        switch self {
+            case .cuttings: return PackageStrings.WasteShort.green
+            case .organic: return PackageStrings.WasteShort.organic
+            case .paper: return PackageStrings.WasteShort.paper
+            case .residual: return PackageStrings.WasteShort.residual
+            case .plastic: return PackageStrings.WasteShort.yellow
         }
         
     }

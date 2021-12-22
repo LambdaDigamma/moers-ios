@@ -8,6 +8,7 @@
 
 import Foundation
 
+// swiftlint:disable identifier_name
 public enum PetrolType: String, Codable, CaseIterable, Equatable {
     
     case diesel = "diesel"

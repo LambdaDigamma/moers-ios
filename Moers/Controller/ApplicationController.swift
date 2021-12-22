@@ -116,8 +116,9 @@ extension ApplicationController: Themeable {
     typealias Theme = ApplicationTheme
     
     func apply(theme: ApplicationTheme) {
-        UIApplication.shared.statusBarStyle = theme.statusBarStyle
+        
         self.view.backgroundColor = theme.backgroundColor
+        
     }
     
 }

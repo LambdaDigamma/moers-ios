@@ -5,6 +5,12 @@
 "YellowWaste" = "Gelber Sack";
 "GreenWaste" = "Grünschnitt";
 
+"WasteTypeShort.residual" = "Rest";
+"WasteTypeShort.organic" = "Bio";
+"WasteTypeShort.paper" = "Papier";
+"WasteTypeShort.yellow" = "Gelb";
+"WasteTypeShort.green" = "Schnitt";
+
 "Waste.dashboardTitle" = "Nächste Leerungen";
 "Waste.errorTitle" = "Abfallkalender deaktiviert";
 "Waste.scheduleDeactivated" = "Du kannst den Abfallkalender in den Einstellungen aktivieren.";

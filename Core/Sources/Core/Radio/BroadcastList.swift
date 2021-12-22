@@ -139,11 +139,20 @@ public struct BroadcastList: View {
                 
                 LazyHStack(spacing: 16) {
                     
-                    BroadcastCard(source: "https://www.nrwision.de/fileadmin/_processed_assets_/4/3/csm_thumb_buergerradiomeerbeck_a_02_2021.mp3_09fb752572.jpg", title: "Bürgerradio Meerbeck")
+                    BroadcastCard(
+                        source: "https://www.nrwision.de/fileadmin/_processed_assets_/4/3/csm_thumb_buergerradiomeerbeck_a_02_2021.mp3_09fb752572.jpg",
+                        title: "Bürgerradio Meerbeck"
+                    )
                     
-                    BroadcastCard(source: "https://www.nrwision.de/fileadmin/_processed_assets_/7/0/csm_thumb_vhsmoers_01_2021.mp3_54c7364f8e.jpg", title: "VHS Moers")
+                    BroadcastCard(
+                        source: "https://www.nrwision.de/fileadmin/_processed_assets_/7/0/csm_thumb_vhsmoers_01_2021.mp3_54c7364f8e.jpg",
+                        title: "VHS Moers"
+                    )
                     
-                    BroadcastCard(source: "https://www.nrwision.de/fileadmin/_processed_assets_/3/8/csm_thumb_kulturreportmoers_01_2021.mp3_6b34923de8.jpg", title: "Kulturreport Moers")
+                    BroadcastCard(
+                        source: "https://www.nrwision.de/fileadmin/_processed_assets_/3/8/csm_thumb_kulturreportmoers_01_2021.mp3_6b34923de8.jpg",
+                        title: "Kulturreport Moers"
+                    )
                     
                 }
                 .padding(.horizontal)

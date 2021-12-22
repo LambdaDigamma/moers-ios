@@ -54,6 +54,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
     
     // MARK: - MKMapViewDelegate
     
+    // swiftlint:disable:next cyclomatic_complexity
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         if annotation is MKUserLocation {
