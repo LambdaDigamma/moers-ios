@@ -25,7 +25,7 @@ class RubbishCollectionView: UIView {
             guard let item = rubbishCollectionItem else { return }
             
             dateLabel.text = item.date.beautify()
-            typeLabel.text = RubbishWasteType.localizedForCase(item.type)
+            typeLabel.text = item.type.title
             
             switch item.type {
                 case .cuttings: imageView.image = #imageLiteral(resourceName: "greenWaste")
@@ -78,7 +78,7 @@ class RubbishCollectionView: UIView {
         guard let item = rubbishCollectionItem else { return }
         
         let localizedDate = DateFormatter.localizedString(from: item.date, dateStyle: .full, timeStyle: .none)
-        let localizedType = RubbishWasteType.localizedForCase(item.type)
+        let localizedType = item.type.title
         
         self.isAccessibilityElement = true
         self.accessibilityElements = []

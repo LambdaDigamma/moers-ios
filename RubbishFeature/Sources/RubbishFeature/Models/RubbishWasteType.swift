@@ -7,37 +7,24 @@
 //
 
 import Foundation
-import MMCommon
 import SwiftUI
 
-public enum RubbishWasteType: String, Localizable, Codable, Equatable, Hashable, CaseIterable {
+public enum RubbishWasteType: String, Codable, Equatable, Hashable, CaseIterable {
     
-    case residual // = "Restabfall"
-    case organic // = "Biotonne"
-    case paper // = "Papiertonne"
-    case plastic // = "Gelber Sack"
-    case cuttings // = "Grünschnitt"
-    
-    public static func localizedForCase(_ wasteType: RubbishWasteType) -> String {
-        
-        switch wasteType {
-            case .cuttings: return String.localized("GreenWaste")
-            case .organic: return String.localized("OrganicWaste")
-            case .paper: return String.localized("PaperWaste")
-            case .residual: return String.localized("ResidualWaste")
-            case .plastic: return String.localized("YellowWaste")
-        }
-        
-    }
+    case residual = "residual"
+    case organic = "organic"
+    case paper = "paper"
+    case plastic = "plastic"
+    case cuttings = "cuttings"
     
     public var title: String {
         
         switch self {
-            case .cuttings: return String.localized("GreenWaste")
-            case .organic: return String.localized("OrganicWaste")
-            case .paper: return String.localized("PaperWaste")
-            case .residual: return String.localized("ResidualWaste")
-            case .plastic: return String.localized("YellowWaste")
+            case .cuttings: return PackageStrings.WasteType.green
+            case .organic: return PackageStrings.WasteType.organic
+            case .paper: return PackageStrings.WasteType.paper
+            case .residual: return PackageStrings.WasteType.residual
+            case .plastic: return PackageStrings.WasteType.yellow
         }
         
     }

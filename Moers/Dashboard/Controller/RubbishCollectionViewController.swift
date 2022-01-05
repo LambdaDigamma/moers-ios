@@ -6,6 +6,8 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import Gestalt
 import MMUI
@@ -39,7 +41,7 @@ class RubbishCollectionViewController: UIViewController {
     
     private let logger = Logger(.ui)
     private var sections: [Section] = []
-    private var items: [RubbishFeature.RubbishPickupItem] = []
+    private var items: [RubbishPickupItem] = []
     private var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
@@ -102,7 +104,7 @@ class RubbishCollectionViewController: UIViewController {
                     default: break
                 }
                 
-            }, receiveValue: { (items: [RubbishFeature.RubbishPickupItem]) in
+            }, receiveValue: { (items: [RubbishPickupItem]) in
                 
                 OperationQueue.main.addOperation {
                     
@@ -144,7 +146,7 @@ class RubbishCollectionViewController: UIViewController {
     
     // MARK: - Data Handling
     
-    private func items(for section: Section) -> [RubbishFeature.RubbishPickupItem] {
+    private func items(for section: Section) -> [RubbishPickupItem] {
         
         return items.filter { (item: RubbishPickupItem) -> Bool in
             
@@ -230,3 +232,5 @@ extension RubbishCollectionViewController {
     }
     
 }
+
+#endif

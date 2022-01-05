@@ -11,8 +11,11 @@ import BLTNBoard
 import Gestalt
 import MMUI
 import MMCommon
+import Core
 
-class SelectorBulletinPage<T: RawRepresentable & CaseIterable & Localizable & Equatable>: FeedbackPageBulletinItem where T.RawValue == String {
+class SelectorBulletinPage<
+    T: RawRepresentable & CaseIterable & Equatable & CaseName
+>: FeedbackPageBulletinItem where T.RawValue == String {
 
     public var onSelect: ((T) -> Void)?
     public var selectedOption: T = T.allCases.first!
@@ -49,7 +52,7 @@ class SelectorBulletinPage<T: RawRepresentable & CaseIterable & Localizable & Eq
         
         T.allCases.forEach { (value) in
             
-            let button = createOptionCell(title: T.localizedForCase(value))
+            let button = createOptionCell(title: value.name)
             
 //            if value == selectedOption {
 //                self.setButtonSelection(button)

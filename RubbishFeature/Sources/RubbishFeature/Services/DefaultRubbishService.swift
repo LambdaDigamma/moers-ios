@@ -7,14 +7,14 @@
 
 import Foundation
 import UserNotifications
-import MMCommon
+import Core
 import Combine
 import ModernNetworking
 
 public class DefaultRubbishService: RubbishService {
     
     private let loader: HTTPLoader
-    private var notificationCenter: MMCommon.UNUserNotificationCenterProtocol
+    private var notificationCenter: UNUserNotificationCenterProtocol
     private let decoder: JSONDecoder
     private let session = URLSession.shared
 //    private let storagePickupItemsManager: AnyStoragable<RubbishPickupItem>
@@ -26,7 +26,7 @@ public class DefaultRubbishService: RubbishService {
     
     public init(
         loader: HTTPLoader,
-        notificationCenter: MMCommon.UNUserNotificationCenterProtocol = UNUserNotificationCenter.current()
+        notificationCenter: UNUserNotificationCenterProtocol = UNUserNotificationCenter.current()
 //        storagePickupItemsManager: AnyStoragable<RubbishPickupItem> = NoCache(),
 //        storageStreetsManager: AnyStoragable<RubbishCollectionStreet> = NoCache()
     ) {
@@ -229,7 +229,7 @@ public class DefaultRubbishService: RubbishService {
                     
 #if os(iOS)
                     notificationContent.title = String.localized("RubbishCollectionNotificationTitle")
-                    notificationContent.body = String.localized("RubbishCollectionNotificationBody") + RubbishWasteType.localizedForCase(item.type)
+                    notificationContent.body = String.localized("RubbishCollectionNotificationBody") + item.type.title
 #endif
                     
                     let date = item.date
@@ -376,46 +376,46 @@ public class DefaultRubbishService: RubbishService {
     
     // MARK: - Saving of Settings
     
-    @MMCommon.UserDefaultsBacked(key: "RubbishStreet")
+    @UserDefaultsBacked(key: "RubbishStreet")
     public var street: String?
     
-    @MMCommon.UserDefaultsBacked(key: "RubbishStreetAddition")
+    @UserDefaultsBacked(key: "RubbishStreetAddition")
     internal var streetAddition: String?
     
-    @MMCommon.UserDefaultsBacked(key: "RubbishStreetID")
+    @UserDefaultsBacked(key: "RubbishStreetID")
     internal var id: Int?
     
-    @MMCommon.UserDefaultsBacked(key: "RubbishResidualWaste")
+    @UserDefaultsBacked(key: "RubbishResidualWaste")
     internal var residualWaste: Int?
     
-    @MMCommon.UserDefaultsBacked(key: "RubbishOrganicWaste")
+    @UserDefaultsBacked(key: "RubbishOrganicWaste")
     internal var organicWaste: Int?
     
-    @MMCommon.UserDefaultsBacked(key: "RubbishPaperWaste")
+    @UserDefaultsBacked(key: "RubbishPaperWaste")
     internal var paperWaste: Int?
     
-    @MMCommon.UserDefaultsBacked(key: "RubbishYellowBag")
+    @UserDefaultsBacked(key: "RubbishYellowBag")
     internal var yellowBag: Int?
     
-    @MMCommon.UserDefaultsBacked(key: "RubbishGreenWaste")
+    @UserDefaultsBacked(key: "RubbishGreenWaste")
     internal var greenWaste: Int?
     
-    @MMCommon.UserDefaultsBacked(key: "RubbishSweeperDay")
+    @UserDefaultsBacked(key: "RubbishSweeperDay")
     internal var sweeperDay: String?
     
-    @MMCommon.UserDefaultsBacked(key: "RubbishStreetYear")
+    @UserDefaultsBacked(key: "RubbishStreetYear")
     internal var year: Int?
     
-    @MMCommon.UserDefaultsBacked(key: "RubbishEnabled", defaultValue: false)
+    @UserDefaultsBacked(key: "RubbishEnabled", defaultValue: false)
     public var isEnabled: Bool
     
-    @MMCommon.UserDefaultsBacked(key: "RubbishRemindersEnabled", defaultValue: false)
+    @UserDefaultsBacked(key: "RubbishRemindersEnabled", defaultValue: false)
     public var remindersEnabled: Bool
     
-    @MMCommon.UserDefaultsBacked(key: "RubbishReminderHour")
+    @UserDefaultsBacked(key: "RubbishReminderHour")
     public var reminderHour: Int?
     
-    @MMCommon.UserDefaultsBacked(key: "RubbishReminderMinute")
+    @UserDefaultsBacked(key: "RubbishReminderMinute")
     public var reminderMinute: Int?
     
 }

@@ -45,8 +45,6 @@ struct RubbishCollectionWrapperView: View {
 //                        .padding(.horizontal)
 //                        .padding(.vertical, 8)
                     
-                    
-                    
                 }
                 
 //                HorizontalPickupItems(items: items)

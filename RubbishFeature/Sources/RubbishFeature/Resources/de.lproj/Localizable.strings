@@ -1,9 +1,9 @@
 /* Waste */
-"ResidualWaste" = "Restabfall";
-"OrganicWaste" = "Biotonne";
-"PaperWaste" = "Papiertonne";
-"YellowWaste" = "Gelber Sack";
-"GreenWaste" = "Grünschnitt";
+"WasteType.residual" = "Restabfall";
+"WasteType.organic" = "Biotonne";
+"WasteType.paper" = "Papiertonne";
+"WasteType.yellow" = "Gelber Sack";
+"WasteType.green" = "Grünschnitt";
 
 "WasteTypeShort.residual" = "Rest";
 "WasteTypeShort.organic" = "Bio";

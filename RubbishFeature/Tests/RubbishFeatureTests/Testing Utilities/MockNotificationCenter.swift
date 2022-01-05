@@ -8,7 +8,7 @@
 
 import XCTest
 import UserNotifications
-import MMCommon
+import Core
 @testable import RubbishFeature
 
 class MockNotificationCenter: UNUserNotificationCenterProtocol {

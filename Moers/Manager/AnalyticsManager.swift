@@ -11,6 +11,7 @@ import FirebaseAnalytics
 import StoreKit
 import MMAPI
 import MMUI
+import FuelFeature
 
 struct AnalyticsManager {
     
@@ -227,7 +228,7 @@ struct AnalyticsManager {
         
     }
 
-    public func logPetrolType(_ type: PetrolType) {
+    public func logPetrolType(_ type: FuelFeature.PetrolType) {
         
         if shouldLog {
             Analytics.logEvent("Onboarding_Petrol_Type", parameters: ["type": type.rawValue])

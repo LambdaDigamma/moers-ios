@@ -30,7 +30,6 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     private var entryManager: EntryManagerProtocol
     private let locationManager: LocationManagerProtocol
     private let geocodingManager: GeocodingManagerProtocol
-    private let petrolManager: PetrolManagerProtocol
     
     lazy var tableView: UITableView = {
         
@@ -142,13 +141,11 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     init(
         locationManager: LocationManagerProtocol,
         geocodingManager: GeocodingManagerProtocol,
-        petrolManager: PetrolManagerProtocol,
         entryManager: EntryManagerProtocol
     ) {
     
         self.locationManager = locationManager
         self.geocodingManager = geocodingManager
-        self.petrolManager = petrolManager
         self.entryManager = entryManager
         
         super.init(nibName: nil, bundle: nil)
@@ -273,8 +270,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
         let settingsViewController = SettingsViewController(
             locationManager: locationManager,
-            geocodingManager: geocodingManager,
-            petrolManager: petrolManager
+            geocodingManager: geocodingManager
         )
         
         navigationController?.pushViewController(settingsViewController, animated: true)

@@ -200,11 +200,11 @@
 		DFD7ACBD20A795AF00D49BE2 /* DashboardNotificationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACBC20A795AF00D49BE2 /* DashboardNotificationCardView.swift */; };
 		DFD7ACC120A842F400D49BE2 /* DateCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD7ACC020A842F400D49BE2 /* DateCardView.swift */; };
 		DFD82671278599D100929914 /* ServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD82670278599D100929914 /* ServiceConfiguration.swift */; };
+		DFD826732785E91400929914 /* RubbishCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD826722785E91400929914 /* RubbishCollectionViewController.swift */; };
 		DFD8632C25E25F60006164E5 /* AppScaffold in Frameworks */ = {isa = PBXBuildFile; productRef = DFD8632B25E25F60006164E5 /* AppScaffold */; };
 		DFD8633325E26053006164E5 /* MMCommon in Frameworks */ = {isa = PBXBuildFile; productRef = DFD8633225E26053006164E5 /* MMCommon */; };
 		DFD890872124860A006B5610 /* TandCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD890862124860A006B5610 /* TandCViewController.swift */; };
 		DFD8908921248DD9006B5610 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8908821248DD9006B5610 /* PrivacyViewController.swift */; };
-		DFDD3F6E20B22230005602E3 /* RubbishCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F6D20B22230005602E3 /* RubbishCollectionViewController.swift */; };
 		DFDD3F7020B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F6F20B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift */; };
 		DFDD3F7220B2E525005602E3 /* MonthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F7120B2E525005602E3 /* MonthHeaderView.swift */; };
 		DFDD3F7420B2F30A005602E3 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */; };
@@ -525,11 +525,11 @@
 		DFD7ACBC20A795AF00D49BE2 /* DashboardNotificationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardNotificationCardView.swift; sourceTree = "<group>"; };
 		DFD7ACC020A842F400D49BE2 /* DateCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCardView.swift; sourceTree = "<group>"; };
 		DFD82670278599D100929914 /* ServiceConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConfiguration.swift; sourceTree = "<group>"; };
+		DFD826722785E91400929914 /* RubbishCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionViewController.swift; sourceTree = "<group>"; };
 		DFD890862124860A006B5610 /* TandCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TandCViewController.swift; sourceTree = "<group>"; };
 		DFD8908821248DD9006B5610 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		DFDABCA82772A3280079F741 /* FullTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = FullTestPlan.xctestplan; sourceTree = "<group>"; };
 		DFDB87A02545901900347550 /* TwitterKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TwitterKit.xcframework; path = "../twitter-kit-ios/output/TwitterKit.xcframework"; sourceTree = "<group>"; };
-		DFDD3F6D20B22230005602E3 /* RubbishCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RubbishCollectionViewController.swift; path = ../../Controller/Dashboard/RubbishCollectionViewController.swift; sourceTree = "<group>"; };
 		DFDD3F6F20B2D8E7005602E3 /* RubbishCollectionItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionItemTableViewCell.swift; sourceTree = "<group>"; };
 		DFDD3F7120B2E525005602E3 /* MonthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthHeaderView.swift; sourceTree = "<group>"; };
 		DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -1121,8 +1121,8 @@
 		DF6D9E4622BB6EBD00BD3132 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DFD826722785E91400929914 /* RubbishCollectionViewController.swift */,
 				DF4BD1BD208A72C5003ECF41 /* DashboardViewController.swift */,
-				DFDD3F6D20B22230005602E3 /* RubbishCollectionViewController.swift */,
 				DF95197E20C8B6F3001D13DC /* PetrolStationViewController.swift */,
 			);
 			path = Controller;
@@ -1749,11 +1749,11 @@
 				DF96445F26FDB9B8006E6D2E /* RadioBroadcastsViewController.swift in Sources */,
 				DFD7ACB420A6BCA000D49BE2 /* DashboardRubbishCardView.swift in Sources */,
 				DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */,
+				DFD826732785E91400929914 /* RubbishCollectionViewController.swift in Sources */,
 				DFA9EF0C20B56BA8008590EA /* UIImage+Extensions.swift in Sources */,
 				DFA314CE26FD043C002C5A59 /* RadioViewController.swift in Sources */,
 				DF0CB4B32087092F00CC0AA8 /* SearchResultTableViewCell.swift in Sources */,
 				DFDE884F25457CD000429765 /* LaunchArgumentsHandler.swift in Sources */,
-				DFDD3F6E20B22230005602E3 /* RubbishCollectionViewController.swift in Sources */,
 				DF6279792100CDE400F81A70 /* DetailParkingViewController.swift in Sources */,
 				DF2D6DA920B899DD00176614 /* User.swift in Sources */,
 				DF310D9B216FE72E004C69BA /* EntryAnnotationView.swift in Sources */,

@@ -11,8 +11,9 @@ import Gestalt
 import BLTNBoard
 import MMAPI
 import MMUI
-import RubbishFeature
 import Resolver
+import RubbishFeature
+import FuelFeature
 
 class SettingsViewController: UIViewController {
 
@@ -25,26 +26,23 @@ class SettingsViewController: UIViewController {
     var data: [TableViewSection] = []
     
     @LazyInjected var rubbishService: RubbishService
+    @LazyInjected var petrolService: PetrolService
     
     private let locationManager: LocationManagerProtocol
     private let geocodingManager: GeocodingManagerProtocol
-    private let petrolManager: PetrolManagerProtocol
     private let onboardingManager: OnboardingManager
     
     init(
         locationManager: LocationManagerProtocol,
-        geocodingManager: GeocodingManagerProtocol,
-        petrolManager: PetrolManagerProtocol
+        geocodingManager: GeocodingManagerProtocol
     ) {
         
         self.locationManager = locationManager
         self.geocodingManager = geocodingManager
-        self.petrolManager = petrolManager
         
         self.onboardingManager = OnboardingManager(
             locationManager: locationManager,
-            geocodingManager: geocodingManager,
-            petrolManager: petrolManager
+            geocodingManager: geocodingManager
         )
         
         super.init(nibName: nil, bundle: nil)
@@ -173,7 +171,7 @@ class SettingsViewController: UIViewController {
     
     private func showPetrolType() {
         
-        guard let petrolTypePage = onboardingManager.makePetrolType(preSelected: petrolManager.petrolType) as? SelectorBulletinPage<PetrolType> else { return }
+        guard let petrolTypePage = onboardingManager.makePetrolType(preSelected: petrolService.petrolType) as? SelectorBulletinPage<FuelFeature.PetrolType> else { return }
         
         petrolTypePage.actionHandler = { item in
             item.manager?.dismissBulletin(animated: true)
@@ -251,10 +249,13 @@ class SettingsViewController: UIViewController {
                                 rows: [NavigationRow(title: String.localized("UserType") + ": " + User.UserType.localizedForCase(userType), action: showUserType)]))
         
         sections.append(TableViewSection(
-                            title: String.localized("Petrol"),
-                            rows: [
-                                NavigationRow(title: String.localized("PetrolType") + ": " + PetrolType.localizedForCase(petrolManager.petrolType), action: showPetrolType)
-                            ]
+            title: String.localized("Petrol"),
+            rows: [
+                NavigationRow(
+                    title: String.localized("PetrolType") + ": " + petrolService.petrolType.name,
+                    action: showPetrolType
+                )
+            ]
         ))
         
         if UserManager.shared.user.type == .citizen {

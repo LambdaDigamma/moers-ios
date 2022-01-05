@@ -26,7 +26,7 @@ public struct RubbishPickupRow: View {
             
             VStack(alignment: .leading, spacing: 4) {
                 
-                Text(RubbishWasteType.localizedForCase(item.type))
+                Text(item.type.title)
                     .font(.body)
                     .fontWeight(.semibold)
                 

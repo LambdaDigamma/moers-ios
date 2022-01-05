@@ -21,11 +21,6 @@ let package = Package(
         .package(name: "Core", path: "./Core"),
         .package(url: "https://github.com/hmlongco/Resolver", from: "1.1.4"),
         .package(
-            name: "MMCommon",
-            url: "https://github.com/lambdadigamma/mmcommon-ios",
-            .branch("master")
-        ),
-        .package(
             name: "ModernNetworking",
             url: "https://github.com/lambdadigamma/modernnetworking",
             .branch("main")
@@ -34,7 +29,7 @@ let package = Package(
     targets: [
         .target(
             name: "RubbishFeature",
-            dependencies: ["Core", "MMCommon", "Resolver", "ModernNetworking"]
+            dependencies: ["Core", "Resolver", "ModernNetworking"]
         ),
         .testTarget(
             name: "RubbishFeatureTests",

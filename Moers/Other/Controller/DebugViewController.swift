@@ -9,7 +9,6 @@
 import UIKit
 import Gestalt
 import UserNotifications
-import MMAPI
 import MMUI
 import Combine
 import Resolver
@@ -79,11 +78,11 @@ class DebugViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { (_: Subscribers.Completion<RubbishLoadingError>) in
                 
-            }, receiveValue: { (items: [RubbishFeature.RubbishPickupItem]) in
+            }, receiveValue: { (items: [RubbishPickupItem]) in
                 
                 self.rubbishItemsTextView.text = "Collections: \(items.count)\n\n"
                 self.rubbishItemsTextView.text += items.map {
-                    $0.date.format(format: "dd.MM.yyyy") + " " + RubbishWasteType.localizedForCase($0.type)
+                    $0.date.format(format: "dd.MM.yyyy") + " " + $0.type.title
                 }
                 .joined(separator: "\n")
                 
@@ -111,7 +110,8 @@ class DebugViewController: UIViewController {
             notificationItemsTextView.topAnchor.constraint(equalTo: self.safeTopAnchor),
             notificationItemsTextView.leadingAnchor.constraint(equalTo: rubbishItemsTextView.trailingAnchor),
             notificationItemsTextView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -8),
-            notificationItemsTextView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)]
+            notificationItemsTextView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         

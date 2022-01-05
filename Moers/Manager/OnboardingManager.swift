@@ -14,28 +14,27 @@ import MMAPI
 import MMUI
 import Combine
 import RubbishFeature
+import FuelFeature
 import Resolver
 
 // TODO: Move Privacy Consent to Front of Onboarding
 class OnboardingManager {
     
     @LazyInjected var rubbishService: RubbishService
+    @LazyInjected var petrolService: PetrolService
     
     private let locationManager: LocationManagerProtocol
     private let geocodingManager: GeocodingManagerProtocol
-    private var petrolManager: PetrolManagerProtocol
     private let appearance: BLTNItemAppearance
     private var cancellables = Set<AnyCancellable>()
     
     init(
         locationManager: LocationManagerProtocol,
-        geocodingManager: GeocodingManagerProtocol,
-        petrolManager: PetrolManagerProtocol
+        geocodingManager: GeocodingManagerProtocol
     ) {
         
         self.locationManager = locationManager
         self.geocodingManager = geocodingManager
-        self.petrolManager = petrolManager
         self.appearance = OnboardingManager.makeAppearance()
         
     }
@@ -192,9 +191,9 @@ class OnboardingManager {
         
     }
     
-    func makePetrolType(preSelected: PetrolType?) -> BLTNPageItem {
+    func makePetrolType(preSelected: FuelFeature.PetrolType?) -> BLTNPageItem {
         
-        let page = SelectorBulletinPage<PetrolType>(
+        let page = SelectorBulletinPage<FuelFeature.PetrolType>(
             title: String.localized("OnboardingPetrolTypePageTitle"),
             preSelected: preSelected
         )
@@ -204,8 +203,8 @@ class OnboardingManager {
         page.actionButtonTitle = String.localized("OnboardingPetrolTypePageActionButtonTitle")
         page.isDismissable = false
         
-        page.onSelect = { type in
-            self.petrolManager.petrolType = type
+        page.onSelect = { (type: FuelFeature.PetrolType) in
+            self.petrolService.petrolType = type
             AnalyticsManager.shared.logPetrolType(type)
         }
         

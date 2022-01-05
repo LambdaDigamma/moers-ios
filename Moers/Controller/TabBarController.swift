@@ -43,8 +43,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     lazy var onboardingManager: OnboardingManager = {
         return OnboardingManager(
             locationManager: locationManager,
-            geocodingManager: geocodingManager,
-            petrolManager: petrolManager
+            geocodingManager: geocodingManager
         )
     }()
     
@@ -98,7 +97,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         self.other = OtherCoordinator(
             locationManager: locationManager,
             geocodingManager: geocodingManager,
-            petrolManager: petrolManager,
             entryManager: entryManager
         )
         

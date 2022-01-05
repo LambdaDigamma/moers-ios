@@ -15,6 +15,14 @@ internal enum PackageStrings {
         internal static let loadingDashboard = String.localized("Waste.loadingDashboard")
     }
     
+    internal enum WasteType {
+        internal static let residual = String.localized("WasteType.residual")
+        internal static let organic = String.localized("WasteType.organic")
+        internal static let paper = String.localized("WasteType.paper")
+        internal static let yellow = String.localized("WasteType.yellow")
+        internal static let green = String.localized("WasteType.green")
+    }
+    
     internal enum WasteShort {
         internal static let residual = String.localized("WasteTypeShort.residual")
         internal static let organic = String.localized("WasteTypeShort.organic")

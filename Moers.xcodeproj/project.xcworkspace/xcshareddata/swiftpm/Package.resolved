@@ -74,6 +74,15 @@
         }
       },
       {
+        "package": "Fuse",
+        "repositoryURL": "https://github.com/LambdaDigamma/fuse-swift",
+        "state": {
+          "branch": null,
+          "revision": "a1f44a59d94393f7461745ccc977b5005c8438a5",
+          "version": "1.4.2"
+        }
+      },
+      {
         "package": "Gestalt",
         "repositoryURL": "https://github.com/regexident/Gestalt",
         "state": {
@@ -205,7 +214,7 @@
         "state": {
           "branch": null,
           "revision": "6be3e778f1663b16dd645b7e8a0a01f73b5ed7f3",
-          "version": "10.5.2"
+          "version": "10.6.1"
         }
       },
       {

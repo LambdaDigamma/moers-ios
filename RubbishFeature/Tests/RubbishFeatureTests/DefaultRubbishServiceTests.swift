@@ -7,7 +7,7 @@
 
 import XCTest
 import UserNotifications
-import MMCommon
+import Core
 import ModernNetworking
 
 @testable import RubbishFeature

@@ -1,9 +1,9 @@
 /* Waste */
-"ResidualWaste" = "Residual Waste";
-"OrganicWaste" = "Organic Waste";
-"PaperWaste" = "Paper Waste";
-"YellowWaste" = "Yellow Bag";
-"GreenWaste" = "Green Cuttings";
+"WasteType.residual" = "Residual Waste";
+"WasteType.organic" = "Organic Waste";
+"WasteType.paper" = "Paper Waste";
+"WasteType.yellow" = "Yellow Bag";
+"WasteType.green" = "Green Cuttings";
 
 "WasteTypeShort.residual" = "Residual";
 "WasteTypeShort.organic" = "Organic";

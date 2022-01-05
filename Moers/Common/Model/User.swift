@@ -8,6 +8,7 @@
 
 import Foundation
 import MMCommon
+import Core
 
 struct User {
     
@@ -16,7 +17,7 @@ struct User {
     var name: String?
     var description: String?
     
-    enum UserType: String, Localizable, CaseIterable {
+    enum UserType: String, Localizable, CaseIterable, CaseName {
         
         case citizen = "citizen"
         case tourist = "tourist"
@@ -25,6 +26,15 @@ struct User {
             switch type {
                 case .citizen: return String.localized("Citizen")
                 case .tourist: return String.localized("Tourist")
+            }
+        }
+        
+        var name: String {
+            switch self {
+                case .citizen:
+                    return String.localized("Citizen")
+                case .tourist:
+                    return String.localized("Tourist")
             }
         }
         

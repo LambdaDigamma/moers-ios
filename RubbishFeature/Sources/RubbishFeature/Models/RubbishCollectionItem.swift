@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import MMCommon
+import Core
 
 public struct RubbishCollectionItem: Codable {
     
