@@ -592,7 +592,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
             
                 switch result {
                     
-                case .success(_):
+                case .success:
                     
                     self.alertSuccess()
                     

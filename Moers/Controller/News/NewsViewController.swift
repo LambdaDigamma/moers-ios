@@ -8,7 +8,6 @@
 
 import UIKit
 import Gestalt
-//import TwitterKit
 import FeedKit
 import SafariServices
 import MMUI
@@ -182,18 +181,7 @@ extension NewsViewController: UICollectionViewDataSource, UICollectionViewDelega
             
             return cell
             
-        } /*else if let newsItem = newsItems[indexPath.row] as? TWTRTweet {
-            
-            // swiftlint:disable:next force_cast
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tweetCell", for: indexPath) as! TweetCollectionViewCell
-
-            cell.tweetView.showBorder = false
-            cell.tweetView.showActionButtons = false
-            cell.tweetView.configure(with: newsItem)
-            
-            return cell
-            
-        }*/
+        }
         
         return UICollectionViewCell()
         

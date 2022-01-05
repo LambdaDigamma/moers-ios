@@ -450,7 +450,7 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
                 return 60
             }
             
-        case .filter(_, _, _):
+        case .filter:
             return 60
             
         }

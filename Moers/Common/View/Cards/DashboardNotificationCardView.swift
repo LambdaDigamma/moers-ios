@@ -45,7 +45,7 @@ class DashboardNotificationCardView: CardView {
         
     }()
     
-    var image: UIImage? = nil {
+    var image: UIImage? {
         didSet {
             if let image = image {
                 imageView.image = image

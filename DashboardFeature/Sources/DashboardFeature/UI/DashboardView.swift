@@ -34,13 +34,13 @@ public struct DashboardView: View {
             
         }
         .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                Button(action: {}) {
-                    Image(systemName: "gear")
-                        .foregroundColor(Color.yellow)
-                }
-                .foregroundColor(Color.yellow)
-            }
+//            ToolbarItem(placement: .primaryAction) {
+//                Button(action: {}) {
+//                    Image(systemName: "gear")
+//                        .foregroundColor(Color.yellow)
+//                }
+//                .foregroundColor(Color.yellow)
+//            }
         }
         .navigationBarTitle("Übersicht")
         .onAppear {

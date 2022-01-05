@@ -30,7 +30,7 @@ class DetailViewController: UIViewController {
     private let locationManager: LocationManagerProtocol
     private let entryManager: EntryManagerProtocol
     
-    private weak var child: UIViewController? = nil {
+    private weak var child: UIViewController? {
         willSet {
             contentView.subviews.forEach({ $0.removeFromSuperview() })
             contentView.removeFromSuperview()
