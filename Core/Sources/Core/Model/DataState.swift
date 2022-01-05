@@ -17,7 +17,7 @@ public enum DataState<D, E: Error> {
 
 extension DataState {
     
-    var loading: Bool {
+    public var loading: Bool {
         
         if case .loading = self {
             return true
@@ -27,7 +27,7 @@ extension DataState {
         
     }
     
-    var error: E? {
+    public var error: E? {
         
         switch self {
             case .error(let error):
@@ -38,7 +38,7 @@ extension DataState {
         
     }
     
-    var value: D? {
+    public var value: D? {
         
         switch self {
             case .success(let value):

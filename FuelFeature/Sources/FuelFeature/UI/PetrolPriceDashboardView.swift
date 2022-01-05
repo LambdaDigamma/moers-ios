@@ -9,8 +9,10 @@ import SwiftUI
 
 public struct PetrolPriceDashboardView: View {
     
-    public init() {
-        
+    @ObservedObject var viewModel: PetrolPriceDashboardViewModel
+    
+    public init(viewModel: PetrolPriceDashboardViewModel) {
+        self.viewModel = viewModel
     }
     
     public var body: some View {
@@ -35,7 +37,10 @@ public struct PetrolPriceDashboardView: View {
                     
                     VStack(alignment: .trailing, spacing: 4) {
                         
-                        Text("1.55€")
+                        let price = viewModel.data.value?.averagePrice ?? 1.45
+                        
+                        Text(String(format: "%.2f€", price))
+                            .redacted(reason: viewModel.data.loading ? .placeholder : [])
                             .font(.title.weight(.bold))
                         
                         Text("pro L Diesel".uppercased())
@@ -54,6 +59,9 @@ public struct PetrolPriceDashboardView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
             
+        }
+        .onAppear {
+            viewModel.load()
         }
         
     }
@@ -74,7 +82,7 @@ struct CardPanelView<Content: View>: View {
             self.content
         }
         .frame(maxWidth: .infinity)
-        //        .background(Color("Card"))
+//        .background(Color("Card"))
         .background(Color(.secondarySystemGroupedBackground))
         .cornerRadius(12)
         .shadow(radius: 8)
@@ -84,7 +92,20 @@ struct CardPanelView<Content: View>: View {
 }
 
 struct PetrolPriceDashboardView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        PetrolPriceDashboardView()
+        
+        let service = StaticPetrolService()
+        let viewModel = PetrolPriceDashboardViewModel(
+            petrolService: service,
+            initialState: .loading
+        )
+        
+        PetrolPriceDashboardView(viewModel: viewModel)
+            .preferredColorScheme(.dark)
+            .padding()
+            .previewLayout(.sizeThatFits)
+        
     }
+    
 }

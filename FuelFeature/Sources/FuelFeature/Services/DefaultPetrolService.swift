@@ -128,6 +128,7 @@ public class DefaultPetrolService: PetrolService {
                 
             }
         }
+        .receive(on: DispatchQueue.main)
         .eraseToAnyPublisher()
         
     }
@@ -155,6 +156,8 @@ public class DefaultPetrolService: PetrolService {
             sorting: sorting,
             type: type
         )
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
         
         return networkSource
         

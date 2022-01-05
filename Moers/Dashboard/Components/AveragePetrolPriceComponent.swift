@@ -147,8 +147,10 @@ class AveragePetrolPriceComponent: BaseComponent {
                     self.loadPetrolPrice(for: location)
                 } else {
                     self.averagePetrolCardView.isUserInteractionEnabled = false
-                    self.averagePetrolCardView.showError(withTitle: String.localized("PetrolErrorLocationTitle"),
-                                                         message: String.localized("PetrolErrorLocationMessage"))
+                    self.averagePetrolCardView.showError(
+                        withTitle: String.localized("PetrolErrorLocationTitle"),
+                        message: String.localized("PetrolErrorLocationMessage")
+                    )
                 }
                 
             }
@@ -162,11 +164,13 @@ class AveragePetrolPriceComponent: BaseComponent {
         
         let userPetrolPreference = petrolManager.petrolType
         
-        let petrolStations = petrolManager.getPetrolStations(coordinate: location.coordinate,
-                                                             radius: 5,
-                                                             sorting: .distance,
-                                                             type: userPetrolPreference,
-                                                             shouldReload: false)
+        let petrolStations = petrolManager.getPetrolStations(
+            coordinate: location.coordinate,
+            radius: 5,
+            sorting: .distance,
+            type: userPetrolPreference,
+            shouldReload: false
+        )
         
         petrolStations
             .receive(on: DispatchQueue.main)
