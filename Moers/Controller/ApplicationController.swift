@@ -22,7 +22,6 @@ class ApplicationController: UIViewController {
     
     let locationManager: LocationManagerProtocol
     let petrolManager: PetrolManagerProtocol
-    let rubbishManager: RubbishManagerProtocol
     let geocodingManager: GeocodingManagerProtocol
     let cameraManager: CameraManagerProtocol
     let entryManager: EntryManagerProtocol
@@ -37,10 +36,6 @@ class ApplicationController: UIViewController {
         loader: HTTPLoader,
         locationManager: LocationManagerProtocol = LocationManager(),
         petrolManager: PetrolManagerProtocol = PetrolManager(storageManager: StorageManager()),
-        rubbishManager: RubbishManagerProtocol = RubbishManager(
-            storagePickupItemsManager: StorageManager(),
-            storageStreetsManager: StorageManager()
-        ),
         geocodingManager: GeocodingManagerProtocol = GeocodingManager(),
         cameraManager: CameraManagerProtocol = CameraManager(storageManager: StorageManager()),
         entryManager: EntryManagerProtocol,
@@ -50,7 +45,6 @@ class ApplicationController: UIViewController {
         self.loader = loader
         self.locationManager = locationManager
         self.petrolManager = petrolManager
-        self.rubbishManager = rubbishManager
         self.geocodingManager = geocodingManager
         self.cameraManager = cameraManager
         self.entryManager = entryManager
@@ -97,7 +91,6 @@ class ApplicationController: UIViewController {
         let tabBarController = TabBarController(
             locationManager: locationManager,
             petrolManager: petrolManager,
-            rubbishManager: rubbishManager,
             geocodingManager: geocodingManager,
             cameraManager: cameraManager,
             entryManager: entryManager,

@@ -11,6 +11,8 @@ import Gestalt
 import BLTNBoard
 import MMAPI
 import MMUI
+import RubbishFeature
+import Resolver
 
 class SettingsViewController: UIViewController {
 
@@ -22,28 +24,26 @@ class SettingsViewController: UIViewController {
     
     var data: [TableViewSection] = []
     
+    @LazyInjected var rubbishService: RubbishService
+    
     private let locationManager: LocationManagerProtocol
     private let geocodingManager: GeocodingManagerProtocol
-    private let rubbishManager: RubbishManagerProtocol
     private let petrolManager: PetrolManagerProtocol
     private let onboardingManager: OnboardingManager
     
     init(
         locationManager: LocationManagerProtocol,
         geocodingManager: GeocodingManagerProtocol,
-        rubbishMananger: RubbishManagerProtocol,
         petrolManager: PetrolManagerProtocol
     ) {
         
         self.locationManager = locationManager
         self.geocodingManager = geocodingManager
-        self.rubbishManager = rubbishMananger
         self.petrolManager = petrolManager
         
         self.onboardingManager = OnboardingManager(
             locationManager: locationManager,
             geocodingManager: geocodingManager,
-            rubbishManager: rubbishMananger,
             petrolManager: petrolManager
         )
         
@@ -115,7 +115,7 @@ class SettingsViewController: UIViewController {
             
             guard let item = item as? RubbishStreetPickerItem else { return }
             
-            self.rubbishManager.register(item.selectedStreet)
+            self.rubbishService.register(item.selectedStreet)
             
             self.reload()
             
@@ -139,28 +139,27 @@ class SettingsViewController: UIViewController {
         let reminderPage = onboardingManager.makeRubbishReminderPage()
         
         reminderPage.alternativeButtonTitle = "Deaktivieren"
-        reminderPage.actionHandler = { item in
+        reminderPage.actionHandler = { [weak self] item in
             
             guard let page = item as? RubbishReminderBulletinItem else { return }
             
             let hour = Calendar.current.component(.hour, from: page.picker.date)
             let minutes = Calendar.current.component(.minute, from: page.picker.date)
             
-            RubbishManager.shared.invalidateRubbishReminderNotifications()
-            RubbishManager.shared.registerNotifications(at: hour, minute: minutes)
+            self?.rubbishService.invalidateRubbishReminderNotifications()
+            self?.rubbishService.registerNotifications(at: hour, minute: minutes)
             
-            self.reloadRows()
+            self?.reloadRows()
             
             item.manager?.dismissBulletin(animated: true)
             item.manager?.popToRootItem()
             
         }
         
-        reminderPage.alternativeHandler = { item in
+        reminderPage.alternativeHandler = { [weak self] item in
             
-            RubbishManager.shared.disableReminder()
-            
-            self.reloadRows()
+            self?.rubbishService.disableReminder()
+            self?.reloadRows()
             
             item.manager?.dismissBulletin(animated: true)
             item.manager?.popToRootItem()
@@ -213,12 +212,12 @@ class SettingsViewController: UIViewController {
     
     private func reloadRows() {
         
-        let hour = rubbishManager.reminderHour
-        let minute = rubbishManager.reminderMinute
+        let hour = rubbishService.reminderHour
+        let minute = rubbishService.reminderMinute
         
         var rubbishReminder: String
         
-        if let hour = hour, let minute = minute, RubbishManager.shared.remindersEnabled {
+        if let hour = hour, let minute = minute, rubbishService.remindersEnabled {
             
             var hourString = ""
             var minuteString = ""
@@ -260,14 +259,24 @@ class SettingsViewController: UIViewController {
         
         if UserManager.shared.user.type == .citizen {
             
-            sections.append(TableViewSection(title: String.localized("SettingsRubbishCollectionTitle"),
-                                    rows: [SwitchRow(title: String.localized("Activated"),
-                                                     switchOn: rubbishManager.isEnabled,
-                                                     action: triggerRubbishCollection),
-                                           NavigationRow(title: String.localized("Street") + ": \(RubbishManager.shared.rubbishStreet?.displayName ?? "nicht ausgewählt")",
-                                                         action: showRubbishStreet),
-                                           NavigationRow(title: rubbishReminder,
-                                                         action: showRubbishReminder)]))
+            sections.append(TableViewSection(
+                title: String.localized("SettingsRubbishCollectionTitle"),
+                rows: [
+                    SwitchRow(
+                        title: String.localized("Activated"),
+                        switchOn: rubbishService.isEnabled,
+                        action: triggerRubbishCollection
+                    ),
+                    NavigationRow(
+                        title: String.localized("Street") + ": \(rubbishService.rubbishStreet?.displayName ?? "nicht ausgewählt")",
+                        action: showRubbishStreet
+                    ),
+                    NavigationRow(
+                        title: rubbishReminder,
+                        action: showRubbishReminder
+                    )
+                ]
+            ))
             
         }
         
@@ -289,14 +298,12 @@ class SettingsViewController: UIViewController {
     
     private func triggerRubbishCollection(isEnabled: Bool) {
         
-        RubbishManager.shared.isEnabled = isEnabled
-        RubbishManager.shared.disableReminder()
-        RubbishManager.shared.disableStreet()
+        rubbishService.isEnabled = isEnabled
+        rubbishService.disableReminder()
+        rubbishService.disableStreet()
         
         if isEnabled {
-            
             self.showRubbishStreet()
-            
         }
         
         self.reloadRows()

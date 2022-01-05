@@ -8,15 +8,18 @@
 
 import UIKit
 import Gestalt
-import MMAPI
 import MMUI
 import OSLog
 import Combine
+import Resolver
+import RubbishFeature
 
 class RubbishCollectionViewController: UIViewController {
 
     private let identifier = "rubbishCollectionItem"
     private let headerIdentifier = "monthHeader"
+    
+    @LazyInjected var rubbishService: RubbishService
     
     lazy var tableView: UITableView = {
         
@@ -36,7 +39,7 @@ class RubbishCollectionViewController: UIViewController {
     
     private let logger = Logger(.ui)
     private var sections: [Section] = []
-    private var items: [RubbishPickupItem] = []
+    private var items: [RubbishFeature.RubbishPickupItem] = []
     private var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
@@ -56,14 +59,21 @@ class RubbishCollectionViewController: UIViewController {
         
         AnalyticsManager.shared.logOpenedWasteSchedule()
         
+        let activity = UserManager.shared.nextRubbishActivity()
+        
+        view.userActivity = activity
+        activity.becomeCurrent()
+        
     }
     
     private func setupConstraints() {
         
-        let constraints = [tableView.topAnchor.constraint(equalTo: self.safeTopAnchor),
-                           tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                           tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                           tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)]
+        let constraints = [
+            tableView.topAnchor.constraint(equalTo: self.safeTopAnchor),
+            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         
@@ -77,14 +87,14 @@ class RubbishCollectionViewController: UIViewController {
     
     private func loadData() {
         
-        guard let street = RubbishManager.shared.rubbishStreet else {
+        guard let street = rubbishService.rubbishStreet else {
             return
         }
         
-        let pickupItems = RubbishManager.shared.loadRubbishPickupItems(for: street)
+        let pickupItems = rubbishService.loadRubbishPickupItems(for: street)
         
         pickupItems
-            .sink(receiveCompletion: { [weak self] (completion: Subscribers.Completion<Error>) in
+            .sink(receiveCompletion: { [weak self] (completion: Subscribers.Completion<RubbishLoadingError>) in
                 
                 switch completion {
                     case .failure(let error):
@@ -92,7 +102,7 @@ class RubbishCollectionViewController: UIViewController {
                     default: break
                 }
                 
-            }, receiveValue: { (items: [RubbishPickupItem]) in
+            }, receiveValue: { (items: [RubbishFeature.RubbishPickupItem]) in
                 
                 OperationQueue.main.addOperation {
                     
@@ -134,7 +144,7 @@ class RubbishCollectionViewController: UIViewController {
     
     // MARK: - Data Handling
     
-    private func items(for section: Section) -> [RubbishPickupItem] {
+    private func items(for section: Section) -> [RubbishFeature.RubbishPickupItem] {
         
         return items.filter { (item: RubbishPickupItem) -> Bool in
             
@@ -192,7 +202,7 @@ extension RubbishCollectionViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! RubbishCollectionItemTableViewCell
         
         let section = sections[indexPath.section]
-        cell.item = items(for: section)[indexPath.row]
+        cell.item = items(for: section)[safeIndex: indexPath.row]
         
         return cell
         

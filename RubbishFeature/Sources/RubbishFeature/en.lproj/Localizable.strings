@@ -12,8 +12,17 @@
 "WasteTypeShort.green" = "Cuttings";
 
 "Waste.dashboardTitle" = "Next collection dates";
-"Waste.errorTitle" = "Rubbish schedule deactivated";
-"Waste.scheduleDeactivated" = "You can activate the waste calendar in the settings.";
+"Waste.loadingDashboard" = "Loading waste schedule…";
 "Waste.loadingFailed" = "Loading the waste calendar could not be completed.";
 "Waste.noUpcomingRubbishItems" = "No further dates could be found in the waste calendar.";
-"Waste.loadingDashboard" = "Loading waste schedule…";
+
+"RubbishDashboardError.Deactivated.title" = "Waste schedule disabled";
+"RubbishDashboardError.Deactivated.text" = "You can enable the waste schedule in the settings.";
+
+"RubbishDashboardError.NotConfigured.title" = "No street selected";
+"RubbishDashboardError.NotConfigured.text" = "You have not selected a street for which you want to see the waste schedule. Select a street in the settings first.";
+
+"RubbishDashboardError.NoYearData.title" = "Attention";
+"RubbishDashboardError.NoYearData.text" = "No other pickup dates could be found in the waste schedule.";
+
+"RubbishDashboardError.InternalError.title" = "Internal error";

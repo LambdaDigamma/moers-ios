@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import ModernNetworking
 
-public struct RubbishCollectionStreet: Codable, Equatable {
+public struct RubbishCollectionStreet: Model, Codable, Equatable {
     
     public typealias ID = Int
     
@@ -39,16 +40,19 @@ public struct RubbishCollectionStreet: Codable, Equatable {
         return "\(street) \(streetAddition ?? "")"
     }
     
-    public init(id: Int,
-                street: String,
-                streetAddition: String? = nil,
-                residualWaste: Int,
-                organicWaste: Int,
-                paperWaste: Int,
-                yellowBag: Int,
-                greenWaste: Int,
-                sweeperDay: String,
-                year: Int = 2020) { // TODO: Check this.
+    public init(
+        id: Int,
+        street: String,
+        streetAddition: String? = nil,
+        residualWaste: Int,
+        organicWaste: Int,
+        paperWaste: Int,
+        yellowBag: Int,
+        greenWaste: Int,
+        sweeperDay: String,
+        year: Int = 2022
+    ) {
+        // TODO: Check this.
         self.id = id
         self.street = street
         self.streetAddition = streetAddition

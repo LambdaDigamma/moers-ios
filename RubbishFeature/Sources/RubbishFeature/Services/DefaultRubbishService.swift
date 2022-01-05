@@ -9,14 +9,29 @@ import Foundation
 import UserNotifications
 import MMCommon
 import Combine
+import ModernNetworking
 
 public class DefaultRubbishService: RubbishService {
     
+    private let loader: HTTPLoader
+    private var notificationCenter: MMCommon.UNUserNotificationCenterProtocol
+    private let decoder: JSONDecoder
+    private let session = URLSession.shared
+//    private let storagePickupItemsManager: AnyStoragable<RubbishPickupItem>
+//    private let storageStreetsManager: AnyStoragable<RubbishCollectionStreet>
+    private let storageKeyStreets = "streets"
+    private let storageKeyPickups = "pickups"
+    private var cancellables = Set<AnyCancellable>()
+    private var requests: [UNNotificationRequest] = []
+    
     public init(
+        loader: HTTPLoader,
         notificationCenter: MMCommon.UNUserNotificationCenterProtocol = UNUserNotificationCenter.current()
 //        storagePickupItemsManager: AnyStoragable<RubbishPickupItem> = NoCache(),
 //        storageStreetsManager: AnyStoragable<RubbishCollectionStreet> = NoCache()
     ) {
+        
+        self.loader = loader
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -27,22 +42,8 @@ public class DefaultRubbishService: RubbishService {
 //        self.storageStreetsManager = storageStreetsManager
 //        self.storagePickupItemsManager = storagePickupItemsManager
         self.notificationCenter = notificationCenter
-        self.registerDefaultURLs()
         
     }
-    
-    private var notificationCenter: MMCommon.UNUserNotificationCenterProtocol
-    private let decoder: JSONDecoder
-    private let session = URLSession.shared
-//    private let storagePickupItemsManager: AnyStoragable<RubbishPickupItem>
-//    private let storageStreetsManager: AnyStoragable<RubbishCollectionStreet>
-    private let storageKeyStreets = "streets"
-    private let storageKeyPickups = "pickups"
-    private var cancellables = Set<AnyCancellable>()
-    
-    public var rubbishStreetURL: URL?
-    public var rubbishDateURL: URL?
-    private var requests: [UNNotificationRequest] = []
     
     public var rubbishStreet: RubbishCollectionStreet? {
         
@@ -89,101 +90,56 @@ public class DefaultRubbishService: RubbishService {
     
     public func loadRubbishCollectionStreets() -> AnyPublisher<[RubbishCollectionStreet], Error> {
         
-        return Just([])
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+        let request = HTTPRequest(
+            method: .get,
+            path: "/api/v2/rubbish/streets",
+            queryItems: [URLQueryItem(name: "all", value: "1")]
+        )
         
-//        return Deferred {
-//            Future { promise in
-//
-//                let request = URLRequest(url: URL(string: MMAPIConfig.baseURL.appending("rubbish/streets?all"))!)
-//
-//                let task = self.session.dataTask(with: request) { (data, response, error) in
-//
-//                    if let error = error {
-//                        return promise(.failure(error))
-//                    }
-//
-//                    guard let data = data else {
-//                        return promise(.failure(APIError.noData))
-//                    }
-//
-//                    self.storageStreetsManager.setLastReload(Date(), forKey: self.storageKeyStreets)
-//                    self.storageStreetsManager.write(data: data, forKey: self.storageKeyStreets)
-//
-//                    let decodedStreets = self.decodeStreets(from: data)
-//
-//                    decodedStreets.sink { (completion: Subscribers.Completion<Error>) in
-//
-//                        switch completion {
-//                            case .failure(let error):
-//                                return promise(.failure(error))
-//                            default: break
-//                        }
-//
-//                    } receiveValue: { (streets: [RubbishCollectionStreet]) in
-//                        return promise(.success(streets))
-//                    }
-//                    .store(in: &self.cancellables)
-//
-//                }
-//
-//                task.resume()
-//
-//            }
-//        }
-//        .eraseToAnyPublisher()
+        return Deferred {
+            return Future { promise in
+                self.loader.load(request) { (result: HTTPResult) in
+                    result.decoding([RubbishCollectionStreet].self) { (result: Result<[RubbishCollectionStreet], HTTPError>) in
+                        switch result {
+                            case .success(let items):
+                                promise(.success(items))
+                            case .failure(let error):
+                                promise(.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
         
     }
     
-    public func loadRubbishPickupItems(for street: RubbishCollectionStreet) -> AnyPublisher<[RubbishPickupItem], Error> {
+    public func loadRubbishPickupItems(
+        for street: RubbishCollectionStreet
+    ) -> AnyPublisher<[RubbishPickupItem], RubbishLoadingError> {
         
-        return Just([])
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+        let request = HTTPRequest(
+            method: .get,
+            path: "/api/v2/rubbish/streets/\(street.id)/pickups"
+        )
         
-//        return Deferred {
-//            Future { promise in
-//
-//                let endpoint = "rubbish/streets/\(street.id)/pickups"
-//
-//                let request = URLRequest(url: URL(string: MMAPIConfig.baseURL.appending(endpoint))!)
-//
-//                let task = self.session.dataTask(with: request) { (data, response, error) in
-//
-//                    if let error = error {
-//                        return promise(.failure(error))
-//                    }
-//
-//                    guard let data = data else {
-//                        return promise(.failure(APIError.noData))
-//                    }
-//
-//                    self.storagePickupItemsManager.setLastReload(Date(), forKey: self.storageKeyPickups)
-//                    self.storagePickupItemsManager.write(data: data, forKey: self.storageKeyPickups)
-//
-//                    let decodedPickupItems = self.decodePickupItems(from: data)
-//
-//                    decodedPickupItems.sink { (completion: Subscribers.Completion<Error>) in
-//
-//                        switch completion {
-//                            case .failure(let error):
-//                                return promise(.failure(error))
-//                            default: break
-//                        }
-//
-//                    } receiveValue: { (pickupItems: [RubbishPickupItem]) in
-//                        return promise(.success(pickupItems))
-//                    }
-//                    .store(in: &self.cancellables)
-//
-//                }
-//
-//                task.resume()
-//
-//            }
-//        }
-//        .eraseToAnyPublisher()
+        return Deferred {
+            return Future { promise in
+                self.loader.load(request) { (result: HTTPResult) in
+                    result.decoding([RubbishPickupItem].self) { (result: Result<[RubbishPickupItem], HTTPError>) in
+                        switch result {
+                            case .success(let items):
+                                promise(.success(items))
+                            case .failure(let error):
+                                promise(.failure(RubbishLoadingError.internalError(error)))
+                        }
+                    }
+                }
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
         
     }
     
@@ -235,12 +191,6 @@ public class DefaultRubbishService: RubbishService {
         
     }
     
-    // MARK: - Private Methods
-    
-    private func registerDefaultURLs() {
-        
-    }
-    
     // MARK: - Notifications
     
     public func registerNotifications(at hour: Int, minute: Int) {
@@ -259,7 +209,7 @@ public class DefaultRubbishService: RubbishService {
             
             let items = self.loadRubbishPickupItems(for: rubbishStreet)
             
-            items.sink { (completion: Combine.Subscribers.Completion<Error>) in
+            items.sink { (completion: Combine.Subscribers.Completion<RubbishLoadingError>) in
                 
                 switch completion {
                     case .failure(let error):

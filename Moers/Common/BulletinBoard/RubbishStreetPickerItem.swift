@@ -14,14 +14,17 @@ import MMAPI
 import MMUI
 import OSLog
 import Combine
+import Resolver
+import RubbishFeature
 
 class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataSource {
 
+    @LazyInjected var rubbishService: RubbishService
+    
     private let locationManager: LocationManagerProtocol
-    private let rubbishManager: RubbishManagerProtocol
     private let geocodingManager: GeocodingManagerProtocol
     
-    private var streets: [RubbishCollectionStreet] = []
+    private var streets: [RubbishFeature.RubbishCollectionStreet] = []
     private var accentColor = UIColor.clear
     private var decentColor = UIColor.clear
     private var cancellables = Set<AnyCancellable>()
@@ -30,18 +33,18 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     
     private lazy var picker = PickerView()
     
-    public var selectedStreet: RubbishCollectionStreet {
+    public var selectedStreet: RubbishFeature.RubbishCollectionStreet {
         return streets[picker.currentSelectedRow]
     }
     
-    init(title: String,
-         locationManager: LocationManagerProtocol,
-         geocodingManager: GeocodingManagerProtocol,
-         rubbishManager: RubbishManagerProtocol) {
+    init(
+        title: String,
+        locationManager: LocationManagerProtocol,
+        geocodingManager: GeocodingManagerProtocol
+    ) {
         
         self.locationManager = locationManager
         self.geocodingManager = geocodingManager
-        self.rubbishManager = rubbishManager
         
         super.init(title: title)
         
@@ -61,7 +64,7 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     
     private func loadStreets() {
         
-        let streets = rubbishManager.loadRubbishCollectionStreets()
+        let streets = rubbishService.loadRubbishCollectionStreets()
         
         streets
             .receive(on: DispatchQueue.main)
@@ -73,7 +76,7 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
                     default: break
                 }
                 
-            }, receiveValue: { (streets: [RubbishCollectionStreet]) in
+            }, receiveValue: { (streets: [RubbishFeature.RubbishCollectionStreet]) in
                 
                 self.streets = streets
                 self.picker.reloadPickerView()

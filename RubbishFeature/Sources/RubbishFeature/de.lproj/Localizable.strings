@@ -12,8 +12,17 @@
 "WasteTypeShort.green" = "Schnitt";
 
 "Waste.dashboardTitle" = "Nächste Leerungen";
-"Waste.errorTitle" = "Abfallkalender deaktiviert";
-"Waste.scheduleDeactivated" = "Du kannst den Abfallkalender in den Einstellungen aktivieren.";
-"Waste.loadingFailed" = "Das Laden des Abfallkalenders konnte nicht abgeschlossen werden.";
-"Waste.noUpcomingRubbishItems" = "Im Kalender konnten keine weiteren Termine gefunden werden.";
 "Waste.loadingDashboard" = "Lädt Abfallkalender…";
+"Waste.loadingFailed" = "Das Laden des Abfallkalenders konnte nicht abgeschlossen werden.";
+"Waste.noUpcomingRubbishItems" = "Im Abfallkalender konnten keine weiteren Termine gefunden werden.";
+
+"RubbishDashboardError.Deactivated.title" = "Abfallkalender deaktiviert";
+"RubbishDashboardError.Deactivated.text" = "Du kannst den Abfallkalender in den Einstellungen aktivieren.";
+
+"RubbishDashboardError.NotConfigured.title" = "Straße nicht ausgewählt";
+"RubbishDashboardError.NotConfigured.text" = "Du hast keine Straße ausgewählt, für die Du den Abfallkalender sehen möchtest. Wähle eine Straße in den Einstellungen aus.";
+
+"RubbishDashboardError.NoYearData.title" = "Warnung";
+"RubbishDashboardError.NoYearData.text" = "Im Abfallkalender konnten keine weiteren Termine gefunden werden.";
+
+"RubbishDashboardError.InternalError.title" = "Interner Fehler";

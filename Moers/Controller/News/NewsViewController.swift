@@ -8,7 +8,7 @@
 
 import UIKit
 import Gestalt
-import TwitterKit
+//import TwitterKit
 import FeedKit
 import SafariServices
 import MMUI
@@ -19,7 +19,7 @@ class NewsViewController: UIViewController, NewsManagerDelegate {
     
     private var newsItems: [NewsItem] = []
     
-    private var tweets: [TWTRTweet] = []
+//    private var tweets: [TWTRTweet] = []
     private var items: [RSSFeedItem] = []
     
     private lazy var collectionView = { ViewFactory.collectionView() }()
@@ -63,7 +63,7 @@ class NewsViewController: UIViewController, NewsManagerDelegate {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(NewsCollectionViewCell.self, forCellWithReuseIdentifier: "newsCell")
-        collectionView.register(TweetCollectionViewCell.self, forCellWithReuseIdentifier: "tweetCell")
+//        collectionView.register(TweetCollectionViewCell.self, forCellWithReuseIdentifier: "tweetCell")
         
     }
     
@@ -90,12 +90,12 @@ class NewsViewController: UIViewController, NewsManagerDelegate {
         
         let queue = OperationQueue()
         
-        queue.addOperation {
-            
-            NewsManager.shared.delegate = self
-            NewsManager.shared.getTweets()
-            
-        }
+//        queue.addOperation {
+//
+//            NewsManager.shared.delegate = self
+//            NewsManager.shared.getTweets()
+//
+//        }
         
         NewsManager.shared.getRheinischePost { (error, feed) in
             
@@ -133,19 +133,19 @@ class NewsViewController: UIViewController, NewsManagerDelegate {
         
     }
     
-    func receivedTweets(tweets: [TWTRTweet]) {
-        
-        self.newsItems.append(contentsOf: tweets)
-        self.newsItems.sort(by: { ($0.date > $1.date ) })
-        self.tweets = tweets
-        
-        DispatchQueue.main.async {
-            
-            self.collectionView.reloadData()
-            
-        }
-        
-    }
+//    func receivedTweets(tweets: [TWTRTweet]) {
+//
+//        self.newsItems.append(contentsOf: tweets)
+//        self.newsItems.sort(by: { ($0.date > $1.date ) })
+//        self.tweets = tweets
+//
+//        DispatchQueue.main.async {
+//
+//            self.collectionView.reloadData()
+//
+//        }
+//
+//    }
     
     public func reloadData() {
         self.collectionView.reloadData()
@@ -182,7 +182,7 @@ extension NewsViewController: UICollectionViewDataSource, UICollectionViewDelega
             
             return cell
             
-        } else if let newsItem = newsItems[indexPath.row] as? TWTRTweet {
+        } /*else if let newsItem = newsItems[indexPath.row] as? TWTRTweet {
             
             // swiftlint:disable:next force_cast
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tweetCell", for: indexPath) as! TweetCollectionViewCell
@@ -193,7 +193,7 @@ extension NewsViewController: UICollectionViewDataSource, UICollectionViewDelega
             
             return cell
             
-        }
+        }*/
         
         return UICollectionViewCell()
         

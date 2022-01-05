@@ -18,13 +18,14 @@ let package = Package(
         ),
     ],
     dependencies: [
+        .package(name: "Core", path: "./Core"),
         .package(name: "RubbishFeature", path: "./RubbishFeature"),
         .package(name: "FuelFeature", path: "./FuelFeature")
     ],
     targets: [
         .target(
             name: "DashboardFeature",
-            dependencies: ["RubbishFeature", "FuelFeature"]
+            dependencies: ["Core", "RubbishFeature", "FuelFeature"]
         ),
         .testTarget(
             name: "DashboardFeatureTests",

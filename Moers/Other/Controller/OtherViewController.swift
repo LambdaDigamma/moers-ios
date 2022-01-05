@@ -11,8 +11,10 @@ import Gestalt
 import MessageUI
 import MMAPI
 import MMUI
+import Resolver
 import SwiftUI
 import AppFeedback
+import RubbishFeature
 
 class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
@@ -28,7 +30,6 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     private var entryManager: EntryManagerProtocol
     private let locationManager: LocationManagerProtocol
     private let geocodingManager: GeocodingManagerProtocol
-    private let rubbishManager: RubbishManagerProtocol
     private let petrolManager: PetrolManagerProtocol
     
     lazy var tableView: UITableView = {
@@ -141,14 +142,12 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     init(
         locationManager: LocationManagerProtocol,
         geocodingManager: GeocodingManagerProtocol,
-        rubbishManager: RubbishManagerProtocol,
         petrolManager: PetrolManagerProtocol,
         entryManager: EntryManagerProtocol
     ) {
     
         self.locationManager = locationManager
         self.geocodingManager = geocodingManager
-        self.rubbishManager = rubbishManager
         self.petrolManager = petrolManager
         self.entryManager = entryManager
         
@@ -272,10 +271,11 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     private func showSettings() {
         
-        let settingsViewController = SettingsViewController(locationManager: locationManager,
-                                                            geocodingManager: geocodingManager,
-                                                            rubbishMananger: rubbishManager,
-                                                            petrolManager: petrolManager)
+        let settingsViewController = SettingsViewController(
+            locationManager: locationManager,
+            geocodingManager: geocodingManager,
+            petrolManager: petrolManager
+        )
         
         navigationController?.pushViewController(settingsViewController, animated: true)
         

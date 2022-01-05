@@ -13,13 +13,16 @@ import CoreLocation
 import MMAPI
 import MMUI
 import Combine
+import RubbishFeature
+import Resolver
 
 // TODO: Move Privacy Consent to Front of Onboarding
 class OnboardingManager {
     
+    @LazyInjected var rubbishService: RubbishService
+    
     private let locationManager: LocationManagerProtocol
     private let geocodingManager: GeocodingManagerProtocol
-    private let rubbishManager: RubbishManagerProtocol
     private var petrolManager: PetrolManagerProtocol
     private let appearance: BLTNItemAppearance
     private var cancellables = Set<AnyCancellable>()
@@ -27,13 +30,11 @@ class OnboardingManager {
     init(
         locationManager: LocationManagerProtocol,
         geocodingManager: GeocodingManagerProtocol,
-        rubbishManager: RubbishManagerProtocol,
         petrolManager: PetrolManagerProtocol
     ) {
         
         self.locationManager = locationManager
         self.geocodingManager = geocodingManager
-        self.rubbishManager = rubbishManager
         self.petrolManager = petrolManager
         self.appearance = OnboardingManager.makeAppearance()
         
@@ -229,8 +230,7 @@ class OnboardingManager {
         let page = RubbishStreetPickerItem(
             title: String.localized("RubbishCollectionPageTitle"),
             locationManager: locationManager,
-            geocodingManager: geocodingManager,
-            rubbishManager: rubbishManager
+            geocodingManager: geocodingManager
         )
         
         page.appearance = appearance
@@ -241,26 +241,27 @@ class OnboardingManager {
         
         page.isDismissable = false
         
-        page.actionHandler = { item in
+        page.actionHandler = { [weak self] item in
             
             guard let item = item as? RubbishStreetPickerItem else { return }
             
-            RubbishManager.shared.register(item.selectedStreet)
-            RubbishManager.shared.isEnabled = true
+            self?.rubbishService.register(item.selectedStreet)
+            self?.rubbishService.isEnabled = true
             
-            page.next = self.makeRubbishReminderPage()
+            page.next = self?.makeRubbishReminderPage()
             
             item.manager?.displayNextItem()
             
         }
         
-        page.alternativeHandler = { item in
+        page.alternativeHandler = { [weak self] item in
             
-            RubbishManager.shared.remindersEnabled = false
-            RubbishManager.shared.disableReminder()
+            self?.rubbishService.remindersEnabled = false
+            self?.rubbishService.disableReminder()
             
-            page.next = self.makeCompletionPage()
+            page.next = self?.makeCompletionPage()
             item.manager?.displayNextItem()
+            
         }
         
         return page
@@ -282,7 +283,10 @@ class OnboardingManager {
             let hour = Calendar.current.component(.hour, from: page.picker.date)
             let minutes = Calendar.current.component(.minute, from: page.picker.date)
             
-            RubbishManager.shared.registerNotifications(at: hour, minute: minutes)
+            if let rubbishSerivce: RubbishService? = Resolver.optional() {
+                rubbishSerivce?.registerNotifications(at: hour, minute: minutes)
+            }
+            
             AnalyticsManager.shared.logEnabledRubbishReminder(hour)
             
             page.next = self.makeCompletionPage()

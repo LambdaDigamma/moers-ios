@@ -18,9 +18,9 @@ struct RubbishWidget: Widget {
         StaticConfiguration(
             kind: kind,
             provider: RubbishCollectionProvider()
-        ) { (entry: TimelineEntry) in
+        ) { (entry: RubbishCollectionEntry) in
             
-            RubbishCollectionWrapperView()
+            RubbishCollectionWrapperView(items: entry.rubbishPickupItems)
             
         }
         .configurationDisplayName(WidgetStrings.RubbishCollection.widgetTitle)

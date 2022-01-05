@@ -8,17 +8,18 @@
 
 import Foundation
 import WidgetKit
+import RubbishFeature
 
 class RubbishCollectionProvider: TimelineProvider {
     
     typealias Entry = RubbishCollectionEntry
     
     func placeholder(in context: Context) -> RubbishCollectionEntry {
-        return RubbishCollectionEntry(date: Date())
+        return placeholderEntry()
     }
     
     func getSnapshot(in context: Context, completion: @escaping (RubbishCollectionEntry) -> Void) {
-        completion(RubbishCollectionEntry(date: Date()))
+        completion(placeholderEntry())
     }
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<RubbishCollectionEntry>) -> Void) {
@@ -26,8 +27,20 @@ class RubbishCollectionProvider: TimelineProvider {
         let currentDate = Date()
         let refreshDate = Calendar.current.date(byAdding: .minute, value: 5, to: currentDate)!
         
-        let timeline = Timeline(entries: [RubbishCollectionEntry(date: currentDate)], policy: .after(refreshDate))
+        let placeholder = placeholderEntry()
+        
+        let timeline = Timeline(entries: [placeholder], policy: .after(refreshDate))
         completion(timeline)
+        
+    }
+    
+    func placeholderEntry() -> RubbishCollectionEntry {
+        
+        return RubbishCollectionEntry(
+            date: Date(),
+            streetName: "Musterstraße",
+            rubbishPickupItems: RubbishPickupItem.placeholder
+        )
         
     }
     

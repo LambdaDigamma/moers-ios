@@ -16,7 +16,6 @@ import DashboardFeature
 class DashboardCoordinator: Coordinator {
     
     var navigationController: CoordinatedNavigationController
-    var rubbishManager: RubbishManagerProtocol
     var petrolManager: PetrolManagerProtocol
     var locationManager: LocationManagerProtocol
     var geocodingManager: GeocodingManagerProtocol
@@ -26,13 +25,11 @@ class DashboardCoordinator: Coordinator {
     init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
         locationManager: LocationManagerProtocol,
-        rubbishManager: RubbishManagerProtocol,
         geocodingManager: GeocodingManagerProtocol,
         petrolManager: PetrolManagerProtocol
     ) {
         
         self.navigationController = navigationController
-        self.rubbishManager = rubbishManager
         self.petrolManager = petrolManager
         self.locationManager = locationManager
         self.geocodingManager = geocodingManager

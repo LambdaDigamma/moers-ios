@@ -18,13 +18,23 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(name: "MMCommon", url: "https://github.com/lambdadigamma/mmcommon-ios", .branch("master")),
-        .package(name: "ModernNetworking", url: "https://github.com/lambdadigamma/modernnetworking", .branch("main"))
+        .package(name: "Core", path: "./Core"),
+        .package(url: "https://github.com/hmlongco/Resolver", from: "1.1.4"),
+        .package(
+            name: "MMCommon",
+            url: "https://github.com/lambdadigamma/mmcommon-ios",
+            .branch("master")
+        ),
+        .package(
+            name: "ModernNetworking",
+            url: "https://github.com/lambdadigamma/modernnetworking",
+            .branch("main")
+        )
     ],
     targets: [
         .target(
             name: "RubbishFeature",
-            dependencies: ["MMCommon", "ModernNetworking"]
+            dependencies: ["Core", "MMCommon", "Resolver", "ModernNetworking"]
         ),
         .testTarget(
             name: "RubbishFeatureTests",

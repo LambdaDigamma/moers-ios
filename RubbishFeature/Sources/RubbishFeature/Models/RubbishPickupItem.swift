@@ -25,4 +25,26 @@ public struct RubbishPickupItem: Model, Codable, Identifiable {
         case type
     }
     
+    public static var placeholder: [RubbishPickupItem] = [
+        RubbishPickupItem(date: Date(), type: .organic),
+        RubbishPickupItem(date: Date(), type: .paper),
+        RubbishPickupItem(date: Date(timeIntervalSinceNow: 1 * 24 * 60 * 60), type: .plastic),
+        RubbishPickupItem(date: Date(timeIntervalSinceNow: 2 * 24 * 60 * 60), type: .residual),
+    ]
+    
+    public static var decoder: JSONDecoder {
+        
+        let decoder = JSONDecoder()
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = TimeZone(abbreviation: "Europe/Berlin")
+        
+        decoder.keyDecodingStrategy = .useDefaultKeys
+        decoder.dateDecodingStrategy = .formatted(formatter)
+        
+        return decoder
+        
+    }
+    
 }

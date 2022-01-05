@@ -14,9 +14,4 @@ public enum AppStrings {
         public static let okay = "Okay"
     }
     
-    public enum Waste {
-        public static let errorMessage = String.localized("WasteErrorMessage")
-        public static let loadingFailed = "Das Laden des Abfallkalenders ist konnte nicht abgeschlossen werden."
-    }
-    
 }

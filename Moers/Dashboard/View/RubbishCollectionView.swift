@@ -8,8 +8,8 @@
 
 import UIKit
 import Gestalt
-import MMAPI
 import MMUI
+import RubbishFeature
 
 class RubbishCollectionView: UIView {
 
@@ -28,11 +28,11 @@ class RubbishCollectionView: UIView {
             typeLabel.text = RubbishWasteType.localizedForCase(item.type)
             
             switch item.type {
-            case .cuttings: imageView.image = #imageLiteral(resourceName: "greenWaste")
-            case .paper: imageView.image = #imageLiteral(resourceName: "paperWaste")
-            case .plastic: imageView.image = #imageLiteral(resourceName: "yellowWaste")
-            case .residual: imageView.image = #imageLiteral(resourceName: "residualWaste")
-            case .organic: imageView.image = #imageLiteral(resourceName: "greenWaste")
+                case .cuttings: imageView.image = #imageLiteral(resourceName: "greenWaste")
+                case .paper: imageView.image = #imageLiteral(resourceName: "paperWaste")
+                case .plastic: imageView.image = #imageLiteral(resourceName: "yellowWaste")
+                case .residual: imageView.image = #imageLiteral(resourceName: "residualWaste")
+                case .organic: imageView.image = #imageLiteral(resourceName: "greenWaste")
             }
             
             self.setupAccessibility()

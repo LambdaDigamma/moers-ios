@@ -11,10 +11,10 @@ import ModernNetworking
 
 public struct RubbishDashboardPanel: View {
     
-    public var items: UIResource<[RubbishPickupItem]>
+    @ObservedObject private var viewModel: RubbishDashboardViewModel
     
-    public init(items: UIResource<[RubbishPickupItem]> = .loading) {
-        self.items = items
+    public init(viewModel: RubbishDashboardViewModel) {
+        self.viewModel = viewModel
     }
     
     public var body: some View {
@@ -23,11 +23,11 @@ public struct RubbishDashboardPanel: View {
             
             VStack(alignment: .leading, spacing: 0) {
                 
-                items.isLoading {
+                viewModel.state.isLoading {
                     loading()
                 }
                 
-                items.hasResource { (items) in
+                viewModel.state.hasResource { (items) in
                     
                     HStack {
                         Text(PackageStrings.Waste.dashboardTitle)
@@ -44,7 +44,7 @@ public struct RubbishDashboardPanel: View {
                     if !items.isEmpty {
                         
                         VStack(alignment: .leading, spacing: 4) {
-                            ForEach(items, id: \.id) { (item) in
+                            ForEach(Array(items.prefix(3)), id: \.id) { (item) in
                                 
                                 RubbishPickupRow(item: item)
                                     .padding(.vertical, 4)
@@ -62,33 +62,38 @@ public struct RubbishDashboardPanel: View {
                         
                     }
                     
-                    Divider()
-                    
-                    Text("\(Image(systemName: "signpost.right.fill"))  Adlerstraße")
-                        .font(.caption2.weight(.medium))
-                        .foregroundColor(.secondary)
-                        .padding(.horizontal)
-                        .padding(.vertical, 12)
+//                    Divider()
+//
+//                    Text("\(Image(systemName: "signpost.right.fill"))  Adlerstraße")
+//                        .font(.caption2.weight(.medium))
+//                        .foregroundColor(.secondary)
+//                        .padding(.horizontal)
+//                        .padding(.vertical, 12)
                     
                 }
                 
-                items.hasError { error in
+                viewModel.state.hasError { (error: RubbishLoadingError) in
                     
-                    if let error = error as? RubbishDisplayError {
-                        if error == .wasteScheduleDeactivated {
-                            VStack {
-                                Text(error.localizedDescription)
-                                    .fontWeight(.semibold)
-                                    .font(.callout)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            }.padding()
-                        }
+                    VStack(alignment: .leading, spacing: 8) {
+                        
+                        Text(error.title)
+                            .fontWeight(.semibold)
+                            .font(.callout)
+                        
+                        Text(error.text)
+                            .font(.subheadline)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
                     }
+                    .padding()
                     
                 }
                 
             }
             
+        }
+        .onAppear {
+            viewModel.load()
         }
         
     }
@@ -148,37 +153,57 @@ struct PetrolDashboardView_Previews: PreviewProvider {
             )
         ]
         
+        let service = StaticRubbishService()
+        
         return Group {
             
-            RubbishDashboardPanel()
+            RubbishDashboardPanel(viewModel: RubbishDashboardViewModel(
+                rubbishService: service,
+                initialState: .loading
+            ))
                 .environment(\.locale, .init(identifier: "de"))
                 .padding()
                 .previewLayout(.sizeThatFits)
             
-            RubbishDashboardPanel()
-                .environment(\.locale, .init(identifier: "de"))
-                .padding()
-                .preferredColorScheme(.dark)
-                .previewLayout(.sizeThatFits)
-            
-            RubbishDashboardPanel(items: .success(items))
-                .environment(\.locale, .init(identifier: "de"))
-                .padding()
-                .preferredColorScheme(.dark)
-                .previewLayout(.sizeThatFits)
-            
-            RubbishDashboardPanel(items: .success([]))
+            RubbishDashboardPanel(viewModel: RubbishDashboardViewModel(
+                rubbishService: service,
+                initialState: .loading
+            ))
                 .environment(\.locale, .init(identifier: "de"))
                 .padding()
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)
             
-            RubbishDashboardPanel(items: .success(items))
+            RubbishDashboardPanel(viewModel: RubbishDashboardViewModel(
+                rubbishService: service,
+                initialState: .success(items)
+            ))
+                .environment(\.locale, .init(identifier: "de"))
+                .padding()
+                .preferredColorScheme(.dark)
+                .previewLayout(.sizeThatFits)
+            
+            RubbishDashboardPanel(viewModel: RubbishDashboardViewModel(
+                rubbishService: service,
+                initialState: .success([])
+            ))
+                .environment(\.locale, .init(identifier: "de"))
+                .padding()
+                .preferredColorScheme(.dark)
+                .previewLayout(.sizeThatFits)
+            
+            RubbishDashboardPanel(viewModel: RubbishDashboardViewModel(
+                rubbishService: service,
+                initialState: .success(items)
+            ))
                 .environment(\.locale, .init(identifier: "de"))
                 .padding()
                 .previewLayout(.sizeThatFits)
             
-            RubbishDashboardPanel(items: .error(RubbishDisplayError.wasteScheduleDeactivated))
+            RubbishDashboardPanel(viewModel: RubbishDashboardViewModel(
+                rubbishService: service,
+                initialState: .error(.deactivated)
+            ))
                 .padding()
                 .environment(\.locale, .init(identifier: "de"))
                 .previewLayout(.sizeThatFits)

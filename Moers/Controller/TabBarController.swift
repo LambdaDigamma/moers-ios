@@ -14,9 +14,13 @@ import MMUI
 import MMEvents
 import CoreLocation
 import Combine
+import Resolver
+import RubbishFeature
 
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
+    @LazyInjected var rubbishService: RubbishService
+    
     var firstLaunch: FirstLaunch
     
     let dashboard: DashboardCoordinator
@@ -32,7 +36,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     let entryManager: EntryManagerProtocol
     let parkingLotManager: ParkingLotManagerProtocol
     var petrolManager: PetrolManagerProtocol
-    var rubbishManager: RubbishManagerProtocol
     let eventService: EventServiceProtocol
     
     private var cancellables = Set<AnyCancellable>()
@@ -41,7 +44,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         return OnboardingManager(
             locationManager: locationManager,
             geocodingManager: geocodingManager,
-            rubbishManager: rubbishManager,
             petrolManager: petrolManager
         )
     }()
@@ -59,7 +61,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     init(
         locationManager: LocationManagerProtocol,
         petrolManager: PetrolManagerProtocol,
-        rubbishManager: RubbishManagerProtocol,
         geocodingManager: GeocodingManagerProtocol,
         cameraManager: CameraManagerProtocol,
         entryManager: EntryManagerProtocol,
@@ -70,7 +71,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         self.firstLaunch = FirstLaunch(userDefaults: .standard, key: Constants.firstLaunch)
         self.locationManager = locationManager
         self.petrolManager = petrolManager
-        self.rubbishManager = rubbishManager
         self.geocodingManager = geocodingManager
         self.cameraManager = cameraManager
         self.entryManager = entryManager
@@ -79,7 +79,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
         self.dashboard = DashboardCoordinator(
             locationManager: locationManager,
-            rubbishManager: rubbishManager,
             geocodingManager: geocodingManager,
             petrolManager: petrolManager
         )
@@ -99,7 +98,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         self.other = OtherCoordinator(
             locationManager: locationManager,
             geocodingManager: geocodingManager,
-            rubbishManager: rubbishManager,
             petrolManager: petrolManager,
             entryManager: entryManager
         )
@@ -216,35 +214,39 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let page = onboardingManager.makeRubbishStreetPage()
         page.descriptionText = "Wähle Deine Straße erneut aus, um die aktuellen Abfuhrtermine der Müllabfuhr angezeigt zu bekommen."
         
-        page.actionHandler = { item in
+        page.actionHandler = { [weak self] item in
             
             guard let item = item as? RubbishStreetPickerItem else { return }
             
-            RubbishManager.shared.register(item.selectedStreet)
-            RubbishManager.shared.isEnabled = true
-            
-            if RubbishManager.shared.remindersEnabled {
-                RubbishManager.shared.registerNotifications(
-                    at: RubbishManager.shared.reminderHour ?? 20,
-                    minute: RubbishManager.shared.reminderHour ?? 00
-                )
+            if var rubbishService = self?.rubbishService {
+                
+                rubbishService.register(item.selectedStreet)
+                rubbishService.isEnabled = true
+                
+                if rubbishService.remindersEnabled {
+                    rubbishService.registerNotifications(
+                        at: rubbishService.reminderHour ?? 20,
+                        minute: rubbishService.reminderHour ?? 00
+                    )
+                }
+                
             }
             
             item.manager?.dismissBulletin(animated: true)
             
-            self.updateDashboard()
+            self?.updateDashboard()
             
         }
         
-        page.alternativeHandler = { item in
+        page.alternativeHandler = { [weak self] item in
             
-            RubbishManager.shared.isEnabled = false
-            RubbishManager.shared.remindersEnabled = false
-            RubbishManager.shared.disableReminder()
+            self?.rubbishService.isEnabled = false
+            self?.rubbishService.remindersEnabled = false
+            self?.rubbishService.disableReminder()
             
             item.manager?.dismissBulletin(animated: true)
             
-            self.updateDashboard()
+            self?.updateDashboard()
             
         }
         
@@ -267,38 +269,43 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     private func loadRubbishData() {
         
-//        RubbishManager.shared.street = "Adler"
-//        RubbishManager.shared.setupBadSetup()
+        let rubbishService: RubbishService? = Resolver.optional()
         
-        if RubbishManager.shared.isEnabled && !firstLaunch.isFirstLaunch &&
+        guard let rubbishService = rubbishService else {
+            return
+        }
+
+        if rubbishService.isEnabled &&
+            !firstLaunch.isFirstLaunch &&
             onboardingManager.userDidCompleteSetup &&
-            (RubbishManager.shared.street ?? "") != "" {
+            rubbishService.rubbishStreet != nil {
             
-            let streets = RubbishManager.shared.loadRubbishCollectionStreets()
-            
-            streets
+            rubbishService.loadRubbishCollectionStreets()
                 .receive(on: DispatchQueue.main)
-                .sink { (_: Subscribers.Completion<Error>) in
+                .sink { (completion: Subscribers.Completion<Error>) in
                     
-                } receiveValue: { (streets: [RubbishCollectionStreet]) in
+                } receiveValue: { (streets: [RubbishFeature.RubbishCollectionStreet]) in
                     
-                    let currentStreetName = RubbishManager.shared.rubbishStreet?.street ?? ""
-                    let currentStreetAddition = RubbishManager.shared.rubbishStreet?.streetAddition ?? ""
+                    let currentStreetName = rubbishService.rubbishStreet?.street ?? ""
+                    let currentStreetAddition = rubbishService.rubbishStreet?.streetAddition ?? ""
                     
-                    if let filteredStreet = streets.filter({ $0.street == currentStreetName && $0.streetAddition == currentStreetAddition }).first {
+                    if let filteredStreet = streets.filter({
+                        $0.street == currentStreetName &&
+                        $0.streetAddition == currentStreetAddition
+                    }).first {
                         
-                        RubbishManager.shared.register(filteredStreet)
+                        rubbishService.register(filteredStreet)
                         
-                        if RubbishManager.shared.remindersEnabled {
-                            RubbishManager.shared.registerNotifications(
-                                at: RubbishManager.shared.reminderHour ?? 20,
-                                minute: RubbishManager.shared.reminderMinute ?? 00
+                        if rubbishService.remindersEnabled {
+                            rubbishService.registerNotifications(
+                                at: rubbishService.reminderHour ?? 20,
+                                minute: rubbishService.reminderMinute ?? 00
                             )
                         }
                         
                     } else {
                         
-                        RubbishManager.shared.disableStreet()
+                        rubbishService.disableStreet()
                         
                         self.rubbishMigrationManager.backgroundViewStyle = .dimmed
                         self.rubbishMigrationManager.statusBarAppearance = .hidden
@@ -321,7 +328,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     private func setupMocked() {
         
-        let rubbishCollectionStreet = RubbishCollectionStreet(
+        let rubbishCollectionStreet = RubbishFeature.RubbishCollectionStreet(
             id: 2,
             street: "Adlerstraße",
             streetAddition: nil,
@@ -336,8 +343,8 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
         UserManager.shared.register(User(type: .citizen, id: nil, name: nil, description: nil))
         petrolManager.petrolType = .diesel
-        rubbishManager.isEnabled = true
-        rubbishManager.register(rubbishCollectionStreet)
+        rubbishService.isEnabled = true
+        rubbishService.register(rubbishCollectionStreet)
         
     }
     

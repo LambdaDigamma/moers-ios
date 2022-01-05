@@ -14,8 +14,12 @@ import MapKit
 import Intents
 import MMAPI
 import MMUI
+import Resolver
+import RubbishFeature
 
 class DashboardViewController: CardCollectionViewController {
+    
+    @LazyInjected var rubbishService: RubbishService
     
     public var coordinator: DashboardCoordinator?
     
@@ -24,13 +28,11 @@ class DashboardViewController: CardCollectionViewController {
     private let locationManager: LocationManagerProtocol
     private let geocodingManager: GeocodingManagerProtocol
     private let petrolManager: PetrolManagerProtocol
-    private let rubbishManager: RubbishManagerProtocol
     
     init(coordinator: DashboardCoordinator) {
         self.geocodingManager = coordinator.geocodingManager
         self.locationManager = coordinator.locationManager
         self.petrolManager = coordinator.petrolManager
-        self.rubbishManager = coordinator.rubbishManager
         self.coordinator = coordinator
         
         super.init(nibName: nil, bundle: nil)
@@ -39,14 +41,12 @@ class DashboardViewController: CardCollectionViewController {
     init(
         locationManager: LocationManagerProtocol,
         geocodingManager: GeocodingManagerProtocol,
-        petrolManager: PetrolManagerProtocol,
-        rubbishManager: RubbishManagerProtocol
+        petrolManager: PetrolManagerProtocol
     ) {
     
         self.locationManager = locationManager
         self.geocodingManager = geocodingManager
         self.petrolManager = petrolManager
-        self.rubbishManager = rubbishManager
         
         super.init(nibName: nil, bundle: nil)
         
@@ -95,10 +95,12 @@ class DashboardViewController: CardCollectionViewController {
     
     private func registerComponents() {
   
-        let petrolPriceComponent = AveragePetrolPriceComponent(viewController: self,
-                                                               locationManager: locationManager,
-                                                               geocodingManager: geocodingManager,
-                                                               petrolManager: petrolManager)
+        let petrolPriceComponent = AveragePetrolPriceComponent(
+            viewController: self,
+            locationManager: locationManager,
+            geocodingManager: geocodingManager,
+            petrolManager: petrolManager
+        )
         
         components.append(petrolPriceComponent)
         
@@ -152,7 +154,7 @@ class DashboardViewController: CardCollectionViewController {
     
     private func setupIntents() {
         
-        if RubbishManager.shared.isEnabled && RubbishManager.shared.rubbishStreet != nil {
+        if rubbishService.isEnabled && rubbishService.rubbishStreet != nil {
             
             let activity = UserManager.shared.nextRubbishActivity()
             

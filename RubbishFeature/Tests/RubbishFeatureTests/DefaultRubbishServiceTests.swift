@@ -8,25 +8,31 @@
 import XCTest
 import UserNotifications
 import MMCommon
+import ModernNetworking
 
 @testable import RubbishFeature
 
 final class DefaultRubbishServiceTests: XCTestCase {
 
-    var rubbishManager: DefaultRubbishService!
+    var rubbishService: DefaultRubbishService!
     var mockNotificationCenter = MockNotificationCenter()
 
     override func setUp() {
         super.setUp()
         
-        rubbishManager = DefaultRubbishService(notificationCenter: mockNotificationCenter)
+        let mockLoader = MockLoader()
+        
+        rubbishService = DefaultRubbishService(
+            loader: mockLoader,
+            notificationCenter: mockNotificationCenter
+        )
 
     }
 
     override func tearDown() {
         super.tearDown()
 
-        rubbishManager = nil
+        rubbishService = nil
 
     }
 
@@ -34,9 +40,9 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
         let isEnabled = true
 
-        rubbishManager.isEnabled = isEnabled
+        rubbishService.isEnabled = isEnabled
 
-        XCTAssertEqual(rubbishManager.isEnabled, isEnabled)
+        XCTAssertEqual(rubbishService.isEnabled, isEnabled)
 
     }
 
@@ -44,9 +50,9 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
         let reminderHour = 16
 
-        rubbishManager.reminderHour = reminderHour
+        rubbishService.reminderHour = reminderHour
 
-        XCTAssertEqual(rubbishManager.reminderHour, reminderHour)
+        XCTAssertEqual(rubbishService.reminderHour, reminderHour)
 
     }
 
@@ -54,109 +60,109 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
         let reminderMinute = 15
 
-        rubbishManager.reminderHour = reminderMinute
+        rubbishService.reminderHour = reminderMinute
 
-        XCTAssertEqual(rubbishManager.reminderHour, reminderMinute)
+        XCTAssertEqual(rubbishService.reminderHour, reminderMinute)
 
     }
 
     func testStoreReminderEnabled() {
 
-        rubbishManager.remindersEnabled = true
+        rubbishService.remindersEnabled = true
 
-        XCTAssertTrue(rubbishManager.remindersEnabled)
+        XCTAssertTrue(rubbishService.remindersEnabled)
 
-        rubbishManager.remindersEnabled = false
+        rubbishService.remindersEnabled = false
 
-        XCTAssertFalse(rubbishManager.remindersEnabled)
+        XCTAssertFalse(rubbishService.remindersEnabled)
 
     }
 
     func testStoreStreet() {
 
-        rubbishManager.street = "Adlerstraße"
+        rubbishService.street = "Adlerstraße"
 
-        XCTAssertEqual(rubbishManager.street, "Adlerstraße")
+        XCTAssertEqual(rubbishService.street, "Adlerstraße")
 
     }
 
     func testStoreResidualWaste() {
 
-        rubbishManager.residualWaste = 3
+        rubbishService.residualWaste = 3
 
-        XCTAssertEqual(rubbishManager.residualWaste, 3)
+        XCTAssertEqual(rubbishService.residualWaste, 3)
 
     }
 
     func testStoreResidualWasteNil() {
 
-        rubbishManager.residualWaste = nil
+        rubbishService.residualWaste = nil
 
-        XCTAssertNil(rubbishManager.residualWaste)
+        XCTAssertNil(rubbishService.residualWaste)
 
     }
 
     func testStoreOrganicWaste() {
 
-        rubbishManager.organicWaste = 3
+        rubbishService.organicWaste = 3
 
-        XCTAssertEqual(rubbishManager.organicWaste, 3)
+        XCTAssertEqual(rubbishService.organicWaste, 3)
 
     }
 
     func testStoreOrganicWasteNil() {
 
-        rubbishManager.organicWaste = nil
+        rubbishService.organicWaste = nil
 
-        XCTAssertNil(rubbishManager.organicWaste)
+        XCTAssertNil(rubbishService.organicWaste)
 
     }
 
     func testStorePaperWaste() {
 
-        rubbishManager.paperWaste = 3
+        rubbishService.paperWaste = 3
 
-        XCTAssertEqual(rubbishManager.paperWaste, 3)
+        XCTAssertEqual(rubbishService.paperWaste, 3)
 
     }
 
     func testStorePaperWasteNil() {
 
-        rubbishManager.paperWaste = nil
+        rubbishService.paperWaste = nil
 
-        XCTAssertNil(rubbishManager.paperWaste)
+        XCTAssertNil(rubbishService.paperWaste)
 
     }
 
     func testStoreYellowWaste() {
 
-        rubbishManager.yellowBag = 3
+        rubbishService.yellowBag = 3
 
-        XCTAssertEqual(rubbishManager.yellowBag, 3)
+        XCTAssertEqual(rubbishService.yellowBag, 3)
 
     }
 
     func testStoreYellowWasteNil() {
 
-        rubbishManager.yellowBag = nil
+        rubbishService.yellowBag = nil
 
-        XCTAssertNil(rubbishManager.yellowBag)
+        XCTAssertNil(rubbishService.yellowBag)
 
     }
 
     func testStoreGreenWaste() {
 
-        rubbishManager.greenWaste = 3
+        rubbishService.greenWaste = 3
 
-        XCTAssertEqual(rubbishManager.greenWaste, 3)
+        XCTAssertEqual(rubbishService.greenWaste, 3)
 
     }
 
     func testStoreGreenWasteNil() {
 
-        rubbishManager.greenWaste = nil
+        rubbishService.greenWaste = nil
 
-        XCTAssertNil(rubbishManager.greenWaste)
+        XCTAssertNil(rubbishService.greenWaste)
 
     }
 
@@ -164,22 +170,22 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
         mockNotificationCenter.removeAllExpectation = expectation(description: "All Notification Requests should've been removed")
 
-        rubbishManager.disableReminder()
+        rubbishService.disableReminder()
 
-        XCTAssertEqual(rubbishManager.remindersEnabled, false)
-        XCTAssertEqual(rubbishManager.reminderHour, 20)
-        XCTAssertEqual(rubbishManager.reminderMinute, 0)
+        XCTAssertEqual(rubbishService.remindersEnabled, false)
+        XCTAssertEqual(rubbishService.reminderHour, 20)
+        XCTAssertEqual(rubbishService.reminderMinute, 0)
         waitForExpectations(timeout: 1)
 
     }
 
     func testRegisterNotifications() {
 
-        rubbishManager.registerNotifications(at: 10, minute: 15)
+        rubbishService.registerNotifications(at: 10, minute: 15)
 
-        XCTAssertEqual(rubbishManager.reminderHour, 10)
-        XCTAssertEqual(rubbishManager.reminderMinute, 15)
-        XCTAssertTrue(rubbishManager.remindersEnabled)
+        XCTAssertEqual(rubbishService.reminderHour, 10)
+        XCTAssertEqual(rubbishService.reminderMinute, 15)
+        XCTAssertTrue(rubbishService.remindersEnabled)
 
         // TODO: Mock Schedules and Check for Success
 
@@ -199,14 +205,14 @@ final class DefaultRubbishServiceTests: XCTestCase {
             sweeperDay: "Montag"
         )
 
-        rubbishManager.register(street)
+        rubbishService.register(street)
 
-        XCTAssertEqual(rubbishManager.street, "Teststraße")
-        XCTAssertEqual(rubbishManager.residualWaste, 2)
-        XCTAssertEqual(rubbishManager.organicWaste, 5)
-        XCTAssertEqual(rubbishManager.paperWaste, 4)
-        XCTAssertEqual(rubbishManager.yellowBag, 9)
-        XCTAssertEqual(rubbishManager.greenWaste, 6)
+        XCTAssertEqual(rubbishService.street, "Teststraße")
+        XCTAssertEqual(rubbishService.residualWaste, 2)
+        XCTAssertEqual(rubbishService.organicWaste, 5)
+        XCTAssertEqual(rubbishService.paperWaste, 4)
+        XCTAssertEqual(rubbishService.yellowBag, 9)
+        XCTAssertEqual(rubbishService.greenWaste, 6)
 
     }
 
@@ -223,9 +229,9 @@ final class DefaultRubbishServiceTests: XCTestCase {
             sweeperDay: "Montag"
         )
 
-        rubbishManager.register(street)
+        rubbishService.register(street)
 
-        let loadedStreet = rubbishManager.rubbishStreet
+        let loadedStreet = rubbishService.rubbishStreet
 
         XCTAssertEqual(loadedStreet, street)
 

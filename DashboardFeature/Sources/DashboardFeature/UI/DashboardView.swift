@@ -9,6 +9,7 @@
 import SwiftUI
 import RubbishFeature
 import FuelFeature
+import Resolver
 
 public struct DashboardView: View {
     
@@ -32,7 +33,6 @@ public struct DashboardView: View {
             .padding()
             
         }
-        
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button(action: {}) {
@@ -56,11 +56,16 @@ public struct DashboardView: View {
         
         if item is RubbishDashboardConfiguration {
             
-            RubbishDashboardPanel(items: .success([
-                RubbishPickupItem(date: Date(timeIntervalSinceNow: 1 * 24 * 60 * 60), type: .organic),
-                RubbishPickupItem(date: Date(timeIntervalSinceNow: 2 * 24 * 60 * 60), type: .residual),
-                RubbishPickupItem(date: Date(timeIntervalSinceNow: 3 * 24 * 60 * 60), type: .paper),
-            ]))
+//            let service = StaticRubbishService()
+            let viewModel = RubbishDashboardViewModel(
+                initialState: .success([
+                    RubbishPickupItem(date: Date(timeIntervalSinceNow: 1 * 24 * 60 * 60), type: .organic),
+                    RubbishPickupItem(date: Date(timeIntervalSinceNow: 2 * 24 * 60 * 60), type: .residual),
+                    RubbishPickupItem(date: Date(timeIntervalSinceNow: 3 * 24 * 60 * 60), type: .paper),
+                ])
+            )
+            
+            RubbishDashboardPanel(viewModel: viewModel)
             
         } else if item is PetrolDashboardConfiguration {
             

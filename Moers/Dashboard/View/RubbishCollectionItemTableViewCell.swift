@@ -8,8 +8,8 @@
 
 import UIKit
 import Gestalt
-import MMAPI
 import MMUI
+import RubbishFeature
 
 class RubbishCollectionItemTableViewCell: UITableViewCell {
 
@@ -47,10 +47,12 @@ class RubbishCollectionItemTableViewCell: UITableViewCell {
         
         let margins = contentView.layoutMarginsGuide
         
-        let constraints = [rubbishCollectionView.topAnchor.constraint(equalTo: margins.topAnchor, constant: -8),
-                           rubbishCollectionView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 0),
-                           rubbishCollectionView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -0),
-                           rubbishCollectionView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 8)]
+        let constraints = [
+            rubbishCollectionView.topAnchor.constraint(equalTo: margins.topAnchor, constant: -8),
+            rubbishCollectionView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 0),
+            rubbishCollectionView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -0),
+            rubbishCollectionView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 8)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         

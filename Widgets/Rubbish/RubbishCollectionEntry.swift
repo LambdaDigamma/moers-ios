@@ -8,11 +8,22 @@
 
 import Foundation
 import WidgetKit
-import EFAAPI
+import RubbishFeature
 
-struct RubbishCollectionEntry: TimelineEntry {
+public struct RubbishCollectionEntry: TimelineEntry {
     
-    var date: Date
-    var name: String = ""
+    public var date: Date
+    public var streetName: String = ""
+    public var rubbishPickupItems: [RubbishPickupItem]
+    
+    public init(
+        date: Date,
+        streetName: String = "",
+        rubbishPickupItems: [RubbishPickupItem]
+    ) {
+        self.date = date
+        self.streetName = streetName
+        self.rubbishPickupItems = rubbishPickupItems
+    }
     
 }

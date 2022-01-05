@@ -7,10 +7,14 @@
 //
 
 import UIKit
-import MMAPI
+//import MMAPI
 import Combine
+import Resolver
+import RubbishFeature
 
 class RubbishCollectionComponent: BaseComponent {
+    
+    @LazyInjected var rubbishService: RubbishService
     
     var rubbishItems: [RubbishPickupItem] = []
     private var cancellables = Set<AnyCancellable>()
@@ -41,10 +45,10 @@ class RubbishCollectionComponent: BaseComponent {
         
         self.reloadUI()
         
-        if rubbishItems.isEmpty && RubbishManager.shared.isEnabled {
+        if rubbishItems.isEmpty && rubbishService.isEnabled {
             self.rubbishCardView.dismissError()
             self.loadRubbishData()
-        } else if !RubbishManager.shared.isEnabled {
+        } else if !rubbishService.isEnabled {
             self.showRubbishCollectionDeactivated()
         }
         
@@ -86,16 +90,16 @@ class RubbishCollectionComponent: BaseComponent {
     
     private func loadRubbishData() {
         
-        if RubbishManager.shared.isEnabled {
+        if rubbishService.isEnabled {
             
-            guard let street = RubbishManager.shared.rubbishStreet else {
+            guard let street = rubbishService.rubbishStreet else {
                 return
             }
             
-            let pickupItems = RubbishManager.shared.loadRubbishPickupItems(for: street)
+            let pickupItems = rubbishService.loadRubbishPickupItems(for: street)
             
             pickupItems.receive(on: DispatchQueue.main)
-                .sink { (_: Subscribers.Completion<Error>) in
+                .sink { (_: Subscribers.Completion<RubbishLoadingError>) in
                     
                 } receiveValue: { (items: [RubbishPickupItem]) in
                     

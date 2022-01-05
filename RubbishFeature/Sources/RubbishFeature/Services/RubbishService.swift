@@ -17,11 +17,19 @@ public protocol RubbishService {
     var reminderMinute: Int? { get }
     
     func register(_ street: RubbishCollectionStreet)
+    
     func loadRubbishCollectionStreets() -> AnyPublisher<[RubbishCollectionStreet], Error>
-    func loadRubbishPickupItems(for street: RubbishCollectionStreet) -> AnyPublisher<[RubbishPickupItem], Error>
+    
+    func loadRubbishPickupItems(
+        for street: RubbishCollectionStreet
+    ) -> AnyPublisher<[RubbishPickupItem], RubbishLoadingError>
+    
     func registerNotifications(at hour: Int, minute: Int)
+    
     func invalidateRubbishReminderNotifications()
+    
     func disableReminder()
+    
     func disableStreet()
     
 }

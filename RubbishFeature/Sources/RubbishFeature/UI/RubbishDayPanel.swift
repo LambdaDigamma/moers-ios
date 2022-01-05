@@ -9,6 +9,8 @@ import SwiftUI
 
 public struct RubbishDayPanel: View {
     
+    @Environment(\.colorScheme) private var colorScheme
+    
     private let date: String
     private let items: [RubbishPickupItem]
     
@@ -26,7 +28,6 @@ public struct RubbishDayPanel: View {
                 .padding(8)
             
             Divider()
-//                .background(Color.yellow)
             
             VStack(spacing: 4) {
                 
@@ -35,26 +36,13 @@ public struct RubbishDayPanel: View {
                 }
                 
             }
-            .padding(.bottom, 8)
+            .padding(.bottom, 4)
             .padding(.top, 8)
             
         }
         .frame(maxHeight: .infinity, alignment: .top)
         .background(Color(UIColor.secondarySystemBackground).opacity(0.5))
         .cornerRadius(8)
-//        .background(Color(UIColor.systemBackground))
-        
-    }
-    
-    @ViewBuilder
-    private func wasteBanner(text: String, backgroundColor: Color, foregroundColor: Color) -> some View {
-        
-        Text(text)
-            .font(.footnote.weight(.semibold))
-            .padding(4)
-            .foregroundColor(foregroundColor)
-            .frame(maxWidth: .infinity, alignment: .center)
-            .background(backgroundColor)
         
     }
     
@@ -67,21 +55,45 @@ public struct RubbishDayPanel: View {
             .font(.footnote.weight(.semibold))
             .padding(4)
             .padding(.leading, 12)
-            .foregroundColor(.white)
+            .foregroundColor(colorScheme == .light ? .black : .white)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(ZStack(alignment: .leading) {
                 Rectangle()
                     .fill(wasteType.backgroundColor)
                     .frame(width: 4, height: .infinity, alignment: .leading)
             }.frame(maxWidth: .infinity, alignment: .leading))
-            .background(wasteType.backgroundColor.opacity(0.15))
+            .background(
+                wasteType.backgroundColor.opacity(
+                    colorScheme == .light ? 0.25 : 0.15
+                )
+            )
         
     }
     
 }
 
 struct RubbishDayPanel_Previews: PreviewProvider {
+    
     static var previews: some View {
+        
+        HStack(spacing: 8) {
+            
+            RubbishDayPanel(date: "Morgen", items: [
+                .init(date: Date(), type: .plastic),
+                .init(date: Date(), type: .paper),
+            ])
+            
+            RubbishDayPanel(date: "24.12.", items: [
+                .init(date: Date(), type: .organic),
+            ])
+            
+            RubbishDayPanel(date: "25.12.", items: [
+            ])
+            
+        }
+        .padding()
+        .frame(maxWidth: 350, maxHeight: 150)
+        .previewLayout(.sizeThatFits)
         
         HStack(spacing: 8) {
             
@@ -104,4 +116,5 @@ struct RubbishDayPanel_Previews: PreviewProvider {
         .preferredColorScheme(.dark)
             
     }
+    
 }

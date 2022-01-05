@@ -66,14 +66,14 @@ public class StaticRubbishService: RubbishService {
     
     public func loadRubbishPickupItems(
         for street: RubbishCollectionStreet
-    ) -> AnyPublisher<[RubbishPickupItem], Error> {
+    ) -> AnyPublisher<[RubbishPickupItem], RubbishLoadingError> {
         
         return Just([
             RubbishPickupItem(date: .init(timeIntervalSinceNow: 3 * 24 * 60 * 60), type: .plastic),
             RubbishPickupItem(date: .init(timeIntervalSinceNow: 5 * 24 * 60 * 60), type: .paper),
             RubbishPickupItem(date: .init(timeIntervalSinceNow: 6 * 24 * 60 * 60), type: .organic),
         ])
-        .setFailureType(to: Error.self)
+        .setFailureType(to: RubbishLoadingError.self)
         .receive(on: DispatchQueue.main)
         .eraseToAnyPublisher()
         

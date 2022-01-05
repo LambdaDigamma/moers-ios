@@ -25,9 +25,11 @@ public struct RubbishPickupRow: View {
                 .frame(width: iconSize)
             
             VStack(alignment: .leading, spacing: 4) {
+                
                 Text(RubbishWasteType.localizedForCase(item.type))
                     .font(.body)
                     .fontWeight(.semibold)
+                
                 Text(DateFormatter.localizedString(
                     from: item.date,
                     dateStyle: .full,

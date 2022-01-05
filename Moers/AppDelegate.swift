@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import TwitterKit
+//import TwitterKit
 import UserNotifications
 import Firebase
 import Gestalt
@@ -19,6 +19,7 @@ import SwiftUI
 import AppScaffold
 import Resolver
 import ModernNetworking
+import RubbishFeature
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -54,11 +55,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         MMAPIConfig.registerPetrolAPIKey("0dfdfad3-7385-ef47-2ff6-ec0477872677")
         MMAPIConfig.isMoersFestivalModeEnabled = false
         
-        RubbishManager.shared.rubbishStreetURL = URL(string: "https://moers.app/abfallkalender-strassenverzeichnis-2020-01.csv")
-        RubbishManager.shared.rubbishDateURL = URL(string: "https://moers.app/abfallkalender-termine-2020-01.csv")
-        
         let configuration = NetworkingConfiguration()
         let loader = configuration.setupEnvironmentAndLoader()
+        let serviceConfiguration = ServiceConfiguration()
+        
+        serviceConfiguration.execute(with: application)
         
         let applicationController = ApplicationController(loader: loader)
         
@@ -85,15 +86,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void
     ) -> Bool {
         
-        let viewController = window?.rootViewController as! TabBarController
+        guard let tabBarController = window?.rootViewController as? TabBarController else {
+            return false
+        }
         
         if userActivity.activityType == "de.okfn.niederrhein.Moers.nextRubbish" {
             
-            if RubbishManager.shared.isEnabled && RubbishManager.shared.rubbishStreet != nil {
-                
-                viewController.selectedIndex = 0
-                viewController.dashboard.pushRubbishViewController()
-                
+            let rubbishService: RubbishService? = Resolver.optional()
+            
+            guard let rubbishService = rubbishService else {
+                return false
+            }
+            
+            if rubbishService.isEnabled && rubbishService.rubbishStreet != nil {
+                tabBarController.selectedIndex = 0
+                tabBarController.dashboard.pushRubbishViewController()
             }
             
         }
@@ -148,12 +155,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print("Unable to register for remote notifications: \(error.localizedDescription)")
     }
     
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        print("Firebase registration token: \(fcmToken)")
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         
+        guard let fcmToken = fcmToken else {
+            return
+        }
+        
+        print("Firebase registration token: \(fcmToken)")
+
         let data: [String: String] = ["token": fcmToken]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: data)
-        
+
     }
     
     // MARK: - Helper
@@ -168,7 +180,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Analytics.setAnalyticsCollectionEnabled(true)
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
-        TWTRTwitter.sharedInstance().start(withConsumerKey: consumerKey, consumerSecret: consumerSecret)
+//        TWTRTwitter.sharedInstance().start(withConsumerKey: consumerKey, consumerSecret: consumerSecret)
         
     }
     

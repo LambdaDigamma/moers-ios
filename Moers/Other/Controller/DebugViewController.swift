@@ -12,8 +12,12 @@ import UserNotifications
 import MMAPI
 import MMUI
 import Combine
+import Resolver
+import RubbishFeature
 
 class DebugViewController: UIViewController {
+    
+    @LazyInjected var rubbishService: RubbishService
     
     lazy var rubbishItemsTextView: UITextView = {
         
@@ -65,17 +69,17 @@ class DebugViewController: UIViewController {
             
         }
         
-        guard let street = RubbishManager.shared.rubbishStreet else {
+        guard let street = rubbishService.rubbishStreet else {
             return
         }
         
-        let pickupItems = RubbishManager.shared.loadRubbishPickupItems(for: street)
+        let pickupItems = rubbishService.loadRubbishPickupItems(for: street)
         
         pickupItems
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { (_: Subscribers.Completion<Error>) in
+            .sink(receiveCompletion: { (_: Subscribers.Completion<RubbishLoadingError>) in
                 
-            }, receiveValue: { (items: [RubbishPickupItem]) in
+            }, receiveValue: { (items: [RubbishFeature.RubbishPickupItem]) in
                 
                 self.rubbishItemsTextView.text = "Collections: \(items.count)\n\n"
                 self.rubbishItemsTextView.text += items.map {
