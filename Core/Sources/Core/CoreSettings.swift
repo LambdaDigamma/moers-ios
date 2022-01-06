@@ -15,4 +15,9 @@ public class CoreSettings {
         longitude: 6.619722
     )
     
+    public static let regionLocation: CLLocation = .init(
+        latitude: regionCenter.latitude,
+        longitude: regionCenter.longitude
+    )
+    
 }

@@ -28,8 +28,9 @@ public struct PetrolPriceDashboardView: View {
                         Text("\(Image(systemName: "location.fill")) Aktueller Ort")
                             .font(.callout.weight(.medium))
                         
-                        Text("Moers")
+                        Text(viewModel.locationName.value ?? "Moers")
                             .font(.title.weight(.bold))
+                            .redacted(reason: viewModel.locationName.loading ? .placeholder : [])
                         
                     }
                     
@@ -51,10 +52,12 @@ public struct PetrolPriceDashboardView: View {
                     
                 }
                 
-                Text("21 Tankstellen in Deiner näheren Umgebung haben geöffnet.")
+                (Text("\(viewModel.data.value?.numberOfStations ?? 20)")
+                    + Text(" Tankstellen in Deiner näheren Umgebung haben geöffnet."))
                     .foregroundColor(.secondary)
                     .font(.callout)
-                
+                    .redacted(reason: viewModel.data.loading ? .placeholder : [])
+                    
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()

@@ -160,6 +160,7 @@
 		DFA17DF420DEF9DE00BBD838 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA17DF320DEF9DE00BBD838 /* UIButton+Extensions.swift */; };
 		DFA314CE26FD043C002C5A59 /* RadioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA314CD26FD043C002C5A59 /* RadioViewController.swift */; };
 		DFA4BC48263A28530014C7F9 /* TagListView in Frameworks */ = {isa = PBXBuildFile; productRef = DFA4BC47263A28530014C7F9 /* TagListView */; };
+		DFA5B10827865BDA00B26CF4 /* Berlin.gpx in Resources */ = {isa = PBXBuildFile; fileRef = DFA5B10727865BDA00B26CF4 /* Berlin.gpx */; };
 		DFA96A6320BD8A390009B279 /* AveragePetrolPriceComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA96A6220BD8A390009B279 /* AveragePetrolPriceComponent.swift */; };
 		DFA9EF0A20B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0920B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift */; };
 		DFA9EF0C20B56BA8008590EA /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0B20B56BA8008590EA /* UIImage+Extensions.swift */; };
@@ -484,6 +485,7 @@
 		DF9F19FC276693BB00B74E13 /* efaapi-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "efaapi-ios"; path = "../efaapi-ios"; sourceTree = "<group>"; };
 		DFA17DF320DEF9DE00BBD838 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		DFA314CD26FD043C002C5A59 /* RadioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioViewController.swift; sourceTree = "<group>"; };
+		DFA5B10727865BDA00B26CF4 /* Berlin.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Berlin.gpx; sourceTree = "<group>"; };
 		DFA96A6220BD8A390009B279 /* AveragePetrolPriceComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AveragePetrolPriceComponent.swift; sourceTree = "<group>"; };
 		DFA9EF0220B40C16008590EA /* Moers.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Moers.gpx; path = ../Moers.gpx; sourceTree = "<group>"; };
 		DFA9EF0920B4B251008590EA /* DashboardAveragePetrolPriceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardAveragePetrolPriceCardView.swift; sourceTree = "<group>"; };
@@ -1142,6 +1144,7 @@
 				DF1A49691F6AAB7000E9108B /* Assets.xcassets */,
 				DF65CF0126C97E0D00078232 /* Colors.xcassets */,
 				DF16583122EF918A0033D218 /* Launch Screen.storyboard */,
+				DFA5B10727865BDA00B26CF4 /* Berlin.gpx */,
 				DFA9EF0220B40C16008590EA /* Moers.gpx */,
 				DF21B2FD20B9D8A900478A33 /* Licenses.plist */,
 				DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */,
@@ -1576,6 +1579,7 @@
 				DF65CF0226C97E0D00078232 /* Colors.xcassets in Resources */,
 				DFDE886425457D4600429765 /* Launch Screen.storyboard in Resources */,
 				DF007B772640843E00DAFA6F /* InfoPlist.strings in Resources */,
+				DFA5B10827865BDA00B26CF4 /* Berlin.gpx in Resources */,
 				DF16582E22EF8C990033D218 /* Localizable.strings in Resources */,
 				DF52868E24A7C65F00A6939E /* Colors.xcassets in Resources */,
 				DF44D58F2126F83B00F8AC0C /* DetailViewControllers.storyboard in Resources */,
