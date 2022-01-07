@@ -13,9 +13,9 @@ public enum AppStrings {
     public enum Menu {
         public static let dashboard = "Übersicht"
         public static let news = "Neuigkeiten"
-        public static let map = "Karte"
-        public static let events = "Veranstaltungen"
-        public static let other = "Sonstiges"
+        public static let map = String.localized("MapTabItem")
+        public static let events = String.localized("Events")
+        public static let other = String.localized("OtherTabItem")
     }
     
     public enum Common {

@@ -65,10 +65,6 @@ class ThemeViewController: CardCollectionViewController {
         
         AnalyticsManager.shared.logSelectedTheme(theme)
         
-        guard let tabBarController = self.tabBarController as? TabBarController else { return }
-        
-        tabBarController.newsViewController.reloadData()
-        
     }
     
 }

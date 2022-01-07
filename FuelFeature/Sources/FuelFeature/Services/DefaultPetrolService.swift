@@ -259,8 +259,7 @@ public class DefaultPetrolService: PetrolService {
 //                            self.storageManager.setLastReload(Date(), forKey: self.storageKey)
 //                            self.storageManager.write(data: data, forKey: self.storageKey)
 //                        }
-                        print(stations)
-                        print("Stations: \(stations.count)")
+                        
                         return promise(.success(stations))
                         
                     }

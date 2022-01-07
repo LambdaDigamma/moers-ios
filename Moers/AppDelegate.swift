@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     var window: UIWindow?
     
-    var applicationController: ApplicationController!
+    var applicationController: ApplicationCoordinator!
     
     private let consumerKey = "7BHM9u39iH74aongQw0zN82wl"
     private let consumerSecret = "wJ1m2Prh2zsHJdcDyUnMkkZVQv07IIVPB3SuzAghiewcfQ888b"

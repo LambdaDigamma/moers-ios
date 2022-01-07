@@ -8,8 +8,9 @@
 
 import SwiftUI
 
-@available(iOS 13.0, *)
 struct CardPanelView<Content: View>: View {
+    
+    @Environment(\.colorScheme) private var colorScheme
     
     var content: Content
     
@@ -23,16 +24,14 @@ struct CardPanelView<Content: View>: View {
             self.content
         }
         .frame(maxWidth: .infinity)
-//        .background(Color("Card"))
         .background(Color(.secondarySystemGroupedBackground))
         .cornerRadius(16)
-        .shadow(radius: 8)
+        .shadow(radius: colorScheme == .light ? 8 : 0)
         
     }
     
 }
 
-@available(iOS 13.0, *)
 struct CardPanelView_Previews: PreviewProvider {
     static var previews: some View {
         Group {

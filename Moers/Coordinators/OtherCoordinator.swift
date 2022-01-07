@@ -51,12 +51,12 @@ class OtherCoordinator: Coordinator {
     private func generateTabBarItem() -> UITabBarItem {
         
         let tabBarItem = UITabBarItem(
-            title: String.localized("OtherTabItem"),
+            title: AppStrings.Menu.other,
             image: UIImage(systemName: "list.bullet"),
             selectedImage: UIImage(systemName: "list.bullet")
         )
         
-        tabBarItem.accessibilityIdentifier = "TabOther"
+        tabBarItem.accessibilityIdentifier = AccessibilityIdentifiers.Menu.other
         
         return tabBarItem
         

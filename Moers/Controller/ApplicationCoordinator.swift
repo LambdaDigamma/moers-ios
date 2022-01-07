@@ -17,7 +17,7 @@ import MMEvents
 import Cache
 import Resolver
 
-class ApplicationController: NSObject {
+class ApplicationCoordinator: NSObject {
 
     @LazyInjected var loader: HTTPLoader
     
@@ -83,7 +83,7 @@ class ApplicationController: NSObject {
         
     }
     
-    // MARK: -
+    // MARK: - View Controller Handling
     
     internal func rootViewController() -> UIViewController {
         
@@ -98,21 +98,15 @@ class ApplicationController: NSObject {
         )
         
         let splitViewController = SplitController(tabController: tabController)
-        let sidebarController = SidebarViewController()
+        let sidebarController = SidebarViewController(coordinators: [
+            tabController.dashboard,
+            tabController.news,
+            tabController.map,
+            tabController.events,
+            tabController.other
+        ])
         
-        splitViewController.setViewController(tabController, for: .compact)
         splitViewController.setViewController(sidebarController, for: .primary)
-        splitViewController.setViewController(tabController, for: .secondary)
-        splitViewController.preferredDisplayMode = .oneBesideSecondary
-        splitViewController.presentsWithGesture = false
-        splitViewController.preferredSplitBehavior = .tile
-        splitViewController.primaryBackgroundStyle = .sidebar
-        splitViewController.showsSecondaryOnlyButton = true
-        splitViewController.presentsWithGesture = true
-        
-        if #available(iOS 14.5, *) {
-            splitViewController.displayModeButtonVisibility = .always
-        }
         
         return splitViewController
         

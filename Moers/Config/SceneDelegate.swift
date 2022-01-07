@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
-    var applicationController: ApplicationController!
+    var applicationController: ApplicationCoordinator!
     
     func scene(
         _ scene: UIScene,
@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = UIWindow(windowScene: windowScene)
         
-        self.applicationController = ApplicationController()
+        self.applicationController = ApplicationCoordinator()
         
         window!.overrideUserInterfaceStyle = .dark
         window!.rootViewController = applicationController.rootViewController()

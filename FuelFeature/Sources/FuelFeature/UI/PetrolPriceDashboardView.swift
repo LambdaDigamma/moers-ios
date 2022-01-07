@@ -73,6 +73,8 @@ public struct PetrolPriceDashboardView: View {
 
 struct CardPanelView<Content: View>: View {
     
+    @Environment(\.colorScheme) private var colorScheme
+    
     var content: Content
     
     init(@ViewBuilder builder: () -> Content) {
@@ -85,10 +87,9 @@ struct CardPanelView<Content: View>: View {
             self.content
         }
         .frame(maxWidth: .infinity)
-//        .background(Color("Card"))
         .background(Color(.secondarySystemGroupedBackground))
         .cornerRadius(12)
-        .shadow(radius: 8)
+        .shadow(radius: colorScheme == .light ? 8 : 0)
         
     }
     

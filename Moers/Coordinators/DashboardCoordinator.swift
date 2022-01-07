@@ -66,7 +66,7 @@ class DashboardCoordinator: Coordinator {
             selectedImage: UIImage(systemName: "rectangle.grid.2x2.fill")
         )
         
-        tabBarItem.accessibilityIdentifier = "TabDashboard"
+        tabBarItem.accessibilityIdentifier = AccessibilityIdentifiers.Menu.dashboard
         
         return tabBarItem
         

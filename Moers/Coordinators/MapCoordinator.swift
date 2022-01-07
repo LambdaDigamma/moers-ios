@@ -66,12 +66,13 @@ class MapCoordintor: Coordinator {
     private func generateTabBarItem() -> UITabBarItem {
         
         let tabBarItem = UITabBarItem(
-            title: String.localized("MapTabItem"),
+            title: AppStrings.Menu.map,
             image: UIImage(systemName: "map"),
             selectedImage: UIImage(systemName: "map.fill")
         )
-        tabBarItem.accessibilityLabel = String.localized("MapTabItem")
-        tabBarItem.accessibilityIdentifier = "TabMap"
+        
+        tabBarItem.accessibilityLabel = AppStrings.Menu.map
+        tabBarItem.accessibilityIdentifier = AccessibilityIdentifiers.Menu.map
         
         return tabBarItem
         

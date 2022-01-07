@@ -14,8 +14,9 @@ import MMUI
 
 class NewsViewController: UIViewController, NewsManagerDelegate {
     
-    private let cellIdentifier = "tweet"
+    weak var coordinator: NewsCoordinator?
     
+    private let cellIdentifier = "tweet"
     private var newsItems: [NewsItem] = []
     
 //    private var tweets: [TWTRTweet] = []
@@ -48,6 +49,7 @@ class NewsViewController: UIViewController, NewsManagerDelegate {
     private func setupUI() {
         
         self.title = String.localized("NewsTitle")
+        self.navigationItem.largeTitleDisplayMode = .always
         
         self.view.addSubview(collectionView)
         

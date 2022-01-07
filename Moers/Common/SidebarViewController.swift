@@ -9,32 +9,33 @@
 import UIKit
 import Combine
 import SwiftUI
+import AppScaffold
 
 let tabsItems = [
     SidebarItem(
         title: AppStrings.Menu.dashboard,
         image: UIImage(systemName: "rectangle.grid.2x2"),
-        accessibilityIdentifier: AccessibilityIdentifiers.TabBar.dashboard
+        accessibilityIdentifier: AccessibilityIdentifiers.Menu.dashboard
     ),
     SidebarItem(
         title: AppStrings.Menu.news,
         image: UIImage(systemName: "newspaper"),
-        accessibilityIdentifier: AccessibilityIdentifiers.TabBar.news
+        accessibilityIdentifier: AccessibilityIdentifiers.Menu.news
     ),
     SidebarItem(
         title: AppStrings.Menu.map,
         image: UIImage(systemName: "map"),
-        accessibilityIdentifier: AccessibilityIdentifiers.TabBar.map
+        accessibilityIdentifier: AccessibilityIdentifiers.Menu.map
     ),
     SidebarItem(
         title: AppStrings.Menu.events,
         image: UIImage(systemName: "calendar"),
-        accessibilityIdentifier: AccessibilityIdentifiers.TabBar.events
+        accessibilityIdentifier: AccessibilityIdentifiers.Menu.events
     ),
     SidebarItem(
         title: AppStrings.Menu.other,
         image: UIImage(systemName: "list.bullet"),
-        accessibilityIdentifier: AccessibilityIdentifiers.TabBar.other
+        accessibilityIdentifier: AccessibilityIdentifiers.Menu.other
     )
 ]
 
@@ -55,7 +56,10 @@ class SidebarViewController: UIViewController {
 //    let shop: ShopCoordinator
 //    let settings: SettingsCoordinator
     
+    public let coordinators: [Coordinator]
+    
     init(
+        coordinators: [Coordinator]
 //        calendars: CalendarsCoordinator = CalendarsCoordinator(),
 //        countdown: CountdownCoordinator = CountdownCoordinator(),
 //        gift: GiftCoordinator = GiftCoordinator(),
@@ -63,24 +67,8 @@ class SidebarViewController: UIViewController {
 //        settings: SettingsCoordinator = SettingsCoordinator()
     ) {
         
-//        self.calendars = calendars
-//        self.gift = gift
-//        self.countdown = countdown
-//        self.shop = shop
-//        self.settings = settings
-        
-        self.secondaryViewControllers = [
-            UIViewController(),
-            UIViewController(),
-            UIViewController(),
-            UIViewController(),
-            UIViewController()
-//            calendars.navigationController,
-//            countdown.navigationController,
-//            gift.navigationController,
-//            shop.navigationController,
-//            settings.navigationController
-        ]
+        self.coordinators = coordinators
+        self.secondaryViewControllers = coordinators.map { $0.navigationController }
         
         super.init(nibName: nil, bundle: nil)
         
@@ -111,6 +99,7 @@ class SidebarViewController: UIViewController {
 }
 
 // MARK: - Layout
+
 extension SidebarViewController {
     
     private func createLayout() -> UICollectionViewLayout {
@@ -124,10 +113,11 @@ extension SidebarViewController {
 }
 
 // MARK: - Data
+
 extension SidebarViewController {
     
     private func configureHierarchy() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -197,6 +187,7 @@ extension SidebarViewController {
 }
 
 // MARK: - UICollectionViewDelegate
+
 extension SidebarViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

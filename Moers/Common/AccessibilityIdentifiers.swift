@@ -10,12 +10,12 @@ import Foundation
 
 public enum AccessibilityIdentifiers {
     
-    public enum TabBar {
-        public static let dashboard = "AppStrings.TabBar.dashboard"
-        public static let news = "AppStrings.TabBar.news"
-        public static let map = "AppStrings.TabBar.map"
-        public static let events = "AppStrings.TabBar.events"
-        public static let other = "AppStrings.TabBar.other"
+    public enum Menu {
+        public static let dashboard = "AppStrings.Menu.dashboard"
+        public static let news = "AppStrings.Menu.news"
+        public static let map = "AppStrings.Menu.map"
+        public static let events = "AppStrings.Menu.events"
+        public static let other = "AppStrings.Menu.other"
     }
     
 }

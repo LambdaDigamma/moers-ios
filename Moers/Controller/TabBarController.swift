@@ -24,11 +24,10 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     var firstLaunch: FirstLaunch
     
     let dashboard: DashboardCoordinator
+    let news: NewsCoordinator
     let map: MapCoordintor
     let events: EventCoordinator
     let other: OtherCoordinator
-    
-    let newsViewController: NewsViewController
     
     let locationManager: LocationManagerProtocol
     let geocodingManager: GeocodingManagerProtocol
@@ -82,6 +81,8 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             petrolManager: petrolManager
         )
         
+        self.news = NewsCoordinator()
+        
         self.map = MapCoordintor(
             locationManager: locationManager,
             petrolManager: petrolManager,
@@ -99,8 +100,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             geocodingManager: geocodingManager,
             entryManager: entryManager
         )
-        
-        self.newsViewController = NewsViewController()
         
         super.init(nibName: nil, bundle: nil)
         
@@ -127,22 +126,9 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
         self.loadCurrentLocation()
         
-        let configuration = UIImage.SymbolConfiguration(scale: .large)
-        let tabItem = UITabBarItem(
-            title: String.localized("NewsTitle"),
-            image: UIImage(systemName: "newspaper", withConfiguration: configuration),
-            selectedImage: UIImage(systemName: "newspaper.fill")
-        )
-        
-        tabItem.accessibilityIdentifier = "TabNews"
-        
-        let newsNavigationController = UINavigationController()
-        newsNavigationController.viewControllers = [newsViewController]
-        newsNavigationController.tabBarItem = tabItem
-        
         self.viewControllers = [
             dashboard.navigationController,
-            newsNavigationController,
+            news.navigationController,
             map.navigationController,
             events.navigationController,
             other.navigationController

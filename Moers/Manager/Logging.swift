@@ -11,7 +11,8 @@ import OSLog
 
 extension OSLog {
     
-    private static var subsystem = Bundle.main.bundleID
+    /// Use the Bundle ID as the subsystem
+    internal static var subsystem = Bundle.main.bundleID
     
     /// Application lifecycle
     static let appLifecycle = OSLog(subsystem: subsystem, category: "appLifecycle")
