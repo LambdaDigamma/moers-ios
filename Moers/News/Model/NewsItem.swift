@@ -7,7 +7,6 @@
 //
 
 import Foundation
-//import TwitterKit
 import FeedKit
 
 protocol NewsItem {
@@ -15,14 +14,6 @@ protocol NewsItem {
     var date: Date { get }
     
 }
-
-//extension TWTRTweet: NewsItem {
-//
-//    var date: Date {
-//        return self.createdAt
-//    }
-//
-//}
 
 extension RSSFeedItem: NewsItem {
     

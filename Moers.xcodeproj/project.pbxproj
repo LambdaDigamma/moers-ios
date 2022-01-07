@@ -194,7 +194,6 @@
 		DFC8507926EFE6E400F9FB39 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC8507826EFE6E400F9FB39 /* AppStrings.swift */; };
 		DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431C20E0283000E7AD3F /* NewsViewController.swift */; };
 		DFCB431F20E02D0300E7AD3F /* NewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431E20E02D0300E7AD3F /* NewsManager.swift */; };
-		DFCB432320E038AB00E7AD3F /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB432220E038AB00E7AD3F /* TweetTableViewCell.swift */; };
 		DFCE12952538F7F600B45EB7 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = DFCE12942538F7F600B45EB7 /* FeedKit */; };
 		DFD39A3322B7578B0085F06E /* MMEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD39A3222B7578B0085F06E /* MMEventsViewController.swift */; };
 		DFD728AC20A880C6005FA9F1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD728AB20A880C6005FA9F1 /* DetailViewController.swift */; };
@@ -525,7 +524,6 @@
 		DFCB431C20E0283000E7AD3F /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewsViewController.swift; path = ../../Controller/News/NewsViewController.swift; sourceTree = "<group>"; };
 		DFCB431E20E02D0300E7AD3F /* NewsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsManager.swift; sourceTree = "<group>"; };
 		DFCB432020E0344700E7AD3F /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Carthage/Build/iOS/TwitterKit.framework; sourceTree = "<group>"; };
-		DFCB432220E038AB00E7AD3F /* TweetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TweetTableViewCell.swift; path = ../../View/UITableViewCells/TweetTableViewCell.swift; sourceTree = "<group>"; };
 		DFD39A3222B7578B0085F06E /* MMEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMEventsViewController.swift; sourceTree = "<group>"; };
 		DFD728AB20A880C6005FA9F1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		DFD7368F211E424E00826C47 /* SelectorBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorBulletinPage.swift; sourceTree = "<group>"; };
@@ -859,7 +857,6 @@
 			children = (
 				DF54138C2180955A007FDEC8 /* NewsCollectionViewCell.swift */,
 				DF8281B521CFA74F00C3B3CE /* TweetCollectionViewCell.swift */,
-				DFCB432220E038AB00E7AD3F /* TweetTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1731,7 +1728,6 @@
 				DFBB9DE3212BF63600038943 /* PetrolStationAnnotationView.swift in Sources */,
 				DF9F19E827668CDD00B74E13 /* SelectDepartureMonitorStop.intentdefinition in Sources */,
 				DF5D81CA2256832600A19B01 /* MockConfig.swift in Sources */,
-				DFCB432320E038AB00E7AD3F /* TweetTableViewCell.swift in Sources */,
 				DF51614A2545F6290094DEEB /* CovidMediumWidget.swift in Sources */,
 				DFD39A3322B7578B0085F06E /* MMEventsViewController.swift in Sources */,
 				DF310DA421710887004C69BA /* TagTableViewCell.swift in Sources */,

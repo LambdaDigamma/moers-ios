@@ -25,7 +25,7 @@ class CameraAnnotationView: MKMarkerAnnotationView {
         
         willSet {
             
-            if let _ = newValue as? Camera {
+            if newValue as? Camera != nil {
                 
                 clusteringIdentifier = AnnotationIdentifier.cluster
                 displayPriority = .defaultLow
