@@ -15,10 +15,11 @@ import SwiftyMarkdown
 import ModernNetworking
 import MMEvents
 import Cache
+import Resolver
 
-class ApplicationController: UIViewController {
+class ApplicationController: NSObject {
 
-    let loader: HTTPLoader
+    @LazyInjected var loader: HTTPLoader
     
     let locationManager: LocationManagerProtocol
     let petrolManager: PetrolManagerProtocol
@@ -28,12 +29,14 @@ class ApplicationController: UIViewController {
     let parkingLotManager: ParkingLotManagerProtocol
     let eventService: EventServiceProtocol
     
-    convenience init(loader: HTTPLoader) {
-        self.init(loader: loader, entryManager: EntryManager(loader: loader))
+    var tabController: TabBarController!
+    
+    convenience override init() {
+        let loader: HTTPLoader = Resolver.resolve()
+        self.init(entryManager: EntryManager(loader: loader))
     }
     
     init(
-        loader: HTTPLoader,
         locationManager: LocationManagerProtocol = LocationManager(),
         petrolManager: PetrolManagerProtocol = PetrolManager(storageManager: StorageManager()),
         geocodingManager: GeocodingManagerProtocol = GeocodingManager(),
@@ -42,7 +45,8 @@ class ApplicationController: UIViewController {
         parkingLotManager: ParkingLotManagerProtocol = ParkingLotManager()
     ) {
         
-        self.loader = loader
+        let loader: HTTPLoader = Resolver.resolve()
+        
         self.locationManager = locationManager
         self.petrolManager = petrolManager
         self.geocodingManager = geocodingManager
@@ -59,23 +63,12 @@ class ApplicationController: UIViewController {
         
         self.eventService = EventService(loader, cache)
         
-        super.init(nibName: nil, bundle: nil)
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        MMUIConfig.themeManager?.manage(theme: \ApplicationTheme.self, for: self)
+        super.init()
         
         MMUIConfig.markdownConverter = { text in
             
             let markdown = SwiftyMarkdown(string: text)
-
+            
             markdown.setFontColorForAllStyles(with: UIColor.white)
             markdown.h1.fontStyle = FontStyle.bold
             markdown.h2.fontStyle = FontStyle.bold
@@ -88,7 +81,13 @@ class ApplicationController: UIViewController {
             
         }
         
-        let tabBarController = TabBarController(
+    }
+    
+    // MARK: -
+    
+    internal func rootViewController() -> UIViewController {
+        
+        self.tabController = TabBarController(
             locationManager: locationManager,
             petrolManager: petrolManager,
             geocodingManager: geocodingManager,
@@ -98,19 +97,24 @@ class ApplicationController: UIViewController {
             eventService: eventService
         )
         
-        (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = tabBarController
+        let splitViewController = SplitController(tabController: tabController)
+        let sidebarController = SidebarViewController()
         
-    }
-
-}
-
-extension ApplicationController: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: ApplicationTheme) {
+        splitViewController.setViewController(tabController, for: .compact)
+        splitViewController.setViewController(sidebarController, for: .primary)
+        splitViewController.setViewController(tabController, for: .secondary)
+        splitViewController.preferredDisplayMode = .oneBesideSecondary
+        splitViewController.presentsWithGesture = false
+        splitViewController.preferredSplitBehavior = .tile
+        splitViewController.primaryBackgroundStyle = .sidebar
+        splitViewController.showsSecondaryOnlyButton = true
+        splitViewController.presentsWithGesture = true
         
-        self.view.backgroundColor = theme.backgroundColor
+        if #available(iOS 14.5, *) {
+            splitViewController.displayModeButtonVisibility = .always
+        }
+        
+        return splitViewController
         
     }
     

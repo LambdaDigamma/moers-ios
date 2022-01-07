@@ -26,19 +26,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     var window: UIWindow?
     
+    var applicationController: ApplicationController!
+    
     private let consumerKey = "7BHM9u39iH74aongQw0zN82wl"
     private let consumerSecret = "wJ1m2Prh2zsHJdcDyUnMkkZVQv07IIVPB3SuzAghiewcfQ888b"
     private let gcmMessageIDKey = "gcm.message_id"
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
         
         #if DEBUG
         LaunchArgumentsHandler(userDefaults: UserDefaults.standard).handle()
         #endif
         
         self.resetIfNeeded()
-        
-        self.window?.overrideUserInterfaceStyle = .light
         
 //        let bootstrappingProcedure: BootstrappingProcedure = [
 //            LaunchArgumentsHandler(),
@@ -56,16 +59,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         MMAPIConfig.isMoersFestivalModeEnabled = false
         
         let configuration = NetworkingConfiguration()
-        let loader = configuration.setupEnvironmentAndLoader()
+        _ = configuration.setupEnvironmentAndLoader()
         let serviceConfiguration = ServiceConfiguration()
         
         serviceConfiguration.execute(with: application)
         
-        let applicationController = ApplicationController(loader: loader)
+//        self.applicationController = ApplicationController()
         
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window!.rootViewController = applicationController
-        window!.makeKeyAndVisible()
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        window!.rootViewController = applicationController.rootViewController()
+//        window!.makeKeyAndVisible()
         
         UNUserNotificationCenter.current().delegate = self
         
@@ -76,6 +79,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         application.applicationIconBadgeNumber = 0
         
         return true
+    }
+    
+    // MARK: - Scene Handling
+    
+    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        // Called when a new scene session is being created.
+        // Use this method to select a configuration to create the new scene with.
+        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
     
     // MARK: - NSUserActivity

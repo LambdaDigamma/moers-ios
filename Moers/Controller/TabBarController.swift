@@ -361,7 +361,7 @@ extension TabBarController: Themeable {
 //        UIApplication.shared.statusBarStyle = theme.statusBarStyle
         self.view.backgroundColor = theme.backgroundColor
         self.tabBar.tintColor = theme.accentColor
-        self.tabBar.barTintColor = UIColor.black // UIColor.systemBackground //theme.navigationBarColor
+        self.tabBar.barTintColor = UIColor.systemBackground // UIColor.black //theme.navigationBarColor
         self.bulletinManager.backgroundColor = theme.backgroundColor
         self.bulletinManager.hidesHomeIndicator = false
         self.bulletinManager.edgeSpacing = .compact
@@ -373,7 +373,7 @@ extension TabBarController: Themeable {
         
         let barAppearance = UIBarAppearance()
         barAppearance.configureWithDefaultBackground()
-        barAppearance.backgroundColor = UIColor.black
+        barAppearance.backgroundColor = UIColor.systemBackground // UIColor.black
         
         self.tabBar.standardAppearance = UITabBarAppearance(barAppearance: barAppearance)
         
