@@ -12,11 +12,14 @@ import CoreLocation
 import MMAPI
 import MMUI
 import Combine
+import Resolver
+import Core
 
 class PetrolStationViewController: CardCollectionViewController {
 
+    @LazyInjected var locationService: LocationService
+    
     private let identifier = "petrolStation"
-    private let locationManager: LocationManagerProtocol
     private let petrolManager: PetrolManagerProtocol
     
     private var stations: [PetrolStation] = []
@@ -24,12 +27,10 @@ class PetrolStationViewController: CardCollectionViewController {
     private var cancellables = Set<AnyCancellable>()
     
     init(
-        locationManager: LocationManagerProtocol,
         petrolManager: PetrolManagerProtocol,
         stations: [PetrolStation] = []
     ) {
         
-        self.locationManager = locationManager
         self.petrolManager = petrolManager
         self.stations = stations
         super.init(nibName: nil, bundle: nil)
@@ -71,9 +72,9 @@ class PetrolStationViewController: CardCollectionViewController {
     
     private func reloadPetrolStationsForCurrentUserPosition() {
         
-        locationManager.requestCurrentLocation()
+        locationService.requestCurrentLocation()
         
-        locationManager.location
+        locationService.location
             .debounce(for: 2, scheduler: RunLoop.main)
             .sink(receiveCompletion: { (_: Subscribers.Completion<Error>) in
                 

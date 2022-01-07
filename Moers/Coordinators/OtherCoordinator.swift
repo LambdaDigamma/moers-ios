@@ -17,17 +17,14 @@ class OtherCoordinator: Coordinator {
     
     var otherViewController: OtherViewController?
     
-    public let locationManager: LocationManagerProtocol
     public let entryManager: EntryManagerProtocol
     
     public init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
-        locationManager: LocationManagerProtocol,
         entryManager: EntryManagerProtocol
     ) {
         
         self.navigationController = navigationController
-        self.locationManager = locationManager
         self.entryManager = entryManager
         
         let otherViewController = OtherViewController(

@@ -17,19 +17,16 @@ class DashboardCoordinator: Coordinator {
     
     var navigationController: CoordinatedNavigationController
     var petrolManager: PetrolManagerProtocol
-    var locationManager: LocationManagerProtocol
     
     var dashboardViewController: DashboardViewController?
     
     init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
-        locationManager: LocationManagerProtocol,
         petrolManager: PetrolManagerProtocol
     ) {
         
         self.navigationController = navigationController
         self.petrolManager = petrolManager
-        self.locationManager = locationManager
         
         self.navigationController.coordinator = self
         
@@ -58,7 +55,7 @@ class DashboardCoordinator: Coordinator {
     private func generateTabBarItem() -> UITabBarItem {
         
         let tabBarItem = UITabBarItem(
-            title: String.localized("DashboardTabItem"),
+            title: AppStrings.Menu.dashboard,
             image: UIImage(systemName: "rectangle.grid.2x2"),
             selectedImage: UIImage(systemName: "rectangle.grid.2x2.fill")
         )

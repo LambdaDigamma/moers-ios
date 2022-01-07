@@ -25,11 +25,9 @@ class DashboardViewController: CardCollectionViewController {
     
     private var components: [BaseComponent] = []
     
-    private let locationManager: LocationManagerProtocol
     private let petrolManager: PetrolManagerProtocol
     
     init(coordinator: DashboardCoordinator) {
-        self.locationManager = coordinator.locationManager
         self.petrolManager = coordinator.petrolManager
         self.coordinator = coordinator
         
@@ -37,11 +35,9 @@ class DashboardViewController: CardCollectionViewController {
     }
     
     init(
-        locationManager: LocationManagerProtocol,
         petrolManager: PetrolManagerProtocol
     ) {
-    
-        self.locationManager = locationManager
+        
         self.petrolManager = petrolManager
         
         super.init(nibName: nil, bundle: nil)
@@ -93,7 +89,6 @@ class DashboardViewController: CardCollectionViewController {
   
         let petrolPriceComponent = AveragePetrolPriceComponent(
             viewController: self,
-            locationManager: locationManager,
             petrolManager: petrolManager
         )
         
@@ -105,7 +100,6 @@ class DashboardViewController: CardCollectionViewController {
         
 //        let covidComponent = CovidComponent(
 //            viewController: self,
-//            locationManager: locationManager,
 //            covidManager: CovidManager()
 //        )
 //

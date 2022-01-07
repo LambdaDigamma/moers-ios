@@ -22,7 +22,7 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
 
     @LazyInjected var rubbishService: RubbishService
     @LazyInjected var geocodingService: GeocodingService
-    @LazyInjected var locationManager: LocationService
+    @LazyInjected var locationService: LocationService
     
     private var streets: [RubbishFeature.RubbishCollectionStreet] = []
     private var accentColor = UIColor.clear
@@ -83,7 +83,7 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     
     private func loadUserLocationForStreetEstimation() {
         
-        locationManager.authorizationStatus.sink { (authorizationStatus: CLAuthorizationStatus) in
+        locationService.authorizationStatus.sink { (authorizationStatus: CLAuthorizationStatus) in
             if authorizationStatus == .authorizedWhenInUse {
                 self.estimateUserStreet()
             }
@@ -94,9 +94,9 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     
     private func estimateUserStreet() {
         
-        locationManager.requestCurrentLocation()
+        locationService.requestCurrentLocation()
         
-        locationManager.location.sink { (_: Subscribers.Completion<Error>) in
+        locationService.location.sink { (_: Subscribers.Completion<Error>) in
             
         } receiveValue: { (location: CLLocation) in
             self.checkStreetExistance(for: location)

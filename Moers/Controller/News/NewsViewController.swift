@@ -70,10 +70,12 @@ class NewsViewController: UIViewController, NewsManagerDelegate {
     
     private func setupConstraints() {
         
-        let constraints = [collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                           collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                           collectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
-                           collectionView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)]
+        let constraints = [
+            collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            collectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         

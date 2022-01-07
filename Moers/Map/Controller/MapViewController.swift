@@ -30,11 +30,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
     // swiftlint:disable:next force_cast
     lazy var drawer = { return self.parent as! MainViewController }()
     
-    private let locationManager: LocationManagerProtocol
     private var locations: [Location] = []
     
-    init(locationManager: LocationManagerProtocol) {
-        self.locationManager = locationManager
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -177,7 +175,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
         
         map.setRegion(region, animated: true)
         
-//        locationManager.authorizationStatus.observeNext { authorizationStatus in
+//        locationService.authorizationStatus.observeNext { authorizationStatus in
 //
 //            let region = MKCoordinateRegion(center: self.map.userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
 //

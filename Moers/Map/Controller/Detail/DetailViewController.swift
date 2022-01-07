@@ -13,8 +13,12 @@ import Pulley
 import MMAPI
 import MMUI
 import Combine
+import Resolver
+import Core
 
 class DetailViewController: UIViewController {
+    
+    @LazyInjected var locationService: LocationService
     
     public var coordinator: MapCoordintor?
     
@@ -27,7 +31,6 @@ class DetailViewController: UIViewController {
     private lazy var routeButton: UIButton = { ViewFactory.button() }()
     
     private var cancellables = Set<AnyCancellable>()
-    private let locationManager: LocationManagerProtocol
     private let entryManager: EntryManagerProtocol
     
     private weak var child: UIViewController? {
@@ -48,9 +51,8 @@ class DetailViewController: UIViewController {
     
     public var selectedLocation: Location? { didSet { setupLocation(selectedLocation) } }
     
-    init(locationManager: LocationManagerProtocol, entryManager: EntryManagerProtocol) {
+    init(entryManager: EntryManagerProtocol) {
         
-        self.locationManager = locationManager
         self.entryManager = entryManager
         
         super.init(nibName: nil, bundle: nil)
@@ -217,7 +219,7 @@ class DetailViewController: UIViewController {
         
         guard let destinationCoordinate = selectedLocation?.location.coordinate else { return }
         
-        locationManager.authorizationStatus.sink { _ in
+        locationService.authorizationStatus.sink { _ in
             self.setupDistance(to: destinationCoordinate)
         }
         .store(in: &cancellables)
@@ -226,8 +228,8 @@ class DetailViewController: UIViewController {
     
     private func setupDistance(to destinationCoordinate: CLLocationCoordinate2D) {
         
-        locationManager.requestCurrentLocation()
-        locationManager.location.sink { _ in
+        locationService.requestCurrentLocation()
+        locationService.location.sink { _ in
             
         } receiveValue: { (location: CLLocation) in
             

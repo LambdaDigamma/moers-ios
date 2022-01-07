@@ -18,7 +18,8 @@ import Resolver
 
 class CovidComponent: BaseComponent {
     
-    private let locationManager: LocationManagerProtocol
+    @LazyInjected var locationService: LocationService
+    
     private let covidManager: CovidManagerProtocol
     
     private var cancellables = Set<AnyCancellable>()
@@ -48,11 +49,9 @@ class CovidComponent: BaseComponent {
     
     init(
         viewController: UIViewController,
-        locationManager: LocationManagerProtocol,
         covidManager: CovidManagerProtocol
     ) {
         
-        self.locationManager = locationManager
         self.covidManager = covidManager
         self.locationObject = CoreLocationObject()
         
@@ -89,7 +88,7 @@ class CovidComponent: BaseComponent {
     
     override func invalidate() {
         
-        self.locationManager.stopMonitoring() // is this right?
+        self.locationService.stopMonitoring() // is this right?
         self.covidCardView.stopLoading()
         
     }
@@ -98,7 +97,7 @@ class CovidComponent: BaseComponent {
     
     private func checkAuthStatusAndLoadIfNeeded() {
         
-        locationManager.authorizationStatus
+        locationService.authorizationStatus
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { authorizationStatus in
                 if authorizationStatus == .authorizedWhenInUse {
@@ -120,9 +119,9 @@ class CovidComponent: BaseComponent {
     private func loadCurrentLocation() {
         
         self.covidCardView.startLoading()
-        locationManager.requestCurrentLocation()
+        locationService.requestCurrentLocation()
         
-        let location = locationManager.location
+        let location = locationService.location
         
         location.sink { (completion: Subscribers.Completion<Error>) in
         

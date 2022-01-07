@@ -41,13 +41,12 @@ class MapCoordintor: Coordinator {
         
         self.navigationController.coordinator = self
         
-        let mapViewController = MapViewController(locationManager: locationManager)
+        let mapViewController = MapViewController()
         let contentViewController = SearchDrawerViewController(locationManager: locationManager)
         
         let mainViewController = MainViewController(
             contentViewController: mapViewController,
             drawerViewController: contentViewController,
-            locationManager: locationManager,
             petrolManager: petrolManager,
             cameraManager: cameraManager,
             entryManager: entryManager,

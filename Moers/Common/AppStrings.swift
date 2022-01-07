@@ -11,7 +11,7 @@ import Foundation
 public enum AppStrings {
     
     public enum Menu {
-        public static let dashboard = "Übersicht"
+        public static let dashboard = String.localized("DashboardTabItem")
         public static let news = "Neuigkeiten"
         public static let map = String.localized("MapTabItem")
         public static let events = String.localized("Events")

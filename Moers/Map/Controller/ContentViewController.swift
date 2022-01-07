@@ -15,6 +15,8 @@ import MMAPI
 import Fuse
 import MMUI
 import Combine
+import Core
+import Resolver
 
 // swiftlint:disable file_length
 
@@ -27,6 +29,8 @@ public struct CellIdentifier {
 
 class ContentViewController: UIViewController {
 
+    @LazyInjected var locationService: LocationService
+    
     // MARK: - UI
     
     @IBOutlet weak var tableView: UITableView!
@@ -56,16 +60,13 @@ class ContentViewController: UIViewController {
     
     // MARK: - Data
     
-    public var locationManager: LocationManagerProtocol!
-    
     private var displayMode = DisplayMode.list
     private var locations: [Location] = []
     private var datasource: [Location] = []
     private var selectedTags: [String] = []
     private var tags: [String] = []
     
-    init(locationManager: LocationManagerProtocol) {
-        self.locationManager = locationManager
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -148,24 +149,25 @@ class ContentViewController: UIViewController {
         
         self.tags = Array(Set(locations.map { $0.tags }.reduce([], +)))
         
-        let updatedLocations = self.locationManager.updateDistances(locations: locations)
-        
-        updatedLocations.sink { _ in
-            
-        } receiveValue: { (locations: [Location]) in
-            
-            self.locations = locations.sorted(by: { (location1, location2) -> Bool in
-                location1.distance < location2.distance
-            })
-            
-            self.datasource = self.locations
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-            
-        }
-        .store(in: &cancellables)
+        // todo: !!!
+//        let updatedLocations = self.locationService.updateDistances(locations: locations)
+//
+//        updatedLocations.sink { _ in
+//
+//        } receiveValue: { (locations: [Location]) in
+//
+//            self.locations = locations.sorted(by: { (location1, location2) -> Bool in
+//                location1.distance < location2.distance
+//            })
+//
+//            self.datasource = self.locations
+//
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//
+//        }
+//        .store(in: &cancellables)
         
     }
     

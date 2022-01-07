@@ -24,9 +24,8 @@ class MainViewController: PulleyViewController {
     public var mapViewController: MapViewController!
     public var contentViewController: SearchDrawerViewController!
     public var locations: [Location] = []
-    public lazy var detailViewController = { DetailViewController(locationManager: locationManager, entryManager: entryManager) }()
+    public lazy var detailViewController = { DetailViewController(entryManager: entryManager) }()
     
-    private let locationManager: LocationManagerProtocol
     private let petrolManager: PetrolManagerProtocol
     private let cameraManager: CameraManagerProtocol
     private let entryManager: EntryManagerProtocol
@@ -37,7 +36,6 @@ class MainViewController: PulleyViewController {
     required init(
         contentViewController: UIViewController,
         drawerViewController: UIViewController,
-        locationManager: LocationManagerProtocol,
         petrolManager: PetrolManagerProtocol,
         cameraManager: CameraManagerProtocol,
         entryManager: EntryManagerProtocol,
@@ -45,7 +43,6 @@ class MainViewController: PulleyViewController {
     ) {
         
         self.eventBus = EventBus()
-        self.locationManager = locationManager
         self.petrolManager = petrolManager
         self.cameraManager = cameraManager
         self.entryManager = entryManager

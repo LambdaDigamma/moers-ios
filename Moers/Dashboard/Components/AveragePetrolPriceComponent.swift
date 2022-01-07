@@ -17,9 +17,9 @@ import Combine
 class AveragePetrolPriceComponent: BaseComponent {
 
     @LazyInjected var geocodingService: GeocodingService
+    @LazyInjected var locationService: LocationService
     
     private var petrolStations: [PetrolStation] = []
-    private let locationManager: LocationManagerProtocol
     private let petrolManager: PetrolManagerProtocol
     private var cancellables = Set<AnyCancellable>()
     
@@ -35,11 +35,9 @@ class AveragePetrolPriceComponent: BaseComponent {
     
     init(
         viewController: UIViewController,
-        locationManager: LocationManagerProtocol,
         petrolManager: PetrolManagerProtocol
     ) {
         
-        self.locationManager = locationManager
         self.petrolManager = petrolManager
         
         super.init(viewController: viewController)
@@ -83,7 +81,7 @@ class AveragePetrolPriceComponent: BaseComponent {
     
     override func invalidate() {
         
-        // TODO: Stop Monitoring of LocationManager?!
+        self.locationService.stopMonitoring()
         self.averagePetrolCardView.stopLoading()
         
     }
@@ -92,7 +90,7 @@ class AveragePetrolPriceComponent: BaseComponent {
     
     private func checkAuthStatusAndLoadIfNeeded() {
         
-        locationManager.authorizationStatus
+        locationService.authorizationStatus
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { authorizationStatus in
                 
@@ -114,9 +112,9 @@ class AveragePetrolPriceComponent: BaseComponent {
     private func loadCurrentLocation() {
         
         self.averagePetrolCardView.startLoading()
-        locationManager.requestCurrentLocation()
+        locationService.requestCurrentLocation()
         
-        let location = locationManager.location
+        let location = locationService.location
         
         location
             .receive(on: DispatchQueue.main)
@@ -215,7 +213,6 @@ class AveragePetrolPriceComponent: BaseComponent {
         // AnalyticsManager.shared.logOpenedPetrolPrices(for: place)
         
         let petrolStationViewController = PetrolStationViewController(
-            locationManager: locationManager,
             petrolManager: petrolManager,
             stations: petrolStations
         )

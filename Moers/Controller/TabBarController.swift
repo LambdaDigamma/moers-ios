@@ -70,7 +70,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         self.eventService = eventService
         
         self.dashboard = DashboardCoordinator(
-            locationManager: locationManager,
             petrolManager: petrolManager
         )
         
@@ -89,7 +88,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         )
         
         self.other = OtherCoordinator(
-            locationManager: locationManager,
             entryManager: entryManager
         )
         
