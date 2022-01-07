@@ -239,7 +239,9 @@ class ContentViewController: UIViewController {
     }
     
     func arrayContainsSubset<T : Equatable>(array: [T], subset: [T]) -> Bool {
-        return subset.reduce(true) { (result, item) in return result && array.contains(item) }
+        return subset.allSatisfy { (item) in
+            return array.contains(item)
+        }
     }
     
     // MARK: - Public Methods

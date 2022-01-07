@@ -165,7 +165,7 @@ class CardView: UIView {
     
     private func applyTheming() {
         
-        applyBaseStyling(theme: .dark) // TODO: Check whether this makes sense.
+        applyBaseStyling(theme: .dark)
         
     }
     
@@ -206,12 +206,14 @@ class CardView: UIView {
         self.addSubview(blurView)
         self.addSubview(activityIndicator)
         
-        let constraints = [blurView.topAnchor.constraint(equalTo: self.topAnchor),
-                           blurView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-                           blurView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-                           blurView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-                           activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                           activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor)]
+        let constraints = [
+            blurView.topAnchor.constraint(equalTo: self.topAnchor),
+            blurView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            blurView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            blurView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         

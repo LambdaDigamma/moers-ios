@@ -25,11 +25,11 @@ struct BigNewsTilesWidget: View {
             
             VStack {
                 
-                ForEach(0..<2) { j in
+                ForEach(0..<2) { row in
                     HStack {
-                        ForEach(0..<2) { i in
+                        ForEach(0..<2) { col in
                             
-                            let viewModel: NewsViewModel? = viewModels[safe: j * 2 + i]
+                            let viewModel: NewsViewModel? = viewModels[safe: row * 2 + col]
                             
                             if let viewModel = viewModel {
                                 Link(destination: viewModel.link, label: {

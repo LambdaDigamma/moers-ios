@@ -28,7 +28,6 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     private var textColor: UIColor = .clear
     
     private var entryManager: EntryManagerProtocol
-    private let locationManager: LocationManagerProtocol
     
     lazy var tableView: UITableView = {
         
@@ -138,11 +137,9 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     }()
     
     init(
-        locationManager: LocationManagerProtocol,
         entryManager: EntryManagerProtocol
     ) {
-    
-        self.locationManager = locationManager
+        
         self.entryManager = entryManager
         
         super.init(nibName: nil, bundle: nil)
@@ -225,8 +222,9 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                     handler: { _ in
                         self.entryManager.resetData()
                         
-                        let viewController = EntryOnboardingLocationMenuViewController(locationManager: self.locationManager,
-                                                                                       entryManager: self.entryManager)
+                        let viewController = EntryOnboardingLocationMenuViewController(
+                            entryManager: self.entryManager
+                        )
                         
                         self.navigationController?.pushViewController(viewController, animated: true)
                     }
@@ -238,8 +236,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                     title: String.localized("OtherDataTakeOldDataYes"),
                     style: .default,
                     handler: { _ in
-                        let viewController = EntryOnboardingLocationMenuViewController(locationManager: self.locationManager,
-                                                                                       entryManager: self.entryManager)
+                        let viewController = EntryOnboardingLocationMenuViewController(entryManager: self.entryManager)
                         
                         self.navigationController?.pushViewController(viewController, animated: true)
                     }
@@ -250,8 +247,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
             
         } else {
             
-            let viewController = EntryOnboardingLocationMenuViewController(locationManager: self.locationManager,
-                                                                           entryManager: self.entryManager)
+            let viewController = EntryOnboardingLocationMenuViewController(entryManager: self.entryManager)
             
             self.navigationController?.pushViewController(viewController, animated: true)
             
@@ -265,9 +261,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     private func showSettings() {
         
-        let settingsViewController = SettingsViewController(
-            locationManager: locationManager
-        )
+        let settingsViewController = SettingsViewController()
         
         navigationController?.pushViewController(settingsViewController, animated: true)
         

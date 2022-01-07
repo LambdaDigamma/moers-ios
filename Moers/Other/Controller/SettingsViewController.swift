@@ -28,18 +28,11 @@ class SettingsViewController: UIViewController {
     @LazyInjected var rubbishService: RubbishService
     @LazyInjected var petrolService: PetrolService
     
-    private let locationManager: LocationManagerProtocol
     private let onboardingManager: OnboardingManager
     
-    init(
-        locationManager: LocationManagerProtocol
-    ) {
+    init() {
         
-        self.locationManager = locationManager
-        
-        self.onboardingManager = OnboardingManager(
-            locationManager: locationManager
-        )
+        self.onboardingManager = OnboardingManager()
         
         super.init(nibName: nil, bundle: nil)
         

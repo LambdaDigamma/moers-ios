@@ -171,19 +171,6 @@ class CovidComponent: BaseComponent {
         
     }
     
-    private func handleReceivedPetrolStations(_ petrolStations: [PetrolStation]) {
-        
-        self.covidCardView.stopLoading()
-        
-        // FIXME: Remove this property
-//        self.petrolStations = petrolStations
-        
-        self.covidCardView.stopLoading()
-//        self.covidCardView.numberOfStations = openStations.count
-//        self.covidCardView.price = priceAverage
-        
-    }
-    
     // MARK: - View Controller Handling
     
     private func showMoersCovidDetails() -> UIViewController {

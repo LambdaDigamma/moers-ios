@@ -24,16 +24,13 @@ class OnboardingManager {
     @LazyInjected var rubbishService: RubbishService
     @LazyInjected var petrolService: PetrolService
     @LazyInjected var geocodingService: GeocodingService
+    @LazyInjected var locationService: LocationService
     
-    private let locationManager: LocationManagerProtocol
     private let appearance: BLTNItemAppearance
     private var cancellables = Set<AnyCancellable>()
     
-    init(
-        locationManager: LocationManagerProtocol
-    ) {
+    init() {
         
-        self.locationManager = locationManager
         self.appearance = OnboardingManager.makeAppearance()
         
     }
@@ -152,10 +149,10 @@ class OnboardingManager {
             
             AnalyticsManager.shared.logEnabledLocation()
             
-            self.locationManager.authorizationStatus.sink { (authorizationStatus: CLAuthorizationStatus) in
+            self.locationService.authorizationStatus.sink { (authorizationStatus: CLAuthorizationStatus) in
                 
                 if authorizationStatus == .notDetermined {
-                    self.locationManager.requestWhenInUseAuthorization()
+                    self.locationService.requestWhenInUseAuthorization()
                 } else {
                     item.manager?.displayNextItem()
                 }
@@ -226,8 +223,7 @@ class OnboardingManager {
     func makeRubbishStreetPage() -> BLTNPageItem {
         
         let page = RubbishStreetPickerItem(
-            title: String.localized("RubbishCollectionPageTitle"),
-            locationManager: locationManager
+            title: String.localized("RubbishCollectionPageTitle")
         )
         
         page.appearance = appearance

@@ -31,7 +31,6 @@ class OtherCoordinator: Coordinator {
         self.entryManager = entryManager
         
         let otherViewController = OtherViewController(
-            locationManager: locationManager,
             entryManager: entryManager
         )
         

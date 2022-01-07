@@ -89,8 +89,7 @@ class NewsViewController: UIViewController, NewsManagerDelegate {
         
         newsItems = []
         
-        let queue = OperationQueue()
-        
+//        let queue = OperationQueue()
 //        queue.addOperation {
 //
 //            NewsManager.shared.delegate = self

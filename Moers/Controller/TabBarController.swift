@@ -39,7 +39,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     private var cancellables = Set<AnyCancellable>()
     
     lazy var onboardingManager: OnboardingManager = {
-        return OnboardingManager(locationManager: locationManager)
+        return OnboardingManager()
     }()
     
     lazy var bulletinManager: BLTNItemManager = {

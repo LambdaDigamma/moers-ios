@@ -230,7 +230,7 @@ public class DefaultPetrolService: PetrolService {
                 
                 let request = URLRequest(url: url)
                 
-                let task = self.session.dataTask(with: request) { (data, response, error) in
+                let task = self.session.dataTask(with: request) { (data, _, error) in
                     
                     if let error = error {
                         return promise(.failure(error))

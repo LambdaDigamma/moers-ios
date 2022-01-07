@@ -22,8 +22,7 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
 
     @LazyInjected var rubbishService: RubbishService
     @LazyInjected var geocodingService: GeocodingService
-    
-    private let locationManager: LocationManagerProtocol
+    @LazyInjected var locationManager: LocationService
     
     private var streets: [RubbishFeature.RubbishCollectionStreet] = []
     private var accentColor = UIColor.clear
@@ -38,12 +37,7 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
         return streets[picker.currentSelectedRow]
     }
     
-    init(
-        title: String,
-        locationManager: LocationManagerProtocol
-    ) {
-        
-        self.locationManager = locationManager
+    override init(title: String) {
         
         super.init(title: title)
         

@@ -42,7 +42,7 @@ class TextFieldFormView: UIView, FormView {
         }
     }
     
-    var textFieldDelegate: UITextFieldDelegate? = nil {
+    var textFieldDelegate: UITextFieldDelegate? {
         didSet {
             textField.delegate = textFieldDelegate
         }

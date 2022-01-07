@@ -12,6 +12,8 @@ import CoreLocation
 import MMAPI
 import MMUI
 import Combine
+import Core
+import Resolver
 
 protocol MapLocationPickerViewControllerDelegate: AnyObject {
     
@@ -20,6 +22,8 @@ protocol MapLocationPickerViewControllerDelegate: AnyObject {
 }
 
 class MapLocationPickerViewController: UIViewController {
+    
+    @LazyInjected var locationService: LocationService
     
     lazy var mapView = { return ViewFactory.map() }()
     lazy var pointer = { return ViewFactory.imageView() }()
@@ -33,11 +37,9 @@ class MapLocationPickerViewController: UIViewController {
     private var currentPostcode: String = ""
     private var cancellables = Set<AnyCancellable>()
     
-    private let locationManager: LocationManagerProtocol
     private var entryManager: EntryManagerProtocol
     
-    init(locationManager: LocationManagerProtocol, entryManager: EntryManagerProtocol) {
-        self.locationManager = locationManager
+    init(entryManager: EntryManagerProtocol) {
         self.entryManager = entryManager
         
         super.init(nibName: nil, bundle: nil)
@@ -81,11 +83,11 @@ class MapLocationPickerViewController: UIViewController {
         
         self.setupMap(centeringOn: CLLocationCoordinate2D(latitude: 51.4516, longitude: 6.6255))
         
-        locationManager.authorizationStatus.sink { authorizationStatus in
+        locationService.authorizationStatus.sink { authorizationStatus in
             
             if authorizationStatus == .authorizedWhenInUse {
-                self.locationManager.requestCurrentLocation()
-                self.locationManager.location.receive(on: DispatchQueue.main)
+                self.locationService.requestCurrentLocation()
+                self.locationService.location.receive(on: DispatchQueue.main)
                     .sink(receiveCompletion: { (_: Subscribers.Completion<Error>) in
                         
                     }, receiveValue: { (location: CLLocation) in
@@ -165,8 +167,8 @@ class MapLocationPickerViewController: UIViewController {
     
     @objc private func focusOnUserLocation() {
         
-        locationManager.requestCurrentLocation()
-        locationManager.location
+        locationService.requestCurrentLocation()
+        locationService.location
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { (_: Subscribers.Completion<Error>) in
                 

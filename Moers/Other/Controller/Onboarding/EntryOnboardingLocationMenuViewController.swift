@@ -10,19 +10,19 @@ import UIKit
 import Gestalt
 import MMUI
 import MMAPI
+import Core
+import Resolver
 
 class EntryOnboardingLocationMenuViewController: UIViewController {
-
+    
     private lazy var progressView: OnboardingProgressView = { ViewFactory.onboardingProgressView() }()
     private lazy var addressButton: UIButton = { ViewFactory.button() }()
     private lazy var locationButton: UIButton = { ViewFactory.button() }()
     private lazy var infoLabel: UILabel = { ViewFactory.label() }()
     
-    private let locationManager: LocationManagerProtocol
     private let entryManager: EntryManagerProtocol
     
-    init(locationManager: LocationManagerProtocol, entryManager: EntryManagerProtocol) {
-        self.locationManager = locationManager
+    init(entryManager: EntryManagerProtocol) {
         self.entryManager = entryManager
         super.init(nibName: nil, bundle: nil)
     }
@@ -119,7 +119,7 @@ class EntryOnboardingLocationMenuViewController: UIViewController {
     
     @objc private func enterLocation() {
         
-        let viewController = MapLocationPickerViewController(locationManager: locationManager, entryManager: entryManager)
+        let viewController = MapLocationPickerViewController(entryManager: entryManager)
         
         self.navigationController?.pushViewController(viewController, animated: true)
         
