@@ -23,7 +23,6 @@ class ApplicationCoordinator: NSObject {
     
     let locationManager: LocationManagerProtocol
     let petrolManager: PetrolManagerProtocol
-    let geocodingManager: GeocodingManagerProtocol
     let cameraManager: CameraManagerProtocol
     let entryManager: EntryManagerProtocol
     let parkingLotManager: ParkingLotManagerProtocol
@@ -39,7 +38,6 @@ class ApplicationCoordinator: NSObject {
     init(
         locationManager: LocationManagerProtocol = LocationManager(),
         petrolManager: PetrolManagerProtocol = PetrolManager(storageManager: StorageManager()),
-        geocodingManager: GeocodingManagerProtocol = GeocodingManager(),
         cameraManager: CameraManagerProtocol = CameraManager(storageManager: StorageManager()),
         entryManager: EntryManagerProtocol,
         parkingLotManager: ParkingLotManagerProtocol = ParkingLotManager()
@@ -49,7 +47,6 @@ class ApplicationCoordinator: NSObject {
         
         self.locationManager = locationManager
         self.petrolManager = petrolManager
-        self.geocodingManager = geocodingManager
         self.cameraManager = cameraManager
         self.entryManager = entryManager
         self.parkingLotManager = parkingLotManager
@@ -90,7 +87,6 @@ class ApplicationCoordinator: NSObject {
         self.tabController = TabBarController(
             locationManager: locationManager,
             petrolManager: petrolManager,
-            geocodingManager: geocodingManager,
             cameraManager: cameraManager,
             entryManager: entryManager,
             parkingLotManager: parkingLotManager,

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Core
 import BLTNBoard
 import Gestalt
 import CoreLocation
@@ -22,19 +23,17 @@ class OnboardingManager {
     
     @LazyInjected var rubbishService: RubbishService
     @LazyInjected var petrolService: PetrolService
+    @LazyInjected var geocodingService: GeocodingService
     
     private let locationManager: LocationManagerProtocol
-    private let geocodingManager: GeocodingManagerProtocol
     private let appearance: BLTNItemAppearance
     private var cancellables = Set<AnyCancellable>()
     
     init(
-        locationManager: LocationManagerProtocol,
-        geocodingManager: GeocodingManagerProtocol
+        locationManager: LocationManagerProtocol
     ) {
         
         self.locationManager = locationManager
-        self.geocodingManager = geocodingManager
         self.appearance = OnboardingManager.makeAppearance()
         
     }
@@ -228,8 +227,7 @@ class OnboardingManager {
         
         let page = RubbishStreetPickerItem(
             title: String.localized("RubbishCollectionPageTitle"),
-            locationManager: locationManager,
-            geocodingManager: geocodingManager
+            locationManager: locationManager
         )
         
         page.appearance = appearance

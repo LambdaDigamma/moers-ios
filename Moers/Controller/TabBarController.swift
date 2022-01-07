@@ -30,7 +30,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     let other: OtherCoordinator
     
     let locationManager: LocationManagerProtocol
-    let geocodingManager: GeocodingManagerProtocol
     let cameraManager: CameraManagerProtocol
     let entryManager: EntryManagerProtocol
     let parkingLotManager: ParkingLotManagerProtocol
@@ -40,10 +39,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     private var cancellables = Set<AnyCancellable>()
     
     lazy var onboardingManager: OnboardingManager = {
-        return OnboardingManager(
-            locationManager: locationManager,
-            geocodingManager: geocodingManager
-        )
+        return OnboardingManager(locationManager: locationManager)
     }()
     
     lazy var bulletinManager: BLTNItemManager = {
@@ -59,7 +55,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     init(
         locationManager: LocationManagerProtocol,
         petrolManager: PetrolManagerProtocol,
-        geocodingManager: GeocodingManagerProtocol,
         cameraManager: CameraManagerProtocol,
         entryManager: EntryManagerProtocol,
         parkingLotManager: ParkingLotManagerProtocol,
@@ -69,7 +64,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         self.firstLaunch = FirstLaunch(userDefaults: .standard, key: Constants.firstLaunch)
         self.locationManager = locationManager
         self.petrolManager = petrolManager
-        self.geocodingManager = geocodingManager
         self.cameraManager = cameraManager
         self.entryManager = entryManager
         self.parkingLotManager = parkingLotManager
@@ -77,7 +71,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
         self.dashboard = DashboardCoordinator(
             locationManager: locationManager,
-            geocodingManager: geocodingManager,
             petrolManager: petrolManager
         )
         
@@ -97,7 +90,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
         self.other = OtherCoordinator(
             locationManager: locationManager,
-            geocodingManager: geocodingManager,
             entryManager: entryManager
         )
         

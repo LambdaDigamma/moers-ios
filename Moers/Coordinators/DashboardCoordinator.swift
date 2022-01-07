@@ -18,21 +18,18 @@ class DashboardCoordinator: Coordinator {
     var navigationController: CoordinatedNavigationController
     var petrolManager: PetrolManagerProtocol
     var locationManager: LocationManagerProtocol
-    var geocodingManager: GeocodingManagerProtocol
     
     var dashboardViewController: DashboardViewController?
     
     init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
         locationManager: LocationManagerProtocol,
-        geocodingManager: GeocodingManagerProtocol,
         petrolManager: PetrolManagerProtocol
     ) {
         
         self.navigationController = navigationController
         self.petrolManager = petrolManager
         self.locationManager = locationManager
-        self.geocodingManager = geocodingManager
         
         self.navigationController.coordinator = self
         

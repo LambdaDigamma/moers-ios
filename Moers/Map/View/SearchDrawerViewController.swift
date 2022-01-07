@@ -373,7 +373,10 @@ extension SearchDrawerViewController: UITableViewDataSource, UITableViewDelegate
             
         case .list:
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: CellIdentifier.searchResultCell,
+                for: indexPath
+            ) as! SearchResultTableViewCell
             
             let location = datasource[indexPath.row]
             
@@ -381,7 +384,10 @@ extension SearchDrawerViewController: UITableViewDataSource, UITableViewDelegate
             
         case .filter(_, _, let items):
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: CellIdentifier.searchResultCell,
+                for: indexPath
+            ) as! SearchResultTableViewCell
             
             let location = items[indexPath.row]
             

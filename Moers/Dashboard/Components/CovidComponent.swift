@@ -13,11 +13,12 @@ import CoreLocation
 import Combine
 import SwiftUI
 import OSLog
+import Core
+import Resolver
 
 class CovidComponent: BaseComponent {
     
     private let locationManager: LocationManagerProtocol
-    private let geocodingManager: GeocodingManagerProtocol
     private let covidManager: CovidManagerProtocol
     
     private var cancellables = Set<AnyCancellable>()
@@ -45,13 +46,13 @@ class CovidComponent: BaseComponent {
         
     }()
     
-    init(viewController: UIViewController,
-         locationManager: LocationManagerProtocol,
-         geocodingManager: GeocodingManagerProtocol,
-         covidManager: CovidManagerProtocol) {
+    init(
+        viewController: UIViewController,
+        locationManager: LocationManagerProtocol,
+        covidManager: CovidManagerProtocol
+    ) {
         
         self.locationManager = locationManager
-        self.geocodingManager = geocodingManager
         self.covidManager = covidManager
         self.locationObject = CoreLocationObject()
         

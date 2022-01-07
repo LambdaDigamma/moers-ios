@@ -6,6 +6,8 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Resolver
+import Core
 import UIKit
 import CoreLocation
 import MMAPI
@@ -14,9 +16,10 @@ import Combine
 
 class AveragePetrolPriceComponent: BaseComponent {
 
+    @LazyInjected var geocodingService: GeocodingService
+    
     private var petrolStations: [PetrolStation] = []
     private let locationManager: LocationManagerProtocol
-    private let geocodingManager: GeocodingManagerProtocol
     private let petrolManager: PetrolManagerProtocol
     private var cancellables = Set<AnyCancellable>()
     
@@ -30,13 +33,13 @@ class AveragePetrolPriceComponent: BaseComponent {
         
     }()
     
-    init(viewController: UIViewController,
-         locationManager: LocationManagerProtocol,
-         geocodingManager: GeocodingManagerProtocol,
-         petrolManager: PetrolManagerProtocol) {
+    init(
+        viewController: UIViewController,
+        locationManager: LocationManagerProtocol,
+        petrolManager: PetrolManagerProtocol
+    ) {
         
         self.locationManager = locationManager
-        self.geocodingManager = geocodingManager
         self.petrolManager = petrolManager
         
         super.init(viewController: viewController)
@@ -135,7 +138,7 @@ class AveragePetrolPriceComponent: BaseComponent {
     
     private func loadPlacemark(for location: CLLocation) {
         
-        geocodingManager.placemark(from: location)
+        geocodingService.placemark(from: location)
             .receive(on: DispatchQueue.main)
             .sink { (_: Subscribers.Completion<Error>) in
                 

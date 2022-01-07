@@ -50,22 +50,9 @@ class SidebarViewController: UIViewController {
     private var collectionView: UICollectionView! = nil
     private var secondaryViewControllers: [UIViewController] = []
     
-//    let calendars: CalendarsCoordinator
-//    let countdown: CountdownCoordinator
-//    let gift: GiftCoordinator
-//    let shop: ShopCoordinator
-//    let settings: SettingsCoordinator
-    
     public let coordinators: [Coordinator]
     
-    init(
-        coordinators: [Coordinator]
-//        calendars: CalendarsCoordinator = CalendarsCoordinator(),
-//        countdown: CountdownCoordinator = CountdownCoordinator(),
-//        gift: GiftCoordinator = GiftCoordinator(),
-//        shop: ShopCoordinator = ShopCoordinator(),
-//        settings: SettingsCoordinator = SettingsCoordinator()
-    ) {
+    init(coordinators: [Coordinator]) {
         
         self.coordinators = coordinators
         self.secondaryViewControllers = coordinators.map { $0.navigationController }

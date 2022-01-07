@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Core
 import BLTNBoard
 import Gestalt
 import CoreLocation
@@ -20,9 +21,9 @@ import RubbishFeature
 class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataSource {
 
     @LazyInjected var rubbishService: RubbishService
+    @LazyInjected var geocodingService: GeocodingService
     
     private let locationManager: LocationManagerProtocol
-    private let geocodingManager: GeocodingManagerProtocol
     
     private var streets: [RubbishFeature.RubbishCollectionStreet] = []
     private var accentColor = UIColor.clear
@@ -39,12 +40,10 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     
     init(
         title: String,
-        locationManager: LocationManagerProtocol,
-        geocodingManager: GeocodingManagerProtocol
+        locationManager: LocationManagerProtocol
     ) {
         
         self.locationManager = locationManager
-        self.geocodingManager = geocodingManager
         
         super.init(title: title)
         
@@ -114,7 +113,7 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     
     private func checkStreetExistance(for location: CLLocation) {
         
-        geocodingManager
+        geocodingService
             .placemark(from: location)
             .receive(on: DispatchQueue.main)
             .sink { (_: Subscribers.Completion<Error>) in

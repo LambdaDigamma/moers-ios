@@ -29,20 +29,16 @@ class SettingsViewController: UIViewController {
     @LazyInjected var petrolService: PetrolService
     
     private let locationManager: LocationManagerProtocol
-    private let geocodingManager: GeocodingManagerProtocol
     private let onboardingManager: OnboardingManager
     
     init(
-        locationManager: LocationManagerProtocol,
-        geocodingManager: GeocodingManagerProtocol
+        locationManager: LocationManagerProtocol
     ) {
         
         self.locationManager = locationManager
-        self.geocodingManager = geocodingManager
         
         self.onboardingManager = OnboardingManager(
-            locationManager: locationManager,
-            geocodingManager: geocodingManager
+            locationManager: locationManager
         )
         
         super.init(nibName: nil, bundle: nil)

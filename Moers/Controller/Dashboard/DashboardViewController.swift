@@ -26,11 +26,9 @@ class DashboardViewController: CardCollectionViewController {
     private var components: [BaseComponent] = []
     
     private let locationManager: LocationManagerProtocol
-    private let geocodingManager: GeocodingManagerProtocol
     private let petrolManager: PetrolManagerProtocol
     
     init(coordinator: DashboardCoordinator) {
-        self.geocodingManager = coordinator.geocodingManager
         self.locationManager = coordinator.locationManager
         self.petrolManager = coordinator.petrolManager
         self.coordinator = coordinator
@@ -40,12 +38,10 @@ class DashboardViewController: CardCollectionViewController {
     
     init(
         locationManager: LocationManagerProtocol,
-        geocodingManager: GeocodingManagerProtocol,
         petrolManager: PetrolManagerProtocol
     ) {
     
         self.locationManager = locationManager
-        self.geocodingManager = geocodingManager
         self.petrolManager = petrolManager
         
         super.init(nibName: nil, bundle: nil)
@@ -98,7 +94,6 @@ class DashboardViewController: CardCollectionViewController {
         let petrolPriceComponent = AveragePetrolPriceComponent(
             viewController: self,
             locationManager: locationManager,
-            geocodingManager: geocodingManager,
             petrolManager: petrolManager
         )
         
@@ -108,9 +103,11 @@ class DashboardViewController: CardCollectionViewController {
             components.append(RubbishCollectionComponent(viewController: self))
         }
         
-//        let covidComponent = CovidComponent(viewController: self,
-//                                            locationManager: locationManager,
-//                                            geocodingManager: geocodingManager, covidManager: CovidManager())
+//        let covidComponent = CovidComponent(
+//            viewController: self,
+//            locationManager: locationManager,
+//            covidManager: CovidManager()
+//        )
 //
 //        components.append(covidComponent)
         

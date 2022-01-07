@@ -18,24 +18,20 @@ class OtherCoordinator: Coordinator {
     var otherViewController: OtherViewController?
     
     public let locationManager: LocationManagerProtocol
-    public let geocodingManager: GeocodingManagerProtocol
     public let entryManager: EntryManagerProtocol
     
     public init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
         locationManager: LocationManagerProtocol,
-        geocodingManager: GeocodingManagerProtocol,
         entryManager: EntryManagerProtocol
     ) {
         
         self.navigationController = navigationController
         self.locationManager = locationManager
-        self.geocodingManager = geocodingManager
         self.entryManager = entryManager
         
         let otherViewController = OtherViewController(
             locationManager: locationManager,
-            geocodingManager: geocodingManager,
             entryManager: entryManager
         )
         
