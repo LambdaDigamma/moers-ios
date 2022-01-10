@@ -117,7 +117,7 @@
          </BuildableReference>
       </BuildableProductRunnable>
       <LocationScenarioReference
-         identifier = "../../Moers/Assets/Berlin.gpx"
+         identifier = "../../Moers/Moers.gpx"
          referenceType = "0">
       </LocationScenarioReference>
    </LaunchAction>

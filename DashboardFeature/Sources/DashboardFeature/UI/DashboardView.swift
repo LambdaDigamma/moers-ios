@@ -42,7 +42,7 @@ public struct DashboardView: View {
 //                .foregroundColor(Color.yellow)
 //            }
         }
-        .navigationBarTitle("Übersicht")
+        .navigationBarTitle("Heute")
         .onAppear {
             viewModel.load()
         }

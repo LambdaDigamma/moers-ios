@@ -60,6 +60,8 @@ class MapCoordintor: Coordinator {
         self.navigationController.viewControllers = [mainViewController]
         self.mainViewController = mainViewController
         
+        Styling.applyStyling(navigationController: navigationController, statusBarStyle: .darkContent)
+        
     }
     
     private func generateTabBarItem() -> UITabBarItem {

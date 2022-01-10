@@ -30,25 +30,14 @@ class DashboardCoordinator: Coordinator {
         
         self.navigationController.coordinator = self
         
-//        let dashboard = DashboardView()
-//        let hostingController = UIHostingController(rootView: dashboard)
-//
-//        hostingController.tabBarItem = generateTabBarItem()
-//        self.navigationController.viewControllers = [hostingController]
-        
         let dashboard = DashboardView()
         let controller = UIHostingController(rootView: dashboard)
         
         controller.tabBarItem = generateTabBarItem()
         
         self.navigationController.viewControllers = [controller]
-//        self.dashboardViewController = controller
         
-//        let dashboardViewController = DashboardViewController(coordinator: self)
-//        dashboardViewController.tabBarItem = generateTabBarItem()
-//
-//        self.navigationController.viewControllers = [dashboardViewController]
-//        self.dashboardViewController = dashboardViewController
+        Styling.applyStyling(navigationController: navigationController, statusBarStyle: .darkContent)
         
     }
     
@@ -56,8 +45,8 @@ class DashboardCoordinator: Coordinator {
         
         let tabBarItem = UITabBarItem(
             title: AppStrings.Menu.dashboard,
-            image: UIImage(systemName: "rectangle.grid.2x2"),
-            selectedImage: UIImage(systemName: "rectangle.grid.2x2.fill")
+            image: UIImage(systemName: "doc.text.image"), // "rectangle.grid.2x2"
+            selectedImage: UIImage(systemName: "doc.text.image") // "rectangle.grid.2x2.fill"
         )
         
         tabBarItem.accessibilityIdentifier = AccessibilityIdentifiers.Menu.dashboard

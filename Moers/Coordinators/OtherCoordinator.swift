@@ -38,6 +38,8 @@ class OtherCoordinator: Coordinator {
         self.navigationController.viewControllers = [otherViewController]
         self.otherViewController = otherViewController
         
+        Styling.applyStyling(navigationController: navigationController, statusBarStyle: .darkContent)
+        
     }
     
     private func generateTabBarItem() -> UITabBarItem {

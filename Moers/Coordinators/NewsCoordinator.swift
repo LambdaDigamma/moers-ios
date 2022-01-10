@@ -30,14 +30,16 @@ class NewsCoordinator: Coordinator {
         
         self.navigationController.viewControllers = [newsViewController]
         
+        Styling.applyStyling(navigationController: navigationController, statusBarStyle: .darkContent)
+        
     }
     
     private func generateTabBarItem() -> UITabBarItem {
         
         let tabBarItem = UITabBarItem(
             title: AppStrings.Menu.news,
-            image: UIImage(systemName: "map"),
-            selectedImage: UIImage(systemName: "map.fill")
+            image: UIImage(systemName: "newspaper"),
+            selectedImage: UIImage(systemName: "newspaper.fill")
         )
         tabBarItem.accessibilityLabel = AppStrings.Menu.news
         tabBarItem.accessibilityIdentifier = AccessibilityIdentifiers.Menu.news

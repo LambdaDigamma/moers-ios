@@ -363,19 +363,12 @@ extension TabBarController: Themeable {
                 
                 guard let nav = navigationController as? UINavigationController else { return }
                 
-                nav.navigationBar.barTintColor = theme.navigationBarColor
-                nav.navigationBar.tintColor = theme.accentColor
-                nav.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
-                nav.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
-                nav.navigationBar.isTranslucent = true
-                nav.navigationBar.prefersLargeTitles = true
+                Styling.applyStyling(navigationController: nav, statusBarStyle: theme.statusBarStyle)
                 
                 if theme.statusBarStyle == .lightContent {
                     self.tabBar.barStyle = .black
-                    nav.navigationBar.barStyle = .black
                 } else {
                     self.tabBar.barStyle = .default
-                    nav.navigationBar.barStyle = .default
                 }
                 
             }
