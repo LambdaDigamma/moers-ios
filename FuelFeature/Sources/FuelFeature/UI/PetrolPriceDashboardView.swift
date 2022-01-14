@@ -88,7 +88,7 @@ struct CardPanelView<Content: View>: View {
         }
         .frame(maxWidth: .infinity)
         .background(Color(.secondarySystemGroupedBackground))
-        .cornerRadius(12)
+        .cornerRadius(16)
         .shadow(radius: colorScheme == .light ? 8 : 0)
         
     }

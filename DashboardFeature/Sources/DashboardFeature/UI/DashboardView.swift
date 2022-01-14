@@ -6,6 +6,7 @@
 //  Copyright © 2021 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import SwiftUI
 import RubbishFeature
 import FuelFeature
@@ -24,6 +25,11 @@ public struct DashboardView: View {
         ScrollView {
             
             LazyVStack(spacing: 20) {
+                
+                #if DEBUG
+                EmergencyCard(text: "Bombenentschärfung in Moers-Meerbusch")
+                    .cornerRadius(16)
+                #endif
                 
                 ForEach(viewModel.displayables, id: \.id) { item in
                     dashboardItem(for: item)
