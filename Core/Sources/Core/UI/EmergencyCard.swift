@@ -29,6 +29,7 @@ public struct EmergencyCard: View {
             Text(text)
                 .fontWeight(.semibold)
                 .foregroundColor(foregroundColor)
+                .multilineTextAlignment(.leading)
                 .padding(.leading)
                 .background(ZStack(alignment: .leading) {
                     RoundedRectangle(cornerRadius: 4)

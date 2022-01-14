@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ParkingAreaList: View {
+public struct ParkingAreaList: View {
     
     @State private var filter: ParkingAreaFilterType = .all
     
@@ -39,7 +39,7 @@ struct ParkingAreaList: View {
         ]
     }
     
-    var body: some View {
+    public var body: some View {
         
         ScrollView {
             
@@ -47,7 +47,7 @@ struct ParkingAreaList: View {
                 
                 ForEach(viewModels) { viewModel in
                     
-                    SmallParkingDashboard(viewModel: viewModel)
+                    ParkingAreaDetail(viewModel: viewModel)
                         .frame(maxWidth: .infinity)
                         .background(Color(UIColor.secondarySystemBackground))
                         .cornerRadius(16)
@@ -66,7 +66,7 @@ struct ParkingAreaList: View {
             }
             .font(.caption)
             .frame(maxWidth: .infinity)
-            .foregroundColor(.secondary)
+            .foregroundColor(Color(UIColor.tertiaryLabel))
             .padding()
             
         }

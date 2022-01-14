@@ -1,5 +1,5 @@
 //
-//  SmallParkingDashboarding.swift
+//  ParkingAreaDetail.swift
 //  
 //
 //  Created by Lennart Fischer on 10.01.22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct SmallParkingDashboard: View {
+public struct ParkingAreaDetail: View {
     
     private let name: String
     private let total: Int
@@ -91,11 +91,11 @@ public struct SmallParkingDashboard: View {
 struct SmallParkingDashboarding_Previews: PreviewProvider {
     static var previews: some View {
         
-        SmallParkingDashboard(name: "Kastell", total: 100, free: 34)
+        ParkingAreaDetail(name: "Kastell", total: 100, free: 34)
             .previewLayout(.sizeThatFits)
             .preferredColorScheme(.dark)
         
-        SmallParkingDashboard(name: "Kastell", total: 100, free: 34)
+        ParkingAreaDetail(name: "Kastell", total: 100, free: 34)
             .previewLayout(.sizeThatFits)
             .preferredColorScheme(.dark)
             .frame(maxWidth: 200)

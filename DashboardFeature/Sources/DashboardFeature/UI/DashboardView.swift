@@ -27,8 +27,16 @@ public struct DashboardView: View {
             LazyVStack(spacing: 20) {
                 
                 #if DEBUG
-                EmergencyCard(text: "Bombenentschärfung in Moers-Meerbusch")
-                    .cornerRadius(16)
+                
+                NavigationLink(destination: {
+                    
+                    ParkingAreaList()
+                    
+                }, label: {
+                    EmergencyCard(text: "Bombenentschärfung in Moers-Meerbusch")
+                        .cornerRadius(16)
+                })
+                
                 #endif
                 
                 ForEach(viewModel.displayables, id: \.id) { item in
