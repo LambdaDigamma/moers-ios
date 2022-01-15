@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DF007B772640843E00DAFA6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF007B792640843E00DAFA6F /* InfoPlist.strings */; };
 		DF04D60A23CBD5EC008AE677 /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF04D60923CBD5EC008AE677 /* DashboardCoordinator.swift */; };
+		DF05E00F2792CA4C0063556E /* ParkingFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF05E00E2792CA4C0063556E /* ParkingFeature */; };
 		DF0CB4962082AFD000CC0AA8 /* FirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4952082AFD000CC0AA8 /* FirstLaunch.swift */; };
 		DF0CB49D2082B78C00CC0AA8 /* PermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB49C2082B78C00CC0AA8 /* PermissionsManager.swift */; };
 		DF0CB49F2082B90900CC0AA8 /* FeedbackGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB49E2082B90900CC0AA8 /* FeedbackGenerators.swift */; };
@@ -324,6 +325,7 @@
 /* Begin PBXFileReference section */
 		DF007B782640843E00DAFA6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DF007B7A2640844600DAFA6F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DF01804B27923CC500530143 /* ParkingFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ParkingFeature; sourceTree = "<group>"; };
 		DF04D60923CBD5EC008AE677 /* DashboardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
 		DF0CB4952082AFD000CC0AA8 /* FirstLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunch.swift; sourceTree = "<group>"; };
 		DF0CB49C2082B78C00CC0AA8 /* PermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsManager.swift; sourceTree = "<group>"; };
@@ -586,6 +588,7 @@
 				DF516161254603220094DEEB /* Charts in Frameworks */,
 				DF97AD0F26EFEC5F009DFF71 /* Core in Frameworks */,
 				DFDE88712545834B00429765 /* EventBus in Frameworks */,
+				DF05E00F2792CA4C0063556E /* ParkingFeature in Frameworks */,
 				DFCE12952538F7F600B45EB7 /* FeedKit in Frameworks */,
 				DF21FA9124C634D8001C278D /* Resolver in Frameworks */,
 				DF9F19F32766920C00B74E13 /* EFAAPI in Frameworks */,
@@ -907,9 +910,10 @@
 				DF89BA1A26FE12AE003A6C64 /* IDEAS.md */,
 				DF1A9B9F26ECB2A600D3CAD0 /* .swiftlint.yml */,
 				DFC8507726EFE62400F9FB39 /* Core */,
-				DFFBAA2727693755003728CF /* RubbishFeature */,
-				DFFBAA2927696353003728CF /* FuelFeature */,
 				DF55F2622770ABE80024300B /* DashboardFeature */,
+				DFFBAA2927696353003728CF /* FuelFeature */,
+				DF01804B27923CC500530143 /* ParkingFeature */,
+				DFFBAA2727693755003728CF /* RubbishFeature */,
 				DF4116BB276FA43E0068B4BB /* PlaybackKit */,
 				DF9F19FC276693BB00B74E13 /* efaapi-ios */,
 				DF89BA1C26FE1E49003A6C64 /* mmapi-ios */,
@@ -1346,6 +1350,7 @@
 				DFB07A2E277741030033101C /* FirebaseAnalyticsWithoutAdIdSupport */,
 				DFB07A30277741030033101C /* FirebaseCrashlytics */,
 				DFB07A32277741030033101C /* FirebaseMessaging */,
+				DF05E00E2792CA4C0063556E /* ParkingFeature */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -5485,6 +5490,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DF05E00E2792CA4C0063556E /* ParkingFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ParkingFeature;
+		};
 		DF0EAC9B24C63FB0009BE489 /* ModernNetworking */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ModernNetworking;

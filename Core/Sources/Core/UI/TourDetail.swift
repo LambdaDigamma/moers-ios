@@ -40,13 +40,9 @@ struct TourDetail: View {
                                                 .foregroundColor(.black)
                                         )
                                     
-                                    
                                 }
                                 
-
-                                
                             }
-                            
                             
                         }
                             .padding()
@@ -77,7 +73,6 @@ struct TourDetail: View {
                     .padding()
                 
             }
-            
             
         }
         .ignoresSafeArea(.container, edges: .top)

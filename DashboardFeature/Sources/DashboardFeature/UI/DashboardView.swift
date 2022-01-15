@@ -8,8 +8,9 @@
 
 import Core
 import SwiftUI
-import RubbishFeature
 import FuelFeature
+import RubbishFeature
+import ParkingFeature
 import Resolver
 
 public struct DashboardView: View {

@@ -5,6 +5,7 @@
 //  Created by Lennart Fischer on 10.01.22.
 //
 
+import Core
 import SwiftUI
 
 public struct ParkingAreaDetail: View {
@@ -55,6 +56,7 @@ public struct ParkingAreaDetail: View {
                     
                     Text("\(free)")
                         .font(.largeTitle.weight(.bold))
+//                        .foregroundColor(.green)
                     
                     Text("/ \(total)")
                         .font(.headline)
@@ -71,7 +73,10 @@ public struct ParkingAreaDetail: View {
             
             VStack(alignment: .leading) {
                 
-                ProgressMeterView(value: freePercent, color: .blue)
+                ProgressMeterView(
+                    value: freePercent,
+                    color: .gray
+                )
                 
                 Text(Date(timeIntervalSinceNow: -2 * 60), style: .relative)
                     .font(.caption)
@@ -84,8 +89,6 @@ public struct ParkingAreaDetail: View {
         
     }
     
-    
-    
 }
 
 struct SmallParkingDashboarding_Previews: PreviewProvider {
@@ -94,6 +97,11 @@ struct SmallParkingDashboarding_Previews: PreviewProvider {
         ParkingAreaDetail(name: "Kastell", total: 100, free: 34)
             .previewLayout(.sizeThatFits)
             .preferredColorScheme(.dark)
+        
+        ParkingAreaDetail(name: "Kastell", total: 100, free: 34)
+            .previewLayout(.sizeThatFits)
+            .preferredColorScheme(.dark)
+            .redacted(reason: .placeholder)
         
         ParkingAreaDetail(name: "Kastell", total: 100, free: 34)
             .previewLayout(.sizeThatFits)

@@ -47,6 +47,13 @@
         "identifier" : "RubbishFeatureTests",
         "name" : "RubbishFeatureTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:ParkingFeature",
+        "identifier" : "ParkingFeatureTests",
+        "name" : "ParkingFeatureTests"
+      }
     }
   ],
   "version" : 1
