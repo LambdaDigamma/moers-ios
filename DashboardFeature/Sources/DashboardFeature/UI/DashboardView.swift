@@ -31,7 +31,7 @@ public struct DashboardView: View {
                 
                 NavigationLink(destination: {
                     
-                    ParkingAreaList()
+                    ParkingAreaList(parkingService: Resolver.resolve())
                     
                 }, label: {
                     EmergencyCard(text: "Bombenentschärfung in Moers-Meerbusch")

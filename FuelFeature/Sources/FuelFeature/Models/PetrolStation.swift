@@ -10,9 +10,10 @@ import Foundation
 import MapKit
 import Fuse
 import MMAPI
+import Core
 
 // swiftlint:disable identifier_name
-final public class PetrolStation: NSObject, Location, Identifiable, Codable, MKAnnotation {
+final public class PetrolStation: NSObject, Location, Identifiable, Codable, MKAnnotation, Swift.Identifiable, MKRepresentable {
     
     public typealias ID = String
     
@@ -120,9 +121,23 @@ final public class PetrolStation: NSObject, Location, Identifiable, Codable, MKA
         ]
     }
     
+    #if canImport(MapKit)
+    
+    public func toMapItem() -> MKMapItem {
+        
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: self.coordinate))
+        mapItem.name = self.name
+        mapItem.pointOfInterestCategory = .gasStation
+        
+        return mapItem
+        
+    }
+    
+    #endif
+    
 }
 
-extension PetrolStation: Stubbable {
+extension PetrolStation: Core.Stubbable {
     
     public static func stub(withID id: ID) -> PetrolStation {
         return PetrolStation(

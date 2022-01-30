@@ -15,9 +15,15 @@ public struct ParkingAreaList: View {
     
     private let gridSpacing: CGFloat = 16
     
-    public init() {
+    public init(
+        parkingService: ParkingService,
+        locationService: LocationService? = nil
+    ) {
         
-        self.viewModel = ParkingAreaListViewModel()
+        self.viewModel = ParkingAreaListViewModel(
+            parkingService: parkingService,
+            locationService: locationService
+        )
         
     }
     
@@ -173,7 +179,7 @@ struct ParkingAreaList_Previews: PreviewProvider {
     static var previews: some View {
         
         NavigationView {
-            ParkingAreaList()
+            ParkingAreaList(parkingService: StaticParkingService(), locationService: nil)
                 .preferredColorScheme(.dark)
         }
         

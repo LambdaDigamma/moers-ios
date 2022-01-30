@@ -7,8 +7,10 @@
 
 import Foundation
 import Core
+import ModernNetworking
+import SwiftUI
 
-public struct ParkingArea: Equatable, Identifiable, Codable, Stubbable {
+public struct ParkingArea: Equatable, Identifiable, Codable, Stubbable, Model {
     
     public typealias ID = Int
     
@@ -74,10 +76,51 @@ public struct ParkingArea: Equatable, Identifiable, Codable, Stubbable {
 }
 
 /// Represents the possible opening states of a parking area.
-public enum ParkingAreaOpeningState: String, Equatable, Codable, CaseIterable {
+public enum ParkingAreaOpeningState: String, Equatable, Codable, CaseIterable, Comparable, CaseName {
     
     case `open` = "open"
     case unknown = "unknown"
     case closed = "closed"
+    
+    public var rating: Int {
+        switch self {
+            case .open:
+                return 3
+            case .closed:
+                return 2
+            case .unknown:
+                return 1
+        }
+    }
+    
+    public var name: String {
+        switch self {
+            case .open:
+                return "Geöffnet"
+            case .closed:
+                return "Geschlossen"
+            case .unknown:
+                return "Nicht aktiv"
+        }
+    }
+    
+    public var badgeColor: Color {
+        switch self {
+            case .open:
+                return Color.green
+            case .unknown:
+                return Color.gray
+            case .closed:
+                return Color.red
+        }
+    }
+    
+    public var isNegativeState: Bool {
+        return self == .closed || self == .unknown
+    }
+    
+    public static func < (lhs: ParkingAreaOpeningState, rhs: ParkingAreaOpeningState) -> Bool {
+        return lhs.rating < rhs.rating
+    }
     
 }

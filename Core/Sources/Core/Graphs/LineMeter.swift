@@ -62,11 +62,11 @@ struct LineMeter: View {
             .mask {
                 HStack(spacing: 6) {
                     
-                    ForEach(0..<numberOfLines) { n in
+                    ForEach(0..<numberOfLines) { num in
                         
                         RoundedRectangle(cornerRadius: 4)
                             .fill(
-                                n < numberOfFilled ? .blue
+                                num < numberOfFilled ? .blue
                                     : .secondary.opacity(disabledOpacity)
                             )
                         

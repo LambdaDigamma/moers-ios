@@ -74,15 +74,6 @@
         }
       },
       {
-        "package": "Fuse",
-        "repositoryURL": "https://github.com/LambdaDigamma/fuse-swift",
-        "state": {
-          "branch": null,
-          "revision": "a1f44a59d94393f7461745ccc977b5005c8438a5",
-          "version": "1.4.2"
-        }
-      },
-      {
         "package": "Gestalt",
         "repositoryURL": "https://github.com/regexident/Gestalt",
         "state": {
@@ -269,15 +260,6 @@
           "branch": null,
           "revision": "7e2c5f3cbbeea68e004915e3a8961e20bd11d824",
           "version": "1.18.0"
-        }
-      },
-      {
-        "package": "Charts",
-        "repositoryURL": "https://github.com/swift-extensions/swiftui-charts",
-        "state": {
-          "branch": null,
-          "revision": "b044e7eb04d0026490eecb115f4fc07197dad942",
-          "version": "1.1.0"
         }
       },
       {

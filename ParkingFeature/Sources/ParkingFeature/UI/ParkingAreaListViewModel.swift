@@ -8,13 +8,14 @@
 import Foundation
 import Core
 import MapKit
+import Combine
 
 public class ParkingAreaListViewModel: StandardViewModel {
     
+    private let parkingService: ParkingService
     private let locationService: LocationService?
     
     @Published public var parkingAreas: [ParkingAreaViewModel] = []
-    
     @Published public var filter: ParkingAreaFilterType = .all
     @Published public var userGrantedLocation: Bool = false
     @Published public var region: MKCoordinateRegion = MKCoordinateRegion(
@@ -22,7 +23,11 @@ public class ParkingAreaListViewModel: StandardViewModel {
         span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
     )
     
-    public init(locationService: LocationService? = nil) {
+    public init(
+        parkingService: ParkingService,
+        locationService: LocationService? = nil
+    ) {
+        self.parkingService = parkingService
         self.locationService = locationService
     }
     
@@ -39,12 +44,22 @@ public class ParkingAreaListViewModel: StandardViewModel {
             
         }
         
-        self.parkingAreas = [
-            .init(title: "Kauzstr.", free: 51, total: 62, currentOpeningState: .open),
-            .init(title: "Bankstr.", free: 137, total: 139, currentOpeningState: .open),
-            .init(title: "Kastell", free: 76, total: 200, currentOpeningState: .open),
-            .init(title: "Mühlenstr.", free: 709, total: 709, currentOpeningState: .open),
-        ]
+        parkingService.loadParkingAreas()
+            .sink { (_: Subscribers.Completion<Error>) in
+                
+            } receiveValue: { (parkingAreas: [ParkingArea]) in
+                
+                self.parkingAreas = parkingAreas.map({ ParkingAreaViewModel(
+                    title: $0.name,
+                    free: $0.freeSites,
+                    total: $0.capacity ?? 0,
+                    location: $0.location,
+                    currentOpeningState: $0.currentOpeningState,
+                    updatedAt: $0.updatedAt ?? Date()
+                )})
+                
+            }
+            .store(in: &cancellables)
         
     }
     

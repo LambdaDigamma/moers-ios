@@ -17,55 +17,63 @@ public struct PetrolPriceDashboardView: View {
     
     public var body: some View {
         
-        CardPanelView {
+        NavigationLink {
             
-            VStack(alignment: .leading, spacing: 16) {
+            PetrolStationList(viewModel: viewModel)
+            
+        } label: {
+            CardPanelView {
                 
-                HStack {
+                VStack(alignment: .leading, spacing: 16) {
                     
-                    VStack(alignment: .leading, spacing: 4) {
+                    HStack {
                         
-                        Text("\(Image(systemName: "location.fill")) Aktueller Ort")
-                            .font(.callout.weight(.medium))
+                        VStack(alignment: .leading, spacing: 4) {
+                            
+                            Text("\(Image(systemName: "location.fill")) Aktueller Ort")
+                                .font(.callout.weight(.medium))
+                            
+                            Text(viewModel.locationName.value ?? "Moers")
+                                .font(.title.weight(.bold))
+                                .redacted(reason: viewModel.locationName.loading ? .placeholder : [])
+                            
+                        }
                         
-                        Text(viewModel.locationName.value ?? "Moers")
-                            .font(.title.weight(.bold))
-                            .redacted(reason: viewModel.locationName.loading ? .placeholder : [])
+                        Spacer()
+                        
+                        VStack(alignment: .trailing, spacing: 4) {
+                            
+                            let price = viewModel.data.value?.averagePrice ?? 1.45
+                            
+                            Text(String(format: "%.2f€", price))
+                                .redacted(reason: viewModel.data.loading ? .placeholder : [])
+                                .font(.title.weight(.bold))
+                            
+                            Text("pro L Diesel".uppercased())
+                                .foregroundColor(.secondary)
+                                .font(.caption.weight(.medium))
+                            
+                        }
                         
                     }
                     
-                    Spacer()
-                    
-                    VStack(alignment: .trailing, spacing: 4) {
-                        
-                        let price = viewModel.data.value?.averagePrice ?? 1.45
-                        
-                        Text(String(format: "%.2f€", price))
-                            .redacted(reason: viewModel.data.loading ? .placeholder : [])
-                            .font(.title.weight(.bold))
-                        
-                        Text("pro L Diesel".uppercased())
-                            .foregroundColor(.secondary)
-                            .font(.caption.weight(.medium))
-                        
-                    }
+                    (Text("\(viewModel.data.value?.numberOfStations ?? 20)")
+                     + Text(" Tankstellen in Deiner näheren Umgebung haben geöffnet."))
+                        .foregroundColor(.secondary)
+                        .font(.callout)
+                        .multilineTextAlignment(.leading)
+                        .redacted(reason: viewModel.data.loading ? .placeholder : [])
                     
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
                 
-                (Text("\(viewModel.data.value?.numberOfStations ?? 20)")
-                    + Text(" Tankstellen in Deiner näheren Umgebung haben geöffnet."))
-                    .foregroundColor(.secondary)
-                    .font(.callout)
-                    .redacted(reason: viewModel.data.loading ? .placeholder : [])
-                    
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
-            
+            .onAppear {
+                viewModel.load()
+            }
         }
-        .onAppear {
-            viewModel.load()
-        }
+        .foregroundColor(Color.primary)
         
     }
     

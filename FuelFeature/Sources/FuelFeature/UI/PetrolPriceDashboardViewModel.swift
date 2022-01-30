@@ -23,6 +23,10 @@ public class PetrolPriceDashboardViewModel: StandardViewModel {
     @Published var data: DataState<PetrolPriceDashboardData, Error> = .loading
     @Published var locationName: DataState<String, Error> = .loading
     
+    public private(set) var fuelStations: DataState<[PetrolStation], Error> = .loading
+    
+    @Published private var defaultSearchRadius = 10.0
+    
     private let petrolService: PetrolService
     private let locationService: LocationService
     private let geocodingService: GeocodingService
@@ -31,12 +35,14 @@ public class PetrolPriceDashboardViewModel: StandardViewModel {
         petrolService: PetrolService = Resolver.resolve(),
         locationService: LocationService = Resolver.resolve(),
         geocodingService: GeocodingService = Resolver.resolve(),
-        initialState: DataState<PetrolPriceDashboardData, Error> = .loading
+        initialState: DataState<PetrolPriceDashboardData, Error> = .loading,
+        initialFuelStations: DataState<[PetrolStation], Error> = .loading
     ) {
         self.petrolService = petrolService
         self.locationService = locationService
         self.geocodingService = geocodingService
         self.data = initialState
+        self.fuelStations = initialFuelStations
         super.init()
     }
     
@@ -79,7 +85,7 @@ public class PetrolPriceDashboardViewModel: StandardViewModel {
 
                 return self.petrolService.getPetrolStations(
                     coordinate: location.coordinate,
-                    radius: 25.0,
+                    radius: self.defaultSearchRadius,
                     sorting: .distance,
                     type: petrolType,
                     shouldReload: false
@@ -97,6 +103,7 @@ public class PetrolPriceDashboardViewModel: StandardViewModel {
 
             } receiveValue: { [weak self] (petrolStations: [PetrolStation]) in
 
+                self?.fuelStations = DataState<[PetrolStation], Error>.success(petrolStations.filter { $0.isOpen })
                 self?.calculateNewAverage(from: petrolStations)
 
             }

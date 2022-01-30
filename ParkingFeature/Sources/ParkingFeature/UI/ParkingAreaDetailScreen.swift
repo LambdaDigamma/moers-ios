@@ -7,10 +7,20 @@
 
 import SwiftUI
 import Core
+import MapKit
+import Charts
+import CoreLocation
+
+public struct Marker: Identifiable {
+    
+    public let id: UUID = UUID()
+    public let coordinate: CLLocationCoordinate2D
+    
+}
 
 public struct ParkingAreaDetailScreen: View {
     
-    private let viewModel: ParkingAreaViewModel
+    @ObservedObject private var viewModel: ParkingAreaViewModel
     
     public init(viewModel: ParkingAreaViewModel) {
         self.viewModel = viewModel
@@ -20,20 +30,27 @@ public struct ParkingAreaDetailScreen: View {
         
         ScrollView {
             
-            header()
-                .padding()
-            
-            availability()
-            
-            openingHours()
-            
-            prizeInformation()
-            
-            actions()
+            VStack(spacing: 0) {
+                
+                header()
+                
+                availability()
+                
+                openingHours()
+                
+                prizeInformation()
+                
+                actions()
+                
+            }
+            .frame(maxWidth: .infinity)
             
         }
         .toolbar {
             toolbar()
+        }
+        .onAppear {
+            viewModel.load()
         }
         
     }
@@ -41,18 +58,50 @@ public struct ParkingAreaDetailScreen: View {
     @ViewBuilder
     private func header() -> some View {
         
-        if let location = viewModel.
-        
-        Map(viewModel)
-        
         VStack(alignment: .leading) {
             
-            Text(viewModel.title)
-            Text("Aktuell geöffnet")
-                .foregroundColor(.secondary)
+            if let location = viewModel.location {
+                
+                let marker = Marker(coordinate: location.toCoordinate())
+                
+                Map(coordinateRegion: $viewModel.region, annotationItems: [marker]) { marker in
+                    
+                    MapMarker(coordinate: marker.coordinate, tint: Color.blue)
+                    
+                }
+                    .frame(height: 200)
+                
+            }
+            
+            HStack(spacing: 16) {
+                
+                Rectangle()
+                    .fill(ParkingColors.verkehrsblau)
+                    .frame(width: 50, height: 50)
+                    .cornerRadius(8)
+                    .overlay(
+                        Text("P")
+                            .foregroundColor(.white)
+                            .font(.largeTitle.weight(.bold))
+                    )
+                    .unredacted()
+                
+                VStack(alignment: .leading) {
+                    
+                    Text(viewModel.title)
+                        .font(.title2.weight(.semibold))
+                    
+                    Text(viewModel.currentOpeningState.name)
+                        .foregroundColor(.secondary)
+                    
+                }
+                
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
             
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity)
         
     }
     
@@ -60,21 +109,60 @@ public struct ParkingAreaDetailScreen: View {
     private func availability() -> some View {
         
         Divider()
+            .padding(.horizontal)
         
         VStack(alignment: .leading) {
             
             HStack {
                 
-                Text("Freie Parkplätze")
+                Text("Aktuelle Belegung")
+                    .fontWeight(.semibold)
+                    .unredacted()
                 
                 Spacer()
                 
-                Text("\(viewModel.free)") +
-                Text(" / \(viewModel.total)").foregroundColor(.secondary)
+                HStack(spacing: 0) {
+                    
+                    Text("\(viewModel.free)") +
+                    Text(" / \(viewModel.total)")
+                        .foregroundColor(.secondary)
+                    
+                    Text(" frei")
+                        .foregroundColor(.secondary)
+                        .unredacted()
+                    
+                }
                 
             }
             
-            ProgressMeterView(value: viewModel.percentage, color: .yellow)
+            ProgressMeterView(value: viewModel.percentage, color: ParkingColors.verkehrsblau)
+            
+            Chart(data: [0.4, 0.45, 0.6, 0.8, 0.6, 0.9, 1, 0.8, 0.75, 0.4, 0.2, 0.1, 0.1, 0.3, 0.4, 0.45, 0.6, 0.8, 0.6, 0.9, 0.75, 0.6, 0.55, 0.5])
+                .chartStyle(
+//                    AreaChartStyle(
+//                        .quadCurve,
+//                        fill: LinearGradient(gradient: .init(colors: [
+//                            ParkingColors.verkehrsblau.opacity(0.5),
+//                            ParkingColors.verkehrsblau.opacity(0.7)
+//                        ]), startPoint: .top, endPoint: .bottom)
+//                      )
+                    ColumnChartStyle(
+                        column: Capsule().foregroundColor(ParkingColors.verkehrsblau),
+                        spacing: 4
+                    )
+                )
+                .frame(height: 80)
+//                .cornerRadius(8)
+                .padding(.top)
+            
+            HStack {
+                
+                Text("22:00")
+                Spacer()
+                Text("Jetzt")
+                
+            }
+            .font(.caption2)
             
         }
         .padding()
@@ -86,36 +174,25 @@ public struct ParkingAreaDetailScreen: View {
     private func openingHours() -> some View {
         
         Divider()
+            .padding(.horizontal)
         
-        VStack(alignment: .leading, spacing: 4) {
+        viewModel.openingHours.isLoading {
             
-            Text("Öffnungszeiten")
-                .fontWeight(.semibold)
-                .padding(.bottom, 8)
-            
-            HStack {
-                
-                Text("Mo-Fr")
-                
-                Spacer()
-                
-                Text("09:00 - 19:00")
-                
-            }
-            
-            HStack {
-                
-                Text("Sa")
-                
-                Spacer()
-                
-                Text("09:00 - 16:00")
-                
-            }
+            OpeningHoursContainer(openingHours: [
+                .init(text: "Mo-Fr", time: "09:00 - 19:00"),
+                .init(text: "Sa", time: "10:00 - 16:00"),
+            ])
+                .redacted(reason: .placeholder)
+                .padding()
             
         }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
+        
+        viewModel.openingHours.hasResource { (entries: [OpeningHourEntry]) in
+            
+            OpeningHoursContainer(openingHours: entries)
+                .padding()
+            
+        }
         
     }
     
@@ -123,12 +200,14 @@ public struct ParkingAreaDetailScreen: View {
     private func prizeInformation() -> some View {
         
         Divider()
+            .padding(.horizontal)
         
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             
             Text("Preise")
                 .fontWeight(.semibold)
                 .padding(.bottom, 8)
+                .unredacted()
             
             Text("Keine Preisinformationen")
                 .foregroundColor(.secondary)
@@ -166,12 +245,19 @@ public struct ParkingAreaDetailScreen: View {
 
 struct ParkingAreaDetailScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ParkingAreaDetailScreen(viewModel: ParkingAreaViewModel(
+        
+        let viewModel = ParkingAreaViewModel(
             title: "Kauzstraße",
             free: 45,
             total: 200,
-            currentOpeningState: .open)
+            currentOpeningState: .open,
+            updatedAt: Date(timeIntervalSinceNow: -2 * 60)
         )
+        
+        ParkingAreaDetailScreen(viewModel: viewModel)
             .preferredColorScheme(.dark)
+        
+//        ParkingAreaDetailScreen(viewModel: viewModel)
+        
     }
 }

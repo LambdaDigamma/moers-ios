@@ -13,6 +13,7 @@ import ModernNetworking
 import RubbishFeature
 import FuelFeature
 import Core
+import ParkingFeature
 
 public class ServiceConfiguration: BootstrappingProcedureStep {
     
@@ -28,11 +29,13 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
         let geocodingService = DefaultGeocodingService()
         let rubbishService = DefaultRubbishService(loader: loader)
         let petrolService = DefaultPetrolService(apiKey: "0dfdfad3-7385-ef47-2ff6-ec0477872677")
+        let parkingService = DefaultParkingService(loader: loader)
         
         Resolver.register { locationService as LocationService }
         Resolver.register { geocodingService as GeocodingService }
         Resolver.register { rubbishService as RubbishService }
         Resolver.register { petrolService as PetrolService }
+        Resolver.register { parkingService as ParkingService }
         
     }
     

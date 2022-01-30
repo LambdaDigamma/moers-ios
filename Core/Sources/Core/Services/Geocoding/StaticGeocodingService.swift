@@ -7,15 +7,19 @@
 
 import CoreLocation
 import Combine
+import Intents
+import Contacts
 
 public class StaticGeocodingService: GeocodingService {
     
     public var loadPlacemark: ((CLLocation) -> Result<CLPlacemark, Error>)
     
-    public init(defaultPlacemark: CLPlacemark) {
+    public init(defaultPlacemark: CLPlacemark? = nil) {
+        
+        let `default` = CLPlacemark(location: CoreSettings.regionLocation, name: "Default", postalAddress: nil)
         
         self.loadPlacemark = { (_: CLLocation) in
-            return .success(defaultPlacemark)
+            return .success(defaultPlacemark ?? `default`)
         }
         
     }

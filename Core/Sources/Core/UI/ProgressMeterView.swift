@@ -30,7 +30,7 @@ public struct ProgressMeterView: View {
                 
                 Rectangle()
                     .fill(backgroundColor)
-                    .frame(maxWidth: geo.size.width * value)
+                    .frame(maxWidth: value > 0 ? geo.size.width * value : geo.size.width * -value)
                 
             }
             .frame(maxWidth: .infinity, alignment: .leading)

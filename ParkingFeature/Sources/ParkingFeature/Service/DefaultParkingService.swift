@@ -8,6 +8,20 @@
 import Foundation
 import Combine
 import ModernNetworking
+import Core
+
+public struct ParkingAreaResponse: Model {
+    
+    public let parkingAreas: [ParkingArea]
+    
+    public static var decoder: JSONDecoder = ParkingArea.decoder
+    public static var encoder: JSONEncoder = ParkingArea.encoder
+    
+    public enum CodingKeys: String, CodingKey {
+        case parkingAreas = "parking_areas"
+    }
+    
+}
 
 public class DefaultParkingService: ParkingService {
     
@@ -23,12 +37,32 @@ public class DefaultParkingService: ParkingService {
         
         let request = HTTPRequest(
             method: .get,
-            path: ""
+            path: "parking-areas"
         )
         
-        return Just([])
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+        return Deferred {
+            return Future { promise in
+                
+                self.loader.load(request) { (result: HTTPResult) in
+                    
+                    guard let data = result.response?.body else {
+                        promise(.failure(URLError(.cannotDecodeRawData)))
+                        return
+                    }
+                    
+                    do {
+                        let response = try ParkingArea.decoder.decode(DataResponse<ParkingAreaResponse>.self, from: data)
+                        promise(.success(response.data.parkingAreas.sorted(by: { $0.currentOpeningState > $1.currentOpeningState })))
+                    } catch {
+                        promise(.failure(error))
+                    }
+                    
+                }
+                
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
         
     }
     

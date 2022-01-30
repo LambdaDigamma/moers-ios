@@ -21,12 +21,13 @@ let package = Package(
         .package(name: "Core", path: "./Core"),
         .package(name: "ModernNetworking",
                  url: "https://github.com/LambdaDigamma/ModernNetworking.git",
-                 from: "0.1.2")
+                 from: "0.1.2"),
+        .package(name: "Charts", url: "https://github.com/spacenation/swiftui-charts.git", from: "1.0.0"),
     ],
     targets: [
         .target(
             name: "ParkingFeature",
-            dependencies: ["Core", "ModernNetworking"]
+            dependencies: ["Core", "ModernNetworking", "Charts"]
         ),
         .testTarget(
             name: "ParkingFeatureTests",
