@@ -16,10 +16,14 @@ public struct BaseMap: UIViewRepresentable {
     private var region: Binding<MKCoordinateRegion>
     private var userTrackingMode: Binding<MKUserTrackingMode>?
     
+    @ObservedObject private var viewModel: BaseMapViewModel
+    
     public init(
+        viewModel: BaseMapViewModel,
         region: Binding<MKCoordinateRegion> = .constant(CoreSettings.defaultRegion()),
         userTrackingMode: Binding<MKUserTrackingMode>? = nil
     ) {
+        self.viewModel = viewModel
         self.region = region
         self.userTrackingMode = userTrackingMode
     }
@@ -37,7 +41,11 @@ public struct BaseMap: UIViewRepresentable {
         view.setRegion(region.wrappedValue, animated: false)
         view.showsUserLocation = context.environment.showsUserLocation
         
-        view.addAnnotation(GenericAnnotation(coordinate: CoreSettings.regionCenter))
+//        view.addAnnotation(GenericAnnotation(coordinate: CoreSettings.regionCenter))
+        
+        viewModel.registeredAnnotationViews.forEach { (viewType, reuseIdentifier) in
+            view.register(viewType, forAnnotationViewWithReuseIdentifier: reuseIdentifier)
+        }
         
         if let userTrackingMode = userTrackingMode {
             view.setUserTrackingMode(userTrackingMode.wrappedValue, animated: false)
@@ -59,6 +67,8 @@ public struct BaseMap: UIViewRepresentable {
             )
         }
         
+        uiView.addAnnotations(viewModel.annotations)
+        
     }
     
     public class Coordinator: NSObject, MKMapViewDelegate {
@@ -78,15 +88,8 @@ public struct BaseMap: UIViewRepresentable {
             viewFor annotation: MKAnnotation
         ) -> MKAnnotationView? {
             
-            if annotation is MKUserLocation {
-                return nil
-            }
+            return parent.viewModel.configureView(mapView, annotation)
             
-            mapView.dequeueReusableAnnotationView(withIdentifier: "reuse", for: annotation)
-            
-            let view = GenericAnnotationView(annotation: annotation, reuseIdentifier: "reuse")
-            
-            return view
         }
         
     }
@@ -97,7 +100,11 @@ struct BaseMap_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        BaseMap()
+        let viewModel = BaseMapViewModel(annotations: [
+            
+        ])
+        
+        BaseMap(viewModel: viewModel)
             .ignoresSafeArea(.container, edges: .all)
             .preferredColorScheme(.dark)
     }

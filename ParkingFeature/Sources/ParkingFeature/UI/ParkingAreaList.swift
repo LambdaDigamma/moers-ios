@@ -112,6 +112,7 @@ public struct ParkingAreaList: View {
     private func map() -> some View {
         
         BaseMap(
+            viewModel: viewModel.mapViewModel,
             region: $viewModel.region,
             userTrackingMode: .constant(.none)
         )

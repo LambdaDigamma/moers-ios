@@ -23,12 +23,32 @@ public class ParkingAreaListViewModel: StandardViewModel {
         span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
     )
     
+    public var mapViewModel = BaseMapViewModel()
+    
     public init(
         parkingService: ParkingService,
         locationService: LocationService? = nil
     ) {
         self.parkingService = parkingService
         self.locationService = locationService
+        
+        self.mapViewModel.register(
+            view: ParkingAreaAnnotationView.self,
+            reuseIdentifier: ParkingAreaAnnotationView.reuseIdentifier
+        )
+        
+        self.mapViewModel.configureView = { (mapView: MKMapView, annotation: MKAnnotation) in
+            
+            if let parkingArea = annotation as? ParkingAreaAnnotation {
+                return mapView.dequeueReusableAnnotationView(
+                    withIdentifier: ParkingAreaAnnotationView.reuseIdentifier,
+                    for: parkingArea
+                )
+            }
+            
+            return nil
+        }
+        
     }
     
     public func load() {
@@ -57,6 +77,11 @@ public class ParkingAreaListViewModel: StandardViewModel {
                     currentOpeningState: $0.currentOpeningState,
                     updatedAt: $0.updatedAt ?? Date()
                 )})
+                
+                self.mapViewModel.annotations = parkingAreas.compactMap {
+                    guard let coordinate = $0.location?.toCoordinate() else { return nil }
+                    return ParkingAreaAnnotation(coordinate: coordinate, title: $0.name)
+                }
                 
             }
             .store(in: &cancellables)

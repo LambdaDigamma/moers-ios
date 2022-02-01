@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BuildingIndoorMapView: View {
     
-    @StateObject var mapViewModel = BaseMapViewModel()
+//    @StateObject var mapViewModel = BaseMapViewModel()
     
     public init() {
         
@@ -17,7 +17,8 @@ struct BuildingIndoorMapView: View {
     
     var body: some View {
         
-        BaseMap()
+        Text("ABC")
+//        BaseMap()
         
     }
     
