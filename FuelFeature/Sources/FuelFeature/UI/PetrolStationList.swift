@@ -55,60 +55,71 @@ public struct PetrolStationList: View {
         fuelStation: FuelFeature.PetrolStation
     ) -> some View {
         
-        VStack {
+        NavigationLink {
             
-            HStack(alignment: .top) {
+            FuelStationDetail(
+                load: { viewModel.loadFuelStation(id: fuelStation.id) }
+            )
+            
+        } label: {
+            
+            VStack {
                 
-                VStack(alignment: .leading, spacing: 8) {
+                HStack(alignment: .top) {
                     
-                    Text(fuelStation.title ?? fuelStation.brand)
-                        .font(.headline)
-                        .fontWeight(.bold)
-                        .lineLimit(1)
-                    
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 8) {
                         
-                        Text("\(fuelStation.brand) • \(fuelStation.isOpen ? "geöffnet" : "geschlossen")")
-                            .foregroundColor(.secondary)
+                        Text(fuelStation.title ?? fuelStation.brand)
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .lineLimit(1)
                         
-                        Text("\(fuelStation.street) \(fuelStation.houseNumber ?? "")")
-                            .foregroundColor(.secondary)
+                        VStack(alignment: .leading) {
+                            
+                            Text("\(fuelStation.brand) • \(fuelStation.isOpen ? "geöffnet" : "geschlossen")")
+                                .foregroundColor(.secondary)
+                            
+                            if let subtitle = fuelStation.subtitle {
+                                Text(subtitle)
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                        }
+                        .font(.callout)
                         
                     }
-                    .font(.callout)
                     
-                }
-                
-                Spacer()
-                
-                if let price = fuelStation.price {
+                    Spacer()
                     
-                    Text(String(format: "%.2f€", price))
-                        .fontWeight(.bold)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(Color.green)
-                        .foregroundColor(.black)
-                        .cornerRadius(4)
+                    if let price = fuelStation.price {
+                        
+                        Text(String(format: "%.2f€", price))
+                            .fontWeight(.bold)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(Color.green)
+                            .foregroundColor(.black)
+                            .cornerRadius(4)
+                        
+                    }
                     
                 }
                 
             }
-            
-//            Divider()
-            
-        }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(UIColor.secondarySystemBackground))
-        .cornerRadius(16)
-        .contextMenu {
-            Button {
-                startNavigation(to: fuelStation)
-            } label: {
-                Label(PackageStrings.FuelStationList.contextNavigationAction,
-                      systemImage: "arrow.triangle.turn.up.right.circle")
+            .padding()
+            .foregroundColor(.primary)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color(UIColor.secondarySystemBackground))
+            .cornerRadius(16)
+            .contextMenu {
+                Button {
+                    startNavigation(to: fuelStation)
+                } label: {
+                    Label(PackageStrings.FuelStationList.contextNavigationAction,
+                          systemImage: "arrow.triangle.turn.up.right.circle")
+                }
             }
+            
         }
         
     }

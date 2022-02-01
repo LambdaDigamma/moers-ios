@@ -140,4 +140,8 @@ public class PetrolPriceDashboardViewModel: StandardViewModel {
             .eraseToAnyPublisher()
     }
     
+    public func loadFuelStation(id: PetrolStation.ID) -> AnyPublisher<PetrolStation, Error> {
+        return petrolService.getPetrolStation(id: id)
+    }
+    
 }

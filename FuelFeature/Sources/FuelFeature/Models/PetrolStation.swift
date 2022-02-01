@@ -92,9 +92,9 @@ final public class PetrolStation: NSObject, Location, Identifiable, Codable, MKA
     public var distance: Measurement<UnitLength> {
         get {
             if let dist = dist {
-                return Measurement(value: dist, unit: UnitLength.meters)
+                return Measurement(value: dist, unit: UnitLength.kilometers)
             } else {
-                return Measurement(value: 0, unit: UnitLength.meters)
+                return Measurement(value: 0, unit: UnitLength.kilometers)
             }
         }
         set {
@@ -106,7 +106,19 @@ final public class PetrolStation: NSObject, Location, Identifiable, Codable, MKA
     
     public var coordinate: CLLocationCoordinate2D { return CLLocationCoordinate2D(latitude: lat, longitude: lng) }
     public var title: String? { return self.name.capitalized(with: Locale.autoupdatingCurrent).replacingOccurrences(of: "_", with: " ") }
-    public var subtitle: String? { return self.brand }
+    public var subtitle: String? {
+        
+        var attributes: [String] = []
+        
+        if dist != nil {
+            attributes.append(Self.distanceFormatter.string(from: distance))
+        }
+        
+        attributes.append("\(self.street) \(self.houseNumber ?? "")")
+        
+        return attributes.joined(separator: " • ")
+        
+    }
     
     // MARK: - Categorizable
     
@@ -134,6 +146,13 @@ final public class PetrolStation: NSObject, Location, Identifiable, Codable, MKA
     }
     
     #endif
+    
+    public static let distanceFormatter: MeasurementFormatter = {
+        let formatter = MeasurementFormatter()
+        formatter.unitStyle = .short
+        formatter.unitOptions = [.providedUnit]
+        return formatter
+    }()
     
 }
 

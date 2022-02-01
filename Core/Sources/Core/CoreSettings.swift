@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import MapKit
 
 public class CoreSettings {
     
@@ -19,5 +20,13 @@ public class CoreSettings {
         latitude: regionCenter.latitude,
         longitude: regionCenter.longitude
     )
+    
+}
+
+public extension CoreSettings {
+    
+    static func defaultRegion() -> MKCoordinateRegion {
+        return MKCoordinateRegion(center: Self.regionCenter, latitudinalMeters: 8_000, longitudinalMeters: 8_000)
+    }
     
 }

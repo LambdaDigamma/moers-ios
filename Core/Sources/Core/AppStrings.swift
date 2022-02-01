@@ -34,4 +34,8 @@ public enum AppStrings {
         public static let disableReminderInfo = String.localized("Buergerfunk.disableReminderInfo")
     }
     
+    public enum Directions {
+        public static let getDirections = String.localized("Directions.getDirections")
+    }
+    
 }

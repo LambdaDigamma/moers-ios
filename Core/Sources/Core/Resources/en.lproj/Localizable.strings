@@ -11,3 +11,5 @@
 "Buergerfunk.listenNowAction" = "Listen now";
 "Buergerfunk.remindMeAction" = "Remind me";
 "Buergerfunk.disableReminderInfo" = "Tap again to remove the reminder.";
+
+"Directions.getDirections" = "Get directions";

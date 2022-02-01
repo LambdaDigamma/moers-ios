@@ -31,7 +31,7 @@ struct LinesVerticalGraph: View {
                 let numberOfSpacers: CGFloat = CGFloat(dataPoints.count - 1)
                 let width = geo.size.width / Double(dataPoints.count) - numberOfSpacers * space
                 
-                let rects = dataPoints.enumerated().map { (index, dataPoint) in
+                let rects = dataPoints.enumerated().map { (index, _) in
                     
                     CGRect(
                         x: width * CGFloat(index) + CGFloat(index) * space,

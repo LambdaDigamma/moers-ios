@@ -10,6 +10,7 @@ import Core
 import MapKit
 import Charts
 import CoreLocation
+import Resolver
 
 public struct Marker: Identifiable {
     
@@ -34,13 +35,13 @@ public struct ParkingAreaDetailScreen: View {
                 
                 header()
                 
+                actions()
+                
                 availability()
                 
                 openingHours()
                 
                 prizeInformation()
-                
-                actions()
                 
             }
             .frame(maxWidth: .infinity)
@@ -202,17 +203,11 @@ public struct ParkingAreaDetailScreen: View {
         Divider()
             .padding(.horizontal)
         
-        VStack(alignment: .leading, spacing: 0) {
-            
-            Text("Preise")
-                .fontWeight(.semibold)
-                .padding(.bottom, 8)
-                .unredacted()
-            
+        DetailContainer(title: "Preise") {
             Text("Keine Preisinformationen")
                 .foregroundColor(.secondary)
-            
-        }.padding()
+        }
+        .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
         
     }
@@ -220,14 +215,26 @@ public struct ParkingAreaDetailScreen: View {
     @ViewBuilder
     private func actions() -> some View {
         
-        VStack {
+        Divider()
+            .padding(.horizontal)
+        
+        let locationService: LocationService? = Resolver.optional()
+        
+        if let coordinate = viewModel.location?.toCoordinate(), let locationService = locationService {
             
-            Button("Navigation starten", action: {})
-                .buttonStyle(SecondaryButtonStyle())
+            VStack {
+                
+                AutoCalculatingDirectionsButton(
+                    coordinate: coordinate,
+                    locationService: locationService,
+                    action: {}
+                )
+                
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
             
         }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
         
     }
     

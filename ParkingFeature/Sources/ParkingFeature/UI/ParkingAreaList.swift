@@ -111,12 +111,21 @@ public struct ParkingAreaList: View {
     @ViewBuilder
     private func map() -> some View {
         
-        Map(
-            coordinateRegion: $viewModel.region,
-            interactionModes: [],
-            showsUserLocation: true
+        BaseMap(
+            region: $viewModel.region,
+            userTrackingMode: .constant(.none)
         )
+            .mapType(.standard)
+            .showsUserLocation(true)
             .frame(idealHeight: 300)
+        
+//        Map(
+//            coordinateRegion: $viewModel.region,
+//            interactionModes: [],
+//            showsUserLocation: true
+//        )
+//            .frame(idealHeight: 300)
+        
 //            .overlay(
 //                ZStack(alignment: .bottom) {
 //

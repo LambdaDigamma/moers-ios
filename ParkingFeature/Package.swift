@@ -19,6 +19,7 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "Core", path: "./Core"),
+        .package(url: "https://github.com/hmlongco/Resolver", from: "1.1.4"),
         .package(name: "ModernNetworking",
                  url: "https://github.com/LambdaDigamma/ModernNetworking.git",
                  from: "0.1.2"),
@@ -27,7 +28,7 @@ let package = Package(
     targets: [
         .target(
             name: "ParkingFeature",
-            dependencies: ["Core", "ModernNetworking", "Charts"]
+            dependencies: ["Core", "ModernNetworking", "Charts", "Resolver"]
         ),
         .testTarget(
             name: "ParkingFeatureTests",

@@ -16,3 +16,5 @@
 "Buergerfunk.listenNowAction" = "Jetzt hören";
 "Buergerfunk.remindMeAction" = "Erinnerung erstellen";
 "Buergerfunk.disableReminderInfo" = "Tippe erneut, um die Erinnerung wieder zu löschen.";
+
+"Directions.getDirections" = "Route berechnen";
