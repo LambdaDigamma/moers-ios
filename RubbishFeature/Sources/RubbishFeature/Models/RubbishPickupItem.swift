@@ -8,7 +8,7 @@
 import Foundation
 import ModernNetworking
 
-public struct RubbishPickupItem: Model, Codable, Identifiable {
+public struct RubbishPickupItem: Model, Codable, Identifiable, Equatable {
     
     public let id: UUID = UUID()
     

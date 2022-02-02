@@ -6,36 +6,134 @@
 //
 
 import SwiftUI
+import Resolver
 
 public struct RubbishScheduleList: View {
     
-    private let items: [RubbishPickupItem]
+    @State var showInfo: Bool = false
+    @ObservedObject var viewModel: RubbishScheduleViewModel
     
-    public init() {
-        self.items = [
-            .init(date: .init(timeIntervalSinceNow: TimeInterval(4 * 24 * 60 * 60)), type: .residual),
-            .init(date: .init(timeIntervalSinceNow: TimeInterval(8 * 24 * 60 * 60)), type: .organic),
-            .init(date: .init(timeIntervalSinceNow: TimeInterval(9 * 24 * 60 * 60)), type: .paper),
-            .init(date: .init(timeIntervalSinceNow: TimeInterval(12 * 24 * 60 * 60)), type: .plastic),
-        ]
+    public init(
+        rubbishService: RubbishService = Resolver.resolve()
+    ) {
+        self.viewModel = RubbishScheduleViewModel(rubbishService: rubbishService)
     }
     
     public var body: some View {
         
-        List {
+        ZStack {
             
-            Section(header: Text("March 2022")) {
-                ForEach(items) { item in
-                    RubbishPickupRow(item: item)
-                }
+            viewModel.state.isLoading {
+                ProgressView()
+                    .progressViewStyle(.circular)
             }
             
-            Section(header: Text("April 2022")) {
-                ForEach(items) { item in
-                    RubbishPickupRow(item: item)
+            viewModel.state.hasResource { (sections: [RubbishSection]) in
+                
+                List {
+                    
+                    ForEach(sections, id: \.self) { section in
+                        
+                        Section {
+                            
+                            ForEach(section.items) { item in
+                                
+                                RubbishPickupRow(item: item)
+                                    .padding(.vertical, 4)
+                                
+                            }
+                            
+                        } header: {
+                            
+                            Text(section.header)
+                            
+                        }
+                        
+                    }
+                    
                 }
+                
             }
             
+            viewModel.state.hasError { (error: RubbishLoadingError) in
+                
+                ZStack {
+                    
+                    Text(error.localizedDescription)
+                        .foregroundColor(.primary)
+                    
+                }
+                .padding()
+                
+            }
+            
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(PackageStrings.WasteSchedule.title)
+        .toolbar(content: {
+            ToolbarItem(placement: .primaryAction) {
+                Button(action: {
+                    showInfo = true
+                }, label: {
+                    Image(systemName: "info.circle")
+                        .foregroundColor(.yellow)
+                })
+            }
+        })
+        .sheet(isPresented: $showInfo, onDismiss: nil, content: {
+            
+            info()
+            
+        })
+        .onAppear {
+            viewModel.load()
+        }
+        
+    }
+    
+    @ViewBuilder
+    internal func info() -> some View {
+        
+        NavigationView {
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: 0) {
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        
+                        Text(PackageStrings.WasteSchedule.Info.selectedStreet.uppercased())
+                            .font(.footnote)
+                            .fontWeight(.medium)
+                            .foregroundColor(.accentColor)
+                        
+                        if let street = viewModel.rubbishService.rubbishStreet {
+                            Text(street.displayName)
+                                .font(.title3.weight(.semibold))
+                        }
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color(UIColor.secondarySystemBackground))
+                    .padding(.top)
+                    
+                    Text(PackageStrings.WasteSchedule.Info.disclaimer)
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                        .padding([.horizontal])
+                    
+                }
+                
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        showInfo = false
+                    }) {
+                        Text(PackageStrings.WasteSchedule.Info.close)
+                            .fontWeight(.semibold)
+                    }
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
         }
         
     }
@@ -43,13 +141,30 @@ public struct RubbishScheduleList: View {
 }
 
 struct RubbishScheduleList_Previews: PreviewProvider {
+    
+    static let street = RubbishCollectionStreet(
+        id: 1,
+        street: "Musterstraße",
+        residualWaste: 0,
+        organicWaste: 0,
+        paperWaste: 0,
+        yellowBag: 0,
+        greenWaste: 0,
+        sweeperDay: ""
+    )
+    
     static var previews: some View {
         
         NavigationView {
-            
-            RubbishScheduleList()
-            
+            RubbishScheduleList(rubbishService: StaticRubbishService())
         }
+        .preferredColorScheme(.dark)
+        .environment(\.colorScheme, .dark)
+        
+        RubbishScheduleList(rubbishService: StaticRubbishService(rubbishStreet: street)).info()
+        .preferredColorScheme(.dark)
+        .environment(\.colorScheme, .dark)
         
     }
+    
 }

@@ -31,6 +31,15 @@ internal enum PackageStrings {
         internal static let green = String.localized("WasteTypeShort.green")
     }
     
+    internal enum WasteSchedule {
+        internal static let title = String.localized("WasteSchedule.title")
+        internal enum Info {
+            internal static let close = String.localized("WasteSchedule.Info.close")
+            internal static let selectedStreet = String.localized("WasteSchedule.Info.selectedStreet")
+            internal static let disclaimer = String.localized("WasteSchedule.Info.disclaimer")
+        }
+    }
+    
     internal enum RubbishDashboardError {
         
         internal enum Deactivated {

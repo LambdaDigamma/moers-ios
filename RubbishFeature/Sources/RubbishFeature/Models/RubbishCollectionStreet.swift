@@ -52,7 +52,6 @@ public struct RubbishCollectionStreet: Model, Codable, Equatable {
         sweeperDay: String,
         year: Int = 2022
     ) {
-        // TODO: Check this.
         self.id = id
         self.street = street
         self.streetAddition = streetAddition

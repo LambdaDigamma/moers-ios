@@ -26,7 +26,6 @@ public struct RubbishCalendarItem: View {
             
             Text(item.date, formatter: Self.shortRubbishDateFormatter)
                 .multilineTextAlignment(.center)
-            //                .foregroundColor(.secondary)
                 .font(.footnote.weight(.semibold))
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 6)

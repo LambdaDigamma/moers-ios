@@ -73,7 +73,12 @@ public struct DashboardView: View {
             
             let viewModel = RubbishDashboardViewModel()
             
-            RubbishDashboardPanel(viewModel: viewModel)
+            NavigationLink {
+                RubbishScheduleList()
+            } label: {
+                RubbishDashboardPanel(viewModel: viewModel)
+                    .foregroundColor(.primary)
+            }
             
         } else if item is PetrolDashboardConfiguration {
             

@@ -48,6 +48,7 @@
 		DF310D9F216FF2AE004C69BA /* DetailEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF310D9E216FF2AE004C69BA /* DetailEntryViewController.swift */; };
 		DF310DA421710887004C69BA /* TagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF310DA321710887004C69BA /* TagTableViewCell.swift */; };
 		DF32ACF32676AABA00B943DB /* MMEvents in Frameworks */ = {isa = PBXBuildFile; productRef = DF32ACF22676AABA00B943DB /* MMEvents */; };
+		DF35EFAB27A9EB66005C6BDA /* ExploreOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF35EFAA27A9EB66005C6BDA /* ExploreOverview.swift */; };
 		DF3C180B254489EF0047C898 /* MMUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF3C180A254489EF0047C898 /* MMUI */; };
 		DF3EE0C520E382EC00CA9279 /* MapLocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */; };
 		DF409CFC2352453C001A473E /* MMAPI in Frameworks */ = {isa = PBXBuildFile; productRef = DF409CFB2352453C001A473E /* MMAPI */; };
@@ -374,6 +375,8 @@
 		DF310D9A216FE72E004C69BA /* EntryAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryAnnotationView.swift; sourceTree = "<group>"; };
 		DF310D9E216FF2AE004C69BA /* DetailEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEntryViewController.swift; sourceTree = "<group>"; };
 		DF310DA321710887004C69BA /* TagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TagTableViewCell.swift; path = ../../View/UITableViewCells/TagTableViewCell.swift; sourceTree = "<group>"; };
+		DF35EFA927A9E9FE005C6BDA /* NewsFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NewsFeature; sourceTree = "<group>"; };
+		DF35EFAA27A9EB66005C6BDA /* ExploreOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreOverview.swift; sourceTree = "<group>"; };
 		DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchArgumentsHandler.swift; sourceTree = "<group>"; };
 		DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapLocationPickerViewController.swift; path = ../../../Controller/Community/MapLocationPickerViewController.swift; sourceTree = "<group>"; };
 		DF4116BB276FA43E0068B4BB /* PlaybackKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PlaybackKit; sourceTree = "<group>"; };
@@ -745,6 +748,7 @@
 				DF11BFC122BA6E710051C3B3 /* Model */,
 				DF11BFC422BA6F020051C3B3 /* View */,
 				DF461CB520E2241400600C0E /* Controller */,
+				DF35EFAA27A9EB66005C6BDA /* ExploreOverview.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -911,6 +915,7 @@
 				DF1A9B9F26ECB2A600D3CAD0 /* .swiftlint.yml */,
 				DFC8507726EFE62400F9FB39 /* Core */,
 				DF55F2622770ABE80024300B /* DashboardFeature */,
+				DF35EFA927A9E9FE005C6BDA /* NewsFeature */,
 				DFFBAA2927696353003728CF /* FuelFeature */,
 				DF01804B27923CC500530143 /* ParkingFeature */,
 				DFFBAA2727693755003728CF /* RubbishFeature */,
@@ -1735,6 +1740,7 @@
 				DF5D81CA2256832600A19B01 /* MockConfig.swift in Sources */,
 				DF51614A2545F6290094DEEB /* CovidMediumWidget.swift in Sources */,
 				DFD39A3322B7578B0085F06E /* MMEventsViewController.swift in Sources */,
+				DF35EFAB27A9EB66005C6BDA /* ExploreOverview.swift in Sources */,
 				DF310DA421710887004C69BA /* TagTableViewCell.swift in Sources */,
 				DFAC73FA2545A0F9005827B6 /* CovidComponent.swift in Sources */,
 				DFF8F0B723CD8EC60066220D /* EventCoordinator.swift in Sources */,
