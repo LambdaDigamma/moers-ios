@@ -24,32 +24,12 @@ struct RubbishCollectionWrapperView: View {
         
         ZStack {
             
-            Color(UIColor.black)
+            Color(UIColor.systemBackground)
             
             if widgetFamily == .systemSmall {
-                
-                if let first = items.first {
-                    RubbishCalendarItem(item: first)
-                        .padding()
-                }
-                
+                small()
             } else if widgetFamily == .systemMedium {
-                
                 medium()
-                
-                VStack(alignment: .leading, spacing: 0) {
-                    
-//                    Text("Abfallkalender")
-//                        .font(Font.callout.weight(.bold))
-//                        .foregroundColor(.white)
-//                        .padding(.horizontal)
-//                        .padding(.vertical, 8)
-                    
-                }
-                
-//                HorizontalPickupItems(items: items)
-//                    .padding()
-                
             }
             
         }
@@ -57,9 +37,23 @@ struct RubbishCollectionWrapperView: View {
     }
     
     @ViewBuilder
+    private func small() -> some View {
+        
+        let tomorrow = Date(timeIntervalSinceNow: 60 * 60 * 24)
+        let tomorrowItems = items.filter { (item: RubbishPickupItem) in
+            return Calendar.autoupdatingCurrent.isDateInTomorrow(item.date)
+        }
+        
+        RubbishDayPanel(date: title(for: tomorrow), items: tomorrowItems)
+            .cornerRadius(16)
+            .padding(8)
+        
+    }
+    
+    @ViewBuilder
     private func medium() -> some View {
         
-        HStack(spacing: 16) {
+        HStack(spacing: 8) {
             
             ForEach(days, id: \.self) { day in
                 
@@ -68,37 +62,16 @@ struct RubbishCollectionWrapperView: View {
                     items: items(for: day)
                 )
                     .frame(maxWidth: .infinity)
-//                    .padding([.leading, .trailing, .bottom, .top])
+                    .cornerRadius(16)
                     
-                }
-            
-//            RubbishDayPanel(date: "Morgen", items: [
-//                .init(date: Date(), type: .plastic),
-//                .init(date: Date(), type: .paper),
-//            ])
-//                .frame(maxWidth: .infinity)
-//                .padding([.leading, .trailing, .bottom, .top])
-//
-//                Divider()
-//
-//            RubbishDayPanel(date: "24.12.", items: [
-//                .init(date: Date(), type: .organic),
-//            ])
-//                .frame(maxWidth: .infinity)
-//                .padding([.leading, .trailing, .bottom, .top])
-//
-//                Divider()
-//
-//            RubbishDayPanel(date: "25.12.", items: [])
-//                .frame(maxWidth: .infinity)
-//                .padding([.leading, .trailing, .bottom, .top])
+            }
                 
         }
-        .padding()
+        .padding(8)
         
     }
     
-    var days: [Date] {
+    private var days: [Date] {
         return Date.todayPlusNDays(2)
     }
     
@@ -110,17 +83,19 @@ struct RubbishCollectionWrapperView: View {
         return Self.shortRubbishDateFormatter.string(from: day)
     }
     
-    public static let shortRubbishDateFormatter: DateFormatter = {
+}
+
+internal extension RubbishCollectionWrapperView {
+    
+    static let shortRubbishDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        
         formatter.doesRelativeDateFormatting = true
-        
         formatter.timeStyle = .none
         formatter.dateStyle = .short
         return formatter
     }()
     
-    public static let calendar: Calendar = {
+    static let calendar: Calendar = {
         return Calendar.autoupdatingCurrent
     }()
     

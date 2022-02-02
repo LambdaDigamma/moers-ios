@@ -25,6 +25,8 @@ public struct RubbishDayPanel: View {
             
             Text(date)
                 .font(.footnote.weight(.semibold))
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
                 .padding(8)
             
             Divider()
@@ -41,7 +43,7 @@ public struct RubbishDayPanel: View {
             
         }
         .frame(maxHeight: .infinity, alignment: .top)
-        .background(Color(UIColor.secondarySystemBackground).opacity(0.5))
+        .background(Color(UIColor.secondarySystemBackground))
         .cornerRadius(8)
         
     }
@@ -60,7 +62,7 @@ public struct RubbishDayPanel: View {
             .background(ZStack(alignment: .leading) {
                 Rectangle()
                     .fill(wasteType.backgroundColor)
-                    .frame(width: 4, height: .infinity, alignment: .leading)
+                    .frame(idealWidth: 4, maxWidth: 4, maxHeight: .infinity, alignment: .leading)
             }.frame(maxWidth: .infinity, alignment: .leading))
             .background(
                 wasteType.backgroundColor.opacity(
