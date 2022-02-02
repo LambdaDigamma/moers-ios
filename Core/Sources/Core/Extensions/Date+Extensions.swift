@@ -15,7 +15,7 @@ private var stringFormatter: DateFormatter = {
 
 private var fromDateFormatter: DateFormatter = {
     let dateFormatter = DateFormatter()
-    dateFormatter.locale = Locale(identifier: "DE_de") // TODO: Is this right?
+    dateFormatter.locale = Locale(identifier: "DE_de")
     return dateFormatter
 }()
 

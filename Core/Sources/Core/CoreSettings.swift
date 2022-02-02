@@ -21,6 +21,8 @@ public class CoreSettings {
         longitude: regionCenter.longitude
     )
     
+    public static var userDefaults = UserDefaults.standard
+    
 }
 
 public extension CoreSettings {

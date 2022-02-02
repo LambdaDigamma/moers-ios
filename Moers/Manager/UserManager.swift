@@ -109,7 +109,7 @@ struct UserManager {
     
     public func nextRubbishActivity() -> NSUserActivity {
         
-        let activity = NSUserActivity(activityType: "de.okfn.niederrhein.Moers.nextRubbish")
+        let activity = NSUserActivity(activityType: Self.rubbishScheduleActivityIdentifier)
         
         if #available(iOS 12.0, *) {
             activity.isEligibleForPrediction = true
@@ -125,5 +125,7 @@ struct UserManager {
         return activity
         
     }
+    
+    public static let rubbishScheduleActivityIdentifier = "de.okfn.niederrhein.Moers.nextRubbish"
     
 }

@@ -11,12 +11,17 @@ import Core
 import Combine
 import ModernNetworking
 
+#if canImport(WidgetKit)
+import WidgetKit
+#endif
+
 public class DefaultRubbishService: RubbishService {
     
     private let loader: HTTPLoader
     private var notificationCenter: UNUserNotificationCenterProtocol
     private let decoder: JSONDecoder
     private let session = URLSession.shared
+    private let userDefaults: UserDefaults
 //    private let storagePickupItemsManager: AnyStoragable<RubbishPickupItem>
 //    private let storageStreetsManager: AnyStoragable<RubbishCollectionStreet>
     private let storageKeyStreets = "streets"
@@ -26,12 +31,14 @@ public class DefaultRubbishService: RubbishService {
     
     public init(
         loader: HTTPLoader,
-        notificationCenter: UNUserNotificationCenterProtocol = UNUserNotificationCenter.current()
+        notificationCenter: UNUserNotificationCenterProtocol = UNUserNotificationCenter.current(),
+        userDefaults: UserDefaults = .standard
 //        storagePickupItemsManager: AnyStoragable<RubbishPickupItem> = NoCache(),
 //        storageStreetsManager: AnyStoragable<RubbishCollectionStreet> = NoCache()
     ) {
         
         self.loader = loader
+        self.userDefaults = userDefaults
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -85,6 +92,11 @@ public class DefaultRubbishService: RubbishService {
         self.greenWaste = street.greenWaste
         self.sweeperDay = street.sweeperDay
         self.year = street.year
+        
+        #if canImport(WidgetKit)
+        // Reload widgets
+        WidgetCenter.shared.reloadAllTimelines()
+        #endif
         
     }
     
@@ -376,46 +388,54 @@ public class DefaultRubbishService: RubbishService {
     
     // MARK: - Saving of Settings
     
-    @UserDefaultsBacked(key: "RubbishStreet")
+    @UserDefaultsBacked(key: "RubbishStreet", storage: CoreSettings.userDefaults)
     public var street: String?
     
-    @UserDefaultsBacked(key: "RubbishStreetAddition")
+    @UserDefaultsBacked(key: "RubbishStreetAddition", storage: CoreSettings.userDefaults)
     internal var streetAddition: String?
     
-    @UserDefaultsBacked(key: "RubbishStreetID")
+    @UserDefaultsBacked(key: "RubbishStreetID", storage: CoreSettings.userDefaults)
     internal var id: Int?
     
-    @UserDefaultsBacked(key: "RubbishResidualWaste")
+    @UserDefaultsBacked(key: "RubbishResidualWaste", storage: CoreSettings.userDefaults)
     internal var residualWaste: Int?
     
-    @UserDefaultsBacked(key: "RubbishOrganicWaste")
+    @UserDefaultsBacked(key: "RubbishOrganicWaste", storage: CoreSettings.userDefaults)
     internal var organicWaste: Int?
     
-    @UserDefaultsBacked(key: "RubbishPaperWaste")
+    @UserDefaultsBacked(key: "RubbishPaperWaste", storage: CoreSettings.userDefaults)
     internal var paperWaste: Int?
     
-    @UserDefaultsBacked(key: "RubbishYellowBag")
+    @UserDefaultsBacked(key: "RubbishYellowBag", storage: CoreSettings.userDefaults)
     internal var yellowBag: Int?
     
-    @UserDefaultsBacked(key: "RubbishGreenWaste")
+    @UserDefaultsBacked(key: "RubbishGreenWaste", storage: CoreSettings.userDefaults)
     internal var greenWaste: Int?
     
-    @UserDefaultsBacked(key: "RubbishSweeperDay")
+    @UserDefaultsBacked(key: "RubbishSweeperDay", storage: CoreSettings.userDefaults)
     internal var sweeperDay: String?
     
-    @UserDefaultsBacked(key: "RubbishStreetYear")
+    @UserDefaultsBacked(key: "RubbishStreetYear", storage: CoreSettings.userDefaults)
     internal var year: Int?
     
-    @UserDefaultsBacked(key: "RubbishEnabled", defaultValue: false)
+    @UserDefaultsBacked(
+        key: "RubbishEnabled",
+        defaultValue: false,
+        storage: CoreSettings.userDefaults
+    )
     public var isEnabled: Bool
     
-    @UserDefaultsBacked(key: "RubbishRemindersEnabled", defaultValue: false)
+    @UserDefaultsBacked(
+        key: "RubbishRemindersEnabled",
+        defaultValue: false,
+        storage: CoreSettings.userDefaults
+    )
     public var remindersEnabled: Bool
     
-    @UserDefaultsBacked(key: "RubbishReminderHour")
+    @UserDefaultsBacked(key: "RubbishReminderHour", storage: CoreSettings.userDefaults)
     public var reminderHour: Int?
     
-    @UserDefaultsBacked(key: "RubbishReminderMinute")
+    @UserDefaultsBacked(key: "RubbishReminderMinute", storage: CoreSettings.userDefaults)
     public var reminderMinute: Int?
     
 }

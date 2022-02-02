@@ -9,10 +9,24 @@
 import Foundation
 import WidgetKit
 import RubbishFeature
+import UserNotifications
+import Resolver
+import Combine
 
 class RubbishCollectionProvider: TimelineProvider {
     
     typealias Entry = RubbishCollectionEntry
+    
+    private let rubbishService: RubbishService
+    private var cancellables = Set<AnyCancellable>()
+    
+    public init() {
+        
+        NetworkingConfiguration().executeInExtension()
+        ServiceConfiguration().executeInExtension()
+        
+        self.rubbishService = Resolver.resolve()
+    }
     
     func placeholder(in context: Context) -> RubbishCollectionEntry {
         return placeholderEntry()
@@ -24,13 +38,35 @@ class RubbishCollectionProvider: TimelineProvider {
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<RubbishCollectionEntry>) -> Void) {
         
-        let currentDate = Date()
-        let refreshDate = Calendar.current.date(byAdding: .minute, value: 5, to: currentDate)!
+        let startOfNextDay = Calendar.autoupdatingCurrent.startOfDay(
+            for: Date(timeIntervalSinceNow: 60 * 60 * 24)
+        )
         
-        let placeholder = placeholderEntry()
-        
-        let timeline = Timeline(entries: [placeholder], policy: .after(refreshDate))
-        completion(timeline)
+        if let street = rubbishService.rubbishStreet {
+            
+            rubbishService.loadRubbishPickupItems(for: street)
+                .sink { (completion: Subscribers.Completion<RubbishLoadingError>) in
+                    
+                    switch completion {
+                        case .failure(let error):
+                            print(error)
+                        default: break
+                    }
+                    
+                } receiveValue: { (items: [RubbishPickupItem]) in
+                    
+                    let entry = RubbishCollectionEntry(date: Date(), rubbishPickupItems: items)
+                    
+                    completion(.init(entries: [entry], policy: .after(startOfNextDay)))
+                    
+                }
+                .store(in: &cancellables)
+            
+        } else {
+            
+            completion(.init(entries: [], policy: .after(startOfNextDay)))
+            
+        }
         
     }
     

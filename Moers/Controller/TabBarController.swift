@@ -61,7 +61,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         eventService: EventServiceProtocol
     ) {
         
-        self.firstLaunch = FirstLaunch(userDefaults: .standard, key: Constants.firstLaunch)
+        self.firstLaunch = FirstLaunch(userDefaults: .appGroup, key: Constants.firstLaunch)
         self.locationManager = locationManager
         self.petrolManager = petrolManager
         self.cameraManager = cameraManager
@@ -137,7 +137,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.firstLaunch = FirstLaunch(userDefaults: .standard, key: Constants.firstLaunch)
+        self.firstLaunch = FirstLaunch(userDefaults: .appGroup, key: Constants.firstLaunch)
         
         if (firstLaunch.isFirstLaunch || !onboardingManager.userDidCompleteSetup) && !isSnapshotting() {
             showBulletin()

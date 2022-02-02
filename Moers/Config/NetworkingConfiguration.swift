@@ -38,6 +38,12 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
         
     }
     
+    func executeInExtension() {
+        
+        setupEnvironmentAndLoader()
+        
+    }
+    
     @discardableResult
     public func setupEnvironmentAndLoader() -> HTTPLoader {
         

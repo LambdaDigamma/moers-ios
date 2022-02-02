@@ -207,6 +207,7 @@ extension AppDelegate {
 
         let defaultsName = Bundle.main.bundleIdentifier!
         UserDefaults.standard.removePersistentDomain(forName: defaultsName)
+        UserDefaults.appGroup.removePersistentDomain(forName: defaultsName)
 
         Shared.dataCache.removeAll()
         Shared.JSONCache.removeAll()

@@ -41,10 +41,10 @@ public class DefaultPetrolService: PetrolService {
     
     public var petrolType: PetrolType {
         get {
-            return PetrolType(rawValue: UserDefaults.standard.string(forKey: "PetrolType") ?? "") ?? .diesel
+            return PetrolType(rawValue: userDefaults.string(forKey: "PetrolType") ?? "") ?? .diesel
         }
         set {
-            UserDefaults.standard.set(newValue.rawValue, forKey: "PetrolType")
+            userDefaults.set(newValue.rawValue, forKey: "PetrolType")
         }
     }
     

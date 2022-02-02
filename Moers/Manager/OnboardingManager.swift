@@ -333,10 +333,10 @@ class OnboardingManager {
     
     var userDidCompleteSetup: Bool {
         get {
-            return UserDefaults.standard.bool(forKey: "UserDidCompleteSetup")
+            return UserDefaults.appGroup.bool(forKey: "UserDidCompleteSetup")
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "UserDidCompleteSetup")
+            UserDefaults.appGroup.set(newValue, forKey: "UserDidCompleteSetup")
         }
     }
     

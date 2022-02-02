@@ -10,6 +10,13 @@
 		DF007B772640843E00DAFA6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF007B792640843E00DAFA6F /* InfoPlist.strings */; };
 		DF04D60A23CBD5EC008AE677 /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF04D60923CBD5EC008AE677 /* DashboardCoordinator.swift */; };
 		DF05E00F2792CA4C0063556E /* ParkingFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF05E00E2792CA4C0063556E /* ParkingFeature */; };
+		DF0A7DAB27AB01EC00957A8D /* UserDefaultsMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0A7DAA27AB01EC00957A8D /* UserDefaultsMigrator.swift */; };
+		DF0A7DAC27AB1DA000957A8D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7D4B5D22F0D53400126AF7 /* Constants.swift */; };
+		DF0A7DAD27AB1FC600957A8D /* NetworkingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE3D9002674035400BE29E7 /* NetworkingConfiguration.swift */; };
+		DF0A7DAE27AB201600957A8D /* ServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD82670278599D100929914 /* ServiceConfiguration.swift */; };
+		DF0A7DAF27AB204500957A8D /* UserDefaultsMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0A7DAA27AB01EC00957A8D /* UserDefaultsMigrator.swift */; };
+		DF0A7DB127AB21CD00957A8D /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = DF0A7DB027AB21CD00957A8D /* Resolver */; };
+		DF0A7DB327AB220A00957A8D /* AppScaffold in Frameworks */ = {isa = PBXBuildFile; productRef = DF0A7DB227AB220A00957A8D /* AppScaffold */; };
 		DF0CB4962082AFD000CC0AA8 /* FirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4952082AFD000CC0AA8 /* FirstLaunch.swift */; };
 		DF0CB49D2082B78C00CC0AA8 /* PermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB49C2082B78C00CC0AA8 /* PermissionsManager.swift */; };
 		DF0CB49F2082B90900CC0AA8 /* FeedbackGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB49E2082B90900CC0AA8 /* FeedbackGenerators.swift */; };
@@ -49,6 +56,8 @@
 		DF310DA421710887004C69BA /* TagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF310DA321710887004C69BA /* TagTableViewCell.swift */; };
 		DF32ACF32676AABA00B943DB /* MMEvents in Frameworks */ = {isa = PBXBuildFile; productRef = DF32ACF22676AABA00B943DB /* MMEvents */; };
 		DF35EFAB27A9EB66005C6BDA /* ExploreOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF35EFAA27A9EB66005C6BDA /* ExploreOverview.swift */; };
+		DF3661D727AB2362002A90BB /* ParkingFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF3661D627AB2362002A90BB /* ParkingFeature */; };
+		DF3661D927AB267F002A90BB /* FuelFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF3661D827AB267F002A90BB /* FuelFeature */; };
 		DF3C180B254489EF0047C898 /* MMUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF3C180A254489EF0047C898 /* MMUI */; };
 		DF3EE0C520E382EC00CA9279 /* MapLocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */; };
 		DF409CFC2352453C001A473E /* MMAPI in Frameworks */ = {isa = PBXBuildFile; productRef = DF409CFB2352453C001A473E /* MMAPI */; };
@@ -328,6 +337,7 @@
 		DF007B7A2640844600DAFA6F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DF01804B27923CC500530143 /* ParkingFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ParkingFeature; sourceTree = "<group>"; };
 		DF04D60923CBD5EC008AE677 /* DashboardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
+		DF0A7DAA27AB01EC00957A8D /* UserDefaultsMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsMigrator.swift; sourceTree = "<group>"; };
 		DF0CB4952082AFD000CC0AA8 /* FirstLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunch.swift; sourceTree = "<group>"; };
 		DF0CB49C2082B78C00CC0AA8 /* PermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsManager.swift; sourceTree = "<group>"; };
 		DF0CB49E2082B90900CC0AA8 /* FeedbackGenerators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeedbackGenerators.swift; path = ../../View/FeedbackGenerators.swift; sourceTree = "<group>"; };
@@ -377,6 +387,7 @@
 		DF310DA321710887004C69BA /* TagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TagTableViewCell.swift; path = ../../View/UITableViewCells/TagTableViewCell.swift; sourceTree = "<group>"; };
 		DF35EFA927A9E9FE005C6BDA /* NewsFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NewsFeature; sourceTree = "<group>"; };
 		DF35EFAA27A9EB66005C6BDA /* ExploreOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreOverview.swift; sourceTree = "<group>"; };
+		DF3661DA27AB27C2002A90BB /* WidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetsExtension.entitlements; sourceTree = "<group>"; };
 		DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchArgumentsHandler.swift; sourceTree = "<group>"; };
 		DF3EE0C420E382EC00CA9279 /* MapLocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapLocationPickerViewController.swift; path = ../../../Controller/Community/MapLocationPickerViewController.swift; sourceTree = "<group>"; };
 		DF4116BB276FA43E0068B4BB /* PlaybackKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PlaybackKit; sourceTree = "<group>"; };
@@ -616,8 +627,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF0A7DB327AB220A00957A8D /* AppScaffold in Frameworks */,
 				DF9F19F72766923700B74E13 /* EFAAPI in Frameworks */,
 				DF75345C277280710086B292 /* RubbishFeature in Frameworks */,
+				DF0A7DB127AB21CD00957A8D /* Resolver in Frameworks */,
+				DF3661D727AB2362002A90BB /* ParkingFeature in Frameworks */,
+				DF3661D927AB267F002A90BB /* FuelFeature in Frameworks */,
 				DF5E1B5226726AF3005FADA4 /* SwiftUI.framework in Frameworks */,
 				DF5E1B6926726E8F005FADA4 /* NewsWidgets in Frameworks */,
 				DF9F19F92766923700B74E13 /* EFAUI in Frameworks */,
@@ -719,6 +734,7 @@
 				DF7D4B5D22F0D53400126AF7 /* Constants.swift */,
 				DFB02B9127066BC4000196D8 /* FeatureFlags.swift */,
 				DFD82670278599D100929914 /* ServiceConfiguration.swift */,
+				DF0A7DAA27AB01EC00957A8D /* UserDefaultsMigrator.swift */,
 				DF007B792640843E00DAFA6F /* InfoPlist.strings */,
 			);
 			path = Config;
@@ -910,6 +926,7 @@
 		DF1A49561F6AAB7000E9108B = {
 			isa = PBXGroup;
 			children = (
+				DF3661DA27AB27C2002A90BB /* WidgetsExtension.entitlements */,
 				DF89BA1926FE1280003A6C64 /* README.md */,
 				DF89BA1A26FE12AE003A6C64 /* IDEAS.md */,
 				DF1A9B9F26ECB2A600D3CAD0 /* .swiftlint.yml */,
@@ -1398,6 +1415,10 @@
 				DF9F19F62766923700B74E13 /* EFAAPI */,
 				DF9F19F82766923700B74E13 /* EFAUI */,
 				DF75345B277280710086B292 /* RubbishFeature */,
+				DF0A7DB027AB21CD00957A8D /* Resolver */,
+				DF0A7DB227AB220A00957A8D /* AppScaffold */,
+				DF3661D627AB2362002A90BB /* ParkingFeature */,
+				DF3661D827AB267F002A90BB /* FuelFeature */,
 			);
 			productName = WidgetsExtension;
 			productReference = DF5E1B4E26726AF3005FADA4 /* WidgetsExtension.appex */;
@@ -1693,6 +1714,7 @@
 				DF29FB4D20B1954B00741A63 /* ThemeViewController.swift in Sources */,
 				DF46E0E22177E28E003545F6 /* EntryOnboardingOverviewViewController.swift in Sources */,
 				DFEE2E0C20BB146300A130CB /* RubbishCollectionComponent.swift in Sources */,
+				DF0A7DAB27AB01EC00957A8D /* UserDefaultsMigrator.swift in Sources */,
 				DF86AB9921729DDD00EFC7EA /* EntryOnboardingAddressViewController.swift in Sources */,
 				DFA17DF420DEF9DE00BBD838 /* UIButton+Extensions.swift in Sources */,
 				DFB0325D23F34A6A00A8326E /* StorageManager.swift in Sources */,
@@ -1825,8 +1847,11 @@
 				DF75345827727E1B0086B292 /* RubbishCollectionEntry.swift in Sources */,
 				DF99F18B2760023700D279AB /* DepartureMonitorEntry.swift in Sources */,
 				DF99F18A2760023000D279AB /* DepartureMonitorWrapperView.swift in Sources */,
+				DF0A7DAF27AB204500957A8D /* UserDefaultsMigrator.swift in Sources */,
+				DF0A7DAE27AB201600957A8D /* ServiceConfiguration.swift in Sources */,
 				DF75345627727D6E0086B292 /* RubbishCollectionProvider.swift in Sources */,
 				DF99F19527600B9A00D279AB /* DepartureMonitorProvider.swift in Sources */,
+				DF0A7DAC27AB1DA000957A8D /* Constants.swift in Sources */,
 				DF4116C5276FF45F0068B4BB /* WidgetStrings.swift in Sources */,
 				DF75345A277280320086B292 /* RubbishCollectionWrapperView.swift in Sources */,
 				DF5E1B8926729FB5005FADA4 /* MediumNewsListWidget.swift in Sources */,
@@ -1835,6 +1860,7 @@
 				DF5E1B8D2672A746005FADA4 /* SmallNewsImageWidget.swift in Sources */,
 				DF5E1B8B2672A003005FADA4 /* InsetNewsListItem.swift in Sources */,
 				DF5E1B782672823C005FADA4 /* RSSLoader.swift in Sources */,
+				DF0A7DAD27AB1FC600957A8D /* NetworkingConfiguration.swift in Sources */,
 				DF5E1B7E267292E8005FADA4 /* BigNewsTilesWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3042,6 +3068,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = WidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -3120,6 +3147,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = WidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -3198,6 +3226,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = WidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -3276,6 +3305,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = WidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -3348,6 +3378,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = WidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -3420,6 +3451,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = WidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -5500,6 +5532,16 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = ParkingFeature;
 		};
+		DF0A7DB027AB21CD00957A8D /* Resolver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF21FA8F24C634D8001C278D /* XCRemoteSwiftPackageReference "Resolver" */;
+			productName = Resolver;
+		};
+		DF0A7DB227AB220A00957A8D /* AppScaffold */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFD8632A25E25F5F006164E5 /* XCRemoteSwiftPackageReference "app-scaffold-ios" */;
+			productName = AppScaffold;
+		};
 		DF0EAC9B24C63FB0009BE489 /* ModernNetworking */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ModernNetworking;
@@ -5518,6 +5560,14 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DF32ACF12676AABA00B943DB /* XCRemoteSwiftPackageReference "mmevents-ios" */;
 			productName = MMEvents;
+		};
+		DF3661D627AB2362002A90BB /* ParkingFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ParkingFeature;
+		};
+		DF3661D827AB267F002A90BB /* FuelFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FuelFeature;
 		};
 		DF3C180A254489EF0047C898 /* MMUI */ = {
 			isa = XCSwiftPackageProductDependency;
