@@ -62,13 +62,63 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         logger.info("Handling universal link: \(url.absoluteString)")
         
         if components.path.contains("/abfallkalender") {
-            openRubbishScheduleDetails()
+            return openRubbishScheduleDetails()
+        }
+        
+        if components.path.contains("/tanken") || components.path.contains("/fuel") {
+            return openFuelStationList()
+        }
+        
+        if components.path.contains("/news") || components.path.contains("/nachrichten") {
+            return switchToNews()
+        }
+        
+        if components.path.contains("/events") || components.path.contains("/veranstaltungen") {
+            return switchToEvents()
+        }
+        
+        if components.path.contains("/settings") || components.path.contains("/einstellungen") {
+            return openSettings()
+        }
+        
+        if components.path.contains("/bürgerfunk") || components.path.contains("/buergerfunk") {
+            return openBuergerfunk()
         }
         
     }
     
     private func openRubbishScheduleDetails() {
+        applicationController.tabController.selectedIndex = TabIndices.dashboard.rawValue
+        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
         applicationController.tabController.dashboard.pushRubbishViewController()
+    }
+    
+    private func openFuelStationList() {
+        applicationController.tabController.selectedIndex = TabIndices.dashboard.rawValue
+        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
+        applicationController.tabController.dashboard.pushFuelStationListViewController()
+    }
+    
+    private func switchToNews() {
+        applicationController.tabController.news.navigationController.popToRootViewController(animated: true)
+        applicationController.tabController.selectedIndex = TabIndices.news.rawValue
+    }
+    
+    private func switchToEvents() {
+        applicationController.tabController.events.navigationController.popToRootViewController(animated: true)
+        applicationController.tabController.selectedIndex = TabIndices.events.rawValue
+    }
+    
+    private func openSettings() {
+        applicationController.tabController.selectedIndex = TabIndices.other.rawValue
+        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
+        applicationController.tabController.other.showSettings()
+    }
+    
+    private func openBuergerfunk() {
+        applicationController.tabController.selectedIndex = TabIndices.other.rawValue
+        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
+        applicationController.tabController.other.showBuergerfunk()
     }
     
 }

@@ -56,4 +56,22 @@ class OtherCoordinator: Coordinator {
         
     }
     
+    // MARK: - Actions
+    
+    public func showBuergerfunk() {
+        
+        let viewController = RadioBroadcastsViewController()
+        
+        self.navigationController.pushViewController(viewController, animated: true)
+        
+    }
+    
+    public func showSettings() {
+        
+        let settingsViewController = SettingsViewController()
+        
+        navigationController.pushViewController(settingsViewController, animated: true)
+        
+    }
+    
 }

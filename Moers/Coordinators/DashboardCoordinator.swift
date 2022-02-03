@@ -13,6 +13,7 @@ import AppScaffold
 import SwiftUI
 import DashboardFeature
 import RubbishFeature
+import FuelFeature
 
 class DashboardCoordinator: Coordinator {
     
@@ -62,6 +63,16 @@ class DashboardCoordinator: Coordinator {
         
         let rubbishCollectionViewController = RubbishScheduleController()
         
+        navigationController.popToRootViewController(animated: true)
+        navigationController.pushViewController(rubbishCollectionViewController, animated: true)
+        
+    }
+    
+    public func pushFuelStationListViewController() {
+        
+        let rubbishCollectionViewController = FuelStationListViewController()
+        
+        navigationController.popToRootViewController(animated: true)
         navigationController.pushViewController(rubbishCollectionViewController, animated: true)
         
     }

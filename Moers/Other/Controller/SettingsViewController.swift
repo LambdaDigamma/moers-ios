@@ -197,6 +197,7 @@ class SettingsViewController: UIViewController {
         
     }
     
+    // swiftlint:disable:next function_body_length
     private func reloadRows() {
         
         let hour = rubbishService.reminderHour

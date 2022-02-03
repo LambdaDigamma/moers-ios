@@ -72,7 +72,11 @@ struct ExploreOverview: View {
     }
     
     @ViewBuilder
-    func card(title: String, colors: [Color] = [], systemImage: String? = nil) -> some View {
+    func card(
+        title: String,
+        colors: [Color] = [],
+        systemImage: String? = nil
+    ) -> some View {
         
         ZStack(alignment: .topLeading) {
             VStack(alignment: .leading) {

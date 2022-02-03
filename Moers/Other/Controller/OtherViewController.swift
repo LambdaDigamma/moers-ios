@@ -63,7 +63,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                     rows: [
                         NavigationRow(
                             title: "Bürgerfunk",
-                            action: showBuergerfunkSchedule
+                            action: coordinator?.showBuergerfunk ?? {}
                         )
                     ]
                 ) : nil,
@@ -82,7 +82,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                 rows: [
                     NavigationRow(
                         title: String.localized("SettingsTitle"),
-                        action: showSettings
+                        action: coordinator?.showSettings ?? {}
                     ),
                     NavigationRow(
                         title: "Siri Shortcuts",
@@ -194,15 +194,6 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     // MARK: - Row Action
     
-    private func showBuergerfunkSchedule() {
-        
-        let viewController = RadioBroadcastsViewController()
-//        let viewController = RadioViewController()
-        
-        self.navigationController?.pushViewController(viewController, animated: true)
-        
-    }
-    
     private func showAddEntry() {
         
         if entryManager.entryStreet != nil || entryManager.entryLat != nil {
@@ -257,14 +248,6 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     private func showNonValidData() {
         push(viewController: EntryValidationViewController.self)
-    }
-    
-    private func showSettings() {
-        
-        let settingsViewController = SettingsViewController()
-        
-        navigationController?.pushViewController(settingsViewController, animated: true)
-        
     }
     
     private func showSiriShortcuts() {
