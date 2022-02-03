@@ -414,9 +414,6 @@
 		DF54138C2180955A007FDEC8 /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		DF552FC62184D2210062EB2B /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
 		DF55F2622770ABE80024300B /* DashboardFeature */ = {isa = PBXFileReference; lastKnownFileType = text; path = DashboardFeature; sourceTree = SOURCE_ROOT; };
-		DF57D6872187397F00E6A0A9 /* FIRAnalyticsConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FIRAnalyticsConnector.framework; path = Frameworks/FIRAnalyticsConnector.framework; sourceTree = "<group>"; };
-		DF57D6882187397F00E6A0A9 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
-		DF57D6892187397F00E6A0A9 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = Frameworks/GoogleAppMeasurement.framework; sourceTree = "<group>"; };
 		DF57D695218739C500E6A0A9 /* Moers-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Moers-Bridging-Header.h"; sourceTree = "<group>"; };
 		DF5D81C92256832600A19B01 /* MockConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConfig.swift; sourceTree = "<group>"; };
 		DF5D82722258DBD900A19B01 /* UIProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIProperties.swift; path = ../UIProperties.swift; sourceTree = "<group>"; };
@@ -564,16 +561,6 @@
 		DFF654E52677C60B0026FBCF /* mmevents-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "mmevents-ios"; path = "../mmevents-ios"; sourceTree = "<group>"; };
 		DFF8F0B623CD8EC60066220D /* EventCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCoordinator.swift; sourceTree = "<group>"; };
 		DFF8F0B823CD93E80066220D /* OtherCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCoordinator.swift; sourceTree = "<group>"; };
-		DFF939052539DBAC002E5747 /* GoogleDataTransport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleDataTransport.xcframework; path = Frameworks/GoogleDataTransport.xcframework; sourceTree = "<group>"; };
-		DFF939062539DBAC002E5747 /* FirebaseCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseCore.xcframework; path = Frameworks/FirebaseCore.xcframework; sourceTree = "<group>"; };
-		DFF939072539DBAC002E5747 /* PromisesObjC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = PromisesObjC.xcframework; path = Frameworks/PromisesObjC.xcframework; sourceTree = "<group>"; };
-		DFF939082539DBAC002E5747 /* Protobuf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Protobuf.xcframework; path = Frameworks/Protobuf.xcframework; sourceTree = "<group>"; };
-		DFF939092539DBAC002E5747 /* FirebaseCoreDiagnostics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseCoreDiagnostics.xcframework; path = Frameworks/FirebaseCoreDiagnostics.xcframework; sourceTree = "<group>"; };
-		DFF9390A2539DBAC002E5747 /* FirebaseInstallations.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseInstallations.xcframework; path = Frameworks/FirebaseInstallations.xcframework; sourceTree = "<group>"; };
-		DFF9390B2539DBAC002E5747 /* FirebaseInstanceID.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseInstanceID.xcframework; path = Frameworks/FirebaseInstanceID.xcframework; sourceTree = "<group>"; };
-		DFF9390C2539DBAC002E5747 /* FirebaseMessaging.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseMessaging.xcframework; path = Frameworks/FirebaseMessaging.xcframework; sourceTree = "<group>"; };
-		DFF9390D2539DBAC002E5747 /* nanopb.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = nanopb.xcframework; path = Frameworks/nanopb.xcframework; sourceTree = "<group>"; };
-		DFF9390E2539DBAC002E5747 /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleUtilities.xcframework; path = Frameworks/GoogleUtilities.xcframework; sourceTree = "<group>"; };
 		DFFBAA2727693755003728CF /* RubbishFeature */ = {isa = PBXFileReference; lastKnownFileType = folder; path = RubbishFeature; sourceTree = "<group>"; };
 		DFFBAA28276939AD003728CF /* mmcommon-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "mmcommon-ios"; path = "../mmcommon-ios"; sourceTree = "<group>"; };
 		DFFBAA2927696353003728CF /* FuelFeature */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FuelFeature; sourceTree = "<group>"; };
@@ -993,20 +980,7 @@
 			isa = PBXGroup;
 			children = (
 				DFDB87A02545901900347550 /* TwitterKit.xcframework */,
-				DFF939062539DBAC002E5747 /* FirebaseCore.xcframework */,
-				DFF939092539DBAC002E5747 /* FirebaseCoreDiagnostics.xcframework */,
-				DFF9390A2539DBAC002E5747 /* FirebaseInstallations.xcframework */,
-				DFF9390B2539DBAC002E5747 /* FirebaseInstanceID.xcframework */,
-				DFF9390C2539DBAC002E5747 /* FirebaseMessaging.xcframework */,
-				DFF939052539DBAC002E5747 /* GoogleDataTransport.xcframework */,
-				DFF9390E2539DBAC002E5747 /* GoogleUtilities.xcframework */,
-				DFF9390D2539DBAC002E5747 /* nanopb.xcframework */,
-				DFF939072539DBAC002E5747 /* PromisesObjC.xcframework */,
-				DFF939082539DBAC002E5747 /* Protobuf.xcframework */,
 				DF9A4D3F23F45BAA00EE5356 /* TwitterCore.framework */,
-				DF57D6872187397F00E6A0A9 /* FIRAnalyticsConnector.framework */,
-				DF57D6882187397F00E6A0A9 /* FirebaseAnalytics.framework */,
-				DF57D6892187397F00E6A0A9 /* GoogleAppMeasurement.framework */,
 				DF86ABA02174900400EFC7EA /* Intents.framework */,
 				DFCB432020E0344700E7AD3F /* TwitterKit.framework */,
 				DF5E1B4F26726AF3005FADA4 /* WidgetKit.framework */,
