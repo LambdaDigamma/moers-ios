@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 //
 //        bootstrappingProcedure.execute(with: application)
         
-        ThemeManager.default.theme = ApplicationTheme.dark // ThemeManager.default // UserManager.shared.theme
+        ThemeManager.default.theme = ApplicationTheme.dark
         ThemeManager.default.animated = true
         
         MMUIConfig.registerThemeManager(ThemeManager.default)
@@ -63,12 +63,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let serviceConfiguration = ServiceConfiguration()
         
         serviceConfiguration.execute(with: application)
-        
-//        self.applicationController = ApplicationController()
-        
-//        window = UIWindow(frame: UIScreen.main.bounds)
-//        window!.rootViewController = applicationController.rootViewController()
-//        window!.makeKeyAndVisible()
         
         UNUserNotificationCenter.current().delegate = self
         
@@ -115,6 +109,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
             
         }
+        
+        return true
+        
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        print("🥳")
         
         return true
         

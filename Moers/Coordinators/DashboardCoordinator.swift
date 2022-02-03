@@ -12,6 +12,7 @@ import MMAPI
 import AppScaffold
 import SwiftUI
 import DashboardFeature
+import RubbishFeature
 
 class DashboardCoordinator: Coordinator {
     
@@ -59,7 +60,7 @@ class DashboardCoordinator: Coordinator {
     
     public func pushRubbishViewController() {
         
-        let rubbishCollectionViewController = RubbishCollectionViewController()
+        let rubbishCollectionViewController = RubbishScheduleController()
         
         navigationController.pushViewController(rubbishCollectionViewController, animated: true)
         

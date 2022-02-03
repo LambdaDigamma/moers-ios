@@ -926,7 +926,6 @@
 		DF1A49561F6AAB7000E9108B = {
 			isa = PBXGroup;
 			children = (
-				DF3661DA27AB27C2002A90BB /* WidgetsExtension.entitlements */,
 				DF89BA1926FE1280003A6C64 /* README.md */,
 				DF89BA1A26FE12AE003A6C64 /* IDEAS.md */,
 				DF1A9B9F26ECB2A600D3CAD0 /* .swiftlint.yml */,
@@ -1093,6 +1092,7 @@
 		DF5E1B5326726AF3005FADA4 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				DF3661DA27AB27C2002A90BB /* WidgetsExtension.entitlements */,
 				DF5E1B6A26726EA3005FADA4 /* WidgetsBundle.swift */,
 				DF4116C4276FF45F0068B4BB /* WidgetStrings.swift */,
 				DF5E1B8626729B0A005FADA4 /* News */,
@@ -3068,7 +3068,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = WidgetsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widgets/WidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -3147,7 +3147,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = WidgetsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widgets/WidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -3226,7 +3226,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = WidgetsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widgets/WidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -3305,7 +3305,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = WidgetsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widgets/WidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -3378,7 +3378,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = WidgetsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widgets/WidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -3451,7 +3451,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = WidgetsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widgets/WidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
