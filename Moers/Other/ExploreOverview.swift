@@ -60,6 +60,12 @@ struct ExploreOverview: View {
                         systemImage: "parkingsign"
                     )
                     
+                    card(
+                        title: "Abfallkalender",
+                        colors: [Color(hex: "15803d"), Color.green],
+                        systemImage: "ant.fill"
+                    )
+                    
                 }
                 .padding()
                 

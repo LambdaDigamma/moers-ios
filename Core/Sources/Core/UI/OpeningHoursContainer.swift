@@ -26,7 +26,7 @@ public struct OpeningHoursContainer: View {
             
             if !openingHours.isEmpty {
                 ForEach(openingHours) { entry in
-                    HStack {
+                    HStack(alignment: .top) {
                         Text(entry.text)
                         Spacer()
                         Text(entry.time)

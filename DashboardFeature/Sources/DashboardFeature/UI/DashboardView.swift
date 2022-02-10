@@ -29,14 +29,14 @@ public struct DashboardView: View {
                 
                 #if DEBUG
                 
-                NavigationLink(destination: {
-                    
-                    ParkingAreaList(parkingService: Resolver.resolve())
-                    
-                }, label: {
-                    EmergencyCard(text: "Bombenentschärfung in Moers-Meerbusch")
-                        .cornerRadius(16)
-                })
+//                NavigationLink(destination: {
+//
+//                    ParkingAreaList(parkingService: Resolver.resolve())
+//
+//                }, label: {
+//                    EmergencyCard(text: "Bombenentschärfung in Moers-Meerbusch")
+//                        .cornerRadius(16)
+//                })
                 
                 #endif
                 
