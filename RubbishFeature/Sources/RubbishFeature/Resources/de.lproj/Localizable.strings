@@ -35,3 +35,6 @@ Bei Problemen solltest Du Dich daher lieber an ENNI selbst wenden.
 "RubbishDashboardError.NoYearData.text" = "Im Abfallkalender konnten keine weiteren Termine gefunden werden.";
 
 "RubbishDashboardError.InternalError.title" = "Interner Fehler";
+
+"RubbishCollectionNotification.title" = "Abfuhrkalender";
+"RubbishCollectionNotification.body" = "Morgen wird abgeholt: ";

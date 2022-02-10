@@ -12,7 +12,7 @@ import CoreLocation
 extension CLLocationCoordinate2D: CustomStringConvertible {
     
     public var description: String {
-        return "Latitude: \(self.latitude), Longitude: \(self.longitude)"
+        return "CLLocationCoordinate2D(latitude: \(self.latitude), longitude: \(self.longitude))"
     }
     
 }

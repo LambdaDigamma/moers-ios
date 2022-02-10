@@ -35,3 +35,6 @@ If you have any problems, you should therefore rather contact ENNI itself.
 "RubbishDashboardError.NoYearData.text" = "No other pickup dates could be found in the waste schedule.";
 
 "RubbishDashboardError.InternalError.title" = "Internal error";
+
+"RubbishCollectionNotification.title" = "Pick-up Schedule";
+"RubbishCollectionNotification.body" = "Tomorrow will be collected: ";

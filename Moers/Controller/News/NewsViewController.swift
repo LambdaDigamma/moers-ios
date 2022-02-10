@@ -11,13 +11,14 @@ import Gestalt
 import FeedKit
 import SafariServices
 import MMUI
+import NewsFeature
 
 class NewsViewController: UIViewController, NewsManagerDelegate {
     
     weak var coordinator: NewsCoordinator?
     
     private let cellIdentifier = "tweet"
-    private var newsItems: [NewsItem] = []
+    private var newsItems: [RSSFeedItem] = []
     
 //    private var tweets: [TWTRTweet] = []
     private var items: [RSSFeedItem] = []

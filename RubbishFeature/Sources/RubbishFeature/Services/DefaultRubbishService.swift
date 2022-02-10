@@ -240,8 +240,8 @@ public class DefaultRubbishService: RubbishService {
                     notificationContent.badge = 1
                     
 #if os(iOS)
-                    notificationContent.title = String.localized("RubbishCollectionNotificationTitle")
-                    notificationContent.body = String.localized("RubbishCollectionNotificationBody") + item.type.title
+                    notificationContent.title = PackageStrings.Notification.title
+                    notificationContent.body = PackageStrings.Notification.body + item.type.title
 #endif
                     
                     let date = item.date
@@ -380,7 +380,7 @@ public class DefaultRubbishService: RubbishService {
     
     public func setupBadSetup() {
         
-        self.street = "Adler"
+        self.street = "Muster"
         self.id = nil
         self.streetAddition = nil
         

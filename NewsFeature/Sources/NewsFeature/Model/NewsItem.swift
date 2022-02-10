@@ -9,7 +9,7 @@
 import Foundation
 import FeedKit
 
-protocol NewsItem {
+public protocol NewsItem: Hashable {
     
     var date: Date { get }
     
@@ -17,8 +17,14 @@ protocol NewsItem {
 
 extension RSSFeedItem: NewsItem {
     
-    var date: Date {
+    public var date: Date {
         return self.pubDate ?? Date()
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.guid?.value)
+        hasher.combine(self.title)
+        hasher.combine(self.description)
     }
     
 }

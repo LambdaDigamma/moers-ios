@@ -13,6 +13,7 @@ platform :ios do
       devices: {
         "Lennarts iPhone 8" => "e3f6fe313610d72f847e010d17af266b64781acf",
         "Lennarts iPhone XS" => "00008020-000C584C2690003A",
+        "Lennarts iPad Pro" => "00008103-001C34490CF1001E"
       }
     )
     sync_code_signing(

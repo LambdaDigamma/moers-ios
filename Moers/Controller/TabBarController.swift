@@ -248,7 +248,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         guard let rubbishService = rubbishService else {
             return
         }
-
+        
         if rubbishService.isEnabled &&
             !firstLaunch.isFirstLaunch &&
             onboardingManager.userDidCompleteSetup &&
@@ -256,12 +256,12 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             
             rubbishService.loadRubbishCollectionStreets()
                 .receive(on: DispatchQueue.main)
-                .sink { (completion: Subscribers.Completion<Error>) in
+                .sink { (_: Subscribers.Completion<Error>) in
                     
                 } receiveValue: { (streets: [RubbishFeature.RubbishCollectionStreet]) in
                     
                     let currentStreetName = rubbishService.rubbishStreet?.street ?? ""
-                    let currentStreetAddition = rubbishService.rubbishStreet?.streetAddition ?? ""
+                    let currentStreetAddition = rubbishService.rubbishStreet?.streetAddition
                     
                     if let filteredStreet = streets.filter({
                         $0.street == currentStreetName &&
@@ -302,23 +302,8 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     private func setupMocked() {
         
-        let rubbishCollectionStreet = RubbishFeature.RubbishCollectionStreet(
-            id: 2,
-            street: "Adlerstraße",
-            streetAddition: nil,
-            residualWaste: 3,
-            organicWaste: 2,
-            paperWaste: 8,
-            yellowBag: 3,
-            greenWaste: 2,
-            sweeperDay: "",
-            year: 2020
-        )
-        
         UserManager.shared.register(User(type: .citizen, id: nil, name: nil, description: nil))
         petrolManager.petrolType = .diesel
-        rubbishService.isEnabled = true
-        rubbishService.register(rubbishCollectionStreet)
         
     }
     

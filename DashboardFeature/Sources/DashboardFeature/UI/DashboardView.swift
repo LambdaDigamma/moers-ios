@@ -23,12 +23,14 @@ public struct DashboardView: View {
     
     public var body: some View {
         
-        ScrollView {
+        GeometryReader { geo in
             
-            LazyVStack(spacing: 20) {
+            ScrollView {
                 
-                #if DEBUG
-                
+                LazyVGrid(columns: columns(for: geo.size), spacing: 20) {
+                    
+#if DEBUG
+                    
 //                NavigationLink(destination: {
 //
 //                    ParkingAreaList(parkingService: Resolver.resolve())
@@ -37,15 +39,17 @@ public struct DashboardView: View {
 //                    EmergencyCard(text: "Bombenentschärfung in Moers-Meerbusch")
 //                        .cornerRadius(16)
 //                })
-                
-                #endif
-                
-                ForEach(viewModel.displayables, id: \.id) { item in
-                    dashboardItem(for: item)
+                    
+#endif
+                    
+                    ForEach(viewModel.displayables, id: \.id) { item in
+                        dashboardItem(for: item)
+                    }
+                    
                 }
+                .padding()
                 
             }
-            .padding()
             
         }
         .toolbar {
@@ -87,6 +91,17 @@ public struct DashboardView: View {
             PetrolPriceDashboardView(viewModel: viewModel)
             
         }
+        
+    }
+    
+    private func columns(for size: CGSize) -> [GridItem] {
+        
+        return Array(
+            repeating: GridItem(.flexible(minimum: 100, maximum: 600),
+                                spacing: 16,
+                                alignment: .topTrailing),
+            count: size.width > 1000 ? 3 : (size.width > 600 ? 2 : 1)
+        )
         
     }
     

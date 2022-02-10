@@ -63,4 +63,11 @@ internal enum PackageStrings {
         
     }
     
+    internal enum Notification {
+        
+        internal static let title = String.localized("RubbishCollectionNotification.title")
+        internal static let body = String.localized("RubbishCollectionNotification.body")
+        
+    }
+    
 }

@@ -17,7 +17,7 @@ struct RubbishMediumWidget: View {
             Color.systemBackground
             
             VStack(alignment: .leading) {
-                Text("Adlerstraße")
+                Text("Musterstraße")
                     .font(.title).fontWeight(.semibold)
                 
                 HStack {

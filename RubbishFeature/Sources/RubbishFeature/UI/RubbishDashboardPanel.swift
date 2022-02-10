@@ -64,7 +64,7 @@ public struct RubbishDashboardPanel: View {
                     
 //                    Divider()
 //
-//                    Text("\(Image(systemName: "signpost.right.fill"))  Adlerstraße")
+//                    Text("\(Image(systemName: "signpost.right.fill")) Musterstraße")
 //                        .font(.caption2.weight(.medium))
 //                        .foregroundColor(.secondary)
 //                        .padding(.horizontal)
@@ -79,9 +79,11 @@ public struct RubbishDashboardPanel: View {
                         Text(error.title)
                             .fontWeight(.semibold)
                             .font(.callout)
+                            .multilineTextAlignment(.leading)
                         
                         Text(error.text)
                             .font(.subheadline)
+                            .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
                     }

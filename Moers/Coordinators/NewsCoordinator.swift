@@ -10,23 +10,43 @@ import UIKit
 import MMAPI
 import MMUI
 import AppScaffold
+import SwiftUI
+import NewsFeature
+import FeedKit
+import SafariServices
 
-class NewsCoordinator: Coordinator {
+class NewsCoordinator: NSObject, Coordinator, SFSafariViewControllerDelegate {
     
     var navigationController: CoordinatedNavigationController
     
     init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController()
     ) {
-        
         self.navigationController = navigationController
+        super.init()
+        
         self.navigationController.coordinator = self
         
-        let newsViewController = NewsViewController()
+        let newsViewController = NewsListViewController { (feedItem: RSSFeedItem) in
+            
+            guard let url = URL(string: feedItem.link ?? "") else { return }
+            
+            let svc = SFSafariViewController(url: url)
+            svc.preferredBarTintColor = UIColor.systemBackground
+            svc.preferredControlTintColor = UIColor.label
+            svc.configuration.entersReaderIfAvailable = true
+            svc.delegate = self
+            
+            self.navigationController.present(svc, animated: true) {
+                self.navigationController.topViewController?.navigationItem.largeTitleDisplayMode = .never
+            }
+            
+        }
         
-        newsViewController.navigationItem.largeTitleDisplayMode = .never
+        newsViewController.navigationItem.largeTitleDisplayMode = .always
+        newsViewController.title = String.localized("NewsTitle")
         newsViewController.tabBarItem = generateTabBarItem()
-        newsViewController.coordinator = self
+//        newsViewController.coordinator = self
         
         self.navigationController.viewControllers = [newsViewController]
         
@@ -45,6 +65,13 @@ class NewsCoordinator: Coordinator {
         tabBarItem.accessibilityIdentifier = AccessibilityIdentifiers.Menu.news
         
         return tabBarItem
+        
+    }
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        
+        self.navigationController.navigationBar.prefersLargeTitles = true
+        self.navigationController.topViewController?.navigationItem.largeTitleDisplayMode = .always
         
     }
     

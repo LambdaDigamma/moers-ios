@@ -30,7 +30,6 @@
 		DF1207D223C14B97003285C1 /* TextFieldFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1207D123C14B97003285C1 /* TextFieldFormView.swift */; };
 		DF16582E22EF8C990033D218 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */; };
 		DF174FA723BC361B00812BDD /* AuditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF174FA623BC361B00812BDD /* AuditTableViewCell.swift */; };
-		DF199BE021CF9C7000C89966 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF199BDF21CF9C7000C89966 /* NewsItem.swift */; };
 		DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A49621F6AAB7000E9108B /* AppDelegate.swift */; };
 		DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49691F6AAB7000E9108B /* Assets.xcassets */; };
 		DF1A9B9E26ECB12E00D3CAD0 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A9B9D26ECB12E00D3CAD0 /* Logging.swift */; };
@@ -86,6 +85,7 @@
 		DF54138D2180955B007FDEC8 /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF54138C2180955A007FDEC8 /* NewsCollectionViewCell.swift */; };
 		DF552FC72184D2210062EB2B /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF552FC62184D2210062EB2B /* CheckmarkView.swift */; };
 		DF55F25F27709B410024300B /* RubbishFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF55F25E27709B410024300B /* RubbishFeature */; };
+		DF5C919027B5A26000451163 /* NewsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF5C918F27B5A26000451163 /* NewsFeature */; };
 		DF5D81CA2256832600A19B01 /* MockConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5D81C92256832600A19B01 /* MockConfig.swift */; };
 		DF5D82732258DBD900A19B01 /* UIProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5D82722258DBD900A19B01 /* UIProperties.swift */; };
 		DF5E1B5026726AF3005FADA4 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF5E1B4F26726AF3005FADA4 /* WidgetKit.framework */; };
@@ -105,6 +105,7 @@
 		DF5E1B8F2672A782005FADA4 /* ImageNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5E1B8E2672A782005FADA4 /* ImageNewsView.swift */; };
 		DF61DCCD212ECD850093915F /* DetailPetrolStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */; };
 		DF623C6E27B55624009D335F /* LaunchArgumentsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */; };
+		DF623C7027B56FD7009D335F /* NewsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF623C6F27B56FD7009D335F /* NewsFeature */; };
 		DF6279792100CDE400F81A70 /* DetailParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6279782100CDE400F81A70 /* DetailParkingViewController.swift */; };
 		DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */; };
 		DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B451F6EA0370022FA8E /* DesignableButton.swift */; };
@@ -358,7 +359,6 @@
 		DF1207D123C14B97003285C1 /* TextFieldFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldFormView.swift; sourceTree = "<group>"; };
 		DF16583122EF918A0033D218 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		DF174FA623BC361B00812BDD /* AuditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditTableViewCell.swift; sourceTree = "<group>"; };
-		DF199BDF21CF9C7000C89966 /* NewsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
 		DF1A495F1F6AAB7000E9108B /* Moers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1A49621F6AAB7000E9108B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		DF1A49691F6AAB7000E9108B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -594,6 +594,7 @@
 				DFCE12952538F7F600B45EB7 /* FeedKit in Frameworks */,
 				DF21FA9124C634D8001C278D /* Resolver in Frameworks */,
 				DF9F19F32766920C00B74E13 /* EFAAPI in Frameworks */,
+				DF623C7027B56FD7009D335F /* NewsFeature in Frameworks */,
 				DF86ABA12174900400EFC7EA /* Intents.framework in Frameworks */,
 				DFB07A33277741030033101C /* FirebaseMessaging in Frameworks */,
 				DF55F25F27709B410024300B /* RubbishFeature in Frameworks */,
@@ -619,6 +620,7 @@
 				DF9F19F72766923700B74E13 /* EFAAPI in Frameworks */,
 				DF75345C277280710086B292 /* RubbishFeature in Frameworks */,
 				DF0A7DB127AB21CD00957A8D /* Resolver in Frameworks */,
+				DF5C919027B5A26000451163 /* NewsFeature in Frameworks */,
 				DF3661D727AB2362002A90BB /* ParkingFeature in Frameworks */,
 				DF3661D927AB267F002A90BB /* FuelFeature in Frameworks */,
 				DF5E1B5226726AF3005FADA4 /* SwiftUI.framework in Frameworks */,
@@ -850,17 +852,8 @@
 			children = (
 				DF11BFC922BA73080051C3B3 /* View */,
 				DF6D9E4922BB6EFA00BD3132 /* Controller */,
-				DF11BFC822BA71610051C3B3 /* Model */,
 			);
 			path = News;
-			sourceTree = "<group>";
-		};
-		DF11BFC822BA71610051C3B3 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				DF199BDF21CF9C7000C89966 /* NewsItem.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		DF11BFC922BA73080051C3B3 /* View */ = {
@@ -1348,6 +1341,7 @@
 				DFB07A30277741030033101C /* FirebaseCrashlytics */,
 				DFB07A32277741030033101C /* FirebaseMessaging */,
 				DF05E00E2792CA4C0063556E /* ParkingFeature */,
+				DF623C6F27B56FD7009D335F /* NewsFeature */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1394,6 +1388,7 @@
 				DF0A7DB227AB220A00957A8D /* AppScaffold */,
 				DF3661D627AB2362002A90BB /* ParkingFeature */,
 				DF3661D827AB267F002A90BB /* FuelFeature */,
+				DF5C918F27B5A26000451163 /* NewsFeature */,
 			);
 			productName = WidgetsExtension;
 			productReference = DF5E1B4E26726AF3005FADA4 /* WidgetsExtension.appex */;
@@ -1764,7 +1759,6 @@
 				DF6279792100CDE400F81A70 /* DetailParkingViewController.swift in Sources */,
 				DF2D6DA920B899DD00176614 /* User.swift in Sources */,
 				DF310D9B216FE72E004C69BA /* EntryAnnotationView.swift in Sources */,
-				DF199BE021CF9C7000C89966 /* NewsItem.swift in Sources */,
 				DF0CB4AF2085B65200CC0AA8 /* MapViewController.swift in Sources */,
 				DFB4D76B20B064CA00C8D179 /* StaticTableView.swift in Sources */,
 				DFB6A0BF21033C7800D5C12B /* DetailCameraViewController.swift in Sources */,
@@ -5568,6 +5562,10 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = RubbishFeature;
 		};
+		DF5C918F27B5A26000451163 /* NewsFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NewsFeature;
+		};
 		DF5E1B6826726E8F005FADA4 /* NewsWidgets */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NewsWidgets;
@@ -5576,6 +5574,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DFCE12932538F7F600B45EB7 /* XCRemoteSwiftPackageReference "FeedKit" */;
 			productName = FeedKit;
+		};
+		DF623C6F27B56FD7009D335F /* NewsFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NewsFeature;
 		};
 		DF75345B277280710086B292 /* RubbishFeature */ = {
 			isa = XCSwiftPackageProductDependency;

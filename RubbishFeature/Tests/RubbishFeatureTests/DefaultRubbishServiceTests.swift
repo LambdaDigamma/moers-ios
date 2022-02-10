@@ -80,9 +80,9 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     func testStoreStreet() {
 
-        rubbishService.street = "Adlerstraße"
+        rubbishService.street = "Musterstraße"
 
-        XCTAssertEqual(rubbishService.street, "Adlerstraße")
+        XCTAssertEqual(rubbishService.street, "Musterstraße")
 
     }
 

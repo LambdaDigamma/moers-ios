@@ -23,6 +23,7 @@ import FuelFeature
 
 #if canImport(ParkingFeature)
 import ParkingFeature
+import NewsFeature
 #endif
 
 public class ServiceConfiguration: BootstrappingProcedureStep {
@@ -77,12 +78,18 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
         Resolver.register { parkingService as ParkingService }
 #endif
         
+#if canImport(NewsFeature)
+        let newsService = DefaultNewsService()
+        Resolver.register { newsService as NewsService }
+#endif
+        
     }
     
     private func setupStatic() {
         self.logger.info("Setting up static services for testing/screenshotting.")
         
         CoreSettings.userDefaults = UserDefaults.appGroup
+        UserDefaults.appGroup.set(true, forKey: "UserDidCompleteSetup")
         
         let locationService = StaticLocationService()
         let geocodingService = StaticGeocodingService(defaultPlacemark: CoreSettings.defaultPlacemark())
@@ -122,6 +129,11 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
 #if canImport(ParkingFeature)
         let parkingService = StaticParkingService()
         Resolver.register { parkingService as ParkingService }
+#endif
+        
+#if canImport(NewsFeature)
+        let newsService = DefaultNewsService()
+        Resolver.register { newsService as NewsService }
 #endif
         
     }

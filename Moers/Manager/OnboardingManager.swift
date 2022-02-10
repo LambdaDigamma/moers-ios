@@ -153,6 +153,7 @@ class OnboardingManager {
                 
                 if authorizationStatus == .notDetermined {
                     self.locationService.requestWhenInUseAuthorization()
+                    item.manager?.displayNextItem()
                 } else {
                     item.manager?.displayNextItem()
                 }
