@@ -8,7 +8,10 @@
 
 import Foundation
 import UIKit
-import Haneke
+
+//#if canImport(Haneke)
+//import Haneke
+//#endif
 
 struct LaunchArgumentsHandler {
     
@@ -35,12 +38,18 @@ struct LaunchArgumentsHandler {
         let defaultsName = Bundle.main.bundleIdentifier!
         userDefaults.removePersistentDomain(forName: defaultsName)
         
-        Shared.dataCache.removeAll()
+//        #if canImport(Haneke)
+//        Shared.dataCache.removeAll()
+//        #endif
         
     }
     
     private func isSnapshotting() -> Bool {
         return UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT")
+    }
+    
+    public static func isSnapshotting(checking userDefaults: UserDefaults = .standard) -> Bool {
+        return userDefaults.bool(forKey: "FASTLANE_SNAPSHOT")
     }
     
 }

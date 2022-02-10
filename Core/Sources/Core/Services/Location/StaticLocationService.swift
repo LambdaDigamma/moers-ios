@@ -14,9 +14,12 @@ public class StaticLocationService: LocationService {
     public var authorizationStatus: CurrentValueSubject<CLAuthorizationStatus, Never>
     public var location: CurrentValueSubject<CLLocation, Error>
     
-    public init() {
-        self.authorizationStatus = CurrentValueSubject(.notDetermined)
-        self.location = CurrentValueSubject(.init())
+    public init(
+        authorizationStatus: CLAuthorizationStatus = .authorizedAlways,
+        initialLocation: CLLocation = CoreSettings.regionLocation
+    ) {
+        self.authorizationStatus = CurrentValueSubject(authorizationStatus)
+        self.location = CurrentValueSubject(initialLocation)
     }
     
     public func requestWhenInUseAuthorization() {

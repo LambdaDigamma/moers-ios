@@ -85,6 +85,14 @@ Release a new version of Mein Moers
 [bundle exec] fastlane ios screenshots
 ```
 
+Take screenshots
+
+### ios deliver_screenshots
+
+```sh
+[bundle exec] fastlane ios deliver_screenshots
+```
+
 Take Screenshots and upload them to AppStore Connect
 
 ### ios upload_screenshots

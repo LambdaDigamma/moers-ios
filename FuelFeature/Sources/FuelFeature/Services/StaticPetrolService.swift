@@ -61,8 +61,15 @@ public class StaticPetrolService: PetrolService {
         } loadPetrolStations: {
         
             return [
-                .stub(withID: "10034A96-B228-4451-8793-451AB7CBD982"),
-                .stub(withID: "9D164B7E-A20E-4A2A-8C85-914399003914"),
+                .stub(withID: "10034A96-B228-4451-8793-451AB7CBD982")
+                    .setting(\.isOpen, to: true)
+                    .setting(\.price, to: 1.56),
+                .stub(withID: "9D164B7E-A20E-4A2A-8C85-914399003914")
+                    .setting(\.isOpen, to: true)
+                    .setting(\.price, to: 1.58),
+                .stub(withID: "5A7150D9-E860-46F0-9826-61F179D22B7F")
+                    .setting(\.isOpen, to: true)
+                    .setting(\.price, to: 1.61),
             ]
             
         }

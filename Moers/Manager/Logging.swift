@@ -15,21 +15,21 @@ extension OSLog {
     internal static var subsystem = Bundle.main.bundleID
     
     /// Application lifecycle
-    static let appLifecycle = OSLog(subsystem: subsystem, category: "appLifecycle")
+    internal static let appLifecycle = OSLog(subsystem: subsystem, category: "appLifecycle")
     
     /// API interactions
-    static let api = OSLog(subsystem: subsystem, category: "api")
+    internal static let api = OSLog(subsystem: subsystem, category: "api")
     
     /// UI
-    static let ui = OSLog(subsystem: subsystem, category: "ui")
+    internal static let ui = OSLog(subsystem: subsystem, category: "ui")
     
     /// Local data & caches
-    static let localData = OSLog(subsystem: subsystem, category: "localdata")
+    internal static let localData = OSLog(subsystem: subsystem, category: "localdata")
     
     /// App Config
-    static let appConfig = OSLog(subsystem: subsystem, category: "appconfig")
+    internal static let appConfig = OSLog(subsystem: subsystem, category: "appconfig")
     
     /// Background - Stuff that happens in the Background.
-    static let background = OSLog(subsystem: subsystem, category: "background")
+    internal static let background = OSLog(subsystem: subsystem, category: "background")
     
 }

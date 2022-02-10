@@ -8,8 +8,11 @@
 import Foundation
 import CoreLocation
 import MapKit
+import Contacts
 
 public class CoreSettings {
+    
+    public static let regionName: String = "Moers"
     
     public static let regionCenter: CLLocationCoordinate2D = .init(
         latitude: 51.459167,
@@ -29,6 +32,22 @@ public extension CoreSettings {
     
     static func defaultRegion() -> MKCoordinateRegion {
         return MKCoordinateRegion(center: Self.regionCenter, latitudinalMeters: 8_000, longitudinalMeters: 8_000)
+    }
+    
+    static func defaultPlacemark() -> CLPlacemark {
+        
+        let address = CNMutablePostalAddress()
+        
+        address.city = CoreSettings.regionName
+        address.street = "Musterstraße"
+        address.isoCountryCode = "DE"
+        
+        return CLPlacemark(
+            location: CoreSettings.regionLocation,
+            name: regionName,
+            postalAddress: address
+        )
+        
     }
     
 }

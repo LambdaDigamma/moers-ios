@@ -104,6 +104,7 @@
 		DF5E1B8D2672A746005FADA4 /* SmallNewsImageWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5E1B8C2672A746005FADA4 /* SmallNewsImageWidget.swift */; };
 		DF5E1B8F2672A782005FADA4 /* ImageNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5E1B8E2672A782005FADA4 /* ImageNewsView.swift */; };
 		DF61DCCD212ECD850093915F /* DetailPetrolStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF61DCCC212ECD850093915F /* DetailPetrolStationViewController.swift */; };
+		DF623C6E27B55624009D335F /* LaunchArgumentsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */; };
 		DF6279792100CDE400F81A70 /* DetailParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6279782100CDE400F81A70 /* DetailParkingViewController.swift */; };
 		DF632B421F6E765C0022FA8E /* ParkingLotAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B411F6E765C0022FA8E /* ParkingLotAnnotationView.swift */; };
 		DF632B461F6EA0370022FA8E /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF632B451F6EA0370022FA8E /* DesignableButton.swift */; };
@@ -1836,6 +1837,7 @@
 				DF5E1B782672823C005FADA4 /* RSSLoader.swift in Sources */,
 				DF0A7DAD27AB1FC600957A8D /* NetworkingConfiguration.swift in Sources */,
 				DF5E1B7E267292E8005FADA4 /* BigNewsTilesWidget.swift in Sources */,
+				DF623C6E27B55624009D335F /* LaunchArgumentsHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

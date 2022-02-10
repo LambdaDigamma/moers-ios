@@ -96,11 +96,6 @@
 		<key>Moers (Development).xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
-		</dict>
-		<key>Moers (Staging).xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
 		<key>Moers - DE.xcscheme_^#shared#^_</key>
@@ -416,6 +411,11 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>25</integer>
+		</dict>
+		<key>Screenshots.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>SimpleStorage (Playground) 1.xcscheme</key>
 		<dict>
