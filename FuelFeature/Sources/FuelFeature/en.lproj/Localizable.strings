@@ -1,2 +1,6 @@
 "FuelStationList.title" = "Fuel stations";
 "FuelStationList.contextNavigationAction" = "Get directions";
+
+"Dashboard.currentLocation" = "Current location";
+"Dashboard.perL" = "per L ";
+"Dashboard.stationsNearYou" = "%@ fuel stations in your area are currently open.";

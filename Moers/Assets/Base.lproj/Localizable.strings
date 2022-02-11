@@ -6,6 +6,12 @@
   Copyright © 2018 Lennart Fischer. All rights reserved.
 */
 
+"Menu.dashboard" = "Today";
+"Menu.news" = "News";
+"Menu.map" = "Map";
+"Menu.events" = "Events";
+"Menu.other" = "Other";
+
 /* Tab Bar Items */
 "DashboardTabItem" = "Dashboard";
 "MapTabItem" = "Map";

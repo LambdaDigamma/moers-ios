@@ -61,7 +61,7 @@ public struct DashboardView: View {
 //                .foregroundColor(Color.yellow)
 //            }
         }
-        .navigationBarTitle("Heute")
+        .navigationBarTitle(PackageStrings.Dashboard.title)
         .onAppear {
             viewModel.load()
         }

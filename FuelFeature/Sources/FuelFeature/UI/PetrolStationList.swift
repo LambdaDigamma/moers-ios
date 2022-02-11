@@ -72,16 +72,19 @@ public struct PetrolStationList: View {
                         Text(fuelStation.title ?? fuelStation.brand)
                             .font(.headline)
                             .fontWeight(.bold)
+                            .multilineTextAlignment(.leading)
                             .lineLimit(1)
                         
                         VStack(alignment: .leading) {
                             
                             Text("\(fuelStation.brand) • \(fuelStation.isOpen ? "geöffnet" : "geschlossen")")
                                 .foregroundColor(.secondary)
+                                .multilineTextAlignment(.leading)
                             
                             if let subtitle = fuelStation.subtitle {
                                 Text(subtitle)
                                     .foregroundColor(.secondary)
+                                    .multilineTextAlignment(.leading)
                             }
                             
                         }

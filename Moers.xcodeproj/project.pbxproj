@@ -203,6 +203,10 @@
 		DFB92D641F6B109C00669F73 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D631F6B109C00669F73 /* Extensions.swift */; };
 		DFB92D691F6B96E400669F73 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB92D681F6B96E400669F73 /* ClusterAnnotationView.swift */; };
 		DFBB9DE3212BF63600038943 /* PetrolStationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBB9DE2212BF63600038943 /* PetrolStationAnnotationView.swift */; };
+		DFC393AD27B66DE3007AD266 /* Snapshotting.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC393AC27B66DE3007AD266 /* Snapshotting.swift */; };
+		DFC393B027B66F39007AD266 /* UITestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC393AF27B66F39007AD266 /* UITestHelpers.swift */; };
+		DFC393B227B66F68007AD266 /* LaunchArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC393B127B66F68007AD266 /* LaunchArguments.swift */; };
+		DFC393B327B67188007AD266 /* AccessibilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB7C10B278836C400B1C87E /* AccessibilityIdentifiers.swift */; };
 		DFC7126921DFC863006D05DB /* ShortcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC7126821DFC863006D05DB /* ShortcutsViewController.swift */; };
 		DFC8507926EFE6E400F9FB39 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC8507826EFE6E400F9FB39 /* AppStrings.swift */; };
 		DFCB431D20E0283000E7AD3F /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431C20E0283000E7AD3F /* NewsViewController.swift */; };
@@ -373,7 +377,7 @@
 		DF284EFD23F4C17100EC999B /* MoersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF284EFF23F4C17100EC999B /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
 		DF284F0123F4C17100EC999B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DF284F0B23F4C2F700EC999B /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
+		DF284F0B23F4C2F700EC999B /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = MoersUITests/Helpers/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		DF284F0D23F54C6900EC999B /* AccessibleBulletinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibleBulletinItem.swift; sourceTree = "<group>"; };
 		DF29FB4C20B1954B00741A63 /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		DF29FB4E20B19BE600741A63 /* ThemeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCardView.swift; sourceTree = "<group>"; };
@@ -532,6 +536,10 @@
 		DFB92D631F6B109C00669F73 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DFB92D681F6B96E400669F73 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
 		DFBB9DE2212BF63600038943 /* PetrolStationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetrolStationAnnotationView.swift; sourceTree = "<group>"; };
+		DFC393AC27B66DE3007AD266 /* Snapshotting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snapshotting.swift; sourceTree = "<group>"; };
+		DFC393AF27B66F39007AD266 /* UITestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestHelpers.swift; sourceTree = "<group>"; };
+		DFC393B127B66F68007AD266 /* LaunchArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchArguments.swift; sourceTree = "<group>"; };
+		DFC393B427B672D4007AD266 /* Screenshots.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Screenshots.xctestplan; sourceTree = "<group>"; };
 		DFC7126821DFC863006D05DB /* ShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsViewController.swift; sourceTree = "<group>"; };
 		DFC8507726EFE62400F9FB39 /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Core; sourceTree = "<group>"; };
 		DFC8507826EFE6E400F9FB39 /* AppStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
@@ -1009,7 +1017,8 @@
 		DF284EFE23F4C17100EC999B /* MoersUITests */ = {
 			isa = PBXGroup;
 			children = (
-				DF284F0B23F4C2F700EC999B /* SnapshotHelper.swift */,
+				DFC393AE27B66F11007AD266 /* Helpers */,
+				DFC393AC27B66DE3007AD266 /* Snapshotting.swift */,
 				DF284EFF23F4C17100EC999B /* OnboardingUITests.swift */,
 				DF284F0123F4C17100EC999B /* Info.plist */,
 			);
@@ -1269,6 +1278,16 @@
 			path = RadioFeature;
 			sourceTree = "<group>";
 		};
+		DFC393AE27B66F11007AD266 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DF284F0B23F4C2F700EC999B /* SnapshotHelper.swift */,
+				DFC393AF27B66F39007AD266 /* UITestHelpers.swift */,
+				DFC393B127B66F68007AD266 /* LaunchArguments.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		DFD7ACBB20A794D700D49BE2 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
@@ -1285,6 +1304,7 @@
 			isa = PBXGroup;
 			children = (
 				DFDABCA82772A3280079F741 /* FullTestPlan.xctestplan */,
+				DFC393B427B672D4007AD266 /* Screenshots.xctestplan */,
 			);
 			path = "Test Plans";
 			sourceTree = "<group>";
@@ -1800,6 +1820,10 @@
 			files = (
 				DF284F0023F4C17100EC999B /* OnboardingUITests.swift in Sources */,
 				DF284F0C23F4C2F700EC999B /* SnapshotHelper.swift in Sources */,
+				DFC393AD27B66DE3007AD266 /* Snapshotting.swift in Sources */,
+				DFC393B327B67188007AD266 /* AccessibilityIdentifiers.swift in Sources */,
+				DFC393B227B66F68007AD266 /* LaunchArguments.swift in Sources */,
+				DFC393B027B66F39007AD266 /* UITestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2613,7 +2637,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 93C29USLP6;
+				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2687,7 +2711,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 93C29USLP6;
+				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2761,7 +2785,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 93C29USLP6;
+				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2835,7 +2859,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 93C29USLP6;
+				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2903,7 +2927,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 93C29USLP6;
+				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2971,7 +2995,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 93C29USLP6;
+				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

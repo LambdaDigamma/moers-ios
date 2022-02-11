@@ -30,7 +30,7 @@ public struct PetrolPriceDashboardView: View {
                         
                         VStack(alignment: .leading, spacing: 4) {
                             
-                            Text("\(Image(systemName: "location.fill")) Aktueller Ort")
+                            Text("\(Image(systemName: "location.fill")) \(PackageStrings.Dashboard.currentLocation)")
                                 .font(.callout.weight(.medium))
                             
                             Text(viewModel.locationName.value ?? "Moers")
@@ -49,7 +49,7 @@ public struct PetrolPriceDashboardView: View {
                                 .redacted(reason: viewModel.data.loading ? .placeholder : [])
                                 .font(.title.weight(.bold))
                             
-                            Text("pro L Diesel".uppercased())
+                            Text(PackageStrings.Dashboard.perL(viewModel.petrolType).uppercased())
                                 .foregroundColor(.secondary)
                                 .font(.caption.weight(.medium))
                             
@@ -57,8 +57,7 @@ public struct PetrolPriceDashboardView: View {
                         
                     }
                     
-                    (Text("\(viewModel.data.value?.numberOfStations ?? 20)")
-                     + Text(" Tankstellen in Deiner näheren Umgebung haben geöffnet."))
+                    Text(PackageStrings.Dashboard.stationsNearYou(viewModel.data.value?.numberOfStations ?? 20))
                         .foregroundColor(.secondary)
                         .font(.callout)
                         .multilineTextAlignment(.leading)

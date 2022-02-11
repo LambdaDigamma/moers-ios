@@ -132,7 +132,7 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
 #endif
         
 #if canImport(NewsFeature)
-        let newsService = DefaultNewsService()
+        let newsService = StaticNewsService()
         Resolver.register { newsService as NewsService }
 #endif
         

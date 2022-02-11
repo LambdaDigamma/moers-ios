@@ -70,6 +70,33 @@ public class StaticPetrolService: PetrolService {
                 .stub(withID: "5A7150D9-E860-46F0-9826-61F179D22B7F")
                     .setting(\.isOpen, to: true)
                     .setting(\.price, to: 1.61),
+                .stub(withID: "BDE795B8-BF6C-4F02-8419-EA6C4E472031")
+                    .setting(\.isOpen, to: true)
+                    .setting(\.price, to: 1.56),
+                .stub(withID: "C4016598-6159-44DD-AB6B-1BC1EA40B8F9")
+                    .setting(\.isOpen, to: true)
+                    .setting(\.price, to: 1.58),
+                .stub(withID: "C8148712-6889-4F29-87D3-EFA06EF3B851")
+                    .setting(\.isOpen, to: true)
+                    .setting(\.price, to: 1.61),
+                .stub(withID: "76036FF8-32B8-49A9-A4BB-563A01557038")
+                    .setting(\.isOpen, to: true)
+                    .setting(\.price, to: 1.56),
+                .stub(withID: "72DB3FFD-0A62-4B75-9DFD-6D385BF8FA03")
+                    .setting(\.isOpen, to: true)
+                    .setting(\.price, to: 1.58),
+                .stub(withID: "DE2E0E6A-5980-4486-AC85-274845B4CD56")
+                    .setting(\.isOpen, to: true)
+                    .setting(\.price, to: 1.61),
+                .stub(withID: "971A3F1C-CB6E-4FD6-983F-E6E6F673B423")
+                    .setting(\.isOpen, to: true)
+                    .setting(\.price, to: 1.56),
+                .stub(withID: "F9564C89-3171-4728-B4F6-92E59D756402")
+                    .setting(\.isOpen, to: true)
+                    .setting(\.price, to: 1.58),
+                .stub(withID: "9E7BCE23-4CBB-4859-820F-2FF46DCA1621")
+                    .setting(\.isOpen, to: true)
+                    .setting(\.price, to: 1.61),
             ]
             
         }

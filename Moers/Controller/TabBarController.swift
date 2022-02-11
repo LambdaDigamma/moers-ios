@@ -124,6 +124,8 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             other.navigationController
         ]
         
+        self.tabBar.accessibilityIdentifier = AccessibilityIdentifiers.tabBar
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {

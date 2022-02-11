@@ -21,6 +21,7 @@ public struct PetrolPriceDashboardData {
 
 public class PetrolPriceDashboardViewModel: StandardViewModel {
     
+    @Published var petrolType: PetrolType = .diesel
     @Published var data: DataState<PetrolPriceDashboardData, Error> = .loading
     @Published var locationName: DataState<String, Error> = .loading
     
@@ -53,9 +54,9 @@ public class PetrolPriceDashboardViewModel: StandardViewModel {
     /// and average price data of the dashboard.
     public func load() {
         
-        let petrolType = petrolService.petrolType
+        self.petrolType = petrolService.petrolType
         
-        logger.info("Requesting current location and fuel station prices for '\(petrolType.rawValue, privacy: .public)' type.")
+        logger.info("Requesting current location and fuel station prices for '\(self.petrolType.rawValue, privacy: .public)' type.")
         
         locationService.requestCurrentLocation()
         
@@ -93,7 +94,7 @@ public class PetrolPriceDashboardViewModel: StandardViewModel {
                     coordinate: location.coordinate,
                     radius: self.defaultSearchRadius,
                     sorting: .distance,
-                    type: petrolType,
+                    type: self.petrolType,
                     shouldReload: false
                 )
             }

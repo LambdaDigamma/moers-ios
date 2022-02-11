@@ -14,4 +14,17 @@ internal enum PackageStrings {
         static let contextNavigationAction = String.localized("FuelStationList.contextNavigationAction")
     }
     
+    internal enum Dashboard {
+        static let currentLocation = String.localized("Dashboard.currentLocation")
+        static func perL(_ type: PetrolType) -> String {
+            return String.localized("Dashboard.perL") + type.name
+        }
+        static func stationsNearYou(_ count: Int) -> String {
+            return String.localizedStringWithFormat(
+                String.localized("Dashboard.stationsNearYou"),
+                "\(count)"
+            )
+        }
+    }
+    
 }

@@ -10,6 +10,8 @@ import Foundation
 
 public enum AccessibilityIdentifiers {
     
+    public static let tabBar = "AppStrings.tabBar"
+    
     public enum Menu {
         public static let dashboard = "AppStrings.Menu.dashboard"
         public static let news = "AppStrings.Menu.news"
@@ -17,5 +19,7 @@ public enum AccessibilityIdentifiers {
         public static let events = "AppStrings.Menu.events"
         public static let other = "AppStrings.Menu.other"
     }
+    
+    
     
 }

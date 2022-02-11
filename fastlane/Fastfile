@@ -153,6 +153,7 @@ platform :ios do
   lane :upload_screenshots do
     deliver(
       # sync_screenshots: true
+      app_version: "3.2.1",
       skip_binary_upload: true,
       overwrite_screenshots: true
     )

@@ -1,0 +1,28 @@
+{
+	"device_frame_version": "latest",
+	"default": {
+		"keyword": {
+			"font": "./fonts/Inter-Bold.otf",
+			"font_size": 80,
+			"color": "#FFFFFF"
+		},
+		"title": {
+			"font": "./fonts/Inter-Medium.otf",
+			"font_size": 80,
+			"color": "#FFFFFF"
+		},
+		"background": "./background.jpg",
+		"padding": 60,
+		"show_complete_frame": false,
+		"stack_title": false,
+		"title_below_image": false,
+		"frame": "BLACK",
+		"use_platform": "IOS"
+	},
+	"data": [
+		{
+			"filter": "Android",
+			"use_platform": "ANDROID"
+		}
+	]
+}
