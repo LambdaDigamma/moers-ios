@@ -103,16 +103,7 @@ class ApplicationCoordinator: NSObject {
             eventService: eventService
         )
         
-        let splitViewController = SplitController(tabController: tabController)
-        let sidebarController = SidebarViewController(coordinators: [
-            tabController.dashboard,
-            tabController.news,
-            tabController.map,
-            tabController.events,
-            tabController.other
-        ])
-        
-        splitViewController.setViewController(sidebarController, for: .primary)
+        let splitViewController = MainSplitViewController(tabController: tabController)
         
         return splitViewController
         

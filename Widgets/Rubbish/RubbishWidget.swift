@@ -8,10 +8,11 @@
 
 import SwiftUI
 import WidgetKit
+import Core
 
 struct RubbishWidget: Widget {
     
-    let kind: String = "RubbishWidget"
+    let kind: String = WidgetKinds.rubbish.rawValue
     
     var body: some WidgetConfiguration {
         

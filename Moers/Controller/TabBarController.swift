@@ -17,7 +17,7 @@ import Combine
 import Resolver
 import RubbishFeature
 
-class TabBarController: UITabBarController, UITabBarControllerDelegate {
+public class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
     @LazyInjected var rubbishService: RubbishService
     
@@ -111,7 +111,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     // MARK: - UIViewController Lifecycle
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         self.loadCurrentLocation()
@@ -128,7 +128,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.setupTheming()
@@ -136,7 +136,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         self.firstLaunch = FirstLaunch(userDefaults: .appGroup, key: Constants.firstLaunch)
@@ -309,17 +309,27 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
+    }
+    
+    // MARK: - State Restoration
+    
+    public override func encodeRestorableState(with coder: NSCoder) {
+        super.encodeRestorableState(with: coder)
+    }
+    
+    public override func decodeRestorableState(with coder: NSCoder) {
+        super.decodeRestorableState(with: coder)
     }
     
 }
 
 extension TabBarController: Themeable {
     
-    typealias Theme = ApplicationTheme
+    public typealias Theme = ApplicationTheme
     
-    func apply(theme: Theme) {
+    public func apply(theme: Theme) {
         
 //        UIApplication.shared.statusBarStyle = theme.statusBarStyle
         self.view.backgroundColor = theme.backgroundColor

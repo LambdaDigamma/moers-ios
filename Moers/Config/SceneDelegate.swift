@@ -9,14 +9,14 @@
 import UIKit
 import OSLog
 import RubbishFeature
+import Core
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
-    var window: UIWindow?
-    
-    var applicationController: ApplicationCoordinator!
-    
     private let logger = Logger(.default)
+    
+    public var window: UIWindow?
+    public var applicationController: ApplicationCoordinator!
     
     func scene(
         _ scene: UIScene,
@@ -29,12 +29,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScene)
         
         self.applicationController = ApplicationCoordinator()
-        
+
         window!.overrideUserInterfaceStyle = .dark
         window!.rootViewController = applicationController.rootViewController()
         window!.makeKeyAndVisible()
         
+        if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
+            
+            if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
+                handleUniversalLinks(from: userActivity)
+            }
+            
+            logger.info("Configuring user activity")
+//            if !configure(window: window, with: userActivity) {
+//                Swift.debugPrint("Failed to restore from \(userActivity)")
+//            }
+        }
+        
+//        if let restorationActivity = session.stateRestorationActivity {
+//            self.configure(window: window, with: restorationActivity)
+//        }
+        
     }
+    
+    // MARK: - State Restoration
+    
+    func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
+        return scene.userActivity
+    }
+    
+    // MARK: - Handle Universal Links -
     
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         
@@ -44,7 +68,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             handleUniversalLinks(from: userActivity)
         }
         
-        if userActivity.activityType == RubbishFeature.PackageUserActivity.rubbishScheduleActivityIdentifier {
+        if userActivity.activityType == UserActivities.IDs.rubbishSchedule || userActivity.activityType == WidgetKinds.rubbish.rawValue {
             openRubbishScheduleDetails()
         }
         
@@ -65,23 +89,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return openRubbishScheduleDetails()
         }
         
-        if components.path.contains("/tanken") || components.path.contains("/fuel") {
+        let path = url.pathComponents
+        
+        if path.containsPathElement("tanken", "fuel") {
             return openFuelStationList()
         }
         
-        if components.path.contains("/news") || components.path.contains("/nachrichten") {
+        if path.containsPathElement("news", "nachrichten") {
             return switchToNews()
         }
         
-        if components.path.contains("/events") || components.path.contains("/veranstaltungen") {
+        if path.containsPathElement("events", "veranstaltungen") {
             return switchToEvents()
         }
         
-        if components.path.contains("/settings") || components.path.contains("/einstellungen") {
+        if path.containsPathElement("settings", "einstellungen") {
             return openSettings()
         }
         
-        if components.path.contains("/bürgerfunk") || components.path.contains("/buergerfunk") {
+        if path.containsPathElement("bürgerfunk", "buergerfunk") {
             return openBuergerfunk()
         }
         
@@ -119,6 +145,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         applicationController.tabController.selectedIndex = TabIndices.other.rawValue
         applicationController.tabController.navigationController?.popToRootViewController(animated: true)
         applicationController.tabController.other.showBuergerfunk()
+    }
+    
+}
+
+public extension Collection where Element == String {
+    
+    func containsPathElement(_ components: String...) -> Bool {
+        
+        for component in components {
+            if self.contains(component) {
+                return true
+            }
+        }
+        
+        return false
     }
     
 }
