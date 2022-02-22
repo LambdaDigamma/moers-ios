@@ -53,6 +53,7 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
     }()
     
     init(
+        firstLaunch: FirstLaunch,
         locationManager: LocationManagerProtocol,
         petrolManager: PetrolManagerProtocol,
         cameraManager: CameraManagerProtocol,
@@ -61,7 +62,7 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
         eventService: EventServiceProtocol
     ) {
         
-        self.firstLaunch = FirstLaunch(userDefaults: .appGroup, key: Constants.firstLaunch)
+        self.firstLaunch = firstLaunch
         self.locationManager = locationManager
         self.petrolManager = petrolManager
         self.cameraManager = cameraManager

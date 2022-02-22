@@ -37,7 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
             
             if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
-                handleUniversalLinks(from: userActivity)
+                applicationController.handleUniversalLinks(from: userActivity)
             }
             
             logger.info("Configuring user activity")
@@ -65,86 +65,50 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         logger.info("Continueing user activity of type \(userActivity.activityType)")
         
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
-            handleUniversalLinks(from: userActivity)
+            applicationController.handleUniversalLinks(from: userActivity)
         }
         
-        if userActivity.activityType == UserActivities.IDs.rubbishSchedule || userActivity.activityType == WidgetKinds.rubbish.rawValue {
-            openRubbishScheduleDetails()
+        if userActivity.activityType == UserActivities.IDs.rubbishSchedule
+            || userActivity.activityType == WidgetKinds.rubbish.rawValue {
+            applicationController.openRubbishScheduleDetails()
         }
         
     }
     
-    private func handleUniversalLinks(from userActivity: NSUserActivity) {
-        
-        logger.info("Trying to handle universal link.")
-        
-        guard let url = userActivity.webpageURL,
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
-            return
-        }
-        
-        logger.info("Handling universal link: \(url.absoluteString)")
-        
-        if components.path.contains("/abfallkalender") {
-            return openRubbishScheduleDetails()
-        }
-        
-        let path = url.pathComponents
-        
-        if path.containsPathElement("tanken", "fuel") {
-            return openFuelStationList()
-        }
-        
-        if path.containsPathElement("news", "nachrichten") {
-            return switchToNews()
-        }
-        
-        if path.containsPathElement("events", "veranstaltungen") {
-            return switchToEvents()
-        }
-        
-        if path.containsPathElement("settings", "einstellungen") {
-            return openSettings()
-        }
-        
-        if path.containsPathElement("bürgerfunk", "buergerfunk") {
-            return openBuergerfunk()
-        }
-        
-    }
+    
     
     private func openRubbishScheduleDetails() {
-        applicationController.tabController.selectedIndex = TabIndices.dashboard.rawValue
-        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
-        applicationController.tabController.dashboard.pushRubbishViewController()
+//        applicationController.tabController.selectedIndex = TabIndices.dashboard.rawValue
+//        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
+//        applicationController.tabController.dashboard.pushRubbishViewController()
     }
     
     private func openFuelStationList() {
-        applicationController.tabController.selectedIndex = TabIndices.dashboard.rawValue
-        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
-        applicationController.tabController.dashboard.pushFuelStationListViewController()
+//        applicationController.tabController.selectedIndex = TabIndices.dashboard.rawValue
+//        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
+//        applicationController.tabController.dashboard.pushFuelStationListViewController()
     }
     
     private func switchToNews() {
-        applicationController.tabController.news.navigationController.popToRootViewController(animated: true)
-        applicationController.tabController.selectedIndex = TabIndices.news.rawValue
+//        applicationController.tabController.news.navigationController.popToRootViewController(animated: true)
+//        applicationController.tabController.selectedIndex = TabIndices.news.rawValue
     }
     
     private func switchToEvents() {
-        applicationController.tabController.events.navigationController.popToRootViewController(animated: true)
-        applicationController.tabController.selectedIndex = TabIndices.events.rawValue
+//        applicationController.tabController.events.navigationController.popToRootViewController(animated: true)
+//        applicationController.tabController.selectedIndex = TabIndices.events.rawValue
     }
     
     private func openSettings() {
-        applicationController.tabController.selectedIndex = TabIndices.other.rawValue
-        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
-        applicationController.tabController.other.showSettings()
+//        applicationController.tabController.selectedIndex = TabIndices.other.rawValue
+//        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
+//        applicationController.tabController.other.showSettings()
     }
     
     private func openBuergerfunk() {
-        applicationController.tabController.selectedIndex = TabIndices.other.rawValue
-        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
-        applicationController.tabController.other.showBuergerfunk()
+//        applicationController.tabController.selectedIndex = TabIndices.other.rawValue
+//        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
+//        applicationController.tabController.other.showBuergerfunk()
     }
     
 }

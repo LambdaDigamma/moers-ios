@@ -179,7 +179,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
             tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ]
         
         NSLayoutConstraint.activate(constraints)

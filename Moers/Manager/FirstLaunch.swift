@@ -8,14 +8,14 @@
 
 import Foundation
 
-final class FirstLaunch {
+public final class FirstLaunch {
     
-    let wasLaunchedBefore: Bool
-    var isFirstLaunch: Bool {
+    public let wasLaunchedBefore: Bool
+    public var isFirstLaunch: Bool {
         return !wasLaunchedBefore
     }
     
-    init(
+    public init(
         getWasLaunchedBefore: () -> Bool,
         setWasLaunchedBefore: (Bool) -> Void
     ) {
@@ -26,7 +26,7 @@ final class FirstLaunch {
         }
     }
     
-    convenience init(userDefaults: UserDefaults, key: String) {
+    public convenience init(userDefaults: UserDefaults, key: String) {
         self.init(
             getWasLaunchedBefore: { userDefaults.bool(forKey: key) },
             setWasLaunchedBefore: { userDefaults.set($0, forKey: key) }
@@ -35,7 +35,7 @@ final class FirstLaunch {
     
 }
 
-extension FirstLaunch {
+public extension FirstLaunch {
     
     static func alwaysFirst() -> FirstLaunch {
         return FirstLaunch(getWasLaunchedBefore: { return false }, setWasLaunchedBefore: { _ in })

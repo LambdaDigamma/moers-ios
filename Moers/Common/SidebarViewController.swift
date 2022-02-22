@@ -12,11 +12,16 @@ import SwiftUI
 import AppScaffold
 import Core
 
+public protocol SidebarViewControllerDelegate: AnyObject {
+    
+    func sidebar(_ sidebarViewController: SidebarViewController, didSelectTabItem item: SidebarItem)
+    
+}
+
 public class SidebarViewController: UIViewController {
     
-    public let coordinators: [Coordinator]
+    public weak var delegate: SidebarViewControllerDelegate?
     
-    private var secondaryViewControllers: [UIViewController] = []
     private var cancellables = Set<AnyCancellable>()
     
     private lazy var dataSource: UICollectionViewDiffableDataSource<SidebarSection, SidebarItem> = {
@@ -30,13 +35,9 @@ public class SidebarViewController: UIViewController {
         return collectionView
     }()
     
-    // MARK: - Initializers
+    // MARK: - Initializers -
     
-    public init(coordinators: [Coordinator]) {
-        
-        self.coordinators = coordinators
-        self.secondaryViewControllers = coordinators.map { $0.navigationController }
-        
+    public init() {
         super.init(nibName: nil, bundle: nil)
         
     }
@@ -52,8 +53,13 @@ public class SidebarViewController: UIViewController {
         
         self.setupUI()
         self.applyInitialSnapshot()
-        self.setInitialSecondaryView()
         self.setupListeners()
+        
+        self.collectionView.selectItem(
+            at: IndexPath(item: 0, section: 0),
+            animated: false,
+            scrollPosition: .centeredVertically
+        )
         
     }
     
@@ -157,30 +163,6 @@ public class SidebarViewController: UIViewController {
         
     }
     
-    private func indexPath(of sidebarItem: SidebarItem) -> IndexPath? {
-        if let index = SidebarItem.tabs.firstIndex(of: sidebarItem) {
-            return IndexPath(item: Int(index), section: 0)
-        }
-        return nil
-    }
-    
-    private func setInitialSecondaryView() {
-        collectionView.selectItem(
-            at: IndexPath(row: 0, section: 0),
-            animated: false,
-            scrollPosition: UICollectionView.ScrollPosition.centeredVertically
-        )
-        splitViewController?.setViewController(secondaryViewControllers[0], for: .secondary)
-    }
-    
-    public func selectSidebarItem(_ item: SidebarItem) {
-        
-        guard let indexPath = indexPath(of: item) else { return }
-        
-        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredVertically)
-        splitViewController?.setViewController(secondaryViewControllers[0], for: .secondary)
-    }
-    
 }
 
 // MARK: - UICollectionViewDelegate -
@@ -189,17 +171,23 @@ extension SidebarViewController: UICollectionViewDelegate {
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if indexPath.section == 0 {
+        switch indexPath.section {
+            case 0:
+                delegate?.sidebar(self, didSelectTabItem: SidebarItem.tabs[indexPath.row])
             
-            splitViewController?.preferredDisplayMode = .oneBesideSecondary
-            splitViewController?.presentsWithGesture = false
-            splitViewController?.preferredSplitBehavior = .tile
-            splitViewController?.primaryBackgroundStyle = .sidebar
-            splitViewController?.setViewController(secondaryViewControllers[indexPath.row], for: .secondary)
-            
+            default:
+                break
         }
         
-        guard indexPath.section == 0 else { return }
+//        if indexPath.section == 0 {
+//
+//            splitViewController?.preferredDisplayMode = .oneBesideSecondary
+//            splitViewController?.presentsWithGesture = false
+//            splitViewController?.preferredSplitBehavior = .tile
+//            splitViewController?.primaryBackgroundStyle = .sidebar
+//            splitViewController?.setViewController(secondaryViewControllers[indexPath.row], for: .secondary)
+//
+//        }
         
     }
     

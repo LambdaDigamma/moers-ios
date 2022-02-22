@@ -16,6 +16,7 @@ import ModernNetworking
 import MMEvents
 import Cache
 import Resolver
+import OSLog
 
 public enum TabIndices: Int {
     
@@ -31,6 +32,10 @@ class ApplicationCoordinator: NSObject {
 
     @LazyInjected var loader: HTTPLoader
     
+    private let logger: Logger = Logger(.default)
+    
+    let firstLaunch: FirstLaunch
+    
     let locationManager: LocationManagerProtocol
     let petrolManager: PetrolManagerProtocol
     let cameraManager: CameraManagerProtocol
@@ -38,7 +43,7 @@ class ApplicationCoordinator: NSObject {
     let parkingLotManager: ParkingLotManagerProtocol
     let eventService: EventServiceProtocol
     
-    var tabController: TabBarController!
+    private var splitViewController: MainSplitViewController!
     
     convenience override init() {
         let loader: HTTPLoader = Resolver.resolve()
@@ -54,6 +59,8 @@ class ApplicationCoordinator: NSObject {
     ) {
         
         let loader: HTTPLoader = Resolver.resolve()
+        
+        self.firstLaunch = FirstLaunch(userDefaults: .appGroup, key: Constants.firstLaunch)
         
         self.locationManager = locationManager
         self.petrolManager = petrolManager
@@ -90,11 +97,12 @@ class ApplicationCoordinator: NSObject {
         
     }
     
-    // MARK: - View Controller Handling
+    // MARK: - View Controller Handling -
     
     internal func rootViewController() -> UIViewController {
         
-        self.tabController = TabBarController(
+        self.splitViewController = MainSplitViewController(
+            firstLaunch: firstLaunch,
             locationManager: locationManager,
             petrolManager: petrolManager,
             cameraManager: cameraManager,
@@ -103,10 +111,83 @@ class ApplicationCoordinator: NSObject {
             eventService: eventService
         )
         
-        let splitViewController = MainSplitViewController(tabController: tabController)
-        
         return splitViewController
         
+    }
+    
+    // MARK: - Navigation -
+    
+    internal func handleUniversalLinks(from userActivity: NSUserActivity) {
+        
+        logger.info("Trying to handle universal link.")
+        
+        guard let url = userActivity.webpageURL,
+              let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+                  return
+              }
+        
+        logger.info("Handling universal link: \(url.absoluteString)")
+        
+        if components.path.contains("/abfallkalender") {
+            return openRubbishScheduleDetails()
+        }
+        
+        let path = url.pathComponents
+        
+        if path.containsPathElement("tanken", "fuel") {
+            return openFuelStationList()
+        }
+        
+        if path.containsPathElement("news", "nachrichten") {
+            return switchToNews()
+        }
+        
+        if path.containsPathElement("events", "veranstaltungen") {
+            return switchToEvents()
+        }
+        
+        if path.containsPathElement("settings", "einstellungen") {
+            return openSettings()
+        }
+        
+        if path.containsPathElement("bürgerfunk", "buergerfunk") {
+            return openBuergerfunk()
+        }
+        
+    }
+    
+    public func openRubbishScheduleDetails() {
+        splitViewController.tabController.selectedIndex = TabIndices.dashboard.rawValue
+        splitViewController.tabController.navigationController?.popToRootViewController(animated: true)
+        splitViewController.tabController.dashboard.pushRubbishViewController()
+    }
+    
+    public func openFuelStationList() {
+        splitViewController.tabController.selectedIndex = TabIndices.dashboard.rawValue
+        splitViewController.tabController.navigationController?.popToRootViewController(animated: true)
+        splitViewController.tabController.dashboard.pushFuelStationListViewController()
+    }
+    
+    private func switchToNews() {
+        splitViewController.tabController.news.navigationController.popToRootViewController(animated: true)
+        splitViewController.tabController.selectedIndex = TabIndices.news.rawValue
+    }
+    
+    private func switchToEvents() {
+        splitViewController.tabController.events.navigationController.popToRootViewController(animated: true)
+        splitViewController.tabController.selectedIndex = TabIndices.events.rawValue
+    }
+    
+    private func openSettings() {
+        splitViewController.tabController.selectedIndex = TabIndices.other.rawValue
+        splitViewController.tabController.navigationController?.popToRootViewController(animated: true)
+        splitViewController.tabController.other.showSettings()
+    }
+    
+    private func openBuergerfunk() {
+        splitViewController.tabController.selectedIndex = TabIndices.other.rawValue
+        splitViewController.tabController.navigationController?.popToRootViewController(animated: true)
+        splitViewController.tabController.other.showBuergerfunk()
     }
     
 }
