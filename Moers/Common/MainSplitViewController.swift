@@ -138,4 +138,18 @@ public class MainSplitViewController: UISplitViewController, SidebarViewControll
         
     }
     
+    public func switchToToday() {
+        
+        self.preferredDisplayMode = .oneBesideSecondary
+        self.presentsWithGesture = false
+        self.preferredSplitBehavior = .tile
+        self.primaryBackgroundStyle = .sidebar
+        
+        if let index = SidebarItem.tabs.firstIndex(of: SidebarItem.dashboard) {
+            let indexPath = IndexPath(item: index, section: 0)
+            self.setViewController(secondaryRootViewControllers[indexPath.row], for: .secondary)
+        }
+        
+    }
+    
 }

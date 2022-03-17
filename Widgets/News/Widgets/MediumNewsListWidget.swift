@@ -22,17 +22,18 @@ struct MediumNewsListWidget: View {
         
         ZStack(alignment: .top) {
             
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: 12) {
                 
                 ForEach(0..<self.news.count) { i in
-                    InsetNewsListItem(viewModel: news[i])
+                    FluidNewsListItem(viewModel: news[i])
                 }
                 
             }
-            .padding(8)
-            .background(Color("WidgetBackground"))
+            .padding(12)
             
         }
+        .background(Color(UIColor.systemBackground))
+        
     }
     
 }
@@ -45,5 +46,6 @@ struct MediumListNewsWidget_Previews: PreviewProvider {
         MediumNewsListWidget()
             .environment(\.colorScheme, .dark)
             .previewContext(WidgetPreviewContext(family: .systemMedium))
+            .preferredColorScheme(.dark)
     }
 }

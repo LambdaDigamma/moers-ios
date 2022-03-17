@@ -133,7 +133,11 @@ public class SidebarViewController: UIViewController {
     
     private func applyInitialSnapshot() {
         
-        let sections: [SidebarSection] = [.tabs, .places, .organisations]
+        let sections: [SidebarSection] = [
+            .tabs,
+//            .places,
+//            .organisations
+        ]
         var snapshot = NSDiffableDataSourceSnapshot<SidebarSection, SidebarItem>()
         snapshot.appendSections(sections)
         dataSource.apply(snapshot, animatingDifferences: false)

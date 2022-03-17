@@ -157,8 +157,9 @@ class ApplicationCoordinator: NSObject {
     }
     
     public func openRubbishScheduleDetails() {
+        splitViewController.switchToToday()
         splitViewController.tabController.selectedIndex = TabIndices.dashboard.rawValue
-        splitViewController.tabController.navigationController?.popToRootViewController(animated: true)
+        splitViewController.tabController.dashboard.navigationController.popToRootViewController(animated: false)
         splitViewController.tabController.dashboard.pushRubbishViewController()
     }
     

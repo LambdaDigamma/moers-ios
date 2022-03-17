@@ -25,6 +25,7 @@
 		DF0CB4AF2085B65200CC0AA8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4AE2085B65200CC0AA8 /* MapViewController.swift */; };
 		DF0CB4B12085B66600CC0AA8 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4B02085B66600CC0AA8 /* ContentViewController.swift */; };
 		DF0CB4B32087092F00CC0AA8 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4B22087092F00CC0AA8 /* SearchResultTableViewCell.swift */; };
+		DF0DFC7027E38C00007FC178 /* FluidNewsListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0DFC6F27E38C00007FC178 /* FluidNewsListItem.swift */; };
 		DF0EAC9C24C63FB0009BE489 /* ModernNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = DF0EAC9B24C63FB0009BE489 /* ModernNetworking */; };
 		DF1207BA23C0C777003285C1 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1207B923C0C777003285C1 /* Form.swift */; };
 		DF1207D223C14B97003285C1 /* TextFieldFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1207D123C14B97003285C1 /* TextFieldFormView.swift */; };
@@ -355,6 +356,7 @@
 		DF0CB4AE2085B65200CC0AA8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DF0CB4B02085B66600CC0AA8 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		DF0CB4B22087092F00CC0AA8 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		DF0DFC6F27E38C00007FC178 /* FluidNewsListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidNewsListItem.swift; sourceTree = "<group>"; };
 		DF1116BE23F35F6C003C6CCD /* StorageManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageManagerTests.swift; sourceTree = "<group>"; };
 		DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
@@ -704,6 +706,28 @@
 				DF284F0D23F54C6900EC999B /* AccessibleBulletinItem.swift */,
 			);
 			path = BulletinBoard;
+			sourceTree = "<group>";
+		};
+		DF0DFC6D27E38BB1007FC178 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				DF5E1B83267296CF005FADA4 /* NewsWidget.swift */,
+				DF5E1B8C2672A746005FADA4 /* SmallNewsImageWidget.swift */,
+				DF5E1B8726729FA6005FADA4 /* MediumNewsListWidget.swift */,
+				DF5E1B7C267292D0005FADA4 /* BigNewsTilesWidget.swift */,
+				DF0DFC6E27E38BD6007FC178 /* Components */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		DF0DFC6E27E38BD6007FC178 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				DF5E1B8A2672A003005FADA4 /* InsetNewsListItem.swift */,
+				DF5E1B8E2672A782005FADA4 /* ImageNewsView.swift */,
+				DF0DFC6F27E38C00007FC178 /* FluidNewsListItem.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		DF1077B922BB81DD001DDFD3 /* Utility */ = {
@@ -1097,13 +1121,8 @@
 		DF5E1B8626729B0A005FADA4 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				DF0DFC6D27E38BB1007FC178 /* Widgets */,
 				DF5E1B76267281CD005FADA4 /* RSSLoader.swift */,
-				DF5E1B83267296CF005FADA4 /* NewsWidget.swift */,
-				DF5E1B8A2672A003005FADA4 /* InsetNewsListItem.swift */,
-				DF5E1B8E2672A782005FADA4 /* ImageNewsView.swift */,
-				DF5E1B8726729FA6005FADA4 /* MediumNewsListWidget.swift */,
-				DF5E1B7C267292D0005FADA4 /* BigNewsTilesWidget.swift */,
-				DF5E1B8C2672A746005FADA4 /* SmallNewsImageWidget.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -1847,6 +1866,7 @@
 				DF9F19E927668CDD00B74E13 /* SelectDepartureMonitorStop.intentdefinition in Sources */,
 				DF5E1B85267296DF005FADA4 /* NewsWidget.swift in Sources */,
 				DF5E1B812672939B005FADA4 /* Extensions.swift in Sources */,
+				DF0DFC7027E38C00007FC178 /* FluidNewsListItem.swift in Sources */,
 				DF99F19327600A3600D279AB /* DepartureMonitorWidget.swift in Sources */,
 				DF5E1B6C26726F2B005FADA4 /* WidgetsBundle.swift in Sources */,
 				DF75345827727E1B0086B292 /* RubbishCollectionEntry.swift in Sources */,

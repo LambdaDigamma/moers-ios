@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private let logger = Logger(.default)
     
     public var window: UIWindow?
-    public var applicationController: ApplicationCoordinator!
+    public var applicationCoordinator: ApplicationCoordinator!
     
     func scene(
         _ scene: UIScene,
@@ -28,16 +28,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = UIWindow(windowScene: windowScene)
         
-        self.applicationController = ApplicationCoordinator()
+        self.applicationCoordinator = ApplicationCoordinator()
 
         window!.overrideUserInterfaceStyle = .dark
-        window!.rootViewController = applicationController.rootViewController()
+        window!.rootViewController = applicationCoordinator.rootViewController()
         window!.makeKeyAndVisible()
         
         if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
             
             if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
-                applicationController.handleUniversalLinks(from: userActivity)
+                applicationCoordinator.handleUniversalLinks(from: userActivity)
             }
             
             logger.info("Configuring user activity")
@@ -65,50 +65,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         logger.info("Continueing user activity of type \(userActivity.activityType)")
         
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
-            applicationController.handleUniversalLinks(from: userActivity)
+            applicationCoordinator.handleUniversalLinks(from: userActivity)
         }
         
         if userActivity.activityType == UserActivities.IDs.rubbishSchedule
             || userActivity.activityType == WidgetKinds.rubbish.rawValue {
-            applicationController.openRubbishScheduleDetails()
+            applicationCoordinator.openRubbishScheduleDetails()
         }
         
-    }
-    
-    
-    
-    private func openRubbishScheduleDetails() {
-//        applicationController.tabController.selectedIndex = TabIndices.dashboard.rawValue
-//        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
-//        applicationController.tabController.dashboard.pushRubbishViewController()
-    }
-    
-    private func openFuelStationList() {
-//        applicationController.tabController.selectedIndex = TabIndices.dashboard.rawValue
-//        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
-//        applicationController.tabController.dashboard.pushFuelStationListViewController()
-    }
-    
-    private func switchToNews() {
-//        applicationController.tabController.news.navigationController.popToRootViewController(animated: true)
-//        applicationController.tabController.selectedIndex = TabIndices.news.rawValue
-    }
-    
-    private func switchToEvents() {
-//        applicationController.tabController.events.navigationController.popToRootViewController(animated: true)
-//        applicationController.tabController.selectedIndex = TabIndices.events.rawValue
-    }
-    
-    private func openSettings() {
-//        applicationController.tabController.selectedIndex = TabIndices.other.rawValue
-//        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
-//        applicationController.tabController.other.showSettings()
-    }
-    
-    private func openBuergerfunk() {
-//        applicationController.tabController.selectedIndex = TabIndices.other.rawValue
-//        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
-//        applicationController.tabController.other.showBuergerfunk()
     }
     
 }

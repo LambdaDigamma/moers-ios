@@ -139,7 +139,11 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
         let sessionLoader = URLSessionLoader(session)
         let printLoader = PrintLoader()
         
+        #if DEBUG
         return resetGuard --> applyEnvironment --> modifier --> printLoader --> sessionLoader
+        #else
+        return resetGuard --> applyEnvironment --> modifier --> sessionLoader
+        #endif
         
     }
     

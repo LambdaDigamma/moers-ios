@@ -72,6 +72,8 @@ struct ImageNewsView: View {
         .environment(\.colorScheme, .dark)
     }
     
+    
+    
 }
 
 struct ImageNewsView_Previews: PreviewProvider {
