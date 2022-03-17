@@ -11,5 +11,6 @@ import SwiftUI
 public enum WidgetKinds: String, CaseIterable {
     
     case rubbish = "RubbishWidget"
+    case news = "NewsWidget"
     
 }

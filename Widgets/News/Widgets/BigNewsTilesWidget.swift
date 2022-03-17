@@ -97,7 +97,7 @@ public struct BigNewsTilesWidget: View {
                 gradient: Gradient(colors: reasons.isEmpty ? [
                     Color.clear,
                     Color.black.opacity(0.6),
-                    Color.black
+                    Color.black.opacity(0.85)
                 ] : [
                     Color.clear
                 ]),

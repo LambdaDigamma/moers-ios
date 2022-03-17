@@ -21,7 +21,7 @@ public struct FluidNewsListItem: View {
             GeometryReader(content: { geometry in
                 HStack(spacing: 12) {
                     image(for: viewModel, with: geometry)
-                    textWithBackdrop(for: viewModel)
+                    text(for: viewModel)
                 }
             })
         })
@@ -52,7 +52,7 @@ public struct FluidNewsListItem: View {
     }
     
     @ViewBuilder
-    private func textWithBackdrop(for viewModel: NewsViewModel) -> some View {
+    private func text(for viewModel: NewsViewModel) -> some View {
         VStack(alignment: .leading) {
             if let topic = viewModel.topic {
                 Text(topic)
@@ -68,7 +68,7 @@ public struct FluidNewsListItem: View {
                 .multilineTextAlignment(.leading)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding(.trailing)
+        .padding(.trailing, 8)
     }
     
     public static let fluidNewsWidget: CGFloat = 40

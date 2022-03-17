@@ -169,6 +169,11 @@ class ApplicationCoordinator: NSObject {
         splitViewController.tabController.dashboard.pushFuelStationListViewController()
     }
     
+    public func openNewsArticle(url: URL) {
+        self.switchToNews()
+        self.splitViewController.tabController.news.open(url: url)
+    }
+    
     private func switchToNews() {
         splitViewController.tabController.news.navigationController.popToRootViewController(animated: true)
         splitViewController.tabController.selectedIndex = TabIndices.news.rawValue

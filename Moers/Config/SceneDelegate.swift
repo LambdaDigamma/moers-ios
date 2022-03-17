@@ -65,12 +65,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         logger.info("Continueing user activity of type \(userActivity.activityType)")
         
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
+            print("Coming from webbrowsing")
             applicationCoordinator.handleUniversalLinks(from: userActivity)
         }
         
         if userActivity.activityType == UserActivities.IDs.rubbishSchedule
             || userActivity.activityType == WidgetKinds.rubbish.rawValue {
             applicationCoordinator.openRubbishScheduleDetails()
+        }
+        
+        print(userActivity.activityType)
+        
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        
+        logger.info("Received \(URLContexts.count) URLContexts")
+        
+        if let link = URLContexts.first?.url {
+            logger.info("Opening a news article from widget")
+            applicationCoordinator.openNewsArticle(url: link)
         }
         
     }
