@@ -37,9 +37,7 @@ public struct RubbishDashboardPanel: View {
                     }
                     .padding(.top, 12)
                     .padding(.horizontal, 20)
-                    .padding(.bottom, 12)
-                    
-                    Divider()
+                    .padding(.bottom, 4)
                     
                     if !items.isEmpty {
                         

@@ -178,8 +178,12 @@ class ApplicationCoordinator: NSObject {
     internal func handleStateRestoration(userActivity: NSUserActivity) {
         
         switch userActivity.activityType {
+            case UserActivities.IDs.dashboard:
+                openDashboard()
             case UserActivities.IDs.rubbishSchedule, WidgetKinds.rubbish.rawValue:
                 openRubbishScheduleDetails()
+            case UserActivities.IDs.fuelStations:
+                openFuelStationList()
             case UserActivities.IDs.newsOverview:
                 openNewsOverview()
             case UserActivities.IDs.map:
@@ -228,33 +232,28 @@ class ApplicationCoordinator: NSObject {
     
     // MARK: - Actions -
     
-    public func openRubbishScheduleDetails() {
+    public func openDashboard(animated: Bool = false) {
         
         if splitViewController.displayCompact {
-            
             splitViewController.tabController.selectedIndex = TabIndices.dashboard.rawValue
-            splitViewController.tabController.dashboard.navigationController.popToRootViewController(animated: false)
-            splitViewController.tabController.dashboard.pushRubbishViewController()
-            
         } else {
-            
             splitViewController.switchToToday()
-            splitViewController.dashboard.navigationController.popToRootViewController(animated: false)
-            splitViewController.dashboard.pushRubbishViewController()
-            
         }
+
+        currentDashboard.navigationController.popToRootViewController(animated: false)
+        
+    }
+    
+    public func openRubbishScheduleDetails() {
+        
+        openDashboard()
+        currentDashboard.pushRubbishViewController()
         
     }
     
     public func openFuelStationList() {
         
-        if splitViewController.displayCompact {
-            splitViewController.tabController.selectedIndex = TabIndices.dashboard.rawValue
-        } else {
-            splitViewController.switchToToday()
-        }
-        
-        currentDashboard.navigationController.popToRootViewController(animated: false)
+        openDashboard()
         currentDashboard.pushFuelStationListViewController()
         
     }

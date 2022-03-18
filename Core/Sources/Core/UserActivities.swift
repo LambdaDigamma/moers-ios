@@ -19,6 +19,9 @@ public enum UserActivities {
         public static let rubbishSchedule = {
             return bundle + ".nextRubbish"
         }()
+        public static let fuelStations = {
+            return bundle + ".fuelStations"
+        }()
         public static let newsOverview = {
             return bundle + ".newsOverview"
         }()
@@ -61,6 +64,23 @@ public enum UserActivities {
         activity.isEligibleForPublicIndexing = true
         activity.isEligibleForSearch = true
         activity.keywords = ["Müll", "Moers"]
+        
+        return activity
+        
+    }
+    
+    @discardableResult
+    public static func configureFuelStations(
+        for activity: NSUserActivity = .init(activityType: IDs.fuelStations)
+    ) -> NSUserActivity {
+        
+        activity.isEligibleForPrediction = true
+        activity.title = "Tankstellen in der Nähe"
+        activity.suggestedInvocationPhrase = "Tankstellen in der Nähe"
+        activity.persistentIdentifier = IDs.fuelStations
+        activity.isEligibleForPublicIndexing = true
+        activity.isEligibleForSearch = true
+        activity.keywords = ["Tankstellen", "Preise", "Nähe", "Auto"]
         
         return activity
         
