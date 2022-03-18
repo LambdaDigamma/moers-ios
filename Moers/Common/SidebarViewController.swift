@@ -167,6 +167,12 @@ public class SidebarViewController: UIViewController {
         
     }
     
+    public func selectIndex(_ index: Int) {
+        if viewIfLoaded != nil {
+            self.collectionView.selectItem(at: IndexPath(item: index, section: 0), animated: false, scrollPosition: .top)
+        }
+    }
+    
 }
 
 // MARK: - UICollectionViewDelegate -

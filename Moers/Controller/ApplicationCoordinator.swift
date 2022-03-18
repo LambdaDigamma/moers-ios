@@ -17,6 +17,7 @@ import MMEvents
 import Cache
 import Resolver
 import OSLog
+import Core
 
 public enum TabIndices: Int {
     
@@ -111,11 +112,29 @@ class ApplicationCoordinator: NSObject {
             eventService: eventService
         )
         
+        // Restoring the user interface based on the current user activity
+        splitViewController.onChangeTraitCollection = { _ in
+            if let activity = UserActivity.current {
+                self.logger.info("Changing trait collection and restoring \(activity.activityType)")
+                self.handle(userActivity: activity)
+            }
+        }
+        
         return splitViewController
         
     }
     
     // MARK: - Navigation -
+    
+    internal func handle(userActivity: NSUserActivity) {
+        
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
+            self.handleUniversalLinks(from: userActivity)
+        }
+        
+        self.handleStateRestoration(userActivity: userActivity)
+        
+    }
     
     internal func handleUniversalLinks(from userActivity: NSUserActivity) {
         
@@ -123,8 +142,8 @@ class ApplicationCoordinator: NSObject {
         
         guard let url = userActivity.webpageURL,
               let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
-                  return
-              }
+            return
+        }
         
         logger.info("Handling universal link: \(url.absoluteString)")
         
@@ -139,11 +158,11 @@ class ApplicationCoordinator: NSObject {
         }
         
         if path.containsPathElement("news", "nachrichten") {
-            return switchToNews()
+            return openNewsOverview()
         }
         
         if path.containsPathElement("events", "veranstaltungen") {
-            return switchToEvents()
+            return openEventsOverview()
         }
         
         if path.containsPathElement("settings", "einstellungen") {
@@ -156,44 +175,157 @@ class ApplicationCoordinator: NSObject {
         
     }
     
+    internal func handleStateRestoration(userActivity: NSUserActivity) {
+        
+        switch userActivity.activityType {
+            case UserActivities.IDs.rubbishSchedule, WidgetKinds.rubbish.rawValue:
+                openRubbishScheduleDetails()
+            case UserActivities.IDs.newsOverview:
+                openNewsOverview()
+            case UserActivities.IDs.map:
+                openMap()
+            case UserActivities.IDs.events:
+                openEventsOverview()
+            case UserActivities.IDs.other:
+                openOther()
+            case UserActivities.IDs.settings:
+                openSettings()
+            default:
+                logger.error("Application was not able to handle user activity.")
+        }
+        
+    }
+    
+    internal var currentDashboard: DashboardCoordinator {
+        return splitViewController.displayCompact
+            ? splitViewController.tabController.dashboard
+            : splitViewController.dashboard
+    }
+    
+    internal var currentNews: NewsCoordinator {
+        return splitViewController.displayCompact
+            ? splitViewController.tabController.news
+            : splitViewController.news
+    }
+    
+    internal var currentMap: MapCoordintor {
+        return splitViewController.displayCompact
+            ? splitViewController.tabController.map
+            : splitViewController.map
+    }
+    
+    internal var currentEvents: EventCoordinator {
+        return splitViewController.displayCompact
+            ? splitViewController.tabController.events
+            : splitViewController.events
+    }
+    
+    internal var currentOther: OtherCoordinator {
+        return splitViewController.displayCompact
+            ? splitViewController.tabController.other
+            : splitViewController.other
+    }
+    
+    // MARK: - Actions -
+    
     public func openRubbishScheduleDetails() {
-        splitViewController.switchToToday()
-        splitViewController.tabController.selectedIndex = TabIndices.dashboard.rawValue
-        splitViewController.tabController.dashboard.navigationController.popToRootViewController(animated: false)
-        splitViewController.tabController.dashboard.pushRubbishViewController()
+        
+        if splitViewController.displayCompact {
+            
+            splitViewController.tabController.selectedIndex = TabIndices.dashboard.rawValue
+            splitViewController.tabController.dashboard.navigationController.popToRootViewController(animated: false)
+            splitViewController.tabController.dashboard.pushRubbishViewController()
+            
+        } else {
+            
+            splitViewController.switchToToday()
+            splitViewController.dashboard.navigationController.popToRootViewController(animated: false)
+            splitViewController.dashboard.pushRubbishViewController()
+            
+        }
+        
     }
     
     public func openFuelStationList() {
-        splitViewController.tabController.selectedIndex = TabIndices.dashboard.rawValue
-        splitViewController.tabController.navigationController?.popToRootViewController(animated: true)
-        splitViewController.tabController.dashboard.pushFuelStationListViewController()
+        
+        if splitViewController.displayCompact {
+            splitViewController.tabController.selectedIndex = TabIndices.dashboard.rawValue
+        } else {
+            splitViewController.switchToToday()
+        }
+        
+        currentDashboard.navigationController.popToRootViewController(animated: false)
+        currentDashboard.pushFuelStationListViewController()
+        
+    }
+    
+    public func openNewsOverview(animated: Bool = false) {
+        
+        if splitViewController.displayCompact {
+            splitViewController.tabController.selectedIndex = TabIndices.news.rawValue
+        } else {
+            splitViewController.switchToNews()
+        }
+        
+        currentNews.navigationController.popToRootViewController(animated: animated)
+        
     }
     
     public func openNewsArticle(url: URL) {
-        self.switchToNews()
-        self.splitViewController.tabController.news.open(url: url)
+        
+        openNewsOverview()
+        currentNews.open(url: url)
+        
     }
     
-    private func switchToNews() {
-        splitViewController.tabController.news.navigationController.popToRootViewController(animated: true)
-        splitViewController.tabController.selectedIndex = TabIndices.news.rawValue
+    public func openMap(animated: Bool = false) {
+        
+        if splitViewController.displayCompact {
+            splitViewController.tabController.selectedIndex = TabIndices.maps.rawValue
+        } else {
+            splitViewController.selectSidebarItem(.map)
+        }
+        
+        currentMap.navigationController.popToRootViewController(animated: animated)
+        
     }
     
-    private func switchToEvents() {
-        splitViewController.tabController.events.navigationController.popToRootViewController(animated: true)
-        splitViewController.tabController.selectedIndex = TabIndices.events.rawValue
+    public func openEventsOverview(animated: Bool = false) {
+        
+        if splitViewController.displayCompact {
+            splitViewController.tabController.selectedIndex = TabIndices.events.rawValue
+        } else {
+            splitViewController.selectSidebarItem(.events)
+        }
+        
+        currentEvents.navigationController.popToRootViewController(animated: animated)
+        
     }
     
-    private func openSettings() {
-        splitViewController.tabController.selectedIndex = TabIndices.other.rawValue
-        splitViewController.tabController.navigationController?.popToRootViewController(animated: true)
-        splitViewController.tabController.other.showSettings()
+    private func openOther(animated: Bool = false) {
+        
+        if splitViewController.displayCompact {
+            splitViewController.tabController.selectedIndex = TabIndices.other.rawValue
+        } else {
+            splitViewController.selectSidebarItem(.other)
+        }
+        
+        currentOther.navigationController.popToRootViewController(animated: animated)
+        
     }
     
-    private func openBuergerfunk() {
-        splitViewController.tabController.selectedIndex = TabIndices.other.rawValue
-        splitViewController.tabController.navigationController?.popToRootViewController(animated: true)
-        splitViewController.tabController.other.showBuergerfunk()
+    private func openSettings(animated: Bool = false) {
+        
+        openOther(animated: animated)
+        currentOther.showSettings()
+        
+    }
+    
+    private func openBuergerfunk(animated: Bool = false) {
+        
+        openOther(animated: animated)
+        currentOther.showBuergerfunk()
+        
     }
     
 }

@@ -28,6 +28,8 @@ public class MainSplitViewController: UISplitViewController, SidebarViewControll
     internal let sidebarController: SidebarViewController
     internal let secondaryRootViewControllers: [UIViewController]
     
+    public var onChangeTraitCollection: ((UITraitCollection) -> Void)?
+    
     public init(
         firstLaunch: FirstLaunch,
         locationManager: LocationManagerProtocol,
@@ -139,15 +141,40 @@ public class MainSplitViewController: UISplitViewController, SidebarViewControll
     }
     
     public func switchToToday() {
+        selectSidebarItem(.dashboard)
+    }
+    
+    public func switchToNews() {
+        selectSidebarItem(.news)
+    }
+    
+    internal func selectSidebarItem(_ item: SidebarItem) {
         
         self.preferredDisplayMode = .oneBesideSecondary
         self.presentsWithGesture = false
         self.preferredSplitBehavior = .tile
         self.primaryBackgroundStyle = .sidebar
         
-        if let index = SidebarItem.tabs.firstIndex(of: SidebarItem.dashboard) {
-            let indexPath = IndexPath(item: index, section: 0)
-            self.setViewController(secondaryRootViewControllers[indexPath.row], for: .secondary)
+        if let index = SidebarItem.tabs.firstIndex(of: item) {
+            self.sidebarController.selectIndex(index)
+            self.setViewController(secondaryRootViewControllers[index], for: .secondary)
+        }
+        
+    }
+    
+    public var displayCompact: Bool {
+        return self.traitCollection.horizontalSizeClass == .compact
+    }
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        
+        if let previousTraitCollection = previousTraitCollection {
+            
+            if previousTraitCollection.horizontalSizeClass != traitCollection.horizontalSizeClass &&
+                traitCollection.userInterfaceIdiom == .pad {
+                onChangeTraitCollection?(traitCollection)
+            }
+            
         }
         
     }

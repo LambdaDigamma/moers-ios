@@ -6,6 +6,7 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import Gestalt
 import MessageUI
@@ -170,6 +171,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         tableView.reloadData()
         
         AnalyticsManager.shared.logOpenedOther()
+        UserActivity.current = UserActivities.configureOther()
         
     }
     

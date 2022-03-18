@@ -73,9 +73,9 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
         self.dashboard = DashboardCoordinator(
             petrolManager: petrolManager
         )
-        
+
         self.news = NewsCoordinator()
-        
+
         self.map = MapCoordintor(
             locationManager: locationManager,
             petrolManager: petrolManager,
@@ -83,18 +83,16 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
             entryManager: entryManager,
             parkingLotManager: parkingLotManager
         )
-        
+
         self.events = EventCoordinator(
             eventService: eventService
         )
-        
+
         self.other = OtherCoordinator(
             entryManager: entryManager
         )
         
         super.init(nibName: nil, bundle: nil)
-        
-        self.delegate = self
         
         if isSnapshotting() {
             self.setupMocked()
@@ -383,7 +381,7 @@ extension TabBarController: Themeable {
             appearance.titleTextAttributes = [.foregroundColor : theme.accentColor]
             appearance.largeTitleTextAttributes = [.foregroundColor : theme.accentColor]
             
-            guard let controller = self.viewControllers?[2] as? UINavigationController else { return }
+            guard let controller = self.viewControllers?[safeIndex: 2] as? UINavigationController else { return }
             
             controller.navigationBar.scrollEdgeAppearance = appearance
             

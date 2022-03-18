@@ -36,45 +36,42 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
             
-            if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
-                applicationCoordinator.handleUniversalLinks(from: userActivity)
+            if let stateRestorationActivity = session.stateRestorationActivity {
+                logger.notice("State restoration of type \(stateRestorationActivity.activityType) received.")
             }
             
-            logger.info("Configuring user activity")
-//            if !configure(window: window, with: userActivity) {
-//                Swift.debugPrint("Failed to restore from \(userActivity)")
-//            }
+            self.applicationCoordinator.handle(userActivity: userActivity)
+            
         }
-        
-//        if let restorationActivity = session.stateRestorationActivity {
-//            self.configure(window: window, with: restorationActivity)
-//        }
         
     }
     
     // MARK: - State Restoration
     
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
-        return scene.userActivity
+        
+        if let activity = UserActivity.current {
+            logger.info("Providing \(activity.activityType) for restoration purposes.")
+            return activity
+        }
+        
+        return nil
+        
     }
     
     // MARK: - Handle Universal Links -
+   
+    /// Show user feedback while waiting for the NSUserActivity to arrive
+    func scene(_ scene: UIScene, willContinueUserActivityWithType userActivityType: String) {
+        
+    }
     
+    /// Set up view controllers and views to continue the activity
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         
         logger.info("Continueing user activity of type \(userActivity.activityType)")
         
-        if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
-            print("Coming from webbrowsing")
-            applicationCoordinator.handleUniversalLinks(from: userActivity)
-        }
-        
-        if userActivity.activityType == UserActivities.IDs.rubbishSchedule
-            || userActivity.activityType == WidgetKinds.rubbish.rawValue {
-            applicationCoordinator.openRubbishScheduleDetails()
-        }
-        
-        print(userActivity.activityType)
+        applicationCoordinator.handle(userActivity: userActivity)
         
     }
     

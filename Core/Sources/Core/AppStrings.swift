@@ -38,4 +38,22 @@ public enum AppStrings {
         public static let getDirections = String.localized("Directions.getDirections")
     }
     
+    public enum UserActivities {
+        public enum Dashboard {
+            public static let title = "Heute anzeigen"
+        }
+        public enum News {
+            public static let title = "Neuste Nachrichten ansehen"
+        }
+        public enum Map {
+            public static let title = "Ort suchen"
+        }
+        public enum Events {
+            public static let title = "Veranstaltungen anzeigen"
+        }
+        public enum Settings {
+            public static let title = "Einstellungen anzeigen"
+        }
+    }
+    
 }

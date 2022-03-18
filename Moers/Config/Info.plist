@@ -88,6 +88,13 @@
 	<string>Moers uses your location to get directions.</string>
 	<key>NSUserActivityTypes</key>
 	<array>
+		<string>de.okfn.niederrhein.Moers.dashboard</string>
+		<string>de.okfn.niederrhein.Moers.nextRubbish</string>
+		<string>de.okfn.niederrhein.Moers.newsOverview</string>
+		<string>de.okfn.niederrhein.Moers.map</string>
+		<string>de.okfn.niederrhein.Moers.events</string>
+		<string>de.okfn.niederrhein.Moers.other</string>
+		<string>de.okfn.niederrhein.Moers.other.settings</string>
 		<string>SelectDepartureMonitorStopIntent</string>
 	</array>
 	<key>UIBackgroundModes</key>
