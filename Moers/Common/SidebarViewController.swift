@@ -113,11 +113,21 @@ public class SidebarViewController: UIViewController {
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, SidebarItem> { (cell, _, item) in
             var content = cell.defaultContentConfiguration()
             content.text = item.title
-            content.image = item.image
+            content.image = item.image?.withTintColor(UIColor.systemYellow)
+            content.imageProperties.tintColor = UIColor.systemYellow
             cell.accessibilityIdentifier = item.accessibilityIdentifier
             cell.accessibilityTraits = [.button]
             cell.contentConfiguration = content
             cell.accessories = []
+            
+            var background = UIBackgroundConfiguration.listSidebarCell()
+            background.backgroundColorTransformer = UIConfigurationColorTransformer { [weak cell] _ in
+                guard let state = cell?.configurationState else { return .clear }
+                return state.isSelected || state.isHighlighted ? UIColor.tertiarySystemBackground : .clear
+            }
+            
+            cell.backgroundConfiguration = background
+            
         }
         
         return UICollectionViewDiffableDataSource<SidebarSection, SidebarItem>(collectionView: collectionView) {
