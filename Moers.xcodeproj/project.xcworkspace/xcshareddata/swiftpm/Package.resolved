@@ -57,7 +57,7 @@
       },
       {
         "package": "FeedKit",
-        "repositoryURL": "https://github.com/nmdias/FeedKit",
+        "repositoryURL": "https://github.com/nmdias/FeedKit.git",
         "state": {
           "branch": null,
           "revision": "68493a33d862c33c9a9f67ec729b3b7df1b20ade",
@@ -69,8 +69,17 @@
         "repositoryURL": "https://github.com/firebase/firebase-ios-sdk.git",
         "state": {
           "branch": null,
-          "revision": "5344857522053b5d4403ec8173ec0d23200a97ea",
-          "version": "8.11.0"
+          "revision": "d4c4e8c7b8898ea771e90beab71112ea279d73a5",
+          "version": "8.13.0"
+        }
+      },
+      {
+        "package": "Fuse",
+        "repositoryURL": "https://github.com/LambdaDigamma/fuse-swift.git",
+        "state": {
+          "branch": null,
+          "revision": "a1f44a59d94393f7461745ccc977b5005c8438a5",
+          "version": "1.4.2"
         }
       },
       {
@@ -96,8 +105,8 @@
         "repositoryURL": "https://github.com/google/GoogleAppMeasurement.git",
         "state": {
           "branch": null,
-          "revision": "9b2f6aca5b4685c45f9f5481f19bee8e7982c538",
-          "version": "8.9.1"
+          "revision": "6cc2991c11872510a5314bc112cc7558dd9d046a",
+          "version": "8.12.0"
         }
       },
       {
@@ -258,8 +267,8 @@
         "repositoryURL": "https://github.com/apple/swift-protobuf.git",
         "state": {
           "branch": null,
-          "revision": "7e2c5f3cbbeea68e004915e3a8961e20bd11d824",
-          "version": "1.18.0"
+          "revision": "e1499bc69b9040b29184f7f2996f7bab467c1639",
+          "version": "1.19.0"
         }
       },
       {

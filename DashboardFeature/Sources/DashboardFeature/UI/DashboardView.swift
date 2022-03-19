@@ -15,7 +15,12 @@ import Resolver
 
 public struct DashboardView: View {
     
-    @StateObject var viewModel: DashboardViewModel = .init(loader: DashboardConfigDiskLoader())
+    @StateObject var viewModel: DashboardViewModel = .init(
+        loader: DashboardConfigDiskLoader()
+    )
+    
+    @StateObject var fuelViewModel = PetrolPriceDashboardViewModel()
+    @StateObject var rubbishViewModel = RubbishDashboardViewModel()
     
     public init() {
         
@@ -28,19 +33,6 @@ public struct DashboardView: View {
             ScrollView {
                 
                 LazyVGrid(columns: columns(for: geo.size), spacing: 20) {
-                    
-#if DEBUG
-                    
-//                NavigationLink(destination: {
-//
-//                    ParkingAreaList(parkingService: Resolver.resolve())
-//
-//                }, label: {
-//                    EmergencyCard(text: "Bombenentschärfung in Moers-Meerbusch")
-//                        .cornerRadius(16)
-//                })
-                    
-#endif
                     
                     ForEach(viewModel.displayables, id: \.id) { item in
                         dashboardItem(for: item)
@@ -63,6 +55,7 @@ public struct DashboardView: View {
         }
         .navigationBarTitle(PackageStrings.Dashboard.title)
         .onAppear {
+            UserActivity.current = UserActivities.configureDashboardActivity()
             viewModel.load()
         }
         
@@ -75,20 +68,16 @@ public struct DashboardView: View {
         
         if item is RubbishDashboardConfiguration {
             
-            let viewModel = RubbishDashboardViewModel()
-            
             NavigationLink {
                 RubbishScheduleList()
             } label: {
-                RubbishDashboardPanel(viewModel: viewModel)
+                RubbishDashboardPanel(viewModel: rubbishViewModel)
                     .foregroundColor(.primary)
             }
             
         } else if item is PetrolDashboardConfiguration {
             
-            let viewModel = PetrolPriceDashboardViewModel()
-            
-            PetrolPriceDashboardView(viewModel: viewModel)
+            PetrolPriceDashboardView(viewModel: fuelViewModel)
             
         }
         

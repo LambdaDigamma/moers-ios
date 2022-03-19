@@ -6,6 +6,7 @@
 //  Copyright © 2020 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import MMUI
 import MMAPI
@@ -34,8 +35,12 @@ class DashboardCoordinator: Coordinator {
         
         let dashboard = DashboardView()
         let controller = UIHostingController(rootView: dashboard)
+        let activity = UserActivities.configureDashboardActivity()
         
         controller.tabBarItem = generateTabBarItem()
+        controller.userActivity = activity
+        
+        activity.becomeCurrent()
         
         self.navigationController.viewControllers = [controller]
         
@@ -79,8 +84,7 @@ class DashboardCoordinator: Coordinator {
     
     public func updateUI() {
         
-        dashboardViewController?.reloadUI()
-        dashboardViewController?.triggerUpdate()
+        NotificationCenter.default.post(name: .updateDashboard, object: nil)
         
     }
     

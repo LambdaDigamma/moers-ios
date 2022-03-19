@@ -9,10 +9,10 @@
 import SwiftUI
 import WidgetKit
 import NewsWidgets
+import Core
 
 struct NewsWidgets: Widget {
     
-    let kind: String = "Widgets"
     let provider: NewsTimelineProvider
     
     init() {
@@ -22,8 +22,9 @@ struct NewsWidgets: Widget {
     
     var body: some WidgetConfiguration {
         
-        StaticConfiguration(kind: kind, provider: provider) { entry in
+        StaticConfiguration(kind: WidgetKinds.news.rawValue, provider: provider) { entry in
             NewsWidgetView(entry: entry)
+                .widgetURL(entry.viewModels.first?.link)
         }
         .configurationDisplayName(WidgetStrings.News.widgetTitle)
         .description(WidgetStrings.News.widgetDescription)

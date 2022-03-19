@@ -9,10 +9,6 @@
 import Foundation
 import UIKit
 
-//#if canImport(Haneke)
-//import Haneke
-//#endif
-
 struct LaunchArgumentsHandler {
     
     let userDefaults: UserDefaults
@@ -37,10 +33,6 @@ struct LaunchArgumentsHandler {
         
         let defaultsName = Bundle.main.bundleIdentifier!
         userDefaults.removePersistentDomain(forName: defaultsName)
-        
-//        #if canImport(Haneke)
-//        Shared.dataCache.removeAll()
-//        #endif
         
     }
     

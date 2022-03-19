@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Resolver
+import Core
 
 public struct RubbishScheduleList: View {
     
@@ -85,18 +86,11 @@ public struct RubbishScheduleList: View {
             info()
             
         })
-        .userActivity(PackageUserActivity.rubbishScheduleActivityIdentifier) { (activity: NSUserActivity) in
-            
-            activity.isEligibleForPrediction = true
-            activity.suggestedInvocationPhrase = "Nächste Abholtermine"
-            activity.persistentIdentifier = PackageUserActivity.rubbishScheduleActivityIdentifier
-            activity.isEligibleForPublicIndexing = true
-            activity.isEligibleForSearch = true
-            activity.keywords = ["Müll", "Moers"]
-            activity.title = "Nächste Abholtermine"
-            
-        }
+//        .userActivity(UserActivities.IDs.rubbishSchedule) { (activity: NSUserActivity) in
+//            UserActivities.configureRubbishScheduleActivity(for: activity)
+//        }
         .onAppear {
+            UserActivity.current = UserActivities.configureRubbishScheduleActivity()
             viewModel.load()
         }
         

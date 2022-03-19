@@ -6,6 +6,7 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import Gestalt
 import MessageUI
@@ -170,6 +171,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         tableView.reloadData()
         
         AnalyticsManager.shared.logOpenedOther()
+        UserActivity.current = UserActivities.configureOther()
         
     }
     
@@ -179,7 +181,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
             tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ]
         
         NSLayoutConstraint.activate(constraints)

@@ -6,6 +6,7 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import Gestalt
 import BLTNBoard
@@ -51,6 +52,13 @@ class SettingsViewController: UIViewController {
         self.setupConstraints()
         self.setupTheming()
         self.reloadRows()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        UserActivity.current = UserActivities.configureSettings()
         
     }
     
@@ -281,9 +289,9 @@ class SettingsViewController: UIViewController {
         
         self.reloadRows()
         
-        guard let tabBarController = self.tabBarController as? TabBarController else { return }
+        guard let splitViewController = self.splitViewController as? MainSplitViewController else { return }
         
-        tabBarController.updateDashboard()
+        splitViewController.updateDashboard()
         
     }
     

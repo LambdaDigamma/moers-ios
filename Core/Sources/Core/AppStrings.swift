@@ -38,4 +38,46 @@ public enum AppStrings {
         public static let getDirections = String.localized("Directions.getDirections")
     }
     
+    public enum UserActivities {
+        public enum Dashboard {
+            public static let title = String.localized("UserActivities.Dashboard.title")
+            public static let invocationPhrase = title
+        }
+        public enum RubbishSchedule {
+            public static let title = String.localized("UserActivities.RubbishSchedule.title")
+            public static let invocationPhrase = title
+            public static let keywords = AppStrings.buildKeywords("UserActivities.RubbishSchedule.keywords")
+        }
+        public enum FuelStations {
+            public static let title = String.localized("UserActivities.FuelStations.title")
+            public static let invocationPhrase = title
+            public static let keywords = AppStrings.buildKeywords("UserActivities.FuelStations.keywords")
+        }
+        public enum News {
+            public static let title = String.localized("UserActivities.News.title")
+            public static let invocationPhrase = title
+        }
+        public enum Map {
+            public static let title = String.localized("UserActivities.Map.title")
+            public static let invocationPhrase = title
+        }
+        public enum Events {
+            public static let title = String.localized("UserActivities.Events.title")
+            public static let invocationPhrase = title
+        }
+        public enum Settings {
+            public static let title = String.localized("UserActivities.Settings.title")
+            public static let invocationPhrase = title
+        }
+    }
+    
+    public static func buildKeywords(_ key: String) -> Set<String> {
+        return Set(
+            String
+                .localized(key)
+                .split(separator: ",")
+                .map { $0.trimmingCharacters(in: .whitespacesAndNewlines)}
+        )
+    }
+    
 }

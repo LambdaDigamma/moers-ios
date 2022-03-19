@@ -359,12 +359,6 @@ extension OnboardingManager {
 
 // MARK: - Notifications
 
-extension Notification.Name {
-    
-    static let SetupDidComplete = Notification.Name("SetupDidCompleteNotification")
-    
-}
-
 extension BLTNItemAppearance: Themeable {
     
     public typealias Theme = ApplicationTheme

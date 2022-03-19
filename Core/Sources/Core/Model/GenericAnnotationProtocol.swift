@@ -8,14 +8,6 @@
 import Foundation
 import MapKit
 
-//public protocol GenericAnnotation: MKAnnotation {
-//
-//    associatedtype AnnotationView = MKAnnotationView
-//
-//    func update(_ view: AnnotationView)
-//
-//}
-
 public protocol InteractsWithAnnotationView {
     
     static var reuseIdentifier: String { get }

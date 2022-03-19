@@ -7,11 +7,19 @@
 
 import Foundation
 import UIKit
+import Core
 
 class DashboardController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        UserActivity.current = UserActivities.configureDashboardActivity()
         
     }
     

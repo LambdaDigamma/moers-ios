@@ -12,6 +12,7 @@ import Contacts
 
 public class CoreSettings {
     
+    public static let appName: String = "Mein Moers"
     public static let regionName: String = "Moers"
     
     public static let regionCenter: CLLocationCoordinate2D = .init(

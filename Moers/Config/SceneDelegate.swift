@@ -9,14 +9,14 @@
 import UIKit
 import OSLog
 import RubbishFeature
+import Core
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
-    var window: UIWindow?
-    
-    var applicationController: ApplicationCoordinator!
-    
     private let logger = Logger(.default)
+    
+    public var window: UIWindow?
+    public var applicationCoordinator: ApplicationCoordinator!
     
     func scene(
         _ scene: UIScene,
@@ -28,97 +28,77 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = UIWindow(windowScene: windowScene)
         
-        self.applicationController = ApplicationCoordinator()
-        
+        self.applicationCoordinator = ApplicationCoordinator()
+
         window!.overrideUserInterfaceStyle = .dark
-        window!.rootViewController = applicationController.rootViewController()
+        window!.rootViewController = applicationCoordinator.rootViewController()
         window!.makeKeyAndVisible()
+        
+        if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
+            
+            if let stateRestorationActivity = session.stateRestorationActivity {
+                logger.notice("State restoration of type \(stateRestorationActivity.activityType) received.")
+            }
+            
+            self.applicationCoordinator.handle(userActivity: userActivity)
+            
+        }
         
     }
     
+    // MARK: - State Restoration
+    
+    func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
+        
+        if let activity = UserActivity.current {
+            logger.info("Providing \(activity.activityType) for restoration purposes.")
+            return activity
+        }
+        
+        return nil
+        
+    }
+    
+    // MARK: - Handle Universal Links -
+   
+    /// Show user feedback while waiting for the NSUserActivity to arrive
+    func scene(_ scene: UIScene, willContinueUserActivityWithType userActivityType: String) {
+        
+    }
+    
+    /// Set up view controllers and views to continue the activity
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         
         logger.info("Continueing user activity of type \(userActivity.activityType)")
         
-        if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
-            handleUniversalLinks(from: userActivity)
-        }
+        applicationCoordinator.handle(userActivity: userActivity)
         
-        if userActivity.activityType == RubbishFeature.PackageUserActivity.rubbishScheduleActivityIdentifier {
-            openRubbishScheduleDetails()
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        
+        logger.info("Received \(URLContexts.count) URLContexts")
+        
+        if let link = URLContexts.first?.url {
+            logger.info("Opening a news article from widget")
+            applicationCoordinator.openNewsArticle(url: link)
         }
         
     }
     
-    private func handleUniversalLinks(from userActivity: NSUserActivity) {
-        
-        logger.info("Trying to handle universal link.")
-        
-        guard let url = userActivity.webpageURL,
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
-            return
-        }
-        
-        logger.info("Handling universal link: \(url.absoluteString)")
-        
-        if components.path.contains("/abfallkalender") {
-            return openRubbishScheduleDetails()
-        }
-        
-        if components.path.contains("/tanken") || components.path.contains("/fuel") {
-            return openFuelStationList()
-        }
-        
-        if components.path.contains("/news") || components.path.contains("/nachrichten") {
-            return switchToNews()
-        }
-        
-        if components.path.contains("/events") || components.path.contains("/veranstaltungen") {
-            return switchToEvents()
-        }
-        
-        if components.path.contains("/settings") || components.path.contains("/einstellungen") {
-            return openSettings()
-        }
-        
-        if components.path.contains("/bürgerfunk") || components.path.contains("/buergerfunk") {
-            return openBuergerfunk()
-        }
-        
-    }
+}
+
+public extension Collection where Element == String {
     
-    private func openRubbishScheduleDetails() {
-        applicationController.tabController.selectedIndex = TabIndices.dashboard.rawValue
-        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
-        applicationController.tabController.dashboard.pushRubbishViewController()
-    }
-    
-    private func openFuelStationList() {
-        applicationController.tabController.selectedIndex = TabIndices.dashboard.rawValue
-        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
-        applicationController.tabController.dashboard.pushFuelStationListViewController()
-    }
-    
-    private func switchToNews() {
-        applicationController.tabController.news.navigationController.popToRootViewController(animated: true)
-        applicationController.tabController.selectedIndex = TabIndices.news.rawValue
-    }
-    
-    private func switchToEvents() {
-        applicationController.tabController.events.navigationController.popToRootViewController(animated: true)
-        applicationController.tabController.selectedIndex = TabIndices.events.rawValue
-    }
-    
-    private func openSettings() {
-        applicationController.tabController.selectedIndex = TabIndices.other.rawValue
-        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
-        applicationController.tabController.other.showSettings()
-    }
-    
-    private func openBuergerfunk() {
-        applicationController.tabController.selectedIndex = TabIndices.other.rawValue
-        applicationController.tabController.navigationController?.popToRootViewController(animated: true)
-        applicationController.tabController.other.showBuergerfunk()
+    func containsPathElement(_ components: String...) -> Bool {
+        
+        for component in components {
+            if self.contains(component) {
+                return true
+            }
+        }
+        
+        return false
     }
     
 }

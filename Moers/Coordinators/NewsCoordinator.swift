@@ -15,11 +15,11 @@ import NewsFeature
 import FeedKit
 import SafariServices
 
-class NewsCoordinator: NSObject, Coordinator, SFSafariViewControllerDelegate {
+public class NewsCoordinator: NSObject, Coordinator, SFSafariViewControllerDelegate {
     
-    var navigationController: CoordinatedNavigationController
+    public var navigationController: CoordinatedNavigationController
     
-    init(
+    public init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController()
     ) {
         self.navigationController = navigationController
@@ -31,15 +31,7 @@ class NewsCoordinator: NSObject, Coordinator, SFSafariViewControllerDelegate {
             
             guard let url = URL(string: feedItem.link ?? "") else { return }
             
-            let svc = SFSafariViewController(url: url)
-            svc.preferredBarTintColor = UIColor.systemBackground
-            svc.preferredControlTintColor = UIColor.label
-            svc.configuration.entersReaderIfAvailable = true
-            svc.delegate = self
-            
-            self.navigationController.present(svc, animated: true) {
-                self.navigationController.topViewController?.navigationItem.largeTitleDisplayMode = .never
-            }
+            self.open(url: url)
             
         }
         
@@ -68,10 +60,29 @@ class NewsCoordinator: NSObject, Coordinator, SFSafariViewControllerDelegate {
         
     }
     
-    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+    public func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
         
         self.navigationController.navigationBar.prefersLargeTitles = true
         self.navigationController.topViewController?.navigationItem.largeTitleDisplayMode = .always
+        
+    }
+    
+    /// Opens a safari view controller for an article
+    public func open(url: URL) {
+        
+        DispatchQueue.main.async {
+            
+            let svc = SFSafariViewController(url: url)
+            svc.preferredBarTintColor = UIColor.systemBackground
+            svc.preferredControlTintColor = UIColor.label
+            svc.configuration.entersReaderIfAvailable = true
+            svc.delegate = self
+            
+            self.navigationController.present(svc, animated: true) {
+                self.navigationController.topViewController?.navigationItem.largeTitleDisplayMode = .never
+            }
+            
+        }
         
     }
     

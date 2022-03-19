@@ -26,6 +26,13 @@ public class RubbishScheduleController: UIHostingController<RubbishScheduleList>
         fatalError("init(coder:) has not been implemented")
     }
     
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        UserActivity.current = UserActivities.configureRubbishScheduleActivity()
+        
+    }
+    
 }
 
 #endif

@@ -55,7 +55,7 @@ struct ImageNewsView: View {
                             colors: [
                                 Color.clear,
                                 Color.black.opacity(0.6),
-                                Color.black
+                                Color.black.opacity(0.85)
                             ]
                         ),
                         startPoint: .top,

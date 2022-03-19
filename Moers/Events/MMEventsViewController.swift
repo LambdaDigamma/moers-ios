@@ -10,6 +10,7 @@ import UIKit
 import MMEvents
 import Combine
 import OSLog
+import Core
 
 class MMEventsViewController: EventsViewController {
 
@@ -23,6 +24,13 @@ class MMEventsViewController: EventsViewController {
         self.numberOfDisplayedUpcomingEvents = 15
         self.sectionUpcomingTitle = String.localized("Upcoming").uppercased()
         self.sectionActiveTitle = String.localized("ActiveEventsHeadline").uppercased()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        UserActivity.current = UserActivities.configureEvents()
         
     }
     

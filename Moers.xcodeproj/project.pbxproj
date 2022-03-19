@@ -25,6 +25,7 @@
 		DF0CB4AF2085B65200CC0AA8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4AE2085B65200CC0AA8 /* MapViewController.swift */; };
 		DF0CB4B12085B66600CC0AA8 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4B02085B66600CC0AA8 /* ContentViewController.swift */; };
 		DF0CB4B32087092F00CC0AA8 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB4B22087092F00CC0AA8 /* SearchResultTableViewCell.swift */; };
+		DF0DFC7027E38C00007FC178 /* FluidNewsListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0DFC6F27E38C00007FC178 /* FluidNewsListItem.swift */; };
 		DF0EAC9C24C63FB0009BE489 /* ModernNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = DF0EAC9B24C63FB0009BE489 /* ModernNetworking */; };
 		DF1207BA23C0C777003285C1 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1207B923C0C777003285C1 /* Form.swift */; };
 		DF1207D223C14B97003285C1 /* TextFieldFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1207D123C14B97003285C1 /* TextFieldFormView.swift */; };
@@ -112,6 +113,7 @@
 		DF65CF0226C97E0D00078232 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF65CF0126C97E0D00078232 /* Colors.xcassets */; };
 		DF69B73C21D986AD00F910D8 /* EntryHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF69B73B21D986AD00F910D8 /* EntryHistoryViewController.swift */; };
 		DF6B0ED725F430A6003D88CE /* ParkingLotWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B0ED625F430A6003D88CE /* ParkingLotWidget.swift */; };
+		DF6DC2D927C533050083951B /* SidebarSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6DC2D827C533050083951B /* SidebarSection.swift */; };
 		DF75345427727CEE0086B292 /* RubbishWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75345327727CEE0086B292 /* RubbishWidget.swift */; };
 		DF75345627727D6E0086B292 /* RubbishCollectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75345527727D6E0086B292 /* RubbishCollectionProvider.swift */; };
 		DF75345827727E1B0086B292 /* RubbishCollectionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75345727727E1B0086B292 /* RubbishCollectionEntry.swift */; };
@@ -193,7 +195,7 @@
 		DFB4D76920B062BE00C8D179 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D76820B062BE00C8D179 /* SettingsViewController.swift */; };
 		DFB4D76B20B064CA00C8D179 /* StaticTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D76A20B064CA00C8D179 /* StaticTableView.swift */; };
 		DFB6A0BF21033C7800D5C12B /* DetailCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6A0BE21033C7800D5C12B /* DetailCameraViewController.swift */; };
-		DFB7C0CC27879C6100B1C87E /* SplitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB7C0CB27879C6100B1C87E /* SplitController.swift */; };
+		DFB7C0CC27879C6100B1C87E /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB7C0CB27879C6100B1C87E /* MainSplitViewController.swift */; };
 		DFB7C0CE2787A9CF00B1C87E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB7C0CD2787A9CF00B1C87E /* SceneDelegate.swift */; };
 		DFB7C10A2788365D00B1C87E /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB7C1092788365D00B1C87E /* SidebarViewController.swift */; };
 		DFB7C10C278836C400B1C87E /* AccessibilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB7C10B278836C400B1C87E /* AccessibilityIdentifiers.swift */; };
@@ -354,6 +356,7 @@
 		DF0CB4AE2085B65200CC0AA8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DF0CB4B02085B66600CC0AA8 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		DF0CB4B22087092F00CC0AA8 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		DF0DFC6F27E38C00007FC178 /* FluidNewsListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidNewsListItem.swift; sourceTree = "<group>"; };
 		DF1116BE23F35F6C003C6CCD /* StorageManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageManagerTests.swift; sourceTree = "<group>"; };
 		DF11BF9722B94E7A0051C3B3 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
@@ -446,6 +449,7 @@
 		DF65CF0126C97E0D00078232 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		DF69B73B21D986AD00F910D8 /* EntryHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryHistoryViewController.swift; sourceTree = "<group>"; };
 		DF6B0ED625F430A6003D88CE /* ParkingLotWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLotWidget.swift; sourceTree = "<group>"; };
+		DF6DC2D827C533050083951B /* SidebarSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarSection.swift; sourceTree = "<group>"; };
 		DF75345327727CEE0086B292 /* RubbishWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishWidget.swift; sourceTree = "<group>"; };
 		DF75345527727D6E0086B292 /* RubbishCollectionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionProvider.swift; sourceTree = "<group>"; };
 		DF75345727727E1B0086B292 /* RubbishCollectionEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionEntry.swift; sourceTree = "<group>"; };
@@ -526,7 +530,7 @@
 		DFB64DC9203883D200173A80 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		DFB64DCA2038845300173A80 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
 		DFB6A0BE21033C7800D5C12B /* DetailCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCameraViewController.swift; sourceTree = "<group>"; };
-		DFB7C0CB27879C6100B1C87E /* SplitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitController.swift; sourceTree = "<group>"; };
+		DFB7C0CB27879C6100B1C87E /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
 		DFB7C0CD2787A9CF00B1C87E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DFB7C1092788365D00B1C87E /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		DFB7C10B278836C400B1C87E /* AccessibilityIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifiers.swift; sourceTree = "<group>"; };
@@ -704,6 +708,28 @@
 			path = BulletinBoard;
 			sourceTree = "<group>";
 		};
+		DF0DFC6D27E38BB1007FC178 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				DF5E1B83267296CF005FADA4 /* NewsWidget.swift */,
+				DF5E1B8C2672A746005FADA4 /* SmallNewsImageWidget.swift */,
+				DF5E1B8726729FA6005FADA4 /* MediumNewsListWidget.swift */,
+				DF5E1B7C267292D0005FADA4 /* BigNewsTilesWidget.swift */,
+				DF0DFC6E27E38BD6007FC178 /* Components */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		DF0DFC6E27E38BD6007FC178 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				DF5E1B8A2672A003005FADA4 /* InsetNewsListItem.swift */,
+				DF5E1B8E2672A782005FADA4 /* ImageNewsView.swift */,
+				DF0DFC6F27E38C00007FC178 /* FluidNewsListItem.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		DF1077B922BB81DD001DDFD3 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -790,13 +816,13 @@
 		DF11BFC222BA6E960051C3B3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				DF6DC2D727C532F30083951B /* Sidebar */,
 				DFB02B8527066B35000196D8 /* ApplicationCoordinator.swift */,
-				DFB7C0CB27879C6100B1C87E /* SplitController.swift */,
+				DFB7C0CB27879C6100B1C87E /* MainSplitViewController.swift */,
 				DFB02B8327066B35000196D8 /* TabBarController.swift */,
 				DFB7C1092788365D00B1C87E /* SidebarViewController.swift */,
 				DFC8507826EFE6E400F9FB39 /* AppStrings.swift */,
 				DFB7C10B278836C400B1C87E /* AccessibilityIdentifiers.swift */,
-				DFB7C10D27883D6100B1C87E /* SidebarItem.swift */,
 				DFB7C1112788E97700B1C87E /* Styling.swift */,
 				DFB02B7C27066B35000196D8 /* SeachController */,
 				DF11BFC622BA70C70051C3B3 /* Model */,
@@ -1095,13 +1121,8 @@
 		DF5E1B8626729B0A005FADA4 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				DF0DFC6D27E38BB1007FC178 /* Widgets */,
 				DF5E1B76267281CD005FADA4 /* RSSLoader.swift */,
-				DF5E1B83267296CF005FADA4 /* NewsWidget.swift */,
-				DF5E1B8A2672A003005FADA4 /* InsetNewsListItem.swift */,
-				DF5E1B8E2672A782005FADA4 /* ImageNewsView.swift */,
-				DF5E1B8726729FA6005FADA4 /* MediumNewsListWidget.swift */,
-				DF5E1B7C267292D0005FADA4 /* BigNewsTilesWidget.swift */,
-				DF5E1B8C2672A746005FADA4 /* SmallNewsImageWidget.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -1137,6 +1158,15 @@
 				DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		DF6DC2D727C532F30083951B /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				DF6DC2D827C533050083951B /* SidebarSection.swift */,
+				DFB7C10D27883D6100B1C87E /* SidebarItem.swift */,
+			);
+			path = Sidebar;
 			sourceTree = "<group>";
 		};
 		DF75345227727CB30086B292 /* Rubbish */ = {
@@ -1683,6 +1713,7 @@
 			files = (
 				DF1207BA23C0C777003285C1 /* Form.swift in Sources */,
 				DF503CEF21431503006EE226 /* DebugViewController.swift in Sources */,
+				DF6DC2D927C533050083951B /* SidebarSection.swift in Sources */,
 				DFB02B8927066B35000196D8 /* LFSearchViewDefaults.swift in Sources */,
 				DFCB431F20E02D0300E7AD3F /* NewsManager.swift in Sources */,
 				DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */,
@@ -1708,7 +1739,7 @@
 				DF86AB9921729DDD00EFC7EA /* EntryOnboardingAddressViewController.swift in Sources */,
 				DFA17DF420DEF9DE00BBD838 /* UIButton+Extensions.swift in Sources */,
 				DFB0325D23F34A6A00A8326E /* StorageManager.swift in Sources */,
-				DFB7C0CC27879C6100B1C87E /* SplitController.swift in Sources */,
+				DFB7C0CC27879C6100B1C87E /* MainSplitViewController.swift in Sources */,
 				DFB02B8F27066B35000196D8 /* ApplicationCoordinator.swift in Sources */,
 				DF2D6DA520B88E1700176614 /* LicencesViewController.swift in Sources */,
 				DF95197F20C8B6F3001D13DC /* PetrolStationViewController.swift in Sources */,
@@ -1835,6 +1866,7 @@
 				DF9F19E927668CDD00B74E13 /* SelectDepartureMonitorStop.intentdefinition in Sources */,
 				DF5E1B85267296DF005FADA4 /* NewsWidget.swift in Sources */,
 				DF5E1B812672939B005FADA4 /* Extensions.swift in Sources */,
+				DF0DFC7027E38C00007FC178 /* FluidNewsListItem.swift in Sources */,
 				DF99F19327600A3600D279AB /* DepartureMonitorWidget.swift in Sources */,
 				DF5E1B6C26726F2B005FADA4 /* WidgetsBundle.swift in Sources */,
 				DF75345827727E1B0086B292 /* RubbishCollectionEntry.swift in Sources */,
@@ -2010,6 +2042,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 57;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -2117,6 +2150,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 57;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2219,6 +2253,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 57;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -2326,6 +2361,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 57;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2428,6 +2464,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 57;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -2491,6 +2528,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 57;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

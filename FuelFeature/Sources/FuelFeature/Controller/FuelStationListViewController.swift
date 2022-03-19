@@ -6,6 +6,7 @@
 //
 
 #if canImport(UIKit)
+import Core
 import Foundation
 import UIKit
 import SwiftUI
@@ -23,6 +24,7 @@ public class FuelStationListViewController: UIHostingController<PetrolStationLis
         super.viewWillAppear(animated)
         
         viewModel.load()
+        UserActivity.current = UserActivities.configureFuelStations()
         
     }
     

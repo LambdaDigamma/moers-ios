@@ -12,6 +12,7 @@ import UIKit
 import SwiftUI
 import FeedKit
 import Resolver
+import Core
 
 public class NewsListViewController: UIHostingController<NewsList> {
     
@@ -22,6 +23,16 @@ public class NewsListViewController: UIHostingController<NewsList> {
         self.onShowArticle = onShowArticle
         self.newsService = Resolver.resolve()
         super.init(rootView: NewsList(newsService: newsService, onShowArticle: onShowArticle))
+    }
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        UserActivity.current = UserActivities.configureNewsList()
+        
+        self.userActivity = UserActivity.current
+        self.userActivity?.becomeCurrent()
+        
     }
     
     @MainActor @objc required dynamic init?(coder aDecoder: NSCoder) {

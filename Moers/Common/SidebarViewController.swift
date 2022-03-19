@@ -10,115 +10,98 @@ import UIKit
 import Combine
 import SwiftUI
 import AppScaffold
+import Core
 
-let tabsItems = [
-    SidebarItem(
-        title: AppStrings.Menu.dashboard,
-        image: UIImage(systemName: "rectangle.grid.2x2"),
-        accessibilityIdentifier: AccessibilityIdentifiers.Menu.dashboard
-    ),
-    SidebarItem(
-        title: AppStrings.Menu.news,
-        image: UIImage(systemName: "newspaper"),
-        accessibilityIdentifier: AccessibilityIdentifiers.Menu.news
-    ),
-    SidebarItem(
-        title: AppStrings.Menu.map,
-        image: UIImage(systemName: "map"),
-        accessibilityIdentifier: AccessibilityIdentifiers.Menu.map
-    ),
-    SidebarItem(
-        title: AppStrings.Menu.events,
-        image: UIImage(systemName: "calendar"),
-        accessibilityIdentifier: AccessibilityIdentifiers.Menu.events
-    ),
-    SidebarItem(
-        title: AppStrings.Menu.other,
-        image: UIImage(systemName: "list.bullet"),
-        accessibilityIdentifier: AccessibilityIdentifiers.Menu.other
-    )
-]
-
-enum SidebarSection: String {
-    case tabs
-    case calendars = "Meine Kalender"
+public protocol SidebarViewControllerDelegate: AnyObject {
+    
+    func sidebar(_ sidebarViewController: SidebarViewController, didSelectTabItem item: SidebarItem)
+    
 }
 
-class SidebarViewController: UIViewController {
+public class SidebarViewController: UIViewController {
     
-    private var dataSource: UICollectionViewDiffableDataSource<SidebarSection, SidebarItem>! = nil
-    private var collectionView: UICollectionView! = nil
-    private var secondaryViewControllers: [UIViewController] = []
+    public weak var delegate: SidebarViewControllerDelegate?
     
-    public let coordinators: [Coordinator]
+    private var cancellables = Set<AnyCancellable>()
     
-    init(coordinators: [Coordinator]) {
-        
-        self.coordinators = coordinators
-        self.secondaryViewControllers = coordinators.map { $0.navigationController }
-        
+    private lazy var dataSource: UICollectionViewDiffableDataSource<SidebarSection, SidebarItem> = {
+        return configureDataSource()
+    }()
+    
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: buildCollectionViewLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.delegate = self
+        return collectionView
+    }()
+    
+    // MARK: - Initializers -
+    
+    public init() {
         super.init(nibName: nil, bundle: nil)
         
     }
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    // MARK: - UIViewController Lifecycle -
+    
+    public override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Mein Moers"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        configureHierarchy()
-        configureDataSource()
-        setInitialSecondaryView()
-    }
-    
-    private func setInitialSecondaryView() {
-        collectionView.selectItem(
-            at: IndexPath(row: 0, section: 0),
-            animated: false,
-            scrollPosition: UICollectionView.ScrollPosition.centeredVertically
-        )
-        splitViewController?.setViewController(secondaryViewControllers[0], for: .secondary)
-    }
-    
-}
-
-// MARK: - Layout
-
-extension SidebarViewController {
-    
-    private func createLayout() -> UICollectionViewLayout {
-        return UICollectionViewCompositionalLayout { section, layoutEnvironment in
-            var config = UICollectionLayoutListConfiguration(appearance: .sidebar)
-            config.headerMode = section == 0 ? .none : .firstItemInSection
-            return NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvironment)
-        }
-    }
-    
-}
-
-// MARK: - Data
-
-extension SidebarViewController {
-    
-    private func configureHierarchy() {
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-        collectionView.delegate = self
         
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(collectionView)
+        self.setupUI()
+        self.applyInitialSnapshot()
+        self.setupListeners()
+        
+        self.collectionView.selectItem(
+            at: IndexPath(item: 0, section: 0),
+            animated: false,
+            scrollPosition: .centeredVertically
+        )
+        
+    }
+    
+    // MARK: - Setup UI -
+    
+    private func setupUI() {
+        
+        self.navigationItem.title = CoreSettings.appName
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        
+        self.view.addSubview(collectionView)
+        
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        
     }
     
-    private func configureDataSource() {
-        // Configuring cells
+    private func setupListeners() {
+        
+        NotificationCenter.default.publisher(for: .updateFavorites)
+            .sink { (_: Notification) in
+                // Update favorites here
+            }
+            .store(in: &cancellables)
+        
+    }
+    
+    private func buildCollectionViewLayout() -> UICollectionViewLayout {
+        
+        return UICollectionViewCompositionalLayout { section, layoutEnvironment in
+            var config = UICollectionLayoutListConfiguration(appearance: .sidebar)
+            config.headerMode = section == 0 ? .none : .firstItemInSection
+            return NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvironment)
+        }
+        
+    }
+    
+    private func configureDataSource() -> UICollectionViewDiffableDataSource<SidebarSection, SidebarItem> {
         
         let headerRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, SidebarItem> { (cell, _, item) in
             var content = cell.defaultContentConfiguration()
@@ -130,16 +113,24 @@ extension SidebarViewController {
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, SidebarItem> { (cell, _, item) in
             var content = cell.defaultContentConfiguration()
             content.text = item.title
-            content.image = item.image
+            content.image = item.image?.withTintColor(UIColor.systemYellow)
+            content.imageProperties.tintColor = UIColor.systemYellow
             cell.accessibilityIdentifier = item.accessibilityIdentifier
             cell.accessibilityTraits = [.button]
             cell.contentConfiguration = content
             cell.accessories = []
+            
+            var background = UIBackgroundConfiguration.listSidebarCell()
+            background.backgroundColorTransformer = UIConfigurationColorTransformer { [weak cell] _ in
+                guard let state = cell?.configurationState else { return .clear }
+                return state.isSelected || state.isHighlighted ? UIColor.tertiarySystemBackground : .clear
+            }
+            
+            cell.backgroundConfiguration = background
+            
         }
         
-        // Creating the datasource
-        
-        dataSource = UICollectionViewDiffableDataSource<SidebarSection, SidebarItem>(collectionView: collectionView) {
+        return UICollectionViewDiffableDataSource<SidebarSection, SidebarItem>(collectionView: collectionView) {
             (collectionView: UICollectionView, indexPath: IndexPath, item: SidebarItem) -> UICollectionViewCell? in
             if indexPath.item == 0 && indexPath.section != 0 {
                 return collectionView.dequeueConfiguredReusableCell(using: headerRegistration, for: indexPath, item: item)
@@ -148,9 +139,15 @@ extension SidebarViewController {
             }
         }
         
-        // Creating and applying snapshots
+    }
+    
+    private func applyInitialSnapshot() {
         
-        let sections: [SidebarSection] = [.tabs/*, .calendars*/]
+        let sections: [SidebarSection] = [
+            .tabs,
+//            .places,
+//            .organisations
+        ]
         var snapshot = NSDiffableDataSourceSnapshot<SidebarSection, SidebarItem>()
         snapshot.appendSections(sections)
         dataSource.apply(snapshot, animatingDifferences: false)
@@ -159,37 +156,58 @@ extension SidebarViewController {
             switch section {
                 case .tabs:
                     var sectionSnapshot = NSDiffableDataSourceSectionSnapshot<SidebarItem>()
-                    sectionSnapshot.append(tabsItems)
+                    sectionSnapshot.append(SidebarItem.tabs)
                     dataSource.apply(sectionSnapshot, to: section)
-                case .calendars:
-                    let headerItem = SidebarItem(title: section.rawValue, image: nil, accessibilityIdentifier: nil)
+                case .places:
+                    let headerItem = SidebarItem(title: section.title)
                     var sectionSnapshot = NSDiffableDataSourceSectionSnapshot<SidebarItem>()
                     sectionSnapshot.append([headerItem])
+                    sectionSnapshot.append([], to: headerItem)
+                    sectionSnapshot.expand([headerItem])
+                    dataSource.apply(sectionSnapshot, to: section)
+                case .organisations:
+                    let headerItem = SidebarItem(title: section.title, image: nil)
+                    var sectionSnapshot = NSDiffableDataSourceSectionSnapshot<SidebarItem>()
+                    sectionSnapshot.append([headerItem])
+                    sectionSnapshot.append([], to: headerItem)
                     sectionSnapshot.expand([headerItem])
                     dataSource.apply(sectionSnapshot, to: section)
             }
+        }
+        
+    }
+    
+    public func selectIndex(_ index: Int) {
+        if viewIfLoaded != nil {
+            self.collectionView.selectItem(at: IndexPath(item: index, section: 0), animated: false, scrollPosition: .top)
         }
     }
     
 }
 
-// MARK: - UICollectionViewDelegate
+// MARK: - UICollectionViewDelegate -
 
 extension SidebarViewController: UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if indexPath.section == 0 {
+        switch indexPath.section {
+            case 0:
+                delegate?.sidebar(self, didSelectTabItem: SidebarItem.tabs[indexPath.row])
             
-            splitViewController?.preferredDisplayMode = .oneBesideSecondary
-            splitViewController?.presentsWithGesture = false
-            splitViewController?.preferredSplitBehavior = .tile
-            splitViewController?.primaryBackgroundStyle = .sidebar
-            splitViewController?.setViewController(secondaryViewControllers[indexPath.row], for: .secondary)
-            
+            default:
+                break
         }
         
-        guard indexPath.section == 0 else { return }
+//        if indexPath.section == 0 {
+//
+//            splitViewController?.preferredDisplayMode = .oneBesideSecondary
+//            splitViewController?.presentsWithGesture = false
+//            splitViewController?.preferredSplitBehavior = .tile
+//            splitViewController?.primaryBackgroundStyle = .sidebar
+//            splitViewController?.setViewController(secondaryViewControllers[indexPath.row], for: .secondary)
+//
+//        }
         
     }
     

@@ -360,7 +360,7 @@ public class DefaultRubbishService: RubbishService {
 #if canImport(UserNotifications)
 #if !os(tvOS)
         notificationContent.title = "Abfuhrkalender"
-        notificationContent.subtitle = "Morgen wird abgeholt: \(item.type.rawValue)"
+        notificationContent.subtitle = "Morgen wird abgeholt: \(item.type.title)"
 #endif
 #endif
         

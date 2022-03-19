@@ -17,7 +17,25 @@ public class DashboardViewModel: ObservableObject {
     @Published var displayables: [DashboardItemConfigurable] = []
     
     public init(loader: DashboardConfigLoader) {
+        
         self.loader = loader
+        
+        NotificationCenter.default.publisher(for: .SetupDidComplete)
+            .sink { _ in
+                self.load()
+            }
+            .store(in: &cancellables)
+        
+        NotificationCenter.default.publisher(for: .updateDashboard)
+            .sink { _ in
+                self.load()
+            }
+            .store(in: &cancellables)
+        
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     /// Loads the config via the provided `DashboardConfigLoader`

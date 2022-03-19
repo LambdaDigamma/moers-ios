@@ -153,7 +153,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>17</integer>
+			<integer>16</integer>
 		</dict>
 		<key>Onboarding.xcscheme</key>
 		<dict>
@@ -200,7 +200,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>18</integer>
+			<integer>17</integer>
 		</dict>
 		<key>Playground (Playground) 1.xcscheme</key>
 		<dict>
