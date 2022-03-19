@@ -54,13 +54,47 @@ platform :ios do
       key: "CFBundleShortVersionString", 
       value: version
     )
+
+    set_info_plist_value(
+      path: "Intent Extensions/Info.plist",
+      key: "CFBundleShortVersionString", 
+      value: version
+    )
+    
+    set_info_plist_value(
+      path: "Widgets/Resources/Info.plist",
+      key: "CFBundleShortVersionString", 
+      value: version
+    )
+
+    set_info_plist_value(
+      path: "Watch Extension/Info.plist",
+      key: "CFBundleShortVersionString", 
+      value: version
+    )
+
+    set_info_plist_value(
+      path: "Watch/Info.plist",
+      key: "CFBundleShortVersionString", 
+      value: version
+    )
+
+    set_info_plist_value(
+      path: "Moers Unit Tests/Info.plist",
+      key: "CFBundleShortVersionString", 
+      value: version
+    )
   
     # Commit plists to git
     git_commit(
       path: [
         "Moers/Config/Info.plist",
         "MoersUITests/Info.plist",
-        "Moers Unit Tests/Info.plist"
+        "Moers Unit Tests/Info.plist",
+        "Intent Extensions/Info.plist",
+        "Widgets/Resources/Info.plist",
+        "Watch Extension/Info.plist",
+        "Watch/Info.plist"
       ],
       message: "Mein Moers Version #{version} 🚀"
     )
@@ -72,6 +106,8 @@ platform :ios do
     increment_build_number_in_plist(target: 'Moers')
     increment_build_number_in_plist(target: 'Moers Unit Tests')
     increment_build_number_in_plist(target: 'MoersUITests')
+    increment_build_number_in_plist(target: 'WidgetsExtension')
+    increment_build_number_in_plist(target: 'Intent Extensions')
   end
 
   # --- Tests ---
