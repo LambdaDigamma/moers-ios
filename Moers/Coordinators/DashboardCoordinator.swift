@@ -84,8 +84,7 @@ class DashboardCoordinator: Coordinator {
     
     public func updateUI() {
         
-        dashboardViewController?.reloadUI()
-        dashboardViewController?.triggerUpdate()
+        NotificationCenter.default.post(name: .updateDashboard, object: nil)
         
     }
     

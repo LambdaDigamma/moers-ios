@@ -289,9 +289,9 @@ class SettingsViewController: UIViewController {
         
         self.reloadRows()
         
-        guard let tabBarController = self.tabBarController as? TabBarController else { return }
+        guard let splitViewController = self.splitViewController as? MainSplitViewController else { return }
         
-        tabBarController.updateDashboard()
+        splitViewController.updateDashboard()
         
     }
     

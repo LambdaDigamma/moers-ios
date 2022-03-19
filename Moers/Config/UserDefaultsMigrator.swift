@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OSLog
 
 @objc public extension UserDefaults {
     
@@ -26,6 +27,7 @@ public final class UserDefaultsMigrator: NSObject {
     
     private let from: UserDefaults
     private let to: UserDefaults
+    private let logger: Logger = Logger(.default)
     
     private var hasMigrated = false
     
@@ -48,6 +50,8 @@ public final class UserDefaultsMigrator: NSObject {
         if userDefaults == groupDefaults {
             return
         }
+        
+        logger.info("Trying to migrate user defaults to app group")
         
         // Key to track if we migrated
         let didMigrateToAppGroups = "DidMigrateToAppGroups"

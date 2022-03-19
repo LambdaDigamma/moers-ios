@@ -57,7 +57,6 @@ public enum UserActivities {
         for activity: NSUserActivity = .init(activityType: IDs.rubbishSchedule)
     ) -> NSUserActivity {
         
-        
         activity.title = AppStrings.UserActivities.RubbishSchedule.title
         activity.suggestedInvocationPhrase = AppStrings.UserActivities.RubbishSchedule.title
         activity.persistentIdentifier = IDs.rubbishSchedule

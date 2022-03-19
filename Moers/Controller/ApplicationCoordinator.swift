@@ -237,7 +237,7 @@ class ApplicationCoordinator: NSObject {
         if splitViewController.displayCompact {
             splitViewController.tabController.selectedIndex = TabIndices.dashboard.rawValue
         } else {
-            splitViewController.switchToToday()
+            splitViewController.selectSidebarItem(.dashboard)
         }
 
         currentDashboard.navigationController.popToRootViewController(animated: false)
@@ -263,7 +263,7 @@ class ApplicationCoordinator: NSObject {
         if splitViewController.displayCompact {
             splitViewController.tabController.selectedIndex = TabIndices.news.rawValue
         } else {
-            splitViewController.switchToNews()
+            splitViewController.selectSidebarItem(.news)
         }
         
         currentNews.navigationController.popToRootViewController(animated: animated)
