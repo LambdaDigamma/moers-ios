@@ -8,7 +8,7 @@
 
 import Foundation
 import XCTest
-//@testable import Moers
+// @testable import Moers
 
 class Snappshotting: XCTestCase {
     
@@ -28,6 +28,7 @@ class Snappshotting: XCTestCase {
         
         app = XCUIApplication()
         setupSnapshot(app)
+        app.launchArguments.append(contentsOf: ["-ApplePersistenceIgnoreState", "YES"])
         app.setDefaults()
         app.setLaunchArgument(LaunchArguments.Common.isFastlaneSnapshot, to: true)
         app.setLaunchArgument(LaunchArguments.Common.animations, to: "0")

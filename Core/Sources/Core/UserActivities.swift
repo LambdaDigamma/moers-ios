@@ -57,13 +57,14 @@ public enum UserActivities {
         for activity: NSUserActivity = .init(activityType: IDs.rubbishSchedule)
     ) -> NSUserActivity {
         
-        activity.isEligibleForPrediction = true
-        activity.title = "Nächste Abholtermine"
-        activity.suggestedInvocationPhrase = "Nächste Abholtermine"
+        
+        activity.title = AppStrings.UserActivities.RubbishSchedule.title
+        activity.suggestedInvocationPhrase = AppStrings.UserActivities.RubbishSchedule.title
         activity.persistentIdentifier = IDs.rubbishSchedule
+        activity.keywords = AppStrings.UserActivities.RubbishSchedule.keywords
         activity.isEligibleForPublicIndexing = true
+        activity.isEligibleForPrediction = true
         activity.isEligibleForSearch = true
-        activity.keywords = ["Müll", "Moers"]
         
         return activity
         
@@ -74,13 +75,13 @@ public enum UserActivities {
         for activity: NSUserActivity = .init(activityType: IDs.fuelStations)
     ) -> NSUserActivity {
         
-        activity.isEligibleForPrediction = true
-        activity.title = "Tankstellen in der Nähe"
-        activity.suggestedInvocationPhrase = "Tankstellen in der Nähe"
+        activity.title = AppStrings.UserActivities.FuelStations.title
+        activity.suggestedInvocationPhrase = AppStrings.UserActivities.FuelStations.invocationPhrase
         activity.persistentIdentifier = IDs.fuelStations
+        activity.keywords = AppStrings.UserActivities.FuelStations.keywords
         activity.isEligibleForPublicIndexing = true
+        activity.isEligibleForPrediction = true
         activity.isEligibleForSearch = true
-        activity.keywords = ["Tankstellen", "Preise", "Nähe", "Auto"]
         
         return activity
         
