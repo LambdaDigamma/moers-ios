@@ -8,8 +8,8 @@ devices([
 #   "iPhone X",
   "iPhone 12",
   "iPhone 12 Pro Max",
-  # "iPad Pro (12.9-inch) (2nd generation)",
-  "iPad Pro (12.9-inch) (5th generation)"
+  "iPad Pro (12.9-inch) (2nd generation)",
+  "iPad Pro (12.9-inch) (3rd generation)"
 #   "iPad Pro (12.9-inch)",
 #   "iPad Pro (9.7-inch)",
 #   "Apple TV 1080p"

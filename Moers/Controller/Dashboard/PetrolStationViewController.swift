@@ -47,7 +47,6 @@ class PetrolStationViewController: CardCollectionViewController {
         super.viewDidLoad()
 
         self.setupUI()
-        self.setupTheming()
         self.updateUI()
         
     }
@@ -59,12 +58,6 @@ class PetrolStationViewController: CardCollectionViewController {
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         self.collectionView.register(PetrolStationCollectionViewCell.self, forCellWithReuseIdentifier: identifier)
-        
-    }
-    
-    private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     

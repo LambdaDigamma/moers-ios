@@ -43,11 +43,10 @@ class Snappshotting: XCTestCase {
         app.launch()
         
         let app = XCUIApplication()
-        let tabBar = app.tabBars[AccessibilityIdentifiers.tabBar]
         
         // Dashboard
         
-        tabBar.buttons[AccessibilityIdentifiers.Menu.dashboard].tap()
+        app.buttons[AccessibilityIdentifiers.Menu.dashboard].tap()
         
         if snapshotsActive {
             snapshot("01-dashboard", timeWaitingForIdle: 1)
@@ -55,10 +54,10 @@ class Snappshotting: XCTestCase {
         
         // News
         
-        tabBar.buttons[AccessibilityIdentifiers.Menu.news].tap()
+        app.buttons[AccessibilityIdentifiers.Menu.news].tap()
         
         if snapshotsActive {
-            snapshot("02-news", timeWaitingForIdle: 1)
+            snapshot("02-news", timeWaitingForIdle: 5)
         }
          
         // Map
@@ -67,7 +66,7 @@ class Snappshotting: XCTestCase {
         
         // Events
         
-        tabBar.buttons[AccessibilityIdentifiers.Menu.events].tap()
+        app.buttons[AccessibilityIdentifiers.Menu.events].tap()
         
         if snapshotsActive {
             snapshot("04-events", timeWaitingForIdle: 1)

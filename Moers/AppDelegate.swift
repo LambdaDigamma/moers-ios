@@ -19,6 +19,7 @@ import AppScaffold
 import Resolver
 import ModernNetworking
 import RubbishFeature
+import MMEvents
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -51,6 +52,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         ThemeManager.default.theme = ApplicationTheme.dark
         ThemeManager.default.animated = true
+        
+        EventPackageConfiguration.accentColor = UIColor.systemYellow
+        EventPackageConfiguration.onAccentColor = UIColor.black
+        
+        UIPackageConfiguration.accentColor = UIColor.systemYellow
+        UIPackageConfiguration.onAccentColor = UIColor.black
         
         MMUIConfig.registerThemeManager(ThemeManager.default)
         MMAPIConfig.registerBaseURL(Environment.rootURL)
@@ -122,16 +129,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
         
     }
-    
-    // MARK: - State Restoration -
-    
-//    func application(_ application: UIApplication, shouldSaveSecureApplicationState coder: NSCoder) -> Bool {
-//        return true
-//    }
-//
-//    func application(_ application: UIApplication, shouldRestoreSecureApplicationState coder: NSCoder) -> Bool {
-//        return true
-//    }
     
     // MARK: - UIApplication Lifecycle
     

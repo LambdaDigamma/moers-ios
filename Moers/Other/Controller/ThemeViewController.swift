@@ -18,15 +18,8 @@ class ThemeViewController: CardCollectionViewController {
         self.title = String.localized("ThemeTitle")
         
         self.setupThemeCards()
-        self.setupTheming()
         
         AnalyticsManager.shared.logOpenedTheme()
-        
-    }
-    
-    private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
