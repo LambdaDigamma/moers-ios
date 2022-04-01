@@ -74,10 +74,10 @@ public struct ParkingAreaList: View {
         VStack(alignment: .leading) {
             
             if viewModel.userGrantedLocation {
-                Text("Freie Parkplätze in Deiner Nähe")
+                Text(PackageStrings.ParkingAreaList.titleNearYou)
                     .font(.title3.weight(.semibold))
             } else {
-                Text("Freie Parkplätze")
+                Text(PackageStrings.ParkingAreaList.title)
                     .font(.title3.weight(.semibold))
             }
             

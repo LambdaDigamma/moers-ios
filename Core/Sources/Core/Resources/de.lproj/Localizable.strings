@@ -22,9 +22,12 @@
 "UserActivities.Dashboard.title" = "Heute anzeigen";
 "UserActivities.RubbishSchedule.title" = "Nächste Abholtermine";
 "UserActivities.RubbishSchedule.keywords" = "Müll, Abholung, Datum, Müllabfuhr";
+"UserActivities.ParkingAreaOverview.title" = "Freie Parkplätze anzeigen";
+"UserActivities.ParkingAreaOverview.keywords" = "Parkplätze, Auto, Fahren, Stadt, Parken";
 "UserActivities.FuelStations.title" = "Tankstellen in der Nähe";
 "UserActivities.FuelStations.keywords" = "Tankstellen, Preise, Nähe, Auto";
 "UserActivities.News.title" = "Neuste Nachrichten ansehen";
 "UserActivities.Map.title" = "Ort suchen";
 "UserActivities.Events.title" = "Veranstaltungen anzeigen";
 "UserActivities.Settings.title" = "Einstellungen anzeigen";
+

@@ -22,6 +22,12 @@ public enum UserActivities {
         public static let fuelStations = {
             return bundle + ".fuelStations"
         }()
+        public static let parkingAreasOverview = {
+            return bundle + ".parkingAreasOverview"
+        }()
+        public static let parkingAreaDetail = {
+            return bundle + ".parkingAreaDetail"
+        }()
         public static let newsOverview = {
             return bundle + ".newsOverview"
         }()
@@ -61,6 +67,40 @@ public enum UserActivities {
         activity.suggestedInvocationPhrase = AppStrings.UserActivities.RubbishSchedule.title
         activity.persistentIdentifier = IDs.rubbishSchedule
         activity.keywords = AppStrings.UserActivities.RubbishSchedule.keywords
+        activity.isEligibleForPublicIndexing = true
+        activity.isEligibleForPrediction = true
+        activity.isEligibleForSearch = true
+        
+        return activity
+        
+    }
+    
+    @discardableResult
+    public static func configureParkingAreaOverviewActivity(
+        for activity: NSUserActivity = .init(activityType: IDs.parkingAreasOverview)
+    ) -> NSUserActivity {
+        
+        activity.title = AppStrings.UserActivities.ParkingAreaOverview.title
+        activity.suggestedInvocationPhrase = AppStrings.UserActivities.ParkingAreaOverview.invocationPhrase
+        activity.persistentIdentifier = IDs.parkingAreasOverview
+        activity.keywords = AppStrings.UserActivities.ParkingAreaOverview.keywords
+        activity.isEligibleForPublicIndexing = true
+        activity.isEligibleForPrediction = true
+        activity.isEligibleForSearch = true
+        
+        return activity
+        
+    }
+    
+    @discardableResult
+    public static func configureParkingAreaDetailsActivity(
+        for activity: NSUserActivity = .init(activityType: IDs.parkingAreaDetail)
+    ) -> NSUserActivity {
+        
+        activity.title = AppStrings.UserActivities.ParkingAreaOverview.title
+        activity.suggestedInvocationPhrase = AppStrings.UserActivities.ParkingAreaOverview.invocationPhrase
+        activity.persistentIdentifier = IDs.parkingAreaDetail
+        activity.keywords = AppStrings.UserActivities.ParkingAreaOverview.keywords
         activity.isEligibleForPublicIndexing = true
         activity.isEligibleForPrediction = true
         activity.isEligibleForSearch = true

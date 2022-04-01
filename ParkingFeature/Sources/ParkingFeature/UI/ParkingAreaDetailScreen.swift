@@ -117,7 +117,7 @@ public struct ParkingAreaDetailScreen: View {
             
             HStack {
                 
-                Text("Aktuelle Belegung")
+                Text(PackageStrings.ParkingAreaDetailScreen.currentAvailability)
                     .fontWeight(.semibold)
                     .unredacted()
                 
@@ -129,7 +129,7 @@ public struct ParkingAreaDetailScreen: View {
                     Text(" / \(viewModel.total)")
                         .foregroundColor(.secondary)
                     
-                    Text(" frei")
+                    Text(PackageStrings.ParkingAreaDetailScreen.free)
                         .foregroundColor(.secondary)
                         .unredacted()
                     
@@ -203,8 +203,8 @@ public struct ParkingAreaDetailScreen: View {
         Divider()
             .padding(.horizontal)
         
-        DetailContainer(title: "Preise") {
-            Text("Keine Preisinformationen")
+        DetailContainer(title: PackageStrings.ParkingAreaDetailScreen.pricesTitle) {
+            Text(PackageStrings.ParkingAreaDetailScreen.noPrices)
                 .foregroundColor(.secondary)
         }
         .padding()

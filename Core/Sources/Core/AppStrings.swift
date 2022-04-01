@@ -48,6 +48,11 @@ public enum AppStrings {
             public static let invocationPhrase = title
             public static let keywords = AppStrings.buildKeywords("UserActivities.RubbishSchedule.keywords")
         }
+        public enum ParkingAreaOverview {
+            public static let title = String.localized("UserActivities.ParkingAreaOverview.title")
+            public static let invocationPhrase = title
+            public static let keywords = AppStrings.buildKeywords("UserActivities.ParkingAreaOverview.keywords")
+        }
         public enum FuelStations {
             public static let title = String.localized("UserActivities.FuelStations.title")
             public static let invocationPhrase = title

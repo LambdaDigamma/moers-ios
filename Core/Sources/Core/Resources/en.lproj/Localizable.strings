@@ -17,6 +17,8 @@
 "UserActivities.Dashboard.title" = "Show today";
 "UserActivities.RubbishSchedule.title" = "Next pick up dates";
 "UserActivities.RubbishSchedule.keywords" = "Garbage, collection, date, garbage collection";
+"UserActivities.ParkingAreaOverview.title" = "Show free sites";
+"UserActivities.ParkingAreaOverview.keywords" = "Parking, Car, Driving, City";
 "UserActivities.FuelStations.title" = "Fuel stations near you";
 "UserActivities.FuelStations.keywords" = "Gas stations, prices, proximity, car, Fuel";
 "UserActivities.News.title" = "Check latest news";

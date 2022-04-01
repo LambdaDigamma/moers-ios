@@ -90,7 +90,7 @@ public struct ParkingAreaDetail: View {
                         
                         +
                         
-                        Text(" / \(total) frei")
+                        Text(PackageStrings.ParkingAreaDetail.free(number: total))
                             .font(.headline)
                             .foregroundColor(.secondary)
                         

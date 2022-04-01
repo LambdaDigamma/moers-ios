@@ -1,0 +1,17 @@
+"ParkingAreaList.title" = "Freie Parkplätze";
+"ParkingAreaList.titleNearYou" = "Freie Parkplätze in Deiner Nähe";
+"ParkingAreaList.filter" = "Filter";
+"ParkingAreaList.filterDescription" = "Filtere Parkplätze";
+"ParkingAreaList.filterAll" = "Alle";
+"ParkingAreaList.filterOnlyOpen" = "Nur geöffnete";
+"ParkingAreaList.disclaimer" = "Alle Angaben ohne Gewähr. Die aktuelle Parksituation kann von den gezeigten Daten abweichen.";
+"ParkingAreaList.dataSource" = "Datenquelle: Parkleitsystem der Stadt Moers";
+
+"Dashboard.title" = "Freie Parkplätze";
+
+"ParkingAreaDetail.free" = " / %@ frei";
+
+"ParkingAreaDetailScreen.currentAvailability" = "Aktuelle Belegung";
+"ParkingAreaDetailScreen.free" = " frei";
+"ParkingAreaDetailScreen.pricesTitle" = "Preise";
+"ParkingAreaDetailScreen.noPrices" = "Keine Preisinformationen";

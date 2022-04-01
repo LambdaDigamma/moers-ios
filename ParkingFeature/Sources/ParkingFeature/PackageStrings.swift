@@ -10,17 +10,45 @@ import Foundation
 internal enum PackageStrings {
     
     internal enum ParkingAreaList {
-        internal static let title = "Freie Parkplätze"
-        internal static let filter = "Filter"
-        internal static let filterDescription = "Filtere Parkplätze"
-        internal static let filterAll = "Alle"
-        internal static let filterOnlyOpen = "Nur geöffnete"
-        internal static let disclaimer = "Alle Angaben ohne Gewähr. Die aktuelle Parksituation kann von den gezeigten Daten abweichen."
-        internal static let dataSource = "Datenquelle: Parkleitsystem der Stadt Moers"
+        internal static let title = String.localized("ParkingAreaList.title")
+        internal static let titleNearYou = String.localized("ParkingAreaList.titleNearYou")
+        internal static let filter = String.localized("ParkingAreaList.filter")
+        internal static let filterDescription = String.localized("ParkingAreaList.filterDescription")
+        internal static let filterAll = String.localized("ParkingAreaList.filterAll")
+        internal static let filterOnlyOpen = String.localized("ParkingAreaList.filterOnlyOpen")
+        internal static let disclaimer = String.localized("ParkingAreaList.disclaimer")
+        internal static let dataSource = String.localized("ParkingAreaList.dataSource")
     }
     
     internal enum Dashboard {
-        internal static let title = "Freie Parkplätze"
+        internal static let title = String.localized("Dashboard.title")
+    }
+    
+    internal enum ParkingAreaDetail {
+        
+        internal static func free(number: Int) -> String {
+            return String.localizedStringWithFormat(String.localized("ParkingAreaDetail.free"), "\(number)")
+        }
+        
+    }
+    
+    internal enum ParkingAreaDetailScreen {
+        internal static let currentAvailability = String.localized("ParkingAreaDetailScreen.currentAvailability")
+        internal static let free = String.localized("ParkingAreaDetailScreen.free")
+        internal static let pricesTitle = String.localized("ParkingAreaDetailScreen.pricesTitle")
+        internal static let noPrices = String.localized("ParkingAreaDetailScreen.noPrices")
+    }
+    
+}
+
+internal extension String {
+    
+    static func localized(_ key: String) -> String {
+        return NSLocalizedString(key,
+                                 tableName: nil,
+                                 bundle: .module,
+                                 value: "",
+                                 comment: "")
     }
     
 }

@@ -1,0 +1,17 @@
+"ParkingAreaList.title" = "Free parking spaces";
+"ParkingAreaList.titleNearYou" = "Free parking spaces near you";
+"ParkingAreaList.filter" = "Filter";
+"ParkingAreaList.filterDescription" = "Filter parking spaces";
+"ParkingAreaList.filterAll" = "All";
+"ParkingAreaList.filterOnlyOpen" = "Only open";
+"ParkingAreaList.disclaimer" = "All data without liability. The current parking situation may differ from the data shown.";
+"ParkingAreaList.dataSource" = "Data source: Parking management system of the city of Moers";
+
+"Dashboard.title" = "Free parking spaces";
+
+"ParkingAreaDetail.free" = " / %@ free";
+
+"ParkingAreaDetailScreen.currentAvailability" = "Current occupancy";
+"ParkingAreaDetailScreen.free" = " free";
+"ParkingAreaDetailScreen.pricesTitle" = "Pricing";
+"ParkingAreaDetailScreen.noPrices" = "No pricing information";
