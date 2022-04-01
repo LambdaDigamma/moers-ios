@@ -40,6 +40,7 @@ public struct BaseMap: UIViewRepresentable {
         view.mapType = context.environment.mapType
         view.setRegion(region.wrappedValue, animated: false)
         view.showsUserLocation = context.environment.showsUserLocation
+        view.tintColor = UIColor.systemBlue
         
 //        view.addAnnotation(GenericAnnotation(coordinate: CoreSettings.regionCenter))
         

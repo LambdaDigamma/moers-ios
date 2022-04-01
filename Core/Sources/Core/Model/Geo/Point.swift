@@ -32,14 +32,14 @@ public struct Point: Codable, Equatable, Hashable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let coordinates: [Double] = try container.decode([Double].self, forKey: .coordinates)
         
-        if let latitude = coordinates[safeIndex: 0] {
-            self.latitude = latitude
+        if let longitude = coordinates[safeIndex: 0] {
+            self.longitude = longitude
         } else {
             throw GeoJSONDecodingError.pointInvalidNumberOfCoordinates
         }
         
-        if let longitude = coordinates[safeIndex: 1] {
-            self.longitude = longitude
+        if let latitude = coordinates[safeIndex: 1] {
+            self.latitude = latitude
         } else {
             throw GeoJSONDecodingError.pointInvalidNumberOfCoordinates
         }

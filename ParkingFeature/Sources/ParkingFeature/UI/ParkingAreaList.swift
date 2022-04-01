@@ -59,9 +59,9 @@ public struct ParkingAreaList: View {
         }
         .navigationTitle(Text(PackageStrings.ParkingAreaList.title))
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            toolbarItem()
-        }
+//        .toolbar {
+//            toolbarItem()
+//        }
         .onAppear {
             viewModel.load()
         }
@@ -119,28 +119,6 @@ public struct ParkingAreaList: View {
             .mapType(.standard)
             .showsUserLocation(true)
             .frame(idealHeight: 300)
-        
-//        Map(
-//            coordinateRegion: $viewModel.region,
-//            interactionModes: [],
-//            showsUserLocation: true
-//        )
-//            .frame(idealHeight: 300)
-        
-//            .overlay(
-//                ZStack(alignment: .bottom) {
-//
-//                    VStack {
-//                        Text("Parkplätze auf Karte ansehen \(Image(systemName: "chevron.forward"))")
-//                            .fontWeight(.semibold)
-//                    }
-//                    .padding()
-//                    .frame(maxWidth: .infinity, alignment: .bottomLeading)
-//                    .background(Color(UIColor.secondarySystemBackground))
-//
-//                }
-//                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-//            )
         
     }
     

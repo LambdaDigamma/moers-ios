@@ -39,11 +39,12 @@ public struct ParkingAreaDetailScreen: View {
                 
                 availability()
                 
-                openingHours()
-                
-                prizeInformation()
+//                openingHours()
+//
+//                prizeInformation()
                 
             }
+            .padding(.bottom, 80)
             .frame(maxWidth: .infinity)
             
         }
@@ -138,8 +139,8 @@ public struct ParkingAreaDetailScreen: View {
             
             ProgressMeterView(value: viewModel.percentage, color: ParkingColors.verkehrsblau)
             
-            Chart(data: [0.4, 0.45, 0.6, 0.8, 0.6, 0.9, 1, 0.8, 0.75, 0.4, 0.2, 0.1, 0.1, 0.3, 0.4, 0.45, 0.6, 0.8, 0.6, 0.9, 0.75, 0.6, 0.55, 0.5])
-                .chartStyle(
+//            Chart(data: [0.4, 0.45, 0.6, 0.8, 0.6, 0.9, 1, 0.8, 0.75, 0.4, 0.2, 0.1, 0.1, 0.3, 0.4, 0.45, 0.6, 0.8, 0.6, 0.9, 0.75, 0.6, 0.55, 0.5])
+//                .chartStyle(
 //                    AreaChartStyle(
 //                        .quadCurve,
 //                        fill: LinearGradient(gradient: .init(colors: [
@@ -147,23 +148,22 @@ public struct ParkingAreaDetailScreen: View {
 //                            ParkingColors.verkehrsblau.opacity(0.7)
 //                        ]), startPoint: .top, endPoint: .bottom)
 //                      )
-                    ColumnChartStyle(
-                        column: Capsule().foregroundColor(ParkingColors.verkehrsblau),
-                        spacing: 4
-                    )
-                )
-                .frame(height: 80)
-//                .cornerRadius(8)
-                .padding(.top)
+//                    ColumnChartStyle(
+//                        column: Capsule().foregroundColor(ParkingColors.verkehrsblau),
+//                        spacing: 4
+//                    )
+//                )
+//                .frame(height: 80)
+//                .padding(.top)
             
-            HStack {
-                
-                Text("22:00")
-                Spacer()
-                Text("Jetzt")
-                
-            }
-            .font(.caption2)
+//            HStack {
+//
+//                Text("22:00")
+//                Spacer()
+//                Text("Jetzt")
+//
+//            }
+//            .font(.caption2)
             
         }
         .padding()
@@ -227,7 +227,7 @@ public struct ParkingAreaDetailScreen: View {
                 AutoCalculatingDirectionsButton(
                     coordinate: coordinate,
                     locationService: locationService,
-                    action: {}
+                    action: openInMaps
                 )
                 
             }
@@ -241,10 +241,23 @@ public struct ParkingAreaDetailScreen: View {
     private func toolbar() -> some ToolbarContent {
         
         ToolbarItem(placement: .navigationBarTrailing) {
-            Button(action: {}) {
+            Button(action: openInMaps) {
                 Image(systemName: "arrow.triangle.turn.up.right.circle")
             }
         }
+        
+    }
+    
+    private func openInMaps() {
+        
+        guard let point = viewModel.location else {
+            return
+        }
+        
+        AppleNavigationProvider().startNavigation(
+            to: point,
+            with: viewModel.title
+        )
         
     }
     

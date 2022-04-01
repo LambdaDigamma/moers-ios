@@ -96,7 +96,7 @@ public struct ParkingDashboardView: View {
                     }
                 }
                 
-                if (index != pairs.count) {
+                if (index != pairs.count - 1) {
                     Divider()
                 }
             }

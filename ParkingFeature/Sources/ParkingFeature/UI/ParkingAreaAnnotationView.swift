@@ -17,7 +17,7 @@ public class ParkingAreaAnnotationView: MKMarkerAnnotationView {
         
 //        self.glyphImage = UIImage(systemName: "parkingsign", withConfiguration: configuration)
         self.glyphText = "P"
-        self.markerTintColor = UIColor.blue
+        self.markerTintColor = UIColor.systemBlue
         self.glyphTintColor = UIColor.white
     }
     
