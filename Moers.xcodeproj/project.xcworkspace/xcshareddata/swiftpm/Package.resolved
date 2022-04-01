@@ -11,15 +11,6 @@
         }
       },
       {
-        "package": "AppScaffold",
-        "repositoryURL": "https://github.com/lambdadigamma/app-scaffold-ios",
-        "state": {
-          "branch": null,
-          "revision": "92f36e0f7309f5752454de68f9b6064ac0d87528",
-          "version": "0.1.2"
-        }
-      },
-      {
         "package": "BoringSSL-GRPC",
         "repositoryURL": "https://github.com/firebase/boringssl-SwiftPM.git",
         "state": {
@@ -260,6 +251,15 @@
           "branch": null,
           "revision": "5da607f72e033173ab92bd2718d2f95ae68ff64a",
           "version": "1.0.1"
+        }
+      },
+      {
+        "package": "swift-argument-parser",
+        "repositoryURL": "https://github.com/apple/swift-argument-parser",
+        "state": {
+          "branch": null,
+          "revision": "3d79b2b5a2e5af52c14e462044702ea7728f5770",
+          "version": "0.1.0"
         }
       },
       {

@@ -77,13 +77,6 @@ public struct ParkingAreaDetail: View {
                 
                 Spacer()
                 
-//                Text("Geöffnet")
-//                    .font(.caption.weight(.semibold))
-//                    .padding(8)
-//                    .background(Color.green)
-//                    .foregroundColor(.white)
-//                    .cornerRadius(8)
-                
             }
             
             VStack(alignment: .leading, spacing: 0) {
@@ -93,19 +86,18 @@ public struct ParkingAreaDetail: View {
                     HStack(alignment: .firstTextBaseline) {
                         
                         Text("\(free)")
-                            .font(.title.weight(.bold))
-//                        .foregroundColor(.green)
+                            .font(.title2.weight(.bold))
+                        
                         +
                         
-                        Text(" / \(total)")
+                        Text(" / \(total) frei")
                             .font(.headline)
                             .foregroundColor(.secondary)
                         
                     }
                     
-                    Text("frei")
-                        .font(.headline)
-                        .foregroundColor(.secondary)
+                    Spacer()
+                        .frame(maxHeight: 16)
                     
                 }
                 .padding(.bottom, 8)

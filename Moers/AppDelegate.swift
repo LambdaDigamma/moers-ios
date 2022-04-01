@@ -101,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void
     ) -> Bool {
         
-        guard let tabBarController = window?.rootViewController as? TabBarController else {
+        guard let tabBarController = window?.rootViewController as? AppTabBarController else {
             return false
         }
         

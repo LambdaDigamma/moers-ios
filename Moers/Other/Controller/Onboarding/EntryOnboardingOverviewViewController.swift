@@ -535,7 +535,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
                     self.alertSuccess()
                     self.entryManager.resetData()
                     
-                    guard let tabBarController = self.tabBarController as? TabBarController else { return }
+                    guard let tabBarController = self.tabBarController as? AppTabBarController else { return }
                     
                     tabBarController.map.mainViewController?.addLocation(entry)
                     
@@ -596,7 +596,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
                     
                     self.alertSuccess()
                     
-                    guard let tabBarController = self.tabBarController as? TabBarController else { return }
+                    guard let tabBarController = self.tabBarController as? AppTabBarController else { return }
                     
                     tabBarController.map.mainViewController?.loadData()
                     
@@ -811,7 +811,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
     
     private func loadAllExistingTags() {
         
-        guard let tabBarController = self.tabBarController as? TabBarController else { return }
+        guard let tabBarController = self.tabBarController as? AppTabBarController else { return }
         
         let locations = tabBarController.map.mainViewController?.locations ?? []
         

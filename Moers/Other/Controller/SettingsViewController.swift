@@ -98,10 +98,6 @@ class SettingsViewController: UIViewController {
     
     // MARK: - Settings Rows
     
-    private func showThemes() {
-        push(viewController: ThemeViewController.self)
-    }
-    
     private func showRubbishStreet() {
         
         let streetPage = onboardingManager.makeRubbishStreetPage()
@@ -240,9 +236,6 @@ class SettingsViewController: UIViewController {
         
         var sections: [TableViewSection] = []
         
-//        sections.append(TableViewSection(title: String.localized("UIAdjustments"),
-//                                rows: [NavigationRow(title: String.localized("ThemeTitle"), action: showThemes)]))
-        
         sections.append(TableViewSection(title: String.localized("User"),
                                 rows: [NavigationRow(title: String.localized("UserType") + ": " + User.UserType.localizedForCase(userType), action: showUserType)]))
         
@@ -289,7 +282,7 @@ class SettingsViewController: UIViewController {
         
         self.reloadRows()
         
-        guard let splitViewController = self.splitViewController as? MainSplitViewController else { return }
+        guard let splitViewController = self.splitViewController as? AppSplitViewController else { return }
         
         splitViewController.updateDashboard()
         

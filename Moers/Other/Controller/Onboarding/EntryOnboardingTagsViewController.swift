@@ -162,7 +162,7 @@ class EntryOnboardingTagsViewController: UIViewController {
     
     private func getTags() {
         
-        guard let tabBarController = self.tabBarController as? TabBarController else { return }
+        guard let tabBarController = self.tabBarController as? AppTabBarController else { return }
         
         let locations = tabBarController.map.mainViewController?.locations ?? []
         

@@ -19,4 +19,8 @@ internal enum PackageStrings {
         internal static let dataSource = "Datenquelle: Parkleitsystem der Stadt Moers"
     }
     
+    internal enum Dashboard {
+        internal static let title = "Freie Parkplätze"
+    }
+    
 }

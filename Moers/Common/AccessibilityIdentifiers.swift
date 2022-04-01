@@ -20,6 +20,4 @@ public enum AccessibilityIdentifiers {
         public static let other = "AppStrings.Menu.other"
     }
     
-    
-    
 }

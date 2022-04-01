@@ -7,22 +7,23 @@
 //
 
 import Foundation
+import AppScaffold
 
-public enum SidebarSection: String, Hashable, Equatable {
+extension SidebarSection {
     
-    case tabs
-    case organisations
-    case places
+    static let tabs = SidebarSection(
+        title: nil,
+        isCollapsable: false
+    )
     
-    var title: String? {
-        switch self {
-            case .tabs:
-                return nil
-            case .organisations:
-                return "Organisationen"
-            case .places:
-                return "Orte"
-        }
-    }
+    static let organisations = SidebarSection(
+        title: "Organisationen",
+        isCollapsable: true
+    )
+    
+    static let places = SidebarSection(
+        title: "Orte",
+        isCollapsable: true
+    )
     
 }

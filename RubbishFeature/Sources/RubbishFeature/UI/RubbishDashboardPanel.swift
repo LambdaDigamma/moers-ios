@@ -8,6 +8,7 @@
 
 import SwiftUI
 import ModernNetworking
+import Core
 
 public struct RubbishDashboardPanel: View {
     

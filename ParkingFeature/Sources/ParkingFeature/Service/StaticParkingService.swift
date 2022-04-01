@@ -53,4 +53,14 @@ public class StaticParkingService: ParkingService {
         
     }
     
+    public func loadDashboard() -> AnyPublisher<ParkingDashboardData, Error> {
+        
+        let parkingAreas = retrieveParkingAreas()
+        
+        return Just(ParkingDashboardData(parkingAreas: parkingAreas))
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+        
+    }
+    
 }

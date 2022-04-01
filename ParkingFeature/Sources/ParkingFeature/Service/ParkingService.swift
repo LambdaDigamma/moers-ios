@@ -10,6 +10,8 @@ import Combine
 
 public protocol ParkingService {
     
+    func loadDashboard() -> AnyPublisher<ParkingDashboardData, Error>
+    
     func loadParkingAreas() -> AnyPublisher<[ParkingArea], Error>
     
 }

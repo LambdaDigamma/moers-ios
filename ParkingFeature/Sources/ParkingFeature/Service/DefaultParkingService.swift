@@ -66,4 +66,37 @@ public class DefaultParkingService: ParkingService {
         
     }
     
+    public func loadDashboard() -> AnyPublisher<ParkingDashboardData, Error> {
+        
+        let request = HTTPRequest(
+            method: .get,
+            path: "parking-areas/dashboard"
+        )
+        
+        return Deferred {
+            return Future { promise in
+                
+                self.loader.load(request) { (result: HTTPResult) in
+                    
+                    guard let data = result.response?.body else {
+                        promise(.failure(URLError(.cannotDecodeRawData)))
+                        return
+                    }
+                    
+                    do {
+                        let response = try ParkingArea.decoder.decode(DataResponse<ParkingDashboardData>.self, from: data)
+                        promise(.success(response.data))
+                    } catch {
+                        promise(.failure(error))
+                    }
+                    
+                }
+                
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+        
+    }
+    
 }

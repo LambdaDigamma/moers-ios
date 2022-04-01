@@ -24,7 +24,8 @@ public struct DashboardConfig: Codable {
         return DashboardConfig(
             items: [
                 PetrolDashboardConfiguration(),
-                RubbishDashboardConfiguration()
+                RubbishDashboardConfiguration(),
+                ParkingDashboardConfiguration(),
             ],
             updatedAt: Date()
         )

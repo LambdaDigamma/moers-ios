@@ -6,6 +6,7 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import AppScaffold
 import UIKit
 import Gestalt
 import MMUI
@@ -44,7 +45,7 @@ class ApplicationCoordinator: NSObject {
     let parkingLotManager: ParkingLotManagerProtocol
     let eventService: EventServiceProtocol
     
-    private var splitViewController: MainSplitViewController!
+    private var splitViewController: AppSplitViewController!
     
     convenience override init() {
         let loader: HTTPLoader = Resolver.resolve()
@@ -102,7 +103,7 @@ class ApplicationCoordinator: NSObject {
     
     internal func rootViewController() -> UIViewController {
         
-        self.splitViewController = MainSplitViewController(
+        self.splitViewController = AppSplitViewController(
             firstLaunch: firstLaunch,
             locationManager: locationManager,
             petrolManager: petrolManager,

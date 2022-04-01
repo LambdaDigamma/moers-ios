@@ -21,6 +21,7 @@ public struct DashboardView: View {
     
     @StateObject var fuelViewModel = PetrolPriceDashboardViewModel()
     @StateObject var rubbishViewModel = RubbishDashboardViewModel()
+    @StateObject var parkingViewModel = ParkingDashboardViewModel()
     
     public init() {
         
@@ -78,6 +79,14 @@ public struct DashboardView: View {
         } else if item is PetrolDashboardConfiguration {
             
             PetrolPriceDashboardView(viewModel: fuelViewModel)
+            
+        } else if item is ParkingDashboardConfiguration {
+            
+            NavigationLink {
+                ParkingAreaList(parkingService: Resolver.resolve())
+            } label: {
+                ParkingDashboardView(viewModel: parkingViewModel)
+            }
             
         }
         

@@ -7,55 +7,41 @@
 //
 
 import UIKit
+import AppScaffold
 
-public struct SidebarItem: Hashable {
+public extension SidebarItem {
     
-    public let title: String?
-    public let image: UIImage?
-    public let accessibilityIdentifier: String?
-    public let identifier = UUID()
-    
-    public init(
-        title: String? = nil,
-        image: UIImage? = nil,
-        accessibilityIdentifier: String?  = nil
-    ) {
-        self.title = title
-        self.image = image
-        self.accessibilityIdentifier = accessibilityIdentifier
-    }
-    
-    public static let dashboard = SidebarItem(
+    static let dashboard = SidebarItem(
         title: AppStrings.Menu.dashboard,
         image: UIImage(systemName: "rectangle.grid.2x2"),
         accessibilityIdentifier: AccessibilityIdentifiers.Menu.dashboard
     )
     
-    public static let news = SidebarItem(
+    static let news = SidebarItem(
         title: AppStrings.Menu.news,
         image: UIImage(systemName: "newspaper"),
         accessibilityIdentifier: AccessibilityIdentifiers.Menu.news
     )
     
-    public static let map = SidebarItem(
+    static let map = SidebarItem(
         title: AppStrings.Menu.map,
         image: UIImage(systemName: "map"),
         accessibilityIdentifier: AccessibilityIdentifiers.Menu.map
     )
     
-    public static let events = SidebarItem(
+    static let events = SidebarItem(
         title: AppStrings.Menu.events,
         image: UIImage(systemName: "calendar"),
         accessibilityIdentifier: AccessibilityIdentifiers.Menu.events
     )
     
-    public static let other = SidebarItem(
+    static let other = SidebarItem(
         title: AppStrings.Menu.other,
         image: UIImage(systemName: "list.bullet"),
         accessibilityIdentifier: AccessibilityIdentifiers.Menu.other
     )
     
-    public static let tabs = [
+    static let tabs = [
         Self.dashboard,
         Self.news,
         Self.map,
