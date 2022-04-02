@@ -12,6 +12,7 @@ import Core
 public struct ParkingAreaList: View {
     
     @ObservedObject private var viewModel: ParkingAreaListViewModel
+    @State var showParkingTimer: Bool = false
     
     private let gridSpacing: CGFloat = 16
     
@@ -59,11 +60,24 @@ public struct ParkingAreaList: View {
         }
         .navigationTitle(Text(PackageStrings.ParkingAreaList.title))
         .navigationBarTitleDisplayMode(.inline)
-//        .toolbar {
-//            toolbarItem()
-//        }
+        .toolbar {
+            toolbarItem()
+        }
         .onAppear {
             viewModel.load()
+        }
+        .sheet(isPresented: $showParkingTimer) {
+            NavigationView {
+                ParkingTimerScreen()
+                    .toolbar(content: {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button(action: { showParkingTimer = false }) {
+                                Text("Abbrechen")
+                            }
+                        }
+                    })
+                    .navigationBarTitleDisplayMode(.inline)
+            }
         }
         
     }
@@ -137,7 +151,7 @@ public struct ParkingAreaList: View {
     
     private func toolbarItem() -> some ToolbarContent {
         
-        ToolbarItem(placement: .navigationBarTrailing) {
+        ToolbarItemGroup(placement: .navigationBarTrailing) {
             
             Menu {
                 
@@ -155,6 +169,14 @@ public struct ParkingAreaList: View {
             } label: {
                 Label(PackageStrings.ParkingAreaList.filter,
                       systemImage: "line.3.horizontal.decrease.circle")
+                .foregroundColor(Color.yellow)
+            }
+            
+            Button(action: {
+                showParkingTimer = true
+            }) {
+                Image(systemName: "timer")
+                    .foregroundColor(Color.yellow)
             }
             
         }

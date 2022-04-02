@@ -60,8 +60,8 @@
         "repositoryURL": "https://github.com/firebase/firebase-ios-sdk.git",
         "state": {
           "branch": null,
-          "revision": "d4c4e8c7b8898ea771e90beab71112ea279d73a5",
-          "version": "8.13.0"
+          "revision": "ccb2bccb82e62ad9e8a4e757a43ce6a04ceae1c9",
+          "version": "8.14.0"
         }
       },
       {
@@ -96,8 +96,8 @@
         "repositoryURL": "https://github.com/google/GoogleAppMeasurement.git",
         "state": {
           "branch": null,
-          "revision": "6cc2991c11872510a5314bc112cc7558dd9d046a",
-          "version": "8.12.0"
+          "revision": "9b74e6a3f875208c04c22b39b580a21d4de0f4f9",
+          "version": "8.14.0"
         }
       },
       {
@@ -132,8 +132,8 @@
         "repositoryURL": "https://github.com/google/gtm-session-fetcher.git",
         "state": {
           "branch": null,
-          "revision": "bc6a19702ac76ac4e488b68148710eb815f9bc56",
-          "version": "1.7.0"
+          "revision": "eca9404a18f53727e4698211aaf2615eb93b962a",
+          "version": "1.7.1"
         }
       },
       {
@@ -173,12 +173,12 @@
         }
       },
       {
-        "package": "MediaLibrary",
-        "repositoryURL": "https://github.com/lambdadigamma/medialibrary-ios",
+        "package": "MediaLibraryKit",
+        "repositoryURL": "https://github.com/LambdaDigamma/MediaLibraryKit",
         "state": {
           "branch": null,
-          "revision": "94f8d377221829f292df0e707937032bcb95c7f1",
-          "version": "0.0.2"
+          "revision": "850c176e1d3876235cc7f610037ad7db0d62ff6c",
+          "version": "0.0.4"
         }
       },
       {
@@ -254,30 +254,12 @@
         }
       },
       {
-        "package": "swift-argument-parser",
-        "repositoryURL": "https://github.com/apple/swift-argument-parser",
-        "state": {
-          "branch": null,
-          "revision": "3d79b2b5a2e5af52c14e462044702ea7728f5770",
-          "version": "0.1.0"
-        }
-      },
-      {
         "package": "SwiftProtobuf",
         "repositoryURL": "https://github.com/apple/swift-protobuf.git",
         "state": {
           "branch": null,
           "revision": "e1499bc69b9040b29184f7f2996f7bab467c1639",
           "version": "1.19.0"
-        }
-      },
-      {
-        "package": "Charts",
-        "repositoryURL": "https://github.com/swift-extensions/swiftui-charts",
-        "state": {
-          "branch": null,
-          "revision": "b044e7eb04d0026490eecb115f4fc07197dad942",
-          "version": "1.1.0"
         }
       },
       {

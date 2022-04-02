@@ -71,8 +71,8 @@ final class ParkingAreaTests: XCTestCase {
         guard let data = dataString.data(using: .utf8) else { fatalError() }
         let model = try decoder.decode(ParkingArea.self, from: data)
         
-        XCTAssertEqual(model.location?.latitude, 51.449781)
-        XCTAssertEqual(model.location?.longitude, 6.631362)
+        XCTAssertEqual(model.location?.latitude, 6.631362)
+        XCTAssertEqual(model.location?.longitude, 51.449781)
 
     }
     

@@ -23,7 +23,7 @@ let package = Package(
         .package(name: "ModernNetworking",
                  url: "https://github.com/LambdaDigamma/ModernNetworking.git",
                  from: "0.1.2"),
-        .package(name: "Charts", url: "https://github.com/spacenation/swiftui-charts.git", from: "1.0.0"),
+        .package(name: "Charts", url: "https://github.com/spacenation/swiftui-charts", branch: "master"),
     ],
     targets: [
         .target(

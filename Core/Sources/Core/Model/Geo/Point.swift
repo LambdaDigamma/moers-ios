@@ -52,8 +52,8 @@ public struct Point: Codable, Equatable, Hashable {
         
         try container.encode("Point", forKey: .type)
         try container.encode([
-            self.latitude,
-            self.longitude
+            self.longitude,
+            self.latitude
         ], forKey: .coordinates)
         
     }
@@ -65,6 +65,13 @@ public struct Point: Codable, Equatable, Hashable {
     
     #if canImport(CoreLocation)
     
+    public init(
+        from coordinate: CLLocationCoordinate2D
+    ) {
+        self.latitude = coordinate.latitude
+        self.longitude = coordinate.longitude
+    }
+    
     public func toCoordinate() -> CLLocationCoordinate2D {
         return CLLocationCoordinate2D(
             latitude: latitude,
@@ -75,3 +82,17 @@ public struct Point: Codable, Equatable, Hashable {
     #endif
     
 }
+
+#if canImport(CoreLocation)
+
+public extension CLLocationCoordinate2D {
+    
+    func toPoint() -> Point {
+        return Point(
+            from: self
+        )
+    }
+    
+}
+
+#endif

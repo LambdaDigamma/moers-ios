@@ -49,8 +49,8 @@ final class PointTests: XCTestCase {
         guard let data = dataString.data(using: .utf8) else { fatalError() }
         let point = try decoder.decode(Point.self, from: data)
         
-        XCTAssertEqual(point.latitude, 51.0)
-        XCTAssertEqual(point.longitude, 7.0)
+        XCTAssertEqual(point.latitude, 7.0)
+        XCTAssertEqual(point.longitude, 51.0)
         
     }
     
