@@ -74,7 +74,10 @@ public struct ParkingTimerActivePartial: View {
             
             Button(action: {
                 let provider = AppleNavigationProvider()
-                provider.startNavigation(to: Point(from: coordinate), with: "Dein Auto")
+                provider.startNavigation(
+                    to: Point(from: coordinate),
+                    with: PackageStrings.ParkingTimerActivePartial.yourCar
+                )
             }) {
                 VStack(alignment: .leading, spacing: 0) {
                     
@@ -98,7 +101,7 @@ public struct ParkingTimerActivePartial: View {
                     
                     HStack {
                         
-                        Text("Zurück zum Auto \(Image(systemName: "chevron.right"))")
+                        Text("\(PackageStrings.ParkingTimerActivePartial.backToCar) \(Image(systemName: "chevron.right"))")
                             .fontWeight(.semibold)
                             .foregroundColor(.primary)
                         
@@ -121,14 +124,20 @@ public struct ParkingTimerActivePartial: View {
         
         HStack {
             
-            Button("Beenden", action: {
-                onCancel()
-                ParkingTimerViewModel.resetCurrent()
-            })
-                .buttonStyle(SecondaryButtonStyle())
+            Button(action: cancel) {
+                Text(PackageStrings.ParkingTimerActivePartial.cancel)
+            }
+            .buttonStyle(SecondaryButtonStyle())
             
         }
         
+    }
+    
+    // MARK: - Actions -
+    
+    private func cancel() {
+        self.onCancel()
+        ParkingTimerViewModel.resetCurrent()
     }
     
 }

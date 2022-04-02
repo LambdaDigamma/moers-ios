@@ -1,3 +1,9 @@
+"Close" = "Schließen";
+
+"States.open" = "Geöffnet";
+"States.closed" = "Geschlossen";
+"States.unkown" = "Unbekannt";
+
 "ParkingAreaList.title" = "Freie Parkplätze";
 "ParkingAreaList.titleNearYou" = "Freie Parkplätze in Deiner Nähe";
 "ParkingAreaList.filter" = "Filter";
@@ -15,3 +21,17 @@
 "ParkingAreaDetailScreen.free" = " frei";
 "ParkingAreaDetailScreen.pricesTitle" = "Preise";
 "ParkingAreaDetailScreen.noPrices" = "Keine Preisinformationen";
+
+"ParkingTimerActivePartial.yourCar" = "Dein Auto";
+"ParkingTimerActivePartial.backToCar" = "Zurück zum Auto";
+"ParkingTimerActivePartial.cancel" = "Beenden";
+
+"ParkingTimerConfigurationPartial.sectionOverview" = "Überblick";
+"ParkingTimerConfigurationPartial.sectionOptions" = "Einstellungen";
+"ParkingTimerConfigurationPartial.enableNotifications" = "Benachrichtungen einschalten";
+"ParkingTimerConfigurationPartial.saveCarPosition" = "Parkort speichern";
+"ParkingTimerConfigurationPartial.startTimer" = "Parkuhr starten";
+"ParkingTimerConfigurationPartial.addFiveMinutes" = "Fünf Minuten hinzufügen";
+"ParkingTimerConfigurationPartial.subtractFiveMinutes" = "Fünf Minuten abziehen";
+
+"ParkingTimerScreen.title" = "Parkuhr";

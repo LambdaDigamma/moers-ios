@@ -51,7 +51,7 @@ public struct ParkingTimerConfigurationPartial: View {
         
         VStack {
             
-            sectionHeader(text: "Überblick")
+            sectionHeader(text: PackageStrings.ParkingTimerConfigurationPartial.sectionOverview)
             
             HStack {
                 
@@ -123,13 +123,19 @@ public struct ParkingTimerConfigurationPartial: View {
             
             ZStack {
                 
+                if let coordinate = viewModel.carPosition {
+                    
+                    
+                    
+                }
+                
                 let coordinate = viewModel.carPosition ?? CLLocationCoordinate2D(latitude: 51.45163, longitude: 6.61804)
                 
                 MapSnapshotView(
                     location: coordinate,
                     span: 0.002
                 )
-                .opacity(viewModel.saveParkingLocation ? 1 : 0.5)
+                .opacity(viewModel.saveParkingLocation ? (viewModel.carPosition != nil ? 1 : 0.5) : 0.5)
                 
             }
             
@@ -143,18 +149,16 @@ public struct ParkingTimerConfigurationPartial: View {
     @ViewBuilder
     private func options() -> some View {
         
-        sectionHeader(text: "Optionen")
+        sectionHeader(text: PackageStrings.ParkingTimerConfigurationPartial.sectionOptions)
         
         VStack(spacing: 8) {
             
             Toggle(isOn: $viewModel.enableNotifications) {
-                Text("Benachrichtungen einschalten")
+                Text(PackageStrings.ParkingTimerConfigurationPartial.enableNotifications)
             }
             
-            //            Divider()
-            
             Toggle(isOn: $viewModel.saveParkingLocation) {
-                Text("Parkort speichern")
+                Text(PackageStrings.ParkingTimerConfigurationPartial.saveCarPosition)
             }
             
         }
@@ -180,9 +184,11 @@ public struct ParkingTimerConfigurationPartial: View {
             
             buildStepperButton()
             
-            Button("Starten", action: viewModel.startTimer)
-                .frame(maxHeight: 24)
-                .buttonStyle(PrimaryButtonStyle())
+            Button(action: viewModel.startTimer) {
+                Text(PackageStrings.ParkingTimerConfigurationPartial.startTimer)
+            }
+            .frame(maxHeight: 24)
+            .buttonStyle(PrimaryButtonStyle())
             
         }
         
@@ -207,6 +213,9 @@ public struct ParkingTimerConfigurationPartial: View {
             .buttonStyle(SecondaryButtonStyle())
             .disabled(viewModel.decrementDisabled)
             .frame(maxWidth: maxWidth)
+            .accessibilityLabel(Text(
+                PackageStrings.ParkingTimerConfigurationPartial.subtractFiveMinutes)
+            )
             
             Button(action: {
                 let successful = viewModel.incrementTime()
@@ -219,6 +228,9 @@ public struct ParkingTimerConfigurationPartial: View {
             .buttonStyle(SecondaryButtonStyle())
             .disabled(viewModel.incrementDisabled)
             .frame(maxWidth: maxWidth)
+            .accessibilityLabel(Text(
+                PackageStrings.ParkingTimerConfigurationPartial.addFiveMinutes)
+            )
             
         }
         

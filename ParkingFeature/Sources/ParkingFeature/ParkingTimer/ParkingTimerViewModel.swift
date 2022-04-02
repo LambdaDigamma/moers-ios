@@ -9,10 +9,11 @@ import SwiftUI
 import Core
 import CoreLocation
 import Resolver
+import Combine
 
 public class ParkingTimerViewModel: StandardViewModel {
     
-    @LazyInjected var locationSerivce: LocationService
+    @LazyInjected var locationService: LocationService
     
     @Published var endDate: Date = Date()
     @Published var timerStarted: Bool = false
@@ -95,17 +96,31 @@ public class ParkingTimerViewModel: StandardViewModel {
             }
             .store(in: &cancellables)
         
+        self.locationService.location.sink { (_: Subscribers.Completion<Error>) in
+            
+        } receiveValue: { (location: CLLocation) in
+            if !self.timerStarted {
+                self.carPosition = location.coordinate
+            }
+        }
+        .store(in: &cancellables)
+
+        
     }
     
     public func loadCurrentLocation() {
         
-        self.carPosition = locationSerivce.location.value.coordinate
+        self.locationService.requestCurrentLocation()
+        self.carPosition = locationService.location.value.coordinate
         
     }
     
     public func startTimer() {
+        
+        self.endDate = Date(timeIntervalSinceNow: time)
+        self.carPosition = saveParkingLocation ? carPosition : nil
+        
         withAnimation {
-            self.endDate = Date(timeIntervalSinceNow: time)
             self.timerStarted = true
             self.persistTimer()
         }

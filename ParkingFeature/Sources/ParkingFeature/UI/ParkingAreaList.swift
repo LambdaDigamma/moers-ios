@@ -72,7 +72,7 @@ public struct ParkingAreaList: View {
                     .toolbar(content: {
                         ToolbarItem(placement: .cancellationAction) {
                             Button(action: { showParkingTimer = false }) {
-                                Text("Abbrechen")
+                                Text(PackageStrings.close)
                             }
                         }
                     })

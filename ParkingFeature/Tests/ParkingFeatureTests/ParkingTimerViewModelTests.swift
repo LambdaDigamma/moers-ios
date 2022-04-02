@@ -84,7 +84,7 @@ class ParkingTimerViewModelTests: XCTestCase {
         let parkingTimer = ParkingTimerViewModel.ParkingTimerData(
             endDate: date,
             shouldSendNotifications: true,
-            carPosition: nil
+            carPosition: Point(latitude: 51, longitude: 26)
         )
         
         let data = try ParkingTimerViewModel.encode(data: parkingTimer, prettyPrinted: true)
@@ -92,6 +92,13 @@ class ParkingTimerViewModelTests: XCTestCase {
         
         XCTAssertEqual(string, """
         {
+          "car_position" : {
+            "coordinates" : [
+              26,
+              51
+            ],
+            "type" : "Point"
+          },
           "end_date" : "2022-04-02T13:24:30.644Z",
           "should_send_notifications" : true
         }

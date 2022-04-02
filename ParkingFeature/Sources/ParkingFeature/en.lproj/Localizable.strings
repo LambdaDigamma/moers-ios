@@ -1,3 +1,9 @@
+"Close" = "Close";
+
+"States.open" = "Open";
+"States.closed" = "Closed";
+"States.unkown" = "Unknown";
+
 "ParkingAreaList.title" = "Free parking spaces";
 "ParkingAreaList.titleNearYou" = "Free parking spaces near you";
 "ParkingAreaList.filter" = "Filter";
@@ -15,3 +21,17 @@
 "ParkingAreaDetailScreen.free" = " free";
 "ParkingAreaDetailScreen.pricesTitle" = "Pricing";
 "ParkingAreaDetailScreen.noPrices" = "No pricing information";
+
+"ParkingTimerActivePartial.yourCar" = "Your car";
+"ParkingTimerActivePartial.backToCar" = "Return to your car";
+"ParkingTimerActivePartial.cancel" = "Cancel";
+
+"ParkingTimerConfigurationPartial.sectionOverview" = "Overview";
+"ParkingTimerConfigurationPartial.sectionOptions" = "Settings";
+"ParkingTimerConfigurationPartial.enableNotifications" = "Enable notifications";
+"ParkingTimerConfigurationPartial.saveCarPosition" = "Save parking location";
+"ParkingTimerConfigurationPartial.startTimer" = "Start parking meter";
+"ParkingTimerConfigurationPartial.addFiveMinutes" = "Add five minutes";
+"ParkingTimerConfigurationPartial.subtractFiveMinutes" = "Remove five minutes";
+
+"ParkingTimerScreen.title" = "Parking meter";

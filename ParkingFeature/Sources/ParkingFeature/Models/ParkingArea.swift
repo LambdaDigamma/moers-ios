@@ -96,11 +96,11 @@ public enum ParkingAreaOpeningState: String, Equatable, Codable, CaseIterable, C
     public var name: String {
         switch self {
             case .open:
-                return "Geöffnet"
+                return PackageStrings.States.open
             case .closed:
-                return "Geschlossen"
+                return PackageStrings.States.closed
             case .unknown:
-                return "Nicht aktiv"
+                return PackageStrings.States.unknown
         }
     }
     
