@@ -8,6 +8,23 @@
 import SwiftUI
 import MapKit
 
+extension View {
+    func readSize(onChange: @escaping (CGSize) -> Void) -> some View {
+        background(
+            GeometryReader { geometryProxy in
+                Color.clear
+                    .preference(key: SizePreferenceKey.self, value: geometryProxy.size)
+            }
+        )
+        .onPreferenceChange(SizePreferenceKey.self, perform: onChange)
+    }
+}
+
+private struct SizePreferenceKey: PreferenceKey {
+    static var defaultValue: CGSize = .zero
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
+}
+
 #if canImport(UIKit)
 
 public struct MapSnapshotView: View {
@@ -31,27 +48,32 @@ public struct MapSnapshotView: View {
     @State private var snapshotImage: UIImage?
     
     public var body: some View {
-        GeometryReader { geometry in
-            Group {
-                if let image = snapshotImage {
-                    Image(uiImage: image)
-                } else {
-                    VStack {
-                        Spacer()
-                        HStack {
-                            Spacer()
-                            ProgressView().progressViewStyle(CircularProgressViewStyle())
-                            Spacer()
-                        }
-                        Spacer()
-                    }
-                    .background(Color(UIColor.secondarySystemBackground))
-                }
+        
+        ZStack {
+            
+            Color(UIColor.secondarySystemBackground)
+            
+            if let image = snapshotImage {
+                Image(uiImage: image)
+                    .resizable()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                ProgressView()
+                    .progressViewStyle(.circular)
             }
-            .onAppear {
-                generateSnapshot(width: geometry.size.width, height: geometry.size.height)
-            }
+            
         }
+        .background(
+            ZStack {
+                // Placeholder
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .readSize(onChange: { size in
+                generateSnapshot(width: size.width, height: size.height)
+            })
+        )
+        .frame(maxWidth: .infinity)
+        
     }
     
     func generateSnapshot(width: CGFloat, height: CGFloat) {
@@ -64,13 +86,13 @@ public struct MapSnapshotView: View {
             )
         )
         
+        if width == 0 || height == 0 || (width == 20 && height == 20) {
+            return
+        }
+        
         let size = CGSize(width: width, height: height)
         let trait = UITraitCollection(userInterfaceStyle: colorScheme == .dark ? .dark : .light)
         let annotationViews: [MKMarkerAnnotationView] = annotations.map { self.generateMapMarker(annotation: $0) }
-        
-        if size == .zero {
-            return
-        }
         
         let mapOptions = MKMapSnapshotter.Options()
         mapOptions.region = region
@@ -113,7 +135,7 @@ public struct MapSnapshotView: View {
                     }
                     
                 }
-
+                
                 self.snapshotImage = finalImage
                 
             }
@@ -178,8 +200,12 @@ struct MapSnapshotView_Previews: PreviewProvider {
             longitude: -122.02962
         )
         MapSnapshotView(location: coordinates)
-            .frame(maxWidth: 200, maxHeight: 200)
+            .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fit)
             .previewLayout(.sizeThatFits)
+        MapSnapshotView(location: coordinates)
+            .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fit)
+            .previewLayout(.sizeThatFits)
+            .preferredColorScheme(.dark)
     }
 }
 

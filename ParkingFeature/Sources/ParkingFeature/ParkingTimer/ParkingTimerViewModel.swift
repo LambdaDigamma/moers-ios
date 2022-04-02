@@ -104,7 +104,6 @@ public class ParkingTimerViewModel: StandardViewModel {
             }
         }
         .store(in: &cancellables)
-
         
     }
     
@@ -246,5 +245,31 @@ public class ParkingTimerViewModel: StandardViewModel {
         formatter.timeZone = TimeZone(abbreviation: "UTC")
         return formatter
     }()
+    
+    // MARK: - Notifications -
+    
+    public func registerTestNotification() {
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        let identifier = "parking-timer-notification-10min"
+        let content = UNMutableNotificationContent()
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+        
+        content.title = "Deine Parkuhr läuft ab!"
+        content.body = "In 10min ist Deine Parkzeit zu Ende."
+        
+        if #available(iOS 15.0, *) {
+            content.interruptionLevel = .timeSensitive
+        }
+        
+        let request = UNNotificationRequest(
+            identifier: identifier,
+            content: content,
+            trigger: trigger
+        )
+        
+        notificationCenter.add(request)
+        
+    }
     
 }

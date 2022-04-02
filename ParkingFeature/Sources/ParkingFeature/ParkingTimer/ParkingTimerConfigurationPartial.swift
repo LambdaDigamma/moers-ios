@@ -123,19 +123,15 @@ public struct ParkingTimerConfigurationPartial: View {
             
             ZStack {
                 
-                if let coordinate = viewModel.carPosition {
+                if let coordinate = viewModel.carPosition {
                     
-                    
+                    MapSnapshotView(
+                        location: coordinate,
+                        span: 0.002
+                    )
+                    .opacity(viewModel.saveParkingLocation ? 1 : 0.5)
                     
                 }
-                
-                let coordinate = viewModel.carPosition ?? CLLocationCoordinate2D(latitude: 51.45163, longitude: 6.61804)
-                
-                MapSnapshotView(
-                    location: coordinate,
-                    span: 0.002
-                )
-                .opacity(viewModel.saveParkingLocation ? (viewModel.carPosition != nil ? 1 : 0.5) : 0.5)
                 
             }
             

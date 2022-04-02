@@ -80,34 +80,29 @@ public struct ParkingTimerActivePartial: View {
                 )
             }) {
                 VStack(alignment: .leading, spacing: 0) {
+
+                    MapSnapshotView(
+                        location: coordinate,
+                        span: 0.002,
+                        annotations: [
+                            .init(
+                                coordinate: coordinate,
+                                annotationType: .image(UIImage(systemName: "car.fill")!)
+                            )
+                        ]
+                    )
+                    .frame(maxWidth: .infinity)
+                    .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fit)
                     
                     HStack {
-                        
-                        MapSnapshotView(
-                            location: coordinate,
-                            span: 0.002,
-                            annotations: [
-                                .init(
-                                    coordinate: coordinate,
-                                    annotationType: .image(UIImage(systemName: "car.fill")!)
-                                )
-                            ]
-                        )
-                        .frame(maxWidth: .infinity)
-                        .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fit)
-                        
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    HStack {
-                        
+
                         Text("\(PackageStrings.ParkingTimerActivePartial.backToCar) \(Image(systemName: "chevron.right"))")
                             .fontWeight(.semibold)
                             .foregroundColor(.primary)
-                        
+
                     }
                     .padding()
-                    
+
                 }
             }
             .background(Color(UIColor.secondarySystemFill))
