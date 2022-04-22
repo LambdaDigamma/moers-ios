@@ -11,7 +11,6 @@ import WidgetKit
 
 struct RubbishMediumWidget: View {
     
-    // TODO: Vielleicht die vier Dinger wie Kalenderblätter? (mit Umrandung)
     var body: some View {
         ZStack {
             Color.systemBackground

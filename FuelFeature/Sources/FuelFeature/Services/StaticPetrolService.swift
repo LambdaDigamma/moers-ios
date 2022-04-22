@@ -29,6 +29,7 @@ public class StaticPetrolService: PetrolService {
         self.loadPetrolStations = loadPetrolStations
     }
     
+    // swiftlint:disable:next function_body_length
     public convenience init(
         petrolType: PetrolType = .diesel,
         lastLoadLocation: CLLocation? = nil

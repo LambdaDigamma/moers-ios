@@ -17,7 +17,7 @@ public class DefaultGeocodingService: GeocodingService {
     
     public init(geocoder: CLGeocoder = CLGeocoder()) {
         self.geocoder = geocoder
-        self.logger = Logger(.default)
+        self.logger = Logger(.coreApi)
     }
     
     public func placemark(from location: CLLocation) -> AnyPublisher<CLPlacemark, Error> {

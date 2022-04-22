@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import OSLog
+import Core
 
 /// Save and load configurations into or from the disk.
 /// Configurations are stored in a plist file in the user's documents
@@ -15,7 +16,7 @@ import OSLog
 public class DashboardConfigDiskLoader: DashboardConfigLoader {
     
     private let configFileName = "DashboardConfiguration.plist"
-    private let logger = Logger(.default)
+    private let logger = Logger(.coreAppConfig)
     
     public init() {
         

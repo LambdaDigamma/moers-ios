@@ -71,7 +71,6 @@ struct UIProperties {
 
             if location.distance.value != 0 {
                 
-                // TODO: Refactor this to use measurement
                 let dist = prettifyDistance(distance: location.distance.converted(to: .meters).value)
                 
                 return "\(dist) • \(location.street) \(location.houseNumber)"

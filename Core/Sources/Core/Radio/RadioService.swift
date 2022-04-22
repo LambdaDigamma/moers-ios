@@ -63,7 +63,7 @@ public class RadioService: RadioServiceProtocol {
     
     public let url: URL
     
-    private let logger: Logger = Logger(subsystem: "Core", category: "RadioService")
+    private let logger: Logger = Logger(.coreApi)
     private let notificationThreshold: TimeInterval = 5 * 60 // 5 min
     private let radioThreadIdentifier = "threadRadio"
     private let notificationCenter: UNUserNotificationCenter = .current()

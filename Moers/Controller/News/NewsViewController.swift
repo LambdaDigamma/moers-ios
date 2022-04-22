@@ -176,37 +176,31 @@ extension NewsViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if let newsItem = newsItems[indexPath.row] as? RSSFeedItem {
+        let newsItem = newsItems[indexPath.row]
             
-            // swiftlint:disable:next force_cast
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newsCell", for: indexPath) as! NewsCollectionViewCell
-            
-            cell.feedItem = newsItem
-            
-            return cell
-            
-        }
+        // swiftlint:disable:next force_cast
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newsCell", for: indexPath) as! NewsCollectionViewCell
         
-        return UICollectionViewCell()
+        cell.feedItem = newsItem
+        
+        return cell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if let newsItem = newsItems[indexPath.item] as? RSSFeedItem {
+        let newsItem = newsItems[indexPath.item]
             
-            guard let url = URL(string: newsItem.link ?? "") else { return }
-            
-            let svc = SFSafariViewController(url: url)
-            svc.preferredBarTintColor = UIColor.systemBackground // navigationController?.navigationBar.barTintColor
-            svc.preferredControlTintColor = UIColor.label // navigationController?.navigationBar.tintColor
-            svc.configuration.entersReaderIfAvailable = true
-            svc.delegate = self
-            
-            self.present(svc, animated: true) {
-                self.navigationItem.largeTitleDisplayMode = .never
-            }
-            
+        guard let url = URL(string: newsItem.link ?? "") else { return }
+        
+        let svc = SFSafariViewController(url: url)
+        svc.preferredBarTintColor = UIColor.systemBackground // navigationController?.navigationBar.barTintColor
+        svc.preferredControlTintColor = UIColor.label // navigationController?.navigationBar.tintColor
+        svc.configuration.entersReaderIfAvailable = true
+        svc.delegate = self
+        
+        self.present(svc, animated: true) {
+            self.navigationItem.largeTitleDisplayMode = .never
         }
         
     }

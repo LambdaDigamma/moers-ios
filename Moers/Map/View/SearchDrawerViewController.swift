@@ -21,6 +21,7 @@ enum DisplayMode {
     case filter(searchTerm: String?, selectedTags: [String], items: [Location])
 }
 
+// swiftlint:disable file_length
 class SearchDrawerViewController: UIViewController {
     
     public let searchDrawer: SearchDrawerView
@@ -155,7 +156,7 @@ class SearchDrawerViewController: UIViewController {
             
             let filterLocations = datasource.filter { !isEmpty && arrayContainsSubset(array: $0.tags, subset: selectedTags) }
             
-            return (locations + filterLocations).sorted(by: { $0.distance < $1.distance }) // TODO
+            return (locations + filterLocations).sorted(by: { $0.distance < $1.distance }) // todo
             
         } else {
             
@@ -346,6 +347,8 @@ extension SearchDrawerViewController: UITableViewDataSource, UITableViewDelegate
         
     }
     
+    // swiftlint:disable force_cast
+    // swiftlint:disable function_body_length
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         func setupSearchResultCell(_ cell: SearchResultTableViewCell, _ location: Location) -> SearchResultTableViewCell {
@@ -422,6 +425,8 @@ extension SearchDrawerViewController: UITableViewDataSource, UITableViewDelegate
         }
         
     }
+    // swiftlint:enable force_cast
+    // swiftlint:enable function_body_length
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         

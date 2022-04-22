@@ -43,7 +43,7 @@ public class DefaultLocationService: NSObject, LocationService, CLLocationManage
     
     public init(locationManager: CLLocationManager = CLLocationManager()) {
         
-        self.logger = Logger(subsystem: "com.lambdadigamma.moers.core", category: "DefaultLocationService")
+        self.logger = Logger(.coreApi)
         self.location = CurrentValueSubject(locationManager.location ?? CLLocation())
         self.locationManager = locationManager
         self.authorizationStatus = CurrentValueSubject(locationManager.authorizationStatus)

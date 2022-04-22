@@ -97,7 +97,7 @@ class AboutViewController: UIViewController {
         
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.font = UIFont.preferredFont(forTextStyle: .body, compatibleWith: .current) // UIFont.boldSystemFont(ofSize: 14)
-        textView.text = "Diese App ist ein Projekt der Gruppe Code for Niederrhein und wurde von Lennart Fischer entwickelt. Die Daten stammen aus dem OpenData-Portal der Stadt Moers (offenesdatenportal.de) und die 360° Panoramen werden von der Moerser Firma Telepano (telepano.de) zur Verfügung gestellt.\n\nSie vermissen Ihr Geschäft in dieser App, Daten sind nicht aktuell oder wollen Feedback geben?\n Kein Problem: Schreiben Sie einfach eine Email an moersapp@lambdadigamma.com!\n\nAlle Angaben zu Daten sind ohne Gewähr."
+        textView.text = String.localized("AboutText")
         textView.isEditable = false
         
         return textView

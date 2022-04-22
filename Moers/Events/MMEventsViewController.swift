@@ -16,7 +16,7 @@ class MMEventsViewController: EventsViewController {
 
     private var cancellables = Set<AnyCancellable>()
     public var coordinator: EventCoordinator?
-    private let logger = Logger(subsystem: subsystem, category: "MMEventsViewController")
+    private let logger = Logger(.coreUi)
     
     override func viewDidLoad() {
         super.viewDidLoad()

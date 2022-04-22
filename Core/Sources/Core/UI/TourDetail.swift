@@ -51,7 +51,8 @@ struct TourDetail: View {
                 
                 HStack(alignment: .top, spacing: 20) {
                     
-                    Text("Budapest has so many things to do that you will want to spend at least a few days exploring the city. Popular attractions range from impressive architecture and poignant reminders of 20th-century history to a vibrant cultural and entertainment scene. A highlight of a walk around Budapest's lovely pedestrian-friendly cobbled streets.")
+                    // swiftlint:disable:next line_length
+                    Text("Moers has so many things to do that you will want to spend at least a few days exploring the city. Popular attractions range from impressive architecture and poignant reminders of 20th-century history to a vibrant cultural and entertainment scene. A highlight of a walk around Moers's lovely pedestrian-friendly cobbled streets.")
                     
                     VStack(spacing: 20) {
                         

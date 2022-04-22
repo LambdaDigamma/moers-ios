@@ -18,7 +18,7 @@ import RubbishFeature
 import FuelFeature
 import Resolver
 
-// TODO: Move Privacy Consent to Front of Onboarding
+// todo: Move Privacy Consent to Front of Onboarding
 class OnboardingManager {
     
     @LazyInjected var rubbishService: RubbishService

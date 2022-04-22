@@ -13,7 +13,7 @@ import Core
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
-    private let logger = Logger(.default)
+    private let logger = Logger(.coreAppLifecycle)
     
     public var window: UIWindow?
     public var applicationCoordinator: ApplicationCoordinator!
@@ -50,7 +50,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
         
-        if let activity = UserActivity.current {
+        if let activity = scene.userActivity ?? UserActivity.current {
             logger.info("Providing \(activity.activityType) for restoration purposes.")
             return activity
         }

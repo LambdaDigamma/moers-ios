@@ -14,7 +14,7 @@ import OSLog
 
 public class DefaultPetrolService: PetrolService {
     
-    private let logger = Logger(subsystem: "com.lambdadigamma.moers.fuel-feature", category: "DefaultPetrolService")
+    private let logger = Logger(.coreApi)
     private let storageKey = "petrolStations"
     
     private let session: URLSession
@@ -187,13 +187,8 @@ public class DefaultPetrolService: PetrolService {
         type: PetrolType
     ) -> AnyPublisher<[PetrolStation], Error> {
         
-        if apiKey.isEmptyOrWhitespace {
-            
-            logger.error("The petrol api key is empty. Please provide a valid api key.")
-            
-            return Fail(error: APIError.noToken)
-                .eraseToAnyPublisher()
-            
+        if !guardApiKey() {
+            return Fail(error: APIError.noToken).eraseToAnyPublisher()
         }
         
         var request = HTTPRequest(
@@ -216,9 +211,8 @@ public class DefaultPetrolService: PetrolService {
             
             logger.info("Search radius should not be greater than 25.0")
             
-            return Just([])
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
+            return Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
+            
         }
         
         return Deferred {
@@ -310,6 +304,20 @@ public class DefaultPetrolService: PetrolService {
             }
         }
         .eraseToAnyPublisher()
+        
+    }
+    
+    internal func guardApiKey() -> Bool {
+        
+        if apiKey.isEmptyOrWhitespace {
+            
+            logger.error("The petrol api key is empty. Please provide a valid api key.")
+            
+            return false
+            
+        }
+        
+        return true
         
     }
     

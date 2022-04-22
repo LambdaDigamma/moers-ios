@@ -60,7 +60,7 @@
 				<true/>
 			</dict>
 			<key>buergerfunk-moers.de</key>
-			<string/>
+			<string></string>
 			<key>download.moers.de</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -69,7 +69,7 @@
 				<true/>
 			</dict>
 			<key>mein-moers.localhost</key>
-			<string/>
+			<string></string>
 			<key>www.buergerfunk-moers.de</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -93,6 +93,8 @@
 		<string>de.okfn.niederrhein.Moers.events</string>
 		<string>de.okfn.niederrhein.Moers.other</string>
 		<string>de.okfn.niederrhein.Moers.other.settings</string>
+		<string>de.okfn.niederrhein.Moers.transportation.overview</string>
+		<string>de.okfn.niederrhein.Moers.transportation.search</string>
 		<string>SelectDepartureMonitorStopIntent</string>
 	</array>
 	<key>ROOT_URL</key>

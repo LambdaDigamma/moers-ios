@@ -26,7 +26,7 @@ extension ServerEnvironment {
 
 class NetworkingConfiguration: BootstrappingProcedureStep {
     
-    private let logger = Logger(subsystem: subsystem, category: "NetworkingConfiguration")
+    private let logger = Logger(.coreAppConfig)
     
     public init() {
         

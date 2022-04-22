@@ -30,7 +30,7 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
     
     @LazyInjected var loader: HTTPLoader
     
-    private let logger: Logger = Logger(subsystem: Bundle.main.bundleID, category: "ServiceConfiguration")
+    private let logger: Logger = Logger(.coreAppConfig)
     
     public func execute(with application: UIApplication) {
         

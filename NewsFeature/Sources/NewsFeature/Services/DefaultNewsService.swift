@@ -9,13 +9,11 @@ import Foundation
 import FeedKit
 import Combine
 import OSLog
+import Core
 
 public class DefaultNewsService: NewsService {
     
-    private let logger: Logger = Logger(
-        subsystem: Bundle.main.bundleIdentifier ?? "",
-        category: "DefaultNewsService"
-    )
+    private let logger: Logger = Logger(.coreApi)
     
     public init() {
         

@@ -13,7 +13,7 @@ import MapKit
 import MMAPI
 import MMUI
 
-// TODO: Update Selection View Controller
+// todo: Update Selection View Controller
 class SelectionViewController: UIViewController {
 
     lazy var headerView: UIView = { ViewFactory.blankView() }()
@@ -22,6 +22,8 @@ class SelectionViewController: UIViewController {
     lazy var separatorView: UIView = { ViewFactory.blankView() }()
     lazy var closeButton: UIButton = { ViewFactory.button() }()
     lazy var tableView: UITableView = { ViewFactory.tableView() }()
+    
+    // swiftlint:disable:next force_cast
     lazy var drawer: MainViewController = { self.parent as! MainViewController }()
     
     public var annotation: MKAnnotation?
@@ -84,30 +86,32 @@ class SelectionViewController: UIViewController {
     
     private func setupConstraints() {
         
-        let constraints = [headerView.topAnchor.constraint(equalTo: self.view.topAnchor),
-                           headerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                           headerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                           headerView.heightAnchor.constraint(equalToConstant: 68),
-                           gripperView.topAnchor.constraint(equalTo: self.headerView.topAnchor, constant: 6),
-                           gripperView.widthAnchor.constraint(equalToConstant: 36),
-                           gripperView.heightAnchor.constraint(equalToConstant: 5),
-                           gripperView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-                           titleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           titleLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           titleLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
-                           separatorView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
-                           separatorView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
-                           separatorView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-                           separatorView.heightAnchor.constraint(equalToConstant: 0.5),
-                           closeButton.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 16),
-                           closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           closeButton.heightAnchor.constraint(equalToConstant: 25),
-                           closeButton.widthAnchor.constraint(equalToConstant: 25),
-                           tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
-                           tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                           tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                           tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: 0)]
-        
+        let constraints = [
+            headerView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            headerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 68),
+            gripperView.topAnchor.constraint(equalTo: self.headerView.topAnchor, constant: 6),
+            gripperView.widthAnchor.constraint(equalToConstant: 36),
+            gripperView.heightAnchor.constraint(equalToConstant: 5),
+            gripperView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            titleLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+            separatorView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            separatorView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
+            separatorView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
+            separatorView.heightAnchor.constraint(equalToConstant: 0.5),
+            closeButton.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 16),
+            closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            closeButton.heightAnchor.constraint(equalToConstant: 25),
+            closeButton.widthAnchor.constraint(equalToConstant: 25),
+            tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: 0)
+        ]
+
         NSLayoutConstraint.activate(constraints)
         
     }
@@ -150,6 +154,7 @@ extension SelectionViewController: UITableViewDataSource, UITableViewDelegate {
             withIdentifier: CellIdentifier.searchResultCell,
             for: indexPath
         ) as! SearchResultTableViewCell
+        // swiftlint:disable:previous force_cast
         
         let location = clusteredLocations[indexPath.row]
         

@@ -29,7 +29,7 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     private var decentColor = UIColor.clear
     private var cancellables = Set<AnyCancellable>()
     
-    private let logger = Logger(.ui)
+    private let logger = Logger(.coreUi)
     
     private lazy var picker = PickerView()
     

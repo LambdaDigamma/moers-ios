@@ -29,7 +29,7 @@ public class PetrolPriceDashboardViewModel: StandardViewModel {
     
     @Published private var defaultSearchRadius = 10.0
     
-    private let logger: Logger = Logger(subsystem: Bundle.main.bundlePath, category: "PetrolPriceDashboardViewModel")
+    private let logger: Logger = Logger(.coreUi)
     
     private let petrolService: PetrolService
     private let locationService: LocationService

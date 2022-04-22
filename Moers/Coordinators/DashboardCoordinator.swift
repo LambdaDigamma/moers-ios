@@ -21,8 +21,6 @@ class DashboardCoordinator: Coordinator {
     var navigationController: CoordinatedNavigationController
     var petrolManager: PetrolManagerProtocol
     
-    var dashboardViewController: DashboardViewController?
-    
     init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
         petrolManager: PetrolManagerProtocol
@@ -75,10 +73,10 @@ class DashboardCoordinator: Coordinator {
     
     public func pushFuelStationListViewController() {
         
-        let rubbishCollectionViewController = FuelStationListViewController()
+        let fuelStationListViewController = FuelStationListViewController()
         
         navigationController.popToRootViewController(animated: true)
-        navigationController.pushViewController(rubbishCollectionViewController, animated: true)
+        navigationController.pushViewController(fuelStationListViewController, animated: true)
         
     }
     

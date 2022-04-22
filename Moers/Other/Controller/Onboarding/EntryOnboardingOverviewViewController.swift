@@ -365,10 +365,11 @@ class EntryOnboardingOverviewViewController: UIViewController {
             self.updateEntry(entry)
         }
         
-        // TODO: Update Entry Model from Text Fields
-        // TODO: Diff between Adding and Editing
-        // TODO: Adjust Alerts
-        // TODO: Update the Model in other VCs
+        // later todo:
+        // - Update Entry Model from Text Fields
+        // - Diff between Adding and Editing
+        // - Adjust Alerts
+        // - Update the Model in other VCs
         
     }
     
@@ -600,7 +601,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
                     
                     tabBarController.map.mainViewController?.loadData()
                     
-                    // TODO: Update Entry in Map
+                    // todo: Update Entry in Map
                     
                 case .failure(let error):
                     
@@ -815,7 +816,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
         
         let locations = tabBarController.map.mainViewController?.locations ?? []
         
-        // TODO: Improve Tag Fetching
+        // todo: Improve Tag Fetching
         self.allLoadedTags = Array(Set(locations.map { $0.tags }.reduce([], +))).sorted()
         self.allLoadedTags.removeAll(where: { $0.isEmptyOrWhitespace })
         

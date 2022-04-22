@@ -186,9 +186,7 @@ final class DefaultRubbishServiceTests: XCTestCase {
         XCTAssertEqual(rubbishService.reminderHour, 10)
         XCTAssertEqual(rubbishService.reminderMinute, 15)
         XCTAssertTrue(rubbishService.remindersEnabled)
-
-        // TODO: Mock Schedules and Check for Success
-
+        
     }
 
     func testRegisterRubbishStreet() {

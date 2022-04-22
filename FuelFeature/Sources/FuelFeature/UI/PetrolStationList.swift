@@ -27,7 +27,19 @@ public struct PetrolStationList: View {
                 if let fuelStations = viewModel.fuelStations.value {
                     
                     ForEach(fuelStations) { (fuelStation: FuelFeature.PetrolStation) in
-                        stationCard(fuelStation: fuelStation)
+                        
+                        NavigationLink {
+                            
+                            FuelStationDetail(
+                                load: { viewModel.loadFuelStation(id: fuelStation.id) }
+                            )
+                            
+                        } label: {
+                            
+                            stationCard(fuelStation: fuelStation)
+                            
+                        }
+                        
                     }
                     
                 }
@@ -55,74 +67,64 @@ public struct PetrolStationList: View {
         fuelStation: FuelFeature.PetrolStation
     ) -> some View {
         
-        NavigationLink {
+        VStack {
             
-            FuelStationDetail(
-                load: { viewModel.loadFuelStation(id: fuelStation.id) }
-            )
-            
-        } label: {
-            
-            VStack {
+            HStack(alignment: .top) {
                 
-                HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 8) {
                     
-                    VStack(alignment: .leading, spacing: 8) {
+                    Text(fuelStation.title ?? fuelStation.brand)
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(1)
+                    
+                    VStack(alignment: .leading) {
                         
-                        Text(fuelStation.title ?? fuelStation.brand)
-                            .font(.headline)
-                            .fontWeight(.bold)
+                        Text("\(fuelStation.brand) • \(fuelStation.isOpen ? "geöffnet" : "geschlossen")")
+                            .foregroundColor(.secondary)
                             .multilineTextAlignment(.leading)
-                            .lineLimit(1)
                         
-                        VStack(alignment: .leading) {
-                            
-                            Text("\(fuelStation.brand) • \(fuelStation.isOpen ? "geöffnet" : "geschlossen")")
+                        if let subtitle = fuelStation.subtitle {
+                            Text(subtitle)
                                 .foregroundColor(.secondary)
                                 .multilineTextAlignment(.leading)
-                            
-                            if let subtitle = fuelStation.subtitle {
-                                Text(subtitle)
-                                    .foregroundColor(.secondary)
-                                    .multilineTextAlignment(.leading)
-                            }
-                            
                         }
-                        .font(.callout)
                         
                     }
+                    .font(.callout)
                     
-                    Spacer()
+                }
+                
+                Spacer()
+                
+                if let price = fuelStation.price {
                     
-                    if let price = fuelStation.price {
-                        
-                        Text(String(format: "%.2f€", price))
-                            .fontWeight(.bold)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 4)
-                            .background(Color.green)
-                            .foregroundColor(.black)
-                            .cornerRadius(4)
-                        
-                    }
+                    Text(String(format: "%.2f€", price))
+                        .fontWeight(.bold)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(Color.green)
+                        .foregroundColor(.black)
+                        .cornerRadius(4)
                     
                 }
                 
             }
-            .padding()
-            .foregroundColor(.primary)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color(UIColor.secondarySystemBackground))
-            .cornerRadius(16)
-            .contextMenu {
-                Button {
-                    startNavigation(to: fuelStation)
-                } label: {
-                    Label(PackageStrings.FuelStationList.contextNavigationAction,
-                          systemImage: "arrow.triangle.turn.up.right.circle")
-                }
-            }
             
+        }
+        .padding()
+        .foregroundColor(.primary)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color(UIColor.secondarySystemBackground))
+        .cornerRadius(16)
+        .contextMenu {
+            Button {
+                startNavigation(to: fuelStation)
+            } label: {
+                Label(PackageStrings.FuelStationList.contextNavigationAction,
+                      systemImage: "arrow.triangle.turn.up.right.circle")
+            }
         }
         
     }

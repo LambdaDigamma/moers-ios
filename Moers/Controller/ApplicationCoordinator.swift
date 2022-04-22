@@ -19,6 +19,7 @@ import Cache
 import Resolver
 import OSLog
 import Core
+import EFAUI
 
 public enum TabIndices: Int {
     
@@ -34,7 +35,7 @@ class ApplicationCoordinator: NSObject {
 
     @LazyInjected var loader: HTTPLoader
     
-    private let logger: Logger = Logger(.default)
+    private let logger: Logger = Logger(.coreAppLifecycle)
     
     let firstLaunch: FirstLaunch
     
@@ -176,6 +177,7 @@ class ApplicationCoordinator: NSObject {
         
     }
     
+    // swiftlint:disable:next cyclomatic_complexity
     internal func handleStateRestoration(userActivity: NSUserActivity) {
         
         switch userActivity.activityType {
@@ -195,6 +197,10 @@ class ApplicationCoordinator: NSObject {
                 openOther()
             case UserActivities.IDs.settings:
                 openSettings()
+            case TransportationUserActivity.IDs.transportationOverview:
+                openTransportationOverview()
+            case TransportationUserActivity.IDs.search:
+                handleTransportationSearch(with: userActivity)
             default:
                 logger.error("Application was not able to handle user activity.")
         }
@@ -325,6 +331,36 @@ class ApplicationCoordinator: NSObject {
         
         openOther(animated: animated)
         currentOther.showBuergerfunk()
+        
+    }
+    
+    private func openTransportationOverview(animated: Bool = false) {
+        
+        openOther(animated: animated)
+        currentOther.showTransportationOverview()
+        
+    }
+    
+    private func openTransportationSearch(data: TripSearchActivityData? = nil, animated: Bool = false) {
+        
+        openOther(animated: animated)
+        currentOther.showTransporationSearch(data: data)
+        
+    }
+    
+    private func handleTransportationSearch(with userActivity: NSUserActivity) {
+        
+        do {
+            
+            let data = try userActivity.typedPayload(TripSearchActivityData.self)
+            
+            openTransportationSearch(data: data, animated: false)
+            
+        } catch let error as DecodingError {
+            logger.error("Failed decoding typed payload handling transpoartion search: \(error.errorDescription ?? "", privacy: .public)")
+        } catch {
+            logger.error("Failed decoding typed payload handling transpoartion search: \(error.localizedDescription, privacy: .public)")
+        }
         
     }
     

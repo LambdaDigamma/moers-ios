@@ -14,7 +14,7 @@ import OSLog
 
 class RadioViewController: UIViewController {
     
-    private let logger: Logger = Logger(.default)
+    private let logger: Logger = Logger(.coreUi)
     private var player: AVPlayer!
     
     override func viewDidLoad() {

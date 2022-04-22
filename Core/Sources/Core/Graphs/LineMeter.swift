@@ -62,7 +62,7 @@ struct LineMeter: View {
             .mask {
                 HStack(spacing: 6) {
                     
-                    ForEach(0..<numberOfLines) { num in
+                    ForEach(0..<numberOfLines, id: \.self) { num in
                         
                         RoundedRectangle(cornerRadius: 4)
                             .fill(
@@ -81,7 +81,7 @@ struct LineMeter: View {
             
             HStack(spacing: 8) {
                 
-                ForEach(0..<numberOfLines) { num in
+                ForEach(0..<numberOfLines, id: \.self) { num in
                     
                     RoundedRectangle(cornerRadius: 4)
                         .fill(num < numberOfFilled ? .blue : .secondary.opacity(0.2))

@@ -43,6 +43,10 @@ public enum UserActivities {
         public static let settings = {
             return bundle + ".other.settings"
         }()
+        public static let transportationOverview = {
+            return bundle + ".transportation.overview"
+        }()
+        
     }
     
     @discardableResult

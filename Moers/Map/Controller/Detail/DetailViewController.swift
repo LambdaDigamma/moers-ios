@@ -191,7 +191,7 @@ class DetailViewController: UIViewController {
         
         self.calculateETA()
         
-        // TODO: Generify Detail Morphing
+        // todo: Generify Detail Morphing
         
         if location is Entry {
             

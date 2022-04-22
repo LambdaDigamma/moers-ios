@@ -24,8 +24,8 @@ struct MediumNewsListWidget: View {
             
             VStack(alignment: .leading, spacing: 12) {
                 
-                ForEach(0..<self.news.count) { i in
-                    FluidNewsListItem(viewModel: news[i])
+                ForEach(self.news) { newsItem in
+                    FluidNewsListItem(viewModel: newsItem)
                 }
                 
             }

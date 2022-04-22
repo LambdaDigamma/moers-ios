@@ -10,6 +10,8 @@ import UIKit
 import MMUI
 import MMAPI
 import AppScaffold
+import EFAUI
+import EFAAPI
 
 class OtherCoordinator: Coordinator {
     
@@ -18,6 +20,7 @@ class OtherCoordinator: Coordinator {
     var otherViewController: OtherViewController?
     
     public let entryManager: EntryManagerProtocol
+    public let transitService: DefaultTransitService
     
     public init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
@@ -26,6 +29,7 @@ class OtherCoordinator: Coordinator {
         
         self.navigationController = navigationController
         self.entryManager = entryManager
+        self.transitService = DefaultTransitService(loader: DefaultTransitService.defaultLoader())
         
         let otherViewController = OtherViewController(
             entryManager: entryManager
@@ -71,6 +75,35 @@ class OtherCoordinator: Coordinator {
         let settingsViewController = SettingsViewController()
         
         navigationController.pushViewController(settingsViewController, animated: true)
+        
+    }
+    
+    public func showTransportationOverview(animated: Bool = false) {
+        
+        self.navigationController.popToRootViewController(animated: animated)
+        
+        let viewController = TripConfigurationViewController()
+        
+        self.navigationController.pushViewController(viewController, animated: animated)
+        
+    }
+    
+    public func showTransporationSearch(data: TripSearchActivityData? = nil) {
+        
+        self.showTransportationOverview()
+        
+        let viewModel = TripSearchViewModel(transitService: transitService)
+        
+        if let data = data {
+            viewModel.originID = data.originID
+            viewModel.destinationID = data.destinationID
+        }
+        
+        viewModel.search()
+        
+        let viewController = TripSearchViewController(viewModel: viewModel)
+        
+        self.navigationController.pushViewController(viewController, animated: true)
         
     }
     

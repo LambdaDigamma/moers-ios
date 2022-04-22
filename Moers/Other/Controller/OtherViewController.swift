@@ -16,6 +16,8 @@ import Resolver
 import SwiftUI
 import AppFeedback
 import RubbishFeature
+import EFAAPI
+import EFAUI
 
 class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
@@ -68,6 +70,18 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                         )
                     ]
                 ) : nil,
+            
+            TableViewSection(
+                title: "ÖPNV",
+                rows: [
+                    NavigationRow(
+                        title: "Fahrt planen",
+                        action: { [weak self] in
+                            self?.coordinator?.showTransportationOverview(animated: false)
+                        }
+                    )
+                ]
+            ),
             
             TableViewSection(
                 title: String.localized("OtherSectionDataTitle"),

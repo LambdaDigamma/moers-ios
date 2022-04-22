@@ -8,6 +8,7 @@
 
 import Foundation
 import OSLog
+import Core
 
 @objc public extension UserDefaults {
     
@@ -27,7 +28,7 @@ public final class UserDefaultsMigrator: NSObject {
     
     private let from: UserDefaults
     private let to: UserDefaults
-    private let logger: Logger = Logger(.default)
+    private let logger: Logger = Logger(.coreBackground)
     
     private var hasMigrated = false
     

@@ -8,7 +8,7 @@
 
 "Menu.dashboard" = "Heute";
 "Menu.news" = "Neuigkeiten";
-"Menu.map" = "Karten";
+"Menu.map" = "Karte";
 "Menu.events" = "Veranstaltungen";
 "Menu.other" = "Sonstiges";
 
@@ -290,3 +290,10 @@
 "Upcoming" = "In den nächsten Tagen";
 "ActiveEventsHeadline" = "Heute";
 
+"AboutText" = "
+Diese App ist ein Projekt der Gruppe Code for Niederrhein und wurde von Lennart Fischer entwickelt. 
+Die Daten stammen aus dem OpenData-Portal der Stadt Moers (offenesdatenportal.de) und die 360° Panoramen werden von der Moerser Firma Telepano (telepano.de) zur Verfügung gestellt.
+
+Sie vermissen Ihr Geschäft in dieser App, Daten sind nicht aktuell oder wollen Feedback geben?
+Kein Problem: Schreiben Sie einfach eine Email an moersapp@lambdadigamma.com!\n\nAlle Angaben zu Daten sind ohne Gewähr.
+";

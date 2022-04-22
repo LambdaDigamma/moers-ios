@@ -215,7 +215,7 @@ class ContentViewController: UIViewController {
             
             let filterLocations = datasource.filter { !isEmpty && arrayContainsSubset(array: $0.tags, subset: selectedTags) }
             
-            return (locations + filterLocations).sorted(by: { $0.distance < $1.distance }) // TODO
+            return (locations + filterLocations).sorted(by: { $0.distance < $1.distance }) // todo
             
         } else {
             

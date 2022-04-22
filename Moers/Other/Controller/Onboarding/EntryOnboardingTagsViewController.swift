@@ -166,7 +166,7 @@ class EntryOnboardingTagsViewController: UIViewController {
         
         let locations = tabBarController.map.mainViewController?.locations ?? []
         
-        // TODO: Improve Tag Fetching
+        // todo: Improve Tag Fetching
         self.tags = Array(Set(locations.map { $0.tags }.reduce([], +))).sorted()
         self.tags.removeAll(where: { $0.isEmptyOrWhitespace })
         

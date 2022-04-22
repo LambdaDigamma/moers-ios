@@ -56,26 +56,6 @@ final class StorageManagerTests: XCTestCase {
 
     }
 
-    // TODO: Add Reset Test
-
-//    func testReset() throws {
-//
-//        let expectation = self.expectation(description: #function)
-//        let events = [Event].stub(withCount: 10)
-//        let data = try JSONEncoder().encode(events)
-//        let storageKey = #function
-//
-//        storageManager.write(data: data, forKey: storageKey)
-//        storageManager.reset(forKey: storageKey)
-//        storageManager.read(forKey: storageKey, with: JSONDecoder())
-//            .observeNext { events in
-//                XCTAssertEqual(events.count, 0)
-//            }.dispose(in: bag)
-//
-//        wait(for: [expectation], timeout: 10)
-//
-//    }
-
     func testWriteAndRead() throws {
 
         let expectation = self.expectation(description: #function)

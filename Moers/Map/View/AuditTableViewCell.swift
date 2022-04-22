@@ -139,6 +139,7 @@ class AuditTableViewCell: UITableViewCell {
         
     }
     
+    // swiftlint:disable:next cyclomatic_complexity
     private func setupChangesStackView() {
         
         changesStackView.arrangedSubviews.forEach { changesStackView.removeArrangedSubview($0) }
