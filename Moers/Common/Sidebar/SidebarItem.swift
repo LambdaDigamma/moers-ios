@@ -8,6 +8,7 @@
 
 import UIKit
 import AppScaffold
+import Core
 
 public extension SidebarItem {
     

@@ -6,6 +6,7 @@
 //  Copyright © 2022 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import MMAPI
 import MMUI
@@ -36,7 +37,7 @@ public class NewsCoordinator: NSObject, Coordinator, SFSafariViewControllerDeleg
         }
         
         newsViewController.navigationItem.largeTitleDisplayMode = .always
-        newsViewController.title = String.localized("NewsTitle")
+        newsViewController.title = AppStrings.Menu.news
         newsViewController.tabBarItem = generateTabBarItem()
 //        newsViewController.coordinator = self
         

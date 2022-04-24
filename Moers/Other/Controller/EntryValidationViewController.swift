@@ -10,6 +10,7 @@ import UIKit
 import Gestalt
 import MMAPI
 import MMUI
+import MapFeature
 
 class EntryValidationViewController: UIViewController {
 
@@ -57,10 +58,12 @@ class EntryValidationViewController: UIViewController {
     
     private func setupConstraints() {
         
-        let constraints = [tableView.topAnchor.constraint(equalTo: self.safeTopAnchor),
-                           tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                           tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                           tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)]
+        let constraints = [
+            tableView.topAnchor.constraint(equalTo: self.safeTopAnchor),
+            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         

@@ -20,6 +20,7 @@ import Resolver
 import OSLog
 import Core
 import EFAUI
+import MapFeature
 
 public enum TabIndices: Int {
     
@@ -43,7 +44,6 @@ class ApplicationCoordinator: NSObject {
     let petrolManager: PetrolManagerProtocol
     let cameraManager: CameraManagerProtocol
     let entryManager: EntryManagerProtocol
-    let parkingLotManager: ParkingLotManagerProtocol
     let eventService: EventServiceProtocol
     
     private var splitViewController: AppSplitViewController!
@@ -57,8 +57,7 @@ class ApplicationCoordinator: NSObject {
         locationManager: LocationManagerProtocol = LocationManager(),
         petrolManager: PetrolManagerProtocol = PetrolManager(storageManager: StorageManager()),
         cameraManager: CameraManagerProtocol = CameraManager(storageManager: StorageManager()),
-        entryManager: EntryManagerProtocol,
-        parkingLotManager: ParkingLotManagerProtocol = ParkingLotManager()
+        entryManager: EntryManagerProtocol
     ) {
         
         let loader: HTTPLoader = Resolver.resolve()
@@ -69,7 +68,6 @@ class ApplicationCoordinator: NSObject {
         self.petrolManager = petrolManager
         self.cameraManager = cameraManager
         self.entryManager = entryManager
-        self.parkingLotManager = parkingLotManager
         
         // swiftlint:disable:next force_try
         let cache = try! Storage<String, [MMEvents.Event]>(
@@ -110,7 +108,6 @@ class ApplicationCoordinator: NSObject {
             petrolManager: petrolManager,
             cameraManager: cameraManager,
             entryManager: entryManager,
-            parkingLotManager: parkingLotManager,
             eventService: eventService
         )
         

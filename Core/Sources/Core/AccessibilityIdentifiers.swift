@@ -14,4 +14,14 @@ public enum AccessibilityIdentifiers {
         public static let dashboardList = "Dashboard.dashboardList"
     }
     
+    public static let tabBar = "AppStrings.tabBar"
+    
+    public enum Menu {
+        public static let dashboard = "AppStrings.Menu.dashboard"
+        public static let news = "AppStrings.Menu.news"
+        public static let map = "AppStrings.Menu.map"
+        public static let events = "AppStrings.Menu.events"
+        public static let other = "AppStrings.Menu.other"
+    }
+    
 }

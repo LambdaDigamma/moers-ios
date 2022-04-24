@@ -35,26 +35,6 @@ extension ViewFactory {
 
     }
     
-    static func cardView() -> CardView {
-        
-        let cardView = CardView()
-        
-        cardView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return cardView
-        
-    }
-    
-    static func onboardingProgressView() -> OnboardingProgressView {
-        
-        let progressView = OnboardingProgressView()
-        
-        progressView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return progressView
-        
-    }
-    
     static func tagListView() -> TagListView {
         
         let tagListView = TagListView()
@@ -71,26 +51,6 @@ extension ViewFactory {
         tagListView.backgroundColor = UIColor.clear
         
         return tagListView
-        
-    }
-    
-    static func checkmarkView() -> CheckmarkView {
-        
-        let checkmarkView = CheckmarkView()
-        
-        checkmarkView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return checkmarkView
-        
-    }
-    
-    static func textFieldFormView() -> TextFieldFormView {
-        
-        let formRow = TextFieldFormView()
-        
-        formRow.translatesAutoresizingMaskIntoConstraints = false
-        
-        return formRow
         
     }
     

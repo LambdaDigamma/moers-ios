@@ -12,6 +12,7 @@ import StoreKit
 import MMAPI
 import MMUI
 import FuelFeature
+import MapFeature
 
 struct AnalyticsManager {
     

@@ -6,6 +6,7 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import AppScaffold
 import UIKit
 import BLTNBoard
@@ -17,6 +18,7 @@ import CoreLocation
 import Combine
 import Resolver
 import RubbishFeature
+import MapFeature
 
 public class AppTabBarController: AppScaffold.TabBarController {
 
@@ -33,7 +35,6 @@ public class AppTabBarController: AppScaffold.TabBarController {
     let locationManager: LocationManagerProtocol
     let cameraManager: CameraManagerProtocol
     let entryManager: EntryManagerProtocol
-    let parkingLotManager: ParkingLotManagerProtocol
     var petrolManager: PetrolManagerProtocol
     let eventService: EventServiceProtocol
     
@@ -43,7 +44,6 @@ public class AppTabBarController: AppScaffold.TabBarController {
         petrolManager: PetrolManagerProtocol,
         cameraManager: CameraManagerProtocol,
         entryManager: EntryManagerProtocol,
-        parkingLotManager: ParkingLotManagerProtocol,
         eventService: EventServiceProtocol
     ) {
         
@@ -52,7 +52,6 @@ public class AppTabBarController: AppScaffold.TabBarController {
         self.petrolManager = petrolManager
         self.cameraManager = cameraManager
         self.entryManager = entryManager
-        self.parkingLotManager = parkingLotManager
         self.eventService = eventService
         
         self.dashboard = DashboardCoordinator(
@@ -65,8 +64,7 @@ public class AppTabBarController: AppScaffold.TabBarController {
             locationManager: locationManager,
             petrolManager: petrolManager,
             cameraManager: cameraManager,
-            entryManager: entryManager,
-            parkingLotManager: parkingLotManager
+            entryManager: entryManager
         )
 
         self.events = EventCoordinator(
@@ -197,7 +195,11 @@ extension AppTabBarController: Themeable {
             appearance.titleTextAttributes = [.foregroundColor : theme.accentColor]
             appearance.largeTitleTextAttributes = [.foregroundColor : theme.accentColor]
             
-            guard let controller = self.viewControllers?[safeIndex: 2] as? UINavigationController else { return }
+//            guard let controller = self.viewControllers?[safeIndex: 2] as? UINavigationController else { return }
+            
+            guard let controller = self.viewControllers?[2] as? UINavigationController else {
+                return
+            }
             
             controller.navigationBar.scrollEdgeAppearance = appearance
             

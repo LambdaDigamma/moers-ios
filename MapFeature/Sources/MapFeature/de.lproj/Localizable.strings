@@ -1,0 +1,149 @@
+/* Entry Onboarding */
+"EntryOnboardingOverviewSummaryTitle" = "Zusammenfassung";
+"EntryOnboardingOverviewEditTitle" = "Bearbeiten";
+"EntryOnboardingOverviewStoreNotice" = "Überprüfe Deine Eingaben. Du kannst ohne Datenverlust zurück kehren, um die Eingaben zu korrigieren.";
+"EntryOnboardingOverviewUpdateNotice" = "Du kannst nur Name, Schlagworte, Kontakt-Daten und Öffnungszeiten bearbeiten.";
+"EntryOnboardingOverviewGeneralHeader" = "Allgemeines";
+"EntryOnboardingOverviewName" = "Name";
+"EntryOnboardingOverviewTagsHeader" = "Schlagworte";
+"EntryOnboardingOverviewAddressHeader" = "Adresse";
+"EntryOnboardingOverviewStreet" = "Straße";
+"EntryOnboardingOverviewHouseNr" = "Nr";
+"EntryOnboardingOverviewPostcode" = "PLZ";
+"EntryOnboardingOverviewPlace" = "Ort";
+"EntryOnboardingOverviewContact" = "Kontakt";
+"EntryOnboardingOverviewWebsite" = "Webseite (https:// vorangestellt)";
+"EntryOnboardingOverviewPhone" = "Telefon";
+"EntryOnboardingOverviewOpeningHoursHeader" = "Öffnungszeiten";
+"EntryOnboardingOverviewOpeningHoursMonday" = "Montag";
+"EntryOnboardingOverviewOpeningHoursTuesday" = "Dienstag";
+"EntryOnboardingOverviewOpeningHoursWednesday" = "Mittwoch";
+"EntryOnboardingOverviewOpeningHoursThursday" = "Donnerstag";
+"EntryOnboardingOverviewOpeningHoursFriday" = "Freitag";
+"EntryOnboardingOverviewOpeningHoursSaturday" = "Samstag";
+"EntryOnboardingOverviewOpeningHoursSunday" = "Sonntag";
+"EntryOnboardingOverviewOpeningHoursOther" = "Sonstiges";
+"EntryOnboardingOverviewActionStore" = "Hinzufügen";
+"EntryOnboardingOverviewActionUpdate" = "Aktualisieren";
+"EntryOnboardingOverviewSearchBarAddTag" = "Schlagwort hinzufügen";
+"EntryOnboardingOverviewAddTag" = "Hinzufügen";
+
+"EntryOnboardingOverviewAlertConfirmTitle" = "Bist Du sicher?";
+"EntryOnboardingOverviewAlertConfirmStoreMessage" = "Willst Du diesen Eintrag wirklich hinzufügen? Achte darauf, dass Du auch wirklich die richtigen Informationen eingetragen hast. Nur so können andere davon profitieren!";
+"EntryOnboardingOverviewAlertConfirmUpdateMessage" = "Willst Du diesen Eintrag wirklich aktualisieren? Achte darauf, dass Du auch wirklich die richtigen Informationen eingetragen hast. Nur so können andere davon profitieren!";
+"EntryOnboardingOverviewAlertConfirmCancel" = "Abbrechen";
+"EntryOnboardingOverviewAlertConfirmYes" = "Ja";
+
+"EntryOnboardingOverviewAlertSuccessTitleAdded" = "Eintrag hinzugefügt!";
+"EntryOnboardingOverviewAlertSuccessTitleUpdated" = "Eintrag geändert!";
+"EntryOnboardingOverviewAlertSuccessMessage" = "Vielen Dank für Deinen Beitrag!\nDein Eintrag ist jetzt auf der Karte zu finden!";
+"EntryOnboardingOverviewAlertSuccessOkay" = "Okay";
+
+"EntryOnboardingOverviewAlertUnknownErrorTitle" = "Ein Fehler ist aufgetreten.";
+"EntryOnboardingOverviewAlertUnknownErrorMessage" = "Ein unbekannter Fehler ist aufgetreten.";
+"EntryOnboardingOverviewAlertUnknownErrorOkay" = "Okay";
+
+"EntryOnboardingOverviewAlertNotAllowedTitle" = "Nicht erlaubt!";
+"EntryOnboardingOverviewAlertNotAllowedMessage" = "Das Hinzufügen und ändern von Einträgen wurde aufgrund von Missbrauch zwischenzeitlich bis auf weiteres verboten.";
+"EntryOnboardingOverviewAlertNotAllowedErrorOkay" = "Okay";
+
+"EntryOnboardingOverviewAlertFormErrorTitle" = "Eingaben inkorrekt";
+"EntryOnboardingOverviewAlertFormErrorMessage" = "Leider entsprechen nicht alle Eingaben dem gewünschten Format. Überprüfe sie.";
+"EntryOnboardingOverviewAlertFormErrorOkay" = "Okay";
+
+"EntryOnboardingOverviewAddTagCell" = "Schlagwort \"%1$@\" hinzufügen";
+
+/* EntryOnboardingAddressViewController */
+"EntryOnboardingAddressViewControllerTitle" = "Eintrag hinzufügen";
+"EntryOnboardingAddressViewControllerCurrentStep" = "2. Adresse eingeben";
+"EntryOnboardingAddressViewControllerAddress" = "Adresse";
+"EntryOnboardingAddressViewControllerStreet" = "Straße";
+"EntryOnboardingAddressViewControllerNumber" = "Nr";
+"EntryOnboardingAddressViewControllerPostcode" = "PLZ";
+"EntryOnboardingAddressViewControllerPlace" = "Ort";
+"EntryOnboardingAddressViewControllerInfo" = "Trage alle benötigten Informationen ein und fahre fort.";
+"EntryOnboardingAddressViewControllerNext" = "Weiter";
+
+/* EntryOnboardingGeneralViewController */
+"EntryOnboardingGeneralViewControllerTitle" = "Eintrag hinzufügen";
+"EntryOnboardingGeneralViewControllerCurrentStep" = "3. Allgemeines & Kontakt";
+"EntryOnboardingGeneralViewControllerGeneral" = "Allgemeines";
+"EntryOnboardingGeneralViewControllerContact" = "Kontakt (optional)";
+"EntryOnboardingGeneralViewControllerName" = "Name";
+"EntryOnboardingGeneralViewControllerWebsite" = "Webseite";
+"EntryOnboardingGeneralViewControllerPhone" = "Telefon";
+"EntryOnboardingGeneralViewControllerNext" = "Weiter";
+
+/* EntryOnboardingLocationMenuViewController */
+"EntryOnboardingLocationMenuViewControllerTitle" = "Eintrag hinzufügen";
+"EntryOnboardingLocationMenuViewControllerCurrentStep" = "1. Eintrags-Verfahren wählen";
+"EntryOnboardingLocationMenuViewControllerInfo" = "Es gibt zwei Möglichkeiten, einen neuen Eintrag hinzu zu fügen: \nWenn Du gerade neben dem Ort stehst, kannst ihn am aktuellen Standort hinzufügen. \nAndernfalls kannst Du einen Ort an einer Adresse hinzufügen.";
+"EntryOnboardingLocationMenuViewControllerAddressAction" = "Eintrag mit Adresse hinzufügen";
+"EntryOnboardingLocationMenuViewControllerLocationAction" = "Eintrag am aktuellen Standort hinzufügen";
+
+/* EntryOnboardingOpeningHoursViewController */
+"EntryOnboardingOpeningHoursViewControllerTitle" = "Eintrag hinzufügen";
+"EntryOnboardingOpeningHoursViewControllerCurrentStep" = "5. Öffnungszeiten eingeben";
+"EntryOnboardingOpeningHoursViewControllerOpeningHours" = "ÖFFNUNGSZEITEN (optional)";
+"EntryOnboardingOpeningHoursViewControllerMonday" = "Montag";
+"EntryOnboardingOpeningHoursViewControllerTuesday" = "Dienstag";
+"EntryOnboardingOpeningHoursViewControllerWednesday" = "Mittwoch";
+"EntryOnboardingOpeningHoursViewControllerThursday" = "Donnerstag";
+"EntryOnboardingOpeningHoursViewControllerFriday" = "Freitag";
+"EntryOnboardingOpeningHoursViewControllerSaturday" = "Samstag";
+"EntryOnboardingOpeningHoursViewControllerSunuday" = "Sonntag";
+"EntryOnboardingOpeningHoursViewControllerOther" = "Sonstiges";
+"EntryOnboardingOpeningHoursViewControllerNext" = "Weiter";
+"EntryOnboardingOpeningHoursViewControllerInfo" = "Bitte verwende folgende Systematik:\nEinfache Öffnungszeiten: \"10:30 - 20:00\"\nKomplexere Öffnungszeiten mit Pause: \"09:30 - 12:30, 14:00 - 19:00\"\nOder Freitext: \"Geschlossen\", \"Ruhetag\", etc.";
+
+/* EntryOnboardingTagsViewController */
+"EntryOnboardingTagsViewControllerTitle" = "Eintrag hinzufügen";
+"EntryOnboardingTagsViewControllerCurrentStep" = "4. Schlagwörter eingeben";
+"EntryOnboardingTagsViewControllerTags" = "Schlagwörter";
+"EntryOnboardingTagsViewControllerInfo" = "Für die Suche sind gute Schlagworte wichtig! \nGute Schlagworte sind zum Beispiel Branchen, Produkt-Kategorien, Speisen oder Eigenschaften.";
+"EntryOnboardingTagsViewControllerSearchBarPlaceholder" = "Schlagwort hinzufügen";
+"EntryOnboardingTagsViewControllerNext" = "Weiter";
+"EntryOnboardingTagsViewControllerAddTag" = "Hinzufügen";
+"EntryOnboardingTagsViewControllerAddTagCell" = "Schlagwort \"%1$@\" hinzufügen";
+
+/* Auditing Entry */
+"AuditingEntryName" = "Name";
+"AuditingEntryTags" = "Schlagworte";
+"AuditingEntryLatitude" = "Breitengrad";
+"AuditingEntryLongitude" = "Längengrad";
+"AuditingEntryStreet" = "Straße";
+"AuditingEntryHouseNumber" = "Hausnummer";
+"AuditingEntryPostcode" = "Postleitzahl";
+"AuditingEntryPlace" = "Ort";
+"AuditingEntryMonday" = "Montag (Öffnungszeiten)";
+"AuditingEntryTuesday" = "Dienstag (Öffnungszeiten)";
+"AuditingEntryWednesday" = "Mittwoch (Öffnungszeiten)";
+"AuditingEntryThursday" = "Donnerstag (Öffnungszeiten)";
+"AuditingEntryFriday" = "Freitag (Öffnungszeiten)";
+"AuditingEntrySaturday" = "Samstag (Öffnungszeiten)";
+"AuditingEntrySunday" = "Sonntag (Öffnungszeiten)";
+"AuditingEntryOther" = "Sonstiges (Öffnungszeiten)";
+"AuditingEntryWebsite" = "Webseite";
+"AuditingEntryPhone" = "Telefon";
+
+/* Tab: Map */
+"SearchMap" = "Auf Karte suchen";
+"SearchBarPrompt" = "Wohin willst du?";
+"Entries" = "Einträge";
+
+/* Map: Parking */
+"SlotsHeader" = "Plätze";
+"TotalHeader" = "Gesamt:";
+"FreeHeader" = "Frei:";
+"StatusHeader" = "Trend:";
+"AddressHeader" = "Adresse";
+"ParkingLotUnchanged" = "unverändert";
+"ParkingLotDescends" = "fallend";
+"ParkingLotAscends" = "aufsteigend";
+"ParkingLotUndocumented" = "nicht erfasst";
+
+/* Map: Entries */
+"CallAction" = "Anrufen";
+"WebsiteAction" = "Website";
+
+"Camera" = "360° Kamera";

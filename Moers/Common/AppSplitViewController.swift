@@ -7,18 +7,19 @@
 //
 
 import Foundation
+import OSLog
+import Resolver
+import CoreLocation
+import Gestalt
+import Combine
 import UIKit
 import AppScaffold
 import MMUI
 import MMAPI
 import MMEvents
-import OSLog
 import BLTNBoard
-import Resolver
 import RubbishFeature
-import Combine
-import CoreLocation
-import Gestalt
+import MapFeature
 
 public class AppSplitViewController: SplitViewController {
     
@@ -40,7 +41,6 @@ public class AppSplitViewController: SplitViewController {
         petrolManager: PetrolManagerProtocol,
         cameraManager: CameraManagerProtocol,
         entryManager: EntryManagerProtocol,
-        parkingLotManager: ParkingLotManagerProtocol,
         eventService: EventServiceProtocol
     ) {
         
@@ -57,8 +57,7 @@ public class AppSplitViewController: SplitViewController {
             locationManager: locationManager,
             petrolManager: petrolManager,
             cameraManager: cameraManager,
-            entryManager: entryManager,
-            parkingLotManager: parkingLotManager
+            entryManager: entryManager
         )
         
         self.events = EventCoordinator(
@@ -83,7 +82,6 @@ public class AppSplitViewController: SplitViewController {
             petrolManager: petrolManager,
             cameraManager: cameraManager,
             entryManager: entryManager,
-            parkingLotManager: parkingLotManager,
             eventService: eventService
         )
         

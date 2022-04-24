@@ -11,6 +11,18 @@ public enum AppStrings {
     
     public static let appName = String.localized("AppName")
     
+    public enum Menu {
+        public static let dashboard = String.localized("Menu.dashboard")
+        public static let news = String.localized("Menu.news")
+        public static let map = String.localized("Menu.map")
+        public static let events = String.localized("Menu.events")
+        public static let other = String.localized("Menu.other")
+    }
+    
+    public enum Common {
+        public static let okay = "Okay"
+    }
+    
     public enum Waste {
         public static let errorMessage = String.localized("Waste.errorMessage")
         public static let loadingFailed = String.localized("Waste.loadingFailed")

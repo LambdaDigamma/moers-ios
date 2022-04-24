@@ -18,6 +18,7 @@ import AppFeedback
 import RubbishFeature
 import EFAAPI
 import EFAUI
+import MapFeature
 
 class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
@@ -170,7 +171,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = String.localized("OtherTabItem")
+        self.title = AppStrings.Menu.other
         
         self.view.addSubview(tableView)
         
