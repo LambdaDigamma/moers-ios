@@ -22,7 +22,7 @@ public struct BikeChargingStationManager {
         
         do {
             
-            let content = try String(contentsOf: url, encoding: String.Encoding.ascii)
+            let _ = try String(contentsOf: url, encoding: String.Encoding.ascii)
             
 //            let csv = CSwiftV(with: content, separator: ";", headers: nil)
 //

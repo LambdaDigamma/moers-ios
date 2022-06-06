@@ -6,12 +6,12 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import Gestalt
 import Pulley
 import MapKit
 import TagListView
-import MMAPI
 import Fuse
 import MMUI
 import Combine
@@ -567,10 +567,10 @@ extension ContentViewController: EntryDatasource, CameraDatasource, PetrolDataso
         
     }
     
-    func didReceivePetrolStations(_ petrolStations: [PetrolStation]) {
+    func didReceivePetrolStations(_ petrolStations: [PetrolStationViewModel]) {
         
-        self.locations = self.locations.filter { !($0 is PetrolStation) }
-        self.locations.append(contentsOf: petrolStations as [PetrolStation])
+        self.locations = self.locations.filter { !($0 is PetrolStationViewModel) }
+        self.locations.append(contentsOf: petrolStations as [PetrolStationViewModel])
         
         self.updateDatasource()
         

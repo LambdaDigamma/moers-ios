@@ -6,8 +6,8 @@
 //  Copyright © 2020 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
-import MMAPI
 import MMUI
 import Gestalt
 

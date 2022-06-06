@@ -8,10 +8,10 @@
 
 #if canImport(UIKit)
 
+import Core
 import UIKit
 import Gestalt
 import TextFieldEffects
-import MMAPI
 import MMUI
 
 class EntryOnboardingGeneralViewController: UIViewController {

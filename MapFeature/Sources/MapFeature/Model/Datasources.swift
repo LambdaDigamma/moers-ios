@@ -6,9 +6,9 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import Foundation
-import MMAPI
-import ParkingFeature
+//import ParkingFeature
 
 //protocol ParkingLotDatasource {
 //
@@ -24,7 +24,7 @@ protocol CameraDatasource {
 
 protocol PetrolDatasource {
     
-    func didReceivePetrolStations(_ petrolStations: [PetrolStation])
+    func didReceivePetrolStations(_ petrolStations: [PetrolStationViewModel])
     
 }
 

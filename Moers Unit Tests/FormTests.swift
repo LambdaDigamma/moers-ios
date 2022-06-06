@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import MMAPI
+@testable import Core
 @testable import Moers
 
 class FormTests: XCTestCase {

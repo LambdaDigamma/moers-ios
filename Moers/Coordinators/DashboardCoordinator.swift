@@ -9,7 +9,6 @@
 import Core
 import UIKit
 import MMUI
-import MMAPI
 import AppScaffold
 import SwiftUI
 import DashboardFeature
@@ -19,16 +18,12 @@ import FuelFeature
 class DashboardCoordinator: Coordinator {
     
     var navigationController: CoordinatedNavigationController
-    var petrolManager: PetrolManagerProtocol
     
     init(
-        navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
-        petrolManager: PetrolManagerProtocol
+        navigationController: CoordinatedNavigationController = CoordinatedNavigationController()
     ) {
         
         self.navigationController = navigationController
-        self.petrolManager = petrolManager
-        
         self.navigationController.coordinator = self
         
         let dashboard = DashboardView()

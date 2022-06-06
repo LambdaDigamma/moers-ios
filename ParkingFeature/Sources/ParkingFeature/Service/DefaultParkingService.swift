@@ -70,7 +70,7 @@ public class DefaultParkingService: ParkingService {
         
         let request = HTTPRequest(
             method: .get,
-            path: "parking-areas/dashboard"
+            path: "parking/dashboard"
         )
         
         return Deferred {

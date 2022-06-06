@@ -6,46 +6,39 @@
 //  Copyright © 2020 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
-import MMAPI
 import MMUI
 import AppScaffold
-import Core
+import Resolver
 
 public class MapCoordintor: Coordinator {
+    
+    @LazyInjected var entryManager: EntryManagerProtocol
+    @LazyInjected var cameraManager: CameraManagerProtocol
     
     public var navigationController: CoordinatedNavigationController
     
     public var locationManager: LocationManagerProtocol
-    public var petrolManager: PetrolManagerProtocol
-    public var cameraManager: CameraManagerProtocol
-    public var entryManager: EntryManagerProtocol
     
     public var mainViewController: MainViewController?
     
     public init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
-        locationManager: LocationManagerProtocol,
-        petrolManager: PetrolManagerProtocol,
-        cameraManager: CameraManagerProtocol,
-        entryManager: EntryManagerProtocol
+        locationManager: LocationManagerProtocol
     ) {
     
         self.navigationController = navigationController
         self.locationManager = locationManager
-        self.petrolManager = petrolManager
-        self.cameraManager = cameraManager
-        self.entryManager = entryManager
         
         self.navigationController.coordinator = self
         
         let mapViewController = MapViewController()
-        let contentViewController = SearchDrawerViewController(locationManager: locationManager)
+        let contentViewController = SearchDrawerViewController()
         
         let mainViewController = MainViewController(
             contentViewController: mapViewController,
             drawerViewController: contentViewController,
-            petrolManager: petrolManager,
             cameraManager: cameraManager,
             entryManager: entryManager
         )
@@ -58,6 +51,8 @@ public class MapCoordintor: Coordinator {
         self.mainViewController = mainViewController
         
         Styling.applyStyling(navigationController: navigationController, statusBarStyle: .darkContent)
+        
+        self.navigationController.isNavigationBarHidden = true
         
     }
     

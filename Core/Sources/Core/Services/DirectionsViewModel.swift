@@ -10,17 +10,23 @@ import MapKit
 import Combine
 import OSLog
 import SwiftUI
+import Resolver
 
 public class DirectionsViewModel: StandardViewModel {
     
     @Published public var eta: DataState<TimeInterval, Error> = .loading
+    @Published public var directionsMode: DirectionsMode = .driving
     
     private let logger = Logger(.default)
     
     private let locationService: LocationService
     
-    public init(locationService: LocationService) {
-        self.locationService = locationService
+    public init(
+        locationService: LocationService? = nil,
+        directionsMode: DirectionsMode = .driving
+    ) {
+        self.locationService = locationService ?? Resolver.resolve()
+        self.directionsMode = directionsMode
     }
     
     public func getETA(
@@ -30,7 +36,8 @@ public class DirectionsViewModel: StandardViewModel {
         
         ETACalculator.execute(
             from: source,
-            to: destination
+            to: destination,
+            with: directionsMode
         )
             .sink { (completion: Subscribers.Completion<Error>) in
             
@@ -55,7 +62,8 @@ public class DirectionsViewModel: StandardViewModel {
             .flatMap { (userLocation: CLLocation) -> AnyPublisher<TimeInterval, Error> in
                 return ETACalculator.execute(
                     from: userLocation.coordinate,
-                    to: destination
+                    to: destination,
+                    with: self.directionsMode
                 )
             }
             .eraseToAnyPublisher()
@@ -91,7 +99,8 @@ public class ETACalculator {
     
     public static func execute(
         from source: CLLocationCoordinate2D,
-        to destination: CLLocationCoordinate2D
+        to destination: CLLocationCoordinate2D,
+        with directionsMode: DirectionsMode = .driving
     ) -> AnyPublisher<TimeInterval, Error> {
         
         return Deferred {
@@ -104,8 +113,7 @@ public class ETACalculator {
                 
                 request.source = source
                 request.destination = destination
-                
-                request.transportType = .automobile
+                request.transportType = directionsMode.toDirectionsTransportType()
                 
                 let directions = MKDirections(request: request)
                 

@@ -14,12 +14,13 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "Core", path: "../Core"),
+        .package(name: "FuelFeature", path: "../FuelFeature"),
         .package(url: "https://github.com/LambdaDigamma/TagListView", from: "1.4.2"),
         .package(url: "https://github.com/LambdaDigamma/EventBus", from: "0.5.2"),
         .package(url: "https://github.com/LambdaDigamma/TextFieldEffects", branch: "master"),
-        .package(url: "https://github.com/LambdaDigamma/mmapi-ios", branch: "master"),
         .package(url: "https://github.com/LambdaDigamma/mmui-ios", branch: "master"),
-        .package(url: "https://github.com/52inc/Pulley", from: "2.9.1")
+        .package(url: "https://github.com/52inc/Pulley", from: "2.9.1"),
+        .package(url: "https://github.com/LambdaDigamma/app-scaffold-ios.git", from: "1.0.0")
     ],
     targets: [
         .target(
@@ -30,8 +31,9 @@ let package = Package(
                 .byName(name: "Pulley"),
                 .byName(name: "EventBus"),
                 .byName(name: "TextFieldEffects"),
-                .product(name: "MMAPI", package: "mmapi-ios"),
-                .product(name: "MMUI", package: "mmapi-ios")
+                .byName(name: "FuelFeature"),
+                .product(name: "MMUI", package: "mmui-ios"),
+                .product(name: "AppScaffold", package: "app-scaffold-ios")
             ]
         ),
         .testTarget(

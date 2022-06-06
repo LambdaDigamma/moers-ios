@@ -7,22 +7,31 @@
 
 import SwiftUI
 import CoreLocation
+import MapKit
 
 public struct AutoCalculatingDirectionsButton: View {
     
     @StateObject var viewModel: DirectionsViewModel
     
     private let coordinate: CLLocationCoordinate2D
+    private let directionsMode: DirectionsMode
     private let action: () -> Void
     
     public init(
         coordinate: CLLocationCoordinate2D,
+        directionsMode: DirectionsMode = .driving,
         locationService: LocationService,
         action: @escaping () -> Void
     ) {
         self.action = action
         self.coordinate = coordinate
-        self._viewModel = .init(wrappedValue: .init(locationService: locationService))
+        self.directionsMode = directionsMode
+        self._viewModel = .init(
+            wrappedValue: .init(
+                locationService: locationService,
+                directionsMode: directionsMode
+            )
+        )
     }
     
     public var body: some View {
@@ -30,7 +39,7 @@ public struct AutoCalculatingDirectionsButton: View {
         GetDirectionsButton(
             action: action,
             travelTime: viewModel.eta.value,
-            mode: .driving
+            mode: directionsMode
         )
             .onAppear {
                 viewModel.getETAFromUserLocation(to: coordinate)

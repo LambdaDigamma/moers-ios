@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import MMAPI
+import Core
 import Combine
 import MMEvents
 @testable import Moers

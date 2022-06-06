@@ -31,21 +31,35 @@ public struct MapSnapshotView: View {
     
     @Environment(\.colorScheme) var colorScheme
     
-    public let location: CLLocationCoordinate2D
+    public var location: CLLocationCoordinate2D
     public var span: CLLocationDegrees = 0.01
-    public let annotations: [SnapshotAnnotation]
+    public var annotations: [SnapshotAnnotation]
+    
+    private let showBuildings: Bool
+    private let poiFilter: MKPointOfInterestFilter?
     
     public init(
         location: CLLocationCoordinate2D,
         span: CLLocationDegrees = 0.01,
-        annotations: [SnapshotAnnotation] = []
+        annotations: [SnapshotAnnotation] = [],
+        showBuildings: Bool = true,
+        poiFilter: MKPointOfInterestFilter? = nil
     ) {
         self.location = location
         self.span = span
         self.annotations = annotations
+        self.showBuildings = showBuildings
+        self.poiFilter = poiFilter
+        
+        if let size = self.currentSize {
+            generateSnapshot(width: size.width, height: size.height)
+        }
+        
     }
     
     @State private var snapshotImage: UIImage?
+    
+    @State private var currentSize: CGSize?
     
     public var body: some View {
         
@@ -69,6 +83,7 @@ public struct MapSnapshotView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .readSize(onChange: { size in
+                self.currentSize = size
                 generateSnapshot(width: size.width, height: size.height)
             })
         )
@@ -98,7 +113,8 @@ public struct MapSnapshotView: View {
         mapOptions.region = region
         mapOptions.traitCollection = trait
         mapOptions.size = size
-        mapOptions.showsBuildings = true
+        mapOptions.showsBuildings = showBuildings
+        mapOptions.pointOfInterestFilter = poiFilter
         
         let snapshotter = MKMapSnapshotter(options: mapOptions)
         snapshotter.start { (snapshotOrNil, errorOrNil) in

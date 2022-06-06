@@ -76,10 +76,6 @@
 "PetrolType" = "Art";
 "Feedback" = "Feedback";
 
-/* Common */
-"LocalityOpen" = "geöffnet";
-"LocalityClosed" = "geschlossen";
-
 /* User Type */
 "User" = "Benutzer";
 "UserType" = "Art";

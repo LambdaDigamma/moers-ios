@@ -6,12 +6,12 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import Gestalt
 import SafariServices
 //import FirebaseAnalytics
 import TagListView
-import MMAPI
 import MMUI
 
 class DetailEntryViewController: UIViewController {
@@ -131,7 +131,7 @@ class DetailEntryViewController: UIViewController {
         
         guard let entry = entry else { return }
         
-        self.streetLabel.text = entry.street + " " + entry.houseNumber
+        self.streetLabel.text = entry.street + " " + (entry.houseNumber ?? "")
         self.placeLabel.text = entry.postcode + " " + entry.place
         self.countryLabel.text = "Deutschland"
         

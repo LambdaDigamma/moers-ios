@@ -87,18 +87,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
 }
-
-public extension Collection where Element == String {
-    
-    func containsPathElement(_ components: String...) -> Bool {
-        
-        for component in components {
-            if self.contains(component) {
-                return true
-            }
-        }
-        
-        return false
-    }
-    
-}

@@ -147,3 +147,7 @@
 "WebsiteAction" = "Website";
 
 "Camera" = "360° Kamera";
+
+/* Common */
+"LocalityOpen" = "geöffnet";
+"LocalityClosed" = "geschlossen";

@@ -76,10 +76,6 @@
 "PetrolType" = "Type";
 "Feedback" = "Feedback";
 
-/* Common */
-"LocalityOpen" = "open";
-"LocalityClosed" = "closed";
-
 /* User Type */
 "User" = "User";
 "UserType" = "Type";

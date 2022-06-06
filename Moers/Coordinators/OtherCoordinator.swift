@@ -9,32 +9,29 @@
 import Core
 import UIKit
 import MMUI
-import MMAPI
 import AppScaffold
 import EFAUI
 import EFAAPI
+import AppFeedback
+import MapFeature
+import Resolver
 
-class OtherCoordinator: Coordinator {
+public class OtherCoordinator: Coordinator {
     
-    var navigationController: CoordinatedNavigationController
+    @LazyInjected var entryManager: EntryManagerProtocol
     
-    var otherViewController: OtherViewController?
-    
-    public let entryManager: EntryManagerProtocol
+    public var navigationController: CoordinatedNavigationController
+    public var otherViewController: OtherViewController?
     public let transitService: DefaultTransitService
     
     public init(
-        navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
-        entryManager: EntryManagerProtocol
+        navigationController: CoordinatedNavigationController = CoordinatedNavigationController()
     ) {
         
         self.navigationController = navigationController
-        self.entryManager = entryManager
         self.transitService = DefaultTransitService(loader: DefaultTransitService.defaultLoader())
         
-        let otherViewController = OtherViewController(
-            entryManager: entryManager
-        )
+        let otherViewController = OtherViewController()
         
         otherViewController.tabBarItem = generateTabBarItem()
         otherViewController.coordinator = self
@@ -61,7 +58,7 @@ class OtherCoordinator: Coordinator {
         
     }
     
-    // MARK: - Actions
+    // MARK: - Actions -
     
     public func showBuergerfunk() {
         
@@ -103,6 +100,136 @@ class OtherCoordinator: Coordinator {
         viewModel.search()
         
         let viewController = TripSearchViewController(viewModel: viewModel)
+        
+        self.navigationController.pushViewController(viewController, animated: true)
+        
+    }
+    
+    // MARK: - Data Actions -
+    
+    public func showAddEntry() {
+        
+        if entryManager.entryStreet != nil || entryManager.entryLat != nil {
+            
+            let alert = UIAlertController(
+                title: String.localized("OtherDataTakeOldDataTitle"),
+                message: String.localized("OtherDataTakeOldDataMessage"),
+                preferredStyle: .alert
+            )
+            
+            alert.overrideUserInterfaceStyle = .dark
+            
+            alert.addAction(
+                UIAlertAction(
+                    title: String.localized("OtherDataTakeOldDataNo"),
+                    style: .cancel,
+                    handler: { _ in
+                        self.entryManager.resetData()
+                        
+                        let viewController = EntryOnboardingLocationMenuViewController()
+                        
+                        self.navigationController.pushViewController(viewController, animated: true)
+                    }
+                )
+            )
+            
+            alert.addAction(
+                UIAlertAction(
+                    title: String.localized("OtherDataTakeOldDataYes"),
+                    style: .default,
+                    handler: { _ in
+                        let viewController = EntryOnboardingLocationMenuViewController()
+                        
+                        self.navigationController.pushViewController(viewController, animated: true)
+                    }
+                )
+            )
+            
+            self.navigationController
+                .presentedViewController?
+                .present(alert, animated: true, completion: nil)
+            
+        } else {
+            
+            let viewController = EntryOnboardingLocationMenuViewController()
+            
+            self.navigationController.pushViewController(viewController, animated: true)
+            
+        }
+        
+    }
+    
+    public func showNonValidData() {
+        
+        let viewController = EntryValidationViewController(otherCoordinator: self)
+        
+        self.navigationController.pushViewController(viewController, animated: true)
+        
+    }
+    
+    // MARK: - Settings Actions -
+    
+    public func showSiriShortcuts() {
+        
+        let viewController = ShortcutsViewController()
+        
+        self.navigationController.pushViewController(viewController, animated: true)
+        
+    }
+    
+    // MARK: - About Actions -
+    
+    public func showAbout() {
+        
+        let viewController = AboutViewController()
+        
+        self.navigationController.pushViewController(viewController, animated: true)
+        
+    }
+    
+    public func showFeedback() {
+        
+        let configuration = FeedbackConfiguration(
+            receiver: "meinmoers@lambdadigamma.com",
+            subject: "Rückmeldung zur Moers-App",
+            appStoreID: "1305862555"
+        )
+        
+        let feedbackView = FeedbackViewController(configuration: configuration)
+        
+        self.navigationController.pushViewController(feedbackView, animated: true)
+        
+    }
+    
+    public func showLicences() {
+        
+        let viewController = LicensesViewController()
+        
+        self.navigationController.pushViewController(viewController, animated: true)
+        
+    }
+    
+    public func showPrivacy() {
+        
+        let viewController = PrivacyViewController()
+        
+        self.navigationController.pushViewController(viewController, animated: true)
+        
+    }
+    
+    public func showTaC() {
+        
+        let viewController = TandCViewController()
+        
+        self.navigationController.pushViewController(viewController, animated: true)
+        
+    }
+    
+    // MARK: - Debug Actions -
+    
+    public func showDebugNotifications() {
+        
+        let viewController = DebugViewController()
         
         self.navigationController.pushViewController(viewController, animated: true)
         

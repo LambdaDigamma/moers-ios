@@ -6,11 +6,10 @@
 //  Copyright © 2019 LambdaDigamma. All rights reserved.
 //
 
+import Core
 import Foundation
 import CoreLocation
 import Combine
-import MMAPI
-
 
 public protocol CameraManagerProtocol {
     
@@ -19,7 +18,7 @@ public protocol CameraManagerProtocol {
 
 }
 
-public struct CameraManager: CameraManagerProtocol {
+public class CameraManager: CameraManagerProtocol {
     
     @available(*, deprecated, message: "Stop using Singleton Instance")
     public static let shared = CameraManager()

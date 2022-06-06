@@ -10,6 +10,7 @@ import UIKit
 import Gestalt
 import MMUI
 import Core
+import SwiftUI
 
 class AboutViewController: UIViewController {
 
@@ -104,6 +105,8 @@ class AboutViewController: UIViewController {
         
     }()
     
+    // MARK: - UIViewController Lifecycle -
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -112,6 +115,8 @@ class AboutViewController: UIViewController {
         self.setupTheming()
         
     }
+    
+    // MARK: - Setup -
     
     private func setupUI() {
         
@@ -124,10 +129,6 @@ class AboutViewController: UIViewController {
         self.view.addSubview(nameLabel)
         self.view.addSubview(meTextView)
         self.view.addSubview(infoTextView)
-        
-        let barButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fastForward, target: self, action: #selector(showDebug))
-        
-        navigationItem.rightBarButtonItem = barButtonItem
         
     }
     
@@ -172,14 +173,6 @@ class AboutViewController: UIViewController {
         
     }
     
-    @objc private func showDebug() {
-        
-        let debugViewController = DebugViewController()
-        
-        self.navigationController?.pushViewController(debugViewController, animated: true)
-        
-    }
-
 }
 
 extension AboutViewController: Themeable {

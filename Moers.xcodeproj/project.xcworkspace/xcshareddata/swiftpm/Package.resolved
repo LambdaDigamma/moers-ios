@@ -39,7 +39,7 @@
       },
       {
         "package": "EventBus",
-        "repositoryURL": "https://github.com/lambdadigamma/eventbus",
+        "repositoryURL": "https://github.com/LambdaDigamma/EventBus",
         "state": {
           "branch": null,
           "revision": "f4b1b7a35bc20165e7d3aaeebc808dd3ab14874b",
@@ -66,7 +66,7 @@
       },
       {
         "package": "Fuse",
-        "repositoryURL": "https://github.com/LambdaDigamma/fuse-swift.git",
+        "repositoryURL": "https://github.com/LambdaDigamma/fuse-swift",
         "state": {
           "branch": null,
           "revision": "a1f44a59d94393f7461745ccc977b5005c8438a5",
@@ -105,8 +105,8 @@
         "repositoryURL": "https://github.com/google/GoogleDataTransport.git",
         "state": {
           "branch": null,
-          "revision": "15ccdfd25ac55b9239b82809531ff26605e7556e",
-          "version": "9.1.2"
+          "revision": "b905c49326b72211531ed9d7baa02d724828a8dc",
+          "version": "9.1.4"
         }
       },
       {
@@ -123,8 +123,8 @@
         "repositoryURL": "https://github.com/grpc/grpc-ios.git",
         "state": {
           "branch": null,
-          "revision": "abd2d5a4347efa0454606a788678a5d8ec223738",
-          "version": "1.44.0-grpc"
+          "revision": "2af4f6e9c2b18beae228f50b1198c641be859d2b",
+          "version": "1.44.2-grpc"
         }
       },
       {
@@ -132,8 +132,8 @@
         "repositoryURL": "https://github.com/google/gtm-session-fetcher.git",
         "state": {
           "branch": null,
-          "revision": "eca9404a18f53727e4698211aaf2615eb93b962a",
-          "version": "1.7.1"
+          "revision": "4e9bbf2808b8fee444e84a48f5f3c12641987d3e",
+          "version": "1.7.2"
         }
       },
       {
@@ -147,7 +147,7 @@
       },
       {
         "package": "Ink",
-        "repositoryURL": "https://github.com/johnsundell/ink.git",
+        "repositoryURL": "https://github.com/johnsundell/ink",
         "state": {
           "branch": null,
           "revision": "77c3d8953374a9cf5418ef0bd7108524999de85a",
@@ -173,24 +173,6 @@
         }
       },
       {
-        "package": "MediaLibraryKit",
-        "repositoryURL": "https://github.com/LambdaDigamma/MediaLibraryKit",
-        "state": {
-          "branch": null,
-          "revision": "850c176e1d3876235cc7f610037ad7db0d62ff6c",
-          "version": "0.0.4"
-        }
-      },
-      {
-        "package": "MMPages",
-        "repositoryURL": "https://github.com/lambdadigamma/mmpages-ios",
-        "state": {
-          "branch": null,
-          "revision": "7cf7700084b11fcb605d36e7f0373894ef62a55b",
-          "version": "0.0.2"
-        }
-      },
-      {
         "package": "nanopb",
         "repositoryURL": "https://github.com/firebase/nanopb.git",
         "state": {
@@ -204,8 +186,8 @@
         "repositoryURL": "https://github.com/kean/Nuke.git",
         "state": {
           "branch": null,
-          "revision": "78fa963b8491fc520791d8c2a509f1b8593d8aae",
-          "version": "10.7.1"
+          "revision": "9b62e2ecbfecdcccacd52341e38832bcc84d98f4",
+          "version": "10.10.0"
         }
       },
       {
@@ -254,6 +236,15 @@
         }
       },
       {
+        "package": "ProseMirror",
+        "repositoryURL": "https://github.com/lambdadigamma/swift-prosemirror",
+        "state": {
+          "branch": null,
+          "revision": "f6cc3cf3766524972b5d5e921fb023bdbb36a9a4",
+          "version": "0.0.3"
+        }
+      },
+      {
         "package": "SwiftProtobuf",
         "repositoryURL": "https://github.com/apple/swift-protobuf.git",
         "state": {
@@ -276,8 +267,8 @@
         "repositoryURL": "https://github.com/SimonFairbairn/SwiftyMarkdown",
         "state": {
           "branch": null,
-          "revision": "5b0a1e76332a633726f9f9a00b4bbd840166bccf",
-          "version": "1.2.3"
+          "revision": "dde451ab4ed9b77b328e21baa471fdfa0cf61369",
+          "version": "1.2.4"
         }
       },
       {
@@ -305,6 +296,15 @@
           "branch": null,
           "revision": "f30119af03996939cc4f54e0bf0dda9f88a84da5",
           "version": "0.13.1"
+        }
+      },
+      {
+        "package": "YouTubePlayerKit",
+        "repositoryURL": "https://github.com/SvenTiigi/YouTubePlayerKit.git",
+        "state": {
+          "branch": null,
+          "revision": "96b831c0132ad194c568a924d6bf8a4a26f3a517",
+          "version": "1.1.11"
         }
       }
     ]

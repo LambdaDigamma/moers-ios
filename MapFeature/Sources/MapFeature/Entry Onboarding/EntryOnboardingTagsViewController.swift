@@ -6,11 +6,11 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import Gestalt
 import TagListView
 import Fuse
-import MMAPI
 import MMUI
 
 class EntryOnboardingTagsViewController: UIViewController {

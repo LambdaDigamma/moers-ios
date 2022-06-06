@@ -11,7 +11,6 @@ import Core
 import BLTNBoard
 import Gestalt
 import CoreLocation
-import MMAPI
 import MMUI
 import Combine
 import RubbishFeature
@@ -19,7 +18,7 @@ import FuelFeature
 import Resolver
 
 // todo: Move Privacy Consent to Front of Onboarding
-class OnboardingManager {
+public class OnboardingManager {
     
     @LazyInjected var rubbishService: RubbishService
     @LazyInjected var petrolService: PetrolService
@@ -29,10 +28,8 @@ class OnboardingManager {
     private let appearance: BLTNItemAppearance
     private var cancellables = Set<AnyCancellable>()
     
-    init() {
-        
+    public init() {
         self.appearance = OnboardingManager.makeAppearance()
-        
     }
     
     func makeOnboarding() -> BLTNPageItem {

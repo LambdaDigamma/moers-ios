@@ -6,14 +6,15 @@
 //  Copyright © 2019 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
-import MMAPI
 import MMUI
 import Gestalt
 import Pulley
 import TagListView
 import Fuse
 import Combine
+import Resolver
 //import NewsFeature
 
 public enum DisplayMode {
@@ -46,10 +47,9 @@ public class SearchDrawerViewController: UIViewController {
         }
     }
     
-    public var locationManager: LocationManagerProtocol!
+    @LazyInjected private var locationManager: LocationManagerProtocol
     
-    init(locationManager: LocationManagerProtocol) {
-        self.locationManager = locationManager
+    public init() {
         self.searchDrawer = SearchDrawerView()
         super.init(nibName: nil, bundle: nil)
         self.searchDrawer.searchBar.delegate = self
@@ -58,7 +58,7 @@ public class SearchDrawerViewController: UIViewController {
         self.searchDrawer.tableView.dataSource = self
     }
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -536,10 +536,10 @@ extension SearchDrawerViewController: EntryDatasource, CameraDatasource, PetrolD
         
     }
     
-    func didReceivePetrolStations(_ petrolStations: [PetrolStation]) {
+    func didReceivePetrolStations(_ petrolStations: [PetrolStationViewModel]) {
         
-        self.locations = self.locations.filter { !($0 is PetrolStation) }
-        self.locations.append(contentsOf: petrolStations as [PetrolStation])
+        self.locations = self.locations.filter { !($0 is PetrolStationViewModel) }
+        self.locations.append(contentsOf: petrolStations as [PetrolStationViewModel])
         
         self.updateDatasource()
         

@@ -6,10 +6,12 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import Gestalt
-import MMAPI
 import MMUI
+import Resolver
+import FuelFeature
 
 class DetailPetrolStationViewController: UIViewController {
 
@@ -23,21 +25,15 @@ class DetailPetrolStationViewController: UIViewController {
     @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var countryLabel: UILabel!
     
+    @LazyInjected var petrolManager: PetrolService
+    
     public var coordinator: MapCoordintor? {
         didSet {
-            petrolManager = coordinator?.petrolManager
+            
         }
     }
     
-    public var petrolManager: PetrolManagerProtocol!
-    
     init(coordinator: MapCoordintor) {
-        self.petrolManager = coordinator.petrolManager
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    init(petrolManager: PetrolManagerProtocol) {
-        self.petrolManager = petrolManager
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -45,7 +41,9 @@ class DetailPetrolStationViewController: UIViewController {
         super.init(coder: coder)
     }
     
-    var selectedPetrolStation: PetrolStation? { didSet { setupPetrolStation(selectedPetrolStation) } }
+    var selectedPetrolStation: MapFeature.PetrolStationViewModel? {
+        didSet { setupPetrolStation(selectedPetrolStation) }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,13 +69,13 @@ class DetailPetrolStationViewController: UIViewController {
         
     }
     
-    public func setupPetrolStation(_ petrolStation: PetrolStation?) {
+    public func setupPetrolStation(_ petrolStation: MapFeature.PetrolStationViewModel?) {
         
         guard let petrolStation = petrolStation else { return }
         
         self.streetLabel.text = petrolStation.street + " " + (petrolStation.houseNumber ?? "")
         self.placeLabel.text = "\(petrolStation.postCode ?? 0) \(petrolStation.place)"
-        self.typeLabel.text = PetrolType.localizedForCase(petrolManager.petrolType)
+        self.typeLabel.text = petrolManager.petrolType.name
         self.priceLabel.text = String(format: "%.2f€", petrolStation.price ?? 0)
         
     }

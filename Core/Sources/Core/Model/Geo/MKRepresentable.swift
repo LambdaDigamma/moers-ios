@@ -27,6 +27,19 @@ public enum DirectionsMode {
                 return MKLaunchOptionsDirectionsModeWalking
         }
     }
+    
+    public func toDirectionsTransportType() -> MKDirectionsTransportType {
+        switch self {
+            case .default:
+                return .any
+            case .driving:
+                return .automobile
+            case .transit:
+                return .transit
+            case .walking:
+                return .walking
+        }
+    }
 }
 
 public protocol MKRepresentable {

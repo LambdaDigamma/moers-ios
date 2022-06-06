@@ -1,12 +1,11 @@
 //
 //  StorageManager.swift
-//  Moers
+//  
 //
-//  Created by Lennart Fischer on 11.02.20.
-//  Copyright © 2020 Lennart Fischer. All rights reserved.
+//  Created by Lennart Fischer on 02.06.22.
 //
 
-import MMAPI
+import Core
 import Haneke
 import Combine
 import OSLog
@@ -58,7 +57,7 @@ public class StorageManager<D: Codable>: AnyStoragable<D> {
     override public func read(forKey key: String, with decoder: JSONDecoder) -> AnyPublisher<[D], Error> {
         
         print("StorageManager: Loading \(key.localizedCapitalized) from Cache")
-            
+        
         return Deferred {
             Future { promise in
                 

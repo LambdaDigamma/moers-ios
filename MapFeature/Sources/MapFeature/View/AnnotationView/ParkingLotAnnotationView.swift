@@ -6,9 +6,9 @@
 //  Copyright © 2017 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import MapKit
-import MMAPI
 
 //class ParkingLotAnnotationView: MKMarkerAnnotationView {
 //

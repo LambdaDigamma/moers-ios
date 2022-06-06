@@ -5,10 +5,10 @@
 //  Created by Lennart Fischer on 15.12.21.
 //
 
+import Core
 import Foundation
 import CoreLocation
 import Combine
-import MMAPI
 import ModernNetworking
 import OSLog
 

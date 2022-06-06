@@ -6,11 +6,11 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import MapKit
 import Gestalt
 import Pulley
-import MMAPI
 import MMUI
 import Combine
 import Resolver
@@ -201,7 +201,7 @@ public class DetailViewController: UIViewController {
             
             morphDetailCamera()
             
-        } else if selectedLocation is PetrolStation {
+        } else if selectedLocation is PetrolStationViewModel {
             
             morphDetailPetrolStation()
             
@@ -307,7 +307,7 @@ public class DetailViewController: UIViewController {
         
         self.add(asChildViewController: viewController)
         
-        viewController.selectedPetrolStation = selectedLocation as? PetrolStation
+        viewController.selectedPetrolStation = selectedLocation as? PetrolStationViewModel
         
     }
     

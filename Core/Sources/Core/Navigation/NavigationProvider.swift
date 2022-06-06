@@ -9,6 +9,6 @@ import Foundation
 
 public protocol NavigationProvider {
     
-    func startNavigation(to point: Point, with name: String)
+    func startNavigation(to point: Point, withName name: String)
     
 }

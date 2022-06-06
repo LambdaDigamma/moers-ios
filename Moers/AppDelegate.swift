@@ -6,11 +6,11 @@
 //  Copyright © 2017 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import UserNotifications
 import Firebase
 import Gestalt
-import MMAPI
 import MMUI
 import MMCommon
 import Haneke
@@ -56,11 +56,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         EventPackageConfiguration.accentColor = UIColor.systemYellow
         EventPackageConfiguration.onAccentColor = UIColor.black
         
-        UIPackageConfiguration.accentColor = UIColor.systemYellow
-        UIPackageConfiguration.onAccentColor = UIColor.black
+        MMUI.UIPackageConfiguration.accentColor = UIColor.systemYellow
+        MMUI.UIPackageConfiguration.onAccentColor = UIColor.black
+        
+        Core.UIPackageConfiguration.accentColor = UIColor.systemYellow
+        Core.UIPackageConfiguration.onAccentColor = UIColor.black
         
         MMUIConfig.registerThemeManager(ThemeManager.default)
-        MMAPIConfig.registerBaseURL(Environment.rootURL)
+        MMAPIConfig.registerBaseURL(AppEnvironment.rootURL)
         MMAPIConfig.registerPetrolAPIKey("0dfdfad3-7385-ef47-2ff6-ec0477872677")
         MMAPIConfig.isMoersFestivalModeEnabled = false
         

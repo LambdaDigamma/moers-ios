@@ -6,10 +6,10 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import MapKit
 import Pulley
-import MMAPI
 import MMUI
 
 struct AnnotationIdentifier {
@@ -32,21 +32,75 @@ public class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
     
     private var locations: [Location] = []
     
-    init() {
+    public init() {
         super.init(nibName: nil, bundle: nil)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - UIViewController Lifecycle
+    // MARK: - UIViewController Lifecycle -
     
     public override func viewDidLoad() {
         super.viewDidLoad()
 
         self.setupUI()
         self.setupConstraints()
+        self.setupMap()
+        
+    }
+    
+    // MARK: - UI
+    
+    private func setupUI() {
+        
+        self.view.backgroundColor = UIColor.black
+        self.view.addSubview(map)
+        
+        self.map.layer.cornerCurve = .continuous
+        self.map.layer.cornerRadius = 20
+        self.map.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
+    }
+    
+    private func setupConstraints() {
+        
+        let constraints: [NSLayoutConstraint] = [
+            map.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            map.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            map.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            map.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
+        
+    }
+    
+    private func setDrawerController(_ controller: UIViewController, position: PulleyPosition = .collapsed) {
+        
+        drawer.setDrawerContentViewController(controller: controller, animated: true)
+        drawer.setDrawerPosition(position: position, animated: true)
+        
+    }
+    
+    
+    // MARK: - Map View -
+    
+    private func setupMap() {
+        
+        self.map.delegate = self
+        self.map.mapType = .mutedStandard
+        self.map.showsUserLocation = true
+        self.map.showsBuildings = false
+        self.map.pointOfInterestFilter = .none
+        
+        let region = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: 51.451667, longitude: 6.626389),
+            span: MKCoordinateSpan(latitudeDelta: 0.012, longitudeDelta: 0.012)
+        )
+        
+        self.map.setRegion(region, animated: true)
         
     }
     
@@ -92,7 +146,7 @@ public class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
             
             return view
             
-        } else if let petrolStation = annotation as? PetrolStation {
+        } else if let petrolStation = annotation as? PetrolStationViewModel {
             
             var view = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationIdentifier.petrolStation) as? MKMarkerAnnotationView
             
@@ -147,54 +201,6 @@ public class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
         
     }
     
-    // MARK: - Private Methods
-    
-    private func setupUI() {
-        
-        self.map.delegate = self
-        
-        self.view.addSubview(map)
-        
-        map.showsUserLocation = true
-        map.showsBuildings = false
-        map.pointOfInterestFilter = .none
-        map.mapType = .standard
-        
-        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.451667, longitude: 6.626389),
-                                        span: MKCoordinateSpan(latitudeDelta: 0.012, longitudeDelta: 0.012))
-        
-        map.setRegion(region, animated: true)
-        
-//        locationService.authorizationStatus.observeNext { authorizationStatus in
-//
-//            let region = MKCoordinateRegion(center: self.map.userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
-//
-//            self.map.setRegion(region, animated: true)
-//
-//        }.dispose(in: bag)
-        
-    }
-    
-    private func setupConstraints() {
-        
-        let constraints: [NSLayoutConstraint] = [
-            map.topAnchor.constraint(equalTo: self.view.topAnchor),
-            map.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            map.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            map.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
-        
-    }
-    
-    private func setDrawerController(_ controller: UIViewController, position: PulleyPosition = .collapsed) {
-        
-        drawer.setDrawerContentViewController(controller: controller, animated: true)
-        drawer.setDrawerPosition(position: position, animated: true)
-        
-    }
-    
     // MARK: - Public Methods
     
     public func addLocation(_ location: Location) {
@@ -233,12 +239,12 @@ extension MapViewController: EntryDatasource, CameraDatasource, PetrolDatasource
         
     }
     
-    func didReceivePetrolStations(_ petrolStations: [PetrolStation]) {
+    func didReceivePetrolStations(_ petrolStations: [PetrolStationViewModel]) {
         
         DispatchQueue.main.async {
-            self.map.removeAnnotations(self.locations.filter { $0 is PetrolStation })
-            self.locations = self.locations.filter { !($0 is PetrolStation) }
-            self.locations.append(contentsOf: petrolStations as [PetrolStation])
+            self.map.removeAnnotations(self.locations.filter { $0 is PetrolStationViewModel })
+            self.locations = self.locations.filter { !($0 is PetrolStationViewModel) }
+            self.locations.append(contentsOf: petrolStations as [PetrolStationViewModel])
             self.map.addAnnotations(petrolStations)
         }
         

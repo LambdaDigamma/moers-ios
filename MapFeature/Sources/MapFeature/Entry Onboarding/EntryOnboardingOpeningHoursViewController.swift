@@ -6,10 +6,10 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import Gestalt
 import TextFieldEffects
-import MMAPI
 import MMUI
 
 class EntryOnboardingOpeningHoursViewController: UIViewController {

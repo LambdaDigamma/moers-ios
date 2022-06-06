@@ -10,12 +10,15 @@ import Core
 import UIKit
 import Pulley
 import EventBus
-import MMAPI
 import CoreLocation
 import Combine
+import Resolver
+import FuelFeature
 
 public class MainViewController: PulleyViewController {
 
+    @LazyInjected var petrolManager: PetrolService
+    
     public var coordinator: MapCoordintor? {
         didSet {
             self.detailViewController.coordinator = coordinator
@@ -27,7 +30,6 @@ public class MainViewController: PulleyViewController {
     public var locations: [Location] = []
     public lazy var detailViewController = { DetailViewController(entryManager: entryManager) }()
     
-    private let petrolManager: PetrolManagerProtocol
     private let cameraManager: CameraManagerProtocol
     private let entryManager: EntryManagerProtocol
     private let eventBus: EventBus
@@ -36,13 +38,11 @@ public class MainViewController: PulleyViewController {
     required init(
         contentViewController: UIViewController,
         drawerViewController: UIViewController,
-        petrolManager: PetrolManagerProtocol,
         cameraManager: CameraManagerProtocol,
         entryManager: EntryManagerProtocol
     ) {
         
         self.eventBus = EventBus()
-        self.petrolManager = petrolManager
         self.cameraManager = cameraManager
         self.entryManager = entryManager
         
@@ -72,6 +72,7 @@ public class MainViewController: PulleyViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = AppStrings.Menu.map
+        self.navigationController?.isNavigationBarHidden = true
         
     }
     
@@ -189,23 +190,52 @@ public class MainViewController: PulleyViewController {
         
         let preferredPetrolType = petrolManager.petrolType
         
-        let petrolStations = petrolManager.getPetrolStations(coordinate: CLLocationCoordinate2D(latitude: 51.4516, longitude: 6.6255),
-                                                             radius: 10,
-                                                             sorting: .distance,
-                                                             type: preferredPetrolType,
-                                                             shouldReload: false)
+        let petrolStations = petrolManager.getPetrolStations(
+            coordinate: CLLocationCoordinate2D(latitude: 51.4516, longitude: 6.6255),
+            radius: 10,
+            sorting: .distance,
+            type: preferredPetrolType,
+            shouldReload: false
+        )
         
         petrolStations
             .receive(on: DispatchQueue.main)
             .sink { (_: Subscribers.Completion<Error>) in
                 
-            } receiveValue: { (stations: [PetrolStation]) in
+            } receiveValue: { (stations: [FuelFeature.PetrolStation]) in
                 
-                self.eventBus.notify(PetrolDatasource.self) { subscriber in
-                    subscriber.didReceivePetrolStations(stations)
+                let s = stations.map { (petrolStation: FuelFeature.PetrolStation) in
+                    
+                    return MapFeature.PetrolStationViewModel(
+                        id: petrolStation.id,
+                        name: petrolStation.name,
+                        brand: petrolStation.name,
+                        street: petrolStation.street,
+                        place: petrolStation.place,
+                        houseNumber: petrolStation.houseNumber,
+                        postCode: petrolStation.postCode,
+                        lat: petrolStation.lat, lng: petrolStation.lng,
+                        dist: petrolStation.dist,
+                        diesel: petrolStation.diesel,
+                        e5: petrolStation.e5,
+                        e10: petrolStation.e10,
+                        price: petrolStation.price,
+                        isOpen: petrolStation.isOpen,
+                        wholeDay: petrolStation.wholeDay,
+                        openingTimes: (petrolStation.openingTimes ?? []).map { p in
+                            MapFeature.PetrolStationViewModel.TimeEntry(text: p.text, start: p.start, end: p.end)
+                        },
+                        overrides: petrolStation.overrides,
+                        state: petrolStation.state
+                    )
+                    
                 }
                 
-                self.locations = self.locations.filter { !($0 is PetrolStation) }
+                self.eventBus.notify(PetrolDatasource.self) { subscriber in
+                    subscriber.didReceivePetrolStations(s)
+                }
+                
+                self.locations = self.locations.filter { !($0 is MapFeature.PetrolStationViewModel) }
                 self.locations.append(contentsOf: stations)
                 
             }

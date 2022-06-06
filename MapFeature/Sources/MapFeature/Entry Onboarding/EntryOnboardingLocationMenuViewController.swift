@@ -6,24 +6,23 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import Gestalt
 import MMUI
-import MMAPI
 import Core
 import Resolver
 
 public class EntryOnboardingLocationMenuViewController: UIViewController {
+    
+    @LazyInjected var entryManager: EntryManagerProtocol
     
     private lazy var progressView: OnboardingProgressView = { ViewFactory.onboardingProgressView() }()
     private lazy var addressButton: UIButton = { ViewFactory.button() }()
     private lazy var locationButton: UIButton = { ViewFactory.button() }()
     private lazy var infoLabel: UILabel = { ViewFactory.label() }()
     
-    private let entryManager: EntryManagerProtocol
-    
-    public init(entryManager: EntryManagerProtocol) {
-        self.entryManager = entryManager
+    public init() {
         super.init(nibName: nil, bundle: nil)
     }
     

@@ -6,10 +6,10 @@
 //  Copyright © 2019 LambdaDigamma. All rights reserved.
 //
 
+import Core
 import Foundation
 import MapKit
 import Fuse
-import MMAPI
 
 public class BikeChargingStation: NSObject, Location {
     

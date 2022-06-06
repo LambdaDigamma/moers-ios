@@ -6,9 +6,9 @@
 //  Copyright © 2017 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import Foundation
 import UIKit
-import MMAPI
 import MMCommon
 
 extension UISearchBar {
@@ -101,18 +101,4 @@ extension UIView {
         mask.path = path.cgPath
         layer.mask = mask
     }
-}
-
-extension PetrolType: MMCommon.Localizable {
-    
-    public static func localizedForCase(_ type: PetrolType) -> String {
-        
-        switch type {
-            case .diesel: return String.localized("Diesel")
-            case .e10: return String.localized("E5")
-            case .e5: return String.localized("E10")
-        }
-        
-    }
-    
 }

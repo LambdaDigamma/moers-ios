@@ -6,8 +6,8 @@
 //  Copyright © 2019 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
-import MMAPI
 
 public struct UIProperties {
     
@@ -18,11 +18,11 @@ public struct UIProperties {
         } /*else if location is ParkingLot {
             return 220.0
         } */
-        else if location is BikeChargingStation {
+        /*else if location is BikeChargingStation {
             return 520.0
-        } else if location is Entry {
+        } */else if location is Entry {
             return 720.0
-        } else if location is PetrolStation {
+        } else if location is PetrolStationViewModel {
             return 250.0
         } else {
             return 100.0
@@ -34,11 +34,11 @@ public struct UIProperties {
         
         if location is Camera {
             return #imageLiteral(resourceName: "camera")
-        } else if location is BikeChargingStation {
+        }/* else if location is BikeChargingStation {
             return #imageLiteral(resourceName: "ebike")
-        } else if location is Entry {
+        }*/ else if location is Entry {
             return #imageLiteral(resourceName: "entry")
-        } else if location is PetrolStation {
+        } else if location is PetrolStationViewModel {
             return #imageLiteral(resourceName: "petrol")
         } else {
             return UIImage()
@@ -50,11 +50,11 @@ public struct UIProperties {
         
         if location is Camera {
             return DetailCameraViewController()
-        } else if location is BikeChargingStation {
+        }/* else if location is BikeChargingStation {
             return UIViewController()
-        } else if location is Entry {
+        }*/ else if location is Entry {
             return DetailEntryViewController.fromStoryboard()
-        } else if location is PetrolStation {
+        } else if location is PetrolStationViewModel {
             return UIViewController()
         } else {
             return UIViewController()
@@ -70,13 +70,13 @@ public struct UIProperties {
                 
                 let dist = prettifyDistance(distance: location.distance.converted(to: .meters).value)
                 
-                return "\(dist) • \(location.street) \(location.houseNumber)"
+                return "\(dist) • \(location.street) \(location.houseNumber ?? "")"
                 
             } else {
-                return location.street + " " + location.houseNumber
+                return location.street + " " + (location.houseNumber ?? "")
             }
             
-        } else if let location = location as? PetrolStation {
+        } else if let location = location as? PetrolStationViewModel {
             
             let open = location.isOpen ? String.localized("LocalityOpen") : String.localized("LocalityClosed")
             

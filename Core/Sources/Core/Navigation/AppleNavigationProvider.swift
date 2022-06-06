@@ -15,7 +15,7 @@ public class AppleNavigationProvider: NavigationProvider {
     
     public init() {}
     
-    public func startNavigation(to point: Point, with name: String) {
+    public func startNavigation(to point: Point, withName name: String) {
         
         let latitude: CLLocationDegrees = point.latitude
         let longitude: CLLocationDegrees = point.longitude

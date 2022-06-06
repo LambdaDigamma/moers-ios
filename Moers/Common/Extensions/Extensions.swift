@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import MMAPI
 import MMCommon
 
 extension Bundle {

@@ -10,7 +10,6 @@ import Core
 import UIKit
 import Gestalt
 import BLTNBoard
-import MMAPI
 import MMUI
 import Resolver
 import RubbishFeature
@@ -237,7 +236,7 @@ class SettingsViewController: UIViewController {
         var sections: [TableViewSection] = []
         
         sections.append(TableViewSection(title: String.localized("User"),
-                                rows: [NavigationRow(title: String.localized("UserType") + ": " + User.UserType.localizedForCase(userType), action: showUserType)]))
+                                         rows: [NavigationRow(title: String.localized("UserType") + ": " + userType.name, action: showUserType)]))
         
         sections.append(TableViewSection(
             title: String.localized("Petrol"),
