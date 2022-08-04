@@ -8,7 +8,7 @@
 
 import SwiftUI
 import WidgetKit
-import NewsWidgets
+//import NewsWidgets
 
 struct DepartureMonitorWidget: Widget {
     

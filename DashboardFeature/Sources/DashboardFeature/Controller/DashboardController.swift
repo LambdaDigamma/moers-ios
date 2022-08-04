@@ -25,7 +25,7 @@ class DashboardController: UIViewController {
     
     private func setupUI() {
         
-        let dashboardView = DashboardView()
+        let dashboardView = DashboardView(content: {})
         
         self.addSubSwiftUIView(dashboardView, to: view)
         

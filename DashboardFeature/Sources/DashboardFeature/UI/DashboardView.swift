@@ -13,7 +13,7 @@ import RubbishFeature
 import ParkingFeature
 import Resolver
 
-public struct DashboardView: View {
+public struct DashboardView<Content: View>: View {
     
     @StateObject var viewModel: DashboardViewModel = .init(
         loader: DashboardConfigDiskLoader()
@@ -23,8 +23,10 @@ public struct DashboardView: View {
     @StateObject var rubbishViewModel = RubbishDashboardViewModel()
     @StateObject var parkingViewModel = ParkingDashboardViewModel()
     
-    public init() {
-        
+    var content: () -> Content
+    
+    public init(@ViewBuilder content: @escaping () -> Content) {
+        self.content = content
     }
     
     public var body: some View {
@@ -38,6 +40,8 @@ public struct DashboardView: View {
                     ForEach(viewModel.displayables, id: \.id) { item in
                         dashboardItem(for: item)
                     }
+                    
+                    content()
                     
                 }
                 .padding()
@@ -124,7 +128,7 @@ struct DashboardView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView {
-            DashboardView()
+            DashboardView(content: {})
         }
     }
 }

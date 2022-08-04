@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.5
 import PackageDescription
 
 let package = Package(
@@ -19,8 +19,9 @@ let package = Package(
         .package(name: "MediaLibraryKit", url: "https://github.com/LambdaDigamma/MediaLibraryKit", .upToNextMajor(from: "0.0.3")),
         .package(name: "NukeUI", url: "https://github.com/kean/NukeUI", .upToNextMajor(from: "0.6.8")),
         .package(name: "ModernNetworking", url: "https://github.com/LambdaDigamma/ModernNetworking", .upToNextMajor(from: "0.1.0")),
-        .package(name: "Fuse", url: "https://github.com/lambdadigamma/fuse-swift", .upToNextMajor(from: "1.4.2")),
-        .package(name: "Resolver", url: "https://github.com/hmlongco/Resolver", .upToNextMajor(from: "1.3.0"))
+        .package(name: "Fuse", url: "https://github.com/LambdaDigamma/fuse-swift", .upToNextMajor(from: "1.4.2")),
+        .package(name: "Resolver", url: "https://github.com/LambdaDigamma/Resolver", .upToNextMajor(from: "1.5.1")),
+        .package(name: "Cache", url: "https://github.com/LambdaDigamma/Cache", .upToNextMajor(from: "6.0.0"))
     ],
     targets: [
         .target(
@@ -30,11 +31,11 @@ let package = Package(
         ),
         .target(
             name: "CoreCache",
-            dependencies: ["Core"]
+            dependencies: ["Core", "Cache"]
         ),
         .testTarget(
             name: "CoreTests",
-            dependencies: ["Core"]
+            dependencies: ["Core", "CoreCache"]
         ),
     ]
 )

@@ -20,9 +20,6 @@ public protocol CameraManagerProtocol {
 
 public class CameraManager: CameraManagerProtocol {
     
-    @available(*, deprecated, message: "Stop using Singleton Instance")
-    public static let shared = CameraManager()
-    
     public init(storageManager: AnyStoragable<Camera> = NoCache()) {
         
         self.decoder = JSONDecoder()

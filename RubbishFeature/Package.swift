@@ -19,17 +19,16 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "Core", path: "./Core"),
-        .package(url: "https://github.com/hmlongco/Resolver", from: "1.1.4"),
         .package(
             name: "ModernNetworking",
-            url: "https://github.com/lambdadigamma/modernnetworking",
+            url: "https://github.com/LambdaDigamma/ModernNetworking",
             .branch("main")
         )
     ],
     targets: [
         .target(
             name: "RubbishFeature",
-            dependencies: ["Core", "Resolver", "ModernNetworking"]
+            dependencies: ["Core", "ModernNetworking"]
         ),
         .testTarget(
             name: "RubbishFeatureTests",

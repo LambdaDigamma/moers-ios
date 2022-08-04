@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import NewsWidgets
+//import NewsWidgets
 import Combine
 import FeedKit
 import UIKit

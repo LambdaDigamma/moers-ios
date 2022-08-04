@@ -22,7 +22,15 @@ public class BikeChargingStation: NSObject, Location {
     public var openingHours: OpeningHours
     public var phone: URL?
     
-    public init(name: String, location: CLLocation, postcode: String, place: String, street: String, openingHours: OpeningHours, phone: URL?) {
+    public init(
+        name: String,
+        location: CLLocation,
+        postcode: String,
+        place: String,
+        street: String,
+        openingHours: OpeningHours,
+        phone: URL?
+    ) {
         
         self.name = name
         self.location = location
@@ -61,7 +69,7 @@ public class BikeChargingStation: NSObject, Location {
         var thursday: String
         var friday: String
         var saturday: String
-        var sunday: String
+        var sunday: String?
         var feastday: String
         
     }

@@ -31,7 +31,7 @@ class CameraAnnotationView: MKMarkerAnnotationView {
                 displayPriority = .defaultLow
                 collisionMode = .circle
                 markerTintColor = UIColor(red: 0.30, green: 0.85, blue: 0.39, alpha: 1.0)
-                glyphTintColor = UIColor.white
+                glyphTintColor = UIColor.black
                 glyphText = "360°"
                 
             }

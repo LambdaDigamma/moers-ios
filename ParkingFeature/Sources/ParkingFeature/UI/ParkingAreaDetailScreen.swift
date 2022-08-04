@@ -8,7 +8,7 @@
 import SwiftUI
 import Core
 import MapKit
-import Charts
+//import Charts
 import CoreLocation
 import Resolver
 

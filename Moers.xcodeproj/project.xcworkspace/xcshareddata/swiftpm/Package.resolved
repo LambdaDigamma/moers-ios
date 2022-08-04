@@ -6,8 +6,17 @@
         "repositoryURL": "https://github.com/firebase/abseil-cpp-SwiftPM.git",
         "state": {
           "branch": null,
-          "revision": "d302de612e3d57c6f4afaf087da18fba8eac72a7",
-          "version": "0.20220203.1"
+          "revision": "583de9bd60f66b40e78d08599cc92036c2e7e4e1",
+          "version": "0.20220203.2"
+        }
+      },
+      {
+        "package": "AppScaffold",
+        "repositoryURL": "https://github.com/lambdadigamma/app-scaffold-ios",
+        "state": {
+          "branch": null,
+          "revision": "719edbd974dfb685afdc3e041673396face02bda",
+          "version": "0.1.5"
         }
       },
       {
@@ -15,8 +24,8 @@
         "repositoryURL": "https://github.com/firebase/boringssl-SwiftPM.git",
         "state": {
           "branch": null,
-          "revision": "79db6516894a932d0ddaff3b05b9da1e4f6c4069",
-          "version": "0.9.0"
+          "revision": "dd3eda2b05a3f459fc3073695ad1b28659066eab",
+          "version": "0.9.1"
         }
       },
       {
@@ -30,16 +39,16 @@
       },
       {
         "package": "Cache",
-        "repositoryURL": "https://github.com/hyperoslo/Cache",
+        "repositoryURL": "https://github.com/LambdaDigamma/Cache",
         "state": {
           "branch": null,
-          "revision": "c7f4d633049c3bd649a353bad36f6c17e9df085f",
-          "version": "6.0.0"
+          "revision": "034756303012a8e005c986b19969fbcd0b86612e",
+          "version": "6.0.1"
         }
       },
       {
         "package": "EventBus",
-        "repositoryURL": "https://github.com/LambdaDigamma/EventBus",
+        "repositoryURL": "https://github.com/lambdadigamma/eventbus",
         "state": {
           "branch": null,
           "revision": "f4b1b7a35bc20165e7d3aaeebc808dd3ab14874b",
@@ -48,7 +57,7 @@
       },
       {
         "package": "FeedKit",
-        "repositoryURL": "https://github.com/nmdias/FeedKit.git",
+        "repositoryURL": "https://github.com/nmdias/FeedKit",
         "state": {
           "branch": null,
           "revision": "68493a33d862c33c9a9f67ec729b3b7df1b20ade",
@@ -69,8 +78,8 @@
         "repositoryURL": "https://github.com/LambdaDigamma/fuse-swift",
         "state": {
           "branch": null,
-          "revision": "a1f44a59d94393f7461745ccc977b5005c8438a5",
-          "version": "1.4.2"
+          "revision": "836f0fda3699967bd31720199160fdccb6c43a79",
+          "version": "1.4.3"
         }
       },
       {
@@ -105,8 +114,8 @@
         "repositoryURL": "https://github.com/google/GoogleDataTransport.git",
         "state": {
           "branch": null,
-          "revision": "b905c49326b72211531ed9d7baa02d724828a8dc",
-          "version": "9.1.4"
+          "revision": "5056b15c5acbb90cd214fe4d6138bdf5a740e5a8",
+          "version": "9.2.0"
         }
       },
       {
@@ -123,8 +132,8 @@
         "repositoryURL": "https://github.com/grpc/grpc-ios.git",
         "state": {
           "branch": null,
-          "revision": "2af4f6e9c2b18beae228f50b1198c641be859d2b",
-          "version": "1.44.2-grpc"
+          "revision": "8440b914756e0d26d4f4d054a1c1581daedfc5b6",
+          "version": "1.44.3-grpc"
         }
       },
       {
@@ -147,7 +156,7 @@
       },
       {
         "package": "Ink",
-        "repositoryURL": "https://github.com/johnsundell/ink",
+        "repositoryURL": "https://github.com/johnsundell/ink.git",
         "state": {
           "branch": null,
           "revision": "77c3d8953374a9cf5418ef0bd7108524999de85a",
@@ -173,6 +182,15 @@
         }
       },
       {
+        "package": "ModernNetworking",
+        "repositoryURL": "https://github.com/LambdaDigamma/ModernNetworking",
+        "state": {
+          "branch": "main",
+          "revision": "309b149ac6c83a2d7b95433f0bb312a5a04b9595",
+          "version": null
+        }
+      },
+      {
         "package": "nanopb",
         "repositoryURL": "https://github.com/firebase/nanopb.git",
         "state": {
@@ -186,17 +204,17 @@
         "repositoryURL": "https://github.com/kean/Nuke.git",
         "state": {
           "branch": null,
-          "revision": "9b62e2ecbfecdcccacd52341e38832bcc84d98f4",
-          "version": "10.10.0"
+          "revision": "a002b7fd786f2df2ed4333fe73a9727499fd9d97",
+          "version": "10.11.2"
         }
       },
       {
         "package": "NukeUI",
-        "repositoryURL": "https://github.com/kean/NukeUI",
+        "repositoryURL": "https://github.com/kean/NukeUI.git",
         "state": {
           "branch": null,
-          "revision": "17f26c07e6b1d3b9258287f99f528111fcd7b7ad",
-          "version": "0.8.1"
+          "revision": "db55022a8e483774ebbf3568727071477546d9ea",
+          "version": "0.8.3"
         }
       },
       {
@@ -204,8 +222,8 @@
         "repositoryURL": "https://github.com/google/promises.git",
         "state": {
           "branch": null,
-          "revision": "46c1e6b5ac09d8f82c991061c659f67e573d425d",
-          "version": "2.1.0"
+          "revision": "3e4e743631e86c8c70dbc6efdc7beaa6e90fd3bb",
+          "version": "2.1.1"
         }
       },
       {
@@ -219,11 +237,11 @@
       },
       {
         "package": "Resolver",
-        "repositoryURL": "https://github.com/hmlongco/Resolver",
+        "repositoryURL": "https://github.com/LambdaDigamma/Resolver",
         "state": {
           "branch": null,
-          "revision": "97de0b0320036607564af4a60025b48f8d041221",
-          "version": "1.5.0"
+          "revision": "2347a277097bedd59b77459d8154da47bd71fada",
+          "version": "1.5.1"
         }
       },
       {
@@ -233,6 +251,15 @@
           "branch": null,
           "revision": "5da607f72e033173ab92bd2718d2f95ae68ff64a",
           "version": "1.0.1"
+        }
+      },
+      {
+        "package": "SwiftDocCPlugin",
+        "repositoryURL": "https://github.com/apple/swift-docc-plugin.git",
+        "state": {
+          "branch": null,
+          "revision": "3303b164430d9a7055ba484c8ead67a52f7b74f6",
+          "version": "1.0.0"
         }
       },
       {
@@ -251,15 +278,6 @@
           "branch": null,
           "revision": "e1499bc69b9040b29184f7f2996f7bab467c1639",
           "version": "1.19.0"
-        }
-      },
-      {
-        "package": "Shapes",
-        "repositoryURL": "https://github.com/spacenation/swiftui-shapes.git",
-        "state": {
-          "branch": null,
-          "revision": "c58b15c37eae9bd20525c6daa93a06a689ca75cb",
-          "version": "1.1.0"
         }
       },
       {
@@ -303,8 +321,8 @@
         "repositoryURL": "https://github.com/SvenTiigi/YouTubePlayerKit.git",
         "state": {
           "branch": null,
-          "revision": "96b831c0132ad194c568a924d6bf8a4a26f3a517",
-          "version": "1.1.11"
+          "revision": "6ecaaeb9409152ddda5807835d557cbf5ba5ead6",
+          "version": "1.2.0"
         }
       }
     ]

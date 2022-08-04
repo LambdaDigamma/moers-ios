@@ -37,6 +37,12 @@ public class AppleNavigationProvider: NavigationProvider {
         
     }
     
+    public func buildDrivingMapsURL(point: Point) -> URL? {
+        
+        return URL(string: "https://maps.apple.com/?daddr=\(point.latitude),\(point.longitude)&dirflg=d")
+        
+    }
+    
 }
 
 #endif

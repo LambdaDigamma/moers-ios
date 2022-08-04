@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import NewsWidgets
+//import NewsWidgets
 
 struct InsetNewsListItem: View {
     

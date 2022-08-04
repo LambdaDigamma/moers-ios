@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import NewsWidgets
+//import NewsWidgets
 import WidgetKit
 
 public struct FluidNewsListItem: View {
