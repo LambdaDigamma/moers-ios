@@ -6,6 +6,7 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import BLTNBoard
 import Gestalt

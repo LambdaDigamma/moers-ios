@@ -21,12 +21,13 @@ let package = Package(
         .package(name: "ModernNetworking", url: "https://github.com/LambdaDigamma/ModernNetworking", .upToNextMajor(from: "0.1.0")),
         .package(name: "Fuse", url: "https://github.com/LambdaDigamma/fuse-swift", .upToNextMajor(from: "1.4.2")),
         .package(name: "Resolver", url: "https://github.com/LambdaDigamma/Resolver", .upToNextMajor(from: "1.5.1")),
-        .package(name: "Cache", url: "https://github.com/LambdaDigamma/Cache", .upToNextMajor(from: "6.0.0"))
+        .package(name: "Cache", url: "https://github.com/LambdaDigamma/Cache", .upToNextMajor(from: "6.0.0")),
+        .package(name: "Gestalt", url: "https://github.com/regexident/Gestalt", from: "2.0.0")
     ],
     targets: [
         .target(
             name: "Core",
-            dependencies: ["MediaLibraryKit", "NukeUI", "ModernNetworking", "Fuse", "Resolver"],
+            dependencies: ["MediaLibraryKit", "NukeUI", "ModernNetworking", "Fuse", "Resolver", "Gestalt"],
             resources: [.process("Resources")]
         ),
         .target(

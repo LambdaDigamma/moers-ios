@@ -10,8 +10,6 @@ import AppScaffold
 import UIKit
 import Gestalt
 import MMUI
-import MarkdownKit
-import SwiftyMarkdown
 import ModernNetworking
 import MMEvents
 import Cache
@@ -62,21 +60,21 @@ class ApplicationCoordinator: NSObject {
         
         super.init()
         
-        MMUIConfig.markdownConverter = { text in
-            
-            let markdown = SwiftyMarkdown(string: text)
-            
-            markdown.setFontColorForAllStyles(with: UIColor.white)
-            markdown.h1.fontStyle = FontStyle.bold
-            markdown.h2.fontStyle = FontStyle.bold
-            markdown.h3.fontStyle = FontStyle.boldItalic
-            markdown.link.color = UIColor.systemYellow
-            markdown.underlineLinks = false
-            markdown.bullet = "•"
-            
-            return markdown.attributedString()
-            
-        }
+//        MMUIConfig.markdownConverter = { text in
+//
+//            let markdown = SwiftyMarkdown(string: text)
+//
+//            markdown.setFontColorForAllStyles(with: UIColor.white)
+//            markdown.h1.fontStyle = FontStyle.bold
+//            markdown.h2.fontStyle = FontStyle.bold
+//            markdown.h3.fontStyle = FontStyle.boldItalic
+//            markdown.link.color = UIColor.systemYellow
+//            markdown.underlineLinks = false
+//            markdown.bullet = "•"
+//
+//            return markdown.attributedString()
+//
+//        }
         
     }
     

@@ -10,6 +10,7 @@ import UIKit
 import MMUI
 import Gestalt
 import TagListView
+import Core
 
 public class SearchDrawerView: UIView {
     

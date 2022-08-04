@@ -43,7 +43,6 @@
 		DF3661D727AB2362002A90BB /* ParkingFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF3661D627AB2362002A90BB /* ParkingFeature */; };
 		DF3661D927AB267F002A90BB /* FuelFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF3661D827AB267F002A90BB /* FuelFeature */; };
 		DF3C180B254489EF0047C898 /* MMUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF3C180A254489EF0047C898 /* MMUI */; };
-		DF4116BD276FED840068B4BB /* PlaybackKit in Frameworks */ = {isa = PBXBuildFile; productRef = DF4116BC276FED840068B4BB /* PlaybackKit */; };
 		DF4116C5276FF45F0068B4BB /* WidgetStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4116C4276FF45F0068B4BB /* WidgetStrings.swift */; };
 		DF461CBA20E226DE00600C0E /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF461CB920E226DE00600C0E /* ViewFactory.swift */; };
 		DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */; };
@@ -87,8 +86,6 @@
 		DF75345827727E1B0086B292 /* RubbishCollectionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75345727727E1B0086B292 /* RubbishCollectionEntry.swift */; };
 		DF75345A277280320086B292 /* RubbishCollectionWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF753459277280320086B292 /* RubbishCollectionWrapperView.swift */; };
 		DF75345C277280710086B292 /* RubbishFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF75345B277280710086B292 /* RubbishFeature */; };
-		DF777BBD2414361500C7C9D5 /* MarkdownKit in Frameworks */ = {isa = PBXBuildFile; productRef = DF777BBC2414361500C7C9D5 /* MarkdownKit */; };
-		DF777BC024143A9D00C7C9D5 /* SwiftyMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = DF777BBF24143A9D00C7C9D5 /* SwiftyMarkdown */; };
 		DF80F6C02851142800AB708D /* WeatherWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80F6BF2851142800AB708D /* WeatherWidget.swift */; };
 		DF80F6C328511B9300AB708D /* RubbishAccessoryRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80F6C128511B8F00AB708D /* RubbishAccessoryRectangle.swift */; };
 		DF80F6C6285124B500AB708D /* RubbishAccessoryInline.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80F6C42851246F00AB708D /* RubbishAccessoryInline.swift */; };
@@ -311,7 +308,6 @@
 		DF35EFAA27A9EB66005C6BDA /* ExploreOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreOverview.swift; sourceTree = "<group>"; };
 		DF3661DA27AB27C2002A90BB /* WidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetsExtension.entitlements; sourceTree = "<group>"; };
 		DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchArgumentsHandler.swift; sourceTree = "<group>"; };
-		DF4116BB276FA43E0068B4BB /* PlaybackKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PlaybackKit; sourceTree = "<group>"; };
 		DF4116C4276FF45F0068B4BB /* WidgetStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetStrings.swift; sourceTree = "<group>"; };
 		DF461CB920E226DE00600C0E /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
 		DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishStreetPickerItem.swift; sourceTree = "<group>"; };
@@ -340,7 +336,6 @@
 		DF5E1B8A2672A003005FADA4 /* InsetNewsListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetNewsListItem.swift; sourceTree = "<group>"; };
 		DF5E1B8C2672A746005FADA4 /* SmallNewsImageWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallNewsImageWidget.swift; sourceTree = "<group>"; };
 		DF5E1B8E2672A782005FADA4 /* ImageNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNewsView.swift; sourceTree = "<group>"; };
-		DF60D64C284234580071A235 /* MediaLibraryKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MediaLibraryKit; path = ../MediaLibraryKit; sourceTree = "<group>"; };
 		DF62AAFA2891EC14002D420E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DF62AAFB2891EC14002D420E /* Loaders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loaders.swift; sourceTree = "<group>"; };
 		DF62AAFD2891EC14002D420E /* NewsEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsEntry.swift; sourceTree = "<group>"; };
@@ -452,11 +447,9 @@
 				DFE1ED782538C4E200FDD44A /* Pulley in Frameworks */,
 				DFB07A2D277741030033101C /* FirebaseAnalyticsSwift-Beta in Frameworks */,
 				DF32ACF32676AABA00B943DB /* MMEvents in Frameworks */,
-				DF4116BD276FED840068B4BB /* PlaybackKit in Frameworks */,
 				DF62AAF92891E841002D420E /* ModernNetworking in Frameworks */,
 				DF2CF1C223BBB2EA003497C5 /* TextFieldEffects in Frameworks */,
 				DF3C180B254489EF0047C898 /* MMUI in Frameworks */,
-				DF777BBD2414361500C7C9D5 /* MarkdownKit in Frameworks */,
 				DF0EAC9C24C63FB0009BE489 /* ModernNetworking in Frameworks */,
 				DFD8632C25E25F60006164E5 /* AppScaffold in Frameworks */,
 				DF0B292828523C25009D389A /* Resolver in Frameworks */,
@@ -477,7 +470,6 @@
 				DFB07A31277741030033101C /* FirebaseCrashlytics in Frameworks */,
 				DFB07A2F277741030033101C /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				DFA4BC48263A28530014C7F9 /* TagListView in Frameworks */,
-				DF777BC024143A9D00C7C9D5 /* SwiftyMarkdown in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,7 +695,6 @@
 				DF89BA1926FE1280003A6C64 /* README.md */,
 				DF89BA1A26FE12AE003A6C64 /* IDEAS.md */,
 				DF1A9B9F26ECB2A600D3CAD0 /* .swiftlint.yml */,
-				DF60D64C284234580071A235 /* MediaLibraryKit */,
 				DFC8507726EFE62400F9FB39 /* Core */,
 				DF55F2622770ABE80024300B /* DashboardFeature */,
 				DF35EFA927A9E9FE005C6BDA /* NewsFeature */,
@@ -711,7 +702,6 @@
 				DF01804B27923CC500530143 /* ParkingFeature */,
 				DFFBAA2727693755003728CF /* RubbishFeature */,
 				DF559A5E2812FE160072F0F9 /* MapFeature */,
-				DF4116BB276FA43E0068B4BB /* PlaybackKit */,
 				DF9F19FC276693BB00B74E13 /* efaapi-ios */,
 				DF89BA1826FE1084003A6C64 /* mmui-ios */,
 				DFFBAA28276939AD003728CF /* mmcommon-ios */,
@@ -1050,8 +1040,6 @@
 			name = Moers;
 			packageProductDependencies = (
 				DF2CF1C123BBB2EA003497C5 /* TextFieldEffects */,
-				DF777BBC2414361500C7C9D5 /* MarkdownKit */,
-				DF777BBF24143A9D00C7C9D5 /* SwiftyMarkdown */,
 				DF0EAC9B24C63FB0009BE489 /* ModernNetworking */,
 				DFE1ED6A2538C24800FDD44A /* BLTNBoard */,
 				DFE1ED772538C4E200FDD44A /* Pulley */,
@@ -1066,7 +1054,6 @@
 				DFFA7EA02706638D00E27E7B /* AppFeedback */,
 				DF9F19F22766920C00B74E13 /* EFAAPI */,
 				DF9F19F42766920C00B74E13 /* EFAUI */,
-				DF4116BC276FED840068B4BB /* PlaybackKit */,
 				DF55F25E27709B410024300B /* RubbishFeature */,
 				DFE06E342771360E00466246 /* DashboardFeature */,
 				DFB07A2C277741030033101C /* FirebaseAnalyticsSwift-Beta */,
@@ -5242,10 +5229,6 @@
 			package = DF3C1809254489EF0047C898 /* XCRemoteSwiftPackageReference "mmui-ios" */;
 			productName = MMUI;
 		};
-		DF4116BC276FED840068B4BB /* PlaybackKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = PlaybackKit;
-		};
 		DF54DC362813039200819A3B /* MapFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MapFeature;
@@ -5279,16 +5262,6 @@
 		DF75345B277280710086B292 /* RubbishFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RubbishFeature;
-		};
-		DF777BBC2414361500C7C9D5 /* MarkdownKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF777BBB2414361500C7C9D5 /* XCRemoteSwiftPackageReference "MarkdownKit" */;
-			productName = MarkdownKit;
-		};
-		DF777BBF24143A9D00C7C9D5 /* SwiftyMarkdown */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF777BBE24143A9D00C7C9D5 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */;
-			productName = SwiftyMarkdown;
 		};
 		DF97AD0E26EFEC5F009DFF71 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;

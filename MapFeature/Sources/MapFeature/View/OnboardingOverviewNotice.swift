@@ -9,6 +9,7 @@
 import UIKit
 import MMUI
 import Gestalt
+import Core
 
 class OnboardingOverviewNotice: UIView {
     

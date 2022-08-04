@@ -11,6 +11,7 @@ import TextFieldEffects
 import MMUI
 import Gestalt
 import Combine
+import Core
 
 class TextFieldFormView: UIView, FormView {
     

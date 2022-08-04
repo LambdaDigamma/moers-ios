@@ -51,9 +51,9 @@ public class DefaultCache<CacheData: Codable>: Cache {
             return Future { promise in
                 self.storage.async.entry(forKey: key) { result in
                     switch result {
-                        case .value(let t):
+                        case .success(let t):
                             promise(.success(t.object))
-                        case .error(let error):
+                        case .failure(let error):
                             promise(.failure(error))
                     }
                 }
@@ -67,9 +67,9 @@ public class DefaultCache<CacheData: Codable>: Cache {
         
         self.storage.async.setObject(data, forKey: key) { result in
             switch result {
-                case .value(_):
+                case .success(_):
                     return
-                case .error(let error):
+                case .failure(let error):
                     self.logger.error("Failed writing into '\(self.cacheName, privacy: .public)' cache: \(error.localizedDescription, privacy: .public)")
             }
         }

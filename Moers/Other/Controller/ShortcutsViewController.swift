@@ -6,6 +6,7 @@
 //  Copyright © 2019 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import Gestalt
 import IntentsUI

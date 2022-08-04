@@ -6,7 +6,6 @@
 //
 
 import Foundation
-//import Ink
 
 final public class MarkdownBlock: NSObject, Blockable {
     

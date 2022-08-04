@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import MMUI
+import Core
 
 class EntryAnnotationView: MKMarkerAnnotationView {
 

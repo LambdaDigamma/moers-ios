@@ -155,15 +155,6 @@
         }
       },
       {
-        "package": "Ink",
-        "repositoryURL": "https://github.com/johnsundell/ink.git",
-        "state": {
-          "branch": null,
-          "revision": "77c3d8953374a9cf5418ef0bd7108524999de85a",
-          "version": "0.5.1"
-        }
-      },
-      {
         "package": "leveldb",
         "repositoryURL": "https://github.com/firebase/leveldb.git",
         "state": {
@@ -179,6 +170,15 @@
           "branch": null,
           "revision": "c64728dedf6dbcac463cf5e53e93d210ab825793",
           "version": "1.6.0"
+        }
+      },
+      {
+        "package": "MediaLibraryKit",
+        "repositoryURL": "https://github.com/LambdaDigamma/MediaLibraryKit",
+        "state": {
+          "branch": null,
+          "revision": "6e43f9487be582aeddadc65df9b3d5843137cc89",
+          "version": "0.0.7"
         }
       },
       {
@@ -210,7 +210,7 @@
       },
       {
         "package": "NukeUI",
-        "repositoryURL": "https://github.com/kean/NukeUI.git",
+        "repositoryURL": "https://github.com/kean/NukeUI",
         "state": {
           "branch": null,
           "revision": "db55022a8e483774ebbf3568727071477546d9ea",
@@ -255,7 +255,7 @@
       },
       {
         "package": "SwiftDocCPlugin",
-        "repositoryURL": "https://github.com/apple/swift-docc-plugin.git",
+        "repositoryURL": "https://github.com/apple/swift-docc-plugin",
         "state": {
           "branch": null,
           "revision": "3303b164430d9a7055ba484c8ead67a52f7b74f6",
@@ -276,8 +276,8 @@
         "repositoryURL": "https://github.com/apple/swift-protobuf.git",
         "state": {
           "branch": null,
-          "revision": "e1499bc69b9040b29184f7f2996f7bab467c1639",
-          "version": "1.19.0"
+          "revision": "fa0fcd43f272a260e7f734f23e6dc55e16fcae0a",
+          "version": "1.19.1"
         }
       },
       {
@@ -312,8 +312,8 @@
         "repositoryURL": "https://github.com/MaxDesiatov/XMLCoder.git",
         "state": {
           "branch": null,
-          "revision": "f30119af03996939cc4f54e0bf0dda9f88a84da5",
-          "version": "0.13.1"
+          "revision": "ca932442d7481700f5434a7b138c47dd42d9902b",
+          "version": "0.14.0"
         }
       },
       {

@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+
+/// This view is not yet used in the app.
+/// Potentially this should show urgent and
+/// important emergency situations to the user.
 public struct EmergencyCard: View {
     
     private let text: String
