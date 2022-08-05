@@ -8,7 +8,6 @@
 
 import Core
 import UIKit
-import MMUI
 import Gestalt
 import Pulley
 import TagListView

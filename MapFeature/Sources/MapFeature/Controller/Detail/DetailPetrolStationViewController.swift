@@ -9,7 +9,6 @@
 import Core
 import UIKit
 import Gestalt
-import MMUI
 import Resolver
 import FuelFeature
 

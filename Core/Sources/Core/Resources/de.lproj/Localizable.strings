@@ -91,3 +91,28 @@
 
 /* Events */
 "LiveNow" = "jetzt live";
+
+/*
+ Localizable.strings
+ MMUI
+ 
+ Created by Lennart Fischer on 13.06.19.
+ Copyright © 2019 LambdaDigamma. All rights reserved.
+ */
+
+"EventsTitle" = "Veranstaltungen";
+"SearchEventsPrompt" = "Suche Veranstaltungen";
+"ShowMore" = "Mehr anzeigen";
+"UpcomingFavourites" = "bevorstehende Favoriten";
+"Favourites" = "Favoriten";
+"Upcoming" = "Bevorstehend";
+"LiveNow" = "jetzt live";
+"RouteButtonTitle" = "Route";
+"EventsNoFavourite" = "Du hast noch keine Veranstaltung als Favoriten markiert.";
+"EventsNoLive" = "Gerade finden keine Veranstaltungen statt.";
+"EventsNoUpcoming" = "Momentan sind keine Veranstaltungen geplant. Komme demnächst noch einmal wieder!";
+"NavigationButtonMovingAct" = "Aktuelle Position zeigen";
+"MoreInformation" = "Mehr Informationen ➤";
+"Venue" = "Veranstaltungsort";
+"Unknown" = "unbekannt";
+"NotKnownLoc" = "nicht bekannt";

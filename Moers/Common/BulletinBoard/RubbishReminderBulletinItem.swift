@@ -10,7 +10,6 @@ import Core
 import UIKit
 import BLTNBoard
 import Gestalt
-import MMUI
 
 class RubbishReminderBulletinItem: BLTNPageItem {
     

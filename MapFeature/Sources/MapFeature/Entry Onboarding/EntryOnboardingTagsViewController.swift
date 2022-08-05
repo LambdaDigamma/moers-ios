@@ -11,16 +11,15 @@ import UIKit
 import Gestalt
 import TagListView
 import Fuse
-import MMUI
 
 class EntryOnboardingTagsViewController: UIViewController {
 
-    lazy var scrollView = { ViewFactory.scrollView() }()
-    lazy var contentView = { ViewFactory.blankView() }()
-    lazy var progressView = { ViewFactory.onboardingProgressView() }()
-    lazy var tagsHeaderLabel = { ViewFactory.label() }()
-    lazy var tagsListView = { ViewFactory.tagListView() }()
-    lazy var infoLabel = { ViewFactory.label() }()
+    lazy var scrollView = { CoreViewFactory.scrollView() }()
+    lazy var contentView = { CoreViewFactory.blankView() }()
+    lazy var progressView = { CoreViewFactory.onboardingProgressView() }()
+    lazy var tagsHeaderLabel = { CoreViewFactory.label() }()
+    lazy var tagsListView = { CoreViewFactory.tagListView() }()
+    lazy var infoLabel = { CoreViewFactory.label() }()
     
     lazy var searchController = { LFSearchViewController() }()
     

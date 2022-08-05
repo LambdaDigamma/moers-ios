@@ -10,7 +10,6 @@ import Core
 import Foundation
 import FirebaseAnalytics
 import StoreKit
-import MMUI
 import FuelFeature
 import MapFeature
 

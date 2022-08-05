@@ -11,7 +11,6 @@ import UIKit
 import MapKit
 import Gestalt
 import Pulley
-import MMUI
 import Combine
 import Resolver
 import Core
@@ -22,13 +21,13 @@ public class DetailViewController: UIViewController {
     
     public var coordinator: MapCoordintor?
     
-    private lazy var gripperView: UIView = { ViewFactory.blankView() }()
-    private lazy var imageView: UIImageView = { ViewFactory.imageView() }()
-    private lazy var nameLabel: UILabel = { ViewFactory.label() }()
-    private lazy var subtitleLabel: UILabel = { ViewFactory.label() }()
-    private lazy var contentView: UIScrollView = { ViewFactory.scrollView() }()
-    private lazy var closeButton: UIButton = { ViewFactory.button() }()
-    private lazy var routeButton: UIButton = { ViewFactory.button() }()
+    private lazy var gripperView: UIView = { CoreViewFactory.blankView() }()
+    private lazy var imageView: UIImageView = { CoreViewFactory.imageView() }()
+    private lazy var nameLabel: UILabel = { CoreViewFactory.label() }()
+    private lazy var subtitleLabel: UILabel = { CoreViewFactory.label() }()
+    private lazy var contentView: UIScrollView = { CoreViewFactory.scrollView() }()
+    private lazy var closeButton: UIButton = { CoreViewFactory.button() }()
+    private lazy var routeButton: UIButton = { CoreViewFactory.button() }()
     
     private var cancellables = Set<AnyCancellable>()
     private let entryManager: EntryManagerProtocol
@@ -37,7 +36,7 @@ public class DetailViewController: UIViewController {
         willSet {
             contentView.subviews.forEach({ $0.removeFromSuperview() })
             contentView.removeFromSuperview()
-            contentView = ViewFactory.scrollView()
+            contentView = CoreViewFactory.scrollView()
             
             self.view.addSubview(contentView)
             

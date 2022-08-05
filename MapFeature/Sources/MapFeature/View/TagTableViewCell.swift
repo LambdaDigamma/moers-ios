@@ -8,12 +8,11 @@
 
 import UIKit
 import Gestalt
-import MMUI
 import Core
 
 class TagTableViewCell: UITableViewCell {
     
-    lazy var titleLabel: UILabel = { ViewFactory.label() }()
+    lazy var titleLabel: UILabel = { CoreViewFactory.label() }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

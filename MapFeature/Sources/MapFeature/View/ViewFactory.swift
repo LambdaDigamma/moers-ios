@@ -1,5 +1,5 @@
 //
-//  ViewFactory.swift
+//  CoreViewFactory+Extensions.swift
 //  
 //
 //  Created by Lennart Fischer on 23.04.22.
@@ -9,10 +9,10 @@ import UIKit
 import MapKit
 import WebKit
 import TagListView
-import MMUI
 import TextFieldEffects
+import Core
 
-internal extension ViewFactory {
+internal extension CoreViewFactory {
     
     static func webView() -> WKWebView {
         

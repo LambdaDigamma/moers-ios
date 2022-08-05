@@ -8,15 +8,14 @@
 
 import UIKit
 import Gestalt
-import MMUI
 import Core
 
 class SearchResultTableViewCell: UITableViewCell {
     
-    lazy var searchImageView = { ViewFactory.imageView() }()
-    lazy var titleLabel = { ViewFactory.label() }()
-    lazy var subtitleLabel = { ViewFactory.label() }()
-    lazy var checkmarkView = { ViewFactory.checkmarkView() }()
+    lazy var searchImageView = { CoreViewFactory.imageView() }()
+    lazy var titleLabel = { CoreViewFactory.label() }()
+    lazy var subtitleLabel = { CoreViewFactory.label() }()
+    lazy var checkmarkView = { CoreViewFactory.checkmarkView() }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

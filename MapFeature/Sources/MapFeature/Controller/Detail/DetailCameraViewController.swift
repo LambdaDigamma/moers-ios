@@ -10,12 +10,11 @@ import Core
 import UIKit
 import Gestalt
 //import FirebaseAnalytics // todo: analytics
-import MMUI
 
 class DetailCameraViewController: UIViewController {
 
-    lazy var topSeperator: UIView = { ViewFactory.blankView() }()
-    lazy var showButton: UIButton = { ViewFactory.button() }()
+    lazy var topSeperator: UIView = { CoreViewFactory.blankView() }()
+    lazy var showButton: UIButton = { CoreViewFactory.button() }()
     
     var selectedCamera: Camera? { didSet { setupCamera(selectedCamera) } }
     

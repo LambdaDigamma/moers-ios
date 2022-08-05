@@ -9,7 +9,6 @@
 import UIKit
 import BLTNBoard
 import Gestalt
-import MMUI
 import MMCommon
 import Core
 

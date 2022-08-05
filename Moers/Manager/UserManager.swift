@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import MMUI
 import Core
 
 public class UserManager {

@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import MMUI
 import Core
 
 public enum DeveloperLinkType {

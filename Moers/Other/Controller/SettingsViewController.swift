@@ -10,7 +10,6 @@ import Core
 import UIKit
 import Gestalt
 import BLTNBoard
-import MMUI
 import Resolver
 import RubbishFeature
 import FuelFeature
@@ -20,7 +19,7 @@ class SettingsViewController: UIViewController {
     private let standardCellIdentifier = "standard"
     private let switchCellIdentifier = "switchCell"
     
-    lazy var tableView = { ViewFactory.tableView(with: .grouped) }()
+    lazy var tableView = { CoreViewFactory.tableView(with: .grouped) }()
     lazy var manager = { makeManager(with: BLTNPageItem(title: "")) }()
     
     var data: [TableViewSection] = []

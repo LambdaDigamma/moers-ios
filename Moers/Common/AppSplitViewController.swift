@@ -15,7 +15,6 @@ import Gestalt
 import Combine
 import UIKit
 import AppScaffold
-import MMUI
 import MMEvents
 import BLTNBoard
 import RubbishFeature

@@ -11,7 +11,6 @@ import UIKit
 import UserNotifications
 import Firebase
 import Gestalt
-import MMUI
 import MMCommon
 import Haneke
 import SwiftUI
@@ -56,8 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         EventPackageConfiguration.accentColor = UIColor.systemYellow
         EventPackageConfiguration.onAccentColor = UIColor.black
         
-        MMUI.UIPackageConfiguration.accentColor = UIColor.systemYellow
-        MMUI.UIPackageConfiguration.onAccentColor = UIColor.black
+//        MMUI.UIPackageConfiguration.accentColor = UIColor.systemYellow
+//        MMUI.UIPackageConfiguration.onAccentColor = UIColor.black
         
         Core.UIPackageConfiguration.accentColor = UIColor.systemYellow
         Core.UIPackageConfiguration.onAccentColor = UIColor.black

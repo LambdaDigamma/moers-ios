@@ -8,7 +8,6 @@
 
 import UIKit
 import Gestalt
-import MMUI
 import Core
 import SwiftUI
 

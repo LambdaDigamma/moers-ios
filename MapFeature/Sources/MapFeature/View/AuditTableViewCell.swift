@@ -8,7 +8,6 @@
 
 import Core
 import UIKit
-import MMUI
 import Gestalt
 
 class AuditTableViewCell: UITableViewCell {
@@ -49,11 +48,11 @@ class AuditTableViewCell: UITableViewCell {
         }
     }
     
-    private lazy var dateLabel = { ViewFactory.label() }()
-    private lazy var auditingTypeImageView = { ViewFactory.imageView() }()
-    private lazy var auditingTypeLabel = { ViewFactory.label() }()
-    private lazy var changeSetHeader = { ViewFactory.label() }()
-    private lazy var changesStackView = { ViewFactory.stackView() }()
+    private lazy var dateLabel = { CoreViewFactory.label() }()
+    private lazy var auditingTypeImageView = { CoreViewFactory.imageView() }()
+    private lazy var auditingTypeLabel = { CoreViewFactory.label() }()
+    private lazy var changeSetHeader = { CoreViewFactory.label() }()
+    private lazy var changesStackView = { CoreViewFactory.stackView() }()
     
     private let lookupTable: [String: String] = [
         "name": String.localized("AuditingEntryName"),

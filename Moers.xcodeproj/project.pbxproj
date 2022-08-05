@@ -42,7 +42,6 @@
 		DF35EFAB27A9EB66005C6BDA /* ExploreOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF35EFAA27A9EB66005C6BDA /* ExploreOverview.swift */; };
 		DF3661D727AB2362002A90BB /* ParkingFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF3661D627AB2362002A90BB /* ParkingFeature */; };
 		DF3661D927AB267F002A90BB /* FuelFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF3661D827AB267F002A90BB /* FuelFeature */; };
-		DF3C180B254489EF0047C898 /* MMUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF3C180A254489EF0047C898 /* MMUI */; };
 		DF4116C5276FF45F0068B4BB /* WidgetStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4116C4276FF45F0068B4BB /* WidgetStrings.swift */; };
 		DF461CBA20E226DE00600C0E /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF461CB920E226DE00600C0E /* ViewFactory.swift */; };
 		DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */; };
@@ -169,6 +168,7 @@
 		DFE1ED782538C4E200FDD44A /* Pulley in Frameworks */ = {isa = PBXBuildFile; productRef = DFE1ED772538C4E200FDD44A /* Pulley */; };
 		DFE3D9012674035400BE29E7 /* NetworkingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE3D9002674035400BE29E7 /* NetworkingConfiguration.swift */; };
 		DFF5DDCB20094A920075A2F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */; };
+		DFF6FFA4289D156600C88964 /* Haneke in Frameworks */ = {isa = PBXBuildFile; productRef = DFF6FFA3289D156600C88964 /* Haneke */; };
 		DFF7E5BE2843CE4700A1CE7B /* AboutScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF7E5BD2843CE4700A1CE7B /* AboutScreen.swift */; };
 		DFF7E5C12843D3EA00A1CE7B /* WallOfContribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF7E5C02843D3EA00A1CE7B /* WallOfContribution.swift */; };
 		DFF7F365285252AE00E99AD2 /* CarPlaySceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF7F364285252AE00E99AD2 /* CarPlaySceneDelegate.swift */; };
@@ -357,7 +357,6 @@
 		DF80F6CA2851378A00AB708D /* ChartSandbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartSandbox.swift; sourceTree = "<group>"; };
 		DF86ABA02174900400EFC7EA /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		DF89BA1526FDE24F003A6C64 /* DebugNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugNotificationViewController.swift; sourceTree = "<group>"; };
-		DF89BA1826FE1084003A6C64 /* mmui-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "mmui-ios"; path = "../mmui-ios"; sourceTree = "<group>"; };
 		DF89BA1926FE1280003A6C64 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DF89BA1A26FE12AE003A6C64 /* IDEAS.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = IDEAS.md; sourceTree = "<group>"; };
 		DF94B11723F0A7E5009C57ED /* Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -449,12 +448,12 @@
 				DF32ACF32676AABA00B943DB /* MMEvents in Frameworks */,
 				DF62AAF92891E841002D420E /* ModernNetworking in Frameworks */,
 				DF2CF1C223BBB2EA003497C5 /* TextFieldEffects in Frameworks */,
-				DF3C180B254489EF0047C898 /* MMUI in Frameworks */,
 				DF0EAC9C24C63FB0009BE489 /* ModernNetworking in Frameworks */,
 				DFD8632C25E25F60006164E5 /* AppScaffold in Frameworks */,
 				DF0B292828523C25009D389A /* Resolver in Frameworks */,
 				DFE1ED6B2538C24800FDD44A /* BLTNBoard in Frameworks */,
 				DFFA7EA12706638D00E27E7B /* AppFeedback in Frameworks */,
+				DFF6FFA4289D156600C88964 /* Haneke in Frameworks */,
 				DF9F19F52766920C00B74E13 /* EFAUI in Frameworks */,
 				DFE06E352771360E00466246 /* DashboardFeature in Frameworks */,
 				DF97AD0F26EFEC5F009DFF71 /* Core in Frameworks */,
@@ -703,7 +702,6 @@
 				DFFBAA2727693755003728CF /* RubbishFeature */,
 				DF559A5E2812FE160072F0F9 /* MapFeature */,
 				DF9F19FC276693BB00B74E13 /* efaapi-ios */,
-				DF89BA1826FE1084003A6C64 /* mmui-ios */,
 				DFFBAA28276939AD003728CF /* mmcommon-ios */,
 				DFF654E52677C60B0026FBCF /* mmevents-ios */,
 				DFB152EE28159CC7002043B7 /* mmpages-ios */,
@@ -1044,7 +1042,6 @@
 				DFE1ED6A2538C24800FDD44A /* BLTNBoard */,
 				DFE1ED772538C4E200FDD44A /* Pulley */,
 				DFCE12942538F7F600B45EB7 /* FeedKit */,
-				DF3C180A254489EF0047C898 /* MMUI */,
 				DFDE88702545834B00429765 /* EventBus */,
 				DFD8632B25E25F60006164E5 /* AppScaffold */,
 				DFD8633225E26053006164E5 /* MMCommon */,
@@ -1065,6 +1062,7 @@
 				DF54DC362813039200819A3B /* MapFeature */,
 				DF0B292728523C25009D389A /* Resolver */,
 				DF62AAF82891E841002D420E /* ModernNetworking */,
+				DFF6FFA3289D156600C88964 /* Haneke */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1262,7 +1260,6 @@
 				DFE1ED692538C24800FDD44A /* XCRemoteSwiftPackageReference "BulletinBoard" */,
 				DFE1ED762538C4E200FDD44A /* XCRemoteSwiftPackageReference "Pulley" */,
 				DFCE12932538F7F600B45EB7 /* XCRemoteSwiftPackageReference "FeedKit" */,
-				DF3C1809254489EF0047C898 /* XCRemoteSwiftPackageReference "mmui-ios" */,
 				DFDE886F2545834B00429765 /* XCRemoteSwiftPackageReference "eventbus" */,
 				DFD8632A25E25F5F006164E5 /* XCRemoteSwiftPackageReference "app-scaffold-ios" */,
 				DFD8633125E26053006164E5 /* XCRemoteSwiftPackageReference "mmcommon-ios" */,
@@ -1273,6 +1270,7 @@
 				DFB07A2B277741030033101C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				DF0B292628523C24009D389A /* XCRemoteSwiftPackageReference "Resolver" */,
 				DF62AAF72891E841002D420E /* XCRemoteSwiftPackageReference "modernnetworking" */,
+				DFF6FFA2289D156600C88964 /* XCRemoteSwiftPackageReference "HanekeSwift" */,
 			);
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
@@ -5063,14 +5061,6 @@
 				minimumVersion = 0.0.3;
 			};
 		};
-		DF3C1809254489EF0047C898 /* XCRemoteSwiftPackageReference "mmui-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LambdaDigamma/mmui-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.1;
-			};
-		};
 		DF62AAF72891E841002D420E /* XCRemoteSwiftPackageReference "modernnetworking" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lambdadigamma/modernnetworking";
@@ -5167,6 +5157,14 @@
 				minimumVersion = 2.8.5;
 			};
 		};
+		DFF6FFA2289D156600C88964 /* XCRemoteSwiftPackageReference "HanekeSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LambdaDigamma/HanekeSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.14.0;
+			};
+		};
 		DFFA7E9F2706638D00E27E7B /* XCRemoteSwiftPackageReference "swift-app-feedback" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/LambdaDigamma/swift-app-feedback";
@@ -5223,11 +5221,6 @@
 		DF3661D827AB267F002A90BB /* FuelFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FuelFeature;
-		};
-		DF3C180A254489EF0047C898 /* MMUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF3C1809254489EF0047C898 /* XCRemoteSwiftPackageReference "mmui-ios" */;
-			productName = MMUI;
 		};
 		DF54DC362813039200819A3B /* MapFeature */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -5354,6 +5347,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DFE1ED762538C4E200FDD44A /* XCRemoteSwiftPackageReference "Pulley" */;
 			productName = Pulley;
+		};
+		DFF6FFA3289D156600C88964 /* Haneke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFF6FFA2289D156600C88964 /* XCRemoteSwiftPackageReference "HanekeSwift" */;
+			productName = Haneke;
 		};
 		DFFA7EA02706638D00E27E7B /* AppFeedback */ = {
 			isa = XCSwiftPackageProductDependency;

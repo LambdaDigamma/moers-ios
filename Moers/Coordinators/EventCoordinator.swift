@@ -8,7 +8,6 @@
 
 import Core
 import UIKit
-import MMUI
 import AppScaffold
 import MMEvents
 import Resolver

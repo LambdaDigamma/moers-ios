@@ -8,15 +8,14 @@
 
 import UIKit
 import TextFieldEffects
-import MMUI
 import Gestalt
 import Combine
 import Core
 
 class TextFieldFormView: UIView, FormView {
     
-    public private(set) lazy var textField: HoshiTextField = { ViewFactory.textField() }()
-    private lazy var errorStackView: UIStackView = { ViewFactory.stackView() }()
+    public private(set) lazy var textField: HoshiTextField = { CoreViewFactory.textField() }()
+    private lazy var errorStackView: UIStackView = { CoreViewFactory.stackView() }()
     private var cancellables = Set<AnyCancellable>()
     
     var isEnabled: Bool {
@@ -129,7 +128,7 @@ class TextFieldFormView: UIView, FormView {
         
         for error in errors {
             
-            let label = ViewFactory.label()
+            let label = CoreViewFactory.label()
             label.text = error
             label.textColor = UIColor(hexString: "FF0000")
             label.font = UIFont.systemFont(ofSize: 12, weight: .medium)

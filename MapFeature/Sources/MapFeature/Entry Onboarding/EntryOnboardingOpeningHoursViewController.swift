@@ -10,24 +10,23 @@ import Core
 import UIKit
 import Gestalt
 import TextFieldEffects
-import MMUI
 
 class EntryOnboardingOpeningHoursViewController: UIViewController {
 
-    lazy var scrollView = { ViewFactory.scrollView() }()
-    lazy var contentView = { ViewFactory.blankView() }()
-    lazy var progressView = { ViewFactory.onboardingProgressView() }()
-    lazy var openingHoursHeaderLabel = { ViewFactory.label() }()
-    lazy var openingHoursStackView = { ViewFactory.stackView() }()
-    lazy var mondayOHTextField = { ViewFactory.textField() }()
-    lazy var tuesdayOHTextField = { ViewFactory.textField() }()
-    lazy var wednesdayOHTextField = { ViewFactory.textField() }()
-    lazy var thursdayOHTextField = { ViewFactory.textField() }()
-    lazy var fridayOHTextField = { ViewFactory.textField() }()
-    lazy var saturdayOHTextField = { ViewFactory.textField() }()
-    lazy var sundayOHTextField = { ViewFactory.textField() }()
-    lazy var otherOHTextField = { ViewFactory.textField() }()
-    lazy var openingHoursInfoLabel = { ViewFactory.label() }()
+    lazy var scrollView = { CoreViewFactory.scrollView() }()
+    lazy var contentView = { CoreViewFactory.blankView() }()
+    lazy var progressView = { CoreViewFactory.onboardingProgressView() }()
+    lazy var openingHoursHeaderLabel = { CoreViewFactory.label() }()
+    lazy var openingHoursStackView = { CoreViewFactory.stackView() }()
+    lazy var mondayOHTextField = { CoreViewFactory.textField() }()
+    lazy var tuesdayOHTextField = { CoreViewFactory.textField() }()
+    lazy var wednesdayOHTextField = { CoreViewFactory.textField() }()
+    lazy var thursdayOHTextField = { CoreViewFactory.textField() }()
+    lazy var fridayOHTextField = { CoreViewFactory.textField() }()
+    lazy var saturdayOHTextField = { CoreViewFactory.textField() }()
+    lazy var sundayOHTextField = { CoreViewFactory.textField() }()
+    lazy var otherOHTextField = { CoreViewFactory.textField() }()
+    lazy var openingHoursInfoLabel = { CoreViewFactory.label() }()
     
     private var entryManager: EntryManagerProtocol
     

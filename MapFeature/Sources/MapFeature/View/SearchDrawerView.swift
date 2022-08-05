@@ -7,19 +7,18 @@
 //
 
 import UIKit
-import MMUI
 import Gestalt
 import TagListView
 import Core
 
 public class SearchDrawerView: UIView {
     
-    lazy var searchWrapper = { ViewFactory.blankView() }()
-    lazy var gripper = { ViewFactory.blankView() }()
-    lazy var searchBar = { ViewFactory.searchBar() }()
-    lazy var tagList = { ViewFactory.tagListView() }()
-    lazy var topSeparator = { ViewFactory.blankView() }()
-    lazy var tableView = { ViewFactory.tableView() }()
+    lazy var searchWrapper = { CoreViewFactory.blankView() }()
+    lazy var gripper = { CoreViewFactory.blankView() }()
+    lazy var searchBar = { CoreViewFactory.searchBar() }()
+    lazy var tagList = { CoreViewFactory.tagListView() }()
+    lazy var topSeparator = { CoreViewFactory.blankView() }()
+    lazy var tableView = { CoreViewFactory.tableView() }()
     
     init() {
         super.init(frame: .zero)

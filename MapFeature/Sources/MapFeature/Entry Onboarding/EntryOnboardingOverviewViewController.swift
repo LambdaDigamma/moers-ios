@@ -11,7 +11,6 @@ import UIKit
 import Gestalt
 import TextFieldEffects
 import MapKit
-import MMUI
 import TagListView
 import Fuse
 
@@ -26,33 +25,33 @@ enum EntryOverviewType: Equatable {
 class EntryOnboardingOverviewViewController: UIViewController {
 
     lazy var searchController = { LFSearchViewController() }()
-    lazy var scrollView = { ViewFactory.scrollView() }()
-    lazy var contentView = { ViewFactory.blankView() }()
-    lazy var generalHeaderLabel = { ViewFactory.label() }()
-    lazy var nameTextField = { ViewFactory.textFieldFormView() }()
-    lazy var tagsHeaderLabel = { ViewFactory.label() }()
-    lazy var tagsListView = { ViewFactory.tagListView() }()
-    lazy var addressHeaderLabel = { ViewFactory.label() }()
-    lazy var streetTextField = { ViewFactory.textFieldFormView() }()
-    lazy var houseNrTextField = { ViewFactory.textFieldFormView() }()
-    lazy var postcodeTextField = { ViewFactory.textFieldFormView() }()
-    lazy var placeTextField = { ViewFactory.textFieldFormView() }()
-    lazy var mapView = { ViewFactory.map() }()
-    lazy var promptLabel = { ViewFactory.label() }()
-    lazy var contactHeaderLabel = { ViewFactory.label() }()
-    lazy var websiteTextField = { ViewFactory.textFieldFormView() }()
-    lazy var phoneTextField = { ViewFactory.textFieldFormView() }()
-    lazy var openingHoursHeaderLabel = { ViewFactory.label() }()
-    lazy var openingHoursStackView = { ViewFactory.stackView() }()
-    lazy var mondayOHTextField = { ViewFactory.textFieldFormView() }()
-    lazy var tuesdayOHTextField = { ViewFactory.textFieldFormView() }()
-    lazy var wednesdayOHTextField = { ViewFactory.textFieldFormView() }()
-    lazy var thursdayOHTextField = { ViewFactory.textFieldFormView() }()
-    lazy var fridayOHTextField = { ViewFactory.textFieldFormView() }()
-    lazy var saturdayOHTextField = { ViewFactory.textFieldFormView() }()
-    lazy var sundayOHTextField = { ViewFactory.textFieldFormView() }()
-    lazy var otherOHTextField = { ViewFactory.textFieldFormView() }()
-    lazy var saveButton = { ViewFactory.button() }()
+    lazy var scrollView = { CoreViewFactory.scrollView() }()
+    lazy var contentView = { CoreViewFactory.blankView() }()
+    lazy var generalHeaderLabel = { CoreViewFactory.label() }()
+    lazy var nameTextField = { CoreViewFactory.textFieldFormView() }()
+    lazy var tagsHeaderLabel = { CoreViewFactory.label() }()
+    lazy var tagsListView = { CoreViewFactory.tagListView() }()
+    lazy var addressHeaderLabel = { CoreViewFactory.label() }()
+    lazy var streetTextField = { CoreViewFactory.textFieldFormView() }()
+    lazy var houseNrTextField = { CoreViewFactory.textFieldFormView() }()
+    lazy var postcodeTextField = { CoreViewFactory.textFieldFormView() }()
+    lazy var placeTextField = { CoreViewFactory.textFieldFormView() }()
+    lazy var mapView = { CoreViewFactory.map() }()
+    lazy var promptLabel = { CoreViewFactory.label() }()
+    lazy var contactHeaderLabel = { CoreViewFactory.label() }()
+    lazy var websiteTextField = { CoreViewFactory.textFieldFormView() }()
+    lazy var phoneTextField = { CoreViewFactory.textFieldFormView() }()
+    lazy var openingHoursHeaderLabel = { CoreViewFactory.label() }()
+    lazy var openingHoursStackView = { CoreViewFactory.stackView() }()
+    lazy var mondayOHTextField = { CoreViewFactory.textFieldFormView() }()
+    lazy var tuesdayOHTextField = { CoreViewFactory.textFieldFormView() }()
+    lazy var wednesdayOHTextField = { CoreViewFactory.textFieldFormView() }()
+    lazy var thursdayOHTextField = { CoreViewFactory.textFieldFormView() }()
+    lazy var fridayOHTextField = { CoreViewFactory.textFieldFormView() }()
+    lazy var saturdayOHTextField = { CoreViewFactory.textFieldFormView() }()
+    lazy var sundayOHTextField = { CoreViewFactory.textFieldFormView() }()
+    lazy var otherOHTextField = { CoreViewFactory.textFieldFormView() }()
+    lazy var saveButton = { CoreViewFactory.button() }()
     lazy var noticeView: OnboardingOverviewNotice = {
         let notice = OnboardingOverviewNotice()
         notice.translatesAutoresizingMaskIntoConstraints = false

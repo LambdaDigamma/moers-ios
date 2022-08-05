@@ -11,21 +11,20 @@ import UIKit
 import Gestalt
 import TextFieldEffects
 import MapKit
-import MMUI
 
 // swiftlint:disable function_body_length
 class EntryOnboardingAddressViewController: UIViewController {
 
-    lazy var scrollView = { ViewFactory.scrollView() }()
-    lazy var contentView = { ViewFactory.blankView() }()
-    lazy var progressView = { ViewFactory.onboardingProgressView() }()
-    lazy var addressHeaderLabel = { ViewFactory.label() }()
-    lazy var streetTextField = { ViewFactory.textField() }()
-    lazy var houseNrTextField = { ViewFactory.textField() }()
-    lazy var postcodeTextField = { ViewFactory.textField() }()
-    lazy var placeTextField = { ViewFactory.textField() }()
-    lazy var mapView = { ViewFactory.map() }()
-    lazy var infoLabel = { ViewFactory.label() }()
+    lazy var scrollView = { CoreViewFactory.scrollView() }()
+    lazy var contentView = { CoreViewFactory.blankView() }()
+    lazy var progressView = { CoreViewFactory.onboardingProgressView() }()
+    lazy var addressHeaderLabel = { CoreViewFactory.label() }()
+    lazy var streetTextField = { CoreViewFactory.textField() }()
+    lazy var houseNrTextField = { CoreViewFactory.textField() }()
+    lazy var postcodeTextField = { CoreViewFactory.textField() }()
+    lazy var placeTextField = { CoreViewFactory.textField() }()
+    lazy var mapView = { CoreViewFactory.map() }()
+    lazy var infoLabel = { CoreViewFactory.label() }()
     
     private var coordinate: CLLocationCoordinate2D?
     

@@ -9,22 +9,21 @@
 import Core
 import UIKit
 import Gestalt
-//import FirebaseAnalytics
-import MMUI
+// import FirebaseAnalytics
 
 class DetailParkingViewController: UIViewController {
 
-    lazy var topSeparator: UIView = { ViewFactory.blankView() }()
-    lazy var slotsHeaderLabel: UILabel = { ViewFactory.label() }()
-    lazy var totalHeaderLabel: UILabel = { ViewFactory.label() }()
-    lazy var totalLabel: UILabel = { ViewFactory.label() }()
-    lazy var freeHeaderLabel: UILabel = { ViewFactory.label() }()
-    lazy var freeLabel: UILabel = { ViewFactory.label() }()
-    lazy var statusHeaderLabel: UILabel = { ViewFactory.label() }()
-    lazy var statusLabel: UILabel = { ViewFactory.label() }()
-    lazy var middleSeparator: UIView = { ViewFactory.blankView() }()
-    lazy var addressHeaderLabel: UILabel = { ViewFactory.label() }()
-    lazy var addressLabel: UILabel = { ViewFactory.label() }()
+    lazy var topSeparator: UIView = { CoreViewFactory.blankView() }()
+    lazy var slotsHeaderLabel: UILabel = { CoreViewFactory.label() }()
+    lazy var totalHeaderLabel: UILabel = { CoreViewFactory.label() }()
+    lazy var totalLabel: UILabel = { CoreViewFactory.label() }()
+    lazy var freeHeaderLabel: UILabel = { CoreViewFactory.label() }()
+    lazy var freeLabel: UILabel = { CoreViewFactory.label() }()
+    lazy var statusHeaderLabel: UILabel = { CoreViewFactory.label() }()
+    lazy var statusLabel: UILabel = { CoreViewFactory.label() }()
+    lazy var middleSeparator: UIView = { CoreViewFactory.blankView() }()
+    lazy var addressHeaderLabel: UILabel = { CoreViewFactory.label() }()
+    lazy var addressLabel: UILabel = { CoreViewFactory.label() }()
     
 //    var selectedParkingLot: ParkingLot? { didSet { setupParkingLot(selectedParkingLot) } }
     

@@ -11,17 +11,16 @@ import UIKit
 import Gestalt
 import Pulley
 import MapKit
-import MMUI
 
 // todo: Update Selection View Controller
 class SelectionViewController: UIViewController {
 
-    lazy var headerView: UIView = { ViewFactory.blankView() }()
-    lazy var gripperView: UIView = { ViewFactory.blankView() }()
-    lazy var titleLabel: UILabel = { ViewFactory.label() }()
-    lazy var separatorView: UIView = { ViewFactory.blankView() }()
-    lazy var closeButton: UIButton = { ViewFactory.button() }()
-    lazy var tableView: UITableView = { ViewFactory.tableView() }()
+    lazy var headerView: UIView = { CoreViewFactory.blankView() }()
+    lazy var gripperView: UIView = { CoreViewFactory.blankView() }()
+    lazy var titleLabel: UILabel = { CoreViewFactory.label() }()
+    lazy var separatorView: UIView = { CoreViewFactory.blankView() }()
+    lazy var closeButton: UIButton = { CoreViewFactory.button() }()
+    lazy var tableView: UITableView = { CoreViewFactory.tableView() }()
     
     // swiftlint:disable:next force_cast
     lazy var drawer: MainViewController = { self.parent as! MainViewController }()

@@ -12,18 +12,17 @@ import Core
 import UIKit
 import Gestalt
 import TextFieldEffects
-import MMUI
 
 class EntryOnboardingGeneralViewController: UIViewController {
 
-    lazy var scrollView = { ViewFactory.scrollView() }()
-    lazy var contentView = { ViewFactory.blankView() }()
-    lazy var progressView = { ViewFactory.onboardingProgressView() }()
-    lazy var generalHeaderLabel = { ViewFactory.label() }()
-    lazy var nameTextField = { ViewFactory.textField() }()
-    lazy var contactHeaderLabel = { ViewFactory.label() }()
-    lazy var websiteTextField = { ViewFactory.textField() }()
-    lazy var phoneTextField = { ViewFactory.textField() }()
+    lazy var scrollView = { CoreViewFactory.scrollView() }()
+    lazy var contentView = { CoreViewFactory.blankView() }()
+    lazy var progressView = { CoreViewFactory.onboardingProgressView() }()
+    lazy var generalHeaderLabel = { CoreViewFactory.label() }()
+    lazy var nameTextField = { CoreViewFactory.textField() }()
+    lazy var contactHeaderLabel = { CoreViewFactory.label() }()
+    lazy var websiteTextField = { CoreViewFactory.textField() }()
+    lazy var phoneTextField = { CoreViewFactory.textField() }()
     
     private var entryManager: EntryManagerProtocol
     

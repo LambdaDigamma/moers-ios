@@ -12,7 +12,6 @@ import Gestalt
 import SafariServices
 //import FirebaseAnalytics
 import TagListView
-import MMUI
 
 class DetailEntryViewController: UIViewController {
     

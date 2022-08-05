@@ -9,7 +9,6 @@
 import Core
 import UIKit
 import Gestalt
-import MMUI
 import Core
 import Resolver
 
@@ -17,10 +16,10 @@ public class EntryOnboardingLocationMenuViewController: UIViewController {
     
     @LazyInjected var entryManager: EntryManagerProtocol
     
-    private lazy var progressView: OnboardingProgressView = { ViewFactory.onboardingProgressView() }()
-    private lazy var addressButton: UIButton = { ViewFactory.button() }()
-    private lazy var locationButton: UIButton = { ViewFactory.button() }()
-    private lazy var infoLabel: UILabel = { ViewFactory.label() }()
+    private lazy var progressView: OnboardingProgressView = { CoreViewFactory.onboardingProgressView() }()
+    private lazy var addressButton: UIButton = { CoreViewFactory.button() }()
+    private lazy var locationButton: UIButton = { CoreViewFactory.button() }()
+    private lazy var infoLabel: UILabel = { CoreViewFactory.label() }()
     
     public init() {
         super.init(nibName: nil, bundle: nil)

@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import MMUI
 import Gestalt
 import Core
 
 class OnboardingOverviewNotice: UIView {
     
-    private lazy var noticeLabel: UILabel = { ViewFactory.label() }()
+    private lazy var noticeLabel: UILabel = { CoreViewFactory.label() }()
     
     public var notice: String = "" {
         didSet {

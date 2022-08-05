@@ -10,11 +10,10 @@ import Core
 import UIKit
 import Gestalt
 import IntentsUI
-import MMUI
 
 class ShortcutsViewController: UIViewController {
 
-    lazy var intentStackView = { ViewFactory.stackView() }()
+    lazy var intentStackView = { CoreViewFactory.stackView() }()
     
     private var textColor: UIColor = .black
     
@@ -74,8 +73,8 @@ class ShortcutsViewController: UIViewController {
     @available(iOS 12.0, *)
     private func makeIntentStack(name: String, shortcut: INShortcut) -> UIStackView {
         
-        let stackView = ViewFactory.stackView()
-        let label = ViewFactory.label()
+        let stackView = CoreViewFactory.stackView()
+        let label = CoreViewFactory.label()
         let button = INUIAddVoiceShortcutButton(style: .blackOutline)
         
         label.text = name

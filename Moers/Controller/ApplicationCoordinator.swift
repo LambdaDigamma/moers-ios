@@ -9,7 +9,6 @@
 import AppScaffold
 import UIKit
 import Gestalt
-import MMUI
 import ModernNetworking
 import MMEvents
 import Cache

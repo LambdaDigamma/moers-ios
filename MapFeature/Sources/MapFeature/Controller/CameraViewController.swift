@@ -8,11 +8,11 @@
 
 import UIKit
 import WebKit
-import MMUI
+import Core
 
 class CameraViewController: UIViewController {
 
-    lazy var webView: WKWebView = { ViewFactory.webView() }()
+    lazy var webView: WKWebView = { CoreViewFactory.webView() }()
 
     var panoID: PanoID?
     

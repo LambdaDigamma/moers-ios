@@ -7,13 +7,13 @@
 //
 
 import UIKit
-import MMUI
+import Core
 
 public class OnboardingProgressView: UIView {
 
-    private lazy var currentStepLabel: UILabel = { return ViewFactory.label() }()
-    private lazy var progressView: UIProgressView = { return ViewFactory.progressView() }()
-    private lazy var separatorView: UIView = { return ViewFactory.blankView() }()
+    private lazy var currentStepLabel: UILabel = { return CoreViewFactory.label() }()
+    private lazy var progressView: UIProgressView = { return CoreViewFactory.progressView() }()
+    private lazy var separatorView: UIView = { return CoreViewFactory.blankView() }()
     
     public var accentColor: UIColor! {
         didSet {

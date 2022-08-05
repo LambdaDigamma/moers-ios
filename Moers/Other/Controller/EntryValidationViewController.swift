@@ -9,14 +9,13 @@
 import Core
 import UIKit
 import Gestalt
-import MMUI
 import MapFeature
 
 class EntryValidationViewController: UIViewController {
 
     public var coordinator: DashboardCoordinator?
     
-    private lazy var tableView = { ViewFactory.tableView() }()
+    private lazy var tableView = { CoreViewFactory.tableView() }()
     private var entries: [Entry] = []
     private let entryManager: EntryManagerProtocol
     

@@ -8,17 +8,16 @@
 
 import Core
 import UIKit
-import MMUI
 import Gestalt
 
 class AuditChangeView: UIView {
     
     private lazy var leadingSeparator: UIView = { CoreViewFactory.separatorView() }()
-    private lazy var changedValueDescriptionLabel: UILabel = { ViewFactory.label() }()
+    private lazy var changedValueDescriptionLabel: UILabel = { CoreViewFactory.label() }()
     private lazy var trailingSeparator: UIView = { CoreViewFactory.separatorView() }()
-    private lazy var oldValueLabel: UILabel = { ViewFactory.label() }()
-    private lazy var newValueLabel: UILabel = { ViewFactory.label() }()
-    private lazy var changeSetImageView: UIImageView = { ViewFactory.imageView() }()
+    private lazy var oldValueLabel: UILabel = { CoreViewFactory.label() }()
+    private lazy var newValueLabel: UILabel = { CoreViewFactory.label() }()
+    private lazy var changeSetImageView: UIImageView = { CoreViewFactory.imageView() }()
     
     let valueDescription: String
     let oldValue: String

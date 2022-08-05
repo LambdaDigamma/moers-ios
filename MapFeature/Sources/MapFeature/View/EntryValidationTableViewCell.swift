@@ -8,14 +8,13 @@
 
 import UIKit
 import Gestalt
-import MMUI
 import Core
 
 public class EntryValidationTableViewCell: UITableViewCell {
 
-    public lazy var validationImageView = { ViewFactory.imageView() }()
-    public lazy var titleLabel = { ViewFactory.label() }()
-    public lazy var descriptionLabel = { ViewFactory.label() }()
+    public lazy var validationImageView = { CoreViewFactory.imageView() }()
+    public lazy var titleLabel = { CoreViewFactory.label() }()
+    public lazy var descriptionLabel = { CoreViewFactory.label() }()
     
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

@@ -11,9 +11,9 @@ import MapKit
 import TextFieldEffects
 import WebKit
 import TagListView
-import MMUI
+import Core
 
-extension ViewFactory {
+extension CoreViewFactory {
     
     static func textField() -> HoshiTextField {
         

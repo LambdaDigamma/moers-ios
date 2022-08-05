@@ -10,7 +10,6 @@ import Core
 import UIKit
 import Gestalt
 import MessageUI
-import MMUI
 import Resolver
 import SwiftUI
 import AppFeedback

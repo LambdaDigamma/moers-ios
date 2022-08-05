@@ -9,7 +9,6 @@
 import Core
 import UIKit
 import Gestalt
-import MMUI
 
 class EntryHistoryViewController: UIViewController {
 
@@ -19,7 +18,7 @@ class EntryHistoryViewController: UIViewController {
     
     private let entryManager: EntryManagerProtocol
     private var audits: [Audit] = []
-    private var tableView: UITableView = { ViewFactory.tableView() }()
+    private var tableView: UITableView = { CoreViewFactory.tableView() }()
     private let identifier = "auditCell"
     
     init(coordinator: MapCoordintor) {

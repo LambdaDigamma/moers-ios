@@ -10,7 +10,6 @@ import Core
 import UIKit
 import MapKit
 import Pulley
-import MMUI
 
 struct AnnotationIdentifier {
     
@@ -25,7 +24,7 @@ struct AnnotationIdentifier {
 
 public class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryContentControllerDelegate {
 
-    lazy var map = { return ViewFactory.map() }()
+    lazy var map = { return CoreViewFactory.map() }()
     
     // swiftlint:disable:next force_cast
     lazy var drawer = { return self.parent as! MainViewController }()

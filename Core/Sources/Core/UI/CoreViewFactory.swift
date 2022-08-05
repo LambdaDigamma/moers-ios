@@ -199,15 +199,15 @@ public enum CoreViewFactory {
     
 #endif
     
-//    public static func paddingLabel() -> PaddingLabel {
-//
-//        let paddingLabel = PaddingLabel()
-//
-//        paddingLabel.translatesAutoresizingMaskIntoConstraints = false
-//
-//        return paddingLabel
-//
-//    }
+    public static func paddingLabel() -> PaddingLabel {
+
+        let paddingLabel = PaddingLabel()
+
+        paddingLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        return paddingLabel
+
+    }
 
     public static func separatorView() -> SeparatorView {
 
@@ -229,34 +229,34 @@ public enum CoreViewFactory {
 
     }
 
-//    public static func pageView(viewModel: PageViewModel? = nil) -> PageView {
-//
-//        let pageView = PageView(viewModel: viewModel)
-//
-//        pageView.translatesAutoresizingMaskIntoConstraints = false
-//
-//        return pageView
-//
-//    }
-//
-//    public static func spinner() -> UIActivityIndicatorView {
-//
-//        let activityIndicator = UIActivityIndicatorView()
-//
-//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-//
-//        return activityIndicator
-//
-//    }
-//
-//    public static func videoPlayerView() -> VideoPlayerView {
-//
-//        let videoPlayerView = VideoPlayerView()
-//
-//        videoPlayerView.translatesAutoresizingMaskIntoConstraints = false
-//
-//        return videoPlayerView
-//
-//    }
+    public static func pageView(viewModel: PageViewModel? = nil) -> PageView {
+
+        let pageView = PageView(viewModel: viewModel)
+
+        pageView.translatesAutoresizingMaskIntoConstraints = false
+
+        return pageView
+
+    }
+
+    public static func spinner() -> UIActivityIndicatorView {
+
+        let activityIndicator = UIActivityIndicatorView()
+
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+
+        return activityIndicator
+
+    }
+
+    public static func videoPlayerView() -> VideoPlayerView {
+
+        let videoPlayerView = VideoPlayerView()
+
+        videoPlayerView.translatesAutoresizingMaskIntoConstraints = false
+
+        return videoPlayerView
+
+    }
     
 }

@@ -9,7 +9,6 @@
 import UIKit
 import MapKit
 import CoreLocation
-import MMUI
 import Combine
 import Core
 import Resolver
@@ -24,11 +23,11 @@ class MapLocationPickerViewController: UIViewController {
     
     @LazyInjected var locationService: LocationService
     
-    lazy var mapView = { return ViewFactory.map() }()
-    lazy var pointer = { return ViewFactory.imageView() }()
-    lazy var promptLabel = { return ViewFactory.paddingLabel() }()
-    lazy var streetLabel = { return ViewFactory.paddingLabel() }()
-    lazy var userLocationButton = { return ViewFactory.button() }()
+    lazy var mapView = { CoreViewFactory.map() }()
+    lazy var pointer = { CoreViewFactory.imageView() }()
+    lazy var promptLabel = { CoreViewFactory.paddingLabel() }()
+    lazy var streetLabel = { CoreViewFactory.paddingLabel() }()
+    lazy var userLocationButton = { CoreViewFactory.button() }()
     
     private var currentStreet: String = ""
     private var currentHouseNumber: String = ""
