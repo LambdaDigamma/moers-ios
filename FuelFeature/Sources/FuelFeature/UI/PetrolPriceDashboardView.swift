@@ -19,7 +19,7 @@ public struct PetrolPriceDashboardView: View {
         
         NavigationLink {
             
-            PetrolStationList(viewModel: viewModel)
+            FuelStationList(viewModel: viewModel)
             
         } label: {
             CardPanelView {

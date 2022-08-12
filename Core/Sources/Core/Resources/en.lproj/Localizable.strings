@@ -112,4 +112,7 @@
 "Unknown" = "Unknown";
 "NotKnownLoc" = "Not known";
 
+"OpeningState.closed" = "Closed";
+"OpeningState.open" = "Open";
 
+"Address" = "Address";

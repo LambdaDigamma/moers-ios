@@ -116,3 +116,8 @@
 "Venue" = "Veranstaltungsort";
 "Unknown" = "unbekannt";
 "NotKnownLoc" = "nicht bekannt";
+
+"OpeningState.closed" = "Geschlossen";
+"OpeningState.open" = "Geöffnet";
+
+"Address" = "Adresse";

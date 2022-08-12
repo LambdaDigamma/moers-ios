@@ -23,6 +23,13 @@ public enum AppStrings {
         public static let okay = "Okay"
     }
     
+    public static let address = String.localized("Address")
+    
+    public enum OpeningState {
+        public static let closed = String.localized("OpeningState.closed")
+        public static let open = String.localized("OpeningState.open")
+    }
+    
     public enum Waste {
         public static let errorMessage = String.localized("Waste.errorMessage")
         public static let loadingFailed = String.localized("Waste.loadingFailed")
@@ -86,6 +93,7 @@ public enum AppStrings {
             public static let title = String.localized("UserActivities.Settings.title")
             public static let invocationPhrase = title
         }
+        
     }
     
     public static func buildKeywords(_ key: String) -> Set<String> {

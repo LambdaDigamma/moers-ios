@@ -11,12 +11,12 @@ import Foundation
 import UIKit
 import SwiftUI
 
-public class FuelStationListViewController: UIHostingController<PetrolStationList> {
+public class FuelStationListViewController: UIHostingController<FuelStationList> {
     
     private let viewModel = PetrolPriceDashboardViewModel()
     
     public init() {
-        super.init(rootView: PetrolStationList(viewModel: viewModel))
+        super.init(rootView: FuelStationList(viewModel: viewModel))
         
     }
     

@@ -55,6 +55,6 @@ public struct RubbishAccessoryRectangle: View {
 struct RubbishAccessoryRectangle_Previews: PreviewProvider {
     static var previews: some View {
         RubbishAccessoryRectangle(items: RubbishPickupItem.placeholder)
-            .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
+//            .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
     }
 }

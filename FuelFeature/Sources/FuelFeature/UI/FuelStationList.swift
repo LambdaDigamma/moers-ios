@@ -10,7 +10,7 @@ import Resolver
 import Core
 import MapKit
 
-public struct PetrolStationList: View {
+public struct FuelStationList: View {
     
     @ObservedObject var viewModel: PetrolPriceDashboardViewModel
     
@@ -47,6 +47,13 @@ public struct PetrolStationList: View {
             }
             .padding()
             
+            Text(PackageStrings.dataSource)
+                .font(.footnote)
+                .foregroundColor(.secondary)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal)
+                .padding(.bottom)
+            
         }
         .navigationTitle(PackageStrings.FuelStationList.title)
         .navigationBarTitleDisplayMode(.inline)
@@ -81,7 +88,7 @@ public struct PetrolStationList: View {
                     
                     VStack(alignment: .leading) {
                         
-                        Text("\(fuelStation.brand) • \(fuelStation.isOpen ? "geöffnet" : "geschlossen")")
+                        Text("\(fuelStation.brand) • \(fuelStation.isOpen ? AppStrings.OpeningState.open : AppStrings.OpeningState.closed)")
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.leading)
                         
@@ -135,7 +142,7 @@ public struct PetrolStationList: View {
     
 }
 
-struct PetrolStationList_Previews: PreviewProvider {
+struct FuelStationList_Previews: PreviewProvider {
     static var previews: some View {
         
         let service = StaticPetrolService()
@@ -153,7 +160,7 @@ struct PetrolStationList_Previews: PreviewProvider {
             ])
         )
         
-        PetrolStationList(viewModel: viewModel)
+        FuelStationList(viewModel: viewModel)
             .preferredColorScheme(.dark)
     }
 }

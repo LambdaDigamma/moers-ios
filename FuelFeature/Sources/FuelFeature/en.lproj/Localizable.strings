@@ -6,3 +6,5 @@
 "Dashboard.stationsNearYou" = "%@ fuel stations in your area are currently open.";
 
 "Fuel.locationOnlyGermanyError" = "Only available in Germany";
+
+"Fuel.dataSource" = "Datasource: MTS-K via https://creativecommons.tankerkoenig.de - CC BY 4.0";

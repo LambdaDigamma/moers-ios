@@ -20,8 +20,8 @@ struct RubbishWidget: Widget {
             return [
                 .systemSmall,
                 .systemMedium,
-                .accessoryRectangular,
-                .accessoryInline
+//                .accessoryRectangular,
+//                .accessoryInline
             ]
         } else {
             return [.systemSmall, .systemMedium]

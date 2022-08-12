@@ -8,6 +8,7 @@
 import SwiftUI
 import Core
 import Combine
+import Resolver
 
 public struct FuelStationDetailScreen: View {
     
@@ -55,72 +56,46 @@ public struct FuelStationDetailContent: View {
     
     public var body: some View {
         
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 16) {
             
-            Text(fuelStation.name)
-                .fontWeight(.semibold)
-            
-            Text(fuelStation.brand)
-                .foregroundColor(.secondary)
-            
-            Divider()
-            
-            VStack {
-                HStack {
-                    Text("Diesel")
-                    Spacer()
-                    
-                    if let diesel = fuelStation.diesel {
-                        Text(String(format: "%.2f€", diesel))
-                        + Text(" / L")
-                            .foregroundColor(.secondary)
-                    } else {
-                        Text("/")
-                    }
-                    
-                }
-                HStack {
-                    Text("E5")
-                    Spacer()
-                    
-                    if let priceE5 = fuelStation.e5 {
-                        Text(String(format: "%.2f€", priceE5))
-                        + Text(" / L")
-                            .foregroundColor(.secondary)
-                    } else {
-                        Text("/")
-                    }
-                }
-                HStack {
-                    Text("E10")
-                    Spacer()
-                    
-                    if let e10 = fuelStation.e10 {
-                        Text(String(format: "%.2f€", e10))
-                        + Text(" / L")
-                            .foregroundColor(.secondary)
-                    } else {
-                        Text("/")
-                    }
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            
-            Divider()
-            
-            DetailContainer(title: "Adresse") {
+            HStack(alignment: .top, spacing: 8) {
                 
                 VStack(alignment: .leading) {
-                    Text("\(fuelStation.street) \(fuelStation.houseNumber ?? "")")
-                    Text("\(fuelStation.place)")
                     
-                    GetDirectionsButton(action: {}, travelTime: 4 * 60)
+                    Text(fuelStation.name)
+                        .font(.title2)
+                        .fontWeight(.semibold)
                     
+                    Text(fuelStation.brand)
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                    
+                }
+                
+                Spacer()
+                
+                OpenBadge(isOpen: fuelStation.isOpen)
+                
+            }
+            
+            HStack {
+                
+                if let diesel = fuelStation.diesel {
+                    priceCard(type: .diesel, price: diesel)
+                }
+                
+                if let priceE5 = fuelStation.e5 {
+                    priceCard(type: .e5, price: priceE5)
+                }
+                
+                if let priceE10 = fuelStation.e10 {
+                    priceCard(type: .e10, price: priceE10)
                 }
                 
             }
             
-            Divider()
+            Spacer()
+                .frame(height: 4)
             
             if let times = fuelStation.openingTimes {
                 
@@ -137,8 +112,57 @@ public struct FuelStationDetailContent: View {
                 
             }
             
+            Divider()
+            
+            let address = AddressUiState(
+                street: fuelStation.street,
+                houseNumber: fuelStation.houseNumber ?? "",
+                place: fuelStation.place,
+                postcode: fuelStation.postCode != nil ? "\(fuelStation.postCode ?? 0)" : ""
+            )
+            
+            AddressContainer(address: address)
+            
+            AutoCalculatingDirectionsButton(
+                coordinate: fuelStation.coordinate,
+                locationService: Resolver.resolve(),
+                action: {
+                    AppleNavigationProvider()
+                        .startNavigation(to: fuelStation.coordinate.toPoint(), withName: fuelStation.name)
+                }
+            )
+            
         }
         .frame(maxWidth: .infinity)
+        
+    }
+    
+    @ViewBuilder
+    private func priceCard(type: PetrolType, price: Double) -> some View {
+        
+        CardPanelView {
+            
+            VStack(alignment: .leading, spacing: 8) {
+                
+                Text(type.name)
+                    .font(.callout.weight(.semibold))
+                    .foregroundColor(.secondary)
+                
+                Group {
+                    
+                    Text(String(format: "%.2f€", price)) +
+                    Text(" / L")
+                        .foregroundColor(.secondary)
+                        .font(.caption.weight(.semibold))
+                    
+                }
+                .font(.title3.weight(.semibold))
+                
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(16)
+            
+        }
         
     }
     

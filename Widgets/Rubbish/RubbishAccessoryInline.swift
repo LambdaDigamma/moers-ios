@@ -52,6 +52,6 @@ struct RubbishAccessoryInline: View {
 struct RubbishAccessoryInline_Previews: PreviewProvider {
     static var previews: some View {
         RubbishAccessoryInline(items: RubbishPickupItem.placeholder)
-            .previewContext(WidgetPreviewContext(family: .accessoryInline))
+//            .previewContext(WidgetPreviewContext(family: .accessoryInline))
     }
 }
