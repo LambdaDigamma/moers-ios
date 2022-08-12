@@ -15,6 +15,7 @@ import Combine
 import RubbishFeature
 import FuelFeature
 import Resolver
+import UIKit
 
 // todo: Move Privacy Consent to Front of Onboarding
 public class OnboardingManager {
@@ -34,17 +35,24 @@ public class OnboardingManager {
     func makeOnboarding() -> BLTNPageItem {
         
         let introPage = makeIntroPage()
+        let privacyPage = makePrivacyPage()
         let userTypePage = makeUserTypePage(preSelected: nil)
         let notificationPage = makeNotitificationsPage()
         let locationPage = makeLocationPage()
-        let privacyPage = makePrivacyPage()
         let petrolPage = makePetrolType(preSelected: nil)
         
-        introPage.next = userTypePage
+//        introPage.next = userTypePage
+//        userTypePage.next = notificationPage
+//        notificationPage.next = locationPage
+//        locationPage.next = privacyPage
+//        privacyPage.next = petrolPage
+        
+        introPage.next = privacyPage
+        privacyPage.next = userTypePage
         userTypePage.next = notificationPage
         notificationPage.next = locationPage
-        locationPage.next = privacyPage
-        privacyPage.next = petrolPage
+        locationPage.next = petrolPage
+//        privacyPage.next = petrolPage
         
         return introPage
         
@@ -177,6 +185,15 @@ public class OnboardingManager {
         page.actionButtonTitle = String.localized("PrivacyPageButtonTitle")
         page.appearance = appearance
         page.isDismissable = false
+        page.alternativeButtonTitle = String.localized("PrivacyAlternativeButton")
+        page.alternativeHandler = { _ in
+            
+            let url = URL(string: "https://moers.app/legal/privacy")!
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+            
+        }
         
         page.actionHandler = { $0.manager?.displayNextItem() }
         

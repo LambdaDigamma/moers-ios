@@ -11,7 +11,6 @@ import UIKit
 import UserNotifications
 import Firebase
 import Gestalt
-import MMCommon
 import Haneke
 import SwiftUI
 import AppScaffold

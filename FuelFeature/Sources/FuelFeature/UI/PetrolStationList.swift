@@ -30,7 +30,7 @@ public struct PetrolStationList: View {
                         
                         NavigationLink {
                             
-                            FuelStationDetail(
+                            FuelStationDetailScreen(
                                 load: { viewModel.loadFuelStation(id: fuelStation.id) }
                             )
                             

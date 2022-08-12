@@ -8,6 +8,7 @@
       }
     },
     {
+      "enabled" : false,
       "id" : "50557360-F476-4695-BDE2-FC71F617B8A6",
       "name" : "Configuration (German)",
       "options" : {

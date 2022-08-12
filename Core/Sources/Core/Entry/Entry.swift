@@ -10,7 +10,6 @@ import Foundation
 import MapKit
 import Fuse
 import ModernNetworking
-//import MMCommon
 
 public class Entry: NSObject, Decodable, Location, Model {
     

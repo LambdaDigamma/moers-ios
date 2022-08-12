@@ -9,7 +9,6 @@
 import Core
 import Foundation
 import UIKit
-import MMCommon
 
 extension UISearchBar {
     

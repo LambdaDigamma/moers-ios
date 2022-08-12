@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import MMCommon
+import Core
 
 extension Bundle {
     

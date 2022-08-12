@@ -14,6 +14,7 @@
 "PrivacyPageTitle" = "Datenschutz";
 "PrivacyPageDescription" = "Alle Daten werden mit größter Vorsicht und höchster Vertraulichkeit behandelt! \nMit der Benutzung dieser App stimmen Sie den AGBs und Datenschutzbestimmungen, die Sie im Menü finden, zu.";
 "PrivacyPageButtonTitle" = "Verstanden";
+"PrivacyAlternativeButton" = "Lesen";
 
 /* Onboarding: Notifications */
 "OnboardingNotificationPageTitle" = "Push-Mitteilungen";

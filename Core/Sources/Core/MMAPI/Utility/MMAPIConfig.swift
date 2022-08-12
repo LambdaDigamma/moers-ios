@@ -9,7 +9,6 @@
 import Foundation
 import ModernNetworking
 
-@available(*, deprecated, message: "This has been moved to MMCommon")
 public struct MMAPIConfig {
     
     public var baseURL: URL

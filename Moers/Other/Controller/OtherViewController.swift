@@ -62,7 +62,7 @@ public class OtherViewController: UIViewController {
                 title: "ÖPNV",
                 rows: [
                     NavigationRow(
-                        title: "Fahrt planen",
+                        title: "Fahrt planen (Beta)",
                         action: {
                             self.coordinator?.showTransportationOverview(animated: true)
                         }

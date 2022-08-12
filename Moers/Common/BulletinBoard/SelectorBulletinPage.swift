@@ -9,7 +9,6 @@
 import UIKit
 import BLTNBoard
 import Gestalt
-import MMCommon
 import Core
 
 class SelectorBulletinPage<

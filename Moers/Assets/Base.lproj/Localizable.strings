@@ -14,6 +14,7 @@
 "PrivacyPageTitle" = "Privacy";
 "PrivacyPageDescription" = "All data will be treated with the utmost care and confidentiality! \nBy using this app, you agree to the terms and conditions and privacy policy found in the menu.";
 "PrivacyPageButtonTitle" = "Understood";
+"PrivacyAlternativeButton" = "Read";
 
 /* Onboarding: Notifications */
 "OnboardingNotificationPageTitle" = "Push Notifications";
