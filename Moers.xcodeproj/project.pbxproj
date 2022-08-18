@@ -298,7 +298,6 @@
 		DF284F0123F4C17100EC999B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF284F0B23F4C2F700EC999B /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = MoersUITests/Helpers/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		DF284F0D23F54C6900EC999B /* AccessibleBulletinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibleBulletinItem.swift; sourceTree = "<group>"; };
-		DF2C2D84285244A4000AF0A3 /* MoersDebug (Production).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MoersDebug (Production).entitlements"; sourceTree = "<group>"; };
 		DF2D6DA020B83C1E00176614 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		DF2D6DA220B88BFA00176614 /* Licence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Licence.swift; sourceTree = "<group>"; };
 		DF2D6DA620B8983400176614 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -736,7 +735,6 @@
 		DF1A49611F6AAB7000E9108B /* Moers */ = {
 			isa = PBXGroup;
 			children = (
-				DF2C2D84285244A4000AF0A3 /* MoersDebug (Production).entitlements */,
 				DF80F6BF2851142800AB708D /* WeatherWidget.swift */,
 				DF80F6CA2851378A00AB708D /* ChartSandbox.swift */,
 				DF11BF9622B94E410051C3B3 /* Config */,
@@ -1756,7 +1754,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = Dark;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Moers/Utility/Moers.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Moers/Resources/Moers.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 58;
@@ -1857,7 +1855,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = Dark;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Moers/Utility/Moers.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Moers/Resources/Moers.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 58;
@@ -1965,7 +1963,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = Dark;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "Moers/MoersDebug (Production).entitlements";
+				CODE_SIGN_ENTITLEMENTS = Moers/Resources/Moers.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 58;
@@ -2068,7 +2066,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = Dark;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Moers/Utility/Moers.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Moers/Resources/Moers.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 58;
@@ -2236,7 +2234,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = Dark;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Moers/Utility/Moers.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Moers/Resources/Moers.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 58;
@@ -2279,7 +2277,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = Dark;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Moers/Utility/Moers.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Moers/Resources/Moers.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 58;
