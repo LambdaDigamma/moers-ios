@@ -10,6 +10,10 @@
 import UIKit
 import SwiftUI
 
+/// This embeds a SwiftUI view into a UIViewController to
+/// improve interoperability between UIKit and SwiftUI.
+/// You need to override the method `hostView` which is
+/// a ViewBuilder and gets embedded in the view controller.
 open class DefaultHostingController: UIViewController {
     
     public init() {

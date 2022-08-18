@@ -28,7 +28,6 @@
 		DF16582E22EF8C990033D218 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */; };
 		DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A49621F6AAB7000E9108B /* AppDelegate.swift */; };
 		DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49691F6AAB7000E9108B /* Assets.xcassets */; };
-		DF21B2FE20B9D8A900478A33 /* Licenses.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF21B2FD20B9D8A900478A33 /* Licenses.plist */; };
 		DF21B30020BA0DB400478A33 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF21B2FF20BA0DB400478A33 /* SwitchTableViewCell.swift */; };
 		DF284F0023F4C17100EC999B /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF284EFF23F4C17100EC999B /* OnboardingUITests.swift */; };
 		DF284F0C23F4C2F700EC999B /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF284F0B23F4C2F700EC999B /* SnapshotHelper.swift */; };
@@ -36,13 +35,13 @@
 		DF2CF1C223BBB2EA003497C5 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = DF2CF1C123BBB2EA003497C5 /* TextFieldEffects */; };
 		DF2D6DA120B83C1E00176614 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DA020B83C1E00176614 /* AnalyticsManager.swift */; };
 		DF2D6DA320B88BFA00176614 /* Licence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DA220B88BFA00176614 /* Licence.swift */; };
-		DF2D6DA520B88E1700176614 /* LicencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DA420B88E1700176614 /* LicencesViewController.swift */; };
 		DF2D6DA720B8983400176614 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DA620B8983400176614 /* UserManager.swift */; };
 		DF2D6DAB20B8A02B00176614 /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2D6DAA20B8A02B00176614 /* OnboardingManager.swift */; };
 		DF32ACF32676AABA00B943DB /* MMEvents in Frameworks */ = {isa = PBXBuildFile; productRef = DF32ACF22676AABA00B943DB /* MMEvents */; };
 		DF35EFAB27A9EB66005C6BDA /* ExploreOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF35EFAA27A9EB66005C6BDA /* ExploreOverview.swift */; };
 		DF3661D727AB2362002A90BB /* ParkingFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF3661D627AB2362002A90BB /* ParkingFeature */; };
 		DF3661D927AB267F002A90BB /* FuelFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF3661D827AB267F002A90BB /* FuelFeature */; };
+		DF38788828AE3FDF002FECE1 /* LicenseUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF38788728AE3FDF002FECE1 /* LicenseUI */; };
 		DF4116C5276FF45F0068B4BB /* WidgetStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4116C4276FF45F0068B4BB /* WidgetStrings.swift */; };
 		DF461CBA20E226DE00600C0E /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF461CB920E226DE00600C0E /* ViewFactory.swift */; };
 		DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */; };
@@ -81,6 +80,7 @@
 		DF65CF0226C97E0D00078232 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF65CF0126C97E0D00078232 /* Colors.xcassets */; };
 		DF6CA8FE2849125D0068B9AC /* MapFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF6CA8FD2849125D0068B9AC /* MapFeature */; };
 		DF6DC2D927C533050083951B /* SidebarSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6DC2D827C533050083951B /* SidebarSection.swift */; };
+		DF6E061228AE3116004FEBC9 /* LicencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E061128AE3116004FEBC9 /* LicencesViewController.swift */; };
 		DF75345427727CEE0086B292 /* RubbishWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75345327727CEE0086B292 /* RubbishWidget.swift */; };
 		DF75345627727D6E0086B292 /* RubbishCollectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75345527727D6E0086B292 /* RubbishCollectionProvider.swift */; };
 		DF75345827727E1B0086B292 /* RubbishCollectionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75345727727E1B0086B292 /* RubbishCollectionEntry.swift */; };
@@ -292,7 +292,6 @@
 		DF1A49691F6AAB7000E9108B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF1A496E1F6AAB7000E9108B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF1A9B9F26ECB2A600D3CAD0 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		DF21B2FD20B9D8A900478A33 /* Licenses.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Licenses.plist; path = Moers/Assets/Licenses.plist; sourceTree = SOURCE_ROOT; };
 		DF21B2FF20BA0DB400478A33 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwitchTableViewCell.swift; path = ../../View/UITableViewCells/SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		DF284EFD23F4C17100EC999B /* MoersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF284EFF23F4C17100EC999B /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
@@ -302,12 +301,12 @@
 		DF2C2D84285244A4000AF0A3 /* MoersDebug (Production).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MoersDebug (Production).entitlements"; sourceTree = "<group>"; };
 		DF2D6DA020B83C1E00176614 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		DF2D6DA220B88BFA00176614 /* Licence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Licence.swift; sourceTree = "<group>"; };
-		DF2D6DA420B88E1700176614 /* LicencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicencesViewController.swift; sourceTree = "<group>"; };
 		DF2D6DA620B8983400176614 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		DF2D6DAA20B8A02B00176614 /* OnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
 		DF35EFA927A9E9FE005C6BDA /* NewsFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NewsFeature; sourceTree = "<group>"; };
 		DF35EFAA27A9EB66005C6BDA /* ExploreOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreOverview.swift; sourceTree = "<group>"; };
 		DF3661DA27AB27C2002A90BB /* WidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetsExtension.entitlements; sourceTree = "<group>"; };
+		DF38788628AE3FC8002FECE1 /* swift-license-ui */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "swift-license-ui"; path = "../../Swift Packages/swift-license-ui"; sourceTree = "<group>"; };
 		DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchArgumentsHandler.swift; sourceTree = "<group>"; };
 		DF4116C4276FF45F0068B4BB /* WidgetStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetStrings.swift; sourceTree = "<group>"; };
 		DF461CB920E226DE00600C0E /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
@@ -346,6 +345,9 @@
 		DF62AB082891EC33002D420E /* PlaybackKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PlaybackKit; sourceTree = "<group>"; };
 		DF65CF0126C97E0D00078232 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		DF6DC2D827C533050083951B /* SidebarSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarSection.swift; sourceTree = "<group>"; };
+		DF6E061128AE3116004FEBC9 /* LicencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicencesViewController.swift; sourceTree = "<group>"; };
+		DF6E061528AE34FB004FEBC9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		DF6E061728AE350D004FEBC9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		DF75345327727CEE0086B292 /* RubbishWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishWidget.swift; sourceTree = "<group>"; };
 		DF75345527727D6E0086B292 /* RubbishCollectionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionProvider.swift; sourceTree = "<group>"; };
 		DF75345727727E1B0086B292 /* RubbishCollectionEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionEntry.swift; sourceTree = "<group>"; };
@@ -465,6 +467,7 @@
 				DF9F19F32766920C00B74E13 /* EFAAPI in Frameworks */,
 				DF623C7027B56FD7009D335F /* NewsFeature in Frameworks */,
 				DF86ABA12174900400EFC7EA /* Intents.framework in Frameworks */,
+				DF38788828AE3FDF002FECE1 /* LicenseUI in Frameworks */,
 				DFB07A33277741030033101C /* FirebaseMessaging in Frameworks */,
 				DF55F25F27709B410024300B /* RubbishFeature in Frameworks */,
 				DFB07A31277741030033101C /* FirebaseCrashlytics in Frameworks */,
@@ -587,16 +590,18 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		DF1077B922BB81DD001DDFD3 /* Utility */ = {
+		DF1077B922BB81DD001DDFD3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DF6E061328AE34C1004FEBC9 /* Debug */,
+				DF6E061428AE34C8004FEBC9 /* Release */,
 				DF57D695218739C500E6A0A9 /* Moers-Bridging-Header.h */,
 				DFB64DCA2038845300173A80 /* Firebase.h */,
 				DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */,
 				DFB64DC9203883D200173A80 /* module.modulemap */,
 				DFAEF41120E8ECF7001B0756 /* Moers.entitlements */,
 			);
-			path = Utility;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		DF11BF9622B94E410051C3B3 /* Config */ = {
@@ -635,6 +640,7 @@
 				DF11BFC422BA6F020051C3B3 /* View */,
 				DF461CB520E2241400600C0E /* Controller */,
 				DF35EFAA27A9EB66005C6BDA /* ExploreOverview.swift */,
+				DF6E061128AE3116004FEBC9 /* LicencesViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -698,6 +704,7 @@
 				DF9F19FC276693BB00B74E13 /* efaapi-ios */,
 				DFF654E52677C60B0026FBCF /* mmevents-ios */,
 				DFB152EE28159CC7002043B7 /* mmpages-ios */,
+				DF38788628AE3FC8002FECE1 /* swift-license-ui */,
 				DF1A49611F6AAB7000E9108B /* Moers */,
 				DF5E1B5326726AF3005FADA4 /* Widgets */,
 				DF94B11823F0A7E5009C57ED /* Watch */,
@@ -740,7 +747,7 @@
 				DF0CB4942082AFA300CC0AA8 /* Manager */,
 				DF6D9E4D22BB7BCA00BD3132 /* Assets */,
 				DFF7F363285252A200E99AD2 /* Car Play */,
-				DF1077B922BB81DD001DDFD3 /* Utility */,
+				DF1077B922BB81DD001DDFD3 /* Resources */,
 			);
 			path = Moers;
 			sourceTree = "<group>";
@@ -773,7 +780,6 @@
 				DF89BA1726FDE253003A6C64 /* Debug */,
 				DF503CEE21431503006EE226 /* DebugViewController.swift */,
 				DF541388217FCD25007FDEC8 /* EntryValidationViewController.swift */,
-				DF2D6DA420B88E1700176614 /* LicencesViewController.swift */,
 				DFB4D76620B03B9000C8D179 /* OtherViewController.swift */,
 				DFD8908821248DD9006B5610 /* PrivacyViewController.swift */,
 				DFB4D76820B062BE00C8D179 /* SettingsViewController.swift */,
@@ -848,7 +854,6 @@
 				DF16583122EF918A0033D218 /* Launch Screen.storyboard */,
 				DFA5B10727865BDA00B26CF4 /* Berlin.gpx */,
 				DFA9EF0220B40C16008590EA /* Moers.gpx */,
-				DF21B2FD20B9D8A900478A33 /* Licenses.plist */,
 				DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */,
 			);
 			path = Assets;
@@ -861,6 +866,22 @@
 				DFB7C10D27883D6100B1C87E /* SidebarItem.swift */,
 			);
 			path = Sidebar;
+			sourceTree = "<group>";
+		};
+		DF6E061328AE34C1004FEBC9 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				DF6E061728AE350D004FEBC9 /* Settings.bundle */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		DF6E061428AE34C8004FEBC9 /* Release */ = {
+			isa = PBXGroup;
+			children = (
+				DF6E061528AE34FB004FEBC9 /* Settings.bundle */,
+			);
+			path = Release;
 			sourceTree = "<group>";
 		};
 		DF75345227727CB30086B292 /* Rubbish */ = {
@@ -1016,11 +1037,14 @@
 			buildPhases = (
 				DF1A495C1F6AAB7000E9108B /* Frameworks */,
 				DF1A495B1F6AAB7000E9108B /* Sources */,
+				DF6E060D28AE2C3F004FEBC9 /* Generate Package List */,
+				DF6E061A28AE3691004FEBC9 /* Generate Settings Bundle Licences */,
+				DF6E061928AE3659004FEBC9 /* Settings Bundle Preparation */,
 				DF1A495D1F6AAB7000E9108B /* Resources */,
 				DF94B14D23F0A7E8009C57ED /* Embed Watch Content */,
 				DFE62576254595E1005FAC1C /* Embed Frameworks */,
 				DF5E1B5F26726AF7005FADA4 /* Embed App Extensions */,
-				DF8861C926CEF0CC00C895B4 /* Run Script */,
+				DF8861C926CEF0CC00C895B4 /* Lint with SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -1057,6 +1081,7 @@
 				DF62AAF82891E841002D420E /* ModernNetworking */,
 				DFF6FFA3289D156600C88964 /* Haneke */,
 				DF152D8D289D23DB0046956F /* Cache */,
+				DF38788728AE3FDF002FECE1 /* LicenseUI */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1253,8 +1278,6 @@
 			mainGroup = DF1A49561F6AAB7000E9108B;
 			packageReferences = (
 				DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
-				DF777BBB2414361500C7C9D5 /* XCRemoteSwiftPackageReference "MarkdownKit" */,
-				DF777BBE24143A9D00C7C9D5 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */,
 				DFE1ED692538C24800FDD44A /* XCRemoteSwiftPackageReference "BulletinBoard" */,
 				DFE1ED762538C4E200FDD44A /* XCRemoteSwiftPackageReference "Pulley" */,
 				DFCE12932538F7F600B45EB7 /* XCRemoteSwiftPackageReference "FeedKit" */,
@@ -1298,7 +1321,6 @@
 				DF52868E24A7C65F00A6939E /* NewColors.xcassets in Resources */,
 				DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */,
 				DF89BA1B26FE12AE003A6C64 /* IDEAS.md in Resources */,
-				DF21B2FE20B9D8A900478A33 /* Licenses.plist in Resources */,
 				DFF5DDCB20094A920075A2F4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1354,7 +1376,61 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		DF8861C926CEF0CC00C895B4 /* Run Script */ = {
+		DF6E060D28AE2C3F004FEBC9 /* Generate Package List */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Package List";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#if command -v swift-package-list &> /dev/null; then\n#    OUTPUT_PATH=$SOURCE_ROOT/$TARGETNAME\n#    swift-package-list \"$PROJECT_FILE_PATH\" --output-path \"$OUTPUT_PATH\" --requires-license\n#else\n#    echo \"warning: swift-package-list not installed\"\n#fi\n";
+		};
+		DF6E061928AE3659004FEBC9 /* Settings Bundle Preparation */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Settings Bundle Preparation";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "BUNDLE_DIR=\"$PROJECT_DIR/Moers\"\nBUILD_APP_DIR=\"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"\n\n\nif [[ \"$CONFIGURATION\" == *\"Release\"* ]]; then\ncp -rf \"$BUNDLE_DIR/Resources/Release/Settings.bundle\" \"$BUILD_APP_DIR\"\nelse\ncp -rf \"$BUNDLE_DIR/Resources/Debug/Settings.bundle\" \"$BUILD_APP_DIR\"\nfi\n\ncd $PROJECT_DIR\ncd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"\n\nRELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)\nBUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" Info.plist)\nVERSION_STRING=\"$RELEASE_VERSION ($BUILD_NUMBER)\"\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $VERSION_STRING\" \"$BUILD_APP_DIR/Settings.bundle/Root.plist\"\n";
+		};
+		DF6E061A28AE3691004FEBC9 /* Generate Settings Bundle Licences */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Settings Bundle Licences";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$CONFIGURATION\" == *\"Debug\"* ]]; then\n# /usr/local/bin/license-plist --output-path Moers/Resources/Debug/Settings.bundle --add-version-numbers --package-path Moers.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved\n\ncp -rf Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist Moers/Resources/Release/Settings.bundle/com.mono0926.LicensePlist\ncp -rf Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist.latest_result.txt Moers/Resources/Release/Settings.bundle/com.mono0926.LicensePlist.latest_result.txt\ncp -rf Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist.plist Moers/Resources/Release/Settings.bundle/com.mono0926.LicensePlist.plist\n\necho \"Updated and copied license plists\"\n\nfi\n\n";
+		};
+		DF8861C926CEF0CC00C895B4 /* Lint with SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -1364,7 +1440,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Run Script";
+			name = "Lint with SwiftLint";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -1382,6 +1458,7 @@
 			files = (
 				DF503CEF21431503006EE226 /* DebugViewController.swift in Sources */,
 				DF6DC2D927C533050083951B /* SidebarSection.swift in Sources */,
+				DF6E061228AE3116004FEBC9 /* LicencesViewController.swift in Sources */,
 				DFBC1C9C2849103E0014610D /* StorageManager.swift in Sources */,
 				DFCB431F20E02D0300E7AD3F /* NewsManager.swift in Sources */,
 				DF4BD1C4208C64F1003ECF41 /* PickerView.swift in Sources */,
@@ -1398,7 +1475,6 @@
 				DFB7C0CC27879C6100B1C87E /* AppSplitViewController.swift in Sources */,
 				DFB02B8F27066B35000196D8 /* ApplicationCoordinator.swift in Sources */,
 				DFF7E5C12843D3EA00A1CE7B /* WallOfContribution.swift in Sources */,
-				DF2D6DA520B88E1700176614 /* LicencesViewController.swift in Sources */,
 				DFC7126921DFC863006D05DB /* ShortcutsViewController.swift in Sources */,
 				DF89BA1626FDE24F003A6C64 /* DebugNotificationViewController.swift in Sources */,
 				DF4BD1C6208CF76C003ECF41 /* RubbishReminderBulletinItem.swift in Sources */,
@@ -1703,7 +1779,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development de.okfn.niederrhein.Moers";
-				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Utility/Moers-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Resources/Moers-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1806,7 +1882,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development de.okfn.niederrhein.Moers";
-				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Utility/Moers-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Resources/Moers-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = (
@@ -1914,7 +1990,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development de.okfn.niederrhein.Moers";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development de.okfn.niederrhein.Moers";
-				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Utility/Moers-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Resources/Moers-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2017,7 +2093,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development de.okfn.niederrhein.Moers";
-				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Utility/Moers-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Resources/Moers-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = (
@@ -2183,7 +2259,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development de.okfn.niederrhein.Moers";
-				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Utility/Moers-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Resources/Moers-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2226,7 +2302,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development de.okfn.niederrhein.Moers";
-				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Utility/Moers-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Resources/Moers-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = (
@@ -5075,22 +5151,6 @@
 				minimumVersion = 0.1.3;
 			};
 		};
-		DF777BBB2414361500C7C9D5 /* XCRemoteSwiftPackageReference "MarkdownKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/OscarGorog/MarkdownKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.6.0;
-			};
-		};
-		DF777BBE24143A9D00C7C9D5 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SimonFairbairn/SwiftyMarkdown";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
-			};
-		};
 		DF9F19F12766920C00B74E13 /* XCRemoteSwiftPackageReference "efaapi-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/LambdaDigamma/efaapi-ios";
@@ -5228,6 +5288,10 @@
 		DF3661D827AB267F002A90BB /* FuelFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FuelFeature;
+		};
+		DF38788728AE3FDF002FECE1 /* LicenseUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LicenseUI;
 		};
 		DF54DC362813039200819A3B /* MapFeature */ = {
 			isa = XCSwiftPackageProductDependency;

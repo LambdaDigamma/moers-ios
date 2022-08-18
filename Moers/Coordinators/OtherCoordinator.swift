@@ -202,7 +202,7 @@ public class OtherCoordinator: Coordinator {
     
     public func showLicences() {
         
-        let viewController = LicensesViewController()
+        let viewController = LicencesViewController()
         
         self.navigationController.pushViewController(viewController, animated: true)
         

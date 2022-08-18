@@ -132,6 +132,10 @@ public struct FuelStationDetailContent: View {
                 }
             )
             
+            Text(PackageStrings.dataSource)
+                .foregroundColor(.secondary)
+                .font(.caption)
+            
         }
         .frame(maxWidth: .infinity)
         

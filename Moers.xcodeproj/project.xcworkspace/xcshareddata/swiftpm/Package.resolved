@@ -12,7 +12,7 @@
       },
       {
         "package": "AppScaffold",
-        "repositoryURL": "https://github.com/lambdadigamma/app-scaffold-ios",
+        "repositoryURL": "https://github.com/LambdaDigamma/app-scaffold-ios.git",
         "state": {
           "branch": null,
           "revision": "719edbd974dfb685afdc3e041673396face02bda",
@@ -48,7 +48,7 @@
       },
       {
         "package": "EventBus",
-        "repositoryURL": "https://github.com/lambdadigamma/eventbus",
+        "repositoryURL": "https://github.com/LambdaDigamma/EventBus",
         "state": {
           "branch": null,
           "revision": "f4b1b7a35bc20165e7d3aaeebc808dd3ab14874b",
@@ -57,7 +57,7 @@
       },
       {
         "package": "FeedKit",
-        "repositoryURL": "https://github.com/nmdias/FeedKit",
+        "repositoryURL": "https://github.com/nmdias/FeedKit.git",
         "state": {
           "branch": null,
           "revision": "68493a33d862c33c9a9f67ec729b3b7df1b20ade",
@@ -75,7 +75,7 @@
       },
       {
         "package": "Fuse",
-        "repositoryURL": "https://github.com/LambdaDigamma/fuse-swift",
+        "repositoryURL": "https://github.com/LambdaDigamma/fuse-swift.git",
         "state": {
           "branch": null,
           "revision": "a1f44a59d94393f7461745ccc977b5005c8438a5",
@@ -161,15 +161,6 @@
           "branch": null,
           "revision": "0706abcc6b0bd9cedfbb015ba840e4a780b5159b",
           "version": "1.22.2"
-        }
-      },
-      {
-        "package": "MarkdownKit",
-        "repositoryURL": "https://github.com/OscarGorog/MarkdownKit",
-        "state": {
-          "branch": null,
-          "revision": "c64728dedf6dbcac463cf5e53e93d210ab825793",
-          "version": "1.6.0"
         }
       },
       {
@@ -281,15 +272,6 @@
         }
       },
       {
-        "package": "SwiftyMarkdown",
-        "repositoryURL": "https://github.com/SimonFairbairn/SwiftyMarkdown",
-        "state": {
-          "branch": null,
-          "revision": "dde451ab4ed9b77b328e21baa471fdfa0cf61369",
-          "version": "1.2.4"
-        }
-      },
-      {
         "package": "TagListView",
         "repositoryURL": "https://github.com/LambdaDigamma/TagListView",
         "state": {
@@ -309,7 +291,7 @@
       },
       {
         "package": "XMLCoder",
-        "repositoryURL": "https://github.com/MaxDesiatov/XMLCoder.git",
+        "repositoryURL": "https://github.com/CoreOffice/XMLCoder.git",
         "state": {
           "branch": null,
           "revision": "ca932442d7481700f5434a7b138c47dd42d9902b",
