@@ -125,6 +125,8 @@ public struct RubbishDashboardPanel: View {
                 Image(systemName: "calendar.badge.exclamationmark")
                     .font(.largeTitle)
                 Text(PackageStrings.Waste.noUpcomingRubbishItems)
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
         .padding(.top, 8)

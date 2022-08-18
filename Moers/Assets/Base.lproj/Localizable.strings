@@ -6,17 +6,6 @@
   Copyright © 2018 Lennart Fischer. All rights reserved.
 */
 
-"Menu.dashboard" = "Today";
-"Menu.news" = "News";
-"Menu.map" = "Map";
-"Menu.events" = "Events";
-"Menu.other" = "Other";
-
-/* Tab Bar Items */
-"DashboardTabItem" = "Dashboard";
-"MapTabItem" = "Map";
-"OtherTabItem" = "Other";
-
 /* Onboarding: Introduction */
 "OnboardingDescription" = "Search shops & parking lots with live data and move through the city with interactive 360° panoramas! Find the cheapest petrol station or get reminders for rubbish collection.";
 "OnboardingFirstPageActionButtonTitle" = "Continue";
@@ -25,6 +14,7 @@
 "PrivacyPageTitle" = "Privacy";
 "PrivacyPageDescription" = "All data will be treated with the utmost care and confidentiality! \nBy using this app, you agree to the terms and conditions and privacy policy found in the menu.";
 "PrivacyPageButtonTitle" = "Understood";
+"PrivacyAlternativeButton" = "Read";
 
 /* Onboarding: Notifications */
 "OnboardingNotificationPageTitle" = "Push Notifications";
@@ -65,49 +55,8 @@
 "CompletionPageTitle" = "Setup completed";
 "CompletionPageActionButtonTitle" = "Get started";
 
-/* Tab: Dashboard */
-"DashboardTitleRubbishCollection" = "Waste Schedule";
-"DashboardMoreRubbish" = "More";
-
 /* Dashboard: Petrol */
 "PetrolStationsTitle" = "Petrol Stations";
-"PetrolDescription" = "per L";
-"PriceHeader" = "Price";
-"CurrentLocation" = "Current Location";
-"DashboardPetrolStationInfo" = "Petrol Stations in your area are open";
-"DashboardAction" = "Tap to get list of petrol stations";
-"PetrolErrorPermissionTitle" = "No Permission";
-"PetrolErrorPermissionMessage" = "The app is not allowed to access your current location to calculate current petrol prices.";
-"PetrolErrorLocationTitle" = "Petrol Information";
-"PetrolErrorLocationMessage" = "Only available in Germany";
-
-/* Dashboard: Rubbish */
-"WasteErrorTitle" = "Waste Schedule is deactivated";
-"WasteErrorMessage" = "You can activate the Waste Schedule in the settings.";
-"WasteCollection" = "is being collected on";
-
-/* Tab: News */
-"NewsTitle" = "News";
-
-/* Tab: Map */
-"SearchMap" = "Search on Map";
-"SearchBarPrompt" = "Where do you want to go?";
-"Entries" = "Entries";
-
-/* Map: Parking */
-"SlotsHeader" = "Slots";
-"TotalHeader" = "Total:";
-"FreeHeader" = "Free:";
-"StatusHeader" = "Status:";
-"AddressHeader" = "Address";
-"ParkingLotUnchanged" = "unchanged";
-"ParkingLotDescends" = "falling";
-"ParkingLotAscends" = "raising";
-"ParkingLotUndocumented" = "undocumented";
-
-/* Map: Entries */
-"CallAction" = "Call";
-"WebsiteAction" = "Website";
 
 /* Tab: Other */
 "AboutTitle" = "About";
@@ -128,10 +77,6 @@
 "PetrolType" = "Type";
 "Feedback" = "Feedback";
 
-/* Common */
-"LocalityOpen" = "open";
-"LocalityClosed" = "closed";
-
 /* User Type */
 "User" = "User";
 "UserType" = "Type";
@@ -143,141 +88,9 @@
 "RubbishCollectionNotificationBody" = "Tomorrow will be collected: ";
 
 /* Misc */
-"LeaderboardTitle" = "Leaderboard";
-"CommunityTitle" = "Community";
-"AddStoreTitle" = "Add Store";
-"AddTitle" = "Add";
 "PickerPromptText" = "Move the crosshairs to the store on the map!";
 "Events" = "Events";
 "Unknown" = "unknown";
-
-/* Auditing Entry */
-"AuditingEntryName" = "Name";
-"AuditingEntryTags" = "Tags";
-"AuditingEntryLatitude" = "Latitude";
-"AuditingEntryLongitude" = "Longitude";
-"AuditingEntryStreet" = "Street";
-"AuditingEntryHouseNumber" = "House Number";
-"AuditingEntryPostcode" = "Postcode";
-"AuditingEntryPlace" = "Place";
-"AuditingEntryMonday" = "Monday (Opening Hours)";
-"AuditingEntryTuesday" = "Tuesday (Opening Hours)";
-"AuditingEntryWednesday" = "Mittwoch (Opening Hours)";
-"AuditingEntryThursday" = "Thursday (Opening Hours)";
-"AuditingEntryFriday" = "Friday (Opening Hours)";
-"AuditingEntrySaturday" = "Saturday (Opening Hours)";
-"AuditingEntrySunday" = "Sunday (Opening Hours)";
-"AuditingEntryOther" = "Other (Opening Hours)";
-"AuditingEntryWebsite" = "Websete";
-"AuditingEntryPhone" = "Phone";
-
-/* Entry Onboarding */
-"EntryOnboardingOverviewSummaryTitle" = "Summary";
-"EntryOnboardingOverviewEditTitle" = "Edit";
-"EntryOnboardingOverviewStoreNotice" = "Check your input. You can go back without losing any data to correct your inputs.";
-"EntryOnboardingOverviewUpdateNotice" = "You can only edit name, tags, contact data and opening hours.";
-"EntryOnboardingOverviewGeneralHeader" = "General information";
-"EntryOnboardingOverviewName" = "Name";
-"EntryOnboardingOverviewTagsHeader" = "Tags";
-"EntryOnboardingOverviewAddressHeader" = "Addresse";
-"EntryOnboardingOverviewStreet" = "Street";
-"EntryOnboardingOverviewHouseNr" = "Number";
-"EntryOnboardingOverviewPostcode" = "Postcode";
-"EntryOnboardingOverviewPlace" = "Place";
-"EntryOnboardingOverviewContact" = "Contact information";
-"EntryOnboardingOverviewWebsite" = "Website (with https://)";
-"EntryOnboardingOverviewPhone" = "Phone";
-"EntryOnboardingOverviewOpeningHoursHeader" = "Opening Hours";
-"EntryOnboardingOverviewOpeningHoursMonday" = "Monday";
-"EntryOnboardingOverviewOpeningHoursTuesday" = "Tuesday";
-"EntryOnboardingOverviewOpeningHoursWednesday" = "Wednesday";
-"EntryOnboardingOverviewOpeningHoursThursday" = "Thursday";
-"EntryOnboardingOverviewOpeningHoursFriday" = "Friday";
-"EntryOnboardingOverviewOpeningHoursSaturday" = "Saturday";
-"EntryOnboardingOverviewOpeningHoursSunday" = "Sunday";
-"EntryOnboardingOverviewOpeningHoursOther" = "Other";
-"EntryOnboardingOverviewActionStore" = "Add";
-"EntryOnboardingOverviewActionUpdate" = "Update";
-"EntryOnboardingOverviewSearchBarAddTag" = "Add tag";
-"EntryOnboardingOverviewAddTag" = "Add tag";
-
-"EntryOnboardingOverviewAlertConfirmTitle" = "Are you sure?";
-"EntryOnboardingOverviewAlertConfirmStoreMessage" = "Do you want to add this entry? Make sure that you have entered the correct information. Only in this way others can profit from it!";
-"EntryOnboardingOverviewAlertConfirmUpdateMessage" = "Do you want to update this entry? Make sure that you have entered the correct information. Only in this way others can profit from it!";
-"EntryOnboardingOverviewAlertConfirmCancel" = "Cancel";
-"EntryOnboardingOverviewAlertConfirmYes" = "Yes";
-
-"EntryOnboardingOverviewAlertSuccessTitleAdded" = "Entry added!";
-"EntryOnboardingOverviewAlertSuccessTitleUpdated" = "Entry updated!";
-"EntryOnboardingOverviewAlertSuccessMessage" = "Thank you very much for your contribution! Your entry can now be found on the map!";
-"EntryOnboardingOverviewAlertSuccessOkay" = "Okay";
-
-"EntryOnboardingOverviewAlertUnknownErrorTitle" = "An error has occurred.";
-"EntryOnboardingOverviewAlertUnknownErrorMessage" = "An unknown error has occurred.";
-"EntryOnboardingOverviewAlertUnknownErrorOkay" = "Okay";
-
-"EntryOnboardingOverviewAlertNotAllowedTitle" = "Not allowed!";
-"EntryOnboardingOverviewAlertNotAllowedMessage" = "Adding and updating of entries has been forbidden in the meantime until further notice due to abuse.";
-"EntryOnboardingOverviewAlertNotAllowedErrorOkay" = "Okay";
-
-"EntryOnboardingOverviewAlertFormErrorTitle" = "Inputs incorrect";
-"EntryOnboardingOverviewAlertFormErrorMessage" = "Unfortunately not all entries correspond to the required format. Check them.";
-"EntryOnboardingOverviewAlertFormErrorOkay" = "Okay";
-
-"EntryOnboardingOverviewAddTagCell" = "Add Tag \"%1$@\"";
-
-/* EntryOnboardingAddressViewController */
-"EntryOnboardingAddressViewControllerTitle" = "Add entry";
-"EntryOnboardingAddressViewControllerCurrentStep" = "2. Enter address";
-"EntryOnboardingAddressViewControllerAddress" = "Addresse";
-"EntryOnboardingAddressViewControllerStreet" = "Street";
-"EntryOnboardingAddressViewControllerNumber" = "Number";
-"EntryOnboardingAddressViewControllerPostcode" = "Postcode";
-"EntryOnboardingAddressViewControllerPlace" = "Place";
-"EntryOnboardingAddressViewControllerInfo" = "Enter all required information and continue.";
-"EntryOnboardingAddressViewControllerNext" = "Next";
-
-/* EntryOnboardingGeneralViewController */
-"EntryOnboardingGeneralViewControllerTitle" = "Add entry";
-"EntryOnboardingGeneralViewControllerCurrentStep" = "3. General & Contact";
-"EntryOnboardingGeneralViewControllerGeneral" = "General";
-"EntryOnboardingGeneralViewControllerContact" = "Contact (optional)";
-"EntryOnboardingGeneralViewControllerName" = "Name";
-"EntryOnboardingGeneralViewControllerWebsite" = "Website";
-"EntryOnboardingGeneralViewControllerPhone" = "Phone";
-"EntryOnboardingGeneralViewControllerNext" = "Next";
-
-/* EntryOnboardingLocationMenuViewController */
-"EntryOnboardingLocationMenuViewControllerTitle" = "Add entry";
-"EntryOnboardingLocationMenuViewControllerCurrentStep" = "1. Select input method";
-"EntryOnboardingLocationMenuViewControllerInfo" = "There are two ways to add a new entry: \nIf you are standing next to the location, you can add it at the current location. \nOtherwise, you can add a place at an address.";
-"EntryOnboardingLocationMenuViewControllerAddressAction" = "Add entry with address";
-"EntryOnboardingLocationMenuViewControllerLocationAction" = "Add entry at your current location";
-
-/* EntryOnboardingOpeningHoursViewController */
-"EntryOnboardingOpeningHoursViewControllerTitle" = "Add entry";
-"EntryOnboardingOpeningHoursViewControllerCurrentStep" = "5. Enter opening hours";
-"EntryOnboardingOpeningHoursViewControllerOpeningHours" = "Opening hours (optional)";
-"EntryOnboardingOpeningHoursViewControllerMonday" = "Monday";
-"EntryOnboardingOpeningHoursViewControllerTuesday" = "Tuesday";
-"EntryOnboardingOpeningHoursViewControllerWednesday" = "Wednesday";
-"EntryOnboardingOpeningHoursViewControllerThursday" = "Thursday";
-"EntryOnboardingOpeningHoursViewControllerFriday" = "Friday";
-"EntryOnboardingOpeningHoursViewControllerSaturday" = "Saturday";
-"EntryOnboardingOpeningHoursViewControllerSunuday" = "Sunday";
-"EntryOnboardingOpeningHoursViewControllerOther" = "Other";
-"EntryOnboardingOpeningHoursViewControllerNext" = "Next";
-"EntryOnboardingOpeningHoursViewControllerInfo" = "Please use the following format:\nSimple times: \"10:30 - 20:00\"\nComplex times with break: \"09:30 - 12:30, 14:00 - 19:00\"\nFreeform text: \"Geschlossen\", \"Ruhetag\", etc.";
-
-/* EntryOnboardingTagsViewController */
-"EntryOnboardingTagsViewControllerTitle" = "Add entry";
-"EntryOnboardingTagsViewControllerCurrentStep" = "4. Enter tags";
-"EntryOnboardingTagsViewControllerTags" = "Tags";
-"EntryOnboardingTagsViewControllerInfo" = "Good tags are important for the search! \nSuitable tags include branches, product categories, dishes or other attributes.";
-"EntryOnboardingTagsViewControllerSearchBarPlaceholder" = "Add tag";
-"EntryOnboardingTagsViewControllerNext" = "Next";
-"EntryOnboardingTagsViewControllerAddTag" = "Add tag";
-"EntryOnboardingTagsViewControllerAddTagCell" = "Add tag \"%1$@\"";
 
 /* Data Section Other */
 "OtherSectionDataTitle" = "Data";

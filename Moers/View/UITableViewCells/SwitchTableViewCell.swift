@@ -6,13 +6,13 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import Gestalt
-import MMUI
 
 class SwitchTableViewCell: UITableViewCell {
     
-    lazy var descriptionLabel = { ViewFactory.label() }()
+    lazy var descriptionLabel = { CoreViewFactory.label() }()
     
     lazy var switchControl: UISwitch = {
         

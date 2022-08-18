@@ -9,7 +9,7 @@
 import WidgetKit
 import SwiftUI
 import Intents
-import NewsWidgets
+//import NewsWidgets
 
 @main
 struct WidgetsBundle: WidgetBundle {

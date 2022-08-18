@@ -14,4 +14,14 @@ public struct PetrolStationTimeEntry: Codable, Equatable {
     public var start: String
     public var end: String
     
+    public init(
+        text: String,
+        start: String,
+        end: String
+    ) {
+        self.text = text
+        self.start = start
+        self.end = end
+    }
+    
 }

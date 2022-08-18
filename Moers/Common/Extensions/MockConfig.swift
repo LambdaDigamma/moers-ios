@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import MMAPI
+import FuelFeature
 
 struct MockConfig {
     

@@ -9,6 +9,12 @@ import Foundation
 
 internal enum PackageStrings {
     
+    internal enum Error {
+        static let onlyGermany = String.localized("Fuel.locationOnlyGermanyError")
+    }
+    
+    static let dataSource = String.localized("Fuel.dataSource")
+    
     internal enum FuelStationList {
         static let title = String.localized("FuelStationList.title")
         static let contextNavigationAction = String.localized("FuelStationList.contextNavigationAction")

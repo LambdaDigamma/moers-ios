@@ -6,10 +6,10 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import Gestalt
 import UserNotifications
-import MMUI
 import Combine
 import Resolver
 import RubbishFeature

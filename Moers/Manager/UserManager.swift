@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import MMUI
+import Core
 
-struct UserManager {
+public class UserManager {
     
     static var shared = UserManager()
     
@@ -17,6 +17,10 @@ struct UserManager {
     private let kUserName = "userName"
     private let kUserID = "userID"
     private let kDescription = "userDescription"
+    
+    public init() {
+        
+    }
     
     var user: User {
         return loadUser()
@@ -67,7 +71,7 @@ struct UserManager {
     
     public func getID() {
         
-        let endpoint = Environment.rootURL + "api/v1/user/new"
+        let endpoint = AppEnvironment.rootURL + "api/v1/user/new"
         
         guard let url = URL(string: endpoint) else { return }
         

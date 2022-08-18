@@ -29,7 +29,7 @@ final class PointTests: XCTestCase {
         let data = try encoder.encode(point)
         let dataString = String(data: data, encoding: .utf8)
         
-        XCTAssertEqual(dataString, "{\"type\":\"Point\",\"coordinates\":[51.123399999999997,6.6239999999999997]}")
+        XCTAssertEqual(dataString, "{\"type\":\"Point\",\"coordinates\":[6.6239999999999997,51.123399999999997]}")
         
     }
     

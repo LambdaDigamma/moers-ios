@@ -24,13 +24,26 @@ struct RubbishCollectionWrapperView: View {
         
         ZStack {
             
-            Color(UIColor.systemBackground)
+//            if ![WidgetFamily.accessoryInline, .accessoryRectangular].contains(widgetFamily) {
+//                Color(UIColor.systemBackground)
+//            } else {
+////                AccessoryWidgetBackground()
+////                    .clipShape(RoundedRectangle(cornerRadius: 10))
+//            }
             
             if widgetFamily == .systemSmall {
                 small()
             } else if widgetFamily == .systemMedium {
                 medium()
             }
+            
+//            if #available(iOSApplicationExtension 16.0, *) {
+//                if widgetFamily == .accessoryRectangular {
+//                    RubbishAccessoryRectangle(items: items)
+//                } else if widgetFamily == .accessoryInline {
+//                    RubbishAccessoryInline(items: items)
+//                }
+//            }
             
         }
         
@@ -103,6 +116,9 @@ internal extension RubbishCollectionWrapperView {
 
 struct RubbishCollectionWrapperView_Previews: PreviewProvider {
     static var previews: some View {
+        
+//        RubbishCollectionWrapperView(items: RubbishPickupItem.placeholder)
+//            .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
         
         RubbishCollectionWrapperView(items: RubbishPickupItem.placeholder)
             .previewContext(WidgetPreviewContext(family: .systemMedium))

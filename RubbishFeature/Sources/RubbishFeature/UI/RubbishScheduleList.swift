@@ -69,6 +69,10 @@ public struct RubbishScheduleList: View {
             }
             
         }
+        .onAppear {
+            UserActivity.current = UserActivities.configureRubbishScheduleActivity()
+            viewModel.load()
+        }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(PackageStrings.WasteSchedule.title)
         .toolbar(content: {
@@ -89,10 +93,6 @@ public struct RubbishScheduleList: View {
 //        .userActivity(UserActivities.IDs.rubbishSchedule) { (activity: NSUserActivity) in
 //            UserActivities.configureRubbishScheduleActivity(for: activity)
 //        }
-        .onAppear {
-            UserActivity.current = UserActivities.configureRubbishScheduleActivity()
-            viewModel.load()
-        }
         
     }
     

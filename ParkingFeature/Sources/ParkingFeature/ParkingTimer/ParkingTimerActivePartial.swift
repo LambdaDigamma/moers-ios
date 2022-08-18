@@ -76,7 +76,7 @@ public struct ParkingTimerActivePartial: View {
                 let provider = AppleNavigationProvider()
                 provider.startNavigation(
                     to: Point(from: coordinate),
-                    with: PackageStrings.ParkingTimerActivePartial.yourCar
+                    withName: PackageStrings.ParkingTimerActivePartial.yourCar
                 )
             }) {
                 VStack(alignment: .leading, spacing: 0) {

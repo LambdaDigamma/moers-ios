@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 import UserNotifications
 
-class PermissionsManager {
+public class PermissionsManager {
     
-    static let shared = PermissionsManager()
+    public static let shared = PermissionsManager()
     
-    func requestRemoteNotifications() {
+    public func requestRemoteNotifications() {
         
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         

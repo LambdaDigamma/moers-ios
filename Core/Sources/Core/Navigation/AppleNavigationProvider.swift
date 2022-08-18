@@ -15,7 +15,7 @@ public class AppleNavigationProvider: NavigationProvider {
     
     public init() {}
     
-    public func startNavigation(to point: Point, with name: String) {
+    public func startNavigation(to point: Point, withName name: String) {
         
         let latitude: CLLocationDegrees = point.latitude
         let longitude: CLLocationDegrees = point.longitude
@@ -34,6 +34,12 @@ public class AppleNavigationProvider: NavigationProvider {
         mapItem.name = name
         
         mapItem.openInMaps(launchOptions: options)
+        
+    }
+    
+    public func buildDrivingMapsURL(point: Point) -> URL? {
+        
+        return URL(string: "https://maps.apple.com/?daddr=\(point.latitude),\(point.longitude)&dirflg=d")
         
     }
     

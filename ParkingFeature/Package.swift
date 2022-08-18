@@ -18,18 +18,15 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(name: "Core", path: "./Core"),
-        .package(url: "https://github.com/hmlongco/Resolver", from: "1.1.4"),
-        .package(name: "ModernNetworking",
-                 url: "https://github.com/LambdaDigamma/ModernNetworking.git",
-                 from: "0.1.2"),
-        .package(name: "Shapes", url: "https://github.com/spacenation/swiftui-shapes.git", .upToNextMajor(from: "1.1.0")),
-        .package(name: "Charts", url: "https://github.com/spacenation/swiftui-charts", .upToNextMajor(from: "1.1.0")),
+        .package(name: "Core", path: "./../Core"),
+        .package(url: "https://github.com/LambdaDigamma/Resolver", from: "1.1.5"),
+        .package(url: "https://github.com/LambdaDigamma/ModernNetworking.git", from: "0.1.2"),
+        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
     ],
     targets: [
         .target(
             name: "ParkingFeature",
-            dependencies: ["Core", "ModernNetworking", "Charts", "Resolver", "Shapes"]
+            dependencies: ["Core", "ModernNetworking", "Resolver"]
         ),
         .testTarget(
             name: "ParkingFeatureTests",

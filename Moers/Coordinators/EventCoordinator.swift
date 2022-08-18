@@ -6,25 +6,24 @@
 //  Copyright © 2020 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
-import MMUI
-import MMAPI
 import AppScaffold
 import MMEvents
+import Resolver
 
 class EventCoordinator: Coordinator {
     
+    @LazyInjected var eventService: EventServiceProtocol
+    
     var navigationController: CoordinatedNavigationController
-    var eventService: EventServiceProtocol
     var eventViewController: MMEventsViewController?
     
     init(
-        navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
-        eventService: EventServiceProtocol
+        navigationController: CoordinatedNavigationController = CoordinatedNavigationController()
     ) {
         
         self.navigationController = navigationController
-        self.eventService = eventService
         
         let eventViewController = MMEventsViewController()
         

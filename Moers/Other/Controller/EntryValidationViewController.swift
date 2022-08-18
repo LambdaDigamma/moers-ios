@@ -6,16 +6,16 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import Gestalt
-import MMAPI
-import MMUI
+import MapFeature
 
 class EntryValidationViewController: UIViewController {
 
     public var coordinator: DashboardCoordinator?
     
-    private lazy var tableView = { ViewFactory.tableView() }()
+    private lazy var tableView = { CoreViewFactory.tableView() }()
     private var entries: [Entry] = []
     private let entryManager: EntryManagerProtocol
     
@@ -57,10 +57,12 @@ class EntryValidationViewController: UIViewController {
     
     private func setupConstraints() {
         
-        let constraints = [tableView.topAnchor.constraint(equalTo: self.safeTopAnchor),
-                           tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                           tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                           tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)]
+        let constraints = [
+            tableView.topAnchor.constraint(equalTo: self.safeTopAnchor),
+            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         

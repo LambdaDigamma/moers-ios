@@ -8,7 +8,7 @@
 import SwiftUI
 import Core
 import MapKit
-import Charts
+//import Charts
 import CoreLocation
 import Resolver
 
@@ -256,7 +256,7 @@ public struct ParkingAreaDetailScreen: View {
         
         AppleNavigationProvider().startNavigation(
             to: point,
-            with: viewModel.title
+            withName: viewModel.title
         )
         
     }

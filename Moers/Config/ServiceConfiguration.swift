@@ -24,7 +24,12 @@ import FuelFeature
 #if canImport(ParkingFeature)
 import ParkingFeature
 import NewsFeature
+import Cache
+//import MMEvents
 #endif
+
+import MMEvents
+import MapFeature
 
 public class ServiceConfiguration: BootstrappingProcedureStep {
     
@@ -60,6 +65,16 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
         Resolver.register { locationService as LocationService }
         Resolver.register { geocodingService as GeocodingService }
         
+        let locationManager = LocationManager()
+        Resolver.register { locationManager as LocationManagerProtocol }
+        
+        let entryManager = EntryManager(loader: loader)
+        Resolver.register { entryManager as EntryManagerProtocol }
+        
+//        let storageManager = StorageManager<Camera>()
+        let cameraService = CameraManager(/*storageManager: Moers.StorageManager()*/)
+        Resolver.register { cameraService as CameraManagerProtocol }
+        
 #if canImport(RubbishFeature)
         let rubbishService = DefaultRubbishService(loader: loader, userDefaults: UserDefaults.appGroup)
         Resolver.register { rubbishService as RubbishService }
@@ -81,6 +96,21 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
 #if canImport(NewsFeature)
         let newsService = DefaultNewsService()
         Resolver.register { newsService as NewsService }
+#endif
+        
+#if canImport(MMEvents)
+        let cache = try! Cache.Storage<String, [Event]>(
+            diskConfig: Cache.DiskConfig(name: "EventService"),
+            memoryConfig: Cache.MemoryConfig(),
+            transformer: Cache.TransformerFactory.forCodable(ofType: [Event].self)
+        )
+
+        let eventService = EventService(
+            loader,
+            cache
+        )
+
+        Resolver.register { eventService as EventServiceProtocol }
 #endif
         
     }

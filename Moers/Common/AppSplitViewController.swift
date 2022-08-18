@@ -6,25 +6,26 @@
 //  Copyright © 2022 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import Foundation
-import UIKit
-import AppScaffold
-import MMUI
-import MMAPI
-import MMEvents
 import OSLog
-import BLTNBoard
 import Resolver
-import RubbishFeature
-import Combine
 import CoreLocation
 import Gestalt
+import Combine
+import UIKit
+import AppScaffold
+import MMEvents
+import BLTNBoard
+import RubbishFeature
+import FuelFeature
+import MapFeature
 
 public class AppSplitViewController: SplitViewController {
     
     @LazyInjected var rubbishService: RubbishService
+    @LazyInjected var petrolService: PetrolService
     
-    var petrolManager: PetrolManagerProtocol
     let locationManager: LocationManagerProtocol
     let dashboard: DashboardCoordinator
     let news: NewsCoordinator
@@ -37,37 +38,20 @@ public class AppSplitViewController: SplitViewController {
     public init(
         firstLaunch: FirstLaunch,
         locationManager: LocationManagerProtocol,
-        petrolManager: PetrolManagerProtocol,
-        cameraManager: CameraManagerProtocol,
-        entryManager: EntryManagerProtocol,
-        parkingLotManager: ParkingLotManagerProtocol,
-        eventService: EventServiceProtocol
+        cameraManager: CameraManagerProtocol
     ) {
         
         self.locationManager = locationManager
-        self.petrolManager = petrolManager
         
-        self.dashboard = DashboardCoordinator(
-            petrolManager: petrolManager
-        )
-        
+        self.dashboard = DashboardCoordinator()
         self.news = NewsCoordinator()
         
         self.map = MapCoordintor(
-            locationManager: locationManager,
-            petrolManager: petrolManager,
-            cameraManager: cameraManager,
-            entryManager: entryManager,
-            parkingLotManager: parkingLotManager
+            locationManager: locationManager
         )
         
-        self.events = EventCoordinator(
-            eventService: eventService
-        )
-        
-        self.other = OtherCoordinator(
-            entryManager: entryManager
-        )
+        self.events = EventCoordinator()
+        self.other = OtherCoordinator()
         
         let coordinators: [Coordinator] = [
             dashboard,
@@ -80,11 +64,7 @@ public class AppSplitViewController: SplitViewController {
         self.tabController = AppTabBarController(
             firstLaunch: firstLaunch,
             locationManager: locationManager,
-            petrolManager: petrolManager,
-            cameraManager: cameraManager,
-            entryManager: entryManager,
-            parkingLotManager: parkingLotManager,
-            eventService: eventService
+            cameraManager: cameraManager
         )
         
         let secondaryRootViewControllers = coordinators.map({ coordinator in
@@ -152,7 +132,7 @@ public class AppSplitViewController: SplitViewController {
     private func setupMocked() {
         
         UserManager.shared.register(User(type: .citizen, id: nil, name: nil, description: nil))
-        petrolManager.petrolType = .diesel
+        petrolService.petrolType = .diesel
         
     }
     

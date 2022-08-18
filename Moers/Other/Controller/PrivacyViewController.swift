@@ -6,9 +6,9 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import UIKit
 import Gestalt
-import MMUI
 
 // swiftlint:disable line_length
 class PrivacyViewController: UIViewController {

@@ -9,10 +9,6 @@
 import AppScaffold
 import UIKit
 import Gestalt
-import MMUI
-import MMAPI
-import MarkdownKit
-import SwiftyMarkdown
 import ModernNetworking
 import MMEvents
 import Cache
@@ -20,6 +16,7 @@ import Resolver
 import OSLog
 import Core
 import EFAUI
+import MapFeature
 
 public enum TabIndices: Int {
     
@@ -40,11 +37,7 @@ class ApplicationCoordinator: NSObject {
     let firstLaunch: FirstLaunch
     
     let locationManager: LocationManagerProtocol
-    let petrolManager: PetrolManagerProtocol
     let cameraManager: CameraManagerProtocol
-    let entryManager: EntryManagerProtocol
-    let parkingLotManager: ParkingLotManagerProtocol
-    let eventService: EventServiceProtocol
     
     private var splitViewController: AppSplitViewController!
     
@@ -55,48 +48,32 @@ class ApplicationCoordinator: NSObject {
     
     init(
         locationManager: LocationManagerProtocol = LocationManager(),
-        petrolManager: PetrolManagerProtocol = PetrolManager(storageManager: StorageManager()),
         cameraManager: CameraManagerProtocol = CameraManager(storageManager: StorageManager()),
-        entryManager: EntryManagerProtocol,
-        parkingLotManager: ParkingLotManagerProtocol = ParkingLotManager()
+        entryManager: EntryManagerProtocol
     ) {
-        
-        let loader: HTTPLoader = Resolver.resolve()
         
         self.firstLaunch = FirstLaunch(userDefaults: .appGroup, key: Constants.firstLaunch)
         
         self.locationManager = locationManager
-        self.petrolManager = petrolManager
         self.cameraManager = cameraManager
-        self.entryManager = entryManager
-        self.parkingLotManager = parkingLotManager
-        
-        // swiftlint:disable:next force_try
-        let cache = try! Storage<String, [MMEvents.Event]>(
-            diskConfig: DiskConfig(name: "EventService"),
-            memoryConfig: MemoryConfig(),
-            transformer: TransformerFactory.forCodable(ofType: [MMEvents.Event].self)
-        )
-        
-        self.eventService = EventService(loader, cache)
         
         super.init()
         
-        MMUIConfig.markdownConverter = { text in
-            
-            let markdown = SwiftyMarkdown(string: text)
-            
-            markdown.setFontColorForAllStyles(with: UIColor.white)
-            markdown.h1.fontStyle = FontStyle.bold
-            markdown.h2.fontStyle = FontStyle.bold
-            markdown.h3.fontStyle = FontStyle.boldItalic
-            markdown.link.color = UIColor.systemYellow
-            markdown.underlineLinks = false
-            markdown.bullet = "•"
-            
-            return markdown.attributedString()
-            
-        }
+//        MMUIConfig.markdownConverter = { text in
+//
+//            let markdown = SwiftyMarkdown(string: text)
+//
+//            markdown.setFontColorForAllStyles(with: UIColor.white)
+//            markdown.h1.fontStyle = FontStyle.bold
+//            markdown.h2.fontStyle = FontStyle.bold
+//            markdown.h3.fontStyle = FontStyle.boldItalic
+//            markdown.link.color = UIColor.systemYellow
+//            markdown.underlineLinks = false
+//            markdown.bullet = "•"
+//
+//            return markdown.attributedString()
+//
+//        }
         
     }
     
@@ -107,11 +84,7 @@ class ApplicationCoordinator: NSObject {
         self.splitViewController = AppSplitViewController(
             firstLaunch: firstLaunch,
             locationManager: locationManager,
-            petrolManager: petrolManager,
-            cameraManager: cameraManager,
-            entryManager: entryManager,
-            parkingLotManager: parkingLotManager,
-            eventService: eventService
+            cameraManager: cameraManager
         )
         
         // Restoring the user interface based on the current user activity

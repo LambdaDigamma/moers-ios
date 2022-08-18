@@ -8,16 +8,7 @@
 
 import Foundation
 import UIKit
-import MMAPI
-import MMCommon
-
-extension UISearchBar {
-    
-    var textField: UITextField? {
-        return self.value(forKey: "searchField") as? UITextField
-    }
-    
-}
+import Core
 
 extension Bundle {
     
@@ -101,18 +92,4 @@ extension UIView {
         mask.path = path.cgPath
         layer.mask = mask
     }
-}
-
-extension PetrolType: MMCommon.Localizable {
-    
-    public static func localizedForCase(_ type: PetrolType) -> String {
-        
-        switch type {
-            case .diesel: return String.localized("Diesel")
-            case .e10: return String.localized("E5")
-            case .e5: return String.localized("E10")
-        }
-        
-    }
-    
 }

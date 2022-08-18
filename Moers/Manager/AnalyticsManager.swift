@@ -6,16 +6,16 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import Foundation
 import FirebaseAnalytics
 import StoreKit
-import MMAPI
-import MMUI
 import FuelFeature
+import MapFeature
 
-struct AnalyticsManager {
+public class AnalyticsManager {
     
-    static var shared = AnalyticsManager()
+    public static var shared = AnalyticsManager()
     
     private let kSendAnalytics = "sendAnalytics"
     private let kAppRuns = "kAppRuns"
@@ -27,7 +27,7 @@ struct AnalyticsManager {
     private var shouldLog = true
     #endif
     
-    init() {
+    public init() {
         
         self.shouldLog = true
         

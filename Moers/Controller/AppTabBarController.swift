@@ -6,21 +6,23 @@
 //  Copyright © 2018 Lennart Fischer. All rights reserved.
 //
 
+import Core
 import AppScaffold
 import UIKit
 import BLTNBoard
 import Gestalt
-import MMAPI
-import MMUI
 import MMEvents
 import CoreLocation
 import Combine
 import Resolver
 import RubbishFeature
+import MapFeature
+import FuelFeature
 
 public class AppTabBarController: AppScaffold.TabBarController {
 
     @LazyInjected var rubbishService: RubbishService
+    @LazyInjected var petrolService: PetrolService
     
     var firstLaunch: FirstLaunch
     
@@ -32,50 +34,26 @@ public class AppTabBarController: AppScaffold.TabBarController {
     
     let locationManager: LocationManagerProtocol
     let cameraManager: CameraManagerProtocol
-    let entryManager: EntryManagerProtocol
-    let parkingLotManager: ParkingLotManagerProtocol
-    var petrolManager: PetrolManagerProtocol
-    let eventService: EventServiceProtocol
     
     init(
         firstLaunch: FirstLaunch,
         locationManager: LocationManagerProtocol,
-        petrolManager: PetrolManagerProtocol,
-        cameraManager: CameraManagerProtocol,
-        entryManager: EntryManagerProtocol,
-        parkingLotManager: ParkingLotManagerProtocol,
-        eventService: EventServiceProtocol
+        cameraManager: CameraManagerProtocol
     ) {
         
         self.firstLaunch = firstLaunch
         self.locationManager = locationManager
-        self.petrolManager = petrolManager
         self.cameraManager = cameraManager
-        self.entryManager = entryManager
-        self.parkingLotManager = parkingLotManager
-        self.eventService = eventService
         
-        self.dashboard = DashboardCoordinator(
-            petrolManager: petrolManager
-        )
-
+        self.dashboard = DashboardCoordinator()
         self.news = NewsCoordinator()
 
         self.map = MapCoordintor(
-            locationManager: locationManager,
-            petrolManager: petrolManager,
-            cameraManager: cameraManager,
-            entryManager: entryManager,
-            parkingLotManager: parkingLotManager
+            locationManager: locationManager
         )
 
-        self.events = EventCoordinator(
-            eventService: eventService
-        )
-
-        self.other = OtherCoordinator(
-            entryManager: entryManager
-        )
+        self.events = EventCoordinator()
+        self.other = OtherCoordinator()
         
         super.init(nibName: nil, bundle: nil)
         
@@ -85,7 +63,7 @@ public class AppTabBarController: AppScaffold.TabBarController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - UIViewController Lifecycle
+    // MARK: - UIViewController Lifecycle -
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,7 +89,7 @@ public class AppTabBarController: AppScaffold.TabBarController {
         
     }
     
-    // MARK: - UI
+    // MARK: - UI -
     
     private func setupTheming() {
         
@@ -119,7 +97,7 @@ public class AppTabBarController: AppScaffold.TabBarController {
         
     }
     
-    // MARK: - Data Handling
+    // MARK: - Data Handling -
     
     private func loadCurrentLocation() {
         
@@ -132,12 +110,12 @@ public class AppTabBarController: AppScaffold.TabBarController {
         
     }
     
-    // MARK: - Helper
+    // MARK: - Helper -
     
     private func setupMocked() {
         
         UserManager.shared.register(User(type: .citizen, id: nil, name: nil, description: nil))
-        petrolManager.petrolType = .diesel
+        petrolService.petrolType = .diesel
         
     }
     
@@ -197,7 +175,11 @@ extension AppTabBarController: Themeable {
             appearance.titleTextAttributes = [.foregroundColor : theme.accentColor]
             appearance.largeTitleTextAttributes = [.foregroundColor : theme.accentColor]
             
-            guard let controller = self.viewControllers?[safeIndex: 2] as? UINavigationController else { return }
+//            guard let controller = self.viewControllers?[safeIndex: 2] as? UINavigationController else { return }
+            
+            guard let controller = self.viewControllers?[2] as? UINavigationController else {
+                return
+            }
             
             controller.navigationBar.scrollEdgeAppearance = appearance
             

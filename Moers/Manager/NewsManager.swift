@@ -9,15 +9,15 @@
 import Foundation
 import FeedKit
 
-protocol NewsManagerDelegate: AnyObject {
+public protocol NewsManagerDelegate: AnyObject {
     
 //    func receivedTweets(tweets: [TWTRTweet])
     
 }
 
-struct NewsManager {
+public class NewsManager {
     
-    static var shared = NewsManager()
+    public static var shared = NewsManager()
     
 //    private let client = TWTRAPIClient()
     

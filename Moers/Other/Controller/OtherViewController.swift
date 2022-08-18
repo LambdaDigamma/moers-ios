@@ -10,29 +10,26 @@ import Core
 import UIKit
 import Gestalt
 import MessageUI
-import MMAPI
-import MMUI
 import Resolver
 import SwiftUI
 import AppFeedback
 import RubbishFeature
 import EFAAPI
 import EFAUI
+import MapFeature
 
-class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate {
+public class OtherViewController: UIViewController {
 
-    var coordinator: OtherCoordinator?
+    @LazyInjected private var entryManager: EntryManagerProtocol
     
-    private let isWaterTemperatureEnabled = false
+    public var coordinator: OtherCoordinator?
     
     private let standardCellIdentifier = "standard"
     private let accountCellIdentifier = "account"
     private var backgroundColor: UIColor = .clear
     private var textColor: UIColor = .clear
     
-    private var entryManager: EntryManagerProtocol
-    
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         
         let tableView = UITableView(frame: CGRect.zero, style: UITableView.Style.grouped)
         
@@ -46,17 +43,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
     }()
     
-    lazy var data: [TableViewSection] = {
-        
-        var additionalData: [TableViewSection] = []
-        
-        if isWaterTemperatureEnabled {
-            additionalData.append(contentsOf: [
-                TableViewSection(title: "Moers Funk", rows: [
-                    NavigationRow(title: "Bettenkamper Wassertemperatur", action: showWaterTemperature)
-                ])
-            ])
-        }
+    private lazy var data: [TableViewSection] = {
         
         var normalData = [
             
@@ -75,9 +62,9 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                 title: "ÖPNV",
                 rows: [
                     NavigationRow(
-                        title: "Fahrt planen",
-                        action: { [weak self] in
-                            self?.coordinator?.showTransportationOverview(animated: false)
+                        title: "Fahrt planen (Beta)",
+                        action: {
+                            self.coordinator?.showTransportationOverview(animated: true)
                         }
                     )
                 ]
@@ -88,7 +75,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                 rows: [
                     NavigationRow(
                         title: String.localized("OtherSectionDataAddEntry"),
-                        action: showAddEntry
+                        action: coordinator?.showAddEntry ?? {}
                     )
                 ]
             ),
@@ -101,7 +88,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                     ),
                     NavigationRow(
                         title: "Siri Shortcuts",
-                        action: showSiriShortcuts
+                        action: coordinator?.showSiriShortcuts ?? {}
                     )
                 ]
             ),
@@ -110,11 +97,11 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
                 rows: [
                     NavigationRow(
                         title: String.localized("AboutTitle"),
-                        action: showAbout
+                        action: coordinator?.showAbout ?? {}
                     ),
                     NavigationRow(
                         title: String.localized("Feedback"),
-                        action: showFeedback
+                        action: coordinator?.showFeedback ?? {}
                     ),
                     NavigationRow(
                         title: Bundle.main.versionString,
@@ -125,12 +112,18 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
             TableViewSection(
                 title: String.localized("Legal"),
                 rows: [
-                    NavigationRow(title: String.localized("TandC"),
-                                  action: showTaC),
-                    NavigationRow(title: String.localized("PrivacyPolicy"),
-                                  action: showPrivacy),
-                    NavigationRow(title: String.localized("Licences"),
-                                  action: showLicences)
+                    NavigationRow(
+                        title: String.localized("TandC"),
+                        action: coordinator?.showTaC ?? {}
+                    ),
+                    NavigationRow(
+                        title: String.localized("PrivacyPolicy"),
+                        action: coordinator?.showPrivacy ?? {}
+                    ),
+                    NavigationRow(
+                        title: String.localized("Licences"),
+                        action: coordinator?.showLicences ?? {}
+                    )
                 ]
             )
         ].compactMap { $0 }
@@ -141,21 +134,17 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
             rows: [
                 NavigationRow(
                     title: "Notifications",
-                    action: showDebugNotifications
+                    action: coordinator?.showDebugNotifications ?? {}
                 )
             ]
         ))
         #endif
         
-        return additionalData + normalData
+        return normalData
         
     }()
     
-    init(
-        entryManager: EntryManagerProtocol
-    ) {
-        
-        self.entryManager = entryManager
+    public init() {
         
         super.init(nibName: nil, bundle: nil)
         
@@ -165,12 +154,12 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - UIViewController Lifecycle
+    // MARK: - UIViewController Lifecycle -
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = String.localized("OtherTabItem")
+        self.title = AppStrings.Menu.other
         
         self.view.addSubview(tableView)
         
@@ -179,7 +168,7 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         tableView.reloadData()
@@ -188,6 +177,8 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         UserActivity.current = UserActivities.configureOther()
         
     }
+    
+    // MARK: - Setup -
     
     private func setupConstraints() {
         
@@ -208,150 +199,25 @@ class OtherViewController: UIViewController, MFMailComposeViewControllerDelegate
         
     }
     
-    // MARK: - Row Action
-    
-    private func showAddEntry() {
-        
-        if entryManager.entryStreet != nil || entryManager.entryLat != nil {
-            
-            let alert = UIAlertController(
-                title: String.localized("OtherDataTakeOldDataTitle"),
-                message: String.localized("OtherDataTakeOldDataMessage"),
-                preferredStyle: .alert
-            )
-            
-            alert.overrideUserInterfaceStyle = .dark
-            
-            alert.addAction(
-                UIAlertAction(
-                    title: String.localized("OtherDataTakeOldDataNo"),
-                    style: .cancel,
-                    handler: { _ in
-                        self.entryManager.resetData()
-                        
-                        let viewController = EntryOnboardingLocationMenuViewController(
-                            entryManager: self.entryManager
-                        )
-                        
-                        self.navigationController?.pushViewController(viewController, animated: true)
-                    }
-                )
-            )
-            
-            alert.addAction(
-                UIAlertAction(
-                    title: String.localized("OtherDataTakeOldDataYes"),
-                    style: .default,
-                    handler: { _ in
-                        let viewController = EntryOnboardingLocationMenuViewController(entryManager: self.entryManager)
-                        
-                        self.navigationController?.pushViewController(viewController, animated: true)
-                    }
-                )
-            )
-            
-            present(alert, animated: true, completion: nil)
-            
-        } else {
-            
-            let viewController = EntryOnboardingLocationMenuViewController(entryManager: self.entryManager)
-            
-            self.navigationController?.pushViewController(viewController, animated: true)
-            
-        }
-        
-    }
-    
-    private func showNonValidData() {
-        push(viewController: EntryValidationViewController.self)
-    }
-    
-    private func showSiriShortcuts() {
-        push(viewController: ShortcutsViewController.self)
-    }
-    
-    private func showAbout() {
-        push(viewController: AboutViewController.self)
-    }
-    
-    private func showFeedback() {
-        
-        let configuration = FeedbackConfiguration(
-            receiver: "meinmoers@lambdadigamma.com",
-            subject: "Rückmeldung zur Moers-App",
-            appStoreID: "1305862555"
-        )
-        
-        let feedbackView = FeedbackViewController(configuration: configuration)
-        
-        self.navigationController?.pushViewController(feedbackView, animated: true)
-        
-    }
-    
-    private func showTaC() {
-        push(viewController: TandCViewController.self)
-    }
-    
-    private func showPrivacy() {
-        push(viewController: PrivacyViewController.self)
-    }
-    
-    private func showLicences() {
-        push(viewController: LicensesViewController.self)
-    }
-    
-    private func showDebugNotifications() {
-        
-        push(viewController: DebugNotificationViewController.self)
-        
-    }
-    
-    // MARK: - Moers Funk
-    
-    @available(iOS 13.0, *)
-    private func showWaterTemperature() {
-        
-        let temperatureView = TemperatureView()
-        let hosting = UIHostingController(rootView: temperatureView)
-        
-        hosting.title = "Temperatur"
-        
-        self.navigationController?.pushViewController(hosting, animated: true)
-        
-    }
-    
-    private func push(viewController: UIViewController.Type) {
-        
-        let vc = viewController.init()
-        self.navigationController?.pushViewController(vc, animated: true)
-        
-    }
-    
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        
-        self.dismiss(animated: true, completion: nil)
-        
-    }
-    
 }
 
 extension OtherViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return data.count
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return data[section].title
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return data[section].rows.count
         
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell: UITableViewCell
         
@@ -376,7 +242,7 @@ extension OtherViewController: UITableViewDataSource, UITableViewDelegate {
         
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let navigationRow = data[indexPath.section].rows[indexPath.row] as? NavigationRow {
             
@@ -394,9 +260,9 @@ public class OtherTableViewCell: UITableViewCell {
 
 extension OtherViewController: Themeable {
     
-    typealias Theme = ApplicationTheme
+    public typealias Theme = ApplicationTheme
     
-    func apply(theme: Theme) {
+    public func apply(theme: Theme) {
         self.textColor = theme.color
         self.backgroundColor = UIColor.systemBackground // theme.backgroundColor
         self.tableView.backgroundColor = UIColor.systemBackground // theme.backgroundColor

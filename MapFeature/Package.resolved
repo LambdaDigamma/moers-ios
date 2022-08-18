@@ -1,0 +1,158 @@
+{
+  "pins" : [
+    {
+      "identity" : "cache",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hyperoslo/Cache",
+      "state" : {
+        "revision" : "c7f4d633049c3bd649a353bad36f6c17e9df085f",
+        "version" : "6.0.0"
+      }
+    },
+    {
+      "identity" : "eventbus",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LambdaDigamma/EventBus",
+      "state" : {
+        "revision" : "f4b1b7a35bc20165e7d3aaeebc808dd3ab14874b",
+        "version" : "0.5.2"
+      }
+    },
+    {
+      "identity" : "fuse-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LambdaDigamma/fuse-swift",
+      "state" : {
+        "revision" : "a1f44a59d94393f7461745ccc977b5005c8438a5",
+        "version" : "1.4.2"
+      }
+    },
+    {
+      "identity" : "gestalt",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/regexident/Gestalt",
+      "state" : {
+        "revision" : "6469230fb1b81ea449312a855b410425030b287e",
+        "version" : "2.1.1"
+      }
+    },
+    {
+      "identity" : "gifu",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kaishin/Gifu",
+      "state" : {
+        "revision" : "51f2eab32903e336f590c013267cfa4d7f8b06c4",
+        "version" : "3.3.1"
+      }
+    },
+    {
+      "identity" : "hanekeswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LambdaDigamma/HanekeSwift",
+      "state" : {
+        "revision" : "6dd6a8fb7cfa9b245cd7a8cab688a8f2cecb9d15",
+        "version" : "0.14.0"
+      }
+    },
+    {
+      "identity" : "ink",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/johnsundell/ink",
+      "state" : {
+        "revision" : "77c3d8953374a9cf5418ef0bd7108524999de85a",
+        "version" : "0.5.1"
+      }
+    },
+    {
+      "identity" : "medialibrarykit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LambdaDigamma/MediaLibraryKit",
+      "state" : {
+        "revision" : "850c176e1d3876235cc7f610037ad7db0d62ff6c",
+        "version" : "0.0.4"
+      }
+    },
+    {
+      "identity" : "mmapi-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LambdaDigamma/mmapi-ios",
+      "state" : {
+        "branch" : "master",
+        "revision" : "545a453f076525d5ddf5007df5fb717676db6d07"
+      }
+    },
+    {
+      "identity" : "mmcommon-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LambdaDigamma/mmcommon-ios",
+      "state" : {
+        "revision" : "d1ab76ad0316dcf58a23196f69ec07e2f8ba6702",
+        "version" : "0.0.1"
+      }
+    },
+    {
+      "identity" : "mmui-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LambdaDigamma/mmui-ios",
+      "state" : {
+        "branch" : "master",
+        "revision" : "a3b534f13636e7e98d482ae577b06013c3452fb0"
+      }
+    },
+    {
+      "identity" : "modernnetworking",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LambdaDigamma/ModernNetworking",
+      "state" : {
+        "revision" : "bac9aec83e259206600ed4ef8b7a146dc6bc9bc8",
+        "version" : "0.1.2"
+      }
+    },
+    {
+      "identity" : "nuke",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kean/Nuke.git",
+      "state" : {
+        "revision" : "78fa963b8491fc520791d8c2a509f1b8593d8aae",
+        "version" : "10.7.1"
+      }
+    },
+    {
+      "identity" : "nukeui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kean/NukeUI",
+      "state" : {
+        "revision" : "17f26c07e6b1d3b9258287f99f528111fcd7b7ad",
+        "version" : "0.8.1"
+      }
+    },
+    {
+      "identity" : "pulley",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/52inc/Pulley",
+      "state" : {
+        "revision" : "355bb7c53d4d430334422ad05a97fbe43ce326db",
+        "version" : "2.9.1"
+      }
+    },
+    {
+      "identity" : "resolver",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hmlongco/Resolver",
+      "state" : {
+        "revision" : "97de0b0320036607564af4a60025b48f8d041221",
+        "version" : "1.5.0"
+      }
+    },
+    {
+      "identity" : "taglistview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LambdaDigamma/TagListView",
+      "state" : {
+        "revision" : "9cc6ceb34cffa5c6fa175d87351d20950a7704c0",
+        "version" : "1.4.2"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -25,12 +25,17 @@ public struct RubbishPickupItem: Model, Codable, Identifiable, Equatable {
         case type
     }
     
-    public static var placeholder: [RubbishPickupItem] = [
-        RubbishPickupItem(date: Date(), type: .organic),
-        RubbishPickupItem(date: Date(), type: .paper),
-        RubbishPickupItem(date: Date(timeIntervalSinceNow: 1 * 24 * 60 * 60), type: .plastic),
-        RubbishPickupItem(date: Date(timeIntervalSinceNow: 2 * 24 * 60 * 60), type: .residual),
-    ]
+    public static var placeholder: [RubbishPickupItem] = {
+        
+        let now = Date()
+        
+        return [
+            RubbishPickupItem(date: now, type: .organic),
+            RubbishPickupItem(date: now, type: .paper),
+            RubbishPickupItem(date: Date(timeIntervalSinceNow: 1 * 24 * 60 * 60), type: .plastic),
+            RubbishPickupItem(date: Date(timeIntervalSinceNow: 2 * 24 * 60 * 60), type: .residual)
+          ]
+    }()
     
     public static var decoder: JSONDecoder {
         

@@ -28,14 +28,13 @@ class ParkingTimerViewModelTests: XCTestCase {
         
         let viewModel = ParkingTimerViewModel()
         
-        XCTAssertNil(viewModel.carPosition)
+        XCTAssertFalse(viewModel.timerStarted)
         
     }
     
     func testLoad() {
         
         let viewModel = ParkingTimerViewModel()
-        XCTAssertNil(viewModel.carPosition)
         
         viewModel.loadCurrentLocation()
         XCTAssertNotNil(viewModel.carPosition)
@@ -166,7 +165,7 @@ class ParkingTimerViewModelTests: XCTestCase {
         
         let retrieveViewModel = ParkingTimerViewModel.loadCurrentOrNew()
         
-        XCTAssertEqual(viewModel.saveParkingLocation, retrieveViewModel.saveParkingLocation)
+//        XCTAssertEqual(viewModel.saveParkingLocation, retrieveViewModel.saveParkingLocation)
         XCTAssertEqual(viewModel.enableNotifications, retrieveViewModel.enableNotifications)
         
         if #available(iOS 15.0, *) {
