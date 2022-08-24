@@ -5,6 +5,7 @@
 //  Created by Lennart Fischer on 21.12.21.
 //
 
+import Core
 import SwiftUI
 
 public struct PetrolPriceDashboardView: View {
@@ -73,30 +74,6 @@ public struct PetrolPriceDashboardView: View {
             }
         }
         .foregroundColor(Color.primary)
-        
-    }
-    
-}
-
-struct CardPanelView<Content: View>: View {
-    
-    @Environment(\.colorScheme) private var colorScheme
-    
-    var content: Content
-    
-    init(@ViewBuilder builder: () -> Content) {
-        self.content = builder()
-    }
-    
-    var body: some View {
-        
-        ZStack {
-            self.content
-        }
-        .frame(maxWidth: .infinity)
-        .background(Color(.secondarySystemGroupedBackground))
-        .cornerRadius(16)
-        .shadow(radius: colorScheme == .light ? 8 : 0)
         
     }
     

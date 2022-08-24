@@ -81,7 +81,7 @@ public struct RubbishScheduleList: View {
                     showInfo = true
                 }, label: {
                     Image(systemName: "info.circle")
-                        .foregroundColor(.yellow)
+                        .foregroundColor(Color(ColorTheme.accentColor))
                 })
             }
         })

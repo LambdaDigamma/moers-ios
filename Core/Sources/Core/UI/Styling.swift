@@ -19,7 +19,7 @@ public enum Styling {
     ) {
         
         navigationController.navigationBar.barTintColor = UIColor.systemBackground
-        navigationController.navigationBar.tintColor = UIColor.systemYellow
+        navigationController.navigationBar.tintColor = ColorTheme.accentColor
         navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
         navigationController.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
         navigationController.navigationBar.isTranslucent = true

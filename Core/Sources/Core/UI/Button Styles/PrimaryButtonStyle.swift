@@ -16,9 +16,9 @@ public struct PrimaryButtonStyle: ButtonStyle {
         configuration.label
             .font(.body.weight(.semibold))
             .padding()
-            .foregroundColor(.black)
+            .foregroundColor(Color(ColorTheme.onAccentColor))
             .frame(maxWidth: .infinity, alignment: .center)
-            .background(Color.yellow)
+            .background(Color(ColorTheme.accentColor))
             .cornerRadius(10)
             .opacity(configuration.isPressed ? 0.7 : 1)
         

@@ -50,7 +50,7 @@ public class NewsCoordinator: NSObject, Coordinator, SFSafariViewControllerDeleg
         let tabBarItem = UITabBarItem(
             title: AppStrings.Menu.news,
             image: UIImage(systemName: "newspaper"),
-            selectedImage: UIImage(systemName: "newspaper.fill")
+            selectedImage: UIImage(systemName: "newspaper")
         )
         tabBarItem.accessibilityLabel = AppStrings.Menu.news
         tabBarItem.accessibilityIdentifier = AccessibilityIdentifiers.Menu.news

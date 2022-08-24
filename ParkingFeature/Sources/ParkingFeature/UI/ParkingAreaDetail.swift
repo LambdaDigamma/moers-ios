@@ -9,6 +9,7 @@ import Core
 import SwiftUI
 
 struct BlurModifier: ViewModifier {
+    
     @Binding var showOverlay: Bool
     @State var blurRadius: CGFloat = 4
     
@@ -18,6 +19,7 @@ struct BlurModifier: ViewModifier {
                 .blur(radius: showOverlay ? blurRadius : 0)
         }
     }
+    
 }
 
 public struct ParkingAreaDetail: View {
@@ -135,6 +137,7 @@ public struct ParkingAreaDetail: View {
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
                     .background(openingState.badgeColor)
+                    .foregroundColor(openingState.badgeForegroundColor)
                     .cornerRadius(4)
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {

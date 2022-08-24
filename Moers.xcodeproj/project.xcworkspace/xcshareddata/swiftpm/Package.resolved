@@ -254,6 +254,15 @@
         }
       },
       {
+        "package": "LicenseUI",
+        "repositoryURL": "https://github.com/LambdaDigamma/swift-license-ui",
+        "state": {
+          "branch": null,
+          "revision": "f2e1bfd832e2bf9dc70fbde536f83456866f9722",
+          "version": "1.0.0"
+        }
+      },
+      {
         "package": "ProseMirror",
         "repositoryURL": "https://github.com/lambdadigamma/swift-prosemirror",
         "state": {

@@ -16,6 +16,7 @@ public class ParkingAreaListViewModel: StandardViewModel {
     private let locationService: LocationService?
     
     @Published public var parkingAreas: [ParkingAreaViewModel] = []
+    @Published public var filteredParkingAreas: [ParkingAreaViewModel] = []
     @Published public var filter: ParkingAreaFilterType = .all
     @Published public var userGrantedLocation: Bool = false
     @Published public var region: MKCoordinateRegion = MKCoordinateRegion(
@@ -49,6 +50,9 @@ public class ParkingAreaListViewModel: StandardViewModel {
             return nil
         }
         
+        super.init()
+        
+        self.setupListeners()
     }
     
     public func load() {
@@ -78,6 +82,8 @@ public class ParkingAreaListViewModel: StandardViewModel {
                     updatedAt: $0.updatedAt ?? Date()
                 )})
                 
+                self.updateFilter(filter: self.filter)
+                
                 self.mapViewModel.annotations = parkingAreas.compactMap {
                     guard let coordinate = $0.location?.toCoordinate() else { return nil }
                     return ParkingAreaAnnotation(coordinate: coordinate, title: $0.name)
@@ -85,6 +91,25 @@ public class ParkingAreaListViewModel: StandardViewModel {
                 
             }
             .store(in: &cancellables)
+        
+    }
+    
+    private func setupListeners() {
+        
+        $filter.sink { [weak self] (filter: ParkingAreaFilterType) in
+            self?.updateFilter(filter: filter)
+        }
+        .store(in: &cancellables)
+        
+    }
+    
+    private func updateFilter(filter: ParkingAreaFilterType) {
+        
+        if filter == .all {
+            self.filteredParkingAreas = parkingAreas
+        } else {
+            self.filteredParkingAreas = parkingAreas.filter { $0.currentOpeningState == .open }
+        }
         
     }
     

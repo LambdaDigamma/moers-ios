@@ -48,7 +48,9 @@ public struct DashboardView<Content: View>: View {
                 
             }
             
+            
         }
+        .background(Color(UIColor.systemGroupedBackground))
         .toolbar {
 //            ToolbarItem(placement: .primaryAction) {
 //                Button(action: {}) {

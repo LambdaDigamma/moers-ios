@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.applicationCoordinator = ApplicationCoordinator()
 
-        window!.overrideUserInterfaceStyle = .dark
+//        window!.overrideUserInterfaceStyle = .dark
         window!.rootViewController = applicationCoordinator.rootViewController()
         window!.makeKeyAndVisible()
         

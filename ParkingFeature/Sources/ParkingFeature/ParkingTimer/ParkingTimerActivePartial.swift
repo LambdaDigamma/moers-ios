@@ -52,7 +52,7 @@ public struct ParkingTimerActivePartial: View {
                 Text(viewModel.endDate, style: .time)
             }
             .font(.callout)
-            .foregroundColor(.yellow)
+            .foregroundColor(Color(ColorTheme.accentColor))
             
             Text(viewModel.endDate, style: .timer)
                 .font(.largeTitle)

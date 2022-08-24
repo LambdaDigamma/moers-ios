@@ -25,6 +25,8 @@ class DashboardController: UIViewController {
     
     private func setupUI() {
         
+        self.view.backgroundColor = UIColor.secondarySystemBackground
+        
         let dashboardView = DashboardView(content: {})
         
         self.addSubSwiftUIView(dashboardView, to: view)

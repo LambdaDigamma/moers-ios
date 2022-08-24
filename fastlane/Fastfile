@@ -11,8 +11,8 @@ platform :ios do
     register_devices(
       team_id: "77N8D7LGCZ",
       devices: {
-        "Lennarts iPhone 8" => "e3f6fe313610d72f847e010d17af266b64781acf",
-        "Lennarts iPhone XS" => "00008020-000C584C2690003A",
+        "Lennarts iPhone X" => "00008020-000C584C2690003A",
+        "Developer Phone" => "816f5acc807afa4122240b70e203210764c1e3b0",
         "Lennarts iPad Pro" => "00008103-001C34490CF1001E"
       }
     )

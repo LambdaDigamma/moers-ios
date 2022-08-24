@@ -89,18 +89,33 @@ public struct ApplicationTheme: Gestalt.Theme {
     
     public static let lightning: ApplicationTheme = .init(
         identifier: "Lightning",
-        color: UIColor.black,
-        backgroundColor: UIColor.white,
-        accentColor: UIColor(hexString: "#C0392B")!,
-        decentColor: UIColor.lightGray,
+        color: UIColor.label,
+        backgroundColor: UIColor.systemBackground,
+        accentColor: ColorTheme.accentColor,
+        decentColor: UIColor.secondaryLabel,
         navigationBarColor: UIColor.white,
-        tabBarColor: UIColor.white,
-        cardShadow: true,
+        tabBarColor: UIColor.systemBackground,
+        cardShadow: false,
         cardBackgroundColor: UIColor.white,
         separatorColor: UIColor.lightGray,
         statusBarStyle: .default,
         presentationStyle: .light
     )
+    
+//    public static let lightning: ApplicationTheme = .init(
+//        identifier: "Lightning",
+//        color: UIColor.black,
+//        backgroundColor: UIColor.white,
+//        accentColor: UIColor(hexString: "#C0392B")!,
+//        decentColor: UIColor.lightGray,
+//        navigationBarColor: UIColor.white,
+//        tabBarColor: UIColor.white,
+//        cardShadow: true,
+//        cardBackgroundColor: UIColor.white,
+//        separatorColor: UIColor.lightGray,
+//        statusBarStyle: .default,
+//        presentationStyle: .light
+//    )
     
     public static let mono: ApplicationTheme = .init(
         identifier: "Mono",

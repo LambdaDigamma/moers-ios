@@ -52,7 +52,7 @@ public struct BroadcastDetail: View {
                     
                 }, label: {
                     Image(systemName: "square.and.arrow.up")
-                        .foregroundColor(.yellow)
+                        .foregroundColor(Color(ColorTheme.accentColor))
                 })
             }
         })

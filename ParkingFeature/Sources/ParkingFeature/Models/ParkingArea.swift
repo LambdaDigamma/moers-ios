@@ -115,6 +115,17 @@ public enum ParkingAreaOpeningState: String, Equatable, Codable, CaseIterable, C
         }
     }
     
+    public var badgeForegroundColor: Color {
+        switch self {
+            case .open:
+                return Color.white
+            case .unknown:
+                return Color.white
+            case .closed:
+                return Color.white
+        }
+    }
+    
     public var isNegativeState: Bool {
         return self == .closed || self == .unknown
     }

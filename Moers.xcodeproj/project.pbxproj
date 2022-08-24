@@ -41,7 +41,7 @@
 		DF35EFAB27A9EB66005C6BDA /* ExploreOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF35EFAA27A9EB66005C6BDA /* ExploreOverview.swift */; };
 		DF3661D727AB2362002A90BB /* ParkingFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF3661D627AB2362002A90BB /* ParkingFeature */; };
 		DF3661D927AB267F002A90BB /* FuelFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF3661D827AB267F002A90BB /* FuelFeature */; };
-		DF38788828AE3FDF002FECE1 /* LicenseUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF38788728AE3FDF002FECE1 /* LicenseUI */; };
+		DF3E607428B220620045DEA5 /* LicenseUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF3E607328B220620045DEA5 /* LicenseUI */; };
 		DF4116C5276FF45F0068B4BB /* WidgetStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4116C4276FF45F0068B4BB /* WidgetStrings.swift */; };
 		DF461CBA20E226DE00600C0E /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF461CB920E226DE00600C0E /* ViewFactory.swift */; };
 		DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BD1C1208C5653003ECF41 /* RubbishStreetPickerItem.swift */; };
@@ -305,7 +305,6 @@
 		DF35EFA927A9E9FE005C6BDA /* NewsFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NewsFeature; sourceTree = "<group>"; };
 		DF35EFAA27A9EB66005C6BDA /* ExploreOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreOverview.swift; sourceTree = "<group>"; };
 		DF3661DA27AB27C2002A90BB /* WidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetsExtension.entitlements; sourceTree = "<group>"; };
-		DF38788628AE3FC8002FECE1 /* swift-license-ui */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "swift-license-ui"; path = "../../Swift Packages/swift-license-ui"; sourceTree = "<group>"; };
 		DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchArgumentsHandler.swift; sourceTree = "<group>"; };
 		DF4116C4276FF45F0068B4BB /* WidgetStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetStrings.swift; sourceTree = "<group>"; };
 		DF461CB920E226DE00600C0E /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
@@ -466,7 +465,7 @@
 				DF9F19F32766920C00B74E13 /* EFAAPI in Frameworks */,
 				DF623C7027B56FD7009D335F /* NewsFeature in Frameworks */,
 				DF86ABA12174900400EFC7EA /* Intents.framework in Frameworks */,
-				DF38788828AE3FDF002FECE1 /* LicenseUI in Frameworks */,
+				DF3E607428B220620045DEA5 /* LicenseUI in Frameworks */,
 				DFB07A33277741030033101C /* FirebaseMessaging in Frameworks */,
 				DF55F25F27709B410024300B /* RubbishFeature in Frameworks */,
 				DFB07A31277741030033101C /* FirebaseCrashlytics in Frameworks */,
@@ -703,7 +702,6 @@
 				DF9F19FC276693BB00B74E13 /* efaapi-ios */,
 				DFF654E52677C60B0026FBCF /* mmevents-ios */,
 				DFB152EE28159CC7002043B7 /* mmpages-ios */,
-				DF38788628AE3FC8002FECE1 /* swift-license-ui */,
 				DF1A49611F6AAB7000E9108B /* Moers */,
 				DF5E1B5326726AF3005FADA4 /* Widgets */,
 				DF94B11823F0A7E5009C57ED /* Watch */,
@@ -1079,7 +1077,7 @@
 				DF62AAF82891E841002D420E /* ModernNetworking */,
 				DFF6FFA3289D156600C88964 /* Haneke */,
 				DF152D8D289D23DB0046956F /* Cache */,
-				DF38788728AE3FDF002FECE1 /* LicenseUI */,
+				DF3E607328B220620045DEA5 /* LicenseUI */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -1290,6 +1288,7 @@
 				DF62AAF72891E841002D420E /* XCRemoteSwiftPackageReference "modernnetworking" */,
 				DFF6FFA2289D156600C88964 /* XCRemoteSwiftPackageReference "HanekeSwift" */,
 				DF152D8C289D23DB0046956F /* XCRemoteSwiftPackageReference "Cache" */,
+				DF3E607228B220620045DEA5 /* XCRemoteSwiftPackageReference "swift-license-ui" */,
 			);
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
@@ -2067,7 +2066,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Moers/Resources/Moers.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 58;
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
@@ -2090,7 +2089,7 @@
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development de.okfn.niederrhein.Moers";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore de.okfn.niederrhein.Moers";
 				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Resources/Moers-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3024,7 +3023,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 58;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -3098,7 +3097,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 58;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -5141,6 +5140,14 @@
 				minimumVersion = 0.0.3;
 			};
 		};
+		DF3E607228B220620045DEA5 /* XCRemoteSwiftPackageReference "swift-license-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LambdaDigamma/swift-license-ui";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		DF62AAF72891E841002D420E /* XCRemoteSwiftPackageReference "modernnetworking" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lambdadigamma/modernnetworking";
@@ -5287,8 +5294,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = FuelFeature;
 		};
-		DF38788728AE3FDF002FECE1 /* LicenseUI */ = {
+		DF3E607328B220620045DEA5 /* LicenseUI */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = DF3E607228B220620045DEA5 /* XCRemoteSwiftPackageReference "swift-license-ui" */;
 			productName = LicenseUI;
 		};
 		DF54DC362813039200819A3B /* MapFeature */ = {

@@ -48,17 +48,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 //
 //        bootstrappingProcedure.execute(with: application)
         
-        ThemeManager.default.theme = ApplicationTheme.dark
+        ThemeManager.default.theme = ApplicationTheme.lightning
         ThemeManager.default.animated = true
         
-        EventPackageConfiguration.accentColor = UIColor.systemYellow
-        EventPackageConfiguration.onAccentColor = UIColor.black
+        EventPackageConfiguration.accentColor = ColorTheme.accentColor
+        EventPackageConfiguration.onAccentColor = ColorTheme.onAccentColor
         
-//        MMUI.UIPackageConfiguration.accentColor = UIColor.systemYellow
-//        MMUI.UIPackageConfiguration.onAccentColor = UIColor.black
+//        MMUI.UIPackageConfiguration.accentColor = ColorTheme.accentColor
+//        MMUI.UIPackageConfiguration.onAccentColor = ColorTheme.onAccentColor
         
-        Core.UIPackageConfiguration.accentColor = UIColor.systemYellow
-        Core.UIPackageConfiguration.onAccentColor = UIColor.black
+        Core.UIPackageConfiguration.accentColor = ColorTheme.accentColor
+        Core.UIPackageConfiguration.onAccentColor = ColorTheme.onAccentColor
         
         MMUIConfig.registerThemeManager(ThemeManager.default)
         MMAPIConfig.registerBaseURL(AppEnvironment.rootURL)

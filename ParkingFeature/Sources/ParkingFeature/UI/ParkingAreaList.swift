@@ -169,14 +169,14 @@ public struct ParkingAreaList: View {
             } label: {
                 Label(PackageStrings.ParkingAreaList.filter,
                       systemImage: "line.3.horizontal.decrease.circle")
-                .foregroundColor(Color.yellow)
+                .foregroundColor(Color(ColorTheme.accentColor))
             }
             
             Button(action: {
                 showParkingTimer = true
             }) {
                 Image(systemName: "timer")
-                    .foregroundColor(Color.yellow)
+                    .foregroundColor(Color(ColorTheme.accentColor))
             }
             
         }

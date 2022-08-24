@@ -25,8 +25,8 @@ class EntryAnnotationView: MKMarkerAnnotationView {
             
             glyphText = "•"
             clusteringIdentifier = AnnotationIdentifier.cluster
-            markerTintColor = AppColors.yellow
-            glyphTintColor = UIColor.black
+            markerTintColor = ColorTheme.accentColor
+            glyphTintColor = ColorTheme.onAccentColor
             displayPriority = .defaultHigh
             collisionMode = .circle
             
