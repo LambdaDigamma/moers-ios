@@ -77,6 +77,7 @@
 		DF62AB052891EC14002D420E /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF62AAFE2891EC14002D420E /* NewsViewModel.swift */; };
 		DF62AB062891EC14002D420E /* NewsTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF62AAFF2891EC14002D420E /* NewsTimelineProvider.swift */; };
 		DF62AB072891EC14002D420E /* LegacyImageNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF62AB012891EC14002D420E /* LegacyImageNewsView.swift */; };
+		DF636F5128D1CE8B00B29A76 /* Tankerkoenig-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF636F5028D1CE8B00B29A76 /* Tankerkoenig-Info.plist */; };
 		DF65CF0226C97E0D00078232 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF65CF0126C97E0D00078232 /* Colors.xcassets */; };
 		DF6CA8FE2849125D0068B9AC /* MapFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF6CA8FD2849125D0068B9AC /* MapFeature */; };
 		DF6DC2D927C533050083951B /* SidebarSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6DC2D827C533050083951B /* SidebarSection.swift */; };
@@ -86,6 +87,7 @@
 		DF75345827727E1B0086B292 /* RubbishCollectionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75345727727E1B0086B292 /* RubbishCollectionEntry.swift */; };
 		DF75345A277280320086B292 /* RubbishCollectionWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF753459277280320086B292 /* RubbishCollectionWrapperView.swift */; };
 		DF75345C277280710086B292 /* RubbishFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF75345B277280710086B292 /* RubbishFeature */; };
+		DF782D8628D1D05D000BDC89 /* TankerKoenig-Info-Sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF782D8528D1D05D000BDC89 /* TankerKoenig-Info-Sample.plist */; };
 		DF80F6C02851142800AB708D /* WeatherWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80F6BF2851142800AB708D /* WeatherWidget.swift */; };
 		DF80F6C328511B9300AB708D /* RubbishAccessoryRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80F6C128511B8F00AB708D /* RubbishAccessoryRectangle.swift */; };
 		DF80F6C6285124B500AB708D /* RubbishAccessoryInline.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80F6C42851246F00AB708D /* RubbishAccessoryInline.swift */; };
@@ -342,6 +344,7 @@
 		DF62AAFF2891EC14002D420E /* NewsTimelineProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTimelineProvider.swift; sourceTree = "<group>"; };
 		DF62AB012891EC14002D420E /* LegacyImageNewsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyImageNewsView.swift; sourceTree = "<group>"; };
 		DF62AB082891EC33002D420E /* PlaybackKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PlaybackKit; sourceTree = "<group>"; };
+		DF636F5028D1CE8B00B29A76 /* Tankerkoenig-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tankerkoenig-Info.plist"; sourceTree = "<group>"; };
 		DF65CF0126C97E0D00078232 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		DF6DC2D827C533050083951B /* SidebarSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarSection.swift; sourceTree = "<group>"; };
 		DF6E061128AE3116004FEBC9 /* LicencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicencesViewController.swift; sourceTree = "<group>"; };
@@ -351,6 +354,7 @@
 		DF75345527727D6E0086B292 /* RubbishCollectionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionProvider.swift; sourceTree = "<group>"; };
 		DF75345727727E1B0086B292 /* RubbishCollectionEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionEntry.swift; sourceTree = "<group>"; };
 		DF753459277280320086B292 /* RubbishCollectionWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionWrapperView.swift; sourceTree = "<group>"; };
+		DF782D8528D1D05D000BDC89 /* TankerKoenig-Info-Sample.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TankerKoenig-Info-Sample.plist"; sourceTree = "<group>"; };
 		DF7D4B5D22F0D53400126AF7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DF80F6BF2851142800AB708D /* WeatherWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherWidget.swift; sourceTree = "<group>"; };
 		DF80F6C128511B8F00AB708D /* RubbishAccessoryRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishAccessoryRectangle.swift; sourceTree = "<group>"; };
@@ -597,6 +601,8 @@
 				DF57D695218739C500E6A0A9 /* Moers-Bridging-Header.h */,
 				DFB64DCA2038845300173A80 /* Firebase.h */,
 				DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */,
+				DF636F5028D1CE8B00B29A76 /* Tankerkoenig-Info.plist */,
+				DF782D8528D1D05D000BDC89 /* TankerKoenig-Info-Sample.plist */,
 				DFB64DC9203883D200173A80 /* module.modulemap */,
 				DFAEF41120E8ECF7001B0756 /* Moers.entitlements */,
 			);
@@ -1033,6 +1039,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DF1A49711F6AAB7000E9108B /* Build configuration list for PBXNativeTarget "Moers" */;
 			buildPhases = (
+				DF782D8728D1DCA9000BDC89 /* Prepare Fuel API Key */,
 				DF1A495C1F6AAB7000E9108B /* Frameworks */,
 				DF1A495B1F6AAB7000E9108B /* Sources */,
 				DF6E060D28AE2C3F004FEBC9 /* Generate Package List */,
@@ -1315,7 +1322,9 @@
 				DFDE886425457D4600429765 /* Launch Screen.storyboard in Resources */,
 				DF007B772640843E00DAFA6F /* InfoPlist.strings in Resources */,
 				DFA5B10827865BDA00B26CF4 /* Berlin.gpx in Resources */,
+				DF636F5128D1CE8B00B29A76 /* Tankerkoenig-Info.plist in Resources */,
 				DF16582E22EF8C990033D218 /* Localizable.strings in Resources */,
+				DF782D8628D1D05D000BDC89 /* TankerKoenig-Info-Sample.plist in Resources */,
 				DF52868E24A7C65F00A6939E /* NewColors.xcassets in Resources */,
 				DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */,
 				DF89BA1B26FE12AE003A6C64 /* IDEAS.md in Resources */,
@@ -1427,6 +1436,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [[ \"$CONFIGURATION\" == *\"Debug\"* ]]; then\n# /usr/local/bin/license-plist --output-path Moers/Resources/Debug/Settings.bundle --add-version-numbers --package-path Moers.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved\n\ncp -rf Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist Moers/Resources/Release/Settings.bundle/com.mono0926.LicensePlist\ncp -rf Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist.latest_result.txt Moers/Resources/Release/Settings.bundle/com.mono0926.LicensePlist.latest_result.txt\ncp -rf Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist.plist Moers/Resources/Release/Settings.bundle/com.mono0926.LicensePlist.plist\n\necho \"Updated and copied license plists\"\n\nfi\n\n";
+		};
+		DF782D8728D1DCA9000BDC89 /* Prepare Fuel API Key */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Prepare Fuel API Key";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CONFIG_FILE_BASE_NAME=\"Tankerkoenig-Info\"\n\nCONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}.plist\nSAMPLE_CONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}-Sample.plist\n\nCONFIG_FILE_PATH=$SRCROOT/Moers/Resources/$CONFIG_FILE_NAME\nSAMPLE_CONFIG_FILE_PATH=$SRCROOT/Moers/Resources/$SAMPLE_CONFIG_FILE_NAME\n\nif [ -f \"$CONFIG_FILE_PATH\" ]; then\n  echo \"$CONFIG_FILE_PATH exists.\"\nelse\n  echo \"$CONFIG_FILE_PATH does not exist, copying sample\"\n  cp -v \"${SAMPLE_CONFIG_FILE_PATH}\" \"${CONFIG_FILE_PATH}\"\nfi\n";
 		};
 		DF8861C926CEF0CC00C895B4 /* Lint with SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
