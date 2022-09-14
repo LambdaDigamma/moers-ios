@@ -127,6 +127,7 @@
 		DFA4BC48263A28530014C7F9 /* TagListView in Frameworks */ = {isa = PBXBuildFile; productRef = DFA4BC47263A28530014C7F9 /* TagListView */; };
 		DFA5B10827865BDA00B26CF4 /* Berlin.gpx in Resources */ = {isa = PBXBuildFile; fileRef = DFA5B10727865BDA00B26CF4 /* Berlin.gpx */; };
 		DFA9EF0C20B56BA8008590EA /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9EF0B20B56BA8008590EA /* UIImage+Extensions.swift */; };
+		DFAEDE1B28D130F80092D535 /* ParkingTimerActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAEDE1A28D130F80092D535 /* ParkingTimerActivityView.swift */; };
 		DFB02B8D27066B35000196D8 /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB02B8327066B35000196D8 /* AppTabBarController.swift */; };
 		DFB02B8F27066B35000196D8 /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB02B8527066B35000196D8 /* ApplicationCoordinator.swift */; };
 		DFB02B9227066BC4000196D8 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB02B9127066BC4000196D8 /* FeatureFlags.swift */; };
@@ -150,6 +151,7 @@
 		DFC393B027B66F39007AD266 /* UITestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC393AF27B66F39007AD266 /* UITestHelpers.swift */; };
 		DFC393B227B66F68007AD266 /* LaunchArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC393B127B66F68007AD266 /* LaunchArguments.swift */; };
 		DFC7126921DFC863006D05DB /* ShortcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC7126821DFC863006D05DB /* ShortcutsViewController.swift */; };
+		DFC7D3C628B0EA7500D96461 /* ParkingTimerActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC7D3C528B0EA7500D96461 /* ParkingTimerActivityWidget.swift */; };
 		DFCB431F20E02D0300E7AD3F /* NewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB431E20E02D0300E7AD3F /* NewsManager.swift */; };
 		DFCE12952538F7F600B45EB7 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = DFCE12942538F7F600B45EB7 /* FeedKit */; };
 		DFD39A3322B7578B0085F06E /* MMEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD39A3222B7578B0085F06E /* MMEventsViewController.swift */; };
@@ -394,6 +396,7 @@
 		DFA5B10727865BDA00B26CF4 /* Berlin.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Berlin.gpx; sourceTree = "<group>"; };
 		DFA9EF0220B40C16008590EA /* Moers.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Moers.gpx; path = ../Moers.gpx; sourceTree = "<group>"; };
 		DFA9EF0B20B56BA8008590EA /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		DFAEDE1A28D130F80092D535 /* ParkingTimerActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingTimerActivityView.swift; sourceTree = "<group>"; };
 		DFAEF41120E8ECF7001B0756 /* Moers.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Moers.entitlements; sourceTree = "<group>"; };
 		DFB02B8327066B35000196D8 /* AppTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppTabBarController.swift; path = Moers/Controller/AppTabBarController.swift; sourceTree = SOURCE_ROOT; };
 		DFB02B8527066B35000196D8 /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationCoordinator.swift; path = Moers/Controller/ApplicationCoordinator.swift; sourceTree = SOURCE_ROOT; };
@@ -418,6 +421,7 @@
 		DFC393B127B66F68007AD266 /* LaunchArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchArguments.swift; sourceTree = "<group>"; };
 		DFC393B427B672D4007AD266 /* Screenshots.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Screenshots.xctestplan; sourceTree = "<group>"; };
 		DFC7126821DFC863006D05DB /* ShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsViewController.swift; sourceTree = "<group>"; };
+		DFC7D3C528B0EA7500D96461 /* ParkingTimerActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ParkingTimerActivityWidget.swift; path = Widgets/ParkingTimerActivityWidget.swift; sourceTree = SOURCE_ROOT; };
 		DFC8507726EFE62400F9FB39 /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Core; sourceTree = "<group>"; };
 		DFCAC4982852008100701BC1 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 		DFCB431E20E02D0300E7AD3F /* NewsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsManager.swift; sourceTree = "<group>"; };
@@ -798,6 +802,7 @@
 				DF5E1B8626729B0A005FADA4 /* News */,
 				DF99F181275FF77300D279AB /* DepartureMonitor */,
 				DF75345227727CB30086B292 /* Rubbish */,
+				DFAEDE1928D130E60092D535 /* ParkingTimer */,
 				DF5E1B7B267290D6005FADA4 /* Resources */,
 				DF9F19EC27668CDD00B74E13 /* SelectDepartureMonitorStop.intentdefinition */,
 			);
@@ -979,6 +984,15 @@
 				DF5D81C92256832600A19B01 /* MockConfig.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DFAEDE1928D130E60092D535 /* ParkingTimer */ = {
+			isa = PBXGroup;
+			children = (
+				DFC7D3C528B0EA7500D96461 /* ParkingTimerActivityWidget.swift */,
+				DFAEDE1A28D130F80092D535 /* ParkingTimerActivityView.swift */,
+			);
+			path = ParkingTimer;
 			sourceTree = "<group>";
 		};
 		DFB161B4267651D7009D2754 /* Moers Unit Tests */ = {
@@ -1542,11 +1556,13 @@
 				DF80F6C6285124B500AB708D /* RubbishAccessoryInline.swift in Sources */,
 				DF99F19327600A3600D279AB /* DepartureMonitorWidget.swift in Sources */,
 				DF62AB022891EC14002D420E /* Extensions.swift in Sources */,
+				DFAEDE1B28D130F80092D535 /* ParkingTimerActivityView.swift in Sources */,
 				DF62AB062891EC14002D420E /* NewsTimelineProvider.swift in Sources */,
 				DF5E1B6C26726F2B005FADA4 /* WidgetsBundle.swift in Sources */,
 				DF75345827727E1B0086B292 /* RubbishCollectionEntry.swift in Sources */,
 				DF99F18B2760023700D279AB /* DepartureMonitorEntry.swift in Sources */,
 				DF80F6C328511B9300AB708D /* RubbishAccessoryRectangle.swift in Sources */,
+				DFC7D3C628B0EA7500D96461 /* ParkingTimerActivityWidget.swift in Sources */,
 				DF99F18A2760023000D279AB /* DepartureMonitorWrapperView.swift in Sources */,
 				DF0A7DAF27AB204500957A8D /* UserDefaultsMigrator.swift in Sources */,
 				DF0A7DAE27AB201600957A8D /* ServiceConfiguration.swift in Sources */,

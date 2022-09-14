@@ -119,6 +119,10 @@ public class ParkingTimerViewModel: StandardViewModel {
         self.endDate = Date(timeIntervalSinceNow: time)
         self.carPosition = saveParkingLocation ? carPosition : nil
         
+        if #available(iOS 16.0, *) {
+            ParkingTimerLiveActivity().start(date: endDate)
+        }
+        
         withAnimation {
             self.timerStarted = true
             self.persistTimer()

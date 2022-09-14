@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
 	<key>BASE_URL</key>
 	<string>$(BASE_URL)</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -60,7 +62,7 @@
 				<true/>
 			</dict>
 			<key>buergerfunk-moers.de</key>
-			<string/>
+			<string></string>
 			<key>download.moers.de</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -69,7 +71,7 @@
 				<true/>
 			</dict>
 			<key>mein-moers.localhost</key>
-			<string/>
+			<string></string>
 			<key>www.buergerfunk-moers.de</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
