@@ -47,6 +47,15 @@
         }
       },
       {
+        "package": "EFAAPI",
+        "repositoryURL": "https://github.com/LambdaDigamma/efaapi-ios",
+        "state": {
+          "branch": null,
+          "revision": "ae40428f095952fd4ac7959a27000ecc75f5822b",
+          "version": "0.0.3"
+        }
+      },
+      {
         "package": "EventBus",
         "repositoryURL": "https://github.com/LambdaDigamma/EventBus",
         "state": {
@@ -78,8 +87,8 @@
         "repositoryURL": "https://github.com/LambdaDigamma/fuse-swift.git",
         "state": {
           "branch": null,
-          "revision": "a1f44a59d94393f7461745ccc977b5005c8438a5",
-          "version": "1.4.2"
+          "revision": "836f0fda3699967bd31720199160fdccb6c43a79",
+          "version": "1.4.3"
         }
       },
       {
@@ -123,8 +132,8 @@
         "repositoryURL": "https://github.com/google/GoogleUtilities.git",
         "state": {
           "branch": null,
-          "revision": "f4abe56ce62a779e64b525eb133c8fc2a84bbc1f",
-          "version": "7.7.1"
+          "revision": "22907832079d808e82f1182b21af58ef3880666f",
+          "version": "7.8.0"
         }
       },
       {
@@ -254,6 +263,15 @@
         }
       },
       {
+        "package": "LicenseUI",
+        "repositoryURL": "https://github.com/LambdaDigamma/swift-license-ui",
+        "state": {
+          "branch": null,
+          "revision": "f2e1bfd832e2bf9dc70fbde536f83456866f9722",
+          "version": "1.0.0"
+        }
+      },
+      {
         "package": "ProseMirror",
         "repositoryURL": "https://github.com/lambdadigamma/swift-prosemirror",
         "state": {
@@ -267,8 +285,8 @@
         "repositoryURL": "https://github.com/apple/swift-protobuf.git",
         "state": {
           "branch": null,
-          "revision": "fa0fcd43f272a260e7f734f23e6dc55e16fcae0a",
-          "version": "1.19.1"
+          "revision": "b8230909dedc640294d7324d37f4c91ad3dcf177",
+          "version": "1.20.1"
         }
       },
       {
@@ -303,8 +321,8 @@
         "repositoryURL": "https://github.com/SvenTiigi/YouTubePlayerKit.git",
         "state": {
           "branch": null,
-          "revision": "6ecaaeb9409152ddda5807835d557cbf5ba5ead6",
-          "version": "1.2.0"
+          "revision": "48b3716ce316bb67c19b10c4335f356b195dd72e",
+          "version": "1.2.1"
         }
       }
     ]

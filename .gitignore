@@ -68,3 +68,4 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 vendor
 Moers/Resources/Tankerkoenig-Info.plist
+Moers/Resources/GoogleService-Info.plist
