@@ -86,14 +86,14 @@
 		DF6CA8FE2849125D0068B9AC /* MapFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF6CA8FD2849125D0068B9AC /* MapFeature */; };
 		DF6DC2D927C533050083951B /* SidebarSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6DC2D827C533050083951B /* SidebarSection.swift */; };
 		DF6E061228AE3116004FEBC9 /* LicencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E061128AE3116004FEBC9 /* LicencesViewController.swift */; };
-		DF6F5CD228E3190800E1DFBD /* TankerKoenig-Info-Sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF782D8528D1D05D000BDC89 /* TankerKoenig-Info-Sample.plist */; };
+		DF6F5CD228E3190800E1DFBD /* Tankerkoenig-Info-Sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF782D8528D1D05D000BDC89 /* Tankerkoenig-Info-Sample.plist */; };
 		DF6F5CD328E3190800E1DFBD /* Tankerkoenig-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF636F5028D1CE8B00B29A76 /* Tankerkoenig-Info.plist */; };
 		DF75345427727CEE0086B292 /* RubbishWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75345327727CEE0086B292 /* RubbishWidget.swift */; };
 		DF75345627727D6E0086B292 /* RubbishCollectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75345527727D6E0086B292 /* RubbishCollectionProvider.swift */; };
 		DF75345827727E1B0086B292 /* RubbishCollectionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75345727727E1B0086B292 /* RubbishCollectionEntry.swift */; };
 		DF75345A277280320086B292 /* RubbishCollectionWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF753459277280320086B292 /* RubbishCollectionWrapperView.swift */; };
 		DF75345C277280710086B292 /* RubbishFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF75345B277280710086B292 /* RubbishFeature */; };
-		DF782D8628D1D05D000BDC89 /* TankerKoenig-Info-Sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF782D8528D1D05D000BDC89 /* TankerKoenig-Info-Sample.plist */; };
+		DF782D8628D1D05D000BDC89 /* Tankerkoenig-Info-Sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF782D8528D1D05D000BDC89 /* Tankerkoenig-Info-Sample.plist */; };
 		DF80F6C02851142800AB708D /* WeatherWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80F6BF2851142800AB708D /* WeatherWidget.swift */; };
 		DF80F6C328511B9300AB708D /* RubbishAccessoryRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80F6C128511B8F00AB708D /* RubbishAccessoryRectangle.swift */; };
 		DF80F6C6285124B500AB708D /* RubbishAccessoryInline.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80F6C42851246F00AB708D /* RubbishAccessoryInline.swift */; };
@@ -363,7 +363,7 @@
 		DF75345527727D6E0086B292 /* RubbishCollectionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionProvider.swift; sourceTree = "<group>"; };
 		DF75345727727E1B0086B292 /* RubbishCollectionEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionEntry.swift; sourceTree = "<group>"; };
 		DF753459277280320086B292 /* RubbishCollectionWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionWrapperView.swift; sourceTree = "<group>"; };
-		DF782D8528D1D05D000BDC89 /* TankerKoenig-Info-Sample.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TankerKoenig-Info-Sample.plist"; sourceTree = "<group>"; };
+		DF782D8528D1D05D000BDC89 /* Tankerkoenig-Info-Sample.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tankerkoenig-Info-Sample.plist"; sourceTree = "<group>"; };
 		DF7D4B5D22F0D53400126AF7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DF80F6BF2851142800AB708D /* WeatherWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherWidget.swift; sourceTree = "<group>"; };
 		DF80F6C128511B8F00AB708D /* RubbishAccessoryRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishAccessoryRectangle.swift; sourceTree = "<group>"; };
@@ -611,7 +611,7 @@
 				DFB64DCA2038845300173A80 /* Firebase.h */,
 				DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */,
 				DF636F5028D1CE8B00B29A76 /* Tankerkoenig-Info.plist */,
-				DF782D8528D1D05D000BDC89 /* TankerKoenig-Info-Sample.plist */,
+				DF782D8528D1D05D000BDC89 /* Tankerkoenig-Info-Sample.plist */,
 				DFB64DC9203883D200173A80 /* module.modulemap */,
 				DFAEF41120E8ECF7001B0756 /* Moers.entitlements */,
 			);
@@ -1327,7 +1327,7 @@
 				DFA5B10827865BDA00B26CF4 /* Berlin.gpx in Resources */,
 				DF636F5128D1CE8B00B29A76 /* Tankerkoenig-Info.plist in Resources */,
 				DF16582E22EF8C990033D218 /* Localizable.strings in Resources */,
-				DF782D8628D1D05D000BDC89 /* TankerKoenig-Info-Sample.plist in Resources */,
+				DF782D8628D1D05D000BDC89 /* Tankerkoenig-Info-Sample.plist in Resources */,
 				DF52868E24A7C65F00A6939E /* NewColors.xcassets in Resources */,
 				DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */,
 				DF89BA1B26FE12AE003A6C64 /* IDEAS.md in Resources */,
@@ -1347,7 +1347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF6F5CD328E3190800E1DFBD /* Tankerkoenig-Info.plist in Resources */,
-				DF6F5CD228E3190800E1DFBD /* TankerKoenig-Info-Sample.plist in Resources */,
+				DF6F5CD228E3190800E1DFBD /* Tankerkoenig-Info-Sample.plist in Resources */,
 				DF5E1B5826726AF7005FADA4 /* Assets.xcassets in Resources */,
 				DF5E1B7026727642005FADA4 /* Localizable.strings in Resources */,
 			);
