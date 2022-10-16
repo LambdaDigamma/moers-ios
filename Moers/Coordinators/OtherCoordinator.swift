@@ -85,6 +85,14 @@ public class OtherCoordinator: Coordinator {
         
     }
     
+    public func showDepartureMonitor(animated: Bool = false) {
+
+        let viewController = StopDepartureViewController(rootView: StopDepartureScreen())
+        
+        self.navigationController.pushViewController(viewController, animated: animated)
+        
+    }
+    
     public func showTransporationSearch(data: TripSearchActivityData? = nil) {
         
         self.showTransportationOverview()

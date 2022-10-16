@@ -69,3 +69,5 @@ fastlane/test_output
 vendor
 Moers/Resources/Tankerkoenig-Info.plist
 Moers/Resources/GoogleService-Info.plist
+
+GoogleService-Info.plist

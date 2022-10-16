@@ -31,6 +31,7 @@
 		DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A49621F6AAB7000E9108B /* AppDelegate.swift */; };
 		DF1A496A1F6AAB7000E9108B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1A49691F6AAB7000E9108B /* Assets.xcassets */; };
 		DF21B30020BA0DB400478A33 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF21B2FF20BA0DB400478A33 /* SwitchTableViewCell.swift */; };
+		DF24967828FC5D76007CF8ED /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF24967A28FC5D76007CF8ED /* Launch Screen.storyboard */; };
 		DF284F0023F4C17100EC999B /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF284EFF23F4C17100EC999B /* OnboardingUITests.swift */; };
 		DF284F0C23F4C2F700EC999B /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF284F0B23F4C2F700EC999B /* SnapshotHelper.swift */; };
 		DF284F0E23F54C6900EC999B /* AccessibleBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF284F0D23F54C6900EC999B /* AccessibleBulletinItem.swift */; };
@@ -85,6 +86,8 @@
 		DF6CA8FE2849125D0068B9AC /* MapFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF6CA8FD2849125D0068B9AC /* MapFeature */; };
 		DF6DC2D927C533050083951B /* SidebarSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6DC2D827C533050083951B /* SidebarSection.swift */; };
 		DF6E061228AE3116004FEBC9 /* LicencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E061128AE3116004FEBC9 /* LicencesViewController.swift */; };
+		DF6F5CD228E3190800E1DFBD /* TankerKoenig-Info-Sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF782D8528D1D05D000BDC89 /* TankerKoenig-Info-Sample.plist */; };
+		DF6F5CD328E3190800E1DFBD /* Tankerkoenig-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF636F5028D1CE8B00B29A76 /* Tankerkoenig-Info.plist */; };
 		DF75345427727CEE0086B292 /* RubbishWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75345327727CEE0086B292 /* RubbishWidget.swift */; };
 		DF75345627727D6E0086B292 /* RubbishCollectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75345527727D6E0086B292 /* RubbishCollectionProvider.swift */; };
 		DF75345827727E1B0086B292 /* RubbishCollectionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75345727727E1B0086B292 /* RubbishCollectionEntry.swift */; };
@@ -166,7 +169,6 @@
 		DFDD3F7420B2F30A005602E3 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */; };
 		DFDE883F25457CA600429765 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7D4B5D22F0D53400126AF7 /* Constants.swift */; };
 		DFDE884F25457CD000429765 /* LaunchArgumentsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3BE04C22E749FD001726A3 /* LaunchArgumentsHandler.swift */; };
-		DFDE886425457D4600429765 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF16583122EF918A0033D218 /* Launch Screen.storyboard */; };
 		DFDE88712545834B00429765 /* EventBus in Frameworks */ = {isa = PBXBuildFile; productRef = DFDE88702545834B00429765 /* EventBus */; };
 		DFDEBB3F289D1C4C00AB0EAA /* CoreCache in Frameworks */ = {isa = PBXBuildFile; productRef = DFDEBB3E289D1C4C00AB0EAA /* CoreCache */; };
 		DFE06E352771360E00466246 /* DashboardFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DFE06E342771360E00466246 /* DashboardFeature */; };
@@ -292,13 +294,15 @@
 		DF11BF9822B94E9A0051C3B3 /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
 		DF11BF9B22B94ECD0051C3B3 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		DF1207BB23C0CA1C003285C1 /* FormTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTests.swift; sourceTree = "<group>"; };
-		DF16583122EF918A0033D218 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		DF1A495F1F6AAB7000E9108B /* Moers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1A49621F6AAB7000E9108B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		DF1A49691F6AAB7000E9108B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF1A496E1F6AAB7000E9108B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF1A9B9F26ECB2A600D3CAD0 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		DF21B2FF20BA0DB400478A33 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwitchTableViewCell.swift; path = ../../View/UITableViewCells/SwitchTableViewCell.swift; sourceTree = "<group>"; };
+		DF24967928FC5D76007CF8ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
+		DF24967C28FC5D7F007CF8ED /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/Launch Screen.strings"; sourceTree = "<group>"; };
+		DF24967E28FC5D7F007CF8ED /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "de.lproj/Launch Screen.strings"; sourceTree = "<group>"; };
 		DF284EFD23F4C17100EC999B /* MoersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF284EFF23F4C17100EC999B /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
 		DF284F0123F4C17100EC999B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -354,6 +358,7 @@
 		DF6E061128AE3116004FEBC9 /* LicencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicencesViewController.swift; sourceTree = "<group>"; };
 		DF6E061528AE34FB004FEBC9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		DF6E061728AE350D004FEBC9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		DF6F5CD428E31FC200E1DFBD /* efaapi-ios */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "efaapi-ios"; sourceTree = "<group>"; };
 		DF75345327727CEE0086B292 /* RubbishWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishWidget.swift; sourceTree = "<group>"; };
 		DF75345527727D6E0086B292 /* RubbishCollectionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionProvider.swift; sourceTree = "<group>"; };
 		DF75345727727E1B0086B292 /* RubbishCollectionEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishCollectionEntry.swift; sourceTree = "<group>"; };
@@ -710,10 +715,11 @@
 				DF01804B27923CC500530143 /* ParkingFeature */,
 				DFFBAA2727693755003728CF /* RubbishFeature */,
 				DF559A5E2812FE160072F0F9 /* MapFeature */,
-				DF29DC7228D86CFD00E4E35A /* mmevents-ios */,
-				DF0EC43828D86E21009ED37B /* mmpages-ios */,
 				DF80F6C928512FA600AB708D /* WeatherFeature */,
 				DF62AB082891EC33002D420E /* PlaybackKit */,
+				DF29DC7228D86CFD00E4E35A /* mmevents-ios */,
+				DF0EC43828D86E21009ED37B /* mmpages-ios */,
+				DF6F5CD428E31FC200E1DFBD /* efaapi-ios */,
 				DF1A49611F6AAB7000E9108B /* Moers */,
 				DF5E1B5326726AF3005FADA4 /* Widgets */,
 				DF94B11823F0A7E5009C57ED /* Watch */,
@@ -858,7 +864,7 @@
 				DF1A49691F6AAB7000E9108B /* Assets.xcassets */,
 				DF65CF0126C97E0D00078232 /* Colors.xcassets */,
 				DF52868D24A7C65F00A6939E /* NewColors.xcassets */,
-				DF16583122EF918A0033D218 /* Launch Screen.storyboard */,
+				DF24967A28FC5D76007CF8ED /* Launch Screen.storyboard */,
 				DFA5B10727865BDA00B26CF4 /* Berlin.gpx */,
 				DFA9EF0220B40C16008590EA /* Moers.gpx */,
 				DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */,
@@ -1316,7 +1322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF65CF0226C97E0D00078232 /* Colors.xcassets in Resources */,
-				DFDE886425457D4600429765 /* Launch Screen.storyboard in Resources */,
+				DF24967828FC5D76007CF8ED /* Launch Screen.storyboard in Resources */,
 				DF007B772640843E00DAFA6F /* InfoPlist.strings in Resources */,
 				DFA5B10827865BDA00B26CF4 /* Berlin.gpx in Resources */,
 				DF636F5128D1CE8B00B29A76 /* Tankerkoenig-Info.plist in Resources */,
@@ -1340,6 +1346,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF6F5CD328E3190800E1DFBD /* Tankerkoenig-Info.plist in Resources */,
+				DF6F5CD228E3190800E1DFBD /* TankerKoenig-Info-Sample.plist in Resources */,
 				DF5E1B5826726AF7005FADA4 /* Assets.xcassets in Resources */,
 				DF5E1B7026727642005FADA4 /* Localizable.strings in Resources */,
 			);
@@ -1676,6 +1684,16 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		DF24967A28FC5D76007CF8ED /* Launch Screen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DF24967928FC5D76007CF8ED /* Base */,
+				DF24967C28FC5D7F007CF8ED /* en */,
+				DF24967E28FC5D7F007CF8ED /* de */,
+			);
+			name = "Launch Screen.storyboard";
+			sourceTree = "<group>";
+		};
 		DF5E1B7226727642005FADA4 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1989,6 +2007,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Moers/Resources/Moers.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 60;
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
