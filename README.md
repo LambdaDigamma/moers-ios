@@ -22,18 +22,32 @@ Make sure that you have installed:
 
 - Xcode 14.0
 
-Clone the shared repository from GitHub:
+Clone the repository from GitHub:
 
 ```bash
 git clone https://github.com/LambdaDigamma/moers-ios.git
 ```
 
-> **Info**
+Register for an api token on [tankerkoenig.de](https://creativecommons.tankerkoenig.de) and copy the file `TankerKoenig-Info-Sample.plist` to `TankerKoenig-Info.plist` and enter your new api token.
+
+
+> **Note**
 >
 > Please be aware that this app is using Firebase for error tracking. 
 > You may need to setup a Firebase project to run this project locally.
 
 <!-- Then checkout the instructions on how to run each app locally: [iOS](ios/README.md) & [Android](android/README.md) -->
+
+## Features
+
+♻️  **Access waste schedule** with notifications and widgets <br>
+⛽️  **Compare fuel prices** to other fuel stations and quickly navigate there <br>
+🅿️  **Find parking areas** and keep track of your parking timer<br>
+📰  **Read news** from the local news provider<br>
+📻  **Access information** about the local radio station<br>
+🎤  **Find interesting events** in your area<br>
+🗺  **Spot a restaurant** near you<br>
+🚌  **Find connections** to your destination
 
 ## Issues
 
@@ -41,8 +55,7 @@ If you find any problems or want to track issues, please use the issues feature 
 
 ## Deployment
 
-Most of the tedious bookkeeping and deployment work is automated via [fastlane](https://fastlane.tools).
-
+Most of the tedious bookkeeping and deployment work is automated via [fastlane](https://fastlane.tools).<br>
 A list of the available fastlane lanes can be found [here](fastlane/README.md).
 
 ## Ideas
