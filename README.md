@@ -18,6 +18,8 @@ The official [Mein Moers](https://moers.app) app for iOS.
 
 ## Run locally during development
 
+### Prerequisits
+
 Make sure that you have installed:
 
 - Xcode 14.0
@@ -28,13 +30,20 @@ Clone the repository from GitHub:
 git clone https://github.com/LambdaDigamma/moers-ios.git
 ```
 
-Register for an api token on [tankerkoenig.de](https://creativecommons.tankerkoenig.de) and copy the file `TankerKoenig-Info-Sample.plist` to `TankerKoenig-Info.plist` and enter your new api token.
+### API Keys
 
+#### Tankerkoenig
+
+Register for an api token on [tankerkoenig.de](https://creativecommons.tankerkoenig.de) and copy the file `Tankerkoenig-Info-Sample.plist` to `Tankerkoenig-Info.plist` and enter your new api token.
+
+#### Firebase
+
+Please be aware that this app is using Firebase for error tracking. 
+You may need to setup a Firebase project to run this project locally.
 
 > **Note**
 >
-> Please be aware that this app is using Firebase for error tracking. 
-> You may need to setup a Firebase project to run this project locally.
+> We are working on a development scheme that uses only static data services so that we can achieve better test coverage and generate marketing material.
 
 <!-- Then checkout the instructions on how to run each app locally: [iOS](ios/README.md) & [Android](android/README.md) -->
 
