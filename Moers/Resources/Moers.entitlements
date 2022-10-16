@@ -16,8 +16,6 @@
 	<true/>
 	<key>com.apple.developer.siri</key>
 	<true/>
-	<key>com.apple.developer.weatherkit</key>
-	<true/>
 	<key>com.apple.security.application-groups</key>
 	<array>
 		<string>group.77N8D7LGCZ.de.okfn.niederrhein.Moers</string>
