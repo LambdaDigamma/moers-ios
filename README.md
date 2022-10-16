@@ -1,4 +1,4 @@
-<!-- ![Screenshots](.assets/hero.png) -->
+![Screenshots](.assets/hero-art.png)
 
 # Mein Moers for iOS
 
@@ -9,9 +9,9 @@
 <a href="https://apps.apple.com/us/app/24doors/id1580211646">
     <img src="https://img.shields.io/badge/download-iOS-red.svg">
 </a>
-<!-- <a href="#">
+<a href="https://play.google.com/store/apps/details?id=com.lambdadigamma.moers">
     <img src="https://img.shields.io/badge/download-Android-green.svg">
-</a> -->
+</a>
 </p>
 
 The official [Mein Moers](https://moers.app) app for iOS.
@@ -20,14 +20,18 @@ The official [Mein Moers](https://moers.app) app for iOS.
 
 Make sure that you have installed:
 
-<!-- - Android Studio 2020.3 (Arctic Fox) -->
-- Xcode 12.5
+- Xcode 14.0
 
 Clone the shared repository from GitHub:
 
 ```bash
 git clone https://github.com/LambdaDigamma/moers-ios.git
 ```
+
+> **Info**
+>
+> Please be aware that this app is using Firebase for error tracking. 
+> You may need to setup a Firebase project to run this project locally.
 
 <!-- Then checkout the instructions on how to run each app locally: [iOS](ios/README.md) & [Android](android/README.md) -->
 
@@ -40,10 +44,6 @@ If you find any problems or want to track issues, please use the issues feature 
 Most of the tedious bookkeeping and deployment work is automated via [fastlane](https://fastlane.tools).
 
 A list of the available fastlane lanes can be found [here](fastlane/README.md).
-
-## Deep linking
-
-n/v
 
 ## Ideas
 
