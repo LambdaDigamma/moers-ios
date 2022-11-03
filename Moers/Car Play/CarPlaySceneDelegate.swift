@@ -123,6 +123,38 @@ public class CarPlaySceneDelegate: UIResponder {
         
     }
     
+    private func showFuelStation(fuelStation: PetrolStation, completion: @escaping () -> Void) {
+        
+        let information = CPInformationTemplate(
+            title: fuelStation.name,
+            layout: .leading,
+            items: [
+                CPInformationItem(title: "Name", detail: fuelStation.name),
+                CPInformationItem(title: "Preis", detail: "\(fuelStation.price ?? 0)€"),
+                CPInformationItem(title: "Straße", detail: "\(fuelStation.street) \(fuelStation.houseNumber ?? "")"),
+                CPInformationItem(title: "Ort", detail: "\(fuelStation.postCode ?? 0) \(fuelStation.place)"),
+//                CPInformationItem(title: "Kapazität (gesamt)", detail: parkingArea.capacity != nil ? "\(parkingArea.capacity ?? 0)" : "n/v"),
+//                CPInformationItem(title: "Status", detail: parkingArea.currentOpeningState.name)
+            ],
+            actions: [
+                CPTextButton(title: "Navigation starten", textStyle: .confirm, handler: { [weak self] (_: CPTextButton) in
+                    
+                    guard let strongSelf = self else { return }
+                    let point = fuelStation.coordinate.toPoint()
+                    guard let url = AppleNavigationProvider().buildDrivingMapsURL(point: point) else { return }
+                    
+                    strongSelf.scene?.open(url, options: nil)
+                    
+                })
+            ]
+        )
+        
+        interfaceController?.pushTemplate(information, animated: true, completion: { (result: Bool, error: Error?) in
+            completion()
+        })
+        
+    }
+    
     // MARK: - Fuel -
     
     public var fuelStations: [PetrolStation] = [] {
@@ -170,9 +202,9 @@ public class CarPlaySceneDelegate: UIResponder {
                 accessoryType: .disclosureIndicator
             )
             
-            listItem.handler = { [weak self] (item, completion) in
+            listItem.handler = { [weak self] (listItem, completion) in
                 guard let strongSelf = self else { return }
-//                strongSelf.showParkingArea(parkingArea: item, completion: completion)
+                strongSelf.showFuelStation(fuelStation: item, completion: completion)
             }
             
             return listItem

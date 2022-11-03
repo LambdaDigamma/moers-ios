@@ -61,5 +61,6 @@ struct AutoCalculatingDirectionsButton_Previews: PreviewProvider {
         )
             .padding()
             .previewLayout(.sizeThatFits)
+            .preferredColorScheme(.dark)
     }
 }

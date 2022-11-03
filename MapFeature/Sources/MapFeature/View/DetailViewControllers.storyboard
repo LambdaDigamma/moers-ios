@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,7 +11,7 @@
         <!--Detail Bike Charging Station View Controller-->
         <scene sceneID="u5Q-a5-1ML">
             <objects>
-                <viewController storyboardIdentifier="DetailBikeChargingStationViewController" id="h8u-qc-u9n" customClass="DetailBikeChargingStationViewController" customModule="Moers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailBikeChargingStationViewController" id="h8u-qc-u9n" customClass="DetailBikeChargingStationViewController" customModule="MapFeature.Moers" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kH3-QB-qJU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="520"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,12 +19,12 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vEh-dF-Jtj">
                                 <rect key="frame" x="16" y="9" width="343" height="55"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doI-W4-B27" customClass="DesignableButton" customModule="Moers" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doI-W4-B27" customClass="DesignableButton" customModule="Moers" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="163.5" height="55"/>
                                         <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="Anrufen">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleColor" systemColor="darkTextColor"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -32,12 +32,12 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONW-3q-Ufd" customClass="DesignableButton" customModule="Moers" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONW-3q-Ufd" customClass="DesignableButton" customModule="Moers" customModuleProvider="target">
                                         <rect key="frame" x="179.5" y="0.0" width="163.5" height="55"/>
                                         <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="Website">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleColor" systemColor="darkTextColor"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -133,52 +133,52 @@
                                 <rect key="frame" x="0.0" y="225.5" width="375" height="192"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="735-g4-YD2">
-                                        <rect key="frame" x="0.0" y="0.0" width="63.5" height="192"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="62.5" height="192"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gxw-dX-hgC">
-                                                <rect key="frame" x="0.0" y="0.0" width="63.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="62.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Di" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Tld-sA-TpA">
-                                                <rect key="frame" x="0.0" y="24.5" width="63.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="24.5" width="62.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Xbk-ge-MnP">
-                                                <rect key="frame" x="0.0" y="49" width="63.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="49" width="62.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="URR-MK-XXc">
-                                                <rect key="frame" x="0.0" y="73.5" width="63.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="73.5" width="62.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xmO-Ea-po3">
-                                                <rect key="frame" x="0.0" y="98" width="63.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="98" width="62.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mKX-SB-xzF">
-                                                <rect key="frame" x="0.0" y="122.5" width="63.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="122.5" width="62.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="So" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VdF-Ik-m6E">
-                                                <rect key="frame" x="0.0" y="147" width="63.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="147" width="62.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feiertag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="p4N-Qn-W6v">
-                                                <rect key="frame" x="0.0" y="171.5" width="63.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="171.5" width="62.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -186,52 +186,52 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="hU3-gs-orz">
-                                        <rect key="frame" x="274" y="0.0" width="101" height="192"/>
+                                        <rect key="frame" x="275" y="0.0" width="100" height="192"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.00 - 14.30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9eN-RZ-jad">
-                                                <rect key="frame" x="0.0" y="0.0" width="101" height="24"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.00 - 14.30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="k5n-s6-GbK">
-                                                <rect key="frame" x="0.0" y="24" width="101" height="24"/>
+                                                <rect key="frame" x="0.0" y="24" width="100" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.00 - 14.30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cYn-gB-9UV">
-                                                <rect key="frame" x="0.0" y="48" width="101" height="24"/>
+                                                <rect key="frame" x="0.0" y="48" width="100" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.00 - 14.30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lhh-L5-RDC">
-                                                <rect key="frame" x="0.0" y="72" width="101" height="24"/>
+                                                <rect key="frame" x="0.0" y="72" width="100" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.00 - 14.30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gwY-ka-6sO">
-                                                <rect key="frame" x="0.0" y="96" width="101" height="24"/>
+                                                <rect key="frame" x="0.0" y="96" width="100" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.00 - 14.30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HtI-3e-S7Q">
-                                                <rect key="frame" x="0.0" y="120" width="101" height="24"/>
+                                                <rect key="frame" x="0.0" y="120" width="100" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.00 - 14.30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8U5-Jc-byo">
-                                                <rect key="frame" x="0.0" y="144" width="101" height="24"/>
+                                                <rect key="frame" x="0.0" y="144" width="100" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.00 - 14.30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ky-I2-2OC">
-                                                <rect key="frame" x="0.0" y="168" width="101" height="24"/>
+                                                <rect key="frame" x="0.0" y="168" width="100" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -241,6 +241,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="4xm-VO-8ZX"/>
                         <constraints>
                             <constraint firstItem="kIb-FI-io2" firstAttribute="leading" secondItem="kH3-QB-qJU" secondAttribute="leadingMargin" id="0Bv-b5-6sC"/>
                             <constraint firstItem="XSJ-oe-t0r" firstAttribute="leading" secondItem="kH3-QB-qJU" secondAttribute="leadingMargin" id="6Rz-g6-8et"/>
@@ -282,7 +283,6 @@
                             <constraint firstItem="iJr-H1-QpY" firstAttribute="top" secondItem="Jwg-3j-fqe" secondAttribute="bottom" constant="8" id="xM7-ns-eKm"/>
                             <constraint firstItem="ULi-RT-JiO" firstAttribute="trailing" secondItem="4xm-VO-8ZX" secondAttribute="trailing" id="yQr-JI-CPF"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="4xm-VO-8ZX"/>
                     </view>
                     <size key="freeformSize" width="375" height="520"/>
                     <connections>
@@ -308,7 +308,7 @@
         <!--Detail Petrol Station View Controller-->
         <scene sceneID="K43-wX-jkX">
             <objects>
-                <viewController storyboardIdentifier="DetailPetrolStationViewController" id="keC-8m-qeU" customClass="DetailPetrolStationViewController" customModule="Moers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailPetrolStationViewController" id="keC-8m-qeU" customClass="DetailPetrolStationViewController" customModule="MapFeature.Moers" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bra-Bs-0H4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="555"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -376,6 +376,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="h8y-XO-PAI"/>
                         <constraints>
                             <constraint firstItem="Xso-8R-GFA" firstAttribute="leading" secondItem="h8y-XO-PAI" secondAttribute="leading" id="4cI-7Y-tba"/>
                             <constraint firstItem="fI9-jZ-WiM" firstAttribute="leading" secondItem="h8y-XO-PAI" secondAttribute="leading" id="6us-g0-Xxe"/>
@@ -405,7 +406,6 @@
                             <constraint firstItem="sll-Tf-jqs" firstAttribute="top" secondItem="h8y-XO-PAI" secondAttribute="top" id="vKF-6O-LUe"/>
                             <constraint firstItem="8JY-KF-DOO" firstAttribute="leading" secondItem="QsB-Tn-5s7" secondAttribute="trailing" constant="8" id="yBe-3w-uI0"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="h8y-XO-PAI"/>
                     </view>
                     <size key="freeformSize" width="375" height="555"/>
                     <connections>
@@ -424,10 +424,10 @@
             </objects>
             <point key="canvasLocation" x="2558" y="1904"/>
         </scene>
-        <!--Detail Entry View Controller-->
+        <!--Map Feature. Detail Entry View Controller-->
         <scene sceneID="UWL-vZ-ECU">
             <objects>
-                <viewController storyboardIdentifier="DetailEntryViewController" id="k4L-s0-QWH" customClass="DetailEntryViewController" customModule="Moers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailEntryViewController" id="k4L-s0-QWH" customClass="MapFeature.DetailEntryViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WgV-BI-Ou7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -435,12 +435,12 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="O81-We-yGB">
                                 <rect key="frame" x="0.0" y="9" width="375" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OaF-ic-JLN" customClass="DesignableButton" customModule="Moers" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OaF-ic-JLN" customClass="DesignableButton" customModule="Moers" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="179.5" height="50"/>
                                         <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="Anrufen">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleColor" systemColor="darkTextColor"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -448,12 +448,12 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vi8-5t-9dA" customClass="DesignableButton" customModule="Moers" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vi8-5t-9dA" customClass="DesignableButton" customModule="Moers" customModuleProvider="target">
                                         <rect key="frame" x="195.5" y="0.0" width="179.5" height="50"/>
                                         <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="Website">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleColor" systemColor="darkTextColor"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -611,52 +611,52 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" restorationIdentifier="OpeningHoursTimeStackView" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="RY8-Vf-sFK">
-                                        <rect key="frame" x="274" y="0.0" width="101" height="168"/>
+                                        <rect key="frame" x="275" y="0.0" width="100" height="168"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.00 - 14.30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vTe-xb-nlJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="101" height="24"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="24"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="OpeningHoursMondayTime"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.00 - 14.30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Zeh-g1-P3n">
-                                                <rect key="frame" x="0.0" y="24" width="101" height="24"/>
+                                                <rect key="frame" x="0.0" y="24" width="100" height="24"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="OpeningHoursTuesdayTime"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.00 - 14.30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zY1-n5-LCd">
-                                                <rect key="frame" x="0.0" y="48" width="101" height="24"/>
+                                                <rect key="frame" x="0.0" y="48" width="100" height="24"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="OpeningHoursWednesdayTime"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.00 - 14.30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0f6-yD-xM0">
-                                                <rect key="frame" x="0.0" y="72" width="101" height="24"/>
+                                                <rect key="frame" x="0.0" y="72" width="100" height="24"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="OpeningHoursThursdayTime"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.00 - 14.30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="59y-hS-Ula">
-                                                <rect key="frame" x="0.0" y="96" width="101" height="24"/>
+                                                <rect key="frame" x="0.0" y="96" width="100" height="24"/>
                                                 <accessibility key="accessibilityConfiguration" identifier=" OpeningHoursFridayTime"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.00 - 14.30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nRr-2g-u6f">
-                                                <rect key="frame" x="0.0" y="120" width="101" height="24"/>
+                                                <rect key="frame" x="0.0" y="120" width="100" height="24"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="OpeningHoursSaturdayTime"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.00 - 14.30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fqo-oT-q6J">
-                                                <rect key="frame" x="0.0" y="144" width="101" height="24"/>
+                                                <rect key="frame" x="0.0" y="144" width="100" height="24"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="OpeningHoursOtherTime"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -710,7 +710,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyN-rh-NmI" customClass="DesignableButton" customModule="Moers" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyN-rh-NmI" customClass="DesignableButton" customModule="Moers" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="772" width="375" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -718,7 +718,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="Informationen bearbeiten">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleColor" systemColor="darkTextColor"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -726,7 +726,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ThS-OW-btJ" customClass="DesignableButton" customModule="Moers" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ThS-OW-btJ" customClass="DesignableButton" customModule="Moers" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="830" width="375" height="50"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -734,7 +734,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="Historie anzeigen">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleColor" systemColor="darkTextColor"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -743,6 +743,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="nx9-gW-vlN"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="TSe-eK-7gw" firstAttribute="top" secondItem="g6Q-jb-or4" secondAttribute="bottom" constant="8" id="0UU-XE-Lh4"/>
@@ -813,7 +814,6 @@
                             <constraint firstItem="jXU-PE-Ial" firstAttribute="leading" secondItem="nx9-gW-vlN" secondAttribute="leading" id="zpi-Sf-a2j"/>
                             <constraint firstItem="MFP-4u-Ly0" firstAttribute="trailing" secondItem="nx9-gW-vlN" secondAttribute="trailing" id="zzt-se-6MM"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="nx9-gW-vlN"/>
                     </view>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
@@ -860,4 +860,29 @@
             <point key="canvasLocation" x="1025" y="2037"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="ONW-3q-Ufd">
+            <size key="intrinsicContentSize" width="58" height="30"/>
+        </designable>
+        <designable name="OaF-ic-JLN">
+            <size key="intrinsicContentSize" width="58" height="30"/>
+        </designable>
+        <designable name="ThS-OW-btJ">
+            <size key="intrinsicContentSize" width="125" height="30"/>
+        </designable>
+        <designable name="Vi8-5t-9dA">
+            <size key="intrinsicContentSize" width="58" height="30"/>
+        </designable>
+        <designable name="doI-W4-B27">
+            <size key="intrinsicContentSize" width="58" height="30"/>
+        </designable>
+        <designable name="pyN-rh-NmI">
+            <size key="intrinsicContentSize" width="182" height="30"/>
+        </designable>
+    </designables>
+    <resources>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

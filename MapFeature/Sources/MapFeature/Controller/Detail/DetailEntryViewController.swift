@@ -230,7 +230,7 @@ class DetailEntryViewController: UIViewController {
     
     static func fromStoryboard() -> DetailEntryViewController {
         
-        let storyboard = UIStoryboard(name: "DetailViewControllers", bundle: nil)
+        let storyboard = UIStoryboard(name: "DetailViewControllers", bundle: Bundle.module)
         
         // swiftlint:disable:next force_cast
         return storyboard.instantiateViewController(withIdentifier: "DetailEntryViewController") as! DetailEntryViewController

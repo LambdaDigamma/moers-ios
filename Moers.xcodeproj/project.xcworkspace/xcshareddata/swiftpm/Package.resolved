@@ -12,7 +12,7 @@
       },
       {
         "package": "AppScaffold",
-        "repositoryURL": "https://github.com/LambdaDigamma/app-scaffold-ios.git",
+        "repositoryURL": "https://github.com/lambdadigamma/app-scaffold-ios",
         "state": {
           "branch": null,
           "revision": "719edbd974dfb685afdc3e041673396face02bda",
@@ -48,7 +48,7 @@
       },
       {
         "package": "EventBus",
-        "repositoryURL": "https://github.com/LambdaDigamma/EventBus",
+        "repositoryURL": "https://github.com/lambdadigamma/eventbus",
         "state": {
           "branch": null,
           "revision": "f4b1b7a35bc20165e7d3aaeebc808dd3ab14874b",
@@ -56,8 +56,17 @@
         }
       },
       {
+        "package": "Factory",
+        "repositoryURL": "https://github.com/hmlongco/Factory",
+        "state": {
+          "branch": null,
+          "revision": "8557426f3286e20b631ecdac8115242f888656e0",
+          "version": "1.2.8"
+        }
+      },
+      {
         "package": "FeedKit",
-        "repositoryURL": "https://github.com/nmdias/FeedKit.git",
+        "repositoryURL": "https://github.com/nmdias/FeedKit",
         "state": {
           "branch": null,
           "revision": "68493a33d862c33c9a9f67ec729b3b7df1b20ade",
@@ -78,8 +87,8 @@
         "repositoryURL": "https://github.com/LambdaDigamma/fuse-swift.git",
         "state": {
           "branch": null,
-          "revision": "a1f44a59d94393f7461745ccc977b5005c8438a5",
-          "version": "1.4.2"
+          "revision": "0da39148e2ca8dc89c79d6b76dc45f19386a5dfa",
+          "version": "1.4.4"
         }
       },
       {
@@ -123,8 +132,8 @@
         "repositoryURL": "https://github.com/google/GoogleUtilities.git",
         "state": {
           "branch": null,
-          "revision": "f4abe56ce62a779e64b525eb133c8fc2a84bbc1f",
-          "version": "7.7.1"
+          "revision": "68ea347bdb1a69e2d2ae2e25cd085b6ef92f64cb",
+          "version": "7.9.0"
         }
       },
       {
@@ -254,6 +263,15 @@
         }
       },
       {
+        "package": "LicenseUI",
+        "repositoryURL": "https://github.com/LambdaDigamma/swift-license-ui",
+        "state": {
+          "branch": null,
+          "revision": "f2e1bfd832e2bf9dc70fbde536f83456866f9722",
+          "version": "1.0.0"
+        }
+      },
+      {
         "package": "ProseMirror",
         "repositoryURL": "https://github.com/lambdadigamma/swift-prosemirror",
         "state": {
@@ -267,8 +285,8 @@
         "repositoryURL": "https://github.com/apple/swift-protobuf.git",
         "state": {
           "branch": null,
-          "revision": "fa0fcd43f272a260e7f734f23e6dc55e16fcae0a",
-          "version": "1.19.1"
+          "revision": "88c7d15e1242fdb6ecbafbc7926426a19be1e98a",
+          "version": "1.20.2"
         }
       },
       {
@@ -303,8 +321,8 @@
         "repositoryURL": "https://github.com/SvenTiigi/YouTubePlayerKit.git",
         "state": {
           "branch": null,
-          "revision": "6ecaaeb9409152ddda5807835d557cbf5ba5ead6",
-          "version": "1.2.0"
+          "revision": "48b3716ce316bb67c19b10c4335f356b195dd72e",
+          "version": "1.2.1"
         }
       }
     ]

@@ -93,28 +93,28 @@ public class Entry: NSObject, Decodable, Location, Model {
         }
         
         self.street = (try? container.decodeIfPresent(String.self, forKey: .street))
-            ?? (try? container.decodeIfPresent(String.self, forKey: .street))
+            ?? (try? container.decodeIfPresent(String.self, forKey: .streetName))
             ?? ""
         self.streetNumber = try container.decodeIfPresent(String.self, forKey: .streetNumber)
         self.houseNumber = try container.decodeIfPresent(String.self, forKey: .houseNumber)
         self.postcode = try container.decode(String.self, forKey: .postcode)
         self.place = try container.decode(String.self, forKey: .place)
-        self.url = try container.decode(String.self, forKey: .url)
-        self.phone = try container.decode(String.self, forKey: .phone)
-        self.monday = try container.decode(String.self, forKey: .monday)
-        self.tuesday = try container.decode(String.self, forKey: .tuesday)
-        self.wednesday = try container.decode(String.self, forKey: .wednesday)
-        self.thursday = try container.decode(String.self, forKey: .thursday)
-        self.friday = try container.decode(String.self, forKey: .friday)
-        self.saturday = try container.decode(String.self, forKey: .saturday)
-        self.sunday = try container.decode(String.self, forKey: .sunday)
-        self.other = try container.decode(String.self, forKey: .other)
+        self.url = try container.decode(String?.self, forKey: .url)
+        self.phone = try container.decode(String?.self, forKey: .phone)
+        self.monday = try container.decode(String?.self, forKey: .monday)
+        self.tuesday = try container.decode(String?.self, forKey: .tuesday)
+        self.wednesday = try container.decode(String?.self, forKey: .wednesday)
+        self.thursday = try container.decode(String?.self, forKey: .thursday)
+        self.friday = try container.decode(String?.self, forKey: .friday)
+        self.saturday = try container.decode(String?.self, forKey: .saturday)
+        self.sunday = try container.decode(String?.self, forKey: .sunday)
+        self.other = try container.decode(String?.self, forKey: .other)
         self.isValidated = try container.decodeIfPresent(Bool.self, forKey: .isValidated) ?? true
         self.lat = try container.decode(Double.self, forKey: .lat)
         self.lng = try container.decode(Double.self, forKey: .lng)
         
-        self.createdAt = try container.decode(Date?.self, forKey: .createdAt)
-        self.updatedAt = try container.decode(Date?.self, forKey: .updatedAt)
+        self.createdAt = Date() // try container.decode(Date?.self, forKey: .createdAt)
+        self.updatedAt = Date() // try container.decode(Date?.self, forKey: .updatedAt)
         
     }
     
