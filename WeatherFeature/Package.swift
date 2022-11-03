@@ -13,11 +13,12 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "Core", path: "../Core"),
+        .package(url: "https://github.com/hmlongco/Factory", .upToNextMajor(from: "1.2.8"))
     ],
     targets: [
         .target(
             name: "WeatherFeature",
-            dependencies: []
+            dependencies: ["Core", "Factory"]
         ),
         .testTarget(
             name: "WeatherFeatureTests",

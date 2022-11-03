@@ -83,7 +83,7 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
 #if canImport(FuelFeature)
         let petrolService = DefaultPetrolService(
             userDefaults: UserDefaults.appGroup,
-            apiKey: "0dfdfad3-7385-ef47-2ff6-ec0477872677"
+            apiKey: loadFuelApiKey()
         )
         Resolver.register { petrolService as PetrolService }
 #endif
@@ -167,5 +167,23 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
 #endif
         
     }
+    
+    private func loadFuelApiKey() -> String {
+        
+        guard let filePath = Bundle.main.path(forResource: "Tankerkoenig-Info", ofType: "plist") else {
+            fatalError("Couldn't find file 'Tankerkoenig-Info.plist'.")
+        }
+        
+        let plist = NSDictionary(contentsOfFile: filePath)
+        guard let value = plist?.object(forKey: "API_KEY") as? String else {
+            fatalError("Couldn't find key 'API_KEY' in 'Tankerkoenig-Info.plist'.")
+        }
+        
+        if (value.starts(with: "_")) {
+            fatalError("Register for a Tankerkoenig account and get an API key at https://creativecommons.tankerkoenig.de.")
+        }
+        return value
+    }
+    
     
 }

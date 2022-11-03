@@ -21,12 +21,13 @@ let package = Package(
         .package(name: "Core", path: "./Core"),
         .package(name: "FuelFeature", path: "./FuelFeature"),
         .package(name: "RubbishFeature", path: "./RubbishFeature"),
-        .package(name: "ParkingFeature", path: "./ParkingFeature")
+        .package(name: "ParkingFeature", path: "./ParkingFeature"),
+        .package(name: "WeatherFeature", path: "./WeatherFeature")
     ],
     targets: [
         .target(
             name: "DashboardFeature",
-            dependencies: ["Core", "FuelFeature", "RubbishFeature", "ParkingFeature"]
+            dependencies: ["Core", "FuelFeature", "RubbishFeature", "ParkingFeature", "WeatherFeature"]
         ),
         .testTarget(
             name: "DashboardFeatureTests",

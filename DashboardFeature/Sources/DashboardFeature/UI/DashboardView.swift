@@ -11,6 +11,7 @@ import SwiftUI
 import FuelFeature
 import RubbishFeature
 import ParkingFeature
+import WeatherFeature
 import Resolver
 
 public struct DashboardView<Content: View>: View {
@@ -39,6 +40,10 @@ public struct DashboardView<Content: View>: View {
                     
                     ForEach(viewModel.displayables, id: \.id) { item in
                         dashboardItem(for: item)
+                    }
+                    
+                    if #available(iOS 16.0, *) {
+//                        WeatherDashboardView()
                     }
                     
                     content()

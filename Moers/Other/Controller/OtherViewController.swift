@@ -66,7 +66,13 @@ public class OtherViewController: UIViewController {
                         action: {
                             self.coordinator?.showTransportationOverview(animated: true)
                         }
-                    )
+                    ),
+//                    NavigationRow(
+//                        title: "Abfahrtstafel (Beta)",
+//                        action: {
+//                            self.coordinator?.showDepartureMonitor(animated: true)
+//                        }
+//                    )
                 ]
             ),
             

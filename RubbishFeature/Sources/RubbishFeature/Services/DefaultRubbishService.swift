@@ -114,7 +114,13 @@ public class DefaultRubbishService: RubbishService {
                     result.decoding([RubbishCollectionStreet].self) { (result: Result<[RubbishCollectionStreet], HTTPError>) in
                         switch result {
                             case .success(let items):
-                                promise(.success(items))
+                                
+                                let sorted = items.sorted { lhs, rhs in
+                                    return lhs.displayName < rhs.displayName
+                                }
+                                
+                                promise(.success(sorted))
+                                
                             case .failure(let error):
                                 promise(.failure(error))
                         }

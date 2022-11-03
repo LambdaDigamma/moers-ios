@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Core
-//import WeatherKit
 import CoreLocation
 
 //@available(iOS 16.0, *)
