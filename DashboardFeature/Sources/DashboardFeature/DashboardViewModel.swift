@@ -8,6 +8,8 @@
 
 import Foundation
 import Combine
+import EFAAPI
+import Factory
 
 public class DashboardViewModel: ObservableObject {
     
@@ -15,10 +17,14 @@ public class DashboardViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     @Published var displayables: [DashboardItemConfigurable] = []
+    @Published var currentTrip: CachedEFATrip?
+    
+    @Injected(Container.tripService) var tripService
     
     public init(loader: DashboardConfigLoader) {
         
         self.loader = loader
+        self.reloadTripOnDashboard()
         
         NotificationCenter.default.publisher(for: .SetupDidComplete)
             .sink { _ in
@@ -29,6 +35,12 @@ public class DashboardViewModel: ObservableObject {
         NotificationCenter.default.publisher(for: .updateDashboard)
             .sink { _ in
                 self.load()
+            }
+            .store(in: &cancellables)
+        
+        NotificationCenter.default.publisher(for: .activatedTrip)
+            .sink { _ in
+                self.reloadTripOnDashboard()
             }
             .store(in: &cancellables)
         
@@ -50,6 +62,12 @@ public class DashboardViewModel: ObservableObject {
                 
             }
             .store(in: &cancellables)
+        
+    }
+    
+    public func reloadTripOnDashboard() {
+        
+        self.currentTrip = self.tripService.currentTrip
         
     }
     

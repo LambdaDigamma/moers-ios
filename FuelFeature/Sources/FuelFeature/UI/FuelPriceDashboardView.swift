@@ -1,5 +1,5 @@
 //
-//  PetrolPriceDashboardView.swift
+//  FuelPriceDashboardView.swift
 //  
 //
 //  Created by Lennart Fischer on 21.12.21.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-public struct PetrolPriceDashboardView: View {
+public struct FuelPriceDashboardView: View {
     
-    @ObservedObject var viewModel: PetrolPriceDashboardViewModel
+    @ObservedObject var viewModel: FuelPriceDashboardViewModel
     
-    public init(viewModel: PetrolPriceDashboardViewModel) {
+    public init(viewModel: FuelPriceDashboardViewModel) {
         self.viewModel = viewModel
     }
     
@@ -102,17 +102,17 @@ struct CardPanelView<Content: View>: View {
     
 }
 
-struct PetrolPriceDashboardView_Previews: PreviewProvider {
+struct FuelPriceDashboardView_Previews: PreviewProvider {
     
     static var previews: some View {
         
         let service = StaticPetrolService()
-        let viewModel = PetrolPriceDashboardViewModel(
+        let viewModel = FuelPriceDashboardViewModel(
             petrolService: service,
             initialState: .loading
         )
         
-        PetrolPriceDashboardView(viewModel: viewModel)
+        FuelPriceDashboardView(viewModel: viewModel)
             .preferredColorScheme(.dark)
             .padding()
             .previewLayout(.sizeThatFits)

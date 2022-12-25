@@ -18,16 +18,21 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(name: "Core", path: "./Core"),
-        .package(name: "FuelFeature", path: "./FuelFeature"),
-        .package(name: "RubbishFeature", path: "./RubbishFeature"),
-        .package(name: "ParkingFeature", path: "./ParkingFeature"),
-        .package(name: "WeatherFeature", path: "./WeatherFeature")
+        .package(name: "Core", path: "../Core"),
+        .package(name: "FuelFeature", path: "../FuelFeature"),
+        .package(name: "RubbishFeature", path: "../RubbishFeature"),
+        .package(name: "ParkingFeature", path: "../ParkingFeature"),
+        .package(name: "WeatherFeature", path: "../WeatherFeature"),
+        .package(path: "../efaapi-ios")
     ],
     targets: [
         .target(
             name: "DashboardFeature",
-            dependencies: ["Core", "FuelFeature", "RubbishFeature", "ParkingFeature", "WeatherFeature"]
+            dependencies: [
+                "Core", "FuelFeature", "RubbishFeature", "ParkingFeature", "WeatherFeature",
+                .product(name: "EFAAPI", package: "efaapi-ios"),
+                .product(name: "EFAUI", package: "efaapi-ios")
+            ]
         ),
         .testTarget(
             name: "DashboardFeatureTests",

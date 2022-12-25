@@ -281,6 +281,7 @@
 		DF007B782640843E00DAFA6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DF007B7A2640844600DAFA6F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DF01804B27923CC500530143 /* ParkingFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ParkingFeature; sourceTree = "<group>"; };
+		DF031CCB294B4E4900CB1121 /* AachenHbf.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AachenHbf.gpx; sourceTree = "<group>"; };
 		DF04D60923CBD5EC008AE677 /* DashboardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
 		DF0A7DAA27AB01EC00957A8D /* UserDefaultsMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsMigrator.swift; sourceTree = "<group>"; };
 		DF0CB49C2082B78C00CC0AA8 /* PermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsManager.swift; sourceTree = "<group>"; };
@@ -867,6 +868,7 @@
 				DF24967A28FC5D76007CF8ED /* Launch Screen.storyboard */,
 				DFA5B10727865BDA00B26CF4 /* Berlin.gpx */,
 				DFA9EF0220B40C16008590EA /* Moers.gpx */,
+				DF031CCB294B4E4900CB1121 /* AachenHbf.gpx */,
 				DF0CB4A72082BE0F00CC0AA8 /* Localizable.strings */,
 			);
 			path = Assets;

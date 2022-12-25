@@ -13,7 +13,7 @@ import SwiftUI
 
 public class FuelStationListViewController: UIHostingController<FuelStationList> {
     
-    private let viewModel = PetrolPriceDashboardViewModel()
+    private let viewModel = FuelPriceDashboardViewModel()
     
     public init() {
         super.init(rootView: FuelStationList(viewModel: viewModel))

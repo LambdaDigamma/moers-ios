@@ -12,9 +12,9 @@ import MapKit
 
 public struct FuelStationList: View {
     
-    @ObservedObject var viewModel: PetrolPriceDashboardViewModel
+    @ObservedObject var viewModel: FuelPriceDashboardViewModel
     
-    public init(viewModel: PetrolPriceDashboardViewModel) {
+    public init(viewModel: FuelPriceDashboardViewModel) {
         self.viewModel = viewModel
     }
     
@@ -146,7 +146,7 @@ struct FuelStationList_Previews: PreviewProvider {
     static var previews: some View {
         
         let service = StaticPetrolService()
-        let viewModel = PetrolPriceDashboardViewModel(
+        let viewModel = FuelPriceDashboardViewModel(
             petrolService: service,
             locationService: StaticLocationService(),
             geocodingService: StaticGeocodingService(),

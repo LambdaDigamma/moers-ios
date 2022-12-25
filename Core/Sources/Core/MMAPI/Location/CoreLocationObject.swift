@@ -85,17 +85,24 @@ public class CoreLocationObject: ObservableObject {
         }
     }
     
-    func authorize() {
+    public func authorize() {
         if manager.authorizationStatus == .notDetermined {
             manager.requestWhenInUseAuthorization()
         }
     }
     
-    func beginUpdates(_ authorizationStatus: CLAuthorizationStatus) {
+    public func beginUpdates(_ authorizationStatus: CLAuthorizationStatus) {
         #if !os(tvOS) && !os(macOS)
         if authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse {
             manager.startUpdatingLocation()
         }
         #endif
     }
+    
+    public func endUpdates() {
+        
+        manager.stopUpdatingLocation()
+        
+    }
+    
 }

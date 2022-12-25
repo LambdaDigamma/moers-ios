@@ -13,6 +13,7 @@ import RubbishFeature
 import ParkingFeature
 import WeatherFeature
 import Resolver
+import EFAUI
 
 public struct DashboardView<Content: View>: View {
     
@@ -20,13 +21,18 @@ public struct DashboardView<Content: View>: View {
         loader: DashboardConfigDiskLoader()
     )
     
-    @StateObject var fuelViewModel = PetrolPriceDashboardViewModel()
+    @StateObject var fuelViewModel = FuelPriceDashboardViewModel()
     @StateObject var rubbishViewModel = RubbishDashboardViewModel()
     @StateObject var parkingViewModel = ParkingDashboardViewModel()
     
     var content: () -> Content
+    var openCurrentTrip: () -> Void
     
-    public init(@ViewBuilder content: @escaping () -> Content) {
+    public init(
+        openCurrentTrip: @escaping () -> Void,
+        @ViewBuilder content: @escaping () -> Content
+    ) {
+        self.openCurrentTrip = openCurrentTrip
         self.content = content
     }
     
@@ -37,6 +43,20 @@ public struct DashboardView<Content: View>: View {
             ScrollView {
                 
                 LazyVGrid(columns: columns(for: geo.size), spacing: 20) {
+                    
+                    if let trip = viewModel.currentTrip {
+                        
+                        Button(action: {
+                            openCurrentTrip()
+                        }) {
+                            DashboardActiveTripView()
+                        }
+                        
+                    }
+                    
+                    Core.CardPanelView {
+                        DepartureDashboardView()
+                    }
                     
                     ForEach(viewModel.displayables, id: \.id) { item in
                         dashboardItem(for: item)
@@ -87,7 +107,7 @@ public struct DashboardView<Content: View>: View {
             
         } else if item is PetrolDashboardConfiguration {
             
-            PetrolPriceDashboardView(viewModel: fuelViewModel)
+            FuelPriceDashboardView(viewModel: fuelViewModel)
             
         } else if item is ParkingDashboardConfiguration {
             
@@ -133,7 +153,7 @@ struct DashboardView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView {
-            DashboardView(content: {})
+            DashboardView(openCurrentTrip: {}, content: {})
         }
     }
 }

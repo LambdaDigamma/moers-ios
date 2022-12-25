@@ -1,5 +1,5 @@
 //
-//  PetrolPriceDashboardViewModel.swift
+//  FuelPriceDashboardViewModel.swift
 //  
 //
 //  Created by Lennart Fischer on 05.01.22.
@@ -19,7 +19,7 @@ public struct PetrolPriceDashboardData {
     
 }
 
-public class PetrolPriceDashboardViewModel: StandardViewModel {
+public class FuelPriceDashboardViewModel: StandardViewModel {
     
     @Published var petrolType: PetrolType = .diesel
     @Published var data: DataState<PetrolPriceDashboardData, Error> = .loading

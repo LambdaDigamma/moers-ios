@@ -9,6 +9,7 @@ import Foundation
 import CoreLocation
 import MapKit
 import Contacts
+import Factory
 
 public class CoreSettings {
     
@@ -49,6 +50,17 @@ public extension CoreSettings {
             postalAddress: address
         )
         
+    }
+    
+}
+
+public extension Container {
+    
+    static let geocodingService = Factory {
+        
+        let service = StaticGeocodingService()
+        
+        return service as GeocodingService
     }
     
 }

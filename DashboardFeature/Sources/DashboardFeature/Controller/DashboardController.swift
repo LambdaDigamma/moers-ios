@@ -9,14 +9,25 @@ import Foundation
 import UIKit
 import Core
 
-class DashboardController: UIViewController {
+public class DashboardController: UIViewController {
     
-    override func viewDidLoad() {
+    var onOpenCurrentTrip: () -> Void
+    
+    public init(onOpenCurrentTrip: @escaping () -> Void) {
+        self.onOpenCurrentTrip = onOpenCurrentTrip
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    public required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         UserActivity.current = UserActivities.configureDashboardActivity()
@@ -25,7 +36,7 @@ class DashboardController: UIViewController {
     
     private func setupUI() {
         
-        let dashboardView = DashboardView(content: {})
+        let dashboardView = DashboardView(openCurrentTrip: onOpenCurrentTrip, content: {})
         
         self.addSubSwiftUIView(dashboardView, to: view)
         

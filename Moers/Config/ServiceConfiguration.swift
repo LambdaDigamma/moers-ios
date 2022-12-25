@@ -12,6 +12,8 @@ import Resolver
 import ModernNetworking
 import Core
 import OSLog
+import Factory
+import EFAAPI
 
 #if canImport(RubbishFeature)
 import RubbishFeature
@@ -33,7 +35,7 @@ import MapFeature
 
 public class ServiceConfiguration: BootstrappingProcedureStep {
     
-    @LazyInjected var loader: HTTPLoader
+    private var loader: HTTPLoader = Resolver.resolve()
     
     private let logger: Logger = Logger(.coreAppConfig)
     
@@ -64,6 +66,8 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
         
         Resolver.register { locationService as LocationService }
         Resolver.register { geocodingService as GeocodingService }
+        
+        Container.geocodingService.register { geocodingService as GeocodingService }
         
         let locationManager = LocationManager()
         Resolver.register { locationManager as LocationManagerProtocol }
@@ -112,6 +116,14 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
 
         Resolver.register { eventService as EventServiceProtocol }
 #endif
+        
+        Container.transitService.register {
+            DefaultTransitService(loader: DefaultTransitService.defaultLoader())
+        }
+        
+        Container.tripService.register {
+            DefaultTripService()
+        }
         
     }
     
@@ -184,6 +196,5 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
         }
         return value
     }
-    
     
 }

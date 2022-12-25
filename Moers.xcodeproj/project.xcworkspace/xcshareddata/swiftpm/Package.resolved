@@ -60,8 +60,8 @@
         "repositoryURL": "https://github.com/hmlongco/Factory",
         "state": {
           "branch": null,
-          "revision": "8557426f3286e20b631ecdac8115242f888656e0",
-          "version": "1.2.8"
+          "revision": "ca5788b8621b185a0fbe6ef05bb9a73b3ef2833f",
+          "version": "1.2.9"
         }
       },
       {
@@ -132,8 +132,8 @@
         "repositoryURL": "https://github.com/google/GoogleUtilities.git",
         "state": {
           "branch": null,
-          "revision": "68ea347bdb1a69e2d2ae2e25cd085b6ef92f64cb",
-          "version": "7.9.0"
+          "revision": "6db6edb48bdd9943426562c7f042a5492de5ba3d",
+          "version": "7.10.0"
         }
       },
       {
@@ -276,8 +276,8 @@
         "repositoryURL": "https://github.com/lambdadigamma/swift-prosemirror",
         "state": {
           "branch": null,
-          "revision": "f6cc3cf3766524972b5d5e921fb023bdbb36a9a4",
-          "version": "0.0.3"
+          "revision": "a85dfda6246e5f15ea4a8270294a3e7e944d1a9a",
+          "version": "0.0.4"
         }
       },
       {
@@ -285,8 +285,8 @@
         "repositoryURL": "https://github.com/apple/swift-protobuf.git",
         "state": {
           "branch": null,
-          "revision": "88c7d15e1242fdb6ecbafbc7926426a19be1e98a",
-          "version": "1.20.2"
+          "revision": "ab3a58b7209a17d781c0d1dbb3e1ff3da306bae8",
+          "version": "1.20.3"
         }
       },
       {
@@ -312,8 +312,8 @@
         "repositoryURL": "https://github.com/CoreOffice/XMLCoder.git",
         "state": {
           "branch": null,
-          "revision": "ca932442d7481700f5434a7b138c47dd42d9902b",
-          "version": "0.14.0"
+          "revision": "c438dad94f6a243b411b70a4b4bac54595064808",
+          "version": "0.15.0"
         }
       },
       {

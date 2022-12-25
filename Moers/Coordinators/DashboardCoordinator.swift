@@ -13,34 +13,47 @@ import SwiftUI
 import DashboardFeature
 import RubbishFeature
 import FuelFeature
+import EFAAPI
+import EFAUI
+import CoreLocation
 
-class DashboardCoordinator: Coordinator {
+public class DashboardCoordinator: Coordinator {
     
-    var navigationController: CoordinatedNavigationController
+    public var navigationController: CoordinatedNavigationController
     
-    init(
+    let observer = DefaultLocationTransitStationObserver()
+    
+    public init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController()
     ) {
         
         self.navigationController = navigationController
         self.navigationController.coordinator = self
         
-        let dashboard = DashboardView {
+        let dashboard = DashboardView(openCurrentTrip: {
+            self.openTrip()
+        }) {
 //            if #available(iOS 16.0, *) {
 //                WeatherWidget()
 //            }
         }
+        
         let controller = UIHostingController(rootView: dashboard)
         let activity = UserActivities.configureDashboardActivity()
         
         controller.tabBarItem = generateTabBarItem()
         controller.userActivity = activity
+        controller.navigationItem.rightBarButtonItems = [
+            .init(image: UIImage(systemName: "slider.vertical.3"), style: .plain, target: self, action: #selector(showEditDashboard))
+        ]
         
         activity.becomeCurrent()
         
         self.navigationController.viewControllers = [controller]
         
         Styling.applyStyling(navigationController: navigationController, statusBarStyle: .darkContent)
+        
+        self.setupLocationListener()
         
     }
     
@@ -81,6 +94,38 @@ class DashboardCoordinator: Coordinator {
     public func updateUI() {
         
         NotificationCenter.default.post(name: .updateDashboard, object: nil)
+        
+    }
+    
+    private func setupLocationListener() {
+        
+        observer.stationFinder(coordinate: CLLocationCoordinate2D(latitude: 50.76772, longitude: 6.09205))
+        
+    }
+    
+    @objc private func showEditDashboard() {
+        
+        let viewController = EditDashboardViewController()
+        
+        navigationController.pushViewController(viewController, animated: true)
+        
+    }
+    
+    private func openTrip() {
+        
+        let viewController = TripExperienceViewController()
+        let navigation = UINavigationController(rootViewController: viewController)
+        
+        navigation.isModalInPresentation = true
+        
+        viewController.navigationItem.leftBarButtonItems = [
+            .init(systemItem: .close, primaryAction: UIAction(handler: { action in
+                self.navigationController.dismiss(animated: true)
+            }))
+        ]
+        
+        navigationController.present(navigation, animated: true)
+//        navigationController.pushViewController(viewController, animated: true)
         
     }
     
