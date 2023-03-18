@@ -281,7 +281,7 @@ public class TrackerManager: TrackerManagerProtocol {
     
     private func loadTrackerConfigNetwork(completion: @escaping (Result<[Tracker], Error>) -> Void) throws -> URLSessionTask {
         
-        guard let url = URL(string: "https://moers-festival.de/" + "api/v2/tracker") else {
+        guard let url = URL(string: "https://archiv.moers-festival.de/" + "api/v2/tracker") else {
             throw APIError.unavailableURL
         }
         

@@ -6,7 +6,7 @@ let package = Package(
     name: "PlaybackKit",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v14),
+        .iOS(.v15),
 //        .macOS(.v11),
 //        .watchOS(.v7),
 //        .tvOS(.v14)

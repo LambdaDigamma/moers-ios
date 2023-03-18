@@ -5,7 +5,12 @@ import PackageDescription
 let package = Package(
     name: "MapFeature",
     defaultLocalization: "en",
-    platforms: [.iOS(.v14), .macOS(.v11), .watchOS(.v7), .tvOS(.v14)],
+    platforms: [
+        .iOS(.v15),
+        .macOS(.v11),
+        .watchOS(.v7),
+        .tvOS(.v14)
+    ],
     products: [
         .library(
             name: "MapFeature",

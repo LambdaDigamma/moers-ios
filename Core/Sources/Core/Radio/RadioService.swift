@@ -104,21 +104,21 @@ public class RadioService: RadioServiceProtocol {
     
     #if canImport(UserNotifications)
     
-    public func toggleReminder(for broadcast: RadioBroadcast, completion: (_ reminderIsEnabled: Bool) -> Void) {
+    public func toggleReminder(for broadcast: RadioBroadcast, completion: @escaping (_ reminderIsEnabled: Bool) -> Void) {
         
-//        notificationCenter.getPendingNotificationRequests { (requests: [UNNotificationRequest]) in
-//
-//            let broadcastIdentifier = self.reminderIdentifier(for: broadcast)
-//
-//            if requests.contains(where: { $0.identifier == broadcastIdentifier }) {
-//                self.notificationCenter.removePendingNotificationRequests(withIdentifiers: [broadcastIdentifier])
-//                completion(false)
-//            } else {
-//                self.scheduleReminder(for: broadcast)
-//                completion(true)
-//            }
-//
-//        }
+        notificationCenter.getPendingNotificationRequests { (requests: [UNNotificationRequest]) in
+
+            let broadcastIdentifier = self.reminderIdentifier(for: broadcast.id)
+            
+            if requests.contains(where: { $0.identifier == broadcastIdentifier }) {
+                self.notificationCenter.removePendingNotificationRequests(withIdentifiers: [broadcastIdentifier])
+                completion(false)
+            } else {
+                self.scheduleReminder(for: broadcast)
+                completion(true)
+            }
+
+        }
         
     }
     
@@ -135,7 +135,7 @@ public class RadioService: RadioServiceProtocol {
         let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
         
         let request = UNNotificationRequest(
-            identifier: reminderIdentifier(for: broadcast),
+            identifier: reminderIdentifier(for: broadcast.id),
             content: content,
             trigger: trigger
         )
@@ -156,7 +156,7 @@ public class RadioService: RadioServiceProtocol {
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
         
         let request = UNNotificationRequest(
-            identifier: reminderIdentifier(for: broadcast),
+            identifier: reminderIdentifier(for: broadcast.id),
             content: content,
             trigger: trigger
         )
@@ -181,7 +181,7 @@ public class RadioService: RadioServiceProtocol {
         
         let content = UNMutableNotificationContent()
         content.title = broadcast.title
-        content.body = "Die Sendung «\(broadcast.title)» beginnt in 5 Minuten. \nViel Spaß beim Hören!"
+        content.body = AppStrings.Buergerfunk.notificationBody(title: broadcast.title)
         content.sound = .defaultCritical
         content.threadIdentifier = radioThreadIdentifier
         
@@ -189,8 +189,8 @@ public class RadioService: RadioServiceProtocol {
         
     }
     
-    private func reminderIdentifier(for broadcast: RadioBroadcast) -> String {
-        return "Reminder-RadioBroadcast-\(broadcast.id)"
+    private func reminderIdentifier(for broadcastID: RadioBroadcast.ID) -> String {
+        return "Reminder-RadioBroadcast-\(broadcastID)"
     }
     
     #endif

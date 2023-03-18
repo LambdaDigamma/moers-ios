@@ -67,7 +67,7 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
         Resolver.register { locationService as LocationService }
         Resolver.register { geocodingService as GeocodingService }
         
-        Container.geocodingService.register { geocodingService as GeocodingService }
+        Container.shared.geocodingService.register { geocodingService as GeocodingService }
         
         let locationManager = LocationManager()
         Resolver.register { locationManager as LocationManagerProtocol }
@@ -117,11 +117,11 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
         Resolver.register { eventService as EventServiceProtocol }
 #endif
         
-        Container.transitService.register {
+        Container.shared.transitService.register {
             DefaultTransitService(loader: DefaultTransitService.defaultLoader())
         }
         
-        Container.tripService.register {
+        Container.shared.tripService.register {
             DefaultTripService()
         }
         

@@ -124,8 +124,11 @@ public class DashboardCoordinator: Coordinator {
             }))
         ]
         
+        viewController.onCancel = {
+            self.navigationController.dismiss(animated: true)
+        }
+        
         navigationController.present(navigation, animated: true)
-//        navigationController.pushViewController(viewController, animated: true)
         
     }
     

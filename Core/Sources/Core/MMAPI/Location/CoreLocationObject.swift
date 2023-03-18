@@ -10,8 +10,10 @@ import CoreLocation
 import SwiftUI
 
 public class CoreLocationObject: ObservableObject {
+    
     @Published public var authorizationStatus = CLAuthorizationStatus.notDetermined
     @Published public var location: CLLocation?
+    @Published public var heading: CLHeading?
     
     let manager: CLLocationManager
     let publicist: CLLocationManagerCombineDelegate
@@ -29,6 +31,7 @@ public class CoreLocationObject: ObservableObject {
         
         let authorizationPublisher = publicist.authorizationPublisher()
         let locationPublisher = publicist.locationPublisher()
+        let headingPublisher = publicist.headingPublisher()
         
         // trigger an update when authorization changes
         authorizationPublisher
@@ -68,6 +71,11 @@ public class CoreLocationObject: ObservableObject {
                 .receive(on: DispatchQueue.main)
                 // store the value in the location property
                 .assign(to: &$location)
+            
+            headingPublisher
+                .receive(on: DispatchQueue.main)
+                .assign(to: &$heading)
+            
         } else {
             // Fallback on earlier versions
             locationPublisher
@@ -81,6 +89,11 @@ public class CoreLocationObject: ObservableObject {
                 // store the value in the location property
                 .assign(to: \.location, on: self)
                 // store the cancellable so it be stopped on deinit
+                .store(in: &cancellables)
+            
+            headingPublisher
+                .receive(on: DispatchQueue.main)
+                .assign(to: \.heading, on: self)
                 .store(in: &cancellables)
         }
     }
@@ -99,10 +112,21 @@ public class CoreLocationObject: ObservableObject {
         #endif
     }
     
+    public func beginUpdatingHeading(_ authorizationStatus: CLAuthorizationStatus) {
+#if !os(tvOS) && !os(macOS)
+        if authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse {
+            manager.startUpdatingHeading()
+        }
+#endif
+    }
+    
+    
     public func endUpdates() {
-        
         manager.stopUpdatingLocation()
-        
+    }
+    
+    public func endUpdatingHeading() {
+        manager.stopUpdatingHeading()
     }
     
 }

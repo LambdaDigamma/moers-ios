@@ -44,7 +44,7 @@ public struct DashboardView<Content: View>: View {
                 
                 LazyVGrid(columns: columns(for: geo.size), spacing: 20) {
                     
-                    if let trip = viewModel.currentTrip {
+                    if let _u = viewModel.currentTrip {
                         
                         Button(action: {
                             openCurrentTrip()

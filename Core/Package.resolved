@@ -1,0 +1,95 @@
+{
+  "pins" : [
+    {
+      "identity" : "cache",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LambdaDigamma/Cache",
+      "state" : {
+        "revision" : "034756303012a8e005c986b19969fbcd0b86612e",
+        "version" : "6.0.1"
+      }
+    },
+    {
+      "identity" : "factory",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hmlongco/Factory",
+      "state" : {
+        "revision" : "39ff6a675cd0272d833d184d35add0f8fddd63de",
+        "version" : "1.3.7"
+      }
+    },
+    {
+      "identity" : "fuse-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LambdaDigamma/fuse-swift",
+      "state" : {
+        "revision" : "0da39148e2ca8dc89c79d6b76dc45f19386a5dfa",
+        "version" : "1.4.4"
+      }
+    },
+    {
+      "identity" : "gestalt",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/regexident/Gestalt",
+      "state" : {
+        "revision" : "6469230fb1b81ea449312a855b410425030b287e",
+        "version" : "2.1.1"
+      }
+    },
+    {
+      "identity" : "gifu",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kaishin/Gifu",
+      "state" : {
+        "revision" : "82da0086dea14ca9afc9801234ad8dc4cd9e2738",
+        "version" : "3.4.1"
+      }
+    },
+    {
+      "identity" : "medialibrarykit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LambdaDigamma/MediaLibraryKit",
+      "state" : {
+        "revision" : "6e43f9487be582aeddadc65df9b3d5843137cc89",
+        "version" : "0.0.7"
+      }
+    },
+    {
+      "identity" : "modernnetworking",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LambdaDigamma/ModernNetworking",
+      "state" : {
+        "revision" : "309b149ac6c83a2d7b95433f0bb312a5a04b9595",
+        "version" : "0.1.3"
+      }
+    },
+    {
+      "identity" : "nuke",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kean/Nuke.git",
+      "state" : {
+        "revision" : "a002b7fd786f2df2ed4333fe73a9727499fd9d97",
+        "version" : "10.11.2"
+      }
+    },
+    {
+      "identity" : "nukeui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kean/NukeUI",
+      "state" : {
+        "revision" : "db55022a8e483774ebbf3568727071477546d9ea",
+        "version" : "0.8.3"
+      }
+    },
+    {
+      "identity" : "resolver",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LambdaDigamma/Resolver",
+      "state" : {
+        "revision" : "77e52514918f16a7cf64dc2afcbe28af8519e941",
+        "version" : "1.5.2"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -19,7 +19,7 @@ public class DashboardViewModel: ObservableObject {
     @Published var displayables: [DashboardItemConfigurable] = []
     @Published var currentTrip: CachedEFATrip?
     
-    @Injected(Container.tripService) var tripService
+    @Injected(\.tripService) var tripService
     
     public init(loader: DashboardConfigLoader) {
         
@@ -39,6 +39,12 @@ public class DashboardViewModel: ObservableObject {
             .store(in: &cancellables)
         
         NotificationCenter.default.publisher(for: .activatedTrip)
+            .sink { _ in
+                self.reloadTripOnDashboard()
+            }
+            .store(in: &cancellables)
+        
+        NotificationCenter.default.publisher(for: .deactivatedTrip)
             .sink { _ in
                 self.reloadTripOnDashboard()
             }

@@ -121,3 +121,5 @@
 "OpeningState.open" = "Geöffnet";
 
 "Address" = "Adresse";
+
+"RadioBody" = "Die Sendung «%@» beginnt in 5 Minuten. \nViel Spaß beim Hören!";

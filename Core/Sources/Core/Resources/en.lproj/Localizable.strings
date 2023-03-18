@@ -17,6 +17,7 @@
 "Buergerfunk.listenNowAction" = "Listen now";
 "Buergerfunk.remindMeAction" = "Remind me";
 "Buergerfunk.disableReminderInfo" = "Tap again to remove the reminder.";
+"Buergerfunk.notificationBody" = "The radio broadcast «%@» starts in five minutes. \nHave fun listening!";
 
 "Directions.getDirections" = "Get directions";
 

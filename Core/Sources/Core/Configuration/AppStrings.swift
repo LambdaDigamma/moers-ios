@@ -51,6 +51,10 @@ public enum AppStrings {
         public static let reminderActiveAction = "Erinnerung aktiv" // String.localized("")
         
         public static let disableReminderInfo = String.localized("Buergerfunk.disableReminderInfo")
+        
+        public static func notificationBody(title: String) -> String {
+            return String.localizedStringWithFormat(String.localized("Buergerfunk.notificationBody"), title)
+        }
     }
     
     public enum Directions {

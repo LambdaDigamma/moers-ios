@@ -56,11 +56,13 @@ public extension CoreSettings {
 
 public extension Container {
     
-    static let geocodingService = Factory {
-        
-        let service = StaticGeocodingService()
-        
-        return service as GeocodingService
-    }
+    var geocodingService: Factory<GeocodingService> { self { StaticGeocodingService() } }
+    
+//    static let geocodingService = Factory {
+//
+//        let service = StaticGeocodingService()
+//
+//        return service as GeocodingService
+//    }
     
 }

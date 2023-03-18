@@ -12,14 +12,15 @@ import SwiftUI
 protocol CLLocationManagerCombineDelegate: CLLocationManagerDelegate {
     func authorizationPublisher() -> AnyPublisher<CLAuthorizationStatus, Never>
     func locationPublisher() -> AnyPublisher<[CLLocation], Never>
-    // func headingPublisher() -> AnyPublisher<CLHeading?, Never>
+    func headingPublisher() -> AnyPublisher<CLHeading?, Never>
     // func errorPublisher() -> AnyPublisher<Error?, Never>
 }
 
 class CLLocationManagerPublicist: NSObject, CLLocationManagerCombineDelegate {
-    let authorizationSubject = PassthroughSubject<CLAuthorizationStatus, Never>()
     
+    let authorizationSubject = PassthroughSubject<CLAuthorizationStatus, Never>()
     let locationSubject = PassthroughSubject<[CLLocation], Never>()
+    let headingSubject = PassthroughSubject<CLHeading?, Never>()
     
     func authorizationPublisher() -> AnyPublisher<CLAuthorizationStatus, Never> {
         return Just(CLLocationManager().authorizationStatus)
@@ -30,6 +31,10 @@ class CLLocationManagerPublicist: NSObject, CLLocationManagerCombineDelegate {
     
     func locationPublisher() -> AnyPublisher<[CLLocation], Never> {
         return locationSubject.eraseToAnyPublisher()
+    }
+    
+    func headingPublisher() -> AnyPublisher<CLHeading?, Never> {
+        return headingSubject.eraseToAnyPublisher()
     }
     
     func locationManager(_: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -43,5 +48,9 @@ class CLLocationManagerPublicist: NSObject, CLLocationManagerCombineDelegate {
     
     func locationManager(_: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         authorizationSubject.send(status)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        headingSubject.send(newHeading)
     }
 }
