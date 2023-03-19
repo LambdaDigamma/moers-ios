@@ -14,6 +14,7 @@
 "ParkingAreaList.dataSource" = "Datenquelle: Parkleitsystem der Stadt Moers";
 
 "Dashboard.title" = "Freie Parkplätze";
+"Dashboard.outOfDateWarning" = "Die Daten sind nicht mehr aktuell. (%@)";
 
 "ParkingAreaDetail.free" = " / %@ frei";
 

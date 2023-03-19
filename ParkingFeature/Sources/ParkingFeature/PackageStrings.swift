@@ -30,6 +30,9 @@ internal enum PackageStrings {
     
     internal enum Dashboard {
         internal static let title = String.localized("Dashboard.title")
+        internal static func outOfDateWarning(date: String) -> String {
+            return String.localizedStringWithFormat(String.localized("Dashboard.outOfDateWarning"), date)
+        }
     }
     
     internal enum ParkingAreaDetail {

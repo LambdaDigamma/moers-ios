@@ -69,8 +69,6 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
         settingsEnvironment = UserDefaults.standard.string(forKey: "environment") ?? "production"
         #endif
         
-        settingsEnvironment = "local"
-        
         let environment: ServerEnvironment
         
         switch settingsEnvironment {

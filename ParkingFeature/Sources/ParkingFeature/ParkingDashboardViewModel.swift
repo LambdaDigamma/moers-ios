@@ -10,11 +10,23 @@ import Core
 import Resolver
 import Combine
 
+public struct ParkingDashboardViewData {
+    
+    public let parkingAreas: [ParkingArea]
+    public let minimalLastUpdate: Date
+    
+    init(parkingAreas: [ParkingArea], minimalLastUpdate: Date) {
+        self.parkingAreas = parkingAreas
+        self.minimalLastUpdate = minimalLastUpdate
+    }
+    
+}
+
 public class ParkingDashboardViewModel: StandardViewModel {
     
     @LazyInjected var parkingService: ParkingService
     
-    @Published var parkingAreas: DataState<[ParkingArea], Error> = .loading
+    @Published var parkingAreas: DataState<ParkingDashboardViewData, Error> = .loading
     
     public init(parkingService: ParkingService? = nil) {
         
@@ -36,7 +48,18 @@ public class ParkingDashboardViewModel: StandardViewModel {
                 }
                 
             } receiveValue: { (data: ParkingDashboardData) in
-                self.parkingAreas = .success(data.parkingAreas)
+                
+                let minimalDate = data.parkingAreas
+                    .sorted(by: { $0.updatedAt ?? Date.distantPast > $1.updatedAt ?? Date.distantPast })
+                    .first?
+                    .updatedAt
+                
+                let viewData = ParkingDashboardViewData(
+                    parkingAreas: data.parkingAreas,
+                    minimalLastUpdate: minimalDate ?? Date()
+                )
+                self.parkingAreas = .success(viewData)
+                
             }
             .store(in: &cancellables)
         

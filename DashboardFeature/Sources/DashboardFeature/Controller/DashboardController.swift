@@ -8,14 +8,16 @@
 import Foundation
 import UIKit
 import Core
+import SwiftUI
 
-public class DashboardController: UIViewController {
+public class DashboardController: DefaultHostingController {
     
     var onOpenCurrentTrip: () -> Void
     
     public init(onOpenCurrentTrip: @escaping () -> Void) {
         self.onOpenCurrentTrip = onOpenCurrentTrip
-        super.init(nibName: nil, bundle: nil)
+//        super.init(nibName: nil, bundle: nil)
+        super.init()
     }
     
     public required init?(coder: NSCoder) {
@@ -24,6 +26,8 @@ public class DashboardController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = PackageStrings.Dashboard.title
         
     }
     
@@ -34,11 +38,10 @@ public class DashboardController: UIViewController {
         
     }
     
-    private func setupUI() {
+    public override func hostView() -> AnyView {
         
-        let dashboardView = DashboardView(openCurrentTrip: onOpenCurrentTrip, content: {})
-        
-        self.addSubSwiftUIView(dashboardView, to: view)
+        DashboardView(openCurrentTrip: onOpenCurrentTrip, content: {})
+            .toAnyView()
         
     }
     

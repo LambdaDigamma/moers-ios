@@ -30,24 +30,17 @@ public class DashboardCoordinator: Coordinator {
         self.navigationController = navigationController
         self.navigationController.coordinator = self
         
-        let dashboard = DashboardView(openCurrentTrip: {
+        let controller = DashboardController(onOpenCurrentTrip: {
             self.openTrip()
-        }) {
-//            if #available(iOS 16.0, *) {
-//                WeatherWidget()
-//            }
-        }
-        
-        let controller = UIHostingController(rootView: dashboard)
-        let activity = UserActivities.configureDashboardActivity()
+        })
+//        let activity = UserActivities.configureDashboardActivity()
         
         controller.tabBarItem = generateTabBarItem()
-        controller.userActivity = activity
-        controller.navigationItem.rightBarButtonItems = [
-            .init(image: UIImage(systemName: "slider.vertical.3"), style: .plain, target: self, action: #selector(showEditDashboard))
-        ]
-        
-        activity.becomeCurrent()
+//        controller.userActivity = activity
+//        controller.navigationItem.rightBarButtonItems = [
+//            .init(image: UIImage(systemName: "slider.vertical.3"), style: .plain, target: self, action: #selector(showEditDashboard))
+//        ]
+//        activity.becomeCurrent()
         
         self.navigationController.viewControllers = [controller]
         

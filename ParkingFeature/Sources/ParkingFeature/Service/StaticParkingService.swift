@@ -12,14 +12,16 @@ public class StaticParkingService: ParkingService {
     
     public var retrieveParkingAreas: () -> [ParkingArea]
     
-    public init() {
+    public init(oldData: Bool = false) {
         
         self.retrieveParkingAreas = {
             return [
                 .init(
                     id: 1,
                     name: "Kauzstr.",
-                    capacity: 62, occupiedSites: 51
+                    capacity: 62,
+                    occupiedSites: 51,
+                    updatedAt: Date.init(timeIntervalSinceNow: -2 * 24 * 60 * 60)
                 ),
                 .init(
                     id: 2,
@@ -40,6 +42,43 @@ public class StaticParkingService: ParkingService {
                     occupiedSites: 5
                 )
             ]
+        }
+        
+        if oldData {
+            
+            self.retrieveParkingAreas = {
+                return [
+                    .init(
+                        id: 1,
+                        name: "Kauzstr.",
+                        capacity: 62,
+                        occupiedSites: 51,
+                        updatedAt: Date.init(timeIntervalSinceNow: -2 * 24 * 60 * 60)
+                    ),
+                    .init(
+                        id: 2,
+                        name: "Bankstr.",
+                        capacity: 139,
+                        occupiedSites: 137,
+                        updatedAt: Date.init(timeIntervalSinceNow: -2 * 24 * 60 * 60)
+                    ),
+                    .init(
+                        id: 3,
+                        name: "Kastell",
+                        capacity: 200,
+                        occupiedSites: 124,
+                        updatedAt: Date.init(timeIntervalSinceNow: -2 * 24 * 60 * 60)
+                    ),
+                    .init(
+                        id: 4,
+                        name: "Mühlenstr.",
+                        capacity: 709,
+                        occupiedSites: 5,
+                        updatedAt: Date.init(timeIntervalSinceNow: -2 * 24 * 60 * 60)
+                    )
+                ]
+            }
+            
         }
         
     }

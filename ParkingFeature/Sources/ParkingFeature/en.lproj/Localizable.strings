@@ -14,6 +14,7 @@
 "ParkingAreaList.dataSource" = "Data source: Parking management system of the city of Moers";
 
 "Dashboard.title" = "Free parking spaces";
+"Dashboard.outOfDateWarning" = "The data is no longer up to date. (%@)";
 
 "ParkingAreaDetail.free" = " / %@ free";
 

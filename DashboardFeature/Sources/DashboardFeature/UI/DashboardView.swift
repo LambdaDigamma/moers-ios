@@ -44,19 +44,19 @@ public struct DashboardView<Content: View>: View {
                 
                 LazyVGrid(columns: columns(for: geo.size), spacing: 20) {
                     
-                    if let _u = viewModel.currentTrip {
-                        
-                        Button(action: {
-                            openCurrentTrip()
-                        }) {
-                            DashboardActiveTripView()
-                        }
-                        
-                    }
-                    
-                    Core.CardPanelView {
-                        DepartureDashboardView()
-                    }
+//                    if let _ = viewModel.currentTrip {
+//
+//                        Button(action: {
+//                            openCurrentTrip()
+//                        }) {
+//                            DashboardActiveTripView()
+//                        }
+//
+//                    }
+//
+//                    Core.CardPanelView {
+//                        DepartureDashboardView()
+//                    }
                     
                     ForEach(viewModel.displayables, id: \.id) { item in
                         dashboardItem(for: item)

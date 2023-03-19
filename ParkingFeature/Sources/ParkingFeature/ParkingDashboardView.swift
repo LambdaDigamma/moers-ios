@@ -61,8 +61,14 @@ public struct ParkingDashboardView: View {
                         .redacted(reason: .placeholder)
                 }
                 
-                viewModel.parkingAreas.hasResource { (parkingAreas: [ParkingArea]) in
-                    areasTable(parkingAreas: parkingAreas)
+                viewModel.parkingAreas.hasResource { (data: ParkingDashboardViewData) in
+                    VStack(spacing: 0) {
+                        areasTable(parkingAreas: data.parkingAreas)
+                        
+                        if (abs(data.minimalLastUpdate.timeIntervalSinceNow) >= 60 * 60 * 24) {
+                            outOfDateWarning(data: data)
+                        }
+                    }
                 }
                 
                 viewModel.parkingAreas.hasError { (error: Error) in
@@ -146,7 +152,10 @@ public struct ParkingDashboardView: View {
     }
     
     @ViewBuilder
-    private func row(firstArea: ParkingArea, secondArea: ParkingArea?) -> some View {
+    private func row(
+        firstArea: ParkingArea,
+        secondArea: ParkingArea?
+    ) -> some View {
         
         HStack(spacing: 0) {
             
@@ -174,6 +183,32 @@ public struct ParkingDashboardView: View {
         
     }
     
+    @ViewBuilder
+    private func outOfDateWarning(data: ParkingDashboardViewData) -> some View {
+        
+        Divider()
+        
+        VStack {
+            
+            Text(
+                PackageStrings.Dashboard.outOfDateWarning(
+                    date: data.minimalLastUpdate.formatted(
+                        .dateTime.day().month().year()
+                    )
+                )
+            )
+            .font(.caption.weight(.medium))
+            
+        }
+        .multilineTextAlignment(.leading)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 4)
+        .background(Color.red)
+        .foregroundColor(.white)
+        
+    }
+    
 }
 
 public extension Collection where Element == ParkingArea {
@@ -197,7 +232,9 @@ public extension Collection where Element == ParkingArea {
 struct ParkingDashboardView_Previews: PreviewProvider {
     static var previews: some View {
         
-        let viewModel = ParkingDashboardViewModel()
+        let viewModel = ParkingDashboardViewModel(parkingService: StaticParkingService(
+            oldData: true
+        ))
         
         ParkingDashboardView(viewModel: viewModel)
             .padding()
