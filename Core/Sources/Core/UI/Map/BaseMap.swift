@@ -72,6 +72,7 @@ public struct BaseMap: UIViewRepresentable {
         
     }
     
+    @MainActor
     public class Coordinator: NSObject, MKMapViewDelegate {
         
         var parent: BaseMap

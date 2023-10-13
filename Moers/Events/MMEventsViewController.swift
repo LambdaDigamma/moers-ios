@@ -38,28 +38,36 @@ class MMEventsViewController: EventsViewController {
         
         guard let eventService = coordinator?.eventService else { return }
         
-        let eventObserver = eventService.loadEvents()
-        
-        eventObserver.sink { [weak self] completion in
-            
-            switch completion {
-                case .failure(let error):
-                    
-                    self?.logger.error("Error while loading: \(error.localizedDescription)")
-                    
-                default:
-                    break
-            }
-            
-        } receiveValue: { events in
-            
-            self.events = events.map({ event in
-                return EventViewModel<MMEvents.Event>(event: event)
-            })
-            
-            self.rebuildData()
-            
-        }.store(in: &cancellables)
+//        Task {
+//
+//            try await eventService.index(cacheMode: .revalidate, withPages: true)
+//
+//        }
+//
+//        eventService.
+//
+//        let eventObserver = eventService.loadEvents()
+//
+//        eventObserver.sink { [weak self] completion in
+//
+//            switch completion {
+//                case .failure(let error):
+//
+//                    self?.logger.error("Error while loading: \(error.localizedDescription)")
+//
+//                default:
+//                    break
+//            }
+//
+//        } receiveValue: { events in
+//
+//            self.events = events.map({ event in
+//                return EventViewModel<MMEvents.Event>(event: event)
+//            })
+//
+//            self.rebuildData()
+//
+//        }.store(in: &cancellables)
         
     }
     

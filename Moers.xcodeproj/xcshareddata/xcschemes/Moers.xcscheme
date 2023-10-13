@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1400"
+   LastUpgradeVersion = "1510"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "cp -f -R &quot;${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/&quot; &quot;${SYMROOT}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/&quot;&#10;">
+               scriptText = "# cp -f -R &quot;${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/&quot; &quot;${SYMROOT}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -57,30 +57,10 @@
             skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DF57D66A2187383000E6A0A9"
-               BuildableName = "MoersTests.xctest"
-               BlueprintName = "MoersTests"
-               ReferencedContainer = "container:Moers.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "DF284EFC23F4C17100EC999B"
                BuildableName = "MoersUITests.xctest"
                BlueprintName = "MoersUITests"
                ReferencedContainer = "container:Moers.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "MMRubbishTests"
-               BuildableName = "MMRubbishTests"
-               BlueprintName = "MMRubbishTests"
-               ReferencedContainer = "container:../mmrubbish-ios">
             </BuildableReference>
          </TestableReference>
          <TestableReference

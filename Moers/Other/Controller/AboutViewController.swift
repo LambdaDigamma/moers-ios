@@ -10,8 +10,53 @@ import UIKit
 import Gestalt
 import Core
 import SwiftUI
+import StoreKit
+import SafariServices
 
-class AboutViewController: UIViewController {
+class AboutViewController: DefaultHostingController {
+    
+    override func hostView() -> AnyView {
+        return AboutScreen(onOpenReview: openManualReview, onOpenDeveloperLink: openDeveloperLink(link:)).toAnyView()
+    }
+    
+    public func openManualReview() {
+        
+        guard let writeReviewURL = URL(
+            string: "https://apps.apple.com/app/id\(Constants.appStoreID)?action=write-review"
+        ) else { fatalError("Expected a valid URL") }
+        
+        UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
+        
+    }
+    
+    public func openDeveloperLink(link: DeveloperLinkType) {
+        
+        switch link {
+            case .website:
+                pushWebController(url: "https://lambdadigamma.com")
+                break
+            case .twitter:
+                pushWebController(url: "https://twitter.com/lambdadigamma")
+            case .instagram:
+                pushWebController(url: "https://lambdadigamma.com")
+        }
+        
+    }
+    
+    private func pushWebController(url: String) {
+        
+        guard let url = URL(string: url) else { fatalError("Expected a valid URL") }
+        
+        let configuration = SFSafariViewController.Configuration()
+        let viewController = SFSafariViewController(url: url, configuration: configuration)
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
+        
+    }
+    
+}
+
+class OldAboutViewController: UIViewController {
 
     lazy var cfnImageView: UIImageView = {
         
@@ -174,7 +219,7 @@ class AboutViewController: UIViewController {
     
 }
 
-extension AboutViewController: Themeable {
+extension OldAboutViewController: Themeable {
     
     typealias Theme = ApplicationTheme
     

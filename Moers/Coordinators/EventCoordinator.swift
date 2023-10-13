@@ -14,7 +14,7 @@ import Resolver
 
 class EventCoordinator: Coordinator {
     
-    @LazyInjected var eventService: EventServiceProtocol
+    @LazyInjected var eventService: EventService
     
     var navigationController: CoordinatedNavigationController
     var eventViewController: MMEventsViewController?

@@ -13,14 +13,14 @@ public struct BroadcastRow: View {
     
     private let title: String
     private let subtitle: String
-    private let imageURL: String?
+    private let imageURL: URL?
     
     public init(
         viewModel: RadioBroadcastViewModel
     ) {
         self.title = viewModel.title
         self.subtitle = viewModel.subtitle
-        self.imageURL = viewModel.imageURL
+        self.imageURL = URL(string: viewModel.imageURL ?? "")
     }
     
     public init(
@@ -30,7 +30,7 @@ public struct BroadcastRow: View {
     ) {
         self.title = title
         self.subtitle = subtitle
-        self.imageURL = imageURL
+        self.imageURL = URL(string: imageURL ?? "")
     }
     
     public var body: some View {

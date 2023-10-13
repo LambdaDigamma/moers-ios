@@ -109,12 +109,9 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
             transformer: Cache.TransformerFactory.forCodable(ofType: [Event].self)
         )
 
-        let eventService = EventService(
-            loader,
-            cache
-        )
+        let eventService = DefaultEventService(loader)
 
-        Resolver.register { eventService as EventServiceProtocol }
+        Resolver.register { eventService as EventService }
 #endif
         
         Container.shared.transitService.register {

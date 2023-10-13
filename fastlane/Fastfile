@@ -1,5 +1,5 @@
 before_all do
-  ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+  # ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
 end
 
 default_platform(:ios)
@@ -161,14 +161,14 @@ platform :ios do
     gym(scheme: "Moers")
     pilot(skip_waiting_for_build_processing: true)
 
-    slack(
-      message: "Mein Moers #{version} (#{get_build_number()}) successfully released!",
-      channel: "#mein-moers",
-      payload: {
-        "Build Date" => Time.new.to_s,
-        "Built by" => "Fastlane",
-      }
-    )
+    # slack(
+    #   message: "Mein Moers #{version} (#{get_build_number()}) successfully released!",
+    #   channel: "#mein-moers",
+    #   payload: {
+    #     "Build Date" => Time.new.to_s,
+    #     "Built by" => "Fastlane",
+    #   }
+    # )
 
   end
 
@@ -201,11 +201,11 @@ platform :ios do
   end
 
   error do |lane, exception|
-    slack(
-      message: exception.message,
-      channel: "#mein-moers",
-      success: false
-    )
+    # slack(
+    #   message: exception.message,
+    #   channel: "#mein-moers",
+    #   success: false
+    # )
   end
 
 end

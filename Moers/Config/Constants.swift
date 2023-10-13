@@ -11,4 +11,5 @@ import Foundation
 public struct Constants {
     public static let appGroupSuiteName = "group.77N8D7LGCZ.de.okfn.niederrhein.Moers"
     public static let firstLaunch = "FirstLaunch.WasLaunchedBefore"
+    public static let appStoreID = "1305862555"
 }

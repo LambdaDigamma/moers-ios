@@ -21,6 +21,7 @@ public enum AppStrings {
     
     public enum Common {
         public static let okay = "Okay"
+        public static let close = String.localized("Close")
     }
     
     public static let address = String.localized("Address")

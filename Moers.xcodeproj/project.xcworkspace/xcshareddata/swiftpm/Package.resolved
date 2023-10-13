@@ -60,8 +60,8 @@
         "repositoryURL": "https://github.com/hmlongco/Factory",
         "state": {
           "branch": null,
-          "revision": "df622bf129ceb0915319a9651174800cfda87b2c",
-          "version": "2.0.3"
+          "revision": "061b3afe0358a0da7ce568f8272c847910be3dd7",
+          "version": "2.2.0"
         }
       },
       {
@@ -101,15 +101,6 @@
         }
       },
       {
-        "package": "Gifu",
-        "repositoryURL": "https://github.com/kaishin/Gifu",
-        "state": {
-          "branch": null,
-          "revision": "82da0086dea14ca9afc9801234ad8dc4cd9e2738",
-          "version": "3.4.1"
-        }
-      },
-      {
         "package": "GoogleAppMeasurement",
         "repositoryURL": "https://github.com/google/GoogleAppMeasurement.git",
         "state": {
@@ -123,8 +114,8 @@
         "repositoryURL": "https://github.com/google/GoogleDataTransport.git",
         "state": {
           "branch": null,
-          "revision": "f6b558e3f801f2cac336b04f615ce111fa9ddaa0",
-          "version": "9.2.1"
+          "revision": "aae45a320fd0d11811820335b1eabc8753902a40",
+          "version": "9.2.5"
         }
       },
       {
@@ -132,8 +123,8 @@
         "repositoryURL": "https://github.com/google/GoogleUtilities.git",
         "state": {
           "branch": null,
-          "revision": "0543562f85620b5b7c510c6bcbef75b562a5127b",
-          "version": "7.11.0"
+          "revision": "c38ce365d77b04a9a300c31061c5227589e5597b",
+          "version": "7.11.5"
         }
       },
       {
@@ -141,8 +132,8 @@
         "repositoryURL": "https://github.com/groue/GRDB.swift.git",
         "state": {
           "branch": null,
-          "revision": "be41d2dd0381efdd8c6455e050fcd4edfa6b459c",
-          "version": "6.9.2"
+          "revision": "ce63f697ed381383041d245b185af3c501de8bef",
+          "version": "6.18.0"
         }
       },
       {
@@ -182,12 +173,21 @@
         }
       },
       {
+        "package": "libwebp",
+        "repositoryURL": "https://github.com/SDWebImage/libwebp-Xcode",
+        "state": {
+          "branch": null,
+          "revision": "b2b1d20a90b14d11f6ef4241da6b81c1d3f171e4",
+          "version": "1.3.2"
+        }
+      },
+      {
         "package": "MediaLibraryKit",
         "repositoryURL": "https://github.com/LambdaDigamma/MediaLibraryKit",
         "state": {
           "branch": null,
-          "revision": "6e43f9487be582aeddadc65df9b3d5843137cc89",
-          "version": "0.0.7"
+          "revision": "158169432f5ceae8848af03154a29d6ae7c34885",
+          "version": "0.0.9"
         }
       },
       {
@@ -195,7 +195,7 @@
         "repositoryURL": "https://github.com/LambdaDigamma/ModernNetworking",
         "state": {
           "branch": "main",
-          "revision": "309b149ac6c83a2d7b95433f0bb312a5a04b9595",
+          "revision": "8d25ae3cf27bdb5f390dabfd31913e61cd1223c4",
           "version": null
         }
       },
@@ -213,17 +213,17 @@
         "repositoryURL": "https://github.com/kean/Nuke.git",
         "state": {
           "branch": null,
-          "revision": "a002b7fd786f2df2ed4333fe73a9727499fd9d97",
-          "version": "10.11.2"
+          "revision": "33f7e93be5d4ec027d42af77a8ec4680d1862ad2",
+          "version": "11.6.4"
         }
       },
       {
-        "package": "NukeUI",
-        "repositoryURL": "https://github.com/kean/NukeUI",
+        "package": "NukeWebP",
+        "repositoryURL": "https://github.com/makleso6/NukeWebP",
         "state": {
           "branch": null,
-          "revision": "db55022a8e483774ebbf3568727071477546d9ea",
-          "version": "0.8.3"
+          "revision": "2349bc0ce9b51c5b3df7d8033bb45ed42d7a9f10",
+          "version": "1.0.3"
         }
       },
       {
@@ -231,8 +231,8 @@
         "repositoryURL": "https://github.com/google/promises.git",
         "state": {
           "branch": null,
-          "revision": "ec957ccddbcc710ccc64c9dcbd4c7006fcf8b73a",
-          "version": "2.2.0"
+          "revision": "e70e889c0196c76d22759eb50d6a0270ca9f1d9e",
+          "version": "2.3.1"
         }
       },
       {
@@ -254,12 +254,21 @@
         }
       },
       {
+        "package": "swift-algorithms",
+        "repositoryURL": "https://github.com/apple/swift-algorithms",
+        "state": {
+          "branch": null,
+          "revision": "b14b7f4c528c942f121c8b860b9410b2bf57825e",
+          "version": "1.0.0"
+        }
+      },
+      {
         "package": "AppFeedback",
         "repositoryURL": "https://github.com/LambdaDigamma/swift-app-feedback",
         "state": {
           "branch": null,
-          "revision": "5da607f72e033173ab92bd2718d2f95ae68ff64a",
-          "version": "1.0.1"
+          "revision": "128837b77f29e501107a6e43972cbf740a30ae78",
+          "version": "1.0.2"
         }
       },
       {
@@ -267,8 +276,8 @@
         "repositoryURL": "https://github.com/apple/swift-docc-plugin",
         "state": {
           "branch": null,
-          "revision": "9b1258905c21fc1b97bf03d1b4ca12c4ec4e5fda",
-          "version": "1.2.0"
+          "revision": "26ac5758409154cc448d7ab82389c520fa8a8247",
+          "version": "1.3.0"
         }
       },
       {
@@ -285,8 +294,17 @@
         "repositoryURL": "https://github.com/LambdaDigamma/swift-license-ui",
         "state": {
           "branch": null,
-          "revision": "f2e1bfd832e2bf9dc70fbde536f83456866f9722",
-          "version": "1.0.0"
+          "revision": "39073ec5ef4b467fdd9a885abbaf28eaf7f01b9a",
+          "version": "1.0.1"
+        }
+      },
+      {
+        "package": "swift-numerics",
+        "repositoryURL": "https://github.com/apple/swift-numerics.git",
+        "state": {
+          "branch": null,
+          "revision": "0a5bc04095a675662cf24757cc0640aa2204253b",
+          "version": "1.0.2"
         }
       },
       {
@@ -294,8 +312,8 @@
         "repositoryURL": "https://github.com/lambdadigamma/swift-prosemirror",
         "state": {
           "branch": null,
-          "revision": "68cde593e782f4f21615806ada688c1938738be7",
-          "version": "0.0.5"
+          "revision": "c0e72c54b2de82237bbf0dbd8364ab512a323207",
+          "version": "0.0.6"
         }
       },
       {
@@ -303,8 +321,8 @@
         "repositoryURL": "https://github.com/apple/swift-protobuf.git",
         "state": {
           "branch": null,
-          "revision": "0af9125c4eae12a4973fb66574c53a54962a9e1e",
-          "version": "1.21.0"
+          "revision": "cf62cdaea48b77f1a631e5cb3aeda6047c2cba1d",
+          "version": "1.23.0"
         }
       },
       {
@@ -330,8 +348,8 @@
         "repositoryURL": "https://github.com/CoreOffice/XMLCoder.git",
         "state": {
           "branch": null,
-          "revision": "c438dad94f6a243b411b70a4b4bac54595064808",
-          "version": "0.15.0"
+          "revision": "b1e944cbd0ef33787b13f639a5418d55b3bed501",
+          "version": "0.17.1"
         }
       },
       {
@@ -339,8 +357,8 @@
         "repositoryURL": "https://github.com/SvenTiigi/YouTubePlayerKit.git",
         "state": {
           "branch": null,
-          "revision": "b81f962b87105fd5e6b2b02aecebe482b84d749b",
-          "version": "1.4.0"
+          "revision": "6bbba75c8a8927e8073765849e22707d96b55205",
+          "version": "1.5.2"
         }
       }
     ]

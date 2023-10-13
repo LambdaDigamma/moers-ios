@@ -1,5 +1,7 @@
 "AppName" = "Mein Moers";
 
+"Close" = "Schließen";
+
 "Menu.dashboard" = "Heute";
 "Menu.news" = "Neuigkeiten";
 "Menu.map" = "Karte";

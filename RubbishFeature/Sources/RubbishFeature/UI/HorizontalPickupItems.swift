@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Core
 
 public struct HorizontalPickupItems: View {
     
@@ -23,17 +24,17 @@ public struct HorizontalPickupItems: View {
         
         HStack(alignment: .top) {
             
-            if let first = firstThreeItems[0] {
+            if let first = firstThreeItems[safeIndex: 0] {
                 RubbishCalendarItem(item: first)
                 Spacer(minLength: 12)
             }
             
-            if let second = firstThreeItems[1] {
+            if let second = firstThreeItems[safeIndex: 1] {
                 RubbishCalendarItem(item: second)
                 Spacer(minLength: 12)
             }
             
-            if let third = firstThreeItems[2] {
+            if let third = firstThreeItems[safeIndex: 2] {
                 RubbishCalendarItem(item: third)
             }
             

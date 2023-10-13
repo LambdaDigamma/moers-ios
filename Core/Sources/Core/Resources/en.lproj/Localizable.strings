@@ -1,5 +1,7 @@
 "AppName" = "Mein Moers";
 
+"Close" = "Close";
+
 "Menu.dashboard" = "Today";
 "Menu.news" = "News";
 "Menu.map" = "Map";

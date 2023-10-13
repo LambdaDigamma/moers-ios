@@ -97,10 +97,10 @@
 		DF80F6C02851142800AB708D /* WeatherWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80F6BF2851142800AB708D /* WeatherWidget.swift */; };
 		DF80F6C328511B9300AB708D /* RubbishAccessoryRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80F6C128511B8F00AB708D /* RubbishAccessoryRectangle.swift */; };
 		DF80F6C6285124B500AB708D /* RubbishAccessoryInline.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80F6C42851246F00AB708D /* RubbishAccessoryInline.swift */; };
-		DF80F6CB2851378A00AB708D /* ChartSandbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80F6CA2851378A00AB708D /* ChartSandbox.swift */; };
 		DF86ABA12174900400EFC7EA /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF86ABA02174900400EFC7EA /* Intents.framework */; };
 		DF89BA1626FDE24F003A6C64 /* DebugNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF89BA1526FDE24F003A6C64 /* DebugNotificationViewController.swift */; };
 		DF89BA1B26FE12AE003A6C64 /* IDEAS.md in Resources */ = {isa = PBXBuildFile; fileRef = DF89BA1A26FE12AE003A6C64 /* IDEAS.md */; };
+		DF8C300F29C749490054799C /* ContributionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8C300E29C749490054799C /* ContributionViewController.swift */; };
 		DF94B11B23F0A7E5009C57ED /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF94B11923F0A7E5009C57ED /* Interface.storyboard */; };
 		DF94B11D23F0A7E7009C57ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF94B11C23F0A7E7009C57ED /* Assets.xcassets */; };
 		DF94B12423F0A7E8009C57ED /* Watch Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DF94B12323F0A7E7009C57ED /* Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -207,13 +207,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = DF94B12223F0A7E7009C57ED;
 			remoteInfo = "Watch Extension";
-		};
-		DF99F1972760101C00D279AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DF1A49571F6AAB7000E9108B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DF5E1B4D26726AF3005FADA4;
-			remoteInfo = WidgetsExtension;
 		};
 		DF9F19DB2766660100B74E13 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -370,11 +363,11 @@
 		DF80F6C128511B8F00AB708D /* RubbishAccessoryRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishAccessoryRectangle.swift; sourceTree = "<group>"; };
 		DF80F6C42851246F00AB708D /* RubbishAccessoryInline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubbishAccessoryInline.swift; sourceTree = "<group>"; };
 		DF80F6C928512FA600AB708D /* WeatherFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WeatherFeature; sourceTree = "<group>"; };
-		DF80F6CA2851378A00AB708D /* ChartSandbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartSandbox.swift; sourceTree = "<group>"; };
 		DF86ABA02174900400EFC7EA /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		DF89BA1526FDE24F003A6C64 /* DebugNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugNotificationViewController.swift; sourceTree = "<group>"; };
 		DF89BA1926FE1280003A6C64 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DF89BA1A26FE12AE003A6C64 /* IDEAS.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = IDEAS.md; sourceTree = "<group>"; };
+		DF8C300E29C749490054799C /* ContributionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionViewController.swift; sourceTree = "<group>"; };
 		DF94B11723F0A7E5009C57ED /* Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF94B11A23F0A7E5009C57ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		DF94B11C23F0A7E7009C57ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -752,7 +745,6 @@
 			isa = PBXGroup;
 			children = (
 				DF80F6BF2851142800AB708D /* WeatherWidget.swift */,
-				DF80F6CA2851378A00AB708D /* ChartSandbox.swift */,
 				DF11BF9622B94E410051C3B3 /* Config */,
 				DF11BFC222BA6E960051C3B3 /* Common */,
 				DF04D60423CBD4F0008AE677 /* Coordinators */,
@@ -1022,6 +1014,7 @@
 				DFDD3F7320B2F30A005602E3 /* AboutViewController.swift */,
 				DFF7E5BD2843CE4700A1CE7B /* AboutScreen.swift */,
 				DFF7E5C02843D3EA00A1CE7B /* WallOfContribution.swift */,
+				DF8C300E29C749490054799C /* ContributionViewController.swift */,
 			);
 			path = About;
 			sourceTree = "<group>";
@@ -1057,7 +1050,6 @@
 			);
 			dependencies = (
 				DF5E1B5D26726AF7005FADA4 /* PBXTargetDependency */,
-				DF99F1982760101C00D279AB /* PBXTargetDependency */,
 				DF9F19DC2766660100B74E13 /* PBXTargetDependency */,
 			);
 			name = Moers;
@@ -1230,9 +1222,10 @@
 		DF1A49571F6AAB7000E9108B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				DefaultBuildSystemTypeForWorkspace = Latest;
 				LastSwiftUpdateCheck = 1310;
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1510;
 				ORGANIZATIONNAME = "Lennart Fischer";
 				TargetAttributes = {
 					DF1A495E1F6AAB7000E9108B = {
@@ -1516,6 +1509,7 @@
 				DFF7E5BE2843CE4700A1CE7B /* AboutScreen.swift in Sources */,
 				DFDD3F7420B2F30A005602E3 /* AboutViewController.swift in Sources */,
 				DF0CB49D2082B78C00CC0AA8 /* PermissionsManager.swift in Sources */,
+				DF8C300F29C749490054799C /* ContributionViewController.swift in Sources */,
 				DFD73690211E424E00826C47 /* SelectorBulletinPage.swift in Sources */,
 				DFB4D76920B062BE00C8D179 /* SettingsViewController.swift in Sources */,
 				DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */,
@@ -1542,7 +1536,6 @@
 				DF2D6DA720B8983400176614 /* UserManager.swift in Sources */,
 				DFB02B8D27066B35000196D8 /* AppTabBarController.swift in Sources */,
 				DFD8908921248DD9006B5610 /* PrivacyViewController.swift in Sources */,
-				DF80F6CB2851378A00AB708D /* ChartSandbox.swift in Sources */,
 				DF9A914B2160DA840054A2B8 /* AppEnvironment.swift in Sources */,
 				DFB7C0CE2787A9CF00B1C87E /* SceneDelegate.swift in Sources */,
 				DF4BD1C2208C5653003ECF41 /* RubbishStreetPickerItem.swift in Sources */,
@@ -1649,11 +1642,6 @@
 			isa = PBXTargetDependency;
 			target = DF94B12223F0A7E7009C57ED /* Watch Extension */;
 			targetProxy = DF94B12523F0A7E8009C57ED /* PBXContainerItemProxy */;
-		};
-		DF99F1982760101C00D279AB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DF5E1B4D26726AF3005FADA4 /* WidgetsExtension */;
-			targetProxy = DF99F1972760101C00D279AB /* PBXContainerItemProxy */;
 		};
 		DF9F19DC2766660100B74E13 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1766,6 +1754,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1875,6 +1864,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1979,6 +1969,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2091,6 +2082,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -2198,6 +2190,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2264,6 +2257,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

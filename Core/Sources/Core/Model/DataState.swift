@@ -1,6 +1,6 @@
 //
 //  DataState.swift
-//  
+//
 //
 //  Created by Lennart Fischer on 04.01.22.
 //

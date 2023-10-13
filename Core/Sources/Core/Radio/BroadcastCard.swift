@@ -13,16 +13,22 @@ public struct BroadcastCard: View {
     private let source: String
     private let title: String
     
+    private let imageURL: URL?
+    
     public init(source: String, title: String = "") {
         self.source = source
         self.title = title
+        self.imageURL = URL(string: source)
     }
     
     public var body: some View {
         
         VStack {
             
-            LazyImage(source: source)
+            LazyImage(
+                source: imageURL,
+                resizingMode: .aspectFill
+            )
                 .frame(idealWidth: 200, idealHeight: 150)
                 .cornerRadius(6)
             
