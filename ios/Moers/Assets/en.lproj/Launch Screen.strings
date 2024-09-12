@@ -1,0 +1,15 @@
+
+/* Class = "UITabBarItem"; title = "Sonstiges"; ObjectID = "7Jr-lp-mc1"; */
+"7Jr-lp-mc1.title" = "Other";
+
+/* Class = "UITabBarItem"; title = "Heute"; ObjectID = "bWl-lG-OfY"; */
+"bWl-lG-OfY.title" = "Today";
+
+/* Class = "UITabBarItem"; title = "Neuigkeiten"; ObjectID = "dO4-ez-BdT"; */
+"dO4-ez-BdT.title" = "News";
+
+/* Class = "UITabBarItem"; title = "Veranstaltungen"; ObjectID = "g2G-VK-co1"; */
+"g2G-VK-co1.title" = "Events";
+
+/* Class = "UITabBarItem"; title = "Karte"; ObjectID = "rQw-MP-ZmC"; */
+"rQw-MP-ZmC.title" = "Map";

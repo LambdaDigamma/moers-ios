@@ -1,0 +1,19 @@
+//
+//  Development.xcconfig
+//  Moers
+//
+//  Created by Lennart Fischer on 18.06.19.
+//  Copyright © 2019 Lennart Fischer. All rights reserved.
+//
+
+// Server URL
+ROOT_URL = mein-moers.localhost
+BASE_URL = https:/$()/mein-moers.localhost/
+
+// Auth
+CLIENT_ID = 2
+CLIENT_SECRET = 3hgDVmklXAqPrgS8OXo3claU7eD7sERBn0ZiroSZ
+
+// App Settings
+APP_NAME = Mein Moers (dev)
+APP_BUNDLE_ID = de.okfn.niederrhein.Moers.dev

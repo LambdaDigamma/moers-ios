@@ -1,44 +1,6 @@
-# Xcode
-#
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
-
-## Build generated
+# Build generated
 build/
 DerivedData/
-
-## Various settings
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata/
-
-## Other
-*.moved-aside
-*.xccheckout
-*.xcscmblueprint
-
-## Obj-C/Swift specific
-*.hmap
-*.ipa
-*.dSYM.zip
-*.dSYM
-
-## Playgrounds
-timeline.xctimeline
-playground.xcworkspace
-
-# Swift Package Manager
-#
-# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
-# Packages/
-# Package.pins
-# Package.resolved
-.build/
 
 # CocoaPods
 #
@@ -51,9 +13,8 @@ playground.xcworkspace
 # Carthage
 #
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
-Carthage/Checkouts
-
 Carthage/Build
+Carthage/Checkouts
 
 # fastlane
 #
@@ -61,13 +22,58 @@ Carthage/Build
 # screenshots whenever they are needed.
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/#source-control
-
-fastlane/report.xml
 fastlane/Preview.html
+fastlane/report.xml
 fastlane/screenshots/**/*.png
 fastlane/test_output
-vendor
-Moers/Resources/Tankerkoenig-Info.plist
-Moers/Resources/GoogleService-Info.plist
 
-GoogleService-Info.plist
+# Gradle
+.gradle
+
+# Local properties
+local.properties
+
+# Native builds
+.externalNativeBuild
+.cxx
+
+# Objective-C/Swift specific
+*.dSYM
+*.dSYM.zip
+*.hmap
+*.ipa
+
+# Other
+.DS_Store
+*.iml
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+
+# Playgrounds
+playground.xcworkspace
+timeline.xctimeline
+
+# Swift Package Manager
+.build/
+
+# Xcode
+*.mode1v3
+*.mode2v3
+*.pbxuser
+*.perspectivev3
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/project.xcworkspace/
+!*.xcodeproj/xcshareddata/
+*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
+build/
+xcuserdata/
+
+# Miscellaneous
+captures
+ios/vendor
+ios/Moers/Resources/Tankerkoenig-Info.plist
+ios/Moers/Resources/GoogleService-Info.plist
+ios/GoogleService-Info.plist

@@ -1,0 +1,37 @@
+# Uncomment the lines below you want to change by removing the # in the beginning
+
+# A list of devices you want to take the screenshots from
+devices([
+  # "iPhone 8",
+  "iPhone 8 Plus",
+#   "iPhone SE",
+#   "iPhone X",
+  "iPhone 12",
+  "iPhone 12 Pro Max",
+  "iPad Pro (12.9-inch) (2nd generation)",
+  "iPad Pro (12.9-inch) (3rd generation)"
+#   "iPad Pro (12.9-inch)",
+#   "iPad Pro (9.7-inch)",
+#   "Apple TV 1080p"
+])
+
+languages([
+  "en-US",
+  "de-DE",
+])
+
+# The name of the scheme which contains the UI Tests
+scheme("Screenshots")
+testplan("Screenshots")
+
+# Where should the resulting screenshots be stored?
+output_directory("./fastlane/screenshots")
+
+# remove the '#' to clear all previously generated screenshots before creating new ones
+# clear_previous_screenshots(true)
+
+override_status_bar(true)
+localize_simulator(true)
+dark_mode(false)
+disable_slide_to_type(true)
+skip_open_summary(true)

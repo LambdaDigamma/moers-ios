@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "1510"
+   version = "1.7">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "cp -f -R &quot;${SYMROOT}/Release${EFFECTIVE_PLATFORM_NAME}/&quot; &quot;${SYMROOT}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "DF1A495E1F6AAB7000E9108B"
+                     BuildableName = "Moers.app"
+                     BlueprintName = "Moers"
+                     ReferencedContainer = "container:Moers.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DF1A495E1F6AAB7000E9108B"
+               BuildableName = "Moers.app"
+               BlueprintName = "Moers"
+               ReferencedContainer = "container:Moers.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug (Production)"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DF57D66A2187383000E6A0A9"
+               BuildableName = "MoersTests.xctest"
+               BlueprintName = "MoersTests"
+               ReferencedContainer = "container:Moers.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DF284EFC23F4C17100EC999B"
+               BuildableName = "MoersUITests.xctest"
+               BlueprintName = "MoersUITests"
+               ReferencedContainer = "container:Moers.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DFB161B2267651D6009D2754"
+               BuildableName = "Moers Unit Tests.xctest"
+               BlueprintName = "Moers Unit Tests"
+               ReferencedContainer = "container:Moers.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug (Production)"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = "de"
+      region = "DE"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "DF1A495E1F6AAB7000E9108B"
+            BuildableName = "Moers.app"
+            BlueprintName = "Moers"
+            ReferencedContainer = "container:Moers.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <LocationScenarioReference
+         identifier = "../../Moers/Moers.gpx"
+         referenceType = "0">
+      </LocationScenarioReference>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release (Production)"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "DF1A495E1F6AAB7000E9108B"
+            BuildableName = "Moers.app"
+            BlueprintName = "Moers"
+            ReferencedContainer = "container:Moers.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug (Production)">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release (Production)"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>

@@ -1,0 +1,121 @@
+"AppName" = "Mein Moers";
+
+"Close" = "Close";
+
+"Menu.dashboard" = "Today";
+"Menu.news" = "News";
+"Menu.map" = "Map";
+"Menu.events" = "Events";
+"Menu.other" = "Other";
+
+"Buergerfunk.title" = "Community radio";
+"Buergerfunk.description" = "Every day between 8 p.m. and 9 p.m. on Radio K.W. (Sundays and holidays from 7:04 p.m.), there is a slightly different kind of radio - community radio. People from the county of Wesel spend many hours of their free time in production studios to send an hour of radio programming over the airwaves every day.";
+"Buergerfunk.nextBroadcasts" = "Next broadcasts";
+"Buergerfunk.contactAction" = "Contact";
+"Buergerfunk.disclaimer" = "The information is supplied by Bürgerfunk Moers. There is no guarantee for correctness or completeness.";
+"Buergerfunk.allAction" = "All";
+"Buergerfunk.listenToPastBroadcasts" = "Listen to recent broadcasts";
+"Buergerfunk.unknownTime" = "Time not known";
+"Buergerfunk.listenNowAction" = "Listen now";
+"Buergerfunk.remindMeAction" = "Remind me";
+"Buergerfunk.disableReminderInfo" = "Tap again to remove the reminder.";
+"Buergerfunk.notificationBody" = "The radio broadcast «%@» starts in five minutes. \nHave fun listening!";
+
+"Directions.getDirections" = "Get directions";
+
+"UserActivities.Dashboard.title" = "Show today";
+"UserActivities.RubbishSchedule.title" = "Next pick up dates";
+"UserActivities.RubbishSchedule.keywords" = "Garbage, collection, date, garbage collection";
+"UserActivities.ParkingAreaOverview.title" = "Show free sites";
+"UserActivities.ParkingAreaOverview.keywords" = "Parking, Car, Driving, City";
+"UserActivities.FuelStations.title" = "Fuel stations near you";
+"UserActivities.FuelStations.keywords" = "Gas stations, prices, proximity, car, Fuel";
+"UserActivities.News.title" = "Check latest news";
+"UserActivities.Map.title" = "Find location";
+"UserActivities.Events.title" = "Show events";
+"UserActivities.Settings.title" = "Show settings";
+
+"Citizen" = "Citizen";
+"Tourist" = "Tourist";
+
+/*
+ Localizable.strings
+ MMAPI
+ 
+ Created by Lennart Fischer on 13.10.19.
+ Copyright © 2019 Lennart Fischer. All rights reserved.
+ */
+
+/* Petrol */
+"PetrolStation" = "Petrol Station";
+"Diesel" = "Diesel";
+"E5" = "E5";
+"E10" = "E10";
+
+/* Waste */
+"ResidualWaste" = "Residual Waste";
+"OrganicWaste" = "Organic Waste";
+"PaperWaste" = "Paper Waste";
+"YellowWaste" = "Yellow Bag";
+"GreenWaste" = "Green Cuttings";
+
+/* Date+Extensions */
+"Today" = "Today";
+"Tomorrow" = "Tomorrow";
+
+/* ParkingLot */
+"ParkingLot" = "Parking Lot";
+"ParkingLotUnchanged" = "unchanged";
+"ParkingLotDescends" = "falling";
+"ParkingLotAscends" = "raising";
+"ParkingLotUndocumented" = "undocumented";
+
+/* Camera */
+"Camera" = "360° Camera";
+
+/* BikeChargingStation */
+"BikeChargingStation" = "Bike Charging Station";
+
+/* Moers Festival */
+"Free" = "free";
+"NeedsFestivalTicket" = "festival/day ticket required";
+"ExtraTicket" = "festival/day ticket or Mörzz-Ticket required (*)";
+"NotKnownPrompt" = "not yet announced";
+"LocationNotKnown" = "Site soon known";
+
+/* Rubbish Notifications */
+"RubbishCollectionNotificationTitle" = "Pick-up Schedule";
+"RubbishCollectionNotificationBody" = "Tomorrow will be collected: ";
+
+/* Events */
+"LiveNow" = "live now";
+
+/*
+ Localizable.strings
+ MMUI
+ 
+ Created by Lennart Fischer on 13.06.19.
+ Copyright © 2019 LambdaDigamma. All rights reserved.
+ */
+
+"EventsTitle" = "Events";
+"SearchEventsPrompt" = "Search Events";
+"ShowMore" = "Show more";
+"UpcomingFavourites" = "Upcoming Favorites";
+"Favourites" = "Favourites";
+"Upcoming" = "Upcoming";
+"LiveNow" = "live now";
+"RouteButtonTitle" = "Route";
+"EventsNoFavourite" = "No event has been marked as a favorite yet.";
+"EventsNoLive" = "Currently there are no events taking place.";
+"EventsNoUpcoming" = "Currently there are no events scheduled. Come back soon!";
+"NavigationButtonMovingAct" = "Show current position";
+"MoreInformation" = "Learn more ➤";
+"Venue" = "Venue";
+"Unknown" = "Unknown";
+"NotKnownLoc" = "Not known";
+
+"OpeningState.closed" = "Closed";
+"OpeningState.open" = "Open";
+
+"Address" = "Address";

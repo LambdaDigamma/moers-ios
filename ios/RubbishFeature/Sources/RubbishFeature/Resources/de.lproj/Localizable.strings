@@ -1,0 +1,40 @@
+/* Waste */
+"WasteType.residual" = "Restabfall";
+"WasteType.organic" = "Biotonne";
+"WasteType.paper" = "Papiertonne";
+"WasteType.yellow" = "Gelber Sack";
+"WasteType.green" = "Grünschnitt";
+
+"WasteTypeShort.residual" = "Rest";
+"WasteTypeShort.organic" = "Bio";
+"WasteTypeShort.paper" = "Papier";
+"WasteTypeShort.yellow" = "Gelb";
+"WasteTypeShort.green" = "Schnitt";
+
+"WasteSchedule.title" = "Abfallkalender";
+"WasteSchedule.Info.close" = "Schließen";
+"WasteSchedule.Info.selectedStreet" = "Ausgewählte Straße";
+"WasteSchedule.Info.disclaimer" = "
+Der Abfallkalender wird von den Entsorgungsbetrieben ENNI für die App zur Verfügung gestellt.
+Es besteht kein Gewähr auf Richtigkeit der hier aufgeführten Daten.
+Bei Problemen solltest Du Dich daher lieber an ENNI selbst wenden.
+";
+
+"Waste.dashboardTitle" = "Nächste Leerungen";
+"Waste.loadingDashboard" = "Lädt Abfallkalender…";
+"Waste.loadingFailed" = "Das Laden des Abfallkalenders konnte nicht abgeschlossen werden.";
+"Waste.noUpcomingRubbishItems" = "Im Abfallkalender konnten keine weiteren Termine gefunden werden.";
+
+"RubbishDashboardError.Deactivated.title" = "Abfallkalender deaktiviert";
+"RubbishDashboardError.Deactivated.text" = "Du kannst den Abfallkalender in den Einstellungen aktivieren.";
+
+"RubbishDashboardError.NotConfigured.title" = "Straße nicht ausgewählt";
+"RubbishDashboardError.NotConfigured.text" = "Du hast keine Straße ausgewählt, für die Du den Abfallkalender sehen möchtest. Wähle eine Straße in den Einstellungen aus.";
+
+"RubbishDashboardError.NoYearData.title" = "Warnung";
+"RubbishDashboardError.NoYearData.text" = "Im Abfallkalender konnten keine weiteren Termine gefunden werden.";
+
+"RubbishDashboardError.InternalError.title" = "Interner Fehler";
+
+"RubbishCollectionNotification.title" = "Abfuhrkalender";
+"RubbishCollectionNotification.body" = "Morgen wird abgeholt: ";

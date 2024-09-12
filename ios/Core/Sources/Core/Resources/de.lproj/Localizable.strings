@@ -1,0 +1,127 @@
+"AppName" = "Mein Moers";
+
+"Close" = "Schließen";
+
+"Menu.dashboard" = "Heute";
+"Menu.news" = "Neuigkeiten";
+"Menu.map" = "Karte";
+"Menu.events" = "Veranstaltungen";
+"Menu.other" = "Sonstiges";
+
+"Waste.errorTitle" = "Abfallkalender deaktiviert";
+"Waste.errorMessage" = "Du kannst den Abfallkalender in den Einstellungen aktivieren.";
+"Waste.loadingFailed" = "Das Laden des Abfallkalenders konnte nicht abgeschlossen werden.";
+"Waste.noUpcomingRubbishItems" = "Das Laden des Abfallkalenders konnte nicht abgeschlossen werden.";
+
+"Buergerfunk.title" = "Bürgerfunk";
+"Buergerfunk.description" = "Täglich gibt es zwischen 20 und 21 Uhr auf Radio K.W. (sonn- und feiertags ab 19:04 Uhr) ein etwas anderes Radio – den Bürgerfunk. Menschen aus dem Kreis Wesel verbringen viele Stunden ihrer Freizeit in Produktionsstudios, um täglich eine Stunde Programm über den Äther zu schicken.";
+"Buergerfunk.nextBroadcasts" = "Nächste Sendungen";
+"Buergerfunk.contactAction" = "Kontaktieren";
+"Buergerfunk.disclaimer" = "Die Daten werden vom Bürgerfunk Moers zur Verfügung gestellt. Es besteht keine Garantie auf Richtigkeit bzw. Vollständigkeit.";
+"Buergerfunk.allAction" = "Alle";
+"Buergerfunk.listenToPastBroadcasts" = "Vergangene Sendungen hören";
+"Buergerfunk.unknownTime" = "Uhrzeit nicht bekannt";
+"Buergerfunk.listenNowAction" = "Jetzt hören";
+"Buergerfunk.remindMeAction" = "Erinnerung erstellen";
+"Buergerfunk.disableReminderInfo" = "Tippe erneut, um die Erinnerung wieder zu löschen.";
+
+"Directions.getDirections" = "Route berechnen";
+
+"UserActivities.Dashboard.title" = "Heute anzeigen";
+"UserActivities.RubbishSchedule.title" = "Nächste Abholtermine";
+"UserActivities.RubbishSchedule.keywords" = "Müll, Abholung, Datum, Müllabfuhr";
+"UserActivities.ParkingAreaOverview.title" = "Freie Parkplätze anzeigen";
+"UserActivities.ParkingAreaOverview.keywords" = "Parkplätze, Auto, Fahren, Stadt, Parken";
+"UserActivities.FuelStations.title" = "Tankstellen in der Nähe";
+"UserActivities.FuelStations.keywords" = "Tankstellen, Preise, Nähe, Auto";
+"UserActivities.News.title" = "Neuste Nachrichten ansehen";
+"UserActivities.Map.title" = "Ort suchen";
+"UserActivities.Events.title" = "Veranstaltungen anzeigen";
+"UserActivities.Settings.title" = "Einstellungen anzeigen";
+
+"Citizen" = "Einwohner";
+"Tourist" = "Tourist";
+
+/*
+ Localizable.strings
+ MMAPI
+ 
+ Created by Lennart Fischer on 13.10.19.
+ Copyright © 2019 Lennart Fischer. All rights reserved.
+ */
+
+/* Petrol */
+"PetrolStation" = "Tankstelle";
+"Diesel" = "Diesel";
+"E5" = "Super";
+"E10" = "Super E10";
+
+/* Waste */
+"ResidualWaste" = "Restabfall";
+"OrganicWaste" = "Biotonne";
+"PaperWaste" = "Papiertonne";
+"YellowWaste" = "Gelber Sack";
+"GreenWaste" = "Grünschnitt";
+
+/* Date+Extensions */
+"Today" = "Heute";
+"Tomorrow" = "Morgen";
+
+/* ParkingLot */
+"ParkingLot" = "Parkplatz";
+"ParkingLotUnchanged" = "unverändert";
+"ParkingLotDescends" = "fallend";
+"ParkingLotAscends" = "aufsteigend";
+"ParkingLotUndocumented" = "nicht erfasst";
+
+/* Cawmera */
+"Camera" = "360° Kamera";
+
+/* BikeChargingStation */
+"BikeChargingStation" = "E-Bike Ladestation";
+
+/* Moers Festival */
+"Free" = "kostenlos";
+"NeedsFestivalTicket" = "Eintritt mit Festival-/Tagesticket";
+"ExtraTicket" = "Festival-/Tagesticket oder Mörzz-Ticket (*)";
+"NotKnownPrompt" = "noch nicht bekannt";
+"LocationNotKnown" = "Ort bald bekannt";
+
+/* Rubbish Notifications */
+"RubbishCollectionNotificationTitle" = "Abfuhrkalender";
+"RubbishCollectionNotificationBody" = "Morgen wird abgeholt: ";
+
+/* Events */
+"LiveNow" = "jetzt live";
+
+/*
+ Localizable.strings
+ MMUI
+ 
+ Created by Lennart Fischer on 13.06.19.
+ Copyright © 2019 LambdaDigamma. All rights reserved.
+ */
+
+"EventsTitle" = "Veranstaltungen";
+"SearchEventsPrompt" = "Suche Veranstaltungen";
+"ShowMore" = "Mehr anzeigen";
+"UpcomingFavourites" = "bevorstehende Favoriten";
+"Favourites" = "Favoriten";
+"Upcoming" = "Bevorstehend";
+"LiveNow" = "jetzt live";
+"RouteButtonTitle" = "Route";
+"EventsNoFavourite" = "Du hast noch keine Veranstaltung als Favoriten markiert.";
+"EventsNoLive" = "Gerade finden keine Veranstaltungen statt.";
+"EventsNoUpcoming" = "Momentan sind keine Veranstaltungen geplant. Komme demnächst noch einmal wieder!";
+"NavigationButtonMovingAct" = "Aktuelle Position zeigen";
+"MoreInformation" = "Mehr Informationen ➤";
+"Venue" = "Veranstaltungsort";
+"Unknown" = "unbekannt";
+"NotKnownLoc" = "nicht bekannt";
+
+"OpeningState.closed" = "Geschlossen";
+"OpeningState.open" = "Geöffnet";
+
+"Address" = "Adresse";
+
+"RadioBody" = "Die Sendung «%@» beginnt in 5 Minuten. \nViel Spaß beim Hören!";

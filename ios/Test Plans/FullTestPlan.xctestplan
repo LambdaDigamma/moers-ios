@@ -1,0 +1,61 @@
+{
+  "configurations" : [
+    {
+      "id" : "723CFECE-90F7-4938-B8D9-526E9854E2B5",
+      "name" : "Configuration (English)",
+      "options" : {
+        "language" : "en"
+      }
+    },
+    {
+      "enabled" : false,
+      "id" : "50557360-F476-4695-BDE2-FC71F617B8A6",
+      "name" : "Configuration (German)",
+      "options" : {
+        "language" : "de"
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true,
+    "threadSanitizerEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Core",
+        "identifier" : "CoreTests",
+        "name" : "CoreTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:DashboardFeature",
+        "identifier" : "DashboardFeatureTests",
+        "name" : "DashboardFeatureTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:FuelFeature",
+        "identifier" : "FuelFeatureTests",
+        "name" : "FuelFeatureTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:RubbishFeature",
+        "identifier" : "RubbishFeatureTests",
+        "name" : "RubbishFeatureTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:ParkingFeature",
+        "identifier" : "ParkingFeatureTests",
+        "name" : "ParkingFeatureTests"
+      }
+    }
+  ],
+  "version" : 1
+}

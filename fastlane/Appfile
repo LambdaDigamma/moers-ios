@@ -1,8 +1,0 @@
-app_identifier "de.okfn.niederrhein.Moers" # The bundle identifier of your app
-apple_id "lennart.fischer.dev@icloud.com" # Your Apple email address
-
-itc_team_id "118792291" # iTunes Connect Team ID
-# team_id "77N8D7LGCZ" # Developer Portal Team ID
-
-# For more information about the Appfile, see:
-#     https://docs.fastlane.tools/advanced/#appfile
