@@ -1,82 +1,70 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+plugins {
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.androidLibrary)
+}
+
+kotlin {
+    jvm()
+    androidTarget {
+        publishLibraryVariants("release")
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_1_8)
+        }
+    }
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+    linuxX64()
+
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                //put your multiplatform dependencies here
+            }
+        }
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.retrofit)
+                implementation(libs.ktor.client.okhttp)
+                implementation(libs.androidx.core.ktx)
+                implementation(libs.androidx.appcompat)
+                implementation(libs.material)
+                implementation(libs.kotlinx.coroutines.android)
+                implementation(libs.play.services.location)
+                implementation(libs.androidx.work.runtime.ktx)
+                implementation(libs.room.runtime)
+                implementation(libs.room.ktx)
+                implementation(libs.room.paging)
+                implementation(libs.hilt)
+                implementation(libs.retrofit.simplexml)
+                implementation(libs.retrofit.gson)
+                implementation(libs.retrofit.mock)
+                implementation(libs.datastore)
+                implementation(libs.datastore.preferences)
+                implementation(libs.compose.material3)
+                implementation(libs.compose.runtime.livedata)
+                implementation(libs.androidx.compose.ui.tooling)
+                implementation(libs.google.maps.compose)
+                implementation(libs.google.play.services.maps)
+                implementation(libs.accompanist.swiperefresh)
+            }
+        }
+        val commonTest by getting {
+            dependencies {
+                implementation(libs.kotlin.test)
+            }
+        }
+    }
+}
 
 android {
     namespace = "com.lambdadigamma.core"
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    defaultConfig {
+        minSdk = libs.versions.android.minSdk.get().toInt()
+    }
 }
-
-//plugins {
-//    id("com.android.library")
-//    id("org.jetbrains.kotlin.android")
-//    kotlin("kapt")
-//}
-//
-//android {
-//    namespace = "com.lambdadigamma.mein-moers.core"
-//    compileSdk = libs.versions.sdk.get().toInt()
-//
-//    defaultConfig {
-//        minSdk = libs.versions.minSdk.get().toInt()
-//
-//        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-//    }
-//
-//    buildTypes {
-//        release {
-//            isMinifyEnabled = false
-//        }
-//    }
-//    compileOptions {
-//        sourceCompatibility = JavaVersion.VERSION_1_8
-//        targetCompatibility = JavaVersion.VERSION_1_8
-//    }
-//    kotlinOptions {
-//        jvmTarget = "1.8"
-//    }
-//    buildFeatures {
-//        compose = true
-//    }
-//    composeOptions {
-//        kotlinCompilerExtensionVersion = "1.2.0"
-//    }
-//}
-//
-//dependencies {
-
-//
-//    testImplementation("junit:junit:$junitVersion")
-//    androidTestImplementation("androidx.test:core:$androidXTestVersion")
-//    androidTestImplementation("androidx.test:runner:$testRunnerVersion")
-//    androidTestImplementation("androidx.test:rules:$testRunnerVersion")
-//    androidTestImplementation("androidx.test.ext:junit:$testJunitVersion")
-//    androidTestImplementation("androidx.test.ext:truth:$truthVersion")
-//    androidTestImplementation("androidx.test.espresso:espresso-core:$espressoVersion")
-//    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
-//
-//    // Hilt
-//    implementation("com.google.dagger:hilt-android:$hiltVersion")
-//    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
-//    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
-//
-//    // Retrofit
-//    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
-//    implementation("com.squareup.retrofit2:converter-simplexml:$retrofitVersion")
-//    implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
-//    implementation("com.squareup.retrofit2:retrofit-mock:$retrofitVersion")
-//
-//    // Datastore
-//    implementation("androidx.datastore:datastore:$datastoreVersion")
-//    implementation("androidx.datastore:datastore-preferences:$datastoreVersion")
-//
-//    // Compose
-//    implementation("androidx.compose.ui:ui:$composeVersion")
-//    implementation("androidx.compose.material3:material3:1.0.0-alpha14")
-//    implementation("androidx.compose.ui:ui-tooling-preview:1.1.1")
-//    implementation("androidx.compose.runtime:runtime-livedata:1.3.0-alpha01")
-//    debugImplementation("androidx.compose.ui:ui-tooling:1.1.1")
-//
-//    // Google Maps
-//    implementation("com.google.maps.android:maps-compose:2.5.3")
-//    implementation("com.google.android.gms:play-services-maps:18.0.2")
-//
-//    implementation("com.google.accompanist:accompanist-swiperefresh:0.24.13-rc")
-
-//}
