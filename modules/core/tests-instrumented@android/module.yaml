@@ -1,0 +1,10 @@
+product: android/instrumented-tests
+
+dependencies:
+  - org.jetbrains.kotlin:kotlin-test:1.8.10
+  - androidx.test.uiautomator:uiautomator:2.3.0
+
+settings:
+  android:
+    testInstrumentationRunnerArguments:
+      clearPackageData: true

@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "android-app",
+            "name": "Android",
+            "module": "Moers.androidApp",
+        },
+
+    ]
+}

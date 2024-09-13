@@ -2,6 +2,7 @@ product: android/app
 
 dependencies: 
   - ../shared
+  - ../modules/core
   - $compose.runtime
   - $compose.foundation
   - $compose.material

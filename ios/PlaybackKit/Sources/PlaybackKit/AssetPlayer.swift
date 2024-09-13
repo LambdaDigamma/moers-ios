@@ -1,6 +1,6 @@
 //
 //  AssetPlayer.swift
-//  
+//
 //
 //  Created by Lennart Fischer on 19.12.21.
 //
@@ -69,7 +69,7 @@ public class AssetPlayer {
         self.nowPlayableBehavior = nowPlayable
         self.playerItems = playerItems
         self.staticMetadatas = []
-        
+
 //        // Get the subset of assets that the configuration actually wants to play,
 //        // and use it to construct the playlist.
 //        let playableAssets = ConfigModel.shared.assets.compactMap { $0.shouldPlay ? $0 : nil }
@@ -94,7 +94,7 @@ public class AssetPlayer {
 //            registeredCommands.append(contentsOf: group.commands.compactMap { $0.shouldRegister ? $0.command : nil })
 //            enabledCommands.append(contentsOf: group.commands.compactMap { $0.shouldDisable ? $0.command : nil })
 //        }
-        
+
         // Configure the app for Now Playing Info and Remote Command Center behaviors.
 //        try nowPlayableBehavior.handleNowPlayableConfiguration(
 //            commands: registeredCommands,
@@ -130,11 +130,11 @@ public class AssetPlayer {
 
             // Start the player.
             play()
-            
+
         }
-        
+
     }
-    
+
     /// Stop the playback session.
     public func optOut() {
 
@@ -389,7 +389,7 @@ public class AssetPlayer {
 
         return nil
     }
-    
+
     /// Helper method to get the media selection group for disabling a language option`.
     private func disabledMediaSelection(
         for languageOption: MPNowPlayingInfoLanguageOption
@@ -475,7 +475,7 @@ public class AssetPlayer {
 
         return .success
     }
-    
+
     // swiftlint:enable cyclomatic_complexity
 
     // MARK: - Interruptions
@@ -510,7 +510,7 @@ public class AssetPlayer {
                 print(error.localizedDescription)
                 optOut()
         }
-        
+
     }
 
 }
