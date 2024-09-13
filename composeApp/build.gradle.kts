@@ -24,6 +24,7 @@ kotlin {
             implementation(libs.androidx.navigation.compose)
             implementation(libs.koin.androidx.compose)
             implementation(libs.coil.compose)
+            implementation(projects.modules.core)
         }
         commonMain.dependencies {
             implementation(compose.runtime)

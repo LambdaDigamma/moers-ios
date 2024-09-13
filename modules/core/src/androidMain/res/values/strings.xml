@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="start_navigation_action">Start navigation</string>
+    <string name="event_detail_no_place">Venue unknown</string>
+    <string name="event_detail_venue_headline">Venue</string>
+    <string name="event_detail_venue_unknown">Unknown</string>
+    <string name="navigation_back">Back</string>
+    <string name="address_headline">Address</string>
+    <string name="opening_hours_headline">Opening hours</string>
+    <string name="badge_is_open">Open</string>
+    <string name="badge_is_closed">Closed</string>
+    <string name="start_navigation">Start navigation</string>
+    <string name="opening_hours_unknown">Opening hours unknown</string>
+</resources>
