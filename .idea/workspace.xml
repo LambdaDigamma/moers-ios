@@ -10,47 +10,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a67a544-461c-43bd-b464-4b57a8071b80" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/androidApp/build.gradle.kts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Overview/Preview List/PreviewListEventsView.swift" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Blocks/ImageCollectionView.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules/core-legacy/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/Platform.android.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules/core/src/androidUnitTest/kotlin/com/lambdadigamma/core/Test.android.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules/core/src/commonMain/kotlin/com/lambdadigamma/core/Greeting.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules/core/src/commonMain/kotlin/com/lambdadigamma/core/Platform.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules/core/src/commonTest/kotlin/com/lambdadigamma/core/Test.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules/core/src/iosMain/kotlin/com/lambdadigamma/core/Platform.ios.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules/core/src/iosTest/kotlin/com/lambdadigamma/core/Test.ios.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/commonMain/kotlin/com/jetbrains/kmpapp/screens/DetailViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/shared_jvm.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/shared_jvm_1_0_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/module.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/res/drawable/ic_launcher_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/res/drawable/ic_launcher_background.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/src/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/src/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/kotlin/com/jetbrains/kmpapp/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/src/MuseumApp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/kotlin/com/jetbrains/kmpapp/MuseumApp.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/src/screens/DetailScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/kotlin/com/jetbrains/kmpapp/screens/DetailScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/src/screens/EmptyScreenContent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/kotlin/com/jetbrains/kmpapp/screens/EmptyScreenContent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/src/screens/ListScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/androidMain/kotlin/com/jetbrains/kmpapp/screens/ListScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.fleet/receipt.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.fleet/run.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/kotlin/com/jetbrains/kmpapp/MainActivity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/kotlin/com/jetbrains/kmpapp/MuseumApp.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/kotlin/com/jetbrains/kmpapp/screens/DetailScreen.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/kotlin/com/jetbrains/kmpapp/screens/EmptyScreenContent.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/kotlin/com/jetbrains/kmpapp/screens/ListScreen.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/res/drawable/ic_launcher_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/androidMain/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI-Package.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI-Package.xcscheme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI.xcscheme" afterDir="false" />
@@ -82,81 +74,79 @@
       <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/Page.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/Page.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/PageBlock.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/PageBlock.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Native/PageBlockView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Native/PageBlockView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core-legacy/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/module.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core-legacy/module.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/resources@android/drawable/ic_outline_error_outline_24.xml" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/res/drawable/ic_outline_error_outline_24.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/resources@android/values-de/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/res/values-de/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/resources@android/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/AppExecutors.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/AppExecutors.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/ApplicationServerService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ApplicationServerService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/DataResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/DataResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/DateUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/DateUtils.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/Global.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/Global.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/LiveDataCallAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/LiveDataCallAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/LiveDataCallAdapterFactory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/LiveDataCallAdapterFactory.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/LiveDataExtensions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/LiveDataExtensions.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/NetworkBoundResource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/NetworkBoundResource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/Resource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/Resource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/RetrofitExtensions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/RetrofitExtensions.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/Status.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/Status.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/geo/GeoJsonPoint.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/GeoJsonPoint.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/geo/GeocodedAddress.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/GeocodedAddress.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/geo/GeocodingService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/GeocodingService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/geo/GoogleMapsNavigationProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/GoogleMapsNavigationProvider.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/geo/LocationService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/LocationService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/geo/Map.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/Map.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/geo/NavigationProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/NavigationProvider.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/geo/Point.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/Point.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/geo/TravelMode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/TravelMode.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/media/LocalMedia.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/media/LocalMedia.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/media/Media.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/media/Media.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/media/MediaImageDisplayable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/media/MediaImageDisplayable.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/media/PicsumImage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/media/PicsumImage.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/notifications/NotificationChannelImportance.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/notifications/NotificationChannelImportance.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/notifications/NotificationChannelInformation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/notifications/NotificationChannelInformation.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/notifications/NotificationHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/notifications/NotificationHelper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/notifications/Utils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/notifications/Utils.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/theme/Color.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/theme/Color.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/theme/Theme.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/theme/Theme.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/theme/Type.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/theme/Type.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/ui/AddressContainer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/AddressContainer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/ui/DateText.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/DateText.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/ui/ElevatedNavigationButton.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/ElevatedNavigationButton.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/ui/LoadingFailedComponent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/LoadingFailedComponent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/ui/NavigationBackButton.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/NavigationBackButton.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/ui/OpenBadge.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/OpenBadge.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/ui/OpeningHoursContainer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/OpeningHoursContainer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/ui/RelativeDateText.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/RelativeDateText.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/ui/Sandbox.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/Sandbox.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/ui/TopBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/TopBar.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/ui/VenueCard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/VenueCard.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/user/UserRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/user/UserRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/user/UserType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/user/UserType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/utils/AcceptLanguageHeaderInterceptor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/utils/AcceptLanguageHeaderInterceptor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/utils/ContextExtensions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/utils/ContextExtensions.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/utils/DateExtensions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/utils/DateExtensions.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/utils/LastUpdate.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/utils/LastUpdate.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src@android/utils/RememberPreference.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/utils/RememberPreference.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/test@android/DateUtilsTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidUnitTest/kotlin/com/lambdadigamma/core/DateUtilsTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/test@android/TravelModeUnitTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidUnitTest/kotlin/com/lambdadigamma/core/TravelModeUnitTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/tests-instrumented@android/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/tests-instrumented@android/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/tests-instrumented@android/DefaultGeocodingServiceTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/tests-instrumented@android/DefaultGeocodingServiceTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/tests-instrumented@android/DefaultLocationServiceTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/tests-instrumented@android/DefaultLocationServiceTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/tests-instrumented@android/GoogleMapsNavigationProviderTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/tests-instrumented@android/GoogleMapsNavigationProviderTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/tests-instrumented@android/module.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/tests-instrumented@android/module.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core-legacy/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core-legacy/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core-legacy/module.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/AppExecutors.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ApplicationServerService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/DataResponse.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/DateUtils.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/Global.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/LiveDataCallAdapter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/LiveDataCallAdapterFactory.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/LiveDataExtensions.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/NetworkBoundResource.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/Platform.android.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/Resource.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/RetrofitExtensions.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/Status.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/GeoJsonPoint.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/GeocodedAddress.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/GeocodingService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/GoogleMapsNavigationProvider.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/LocationService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/Map.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/NavigationProvider.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/Point.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/TravelMode.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/media/LocalMedia.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/media/Media.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/media/MediaImageDisplayable.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/media/PicsumImage.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/notifications/NotificationChannelImportance.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/notifications/NotificationChannelInformation.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/notifications/NotificationHelper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/notifications/Utils.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/theme/Color.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/theme/Theme.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/theme/Type.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/AddressContainer.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/DateText.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/ElevatedNavigationButton.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/LoadingFailedComponent.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/NavigationBackButton.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/OpenBadge.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/OpeningHoursContainer.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/RelativeDateText.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/Sandbox.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/TopBar.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/VenueCard.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/user/UserRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/user/UserType.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/utils/AcceptLanguageHeaderInterceptor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/utils/ContextExtensions.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/utils/DateExtensions.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/utils/LastUpdate.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/utils/RememberPreference.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/res/drawable/ic_outline_error_outline_24.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/res/values-de/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidUnitTest/kotlin/com/lambdadigamma/core/DateUtilsTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidUnitTest/kotlin/com/lambdadigamma/core/Test.android.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidUnitTest/kotlin/com/lambdadigamma/core/TravelModeUnitTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/commonMain/kotlin/com/lambdadigamma/core/Greeting.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/commonMain/kotlin/com/lambdadigamma/core/Platform.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/commonTest/kotlin/com/lambdadigamma/core/Test.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/iosMain/kotlin/com/lambdadigamma/core/Platform.ios.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/iosTest/kotlin/com/lambdadigamma/core/Test.ios.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/tests-instrumented@android/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/tests-instrumented@android/DefaultGeocodingServiceTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/tests-instrumented@android/DefaultLocationServiceTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/tests-instrumented@android/GoogleMapsNavigationProviderTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/tests-instrumented@android/module.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/shared/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/module.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/data/MuseumApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/commonMain/kotlin/com/jetbrains/kmpapp/data/MuseumApi.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/data/MuseumObject.kt" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/commonMain/kotlin/com/jetbrains/kmpapp/data/MuseumObject.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/data/MuseumRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/commonMain/kotlin/com/jetbrains/kmpapp/data/MuseumRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/data/MuseumStorage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/commonMain/kotlin/com/jetbrains/kmpapp/data/MuseumStorage.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/di/Koin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/commonMain/kotlin/com/jetbrains/kmpapp/di/Koin.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/screens/DetailViewModel.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/screens/ListViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/commonMain/kotlin/com/jetbrains/kmpapp/screens/ListViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src@ios/KoinDependencies.kt" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/iosMain/kotlin/com/jetbrains/kmpapp/KoinDependencies.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,6 +246,7 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "android.gradle.sync.needed": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "kmp",
