@@ -19,7 +19,7 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "Core", path: "./Core"),
-        .package(name: "FeedKit", url: "https://github.com/nmdias/FeedKit.git", .upToNextMajor(from: "9.0.0"))
+        .package(name: "FeedKit", url: "https://github.com/nmdias/FeedKit", .upToNextMajor(from: "9.0.0"))
     ],
     targets: [
         .target(

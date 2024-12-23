@@ -20,7 +20,7 @@ let package = Package(
     dependencies: [
         .package(name: "Core", path: "./../Core"),
         .package(url: "https://github.com/LambdaDigamma/Resolver", from: "1.1.5"),
-        .package(url: "https://github.com/LambdaDigamma/ModernNetworking.git", from: "0.2.0"),
+        .package(url: "https://github.com/LambdaDigamma/ModernNetworking", from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
     ],
     targets: [

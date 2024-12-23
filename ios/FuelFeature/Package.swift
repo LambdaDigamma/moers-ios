@@ -19,8 +19,8 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "Core", path: "./../Core"),
-        .package(name: "Fuse", url: "https://github.com/LambdaDigamma/fuse-swift.git", from: "1.4.1"),
-        .package(name: "ModernNetworking", url: "https://github.com/LambdaDigamma/ModernNetworking.git", from: "0.2.0"),
+        .package(name: "Fuse", url: "https://github.com/LambdaDigamma/fuse-swift", from: "1.4.1"),
+        .package(name: "ModernNetworking", url: "https://github.com/LambdaDigamma/ModernNetworking", from: "1.0.0"),
     ],
     targets: [
         .target(

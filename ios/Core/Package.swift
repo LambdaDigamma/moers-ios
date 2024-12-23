@@ -17,7 +17,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/LambdaDigamma/MediaLibraryKit", .upToNextMajor(from: "0.0.9")),
-        .package(url: "https://github.com/LambdaDigamma/ModernNetworking", .upToNextMajor(from: "0.2.0")),
+        .package(url: "https://github.com/LambdaDigamma/ModernNetworking", .upToNextMajor(from: "1.0.0")),
         .package(url: "https://github.com/LambdaDigamma/fuse-swift", .upToNextMajor(from: "1.4.2")),
         .package(url: "https://github.com/LambdaDigamma/Resolver", .upToNextMajor(from: "1.5.1")),
         .package(url: "https://github.com/LambdaDigamma/Cache", .upToNextMajor(from: "6.0.0")),

@@ -4539,7 +4539,7 @@
 			repositoryURL = "https://github.com/lambdadigamma/modernnetworking";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.3;
+				minimumVersion = 1.0.0;
 			};
 		};
 		DF9F19F12766920C00B74E13 /* XCRemoteSwiftPackageReference "efaapi-ios" */ = {
@@ -4579,7 +4579,7 @@
 			repositoryURL = "https://github.com/lambdadigamma/app-scaffold-ios";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
+				minimumVersion = 0.1.5;
 			};
 		};
 		DFDE886F2545834B00429765 /* XCRemoteSwiftPackageReference "eventbus" */ = {
