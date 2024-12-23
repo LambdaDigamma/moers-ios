@@ -30,4 +30,5 @@ dependencyResolutionManagement {
 
 include(":shared")
 include(":modules:core")
+include(":modules:news")
 include(":composeApp")

@@ -12,8 +12,51 @@
     <list default="true" id="4a67a544-461c-43bd-b464-4b57a8071b80" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Overview/Preview List/PreviewListEventsView.swift" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Blocks/ImageCollectionView.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/Platform.android.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/NewsDao.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/NewsItem.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/NewsListViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/NewsRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/NewsService.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/RssConverterFactory.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/RssFeed.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/RssItem.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/RssResponseBodyConverter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/XmlParser.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/ui/NewsScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/ui/NewsWebDetailScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/ui/RssItemDetailViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/src/androidMain/res/values-de/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/src/androidMain/res/values/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/src/commonMain/kotlin/com/lambdadigamma/news/Greeting.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/src/commonMain/kotlin/com/lambdadigamma/news/Platform.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/news/src/iosMain/kotlin/com/lambdadigamma/news/Platform.ios.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Moers.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Moers.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Moers/Common/View/Cards/CardView.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Moers/Common/View/Cards/TitleCardView.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Moers/Common/View/WrapperCardCollectionViewCell.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Moers/Controller/AppTabBarController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Moers/Common/AppTabBarController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Moers/Controller/ApplicationCoordinator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Moers/Common/ApplicationCoordinator.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Moers/Manager/TwitterManager.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Moers/Moers.gpx" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Moers/Assets/Moers.gpx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Moers/Other/Controller/About/ContributionViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Moers/Other/About/ContributionViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Moers/Other/Controller/About/WallOfContribution.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Moers/Other/About/WallOfContribution.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Moers/Other/Controller/AboutScreen.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Moers/Other/About/AboutScreen.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Moers/Other/Controller/AboutViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Moers/Other/About/AboutViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Moers/View/FeedbackGenerators.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Moers/View/UITableViewCells/SwitchTableViewCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Moers/Common/View/SwitchTableViewCell.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Moers/View/UITableViewCells/TagTableViewCell.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Moers/View/WaterfallLayout.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/MoersUITests/Helpers/LaunchArguments.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/MoersUITests/LaunchArguments.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/MoersUITests/Helpers/SnapshotHelper.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/MoersUITests/SnapshotHelper.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/MoersUITests/Helpers/UITestHelpers.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/MoersUITests/UITestHelpers.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI-Package.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI-Package.xcscheme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI.xcscheme" afterDir="false" />
@@ -45,7 +88,7 @@
       <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/Page.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/Page.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/PageBlock.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/PageBlock.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Native/PageBlockView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Native/PageBlockView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +98,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=/Users/lennart/.android/avd/Pixel_6_API_32.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=/Users/lennart/.android/avd/Pixel_9_Pro_API_35.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -92,6 +135,16 @@
         <envs />
       </variant>
     </executable>
+    <executable TARGET="ios_x64" TARGET_NAME="iosX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":modules:news:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":modules:news:linkDebugTestIosX64" FILE="$PROJECT_DIR$/modules/news/build/bin/iosX64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="ios_simulator_arm64" TARGET_NAME="iosSimulatorArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":modules:news:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":modules:news:linkDebugTestIosSimulatorArm64" FILE="$PROJECT_DIR$/modules/news/build/bin/iosSimulatorArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
     <executable TARGET="ios_simulator_arm64" TARGET_NAME="iosSimulatorArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":modules:core:" IS_TEST="true">
       <variant NAME="Debug" GRADLE_TASK=":modules:core:linkDebugTestIosSimulatorArm64" FILE="$PROJECT_DIR$/modules/core/build/bin/iosSimulatorArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
         <envs />
@@ -104,6 +157,11 @@
     </executable>
     <executable TARGET="ios_simulator_arm64" TARGET_NAME="iosSimulatorArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":shared:" IS_TEST="true">
       <variant NAME="Debug" GRADLE_TASK=":shared:linkDebugTestIosSimulatorArm64" FILE="$PROJECT_DIR$/shared/build/bin/iosSimulatorArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="ios_arm64" TARGET_NAME="iosArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":modules:news:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":modules:news:linkDebugTestIosArm64" FILE="$PROJECT_DIR$/modules/news/build/bin/iosArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
         <envs />
       </variant>
     </executable>
@@ -174,7 +232,8 @@
   </component>
   <component name="RunManager" selected="Android App.composeApp">
     <configuration name="androidApp" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
-      <module name="Moers.androidApp.main" />
+      <module name="Moers.androidApp" />
+      <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />
@@ -182,10 +241,13 @@
       <option name="PM_INSTALL_OPTIONS" value="" />
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="ALLOW_ASSUME_VERIFIED" value="false" />
       <option name="CLEAR_APP_STORAGE" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
+      <option name="RESTORE_ENABLED" value="false" />
+      <option name="RESTORE_FILE" value="" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
       <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
@@ -232,6 +294,7 @@
         <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
       </Profilers>
       <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY" value="" />
       <option name="ACTIVITY_CLASS" value="" />
       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
@@ -240,7 +303,8 @@
       </method>
     </configuration>
     <configuration name="composeApp" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
-      <module name="Moers.composeApp.main" />
+      <module name="Moers.composeApp" />
+      <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />
@@ -248,10 +312,13 @@
       <option name="PM_INSTALL_OPTIONS" value="" />
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="ALLOW_ASSUME_VERIFIED" value="false" />
       <option name="CLEAR_APP_STORAGE" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
+      <option name="RESTORE_ENABLED" value="false" />
+      <option name="RESTORE_FILE" value="" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
       <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
@@ -298,6 +365,7 @@
         <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
       </Profilers>
       <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY" value="" />
       <option name="ACTIVITY_CLASS" value="" />
       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
