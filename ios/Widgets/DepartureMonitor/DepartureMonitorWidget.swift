@@ -9,23 +9,23 @@
 import SwiftUI
 import WidgetKit
 
-struct DepartureMonitorWidget: Widget {
-    
-    let kind: String = "DepartureMonitorWidget"
-    
-    var body: some WidgetConfiguration {
-        
-        IntentConfiguration(
-            kind: kind,
-            intent: SelectDepartureMonitorStopIntent.self,
-            provider: DepartureMonitorProvider()
-        ) { entry in
-            DepartureMonitorWrapperView(entry: entry)
-        }
-            .configurationDisplayName(WidgetStrings.DepartureMonitor.widgetTitle)
-            .description(WidgetStrings.DepartureMonitor.widgetDescription)
-            .supportedFamilies([.systemMedium])
-        
-    }
-    
-}
+//struct DepartureMonitorWidget: Widget {
+//    
+//    let kind: String = "DepartureMonitorWidget"
+//    
+//    var body: some WidgetConfiguration {
+//        
+//        IntentConfiguration(
+//            kind: kind,
+//            intent: SelectDepartureMonitorStopIntent.self,
+//            provider: DepartureMonitorProvider()
+//        ) { entry in
+//            DepartureMonitorWrapperView(entry: entry)
+//        }
+//            .configurationDisplayName(WidgetStrings.DepartureMonitor.widgetTitle)
+//            .description(WidgetStrings.DepartureMonitor.widgetDescription)
+//            .supportedFamilies([.systemMedium])
+//        
+//    }
+//    
+//}

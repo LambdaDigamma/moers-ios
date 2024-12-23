@@ -270,23 +270,6 @@
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		DF4AD36A2CCD3BA600D620B3 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = DF1A495B1F6AAB7000E9108B /* Sources */;
-			membershipExceptions = (
-				/Localized/SelectDepartureMonitorStop.intentdefinition,
-			);
-		};
-		DF4AD36C2CCD3BA600D620B3 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = DF5E1B4A26726AF3005FADA4 /* Sources */;
-			membershipExceptions = (
-				/Localized/SelectDepartureMonitorStop.intentdefinition,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DF4AD2192CCD22C200D620B3 /* Coordinators */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Coordinators; sourceTree = "<group>"; };
 		DF4AD21F2CCD22C800D620B3 /* Events */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Events; sourceTree = "<group>"; };
@@ -295,7 +278,7 @@
 		DF4AD25C2CCD250200D620B3 /* Common */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Common; sourceTree = "<group>"; };
 		DF4AD2D92CCD26A500D620B3 /* Config */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (DF4AD2EC2CCD26A600D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, DF4AD2ED2CCD26A600D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Config; sourceTree = "<group>"; };
 		DF4AD2FB2CCD278000D620B3 /* Assets */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (DF4AD3042CCD278100D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Assets; sourceTree = "<group>"; };
-		DF4AD3462CCD3BA600D620B3 /* Widgets */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (DF4AD36A2CCD3BA600D620B3 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */, DF4AD36B2CCD3BA600D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, DF4AD36C2CCD3BA600D620B3 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Widgets; sourceTree = "<group>"; };
+		DF4AD3462CCD3BA600D620B3 /* Widgets */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (DF4AD36B2CCD3BA600D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Widgets; sourceTree = "<group>"; };
 		DF4AD3722CCD3BAB00D620B3 /* Watch */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (DF4AD3762CCD3BAB00D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Watch; sourceTree = "<group>"; };
 		DF4AD3792CCD3BC000D620B3 /* Intent Extensions */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (DF4AD37B2CCD3BC000D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Intent Extensions"; sourceTree = "<group>"; };
 		DF4AD3872CCD3BC500D620B3 /* Watch Extension */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (DF4AD3922CCD3BC500D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Watch Extension"; sourceTree = "<group>"; };
