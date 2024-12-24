@@ -41,6 +41,8 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.koin.core)
             api(libs.kmp.observable.viewmodel)
+            implementation(projects.modules.core)
+            implementation(projects.modules.news)
         }
 
         // Required by KMM-ViewModel
