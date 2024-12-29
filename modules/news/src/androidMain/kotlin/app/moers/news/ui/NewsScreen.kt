@@ -19,10 +19,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
-import com.lambdadigamma.core.DateUtils
-import com.lambdadigamma.core.Status
-import com.lambdadigamma.core.theme.MeinMoersTheme
-import com.lambdadigamma.core.ui.TopBar
+import app.moers.core.DateUtils
+import app.moers.core.Status
+import app.moers.core.theme.MeinMoersTheme
+import app.moers.core.ui.TopBar
 import com.lambdadigamma.newsfeature.R
 import com.lambdadigamma.newsfeature.data.NewsListViewModel
 import java.time.format.FormatStyle

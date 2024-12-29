@@ -2,9 +2,9 @@ package app.moers.news.data
 
 import androidx.lifecycle.LiveData
 import app.moers.news.data.NewsDao
-import com.lambdadigamma.core.AppExecutors
-import com.lambdadigamma.core.NetworkBoundResource
-import com.lambdadigamma.core.Resource
+import app.moers.core.AppExecutors
+import app.moers.core.NetworkBoundResource
+import app.moers.core.Resource
 
 class NewsRepository(
     private val newsDao: NewsDao,

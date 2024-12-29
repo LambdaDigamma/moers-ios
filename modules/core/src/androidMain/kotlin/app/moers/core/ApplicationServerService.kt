@@ -1,7 +1,7 @@
-package com.lambdadigamma.core
+package app.moers.core
 
 import com.google.gson.GsonBuilder
-import com.lambdadigamma.core.utils.AcceptLanguageHeaderInterceptor
+import app.moers.core.utils.AcceptLanguageHeaderInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

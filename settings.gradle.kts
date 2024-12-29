@@ -13,6 +13,12 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+    plugins {
+        kotlin("jvm") version "2.0.20"
+    }
+}
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
 }
 
 dependencyResolutionManagement {
@@ -28,7 +34,12 @@ dependencyResolutionManagement {
     }
 }
 
-include(":shared")
 include(":modules:core")
+//include(":modules:events")
+//include(":modules:fuel")
 include(":modules:news")
+//include(":modules:parking")
+//include(":modules:radio")
+//include(":modules:rubbish")
+include(":shared")
 include(":composeApp")

@@ -1,4 +1,4 @@
-package com.lambdadigamma.core
+package app.moers.core
 
 import androidx.lifecycle.LiveData
 import retrofit2.Call

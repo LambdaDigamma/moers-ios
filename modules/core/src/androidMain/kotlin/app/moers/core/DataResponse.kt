@@ -1,4 +1,4 @@
-package com.lambdadigamma.core
+package app.moers.core
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,8 +1,8 @@
 package app.moers.news.data
 
 import androidx.lifecycle.LiveData
-import com.lambdadigamma.core.LiveDataCallAdapterFactory
-import com.lambdadigamma.core.Resource
+import app.moers.core.LiveDataCallAdapterFactory
+import app.moers.core.Resource
 import retrofit2.Retrofit
 import retrofit2.http.GET
 

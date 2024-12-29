@@ -1,4 +1,4 @@
-package com.lambdadigamma.core
+package app.moers.core
 
 interface Platform {
     val name: String

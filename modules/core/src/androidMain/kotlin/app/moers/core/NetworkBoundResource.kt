@@ -1,4 +1,4 @@
-package com.lambdadigamma.core
+package app.moers.core
 
 import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread

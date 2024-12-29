@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="loading_parking_areas">Loading current parking allocation…</string>
+    <string name="dashboard_parking_headline">Available parking areas</string>
+    <string name="parking_area_open">Open</string>
+    <string name="parking_area_closed">Closed</string>
+    <string name="parking_area_unknown">Unknown</string>
+    <string name="parking_areas_title">Parking areas</string>
+    <string name="parking_areas_resource_disclaimer">All data without liability. The current parking situation may differ from the data shown.</string>
+    <string name="parking_areas_resource_source">Data source: Parking management system of the city of Moers</string>
+</resources>

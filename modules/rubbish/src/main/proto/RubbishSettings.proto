@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option java_package = "com.lambdadigamma.rubbish.settings";
+option java_multiple_files = true;
+
+message RubbishSettings {
+
+  optional RubbishCollectionStreet rubbish_collection_street = 2;
+
+  bool remindersEnabled = 5;
+  optional RubbishReminderTime reminderTime = 6;
+
+  message RubbishReminderTime {
+    uint32 hours = 1;
+    uint32 minutes = 2;
+  }
+
+  message RubbishCollectionStreet {
+
+    uint64 id = 1;
+    string name = 3;
+
+    uint32 residual_waste_tour = 5;
+    uint32 organic_waste_tour = 6;
+    uint32 paper_waste_tour = 7;
+    uint32 plastic_waste_tour = 8;
+    uint32 cuttingsWasteTour = 9;
+    optional string sweeper_day = 10;
+
+    string street_addition = 16;
+    uint32 year = 17;
+
+  }
+
+}

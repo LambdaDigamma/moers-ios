@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.web.WebView
 import com.google.accompanist.web.rememberWebViewState
-import com.lambdadigamma.core.ui.NavigationBackButton
+import app.moers.core.ui.NavigationBackButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

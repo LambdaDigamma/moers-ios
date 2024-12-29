@@ -39,7 +39,7 @@ kotlin {
             implementation(libs.play.services.location)
 
             // Hilt
-            implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+            implementation(libs.androidx.hilt.navigation.compose)
 
             // Retrofit
             implementation(libs.retrofit)
@@ -72,9 +72,9 @@ kotlin {
 
 android {
     namespace = "app.moers.core"
-    compileSdk = 34
+    compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
-        minSdk = 24
+        minSdk = libs.versions.minSdk.get().toInt()
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

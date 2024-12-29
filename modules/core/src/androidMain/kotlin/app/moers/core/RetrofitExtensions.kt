@@ -1,4 +1,4 @@
-package com.lambdadigamma.core
+package app.moers.core
 
 import retrofit2.Response
 import retrofit2.Retrofit

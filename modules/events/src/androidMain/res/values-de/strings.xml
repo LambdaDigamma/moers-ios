@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigation_events">Veranstaltungen</string>
+    <string name="navigation_top_bar">Veranstaltungen</string>
+    <string name="event_detail_no_place">Ort unbekannt</string>
+    <string name="event_detail_venue_headline">Veranstaltungsort</string>
+    <string name="event_detail_venue_unknown">Unbekannt</string>
+    <string name="attendance_mode_mixed">Mixed</string>
+    <string name="attendance_mode_offline">Offline</string>
+    <string name="attendance_mode_online">Online</string>
+    <string name="event_organizer_headline">Veranstalter</string>
+    <string name="event_organizer_unknown">Unbekannt</string>
+</resources>

@@ -1,4 +1,4 @@
-package com.lambdadigamma.core
+package app.moers.core
 
 class AndroidPlatform : Platform {
     override val name: String = "Android ${android.os.Build.VERSION.SDK_INT}"

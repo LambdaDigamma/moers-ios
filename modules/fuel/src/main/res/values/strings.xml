@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="current_location">Current location</string>
+    <string name="parking_area_detail_title">Details</string>
+    <string name="fuel_label_diesel">Diesel</string>
+    <string name="fuel_label_e5">Super E5</string>
+    <string name="fuel_label_e10">Super E10</string>
+    <string name="start_navigation">Start navigation</string>
+    <string name="fuel_datasource">Data source: CC BY 4.0 - https://creativecommons.tankerkoenig.de</string>
+    <string name="fuel_stations_title">Fuel stations</string>
+    <string name="fuel_dashboard_location_unknown">Ort unbekannt</string>
+</resources>

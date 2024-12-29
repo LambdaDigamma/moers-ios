@@ -16,10 +16,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import com.lambdadigamma.core.R
-import com.lambdadigamma.core.Resource
-import com.lambdadigamma.core.Status
-import com.lambdadigamma.core.theme.MeinMoersTheme
+import app.moers.core.R
+import app.moers.core.Resource
+import app.moers.core.Status
+import app.moers.core.theme.MeinMoersTheme
 import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalMaterial3Api::class)

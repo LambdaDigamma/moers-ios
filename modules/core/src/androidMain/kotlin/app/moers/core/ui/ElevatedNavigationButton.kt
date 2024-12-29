@@ -8,10 +8,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.lambdadigamma.core.R
-import com.lambdadigamma.core.geo.GoogleMapsNavigationProvider
-import com.lambdadigamma.core.geo.Point
-import com.lambdadigamma.core.theme.MeinMoersTheme
+import app.moers.core.R
+import app.moers.core.geo.GoogleMapsNavigationProvider
+import app.moers.core.geo.Point
+import app.moers.core.theme.MeinMoersTheme
 
 @Composable
 fun ElevatedNavigationButton(point: Point, modifier: Modifier = Modifier) {

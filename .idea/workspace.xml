@@ -10,12 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a67a544-461c-43bd-b464-4b57a8071b80" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Overview/Preview List/PreviewListEventsView.swift" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Blocks/ImageCollectionView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Core/Sources/Core/Utility/AppLogger.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Core/Sources/Core/Utility/AppLogger.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI-Package.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI-Package.xcscheme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI.xcscheme" afterDir="false" />
@@ -50,79 +52,38 @@
       <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/PageBlock.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/PageBlock.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Native/PageBlockView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Native/PageBlockView.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/core/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/AppExecutors.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ApplicationServerService.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/DataResponse.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/DateUtils.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/Global.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/LiveDataCallAdapter.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/LiveDataCallAdapterFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/LiveDataExtensions.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/NetworkBoundResource.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/Platform.android.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/Resource.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/RetrofitExtensions.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/Status.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/GeoJsonPoint.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/GeocodedAddress.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/GeocodingService.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/GoogleMapsNavigationProvider.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/LocationService.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/Map.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/NavigationProvider.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/Point.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/geo/TravelMode.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/media/LocalMedia.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/media/Media.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/media/MediaImageDisplayable.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/media/PicsumImage.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/notifications/NotificationChannelImportance.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/notifications/NotificationChannelInformation.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/notifications/NotificationHelper.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/notifications/Utils.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/theme/Color.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/theme/Theme.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/theme/Type.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/AddressContainer.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/DateText.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/ElevatedNavigationButton.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/LoadingFailedComponent.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/NavigationBackButton.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/OpenBadge.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/OpeningHoursContainer.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/RelativeDateText.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/Sandbox.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/TopBar.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/ui/VenueCard.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/user/UserRepository.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/user/UserType.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/utils/AcceptLanguageHeaderInterceptor.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/utils/ContextExtensions.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/utils/DateExtensions.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/utils/LastUpdate.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/com/lambdadigamma/core/utils/RememberPreference.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/commonMain/kotlin/com/lambdadigamma/core/Greeting.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/commonMain/kotlin/com/lambdadigamma/core/Platform.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/iosMain/kotlin/com/lambdadigamma/core/Platform.ios.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/AppExecutors.java" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/AppExecutors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/ApplicationServerService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/ApplicationServerService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/DataResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/DataResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/DateUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/DateUtils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/Global.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/Global.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/LiveDataCallAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/LiveDataCallAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/LiveDataCallAdapterFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/LiveDataCallAdapterFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/LiveDataExtensions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/LiveDataExtensions.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/NetworkBoundResource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/NetworkBoundResource.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/Platform.android.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/Platform.android.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/Resource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/Resource.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/RetrofitExtensions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/RetrofitExtensions.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/Status.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/Status.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/ui/AddressContainer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/ui/AddressContainer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/ui/ElevatedNavigationButton.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/ui/ElevatedNavigationButton.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/ui/LoadingFailedComponent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/ui/LoadingFailedComponent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/ui/NavigationBackButton.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/ui/NavigationBackButton.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/ui/OpenBadge.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/ui/OpenBadge.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/ui/OpeningHoursContainer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/ui/OpeningHoursContainer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/ui/Sandbox.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/ui/Sandbox.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/ui/VenueCard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/ui/VenueCard.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/user/UserRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/androidMain/kotlin/app/moers/core/user/UserRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/commonMain/kotlin/app/moers/core/Greeting.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/commonMain/kotlin/app/moers/core/Greeting.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/commonMain/kotlin/app/moers/core/Platform.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/commonMain/kotlin/app/moers/core/Platform.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/core/src/iosMain/kotlin/app/moers/core/Platform.ios.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/iosMain/kotlin/app/moers/core/Platform.ios.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/news/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/modules/news/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/Platform.android.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/NewsDao.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/NewsItem.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/NewsListViewModel.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/NewsRepository.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/NewsService.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/RssConverterFactory.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/RssFeed.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/RssItem.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/RssResponseBodyConverter.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/data/XmlParser.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/ui/NewsScreen.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/ui/NewsWebDetailScreen.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/com/lambdadigamma/news/ui/RssItemDetailViewModel.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/commonMain/kotlin/com/lambdadigamma/news/Greeting.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/commonMain/kotlin/com/lambdadigamma/news/Platform.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/iosMain/kotlin/com/lambdadigamma/news/Platform.ios.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/shared/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/app/moers/news/data/NewsListViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/app/moers/news/data/NewsListViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/app/moers/news/data/NewsRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/app/moers/news/data/NewsRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/app/moers/news/data/NewsService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/app/moers/news/data/NewsService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/app/moers/news/ui/NewsScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/app/moers/news/ui/NewsScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/app/moers/news/ui/NewsWebDetailScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/news/src/androidMain/kotlin/app/moers/news/ui/NewsWebDetailScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +93,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=/Users/lennart/.android/avd/Pixel_9_Pro_API_35.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=00065142P000951)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -160,37 +121,24 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Object" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="KotlinMultiplatform" KONAN_HOME="$USER_HOME$/.konan/kotlin-native-prebuilt-macos-aarch64-2.0.20">
-    <executable TARGET="ios_simulator_arm64" TARGET_NAME="iosSimulatorArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":modules:news:" IS_TEST="true">
-      <variant NAME="Debug" GRADLE_TASK=":modules:news:linkDebugTestIosSimulatorArm64" FILE="$PROJECT_DIR$/modules/news/build/bin/iosSimulatorArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
-        <envs />
-      </variant>
-    </executable>
-    <executable TARGET="ios_x64" TARGET_NAME="iosX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":modules:core:" IS_TEST="true">
-      <variant NAME="Debug" GRADLE_TASK=":modules:core:linkDebugTestIosX64" FILE="$PROJECT_DIR$/modules/core/build/bin/iosX64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
-        <envs />
-      </variant>
-    </executable>
-    <executable TARGET="ios_arm64" TARGET_NAME="iosArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":shared:" IS_TEST="true">
-      <variant NAME="Debug" GRADLE_TASK=":shared:linkDebugTestIosArm64" FILE="$PROJECT_DIR$/shared/build/bin/iosArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+    <executable TARGET="ios_x64" TARGET_NAME="iosX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":modules:news:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":modules:news:linkDebugTestIosX64" FILE="$PROJECT_DIR$/modules/news/build/bin/iosX64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
         <envs />
       </variant>
     </executable>
     <executable TARGET="ios_simulator_arm64" TARGET_NAME="iosSimulatorArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":shared:" IS_TEST="true">
       <variant NAME="Debug" GRADLE_TASK=":shared:linkDebugTestIosSimulatorArm64" FILE="$PROJECT_DIR$/shared/build/bin/iosSimulatorArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
-        <envs />
-      </variant>
-    </executable>
-    <executable TARGET="ios_simulator_arm64" TARGET_NAME="iosSimulatorArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":modules:core:" IS_TEST="true">
-      <variant NAME="Debug" GRADLE_TASK=":modules:core:linkDebugTestIosSimulatorArm64" FILE="$PROJECT_DIR$/modules/core/build/bin/iosSimulatorArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
-        <envs />
-      </variant>
-    </executable>
-    <executable TARGET="ios_x64" TARGET_NAME="iosX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":modules:news:" IS_TEST="true">
-      <variant NAME="Debug" GRADLE_TASK=":modules:news:linkDebugTestIosX64" FILE="$PROJECT_DIR$/modules/news/build/bin/iosX64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
         <envs />
       </variant>
     </executable>
@@ -204,8 +152,28 @@
         <envs />
       </variant>
     </executable>
+    <executable TARGET="ios_arm64" TARGET_NAME="iosArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":shared:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":shared:linkDebugTestIosArm64" FILE="$PROJECT_DIR$/shared/build/bin/iosArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="ios_x64" TARGET_NAME="iosX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":modules:core:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":modules:core:linkDebugTestIosX64" FILE="$PROJECT_DIR$/modules/core/build/bin/iosX64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
     <executable TARGET="ios_arm64" TARGET_NAME="iosArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":modules:news:" IS_TEST="true">
       <variant NAME="Debug" GRADLE_TASK=":modules:news:linkDebugTestIosArm64" FILE="$PROJECT_DIR$/modules/news/build/bin/iosArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="ios_simulator_arm64" TARGET_NAME="iosSimulatorArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":modules:core:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":modules:core:linkDebugTestIosSimulatorArm64" FILE="$PROJECT_DIR$/modules/core/build/bin/iosSimulatorArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="ios_simulator_arm64" TARGET_NAME="iosSimulatorArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":modules:news:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":modules:news:linkDebugTestIosSimulatorArm64" FILE="$PROJECT_DIR$/modules/news/build/bin/iosSimulatorArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
         <envs />
       </variant>
     </executable>
@@ -233,6 +201,7 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "android.gradle.sync.needed": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "kmp",
@@ -241,12 +210,7 @@
     "project.structure.last.edited": "Dependencies",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2580231",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
-  },
-  "keyToStringList": {
-    "kotlin-gradle-user-dirs": [
-      "/Users/lennart/.gradle"
-    ]
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -254,13 +218,14 @@
       <recent name="$PROJECT_DIR$/modules/core" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/modules/core/src/commonMain/kotlin/app/moers/core" />
       <recent name="$PROJECT_DIR$/modules/core/src/commonMain/kotlin/com/lambdadigamma/core" />
       <recent name="$PROJECT_DIR$/modules" />
       <recent name="$PROJECT_DIR$/modules/core/src/androidMain/res" />
       <recent name="$PROJECT_DIR$/core/src" />
-      <recent name="$PROJECT_DIR$/core/src/androidUnitTest/kotlin/com/lambdadigamma/core" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="app.moers.core" />
       <recent name="" />
     </key>
   </component>

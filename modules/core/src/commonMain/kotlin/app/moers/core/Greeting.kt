@@ -1,4 +1,4 @@
-package com.lambdadigamma.core
+package app.moers.core
 
 class Greeting {
     private val platform: Platform = getPlatform()

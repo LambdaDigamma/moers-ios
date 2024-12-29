@@ -11,7 +11,7 @@ import OSLog
 extension OSLog {
     
     /// Use the Bundle ID as the subsystem
-    internal static var subsystem = Bundle.main.bundleIdentifier ?? "com.lambdadigamma.core"
+    internal static var subsystem = Bundle.main.bundleIdentifier ?? "app.moers.core"
     
     /// Application lifecycle
     public static let coreAppLifecycle = OSLog(subsystem: subsystem, category: "appLifecycle")

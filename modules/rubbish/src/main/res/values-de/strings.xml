@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_channel_rubbish_title">Abfuhrkalender</string>
+    <string name="notification_channel_rubbish_description">Benachrichtigung über die Abfuhr des Mülls am Vortag</string>
+    <string name="notification_rubbish_content">Morgen wird abgeholt: %s</string>
+    <string name="dashboard_rubbish_headline">Nächste Leerungen</string>
+    <string name="rubbish_collection_title">Abfallkalender</string>
+    <string name="rubbish_notification_title">Abfallkalender</string>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_channel_rubbish_title">Waste collection reminders</string>
+    <string name="notification_channel_rubbish_description">Sends a notification on the prior day about trash pickup.</string>
+    <string name="notification_rubbish_content">Picked up tomorrow: %s</string>
+    <string name="rubbish_notification_title">Waste calendar</string>
+    <string name="dashboard_rubbish_headline">Next collection dates</string>
+    <string name="rubbish_collection_title">Waste calendar</string>
+</resources>

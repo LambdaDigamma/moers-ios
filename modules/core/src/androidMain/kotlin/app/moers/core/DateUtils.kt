@@ -1,4 +1,4 @@
-package com.lambdadigamma.core
+package app.moers.core
 
 import android.content.Context
 import android.content.SharedPreferences

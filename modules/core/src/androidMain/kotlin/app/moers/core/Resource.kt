@@ -1,4 +1,4 @@
-package com.lambdadigamma.core
+package app.moers.core
 
 data class Resource<ResultType>(
     var status: Status,
