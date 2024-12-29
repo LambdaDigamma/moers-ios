@@ -18,7 +18,8 @@
 extra["sdkVersion"] = 35
 extra["minSdkVersion"] = 21
 extra["targetSdkVersion"] = 35
-extra["kotlinVersion"] = "1.9.25"
+extra["sourceCompatibility"] = JavaVersion.VERSION_11
+extra["targetCompatibility"] = JavaVersion.VERSION_11
 
 buildscript {
 
@@ -37,7 +38,9 @@ buildscript {
 }
 
 plugins {
-    id("com.google.devtools.ksp") version "1.9.25-1.0.20" apply false
+    alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.kotlinMultiplatform) apply false
+    alias(libs.plugins.androidLibrary) apply false
     id("com.google.protobuf") version "0.9.1" apply false
 }
 

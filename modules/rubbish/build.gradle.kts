@@ -1,10 +1,9 @@
-import org.jetbrains.kotlin.gradle.internal.Kapt3GradleSubplugin.Companion.isIncludeCompileClasspath
-
 plugins {
-    id("com.android.library")
+    alias(libs.plugins.androidLibrary)
     id("org.jetbrains.kotlin.android")
     id("com.google.protobuf")
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.composeCompiler)
 }
 
 val sdkVersion: Int by rootProject.extra

@@ -1,20 +1,16 @@
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-import org.jetbrains.kotlin.gradle.utils.loadPropertyFromResources
 import org.jetbrains.kotlin.konan.properties.loadProperties
 import org.jetbrains.kotlin.util.capitalizeDecapitalize.toLowerCaseAsciiOnly
 
-
-
 val tankerkoenigApiKey: String = loadProperties(project.rootProject.file("local.properties").path).getProperty("TANKERKOENIG_API_KEY")
-//val tankerkoenigApiKey: String = project.rootProject.file("local.properties").getProperty("TANKERKOENIG_API_KEY")
 
 plugins {
     id("com.android.application")
     kotlin("android")
-    id("com.google.devtools.ksp")
-    id("com.google.protobuf") version "0.9.1"
+    alias(libs.plugins.ksp)
+    id("com.google.protobuf")
     id("dagger.hilt.android.plugin")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    alias(libs.plugins.composeCompiler)
 }
 
 project.version = "1.0.2"

@@ -104,7 +104,7 @@ private fun LocationPermissionRequestPending() {
 
     }
 
-    Divider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
+    HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
 
     Surface(tonalElevation = 1.dp) {
         Column(

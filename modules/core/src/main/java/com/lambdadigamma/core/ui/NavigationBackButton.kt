@@ -1,7 +1,7 @@
 package com.lambdadigamma.core.ui
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
@@ -12,7 +12,7 @@ import com.lambdadigamma.core.R
 fun NavigationBackButton(onBack: () -> Unit) {
     IconButton(onClick = onBack) {
         Icon(
-            imageVector = Icons.Default.ArrowBack,
+            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
             contentDescription = stringResource(R.string.navigation_back)
         )
     }
