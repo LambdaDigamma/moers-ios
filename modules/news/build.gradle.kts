@@ -8,22 +8,7 @@ plugins {
  * Accessing the defined global versions using a type safe delegate.
  */
 val minSdkVersion: Int by rootProject.extra
-val targetSdkVersion: Int by rootProject.extra
 val sdkVersion: Int by rootProject.extra
-
-val roomVersion: String by rootProject.extra
-val retrofitVersion: String by rootProject.extra
-val composeVersion: String by rootProject.extra
-
-val hiltVersion: String by rootProject.extra
-val coilVersion: String by rootProject.extra
-
-val junitVersion: String by rootProject.extra
-val androidXTestVersion: String by rootProject.extra
-val testRunnerVersion: String by rootProject.extra
-val testJunitVersion: String by rootProject.extra
-val truthVersion: String by rootProject.extra
-val espressoVersion: String by rootProject.extra
 
 android {
     compileSdk = sdkVersion

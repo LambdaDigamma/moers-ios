@@ -1,25 +1,12 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("com.google.protobuf") version "0.9.1"
+    id("com.google.protobuf")
     id("com.google.devtools.ksp")
 }
 
 val sdkVersion: Int by rootProject.extra
 val minSdkVersion: Int by rootProject.extra
-val targetSdkVersion: Int by rootProject.extra
-
-val hiltVersion: String by rootProject.extra
-val coilVersion: String by rootProject.extra
-
-val composeVersion: String by rootProject.extra
-val roomVersion: String by rootProject.extra
-val retrofitVersion: String by rootProject.extra
-val gsonVersion: String by rootProject.extra
-val protobufVersion: String by rootProject.extra
-val datastoreVersion: String by rootProject.extra
-val coroutinesAndroidVersion: String by rootProject.extra
-val lifecycleVersion: String by rootProject.extra
 
 android {
     compileSdk = sdkVersion
@@ -100,15 +87,15 @@ dependencies {
     implementation(libs.protobuf.javalite)
 
     // Datastore
-    implementation("androidx.datastore:datastore:$datastoreVersion")
-    implementation("androidx.datastore:datastore-preferences:$datastoreVersion")
+    implementation(libs.androidx.datastore)
+    implementation(libs.androidx.datastore.preferences)
 
     // Room Database
-    implementation("androidx.room:room-runtime:$roomVersion")
+    implementation(libs.room.runtime)
     implementation(libs.room.ktx)
-    implementation("androidx.room:room-paging:$roomVersion")
-    ksp("androidx.room:room-compiler:$roomVersion")
-    testImplementation("androidx.room:room-testing:$roomVersion")
+    implementation(libs.androidx.room.paging)
+    ksp(libs.room.compiler)
+    testImplementation(libs.room.testing)
 
     implementation(libs.google.accompanist.placeholder.material)
 

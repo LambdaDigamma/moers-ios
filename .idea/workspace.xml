@@ -10,20 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a67a544-461c-43bd-b464-4b57a8071b80" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Overview/Preview List/PreviewListEventsView.swift" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Blocks/ImageCollectionView.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules/fuel/src/main/java/com/lambdadigamma/fuel/data/FuelStationConverters.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules/news/src/main/res/drawable/outline_error_outline_24.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/androidApp/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/OnboardingNavigationGraph.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/OnboardingNavigationGraph.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/database/AppDatabase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/database/AppDatabase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/misc/AboutScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/misc/AboutScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/misc/FeedbackScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/misc/FeedbackScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/ui/App.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/ui/App.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/ui/AppTab.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/ui/AppTab.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/Actions.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios" afterDir="false" />
@@ -60,39 +51,12 @@
       <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/PageBlock.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/PageBlock.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Native/PageBlockView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Native/PageBlockView.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/core/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/main/java/com/lambdadigamma/core/geo/GeocodingService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/main/java/com/lambdadigamma/core/geo/GeocodingService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/main/java/com/lambdadigamma/core/geo/LocationService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/main/java/com/lambdadigamma/core/geo/LocationService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/main/java/com/lambdadigamma/core/ui/TopBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/main/java/com/lambdadigamma/core/ui/TopBar.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/events/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/modules/events/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/events/src/main/java/com/lambdadigamma/events/models/EventRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/events/src/main/java/com/lambdadigamma/events/models/EventRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/events/src/main/java/com/lambdadigamma/events/ui/EventDetailScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/events/src/main/java/com/lambdadigamma/events/ui/EventDetailScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/events/src/main/java/com/lambdadigamma/events/ui/EventOverviewList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/events/src/main/java/com/lambdadigamma/events/ui/EventOverviewList.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/events/src/main/java/com/lambdadigamma/events/ui/EventOverviewViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/events/src/main/java/com/lambdadigamma/events/ui/EventOverviewViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/fuel/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/modules/fuel/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/fuel/src/main/java/com/lambdadigamma/fuel/data/FuelStation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/fuel/src/main/java/com/lambdadigamma/fuel/data/FuelStation.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/fuel/src/main/java/com/lambdadigamma/fuel/data/FuelStationConverters.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/fuel/src/main/java/com/lambdadigamma/fuel/detail/FuelStationDetailContent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/fuel/src/main/java/com/lambdadigamma/fuel/detail/FuelStationDetailContent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/fuel/src/main/java/com/lambdadigamma/fuel/list/FuelStationListScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/fuel/src/main/java/com/lambdadigamma/fuel/list/FuelStationListScreen.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/news/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/modules/news/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/main/java/com/lambdadigamma/newsfeature/data/NewsListViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/news/src/main/java/com/lambdadigamma/newsfeature/data/NewsListViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/main/java/com/lambdadigamma/newsfeature/ui/NewsScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/news/src/main/java/com/lambdadigamma/newsfeature/ui/NewsScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/src/main/java/com/lambdadigamma/newsfeature/ui/NewsWebDetailScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/news/src/main/java/com/lambdadigamma/newsfeature/ui/NewsWebDetailScreen.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/parking/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/modules/parking/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/parking/src/main/java/com/lambdadigamma/parking/ParkingRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/parking/src/main/java/com/lambdadigamma/parking/ParkingRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/parking/src/main/java/com/lambdadigamma/parking/dashboard/ParkingDashboardViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/parking/src/main/java/com/lambdadigamma/parking/dashboard/ParkingDashboardViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/parking/src/main/java/com/lambdadigamma/parking/detail/ParkingAreaDetailScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/parking/src/main/java/com/lambdadigamma/parking/detail/ParkingAreaDetailScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/parking/src/main/java/com/lambdadigamma/parking/detail/ParkingAreaDetailViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/parking/src/main/java/com/lambdadigamma/parking/detail/ParkingAreaDetailViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/parking/src/main/java/com/lambdadigamma/parking/list/ParkingAreaListViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/parking/src/main/java/com/lambdadigamma/parking/list/ParkingAreaListViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/parking/src/main/java/com/lambdadigamma/parking/list/ParkingAreasScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/parking/src/main/java/com/lambdadigamma/parking/list/ParkingAreasScreen.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/radio/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/modules/radio/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/radio/src/main/java/com/lambdadigamma/radio/detail/BroadcastDetailContent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/radio/src/main/java/com/lambdadigamma/radio/detail/BroadcastDetailContent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/radio/src/main/java/com/lambdadigamma/radio/detail/RadioBroadcastDetailViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/radio/src/main/java/com/lambdadigamma/radio/detail/RadioBroadcastDetailViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/radio/src/main/java/com/lambdadigamma/radio/overview/RadioBroadcastOverview.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/radio/src/main/java/com/lambdadigamma/radio/overview/RadioBroadcastOverview.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/radio/src/main/java/com/lambdadigamma/radio/overview/RadioBroadcastOverviewViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/radio/src/main/java/com/lambdadigamma/radio/overview/RadioBroadcastOverviewViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/rubbish/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/modules/rubbish/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/rubbish/src/main/java/com/lambdadigamma/rubbish/RubbishRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/rubbish/src/main/java/com/lambdadigamma/rubbish/RubbishRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/rubbish/src/main/java/com/lambdadigamma/rubbish/ui/DebugRubbishNotificationList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/rubbish/src/main/java/com/lambdadigamma/rubbish/ui/DebugRubbishNotificationList.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/rubbish/src/main/java/com/lambdadigamma/rubbish/ui/RubbishListScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/rubbish/src/main/java/com/lambdadigamma/rubbish/ui/RubbishListScreen.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

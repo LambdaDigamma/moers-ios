@@ -26,26 +26,6 @@ val minSdkVersion: Int by rootProject.extra
 val targetSdkVersion: Int by rootProject.extra
 val sdkVersion: Int by rootProject.extra
 
-val hiltVersion: String by rootProject.extra
-val composeVersion: String by rootProject.extra
-val roomVersion: String by rootProject.extra
-val datastoreVersion: String by rootProject.extra
-val protobufVersion: String by rootProject.extra
-val gsonVersion: String by rootProject.extra
-val retrofitVersion: String by rootProject.extra
-val autofillVersion: String by rootProject.extra
-val gmsVersion: String by rootProject.extra
-val coilVersion: String by rootProject.extra
-
-val junitVersion: String by rootProject.extra
-val androidXTestVersion: String by rootProject.extra
-val testRunnerVersion: String by rootProject.extra
-val testJunitVersion: String by rootProject.extra
-val truthVersion: String by rootProject.extra
-
-val coroutinesAndroidVersion: String by rootProject.extra
-val lifecycleVersion: String by rootProject.extra
-
 android {
     compileSdk = sdkVersion
 
@@ -188,12 +168,11 @@ dependencies {
     implementation(libs.review)
     implementation(libs.review.ktx)
 
-
 }
 
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:${protobufVersion}"
+        artifact = "com.google.protobuf:protoc:${libs.versions.protobufVersion.get()}"
     }
     generateProtoTasks {
         all().forEach { task ->
