@@ -3,8 +3,8 @@ package com.lambdadigamma.parking
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import app.moers.core.AppExecutors
-import app.moers.core.Resource
+import com.lambdadigamma.core.AppExecutors
+import com.lambdadigamma.core.Resource
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 

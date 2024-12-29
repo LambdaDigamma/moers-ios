@@ -18,8 +18,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import app.moers.core.Status
-import app.moers.core.theme.MeinMoersTheme
+import com.lambdadigamma.core.Status
+import com.lambdadigamma.core.theme.MeinMoersTheme
 import com.lambdadigamma.parking.R
 
 data class ParkingAreaDashboardUiState(

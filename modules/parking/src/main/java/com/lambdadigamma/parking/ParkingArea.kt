@@ -3,7 +3,7 @@ package com.lambdadigamma.parking
 import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.Color
 import com.google.gson.annotations.SerializedName
-import app.moers.core.geo.GeoJsonPoint
+import com.lambdadigamma.core.geo.GeoJsonPoint
 import java.util.*
 
 enum class ParkingAreaOpeningState(val value: String) {

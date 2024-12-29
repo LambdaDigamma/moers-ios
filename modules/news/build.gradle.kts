@@ -1,95 +1,100 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.room)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.hilt)
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
 }
 
-kotlin {
-    androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+/**
+ * Accessing the defined global versions using a type safe delegate.
+ */
+val minSdkVersion: Int by rootProject.extra
+val targetSdkVersion: Int by rootProject.extra
+val sdkVersion: Int by rootProject.extra
+
+val roomVersion: String by rootProject.extra
+val retrofitVersion: String by rootProject.extra
+val composeVersion: String by rootProject.extra
+
+val hiltVersion: String by rootProject.extra
+val coilVersion: String by rootProject.extra
+
+val junitVersion: String by rootProject.extra
+val androidXTestVersion: String by rootProject.extra
+val testRunnerVersion: String by rootProject.extra
+val testJunitVersion: String by rootProject.extra
+val truthVersion: String by rootProject.extra
+val espressoVersion: String by rootProject.extra
+
+android {
+    compileSdk = sdkVersion
+    namespace = "com.lambdadigamma.news"
+
+    defaultConfig {
+        minSdk = minSdkVersion
+        targetSdk = targetSdkVersion
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
+    }
+
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
         }
     }
-    
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "news"
-            isStatic = true
-        }
+    buildFeatures {
+        compose = true
     }
-
-    sourceSets.commonMain {
-        kotlin.srcDir("build/generated/ksp/metadata")
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.2.0"
     }
-
-    sourceSets {
-        androidMain.dependencies {
-            implementation(libs.androidx.core.ktx)
-            implementation(libs.androidx.appcompat)
-            implementation(libs.material)
-
-            // Compose
-            implementation(libs.androidx.compose.ui)
-            implementation(libs.androidx.material3)
-            implementation(libs.androidx.compose.ui.tooling.preview)
-            implementation(libs.androidx.compose.runtime.livedata)
-
-            // Coil
-            implementation(libs.coil.core)
-            implementation(libs.coil.compose)
-
-            // Hilt
-            implementation(libs.hilt.android)
-            implementation(libs.androidx.hilt.navigation.compose)
-//            ksp(libs.hilt.compiler)
-
-            // Room
-            implementation(libs.room.runtime.android)
-
-        }
-        commonMain.dependencies {
-            implementation(projects.modules.core)
-
-
-            implementation(libs.room.runtime)
-            implementation(libs.sqlite.bundled)
-            implementation(libs.xmlutil.core)
-        }
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
-        }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
 dependencies {
-//    add("kspAndroid", libs.room.compiler)
-//    add("kspIosSimulatorArm64", libs.room.compiler)
-//    add("kspIosX64", libs.room.compiler)
-//    add("kspIosArm64", libs.room.compiler)
-}
+    implementation(projects.modules.core)
+    implementation("androidx.core:core-ktx:1.7.0")
+    implementation("androidx.appcompat:appcompat:1.4.2")
+    implementation("com.google.android.material:material:1.6.1")
 
-android {
-    namespace = "app.moers.news"
-    compileSdk = 34
-    defaultConfig {
-        minSdk = 24
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-}
+    // Compose
+    implementation("androidx.compose.ui:ui:$composeVersion")
+    implementation("androidx.compose.material3:material3:1.0.0-alpha14")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.1.1")
+    implementation("androidx.compose.runtime:runtime-livedata:1.3.0-alpha01")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.1.1")
 
-room {
-    schemaDirectory("$projectDir/schemas")
+    // Coil
+    implementation("io.coil-kt:coil:$coilVersion")
+    implementation("io.coil-kt:coil-compose:2.1.0")
+
+    // Hilt
+    implementation("com.google.dagger:hilt-android:$hiltVersion")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
+
+    // Room
+    kapt("androidx.room:room-compiler:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-runtime:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    implementation("com.squareup.retrofit2:converter-simplexml:$retrofitVersion")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+    implementation("com.squareup.retrofit2:retrofit-mock:$retrofitVersion")
+
+    testImplementation("junit:junit:$junitVersion")
+    androidTestImplementation("androidx.test.ext:junit:$testJunitVersion")
+    androidTestImplementation("androidx.test.espresso:espresso-core:$espressoVersion")
+
+    // Accompanist
+    implementation("com.google.accompanist:accompanist-webview:0.24.9-beta")
 }

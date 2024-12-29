@@ -10,11 +10,15 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/composeApp" />
+            <option value="$PROJECT_DIR$/androidApp" />
             <option value="$PROJECT_DIR$/modules" />
             <option value="$PROJECT_DIR$/modules/core" />
+            <option value="$PROJECT_DIR$/modules/events" />
+            <option value="$PROJECT_DIR$/modules/fuel" />
             <option value="$PROJECT_DIR$/modules/news" />
-            <option value="$PROJECT_DIR$/shared" />
+            <option value="$PROJECT_DIR$/modules/parking" />
+            <option value="$PROJECT_DIR$/modules/radio" />
+            <option value="$PROJECT_DIR$/modules/rubbish" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

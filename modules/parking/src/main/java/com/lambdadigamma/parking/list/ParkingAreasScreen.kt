@@ -14,10 +14,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import app.moers.core.theme.MeinMoersTheme
-import app.moers.core.ui.NavigationBackButton
-import app.moers.core.ui.RelativeDateText
-import app.moers.core.ui.ResourcefulContent
+import com.lambdadigamma.core.theme.MeinMoersTheme
+import com.lambdadigamma.core.ui.NavigationBackButton
+import com.lambdadigamma.core.ui.RelativeDateText
+import com.lambdadigamma.core.ui.ResourcefulContent
 import com.lambdadigamma.parking.ParkingAreaOpeningState
 import com.lambdadigamma.parking.R
 import com.lambdadigamma.parking.localizedName

@@ -3,7 +3,7 @@ package com.lambdadigamma.parking.list
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import app.moers.core.Resource
+import com.lambdadigamma.core.Resource
 import com.lambdadigamma.parking.ParkingAreaOpeningState
 import com.lambdadigamma.parking.ParkingRepository
 import dagger.hilt.android.lifecycle.HiltViewModel

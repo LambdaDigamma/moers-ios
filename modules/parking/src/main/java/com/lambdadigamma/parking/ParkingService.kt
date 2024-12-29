@@ -3,10 +3,10 @@ package com.lambdadigamma.parking
 import androidx.lifecycle.LiveData
 import com.google.gson.GsonBuilder
 import com.google.gson.annotations.SerializedName
-import app.moers.core.DataResponse
-import app.moers.core.LiveDataCallAdapterFactory
-import app.moers.core.Resource
-import app.moers.core.utils.AcceptLanguageHeaderInterceptor
+import com.lambdadigamma.core.DataResponse
+import com.lambdadigamma.core.LiveDataCallAdapterFactory
+import com.lambdadigamma.core.Resource
+import com.lambdadigamma.core.utils.AcceptLanguageHeaderInterceptor
 import com.lambdadigamma.parking.detail.ParkingAreaResponse
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
