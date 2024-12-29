@@ -1,8 +1,8 @@
 package com.lambdadigamma.events.ui
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import com.lambdadigamma.core.Resource
 import com.lambdadigamma.events.models.Event
 import com.lambdadigamma.events.models.EventRepository
@@ -26,7 +26,7 @@ class EventOverviewViewModel @Inject constructor(
     }
 
     fun loadOverview(): LiveData<Resource<EventOverviewUiState>> {
-        return Transformations.map(service.getEventOverview()) { resource ->
+        return service.getEventOverview().map { resource ->
 
             val upcomingEvents = resource.data?.data?.todayEvents.orEmpty()
                 .map { EventUi(it) }

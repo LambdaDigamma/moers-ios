@@ -23,6 +23,7 @@ import com.lambdadigamma.fuel.R
 import com.lambdadigamma.fuel.R.drawable
 import com.lambdadigamma.fuel.data.FuelType
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FuelStationListScreen(onBack: () -> Unit, onShowFuelStation: (String) -> Unit) {
 
@@ -38,7 +39,7 @@ fun FuelStationListScreen(onBack: () -> Unit, onShowFuelStation: (String) -> Uni
         modifier = Modifier
             .fillMaxSize()
     ) {
-        SmallTopAppBar(
+        TopAppBar(
             title = {
                 Text(stringResource(R.string.fuel_stations_title))
             },

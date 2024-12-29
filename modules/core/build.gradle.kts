@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    kotlin("kapt")
+    id("com.google.devtools.ksp")
 }
 
 /**
@@ -22,8 +22,6 @@ val testJunitVersion: String by rootProject.extra
 val truthVersion: String by rootProject.extra
 
 val datastoreVersion: String by rootProject.extra
-
-val espressoVersion: String by rootProject.extra
 
 val composeVersion: String by rootProject.extra
 
@@ -50,76 +48,75 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.2.0"
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
-    testNamespace = "com.lambdadigamma.core"
     namespace = "com.lambdadigamma.core"
 }
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.4.2")
-    implementation("com.google.android.material:material:1.6.1")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation(libs.kotlinx.coroutines.android)
 
     // Google Play Services
-    implementation("com.google.android.gms:play-services-location:$gmsVersion")
-    implementation("androidx.work:work-runtime-ktx:2.7.1")
+    implementation(libs.play.services.location)
+    implementation(libs.androidx.work.runtime.ktx)
 
-    testImplementation("junit:junit:$junitVersion")
-    androidTestImplementation("androidx.test:core:$androidXTestVersion")
-    androidTestImplementation("androidx.test:runner:$testRunnerVersion")
-    androidTestImplementation("androidx.test:rules:$testRunnerVersion")
-    androidTestImplementation("androidx.test.ext:junit:$testJunitVersion")
-    androidTestImplementation("androidx.test.ext:truth:$truthVersion")
-    androidTestImplementation("androidx.test.espresso:espresso-core:$espressoVersion")
-    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.core)
+    androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.androidx.rules)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.truth)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
 
     // Room Database
-    implementation("androidx.room:room-runtime:$roomVersion")
-    implementation("androidx.room:room-ktx:$roomVersion")
-    implementation("androidx.room:room-paging:$roomVersion")
-    kapt("androidx.room:room-compiler:$roomVersion")
-    testImplementation("androidx.room:room-testing:$roomVersion")
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    implementation(libs.androidx.room.paging)
+    ksp(libs.room.compiler)
+    testImplementation(libs.room.testing)
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:$hiltVersion")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
-    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
+    ksp(libs.hilt.compiler)
 
     // Retrofit
-    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
-    implementation("com.squareup.retrofit2:converter-simplexml:$retrofitVersion")
-    implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
-    implementation("com.squareup.retrofit2:retrofit-mock:$retrofitVersion")
+    implementation(libs.retrofit)
+    implementation(libs.converter.simplexml)
+    implementation(libs.converter.gson)
+    implementation(libs.retrofit.mock)
 
     // Datastore
-    implementation("androidx.datastore:datastore:$datastoreVersion")
-    implementation("androidx.datastore:datastore-preferences:$datastoreVersion")
+    implementation(libs.androidx.datastore)
+    implementation(libs.androidx.datastore.preferences)
 
     // Compose
-    implementation("androidx.compose.ui:ui:$composeVersion")
-    implementation("androidx.compose.material3:material3:1.0.0-alpha14")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.1.1")
-    implementation("androidx.compose.runtime:runtime-livedata:1.3.0-alpha01")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.1.1")
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.compose.runtime.livedata)
+    debugImplementation(libs.androidx.compose.ui.tooling)
 
     // Google Maps
-    implementation("com.google.maps.android:maps-compose:2.5.3")
-    implementation("com.google.android.gms:play-services-maps:18.0.2")
+    implementation(libs.maps.compose)
+    implementation(libs.play.services.maps)
 
-    implementation("com.google.accompanist:accompanist-swiperefresh:0.24.13-rc")
+    implementation(libs.accompanist.swiperefresh)
 
 }

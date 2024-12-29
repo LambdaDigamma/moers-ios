@@ -1,8 +1,8 @@
 package com.lambdadigamma.parking.dashboard
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import com.lambdadigamma.core.Resource
 import com.lambdadigamma.parking.ParkingRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +14,7 @@ class ParkingDashboardViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun load(): LiveData<Resource<List<ParkingAreaDashboardUiState>>> {
-        return Transformations.map(parkingRepository.load()) { resource ->
+        return parkingRepository.load().map { resource ->
             return@map resource.transform {
                 it.map { parkingArea ->
                     ParkingAreaDashboardUiState(

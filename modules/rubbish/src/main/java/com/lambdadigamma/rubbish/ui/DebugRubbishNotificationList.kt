@@ -17,8 +17,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import androidx.work.WorkManager
 import com.lambdadigamma.core.theme.MeinMoersTheme
 import com.lambdadigamma.rubbish.notifications.RubbishScheduleNotificationWorker
@@ -37,11 +37,10 @@ class DebugRubbishNotificationViewModel @Inject constructor(
 
         val workManager = WorkManager.getInstance(context)
 
-        return Transformations.map(
-            workManager.getWorkInfosByTagLiveData(RubbishScheduleNotificationWorker.TAG)
-        ) {
-            return@map it.map { DebugNotification(it.id.toString(), "") }
-        }
+        return workManager.getWorkInfosByTagLiveData(RubbishScheduleNotificationWorker.TAG)
+            .map {
+                return@map it.map { DebugNotification(it.id.toString(), "") }
+            }
 
     }
 

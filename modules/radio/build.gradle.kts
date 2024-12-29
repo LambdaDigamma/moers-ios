@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    kotlin("kapt")
+    id("com.google.devtools.ksp")
 }
 
 val sdkVersion: Int by rootProject.extra
@@ -26,7 +26,6 @@ android {
 
     defaultConfig {
         minSdk = minSdkVersion
-        targetSdk = targetSdkVersion
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -42,17 +41,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.2.0"
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
 }
 
@@ -60,58 +59,58 @@ dependencies {
 
     implementation(projects.modules.core)
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesAndroidVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesAndroidVersion")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
 
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.4.2")
-    implementation("com.google.android.material:material:1.6.1")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:$hiltVersion")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
-    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
+    ksp(libs.hilt.compiler)
 
     // Coil
-    implementation("io.coil-kt:coil:$coilVersion")
-    implementation("io.coil-kt:coil-compose:2.1.0")
+    implementation(libs.coil.core)
+    implementation(libs.coil.compose)
 
     // Compose
-    implementation("androidx.compose.ui:ui:$composeVersion")
-    implementation("androidx.compose.material3:material3:1.0.0-alpha14")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.1.1")
-    implementation("androidx.compose.runtime:runtime-livedata:1.3.0-alpha01")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.1.1")
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.compose.runtime.livedata)
+    debugImplementation(libs.androidx.compose.ui.tooling)
 
     // Gson
-    implementation("com.google.code.gson:gson:$gsonVersion")
+    implementation(libs.gson)
 
     // Retrofit
-    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
-    implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
-    implementation("com.squareup.retrofit2:retrofit-mock:$retrofitVersion")
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.retrofit.mock)
 
     // Protobuf
-    implementation("com.google.protobuf:protobuf-javalite:$protobufVersion")
+    implementation(libs.protobuf.javalite)
 
     // Datastore
-    implementation("androidx.datastore:datastore:$datastoreVersion")
-    implementation("androidx.datastore:datastore-preferences:$datastoreVersion")
+    implementation(libs.androidx.datastore)
+    implementation(libs.androidx.datastore.preferences)
 
     // Room Database
-    implementation("androidx.room:room-runtime:$roomVersion")
-    implementation("androidx.room:room-ktx:$roomVersion")
-    implementation("androidx.room:room-paging:$roomVersion")
-    kapt("androidx.room:room-compiler:$roomVersion")
-    testImplementation("androidx.room:room-testing:$roomVersion")
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    implementation(libs.androidx.room.paging)
+    ksp(libs.room.compiler)
+    testImplementation(libs.room.testing)
 
-    implementation("com.google.accompanist:accompanist-placeholder-material:0.24.13-rc")
+    implementation(libs.google.accompanist.placeholder.material)
 
     // Work
-    implementation("androidx.work:work-runtime-ktx:2.7.1")
+    implementation(libs.androidx.work.runtime.ktx)
 
 }

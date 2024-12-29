@@ -57,7 +57,7 @@ fun ParkingAreaDetailScreen(id: Int, onBack: () -> Unit) {
 fun ParkingAreaDetailContent(parkingArea: ParkingAreaDetailState, onBack: () -> Unit) {
 
     Scaffold(topBar = {
-        SmallTopAppBar(
+        TopAppBar(
             title = {
                 Text(text = "Details")
             },

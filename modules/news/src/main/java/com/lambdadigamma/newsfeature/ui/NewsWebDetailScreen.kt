@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SmallTopAppBar
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -24,7 +24,7 @@ fun NewsWebDetailScreen(id: Int, onBack: () -> Unit) {
 
     Scaffold(
         topBar = {
-            SmallTopAppBar(title = {}, navigationIcon = {
+            TopAppBar(title = {}, navigationIcon = {
                 NavigationBackButton(onBack = onBack)
             })
         }

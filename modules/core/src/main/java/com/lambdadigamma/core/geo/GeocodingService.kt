@@ -27,6 +27,7 @@ class DefaultGeocodingService @Inject constructor(
             try {
                 return@withContext geocoder
                     .getFromLocation(point.latitude, point.longitude, 1)
+                    .orEmpty()
                     .map {
                         it.toGeocodedAddress()
                     }
@@ -43,6 +44,7 @@ class DefaultGeocodingService @Inject constructor(
 
     private fun geocodeIntoPointList(text: String, maxResults: Int = 1): List<Point> {
         return geocoder.getFromLocationName(text, maxResults)
+            .orEmpty()
             .filterNotNull()
             .map {
                 Point(it.latitude, it.longitude)

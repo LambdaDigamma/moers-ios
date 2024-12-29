@@ -47,7 +47,7 @@ fun BroadcastOverviewContent(
 
     Scaffold(
         topBar = {
-            SmallTopAppBar(
+            TopAppBar(
                 title = {
                     Text(text = stringResource(R.string.community_radio_title))
                 },

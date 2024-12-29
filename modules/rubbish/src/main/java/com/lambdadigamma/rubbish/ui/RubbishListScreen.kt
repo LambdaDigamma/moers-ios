@@ -2,8 +2,9 @@ package com.lambdadigamma.rubbish.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.SmallTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -18,6 +19,7 @@ import com.lambdadigamma.rubbish.R
 import com.lambdadigamma.rubbish.RubbishScheduleViewModel
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RubbishListScreen(onBack: () -> Unit) {
 
@@ -32,7 +34,7 @@ fun RubbishListScreen(onBack: () -> Unit) {
         modifier = Modifier
             .fillMaxSize()
     ) {
-        SmallTopAppBar(
+        TopAppBar(
             title = { Text(stringResource(R.string.rubbish_collection_title)) },
             navigationIcon = {
                 NavigationBackButton(onBack = onBack)

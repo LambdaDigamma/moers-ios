@@ -28,7 +28,6 @@ import com.lambdadigamma.rubbish.RubbishDao
         RubbishCollectionItem::class
     ], version = 4, exportSchema = false
 )
-
 @TypeConverters(Converters::class, FuelStationConverters::class)
 abstract class AppDatabase : RoomDatabase() {
 

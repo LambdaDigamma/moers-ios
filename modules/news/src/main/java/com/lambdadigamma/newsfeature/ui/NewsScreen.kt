@@ -23,7 +23,7 @@ import com.lambdadigamma.core.DateUtils
 import com.lambdadigamma.core.Status
 import com.lambdadigamma.core.theme.MeinMoersTheme
 import com.lambdadigamma.core.ui.TopBar
-import com.lambdadigamma.newsfeature.R
+import com.lambdadigamma.news.R
 import com.lambdadigamma.newsfeature.data.NewsListViewModel
 import java.time.format.FormatStyle
 
@@ -144,7 +144,7 @@ fun NewsErrorScreen(error: String) {
             modifier = Modifier.padding(16.dp)
         ) {
             Icon(
-                painter = painterResource(id = R.drawable.ic_outline_error_outline_24),
+                painter = painterResource(id = R.drawable.outline_error_outline_24),
                 contentDescription = stringResource(R.string.news_list_error_description),
                 modifier = Modifier.size(64.dp),
                 tint = MaterialTheme.colorScheme.surfaceTint

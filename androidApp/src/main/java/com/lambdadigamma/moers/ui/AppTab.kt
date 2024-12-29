@@ -18,7 +18,7 @@ enum class AppTab(
         Destinations.dashboard
     ),
     NEWS(
-        com.lambdadigamma.newsfeature.R.string.navigation_news,
+        com.lambdadigamma.news.R.string.navigation_news,
         R.drawable.ic_outline_newspaper_24,
         R.drawable.ic_outline_newspaper_24,
         Destinations.news

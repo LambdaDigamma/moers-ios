@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -169,7 +169,10 @@ private fun SectionHeader(text: String, onClick: () -> Unit, showMore: Boolean =
 
         if (showMore) {
             IconButton(onClick = onClick) {
-                Icon(imageVector = Icons.Filled.ArrowForward, contentDescription = "Alle ansehen")
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowForward,
+                    contentDescription = "Alle ansehen"
+                )
             }
         }
     }

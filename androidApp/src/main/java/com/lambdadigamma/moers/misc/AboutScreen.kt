@@ -23,7 +23,7 @@ import com.lambdadigamma.moers.onboarding.OpenDataInfoCard
 fun AboutScreen(onBack: () -> Unit) {
 
     Scaffold(topBar = {
-        SmallTopAppBar(
+        TopAppBar(
             title = {
                 Text(text = stringResource(R.string.about_title))
             }, navigationIcon = {

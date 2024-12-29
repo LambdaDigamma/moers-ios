@@ -33,7 +33,7 @@ fun ParkingAreasScreen(onSelectParkingArea: (Int) -> Unit, onBack: () -> Unit) {
 
     Scaffold(
         topBar = {
-            SmallTopAppBar(title = {
+            TopAppBar(title = {
                 Text(text = stringResource(R.string.parking_areas_title))
             }, navigationIcon = {
                 NavigationBackButton(onBack = onBack)

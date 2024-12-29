@@ -36,7 +36,7 @@ fun BroadcastDetailContent(broadcast: BroadcastDetailUiState, onBack: () -> Unit
     val context = LocalContext.current
 
     Scaffold(topBar = {
-        SmallTopAppBar(title = {
+        TopAppBar(title = {
             Text(text = "Details")
         }, navigationIcon = {
             NavigationBackButton(onBack = onBack)

@@ -69,7 +69,7 @@ private fun EventDetail(event: EventDetailUiState, onBack: () -> Unit) {
 
     Scaffold(
         topBar = {
-            SmallTopAppBar(
+            TopAppBar(
                 title = {
                     Text(text = "Details")
                 },

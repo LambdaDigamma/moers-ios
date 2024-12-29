@@ -46,11 +46,13 @@ class LocationUpdatesUseCase @Inject constructor(
             override fun onLocationResult(locationResult: LocationResult) {
                 super.onLocationResult(locationResult)
                 val location = locationResult.lastLocation
-                val userLocation = Point(
-                    latitude = location.latitude,
-                    longitude = location.longitude
-                )
-                this@callbackFlow.trySend(userLocation).isSuccess
+                location?.let {
+                    val userLocation = Point(
+                        latitude = location.latitude,
+                        longitude = location.longitude
+                    )
+                    this@callbackFlow.trySend(userLocation).isSuccess
+                }
             }
         }
 
@@ -76,11 +78,13 @@ class LocationUpdatesUseCase @Inject constructor(
             override fun onLocationResult(locationResult: LocationResult) {
                 super.onLocationResult(locationResult)
                 val location = locationResult.lastLocation
-                val userLocation = Point(
-                    latitude = location.latitude,
-                    longitude = location.longitude
-                )
-                this@callbackFlow.trySend(userLocation).isSuccess
+                location?.let {
+                    val userLocation = Point(
+                        latitude = location.latitude,
+                        longitude = location.longitude
+                    )
+                    this@callbackFlow.trySend(userLocation).isSuccess
+                }
             }
         }
 
@@ -164,12 +168,14 @@ class GMSLocationService(
 
             val listener = object : LocationCallback() {
                 override fun onLocationResult(p0: LocationResult) {
-                    continuation.resume(
-                        Point(
-                            latitude = p0.lastLocation.latitude,
-                            longitude = p0.lastLocation.longitude
+                    p0.lastLocation?.let { location ->
+                        continuation.resume(
+                            Point(
+                                latitude = location.latitude,
+                                longitude = location.longitude
+                            )
                         )
-                    )
+                    }
                 }
             }
 

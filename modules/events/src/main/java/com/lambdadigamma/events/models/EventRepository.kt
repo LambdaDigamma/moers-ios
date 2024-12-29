@@ -3,7 +3,6 @@ package com.lambdadigamma.events.models
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.map
 import com.lambdadigamma.core.*
 import com.lambdadigamma.core.utils.LastUpdate
@@ -39,7 +38,7 @@ class EventRepository @Inject constructor(
                 eventDao.getEvents().map { events -> events.sortedBy { it.startDate } }
 
             override fun createCall(): LiveData<Resource<List<Event>>> {
-                return Transformations.map(moersService.getEvents()) { resource ->
+                return moersService.getEvents().map { resource ->
                     return@map resource.transform { response ->
                         return@transform response.data.sortedBy { it.startDate }
                     }
@@ -63,7 +62,7 @@ class EventRepository @Inject constructor(
             override fun loadFromDb() = eventDao.getEvent(id)
 
             override fun createCall(): LiveData<Resource<Event>> {
-                return Transformations.map(moersService.getEvent(id)) { resource ->
+                return moersService.getEvent(id).map { resource ->
                     return@map resource.transform { response ->
                         return@transform response
                     }

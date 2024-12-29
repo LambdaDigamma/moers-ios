@@ -31,7 +31,7 @@ fun FeedbackScreen(onBack: () -> Unit) {
 
     Scaffold(
         topBar = {
-            SmallTopAppBar(
+            TopAppBar(
                 title = {
                     Text(stringResource(R.string.feedback_title))
                 }, navigationIcon = {

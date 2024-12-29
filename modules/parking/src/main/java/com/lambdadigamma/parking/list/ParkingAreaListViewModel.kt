@@ -1,8 +1,8 @@
 package com.lambdadigamma.parking.list
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import com.lambdadigamma.core.Resource
 import com.lambdadigamma.parking.ParkingAreaOpeningState
 import com.lambdadigamma.parking.ParkingRepository
@@ -25,7 +25,7 @@ class ParkingAreaListViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun load(): LiveData<Resource<List<ParkingAreaListItem>>> {
-        return Transformations.map(parkingRepository.loadParkingAreas()) { resource ->
+        return parkingRepository.loadParkingAreas().map { resource ->
             resource.transform { parkingAreas ->
                 parkingAreas.map {
                     ParkingAreaListItem(

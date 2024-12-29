@@ -39,7 +39,7 @@ data class FuelStationDetailUiState(
 fun FuelStationDetailContent(fuelStation: FuelStationDetailUiState, onBack: () -> Unit) {
 
     Scaffold(topBar = {
-        SmallTopAppBar(
+        TopAppBar(
             title = { Text(text = stringResource(R.string.parking_area_detail_title)) },
             navigationIcon = {
                 NavigationBackButton(onBack = onBack)

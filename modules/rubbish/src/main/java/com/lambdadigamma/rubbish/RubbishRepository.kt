@@ -5,7 +5,7 @@ import android.content.Context
 import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.map
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import com.lambdadigamma.core.AppExecutors
@@ -90,7 +90,7 @@ class RubbishRepository @Inject constructor(
 
                 val fetchedStreets = remoteDataSource.fetchStreets(streetName = streetName)
 
-                return Transformations.map(fetchedStreets) { data ->
+                return fetchedStreets.map { data ->
                     return@map data.transform { it.data }
                 }
             }

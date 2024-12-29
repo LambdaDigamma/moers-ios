@@ -2,8 +2,8 @@ package com.lambdadigamma.radio.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import com.lambdadigamma.core.Resource
 import com.lambdadigamma.radio.data.RadioBroadcastService
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +19,7 @@ class RadioBroadcastDetailViewModel @Inject constructor(
     fun load(): LiveData<Resource<BroadcastDetailUiState>> {
 
         return if (radioBroadcastId != null) {
-            return Transformations.map(radioBroadcastService.show(radioBroadcastId!!)) { resource ->
+            return radioBroadcastService.show(radioBroadcastId!!).map { resource ->
                 return@map resource.transform { dataResponse ->
                     BroadcastDetailUiState(
                         title = dataResponse.data.title,

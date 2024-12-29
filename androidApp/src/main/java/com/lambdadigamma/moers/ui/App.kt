@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.lambdadigamma.core.theme.MeinMoersTheme
 import com.lambdadigamma.moers.Destinations
@@ -26,7 +25,7 @@ fun Onboarding(
     finishActivity: () -> Unit,
 ) {
     MeinMoersTheme {
-        val navController = rememberAnimatedNavController()
+        val navController = rememberNavController()
         OnboardingNavigationGraph(
             navController = navController,
             onFinishOnboarding = onFinishOnboarding,

@@ -1,8 +1,8 @@
 package com.lambdadigamma.parking.detail
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import com.lambdadigamma.core.Resource
 import com.lambdadigamma.parking.ParkingService
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +19,7 @@ class ParkingAreaDetailViewModel @Inject constructor(
     fun load(id: Int): LiveData<Resource<ParkingAreaDetailState>> {
         this.currentParkingAreaId = id
 
-        return Transformations.map(parkingAreaService.getParkingArea(id)) { resource ->
+        return parkingAreaService.getParkingArea(id).map { resource ->
             return@map resource.transform { response ->
                 val parkingArea = response.data.parkingArea
                 return@transform ParkingAreaDetailState(

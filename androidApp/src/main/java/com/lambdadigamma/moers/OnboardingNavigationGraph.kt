@@ -4,6 +4,7 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.Transition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.padding
@@ -17,13 +18,23 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
-import com.google.accompanist.navigation.animation.AnimatedNavHost
-import com.google.accompanist.navigation.animation.composable
-import com.google.accompanist.navigation.animation.navigation
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navigation
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.lambdadigamma.core.user.UserType
-import com.lambdadigamma.moers.onboarding.*
+import com.lambdadigamma.moers.onboarding.OnboardingAboutScreen
+import com.lambdadigamma.moers.onboarding.OnboardingDoneScreen
+import com.lambdadigamma.moers.onboarding.OnboardingFuelScreen
+import com.lambdadigamma.moers.onboarding.OnboardingLocationScreen
+import com.lambdadigamma.moers.onboarding.OnboardingRubbishStreetScreen
+import com.lambdadigamma.moers.onboarding.OnboardingStep
+import com.lambdadigamma.moers.onboarding.OnboardingTop
+import com.lambdadigamma.moers.onboarding.OnboardingUserTypeScreen
+import com.lambdadigamma.moers.onboarding.OnboardingUserTypeViewModel
+import com.lambdadigamma.moers.onboarding.OnboardingViewModel
+import com.lambdadigamma.moers.onboarding.OnboardingWelcomeScreen
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
@@ -37,11 +48,10 @@ private fun positionForRoute(route: String): Int {
 private fun enterTransition(
     initialRoute: String,
     destinationRoute: String,
-    contentScope: AnimatedContentScope<NavBackStackEntry>
+    contentScope: AnimatedContentScope
 ): EnterTransition {
     val initialPosition = positionForRoute(initialRoute)
     val destinationPosition = positionForRoute(destinationRoute)
-
 
     return if (
         listOf(Destinations.Onboarding.welcome, Destinations.Onboarding.about).contains(
@@ -50,22 +60,24 @@ private fun enterTransition(
     ) {
         return EnterTransition.None
     } else if (destinationPosition > initialPosition) {
-        contentScope.slideIntoContainer(
-            AnimatedContentScope.SlideDirection.Left,
-            animationSpec = tween(tweenTimeEnter)
-        )
+        return EnterTransition.None
+//        contentScope.slideIntoContainer(
+//            AnimatedContentScope.SlideDirection.Left,
+//            animationSpec = tween(tweenTimeEnter)
+//        )
     } else {
-        contentScope.slideIntoContainer(
-            AnimatedContentScope.SlideDirection.Right,
-            animationSpec = tween(tweenTimeEnter)
-        )
+        return EnterTransition.None
+//        contentScope.slideIntoContainer(
+//            AnimatedContentScope.SlideDirection.Right,
+//            animationSpec = tween(tweenTimeEnter)
+//        )
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
 fun OnboardingNavigationGraph(
-    navController: NavHostController = rememberAnimatedNavController(),
+    navController: NavHostController = rememberNavController(),
     finishActivity: () -> Unit,
     onFinishOnboarding: () -> Unit,
 ) {
@@ -78,7 +90,7 @@ fun OnboardingNavigationGraph(
     val userTypeViewModel: OnboardingUserTypeViewModel = hiltViewModel()
 
     Scaffold(topBar = { OnboardingTop(navController) }, modifier = Modifier.systemBarsPadding()) {
-        AnimatedNavHost(
+        NavHost(
             navController = navController,
             Destinations.Onboarding.graph,
             modifier = Modifier.padding(it)
@@ -89,15 +101,15 @@ fun OnboardingNavigationGraph(
             ) {
                 composable(
                     route = Destinations.Onboarding.welcome,
-                    enterTransition = {
-                        initialState.destination.route?.let { it1 ->
-                            enterTransition(
-                                initialRoute = it1,
-                                destinationRoute = Destinations.Onboarding.welcome,
-                                contentScope = this
-                            )
-                        }
-                    },
+//                    enterTransition = {
+//                        initialState.destination.route?.let { it1 ->
+//                            enterTransition(
+//                                initialRoute = it1,
+//                                destinationRoute = Destinations.Onboarding.welcome,
+//                                contentScope = this
+//                            )
+//                        }
+//                    },
                 ) { _: NavBackStackEntry ->
                     BackHandler {
                         finishActivity()
@@ -108,15 +120,15 @@ fun OnboardingNavigationGraph(
                 }
                 composable(
                     route = Destinations.Onboarding.about,
-                    enterTransition = {
-                        initialState.destination.route?.let { it1 ->
-                            enterTransition(
-                                initialRoute = it1,
-                                destinationRoute = Destinations.Onboarding.about,
-                                contentScope = this
-                            )
-                        }
-                    },
+//                    enterTransition = {
+//                        initialState.destination.route?.let { it1 ->
+//                            enterTransition(
+//                                initialRoute = it1,
+//                                destinationRoute = Destinations.Onboarding.about,
+//                                contentScope = this
+//                            )
+//                        }
+//                    },
                 ) {
                     BackHandler(onBack = {
                         navController.navigateUp()
@@ -127,15 +139,15 @@ fun OnboardingNavigationGraph(
                 }
                 composable(
                     route = Destinations.Onboarding.userTypeSelection,
-                    enterTransition = {
-                        initialState.destination.route?.let { it1 ->
-                            enterTransition(
-                                initialRoute = it1,
-                                destinationRoute = Destinations.Onboarding.userTypeSelection,
-                                contentScope = this
-                            )
-                        }
-                    },
+//                    enterTransition = {
+//                        initialState.destination.route?.let { it1 ->
+//                            enterTransition(
+//                                initialRoute = it1,
+//                                destinationRoute = Destinations.Onboarding.userTypeSelection,
+//                                contentScope = this
+//                            )
+//                        }
+//                    },
                 ) {
                     BackHandler {
                         navController.navigateUp()
@@ -149,15 +161,15 @@ fun OnboardingNavigationGraph(
                 }
                 composable(
                     route = Destinations.Onboarding.location,
-                    enterTransition = {
-                        initialState.destination.route?.let { it1 ->
-                            enterTransition(
-                                initialRoute = it1,
-                                destinationRoute = Destinations.Onboarding.location,
-                                contentScope = this
-                            )
-                        }
-                    },
+//                    enterTransition = {
+//                        initialState.destination.route?.let { it1 ->
+//                            enterTransition(
+//                                initialRoute = it1,
+//                                destinationRoute = Destinations.Onboarding.location,
+//                                contentScope = this
+//                            )
+//                        }
+//                    },
                 ) {
                     BackHandler {
                         navController.navigateUp()
@@ -178,15 +190,15 @@ fun OnboardingNavigationGraph(
                 }
                 composable(
                     route = Destinations.Onboarding.rubbishStreet,
-                    enterTransition = {
-                        initialState.destination.route?.let { it1 ->
-                            enterTransition(
-                                initialRoute = it1,
-                                destinationRoute = Destinations.Onboarding.rubbishStreet,
-                                contentScope = this
-                            )
-                        }
-                    },
+//                    enterTransition = {
+//                        initialState.destination.route?.let { it1 ->
+//                            enterTransition(
+//                                initialRoute = it1,
+//                                destinationRoute = Destinations.Onboarding.rubbishStreet,
+//                                contentScope = this
+//                            )
+//                        }
+//                    },
                 ) {
                     BackHandler {
                         navController.navigateUp()
@@ -199,15 +211,15 @@ fun OnboardingNavigationGraph(
                 }
                 composable(
                     route = Destinations.Onboarding.fuel,
-                    enterTransition = {
-                        initialState.destination.route?.let { it1 ->
-                            enterTransition(
-                                initialRoute = it1,
-                                destinationRoute = Destinations.Onboarding.fuel,
-                                contentScope = this
-                            )
-                        }
-                    },
+//                    enterTransition = {
+//                        initialState.destination.route?.let { it1 ->
+//                            enterTransition(
+//                                initialRoute = it1,
+//                                destinationRoute = Destinations.Onboarding.fuel,
+//                                contentScope = this
+//                            )
+//                        }
+//                    },
                 ) {
                     BackHandler {
                         navController.navigateUp()
@@ -218,15 +230,15 @@ fun OnboardingNavigationGraph(
                 }
                 composable(
                     route = Destinations.Onboarding.done,
-                    enterTransition = {
-                        initialState.destination.route?.let { it1 ->
-                            enterTransition(
-                                initialRoute = it1,
-                                destinationRoute = Destinations.Onboarding.done,
-                                contentScope = this
-                            )
-                        }
-                    },
+//                    enterTransition = {
+//                        initialState.destination.route?.let { it1 ->
+//                            enterTransition(
+//                                initialRoute = it1,
+//                                destinationRoute = Destinations.Onboarding.done,
+//                                contentScope = this
+//                            )
+//                        }
+//                    },
                 ) {
                     BackHandler {
                         navController.navigateUp()

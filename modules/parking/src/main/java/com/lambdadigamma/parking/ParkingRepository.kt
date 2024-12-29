@@ -2,7 +2,7 @@ package com.lambdadigamma.parking
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.map
 import com.lambdadigamma.core.AppExecutors
 import com.lambdadigamma.core.Resource
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -17,13 +17,13 @@ class ParkingRepository @Inject constructor(
 ) {
 
     fun load(): LiveData<Resource<List<ParkingArea>>> {
-        return Transformations.map(parkingService.getParkingDashboard()) {
+        return parkingService.getParkingDashboard().map {
             it.transform { response -> response.data.parkingAreas }
         }
     }
 
     fun loadParkingAreas(): LiveData<Resource<List<ParkingArea>>> {
-        return Transformations.map(parkingService.getParkingAreas()) {
+        return parkingService.getParkingAreas().map {
             it.transform { response -> response.data.parkingAreas }
         }
     }
