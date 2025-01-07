@@ -41,9 +41,9 @@ fun NavGraph(
     startDestination: String = Destinations.dashboard
 ) {
 
-    rememberSystemUiController().setStatusBarColor(
-        MaterialTheme.colorScheme.background, darkIcons = !isSystemInDarkTheme()
-    )
+//    rememberSystemUiController().setStatusBarColor(
+//        MaterialTheme.colorScheme.background, darkIcons = !isSystemInDarkTheme()
+//    )
 
     NavHost(
         navController = navController,

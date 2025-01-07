@@ -80,11 +80,12 @@ dependencies {
     implementation(libs.androidx.work.runtime.ktx)
 
     // Compose
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.material)
-    implementation(libs.androidx.material3)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.runtime.livedata)
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.material3)
 
     // Coil
     implementation(libs.coil.core)

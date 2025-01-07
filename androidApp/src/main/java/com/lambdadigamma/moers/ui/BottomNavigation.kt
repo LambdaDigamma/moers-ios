@@ -1,6 +1,13 @@
 package com.lambdadigamma.moers.ui
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
@@ -18,7 +25,7 @@ fun BottomBar(navController: NavController, tabs: Array<AppTab>) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
         ?: AppTab.DASHBOARD.route
-    val routes = remember { AppTab.values().map { it.route } }
+    val routes = remember { AppTab.entries.map { it.route } }
 
     if (currentRoute in routes) {
 

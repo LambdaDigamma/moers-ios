@@ -10,14 +10,59 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a67a544-461c-43bd-b464-4b57a8071b80" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/androidApp/src/main/ic_launcher-playstore.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/androidApp/src/main/res/drawable/monochromatic.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-hdpi/ic_launcher_foreground.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-hdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-mdpi/ic_launcher_foreground.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-mdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-xhdpi/ic_launcher_foreground.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/androidApp/src/main/res/values/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/design/Icons.afdesign" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/design/export/android/foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/design/export/android/foreground.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/design/export/android/monochromatic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/design/export/android/monochromatic.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Overview/Preview List/PreviewListEventsView.swift" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Blocks/ImageCollectionView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/androidApp/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/onboarding/OnboardingLocationScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/onboarding/OnboardingLocationScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/NavGraph.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/NavGraph.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/OnboardingNavigationGraph.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/OnboardingNavigationGraph.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/dashboard/DashboardScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/dashboard/DashboardScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/onboarding/OnboardingTop.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/onboarding/OnboardingTop.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/onboarding/OnboardingUserTypeScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/onboarding/OnboardingUserTypeScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/onboarding/ui/OnboardingTopBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/onboarding/ui/OnboardingTopBar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/ui/App.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/ui/App.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/ui/BottomNavigation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/java/com/lambdadigamma/moers/ui/BottomNavigation.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-hdpi/ic_launcher_background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-hdpi/ic_launcher_foreground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-mdpi/ic_launcher_background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-mdpi/ic_launcher_foreground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-xhdpi/ic_launcher_background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-xxhdpi/ic_launcher_background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-xxxhdpi/ic_launcher_background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI-Package.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI-Package.xcscheme" afterDir="false" />
@@ -52,14 +97,9 @@
       <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/Page.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/Page.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/PageBlock.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/PageBlock.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Native/PageBlockView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Native/PageBlockView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/src/main/java/com/lambdadigamma/core/ui/NavigationBackButton.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/src/main/java/com/lambdadigamma/core/ui/NavigationBackButton.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/events/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/modules/events/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/fuel/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/modules/fuel/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/news/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/modules/news/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/parking/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/modules/parking/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/radio/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/modules/radio/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/rubbish/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/modules/rubbish/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/parking/src/main/java/com/lambdadigamma/parking/dashboard/DashboardParkingOverview.kt" beforeDir="false" afterPath="$PROJECT_DIR$/modules/parking/src/main/java/com/lambdadigamma/parking/dashboard/DashboardParkingOverview.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/parking/src/main/res/values-de/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/modules/parking/src/main/res/values-de/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/parking/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/modules/parking/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +109,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=/Users/lennart/.android/avd/Pixel_9_Pro_API_35.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=00065142P000951)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -107,19 +147,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GotoFileConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="PLAIN_TEXT" />
+    </file-type-list>
+  </component>
   <component name="KotlinMultiplatform" KONAN_HOME="$USER_HOME$/.konan/kotlin-native-prebuilt-macos-aarch64-2.0.21">
     <executable TARGET="ios_arm64" TARGET_NAME="iosArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":modules:core:" IS_TEST="true">
       <variant NAME="Debug" GRADLE_TASK=":modules:core:linkDebugTestIosArm64" FILE="$PROJECT_DIR$/modules/core/build/bin/iosArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
         <envs />
       </variant>
     </executable>
-    <executable TARGET="ios_x64" TARGET_NAME="iosX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":modules:core:" IS_TEST="true">
-      <variant NAME="Debug" GRADLE_TASK=":modules:core:linkDebugTestIosX64" FILE="$PROJECT_DIR$/modules/core/build/bin/iosX64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+    <executable TARGET="ios_simulator_arm64" TARGET_NAME="iosSimulatorArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":modules:core:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":modules:core:linkDebugTestIosSimulatorArm64" FILE="$PROJECT_DIR$/modules/core/build/bin/iosSimulatorArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
         <envs />
       </variant>
     </executable>
-    <executable TARGET="ios_simulator_arm64" TARGET_NAME="iosSimulatorArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":modules:core:" IS_TEST="true">
-      <variant NAME="Debug" GRADLE_TASK=":modules:core:linkDebugTestIosSimulatorArm64" FILE="$PROJECT_DIR$/modules/core/build/bin/iosSimulatorArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+    <executable TARGET="ios_x64" TARGET_NAME="iosX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":modules:core:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":modules:core:linkDebugTestIosX64" FILE="$PROJECT_DIR$/modules/core/build/bin/iosX64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
         <envs />
       </variant>
     </executable>
@@ -139,25 +184,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Android App.androidApp.executor": "Run",
-    "Android App.composeApp.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "kmp",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/lennart/Documents/Development/iOS/Moers/modules/core",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2580231",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.androidApp.executor&quot;: &quot;Run&quot;,
+    &quot;Android App.composeApp.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;kmp&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/lennart/Documents/Development/iOS/Moers/modules/core&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2580231&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/modules/core" />
@@ -354,12 +399,12 @@
         </entry>
         <entry key="com.lambdadigamma.moers">
           <value>
-            <CheckInfo lastCheckTimestamp="1735496990018" />
+            <CheckInfo lastCheckTimestamp="1736288008165" />
           </value>
         </entry>
         <entry key="com.lambdadigamma.moers.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1735496990018" />
+            <CheckInfo lastCheckTimestamp="1736288008164" />
           </value>
         </entry>
         <entry key="com.lambdadigamma.newsfeature.test">
@@ -369,7 +414,7 @@
         </entry>
         <entry key="com.lambdadigamma.parking.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1735494138400" />
+            <CheckInfo lastCheckTimestamp="1736290086839" />
           </value>
         </entry>
         <entry key="com.lambdadigamma.radio.test">

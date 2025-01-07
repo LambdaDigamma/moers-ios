@@ -101,10 +101,10 @@ fun OnboardingUserTypeContent(
             }
 
             Column(
-                modifier = Modifier
+                modifier = Modifier.fillMaxSize()
             ) {
                 Divider()
-                Surface(tonalElevation = 1.dp) {
+                Surface(tonalElevation = 1.dp, modifier = Modifier.fillMaxSize()) {
 
                     Column(modifier = Modifier.padding(16.dp)) {
 

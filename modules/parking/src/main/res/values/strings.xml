@@ -8,4 +8,5 @@
     <string name="parking_areas_title">Parking areas</string>
     <string name="parking_areas_resource_disclaimer">All data without liability. The current parking situation may differ from the data shown.</string>
     <string name="parking_areas_resource_source">Data source: Parking management system of the city of Moers</string>
+    <string name="currently_not_available">Currently not available.</string>
 </resources>

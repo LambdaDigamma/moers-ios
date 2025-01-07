@@ -3,6 +3,7 @@ package com.lambdadigamma.moers.onboarding.ui
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -21,7 +22,7 @@ fun OnboardingTopBar(state: OnboardingTopBarUiState) {
 
 //    Card(shape = RectangleShape, elevation = 4.dp) {
     Column(
-        modifier = Modifier.padding(16.dp),
+        modifier = Modifier.statusBarsPadding().padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text(

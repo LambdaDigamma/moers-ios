@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;">
+    <g transform="matrix(1,0,0,1,0,-932)">
+        <g id="android-monochromatic" serif:id="android/monochromatic" transform="matrix(1,0,0,1,0,932)">
+            <rect x="0" y="0" width="1024" height="1024" style="fill:none;"/>
+            <g id="Group" transform="matrix(10.2858,0,0,10.2858,271.119,253.853)">
+                <g>
+                    <path id="Path" d="M15.301,35.537L9.367,35.537" style="fill:none;stroke:rgb(255,204,0);stroke-width:0.47px;"/>
+                    <path id="Path1" serif:id="Path" d="M9.367,34.358L15.301,34.358" style="fill:none;stroke:rgb(255,204,0);stroke-width:0.47px;"/>
+                    <path id="Path2" serif:id="Path" d="M47.047,2.025C46.894,16.052 46.792,25.471 46.739,30.282C46.692,34.595 45.44,38.808 43.124,42.447C40.743,46.194 36.8,50.225 30.282,52.967C25.958,54.778 21.089,54.778 16.766,52.967C10.247,50.225 6.304,46.194 3.924,42.447C1.607,38.808 0.355,34.595 0.308,30.282C0.229,23.065 0,2.055 0,2.055C6.746,0.685 14.588,0 23.524,0C36.927,0 47.047,2.025 47.047,2.025Z" style="fill:none;stroke:rgb(255,204,0);stroke-width:1.88px;"/>
+                    <path id="Path3" serif:id="Path" d="M23.524,0L23.524,53.94L23.524,19.563L46.141,19.674L45.429,34.571C45.429,34.571 23.661,35.632 23.524,35.074" style="fill:rgb(255,204,0);stroke:rgb(255,204,0);stroke-width:1.88px;"/>
+                    <path id="Shape" d="M17.519,10.348L19.655,10.348L19.655,14.625L17.487,16.794L17.487,33.837L19.555,35.905L19.555,39.415L15.505,39.415L15.505,34.507C15.505,33.754 15.253,33.024 14.789,32.431L14.411,31.948C13.889,31.281 13.085,30.897 12.238,30.909C11.392,30.921 10.6,31.329 10.097,32.011L9.919,32.252C9.38,32.983 9.09,33.868 9.09,34.776L9.09,39.421L5.272,39.383L5.272,35.339L7.259,33.352L7.259,16.861L5.012,14.614L5.012,10.599L7.043,10.599L7.043,12.595L9.044,12.595L9.044,10.458L11.003,10.458L11.003,12.621L13.119,12.621L13.119,10.261L15.467,10.261L15.467,12.567L17.571,12.567L17.519,10.348ZM11.586,17.726L9.905,17.726L9.905,24.072L11.586,24.072L11.586,17.726ZM14.334,17.726L12.653,17.726L12.653,24.072L14.334,24.072L14.334,17.726Z" style="fill:rgb(255,204,0);stroke:rgb(255,204,0);stroke-width:0.94px;"/>
+                    <path id="Path4" serif:id="Path" d="M10.56,36.245L10.56,31.835" style="fill:none;stroke:rgb(255,204,0);stroke-width:0.47px;"/>
+                    <path id="Path5" serif:id="Path" d="M11.821,36.245L11.821,31.289" style="fill:none;stroke:rgb(255,204,0);stroke-width:0.47px;"/>
+                    <path id="Path6" serif:id="Path" d="M13.083,36.245L13.083,31.289" style="fill:none;stroke:rgb(255,204,0);stroke-width:0.47px;"/>
+                    <path id="Path7" serif:id="Path" d="M14.345,36.245L14.345,31.835" style="fill:none;stroke:rgb(255,204,0);stroke-width:0.47px;"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

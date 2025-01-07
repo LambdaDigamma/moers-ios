@@ -9,6 +9,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.BlurredEdgeTreatment
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -60,7 +62,7 @@ fun DashboardParkingOverview(modifier: Modifier = Modifier, onClick: () -> Unit)
                 style = MaterialTheme.typography.titleMedium
             )
         }
-        Divider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
+        HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
 
         when (parkingAreas?.status) {
             Status.SUCCESS -> {
@@ -83,33 +85,60 @@ fun DashboardParkingOverview(modifier: Modifier = Modifier, onClick: () -> Unit)
 }
 
 @Composable
+fun BlurOverlay(modifier: Modifier = Modifier, text: String = "Currently not available") {
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .blur(4.dp), // Semi-transparent background
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = text,
+            color = Color.White,
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.Bold
+        )
+    }
+}
+
+@Composable
 fun DashboardParkingView(
     parkingAreas: List<ParkingAreaDashboardUiState>,
     modifier: Modifier = Modifier
 ) {
     val chunked = parkingAreas.chunked(2)
 
-    Column(
-        modifier = Modifier.padding(12.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-    ) {
-        for (chunk in chunked) {
-            Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                for (parkingArea in chunk) {
-                    ParkingAreaInfo(
-                        name = parkingArea.name,
-                        freeSites = parkingArea.freeSites,
-                        modifier = Modifier.weight(0.5f)
-                    )
-                    // This is needed to create two column layout
-                    // even if there is only one parking area.
-                    if (chunk.size == 1) {
-                        Box(modifier = Modifier.weight(0.5f))
+    Box(modifier = Modifier.fillMaxWidth()) {
+        Column(
+            modifier = Modifier
+                .padding(12.dp)
+                .blur(6.dp, edgeTreatment = BlurredEdgeTreatment.Unbounded),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            for (chunk in chunked) {
+                Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                    for (parkingArea in chunk) {
+                        ParkingAreaInfo(
+                            name = parkingArea.name,
+                            freeSites = parkingArea.freeSites,
+                            modifier = Modifier.weight(0.5f)
+                        )
+                        // This is needed to create two column layout
+                        // even if there is only one parking area.
+                        if (chunk.size == 1) {
+                            Box(modifier = Modifier.weight(0.5f))
+                        }
                     }
                 }
             }
         }
+        Text(
+            text = stringResource(R.string.currently_not_available),
+            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
+            modifier = Modifier.align(Alignment.Center)
+        )
     }
+
 }
 
 @Composable

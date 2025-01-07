@@ -82,18 +82,18 @@ fun OnboardingNavigationGraph(
     onFinishOnboarding: () -> Unit,
 ) {
 
-    rememberSystemUiController().setStatusBarColor(
-        MaterialTheme.colorScheme.background, darkIcons = !isSystemInDarkTheme()
-    )
+//    rememberSystemUiController().setStatusBarColor(
+//        MaterialTheme.colorScheme.background, darkIcons = !isSystemInDarkTheme()
+//    )
 
     val onboardingViewModel: OnboardingViewModel = hiltViewModel()
     val userTypeViewModel: OnboardingUserTypeViewModel = hiltViewModel()
 
-    Scaffold(topBar = { OnboardingTop(navController) }, modifier = Modifier.systemBarsPadding()) {
+    Scaffold(topBar = { OnboardingTop(navController) }, modifier = Modifier) { padding ->
         NavHost(
             navController = navController,
             Destinations.Onboarding.graph,
-            modifier = Modifier.padding(it)
+            modifier = Modifier.padding(padding)
         ) {
             navigation(
                 Destinations.Onboarding.welcome,

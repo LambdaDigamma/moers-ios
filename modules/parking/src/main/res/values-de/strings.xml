@@ -8,4 +8,5 @@
     <string name="parking_areas_title">Parkplätze</string>
     <string name="parking_areas_resource_disclaimer">Alle Angaben ohne Gewähr. Die aktuelle Parksituation kann von den gezeigten Daten abweichen.</string>
     <string name="parking_areas_resource_source">Datenquelle: Parkleitsystem der Stadt Moers</string>
+    <string name="currently_not_available">Aktuell nicht verfügbar.</string>
 </resources>
