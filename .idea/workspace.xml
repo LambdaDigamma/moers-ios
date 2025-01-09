@@ -10,20 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a67a544-461c-43bd-b464-4b57a8071b80" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/android-release.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fastlane/.env.example" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fastlane/Appfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fastlane/Fastfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fastlane/README.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Overview/Preview List/PreviewListEventsView.swift" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Blocks/ImageCollectionView.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/keystore.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/android-release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/android-release.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/androidApp/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI-Package.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI-Package.xcscheme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI.xcscheme" afterDir="false" />
@@ -156,10 +146,9 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "android.gradle.sync.needed": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "kmp",
+    "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/lennart/Documents/Development/iOS/Moers/fastlane",
     "project.structure.last.edited": "Modules",

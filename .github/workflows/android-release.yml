@@ -1,10 +1,21 @@
 name: Release Android Version
 
 on:
-  push:
-    branches: master
-    tags:
-      - v*
+#  push:
+#    branches: master
+#    tags:
+#      - v*
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        type: choice
+        required: true
+        description: Android Version
+        default: patch
+        options:
+          - patch
+          - minor
+          - major
 
 jobs:
   distribute:
@@ -13,6 +24,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
+
+      - name: Version Bump
+        run: |
+          echo "Executing version bump: ${{ github.event.inputs.version_bump }}"
 
       - uses: ruby/setup-ruby@v1
         with:
