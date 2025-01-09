@@ -33,12 +33,6 @@ jobs:
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
 
-      - name: Version Bump
-        run: |
-          echo "Executing version bump: ${{ github.event.inputs.version_bump }}"
-          bundle exec fastlane android increment_version_code
-          bundle exec fastlane android increment_version mode:${{ github.event.inputs.version_bump}}
-
       - name: Configure Keystore
         run: |
           echo "$ANDROID_KEYSTORE_FILE" > keystore.jks.b64
@@ -52,6 +46,19 @@ jobs:
           ANDROID_KEYSTORE_KEY_ALIAS: ${{ secrets.ANDROID_KEYSTORE_KEY_ALIAS }}
           ANDROID_KEYSTORE_KEY_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_KEY_PASSWORD }}
           ANDROID_KEYSTORE_STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_STORE_PASSWORD }}
+
+      - name: Setup local.properties
+        run: |
+          echo "$ANDROID_LOCAL_PROPERTIES" > local.properties
+        env:
+          ANDROID_LOCAL_PROPERTIES: ${{ secrets.ANDROID_LOCAL_PROPERTIES }}
+
+      - name: Version Bump
+        run: |
+          echo "Executing version bump: ${{ github.event.inputs.version_bump }}"
+          bundle exec fastlane android increment_version_code
+          bundle exec fastlane android increment_version mode:${{ github.event.inputs.version_bump}}
+
 
       - name: Create Google Play Config file
         run: |

@@ -14,7 +14,6 @@
       <change afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Blocks/ImageCollectionView.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/workflows/android-release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/android-release.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fastlane/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/fastlane/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI-Package.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI-Package.xcscheme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI.xcscheme" afterDir="false" />
