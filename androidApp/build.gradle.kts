@@ -1,9 +1,21 @@
 import org.jetbrains.kotlin.konan.properties.loadProperties
 import org.jetbrains.kotlin.util.capitalizeDecapitalize.toLowerCaseAsciiOnly
 import java.io.FileInputStream
+import java.io.FileOutputStream
 import java.util.Properties
 
 val tankerkoenigApiKey: String = loadProperties(project.rootProject.file("local.properties").path).getProperty("TANKERKOENIG_API_KEY")
+
+object Keys {
+    const val VERSION_NAME = "VERSION_NAME"
+    const val VERSION_CODE = "VERSION_CODE"
+}
+
+fun getCurrentVersionProperties(): Properties {
+    return Properties().apply {
+        load(FileInputStream(keystorePropertiesFile))
+    }
+}
 
 plugins {
     id("com.android.application")
@@ -15,8 +27,6 @@ plugins {
     alias(libs.plugins.composeCompiler)
 }
 
-project.version = "1.0.2"
-
 /**
  * Accessing the defined global versions using a type safe delegate.
  */
@@ -24,15 +34,26 @@ val minSdkVersion: Int by rootProject.extra
 val targetSdkVersion: Int by rootProject.extra
 val sdkVersion: Int by rootProject.extra
 
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties().apply {
+    load(FileInputStream(keystorePropertiesFile))
+}
+
+val versionPropertiesFile = project.file("version.properties")
+val versionProperties = Properties().apply {
+    load(FileInputStream(versionPropertiesFile))
+}
+
 android {
+
     compileSdk = sdkVersion
 
     defaultConfig {
         applicationId = "com.lambdadigamma.moers"
         minSdk = minSdkVersion
         targetSdk = targetSdkVersion
-        versionCode = 18
-        versionName = "1.0.2"
+        versionCode = versionProperties[Keys.VERSION_CODE].toString().toInt()
+        versionName = versionProperties[Keys.VERSION_NAME].toString()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -66,11 +87,6 @@ android {
         }
     }
     namespace = "com.lambdadigamma.moers"
-
-    val keystorePropertiesFile = rootProject.file("keystore.properties")
-    val keystoreProperties = Properties().apply {
-        load(FileInputStream(keystorePropertiesFile))
-    }
 
     signingConfigs {
         create("release") {
@@ -198,12 +214,18 @@ protobuf {
     }
 }
 
+
 tasks.create("incrementVersion") {
     group = "versioning"
     description = "Increments the version to make the app ready for next release."
     doLast {
-        var (major, minor, patch) = project.version.toString().split(".")
+
+        val versionProperties = getCurrentVersionProperties()
+        val versionName = versionProperties.getProperty(Keys.VERSION_NAME)
         val mode = project.properties["mode"]?.toString()?.toLowerCaseAsciiOnly()
+
+        var (major, minor, patch) = versionName.split(".")
+
         when (mode) {
             "major" -> {
                 major = (major.toInt() + 1).toString()
@@ -224,11 +246,9 @@ tasks.create("incrementVersion") {
             project.properties["overrideVersion"]?.toString()?.toLowerCaseAsciiOnly()
         overrideVersion?.let { newVersion = it }
 
-        val newBuild = buildFile
-            .readText()
-            .replaceFirst(Regex("version = .+"), "version = \"$newVersion\"")
-            .replaceFirst(Regex("versionName = .+\""), "versionName = \"$newVersion\"")
-        buildFile.writeText(newBuild)
+        versionProperties.setProperty(Keys.VERSION_NAME, newVersion)
+        versionProperties.store(versionPropertiesFile.writer(), null)
+
     }
 }
 
@@ -236,13 +256,12 @@ tasks.create("incrementVersionCode") {
     group = "versioning"
     description = "Increments the version code."
     doLast {
-        val newBuild = buildFile
-            .readText()
-            .replaceFirst(
-                Regex("versionCode = \\d+"),
-                "versionCode = ${(android.defaultConfig.versionCode ?: 0) + 1}"
-            )
-        buildFile.writeText(newBuild)
+
+        val versionProperties = getCurrentVersionProperties()
+        val currentVersionCode = versionProperties.getProperty(Keys.VERSION_CODE).toInt()
+        versionProperties.setProperty(Keys.VERSION_CODE, (currentVersionCode + 1).toString())
+        versionProperties.store(versionPropertiesFile.writer(), null)
+
     }
 }
 

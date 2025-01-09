@@ -2,6 +2,31 @@ default_platform(:android)
 
 platform :android do
 
+  desc "Increment version code (Build number)"
+  lane :increment_version_code do
+    gradle(
+      task: "incrementVersionCode"
+    )
+  end
+
+  desc "Increment version (Version name)"
+  lane :increment_version do |options|
+    mode = options[:mode] || 'patch'
+
+    if ['patch', 'minor', 'major'].include? mode
+      UI.message "Incrementing Version: #{mode}"
+
+      gradle(
+        task: "incrementVersion",
+        properties: {
+          "mode" => mode
+        }
+      )
+    else
+      UI.error("Unknown mode: #{mode}")
+    end
+  end
+
   desc "Runs all the tests"
   lane :test do
     gradle(task: "test")

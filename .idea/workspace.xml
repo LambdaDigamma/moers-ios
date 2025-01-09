@@ -10,10 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a67a544-461c-43bd-b464-4b57a8071b80" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/androidApp/version.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Overview/Preview List/PreviewListEventsView.swift" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Blocks/ImageCollectionView.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/workflows/android-release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/android-release.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/androidApp/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/androidApp/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fastlane/Fastfile" beforeDir="false" afterPath="$PROJECT_DIR$/fastlane/Fastfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI-Package.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI-Package.xcscheme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI.xcscheme" afterDir="false" />
@@ -65,6 +68,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$/androidApp">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -75,7 +81,20 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Moers" type="f1a62948:ProjectNode" />
-                <item name="modules" type="2d1252cf:ModuleNode" />
+                <item name="androidApp" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Moers" type="f1a62948:ProjectNode" />
+                <item name="androidApp" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Moers" type="f1a62948:ProjectNode" />
+                <item name="androidApp" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="versioning" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -168,8 +187,8 @@
       <recent name="$PROJECT_DIR$/modules/core" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/androidApp" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/modules/core/src/commonMain/kotlin/app/moers/core" />
       <recent name="$PROJECT_DIR$/modules/core/src/commonMain/kotlin/com/lambdadigamma/core" />
       <recent name="$PROJECT_DIR$/modules" />
