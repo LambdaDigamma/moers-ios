@@ -13,7 +13,7 @@ object Keys {
 
 fun getCurrentVersionProperties(): Properties {
     return Properties().apply {
-        load(FileInputStream(keystorePropertiesFile))
+        load(FileInputStream(versionPropertiesFile))
     }
 }
 
@@ -258,7 +258,7 @@ tasks.create("incrementVersionCode") {
     doLast {
 
         val versionProperties = getCurrentVersionProperties()
-        val currentVersionCode = versionProperties.getProperty(Keys.VERSION_CODE).toInt()
+        val currentVersionCode = versionProperties[Keys.VERSION_CODE].toString().toInt()
         versionProperties.setProperty(Keys.VERSION_CODE, (currentVersionCode + 1).toString())
         versionProperties.store(versionPropertiesFile.writer(), null)
 
