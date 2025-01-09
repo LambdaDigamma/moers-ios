@@ -1,0 +1,51 @@
+default_platform(:android)
+
+platform :android do
+
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Build a debug APK"
+  lane :debug_build do
+    gradle(task: "clean assembleDebug")
+  end
+
+  desc "Deploy a new version to internal track"
+  lane :deploy_internal do |options|
+    
+    gradle(
+      task: 'clean bundle',
+      build_type: 'Release'
+    )
+
+    upload_to_play_store(track: 'internal')
+    UI.message("Successful deployment to internal track! :rocket:")
+  end
+
+  desc "Deploy a new version to beta track"
+  lane :deploy_beta do |options|
+    
+#     upload_to_play_store(track: "beta")
+#     slack(message: "Successful deployment to beta track! :rocket:")
+  end
+
+  desc "Deploy a new version to production track"
+  lane :deploy_production do |options|
+    gradle(
+      task: "clean bundle",
+      build_type: "Release",
+      print_command: false,
+      properties: {
+        "android.injected.signing.store.password" => ENV['STORE_PASSWORD'],
+        "android.injected.signing.key.alias" => ENV['KEY_ALIAS'],
+        "android.injected.signing.key.password" => ENV['KEY_PASSWORD'],
+      }
+    )
+
+    upload_to_play_store()
+    UI.message("Successful deployment to production track! :rocket:")
+  end
+
+end

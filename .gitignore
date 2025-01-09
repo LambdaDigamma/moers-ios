@@ -78,3 +78,8 @@ ios/Moers/Resources/Tankerkoenig-Info.plist
 ios/Moers/Resources/GoogleService-Info.plist
 ios/GoogleService-Info.plist
 .kotlin
+
+# Keystore
+/Keystore.jks
+fastlane/.env
+keystore.properties

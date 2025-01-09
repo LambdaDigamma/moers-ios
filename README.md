@@ -72,8 +72,13 @@ A list of the available fastlane lanes can be found [here](fastlane/README.md).
 If you have any other ideas that you want to quickly note, please add them to [IDEAS.md](IDEAS.md).
 
 
+## GitHub Secrets
 
-
+ANDROID_KEYSTORE_FILE
+ANDROID_KEYSTORE_KEY_ALIAS
+ANDROID_KEYSTORE_KEY_PASSWORD
+ANDROID_KEYSTORE_STORE_PASSWORD
+ANDROID_PLAY_CONFIG_JSON
 
 <br>
 <br>
@@ -84,10 +89,7 @@ If you have any other ideas that you want to quickly note, please add them to [I
 <a href="https://appstoreconnect.apple.com/apps/1305862555/appstore/ios/">
     <img src="https://img.shields.io/badge/AppStore_Connect-blue.svg">
 </a>
-<!-- <a href="https://play.google.com/console/u/0/developers/7869924211861825092/app/4975014638047621847/app-dashboard">
+<!-- <a href="">
     <img src="https://img.shields.io/badge/Google_Play_Console-green.svg">
-</a> -->
-<!-- <a href="https://24doors.app/admin">
-    <img src="https://img.shields.io/badge/Administration-red.svg">
 </a> -->
 </p>
