@@ -83,3 +83,4 @@ ios/GoogleService-Info.plist
 /Keystore.jks
 fastlane/.env
 keystore.properties
+/play_config.json

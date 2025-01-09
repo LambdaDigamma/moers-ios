@@ -24,17 +24,21 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Version Bump
-        run: |
-          echo "Executing version bump: ${{ github.event.inputs.version_bump }}"
-
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '2.6'
+
       - name: Install bundle
         run: |
           bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3    
+          bundle install --jobs 4 --retry 3
+
+      - name: Version Bump
+        run: |
+          echo "Executing version bump: ${{ github.event.inputs.version_bump }}"
+          bundle exec fastlane android increment_version_code
+          bundle exec fastlane android increment_version mode:${{ github.event.inputs.version_bump}}
+
       - name: Configure Keystore
         run: |
           echo "$ANDROID_KEYSTORE_FILE" > keystore.jks.b64
@@ -42,7 +46,7 @@ jobs:
           echo "storeFile=Keystore.jks" >> keystore.properties
           echo "keyAlias=$ANDROID_KEYSTORE_KEY_ALIAS" >> keystore.properties
           echo "storePassword=$ANDROID_KEYSTORE_STORE_PASSWORD" >> keystore.properties
-          echo "keyPassword=$KEYSTORE_KEY_PASSWORD" >> keystore.properties
+          echo "keyPassword=$ANDROID_KEYSTORE_KEY_PASSWORD" >> keystore.properties
         env:
           ANDROID_KEYSTORE_FILE: ${{ secrets.ANDROID_KEYSTORE_FILE }}
           ANDROID_KEYSTORE_KEY_ALIAS: ${{ secrets.ANDROID_KEYSTORE_KEY_ALIAS }}
@@ -56,5 +60,5 @@ jobs:
         env:
           ANDROID_PLAY_CONFIG_JSON: ${{ secrets.ANDROID_PLAY_CONFIG_JSON }}
 
-      - name: Distribute app to Beta track 🚀
-        run: bundle exec fastlane beta
+      - name: Distribute app to internal track 🚀
+        run: bundle exec fastlane android deploy_internal
