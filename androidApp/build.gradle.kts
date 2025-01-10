@@ -63,7 +63,7 @@ android {
     }
     signingConfigs {
         create("release") {
-            storeFile = file("$rootDir/keystore.jks")
+            storeFile = file("$rootDir/androidApp/Keystore.jks")
             storePassword = keystoreProperties["storePassword"] as String
             keyAlias = keystoreProperties["keyAlias"] as String
             keyPassword = keystoreProperties["keyPassword"] as String
