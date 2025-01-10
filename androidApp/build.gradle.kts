@@ -47,6 +47,7 @@ val versionProperties = Properties().apply {
 android {
 
     compileSdk = sdkVersion
+    namespace = "com.lambdadigamma.moers"
 
     defaultConfig {
         applicationId = "com.lambdadigamma.moers"
@@ -60,7 +61,14 @@ android {
             useSupportLibrary = true
         }
     }
-
+    signingConfigs {
+        create("release") {
+            storeFile = file("$rootDir/keystore.jks")
+            storePassword = keystoreProperties["storePassword"] as String
+            keyAlias = keystoreProperties["keyAlias"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+        }
+    }
     buildTypes {
         getByName("release") {
             signingConfig = signingConfigs.getByName("release")
@@ -88,16 +96,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    namespace = "com.lambdadigamma.moers"
 
-    signingConfigs {
-        create("release") {
-            storeFile = file("$rootDir/keystore.jks")
-            storePassword = keystoreProperties["storePassword"] as String
-            keyAlias = keystoreProperties["keyAlias"] as String
-            keyPassword = keystoreProperties["keyPassword"] as String
-        }
-    }
 }
 
 dependencies {
