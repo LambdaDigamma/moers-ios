@@ -15,6 +15,7 @@ public protocol NewsItem: Hashable {
     
 }
 
+extension RSSFeedItem: @retroactive Hashable {}
 extension RSSFeedItem: NewsItem {
     
     public var date: Date {

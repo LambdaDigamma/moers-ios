@@ -372,7 +372,7 @@ extension OnboardingManager {
 
 // MARK: - Notifications
 
-extension BLTNItemAppearance: Themeable {
+extension BLTNItemAppearance: @retroactive Themeable {
     
     public typealias Theme = ApplicationTheme
     

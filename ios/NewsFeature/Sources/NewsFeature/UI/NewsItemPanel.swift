@@ -32,8 +32,8 @@ public struct NewsItemPanel: View {
 
         ZStack {
             
-            if let imageURL = imageURL {
-                LazyImage(source: imageURL)
+            if let imageURL = imageURL, let url = URL(string: imageURL) {
+                LazyImage(url: url)
             }
             
         }

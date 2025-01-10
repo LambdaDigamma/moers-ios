@@ -103,12 +103,7 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
 #endif
         
 #if canImport(MMEvents)
-        let cache = try! Cache.Storage<String, [Event]>(
-            diskConfig: Cache.DiskConfig(name: "EventService"),
-            memoryConfig: Cache.MemoryConfig(),
-            transformer: Cache.TransformerFactory.forCodable(ofType: [Event].self)
-        )
-
+        
         let eventService = DefaultEventService(loader)
 
         Resolver.register { eventService as EventService }

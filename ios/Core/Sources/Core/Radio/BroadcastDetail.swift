@@ -66,7 +66,7 @@ public struct BroadcastDetail: View {
         ZStack {
             
             if let image = viewModel.imageURL, let imageURL = URL(string: image) {
-                LazyImage(source: imageURL)
+                LazyImage(url: imageURL)
                     .aspectRatio(1, contentMode: .fit)
                     .frame(maxWidth: 200, maxHeight: 200)
             } else {

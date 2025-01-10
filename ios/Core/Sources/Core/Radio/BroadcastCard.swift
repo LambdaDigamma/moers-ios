@@ -26,7 +26,7 @@ public struct BroadcastCard: View {
         VStack {
             
             LazyImage(
-                source: imageURL,
+                url: imageURL,
                 resizingMode: .aspectFill
             )
                 .frame(idealWidth: 200, idealHeight: 150)

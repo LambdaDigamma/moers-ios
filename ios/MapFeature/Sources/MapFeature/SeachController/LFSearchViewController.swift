@@ -10,7 +10,7 @@ import UIKit
 
 public class LFSearchViewController: UIViewController {
 
-    fileprivate (set) open var searchBar: UISearchBar!
+    fileprivate(set) open var searchBar: UISearchBar!
     
     public var tableView: UITableView!
     
@@ -63,9 +63,9 @@ public class LFSearchViewController: UIViewController {
         }
     }
     
-    private (set) open var cellIdentifier: String = LFSearchViewDefaults.reuseIdetentifer
+    private(set) open var cellIdentifier: String = LFSearchViewDefaults.reuseIdetentifer
     
-    private (set) open var cellClass: AnyClass = UITableViewCell.self
+    private(set) open var cellClass: AnyClass = UITableViewCell.self
     
     override public var preferredStatusBarStyle: UIStatusBarStyle {
         return self.statusBarStyle

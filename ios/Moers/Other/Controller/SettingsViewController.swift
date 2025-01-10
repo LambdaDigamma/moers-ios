@@ -392,7 +392,7 @@ extension SettingsViewController: Themeable {
     
 }
 
-extension BLTNItemManager: Themeable {
+extension BLTNItemManager: @retroactive Themeable {
     
     public typealias Theme = ApplicationTheme
     

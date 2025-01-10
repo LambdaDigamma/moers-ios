@@ -36,7 +36,7 @@ class MMEventsViewController: EventsViewController {
     
     override func loadData() {
         
-        guard let eventService = coordinator?.eventService else { return }
+//        guard let eventService = coordinator?.eventService else { return }
         
 //        Task {
 //

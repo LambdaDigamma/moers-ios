@@ -9,7 +9,7 @@
 
 import CoreLocation
 
-extension CLLocationCoordinate2D: CustomStringConvertible {
+extension CLLocationCoordinate2D: @retroactive CustomStringConvertible {
     
     public var description: String {
         return "CLLocationCoordinate2D(latitude: \(self.latitude), longitude: \(self.longitude))"

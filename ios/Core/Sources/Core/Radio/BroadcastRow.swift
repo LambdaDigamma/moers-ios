@@ -40,7 +40,7 @@ public struct BroadcastRow: View {
             ZStack {
                 
                 if let imageURL = imageURL {
-                    LazyImage(source: imageURL)
+                    LazyImage(url: imageURL)
                         .processors([ImageProcessors.Resize(width: 44)])
                         .cornerRadius(8)
                 } else {
