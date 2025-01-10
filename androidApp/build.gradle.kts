@@ -63,7 +63,9 @@ android {
 
     buildTypes {
         getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
+            isDebuggable = false
             buildConfigField("String", "tankerkoenigApiKey", tankerkoenigApiKey)
         }
     }

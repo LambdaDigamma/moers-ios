@@ -53,13 +53,6 @@ jobs:
         env:
           ANDROID_LOCAL_PROPERTIES: ${{ secrets.ANDROID_LOCAL_PROPERTIES }}
 
-      - name: Version Bump
-        run: |
-          echo "Executing version bump: ${{ github.event.inputs.version_bump }}"
-          bundle exec fastlane android increment_version_code
-          bundle exec fastlane android increment_version mode:${{ github.event.inputs.version_bump}}
-
-
       - name: Create Google Play Config file
         run: |
           echo "$ANDROID_PLAY_CONFIG_JSON" > play_config.json.b64
@@ -67,5 +60,30 @@ jobs:
         env:
           ANDROID_PLAY_CONFIG_JSON: ${{ secrets.ANDROID_PLAY_CONFIG_JSON }}
 
+      - name: Version Bump
+        run: |
+          echo "Executing version bump: ${{ github.event.inputs.version_bump }}"
+          bundle exec fastlane android increment_version_code
+          bundle exec fastlane android increment_version mode:${{ github.event.inputs.version_bump}}
+
       - name: Distribute app to internal track 🚀
         run: bundle exec fastlane android deploy_internal
+
+      - name: Commit version bump and tag
+        run: |
+          VERSION_NAME=$(grep versionName androidApp/version.properties | cut -d'=' -f2 | tr -d ' ')
+          VERSION_CODE=$(grep versionCode androidApp/version.properties | cut -d'=' -f2 | tr -d ' ')
+          TAG_NAME="v${VERSION_NAME}-${VERSION_CODE}"
+          
+          echo "Version Name: $VERSION_NAME"
+          echo "Version Code: $VERSION_CODE"
+          echo "Tag Name: $TAG_NAME"
+          
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git add androidApp/version.properties
+          git commit -m "🚀 Bump Android version to $VERSION_NAME ($VERSION_CODE)"
+          git tag $TAG_NAME
+          git push origin HEAD
+          git push origin $TAG_NAME
