@@ -1,0 +1,40 @@
+name: Release iOS Version
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        type: choice
+        required: true
+        description: iOS Version
+        default: patch
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up ruby env
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+
+      - name: Install bundle
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      - name: Version Bump
+        run: |
+          echo "Executing version bump: ${{ github.event.inputs.version_bump }}"
+          bundle exec fastlane android increment_version_code
+          bundle exec fastlane android increment_version mode:${{ github.event.inputs.version_bump}}
+      

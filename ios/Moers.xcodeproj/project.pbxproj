@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 74;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -162,6 +162,7 @@
 		DF284EFD23F4C17100EC999B /* MoersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF29DC7228D86CFD00E4E35A /* mmevents-ios */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "mmevents-ios"; sourceTree = "<group>"; };
 		DF35EFA927A9E9FE005C6BDA /* NewsFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NewsFeature; sourceTree = "<group>"; };
+		DF4B7BA32D31E556009A85FC /* Watch */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Watch; sourceTree = "<group>"; };
 		DF559A5E2812FE160072F0F9 /* MapFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MapFeature; sourceTree = "<group>"; };
 		DF55F2622770ABE80024300B /* DashboardFeature */ = {isa = PBXFileReference; lastKnownFileType = text; path = DashboardFeature; sourceTree = SOURCE_ROOT; };
 		DF57D695218739C500E6A0A9 /* Moers-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Moers-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -195,7 +196,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		DF4AD2EC2CCD26A600D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		DF4AD2EC2CCD26A600D620B3 /* Exceptions for "Config" folder in "Moers" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Development.xcconfig,
@@ -205,7 +206,7 @@
 			);
 			target = DF1A495E1F6AAB7000E9108B /* Moers */;
 		};
-		DF4AD2ED2CCD26A600D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		DF4AD2ED2CCD26A600D620B3 /* Exceptions for "Config" folder in "WidgetsExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Constants.swift,
@@ -216,7 +217,7 @@
 			);
 			target = DF5E1B4D26726AF3005FADA4 /* WidgetsExtension */;
 		};
-		DF4AD3042CCD278100D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		DF4AD3042CCD278100D620B3 /* Exceptions for "Assets" folder in "Moers" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				AachenHbf.gpx,
@@ -224,29 +225,22 @@
 			);
 			target = DF1A495E1F6AAB7000E9108B /* Moers */;
 		};
-		DF4AD36B2CCD3BA600D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		DF4AD36B2CCD3BA600D620B3 /* Exceptions for "Widgets" folder in "WidgetsExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				/Localized/SelectDepartureMonitorStop.intentdefinition,
+				"/Localized: SelectDepartureMonitorStop.intentdefinition",
 				Resources/Info.plist,
 			);
 			target = DF5E1B4D26726AF3005FADA4 /* WidgetsExtension */;
 		};
-		DF4AD3762CCD3BAB00D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = DF94B11623F0A7E5009C57ED /* Watch */;
-		};
-		DF4AD37B2CCD3BC000D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		DF4AD37B2CCD3BC000D620B3 /* Exceptions for "Intent Extensions" folder in "Intent Extensions" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				IntentHandler.swift,
 			);
 			target = DF9F19D42766660100B74E13 /* Intent Extensions */;
 		};
-		DF4AD3922CCD3BC500D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		DF4AD3922CCD3BC500D620B3 /* Exceptions for "Watch Extension" folder in "Watch Extension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -254,14 +248,14 @@
 			);
 			target = DF94B12223F0A7E7009C57ED /* Watch Extension */;
 		};
-		DF4AD3C72CCD3E6500D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		DF4AD3C72CCD3E6500D620B3 /* Exceptions for "Moers Unit Tests" folder in "Moers Unit Tests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
 			target = DFB161B2267651D6009D2754 /* Moers Unit Tests */;
 		};
-		DF4AD3F92CCD3F1B00D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		DF4AD3F92CCD3F1B00D620B3 /* Exceptions for "MoersUITests" folder in "MoersUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -271,20 +265,93 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		DF4AD2192CCD22C200D620B3 /* Coordinators */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Coordinators; sourceTree = "<group>"; };
-		DF4AD21F2CCD22C800D620B3 /* Events */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Events; sourceTree = "<group>"; };
-		DF4AD2322CCD236500D620B3 /* Manager */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Manager; sourceTree = "<group>"; };
-		DF4AD23A2CCD238200D620B3 /* Car Play */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Car Play"; sourceTree = "<group>"; };
-		DF4AD25C2CCD250200D620B3 /* Common */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Common; sourceTree = "<group>"; };
-		DF4AD2D92CCD26A500D620B3 /* Config */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (DF4AD2EC2CCD26A600D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, DF4AD2ED2CCD26A600D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Config; sourceTree = "<group>"; };
-		DF4AD2FB2CCD278000D620B3 /* Assets */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (DF4AD3042CCD278100D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Assets; sourceTree = "<group>"; };
-		DF4AD3462CCD3BA600D620B3 /* Widgets */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (DF4AD36B2CCD3BA600D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Widgets; sourceTree = "<group>"; };
-		DF4AD3722CCD3BAB00D620B3 /* Watch */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (DF4AD3762CCD3BAB00D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Watch; sourceTree = "<group>"; };
-		DF4AD3792CCD3BC000D620B3 /* Intent Extensions */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (DF4AD37B2CCD3BC000D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Intent Extensions"; sourceTree = "<group>"; };
-		DF4AD3872CCD3BC500D620B3 /* Watch Extension */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (DF4AD3922CCD3BC500D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Watch Extension"; sourceTree = "<group>"; };
-		DF4AD3A72CCD3D6E00D620B3 /* Other */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Other; sourceTree = "<group>"; };
-		DF4AD3C32CCD3E6500D620B3 /* Moers Unit Tests */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (DF4AD3C72CCD3E6500D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Moers Unit Tests"; sourceTree = "<group>"; };
-		DF4AD3F22CCD3F1B00D620B3 /* MoersUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (DF4AD3F92CCD3F1B00D620B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = MoersUITests; sourceTree = "<group>"; };
+		DF4AD2192CCD22C200D620B3 /* Coordinators */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		DF4AD21F2CCD22C800D620B3 /* Events */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Events;
+			sourceTree = "<group>";
+		};
+		DF4AD2322CCD236500D620B3 /* Manager */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		DF4AD23A2CCD238200D620B3 /* Car Play */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Car Play";
+			sourceTree = "<group>";
+		};
+		DF4AD25C2CCD250200D620B3 /* Common */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Common;
+			sourceTree = "<group>";
+		};
+		DF4AD2D92CCD26A500D620B3 /* Config */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF4AD2EC2CCD26A600D620B3 /* Exceptions for "Config" folder in "Moers" target */,
+				DF4AD2ED2CCD26A600D620B3 /* Exceptions for "Config" folder in "WidgetsExtension" target */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		DF4AD2FB2CCD278000D620B3 /* Assets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF4AD3042CCD278100D620B3 /* Exceptions for "Assets" folder in "Moers" target */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		DF4AD3462CCD3BA600D620B3 /* Widgets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF4AD36B2CCD3BA600D620B3 /* Exceptions for "Widgets" folder in "WidgetsExtension" target */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		DF4AD3792CCD3BC000D620B3 /* Intent Extensions */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF4AD37B2CCD3BC000D620B3 /* Exceptions for "Intent Extensions" folder in "Intent Extensions" target */,
+			);
+			path = "Intent Extensions";
+			sourceTree = "<group>";
+		};
+		DF4AD3872CCD3BC500D620B3 /* Watch Extension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF4AD3922CCD3BC500D620B3 /* Exceptions for "Watch Extension" folder in "Watch Extension" target */,
+			);
+			path = "Watch Extension";
+			sourceTree = "<group>";
+		};
+		DF4AD3A72CCD3D6E00D620B3 /* Other */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Other;
+			sourceTree = "<group>";
+		};
+		DF4AD3C32CCD3E6500D620B3 /* Moers Unit Tests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF4AD3C72CCD3E6500D620B3 /* Exceptions for "Moers Unit Tests" folder in "Moers Unit Tests" target */,
+			);
+			path = "Moers Unit Tests";
+			sourceTree = "<group>";
+		};
+		DF4AD3F22CCD3F1B00D620B3 /* MoersUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF4AD3F92CCD3F1B00D620B3 /* Exceptions for "MoersUITests" folder in "MoersUITests" target */,
+			);
+			path = MoersUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -418,7 +485,7 @@
 				DF6F5CD428E31FC200E1DFBD /* efaapi-ios */,
 				DF1A49611F6AAB7000E9108B /* Moers */,
 				DF4AD3462CCD3BA600D620B3 /* Widgets */,
-				DF4AD3722CCD3BAB00D620B3 /* Watch */,
+				DF4B7BA32D31E556009A85FC /* Watch */,
 				DF4AD3792CCD3BC000D620B3 /* Intent Extensions */,
 				DF4AD3872CCD3BC500D620B3 /* Watch Extension */,
 				DF4AD3C32CCD3E6500D620B3 /* Moers Unit Tests */,
@@ -638,9 +705,6 @@
 			dependencies = (
 				DF94B12623F0A7E8009C57ED /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				DF4AD3722CCD3BAB00D620B3 /* Watch */,
-			);
 			name = Watch;
 			productName = Watch;
 			productReference = DF94B11723F0A7E5009C57ED /* Watch.app */;
@@ -788,7 +852,7 @@
 				DF152D8C289D23DB0046956F /* XCRemoteSwiftPackageReference "Cache" */,
 				DFE59D3928D871B800BD0236 /* XCRemoteSwiftPackageReference "swift-license-ui" */,
 			);
-			preferredProjectObjectVersion = 48;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1069,7 +1133,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 57;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1180,7 +1244,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 57;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1286,7 +1350,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 57;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1397,7 +1461,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 57;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1503,7 +1567,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 57;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1570,7 +1634,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 57;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1719,7 +1783,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1795,7 +1859,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1871,7 +1935,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1947,7 +2011,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2017,7 +2081,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2087,7 +2151,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2160,7 +2224,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2240,7 +2304,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2320,7 +2384,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2400,7 +2464,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2474,7 +2538,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2548,7 +2612,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2620,7 +2684,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_ASSET_PATHS = "\"Watch Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 93C29USLP6;
@@ -2700,7 +2764,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_ASSET_PATHS = "\"Watch Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 93C29USLP6;
@@ -2780,7 +2844,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_ASSET_PATHS = "\"Watch Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 93C29USLP6;
@@ -2860,7 +2924,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Watch Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 93C29USLP6;
@@ -2934,7 +2998,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Watch Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 93C29USLP6;
@@ -3008,7 +3072,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Watch Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
@@ -3083,7 +3147,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3158,7 +3222,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3233,7 +3297,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3308,7 +3372,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3377,7 +3441,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3446,7 +3510,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3514,7 +3578,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 62;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3596,7 +3660,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 62;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3678,7 +3742,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 62;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3760,7 +3824,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 62;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3836,7 +3900,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 62;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3912,7 +3976,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 62;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3987,7 +4051,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = TX3HU8833D;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -4063,7 +4127,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = TX3HU8833D;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -4139,7 +4203,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = TX3HU8833D;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -4215,7 +4279,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = TX3HU8833D;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -4285,7 +4349,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = TX3HU8833D;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -4355,7 +4419,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_NS_ASSERTIONS = NO;

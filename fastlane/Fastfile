@@ -1,5 +1,7 @@
 default_platform(:android)
 
+import "../ios/fastlane/Fastfile"
+
 platform :android do
 
   desc "Increment version code (Build number)"

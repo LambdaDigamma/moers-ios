@@ -1,130 +1,90 @@
-before_all do
-  # ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
-end
+# frozen_string_literal: true
 
 default_platform(:ios)
 
-platform :ios do
+# Configuration
+APP_IDENTIFIERS = [
+  "de.okfn.niederrhein.Moers",
+  "de.okfn.niederrhein.Moers.widgets",
+  "de.okfn.niederrhein.Moers.Intent-Extensions"
+].freeze
 
-  desc "Sync signing"
+DEVICES = {
+  "Lennarts iPhone 8" => "e3f6fe313610d72f847e010d17af266b64781acf",
+  "Lennarts iPhone XS" => "00008020-000C584C2690003A",
+  "Lennarts iPad Pro" => "00008103-001C34490CF1001E",
+  "Lennarts iPhone" => "00008120-000E7C8C0E38C01E"
+}.freeze
+
+INFO_PLIST_PATHS = [
+  "Moers/Config/Info.plist",
+  "Intent Extensions/Info.plist",
+  "Widgets/Resources/Info.plist",
+  "Watch Extension/Info.plist",
+  "Watch/Info.plist",
+  "Moers Unit Tests/Info.plist"
+].freeze
+
+platform :ios do
+  # Helper Methods
+  def update_version_in_plists(version)
+    INFO_PLIST_PATHS.each do |path|
+      set_info_plist_value(
+        path: path,
+        key: "CFBundleShortVersionString",
+        value: version
+      )
+    end
+  end
+
+  def commit_version_changes(version)
+    git_commit(
+      path: INFO_PLIST_PATHS,
+      message: "Mein Moers Version #{version} 🚀"
+    )
+  end
+
+  # Lanes
+  desc "Sync code signing for development and app store"
   lane :signing do
     register_devices(
       team_id: "77N8D7LGCZ",
-      devices: {
-        "Lennarts iPhone 8" => "e3f6fe313610d72f847e010d17af266b64781acf",
-        "Lennarts iPhone XS" => "00008020-000C584C2690003A",
-        "Lennarts iPad Pro" => "00008103-001C34490CF1001E",
-        "Lennarts iPhone" => '00008120-000E7C8C0E38C01E',
-      }
-    )
-    sync_code_signing(
-      type: "development",
-      force_for_new_devices: true,
-      app_identifier: [
-        "de.okfn.niederrhein.Moers", 
-        # "de.okfn.niederrhein.Moers.staging",
-        # "de.okfn.niederrhein.Moers.dev",
-        "de.okfn.niederrhein.Moers.widgets",
-        "de.okfn.niederrhein.Moers.Intent-Extensions"
-      ]
+      devices: DEVICES
     )
 
-    sync_code_signing(
-      type: "appstore",
-      app_identifier: [
-        "de.okfn.niederrhein.Moers", 
-        # "de.okfn.niederrhein.Moers.staging",
-        # "de.okfn.niederrhein.Moers.dev",
-        "de.okfn.niederrhein.Moers.widgets",
-        "de.okfn.niederrhein.Moers.Intent-Extensions"
-      ]
-    )
-
-    mapping = Actions.lane_context[
-      SharedValues::MATCH_PROVISIONING_PROFILE_MAPPING
-    ]
+    ["development", "appstore"].each do |type|
+      sync_code_signing(
+        type: type,
+        force_for_new_devices: type == "development",
+        app_identifier: APP_IDENTIFIERS
+      )
+    end
   end
 
-  desc "Increment Version"
+  desc "Increment version number"
   lane :increment do |options|
-  version = options[:version]
-
-    # Set App plist version
-    set_info_plist_value(
-      path: "Moers/Config/Info.plist",
-      key: "CFBundleShortVersionString", 
-      value: version
-    )
-
-    set_info_plist_value(
-      path: "Intent Extensions/Info.plist",
-      key: "CFBundleShortVersionString", 
-      value: version
-    )
+    UI.user_error!("Version parameter is required") unless options[:version]
     
-    set_info_plist_value(
-      path: "Widgets/Resources/Info.plist",
-      key: "CFBundleShortVersionString", 
-      value: version
-    )
-
-    set_info_plist_value(
-      path: "Watch Extension/Info.plist",
-      key: "CFBundleShortVersionString", 
-      value: version
-    )
-
-    set_info_plist_value(
-      path: "Watch/Info.plist",
-      key: "CFBundleShortVersionString", 
-      value: version
-    )
-
-    set_info_plist_value(
-      path: "Moers Unit Tests/Info.plist",
-      key: "CFBundleShortVersionString", 
-      value: version
-    )
-  
-    # Commit plists to git
-    git_commit(
-      path: [
-        "Moers/Config/Info.plist",
-        "MoersUITests/Info.plist",
-        "Moers Unit Tests/Info.plist",
-        "Intent Extensions/Info.plist",
-        "Widgets/Resources/Info.plist",
-        "Watch Extension/Info.plist",
-        "Watch/Info.plist"
-      ],
-      message: "Mein Moers Version #{version} 🚀"
-    )
-
+    update_version_in_plists(options[:version])
+    commit_version_changes(options[:version])
   end
 
-  desc "Increment Build Number"
+  desc "Increment build number across all targets"
   lane :increment_build do
-    increment_build_number_in_plist(target: 'Moers')
-    increment_build_number_in_plist(target: 'Moers Unit Tests')
-    increment_build_number_in_plist(target: 'MoersUITests')
-    increment_build_number_in_plist(target: 'WidgetsExtension')
-    increment_build_number_in_plist(target: 'Intent Extensions')
+    targets = [
+      'Moers',
+      'Moers Unit Tests',
+      'MoersUITests',
+      'WidgetsExtension',
+      'Intent Extensions'
+    ]
+
+    targets.each do |target|
+      increment_build_number_in_plist(target: target)
+    end
   end
 
-  # --- Tests ---
-
-  desc "Run All Unit Tests"
-  lane :test_unit do
-    run_tests(scheme: "Moers",
-              devices: ["iPhone X"])
-  end
-
-  desc "Run All UI Tests"
-  lane :test_ui do
-    run_tests(scheme: "MoersUITests")
-  end
-
-  desc "Upload metadata"
+  desc "Upload metadata to App Store Connect"
   lane :upload_metadata do
     deliver(
       skip_metadata: false,
@@ -133,79 +93,66 @@ platform :ios do
     )
   end
 
-  desc "Build binary"
-  lane :build do
-    signing
-    build_ios_app(
-      include_bitcode: true,
-      include_symbols: true,
-    )
-  end
-
-
   desc "Release a new version of Mein Moers"
   lane :release do |options|
+    UI.user_error!("Version parameter is required") unless options[:version]
 
     ensure_git_status_clean
     ensure_git_branch(branch: 'master')
-    version = options[:version]
 
-    increment_build()
-    increment(version: version)
-    add_git_tag(
-      grouping: "ios",
-      includes_lane: false,
-    )
+    begin
+      increment_build
+      increment(version: options[:version])
+      
+      add_git_tag(
+        grouping: "ios",
+        includes_lane: false
+      )
 
-    match(type: "appstore")
-    gym(scheme: "Moers")
-    pilot(skip_waiting_for_build_processing: true)
+      match(type: "appstore")
+      gym(scheme: "Moers")
+      pilot(skip_waiting_for_build_processing: true)
 
-    # slack(
-    #   message: "Mein Moers #{version} (#{get_build_number()}) successfully released!",
-    #   channel: "#mein-moers",
-    #   payload: {
-    #     "Build Date" => Time.new.to_s,
-    #     "Built by" => "Fastlane",
-    #   }
-    # )
-
+    rescue => exception
+      UI.error("Release failed: #{exception.message}")
+      raise exception
+    end
   end
 
-  desc "Take screenshots"
+  desc "Capture and frame screenshots"
   lane :screenshots do
     capture_screenshots(
       devices: [
         "iPad Pro (12.9-inch) (2nd generation)",
         "iPad Pro (12.9-inch) (3rd generation)"
       ]
-      # clean: true
     )
     frame_screenshots
   end
 
-  desc "Take Screenshots and upload them to AppStore Connect"
-  lane :deliver_screenshots do
-    upload_to_app_store
-    deliver(skip_binary_upload: true)
-  end
-
-  desc "Upload screenshots"
+  desc "Upload screenshots to App Store Connect"
   lane :upload_screenshots do
     deliver(
-      # sync_screenshots: true
       app_version: "3.2.1",
       skip_binary_upload: true,
       overwrite_screenshots: true
     )
   end
 
+  desc "Take screenshots and upload to App Store Connect"
+  lane :deliver_screenshots do
+    screenshots
+    deliver(skip_binary_upload: true)
+  end
+
+  # Error Handling
   error do |lane, exception|
+    UI.error("Lane '#{lane}' failed with error: #{exception.message}")
+    # Uncomment below for Slack notifications
     # slack(
-    #   message: exception.message,
+    #   message: "Lane '#{lane}' failed: #{exception.message}",
     #   channel: "#mein-moers",
     #   success: false
     # )
   end
-
 end
