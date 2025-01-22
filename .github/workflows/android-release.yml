@@ -13,9 +13,14 @@ on:
         description: Android Version
         default: patch
         options:
+          - build
           - patch
           - minor
           - major
+      tag_release:
+        type: boolean
+        description: Tag the release
+        default: true
 
 jobs:
   distribute:
@@ -65,16 +70,21 @@ jobs:
         run: |
           echo "Executing version bump: ${{ github.event.inputs.version_bump }}"
           bundle exec fastlane android increment_version_code
-          bundle exec fastlane android increment_version mode:${{ github.event.inputs.version_bump}}
+          
+          if [ "${{ github.event.inputs.version_bump }}" != "build" ]; then
+            bundle exec fastlane android increment_version mode:${{ github.event.inputs.version_bump }}
+          else
+            echo "Skipping version name bump as 'build' was selected."
+          fi
 
       - name: Distribute app to internal track 🚀
         run: bundle exec fastlane android deploy_internal
 
       - name: Commit version bump and tag
         run: |
-          VERSION_NAME=$(grep versionName androidApp/version.properties | cut -d'=' -f2 | tr -d ' ')
-          VERSION_CODE=$(grep versionCode androidApp/version.properties | cut -d'=' -f2 | tr -d ' ')
-          TAG_NAME="v${VERSION_NAME}-${VERSION_CODE}"
+          VERSION_NAME=$(grep VERSION_NAME androidApp/version.properties | cut -d'=' -f2 | tr -d ' ')
+          VERSION_CODE=$(grep VERSION_CODE androidApp/version.properties | cut -d'=' -f2 | tr -d ' ')
+          TAG_NAME="android/${VERSION_NAME}/${VERSION_CODE}"
           
           echo "Version Name: $VERSION_NAME"
           echo "Version Code: $VERSION_CODE"
