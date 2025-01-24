@@ -11,16 +11,12 @@ on:
         type: choice
         required: true
         description: Android Version
-        default: patch
+        default: build
         options:
           - build
           - patch
           - minor
           - major
-      tag_release:
-        type: boolean
-        description: Tag the release
-        default: true
 
 jobs:
   distribute:
@@ -77,7 +73,7 @@ jobs:
             echo "Skipping version name bump as 'build' was selected."
           fi
 
-      - name: Distribute app to internal track 🚀
+      - name: Distribute app to internal track
         run: bundle exec fastlane android deploy_internal
 
       - name: Commit version bump and tag
