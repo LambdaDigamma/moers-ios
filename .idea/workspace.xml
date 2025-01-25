@@ -10,20 +10,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a67a544-461c-43bd-b464-4b57a8071b80" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Overview/Preview List/PreviewListEventsView.swift" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Blocks/ImageCollectionView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/android-release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/android-release.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/workflows/ios-release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ios-release.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fastlane/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/fastlane/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Gemfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI-Package.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI-Package.xcscheme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI.xcscheme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAUI.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAUI.xcscheme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/Package.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/Sources/EFAAPI/View Models/TransitLocation.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/Sources/EFAAPI/View Models/TransitLocation.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/fastlane/Appfile" beforeDir="false" afterPath="$PROJECT_DIR$/ios/fastlane/Appfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/fastlane/Fastfile" beforeDir="false" afterPath="$PROJECT_DIR$/ios/fastlane/Fastfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/fastlane/Matchfile" beforeDir="false" afterPath="$PROJECT_DIR$/ios/fastlane/Matchfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/mmevents-ios" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/.swiftpm/xcode/xcshareddata/xcschemes/MMEvents.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/.swiftpm/xcode/xcshareddata/xcschemes/MMEvents.xcscheme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/.swiftpm/xcode/xcshareddata/xcschemes/MMEventsTests.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/.swiftpm/xcode/xcshareddata/xcschemes/MMEventsTests.xcscheme" afterDir="false" />
@@ -178,7 +184,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2580231",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   },
   "keyToStringList": {
     "ExportApk.BuildVariants": [

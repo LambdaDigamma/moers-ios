@@ -7,8 +7,9 @@ on:
         type: choice
         required: true
         description: iOS Version
-        default: patch
+        default: build
         options:
+          - build
           - patch
           - minor
           - major
@@ -21,6 +22,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Decode and Store Google Services Plist
+        run: |
+          echo "${{ secrets.IOS_GOOGLE_SERVICES_INFO_PLIST }}" | base64 --decode > ios/Moers/Resources/GoogleService-Info.plist
+
+      - name: Decode and Store Tankerkoenig API Key
+        run: |
+          echo "${{ secrets.IOS_TANKER_INFO_PLIST }}" | base64 --decode > ios/Moers/Resources/Tankerkoenig-Info.plist
+
       - name: Set up ruby env
         uses: ruby/setup-ruby@v1
         with:
@@ -29,12 +38,47 @@ jobs:
 
       - name: Install bundle
         run: |
+          cd ios
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
 
       - name: Version Bump
         run: |
           echo "Executing version bump: ${{ github.event.inputs.version_bump }}"
-          bundle exec fastlane android increment_version_code
-          bundle exec fastlane android increment_version mode:${{ github.event.inputs.version_bump}}
-      
+          cd ios
+          bundle exec fastlane ios increment_build
+          
+          if [ "${{ github.event.inputs.version_bump }}" != "build" ]; then
+            bundle exec fastlane ios increment_version mode:${{ github.event.inputs.version_bump }}
+          else
+            echo "Skipping version name bump as 'build' was selected."
+          fi
+
+      - name: Ship iOS App
+        run: |
+          cd ios
+          bundle exec fastlane ios upload
+        with:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY: ${{ secrets.ASC_KEY }}
+          CI: true
+
+      - name: Commit version bump and tag
+        run: |
+          IOS_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "ios/Moers/Config/Info.plist")
+          IOS_BUILD=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "ios/Moers/Config/Info.plist")
+          TAG_NAME="ios/${IOS_VERSION}/${IOS_BUILD}"
+          
+          echo "iOS Version: $IOS_VERSION"
+          echo "iOS Build: $IOS_BUILD"
+          echo "Tag Name: $TAG_NAME"
+          
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git add .
+          git commit -m "🚀 Bump iOS version to $IOS_VERSION ($IOS_BUILD)"
+          git tag $TAG_NAME
+          git push origin HEAD
+          git push origin $TAG_NAME

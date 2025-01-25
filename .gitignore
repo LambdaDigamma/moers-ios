@@ -84,3 +84,8 @@ ios/GoogleService-Info.plist
 fastlane/.env
 keystore.properties
 /play_config.json
+
+*.ipa
+*.dSYM.zip
+*.dSYM
+.env

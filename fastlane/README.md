@@ -13,6 +13,91 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
+## iOS
+
+### ios increment
+
+```sh
+[bundle exec] fastlane ios increment
+```
+
+Increment version number
+
+### ios increment_version
+
+```sh
+[bundle exec] fastlane ios increment_version
+```
+
+Increment version number (patch, minor, major)
+
+### ios increment_build
+
+```sh
+[bundle exec] fastlane ios increment_build
+```
+
+Increment build number across all targets
+
+### ios upload
+
+```sh
+[bundle exec] fastlane ios upload
+```
+
+
+
+### ios release
+
+```sh
+[bundle exec] fastlane ios release
+```
+
+Release a new version of Mein Moers
+
+### ios signing
+
+```sh
+[bundle exec] fastlane ios signing
+```
+
+Sync code signing for development and app store
+
+### ios upload_metadata
+
+```sh
+[bundle exec] fastlane ios upload_metadata
+```
+
+Upload metadata to App Store Connect
+
+### ios screenshots
+
+```sh
+[bundle exec] fastlane ios screenshots
+```
+
+Capture and frame screenshots
+
+### ios upload_screenshots
+
+```sh
+[bundle exec] fastlane ios upload_screenshots
+```
+
+Upload screenshots to App Store Connect
+
+### ios deliver_screenshots
+
+```sh
+[bundle exec] fastlane ios deliver_screenshots
+```
+
+Take screenshots and upload to App Store Connect
+
+----
+
+
 ## Android
 
 ### android increment_version_code
