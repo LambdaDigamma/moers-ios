@@ -124,6 +124,7 @@ platform :ios do
    gym(
      scheme: "Moers",
      configuration: "Release (Production)",
+     export_xcargs: "-allowProvisioningUpdates",
      export_options: {
        method: "app-store"
      }
