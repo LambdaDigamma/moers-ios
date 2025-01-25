@@ -118,7 +118,7 @@ platform :ios do
       configuration: "Release (Production)",
       xcargs: xcargs,
       export_options: {
-        "method": "app-store-connect",
+        "method": "app-store",
         "signingStyle": "automatic",
       }
     )
