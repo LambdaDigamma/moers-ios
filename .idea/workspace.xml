@@ -9,47 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a67a544-461c-43bd-b464-4b57a8071b80" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Overview/Preview List/PreviewListEventsView.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Blocks/ImageCollectionView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/ios-release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ios-release.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/efaapi-ios" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI-Package.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI-Package.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAAPI.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAUI.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/.swiftpm/xcode/xcshareddata/xcschemes/EFAUI.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/Package.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/efaapi-ios/Sources/EFAAPI/View Models/TransitLocation.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/efaapi-ios/Sources/EFAAPI/View Models/TransitLocation.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmevents-ios" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/.swiftpm/xcode/xcshareddata/xcschemes/MMEvents.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/.swiftpm/xcode/xcshareddata/xcschemes/MMEvents.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/.swiftpm/xcode/xcshareddata/xcschemes/MMEventsTests.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/.swiftpm/xcode/xcshareddata/xcschemes/MMEventsTests.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/Package.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/EventCard.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/EventCard.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/EventUtilities.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/EventUtilities.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/FavoriteEventRecord.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/FavoriteEventRecord.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Overview/Compact/CompactDayEventsView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Overview/Compact/CompactDayEventsView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Overview/DayEventsViewModel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Overview/DayEventsViewModel.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Overview/Extended/ExtendedDayEventsView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Overview/Extended/ExtendedDayEventsView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Overview/TimetableScreen.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Overview/TimetableScreen.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Overview/TimetableViewModel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Overview/TimetableViewModel.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Store/EventRepository.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Store/EventRepository.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Store/FavoriteEventsStore.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/Store/FavoriteEventsStore.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/UI/DownloadEventsScreen.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/UI/DownloadEventsScreen.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/UI/EventListItem.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/UI/EventListItem.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/UI/GroupedEventCollection.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Events/UI/GroupedEventCollection.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Models/Event.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Models/Event.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Models/EventExtras.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmevents-ios/Sources/MMEvents/Models/EventExtras.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmpages-ios" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/.swiftpm/xcode/xcshareddata/xcschemes/MMPages.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/.swiftpm/xcode/xcshareddata/xcschemes/MMPages.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/.swiftpm/xcode/xcshareddata/xcschemes/MMPagesTests.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/.swiftpm/xcode/xcshareddata/xcschemes/MMPagesTests.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Package.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Blocks/BlockImageCollection.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Blocks/BlockImageCollection.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/AnyBlockable.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/AnyBlockable.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/Page.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/Page.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/PageBlock.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/Models/PageBlock.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Native/PageBlockView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Native/PageBlockView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Web Fallback/WebView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/mmpages-ios/Sources/MMPages/UI/Web Fallback/WebView.swift" afterDir="false" />
-    </list>
+    <list default="true" id="4a67a544-461c-43bd-b464-4b57a8071b80" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
