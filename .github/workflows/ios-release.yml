@@ -60,7 +60,11 @@ jobs:
       - name: Ship iOS App
         run: |
           cd ios
+          echo "${{ secrets.ASC_KEY }}" | base64 --decode > asc_key.p8
+          export ASC_KEY_PATH=$(realpath asc_key.p8)
+          echo "ASC_KEY_PATH=$ASC_KEY_PATH" >> $GITHUB_ENV
           bundle exec fastlane ios upload
+          rm asc_key.p8
         env:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}

@@ -105,29 +105,21 @@ platform :ios do
   desc "Build the iOS app for release"
   lane :build_release do |options|
     app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
-
-    require_envs(:APP_IDENTIFIER)
-
-    key_file_path = Pathname.new(ENV['APP_STORE_CONNECT_API_KEY_KEY_FILEPATH'])
-
-    # the key is stored in the
-
-    UI.user_error "APP_STORE_CONNECT_API_KEY_KEY_FILEPATH must be absolute" if key_file_path.relative?
+    api_key = lane_context[SharedValues::APP_STORE_CONNECT_API_KEY]
 
   	xcargs = "-allowProvisioningUpdates"
-#     xcargs += " -authenticationKeyID #{ENV['APP_STORE_CONNECT_API_KEY_KEY_ID']}"
-#     xcargs += " -authenticationKeyIssuerID #{ENV['APP_STORE_CONNECT_API_KEY_ISSUER_ID']}"
-#     xcargs += " -authenticationKeyPath '#{ENV['APP_STORE_CONNECT_API_KEY_KEY_FILEPATH']}'"
-#   	xcargs += " CODE_SIGN_STYLE=Automatic"
+    xcargs += " -authenticationKeyID #{ENV['ASC_KEY_ID']}"
+    xcargs += " -authenticationKeyIssuerID #{ENV['ASC_ISSUER_ID']}"
+    xcargs += " -authenticationKeyPath '#{ENV['ASC_KEY_PATH']}'"
+  	xcargs += " CODE_SIGN_STYLE=Automatic"
 
-    # build the app
     gym(
       scheme: "Moers",
       configuration: "Release (Production)",
-      export_xcargs: xcargs,
       xcargs: xcargs,
       export_options: {
-        method: "app-store"
+        "method": "app-store",
+        "signingStyle": "automatic",
       }
     )
   end
