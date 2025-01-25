@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ModernNetworking",
+        "repositoryURL": "https://github.com/LambdaDigamma/ModernNetworking.git",
+        "state": {
+          "branch": null,
+          "revision": "bac9aec83e259206600ed4ef8b7a146dc6bc9bc8",
+          "version": "0.1.2"
+        }
+      },
+      {
+        "package": "XMLCoder",
+        "repositoryURL": "https://github.com/MaxDesiatov/XMLCoder.git",
+        "state": {
+          "branch": null,
+          "revision": "f30119af03996939cc4f54e0bf0dda9f88a84da5",
+          "version": "0.13.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

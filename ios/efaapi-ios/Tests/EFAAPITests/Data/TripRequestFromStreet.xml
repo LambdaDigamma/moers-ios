@@ -1,0 +1,2137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itdRequest version="10.4.24.4" language="de" lengthUnit="METER" sessionID="0" client="Mein%20Moers/58 CFNetwork/1331.0.7 Darwin/21.4.0" clientIP="127.0.0.1" serverID="EFAOPENSERVICE2_" virtDir="vrr" calcTime="1240.045" now="2022-04-06T09:58:25" nowWD="4">
+   <itdTripRequest requestID="0">
+      <itdMessage type="warning" module="BROKER" code="-10015" subType="itp-monomodal">itp</itdMessage>
+      <itdPrintConfiguration active="-1" printerDirect="0" layout="" outputFormat="pdf" fontSizeNormal="1" shading="1" commuterFaresOutput="0" fareUnitOrientation="left" serverAddress="" serverInfo="" />
+      <itdAddress name="" street="" place="" addressExt1="" addressExt2="" />
+      <itdOdv type="any" usage="origin" anyObjFilter="0">
+         <itdOdvPlace state="identified">
+            <odvPlaceElem omc="5170024" placeID="21" value="5170024:21" span="0" type="remote" mainPlace="0" stateless="placeID:5170024:21">Moers</odvPlaceElem>
+            <odvPlaceInput />
+         </itdOdvPlace>
+         <itdOdvName state="identified" method="itp">
+            <itdMessage type="error" module="BROKER" code="-8010" />
+            <odvNameElem selected="1" matchQuality="250" x="6.61625" y="51.45077" mapName="WGS84[DD.DDDDD]" id="1500000005" omc="5170024" placeID="21" anyType="street" anyTypeSort="8" locality="Moers" objectName="Adlerstraße" buildingName="" buildingNumber="" postCode=" 47441" streetName="Adlerstraße" nameKey="" mainLocality="" stateless="streetID:1500000005::5170024:21:Adlerstraße:Moers:Adlerstraße::Adlerstraße: 47441:ANY:DIVA_STREET:736518:5298579:MRCV:nrw:0">Moers, Adlerstraße</odvNameElem>
+            <odvNameInput>Adlerstraße Moers</odvNameInput>
+         </itdOdvName>
+         <itdOdvAssignedStops select="0">
+            <itdOdvAssignedStop stopID="20036295" x="6.61395" y="51.45114" mapName="WGS84[DD.DDDDD]" value="20036295:Walpurgisstraße" place="Moers" nameWithPlace="Moers Walpurgisstraße" distance="251" distanceTime="3" isTransferStop="0" vm="100" gid="de:05170:36295">Walpurgisstraße</itdOdvAssignedStop>
+            <itdOdvAssignedStop stopID="20036296" x="6.61872" y="51.45229" mapName="WGS84[DD.DDDDD]" value="20036296:Steinschen" place="Moers" nameWithPlace="Moers Steinschen" distance="283" distanceTime="4" isTransferStop="0" vm="100" gid="de:05170:36296">Steinschen</itdOdvAssignedStop>
+            <itdOdvAssignedStop stopID="20036769" x="6.61867" y="51.44878" mapName="WGS84[DD.DDDDD]" value="20036769:Arnulfstraße" place="Moers" nameWithPlace="Moers Arnulfstraße" distance="372" distanceTime="5" isTransferStop="0" vm="100" gid="de:05170:36769">Arnulfstraße</itdOdvAssignedStop>
+            <itdOdvAssignedStop stopID="20036293" x="6.61474" y="51.44724" mapName="WGS84[DD.DDDDD]" value="20036293:Schwanenring" place="Moers" nameWithPlace="Moers Schwanenring" distance="430" distanceTime="6" isTransferStop="0" vm="100" gid="de:05170:36293">Schwanenring</itdOdvAssignedStop>
+            <itdOdvAssignedStop stopID="20036442" x="6.61195" y="51.44813" mapName="WGS84[DD.DDDDD]" value="20036442:Fasanenstraße" place="Moers" nameWithPlace="Moers Fasanenstraße" distance="602" distanceTime="9" isTransferStop="0" vm="100" gid="de:05170:36442">Fasanenstraße</itdOdvAssignedStop>
+            <itdOdvAssignedStop stopID="20036294" x="6.60983" y="51.44978" mapName="WGS84[DD.DDDDD]" value="20036294:Goldammerweg" place="Moers" nameWithPlace="Moers Goldammerweg" distance="648" distanceTime="9" isTransferStop="0" vm="100" gid="de:05170:36294">Goldammerweg</itdOdvAssignedStop>
+         </itdOdvAssignedStops>
+      </itdOdv>
+      <itdOdv type="any" usage="destination" anyObjFilter="0">
+         <itdOdvPlace state="identified" method="itp">
+            <odvPlaceElem omc="5334002" placeID="1" value="5334002:1" span="0" type="remote" mainPlace="1" stateless="placeID:5334002:1">Aachen</odvPlaceElem>
+            <odvPlaceInput />
+         </itdOdvPlace>
+         <itdOdvName state="identified" method="itp">
+            <odvNameElem selected="0" matchQuality="100000" x="6.09205" y="50.76772" mapName="WGS84[DD.DDDDD]" id="21001008" omc="5334002" placeID="1" anyType="stop" anyTypeSort="2" locality="Aachen" objectName="Aachen, Hbf" buildingName="" buildingNumber="" postCode="" streetName="" nameKey="" mainLocality="" stateless="21001008" gid="de:05334:1008" tariffArea="" tariffAreaName="" tariffLayer1="" tariffLayer2="">Aachen, Aachen, Hbf</odvNameElem>
+            <odvNameInput>Aachen, Aachen, Hbf</odvNameInput>
+         </itdOdvName>
+         <itdOdvAssignedStops select="0">
+            <itdOdvAssignedStop stopID="21001008" x="6.09205" y="50.76772" mapName="WGS84[DD.DDDDD]" value="21001008:Aachen, Hbf" place="Aachen" nameWithPlace="Aachen, Hbf,Aachen" distanceTime="0" isTransferStop="0" vm="100" gid="de:05334:1008">Aachen, Hbf</itdOdvAssignedStop>
+         </itdOdvAssignedStops>
+      </itdOdv>
+      <itdOdv type="unknown" usage="via" anyObjFilter="0">
+         <itdOdvPlace state="empty">
+            <odvPlaceElem />
+         </itdOdvPlace>
+         <itdOdvName state="empty">
+            <odvNameElem />
+         </itdOdvName>
+      </itdOdv>
+      <itdAddOdvSeq />
+      <itdTripDateTime deparr="dep" ttpFrom="20220201" ttpTo="20220831">
+         <itdDateTime ttpFrom="20220201" ttpTo="20220831">
+            <itdDate weekday="4" year="2022" month="4" day="6" />
+            <itdTime hour="9" minute="58" />
+         </itdDateTime>
+         <itdDateRange>
+            <itdDate day="06" month="04" year="2022" weekday="4" />
+            <itdDate day="07" month="04" year="2022" weekday="5" />
+            <itdDate day="08" month="04" year="2022" weekday="6" />
+            <itdDate day="09" month="04" year="2022" weekday="7" />
+            <itdDate day="10" month="04" year="2022" weekday="1" />
+            <itdDate day="11" month="04" year="2022" weekday="2" />
+            <itdDate day="12" month="04" year="2022" weekday="3" />
+            <itdDate day="13" month="04" year="2022" weekday="4" />
+            <itdDate day="14" month="04" year="2022" weekday="5" />
+            <itdDate day="15" month="04" year="2022" weekday="6" />
+            <itdDate day="16" month="04" year="2022" weekday="7" />
+            <itdDate day="17" month="04" year="2022" weekday="1" />
+            <itdDate day="18" month="04" year="2022" weekday="2" />
+            <itdDate day="19" month="04" year="2022" weekday="3" />
+            <itdDate day="20" month="04" year="2022" weekday="4" />
+         </itdDateRange>
+      </itdTripDateTime>
+      <itdTripOptions userDefined="0">
+         <itdPtOptions active="1" maxChanges="9" maxTime="360" maxWait="120" routeType="LEASTTIME" changeSpeed="normal" lineRestriction="403" useProxFootSearch="0" useProxFootSearchOrigin="0" useProxFootSearchDestination="0" bike="0" plane="0" noCrowded="0" noSolidStairs="0" noEscalators="0" noElevators="0" lowPlatformVhcl="0" wheelchair="0" needElevatedPlt="0" assistance="0" SOSAvail="0" noLonelyTransfer="0" illumTransfer="0" overgroundTransfer="0" noInsecurePlaces="0" privateTransport="0" activeImp="-1" activeCom="-1" activeSec="-1" twoSidedAlt="1" level="unknown">
+            <excludedMeans>
+               <meansElem value="0" selected="0" />
+               <meansElem value="1" selected="0" />
+               <meansElem value="2" selected="0" />
+               <meansElem value="3" selected="0" />
+               <meansElem value="4" selected="0" />
+               <meansElem value="5" selected="0" />
+               <meansElem value="6" selected="0" />
+               <meansElem value="7" selected="0" />
+               <meansElem value="8" selected="0" />
+               <meansElem value="9" selected="0" />
+               <meansElem value="10" selected="0" />
+               <meansElem value="11" selected="0" />
+               <meansElem value="12" selected="0" />
+               <meansElem value="13" selected="0" />
+               <meansElem value="14" selected="0" />
+               <meansElem value="15" selected="0" />
+               <meansElem value="16" selected="0" />
+               <meansElem value="17" selected="0" />
+               <meansElem value="18" selected="0" />
+               <meansElem value="19" selected="0" />
+            </excludedMeans>
+            <specialTickets />
+         </itdPtOptions>
+         <itdItOptions active="-1">
+            <itRouter logASCII="false" logSVG="false" />
+            <itPedestrian computeMonomodalTrip="false" computationType="PT_AND_IT" itIncidentData="false" useElevation="false" speedFactor="100" costFactor="0" distanceFactor="50" traveltimeFactor="50" noTunnel="false" noBridge="false" noFerry="false" maxTime="30" minTime="0" maxLength="2147483647" minLength="0" ignoreRestrictions="false" computeAlternativeRoutes="false" level="connection" prefIllum="0" prefToilet="0" prefBench="0" useHdcAcc="0" useGeoRefs="0" />
+            <itBicycle preferAsphaltTracks="false" preferGreenTracks="false" usePseudoRouting="true" useSignedRoute="false" cycleSpeed="20" prefHikePath="false" elevFac="50" useNetClasses="false" useDrawClasses="false" useEnv="false" inclEnvLeisureRoutes="false" inclEnvTrafficDensity="true" useSurfQuality="false" inclSurfQualGravel="false" inclSurfQualForrest="false" inclSurfQualSingleTrial="false" inclSurfQualCarry="false" useLayoutStructural="false" useLayoutDirections="false" prefPedestrianSeperated="false" useRecommRoute="false" computeMonomodalTrip="false" computationType="PT_AND_IT" itIncidentData="false" useElevation="false" speedFactor="100" costFactor="0" distanceFactor="50" traveltimeFactor="50" noTunnel="false" noBridge="false" noFerry="false" maxTime="15" minTime="0" maxLength="2147483647" minLength="0" ignoreRestrictions="false" computeAlternativeRoutes="false" level="unknown" />
+            <mitCar computeMonomodalTrip="false" computationType="PT_AND_IT" itIncidentData="false" useElevation="false" speedFactor="100" costFactor="0" distanceFactor="50" traveltimeFactor="50" noTunnel="false" noBridge="false" noFerry="false" maxTime="90" minTime="0" maxLength="2147483647" minLength="0" ignoreRestrictions="false" computeAlternativeRoutes="false" level="unknown" mitProfileData="false" mitIncidentData="false" mitOnlineData="false" noHighway="false" noTollRoad="false" prefSerSt="false" />
+            <mitTaxi computeMonomodalTrip="false" computationType="PT_AND_IT" itIncidentData="false" useElevation="false" speedFactor="100" costFactor="0" distanceFactor="50" traveltimeFactor="50" noTunnel="false" noBridge="false" noFerry="false" maxTime="30" minTime="0" maxLength="2147483647" minLength="0" ignoreRestrictions="false" computeAlternativeRoutes="false" level="unknown" mitProfileData="false" mitIncidentData="false" mitOnlineData="false" noHighway="false" noTollRoad="false" prefSerSt="false" />
+            <departureTransport>
+               <individualTransport meansCode="100" value="10" speed="normal" selected="1" />
+               <individualTransport meansCode="101" value="15" speed="normal" selected="0" />
+               <individualTransport meansCode="102" value="15" speed="normal" selected="0" />
+               <individualTransport meansCode="103" value="10" speed="normal" selected="0" />
+               <individualTransport meansCode="104" value="10" speed="normal" selected="0" />
+               <individualTransport meansCode="105" value="30" speed="normal" selected="0" />
+               <individualTransport meansCode="106" value="15" speed="normal" selected="0" />
+               <individualTransport meansCode="107" value="15" speed="normal" selected="0" />
+            </departureTransport>
+            <arrivalTransport>
+               <individualTransport meansCode="100" value="10" speed="normal" selected="1" />
+               <individualTransport meansCode="101" value="15" speed="normal" selected="0" />
+               <individualTransport meansCode="102" value="15" speed="normal" selected="0" />
+               <individualTransport meansCode="103" value="10" speed="normal" selected="0" />
+               <individualTransport meansCode="104" value="10" speed="normal" selected="0" />
+               <individualTransport meansCode="105" value="30" speed="normal" selected="0" />
+               <individualTransport meansCode="106" value="15" speed="normal" selected="0" />
+               <individualTransport meansCode="107" value="15" speed="normal" selected="0" />
+            </arrivalTransport>
+         </itdItOptions>
+         <itBikeSharing preferAsphaltTracks="false" preferGreenTracks="false" usePseudoRouting="true" useSignedRoute="false" cycleSpeed="20" prefHikePath="false" elevFac="50" useNetClasses="false" useDrawClasses="false" useEnv="false" inclEnvLeisureRoutes="false" inclEnvTrafficDensity="true" useSurfQuality="false" inclSurfQualGravel="false" inclSurfQualForrest="false" inclSurfQualSingleTrial="false" inclSurfQualCarry="false" useLayoutStructural="false" useLayoutDirections="false" prefPedestrianSeperated="false" useRecommRoute="false" computeMonomodalTrip="false" computationType="PT_AND_IT" itIncidentData="false" useElevation="false" speedFactor="100" costFactor="0" distanceFactor="50" traveltimeFactor="50" noTunnel="false" noBridge="false" noFerry="false" maxTime="15" minTime="0" maxLength="2147483647" minLength="0" ignoreRestrictions="false" computeAlternativeRoutes="false" level="unknown" shType="freefloating" shMOT="bike" shName="metropolradruhr" shPId="100" shOAId="129;131;132;133;134;135;136;137;138" />
+         <itBikeSharing preferAsphaltTracks="false" preferGreenTracks="false" usePseudoRouting="true" useSignedRoute="false" cycleSpeed="20" prefHikePath="false" elevFac="50" useNetClasses="false" useDrawClasses="false" useEnv="false" inclEnvLeisureRoutes="false" inclEnvTrafficDensity="true" useSurfQuality="false" inclSurfQualGravel="false" inclSurfQualForrest="false" inclSurfQualSingleTrial="false" inclSurfQualCarry="false" useLayoutStructural="false" useLayoutDirections="false" prefPedestrianSeperated="false" useRecommRoute="false" computeMonomodalTrip="false" computationType="PT_AND_IT" itIncidentData="false" useElevation="false" speedFactor="100" costFactor="0" distanceFactor="50" traveltimeFactor="50" noTunnel="false" noBridge="false" noFerry="false" maxTime="15" minTime="0" maxLength="2147483647" minLength="0" ignoreRestrictions="false" computeAlternativeRoutes="false" level="unknown" shType="freefloating" shMOT="bike" shName="nextbike Düsseldorf" shPId="103" shOAId="50" />
+         <itBikeSharing preferAsphaltTracks="false" preferGreenTracks="false" usePseudoRouting="true" useSignedRoute="false" cycleSpeed="20" prefHikePath="false" elevFac="50" useNetClasses="false" useDrawClasses="false" useEnv="false" inclEnvLeisureRoutes="false" inclEnvTrafficDensity="true" useSurfQuality="false" inclSurfQualGravel="false" inclSurfQualForrest="false" inclSurfQualSingleTrial="false" inclSurfQualCarry="false" useLayoutStructural="false" useLayoutDirections="false" prefPedestrianSeperated="false" useRecommRoute="false" computeMonomodalTrip="false" computationType="PT_AND_IT" itIncidentData="false" useElevation="false" speedFactor="100" costFactor="0" distanceFactor="50" traveltimeFactor="50" noTunnel="false" noBridge="false" noFerry="false" maxTime="15" minTime="0" maxLength="2147483647" minLength="0" ignoreRestrictions="false" computeAlternativeRoutes="false" level="unknown" shType="freefloating" shMOT="bike" shName="nextbike Mönchengladbach" shPId="104" shOAId="530" />
+         <itdUsedOptions calcNumberOfTrips="4" dwellTime="00:00" prevDepsPerLeg="0" nextDepsPerLeg="0" calcCO2="0" realtime="1" realOnlyInfo="0" itemType="STOPLINK" />
+      </itdTripOptions>
+      <itdItinerary>
+         <itdRouteList>
+            <itdRoute active="1" selected="1" changes="2" distance="283" optValue="0" routeIndex="7" alternative="0" print="0" delete="0" searchMode="1" cTime="20220406095825239" method="itp" individualDuration="00:05" vehicleTime="126" idx="7" publicDuration="02:39">
+               <itdMapItemList />
+               <itdPartialRouteList>
+                  <itdPartialRoute type="IT" active="1" timeMinute="5" distance="283" bookingCode="S0R0T0PR0" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="99999997" area="0" platform="" name="Moers, Adlerstraße" nameWO="Adlerstraße" place="Moers" platformName="" plannedPlatformName="" usage="departure" x="6.61625" y="51.45077" mapName="WGS84[DD.DDDDD]" omc="5170024" placeID="-1" locality="Moers" georef="1000453212:16:MRCV:100">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48210.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="8" minute="48" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="8" minute="47" second="0" />
+                        </itdDateTimeTarget>
+                     </itdPoint>
+                     <itdPoint stopID="20036296" area="0" platform="3" gid="de:05170:36296" areaGid="de:05170:36296" pointGid="de:05170:36296:0:3" name="Moers Steinschen" nameWO="Steinschen" place="Moers" platformName="3" plannedPlatformName="3" usage="arrival" x="6.61872" y="51.45229" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="1003524668:9:MRCV:100" mode="5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48211.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="8" minute="53" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="8" minute="52" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="" shortname="" symbol="" type="100" productName="Fussweg" destination="" network="" TTB="0" STT="0" ROP="0" destID="" spTr="" stateless=":: : :" tC="0" lineDisplay="line">
+                        <motDivaParams line="" project="" direction=" " supplement=" " network="" />
+                     </itdMeansOfTransport>
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="4" bookingCode="S0R0T0PR1" realtimeStatus="MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20036296" area="0" platform="3" gid="de:05170:36296" areaGid="de:05170:36296" pointGid="de:05170:36296:0:3" name="Moers Steinschen" nameWO="Steinschen" place="Moers" platformName="3" plannedPlatformName="3" usage="departure" x="6.61872" y="51.45229" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="1003524668:9:MRCV:100" mode="5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48211.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="8" minute="53" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="8" minute="52" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="20036298" area="2" platform="5" gid="de:05170:36298" areaGid="de:05170:36298:2" pointGid="de:05170:36298:2:5" name="Moers Königlicher Hof" nameWO="Königlicher Hof" place="Moers" platformName="5" plannedPlatformName="5" usage="arrival" x="6.62895" y="51.45159" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="362613151:12:MRCV:100" mode="5,7">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48212.pdf" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36298_Moers_Koeniglicher_Hof.pdf" size="595" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="8" minute="57" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="8" minute="56" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Bus 929" shortname="929" symbol="929" type="3" motType="5" productName="Bus" productId="2" timetablePeriod="Jahresfahrplan 2022 (10.01.2022 - 08.01.2023)" destination="DU-Hbf Osteingang" network="nia" TTB="0" STT="1" ROP="1" destID="20016078" spTr="" stateless="nia:25929: :R:j22" tC="65" lineDisplay="line">
+                        <motDivaParams line="25929" project="j22" direction="R" supplement=" " network="nia" gid="de:vrr:nia-25-929:" />
+                        <itdRouteDescText>Neukirchen-Vluyn - Moers DU-Homberg - Duisburg Hbf</itdRouteDescText>
+                        <itdOperator>
+                           <code>25</code>
+                           <name>Niederrheinische VKB</name>
+                           <publicCode>NIAG</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="1" delayMinutesArr="1" />
+                     <itdFootPathInfo position="AFTER" duration="2" dTM="20" />
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="25" bookingCode="S0R0T0PR2" realtimeStatus="MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20036298" area="1" platform="1" gid="de:05170:36298" areaGid="de:05170:36298:1" pointGid="de:05170:36298:1:1" name="Moers Königlicher Hof" nameWO="Königlicher Hof" place="Moers" platformName="1" plannedPlatformName="1" usage="departure" x="6.62932" y="51.45100" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="172782771:34:MRCV:100" mode="5,7">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48212.pdf" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36298_Moers_Koeniglicher_Hof.pdf" size="595" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="9" minute="7" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="9" minute="6" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="20021089" area="1" platform="" gid="de:05114:21089" areaGid="de:05114:21089:1" name="Krefeld Uerdingen Bf" nameWO="Uerdingen Bf" place="Krefeld" platformName="2" plannedPlatformName="2" usage="arrival" x="6.64624" y="51.35661" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5114000" placeID="20" locality="Krefeld" georef="501602884:21:MRCV:100" mode="0,4,5,7" realtimeStatus="AREA_CHANGED">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48213.pdf" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/21089_kr_uerdingen_bf.htm" size="1" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="9" minute="32" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="9" minute="32" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="SB SB80" shortname="SB80" symbol="SB80" type="5" motType="7" productName="SB" productId="3" timetablePeriod="Jahresfahrplan 2022 (10.01.2022 - 08.01.2023)" destination="Krefeld Am Röttgen" network="nia" TTB="0" STT="1" ROP="1" destID="20021983" spTr="" stateless="nia:25S80: :H:j22" tC="86" lineDisplay="line">
+                        <motDivaParams line="25S80" project="j22" direction="H" supplement=" " network="nia" gid="de:vrr:nia-25-S80:" />
+                        <itdRouteDescText>Moers - DU-Rumeln - KR-Uerdingen</itdRouteDescText>
+                        <itdOperator>
+                           <code>25</code>
+                           <name>Niederrheinische VKB</name>
+                           <publicCode>NIAG</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="1" delayMinutesArr="0" />
+                     <itdFootPathInfo position="AFTER" duration="4" dTM="40">
+                        <itdFootPathElem description="" type="LEVEL" lF="0" lT="0" level="LEVEL">
+                           <itdPoint stopID="20021089" area="1" platform="" x="6.64624" y="51.35661" mapName="WGS84[DD.DDDDD]" georef="501602884:21:MRCV:100" />
+                           <itdPoint stopID="20021089" area="20" x="6.64604" y="51.35720" mapName="WGS84[DD.DDDDD]" georef="346267753:19:MRCV:100" />
+                        </itdFootPathElem>
+                        <itdFootPathElem description="" type="RAMP" lF="0" lT="0" level="LEVEL">
+                           <itdPoint stopID="20021089" area="20" platform="" x="6.64604" y="51.35720" mapName="WGS84[DD.DDDDD]" georef="346267753:19:MRCV:100" />
+                           <itdPoint stopID="20021089" area="70" x="6.64568" y="51.35734" mapName="WGS84[DD.DDDDD]" georef="0:0::100" />
+                        </itdFootPathElem>
+                        <itdFootPathElem description="" type="STAIRS" lF="0" lT="1" level="UP">
+                           <itdPoint stopID="20021089" area="70" platform="" x="6.64568" y="51.35734" mapName="WGS84[DD.DDDDD]" georef="0:0::100" />
+                           <itdPoint stopID="20021089" area="90" x="6.64518" y="51.35697" mapName="WGS84[DD.DDDDD]" georef="1004021154:18:MRCV:100" />
+                        </itdFootPathElem>
+                     </itdFootPathInfo>
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="97" bookingCode="S0R0T0PR3" realtimeStatus="MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20021089" area="90" platform="1" gid="de:05114:21089" areaGid="de:05114:21089:90" pointGid="de:05114:21089:90:1" name="Krefeld Uerdingen Bf" nameWO="Uerdingen Bf" place="Krefeld" platformName="1" plannedPlatformName="1" usage="departure" pointType="Gleis" x="6.64518" y="51.35697" mapName="WGS84[DD.DDDDD]" niveau="1" omc="5114000" placeID="20" locality="Krefeld" georef="1004021154:18:MRCV:100" mode="0,4,5,7">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48213.pdf" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/21089_kr_uerdingen_bf.htm" size="1" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="9" minute="50" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="9" minute="50" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="21001008" area="91" platform="3" gid="de:05334:1008" areaGid="de:05334:1008:91" pointGid="de:05334:1008:91:3" name="Aachen, Hbf,Aachen" nameWO="Aachen, Hbf" place="Aachen" platformName="3" plannedPlatformName="3" usage="arrival" pointType="Gleis" x="6.09167" y="50.76787" mapName="WGS84[DD.DDDDD]" niveau="1" omc="5334002" placeID="1" locality="Aachen" georef="1001698772:167:MRCV:100" mode="0,1">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48214.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="27" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="27" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Regionalzug RB33" shortname="RB33" symbol="RB33" type="6" motType="13" productName="Regionalzug" productId="8" timetablePeriod="Jahresfahrplan 2022" destination="Aachen, Hbf,Aachen" network="ddb" TTB="0" STT="0" ROP="0" destID="21001008" spTr="" stateless="ddb:90E33: :R:j22" tC="189" lineDisplay="line">
+                        <motDivaParams line="90E33" project="j22" direction="R" supplement=" " network="ddb" gid="de:nrw.de:rb33:" />
+                        <itdOperator>
+                           <code>8003</code>
+                           <name>DB Regio AG NRW</name>
+                           <publicCode>DBNW</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="0" delayMinutesArr="0" />
+                     <itdInfoTextList>
+                        <infoTextListElem code="PF" type="Timetable">Linie RB33: Maskenpflicht nach gesetzl. Regelung; wir empfehlen eine FFP2-Maske</infoTextListElem>
+                        <infoTextListElem code="FK" type="Timetable">Linie RB33: Fahrradmitnahme begrenzt möglich</infoTextListElem>
+                        <infoTextListElem code="EH" type="Timetable">Linie RB33: Fahrzeuggebundene Einstiegshilfe vorhanden</infoTextListElem>
+                     </itdInfoTextList>
+                  </itdPartialRoute>
+               </itdPartialRouteList>
+               <itdFare cFEPR="0" />
+               <itdInfoTextList />
+               <seqRoutes>
+                  <seqRoute publicDuration="02:39">1-4</seqRoute>
+               </seqRoutes>
+            </itdRoute>
+            <itdRoute active="1" selected="1" changes="3" distance="283" optValue="0" routeIndex="1" alternative="0" print="0" delete="0" searchMode="0" cTime="20220406095824864" method="itp" individualDuration="00:05" vehicleTime="102" idx="1" publicDuration="02:05">
+               <itdMapItemList />
+               <itdPartialRouteList>
+                  <itdPartialRoute type="IT" active="1" timeMinute="5" distance="283" bookingCode="S0R0T1PR0" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="99999997" area="0" platform="" name="Moers, Adlerstraße" nameWO="Adlerstraße" place="Moers" platformName="" plannedPlatformName="" usage="departure" x="6.61625" y="51.45077" mapName="WGS84[DD.DDDDD]" omc="5170024" placeID="-1" locality="Moers" georef="1000453212:16:MRCV:100">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48215.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="8" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="2" second="0" />
+                        </itdDateTimeTarget>
+                     </itdPoint>
+                     <itdPoint stopID="20036296" area="0" platform="3" gid="de:05170:36296" areaGid="de:05170:36296" pointGid="de:05170:36296:0:3" name="Moers Steinschen" nameWO="Steinschen" place="Moers" platformName="3" plannedPlatformName="3" usage="arrival" x="6.61872" y="51.45229" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="1003524668:9:MRCV:100" mode="5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48216.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="13" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="7" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="" shortname="" symbol="" type="100" productName="Fussweg" destination="" network="" TTB="0" STT="0" ROP="0" destID="" spTr="" stateless=":: : :" tC="0" lineDisplay="line">
+                        <motDivaParams line="" project="" direction=" " supplement=" " network="" />
+                     </itdMeansOfTransport>
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="9" bookingCode="S0R0T1PR1" realtimeStatus="EXTRA_STOPS|DEVIATION|MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20036296" area="0" platform="3" gid="de:05170:36296" areaGid="de:05170:36296" pointGid="de:05170:36296:0:3" name="Moers Steinschen" nameWO="Steinschen" place="Moers" platformName="3" plannedPlatformName="3" usage="departure" x="6.61872" y="51.45229" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="1003524668:9:MRCV:100" mode="5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48216.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="13" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="7" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="20036308" area="3" platform="3" gid="de:05170:36308" areaGid="de:05170:36308:3" pointGid="de:05170:36308:3:3" name="Moers Bahnhof" nameWO="Moers Bahnhof" place="Moers" platformName="3" plannedPlatformName="3" usage="arrival" x="6.64126" y="51.44998" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="357018924:3:MRCV:100" mode="0,5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48217.pdf" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="22" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="16" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Bus 912" shortname="912" symbol="912" type="3" motType="5" productName="Bus" productId="2" timetablePeriod="Jahresfahrplan 2022 (10.01.2022 - 08.01.2023)" destination="Duisburg Rheinhausen Markt" network="nia" TTB="0" STT="1" ROP="1" destID="20016265" spTr="" stateless="nia:25912: :H:j22" tC="13" lineDisplay="line">
+                        <motDivaParams line="25912" project="j22" direction="H" supplement=" " network="nia" gid="de:vrr:nia-25-912:" />
+                        <itdRouteDescText>Neukirchen-Vluyn - Moers - DU-Homberg - DU-Rheinhausen</itdRouteDescText>
+                        <itdOperator>
+                           <code>25</code>
+                           <name>Niederrheinische VKB</name>
+                           <publicCode>NIAG</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="6" delayMinutesArr="6" />
+                     <itdFootPathInfo position="AFTER" duration="3" dTM="30">
+                        <itdFootPathElem description="" type="LEVEL" lF="0" lT="0" level="LEVEL">
+                           <itdPoint stopID="20036308" area="3" platform="" x="6.64126" y="51.44998" mapName="WGS84[DD.DDDDD]" georef="357018924:3:MRCV:100" />
+                           <itdPoint stopID="20036308" area="1" x="6.64133" y="51.45076" mapName="WGS84[DD.DDDDD]" georef="1003390126:6:MRCV:100" />
+                        </itdFootPathElem>
+                        <itdFootPathElem description="" type="LEVEL" lF="0" lT="0" level="LEVEL">
+                           <itdPoint stopID="20036308" area="1" platform="" x="6.64133" y="51.45076" mapName="WGS84[DD.DDDDD]" georef="1003390126:6:MRCV:100" />
+                           <itdPoint stopID="20036308" area="70" x="6.64163" y="51.45081" mapName="WGS84[DD.DDDDD]" georef="0:0::100" />
+                        </itdFootPathElem>
+                        <itdFootPathElem description="" type="STAIRS" lF="0" lT="1" level="UP">
+                           <itdPoint stopID="20036308" area="70" platform="" x="6.64163" y="51.45081" mapName="WGS84[DD.DDDDD]" georef="0:0::100" />
+                           <itdPoint stopID="20036308" area="90" x="6.64128" y="51.45170" mapName="WGS84[DD.DDDDD]" georef="1003390914:326:MRCV:100" />
+                        </itdFootPathElem>
+                     </itdFootPathInfo>
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="10" bookingCode="S0R0T1PR2" realtimeStatus="MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20036308" area="90" platform="2" gid="de:05170:36308" areaGid="de:05170:36308:90" pointGid="de:05170:36308:90:2" name="Moers Bahnhof" nameWO="Moers Bahnhof" place="Moers" platformName="2" plannedPlatformName="2" usage="departure" pointType="Gleis" x="6.64128" y="51.45170" mapName="WGS84[DD.DDDDD]" niveau="100" omc="5170024" placeID="21" locality="Moers" georef="1003390914:326:MRCV:100" mode="0,5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48217.pdf" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="28" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="28" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_GIS</name>
+                              <value>1.00</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="20016450" area="91" platform="2" gid="de:05112:16450" areaGid="de:05112:16450:91" pointGid="de:05112:16450:91:2" name="Duisburg Rheinhausen Bf" nameWO="Rheinhausen Bf" place="Duisburg" platformName="2" plannedPlatformName="2" usage="arrival" pointType="Gleis" x="6.70577" y="51.39338" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5112000" placeID="20" locality="Duisburg" georef="1005143844:22:MRCV:100" mode="0,5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48218.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="38" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="38" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Regionalzug RB31" shortname="RB31" symbol="RB31" type="6" motType="13" productName="Regionalzug" productId="8" timetablePeriod="Jahresfahrplan 2022" destination="Duisburg Hbf" network="ddb" TTB="0" STT="0" ROP="0" destID="20016032" spTr="" stateless="ddb:90E31: :R:j22" tC="50" lineDisplay="line">
+                        <motDivaParams line="90E31" project="j22" direction="R" supplement=" " network="ddb" gid="de:nrw.de:rb31:" />
+                        <itdOperator>
+                           <code>N2</code>
+                           <name>NordWestBahn</name>
+                           <publicCode>NWB</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="0" delayMinutesArr="0" />
+                     <itdInfoTextList>
+                        <infoTextListElem code="PF" type="Timetable">Linie RB31: Maskenpflicht nach gesetzl. Regelung; wir empfehlen eine FFP2-Maske</infoTextListElem>
+                        <infoTextListElem code="FK" type="Timetable">Linie RB31: Fahrradmitnahme begrenzt möglich</infoTextListElem>
+                        <infoTextListElem code="FC" type="Timetable">Linie RB31: Reservierung kostenlos: Anmeldung Fahrradmitnahme bis 17 Uhr am Vortag</infoTextListElem>
+                        <infoTextListElem code="NW" type="Timetable">Linie RB31: NordWestBahn-Servicetelefon: 0541 2002 4321</infoTextListElem>
+                     </itdInfoTextList>
+                     <itdFootPathInfo position="AFTER" duration="0" dTM="0" />
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="35" bookingCode="S0R0T1PR3" realtimeStatus="MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20016450" area="91" platform="3" gid="de:05112:16450" areaGid="de:05112:16450:91" pointGid="de:05112:16450:91:3" name="Duisburg Rheinhausen Bf" nameWO="Rheinhausen Bf" place="Duisburg" platformName="3" plannedPlatformName="3" usage="departure" pointType="Gleis" x="6.70581" y="51.39334" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5112000" placeID="20" locality="Duisburg" georef="506547497:44:MRCV:100" mode="0,5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48218.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="45" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="44" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="20023007" area="90" platform="1" gid="de:05116:23007" areaGid="de:05116:23007:90" pointGid="de:05116:23007:90:1" name="MG Hbf /Europaplatz" nameWO="Hbf /Europaplatz" place="Mönchengladbach" platformName="1" plannedPlatformName="1" usage="arrival" pointType="Gleis" x="6.44578" y="51.19681" mapName="WGS84[DD.DDDDD]" niveau="1" omc="5116000" placeID="60" locality="Mönchengladbach" georef="30991197:252:MRCV:100" mode="0,1,5,7">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48219.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="20" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="20" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Regionalzug RB33" shortname="RB33" symbol="RB33" type="6" motType="13" productName="Regionalzug" productId="8" timetablePeriod="Jahresfahrplan 2022" destination="Aachen, Hbf,Aachen" network="ddb" TTB="0" STT="0" ROP="0" destID="21001008" spTr="" stateless="ddb:90E33: :R:j22" tC="193" lineDisplay="line">
+                        <motDivaParams line="90E33" project="j22" direction="R" supplement=" " network="ddb" gid="de:nrw.de:rb33:" />
+                        <itdOperator>
+                           <code>8003</code>
+                           <name>DB Regio AG NRW</name>
+                           <publicCode>DBNW</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="1" delayMinutesArr="0" />
+                     <itdInfoTextList>
+                        <infoTextListElem code="PF" type="Timetable">Linie RB33: Maskenpflicht nach gesetzl. Regelung; wir empfehlen eine FFP2-Maske</infoTextListElem>
+                        <infoTextListElem code="FK" type="Timetable">Linie RB33: Fahrradmitnahme begrenzt möglich</infoTextListElem>
+                        <infoTextListElem code="EH" type="Timetable">Linie RB33: Fahrzeuggebundene Einstiegshilfe vorhanden</infoTextListElem>
+                     </itdInfoTextList>
+                     <itdFootPathInfo position="AFTER" duration="5" dTM="50">
+                        <itdFootPathElem description="" type="STAIRS" lF="1" lT="0" level="DOWN">
+                           <itdPoint stopID="20023007" area="90" platform="" x="6.44578" y="51.19681" mapName="WGS84[DD.DDDDD]" georef="30991197:252:MRCV:100" />
+                           <itdPoint stopID="20023007" area="82" x="6.44615" y="51.19658" mapName="WGS84[DD.DDDDD]" georef="0:0::100" />
+                        </itdFootPathElem>
+                        <itdFootPathElem description="" type="STAIRS" lF="0" lT="1" level="UP">
+                           <itdPoint stopID="20023007" area="82" platform="" x="6.44615" y="51.19658" mapName="WGS84[DD.DDDDD]" georef="0:0::100" />
+                           <itdPoint stopID="20023007" area="92" x="6.44623" y="51.19659" mapName="WGS84[DD.DDDDD]" georef="1004043746:8:MRCV:100" />
+                        </itdFootPathElem>
+                     </itdFootPathInfo>
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="48" bookingCode="S0R0T1PR4" realtimeStatus="MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20023007" area="92" platform="5" gid="de:05116:23007" areaGid="de:05116:23007:92" pointGid="de:05116:23007:92:5" name="MG Hbf /Europaplatz" nameWO="Hbf /Europaplatz" place="Mönchengladbach" platformName="5" plannedPlatformName="5" usage="departure" pointType="Gleis" x="6.44623" y="51.19659" mapName="WGS84[DD.DDDDD]" niveau="1" omc="5116000" placeID="60" locality="Mönchengladbach" georef="1004043746:8:MRCV:100" mode="0,1,5,7">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48219.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="25" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="50" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="21001008" area="92" platform="7" gid="de:05334:1008" areaGid="de:05334:1008:92" pointGid="de:05334:1008:92:7" name="Aachen, Hbf,Aachen" nameWO="Aachen, Hbf" place="Aachen" platformName="7" plannedPlatformName="7" usage="arrival" pointType="Gleis" x="6.09095" y="50.76751" mapName="WGS84[DD.DDDDD]" niveau="1" omc="5334002" placeID="1" locality="Aachen" georef="1001698785:12:MRCV:100" mode="0,1">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D4821A.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="12" minute="13" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="43" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Regionalzug RE4" shortname="RE4" symbol="RE4" type="6" motType="13" productName="Regionalzug" productId="8" timetablePeriod="Jahresfahrplan 2022" destination="Aachen, Hbf,Aachen" network="ddb" TTB="0" STT="0" ROP="0" destID="21001008" spTr="" stateless="ddb:90E04: :H:j22" tC="55" lineDisplay="line">
+                        <motDivaParams line="90E04" project="j22" direction="H" supplement=" " network="ddb" gid="de:nrw.de:re4:" />
+                        <itdOperator>
+                           <code>NX</code>
+                           <name>National Express</name>
+                           <publicCode>NX</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="35" delayMinutesArr="30" />
+                     <itdInfoTextList>
+                        <infoTextListElem code="PF" type="Timetable">Linie RE4: Maskenpflicht nach gesetzl. Regelung; wir empfehlen eine FFP2-Maske</infoTextListElem>
+                        <infoTextListElem code="G" type="Timetable">Linie RE4: Fahrradmitnahme begrenzt möglich</infoTextListElem>
+                        <infoTextListElem code="RG" type="Timetable">Linie RE4: Behindertengerechtes Fahrzeug</infoTextListElem>
+                        <infoTextListElem code="RO" type="Timetable">Linie RE4: Rollstuhlstellplatz</infoTextListElem>
+                        <infoTextListElem code="LS" type="Timetable">Linie RE4: Laptop-Steckdosen</infoTextListElem>
+                        <infoTextListElem code="KL" type="Timetable">Linie RE4: Klimaanlage</infoTextListElem>
+                        <infoTextListElem code="WV" type="Timetable">Linie RE4: WLAN verfügbar</infoTextListElem>
+                     </itdInfoTextList>
+                  </itdPartialRoute>
+               </itdPartialRouteList>
+               <itdFare cFEPR="0" />
+               <itdInfoTextList />
+               <seqRoutes>
+                  <seqRoute publicDuration="02:05">1-5</seqRoute>
+               </seqRoutes>
+            </itdRoute>
+            <itdRoute active="1" selected="1" changes="2" distance="283" optValue="0" routeIndex="2" alternative="1" print="0" delete="0" searchMode="0" cTime="20220406095824864" method="itp" individualDuration="00:05" vehicleTime="121" idx="1" publicDuration="02:19">
+               <itdMapItemList />
+               <itdPartialRouteList>
+                  <itdPartialRoute type="IT" active="1" timeMinute="5" distance="283" bookingCode="S0R0T2PR0" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="99999997" area="0" platform="" name="Moers, Adlerstraße" nameWO="Adlerstraße" place="Moers" platformName="" plannedPlatformName="" usage="departure" x="6.61625" y="51.45077" mapName="WGS84[DD.DDDDD]" omc="5170024" placeID="-1" locality="Moers" georef="1000453212:16:MRCV:100">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D4821B.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="8" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="2" second="0" />
+                        </itdDateTimeTarget>
+                     </itdPoint>
+                     <itdPoint stopID="20036296" area="0" platform="3" gid="de:05170:36296" areaGid="de:05170:36296" pointGid="de:05170:36296:0:3" name="Moers Steinschen" nameWO="Steinschen" place="Moers" platformName="3" plannedPlatformName="3" usage="arrival" x="6.61872" y="51.45229" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="1003524668:9:MRCV:100" mode="5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D4821C.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="13" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="7" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="" shortname="" symbol="" type="100" productName="Fussweg" destination="" network="" TTB="0" STT="0" ROP="0" destID="" spTr="" stateless=":: : :" tC="0" lineDisplay="line">
+                        <motDivaParams line="" project="" direction=" " supplement=" " network="" />
+                     </itdMeansOfTransport>
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="9" bookingCode="S0R0T2PR1" realtimeStatus="EXTRA_STOPS|DEVIATION|MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20036296" area="0" platform="3" gid="de:05170:36296" areaGid="de:05170:36296" pointGid="de:05170:36296:0:3" name="Moers Steinschen" nameWO="Steinschen" place="Moers" platformName="3" plannedPlatformName="3" usage="departure" x="6.61872" y="51.45229" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="1003524668:9:MRCV:100" mode="5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D4821C.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="13" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="7" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="20036308" area="3" platform="3" gid="de:05170:36308" areaGid="de:05170:36308:3" pointGid="de:05170:36308:3:3" name="Moers Bahnhof" nameWO="Moers Bahnhof" place="Moers" platformName="3" plannedPlatformName="3" usage="arrival" x="6.64126" y="51.44998" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="357018924:3:MRCV:100" mode="0,5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D4821D.pdf" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="22" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="16" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Bus 912" shortname="912" symbol="912" type="3" motType="5" productName="Bus" productId="2" timetablePeriod="Jahresfahrplan 2022 (10.01.2022 - 08.01.2023)" destination="Duisburg Rheinhausen Markt" network="nia" TTB="0" STT="1" ROP="1" destID="20016265" spTr="" stateless="nia:25912: :H:j22" tC="13" lineDisplay="line">
+                        <motDivaParams line="25912" project="j22" direction="H" supplement=" " network="nia" gid="de:vrr:nia-25-912:" />
+                        <itdRouteDescText>Neukirchen-Vluyn - Moers - DU-Homberg - DU-Rheinhausen</itdRouteDescText>
+                        <itdOperator>
+                           <code>25</code>
+                           <name>Niederrheinische VKB</name>
+                           <publicCode>NIAG</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="6" delayMinutesArr="6" />
+                     <itdFootPathInfo position="AFTER" duration="3" dTM="30">
+                        <itdFootPathElem description="" type="LEVEL" lF="0" lT="0" level="LEVEL">
+                           <itdPoint stopID="20036308" area="3" platform="" x="6.64126" y="51.44998" mapName="WGS84[DD.DDDDD]" georef="357018924:3:MRCV:100" />
+                           <itdPoint stopID="20036308" area="1" x="6.64133" y="51.45076" mapName="WGS84[DD.DDDDD]" georef="1003390126:6:MRCV:100" />
+                        </itdFootPathElem>
+                        <itdFootPathElem description="" type="LEVEL" lF="0" lT="0" level="LEVEL">
+                           <itdPoint stopID="20036308" area="1" platform="" x="6.64133" y="51.45076" mapName="WGS84[DD.DDDDD]" georef="1003390126:6:MRCV:100" />
+                           <itdPoint stopID="20036308" area="70" x="6.64163" y="51.45081" mapName="WGS84[DD.DDDDD]" georef="0:0::100" />
+                        </itdFootPathElem>
+                        <itdFootPathElem description="" type="STAIRS" lF="0" lT="1" level="UP">
+                           <itdPoint stopID="20036308" area="70" platform="" x="6.64163" y="51.45081" mapName="WGS84[DD.DDDDD]" georef="0:0::100" />
+                           <itdPoint stopID="20036308" area="90" x="6.64128" y="51.45170" mapName="WGS84[DD.DDDDD]" georef="1003390914:326:MRCV:100" />
+                        </itdFootPathElem>
+                     </itdFootPathInfo>
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="10" bookingCode="S0R0T2PR2" realtimeStatus="MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20036308" area="90" platform="2" gid="de:05170:36308" areaGid="de:05170:36308:90" pointGid="de:05170:36308:90:2" name="Moers Bahnhof" nameWO="Moers Bahnhof" place="Moers" platformName="2" plannedPlatformName="2" usage="departure" pointType="Gleis" x="6.64128" y="51.45170" mapName="WGS84[DD.DDDDD]" niveau="100" omc="5170024" placeID="21" locality="Moers" georef="1003390914:326:MRCV:100" mode="0,5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D4821D.pdf" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="28" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="28" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_GIS</name>
+                              <value>1.00</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="20016450" area="91" platform="2" gid="de:05112:16450" areaGid="de:05112:16450:91" pointGid="de:05112:16450:91:2" name="Duisburg Rheinhausen Bf" nameWO="Rheinhausen Bf" place="Duisburg" platformName="2" plannedPlatformName="2" usage="arrival" pointType="Gleis" x="6.70577" y="51.39338" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5112000" placeID="20" locality="Duisburg" georef="1005143844:22:MRCV:100" mode="0,5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D4821E.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="38" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="38" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Regionalzug RB31" shortname="RB31" symbol="RB31" type="6" motType="13" productName="Regionalzug" productId="8" timetablePeriod="Jahresfahrplan 2022" destination="Duisburg Hbf" network="ddb" TTB="0" STT="0" ROP="0" destID="20016032" spTr="" stateless="ddb:90E31: :R:j22" tC="50" lineDisplay="line">
+                        <motDivaParams line="90E31" project="j22" direction="R" supplement=" " network="ddb" gid="de:nrw.de:rb31:" />
+                        <itdOperator>
+                           <code>N2</code>
+                           <name>NordWestBahn</name>
+                           <publicCode>NWB</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="0" delayMinutesArr="0" />
+                     <itdInfoTextList>
+                        <infoTextListElem code="PF" type="Timetable">Linie RB31: Maskenpflicht nach gesetzl. Regelung; wir empfehlen eine FFP2-Maske</infoTextListElem>
+                        <infoTextListElem code="FK" type="Timetable">Linie RB31: Fahrradmitnahme begrenzt möglich</infoTextListElem>
+                        <infoTextListElem code="FC" type="Timetable">Linie RB31: Reservierung kostenlos: Anmeldung Fahrradmitnahme bis 17 Uhr am Vortag</infoTextListElem>
+                        <infoTextListElem code="NW" type="Timetable">Linie RB31: NordWestBahn-Servicetelefon: 0541 2002 4321</infoTextListElem>
+                     </itdInfoTextList>
+                     <itdFootPathInfo position="AFTER" duration="0" dTM="0" />
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="102" bookingCode="S0R0T2PR3" realtimeStatus="MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20016450" area="91" platform="3" gid="de:05112:16450" areaGid="de:05112:16450:91" pointGid="de:05112:16450:91:3" name="Duisburg Rheinhausen Bf" nameWO="Rheinhausen Bf" place="Duisburg" platformName="3" plannedPlatformName="3" usage="departure" pointType="Gleis" x="6.70581" y="51.39334" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5112000" placeID="20" locality="Duisburg" georef="506547497:44:MRCV:100" mode="0,5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D4821E.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="45" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="44" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="21001008" area="91" platform="3" gid="de:05334:1008" areaGid="de:05334:1008:91" pointGid="de:05334:1008:91:3" name="Aachen, Hbf,Aachen" nameWO="Aachen, Hbf" place="Aachen" platformName="3" plannedPlatformName="3" usage="arrival" pointType="Gleis" x="6.09167" y="50.76787" mapName="WGS84[DD.DDDDD]" niveau="1" omc="5334002" placeID="1" locality="Aachen" georef="1001698772:167:MRCV:100" mode="0,1">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D4821F.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="12" minute="27" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="12" minute="27" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Regionalzug RB33" shortname="RB33" symbol="RB33" type="6" motType="13" productName="Regionalzug" productId="8" timetablePeriod="Jahresfahrplan 2022" destination="Aachen, Hbf,Aachen" network="ddb" TTB="0" STT="0" ROP="0" destID="21001008" spTr="" stateless="ddb:90E33: :R:j22" tC="193" lineDisplay="line">
+                        <motDivaParams line="90E33" project="j22" direction="R" supplement=" " network="ddb" gid="de:nrw.de:rb33:" />
+                        <itdOperator>
+                           <code>8003</code>
+                           <name>DB Regio AG NRW</name>
+                           <publicCode>DBNW</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="1" delayMinutesArr="0" />
+                     <itdInfoTextList>
+                        <infoTextListElem code="PF" type="Timetable">Linie RB33: Maskenpflicht nach gesetzl. Regelung; wir empfehlen eine FFP2-Maske</infoTextListElem>
+                        <infoTextListElem code="FK" type="Timetable">Linie RB33: Fahrradmitnahme begrenzt möglich</infoTextListElem>
+                        <infoTextListElem code="EH" type="Timetable">Linie RB33: Fahrzeuggebundene Einstiegshilfe vorhanden</infoTextListElem>
+                     </itdInfoTextList>
+                  </itdPartialRoute>
+               </itdPartialRouteList>
+               <itdFare cFEPR="0" />
+               <itdInfoTextList />
+               <seqRoutes>
+                  <seqRoute publicDuration="02:19">1-4</seqRoute>
+               </seqRoutes>
+            </itdRoute>
+            <itdRoute active="1" selected="1" changes="2" distance="431" optValue="0" routeIndex="4" alternative="1" print="0" delete="0" searchMode="0" cTime="20220406095825020" method="itp" individualDuration="00:07" vehicleTime="108" idx="3" publicDuration="02:27">
+               <itdMapItemList />
+               <itdPartialRouteList>
+                  <itdPartialRoute type="IT" active="1" timeMinute="7" distance="431" bookingCode="S0R0T3PR0" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="99999997" area="0" platform="" name="Moers, Adlerstraße" nameWO="Adlerstraße" place="Moers" platformName="" plannedPlatformName="" usage="departure" x="6.61625" y="51.45077" mapName="WGS84[DD.DDDDD]" omc="5170024" placeID="-1" locality="Moers" georef="1000453212:16:MRCV:100">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482110.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="20" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="20" second="0" />
+                        </itdDateTimeTarget>
+                     </itdPoint>
+                     <itdPoint stopID="20036293" area="0" platform="1" gid="de:05170:36293" areaGid="de:05170:36293" pointGid="de:05170:36293:0:1" name="Moers Schwanenring" nameWO="Schwanenring" place="Moers" platformName="1" plannedPlatformName="1" usage="arrival" x="6.61469" y="51.44716" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="1001808681:20:MRCV:100" mode="5,7">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482111.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="27" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="27" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="" shortname="" symbol="" type="100" productName="Fussweg" destination="" network="" TTB="0" STT="0" ROP="0" destID="" spTr="" stateless=":: : :" tC="0" lineDisplay="line">
+                        <motDivaParams line="" project="" direction=" " supplement=" " network="" />
+                     </itdMeansOfTransport>
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="20" bookingCode="S0R0T3PR1" realtimeStatus="MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20036293" area="0" platform="1" gid="de:05170:36293" areaGid="de:05170:36293" pointGid="de:05170:36293:0:1" name="Moers Schwanenring" nameWO="Schwanenring" place="Moers" platformName="1" plannedPlatformName="1" usage="departure" x="6.61469" y="51.44716" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="1001808681:20:MRCV:100" mode="5,7">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482111.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="27" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="27" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="20016032" area="21" platform="5" gid="de:05112:16032" areaGid="de:05112:16032:21" pointGid="de:05112:16032:21:5" name="Duisburg Hbf" nameWO="Duisburg Hbf" place="Duisburg" platformName="5" plannedPlatformName="5" usage="arrival" x="6.77828" y="51.43203" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5112000" placeID="20" locality="Duisburg" georef="1003561751:6:MRCV:100" mode="0,1,2,4,5,7">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482112.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="47" second="30" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="47" second="30" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="SB SB10" shortname="SB10" symbol="SB10" type="5" motType="7" productName="SB" productId="3" timetablePeriod="Jahresfahrplan 2022 (10.01.2022 - 08.01.2023)" destination="DU-Hbf Osteingang" network="nia" TTB="0" STT="1" ROP="1" destID="20016078" spTr="" stateless="nia:25S10: :H:j22" tC="17" lineDisplay="line">
+                        <motDivaParams line="25S10" project="j22" direction="H" supplement=" " network="nia" gid="de:vrr:nia-25-S10:" />
+                        <itdRouteDescText>Kamp-Lintfort - Neukirchen-Vluyn - Moers-Hülsdonk - Duisburg Hbf</itdRouteDescText>
+                        <itdOperator>
+                           <code>25</code>
+                           <name>Niederrheinische VKB</name>
+                           <publicCode>NIAG</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="0" delayMinutesArr="0" />
+                     <itdFootPathInfo position="AFTER" duration="5" dTM="50">
+                        <itdFootPathElem description="" type="LEVEL" lF="0" lT="0" level="LEVEL">
+                           <itdPoint stopID="20016032" area="21" platform="" x="6.77828" y="51.43203" mapName="WGS84[DD.DDDDD]" georef="1003561751:6:MRCV:100" />
+                           <itdPoint stopID="20016032" area="24" x="6.77607" y="51.43165" mapName="WGS84[DD.DDDDD]" georef="1000734234:35:MRCV:100" />
+                        </itdFootPathElem>
+                        <itdFootPathElem description="" type="LEVEL" lF="0" lT="0" level="LEVEL">
+                           <itdPoint stopID="20016032" area="24" platform="" x="6.77607" y="51.43165" mapName="WGS84[DD.DDDDD]" georef="1000734234:35:MRCV:100" />
+                           <itdPoint stopID="20016032" area="71" x="6.77744" y="51.43187" mapName="WGS84[DD.DDDDD]" georef="0:0::100" />
+                        </itdFootPathElem>
+                        <itdFootPathElem description="" type="ESCALATOR" lF="0" lT="1" level="UP">
+                           <itdPoint stopID="20016032" area="71" platform="" x="6.77744" y="51.43187" mapName="WGS84[DD.DDDDD]" georef="0:0::100" />
+                           <itdPoint stopID="20016032" area="92" x="6.77618" y="51.42994" mapName="WGS84[DD.DDDDD]" georef="1003492865:121:MRCV:100" />
+                        </itdFootPathElem>
+                     </itdFootPathInfo>
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="40" bookingCode="S0R0T3PR2" realtimeStatus="MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20016032" area="92" platform="6" gid="de:05112:16032" areaGid="de:05112:16032:92" pointGid="de:05112:16032:92:6" name="Duisburg Hbf" nameWO="Duisburg Hbf" place="Duisburg" platformName="6" plannedPlatformName="6" usage="departure" pointType="Gleis" x="6.77618" y="51.42994" mapName="WGS84[DD.DDDDD]" niveau="1" omc="5112000" placeID="20" locality="Duisburg" georef="1003492865:121:MRCV:100" mode="0,1,2,4,5,7">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482112.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="2" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="1" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="20023007" area="92" platform="4" gid="de:05116:23007" areaGid="de:05116:23007:92" pointGid="de:05116:23007:92:4" name="MG Hbf /Europaplatz" nameWO="Hbf /Europaplatz" place="Mönchengladbach" platformName="4" plannedPlatformName="4" usage="arrival" pointType="Gleis" x="6.44609" y="51.19666" mapName="WGS84[DD.DDDDD]" niveau="1" omc="5116000" placeID="60" locality="Mönchengladbach" georef="1004043746:0:MRCV:100" mode="0,1,5,7">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482113.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="42" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="42" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Regionalzug RE42" shortname="RE42" symbol="RE42" type="6" motType="13" productName="Regionalzug" productId="8" timetablePeriod="Jahresfahrplan 2022" destination="MG Hbf /Europaplatz" network="ddb" TTB="0" STT="0" ROP="0" destID="20023007" spTr="" stateless="ddb:90E42: :R:j22" tC="107" lineDisplay="line">
+                        <motDivaParams line="90E42" project="j22" direction="R" supplement=" " network="ddb" gid="de:nrw.de:re42:" />
+                        <itdOperator>
+                           <code>8003</code>
+                           <name>DB Regio AG NRW</name>
+                           <publicCode>DBNW</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="1" delayMinutesArr="0" />
+                     <itdInfoTextList>
+                        <infoTextListElem code="PF" type="Timetable">Linie RE42: Maskenpflicht nach gesetzl. Regelung; wir empfehlen eine FFP2-Maske</infoTextListElem>
+                        <infoTextListElem code="FK" type="Timetable">Linie RE42: Fahrradmitnahme begrenzt möglich</infoTextListElem>
+                        <infoTextListElem code="EH" type="Timetable">Linie RE42: Fahrzeuggebundene Einstiegshilfe vorhanden</infoTextListElem>
+                     </itdInfoTextList>
+                     <itdFootPathInfo position="AFTER" duration="5" dTM="50" />
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="48" bookingCode="S0R0T3PR3" realtimeStatus="MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20023007" area="92" platform="5" gid="de:05116:23007" areaGid="de:05116:23007:92" pointGid="de:05116:23007:92:5" name="MG Hbf /Europaplatz" nameWO="Hbf /Europaplatz" place="Mönchengladbach" platformName="5" plannedPlatformName="5" usage="departure" pointType="Gleis" x="6.44623" y="51.19659" mapName="WGS84[DD.DDDDD]" niveau="1" omc="5116000" placeID="60" locality="Mönchengladbach" georef="1004043746:8:MRCV:100" mode="0,1,5,7">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482113.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="59" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="50" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="21001008" area="92" platform="7" gid="de:05334:1008" areaGid="de:05334:1008:92" pointGid="de:05334:1008:92:7" name="Aachen, Hbf,Aachen" nameWO="Aachen, Hbf" place="Aachen" platformName="7" plannedPlatformName="7" usage="arrival" pointType="Gleis" x="6.09095" y="50.76751" mapName="WGS84[DD.DDDDD]" niveau="1" omc="5334002" placeID="1" locality="Aachen" georef="1001698785:12:MRCV:100" mode="0,1">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482114.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="12" minute="47" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="12" minute="43" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Regionalzug RE4" shortname="RE4" symbol="RE4" type="6" motType="13" productName="Regionalzug" productId="8" timetablePeriod="Jahresfahrplan 2022" destination="Aachen, Hbf,Aachen" network="ddb" TTB="0" STT="0" ROP="0" destID="21001008" spTr="" stateless="ddb:90E04: :H:j22" tC="63" lineDisplay="line">
+                        <motDivaParams line="90E04" project="j22" direction="H" supplement=" " network="ddb" gid="de:nrw.de:re4:" />
+                        <itdOperator>
+                           <code>NX</code>
+                           <name>National Express</name>
+                           <publicCode>NX</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="9" delayMinutesArr="4" />
+                     <itdInfoTextList>
+                        <infoTextListElem code="PF" type="Timetable">Linie RE4: Maskenpflicht nach gesetzl. Regelung; wir empfehlen eine FFP2-Maske</infoTextListElem>
+                        <infoTextListElem code="G" type="Timetable">Linie RE4: Fahrradmitnahme begrenzt möglich</infoTextListElem>
+                        <infoTextListElem code="RG" type="Timetable">Linie RE4: Behindertengerechtes Fahrzeug</infoTextListElem>
+                        <infoTextListElem code="RO" type="Timetable">Linie RE4: Rollstuhlstellplatz</infoTextListElem>
+                        <infoTextListElem code="LS" type="Timetable">Linie RE4: Laptop-Steckdosen</infoTextListElem>
+                        <infoTextListElem code="KL" type="Timetable">Linie RE4: Klimaanlage</infoTextListElem>
+                        <infoTextListElem code="WV" type="Timetable">Linie RE4: WLAN verfügbar</infoTextListElem>
+                     </itdInfoTextList>
+                  </itdPartialRoute>
+               </itdPartialRouteList>
+               <itdFare cFEPR="0" />
+               <itdInfoTextList />
+               <seqRoutes>
+                  <seqRoute publicDuration="02:27">1-4</seqRoute>
+               </seqRoutes>
+            </itdRoute>
+            <itdRoute active="1" selected="1" changes="3" distance="283" optValue="0" routeIndex="3" alternative="0" print="0" delete="0" searchMode="0" cTime="20220406095825020" method="itp" individualDuration="00:05" vehicleTime="102" idx="3" publicDuration="02:15">
+               <itdMapItemList />
+               <itdPartialRouteList>
+                  <itdPartialRoute type="IT" active="1" timeMinute="5" distance="283" bookingCode="S0R0T4PR0" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="99999997" area="0" platform="" name="Moers, Adlerstraße" nameWO="Adlerstraße" place="Moers" platformName="" plannedPlatformName="" usage="departure" x="6.61625" y="51.45077" mapName="WGS84[DD.DDDDD]" omc="5170024" placeID="-1" locality="Moers" georef="1000453212:16:MRCV:100">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482115.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="32" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="32" second="0" />
+                        </itdDateTimeTarget>
+                     </itdPoint>
+                     <itdPoint stopID="20036296" area="0" platform="3" gid="de:05170:36296" areaGid="de:05170:36296" pointGid="de:05170:36296:0:3" name="Moers Steinschen" nameWO="Steinschen" place="Moers" platformName="3" plannedPlatformName="3" usage="arrival" x="6.61872" y="51.45229" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="1003524668:9:MRCV:100" mode="5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482116.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="37" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="37" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="" shortname="" symbol="" type="100" productName="Fussweg" destination="" network="" TTB="0" STT="0" ROP="0" destID="" spTr="" stateless=":: : :" tC="0" lineDisplay="line">
+                        <motDivaParams line="" project="" direction=" " supplement=" " network="" />
+                     </itdMeansOfTransport>
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="9" bookingCode="S0R0T4PR1" realtimeStatus="EXTRA_STOPS|DEVIATION|MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20036296" area="0" platform="3" gid="de:05170:36296" areaGid="de:05170:36296" pointGid="de:05170:36296:0:3" name="Moers Steinschen" nameWO="Steinschen" place="Moers" platformName="3" plannedPlatformName="3" usage="departure" x="6.61872" y="51.45229" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="1003524668:9:MRCV:100" mode="5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482116.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="37" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="37" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="20036308" area="3" platform="3" gid="de:05170:36308" areaGid="de:05170:36308:3" pointGid="de:05170:36308:3:3" name="Moers Bahnhof" nameWO="Moers Bahnhof" place="Moers" platformName="3" plannedPlatformName="3" usage="arrival" x="6.64126" y="51.44998" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="357018924:3:MRCV:100" mode="0,5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482117.pdf" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="46" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="46" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Bus 912" shortname="912" symbol="912" type="3" motType="5" productName="Bus" productId="2" timetablePeriod="Jahresfahrplan 2022 (10.01.2022 - 08.01.2023)" destination="Duisburg Rheinhausen Markt" network="nia" TTB="0" STT="1" ROP="1" destID="20016265" spTr="" stateless="nia:25912: :H:j22" tC="14" lineDisplay="line">
+                        <motDivaParams line="25912" project="j22" direction="H" supplement=" " network="nia" gid="de:vrr:nia-25-912:" />
+                        <itdRouteDescText>Neukirchen-Vluyn - Moers - DU-Homberg - DU-Rheinhausen</itdRouteDescText>
+                        <itdOperator>
+                           <code>25</code>
+                           <name>Niederrheinische VKB</name>
+                           <publicCode>NIAG</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="0" delayMinutesArr="0" />
+                     <itdFootPathInfo position="AFTER" duration="3" dTM="30">
+                        <itdFootPathElem description="" type="LEVEL" lF="0" lT="0" level="LEVEL">
+                           <itdPoint stopID="20036308" area="3" platform="" x="6.64126" y="51.44998" mapName="WGS84[DD.DDDDD]" georef="357018924:3:MRCV:100" />
+                           <itdPoint stopID="20036308" area="1" x="6.64133" y="51.45076" mapName="WGS84[DD.DDDDD]" georef="1003390126:6:MRCV:100" />
+                        </itdFootPathElem>
+                        <itdFootPathElem description="" type="LEVEL" lF="0" lT="0" level="LEVEL">
+                           <itdPoint stopID="20036308" area="1" platform="" x="6.64133" y="51.45076" mapName="WGS84[DD.DDDDD]" georef="1003390126:6:MRCV:100" />
+                           <itdPoint stopID="20036308" area="70" x="6.64163" y="51.45081" mapName="WGS84[DD.DDDDD]" georef="0:0::100" />
+                        </itdFootPathElem>
+                        <itdFootPathElem description="" type="STAIRS" lF="0" lT="1" level="UP">
+                           <itdPoint stopID="20036308" area="70" platform="" x="6.64163" y="51.45081" mapName="WGS84[DD.DDDDD]" georef="0:0::100" />
+                           <itdPoint stopID="20036308" area="98" x="6.64149" y="51.45173" mapName="WGS84[DD.DDDDD]" georef="1003390917:322:MRCV:100" />
+                        </itdFootPathElem>
+                     </itdFootPathInfo>
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="11" bookingCode="S0R0T4PR2" realtimeStatus="MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20036308" area="98" platform="4" gid="de:05170:36308" areaGid="de:05170:36308:98" pointGid="de:05170:36308:98:4" name="Moers Bahnhof" nameWO="Moers Bahnhof" place="Moers" platformName="4" plannedPlatformName="4" usage="departure" pointType="Gleis" x="6.64149" y="51.45173" mapName="WGS84[DD.DDDDD]" niveau="100" omc="5170024" placeID="21" locality="Moers" georef="1003390917:322:MRCV:100" mode="0,5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482117.pdf" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="57" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="57" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_GIS</name>
+                              <value>1.00</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="20016450" area="91" platform="2" gid="de:05112:16450" areaGid="de:05112:16450:91" pointGid="de:05112:16450:91:2" name="Duisburg Rheinhausen Bf" nameWO="Rheinhausen Bf" place="Duisburg" platformName="2" plannedPlatformName="2" usage="arrival" pointType="Gleis" x="6.70577" y="51.39338" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5112000" placeID="20" locality="Duisburg" georef="1005143844:22:MRCV:100" mode="0,5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482118.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="8" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="8" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Regionalzug RB31" shortname="RB31" symbol="RB31" type="6" motType="13" productName="Regionalzug" productId="8" timetablePeriod="Jahresfahrplan 2022" destination="Duisburg Hbf" network="ddb" TTB="0" STT="0" ROP="0" destID="20016032" spTr="" stateless="ddb:90E31: :R:j22" tC="74" lineDisplay="line">
+                        <motDivaParams line="90E31" project="j22" direction="R" supplement=" " network="ddb" gid="de:nrw.de:rb31:" />
+                        <itdOperator>
+                           <code>N2</code>
+                           <name>NordWestBahn</name>
+                           <publicCode>NWB</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="0" delayMinutesArr="0" />
+                     <itdInfoTextList>
+                        <infoTextListElem code="PF" type="Timetable">Linie RB31: Maskenpflicht nach gesetzl. Regelung; wir empfehlen eine FFP2-Maske</infoTextListElem>
+                        <infoTextListElem code="FK" type="Timetable">Linie RB31: Fahrradmitnahme begrenzt möglich</infoTextListElem>
+                        <infoTextListElem code="FC" type="Timetable">Linie RB31: Reservierung kostenlos: Anmeldung Fahrradmitnahme bis 17 Uhr am Vortag</infoTextListElem>
+                        <infoTextListElem code="NW" type="Timetable">Linie RB31: NordWestBahn-Servicetelefon: 0541 2002 4321</infoTextListElem>
+                     </itdInfoTextList>
+                     <itdFootPathInfo position="AFTER" duration="0" dTM="0" />
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="34" bookingCode="S0R0T4PR3" realtimeStatus="MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20016450" area="91" platform="3" gid="de:05112:16450" areaGid="de:05112:16450:91" pointGid="de:05112:16450:91:3" name="Duisburg Rheinhausen Bf" nameWO="Rheinhausen Bf" place="Duisburg" platformName="3" plannedPlatformName="3" usage="departure" pointType="Gleis" x="6.70581" y="51.39334" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5112000" placeID="20" locality="Duisburg" georef="506547497:44:MRCV:100" mode="0,5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482118.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="8" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="6" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="20023007" area="92" platform="4" gid="de:05116:23007" areaGid="de:05116:23007:92" pointGid="de:05116:23007:92:4" name="MG Hbf /Europaplatz" nameWO="Hbf /Europaplatz" place="Mönchengladbach" platformName="4" plannedPlatformName="4" usage="arrival" pointType="Gleis" x="6.44609" y="51.19666" mapName="WGS84[DD.DDDDD]" niveau="1" omc="5116000" placeID="60" locality="Mönchengladbach" georef="1004043746:0:MRCV:100" mode="0,1,5,7">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482119.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="42" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="42" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Regionalzug RE42" shortname="RE42" symbol="RE42" type="6" motType="13" productName="Regionalzug" productId="8" timetablePeriod="Jahresfahrplan 2022" destination="MG Hbf /Europaplatz" network="ddb" TTB="0" STT="0" ROP="0" destID="20023007" spTr="" stateless="ddb:90E42: :R:j22" tC="107" lineDisplay="line">
+                        <motDivaParams line="90E42" project="j22" direction="R" supplement=" " network="ddb" gid="de:nrw.de:re42:" />
+                        <itdOperator>
+                           <code>8003</code>
+                           <name>DB Regio AG NRW</name>
+                           <publicCode>DBNW</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="2" delayMinutesArr="0" />
+                     <itdInfoTextList>
+                        <infoTextListElem code="PF" type="Timetable">Linie RE42: Maskenpflicht nach gesetzl. Regelung; wir empfehlen eine FFP2-Maske</infoTextListElem>
+                        <infoTextListElem code="FK" type="Timetable">Linie RE42: Fahrradmitnahme begrenzt möglich</infoTextListElem>
+                        <infoTextListElem code="EH" type="Timetable">Linie RE42: Fahrzeuggebundene Einstiegshilfe vorhanden</infoTextListElem>
+                     </itdInfoTextList>
+                     <itdFootPathInfo position="AFTER" duration="5" dTM="50" />
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="48" bookingCode="S0R0T4PR4" realtimeStatus="MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20023007" area="92" platform="5" gid="de:05116:23007" areaGid="de:05116:23007:92" pointGid="de:05116:23007:92:5" name="MG Hbf /Europaplatz" nameWO="Hbf /Europaplatz" place="Mönchengladbach" platformName="5" plannedPlatformName="5" usage="departure" pointType="Gleis" x="6.44623" y="51.19659" mapName="WGS84[DD.DDDDD]" niveau="1" omc="5116000" placeID="60" locality="Mönchengladbach" georef="1004043746:8:MRCV:100" mode="0,1,5,7">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482119.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="59" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="50" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="21001008" area="92" platform="7" gid="de:05334:1008" areaGid="de:05334:1008:92" pointGid="de:05334:1008:92:7" name="Aachen, Hbf,Aachen" nameWO="Aachen, Hbf" place="Aachen" platformName="7" plannedPlatformName="7" usage="arrival" pointType="Gleis" x="6.09095" y="50.76751" mapName="WGS84[DD.DDDDD]" niveau="1" omc="5334002" placeID="1" locality="Aachen" georef="1001698785:12:MRCV:100" mode="0,1">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48211A.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="12" minute="47" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="12" minute="43" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Regionalzug RE4" shortname="RE4" symbol="RE4" type="6" motType="13" productName="Regionalzug" productId="8" timetablePeriod="Jahresfahrplan 2022" destination="Aachen, Hbf,Aachen" network="ddb" TTB="0" STT="0" ROP="0" destID="21001008" spTr="" stateless="ddb:90E04: :H:j22" tC="63" lineDisplay="line">
+                        <motDivaParams line="90E04" project="j22" direction="H" supplement=" " network="ddb" gid="de:nrw.de:re4:" />
+                        <itdOperator>
+                           <code>NX</code>
+                           <name>National Express</name>
+                           <publicCode>NX</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="9" delayMinutesArr="4" />
+                     <itdInfoTextList>
+                        <infoTextListElem code="PF" type="Timetable">Linie RE4: Maskenpflicht nach gesetzl. Regelung; wir empfehlen eine FFP2-Maske</infoTextListElem>
+                        <infoTextListElem code="G" type="Timetable">Linie RE4: Fahrradmitnahme begrenzt möglich</infoTextListElem>
+                        <infoTextListElem code="RG" type="Timetable">Linie RE4: Behindertengerechtes Fahrzeug</infoTextListElem>
+                        <infoTextListElem code="RO" type="Timetable">Linie RE4: Rollstuhlstellplatz</infoTextListElem>
+                        <infoTextListElem code="LS" type="Timetable">Linie RE4: Laptop-Steckdosen</infoTextListElem>
+                        <infoTextListElem code="KL" type="Timetable">Linie RE4: Klimaanlage</infoTextListElem>
+                        <infoTextListElem code="WV" type="Timetable">Linie RE4: WLAN verfügbar</infoTextListElem>
+                     </itdInfoTextList>
+                  </itdPartialRoute>
+               </itdPartialRouteList>
+               <itdFare cFEPR="0" />
+               <itdInfoTextList />
+               <seqRoutes>
+                  <seqRoute publicDuration="02:15">1-5</seqRoute>
+               </seqRoutes>
+            </itdRoute>
+            <itdRoute active="1" selected="1" changes="2" distance="283" optValue="0" routeIndex="5" alternative="1" print="0" delete="0" searchMode="0" cTime="20220406095825020" method="itp" individualDuration="00:05" vehicleTime="131" idx="3" publicDuration="02:35">
+               <itdMapItemList />
+               <itdPartialRouteList>
+                  <itdPartialRoute type="IT" active="1" timeMinute="5" distance="283" bookingCode="S0R0T5PR0" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="99999997" area="0" platform="" name="Moers, Adlerstraße" nameWO="Adlerstraße" place="Moers" platformName="" plannedPlatformName="" usage="departure" x="6.61625" y="51.45077" mapName="WGS84[DD.DDDDD]" omc="5170024" placeID="-1" locality="Moers" georef="1000453212:16:MRCV:100">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48211B.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="32" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="32" second="0" />
+                        </itdDateTimeTarget>
+                     </itdPoint>
+                     <itdPoint stopID="20036296" area="0" platform="3" gid="de:05170:36296" areaGid="de:05170:36296" pointGid="de:05170:36296:0:3" name="Moers Steinschen" nameWO="Steinschen" place="Moers" platformName="3" plannedPlatformName="3" usage="arrival" x="6.61872" y="51.45229" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="1003524668:9:MRCV:100" mode="5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48211C.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="37" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="37" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="" shortname="" symbol="" type="100" productName="Fussweg" destination="" network="" TTB="0" STT="0" ROP="0" destID="" spTr="" stateless=":: : :" tC="0" lineDisplay="line">
+                        <motDivaParams line="" project="" direction=" " supplement=" " network="" />
+                     </itdMeansOfTransport>
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="9" bookingCode="S0R0T5PR1" realtimeStatus="EXTRA_STOPS|DEVIATION|MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20036296" area="0" platform="3" gid="de:05170:36296" areaGid="de:05170:36296" pointGid="de:05170:36296:0:3" name="Moers Steinschen" nameWO="Steinschen" place="Moers" platformName="3" plannedPlatformName="3" usage="departure" x="6.61872" y="51.45229" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="1003524668:9:MRCV:100" mode="5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48211C.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="37" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="37" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="20036308" area="3" platform="3" gid="de:05170:36308" areaGid="de:05170:36308:3" pointGid="de:05170:36308:3:3" name="Moers Bahnhof" nameWO="Moers Bahnhof" place="Moers" platformName="3" plannedPlatformName="3" usage="arrival" x="6.64126" y="51.44998" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="357018924:3:MRCV:100" mode="0,5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48211D.pdf" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="46" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="46" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Bus 912" shortname="912" symbol="912" type="3" motType="5" productName="Bus" productId="2" timetablePeriod="Jahresfahrplan 2022 (10.01.2022 - 08.01.2023)" destination="Duisburg Rheinhausen Markt" network="nia" TTB="0" STT="1" ROP="1" destID="20016265" spTr="" stateless="nia:25912: :H:j22" tC="14" lineDisplay="line">
+                        <motDivaParams line="25912" project="j22" direction="H" supplement=" " network="nia" gid="de:vrr:nia-25-912:" />
+                        <itdRouteDescText>Neukirchen-Vluyn - Moers - DU-Homberg - DU-Rheinhausen</itdRouteDescText>
+                        <itdOperator>
+                           <code>25</code>
+                           <name>Niederrheinische VKB</name>
+                           <publicCode>NIAG</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="0" delayMinutesArr="0" />
+                     <itdFootPathInfo position="AFTER" duration="3" dTM="30">
+                        <itdFootPathElem description="" type="LEVEL" lF="0" lT="0" level="LEVEL">
+                           <itdPoint stopID="20036308" area="3" platform="" x="6.64126" y="51.44998" mapName="WGS84[DD.DDDDD]" georef="357018924:3:MRCV:100" />
+                           <itdPoint stopID="20036308" area="1" x="6.64133" y="51.45076" mapName="WGS84[DD.DDDDD]" georef="1003390126:6:MRCV:100" />
+                        </itdFootPathElem>
+                        <itdFootPathElem description="" type="LEVEL" lF="0" lT="0" level="LEVEL">
+                           <itdPoint stopID="20036308" area="1" platform="" x="6.64133" y="51.45076" mapName="WGS84[DD.DDDDD]" georef="1003390126:6:MRCV:100" />
+                           <itdPoint stopID="20036308" area="70" x="6.64163" y="51.45081" mapName="WGS84[DD.DDDDD]" georef="0:0::100" />
+                        </itdFootPathElem>
+                        <itdFootPathElem description="" type="STAIRS" lF="0" lT="1" level="UP">
+                           <itdPoint stopID="20036308" area="70" platform="" x="6.64163" y="51.45081" mapName="WGS84[DD.DDDDD]" georef="0:0::100" />
+                           <itdPoint stopID="20036308" area="98" x="6.64149" y="51.45173" mapName="WGS84[DD.DDDDD]" georef="1003390917:322:MRCV:100" />
+                        </itdFootPathElem>
+                     </itdFootPathInfo>
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="18" bookingCode="S0R0T5PR2" realtimeStatus="MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20036308" area="98" platform="4" gid="de:05170:36308" areaGid="de:05170:36308:98" pointGid="de:05170:36308:98:4" name="Moers Bahnhof" nameWO="Moers Bahnhof" place="Moers" platformName="4" plannedPlatformName="4" usage="departure" pointType="Gleis" x="6.64149" y="51.45173" mapName="WGS84[DD.DDDDD]" niveau="100" omc="5170024" placeID="21" locality="Moers" georef="1003390917:322:MRCV:100" mode="0,5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48211D.pdf" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="57" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="10" minute="57" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_GIS</name>
+                              <value>1.00</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="20016032" area="93" platform="8" gid="de:05112:16032" areaGid="de:05112:16032:93" pointGid="de:05112:16032:93:8" name="Duisburg Hbf" nameWO="Duisburg Hbf" place="Duisburg" platformName="8" plannedPlatformName="8" usage="arrival" pointType="Gleis" x="6.77632" y="51.42993" mapName="WGS84[DD.DDDDD]" niveau="1" omc="5112000" placeID="20" locality="Duisburg" georef="1003492875:136:MRCV:100" mode="0,1,2,4,5,7">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48211E.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="15" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="15" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Regionalzug RB31" shortname="RB31" symbol="RB31" type="6" motType="13" productName="Regionalzug" productId="8" timetablePeriod="Jahresfahrplan 2022" destination="Duisburg Hbf" network="ddb" TTB="0" STT="0" ROP="0" destID="20016032" spTr="" stateless="ddb:90E31: :R:j22" tC="74" lineDisplay="line">
+                        <motDivaParams line="90E31" project="j22" direction="R" supplement=" " network="ddb" gid="de:nrw.de:rb31:" />
+                        <itdOperator>
+                           <code>N2</code>
+                           <name>NordWestBahn</name>
+                           <publicCode>NWB</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="0" delayMinutesArr="0" />
+                     <itdInfoTextList>
+                        <infoTextListElem code="PF" type="Timetable">Linie RB31: Maskenpflicht nach gesetzl. Regelung; wir empfehlen eine FFP2-Maske</infoTextListElem>
+                        <infoTextListElem code="FK" type="Timetable">Linie RB31: Fahrradmitnahme begrenzt möglich</infoTextListElem>
+                        <infoTextListElem code="FC" type="Timetable">Linie RB31: Reservierung kostenlos: Anmeldung Fahrradmitnahme bis 17 Uhr am Vortag</infoTextListElem>
+                        <infoTextListElem code="NW" type="Timetable">Linie RB31: NordWestBahn-Servicetelefon: 0541 2002 4321</infoTextListElem>
+                     </itdInfoTextList>
+                     <itdFootPathInfo position="AFTER" duration="7" dTM="70">
+                        <itdFootPathElem description="" type="ESCALATOR" lF="1" lT="0" level="DOWN">
+                           <itdPoint stopID="20016032" area="93" platform="" x="6.77632" y="51.42993" mapName="WGS84[DD.DDDDD]" georef="1003492875:136:MRCV:100" />
+                           <itdPoint stopID="20016032" area="71" x="6.77744" y="51.43187" mapName="WGS84[DD.DDDDD]" georef="0:0::100" />
+                        </itdFootPathElem>
+                        <itdFootPathElem description="" type="ESCALATOR" lF="0" lT="1" level="UP">
+                           <itdPoint stopID="20016032" area="71" platform="" x="6.77744" y="51.43187" mapName="WGS84[DD.DDDDD]" georef="0:0::100" />
+                           <itdPoint stopID="20016032" area="91" x="6.77590" y="51.42997" mapName="WGS84[DD.DDDDD]" georef="1003879786:110:MRCV:100" />
+                        </itdFootPathElem>
+                     </itdFootPathInfo>
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="104" bookingCode="S0R0T5PR3" realtimeStatus="MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20016032" area="91" platform="4" gid="de:05112:16032" areaGid="de:05112:16032:91" pointGid="de:05112:16032:91:4" name="Duisburg Hbf" nameWO="Duisburg Hbf" place="Duisburg" platformName="4" plannedPlatformName="4" usage="departure" pointType="Gleis" x="6.77590" y="51.42997" mapName="WGS84[DD.DDDDD]" niveau="1" omc="5112000" placeID="20" locality="Duisburg" georef="1003879786:110:MRCV:100" mode="0,1,2,4,5,7">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48211E.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="23" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="23" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="21001008" area="93" platform="8" gid="de:05334:1008" areaGid="de:05334:1008:93" pointGid="de:05334:1008:93:8" name="Aachen, Hbf,Aachen" nameWO="Aachen, Hbf" place="Aachen" platformName="8" plannedPlatformName="8" usage="arrival" pointType="Gleis" x="6.09096" y="50.76747" mapName="WGS84[DD.DDDDD]" niveau="1" omc="5334002" placeID="1" locality="Aachen" georef="1000462423:268:MRCV:100" mode="0,1">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D48211F.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="13" minute="7" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="13" minute="7" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Regionalzug RE1 (RRX)" shortname="RE1 (RRX)" symbol="RE1" type="6" motType="13" productName="Regionalzug" productId="8" timetablePeriod="Jahresfahrplan 2022" destination="Aachen, Hbf,Aachen" network="ddb" TTB="0" STT="0" ROP="0" destID="21001008" spTr="" stateless="ddb:90E01: :R:j22" tC="544" lineDisplay="line">
+                        <motDivaParams line="90E01" project="j22" direction="R" supplement=" " network="ddb" gid="de:nrw.de:re1:" />
+                        <itdOperator>
+                           <code>NX</code>
+                           <name>National Express</name>
+                           <publicCode>NX</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="0" delayMinutesArr="0" />
+                     <itdInfoTextList>
+                        <infoTextListElem code="PF" type="Timetable">Linie RE1 (RRX): Maskenpflicht nach gesetzl. Regelung; wir empfehlen eine FFP2-Maske</infoTextListElem>
+                        <infoTextListElem code="G" type="Timetable">Linie RE1 (RRX): Fahrradmitnahme begrenzt möglich</infoTextListElem>
+                        <infoTextListElem code="RG" type="Timetable">Linie RE1 (RRX): Behindertengerechtes Fahrzeug</infoTextListElem>
+                        <infoTextListElem code="RO" type="Timetable">Linie RE1 (RRX): Rollstuhlstellplatz</infoTextListElem>
+                        <infoTextListElem code="LS" type="Timetable">Linie RE1 (RRX): Laptop-Steckdosen</infoTextListElem>
+                        <infoTextListElem code="KL" type="Timetable">Linie RE1 (RRX): Klimaanlage</infoTextListElem>
+                        <infoTextListElem code="WV" type="Timetable">Linie RE1 (RRX): WLAN verfügbar</infoTextListElem>
+                     </itdInfoTextList>
+                     <infoLink>
+                        <paramList>
+                           <param edit="0">
+                              <type>addInfoParam</type>
+                              <name>publisher</name>
+                              <value>ems.comm.addinfo</value>
+                           </param>
+                           <param edit="0">
+                              <type>addInfoParam</type>
+                              <name>infoType</name>
+                              <value>tripMessage</value>
+                           </param>
+                           <param edit="0">
+                              <type>system</type>
+                              <name>infoID</name>
+                              <value>ZTP-PROD-70992</value>
+                           </param>
+                           <param edit="0">
+                              <type>system</type>
+                              <name>seqID</name>
+                              <value>1649117563</value>
+                           </param>
+                           <param edit="0">
+                              <type>addInfoParam</type>
+                              <name>priority</name>
+                              <value>normal</value>
+                           </param>
+                           <param edit="0">
+                              <type>system</type>
+                              <name>incidentDateTime</name>
+                              <value>02/03/2022 21:00 - 08/04/2022 23:00</value>
+                           </param>
+                        </paramList>
+                        <infoLinkText />
+                        <infoLinkURL>http://ems.vrr.de/info-link/9d168c00-1854-5567-8193-d7e62b9fc3d8</infoLinkURL>
+                        <infoLinkImage />
+                        <infoText>
+                           <content>Aufgrund von Arbeiten an der Infrastruktur für ein neues Stellwerk in Köln Hbf sowie der Ausbau der Schieneninfrastruktur an der Gummersbacher Straße, kommt es im gesamten Zeitraum vom 03.03. - 08.04.2022 zu zahlreichen Änderungen. Konkrete Informationen finden Sie auf www.zuginfo.nrw.</content>
+                           <subtitle>Ausbauarbeiten südlich der Gummersbacher Straße in den Nächten vom 02./03.03. bis zum 07./08.04.2022</subtitle>
+                           <subject>Ausbauarbeiten südlich der Gummersbacher Straße in den Nächten vom 02./03.03. bis zum 07./08.04.2022</subject>
+                           <additionalText />
+                           <image />
+                           <outputClientText>
+                              <htmlText />
+                              <wmlText />
+                              <smsText />
+                              <speechText />
+                           </outputClientText>
+                           <additionalLinks>
+                              <additionalLink ID="-1">
+                                 <linkURL>https://www.zuginfo.nrw/download/1648852063963_Fahrplantabelle.pdf</linkURL>
+                                 <linkText>Fahrplantabelle RE 1 (RRX)</linkText>
+                                 <linkTextShort />
+                                 <linkTarget>_blank</linkTarget>
+                              </additionalLink>
+                              <additionalLink ID="-1">
+                                 <linkURL>https://www.zuginfo.nrw/download/1648852063924_Fahrplan5.pdf</linkURL>
+                                 <linkText>Fahrplantabelle 07.04. - 08.04.2022</linkText>
+                                 <linkTextShort />
+                                 <linkTarget>_blank</linkTarget>
+                              </additionalLink>
+                              <additionalLink ID="-1">
+                                 <linkURL>https://www.zuginfo.nrw/download/1648852063883_Fahrplan4.pdf</linkURL>
+                                 <linkText>Fahrplantabelle 03.04. - 06.04.2022</linkText>
+                                 <linkTextShort />
+                                 <linkTarget>_blank</linkTarget>
+                              </additionalLink>
+                              <additionalLink ID="-1">
+                                 <linkURL>https://www.zuginfo.nrw/download/1648852063846_Fahrplan3.pdf</linkURL>
+                                 <linkText>Fahrplantabelle 18.03. - 01.04.2022</linkText>
+                                 <linkTextShort />
+                                 <linkTarget>_blank</linkTarget>
+                              </additionalLink>
+                              <additionalLink ID="-1">
+                                 <linkURL>https://www.zuginfo.nrw/download/1648852063805_Fahrplan2.pdf</linkURL>
+                                 <linkText>Fahrplantabelle 06.03. - 17.03.2022</linkText>
+                                 <linkTextShort />
+                                 <linkTarget>_blank</linkTarget>
+                              </additionalLink>
+                              <additionalLink ID="-1">
+                                 <linkURL>https://www.zuginfo.nrw/download/1648852063768_Fahrplan1.pdf</linkURL>
+                                 <linkText>Fahrplantabelle 03.03. - 04.03.2022</linkText>
+                                 <linkTextShort />
+                                 <linkTarget>_blank</linkTarget>
+                              </additionalLink>
+                              <additionalLink ID="-1">
+                                 <linkURL>https://www.zuginfo.nrw/download/1648852063735_Plakat.pdf</linkURL>
+                                 <linkText>Plakat zur Maßnahme RE 6 (RRX)</linkText>
+                                 <linkTextShort />
+                                 <linkTarget>_blank</linkTarget>
+                              </additionalLink>
+                              <additionalLink ID="-1">
+                                 <linkURL>https://www.zuginfo.nrw/download/1644853750503_rb25.pdf</linkURL>
+                                 <linkText>Informationsplakat mit den Fahrzeiten des Schienenersatzverkehrs</linkText>
+                                 <linkTextShort />
+                                 <linkTarget>_blank</linkTarget>
+                              </additionalLink>
+                              <additionalLink ID="-1">
+                                 <linkURL>https://www.zuginfo.nrw/download/1644853750534_merged.pdf</linkURL>
+                                 <linkText>Ortspläne der Ersatzhaltestellen</linkText>
+                                 <linkTextShort />
+                                 <linkTarget>_blank</linkTarget>
+                              </additionalLink>
+                           </additionalLinks>
+                        </infoText>
+                     </infoLink>
+                  </itdPartialRoute>
+               </itdPartialRouteList>
+               <itdFare cFEPR="0" />
+               <itdInfoTextList />
+               <seqRoutes>
+                  <seqRoute publicDuration="02:35">1-4</seqRoute>
+               </seqRoutes>
+            </itdRoute>
+            <itdRoute active="1" selected="1" changes="2" distance="283" optValue="0" routeIndex="6" alternative="0" print="0" delete="0" searchMode="0" cTime="20220406095825129" method="itp" individualDuration="00:05" vehicleTime="122" idx="6" publicDuration="02:25">
+               <itdMapItemList />
+               <itdPartialRouteList>
+                  <itdPartialRoute type="IT" active="1" timeMinute="5" distance="283" bookingCode="S0R0T6PR0" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="99999997" area="0" platform="" name="Moers, Adlerstraße" nameWO="Adlerstraße" place="Moers" platformName="" plannedPlatformName="" usage="departure" x="6.61625" y="51.45077" mapName="WGS84[DD.DDDDD]" omc="5170024" placeID="-1" locality="Moers" georef="1000453212:16:MRCV:100">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482120.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="2" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="2" second="0" />
+                        </itdDateTimeTarget>
+                     </itdPoint>
+                     <itdPoint stopID="20036296" area="0" platform="3" gid="de:05170:36296" areaGid="de:05170:36296" pointGid="de:05170:36296:0:3" name="Moers Steinschen" nameWO="Steinschen" place="Moers" platformName="3" plannedPlatformName="3" usage="arrival" x="6.61872" y="51.45229" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="1003524668:9:MRCV:100" mode="5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482121.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="7" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="7" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="" shortname="" symbol="" type="100" productName="Fussweg" destination="" network="" TTB="0" STT="0" ROP="0" destID="" spTr="" stateless=":: : :" tC="0" lineDisplay="line">
+                        <motDivaParams line="" project="" direction=" " supplement=" " network="" />
+                     </itdMeansOfTransport>
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="9" bookingCode="S0R0T6PR1" realtimeStatus="EXTRA_STOPS|DEVIATION|MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20036296" area="0" platform="3" gid="de:05170:36296" areaGid="de:05170:36296" pointGid="de:05170:36296:0:3" name="Moers Steinschen" nameWO="Steinschen" place="Moers" platformName="3" plannedPlatformName="3" usage="departure" x="6.61872" y="51.45229" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="1003524668:9:MRCV:100" mode="5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482121.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="7" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="7" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="20036308" area="3" platform="3" gid="de:05170:36308" areaGid="de:05170:36308:3" pointGid="de:05170:36308:3:3" name="Moers Bahnhof" nameWO="Moers Bahnhof" place="Moers" platformName="3" plannedPlatformName="3" usage="arrival" x="6.64126" y="51.44998" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5170024" placeID="21" locality="Moers" georef="357018924:3:MRCV:100" mode="0,5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482122.pdf" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="16" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="16" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Bus 912" shortname="912" symbol="912" type="3" motType="5" productName="Bus" productId="2" timetablePeriod="Jahresfahrplan 2022 (10.01.2022 - 08.01.2023)" destination="Duisburg Rheinhausen Markt" network="nia" TTB="0" STT="1" ROP="1" destID="20016265" spTr="" stateless="nia:25912: :H:j22" tC="16" lineDisplay="line">
+                        <motDivaParams line="25912" project="j22" direction="H" supplement=" " network="nia" gid="de:vrr:nia-25-912:" />
+                        <itdRouteDescText>Neukirchen-Vluyn - Moers - DU-Homberg - DU-Rheinhausen</itdRouteDescText>
+                        <itdOperator>
+                           <code>25</code>
+                           <name>Niederrheinische VKB</name>
+                           <publicCode>NIAG</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="0" delayMinutesArr="0" />
+                     <itdFootPathInfo position="AFTER" duration="3" dTM="30">
+                        <itdFootPathElem description="" type="LEVEL" lF="0" lT="0" level="LEVEL">
+                           <itdPoint stopID="20036308" area="3" platform="" x="6.64126" y="51.44998" mapName="WGS84[DD.DDDDD]" georef="357018924:3:MRCV:100" />
+                           <itdPoint stopID="20036308" area="1" x="6.64133" y="51.45076" mapName="WGS84[DD.DDDDD]" georef="1003390126:6:MRCV:100" />
+                        </itdFootPathElem>
+                        <itdFootPathElem description="" type="LEVEL" lF="0" lT="0" level="LEVEL">
+                           <itdPoint stopID="20036308" area="1" platform="" x="6.64133" y="51.45076" mapName="WGS84[DD.DDDDD]" georef="1003390126:6:MRCV:100" />
+                           <itdPoint stopID="20036308" area="70" x="6.64163" y="51.45081" mapName="WGS84[DD.DDDDD]" georef="0:0::100" />
+                        </itdFootPathElem>
+                        <itdFootPathElem description="" type="STAIRS" lF="0" lT="1" level="UP">
+                           <itdPoint stopID="20036308" area="70" platform="" x="6.64163" y="51.45081" mapName="WGS84[DD.DDDDD]" georef="0:0::100" />
+                           <itdPoint stopID="20036308" area="90" x="6.64128" y="51.45170" mapName="WGS84[DD.DDDDD]" georef="1003390914:326:MRCV:100" />
+                        </itdFootPathElem>
+                     </itdFootPathInfo>
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="10" bookingCode="S0R0T6PR2" realtimeStatus="MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20036308" area="90" platform="2" gid="de:05170:36308" areaGid="de:05170:36308:90" pointGid="de:05170:36308:90:2" name="Moers Bahnhof" nameWO="Moers Bahnhof" place="Moers" platformName="2" plannedPlatformName="2" usage="departure" pointType="Gleis" x="6.64128" y="51.45170" mapName="WGS84[DD.DDDDD]" niveau="100" omc="5170024" placeID="21" locality="Moers" georef="1003390914:326:MRCV:100" mode="0,5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482122.pdf" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                           <itdMapItem text="" type="SM">
+                              <itdImage src="vrr/36308_Moers_Bahnhof.pdf" size="415" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="28" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="28" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_GIS</name>
+                              <value>1.00</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="20016450" area="91" platform="2" gid="de:05112:16450" areaGid="de:05112:16450:91" pointGid="de:05112:16450:91:2" name="Duisburg Rheinhausen Bf" nameWO="Rheinhausen Bf" place="Duisburg" platformName="2" plannedPlatformName="2" usage="arrival" pointType="Gleis" x="6.70577" y="51.39338" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5112000" placeID="20" locality="Duisburg" georef="1005143844:22:MRCV:100" mode="0,5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482123.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="38" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="38" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Regionalzug RB31" shortname="RB31" symbol="RB31" type="6" motType="13" productName="Regionalzug" productId="8" timetablePeriod="Jahresfahrplan 2022" destination="Duisburg Hbf" network="ddb" TTB="0" STT="0" ROP="0" destID="20016032" spTr="" stateless="ddb:90E31: :R:j22" tC="51" lineDisplay="line">
+                        <motDivaParams line="90E31" project="j22" direction="R" supplement=" " network="ddb" gid="de:nrw.de:rb31:" />
+                        <itdOperator>
+                           <code>N2</code>
+                           <name>NordWestBahn</name>
+                           <publicCode>NWB</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="0" delayMinutesArr="0" />
+                     <itdInfoTextList>
+                        <infoTextListElem code="PF" type="Timetable">Linie RB31: Maskenpflicht nach gesetzl. Regelung; wir empfehlen eine FFP2-Maske</infoTextListElem>
+                        <infoTextListElem code="FK" type="Timetable">Linie RB31: Fahrradmitnahme begrenzt möglich</infoTextListElem>
+                        <infoTextListElem code="FC" type="Timetable">Linie RB31: Reservierung kostenlos: Anmeldung Fahrradmitnahme bis 17 Uhr am Vortag</infoTextListElem>
+                        <infoTextListElem code="NW" type="Timetable">Linie RB31: NordWestBahn-Servicetelefon: 0541 2002 4321</infoTextListElem>
+                     </itdInfoTextList>
+                     <itdFootPathInfo position="AFTER" duration="0" dTM="0" />
+                  </itdPartialRoute>
+                  <itdPartialRoute type="PT" active="1" timeMinute="103" bookingCode="S0R0T6PR3" realtimeStatus="MONITORED" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+                     <itdPoint stopID="20016450" area="91" platform="3" gid="de:05112:16450" areaGid="de:05112:16450:91" pointGid="de:05112:16450:91:3" name="Duisburg Rheinhausen Bf" nameWO="Rheinhausen Bf" place="Duisburg" platformName="3" plannedPlatformName="3" usage="departure" pointType="Gleis" x="6.70581" y="51.39334" mapName="WGS84[DD.DDDDD]" niveau="0" omc="5112000" placeID="20" locality="Duisburg" georef="506547497:44:MRCV:100" mode="0,5">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482123.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="44" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="11" minute="44" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>0</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdPoint stopID="21001008" area="92" platform="6" gid="de:05334:1008" areaGid="de:05334:1008:92" pointGid="de:05334:1008:92:6" name="Aachen, Hbf,Aachen" nameWO="Aachen, Hbf" place="Aachen" platformName="6" plannedPlatformName="6" usage="arrival" pointType="Gleis" x="6.09091" y="50.76759" mapName="WGS84[DD.DDDDD]" niveau="1" omc="5334002" placeID="1" locality="Aachen" georef="1001698779:432:MRCV:100" mode="0,1">
+                        <itdMapItemList>
+                           <itdMapItem text="" type="RM">
+                              <itdImage src="FILELOAD?Filename=nrw_624D482124.pdf" />
+                           </itdMapItem>
+                        </itdMapItemList>
+                        <itdDateTime>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="13" minute="27" second="0" />
+                        </itdDateTime>
+                        <itdDateTimeTarget>
+                           <itdDate year="2022" month="4" day="6" weekday="4" />
+                           <itdTime hour="13" minute="27" second="0" />
+                        </itdDateTimeTarget>
+                        <genAttrList>
+                           <genAttrElem>
+                              <name>AREA_NIVEAU_DIVA</name>
+                              <value>1</value>
+                           </genAttrElem>
+                        </genAttrList>
+                     </itdPoint>
+                     <itdMeansOfTransport name="Regionalzug RB33" shortname="RB33" symbol="RB33" type="6" motType="13" productName="Regionalzug" productId="8" timetablePeriod="Jahresfahrplan 2022" destination="Aachen, Hbf,Aachen" network="ddb" TTB="0" STT="0" ROP="0" destID="21001008" spTr="" stateless="ddb:90E33: :R:j22" tC="198" lineDisplay="line">
+                        <motDivaParams line="90E33" project="j22" direction="R" supplement=" " network="ddb" gid="de:nrw.de:rb33:" />
+                        <itdOperator>
+                           <code>8003</code>
+                           <name>DB Regio AG NRW</name>
+                           <publicCode>DBNW</publicCode>
+                        </itdOperator>
+                     </itdMeansOfTransport>
+                     <itdRBLControlled delayMinutes="0" delayMinutesArr="0" />
+                     <itdInfoTextList>
+                        <infoTextListElem code="PF" type="Timetable">Linie RB33: Maskenpflicht nach gesetzl. Regelung; wir empfehlen eine FFP2-Maske</infoTextListElem>
+                        <infoTextListElem code="FK" type="Timetable">Linie RB33: Fahrradmitnahme begrenzt möglich</infoTextListElem>
+                        <infoTextListElem code="EH" type="Timetable">Linie RB33: Fahrzeuggebundene Einstiegshilfe vorhanden</infoTextListElem>
+                     </itdInfoTextList>
+                  </itdPartialRoute>
+               </itdPartialRouteList>
+               <itdFare cFEPR="0" />
+               <itdInfoTextList />
+               <seqRoutes>
+                  <seqRoute publicDuration="02:25">1-4</seqRoute>
+               </seqRoutes>
+            </itdRoute>
+         </itdRouteList>
+      </itdItinerary>
+   </itdTripRequest>
+</itdRequest>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itdRequest version="10.4.20.5" language="de" lengthUnit="METER" sessionID="0" client="xctest/19455 CFNetwork/1312 Darwin/21.1.0" clientIP="127.0.0.1" serverID="EFAOPENSERVICE2_" virtDir="vrr" calcTime="115.196" now="2021-12-10T12:09:40" nowWD="6">
+    <itdStopFinderRequest requestID="0">
+        <itdOdv type="any" usage="sf" anyObjFilter="2">
+            <itdOdvPlace state="empty">
+                <odvPlaceElem />
+            </itdOdvPlace>
+            <itdOdvName state="list">
+                <itdMessage type="error" module="BROKER" code="-8011" />
+                <odvNameElem listIndex="0" selected="0" matchQuality="240" x="6.77034" y="51.43060" mapName="WGS84[DD.DDDDD]" id="20016256" omc="5112000" placeID="20" anyType="stop" anyTypeSort="2" locality="Duisburg" objectName="DU-Hbf Westeingang" buildingName="" buildingNumber="" postCode="" streetName="" nameKey="" mainLocality="Duisburg" stateless="20016256" gid="de:05112:16256" value="0:1">Duisburg, DU-Hbf Westeingang</odvNameElem>
+                <odvNameElem listIndex="1" selected="0" matchQuality="240" x="6.77877" y="51.43026" mapName="WGS84[DD.DDDDD]" id="20016078" omc="5112000" placeID="20" anyType="stop" anyTypeSort="2" locality="Duisburg" objectName="DU-Hbf Osteingang" buildingName="" buildingNumber="" postCode="" streetName="" nameKey="" mainLocality="Duisburg" stateless="20016078" gid="de:05112:16078" value="1:2">Duisburg, DU-Hbf Osteingang</odvNameElem>
+                <odvNameElem listIndex="2" selected="1" matchQuality="888" x="6.77453" y="51.43045" mapName="WGS84[DD.DDDDD]" id="20016032" omc="5112000" placeID="20" anyType="stop" anyTypeSort="2" locality="Duisburg" objectName="Duisburg Hbf" buildingName="" buildingNumber="" postCode="" streetName="" nameKey="" mainLocality="Duisburg" stateless="20016032" gid="de:05112:16032" value="2:3">Duisburg, Duisburg Hbf</odvNameElem>
+                <odvNameInput>Duisburg Hbf</odvNameInput>
+            </itdOdvName>
+            <genAttrList>
+                <genAttrElem>
+                    <name>anyObjFilter</name>
+                    <value>STOP</value>
+                </genAttrElem>
+            </genAttrList>
+        </itdOdv>
+        <itdDateTime ttpFrom="20211101" ttpTo="20220430">
+            <itdDate weekday="6" year="2021" month="12" day="10" />
+            <itdTime hour="12" minute="9" />
+        </itdDateTime>
+    </itdStopFinderRequest>
+</itdRequest>

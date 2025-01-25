@@ -1,0 +1,106 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Cache",
+        "repositoryURL": "https://github.com/LambdaDigamma/Cache",
+        "state": {
+          "branch": null,
+          "revision": "034756303012a8e005c986b19969fbcd0b86612e",
+          "version": "6.0.1"
+        }
+      },
+      {
+        "package": "Fuse",
+        "repositoryURL": "https://github.com/LambdaDigamma/fuse-swift",
+        "state": {
+          "branch": null,
+          "revision": "0da39148e2ca8dc89c79d6b76dc45f19386a5dfa",
+          "version": "1.4.4"
+        }
+      },
+      {
+        "package": "Gestalt",
+        "repositoryURL": "https://github.com/regexident/Gestalt",
+        "state": {
+          "branch": null,
+          "revision": "6469230fb1b81ea449312a855b410425030b287e",
+          "version": "2.1.1"
+        }
+      },
+      {
+        "package": "Gifu",
+        "repositoryURL": "https://github.com/kaishin/Gifu",
+        "state": {
+          "branch": null,
+          "revision": "51f2eab32903e336f590c013267cfa4d7f8b06c4",
+          "version": "3.3.1"
+        }
+      },
+      {
+        "package": "MediaLibraryKit",
+        "repositoryURL": "https://github.com/LambdaDigamma/MediaLibraryKit",
+        "state": {
+          "branch": null,
+          "revision": "6e43f9487be582aeddadc65df9b3d5843137cc89",
+          "version": "0.0.7"
+        }
+      },
+      {
+        "package": "ModernNetworking",
+        "repositoryURL": "https://github.com/lambdadigamma/modernnetworking",
+        "state": {
+          "branch": null,
+          "revision": "309b149ac6c83a2d7b95433f0bb312a5a04b9595",
+          "version": "0.1.3"
+        }
+      },
+      {
+        "package": "Nuke",
+        "repositoryURL": "https://github.com/kean/Nuke.git",
+        "state": {
+          "branch": null,
+          "revision": "a002b7fd786f2df2ed4333fe73a9727499fd9d97",
+          "version": "10.11.2"
+        }
+      },
+      {
+        "package": "NukeUI",
+        "repositoryURL": "https://github.com/kean/NukeUI",
+        "state": {
+          "branch": null,
+          "revision": "db55022a8e483774ebbf3568727071477546d9ea",
+          "version": "0.8.3"
+        }
+      },
+      {
+        "package": "Resolver",
+        "repositoryURL": "https://github.com/LambdaDigamma/Resolver",
+        "state": {
+          "branch": null,
+          "revision": "2347a277097bedd59b77459d8154da47bd71fada",
+          "version": "1.5.1"
+        }
+      },
+      {
+        "package": "ProseMirror",
+        "repositoryURL": "https://github.com/lambdadigamma/swift-prosemirror",
+        "state": {
+          "branch": null,
+          "revision": "f6cc3cf3766524972b5d5e921fb023bdbb36a9a4",
+          "version": "0.0.3"
+        }
+      },
+      {
+        "package": "YouTubePlayerKit",
+        "repositoryURL": "https://github.com/SvenTiigi/YouTubePlayerKit.git",
+        "state": {
+          "branch": null,
+          "revision": "48b3716ce316bb67c19b10c4335f356b195dd72e",
+          "version": "1.2.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

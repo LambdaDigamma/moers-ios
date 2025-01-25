@@ -1,0 +1,16 @@
+"ObjectFilter.noFilter" = "No filter";
+"ObjectFilter.places" = "Place";
+"ObjectFilter.stops" = "Stop";
+"ObjectFilter.streets" = "Street";
+"ObjectFilter.addresses" = "Address";
+"ObjectFilter.crossing" = "Crossing";
+"ObjectFilter.pointsOfInterest" = "Point of interest";
+"ObjectFilter.postcode" = "Postcode";
+"ObjectFilter.unknown" = "Unknown";
+
+"DepartureMonitor.lastUpdatedAt" = "Last updated: ";
+
+"TrackChangeView.trackChangeTitle" = "Track change";
+"TrackChangeView.trackChangeTime" = "Current changeover time: %@";
+
+"TrackChangeView.footpathChangeTitle" = "Footpath";
