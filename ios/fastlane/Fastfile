@@ -122,8 +122,8 @@ platform :ios do
 
    # build the app
    gym(
-     scheme: "Moers", # replace with name of your project’s scheme
-     configuration: "Release",
+     scheme: "Moers",
+     configuration: "Release (Production)",
      export_options: {
        method: "app-store"
      }

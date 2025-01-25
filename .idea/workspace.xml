@@ -10,7 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a67a544-461c-43bd-b464-4b57a8071b80" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/ios-release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ios-release.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/fastlane/Fastfile" beforeDir="false" afterPath="$PROJECT_DIR$/ios/fastlane/Fastfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
