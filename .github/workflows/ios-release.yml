@@ -49,11 +49,9 @@ jobs:
       - name: Configure Git authentication
         run: |
           git config --global url."https://${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
-
-      - name: Test Match Repo
-        run: |
-          cd ios
+          git config --global credential.helper store
           git clone https://github.com/LambdaDigamma/personal-ios-certificates.git
+
 
       - name: Version Bump
         run: |
