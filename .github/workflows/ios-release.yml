@@ -53,7 +53,7 @@ jobs:
           bundle exec fastlane ios increment_build
           
           if [ "${{ github.event.inputs.version_bump }}" != "build" ]; then
-            bundle exec fastlane ios increment_version mode:${{ github.event.inputs.version_bump }}
+            bundle exec fastlane ios increment_version type:${{ github.event.inputs.version_bump }}
           else
             echo "Skipping version name bump as 'build' was selected."
           fi
