@@ -93,7 +93,6 @@ jobs:
         with:
           commit_message: "🚀 Bump iOS version to ${{ env.ios_version }} (${{ env.ios_build }})"
           tagging_message: "${{ env.tag_name }}"
-          branch: main
           file_pattern: '*.plist'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
