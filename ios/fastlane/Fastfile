@@ -21,8 +21,8 @@ INFO_PLIST_PATHS = [
   "Moers/Config/Info.plist",
   "Intent Extensions/Info.plist",
   "Widgets/Resources/Info.plist",
-  "Watch Extension/Info.plist",
-  "Watch/Info.plist",
+#   "Watch Extension/Info.plist",
+#   "Watch/Info.plist",
   "Moers Unit Tests/Info.plist"
 ].freeze
 
