@@ -60,7 +60,7 @@ jobs:
       - name: Ship iOS App
         run: |
           cd ios
-          echo "MATCH_GIT_BASIC_AUTHORIZATION=$(echo -n 'lambdadigamma:{{ secrets.GITHUB_TOKEN }}' | base64)" >> $GITHUB_ENV
+          echo "MATCH_GIT_BEARER_AUTHORIZATION=$(echo -n '{{ secrets.GITHUB_TOKEN }}' | base64)" >> $GITHUB_ENV
           bundle exec fastlane ios upload
         env:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
