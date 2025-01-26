@@ -154,6 +154,8 @@ platform :ios do
     build_release
     upload_release
 
+    git_add(path: ["*.plist"], shell_escape: false)
+
   end
 
   # ------------ Code Signing ------------

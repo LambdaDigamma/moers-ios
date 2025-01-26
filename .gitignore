@@ -71,9 +71,12 @@ timeline.xctimeline
 build/
 xcuserdata/
 
+vendor/bundle
+
 # Miscellaneous
 captures
 ios/vendor
+ios/vendor/bundle
 ios/Moers/Resources/Tankerkoenig-Info.plist
 ios/Moers/Resources/GoogleService-Info.plist
 ios/GoogleService-Info.plist
@@ -89,3 +92,4 @@ keystore.properties
 *.dSYM.zip
 *.dSYM
 .env
+.idea/workspace.xml
