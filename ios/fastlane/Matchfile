@@ -7,8 +7,8 @@ storage_mode("git")
 # App Identifiers
 app_identifier([
     "de.okfn.niederrhein.Moers",
-    "de.okfn.niederrhein.Moers.watchkitapp",
-    "de.okfn.niederrhein.Moers.watchkitapp.watchkitextension",
+    # "de.okfn.niederrhein.Moers.watchkitapp",
+    # "de.okfn.niederrhein.Moers.watchkitapp.watchkitextension",
     "de.okfn.niederrhein.Moers.widgets",
     "de.okfn.niederrhein.Moers.Intent-Extensions"
 ])
