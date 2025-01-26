@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/google/app-check.git",
         "state": {
           "branch": null,
-          "revision": "3b62f154d00019ae29a71e9738800bb6f18b236d",
-          "version": "10.19.2"
+          "revision": "61b85103a1aeed8218f17c794687781505fbbef5",
+          "version": "11.2.0"
         }
       },
       {
@@ -78,8 +78,8 @@
         "repositoryURL": "https://github.com/firebase/firebase-ios-sdk.git",
         "state": {
           "branch": null,
-          "revision": "eca84fd638116dd6adb633b5a3f31cc7befcbb7d",
-          "version": "10.29.0"
+          "revision": "0d885d28250fb1196b614bc9455079b75c531f72",
+          "version": "11.7.0"
         }
       },
       {
@@ -105,8 +105,8 @@
         "repositoryURL": "https://github.com/google/GoogleAppMeasurement.git",
         "state": {
           "branch": null,
-          "revision": "fe727587518729046fc1465625b9afd80b5ab361",
-          "version": "10.28.0"
+          "revision": "be0881ff728eca210ccb628092af400c086abda3",
+          "version": "11.7.0"
         }
       },
       {
@@ -114,8 +114,8 @@
         "repositoryURL": "https://github.com/google/GoogleDataTransport.git",
         "state": {
           "branch": null,
-          "revision": "a637d318ae7ae246b02d7305121275bc75ed5565",
-          "version": "9.4.0"
+          "revision": "617af071af9aa1d6a091d59a202910ac482128f9",
+          "version": "10.1.0"
         }
       },
       {
@@ -123,8 +123,8 @@
         "repositoryURL": "https://github.com/google/GoogleUtilities.git",
         "state": {
           "branch": null,
-          "revision": "57a1d307f42df690fdef2637f3e5b776da02aad6",
-          "version": "7.13.3"
+          "revision": "53156c7ec267db846e6b64c9f4c4e31ba4cf75eb",
+          "version": "8.0.2"
         }
       },
       {
@@ -141,8 +141,8 @@
         "repositoryURL": "https://github.com/google/grpc-binary.git",
         "state": {
           "branch": null,
-          "revision": "e9fad491d0673bdda7063a0341fb6b47a30c5359",
-          "version": "1.62.2"
+          "revision": "f56d8fc3162de9a498377c7b6cea43431f4f5083",
+          "version": "1.65.1"
         }
       },
       {
@@ -213,8 +213,8 @@
         "repositoryURL": "https://github.com/firebase/nanopb.git",
         "state": {
           "branch": null,
-          "revision": "819d0a2173aff699fb8c364b6fb906f7cdb1a692",
-          "version": "2.30909.0"
+          "revision": "b7e1104502eca3a213b46303391ca4d3bc8ddec1",
+          "version": "2.30910.0"
         }
       },
       {
@@ -240,8 +240,8 @@
         "repositoryURL": "https://github.com/google/promises.git",
         "state": {
           "branch": null,
-          "revision": "e70e889c0196c76d22759eb50d6a0270ca9f1d9e",
-          "version": "2.3.1"
+          "revision": "540318ecedd63d883069ae7f1ed811a2df00b6ac",
+          "version": "2.4.0"
         }
       },
       {
