@@ -53,7 +53,6 @@ jobs:
       - name: Test Match Repo
         run: |
           cd ios
-          
           git clone https://github.com/LambdaDigamma/personal-ios-certificates.git
 
       - name: Version Bump
@@ -71,7 +70,6 @@ jobs:
       - name: Ship iOS App
         run: |
           cd ios
-#          echo "MATCH_GIT_BEARER_AUTHORIZATION=$(echo -n '{{ secrets.GITHUB_TOKEN }}' | base64)" >> $GITHUB_ENV
           bundle exec fastlane ios upload
         env:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
