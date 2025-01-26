@@ -47,6 +47,11 @@ jobs:
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
 
+      - name: Test Match Repo
+        run: |
+          cd ios
+          git clone https://github.com/LambdaDigamma/personal-ios-certificates.git
+
       - name: Version Bump
         run: |
           echo "Executing version bump: ${{ github.event.inputs.version_bump }}"
