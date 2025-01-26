@@ -42,7 +42,6 @@
 		DF80F6C02851142800AB708D /* WeatherWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80F6BF2851142800AB708D /* WeatherWidget.swift */; };
 		DF86ABA12174900400EFC7EA /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF86ABA02174900400EFC7EA /* Intents.framework */; };
 		DF89BA1B26FE12AE003A6C64 /* IDEAS.md in Resources */ = {isa = PBXBuildFile; fileRef = DF89BA1A26FE12AE003A6C64 /* IDEAS.md */; };
-		DF94B12423F0A7E8009C57ED /* Watch Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DF94B12323F0A7E7009C57ED /* Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DF97AD0F26EFEC5F009DFF71 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = DF97AD0E26EFEC5F009DFF71 /* Core */; };
 		DF9F19D62766660100B74E13 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF86ABA02174900400EFC7EA /* Intents.framework */; };
 		DF9F19DD2766660100B74E13 /* Intent Extensions.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DF9F19D52766660100B74E13 /* Intent Extensions.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -84,13 +83,6 @@
 			remoteGlobalIDString = DF5E1B4D26726AF3005FADA4;
 			remoteInfo = WidgetsExtension;
 		};
-		DF94B12523F0A7E8009C57ED /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DF1A49571F6AAB7000E9108B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DF94B12223F0A7E7009C57ED;
-			remoteInfo = "Watch Extension";
-		};
 		DF9F19DB2766660100B74E13 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DF1A49571F6AAB7000E9108B /* Project object */;
@@ -116,17 +108,6 @@
 			files = (
 				DF2D523C2D1A114D009F78EF /* WidgetsExtension.appex in Embed Foundation Extensions */,
 				DF9F19DD2766660100B74E13 /* Intent Extensions.appex in Embed Foundation Extensions */,
-			);
-			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DF94B14523F0A7E8009C57ED /* Embed Foundation Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				DF94B12423F0A7E8009C57ED /* Watch Extension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,7 +143,6 @@
 		DF284EFD23F4C17100EC999B /* MoersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF29DC7228D86CFD00E4E35A /* mmevents-ios */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "mmevents-ios"; sourceTree = "<group>"; };
 		DF35EFA927A9E9FE005C6BDA /* NewsFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NewsFeature; sourceTree = "<group>"; };
-		DF4B7BA32D31E556009A85FC /* Watch */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Watch; sourceTree = "<group>"; };
 		DF559A5E2812FE160072F0F9 /* MapFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MapFeature; sourceTree = "<group>"; };
 		DF55F2622770ABE80024300B /* DashboardFeature */ = {isa = PBXFileReference; lastKnownFileType = text; path = DashboardFeature; sourceTree = SOURCE_ROOT; };
 		DF57D695218739C500E6A0A9 /* Moers-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Moers-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -179,17 +159,13 @@
 		DF80F6C928512FA600AB708D /* WeatherFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WeatherFeature; sourceTree = "<group>"; };
 		DF86ABA02174900400EFC7EA /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		DF89BA1A26FE12AE003A6C64 /* IDEAS.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = IDEAS.md; sourceTree = "<group>"; };
-		DF94B11723F0A7E5009C57ED /* Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF94B12323F0A7E7009C57ED /* Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF9F19D52766660100B74E13 /* Intent Extensions.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Intent Extensions.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFAEF41120E8ECF7001B0756 /* Moers.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Moers.entitlements; sourceTree = "<group>"; };
 		DFB161B3267651D6009D2754 /* Moers Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Moers Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFB64DC9203883D200173A80 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		DFB64DCA2038845300173A80 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
-		DFC393B427B672D4007AD266 /* Screenshots.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Screenshots.xctestplan; sourceTree = "<group>"; };
 		DFC8507726EFE62400F9FB39 /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Core; sourceTree = "<group>"; };
 		DFCAC4982852008100701BC1 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
-		DFDABCA82772A3280079F741 /* FullTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = FullTestPlan.xctestplan; sourceTree = "<group>"; };
 		DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DFFBAA2727693755003728CF /* RubbishFeature */ = {isa = PBXFileReference; lastKnownFileType = folder; path = RubbishFeature; sourceTree = "<group>"; };
 		DFFBAA2927696353003728CF /* FuelFeature */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FuelFeature; sourceTree = "<group>"; };
@@ -239,14 +215,6 @@
 				IntentHandler.swift,
 			);
 			target = DF9F19D42766660100B74E13 /* Intent Extensions */;
-		};
-		DF4AD3922CCD3BC500D620B3 /* Exceptions for "Watch Extension" folder in "Watch Extension" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-				PushNotificationPayload.apns,
-			);
-			target = DF94B12223F0A7E7009C57ED /* Watch Extension */;
 		};
 		DF4AD3C72CCD3E6500D620B3 /* Exceptions for "Moers Unit Tests" folder in "Moers Unit Tests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -323,14 +291,6 @@
 			path = "Intent Extensions";
 			sourceTree = "<group>";
 		};
-		DF4AD3872CCD3BC500D620B3 /* Watch Extension */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				DF4AD3922CCD3BC500D620B3 /* Exceptions for "Watch Extension" folder in "Watch Extension" target */,
-			);
-			path = "Watch Extension";
-			sourceTree = "<group>";
-		};
 		DF4AD3A72CCD3D6E00D620B3 /* Other */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Other;
@@ -350,6 +310,11 @@
 				DF4AD3F92CCD3F1B00D620B3 /* Exceptions for "MoersUITests" folder in "MoersUITests" target */,
 			);
 			path = MoersUITests;
+			sourceTree = "<group>";
+		};
+		DFC53C522D45BF5C009CA7EF /* Test Plans */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Test Plans";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -422,13 +387,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DF94B12023F0A7E7009C57ED /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		DF9F19D22766660100B74E13 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -485,12 +443,10 @@
 				DF6F5CD428E31FC200E1DFBD /* efaapi-ios */,
 				DF1A49611F6AAB7000E9108B /* Moers */,
 				DF4AD3462CCD3BA600D620B3 /* Widgets */,
-				DF4B7BA32D31E556009A85FC /* Watch */,
 				DF4AD3792CCD3BC000D620B3 /* Intent Extensions */,
-				DF4AD3872CCD3BC500D620B3 /* Watch Extension */,
 				DF4AD3C32CCD3E6500D620B3 /* Moers Unit Tests */,
 				DF4AD3F22CCD3F1B00D620B3 /* MoersUITests */,
-				DFDABCA72772A30F0079F741 /* Test Plans */,
+				DFC53C522D45BF5C009CA7EF /* Test Plans */,
 				DF1A49601F6AAB7000E9108B /* Products */,
 				DF1A497D1F6ABD7100E9108B /* Frameworks */,
 			);
@@ -500,8 +456,6 @@
 			isa = PBXGroup;
 			children = (
 				DF1A495F1F6AAB7000E9108B /* Moers.app */,
-				DF94B11723F0A7E5009C57ED /* Watch.app */,
-				DF94B12323F0A7E7009C57ED /* Watch Extension.appex */,
 				DF284EFD23F4C17100EC999B /* MoersUITests.xctest */,
 				DF5E1B4E26726AF3005FADA4 /* WidgetsExtension.appex */,
 				DFB161B3267651D6009D2754 /* Moers Unit Tests.xctest */,
@@ -552,15 +506,6 @@
 				DF6E061528AE34FB004FEBC9 /* Settings.bundle */,
 			);
 			path = Release;
-			sourceTree = "<group>";
-		};
-		DFDABCA72772A30F0079F741 /* Test Plans */ = {
-			isa = PBXGroup;
-			children = (
-				DFDABCA82772A3280079F741 /* FullTestPlan.xctestplan */,
-				DFC393B427B672D4007AD266 /* Screenshots.xctestplan */,
-			);
-			path = "Test Plans";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -693,45 +638,6 @@
 			productReference = DF5E1B4E26726AF3005FADA4 /* WidgetsExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		DF94B11623F0A7E5009C57ED /* Watch */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DF94B14623F0A7E8009C57ED /* Build configuration list for PBXNativeTarget "Watch" */;
-			buildPhases = (
-				DF94B11523F0A7E5009C57ED /* Resources */,
-				DF94B14523F0A7E8009C57ED /* Embed Foundation Extensions */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DF94B12623F0A7E8009C57ED /* PBXTargetDependency */,
-			);
-			name = Watch;
-			productName = Watch;
-			productReference = DF94B11723F0A7E5009C57ED /* Watch.app */;
-			productType = "com.apple.product-type.application.watchapp2";
-		};
-		DF94B12223F0A7E7009C57ED /* Watch Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DF94B13E23F0A7E8009C57ED /* Build configuration list for PBXNativeTarget "Watch Extension" */;
-			buildPhases = (
-				DF94B11F23F0A7E7009C57ED /* Sources */,
-				DF94B12023F0A7E7009C57ED /* Frameworks */,
-				DF94B12123F0A7E7009C57ED /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				DF4AD3872CCD3BC500D620B3 /* Watch Extension */,
-			);
-			name = "Watch Extension";
-			packageProductDependencies = (
-			);
-			productName = "Watch Extension";
-			productReference = DF94B12323F0A7E7009C57ED /* Watch Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
-		};
 		DF9F19D42766660100B74E13 /* Intent Extensions */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DF9F19DE2766660100B74E13 /* Build configuration list for PBXNativeTarget "Intent Extensions" */;
@@ -811,12 +717,6 @@
 					DF5E1B4D26726AF3005FADA4 = {
 						CreatedOnToolsVersion = 12.5;
 					};
-					DF94B11623F0A7E5009C57ED = {
-						CreatedOnToolsVersion = 11.3.1;
-					};
-					DF94B12223F0A7E7009C57ED = {
-						CreatedOnToolsVersion = 11.3.1;
-					};
 					DF9F19D42766660100B74E13 = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -860,8 +760,6 @@
 				DF1A495E1F6AAB7000E9108B /* Moers */,
 				DF284EFC23F4C17100EC999B /* MoersUITests */,
 				DFB161B2267651D6009D2754 /* Moers Unit Tests */,
-				DF94B11623F0A7E5009C57ED /* Watch */,
-				DF94B12223F0A7E7009C57ED /* Watch Extension */,
 				DF5E1B4D26726AF3005FADA4 /* WidgetsExtension */,
 				DF9F19D42766660100B74E13 /* Intent Extensions */,
 			);
@@ -893,20 +791,6 @@
 			files = (
 				DF6F5CD328E3190800E1DFBD /* Tankerkoenig-Info.plist in Resources */,
 				DF6F5CD228E3190800E1DFBD /* Tankerkoenig-Info-Sample.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DF94B11523F0A7E5009C57ED /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DF94B12123F0A7E7009C57ED /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1044,13 +928,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DF94B11F23F0A7E7009C57ED /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		DF9F19D12766660100B74E13 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1077,11 +954,6 @@
 			isa = PBXTargetDependency;
 			target = DF5E1B4D26726AF3005FADA4 /* WidgetsExtension */;
 			targetProxy = DF5E1B5C26726AF7005FADA4 /* PBXContainerItemProxy */;
-		};
-		DF94B12623F0A7E8009C57ED /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DF94B12223F0A7E7009C57ED /* Watch Extension */;
-			targetProxy = DF94B12523F0A7E8009C57ED /* PBXContainerItemProxy */;
 		};
 		DF9F19DC2766660100B74E13 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1173,9 +1045,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Moers/Resources/Moers.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 60;
-				DEVELOPMENT_TEAM = 77N8D7LGCZ;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 77N8D7LGCZ;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1194,6 +1068,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development de.okfn.niederrhein.Moers";
 				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Resources/Moers-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = targeted;
@@ -1278,9 +1153,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Moers/Resources/Moers.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 60;
-				DEVELOPMENT_TEAM = 77N8D7LGCZ;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 77N8D7LGCZ;
 				ENABLE_TESTABILITY = YES;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1301,6 +1178,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore de.okfn.niederrhein.Moers";
 				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Resources/Moers-Bridging-Header.h";
 				SWIFT_STRICT_CONCURRENCY = targeted;
 				SWIFT_VERSION = 5.0;
@@ -1496,11 +1374,13 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = Widgets/WidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 62;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 77N8D7LGCZ;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 77N8D7LGCZ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1531,6 +1411,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development de.okfn.niederrhein.Moers.widgets";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1577,11 +1458,13 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = Widgets/WidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 62;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 77N8D7LGCZ;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 77N8D7LGCZ;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1605,6 +1488,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore de.okfn.niederrhein.Moers.widgets";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1612,304 +1496,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = "Release (Production)";
-		};
-		DF94B14123F0A7E8009C57ED /* Debug (Production) */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReferenceAnchor = DF4AD2D92CCD26A500D620B3 /* Config */;
-			baseConfigurationReferenceRelativePath = Production.xcconfig;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 62;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_ASSET_PATHS = "\"Watch Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = 77N8D7LGCZ;
-				ENABLE_PREVIEWS = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "Watch Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 3.3.2;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.1;
-			};
-			name = "Debug (Production)";
-		};
-		DF94B14423F0A7E8009C57ED /* Release (Production) */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReferenceAnchor = DF4AD2D92CCD26A500D620B3 /* Config */;
-			baseConfigurationReferenceRelativePath = Production.xcconfig;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 62;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_ASSET_PATHS = "\"Watch Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = 77N8D7LGCZ;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_PREVIEWS = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "Watch Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 3.3.2;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 7.1;
-			};
-			name = "Release (Production)";
-		};
-		DF94B14923F0A7E8009C57ED /* Debug (Production) */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReferenceAnchor = DF4AD2D92CCD26A500D620B3 /* Config */;
-			baseConfigurationReferenceRelativePath = Production.xcconfig;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 62;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 77N8D7LGCZ;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBSC_MODULE = Watch_Extension;
-				INFOPLIST_FILE = Watch/Info.plist;
-				MARKETING_VERSION = 3.3.2;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.1;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.1;
-			};
-			name = "Debug (Production)";
-		};
-		DF94B14C23F0A7E8009C57ED /* Release (Production) */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReferenceAnchor = DF4AD2D92CCD26A500D620B3 /* Config */;
-			baseConfigurationReferenceRelativePath = Production.xcconfig;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 62;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 77N8D7LGCZ;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBSC_MODULE = Watch_Extension;
-				INFOPLIST_FILE = Watch/Info.plist;
-				MARKETING_VERSION = 3.3.2;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.1;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 7.1;
 			};
 			name = "Release (Production)";
 		};
@@ -1948,11 +1534,13 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 77N8D7LGCZ;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 77N8D7LGCZ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1985,6 +1573,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.Moers.Intent-Extensions";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development de.okfn.niederrhein.Moers.Intent-Extensions";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -2030,11 +1619,13 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 77N8D7LGCZ;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 77N8D7LGCZ;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2060,6 +1651,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.Moers.Intent-Extensions";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore de.okfn.niederrhein.Moers.Intent-Extensions";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -2109,7 +1701,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = TX3HU8833D;
+				DEVELOPMENT_TEAM = 77N8D7LGCZ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2252,24 +1844,6 @@
 			buildConfigurations = (
 				DF5E1B6226726AF7005FADA4 /* Debug (Production) */,
 				DF5E1B6526726AF7005FADA4 /* Release (Production) */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release (Production)";
-		};
-		DF94B13E23F0A7E8009C57ED /* Build configuration list for PBXNativeTarget "Watch Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DF94B14123F0A7E8009C57ED /* Debug (Production) */,
-				DF94B14423F0A7E8009C57ED /* Release (Production) */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release (Production)";
-		};
-		DF94B14623F0A7E8009C57ED /* Build configuration list for PBXNativeTarget "Watch" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DF94B14923F0A7E8009C57ED /* Debug (Production) */,
-				DF94B14C23F0A7E8009C57ED /* Release (Production) */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release (Production)";
