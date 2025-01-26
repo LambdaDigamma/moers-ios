@@ -1,5 +1,5 @@
 name: Release iOS Version
-permissions: read-all
+permissions: write-all
 
 on:
   workflow_dispatch:
@@ -73,20 +73,27 @@ jobs:
           FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 120
           FASTLANE_XCODEBUILD_SETTINGS_RETRIES: 5
 
-      - name: Commit version bump and tag
+      - name: Get iOS version and build number
+        id: ios_version
         run: |
           IOS_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "ios/Moers/Config/Info.plist")
           IOS_BUILD=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "ios/Moers/Config/Info.plist")
           TAG_NAME="ios/${IOS_VERSION}/${IOS_BUILD}"
-          
+
           echo "iOS Version: $IOS_VERSION"
           echo "iOS Build: $IOS_BUILD"
           echo "Tag Name: $TAG_NAME"
-          
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          
-          git commit -m "🚀 Bump iOS version to $IOS_VERSION ($IOS_BUILD)"
-          git tag $TAG_NAME
-          git push origin HEAD
-          git push origin $TAG_NAME
+
+          echo "ios_version=$IOS_VERSION" >> $GITHUB_ENV
+          echo "ios_build=$IOS_BUILD" >> $GITHUB_ENV
+          echo "tag_name=$TAG_NAME" >> $GITHUB_ENV
+
+      - name: Commit version bump and tag
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🚀 Bump iOS version to ${{ env.ios_version }} (${{ env.ios_build }})"
+          tagging_message: "${{ env.tag_name }}"
+          branch: main
+          file_pattern: '*.plist'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
