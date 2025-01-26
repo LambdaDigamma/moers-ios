@@ -69,7 +69,7 @@ jobs:
           CI: true
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           BASIC_AUTH: lambdadigamma:${{ secrets.GITHUB_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MATCH_GITHUB_TOKEN: ${{ secrets.MATCH_GITHUB_TOKEN }}
           FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 120
           FASTLANE_XCODEBUILD_SETTINGS_RETRIES: 5
 
