@@ -15,21 +15,21 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
-### ios signing
-
-```sh
-[bundle exec] fastlane ios signing
-```
-
-Sync signing
-
 ### ios increment
 
 ```sh
 [bundle exec] fastlane ios increment
 ```
 
-Increment Version
+Increment version number
+
+### ios increment_version
+
+```sh
+[bundle exec] fastlane ios increment_version
+```
+
+Increment version number (patch, minor, major)
 
 ### ios increment_build
 
@@ -37,23 +37,39 @@ Increment Version
 [bundle exec] fastlane ios increment_build
 ```
 
-Increment Build Number
+Increment build number across all targets
 
-### ios test_unit
-
-```sh
-[bundle exec] fastlane ios test_unit
-```
-
-Run All Unit Tests
-
-### ios test_ui
+### ios build_release
 
 ```sh
-[bundle exec] fastlane ios test_ui
+[bundle exec] fastlane ios build_release
 ```
 
-Run All UI Tests
+Build the iOS app for release
+
+### ios upload_release
+
+```sh
+[bundle exec] fastlane ios upload_release
+```
+
+Upload to TestFlight / ASC
+
+### ios upload
+
+```sh
+[bundle exec] fastlane ios upload
+```
+
+
+
+### ios load_asc_api_key
+
+```sh
+[bundle exec] fastlane ios load_asc_api_key
+```
+
+Load ASC API Key information to use in subsequent lanes
 
 ### ios upload_metadata
 
@@ -61,15 +77,31 @@ Run All UI Tests
 [bundle exec] fastlane ios upload_metadata
 ```
 
-Upload metadata
+Upload metadata to App Store Connect
 
-### ios build
+### ios screenshots
 
 ```sh
-[bundle exec] fastlane ios build
+[bundle exec] fastlane ios screenshots
 ```
 
-Build binary
+Capture and frame screenshots
+
+### ios upload_screenshots
+
+```sh
+[bundle exec] fastlane ios upload_screenshots
+```
+
+Upload screenshots to App Store Connect
+
+### ios deliver_screenshots
+
+```sh
+[bundle exec] fastlane ios deliver_screenshots
+```
+
+Take screenshots and upload to App Store Connect
 
 ### ios release
 
@@ -79,29 +111,13 @@ Build binary
 
 Release a new version of Mein Moers
 
-### ios screenshots
+### ios signing
 
 ```sh
-[bundle exec] fastlane ios screenshots
+[bundle exec] fastlane ios signing
 ```
 
-Take screenshots
-
-### ios deliver_screenshots
-
-```sh
-[bundle exec] fastlane ios deliver_screenshots
-```
-
-Take Screenshots and upload them to AppStore Connect
-
-### ios upload_screenshots
-
-```sh
-[bundle exec] fastlane ios upload_screenshots
-```
-
-Upload screenshots
+Sync code signing for development and app store
 
 ----
 

@@ -5,19 +5,32 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000391">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000192">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: register_devices" time="1.223715">
+      <testcase classname="fastlane.lanes" name="1: increment_build_number_in_plist" time="0.07852">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: sync_code_signing" time="3.364526">
+      <testcase classname="fastlane.lanes" name="2: increment_build_number_in_plist" time="0.019523">
         
-          <failure message="/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/fastlane-2.226.0/fastlane/lib/fastlane/actions/actions_helper.rb:67:in `execute_action&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/fastlane-2.226.0/fastlane/lib/fastlane/runner.rb:255:in `block in execute_action&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/fastlane-2.226.0/fastlane/lib/fastlane/runner.rb:229:in `chdir&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/fastlane-2.226.0/fastlane/lib/fastlane/runner.rb:229:in `execute_action&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/fastlane-2.226.0/fastlane/lib/fastlane/runner.rb:157:in `trigger_action_by_name&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/fastlane-2.226.0/fastlane/lib/fastlane/fast_file.rb:159:in `method_missing&apos;&#10;Fastfile:20:in `block (2 levels) in parsing_binding&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/fastlane-2.226.0/fastlane/lib/fastlane/lane.rb:41:in `call&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/fastlane-2.226.0/fastlane/lib/fastlane/runner.rb:49:in `block in execute&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/fastlane-2.226.0/fastlane/lib/fastlane/runner.rb:45:in `chdir&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/fastlane-2.226.0/fastlane/lib/fastlane/runner.rb:45:in `execute&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/fastlane-2.226.0/fastlane/lib/fastlane/lane_manager.rb:46:in `cruise_lane&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/fastlane-2.226.0/fastlane/lib/fastlane/command_line_handler.rb:34:in `handle&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/fastlane-2.226.0/fastlane/lib/fastlane/commands_generator.rb:110:in `block (2 levels) in run&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/commander-4.6.0/lib/commander/command.rb:187:in `call&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/commander-4.6.0/lib/commander/command.rb:157:in `run&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/commander-4.6.0/lib/commander/runner.rb:444:in `run_active_command&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/fastlane-2.226.0/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:124:in `run!&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/commander-4.6.0/lib/commander/delegates.rb:18:in `run!&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/fastlane-2.226.0/fastlane/lib/fastlane/commands_generator.rb:363:in `run&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/fastlane-2.226.0/fastlane/lib/fastlane/commands_generator.rb:43:in `start&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/fastlane-2.226.0/fastlane/lib/fastlane/cli_tools_distributor.rb:123:in `take_off&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/gems/fastlane-2.226.0/bin/fastlane:23:in `&lt;top (required)&gt;&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/bin/fastlane:25:in `load&apos;&#10;/Users/lennart/Documents/Development/iOS/Moers/ios/vendor/bundle/ruby/3.1.0/bin/fastlane:25:in `&lt;top (required)&gt;&apos;&#10;/Users/lennart/.gem/ruby/3.1.1/gems/bundler-2.2.12/lib/bundler/cli/exec.rb:63:in `load&apos;&#10;/Users/lennart/.gem/ruby/3.1.1/gems/bundler-2.2.12/lib/bundler/cli/exec.rb:63:in `kernel_load&apos;&#10;/Users/lennart/.gem/ruby/3.1.1/gems/bundler-2.2.12/lib/bundler/cli/exec.rb:28:in `run&apos;&#10;/Users/lennart/.gem/ruby/3.1.1/gems/bundler-2.2.12/lib/bundler/cli.rb:494:in `exec&apos;&#10;/Users/lennart/.gem/ruby/3.1.1/gems/bundler-2.2.12/lib/bundler/vendor/thor/lib/thor/command.rb:27:in `run&apos;&#10;/Users/lennart/.gem/ruby/3.1.1/gems/bundler-2.2.12/lib/bundler/vendor/thor/lib/thor/invocation.rb:127:in `invoke_command&apos;&#10;/Users/lennart/.gem/ruby/3.1.1/gems/bundler-2.2.12/lib/bundler/vendor/thor/lib/thor.rb:392:in `dispatch&apos;&#10;/Users/lennart/.gem/ruby/3.1.1/gems/bundler-2.2.12/lib/bundler/cli.rb:30:in `dispatch&apos;&#10;/Users/lennart/.gem/ruby/3.1.1/gems/bundler-2.2.12/lib/bundler/vendor/thor/lib/thor/base.rb:485:in `start&apos;&#10;/Users/lennart/.gem/ruby/3.1.1/gems/bundler-2.2.12/lib/bundler/cli.rb:24:in `start&apos;&#10;/Users/lennart/.gem/ruby/3.1.1/gems/bundler-2.2.12/exe/bundle:49:in `block in &lt;top (required)&gt;&apos;&#10;/Users/lennart/.gem/ruby/3.1.1/gems/bundler-2.2.12/lib/bundler/friendly_errors.rb:130:in `with_friendly_errors&apos;&#10;/Users/lennart/.gem/ruby/3.1.1/gems/bundler-2.2.12/exe/bundle:37:in `&lt;top (required)&gt;&apos;&#10;/Users/lennart/.gem/ruby/3.1.1/bin/bundle:25:in `load&apos;&#10;/Users/lennart/.gem/ruby/3.1.1/bin/bundle:25:in `&lt;main&gt;&apos;&#10;&#10;Your certificate &apos;Z55J73DVU9.cer&apos; is not valid, please check end date and renew it if necessary" />
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: increment_build_number_in_plist" time="0.01826">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: increment_build_number_in_plist" time="0.021526">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: increment_build_number_in_plist" time="0.019858">
         
       </testcase>
     
