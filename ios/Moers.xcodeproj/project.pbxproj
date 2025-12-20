@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -102,35 +102,29 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		DF5E1B5F26726AF7005FADA4 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 13;
+			dstSubfolder = PlugIns;
 			files = (
 				DF2D523C2D1A114D009F78EF /* WidgetsExtension.appex in Embed Foundation Extensions */,
 				DF9F19DD2766660100B74E13 /* Intent Extensions.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF94B14D23F0A7E8009C57ED /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
+			dstSubfolder = Product;
 			files = (
 			);
 			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFE62576254595E1005FAC1C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolder = Frameworks;
 			files = (
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -322,7 +316,6 @@
 /* Begin PBXFrameworksBuildPhase section */
 		DF1A495C1F6AAB7000E9108B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DF152D8E289D23DB0046956F /* Cache in Frameworks */,
 				DFE1ED782538C4E200FDD44A /* Pulley in Frameworks */,
@@ -355,19 +348,15 @@
 				DFB07A2F277741030033101C /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				DFA4BC48263A28530014C7F9 /* TagListView in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF284EFA23F4C17100EC999B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DF152D90289D33290046956F /* Core in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF5E1B4B26726AF3005FADA4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DF6CA8FE2849125D0068B9AC /* MapFeature in Frameworks */,
 				DF0A7DB327AB220A00957A8D /* AppScaffold in Frameworks */,
@@ -385,24 +374,19 @@
 				DF0B292A28523C7E009D389A /* Resolver in Frameworks */,
 				DF5E1B7526727973005FADA4 /* FeedKit in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF9F19D22766660100B74E13 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DF0B292C28523DBB009D389A /* Resolver in Frameworks */,
 				DF9F19FB2766923F00B74E13 /* EFAAPI in Frameworks */,
 				DF9F19D62766660100B74E13 /* Intents.framework in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFB161B0267651D6009D2754 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -613,8 +597,6 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			fileSystemSynchronizedGroups = (
 				DF4AD3462CCD3BA600D620B3 /* Widgets */,
 			);
@@ -647,8 +629,6 @@
 				DF9F19D32766660100B74E13 /* Resources */,
 			);
 			buildRules = (
-			);
-			dependencies = (
 			);
 			name = "Intent Extensions";
 			packageProductDependencies = (
@@ -735,6 +715,7 @@
 				de,
 			);
 			mainGroup = DF1A49561F6AAB7000E9108B;
+			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 				DFE1ED692538C24800FDD44A /* XCRemoteSwiftPackageReference "BulletinBoard" */,
@@ -752,7 +733,7 @@
 				DF152D8C289D23DB0046956F /* XCRemoteSwiftPackageReference "Cache" */,
 				DFE59D3928D871B800BD0236 /* XCRemoteSwiftPackageReference "swift-license-ui" */,
 			);
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 90;
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -769,178 +750,161 @@
 /* Begin PBXResourcesBuildPhase section */
 		DF1A495D1F6AAB7000E9108B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DF636F5128D1CE8B00B29A76 /* Tankerkoenig-Info.plist in Resources */,
 				DF782D8628D1D05D000BDC89 /* Tankerkoenig-Info-Sample.plist in Resources */,
 				DF89BA1B26FE12AE003A6C64 /* IDEAS.md in Resources */,
 				DFF5DDCB20094A920075A2F4 /* GoogleService-Info.plist in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF284EFB23F4C17100EC999B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF5E1B4C26726AF3005FADA4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DF6F5CD328E3190800E1DFBD /* Tankerkoenig-Info.plist in Resources */,
 				DF6F5CD228E3190800E1DFBD /* Tankerkoenig-Info-Sample.plist in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF9F19D32766660100B74E13 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFB161B1267651D6009D2754 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		DF6E060D28AE2C3F004FEBC9 /* Generate Package List */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
 			name = "Generate Package List";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#if command -v swift-package-list &> /dev/null; then\n#    OUTPUT_PATH=$SOURCE_ROOT/$TARGETNAME\n#    swift-package-list \"$PROJECT_FILE_PATH\" --output-path \"$OUTPUT_PATH\" --requires-license\n#else\n#    echo \"warning: swift-package-list not installed\"\n#fi\n";
+			shellScript = (
+				"#if command -v swift-package-list &> /dev/null; then",
+				"#    OUTPUT_PATH=$SOURCE_ROOT/$TARGETNAME",
+				"#    swift-package-list \"$PROJECT_FILE_PATH\" --output-path \"$OUTPUT_PATH\" --requires-license",
+				"#else",
+				"#    echo \"warning: swift-package-list not installed\"",
+				"#fi",
+				"",
+			);
 		};
 		DF6E061928AE3659004FEBC9 /* Settings Bundle Preparation */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
 			name = "Settings Bundle Preparation";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "BUNDLE_DIR=\"$PROJECT_DIR/Moers\"\nBUILD_APP_DIR=\"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"\n\n\nif [[ \"$CONFIGURATION\" == *\"Release\"* ]]; then\ncp -rf \"$BUNDLE_DIR/Resources/Release/Settings.bundle\" \"$BUILD_APP_DIR\"\nelse\ncp -rf \"$BUNDLE_DIR/Resources/Debug/Settings.bundle\" \"$BUILD_APP_DIR\"\nfi\n\ncd $PROJECT_DIR\ncd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"\n\nRELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)\nBUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" Info.plist)\nVERSION_STRING=\"$RELEASE_VERSION ($BUILD_NUMBER)\"\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $VERSION_STRING\" \"$BUILD_APP_DIR/Settings.bundle/Root.plist\"\n";
+			shellScript = (
+				"BUNDLE_DIR=\"$PROJECT_DIR/Moers\"",
+				"BUILD_APP_DIR=\"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"",
+				"",
+				"",
+				"if [[ \"$CONFIGURATION\" == *\"Release\"* ]]; then",
+				"cp -rf \"$BUNDLE_DIR/Resources/Release/Settings.bundle\" \"$BUILD_APP_DIR\"",
+				"else",
+				"cp -rf \"$BUNDLE_DIR/Resources/Debug/Settings.bundle\" \"$BUILD_APP_DIR\"",
+				"fi",
+				"",
+				"cd $PROJECT_DIR",
+				"cd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"",
+				"",
+				"RELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)",
+				"BUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" Info.plist)",
+				"VERSION_STRING=\"$RELEASE_VERSION ($BUILD_NUMBER)\"",
+				"/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $VERSION_STRING\" \"$BUILD_APP_DIR/Settings.bundle/Root.plist\"",
+				"",
+			);
 		};
 		DF6E061A28AE3691004FEBC9 /* Generate Settings Bundle Licences */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
 			name = "Generate Settings Bundle Licences";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ \"$CONFIGURATION\" == *\"Debug\"* ]]; then\n# /usr/local/bin/license-plist --output-path Moers/Resources/Debug/Settings.bundle --add-version-numbers --package-path Moers.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved\n\ncp -rf Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist Moers/Resources/Release/Settings.bundle/com.mono0926.LicensePlist\ncp -rf Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist.latest_result.txt Moers/Resources/Release/Settings.bundle/com.mono0926.LicensePlist.latest_result.txt\ncp -rf Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist.plist Moers/Resources/Release/Settings.bundle/com.mono0926.LicensePlist.plist\n\necho \"Updated and copied license plists\"\n\nfi\n\n";
+			shellScript = (
+				"if [[ \"$CONFIGURATION\" == *\"Debug\"* ]]; then",
+				"# /usr/local/bin/license-plist --output-path Moers/Resources/Debug/Settings.bundle --add-version-numbers --package-path Moers.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+				"",
+				"cp -rf Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist Moers/Resources/Release/Settings.bundle/com.mono0926.LicensePlist",
+				"cp -rf Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist.latest_result.txt Moers/Resources/Release/Settings.bundle/com.mono0926.LicensePlist.latest_result.txt",
+				"cp -rf Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist.plist Moers/Resources/Release/Settings.bundle/com.mono0926.LicensePlist.plist",
+				"",
+				"echo \"Updated and copied license plists\"",
+				"",
+				"fi",
+				"",
+				"",
+			);
 		};
 		DF782D8728D1DCA9000BDC89 /* Prepare Fuel API Key */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
 			name = "Prepare Fuel API Key";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CONFIG_FILE_BASE_NAME=\"Tankerkoenig-Info\"\n\nCONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}.plist\nSAMPLE_CONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}-Sample.plist\n\nCONFIG_FILE_PATH=$SRCROOT/Moers/Resources/$CONFIG_FILE_NAME\nSAMPLE_CONFIG_FILE_PATH=$SRCROOT/Moers/Resources/$SAMPLE_CONFIG_FILE_NAME\n\nif [ -f \"$CONFIG_FILE_PATH\" ]; then\n  echo \"$CONFIG_FILE_PATH exists.\"\nelse\n  echo \"$CONFIG_FILE_PATH does not exist, copying sample\"\n  cp -v \"${SAMPLE_CONFIG_FILE_PATH}\" \"${CONFIG_FILE_PATH}\"\nfi\n";
+			shellScript = (
+				"CONFIG_FILE_BASE_NAME=\"Tankerkoenig-Info\"",
+				"",
+				"CONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}.plist",
+				"SAMPLE_CONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}-Sample.plist",
+				"",
+				"CONFIG_FILE_PATH=$SRCROOT/Moers/Resources/$CONFIG_FILE_NAME",
+				"SAMPLE_CONFIG_FILE_PATH=$SRCROOT/Moers/Resources/$SAMPLE_CONFIG_FILE_NAME",
+				"",
+				"if [ -f \"$CONFIG_FILE_PATH\" ]; then",
+				"  echo \"$CONFIG_FILE_PATH exists.\"",
+				"else",
+				"  echo \"$CONFIG_FILE_PATH does not exist, copying sample\"",
+				"  cp -v \"${SAMPLE_CONFIG_FILE_PATH}\" \"${CONFIG_FILE_PATH}\"",
+				"fi",
+				"",
+			);
 		};
 		DF8861C926CEF0CC00C895B4 /* Lint with SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
 			name = "Lint with SwiftLint";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#if which swiftlint >/dev/null; then\n#   swiftlint\n#else\n#   echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#fi\n";
+			shellScript = (
+				"#if which swiftlint >/dev/null; then",
+				"#   swiftlint",
+				"#else",
+				"#   echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"",
+				"#fi",
+				"",
+			);
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DF1A495B1F6AAB7000E9108B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */,
 				DF80F6C02851142800AB708D /* WeatherWidget.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF284EF923F4C17100EC999B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF5E1B4A26726AF3005FADA4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF9F19D12766660100B74E13 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFB161AF267651D6009D2754 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -968,7 +932,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		DF11BFA822B9515E0051C3B3 /* Debug (Production) */ = {
+		DF11BFA822B9515E0051C3B3 /* Debug (Production) configuration for PBXProject "Moers" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = DF4AD2D92CCD26A500D620B3 /* Config */;
 			baseConfigurationReferenceRelativePath = Production.xcconfig;
@@ -1035,7 +999,7 @@
 			};
 			name = "Debug (Production)";
 		};
-		DF11BFA922B9515E0051C3B3 /* Debug (Production) */ = {
+		DF11BFA922B9515E0051C3B3 /* Debug (Production) configuration for PBXNativeTarget "Moers" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = DF4AD2D92CCD26A500D620B3 /* Config */;
 			baseConfigurationReferenceRelativePath = Production.xcconfig;
@@ -1082,7 +1046,7 @@
 			};
 			name = "Debug (Production)";
 		};
-		DF11BFAE22B951780051C3B3 /* Release (Production) */ = {
+		DF11BFAE22B951780051C3B3 /* Release (Production) configuration for PBXProject "Moers" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = DF4AD2D92CCD26A500D620B3 /* Config */;
 			baseConfigurationReferenceRelativePath = Production.xcconfig;
@@ -1143,7 +1107,7 @@
 			};
 			name = "Release (Production)";
 		};
-		DF11BFAF22B951780051C3B3 /* Release (Production) */ = {
+		DF11BFAF22B951780051C3B3 /* Release (Production) configuration for PBXNativeTarget "Moers" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = DF4AD2D92CCD26A500D620B3 /* Config */;
 			baseConfigurationReferenceRelativePath = Production.xcconfig;
@@ -1191,7 +1155,7 @@
 			};
 			name = "Release (Production)";
 		};
-		DF284F0723F4C17100EC999B /* Debug (Production) */ = {
+		DF284F0723F4C17100EC999B /* Debug (Production) configuration for PBXNativeTarget "MoersUITests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = DF4AD2D92CCD26A500D620B3 /* Config */;
 			baseConfigurationReferenceRelativePath = Production.xcconfig;
@@ -1267,7 +1231,7 @@
 			};
 			name = "Debug (Production)";
 		};
-		DF284F0A23F4C17100EC999B /* Release (Production) */ = {
+		DF284F0A23F4C17100EC999B /* Release (Production) configuration for PBXNativeTarget "MoersUITests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = DF4AD2D92CCD26A500D620B3 /* Config */;
 			baseConfigurationReferenceRelativePath = Production.xcconfig;
@@ -1337,7 +1301,7 @@
 			};
 			name = "Release (Production)";
 		};
-		DF5E1B6226726AF7005FADA4 /* Debug (Production) */ = {
+		DF5E1B6226726AF7005FADA4 /* Debug (Production) configuration for PBXNativeTarget "WidgetsExtension" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1421,7 +1385,7 @@
 			};
 			name = "Debug (Production)";
 		};
-		DF5E1B6526726AF7005FADA4 /* Release (Production) */ = {
+		DF5E1B6526726AF7005FADA4 /* Release (Production) configuration for PBXNativeTarget "WidgetsExtension" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1499,7 +1463,7 @@
 			};
 			name = "Release (Production)";
 		};
-		DF9F19E12766660100B74E13 /* Debug (Production) */ = {
+		DF9F19E12766660100B74E13 /* Debug (Production) configuration for PBXNativeTarget "Intent Extensions" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1584,7 +1548,7 @@
 			};
 			name = "Debug (Production)";
 		};
-		DF9F19E42766660100B74E13 /* Release (Production) */ = {
+		DF9F19E42766660100B74E13 /* Release (Production) configuration for PBXNativeTarget "Intent Extensions" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1663,7 +1627,7 @@
 			};
 			name = "Release (Production)";
 		};
-		DFB161BD267651D7009D2754 /* Debug (Production) */ = {
+		DFB161BD267651D7009D2754 /* Debug (Production) configuration for PBXNativeTarget "Moers Unit Tests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1739,7 +1703,7 @@
 			};
 			name = "Debug (Production)";
 		};
-		DFB161C0267651D7009D2754 /* Release (Production) */ = {
+		DFB161C0267651D7009D2754 /* Release (Production) configuration for PBXNativeTarget "Moers Unit Tests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1815,55 +1779,49 @@
 		DF1A495A1F6AAB7000E9108B /* Build configuration list for PBXProject "Moers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DF11BFA822B9515E0051C3B3 /* Debug (Production) */,
-				DF11BFAE22B951780051C3B3 /* Release (Production) */,
+				DF11BFA822B9515E0051C3B3 /* Debug (Production) configuration for PBXProject "Moers" */,
+				DF11BFAE22B951780051C3B3 /* Release (Production) configuration for PBXProject "Moers" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release (Production)";
 		};
 		DF1A49711F6AAB7000E9108B /* Build configuration list for PBXNativeTarget "Moers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DF11BFA922B9515E0051C3B3 /* Debug (Production) */,
-				DF11BFAF22B951780051C3B3 /* Release (Production) */,
+				DF11BFA922B9515E0051C3B3 /* Debug (Production) configuration for PBXNativeTarget "Moers" */,
+				DF11BFAF22B951780051C3B3 /* Release (Production) configuration for PBXNativeTarget "Moers" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release (Production)";
 		};
 		DF284F0423F4C17100EC999B /* Build configuration list for PBXNativeTarget "MoersUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DF284F0723F4C17100EC999B /* Debug (Production) */,
-				DF284F0A23F4C17100EC999B /* Release (Production) */,
+				DF284F0723F4C17100EC999B /* Debug (Production) configuration for PBXNativeTarget "MoersUITests" */,
+				DF284F0A23F4C17100EC999B /* Release (Production) configuration for PBXNativeTarget "MoersUITests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release (Production)";
 		};
 		DF5E1B6626726AF7005FADA4 /* Build configuration list for PBXNativeTarget "WidgetsExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DF5E1B6226726AF7005FADA4 /* Debug (Production) */,
-				DF5E1B6526726AF7005FADA4 /* Release (Production) */,
+				DF5E1B6226726AF7005FADA4 /* Debug (Production) configuration for PBXNativeTarget "WidgetsExtension" */,
+				DF5E1B6526726AF7005FADA4 /* Release (Production) configuration for PBXNativeTarget "WidgetsExtension" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release (Production)";
 		};
 		DF9F19DE2766660100B74E13 /* Build configuration list for PBXNativeTarget "Intent Extensions" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DF9F19E12766660100B74E13 /* Debug (Production) */,
-				DF9F19E42766660100B74E13 /* Release (Production) */,
+				DF9F19E12766660100B74E13 /* Debug (Production) configuration for PBXNativeTarget "Intent Extensions" */,
+				DF9F19E42766660100B74E13 /* Release (Production) configuration for PBXNativeTarget "Intent Extensions" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release (Production)";
 		};
 		DFB161BA267651D7009D2754 /* Build configuration list for PBXNativeTarget "Moers Unit Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DFB161BD267651D7009D2754 /* Debug (Production) */,
-				DFB161C0267651D7009D2754 /* Release (Production) */,
+				DFB161BD267651D7009D2754 /* Debug (Production) configuration for PBXNativeTarget "Moers Unit Tests" */,
+				DFB161C0267651D7009D2754 /* Release (Production) configuration for PBXNativeTarget "Moers Unit Tests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release (Production)";
 		};
 /* End XCConfigurationList section */
