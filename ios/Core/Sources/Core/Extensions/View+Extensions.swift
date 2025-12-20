@@ -9,6 +9,6 @@ import SwiftUI
 
 public extension View {
     
-    public func apply<V: View>(@ViewBuilder _ block: (Self) -> V) -> V { block(self) }
+    func apply<V: View>(@ViewBuilder _ block: (Self) -> V) -> V { block(self) }
     
 }
