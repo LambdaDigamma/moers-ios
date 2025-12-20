@@ -18,9 +18,11 @@ public struct BroadcastRow: View {
     public init(
         viewModel: RadioBroadcastViewModel
     ) {
-        self.title = viewModel.title
+        self.title = viewModel.title.trimmingCharacters(in: .whitespacesAndNewlines)
         self.subtitle = viewModel.subtitle
         self.imageURL = URL(string: viewModel.imageURL ?? "")
+        print(imageURL ?? "")
+        print(title.trimmingCharacters(in: .whitespacesAndNewlines))
     }
     
     public init(
@@ -28,9 +30,10 @@ public struct BroadcastRow: View {
         subtitle: String,
         imageURL: String?
     ) {
-        self.title = title
+        self.title = title.trimmingCharacters(in: .whitespacesAndNewlines)
         self.subtitle = subtitle
         self.imageURL = URL(string: imageURL ?? "")
+        print(imageURL ?? "")
     }
     
     public var body: some View {
@@ -40,9 +43,21 @@ public struct BroadcastRow: View {
             ZStack {
                 
                 if let imageURL = imageURL {
-                    LazyImage(url: imageURL)
-                        .processors([ImageProcessors.Resize(width: 44)])
-                        .cornerRadius(8)
+                    
+                    LazyImage(url: imageURL) { state in
+                        if let image = state.image {
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        } else if state.error != nil {
+                            Color(UIColor.secondarySystemFill)
+                        } else {
+                            Color(UIColor.secondarySystemFill)
+                        }
+                    }
+                    .processors([ImageProcessors.Resize(width: 44)])
+                    .cornerRadius(8)
+                    
                 } else {
                     RoundedRectangle(cornerRadius: 8)
                         .fill(Color(UIColor.tertiarySystemFill))

@@ -25,19 +25,21 @@ public struct BroadcastCard: View {
         
         VStack {
             
-            LazyImage(
-                url: imageURL,
-                resizingMode: .aspectFill
-            )
-                .frame(idealWidth: 200, idealHeight: 150)
-                .cornerRadius(6)
+            LazyImage(url: imageURL) { (state: LazyImageState) in
+                state.image?
+                    .resizable()
+                    .scaledToFill()
+                    .frame(idealWidth: 200, idealHeight: 150)
+                    .cornerRadius(6)
+            }
             
             Text(title)
                 .font(.footnote.weight(.medium))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 8)
             
-        }.frame(maxWidth: 200, maxHeight: 180, alignment: .leading)
+        }
+        .frame(maxWidth: 200, maxHeight: 180, alignment: .leading)
         
     }
     

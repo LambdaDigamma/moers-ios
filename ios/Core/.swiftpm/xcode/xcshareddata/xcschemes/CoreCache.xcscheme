@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Core"
-               BuildableName = "Core"
-               BlueprintName = "Core"
+               BlueprintIdentifier = "CoreCache"
+               BuildableName = "CoreCache"
+               BlueprintName = "CoreCache"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -50,9 +50,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Core"
-            BuildableName = "Core"
-            BlueprintName = "Core"
+            BlueprintIdentifier = "CoreCache"
+            BuildableName = "CoreCache"
+            BlueprintName = "CoreCache"
             ReferencedContainer = "container:">
          </BuildableReference>
       </MacroExpansion>

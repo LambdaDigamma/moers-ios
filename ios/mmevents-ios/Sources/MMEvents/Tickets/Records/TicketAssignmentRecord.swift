@@ -31,7 +31,7 @@ extension TicketAssignmentRecord: FetchableRecord, MutablePersistableRecord {
     
     public static var databaseTableName: String = TicketAssignmentTableDefinition.tableName
     
-    internal enum Columns {
+    public enum Columns {
         static let createdAt = Column(CodingKeys.createdAt.rawValue)
         static let updatedAt = Column(CodingKeys.updatedAt.rawValue)
     }

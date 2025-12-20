@@ -50,7 +50,7 @@ extension TicketRecord: FetchableRecord, MutablePersistableRecord {
     
     public static var databaseTableName: String = TicketTableDefinition.tableName
     
-    internal enum Columns {
+    public enum Columns {
         static let publishedAt = Column(CodingKeys.publishedAt.rawValue)
     }
     

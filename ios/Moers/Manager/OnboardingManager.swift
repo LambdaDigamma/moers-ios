@@ -188,7 +188,7 @@ public class OnboardingManager {
         page.alternativeButtonTitle = String.localized("PrivacyAlternativeButton")
         page.alternativeHandler = { _ in
             
-            let url = URL(string: "https://moers.app/legal/privacy")!
+            let url = URL(string: "https://next.moers.app/legal/privacy")!
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }

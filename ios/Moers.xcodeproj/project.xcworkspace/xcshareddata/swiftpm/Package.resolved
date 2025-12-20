@@ -195,8 +195,8 @@
         "repositoryURL": "https://github.com/LambdaDigamma/MediaLibraryKit",
         "state": {
           "branch": null,
-          "revision": "158169432f5ceae8848af03154a29d6ae7c34885",
-          "version": "0.0.9"
+          "revision": "1e2b55b4499db6357a4ca6ab96baa9541346c9ff",
+          "version": "1.0.0"
         }
       },
       {
@@ -222,8 +222,8 @@
         "repositoryURL": "https://github.com/kean/Nuke.git",
         "state": {
           "branch": null,
-          "revision": "33f7e93be5d4ec027d42af77a8ec4680d1862ad2",
-          "version": "11.6.4"
+          "revision": "0ead44350d2737db384908569c012fe67c421e4d",
+          "version": "12.8.0"
         }
       },
       {
@@ -231,8 +231,8 @@
         "repositoryURL": "https://github.com/makleso6/NukeWebP",
         "state": {
           "branch": null,
-          "revision": "2349bc0ce9b51c5b3df7d8033bb45ed42d7a9f10",
-          "version": "1.0.3"
+          "revision": "9bd16d47901338c1497fe14f27de5a5db8b91c2c",
+          "version": "1.1.1"
         }
       },
       {
@@ -257,9 +257,9 @@
         "package": "Resolver",
         "repositoryURL": "https://github.com/LambdaDigamma/Resolver",
         "state": {
-          "branch": null,
-          "revision": "77e52514918f16a7cf64dc2afcbe28af8519e941",
-          "version": "1.5.2"
+          "branch": "master",
+          "revision": "47602af1ac8d7952299fbd0bda3cfbd12cf3a8ca",
+          "version": null
         }
       },
       {

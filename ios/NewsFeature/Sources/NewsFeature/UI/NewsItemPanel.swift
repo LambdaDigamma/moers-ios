@@ -33,7 +33,18 @@ public struct NewsItemPanel: View {
         ZStack {
             
             if let imageURL = imageURL, let url = URL(string: imageURL) {
-                LazyImage(url: url)
+                LazyImage(url: url) { state in
+                    if let image = state.image {
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    } else if state.error != nil {
+                        Color(UIColor.secondarySystemFill)
+                    } else {
+                        Color(UIColor.secondarySystemFill)
+                    }
+                }
+                    
             }
             
         }

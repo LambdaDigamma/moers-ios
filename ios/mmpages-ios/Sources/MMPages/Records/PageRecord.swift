@@ -37,7 +37,7 @@ extension PageRecord: Codable, FetchableRecord, MutablePersistableRecord {
     public static var databaseColumnDecodingStrategy: DatabaseColumnDecodingStrategy = .convertFromSnakeCase
     public static var databaseColumnEncodingStrategy: DatabaseColumnEncodingStrategy = .convertToSnakeCase
     
-    internal enum Columns {
+    public enum Columns {
         static let publishedAt = Column("published_at")
     }
     

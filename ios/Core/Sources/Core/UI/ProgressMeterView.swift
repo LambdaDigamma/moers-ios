@@ -1,6 +1,6 @@
 //
-//  SwiftUIView.swift
-//  
+//  ProgressMeterView.swift
+//
 //
 //  Created by Lennart Fischer on 10.01.22.
 //

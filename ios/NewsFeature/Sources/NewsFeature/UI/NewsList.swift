@@ -38,6 +38,8 @@ public struct NewsList: View {
                             onShowArticle(feedItem)
                         }) {
                             
+//                            Text(feedItem.title ?? "")
+
                             NewsItemPanel(
                                 headline: feedItem.title ?? "",
                                 source: feedItem.source?.value ?? "",

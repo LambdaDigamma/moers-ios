@@ -72,7 +72,7 @@ extension PageBlockRecord: Codable, FetchableRecord, MutablePersistableRecord {
     
     public static var databaseTableName: String = PageBlockTableDefinition.tableName
     
-    internal enum Columns {
+    public enum Columns {
         static let pageID = Column("page_id")
         static let order = Column("order")
         static let publishedAt = Column("published_at")

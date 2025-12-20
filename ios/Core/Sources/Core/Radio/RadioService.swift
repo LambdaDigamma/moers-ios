@@ -80,7 +80,7 @@ public class RadioService: RadioServiceProtocol {
     
     public func load() -> AnyPublisher<[RadioBroadcast], Error> {
         
-        let request = URLRequest(url: URL(string: "https://moers.app/api/v1/radio-broadcasts")!)
+        let request = URLRequest(url: URL(string: "https://next.moers.app/api/v1/radio-broadcasts")!)
         let session = URLSession.shared
         let decoder = JSONDecoder()
         let formatter = DateFormatter()

@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.9
 
 import PackageDescription
 
@@ -19,7 +19,7 @@ let package = Package(
         .package(name: "Core", path: "./../Core"),
         .package(name: "ModernNetworking", url: "https://github.com/LambdaDigamma/ModernNetworking", from: "1.0.0"),
         .package(name: "ProseMirror", url: "https://github.com/lambdadigamma/swift-prosemirror", .upToNextMajor(from: "0.0.1")),
-        .package(name: "MediaLibraryKit", url: "https://github.com/LambdaDigamma/MediaLibraryKit", .upToNextMajor(from: "0.0.9")),
+        .package(name: "MediaLibraryKit", url: "https://github.com/LambdaDigamma/MediaLibraryKit", .upToNextMajor(from: "1.0.0")),
         .package(url: "https://github.com/SvenTiigi/YouTubePlayerKit", from: "1.1.1"),
         .package(name: "GRDB", url: "https://github.com/groue/GRDB.swift", branch: "master"),
         .package(url: "https://github.com/hmlongco/Factory", .upToNextMajor(from: "2.0.0"))
