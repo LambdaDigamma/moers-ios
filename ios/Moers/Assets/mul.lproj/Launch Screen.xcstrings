@@ -1,0 +1,91 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "7Jr-lp-mc1.title" : {
+      "comment" : "Class = \"UITabBarItem\"; title = \"Sonstiges\"; ObjectID = \"7Jr-lp-mc1\";",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonstiges"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Other"
+          }
+        }
+      }
+    },
+    "bWl-lG-OfY.title" : {
+      "comment" : "Class = \"UITabBarItem\"; title = \"Heute\"; ObjectID = \"bWl-lG-OfY\";",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today"
+          }
+        }
+      }
+    },
+    "dO4-ez-BdT.title" : {
+      "comment" : "Class = \"UITabBarItem\"; title = \"Neuigkeiten\"; ObjectID = \"dO4-ez-BdT\";",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neuigkeiten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "News"
+          }
+        }
+      }
+    },
+    "g2G-VK-co1.title" : {
+      "comment" : "Class = \"UITabBarItem\"; title = \"Veranstaltungen\"; ObjectID = \"g2G-VK-co1\";",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Veranstaltungen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Events"
+          }
+        }
+      }
+    },
+    "rQw-MP-ZmC.title" : {
+      "comment" : "Class = \"UITabBarItem\"; title = \"Karte\"; ObjectID = \"rQw-MP-ZmC\";",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karte"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Map"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.1"
+}

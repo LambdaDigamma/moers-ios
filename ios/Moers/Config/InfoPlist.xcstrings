@@ -1,0 +1,53 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "CFBundleName" : {
+      "comment" : "Bundle name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Mein Moers"
+          }
+        }
+      }
+    },
+    "NSCameraUsageDescription" : {
+      "comment" : "InfoPlist.strings\n  Moers\n\n  Created by Lennart Fischer on 03.05.21.\n  Copyright © 2021 Lennart Fischer. All rights reserved.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mein Moers benutzt deine Kamera um QR codes zu scannen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Mein Moers uses your camera to scan QR codes."
+          }
+        }
+      }
+    },
+    "NSLocationWhenInUseUsageDescription" : {
+      "comment" : "Privacy - Location When In Use Usage Description",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mein Moers benutzt deinen Standort, um Routen zu planen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mein Moers uses your location to get directions."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.1"
+}
