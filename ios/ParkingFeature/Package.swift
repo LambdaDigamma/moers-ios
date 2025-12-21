@@ -26,7 +26,10 @@ let package = Package(
     targets: [
         .target(
             name: "ParkingFeature",
-            dependencies: ["Core", "ModernNetworking", "Resolver"]
+            dependencies: ["Core", "ModernNetworking", "Resolver"],
+            resources: [
+                .process("Resources")
+            ]
         ),
         .testTarget(
             name: "ParkingFeatureTests",

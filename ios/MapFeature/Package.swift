@@ -37,6 +37,9 @@ let package = Package(
                 .byName(name: "EventBus"),
                 .byName(name: "TextFieldEffects"),
                 .byName(name: "FuelFeature"),
+            ],
+            resources: [
+                .process("Resources")
             ]
         ),
         .testTarget(

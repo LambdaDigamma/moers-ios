@@ -28,7 +28,10 @@ let package = Package(
     targets: [
         .target(
             name: "RubbishFeature",
-            dependencies: ["Core", "ModernNetworking"]
+            dependencies: ["Core", "ModernNetworking"],
+            resources: [
+                .process("Resources")
+            ]
         ),
         .testTarget(
             name: "RubbishFeatureTests",

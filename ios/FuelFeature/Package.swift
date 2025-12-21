@@ -19,13 +19,18 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "Core", path: "./../Core"),
-        .package(name: "Fuse", url: "https://github.com/LambdaDigamma/fuse-swift", from: "1.4.1"),
-        .package(name: "ModernNetworking", url: "https://github.com/LambdaDigamma/ModernNetworking", from: "1.0.0"),
+        .package(url: "https://github.com/LambdaDigamma/fuse-swift", from: "1.4.1"),
+        .package(url: "https://github.com/LambdaDigamma/ModernNetworking", from: "1.0.0"),
     ],
     targets: [
         .target(
             name: "FuelFeature",
-            dependencies: ["Core", "Fuse", "ModernNetworking"]
+            dependencies: [
+                .product(name: "Core", package: "Core"),
+                .product(name: "Fuse", package: "fuse-swift"),
+                .product(name: "ModernNetworking", package: "ModernNetworking"),
+            ],
+            resources: [.process("Resources")]
         ),
         .testTarget(
             name: "FuelFeatureTests",
