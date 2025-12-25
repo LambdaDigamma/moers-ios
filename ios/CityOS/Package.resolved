@@ -1,39 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "abseil-cpp-binary",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/abseil-cpp-binary.git",
-      "state" : {
-        "revision" : "bbe8b69694d7873315fd3a4ad41efe043e1c07c5",
-        "version" : "1.2024072200.0"
-      }
-    },
-    {
-      "identity" : "app-check",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/app-check.git",
-      "state" : {
-        "revision" : "61b85103a1aeed8218f17c794687781505fbbef5",
-        "version" : "11.2.0"
-      }
-    },
-    {
       "identity" : "app-scaffold-ios",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/lambdadigamma/app-scaffold-ios",
+      "location" : "https://github.com/LambdaDigamma/app-scaffold-ios",
       "state" : {
         "revision" : "719edbd974dfb685afdc3e041673396face02bda",
         "version" : "0.1.5"
-      }
-    },
-    {
-      "identity" : "bulletinboard",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/alexaubry/BulletinBoard.git",
-      "state" : {
-        "branch" : "develop",
-        "revision" : "7b35bb98d776f869851f345696215def30814de2"
       }
     },
     {
@@ -48,7 +21,7 @@
     {
       "identity" : "eventbus",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/lambdadigamma/eventbus",
+      "location" : "https://github.com/LambdaDigamma/EventBus",
       "state" : {
         "revision" : "f4b1b7a35bc20165e7d3aaeebc808dd3ab14874b",
         "version" : "0.5.2"
@@ -73,15 +46,6 @@
       }
     },
     {
-      "identity" : "firebase-ios-sdk",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/firebase/firebase-ios-sdk.git",
-      "state" : {
-        "revision" : "fdc352fabaf5916e7faa1f96ad02b1957e93e5a5",
-        "version" : "11.15.0"
-      }
-    },
-    {
       "identity" : "fuse-swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LambdaDigamma/fuse-swift",
@@ -100,42 +64,6 @@
       }
     },
     {
-      "identity" : "google-ads-on-device-conversion-ios-sdk",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/googleads/google-ads-on-device-conversion-ios-sdk",
-      "state" : {
-        "revision" : "a2d0f1f1666de591eb1a811f40b1706f5c63a2ed",
-        "version" : "2.3.0"
-      }
-    },
-    {
-      "identity" : "googleappmeasurement",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/GoogleAppMeasurement.git",
-      "state" : {
-        "revision" : "45ce435e9406d3c674dd249a042b932bee006f60",
-        "version" : "11.15.0"
-      }
-    },
-    {
-      "identity" : "googledatatransport",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/GoogleDataTransport.git",
-      "state" : {
-        "revision" : "617af071af9aa1d6a091d59a202910ac482128f9",
-        "version" : "10.1.0"
-      }
-    },
-    {
-      "identity" : "googleutilities",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/GoogleUtilities.git",
-      "state" : {
-        "revision" : "60da361632d0de02786f709bdc0c4df340f7613e",
-        "version" : "8.1.0"
-      }
-    },
-    {
       "identity" : "grdb.swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/groue/GRDB.swift",
@@ -145,48 +73,12 @@
       }
     },
     {
-      "identity" : "grpc-binary",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/grpc-binary.git",
-      "state" : {
-        "revision" : "75b31c842f664a0f46a2e590a570e370249fd8f6",
-        "version" : "1.69.1"
-      }
-    },
-    {
-      "identity" : "gtm-session-fetcher",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/gtm-session-fetcher.git",
-      "state" : {
-        "revision" : "c756a29784521063b6a1202907e2cc47f41b667c",
-        "version" : "4.5.0"
-      }
-    },
-    {
       "identity" : "hanekeswift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LambdaDigamma/HanekeSwift",
       "state" : {
         "revision" : "6dd6a8fb7cfa9b245cd7a8cab688a8f2cecb9d15",
         "version" : "0.14.0"
-      }
-    },
-    {
-      "identity" : "interop-ios-for-google-sdks",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/interop-ios-for-google-sdks.git",
-      "state" : {
-        "revision" : "040d087ac2267d2ddd4cca36c757d1c6a05fdbfe",
-        "version" : "101.0.0"
-      }
-    },
-    {
-      "identity" : "leveldb",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/firebase/leveldb.git",
-      "state" : {
-        "revision" : "a0bc79961d7be727d258d33d5a6b2f1023270ba1",
-        "version" : "1.22.5"
       }
     },
     {
@@ -217,15 +109,6 @@
       }
     },
     {
-      "identity" : "nanopb",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/firebase/nanopb.git",
-      "state" : {
-        "revision" : "b7e1104502eca3a213b46303391ca4d3bc8ddec1",
-        "version" : "2.30910.0"
-      }
-    },
-    {
       "identity" : "nuke",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kean/Nuke.git",
@@ -241,15 +124,6 @@
       "state" : {
         "revision" : "9bd16d47901338c1497fe14f27de5a5db8b91c2c",
         "version" : "1.1.1"
-      }
-    },
-    {
-      "identity" : "promises",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/promises.git",
-      "state" : {
-        "revision" : "540318ecedd63d883069ae7f1ed811a2df00b6ac",
-        "version" : "2.4.0"
       }
     },
     {
@@ -280,15 +154,6 @@
       }
     },
     {
-      "identity" : "swift-app-feedback",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/LambdaDigamma/swift-app-feedback",
-      "state" : {
-        "revision" : "128837b77f29e501107a6e43972cbf740a30ae78",
-        "version" : "1.0.2"
-      }
-    },
-    {
       "identity" : "swift-collections",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections.git",
@@ -316,15 +181,6 @@
       }
     },
     {
-      "identity" : "swift-license-ui",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/LambdaDigamma/swift-license-ui",
-      "state" : {
-        "revision" : "39073ec5ef4b467fdd9a885abbaf28eaf7f01b9a",
-        "version" : "1.0.1"
-      }
-    },
-    {
       "identity" : "swift-numerics",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-numerics.git",
@@ -336,19 +192,10 @@
     {
       "identity" : "swift-prosemirror",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/lambdadigamma/swift-prosemirror",
+      "location" : "https://github.com/LambdaDigamma/swift-prosemirror",
       "state" : {
         "revision" : "d4e169fb793bead5b29a0f269c70a4c529dc35af",
         "version" : "0.0.7"
-      }
-    },
-    {
-      "identity" : "swift-protobuf",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-protobuf.git",
-      "state" : {
-        "revision" : "c169a5744230951031770e27e475ff6eefe51f9d",
-        "version" : "1.33.3"
       }
     },
     {

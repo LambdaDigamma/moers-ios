@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:CityOS">
+   </FileRef>
+   <FileRef
       location = "container:Moers.xcodeproj">
    </FileRef>
 </Workspace>

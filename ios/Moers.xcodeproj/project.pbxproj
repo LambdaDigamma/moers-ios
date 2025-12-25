@@ -8,36 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		DF05E00F2792CA4C0063556E /* ParkingFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF05E00E2792CA4C0063556E /* ParkingFeature */; };
-		DF0A7DB327AB220A00957A8D /* AppScaffold in Frameworks */ = {isa = PBXBuildFile; productRef = DF0A7DB227AB220A00957A8D /* AppScaffold */; };
-		DF0B292828523C25009D389A /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = DF0B292728523C25009D389A /* Resolver */; };
-		DF0B292A28523C7E009D389A /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = DF0B292928523C7E009D389A /* Resolver */; };
-		DF0B292C28523DBB009D389A /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = DF0B292B28523DBB009D389A /* Resolver */; };
 		DF0EAC9C24C63FB0009BE489 /* ModernNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = DF0EAC9B24C63FB0009BE489 /* ModernNetworking */; };
 		DF0EC43A28D86E3C009ED37B /* MMPages in Frameworks */ = {isa = PBXBuildFile; productRef = DF0EC43928D86E3C009ED37B /* MMPages */; };
-		DF0EC43C28D86E96009ED37B /* MMPages in Frameworks */ = {isa = PBXBuildFile; productRef = DF0EC43B28D86E96009ED37B /* MMPages */; };
-		DF152D8E289D23DB0046956F /* Cache in Frameworks */ = {isa = PBXBuildFile; productRef = DF152D8D289D23DB0046956F /* Cache */; };
 		DF152D90289D33290046956F /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = DF152D8F289D33290046956F /* Core */; };
 		DF1A49631F6AAB7000E9108B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1A49621F6AAB7000E9108B /* AppDelegate.swift */; };
 		DF29DC7428D86D1300E4E35A /* MMEvents in Frameworks */ = {isa = PBXBuildFile; productRef = DF29DC7328D86D1300E4E35A /* MMEvents */; };
-		DF29DC7628D86D1F00E4E35A /* MMEvents in Frameworks */ = {isa = PBXBuildFile; productRef = DF29DC7528D86D1F00E4E35A /* MMEvents */; };
-		DF2CF1C223BBB2EA003497C5 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = DF2CF1C123BBB2EA003497C5 /* TextFieldEffects */; };
 		DF2D523C2D1A114D009F78EF /* WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DF5E1B4E26726AF3005FADA4 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		DF3661D727AB2362002A90BB /* ParkingFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF3661D627AB2362002A90BB /* ParkingFeature */; };
-		DF3661D927AB267F002A90BB /* FuelFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF3661D827AB267F002A90BB /* FuelFeature */; };
 		DF38788828AE3FDF002FECE1 /* LicenseUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF38788728AE3FDF002FECE1 /* LicenseUI */; };
-		DF54DC372813039200819A3B /* MapFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF54DC362813039200819A3B /* MapFeature */; };
 		DF55F25F27709B410024300B /* RubbishFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF55F25E27709B410024300B /* RubbishFeature */; };
-		DF5C919027B5A26000451163 /* NewsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF5C918F27B5A26000451163 /* NewsFeature */; };
 		DF5E1B5026726AF3005FADA4 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF5E1B4F26726AF3005FADA4 /* WidgetKit.framework */; };
 		DF5E1B5226726AF3005FADA4 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF5E1B5126726AF3005FADA4 /* SwiftUI.framework */; };
-		DF5E1B7526727973005FADA4 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = DF5E1B7426727973005FADA4 /* FeedKit */; };
 		DF623C7027B56FD7009D335F /* NewsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF623C6F27B56FD7009D335F /* NewsFeature */; };
-		DF62AAF92891E841002D420E /* ModernNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = DF62AAF82891E841002D420E /* ModernNetworking */; };
 		DF636F5128D1CE8B00B29A76 /* Tankerkoenig-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF636F5028D1CE8B00B29A76 /* Tankerkoenig-Info.plist */; };
-		DF6CA8FE2849125D0068B9AC /* MapFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF6CA8FD2849125D0068B9AC /* MapFeature */; };
 		DF6F5CD228E3190800E1DFBD /* Tankerkoenig-Info-Sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF782D8528D1D05D000BDC89 /* Tankerkoenig-Info-Sample.plist */; };
 		DF6F5CD328E3190800E1DFBD /* Tankerkoenig-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF636F5028D1CE8B00B29A76 /* Tankerkoenig-Info.plist */; };
-		DF75345C277280710086B292 /* RubbishFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF75345B277280710086B292 /* RubbishFeature */; };
 		DF782D8628D1D05D000BDC89 /* Tankerkoenig-Info-Sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF782D8528D1D05D000BDC89 /* Tankerkoenig-Info-Sample.plist */; };
 		DF80F6C02851142800AB708D /* WeatherWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80F6BF2851142800AB708D /* WeatherWidget.swift */; };
 		DF86ABA12174900400EFC7EA /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF86ABA02174900400EFC7EA /* Intents.framework */; };
@@ -45,26 +29,38 @@
 		DF97AD0F26EFEC5F009DFF71 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = DF97AD0E26EFEC5F009DFF71 /* Core */; };
 		DF9F19D62766660100B74E13 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF86ABA02174900400EFC7EA /* Intents.framework */; };
 		DF9F19DD2766660100B74E13 /* Intent Extensions.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DF9F19D52766660100B74E13 /* Intent Extensions.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		DF9F19F32766920C00B74E13 /* EFAAPI in Frameworks */ = {isa = PBXBuildFile; productRef = DF9F19F22766920C00B74E13 /* EFAAPI */; };
-		DF9F19F52766920C00B74E13 /* EFAUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF9F19F42766920C00B74E13 /* EFAUI */; };
-		DF9F19F72766923700B74E13 /* EFAAPI in Frameworks */ = {isa = PBXBuildFile; productRef = DF9F19F62766923700B74E13 /* EFAAPI */; };
-		DF9F19F92766923700B74E13 /* EFAUI in Frameworks */ = {isa = PBXBuildFile; productRef = DF9F19F82766923700B74E13 /* EFAUI */; };
-		DF9F19FB2766923F00B74E13 /* EFAAPI in Frameworks */ = {isa = PBXBuildFile; productRef = DF9F19FA2766923F00B74E13 /* EFAAPI */; };
-		DFA4BC48263A28530014C7F9 /* TagListView in Frameworks */ = {isa = PBXBuildFile; productRef = DFA4BC47263A28530014C7F9 /* TagListView */; };
 		DFB07A2F277741030033101C /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = DFB07A2E277741030033101C /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		DFB07A31277741030033101C /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = DFB07A30277741030033101C /* FirebaseCrashlytics */; };
 		DFB07A33277741030033101C /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = DFB07A32277741030033101C /* FirebaseMessaging */; };
 		DFC53C562D466A2C009CA7EF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = DFC53C552D466A2C009CA7EF /* FirebaseAnalytics */; };
-		DFCE12952538F7F600B45EB7 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = DFCE12942538F7F600B45EB7 /* FeedKit */; };
-		DFD8632C25E25F60006164E5 /* AppScaffold in Frameworks */ = {isa = PBXBuildFile; productRef = DFD8632B25E25F60006164E5 /* AppScaffold */; };
-		DFDE88712545834B00429765 /* EventBus in Frameworks */ = {isa = PBXBuildFile; productRef = DFDE88702545834B00429765 /* EventBus */; };
-		DFDEBB3F289D1C4C00AB0EAA /* CoreCache in Frameworks */ = {isa = PBXBuildFile; productRef = DFDEBB3E289D1C4C00AB0EAA /* CoreCache */; };
-		DFE06E352771360E00466246 /* DashboardFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DFE06E342771360E00466246 /* DashboardFeature */; };
+		DFD0004D2EFD58CE00B449FB /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = DFD0004C2EFD58CE00B449FB /* Core */; };
+		DFD0004F2EFD58CE00B449FB /* CoreCache in Frameworks */ = {isa = PBXBuildFile; productRef = DFD0004E2EFD58CE00B449FB /* CoreCache */; };
+		DFD000512EFD58CE00B449FB /* DashboardFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DFD000502EFD58CE00B449FB /* DashboardFeature */; };
+		DFD000532EFD58CE00B449FB /* EFAAPI in Frameworks */ = {isa = PBXBuildFile; productRef = DFD000522EFD58CE00B449FB /* EFAAPI */; };
+		DFD000552EFD58CE00B449FB /* EFAUI in Frameworks */ = {isa = PBXBuildFile; productRef = DFD000542EFD58CE00B449FB /* EFAUI */; };
+		DFD000572EFD58CE00B449FB /* FuelFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DFD000562EFD58CE00B449FB /* FuelFeature */; };
+		DFD000592EFD58CE00B449FB /* MMEvents in Frameworks */ = {isa = PBXBuildFile; productRef = DFD000582EFD58CE00B449FB /* MMEvents */; };
+		DFD0005B2EFD58CE00B449FB /* MMPages in Frameworks */ = {isa = PBXBuildFile; productRef = DFD0005A2EFD58CE00B449FB /* MMPages */; };
+		DFD0005D2EFD58CE00B449FB /* MapFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DFD0005C2EFD58CE00B449FB /* MapFeature */; };
+		DFD0005F2EFD58CE00B449FB /* NewsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DFD0005E2EFD58CE00B449FB /* NewsFeature */; };
+		DFD000612EFD58CE00B449FB /* ParkingFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DFD000602EFD58CE00B449FB /* ParkingFeature */; };
+		DFD000632EFD58CE00B449FB /* PlaybackKit in Frameworks */ = {isa = PBXBuildFile; productRef = DFD000622EFD58CE00B449FB /* PlaybackKit */; };
+		DFD000652EFD58CE00B449FB /* RubbishFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DFD000642EFD58CE00B449FB /* RubbishFeature */; };
+		DFD000672EFD58CE00B449FB /* WeatherFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DFD000662EFD58CE00B449FB /* WeatherFeature */; };
+		DFD000692EFD596C00B449FB /* NewsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DFD000682EFD596C00B449FB /* NewsFeature */; };
+		DFD0006B2EFD597100B449FB /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = DFD0006A2EFD597100B449FB /* Core */; };
+		DFD0006D2EFD598E00B449FB /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = DFD0006C2EFD598E00B449FB /* Core */; };
+		DFD0006F2EFD598E00B449FB /* EFAAPI in Frameworks */ = {isa = PBXBuildFile; productRef = DFD0006E2EFD598E00B449FB /* EFAAPI */; };
+		DFD000712EFD598E00B449FB /* EFAUI in Frameworks */ = {isa = PBXBuildFile; productRef = DFD000702EFD598E00B449FB /* EFAUI */; };
+		DFD000732EFD59DD00B449FB /* EFAAPI in Frameworks */ = {isa = PBXBuildFile; productRef = DFD000722EFD59DD00B449FB /* EFAAPI */; };
+		DFD000752EFD59DD00B449FB /* EFAUI in Frameworks */ = {isa = PBXBuildFile; productRef = DFD000742EFD59DD00B449FB /* EFAUI */; };
+		DFD000772EFD59E300B449FB /* MapFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DFD000762EFD59E300B449FB /* MapFeature */; };
+		DFD000792EFD59E700B449FB /* MMEvents in Frameworks */ = {isa = PBXBuildFile; productRef = DFD000782EFD59E700B449FB /* MMEvents */; };
+		DFD0007B2EFD5A0900B449FB /* RubbishFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DFD0007A2EFD5A0900B449FB /* RubbishFeature */; };
+		DFD0007D2EFD5A1C00B449FB /* ParkingFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DFD0007C2EFD5A1C00B449FB /* ParkingFeature */; };
 		DFE1ED6B2538C24800FDD44A /* BLTNBoard in Frameworks */ = {isa = PBXBuildFile; productRef = DFE1ED6A2538C24800FDD44A /* BLTNBoard */; };
-		DFE1ED782538C4E200FDD44A /* Pulley in Frameworks */ = {isa = PBXBuildFile; productRef = DFE1ED772538C4E200FDD44A /* Pulley */; };
 		DFE59D3B28D871B800BD0236 /* LicenseUI in Frameworks */ = {isa = PBXBuildFile; productRef = DFE59D3A28D871B800BD0236 /* LicenseUI */; };
 		DFF5DDCB20094A920075A2F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */; };
-		DFF6FFA4289D156600C88964 /* Haneke in Frameworks */ = {isa = PBXBuildFile; productRef = DFF6FFA3289D156600C88964 /* Haneke */; };
 		DFFA7EA12706638D00E27E7B /* AppFeedback in Frameworks */ = {isa = PBXBuildFile; productRef = DFFA7EA02706638D00E27E7B /* AppFeedback */; };
 /* End PBXBuildFile section */
 
@@ -129,28 +125,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DF01804B27923CC500530143 /* ParkingFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ParkingFeature; sourceTree = "<group>"; };
-		DF0EC43828D86E21009ED37B /* mmpages-ios */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "mmpages-ios"; sourceTree = "<group>"; };
 		DF1A495F1F6AAB7000E9108B /* Moers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1A49621F6AAB7000E9108B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF1A9B9F26ECB2A600D3CAD0 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		DF284EFD23F4C17100EC999B /* MoersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF29DC7228D86CFD00E4E35A /* mmevents-ios */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "mmevents-ios"; sourceTree = "<group>"; };
-		DF35EFA927A9E9FE005C6BDA /* NewsFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NewsFeature; sourceTree = "<group>"; };
-		DF559A5E2812FE160072F0F9 /* MapFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MapFeature; sourceTree = "<group>"; };
-		DF55F2622770ABE80024300B /* DashboardFeature */ = {isa = PBXFileReference; lastKnownFileType = text; path = DashboardFeature; sourceTree = SOURCE_ROOT; };
 		DF57D695218739C500E6A0A9 /* Moers-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Moers-Bridging-Header.h"; sourceTree = "<group>"; };
 		DF5E1B4E26726AF3005FADA4 /* WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF5E1B4F26726AF3005FADA4 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		DF5E1B5126726AF3005FADA4 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		DF62AB082891EC33002D420E /* PlaybackKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PlaybackKit; sourceTree = "<group>"; };
 		DF636F5028D1CE8B00B29A76 /* Tankerkoenig-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tankerkoenig-Info.plist"; sourceTree = "<group>"; };
 		DF6E061528AE34FB004FEBC9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		DF6E061728AE350D004FEBC9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		DF6F5CD428E31FC200E1DFBD /* efaapi-ios */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "efaapi-ios"; sourceTree = "<group>"; };
 		DF782D8528D1D05D000BDC89 /* Tankerkoenig-Info-Sample.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tankerkoenig-Info-Sample.plist"; sourceTree = "<group>"; };
 		DF80F6BF2851142800AB708D /* WeatherWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherWidget.swift; sourceTree = "<group>"; };
-		DF80F6C928512FA600AB708D /* WeatherFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WeatherFeature; sourceTree = "<group>"; };
 		DF86ABA02174900400EFC7EA /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		DF89BA1A26FE12AE003A6C64 /* IDEAS.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = IDEAS.md; sourceTree = "<group>"; };
 		DF9F19D52766660100B74E13 /* Intent Extensions.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Intent Extensions.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,11 +145,8 @@
 		DFB161B3267651D6009D2754 /* Moers Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Moers Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFB64DC9203883D200173A80 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		DFB64DCA2038845300173A80 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
-		DFC8507726EFE62400F9FB39 /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Core; sourceTree = "<group>"; };
 		DFCAC4982852008100701BC1 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 		DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		DFFBAA2727693755003728CF /* RubbishFeature */ = {isa = PBXFileReference; lastKnownFileType = folder; path = RubbishFeature; sourceTree = "<group>"; };
-		DFFBAA2927696353003728CF /* FuelFeature */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FuelFeature; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -317,36 +301,36 @@
 		DF1A495C1F6AAB7000E9108B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				DF152D8E289D23DB0046956F /* Cache in Frameworks */,
-				DFE1ED782538C4E200FDD44A /* Pulley in Frameworks */,
-				DF62AAF92891E841002D420E /* ModernNetworking in Frameworks */,
-				DF2CF1C223BBB2EA003497C5 /* TextFieldEffects in Frameworks */,
+				DFD000532EFD58CE00B449FB /* EFAAPI in Frameworks */,
+				DFD0004D2EFD58CE00B449FB /* Core in Frameworks */,
 				DF0EAC9C24C63FB0009BE489 /* ModernNetworking in Frameworks */,
-				DFD8632C25E25F60006164E5 /* AppScaffold in Frameworks */,
-				DF0B292828523C25009D389A /* Resolver in Frameworks */,
 				DFE1ED6B2538C24800FDD44A /* BLTNBoard in Frameworks */,
+				DFD0005D2EFD58CE00B449FB /* MapFeature in Frameworks */,
 				DFC53C562D466A2C009CA7EF /* FirebaseAnalytics in Frameworks */,
+				DFD000672EFD58CE00B449FB /* WeatherFeature in Frameworks */,
+				DFD000572EFD58CE00B449FB /* FuelFeature in Frameworks */,
 				DFFA7EA12706638D00E27E7B /* AppFeedback in Frameworks */,
 				DF0EC43A28D86E3C009ED37B /* MMPages in Frameworks */,
-				DFF6FFA4289D156600C88964 /* Haneke in Frameworks */,
-				DF9F19F52766920C00B74E13 /* EFAUI in Frameworks */,
-				DFE06E352771360E00466246 /* DashboardFeature in Frameworks */,
+				DFD000612EFD58CE00B449FB /* ParkingFeature in Frameworks */,
 				DF97AD0F26EFEC5F009DFF71 /* Core in Frameworks */,
-				DFDE88712545834B00429765 /* EventBus in Frameworks */,
+				DFD0005B2EFD58CE00B449FB /* MMPages in Frameworks */,
 				DF05E00F2792CA4C0063556E /* ParkingFeature in Frameworks */,
-				DFCE12952538F7F600B45EB7 /* FeedKit in Frameworks */,
+				DFD000552EFD58CE00B449FB /* EFAUI in Frameworks */,
 				DFE59D3B28D871B800BD0236 /* LicenseUI in Frameworks */,
-				DF54DC372813039200819A3B /* MapFeature in Frameworks */,
-				DF9F19F32766920C00B74E13 /* EFAAPI in Frameworks */,
 				DF29DC7428D86D1300E4E35A /* MMEvents in Frameworks */,
 				DF623C7027B56FD7009D335F /* NewsFeature in Frameworks */,
+				DFD000652EFD58CE00B449FB /* RubbishFeature in Frameworks */,
 				DF86ABA12174900400EFC7EA /* Intents.framework in Frameworks */,
 				DF38788828AE3FDF002FECE1 /* LicenseUI in Frameworks */,
+				DFD0005F2EFD58CE00B449FB /* NewsFeature in Frameworks */,
 				DFB07A33277741030033101C /* FirebaseMessaging in Frameworks */,
 				DF55F25F27709B410024300B /* RubbishFeature in Frameworks */,
+				DFD000632EFD58CE00B449FB /* PlaybackKit in Frameworks */,
 				DFB07A31277741030033101C /* FirebaseCrashlytics in Frameworks */,
+				DFD0004F2EFD58CE00B449FB /* CoreCache in Frameworks */,
 				DFB07A2F277741030033101C /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
-				DFA4BC48263A28530014C7F9 /* TagListView in Frameworks */,
+				DFD000512EFD58CE00B449FB /* DashboardFeature in Frameworks */,
+				DFD000592EFD58CE00B449FB /* MMEvents in Frameworks */,
 			);
 		};
 		DF284EFA23F4C17100EC999B /* Frameworks */ = {
@@ -358,29 +342,25 @@
 		DF5E1B4B26726AF3005FADA4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				DF6CA8FE2849125D0068B9AC /* MapFeature in Frameworks */,
-				DF0A7DB327AB220A00957A8D /* AppScaffold in Frameworks */,
-				DF9F19F72766923700B74E13 /* EFAAPI in Frameworks */,
-				DF0EC43C28D86E96009ED37B /* MMPages in Frameworks */,
-				DF75345C277280710086B292 /* RubbishFeature in Frameworks */,
-				DF5C919027B5A26000451163 /* NewsFeature in Frameworks */,
-				DF29DC7628D86D1F00E4E35A /* MMEvents in Frameworks */,
-				DF3661D727AB2362002A90BB /* ParkingFeature in Frameworks */,
-				DFDEBB3F289D1C4C00AB0EAA /* CoreCache in Frameworks */,
-				DF3661D927AB267F002A90BB /* FuelFeature in Frameworks */,
+				DFD000772EFD59E300B449FB /* MapFeature in Frameworks */,
+				DFD000732EFD59DD00B449FB /* EFAAPI in Frameworks */,
 				DF5E1B5226726AF3005FADA4 /* SwiftUI.framework in Frameworks */,
-				DF9F19F92766923700B74E13 /* EFAUI in Frameworks */,
+				DFD0006B2EFD597100B449FB /* Core in Frameworks */,
+				DFD0007D2EFD5A1C00B449FB /* ParkingFeature in Frameworks */,
+				DFD0007B2EFD5A0900B449FB /* RubbishFeature in Frameworks */,
+				DFD000752EFD59DD00B449FB /* EFAUI in Frameworks */,
+				DFD000692EFD596C00B449FB /* NewsFeature in Frameworks */,
 				DF5E1B5026726AF3005FADA4 /* WidgetKit.framework in Frameworks */,
-				DF0B292A28523C7E009D389A /* Resolver in Frameworks */,
-				DF5E1B7526727973005FADA4 /* FeedKit in Frameworks */,
+				DFD000792EFD59E700B449FB /* MMEvents in Frameworks */,
 			);
 		};
 		DF9F19D22766660100B74E13 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				DF0B292C28523DBB009D389A /* Resolver in Frameworks */,
-				DF9F19FB2766923F00B74E13 /* EFAAPI in Frameworks */,
+				DFD0006F2EFD598E00B449FB /* EFAAPI in Frameworks */,
 				DF9F19D62766660100B74E13 /* Intents.framework in Frameworks */,
+				DFD0006D2EFD598E00B449FB /* Core in Frameworks */,
+				DFD000712EFD598E00B449FB /* EFAUI in Frameworks */,
 			);
 		};
 		DFB161B0267651D6009D2754 /* Frameworks */ = {
@@ -413,18 +393,6 @@
 				DFCAC4982852008100701BC1 /* Documentation.docc */,
 				DF89BA1A26FE12AE003A6C64 /* IDEAS.md */,
 				DF1A9B9F26ECB2A600D3CAD0 /* .swiftlint.yml */,
-				DFC8507726EFE62400F9FB39 /* Core */,
-				DF55F2622770ABE80024300B /* DashboardFeature */,
-				DF35EFA927A9E9FE005C6BDA /* NewsFeature */,
-				DFFBAA2927696353003728CF /* FuelFeature */,
-				DF01804B27923CC500530143 /* ParkingFeature */,
-				DFFBAA2727693755003728CF /* RubbishFeature */,
-				DF559A5E2812FE160072F0F9 /* MapFeature */,
-				DF80F6C928512FA600AB708D /* WeatherFeature */,
-				DF62AB082891EC33002D420E /* PlaybackKit */,
-				DF29DC7228D86CFD00E4E35A /* mmevents-ios */,
-				DF0EC43828D86E21009ED37B /* mmpages-ios */,
-				DF6F5CD428E31FC200E1DFBD /* efaapi-ios */,
 				DF1A49611F6AAB7000E9108B /* Moers */,
 				DF4AD3462CCD3BA600D620B3 /* Widgets */,
 				DF4AD3792CCD3BC000D620B3 /* Intent Extensions */,
@@ -529,35 +497,35 @@
 			);
 			name = Moers;
 			packageProductDependencies = (
-				DF2CF1C123BBB2EA003497C5 /* TextFieldEffects */,
 				DF0EAC9B24C63FB0009BE489 /* ModernNetworking */,
 				DFE1ED6A2538C24800FDD44A /* BLTNBoard */,
-				DFE1ED772538C4E200FDD44A /* Pulley */,
-				DFCE12942538F7F600B45EB7 /* FeedKit */,
-				DFDE88702545834B00429765 /* EventBus */,
-				DFD8632B25E25F60006164E5 /* AppScaffold */,
-				DFA4BC47263A28530014C7F9 /* TagListView */,
 				DF97AD0E26EFEC5F009DFF71 /* Core */,
 				DFFA7EA02706638D00E27E7B /* AppFeedback */,
-				DF9F19F22766920C00B74E13 /* EFAAPI */,
-				DF9F19F42766920C00B74E13 /* EFAUI */,
 				DF55F25E27709B410024300B /* RubbishFeature */,
-				DFE06E342771360E00466246 /* DashboardFeature */,
 				DFB07A2E277741030033101C /* FirebaseAnalyticsWithoutAdIdSupport */,
 				DFB07A30277741030033101C /* FirebaseCrashlytics */,
 				DFB07A32277741030033101C /* FirebaseMessaging */,
 				DF05E00E2792CA4C0063556E /* ParkingFeature */,
 				DF623C6F27B56FD7009D335F /* NewsFeature */,
-				DF54DC362813039200819A3B /* MapFeature */,
-				DF0B292728523C25009D389A /* Resolver */,
-				DF62AAF82891E841002D420E /* ModernNetworking */,
-				DFF6FFA3289D156600C88964 /* Haneke */,
-				DF152D8D289D23DB0046956F /* Cache */,
 				DF38788728AE3FDF002FECE1 /* LicenseUI */,
 				DF29DC7328D86D1300E4E35A /* MMEvents */,
 				DF0EC43928D86E3C009ED37B /* MMPages */,
 				DFE59D3A28D871B800BD0236 /* LicenseUI */,
 				DFC53C552D466A2C009CA7EF /* FirebaseAnalytics */,
+				DFD0004C2EFD58CE00B449FB /* Core */,
+				DFD0004E2EFD58CE00B449FB /* CoreCache */,
+				DFD000502EFD58CE00B449FB /* DashboardFeature */,
+				DFD000522EFD58CE00B449FB /* EFAAPI */,
+				DFD000542EFD58CE00B449FB /* EFAUI */,
+				DFD000562EFD58CE00B449FB /* FuelFeature */,
+				DFD000582EFD58CE00B449FB /* MMEvents */,
+				DFD0005A2EFD58CE00B449FB /* MMPages */,
+				DFD0005C2EFD58CE00B449FB /* MapFeature */,
+				DFD0005E2EFD58CE00B449FB /* NewsFeature */,
+				DFD000602EFD58CE00B449FB /* ParkingFeature */,
+				DFD000622EFD58CE00B449FB /* PlaybackKit */,
+				DFD000642EFD58CE00B449FB /* RubbishFeature */,
+				DFD000662EFD58CE00B449FB /* WeatherFeature */,
 			);
 			productName = Moers;
 			productReference = DF1A495F1F6AAB7000E9108B /* Moers.app */;
@@ -602,19 +570,14 @@
 			);
 			name = WidgetsExtension;
 			packageProductDependencies = (
-				DF5E1B7426727973005FADA4 /* FeedKit */,
-				DF9F19F62766923700B74E13 /* EFAAPI */,
-				DF9F19F82766923700B74E13 /* EFAUI */,
-				DF75345B277280710086B292 /* RubbishFeature */,
-				DF0A7DB227AB220A00957A8D /* AppScaffold */,
-				DF3661D627AB2362002A90BB /* ParkingFeature */,
-				DF3661D827AB267F002A90BB /* FuelFeature */,
-				DF5C918F27B5A26000451163 /* NewsFeature */,
-				DF6CA8FD2849125D0068B9AC /* MapFeature */,
-				DF0B292928523C7E009D389A /* Resolver */,
-				DFDEBB3E289D1C4C00AB0EAA /* CoreCache */,
-				DF29DC7528D86D1F00E4E35A /* MMEvents */,
-				DF0EC43B28D86E96009ED37B /* MMPages */,
+				DFD000682EFD596C00B449FB /* NewsFeature */,
+				DFD0006A2EFD597100B449FB /* Core */,
+				DFD000722EFD59DD00B449FB /* EFAAPI */,
+				DFD000742EFD59DD00B449FB /* EFAUI */,
+				DFD000762EFD59E300B449FB /* MapFeature */,
+				DFD000782EFD59E700B449FB /* MMEvents */,
+				DFD0007A2EFD5A0900B449FB /* RubbishFeature */,
+				DFD0007C2EFD5A1C00B449FB /* ParkingFeature */,
 			);
 			productName = WidgetsExtension;
 			productReference = DF5E1B4E26726AF3005FADA4 /* WidgetsExtension.appex */;
@@ -632,8 +595,9 @@
 			);
 			name = "Intent Extensions";
 			packageProductDependencies = (
-				DF9F19FA2766923F00B74E13 /* EFAAPI */,
-				DF0B292B28523DBB009D389A /* Resolver */,
+				DFD0006C2EFD598E00B449FB /* Core */,
+				DFD0006E2EFD598E00B449FB /* EFAAPI */,
+				DFD000702EFD598E00B449FB /* EFAUI */,
 			);
 			productName = "Intent Extensions";
 			productReference = DF9F19D52766660100B74E13 /* Intent Extensions.appex */;
@@ -717,21 +681,11 @@
 			mainGroup = DF1A49561F6AAB7000E9108B;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 				DFE1ED692538C24800FDD44A /* XCRemoteSwiftPackageReference "BulletinBoard" */,
-				DFE1ED762538C4E200FDD44A /* XCRemoteSwiftPackageReference "Pulley" */,
-				DFCE12932538F7F600B45EB7 /* XCRemoteSwiftPackageReference "FeedKit" */,
-				DFDE886F2545834B00429765 /* XCRemoteSwiftPackageReference "eventbus" */,
-				DFD8632A25E25F5F006164E5 /* XCRemoteSwiftPackageReference "app-scaffold-ios" */,
-				DFA4BC46263A28530014C7F9 /* XCRemoteSwiftPackageReference "TagListView" */,
 				DFFA7E9F2706638D00E27E7B /* XCRemoteSwiftPackageReference "swift-app-feedback" */,
-				DF9F19F12766920C00B74E13 /* XCRemoteSwiftPackageReference "efaapi-ios" */,
 				DFB07A2B277741030033101C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				DF0B292628523C24009D389A /* XCRemoteSwiftPackageReference "Resolver" */,
-				DF62AAF72891E841002D420E /* XCRemoteSwiftPackageReference "modernnetworking" */,
-				DFF6FFA2289D156600C88964 /* XCRemoteSwiftPackageReference "HanekeSwift" */,
-				DF152D8C289D23DB0046956F /* XCRemoteSwiftPackageReference "Cache" */,
 				DFE59D3928D871B800BD0236 /* XCRemoteSwiftPackageReference "swift-license-ui" */,
+				DFD0004B2EFD58CE00B449FB /* XCLocalSwiftPackageReference "CityOS" */,
 			);
 			preferredProjectObjectVersion = 90;
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
@@ -1834,85 +1788,20 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		DFD0004B2EFD58CE00B449FB /* XCLocalSwiftPackageReference "CityOS" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = CityOS;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
-		DF0B292628523C24009D389A /* XCRemoteSwiftPackageReference "Resolver" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LambdaDigamma/Resolver";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-		DF152D8C289D23DB0046956F /* XCRemoteSwiftPackageReference "Cache" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LambdaDigamma/Cache";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
-			};
-		};
-		DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LambdaDigamma/TextFieldEffects";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		DF62AAF72891E841002D420E /* XCRemoteSwiftPackageReference "modernnetworking" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/lambdadigamma/modernnetworking";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-		DF9F19F12766920C00B74E13 /* XCRemoteSwiftPackageReference "efaapi-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LambdaDigamma/efaapi-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.2;
-			};
-		};
-		DFA4BC46263A28530014C7F9 /* XCRemoteSwiftPackageReference "TagListView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LambdaDigamma/TagListView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.2;
-			};
-		};
 		DFB07A2B277741030033101C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 11.0.0;
-			};
-		};
-		DFCE12932538F7F600B45EB7 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/nmdias/FeedKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.1.2;
-			};
-		};
-		DFD8632A25E25F5F006164E5 /* XCRemoteSwiftPackageReference "app-scaffold-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/lambdadigamma/app-scaffold-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.5;
-			};
-		};
-		DFDE886F2545834B00429765 /* XCRemoteSwiftPackageReference "eventbus" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/lambdadigamma/eventbus";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.5.1;
 			};
 		};
 		DFE1ED692538C24800FDD44A /* XCRemoteSwiftPackageReference "BulletinBoard" */ = {
@@ -1923,28 +1812,12 @@
 				kind = branch;
 			};
 		};
-		DFE1ED762538C4E200FDD44A /* XCRemoteSwiftPackageReference "Pulley" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/52inc/Pulley";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.8.5;
-			};
-		};
 		DFE59D3928D871B800BD0236 /* XCRemoteSwiftPackageReference "swift-license-ui" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/LambdaDigamma/swift-license-ui";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
-			};
-		};
-		DFF6FFA2289D156600C88964 /* XCRemoteSwiftPackageReference "HanekeSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LambdaDigamma/HanekeSwift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.14.0;
 			};
 		};
 		DFFA7E9F2706638D00E27E7B /* XCRemoteSwiftPackageReference "swift-app-feedback" */ = {
@@ -1962,26 +1835,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = ParkingFeature;
 		};
-		DF0A7DB227AB220A00957A8D /* AppScaffold */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DFD8632A25E25F5F006164E5 /* XCRemoteSwiftPackageReference "app-scaffold-ios" */;
-			productName = AppScaffold;
-		};
-		DF0B292728523C25009D389A /* Resolver */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF0B292628523C24009D389A /* XCRemoteSwiftPackageReference "Resolver" */;
-			productName = Resolver;
-		};
-		DF0B292928523C7E009D389A /* Resolver */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF0B292628523C24009D389A /* XCRemoteSwiftPackageReference "Resolver" */;
-			productName = Resolver;
-		};
-		DF0B292B28523DBB009D389A /* Resolver */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF0B292628523C24009D389A /* XCRemoteSwiftPackageReference "Resolver" */;
-			productName = Resolver;
-		};
 		DF0EAC9B24C63FB0009BE489 /* ModernNetworking */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ModernNetworking;
@@ -1989,15 +1842,6 @@
 		DF0EC43928D86E3C009ED37B /* MMPages */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MMPages;
-		};
-		DF0EC43B28D86E96009ED37B /* MMPages */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MMPages;
-		};
-		DF152D8D289D23DB0046956F /* Cache */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF152D8C289D23DB0046956F /* XCRemoteSwiftPackageReference "Cache" */;
-			productName = Cache;
 		};
 		DF152D8F289D33290046956F /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2007,94 +1851,21 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = MMEvents;
 		};
-		DF29DC7528D86D1F00E4E35A /* MMEvents */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MMEvents;
-		};
-		DF2CF1C123BBB2EA003497C5 /* TextFieldEffects */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF2CF1C023BBB2EA003497C5 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
-			productName = TextFieldEffects;
-		};
-		DF3661D627AB2362002A90BB /* ParkingFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ParkingFeature;
-		};
-		DF3661D827AB267F002A90BB /* FuelFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = FuelFeature;
-		};
 		DF38788728AE3FDF002FECE1 /* LicenseUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LicenseUI;
-		};
-		DF54DC362813039200819A3B /* MapFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MapFeature;
 		};
 		DF55F25E27709B410024300B /* RubbishFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RubbishFeature;
 		};
-		DF5C918F27B5A26000451163 /* NewsFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = NewsFeature;
-		};
-		DF5E1B7426727973005FADA4 /* FeedKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DFCE12932538F7F600B45EB7 /* XCRemoteSwiftPackageReference "FeedKit" */;
-			productName = FeedKit;
-		};
 		DF623C6F27B56FD7009D335F /* NewsFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NewsFeature;
 		};
-		DF62AAF82891E841002D420E /* ModernNetworking */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF62AAF72891E841002D420E /* XCRemoteSwiftPackageReference "modernnetworking" */;
-			productName = ModernNetworking;
-		};
-		DF6CA8FD2849125D0068B9AC /* MapFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MapFeature;
-		};
-		DF75345B277280710086B292 /* RubbishFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = RubbishFeature;
-		};
 		DF97AD0E26EFEC5F009DFF71 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Core;
-		};
-		DF9F19F22766920C00B74E13 /* EFAAPI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF9F19F12766920C00B74E13 /* XCRemoteSwiftPackageReference "efaapi-ios" */;
-			productName = EFAAPI;
-		};
-		DF9F19F42766920C00B74E13 /* EFAUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF9F19F12766920C00B74E13 /* XCRemoteSwiftPackageReference "efaapi-ios" */;
-			productName = EFAUI;
-		};
-		DF9F19F62766923700B74E13 /* EFAAPI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF9F19F12766920C00B74E13 /* XCRemoteSwiftPackageReference "efaapi-ios" */;
-			productName = EFAAPI;
-		};
-		DF9F19F82766923700B74E13 /* EFAUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF9F19F12766920C00B74E13 /* XCRemoteSwiftPackageReference "efaapi-ios" */;
-			productName = EFAUI;
-		};
-		DF9F19FA2766923F00B74E13 /* EFAAPI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF9F19F12766920C00B74E13 /* XCRemoteSwiftPackageReference "efaapi-ios" */;
-			productName = EFAAPI;
-		};
-		DFA4BC47263A28530014C7F9 /* TagListView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DFA4BC46263A28530014C7F9 /* XCRemoteSwiftPackageReference "TagListView" */;
-			productName = TagListView;
 		};
 		DFB07A2E277741030033101C /* FirebaseAnalyticsWithoutAdIdSupport */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2116,48 +1887,115 @@
 			package = DFB07A2B277741030033101C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		DFCE12942538F7F600B45EB7 /* FeedKit */ = {
+		DFD0004C2EFD58CE00B449FB /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DFCE12932538F7F600B45EB7 /* XCRemoteSwiftPackageReference "FeedKit" */;
-			productName = FeedKit;
+			productName = Core;
 		};
-		DFD8632B25E25F60006164E5 /* AppScaffold */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DFD8632A25E25F5F006164E5 /* XCRemoteSwiftPackageReference "app-scaffold-ios" */;
-			productName = AppScaffold;
-		};
-		DFDE88702545834B00429765 /* EventBus */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DFDE886F2545834B00429765 /* XCRemoteSwiftPackageReference "eventbus" */;
-			productName = EventBus;
-		};
-		DFDEBB3E289D1C4C00AB0EAA /* CoreCache */ = {
+		DFD0004E2EFD58CE00B449FB /* CoreCache */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CoreCache;
 		};
-		DFE06E342771360E00466246 /* DashboardFeature */ = {
+		DFD000502EFD58CE00B449FB /* DashboardFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DashboardFeature;
+		};
+		DFD000522EFD58CE00B449FB /* EFAAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = EFAAPI;
+		};
+		DFD000542EFD58CE00B449FB /* EFAUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = EFAUI;
+		};
+		DFD000562EFD58CE00B449FB /* FuelFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FuelFeature;
+		};
+		DFD000582EFD58CE00B449FB /* MMEvents */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MMEvents;
+		};
+		DFD0005A2EFD58CE00B449FB /* MMPages */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MMPages;
+		};
+		DFD0005C2EFD58CE00B449FB /* MapFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MapFeature;
+		};
+		DFD0005E2EFD58CE00B449FB /* NewsFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NewsFeature;
+		};
+		DFD000602EFD58CE00B449FB /* ParkingFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ParkingFeature;
+		};
+		DFD000622EFD58CE00B449FB /* PlaybackKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PlaybackKit;
+		};
+		DFD000642EFD58CE00B449FB /* RubbishFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RubbishFeature;
+		};
+		DFD000662EFD58CE00B449FB /* WeatherFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WeatherFeature;
+		};
+		DFD000682EFD596C00B449FB /* NewsFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NewsFeature;
+		};
+		DFD0006A2EFD597100B449FB /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
+		DFD0006C2EFD598E00B449FB /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
+		DFD0006E2EFD598E00B449FB /* EFAAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = EFAAPI;
+		};
+		DFD000702EFD598E00B449FB /* EFAUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = EFAUI;
+		};
+		DFD000722EFD59DD00B449FB /* EFAAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = EFAAPI;
+		};
+		DFD000742EFD59DD00B449FB /* EFAUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = EFAUI;
+		};
+		DFD000762EFD59E300B449FB /* MapFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MapFeature;
+		};
+		DFD000782EFD59E700B449FB /* MMEvents */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MMEvents;
+		};
+		DFD0007A2EFD5A0900B449FB /* RubbishFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RubbishFeature;
+		};
+		DFD0007C2EFD5A1C00B449FB /* ParkingFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ParkingFeature;
 		};
 		DFE1ED6A2538C24800FDD44A /* BLTNBoard */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DFE1ED692538C24800FDD44A /* XCRemoteSwiftPackageReference "BulletinBoard" */;
 			productName = BLTNBoard;
 		};
-		DFE1ED772538C4E200FDD44A /* Pulley */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DFE1ED762538C4E200FDD44A /* XCRemoteSwiftPackageReference "Pulley" */;
-			productName = Pulley;
-		};
 		DFE59D3A28D871B800BD0236 /* LicenseUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DFE59D3928D871B800BD0236 /* XCRemoteSwiftPackageReference "swift-license-ui" */;
 			productName = LicenseUI;
-		};
-		DFF6FFA3289D156600C88964 /* Haneke */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DFF6FFA2289D156600C88964 /* XCRemoteSwiftPackageReference "HanekeSwift" */;
-			productName = Haneke;
 		};
 		DFFA7EA02706638D00E27E7B /* AppFeedback */ = {
 			isa = XCSwiftPackageProductDependency;
