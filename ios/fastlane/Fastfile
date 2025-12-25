@@ -14,7 +14,8 @@ DEVICES = {
   "Lennarts iPhone 8" => "e3f6fe313610d72f847e010d17af266b64781acf",
   "Lennarts iPhone XS" => "00008020-000C584C2690003A",
   "Lennarts iPad Pro" => "00008103-001C34490CF1001E",
-  "Lennarts iPhone" => "00008120-000E7C8C0E38C01E"
+  "Lennarts iPhone" => "00008120-000E7C8C0E38C01E",
+  "Lennarts iPhone 17 Pro" => "00008150-000220C622C1401C"
 }.freeze
 
 INFO_PLIST_PATHS = [
@@ -48,7 +49,7 @@ platform :ios do
   desc "Increment version number"
   lane :increment do |options|
     UI.user_error!("Version parameter is required") unless options[:version]
-    
+
     update_version_in_plists(options[:version])
     commit_version_changes(options[:version])
   end

@@ -22,6 +22,8 @@ let package = Package(
         .library(name: "PlaybackKit", targets: ["PlaybackKit"]),
         .library(name: "MMEvents", targets: ["MMEvents"]),
         .library(name: "MMPages", targets: ["MMPages"]),
+        .library(name: "MMTours", targets: ["MMTours"]),
+        .library(name: "MMFeeds", targets: ["MMFeeds"]),
         .library(name: "EFAAPI", targets: ["EFAAPI"]),
         .library(name: "EFAUI", targets: ["EFAUI"]),
         .executable(name: "EFACLI", targets: ["EFACLI"]),
@@ -212,6 +214,35 @@ let package = Package(
                 .process("Resources")
             ]
         ),
+        // ---------------- MMTours ----------------
+        .target(
+            name: "MMTours",
+            dependencies: [
+                .byName(name: "Core")
+            ]
+        ),
+        .testTarget(
+            name: "MMToursTests",
+            dependencies: ["MMTours"]
+        ),
+        // ---------------- MMFeeds ----------------
+        .target(
+            name: "MMFeeds",
+            dependencies: [
+                .byName(name: "MMPages"),
+                .product(name: "ModernNetworking", package: "ModernNetworking"),
+                .product(name: "MediaLibraryKit", package: "MediaLibraryKit"),
+                .product(name: "GRDB", package: "GRDB.swift"),
+            ]
+        ),
+        .testTarget(
+            name: "MMFeedsTests",
+            dependencies: ["MMFeeds"],
+            resources: [
+                .process("Resources")
+            ]
+        ),
+        
         // ---------------- EFAAPI ----------------
         .target(
             name: "EFAAPI",

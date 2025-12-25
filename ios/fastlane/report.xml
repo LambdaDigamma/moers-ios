@@ -5,32 +5,22 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000174">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000197">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: increment_build_number_in_plist" time="0.065412">
+      <testcase classname="fastlane.lanes" name="1: register_devices" time="3.036452">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: increment_build_number_in_plist" time="0.019996">
+      <testcase classname="fastlane.lanes" name="2: sync_code_signing" time="17.760713">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: increment_build_number_in_plist" time="0.020133">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="4: increment_build_number_in_plist" time="0.024335">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="5: increment_build_number_in_plist" time="0.019837">
+      <testcase classname="fastlane.lanes" name="3: sync_code_signing" time="5.757229">
         
       </testcase>
     
