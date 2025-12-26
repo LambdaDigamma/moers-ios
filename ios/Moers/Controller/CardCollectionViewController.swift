@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Gestalt
 import MMUI
 
 class CardCollectionViewController: UIViewController, UICollectionViewDataSource {
@@ -79,9 +78,8 @@ class CardCollectionViewController: UIViewController, UICollectionViewDataSource
     }
     
     private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
-        
+        self.view.backgroundColor = UIColor.systemBackground
+        self.collectionView.backgroundColor = UIColor.systemBackground
     }
 
     @objc public func refresh() {
@@ -136,17 +134,6 @@ extension CardCollectionViewController: WaterfallLayoutDelegate {
     
     func collectionViewLayout(for section: Int) -> WaterfallLayout.Layout {
         return WaterfallLayout.Layout.waterfall(column: numberOfColumns)
-    }
-    
-}
-
-extension CardCollectionViewController: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        self.view.backgroundColor = theme.backgroundColor
-        self.collectionView.backgroundColor = theme.backgroundColor
     }
     
 }

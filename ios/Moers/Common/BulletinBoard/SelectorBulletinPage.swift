@@ -8,7 +8,6 @@
 
 import UIKit
 import BLTNBoard
-import Gestalt
 import Core
 
 class SelectorBulletinPage<
@@ -21,9 +20,6 @@ class SelectorBulletinPage<
     private var buttons: [UIButton] = []
     private var selectionFeedbackGenerator = SelectionFeedbackGenerator()
     
-    var accentColor: UIColor?
-    var decentColor: UIColor?
-    
     init(title: String, preSelected: T?) {
         super.init(title: title)
         
@@ -32,8 +28,6 @@ class SelectorBulletinPage<
             self.selectedOption = preSelected
             
         }
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -51,11 +45,6 @@ class SelectorBulletinPage<
         T.allCases.forEach { (value) in
             
             let button = createOptionCell(title: value.name)
-            
-//            if value == selectedOption {
-//                self.setButtonSelection(button)
-//                self.selectedOption(button)
-//            }
             
             optionStack.addArrangedSubview(button)
             buttons.append(button)
@@ -118,29 +107,18 @@ class SelectorBulletinPage<
     
     private func setButtonSelection(_ button: UIButton) {
         
-        button.layer.borderColor = accentColor?.cgColor
-        button.setTitleColor(accentColor, for: .normal)
+        button.layer.borderColor = UIColor.systemYellow.cgColor
+        button.setTitleColor(UIColor.systemYellow, for: .normal)
         
     }
     
     private func resetButtonSelections() {
         
         buttons.forEach { (button: UIButton) in
-            button.layer.borderColor = decentColor?.cgColor
-            button.setTitleColor(decentColor, for: .normal)
+            button.layer.borderColor = UIColor.secondaryLabel.cgColor
+            button.setTitleColor(UIColor.secondaryLabel, for: .normal)
         }
         
-    }
-    
-}
-
-extension SelectorBulletinPage: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        self.accentColor = theme.accentColor
-        self.decentColor = theme.decentColor
     }
     
 }

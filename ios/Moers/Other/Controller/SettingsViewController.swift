@@ -8,7 +8,6 @@
 
 import Core
 import UIKit
-import Gestalt
 import BLTNBoard
 import Resolver
 import RubbishFeature
@@ -89,9 +88,8 @@ class SettingsViewController: UIViewController {
     }
     
     private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
-        
+        self.tableView.backgroundColor = UIColor.systemBackground
+        self.tableView.separatorColor = UIColor.separator
     }
     
     // MARK: - Settings Rows
@@ -304,10 +302,11 @@ class SettingsViewController: UIViewController {
         
         let manager = BLTNItemManager(rootItem: item)
         
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: manager)
-        
+        manager.backgroundColor = UIColor.systemBackground
         manager.backgroundViewStyle = .dimmed
         manager.statusBarAppearance = .hidden
+        manager.hidesHomeIndicator = false
+        manager.edgeSpacing = .compact
         
         return manager
         
@@ -344,8 +343,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             cell.textLabel?.text = navigationRow.title
             cell.accessoryType = .disclosureIndicator
             
-            if let cell = cell as? OtherTableViewCell {
-                MMUIConfig.themeManager?.manage(theme: \ApplicationTheme.self, for: cell)
+            if let otherCell = cell as? OtherTableViewCell {
+                otherCell.applyTheming()
             }
             
         } else {
@@ -358,8 +357,6 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             switchCell.descriptionLabel.text = switchRow?.title
             switchCell.switchControl.isOn = switchRow?.switchOn ?? false
             switchCell.action = switchRow?.action
-            
-            MMUIConfig.themeManager?.manage(theme: \ApplicationTheme.self, for: switchCell)
             
             cell = switchCell
             
@@ -377,29 +374,6 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         
         navigationRow.action?()
         
-    }
-    
-}
-
-extension SettingsViewController: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        self.tableView.backgroundColor = UIColor.systemBackground // theme.backgroundColor
-        self.tableView.separatorColor = UIColor.separator // theme.separatorColor
-    }
-    
-}
-
-extension BLTNItemManager: @retroactive Themeable {
-    
-    public typealias Theme = ApplicationTheme
-    
-    public func apply(theme: Theme) {
-        self.backgroundColor = theme.backgroundColor
-        self.hidesHomeIndicator = false
-        self.edgeSpacing = .compact
     }
     
 }

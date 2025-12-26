@@ -10,7 +10,6 @@ import Core
 import UIKit
 import UserNotifications
 import Firebase
-import Gestalt
 import Haneke
 import SwiftUI
 import AppScaffold
@@ -41,26 +40,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         self.resetIfNeeded()
         
-//        let bootstrappingProcedure: BootstrappingProcedure = [
-//            LaunchArgumentsHandler(),
-//            NetworkingConfiguration(),
-//        ]
-//
-//        bootstrappingProcedure.execute(with: application)
-        
-        ThemeManager.default.theme = ApplicationTheme.dark
-        ThemeManager.default.animated = true
+        // Configure app to follow system appearance (light/dark mode)
+        // No need to set overrideUserInterfaceStyle - let the system decide
         
         EventPackageConfiguration.accentColor = UIColor.systemYellow
         EventPackageConfiguration.onAccentColor = UIColor.black
         
-//        MMUI.UIPackageConfiguration.accentColor = UIColor.systemYellow
-//        MMUI.UIPackageConfiguration.onAccentColor = UIColor.black
-        
         Core.UIPackageConfiguration.accentColor = UIColor.systemYellow
         Core.UIPackageConfiguration.onAccentColor = UIColor.black
         
-        MMUIConfig.registerThemeManager(ThemeManager.default)
         MMAPIConfig.registerBaseURL(AppEnvironment.rootURL)
         MMAPIConfig.registerPetrolAPIKey("0dfdfad3-7385-ef47-2ff6-ec0477872677")
         MMAPIConfig.isMoersFestivalModeEnabled = false

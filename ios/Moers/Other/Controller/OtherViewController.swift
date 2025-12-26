@@ -8,7 +8,6 @@
 
 import Core
 import UIKit
-import Gestalt
 import MessageUI
 import Resolver
 import SwiftUI
@@ -26,8 +25,6 @@ public class OtherViewController: UIViewController {
     
     private let standardCellIdentifier = "standard"
     private let accountCellIdentifier = "account"
-    private var backgroundColor: UIColor = .clear
-    private var textColor: UIColor = .clear
     
     private lazy var tableView: UITableView = {
         
@@ -67,12 +64,6 @@ public class OtherViewController: UIViewController {
                             self.coordinator?.showTransportationOverview(animated: true)
                         }
                     ),
-//                    NavigationRow(
-//                        title: "Abfahrtstafel (Beta)",
-//                        action: {
-//                            self.coordinator?.showDepartureMonitor(animated: true)
-//                        }
-//                    )
                 ]
             ),
             
@@ -170,7 +161,7 @@ public class OtherViewController: UIViewController {
         self.view.addSubview(tableView)
         
         self.setupConstraints()
-        self.setupTheming()
+        self.applyTheming()
         
     }
     
@@ -199,10 +190,9 @@ public class OtherViewController: UIViewController {
         
     }
 
-    private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
-        
+    private func applyTheming() {
+        self.tableView.backgroundColor = UIColor.systemBackground
+        self.tableView.separatorColor = UIColor.separator
     }
     
 }
@@ -234,8 +224,8 @@ extension OtherViewController: UITableViewDataSource, UITableViewDelegate {
             cell.textLabel?.text = navigationRow.title
             cell.accessoryType = .disclosureIndicator
             
-            if let cell = cell as? OtherTableViewCell {
-                MMUIConfig.themeManager?.manage(theme: \ApplicationTheme.self, for: cell)
+            if let otherCell = cell as? OtherTableViewCell {
+                otherCell.applyTheming()
             }
             
         } else {
@@ -262,28 +252,9 @@ extension OtherViewController: UITableViewDataSource, UITableViewDelegate {
 
 public class OtherTableViewCell: UITableViewCell {
     
-}
-
-extension OtherViewController: Themeable {
-    
-    public typealias Theme = ApplicationTheme
-    
-    public func apply(theme: Theme) {
-        self.textColor = theme.color
-        self.backgroundColor = UIColor.systemBackground // theme.backgroundColor
-        self.tableView.backgroundColor = UIColor.systemBackground // theme.backgroundColor
-        self.tableView.separatorColor = UIColor.separator // theme.separatorColor
-    }
-    
-}
-
-extension OtherTableViewCell: Themeable {
-    
-    public typealias Theme = ApplicationTheme
-    
-    public func apply(theme: Theme) {
-        self.backgroundColor = UIColor.systemBackground // theme.backgroundColor
-        self.textLabel?.textColor = theme.color
+    func applyTheming() {
+        self.backgroundColor = UIColor.systemBackground
+        self.textLabel?.textColor = UIColor.label
     }
     
 }

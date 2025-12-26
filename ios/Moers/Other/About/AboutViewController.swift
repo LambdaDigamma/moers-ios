@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Gestalt
 import Core
 import SwiftUI
 import StoreKit
@@ -212,29 +211,15 @@ class OldAboutViewController: UIViewController {
     }
     
     private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
-        
-    }
-    
-}
-
-extension OldAboutViewController: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        
-        self.view.backgroundColor = UIColor.systemBackground // theme.backgroundColor
-        self.cfnLabel.textColor = UIColor.label // theme.color
-        self.cfnTextView.textColor = UIColor.label // theme.color
+        self.view.backgroundColor = UIColor.systemBackground
+        self.cfnLabel.textColor = UIColor.label
+        self.cfnTextView.textColor = UIColor.label
         self.cfnTextView.backgroundColor = .clear
-        self.nameLabel.textColor = UIColor.label // theme.color
-        self.meTextView.textColor = UIColor.label // theme.color
+        self.nameLabel.textColor = UIColor.label
+        self.meTextView.textColor = UIColor.label
         self.meTextView.backgroundColor = .clear
-        self.infoTextView.textColor = UIColor.label // theme.color
+        self.infoTextView.textColor = UIColor.label
         self.infoTextView.backgroundColor = .clear
-        
     }
     
 }

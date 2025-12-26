@@ -8,7 +8,6 @@
 
 import Core
 import UIKit
-import Gestalt
 import MapFeature
 
 class EntryValidationViewController: UIViewController {
@@ -36,7 +35,7 @@ class EntryValidationViewController: UIViewController {
 
         self.setupUI()
         self.setupConstraints()
-        self.setupTheming()
+        self.applyTheming()
         self.loadData()
         
     }
@@ -68,10 +67,10 @@ class EntryValidationViewController: UIViewController {
         
     }
     
-    private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
-        
+    private func applyTheming() {
+        self.view.backgroundColor = UIColor.systemBackground
+        self.tableView.backgroundColor = UIColor.systemBackground
+        self.tableView.separatorColor = UIColor.separator
     }
     
     private func loadData() {
@@ -117,18 +116,6 @@ extension EntryValidationViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
-    }
-    
-}
-
-extension EntryValidationViewController: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        self.view.backgroundColor = theme.backgroundColor
-        self.tableView.backgroundColor = theme.backgroundColor
-        self.tableView.separatorColor = theme.decentColor
     }
     
 }

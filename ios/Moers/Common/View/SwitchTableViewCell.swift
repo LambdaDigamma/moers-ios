@@ -8,7 +8,6 @@
 
 import Core
 import UIKit
-import Gestalt
 
 class SwitchTableViewCell: UITableViewCell {
     
@@ -34,7 +33,7 @@ class SwitchTableViewCell: UITableViewCell {
         self.contentView.addSubview(descriptionLabel)
         
         self.setupConstraints()
-        self.setupTheming()
+        self.applyTheming()
         
     }
     
@@ -60,25 +59,13 @@ class SwitchTableViewCell: UITableViewCell {
         
     }
     
-    private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
-        
+    private func applyTheming() {
+        self.backgroundColor = UIColor.systemBackground
+        self.descriptionLabel.textColor = UIColor.label
     }
 
     @objc func switchChanged(switchControl: UISwitch) {
         action?(switchControl.isOn)
-    }
-    
-}
-
-extension SwitchTableViewCell: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        self.backgroundColor = UIColor.systemBackground // theme.backgroundColor
-        self.descriptionLabel.textColor = theme.color
     }
     
 }

@@ -10,7 +10,6 @@ import Core
 import AppScaffold
 import UIKit
 import BLTNBoard
-import Gestalt
 import MMEvents
 import CoreLocation
 import Combine
@@ -80,20 +79,63 @@ public class AppTabBarController: AppScaffold.TabBarController {
         
         self.tabBar.accessibilityIdentifier = AccessibilityIdentifiers.tabBar
         
+        self.applyTheming()
+        
     }
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
         
-        self.setupTheming()
-        
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            applyTheming()
+        }
     }
     
     // MARK: - UI -
     
-    private func setupTheming() {
+    private func applyTheming() {
+        let theme = ApplicationTheme.current
         
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
+        self.view.backgroundColor = theme.backgroundColor
+        self.tabBar.tintColor = theme.accentColor
+        self.tabBar.barTintColor = UIColor.systemBackground
+        
+        let barAppearance = UIBarAppearance()
+        barAppearance.configureWithDefaultBackground()
+        barAppearance.backgroundColor = UIColor.systemBackground
+        
+        self.tabBar.standardAppearance = UITabBarAppearance(barAppearance: barAppearance)
+        self.tabBar.scrollEdgeAppearance = UITabBarAppearance(barAppearance: barAppearance)
+        
+        if let viewControllers = self.viewControllers {
+            
+            for navigationController in viewControllers {
+                
+                guard let nav = navigationController as? UINavigationController else { return }
+                
+                Styling.applyStyling(navigationController: nav, statusBarStyle: .default)
+                
+            }
+            
+        }
+        
+        let appearance = UINavigationBarAppearance()
+        
+        appearance.configureWithDefaultBackground()
+        appearance.backgroundColor = theme.navigationBarColor
+        
+        appearance.titleTextAttributes = [.foregroundColor: theme.accentColor]
+        appearance.largeTitleTextAttributes = [.foregroundColor: theme.accentColor]
+        
+        guard let controller = self.viewControllers?[2] as? UINavigationController else {
+            return
+        }
+        
+        controller.navigationBar.scrollEdgeAppearance = appearance
         
     }
     
@@ -120,71 +162,7 @@ public class AppTabBarController: AppScaffold.TabBarController {
     }
     
     public override var preferredStatusBarStyle: UIStatusBarStyle {
-        return UIStatusBarStyle.lightContent
-    }
-    
-}
-
-extension AppTabBarController: Themeable {
-    
-    public typealias Theme = ApplicationTheme
-    
-    public func apply(theme: Theme) {
-        
-        self.view.backgroundColor = theme.backgroundColor
-        self.tabBar.tintColor = theme.accentColor
-        self.tabBar.barTintColor = UIColor.systemBackground
-        
-        self.tabBar.barStyle = .black
-        
-        let barAppearance = UIBarAppearance()
-        barAppearance.configureWithDefaultBackground()
-        barAppearance.backgroundColor = UIColor.systemBackground
-        
-        self.tabBar.standardAppearance = UITabBarAppearance(barAppearance: barAppearance)
-        
-        if #available(iOS 15.0, *) {
-            self.tabBar.scrollEdgeAppearance = UITabBarAppearance(barAppearance: barAppearance)
-        }
-        
-        if let viewControllers = self.viewControllers {
-            
-            for navigationController in viewControllers {
-                
-                guard let nav = navigationController as? UINavigationController else { return }
-                
-                Styling.applyStyling(navigationController: nav, statusBarStyle: theme.statusBarStyle)
-                
-                if theme.statusBarStyle == .lightContent {
-                    self.tabBar.barStyle = .black
-                } else {
-                    self.tabBar.barStyle = .default
-                }
-                
-            }
-            
-        }
-        
-        if #available(iOS 13.0, *) {
-            
-            let appearance = UINavigationBarAppearance()
-            
-            appearance.configureWithDefaultBackground()
-            appearance.backgroundColor = theme.navigationBarColor
-            
-            appearance.titleTextAttributes = [.foregroundColor : theme.accentColor]
-            appearance.largeTitleTextAttributes = [.foregroundColor : theme.accentColor]
-            
-//            guard let controller = self.viewControllers?[safeIndex: 2] as? UINavigationController else { return }
-            
-            guard let controller = self.viewControllers?[2] as? UINavigationController else {
-                return
-            }
-            
-            controller.navigationBar.scrollEdgeAppearance = appearance
-            
-        }
-        
+        return .default
     }
     
 }
