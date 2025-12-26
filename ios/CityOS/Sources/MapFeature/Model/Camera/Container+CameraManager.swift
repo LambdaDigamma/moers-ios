@@ -1,19 +1,18 @@
 //
-//  Container+MMFeeds.swift
-//  MMFeeds
+//  Container+CameraManager.swift
+//  MapFeature
 //
 //  Created for Factory migration
 //
 
 import Foundation
 import Factory
-import ModernNetworking
 
 public extension Container {
     
-    var feedService: Factory<FeedService> {
+    var cameraManager: Factory<CameraManagerProtocol> {
         self {
-            DefaultFeedService(loader: self.httpLoader())
+            CameraManager()
         }
         .singleton
     }
