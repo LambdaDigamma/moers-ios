@@ -35,12 +35,7 @@ public class MainViewController: PulleyViewController {
     private let eventBus: EventBus
     private var cancellables = Set<AnyCancellable>()
     
-    required init(
-        contentViewController: UIViewController,
-        drawerViewController: UIViewController,
-        cameraManager: CameraManagerProtocol,
-        entryManager: EntryManagerProtocol
-    ) {
+    required init(contentViewController: UIViewController, drawerViewController: UIViewController) {
         
         self.eventBus = EventBus()
         
@@ -58,10 +53,6 @@ public class MainViewController: PulleyViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    required init(contentViewController: UIViewController, drawerViewController: UIViewController) {
-        fatalError("init(contentViewController:drawerViewController:) has not been implemented")
     }
     
     // MARK: - UIViewController Lifecycle
