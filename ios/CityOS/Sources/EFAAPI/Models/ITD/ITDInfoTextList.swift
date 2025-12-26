@@ -27,7 +27,7 @@ public struct ITDInfoTextList: Codable, Equatable, Hashable, DynamicNodeDecoding
 
 public struct InfoTextListElement: Codable, Equatable, Hashable, DynamicNodeDecoding {
     
-    public let code: String
+    public let code: String?
     public let type: String
     public let content: String
     

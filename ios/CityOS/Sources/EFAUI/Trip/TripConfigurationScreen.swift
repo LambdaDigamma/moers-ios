@@ -115,8 +115,8 @@ public struct TripConfigurationScreen: View {
 //                Spacer()
 //                    .frame(idealHeight: 50)
                 
-                favorites()
-                    .padding(.top, 60)
+//                favorites()
+//                    .padding(.top, 60)
                 
                 disclaimer()
                 

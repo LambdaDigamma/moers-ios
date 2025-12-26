@@ -34,7 +34,7 @@ public struct ITDOdvAssignedStop: Codable, Equatable, Hashable, DynamicNodeDecod
     public let place: String
     public let nameWithPlace: String
     public let distanceTime: Int
-    public let distance: Int
+    public let distance: Int?
     public let isTransferStop: Bool
     
     public static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {

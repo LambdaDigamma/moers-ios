@@ -17,7 +17,7 @@ public struct ITDMeansOfTransport: Codable, Equatable, Hashable, DynamicNodeDeco
     public let symbol: String
     public let type: Int
     public let motType: TransportType?
-    public let productName: String
+    public let productName: String?
     public let productId: Int?
     
     public let timetablePeriod: String?
