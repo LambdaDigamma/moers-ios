@@ -51,7 +51,7 @@ public struct ParkingAreaDetailScreen: View {
         .toolbar {
             toolbar()
         }
-        .onAppear {
+        .task {
             viewModel.load()
         }
         

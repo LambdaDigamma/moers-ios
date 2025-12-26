@@ -36,7 +36,7 @@ public struct FuelStationDetailScreen: View {
             .padding()
             
         }
-        .onAppear {
+        .task {
             viewModel.load()
         }
         

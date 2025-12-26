@@ -63,7 +63,7 @@ public struct ParkingAreaList: View {
         .toolbar {
             toolbarItem()
         }
-        .onAppear {
+        .task {
             viewModel.load()
         }
         .sheet(isPresented: $showParkingTimer) {

@@ -69,7 +69,7 @@ public struct RubbishScheduleList: View {
             }
             
         }
-        .onAppear {
+        .task {
             UserActivity.current = UserActivities.configureRubbishScheduleActivity()
             viewModel.load()
         }

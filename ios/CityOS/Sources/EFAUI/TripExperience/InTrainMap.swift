@@ -98,8 +98,8 @@ struct InTrainMap: View {
             .cornerRadius(12)
             
         }
-        .onAppear {
-//            viewModel.start()h
+        .task {
+//            viewModel.start()
             viewModel.load()
         }
         .onDisappear {

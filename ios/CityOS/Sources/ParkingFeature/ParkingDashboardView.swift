@@ -79,7 +79,7 @@ public struct ParkingDashboardView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             
         }
-        .onAppear {
+        .task {
             viewModel.load()
         }
         

@@ -42,7 +42,7 @@ public struct BroadcastList: View {
             
         }
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
+        .task {
             viewModel.load()
         }
         

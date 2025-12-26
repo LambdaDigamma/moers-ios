@@ -60,7 +60,7 @@ public class MapCoordintor: Coordinator {
         let tabBarItem = UITabBarItem(
             title: AppStrings.Menu.map,
             image: UIImage(systemName: "map"),
-            selectedImage: UIImage(systemName: "map.fill")
+            selectedImage: UIImage(systemName: "map")
         )
         
         tabBarItem.accessibilityLabel = AppStrings.Menu.map

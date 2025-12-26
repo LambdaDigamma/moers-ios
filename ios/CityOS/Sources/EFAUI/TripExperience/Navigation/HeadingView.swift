@@ -102,7 +102,7 @@ public struct HeadingView: View {
         .padding()
         .background(Color.systemBackground)
         .clipShape(RoundedRectangle(cornerRadius: 8))
-        .onAppear {
+        .task {
             locationManager.beginUpdatingHeading(.authorizedWhenInUse)
         }
         .onDisappear {

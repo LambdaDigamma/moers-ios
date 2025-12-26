@@ -57,7 +57,7 @@ public struct NewsList: View {
             }
             
         }
-        .onAppear {
+        .task {
             viewModel.load()
         }
     }

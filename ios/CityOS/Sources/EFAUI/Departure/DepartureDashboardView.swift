@@ -84,7 +84,7 @@ public struct DepartureDashboardView: View {
             
         }
         .frame(maxWidth: .infinity)
-        .onAppear {
+        .task {
             viewModel.load()
         }
         

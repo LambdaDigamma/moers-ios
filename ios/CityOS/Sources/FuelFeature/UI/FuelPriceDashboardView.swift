@@ -68,7 +68,7 @@ public struct FuelPriceDashboardView: View {
                 .padding()
                 
             }
-            .onAppear {
+            .task {
                 viewModel.load()
             }
         }

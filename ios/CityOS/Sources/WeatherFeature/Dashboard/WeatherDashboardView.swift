@@ -41,7 +41,7 @@ public struct WeatherDashboardView: View {
             }
             
         }
-        .onAppear {
+        .task {
             viewModel.load()
         }
         

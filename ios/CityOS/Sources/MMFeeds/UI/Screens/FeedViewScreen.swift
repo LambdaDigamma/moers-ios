@@ -65,7 +65,7 @@ public struct FeedViewScreen: View {
                         BigNewsFeedView(post: post, showPost: { showPost($0.id) })
                     }
 
-//                        .onAppear {
+//                        .task {
 //                            if viewModel.items.last == post {
 //                                viewModel.loadNextPosts()
 //                            }

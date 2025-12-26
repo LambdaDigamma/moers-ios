@@ -56,7 +56,7 @@ public struct ActiveTripScreen: View {
                 
             }
         }
-        .onAppear {
+        .task {
             viewModel.load()
         }
         .sheet(isPresented: $showConfigureTrip) {

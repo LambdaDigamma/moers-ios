@@ -79,7 +79,7 @@ public struct TransitLocationSearchScreen: View {
         .background(Color(UIColor.systemBackground))
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(Text(transitLocationSearchMode.title))
-        .onAppear {
+        .task {
             self.viewModel.loadRecentSearches()
         }
         

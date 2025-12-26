@@ -84,7 +84,7 @@ public struct DashboardView<Content: View>: View {
 //            }
         }
         .navigationBarTitle(PackageStrings.Dashboard.title)
-        .onAppear {
+        .task {
             UserActivity.current = UserActivities.configureDashboardActivity()
             viewModel.load()
         }

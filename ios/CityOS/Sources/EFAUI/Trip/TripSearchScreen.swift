@@ -37,7 +37,7 @@ public struct TripSearchScreen: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .navigationTitle(Text("Verbindungen"))
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
+        .task {
             viewModel.search()
         }
         .sheet(isPresented: $showConfiguration) {
