@@ -8,7 +8,7 @@
 
 import Core
 import UIKit
-import Gestalt
+
 //import FirebaseAnalytics // todo: analytics
 
 class DetailCameraViewController: UIViewController {
@@ -46,8 +46,6 @@ class DetailCameraViewController: UIViewController {
     }
     
     private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -103,16 +101,3 @@ class DetailCameraViewController: UIViewController {
     
 }
 
-extension DetailCameraViewController: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        self.view.backgroundColor = theme.backgroundColor
-        self.topSeperator.backgroundColor = theme.decentColor
-        self.showButton.setBackgroundColor(color: #colorLiteral(red: 0.276827544, green: 0.6099686027, blue: 0.3140196502, alpha: 1), forState: .normal)
-        self.showButton.setBackgroundColor(color: #colorLiteral(red: 0.276827544, green: 0.6099686027, blue: 0.3140196502, alpha: 1).darker(by: 10)!, forState: .selected)
-        self.showButton.setTitleColor(UIColor.white, for: .normal)
-    }
-    
-}

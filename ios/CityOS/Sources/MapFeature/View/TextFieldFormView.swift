@@ -8,7 +8,7 @@
 
 import UIKit
 import TextFieldEffects
-import Gestalt
+
 import Combine
 import Core
 
@@ -111,8 +111,6 @@ class TextFieldFormView: UIView, FormView {
     
     private func setupTheming() {
         
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
-        
     }
     
     // MARK: - Data Handling
@@ -144,19 +142,6 @@ class TextFieldFormView: UIView, FormView {
     
 }
 
-extension TextFieldFormView: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        
-        let applyTheming: ((HoshiTextField) -> Void) = { textField in
-            
-            if textField.isEnabled {
-                textField.borderActiveColor = theme.accentColor
-            } else {
-                textField.borderActiveColor = theme.decentColor
-            }
             
             textField.borderInactiveColor = theme.decentColor
             textField.placeholderColor = theme.color

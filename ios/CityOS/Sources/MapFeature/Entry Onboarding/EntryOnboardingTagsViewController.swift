@@ -8,7 +8,7 @@
 
 import Core
 import UIKit
-import Gestalt
+
 import TagListView
 import Fuse
 
@@ -131,8 +131,6 @@ class EntryOnboardingTagsViewController: UIViewController {
     }
     
     private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \ApplicationTheme.self, for: self)
         
     }
     
@@ -373,38 +371,5 @@ extension EntryOnboardingTagsViewController: LFSearchViewDataSource, LFSearchVie
     
 }
 
-extension EntryOnboardingTagsViewController: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: ApplicationTheme) {
-        
-        self.view.backgroundColor = theme.backgroundColor
-        self.progressView.accentColor = theme.accentColor
-        self.progressView.decentColor = theme.decentColor
-        self.progressView.textColor = theme.color
-        self.infoLabel.textColor = theme.color
-        self.tagsHeaderLabel.textColor = theme.decentColor
-        self.tagsListView.tagBackgroundColor = theme.accentColor
-        self.tagsListView.textColor = theme.backgroundColor
-        self.tagsListView.removeIconLineColor = theme.backgroundColor
-        self.searchController.searchBarBackgroundColor = theme.navigationBarColor
-        self.searchController.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
-        self.searchController.searchBar.textField?.textColor = theme.color
-        self.searchController.tableView.separatorColor = .clear
-        self.searchController.navigationItem.rightBarButtonItem?.tintColor = theme.accentColor
-        self.cellTextColor = theme.color
-        self.cellBackgroundColor = theme.backgroundColor
-        self.searchController.tableView.backgroundColor = theme.backgroundColor
-        self.searchController.separatorColor = theme.separatorColor
-        self.searchController.view.backgroundColor = theme.backgroundColor
-        self.searchController.navigationBarClosure = { bar in
-            
-            bar.barTintColor = theme.navigationBarColor
-            bar.tintColor = theme.accentColor
-            
-        }
-        
-    }
     
 }

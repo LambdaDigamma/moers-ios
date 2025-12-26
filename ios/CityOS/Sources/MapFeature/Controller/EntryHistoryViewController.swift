@@ -8,7 +8,7 @@
 
 import Core
 import UIKit
-import Gestalt
+
 
 class EntryHistoryViewController: UIViewController {
 
@@ -80,8 +80,6 @@ class EntryHistoryViewController: UIViewController {
     
     private func setupTheming() {
         
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
-        
     }
 
     private func loadHistory() {
@@ -135,38 +133,5 @@ extension EntryHistoryViewController: UITableViewDataSource, UITableViewDelegate
     
 }
 
-extension EntryHistoryViewController: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        
-        self.view.backgroundColor = theme.backgroundColor
-        self.tableView.backgroundColor = theme.backgroundColor
-        self.tableView.separatorColor = theme.separatorColor
-        
-        if #available(iOS 13.0, *) {
-            
-            navigationController?.navigationBar.barTintColor = theme.navigationBarColor
-            navigationController?.navigationBar.tintColor = theme.accentColor
-            navigationController?.navigationBar.prefersLargeTitles = true
-            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
-            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
-            navigationController?.navigationBar.isTranslucent = true
-            
-            let appearance = UINavigationBarAppearance()
-            
-            appearance.configureWithDefaultBackground()
-            appearance.backgroundColor = theme.navigationBarColor
-            
-            appearance.titleTextAttributes = [.foregroundColor : theme.accentColor]
-            appearance.largeTitleTextAttributes = [.foregroundColor : theme.accentColor]
-            
-            navigationController?.navigationBar.scrollEdgeAppearance = appearance
-            navigationController?.navigationBar.standardAppearance = appearance
-            
-        }
-        
-    }
     
 }

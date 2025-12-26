@@ -8,7 +8,7 @@
 
 import Core
 import UIKit
-import Gestalt
+
 // import FirebaseAnalytics
 
 class DetailParkingViewController: UIViewController {
@@ -68,8 +68,6 @@ class DetailParkingViewController: UIViewController {
     }
     
     private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -135,24 +133,3 @@ class DetailParkingViewController: UIViewController {
     
 }
 
-extension DetailParkingViewController: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        
-        self.topSeparator.backgroundColor = theme.decentColor
-        self.middleSeparator.backgroundColor = theme.decentColor
-        self.slotsHeaderLabel.textColor = theme.color
-        self.totalHeaderLabel.textColor = theme.color
-        self.totalLabel.textColor = theme.color
-        self.freeHeaderLabel.textColor = theme.color
-        self.freeLabel.textColor = theme.color
-        self.statusHeaderLabel.textColor = theme.color
-        self.statusLabel.textColor = theme.color
-        self.addressHeaderLabel.textColor = theme.color
-        self.addressLabel.textColor = theme.color
-        
-    }
-    
-}

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Gestalt
+
 import TagListView
 import Core
 
@@ -40,8 +40,6 @@ public class SearchDrawerView: UIView {
     private func setupUI() {
         
         self.translatesAutoresizingMaskIntoConstraints = false
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
         self.setupSearchWrapper()
         self.setupSearchBar()
@@ -153,35 +151,6 @@ public class SearchDrawerView: UIView {
     
 }
 
-extension SearchDrawerView: Themeable {
-    
-    public typealias Theme = ApplicationTheme
-    
-    public func apply(theme: ApplicationTheme) {
-        
-        backgroundColor = theme.backgroundColor
-        tableView.backgroundColor = theme.backgroundColor
-        tableView.separatorColor = theme.separatorColor
-        searchWrapper.backgroundColor = theme.backgroundColor
-        gripper.backgroundColor = UIColor.lightGray
-        
-        topSeparator.backgroundColor = theme.decentColor
-        tagList.tagBackgroundColor = theme.accentColor
-        tagList.textColor = theme.backgroundColor
-        tagList.removeIconLineColor = theme.backgroundColor
-        
-        if #available(iOS 13, *) {
-            searchBar.barTintColor = .clear
-            searchBar.backgroundColor = theme.backgroundColor
-            searchBar.tintColor = theme.accentColor
-            searchBar.searchTextField.textColor = theme.color
-            searchBar.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
-        } else {
-            searchBar.barTintColor = .clear
-            searchBar.backgroundColor = theme.backgroundColor
-            searchBar.tintColor = theme.accentColor
-            searchBar.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
-            guard let searchField = searchBar.value(forKey: "searchField") as? UITextField else { return }
             searchField.textColor = theme.color
             
         }

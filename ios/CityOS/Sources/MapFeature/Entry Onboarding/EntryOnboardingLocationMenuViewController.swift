@@ -8,7 +8,7 @@
 
 import Core
 import UIKit
-import Gestalt
+
 import Core
 import Resolver
 
@@ -82,8 +82,6 @@ public class EntryOnboardingLocationMenuViewController: UIViewController {
     
     private func setupTheming() {
         
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
-        
     }
     
     private func setupConstraints() {
@@ -125,20 +123,3 @@ public class EntryOnboardingLocationMenuViewController: UIViewController {
     
 }
 
-extension EntryOnboardingLocationMenuViewController: Themeable {
-    
-    public typealias Theme = ApplicationTheme
-    
-    public func apply(theme: Theme) {
-        self.view.backgroundColor = theme.backgroundColor
-        self.infoLabel.textColor = theme.color
-        self.addressButton.setTitleColor(theme.backgroundColor, for: .normal)
-        self.locationButton.setTitleColor(theme.backgroundColor, for: .normal)
-        self.addressButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
-        self.locationButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
-        self.progressView.accentColor = theme.accentColor
-        self.progressView.decentColor = theme.decentColor
-        self.progressView.textColor = theme.color
-    }
-    
-}

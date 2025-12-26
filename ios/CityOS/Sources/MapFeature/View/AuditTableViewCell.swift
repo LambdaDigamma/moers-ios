@@ -8,7 +8,7 @@
 
 import Core
 import UIKit
-import Gestalt
+
 
 class AuditTableViewCell: UITableViewCell {
 
@@ -134,8 +134,6 @@ class AuditTableViewCell: UITableViewCell {
 
     private func setupTheming() {
         
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
-        
     }
     
     // swiftlint:disable:next cyclomatic_complexity
@@ -198,15 +196,3 @@ class AuditTableViewCell: UITableViewCell {
     
 }
 
-extension AuditTableViewCell: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        self.backgroundColor = theme.backgroundColor
-        self.changeSetHeader.textColor = theme.color
-        self.auditingTypeLabel.textColor = theme.color
-        self.dateLabel.textColor = theme.decentColor
-    }
-    
-}

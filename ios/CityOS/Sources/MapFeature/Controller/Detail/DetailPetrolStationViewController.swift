@@ -8,7 +8,7 @@
 
 import Core
 import UIKit
-import Gestalt
+
 import Resolver
 import FuelFeature
 
@@ -64,8 +64,6 @@ class DetailPetrolStationViewController: UIViewController {
     
     private func setupTheming() {
         
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
-        
     }
     
     public func setupPetrolStation(_ petrolStation: MapFeature.PetrolStationViewModel?) {
@@ -90,26 +88,5 @@ class DetailPetrolStationViewController: UIViewController {
     
 }
 
-extension DetailPetrolStationViewController: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        
-        self.topSeparator.backgroundColor = theme.decentColor
-        self.addressSeparator.backgroundColor = theme.decentColor
-        
-        let labels: [UILabel] = [self.priceHeaderLabel,
-                                 self.typeLabel,
-                                 self.priceLabel,
-                                 self.addressHeaderLabel,
-                                 self.streetLabel,
-                                 self.placeLabel,
-                                 self.countryLabel]
-        
-        for label in labels {
-            label.textColor = theme.color
-        }
-    }
     
 }

@@ -8,7 +8,7 @@
 
 import Core
 import UIKit
-import Gestalt
+
 import SafariServices
 //import FirebaseAnalytics
 import TagListView
@@ -121,8 +121,6 @@ class DetailEntryViewController: UIViewController {
     }
     
     private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
 
@@ -244,68 +242,5 @@ public func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [
     return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
 
-extension DetailEntryViewController: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    // swiftlint:disable function_body_length
-    func apply(theme: Theme) {
-        
-        self.topSeparator.backgroundColor = theme.decentColor
-        self.buttonSeparator.backgroundColor = theme.decentColor
-        self.addressSeparator.backgroundColor = theme.decentColor
-        self.openingHoursSeparator.backgroundColor = theme.decentColor
-        self.tagSeparator.backgroundColor = theme.decentColor
-        self.callButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
-        self.callButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .highlighted)
-        self.callButton.setTitleColor(theme.backgroundColor, for: .normal)
-        self.websiteButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
-        self.websiteButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .highlighted)
-        self.websiteButton.setTitleColor(theme.backgroundColor, for: .normal)
-        self.tagsListView.backgroundColor = UIColor.clear
-        self.tagsListView.tagBackgroundColor = theme.accentColor
-        self.tagsListView.textColor = theme.backgroundColor
-        self.tagsListView.removeIconLineColor = theme.backgroundColor
-        self.lastUpdateLabel.textColor = theme.decentColor
-        self.infoLabel.textColor = theme.decentColor
-        self.editButton.setBackgroundColor(color: theme.decentColor, forState: .normal)
-        self.editButton.setBackgroundColor(color: theme.decentColor.darker(by: 10)!, forState: UIControl.State.selected)
-        self.editButton.alpha = 0.75
-        self.editButton.setTitleColor(theme.backgroundColor, for: .normal)
-        self.historyButton.setBackgroundColor(color: theme.decentColor, forState: .normal)
-        self.historyButton.setBackgroundColor(color: theme.decentColor.darker(by: 10)!, forState: UIControl.State.selected)
-        self.historyButton.alpha = 0.75
-        self.historyButton.setTitleColor(theme.backgroundColor, for: .normal)
-        
-        let labels: [UILabel] = [self.addressHeaderLabel,
-                                 self.streetLabel,
-                                 self.placeLabel,
-                                 self.countryLabel,
-                                 self.openingHoursHeaderLabel,
-                                 self.mondayHeaderLabel,
-                                 self.mondayLabel,
-                                 self.tuesdayHeaderLabel,
-                                 self.tuesdayLabel,
-                                 self.wednesdayHeaderLabel,
-                                 self.wednesdayLabel,
-                                 self.thursdayHeaderLabel,
-                                 self.thursdayLabel,
-                                 self.fridayHeaderLabel,
-                                 self.fridayLabel,
-                                 self.saturdayHeaderLabel,
-                                 self.saturdayLabel,
-                                 self.otherHeaderLabel,
-                                 self.otherLabel,
-                                 self.phoneHeaderLabel,
-                                 self.phoneLabel,
-                                 self.websiteHeaderLabel,
-                                 self.websiteLabel,
-                                 self.tagLabel]
-        
-        for label in labels {
-            label.textColor = theme.color
-        }
-        
-    }
     
 }

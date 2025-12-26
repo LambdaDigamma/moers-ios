@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Gestalt
 import Core
 
 public class EntryValidationTableViewCell: UITableViewCell {
@@ -25,7 +24,7 @@ public class EntryValidationTableViewCell: UITableViewCell {
         
         self.setupUI()
         self.setupConstraints()
-        self.setupTheming()
+        self.applyTheming()
         
         self.selectionStyle = .none
         
@@ -63,24 +62,11 @@ public class EntryValidationTableViewCell: UITableViewCell {
         
     }
     
-    private func setupTheming() {
-        
+    private func applyTheming() {
         self.accessoryType = .disclosureIndicator
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
-        
-    }
-    
-}
-
-extension EntryValidationTableViewCell: Themeable {
-    
-    public typealias Theme = ApplicationTheme
-    
-    public func apply(theme: Theme) {
-        self.backgroundColor = theme.backgroundColor
-        self.titleLabel.textColor = theme.color
-        self.descriptionLabel.textColor = theme.decentColor
+        self.backgroundColor = UIColor.systemBackground
+        self.titleLabel.textColor = UIColor.label
+        self.descriptionLabel.textColor = UIColor.secondaryLabel
     }
     
 }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Gestalt
 import Core
 
 class SearchResultTableViewCell: UITableViewCell {
@@ -22,7 +21,7 @@ class SearchResultTableViewCell: UITableViewCell {
         
         self.setupUI()
         self.setupConstraints()
-        self.setupTheming()
+        self.applyTheming()
         
     }
     
@@ -55,7 +54,6 @@ class SearchResultTableViewCell: UITableViewCell {
             searchImageView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 0),
             searchImageView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
             searchImageView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0),
-//            searchImageView.heightAnchor.constraint(equalToConstant: 100),
             searchImageView.widthAnchor.constraint(equalTo: searchImageView.heightAnchor),
             titleLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
             titleLabel.leadingAnchor.constraint(equalTo: searchImageView.trailingAnchor, constant: 8),
@@ -74,24 +72,11 @@ class SearchResultTableViewCell: UITableViewCell {
         
     }
     
-    private func setupTheming() {
-        
+    private func applyTheming() {
         self.accessoryType = .disclosureIndicator
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
-        
-    }
-    
-}
-
-extension SearchResultTableViewCell: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        self.backgroundColor = theme.backgroundColor
-        self.titleLabel.textColor = theme.color
-        self.subtitleLabel.textColor = theme.decentColor
+        self.backgroundColor = UIColor.systemBackground
+        self.titleLabel.textColor = UIColor.label
+        self.subtitleLabel.textColor = UIColor.secondaryLabel
     }
     
 }

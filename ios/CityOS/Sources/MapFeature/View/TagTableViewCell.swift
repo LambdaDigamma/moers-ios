@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Gestalt
 import Core
 
 class TagTableViewCell: UITableViewCell {
@@ -20,7 +19,7 @@ class TagTableViewCell: UITableViewCell {
         self.contentView.addSubview(titleLabel)
         
         self.setupConstraints()
-        self.setupTheming()
+        self.applyTheming()
         
         self.selectionStyle = .none
         
@@ -43,23 +42,10 @@ class TagTableViewCell: UITableViewCell {
         
     }
     
-    private func setupTheming() {
-        
+    private func applyTheming() {
         self.accessoryType = .disclosureIndicator
-        
-        MMUIConfig.themeManager?.manage(theme: \ApplicationTheme.self, for: self)
-        
-    }
-    
-}
-
-extension TagTableViewCell: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: ApplicationTheme) {
-        self.backgroundColor = theme.backgroundColor
-        self.titleLabel.textColor = theme.color
+        self.backgroundColor = UIColor.systemBackground
+        self.titleLabel.textColor = UIColor.label
     }
     
 }

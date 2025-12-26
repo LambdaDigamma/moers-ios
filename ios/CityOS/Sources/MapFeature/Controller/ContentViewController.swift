@@ -8,7 +8,7 @@
 
 import Core
 import UIKit
-import Gestalt
+
 import Pulley
 import MapKit
 import TagListView
@@ -139,8 +139,6 @@ class ContentViewController: UIViewController {
     }
     
     private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -635,27 +633,3 @@ extension ContentViewController: PulleyDrawerViewControllerDelegate {
     
 }
 
-extension ContentViewController: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        
-        self.view.backgroundColor = theme.backgroundColor
-        self.searchBar.barTintColor = theme.accentColor
-        self.searchBar.backgroundColor = theme.backgroundColor
-        self.searchBar.tintColor = theme.accentColor
-        self.searchBar.textField?.textColor = theme.color
-        self.topSeparatorView.backgroundColor = theme.separatorColor
-        self.tableView.backgroundColor = theme.backgroundColor
-        self.tableView.separatorColor = theme.separatorColor
-        self.normalColor = theme.backgroundColor
-        self.highlightedColor = theme.backgroundColor.darker(by: 10)!
-        self.searchBar.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
-        self.tagListView.tagBackgroundColor = theme.accentColor
-        self.tagListView.textColor = theme.backgroundColor
-        self.tagListView.removeIconLineColor = theme.backgroundColor
-        
-    }
-    
-}
