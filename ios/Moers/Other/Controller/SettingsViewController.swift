@@ -9,7 +9,7 @@
 import Core
 import UIKit
 import BLTNBoard
-import Resolver
+// import Resolver - removed (migrated to Factory)
 import RubbishFeature
 import FuelFeature
 

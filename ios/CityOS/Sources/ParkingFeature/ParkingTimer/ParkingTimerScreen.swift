@@ -8,7 +8,7 @@
 import SwiftUI
 import Core
 import CoreLocation
-import Resolver
+import Factory
 
 public struct ParkingTimerScreen: View {
     

@@ -15,7 +15,7 @@ import TagListView
 import Fuse
 import Combine
 import Core
-import Resolver
+import Factory
 
 // swiftlint:disable file_length
 

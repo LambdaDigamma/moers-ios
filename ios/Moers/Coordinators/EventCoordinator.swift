@@ -10,7 +10,7 @@ import Core
 import UIKit
 import AppScaffold
 import MMEvents
-import Resolver
+// import Resolver - removed (migrated to Factory)
 
 class EventCoordinator: Coordinator {
     

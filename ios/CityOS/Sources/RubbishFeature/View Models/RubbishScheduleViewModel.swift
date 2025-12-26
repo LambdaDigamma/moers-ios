@@ -7,7 +7,7 @@
 
 import Foundation
 import Core
-import Resolver
+import Factory
 import Combine
 
 public class RubbishScheduleViewModel: StandardViewModel {

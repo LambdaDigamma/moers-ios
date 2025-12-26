@@ -7,7 +7,7 @@
 //
 
 import Core
-import Resolver
+import Factory
 import ParkingFeature
 import FuelFeature
 import CarPlay
@@ -34,7 +34,9 @@ public class CarPlaySceneDelegate: UIResponder {
     
     public func loadParkingLots() {
         
-        let parkingService: ParkingService = Resolver.resolve()
+        guard let parkingService = Container.shared.parkingService() else {
+            return
+        }
         
         parkingService.loadParkingAreas()
             .sink { (completion: Subscribers.Completion<Error>) in
@@ -165,8 +167,10 @@ public class CarPlaySceneDelegate: UIResponder {
     
     public func loadFuelStations() {
         
-        let locationService: LocationService = Resolver.resolve()
-        let fuelService: PetrolService = Resolver.resolve()
+        let locationService = Container.shared.locationService()
+        guard let fuelService = Container.shared.petrolService() else {
+            return
+        }
         let preferredPetrolType = fuelService.petrolType
         
         locationService.location

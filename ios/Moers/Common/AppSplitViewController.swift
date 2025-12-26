@@ -9,7 +9,7 @@
 import Core
 import Foundation
 import OSLog
-import Resolver
+import Factory
 import CoreLocation
 import Combine
 import UIKit
@@ -22,8 +22,13 @@ import MapFeature
 
 public class AppSplitViewController: SplitViewController {
     
-    @LazyInjected var rubbishService: RubbishService
-    @LazyInjected var petrolService: PetrolService
+    private var rubbishService: RubbishService? {
+        Container.shared.rubbishService()
+    }
+    
+    private var petrolService: PetrolService? {
+        Container.shared.petrolService()
+    }
     
     let locationManager: LocationManagerProtocol
     let dashboard: DashboardCoordinator
@@ -149,7 +154,7 @@ public class AppSplitViewController: SplitViewController {
     private func setupMocked() {
         
         UserManager.shared.register(User(type: .citizen, id: nil, name: nil, description: nil))
-        petrolService.petrolType = .diesel
+        petrolService?.petrolType = .diesel
         
     }
     
@@ -259,9 +264,7 @@ public class AppSplitViewController: SplitViewController {
     
     private func loadRubbishData() {
         
-        let rubbishService: RubbishService? = Resolver.optional()
-        
-        guard let rubbishService = rubbishService else {
+        guard let rubbishService = Container.shared.rubbishService() else {
             return
         }
         

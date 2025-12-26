@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import Core
 import ModernNetworking
-import Resolver
+import Factory
 
 open class RubbishDashboardViewModel: StandardViewModel {
     

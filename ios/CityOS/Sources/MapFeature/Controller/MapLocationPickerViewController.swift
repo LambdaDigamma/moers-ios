@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import Combine
 import Core
-import Resolver
+import Factory
 
 protocol MapLocationPickerViewControllerDelegate: AnyObject {
     

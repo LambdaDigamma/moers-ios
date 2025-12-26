@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Resolver
+import Factory
 import Core
 
 public struct RubbishScheduleList: View {
@@ -14,10 +14,19 @@ public struct RubbishScheduleList: View {
     @State var showInfo: Bool = false
     @ObservedObject var viewModel: RubbishScheduleViewModel
     
+    @Injected(\.rubbishService) private var rubbishServiceFactory: RubbishService?
+    
     public init(
-        rubbishService: RubbishService = Resolver.resolve()
+        rubbishService: RubbishService? = nil
     ) {
-        self.viewModel = RubbishScheduleViewModel(rubbishService: rubbishService)
+        let service = rubbishService ?? rubbishServiceFactory
+        self.viewModel = RubbishScheduleViewModel(rubbishService: service ?? StaticRubbishService(
+            rubbishStreet: nil,
+            isEnabled: false,
+            remindersEnabled: false,
+            reminderHour: 20,
+            reminderMinute: 0
+        ))
     }
     
     public var body: some View {

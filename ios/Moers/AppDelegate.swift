@@ -13,7 +13,7 @@ import Firebase
 import Haneke
 import SwiftUI
 import AppScaffold
-import Resolver
+import Factory
 import ModernNetworking
 import RubbishFeature
 import MMEvents
@@ -96,7 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         if userActivity.activityType == "de.okfn.niederrhein.Moers.nextRubbish" {
             
-            let rubbishService: RubbishService? = Resolver.optional()
+            let rubbishService = Container.shared.rubbishService()
             
             guard let rubbishService = rubbishService else {
                 return false

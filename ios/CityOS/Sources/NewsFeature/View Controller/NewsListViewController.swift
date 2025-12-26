@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 import SwiftUI
 import FeedKit
-import Resolver
+import Factory
 import Core
 
 public class NewsListViewController: UIHostingController<NewsList> {
@@ -19,9 +19,11 @@ public class NewsListViewController: UIHostingController<NewsList> {
     private var onShowArticle: (RSSFeedItem) -> Void
     private let newsService: NewsService
     
+    @Injected(\.newsService) private var newsServiceFactory: NewsService?
+    
     public init(onShowArticle: @escaping (RSSFeedItem) -> Void) {
         self.onShowArticle = onShowArticle
-        self.newsService = Resolver.resolve()
+        self.newsService = newsServiceFactory ?? DefaultNewsService()
         super.init(rootView: NewsList(newsService: newsService, onShowArticle: onShowArticle))
     }
     

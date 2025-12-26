@@ -12,7 +12,7 @@ import Pulley
 import EventBus
 import CoreLocation
 import Combine
-import Resolver
+import Factory
 import FuelFeature
 
 public class MainViewController: PulleyViewController {

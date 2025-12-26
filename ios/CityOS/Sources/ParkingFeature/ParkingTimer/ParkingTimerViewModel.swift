@@ -8,7 +8,7 @@
 import SwiftUI
 import Core
 import CoreLocation
-import Resolver
+import Factory
 import Combine
 
 public class ParkingTimerViewModel: StandardViewModel {

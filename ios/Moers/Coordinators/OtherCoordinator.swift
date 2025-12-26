@@ -13,7 +13,7 @@ import EFAUI
 import EFAAPI
 import AppFeedback
 import MapFeature
-import Resolver
+// import Resolver - removed (migrated to Factory)
 
 public class OtherCoordinator: Coordinator {
     

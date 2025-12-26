@@ -12,7 +12,7 @@ import BLTNBoard
 import CoreLocation
 import OSLog
 import Combine
-import Resolver
+// import Resolver - removed (migrated to Factory)
 import RubbishFeature
 
 class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataSource {

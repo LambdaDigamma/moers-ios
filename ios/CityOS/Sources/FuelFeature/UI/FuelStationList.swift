@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Resolver
+import Factory
 import Core
 import MapKit
 

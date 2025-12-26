@@ -9,7 +9,7 @@
 import Core
 import UIKit
 import MessageUI
-import Resolver
+// import Resolver - removed (migrated to Factory)
 import SwiftUI
 import AppFeedback
 import RubbishFeature

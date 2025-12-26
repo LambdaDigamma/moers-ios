@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import AppScaffold
 import ModernNetworking
-import Resolver
+import Factory
 import OSLog
 
 public let subsystem = Bundle.main.bundleIdentifier ?? "de.okfn.niederrhein.Moers"
@@ -55,7 +55,7 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
             fatalError("Networking Stack could not be setup.")
         }
         
-        Resolver.register { loader as HTTPLoader }
+        Container.shared.httpLoader.register { loader }
         
         return loader
         

@@ -13,7 +13,7 @@ import BLTNBoard
 import MMEvents
 import CoreLocation
 import Combine
-import Resolver
+// import Resolver - removed (migrated to Factory)
 import RubbishFeature
 import MapFeature
 import FuelFeature

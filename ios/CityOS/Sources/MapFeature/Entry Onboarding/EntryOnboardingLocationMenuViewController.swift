@@ -10,7 +10,7 @@ import Core
 import UIKit
 
 import Core
-import Resolver
+import Factory
 
 public class EntryOnboardingLocationMenuViewController: UIViewController {
     

@@ -9,7 +9,7 @@
 import Core
 import UIKit
 
-import Resolver
+import Factory
 import FuelFeature
 
 class DetailPetrolStationViewController: UIViewController {

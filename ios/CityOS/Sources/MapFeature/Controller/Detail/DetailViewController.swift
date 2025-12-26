@@ -12,7 +12,7 @@ import MapKit
 
 import Pulley
 import Combine
-import Resolver
+import Factory
 import Core
 
 public class DetailViewController: UIViewController {

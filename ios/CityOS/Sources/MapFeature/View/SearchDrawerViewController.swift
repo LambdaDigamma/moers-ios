@@ -13,7 +13,7 @@ import Pulley
 import TagListView
 import Fuse
 import Combine
-import Resolver
+import Factory
 //import NewsFeature
 
 public enum DisplayMode {

@@ -10,7 +10,7 @@ import Core
 import UIKit
 import UserNotifications
 import Combine
-import Resolver
+// import Resolver - removed (migrated to Factory)
 import RubbishFeature
 
 class DebugViewController: UIViewController {

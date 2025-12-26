@@ -10,7 +10,7 @@ import MapKit
 import Combine
 import OSLog
 import SwiftUI
-import Resolver
+import Factory
 
 public class DirectionsViewModel: StandardViewModel {
     
@@ -21,11 +21,13 @@ public class DirectionsViewModel: StandardViewModel {
     
     private let locationService: LocationService
     
+    @Injected(\.locationService) private var locationServiceFactory: LocationService
+    
     public init(
         locationService: LocationService? = nil,
         directionsMode: DirectionsMode = .driving
     ) {
-        self.locationService = locationService ?? Resolver.resolve()
+        self.locationService = locationService ?? locationServiceFactory
         self.directionsMode = directionsMode
     }
     

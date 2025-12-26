@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import Core
 import CoreLocation
-import Resolver
+import Factory
 import OSLog
 
 public struct PetrolPriceDashboardData {
@@ -35,16 +35,20 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
     private let locationService: LocationService
     private let geocodingService: GeocodingService
     
+    @Injected(\.petrolService) private var petrolServiceFactory: PetrolService?
+    @Injected(\.locationService) private var locationServiceFactory: LocationService
+    @Injected(\.geocodingService) private var geocodingServiceFactory: GeocodingService
+    
     public init(
-        petrolService: PetrolService = Resolver.resolve(),
-        locationService: LocationService = Resolver.resolve(),
-        geocodingService: GeocodingService = Resolver.resolve(),
+        petrolService: PetrolService? = nil,
+        locationService: LocationService? = nil,
+        geocodingService: GeocodingService? = nil,
         initialState: DataState<PetrolPriceDashboardData, Error> = .loading,
         initialFuelStations: DataState<[PetrolStation], Error> = .loading
     ) {
-        self.petrolService = petrolService
-        self.locationService = locationService
-        self.geocodingService = geocodingService
+        self.petrolService = petrolService ?? petrolServiceFactory ?? DefaultPetrolService(userDefaults: .standard, apiKey: "")
+        self.locationService = locationService ?? locationServiceFactory
+        self.geocodingService = geocodingService ?? geocodingServiceFactory
         self.data = initialState
         self.fuelStations = initialFuelStations
         super.init()
