@@ -6,7 +6,7 @@ let package = Package(
     name: "CityOS",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v15),
+        .iOS(.v16),
         .macOS(.v11),
         .watchOS(.v7),
         .tvOS(.v14)
