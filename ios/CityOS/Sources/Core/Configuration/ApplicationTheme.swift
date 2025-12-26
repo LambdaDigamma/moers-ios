@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 /// A unified theme configuration that uses iOS native colors for light/dark mode support.
 /// This replaces the old Gestalt-based theming with Apple's recommended approach.
@@ -43,6 +44,19 @@ public struct ApplicationTheme {
     
     /// Whether cards should have shadows
     public var cardShadow: Bool { false }
+    
+    public var dashboardBackground: Color {
+        Color(UIColor(dynamicProvider: { (traitCollection: UITraitCollection) in
+            switch traitCollection.userInterfaceStyle {
+                case .light:
+                    return UIColor.secondarySystemBackground
+                case .dark, .unspecified:
+                    return UIColor.systemBackground
+                @unknown default:
+                    return UIColor.systemBackground
+            }
+        }))
+    }
     
     public init() {}
     

@@ -28,7 +28,7 @@ public class OtherViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         
-        let tableView = UITableView(frame: CGRect.zero, style: UITableView.Style.grouped)
+        let tableView = UITableView(frame: CGRect.zero, style: UITableView.Style.insetGrouped)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -191,8 +191,8 @@ public class OtherViewController: UIViewController {
     }
 
     private func applyTheming() {
-        self.tableView.backgroundColor = UIColor.systemBackground
-        self.tableView.separatorColor = UIColor.separator
+//        self.tableView.backgroundColor = UIColor.systemBackground
+//        self.tableView.separatorColor = UIColor.separator
     }
     
 }
