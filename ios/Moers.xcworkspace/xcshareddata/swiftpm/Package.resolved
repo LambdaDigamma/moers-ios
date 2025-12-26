@@ -21,7 +21,7 @@
     {
       "identity" : "app-scaffold-ios",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/LambdaDigamma/app-scaffold-ios",
+      "location" : "https://github.com/lambdadigamma/app-scaffold-ios",
       "state" : {
         "revision" : "7a100e48901e340c8f2f86d33cf380ec1bc2cbb1",
         "version" : "1.0.1"

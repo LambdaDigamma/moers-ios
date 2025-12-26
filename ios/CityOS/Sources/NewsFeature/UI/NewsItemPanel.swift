@@ -11,6 +11,8 @@ import NukeUI
 
 public struct NewsItemPanel: View {
 
+    @Environment(\.colorScheme) var colorScheme
+    
     private let headline: String
     private let source: String
     private let publishedAt: Date
@@ -30,27 +32,31 @@ public struct NewsItemPanel: View {
 
     public var body: some View {
 
-        ZStack {
+        CardPanelView {
             
-            if let imageURL = imageURL, let url = URL(string: imageURL) {
-                LazyImage(url: url) { state in
-                    if let image = state.image {
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    } else if state.error != nil {
-                        Color(UIColor.secondarySystemFill)
-                    } else {
-                        Color(UIColor.secondarySystemFill)
+            ZStack {
+                
+                if let imageURL = imageURL, let url = URL(string: imageURL) {
+                    LazyImage(url: url) { state in
+                        if let image = state.image {
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        } else if state.error != nil {
+                            Color(UIColor.secondarySystemFill)
+                        } else {
+                            Color(UIColor.secondarySystemFill)
+                        }
                     }
-                }
                     
+                }
+                
             }
+            .frame(maxWidth: .infinity, minHeight: 250, idealHeight: 250, maxHeight: 250)
+            .overlay(textOverlay())
             
         }
-        .frame(maxWidth: .infinity, minHeight: 250, idealHeight: 250, maxHeight: 250)
-        .overlay(textOverlay())
-        .cornerRadius(18)
+        
         
     }
     
@@ -62,15 +68,16 @@ public struct NewsItemPanel: View {
             VStack(alignment: .leading, spacing: 4) {
                 
                 Text(headline)
-                    .font(.footnote)
+                    .font(.subheadline)
                     .fontWeight(.semibold)
+                    .lineLimit(2)
                 
                 Group {
                     Text(publishedAt, formatter: Self.formatter) +
                     Text(" • ") +
                     Text(source)
                 }
-                .font(.caption)
+                .font(.footnote)
                 
             }
             .foregroundColor(Color(UIColor.label))
@@ -78,7 +85,7 @@ public struct NewsItemPanel: View {
             .padding(.horizontal, 12)
             .padding(.vertical, 12)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color(UIColor.secondarySystemBackground))
+            .background(Color(colorScheme == .dark ? UIColor.secondarySystemBackground : UIColor.systemBackground))
             
         }.frame(maxHeight: .infinity, alignment: .bottomLeading)
         

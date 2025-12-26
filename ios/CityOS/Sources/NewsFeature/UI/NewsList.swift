@@ -55,6 +55,7 @@ public struct NewsList: View {
                 }
                 .padding()
             }
+            .background(ApplicationTheme.current.dashboardBackground)
             
         }
         .task {
