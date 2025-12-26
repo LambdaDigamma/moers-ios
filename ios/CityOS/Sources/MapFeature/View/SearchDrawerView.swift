@@ -150,11 +150,3 @@ public class SearchDrawerView: UIView {
     }
     
 }
-
-            searchField.textColor = theme.color
-            
-        }
-        
-    }
-    
-}

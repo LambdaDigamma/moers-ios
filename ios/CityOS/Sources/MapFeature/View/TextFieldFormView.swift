@@ -110,7 +110,12 @@ class TextFieldFormView: UIView, FormView {
     }
     
     private func setupTheming() {
-        
+        self.backgroundColor = UIColor.systemBackground
+        textField.borderInactiveColor = UIColor.secondaryLabel
+        textField.placeholderColor = UIColor.label
+        textField.textColor = UIColor.label
+        textField.tintColor = UIColor.systemYellow
+        textField.autocorrectionType = .no
     }
     
     // MARK: - Data Handling
@@ -138,24 +143,6 @@ class TextFieldFormView: UIView, FormView {
     
     func currentData() -> Codable {
         return textField.text ?? ""
-    }
-    
-}
-
-            
-            textField.borderInactiveColor = theme.decentColor
-            textField.placeholderColor = theme.color
-            textField.textColor = theme.color.darker(by: 10)
-            textField.tintColor = theme.accentColor
-            textField.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
-            textField.autocorrectionType = .no
-            
-        }
-        
-        self.backgroundColor = theme.backgroundColor
-        
-        applyTheming(textField)
-        
     }
     
 }
