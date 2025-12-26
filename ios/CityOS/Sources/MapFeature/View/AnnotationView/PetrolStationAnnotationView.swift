@@ -29,7 +29,7 @@ class PetrolStationAnnotationView: MKMarkerAnnotationView {
             displayPriority = .defaultHigh
             markerTintColor = UIColor(hexString: "#D32F2F")
             glyphTintColor = UIColor.white
-            glyphImage = #imageLiteral(resourceName: "petrolGlyph")
+            glyphImage = UIImage(systemName: "fuelpump")
             
         }
         

@@ -253,7 +253,6 @@ extension OtherViewController: UITableViewDataSource, UITableViewDelegate {
 public class OtherTableViewCell: UITableViewCell {
     
     func applyTheming() {
-        self.backgroundColor = UIColor.systemBackground
         self.textLabel?.textColor = UIColor.label
     }
     
