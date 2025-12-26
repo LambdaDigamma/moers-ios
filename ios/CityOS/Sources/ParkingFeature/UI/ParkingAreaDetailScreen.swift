@@ -226,7 +226,6 @@ public struct ParkingAreaDetailScreen: View {
                 
                 AutoCalculatingDirectionsButton(
                     coordinate: coordinate,
-                    locationService: locationService,
                     action: openInMaps
                 )
                 

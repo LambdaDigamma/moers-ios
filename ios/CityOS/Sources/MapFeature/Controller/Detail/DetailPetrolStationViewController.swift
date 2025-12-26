@@ -24,7 +24,7 @@ class DetailPetrolStationViewController: UIViewController {
     @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var countryLabel: UILabel!
     
-    @LazyInjected var petrolManager: PetrolService
+    @LazyInjected(\.petrolService) var petrolManager
     
     public var coordinator: MapCoordintor? {
         didSet {

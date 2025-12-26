@@ -36,7 +36,7 @@ public struct ParkingDashboardViewData {
 
 public class ParkingDashboardViewModel: StandardViewModel {
     
-    @LazyInjected var parkingService: ParkingService
+    @LazyInjected(\.parkingService) var parkingService
     
     @Published var parkingAreas: DataState<ParkingDashboardViewData, Error> = .loading
     

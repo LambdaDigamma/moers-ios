@@ -12,19 +12,15 @@ import Combine
 
 public class RubbishScheduleViewModel: StandardViewModel {
     
-    @LazyInjected var rubbishService: RubbishService
+    @LazyInjected(\.rubbishService) var rubbishService
+    
     @Published var state: DataState<[RubbishSection], RubbishLoadingError> = .loading
     
     public init(
-        rubbishService: RubbishService? = nil,
         initialState: DataState<[RubbishSection], RubbishLoadingError> = .loading
     ) {
         self.state = initialState
         super.init()
-        
-        if let rubbishService = rubbishService {
-            self.rubbishService = rubbishService
-        }
     }
     
     public func load() {

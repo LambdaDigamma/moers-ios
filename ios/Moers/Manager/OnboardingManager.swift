@@ -19,16 +19,10 @@ import UIKit
 // todo: Move Privacy Consent to Front of Onboarding
 public class OnboardingManager {
     
-    private var rubbishService: RubbishService? {
-        Container.shared.rubbishService()
-    }
-    
-    private var petrolService: PetrolService? {
-        Container.shared.petrolService()
-    }
-    
-    @Injected(\.geocodingService) var geocodingService: GeocodingService
-    @Injected(\.locationService) var locationService: LocationService
+    @LazyInjected(\.rubbishService) var rubbishService: RubbishService
+    @LazyInjected(\.petrolService) var petrolService: PetrolService
+    @LazyInjected(\.geocodingService) var geocodingService: GeocodingService
+    @LazyInjected(\.locationService) var locationService: LocationService
     
     private let appearance: BLTNItemAppearance
     private var cancellables = Set<AnyCancellable>()
@@ -301,7 +295,7 @@ public class OnboardingManager {
             
             AnalyticsManager.shared.logEnabledRubbishReminder(hour)
             
-            page.next = self.makeCompletionPage()
+            page.next = self?.makeCompletionPage()
             item.manager?.displayNextItem()
             
         }

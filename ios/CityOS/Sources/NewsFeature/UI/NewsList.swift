@@ -8,6 +8,7 @@
 import SwiftUI
 import FeedKit
 import Core
+import Factory
 
 public struct NewsList: View {
     
@@ -16,12 +17,9 @@ public struct NewsList: View {
     public var onShowArticle: (RSSFeedItem) -> Void
     
     public init(
-        newsService: NewsService,
         onShowArticle: @escaping (RSSFeedItem) -> Void
     ) {
-        self._viewModel = StateObject(
-            wrappedValue: NewsViewModel(newsService: newsService)
-        )
+        self._viewModel = StateObject(wrappedValue: NewsViewModel())
         self.onShowArticle = onShowArticle
     }
     
@@ -75,16 +73,17 @@ public struct NewsList: View {
     
 }
 
-struct NewsList_Previews: PreviewProvider {
+#Preview {
     
-    static let service = DefaultNewsService()
-    
-    static var previews: some View {
-        NavigationView {
-            NewsList(newsService: service) { _ in
-                
-            }
-        }
-            .preferredColorScheme(.dark)
+    Container.shared.newsService.register {
+        DefaultNewsService()
     }
+    
+    return NavigationView {
+        NewsList() { _ in
+            
+        }
+    }
+    .preferredColorScheme(.dark)
+    
 }

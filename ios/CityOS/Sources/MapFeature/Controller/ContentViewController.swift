@@ -28,7 +28,7 @@ public struct CellIdentifier {
 
 class ContentViewController: UIViewController {
 
-    @LazyInjected var locationService: LocationService
+    @LazyInjected(\.locationService) var locationService
     
     // MARK: - UI
     

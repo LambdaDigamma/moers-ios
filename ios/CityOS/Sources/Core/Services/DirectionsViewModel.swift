@@ -19,15 +19,11 @@ public class DirectionsViewModel: StandardViewModel {
     
     private let logger = Logger(.default)
     
-    private let locationService: LocationService
-    
-    @Injected(\.locationService) private var locationServiceFactory: LocationService
+    @LazyInjected(\.locationService) private var locationService: LocationService
     
     public init(
-        locationService: LocationService? = nil,
         directionsMode: DirectionsMode = .driving
     ) {
-        self.locationService = locationService ?? locationServiceFactory
         self.directionsMode = directionsMode
     }
     

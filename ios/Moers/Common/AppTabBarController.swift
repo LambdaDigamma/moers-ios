@@ -13,15 +13,16 @@ import BLTNBoard
 import MMEvents
 import CoreLocation
 import Combine
-// import Resolver - removed (migrated to Factory)
+import Factory
 import RubbishFeature
 import MapFeature
 import FuelFeature
 
 public class AppTabBarController: AppScaffold.TabBarController {
 
-    @LazyInjected var rubbishService: RubbishService
-    @LazyInjected var petrolService: PetrolService
+    @LazyInjected(\.rubbishService) var rubbishService
+    @LazyInjected(\.petrolService) var petrolService
+    @LazyInjected(\.locationManager) var locationManager
     
     var firstLaunch: FirstLaunch
     
@@ -31,26 +32,13 @@ public class AppTabBarController: AppScaffold.TabBarController {
     let events: EventCoordinator
     let other: OtherCoordinator
     
-    let locationManager: LocationManagerProtocol
-    let cameraManager: CameraManagerProtocol
-    
-    init(
-        firstLaunch: FirstLaunch,
-        locationManager: LocationManagerProtocol,
-        cameraManager: CameraManagerProtocol
-    ) {
+    init(firstLaunch: FirstLaunch) {
         
         self.firstLaunch = firstLaunch
-        self.locationManager = locationManager
-        self.cameraManager = cameraManager
         
         self.dashboard = DashboardCoordinator()
         self.news = NewsCoordinator()
-
-        self.map = MapCoordintor(
-            locationManager: locationManager
-        )
-
+        self.map = MapCoordintor()
         self.events = EventCoordinator()
         self.other = OtherCoordinator()
         

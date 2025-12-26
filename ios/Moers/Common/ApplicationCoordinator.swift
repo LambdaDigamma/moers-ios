@@ -81,11 +81,7 @@ class ApplicationCoordinator: NSObject {
     
     internal func rootViewController() -> UIViewController {
         
-        self.splitViewController = AppSplitViewController(
-            firstLaunch: firstLaunch,
-            locationManager: locationManager,
-            cameraManager: cameraManager
-        )
+        self.splitViewController = AppSplitViewController(firstLaunch: firstLaunch)
         
         // Restoring the user interface based on the current user activity
         splitViewController.onChangeTraitCollection = { _ in

@@ -34,9 +34,7 @@ public class CarPlaySceneDelegate: UIResponder {
     
     public func loadParkingLots() {
         
-        guard let parkingService = Container.shared.parkingService() else {
-            return
-        }
+        let parkingService = Container.shared.parkingService()
         
         parkingService.loadParkingAreas()
             .sink { (completion: Subscribers.Completion<Error>) in
@@ -168,9 +166,8 @@ public class CarPlaySceneDelegate: UIResponder {
     public func loadFuelStations() {
         
         let locationService = Container.shared.locationService()
-        guard let fuelService = Container.shared.petrolService() else {
-            return
-        }
+        let fuelService = Container.shared.petrolService()
+        
         let preferredPetrolType = fuelService.petrolType
         
         locationService.location

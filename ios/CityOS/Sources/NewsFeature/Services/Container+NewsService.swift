@@ -10,9 +10,9 @@ import Factory
 
 public extension Container {
     
-    var newsService: Factory<NewsService?> {
+    var newsService: Factory<NewsService> {
         self {
-            nil // Will be configured at runtime
+            StaticNewsService()
         }
     }
     

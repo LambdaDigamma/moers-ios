@@ -10,9 +10,9 @@ import Factory
 
 public extension Container {
     
-    var petrolService: Factory<PetrolService?> {
+    var petrolService: Factory<PetrolService> {
         self {
-            nil // Will be configured at runtime
+            StaticPetrolService()
         }
     }
     

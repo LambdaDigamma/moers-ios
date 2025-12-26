@@ -17,7 +17,8 @@ import Core
 
 public class DetailViewController: UIViewController {
     
-    @LazyInjected var locationService: LocationService
+    @LazyInjected(\.locationService) var locationService
+    @LazyInjected(\.entryManager) var entryManager
     
     public var coordinator: MapCoordintor?
     
@@ -30,7 +31,6 @@ public class DetailViewController: UIViewController {
     private lazy var routeButton: UIButton = { CoreViewFactory.button() }()
     
     private var cancellables = Set<AnyCancellable>()
-    private let entryManager: EntryManagerProtocol
     
     private weak var child: UIViewController? {
         willSet {
@@ -50,9 +50,7 @@ public class DetailViewController: UIViewController {
     
     public var selectedLocation: Location? { didSet { setupLocation(selectedLocation) } }
     
-    init(entryManager: EntryManagerProtocol) {
-        
-        self.entryManager = entryManager
+    init() {
         
         super.init(nibName: nil, bundle: nil)
         

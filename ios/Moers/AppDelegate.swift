@@ -98,10 +98,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             let rubbishService = Container.shared.rubbishService()
             
-            guard let rubbishService = rubbishService else {
-                return false
-            }
-            
             if rubbishService.isEnabled && rubbishService.rubbishStreet != nil {
                 tabBarController.selectedIndex = 0
                 tabBarController.dashboard.pushRubbishViewController()

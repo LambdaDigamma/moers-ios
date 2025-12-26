@@ -17,14 +17,12 @@ import Core
 public class NewsListViewController: UIHostingController<NewsList> {
     
     private var onShowArticle: (RSSFeedItem) -> Void
-    private let newsService: NewsService
     
-    @Injected(\.newsService) private var newsServiceFactory: NewsService?
+    @LazyInjected(\.newsService) private var newsService
     
     public init(onShowArticle: @escaping (RSSFeedItem) -> Void) {
         self.onShowArticle = onShowArticle
-        self.newsService = newsServiceFactory ?? DefaultNewsService()
-        super.init(rootView: NewsList(newsService: newsService, onShowArticle: onShowArticle))
+        super.init(rootView: NewsList(onShowArticle: onShowArticle))
     }
     
     public override func viewWillAppear(_ animated: Bool) {

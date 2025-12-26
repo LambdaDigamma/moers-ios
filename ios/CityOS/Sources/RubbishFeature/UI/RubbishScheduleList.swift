@@ -14,19 +14,10 @@ public struct RubbishScheduleList: View {
     @State var showInfo: Bool = false
     @ObservedObject var viewModel: RubbishScheduleViewModel
     
-    @Injected(\.rubbishService) private var rubbishServiceFactory: RubbishService?
-    
     public init(
         rubbishService: RubbishService? = nil
     ) {
-        let service = rubbishService ?? rubbishServiceFactory
-        self.viewModel = RubbishScheduleViewModel(rubbishService: service ?? StaticRubbishService(
-            rubbishStreet: nil,
-            isEnabled: false,
-            remindersEnabled: false,
-            reminderHour: 20,
-            reminderMinute: 0
-        ))
+        self.viewModel = RubbishScheduleViewModel()
     }
     
     public var body: some View {

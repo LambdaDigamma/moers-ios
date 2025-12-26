@@ -9,7 +9,7 @@
 import Core
 import UIKit
 import BLTNBoard
-// import Resolver - removed (migrated to Factory)
+import Factory
 import RubbishFeature
 import FuelFeature
 
@@ -23,8 +23,8 @@ class SettingsViewController: UIViewController {
     
     var data: [TableViewSection] = []
     
-    @LazyInjected var rubbishService: RubbishService
-    @LazyInjected var petrolService: PetrolService
+    @LazyInjected(\.rubbishService) var rubbishService
+    @LazyInjected(\.petrolService) var petrolService
     
     private let onboardingManager: OnboardingManager
     

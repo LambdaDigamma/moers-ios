@@ -14,7 +14,7 @@ import Factory
 
 public class EntryOnboardingLocationMenuViewController: UIViewController {
     
-    @LazyInjected var entryManager: EntryManagerProtocol
+    @LazyInjected(\.entryManager) var entryManager
     
     private lazy var progressView: OnboardingProgressView = { CoreViewFactory.onboardingProgressView() }()
     private lazy var addressButton: UIButton = { CoreViewFactory.button() }()
@@ -115,7 +115,7 @@ public class EntryOnboardingLocationMenuViewController: UIViewController {
     
     @objc private func enterLocation() {
         
-        let viewController = MapLocationPickerViewController(entryManager: entryManager)
+        let viewController = MapLocationPickerViewController()
         
         self.navigationController?.pushViewController(viewController, animated: true)
         

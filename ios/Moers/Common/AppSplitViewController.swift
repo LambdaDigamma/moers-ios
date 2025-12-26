@@ -22,15 +22,10 @@ import MapFeature
 
 public class AppSplitViewController: SplitViewController {
     
-    private var rubbishService: RubbishService? {
-        Container.shared.rubbishService()
-    }
+    @LazyInjected(\.rubbishService) var rubbishService
+    @LazyInjected(\.petrolService) var petrolService
+    @LazyInjected(\.locationManager) var locationManager
     
-    private var petrolService: PetrolService? {
-        Container.shared.petrolService()
-    }
-    
-    let locationManager: LocationManagerProtocol
     let dashboard: DashboardCoordinator
     let news: NewsCoordinator
     let map: MapCoordintor
@@ -41,19 +36,11 @@ public class AppSplitViewController: SplitViewController {
     
     public init(
         firstLaunch: FirstLaunch,
-        locationManager: LocationManagerProtocol,
-        cameraManager: CameraManagerProtocol
     ) {
-        
-        self.locationManager = locationManager
         
         self.dashboard = DashboardCoordinator()
         self.news = NewsCoordinator()
-        
-        self.map = MapCoordintor(
-            locationManager: locationManager
-        )
-        
+        self.map = MapCoordintor()
         self.events = EventCoordinator()
         self.other = OtherCoordinator()
         
@@ -66,9 +53,7 @@ public class AppSplitViewController: SplitViewController {
         ]
         
         self.tabController = AppTabBarController(
-            firstLaunch: firstLaunch,
-            locationManager: locationManager,
-            cameraManager: cameraManager
+            firstLaunch: firstLaunch
         )
         
         let secondaryRootViewControllers = coordinators.map({ coordinator in
@@ -154,7 +139,7 @@ public class AppSplitViewController: SplitViewController {
     private func setupMocked() {
         
         UserManager.shared.register(User(type: .citizen, id: nil, name: nil, description: nil))
-        petrolService?.petrolType = .diesel
+        petrolService.petrolType = .diesel
         
     }
     
@@ -264,9 +249,7 @@ public class AppSplitViewController: SplitViewController {
     
     private func loadRubbishData() {
         
-        guard let rubbishService = Container.shared.rubbishService() else {
-            return
-        }
+        let rubbishService = Container.shared.rubbishService()
         
         if rubbishService.isEnabled &&
             !firstLaunch.isFirstLaunch &&

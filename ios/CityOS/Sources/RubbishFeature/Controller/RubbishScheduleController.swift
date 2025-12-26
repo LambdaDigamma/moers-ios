@@ -17,11 +17,9 @@ import SwiftUI
 /// so that it can be pushed via programmatic navigation.
 public class RubbishScheduleController: UIHostingController<RubbishScheduleList> {
     
-    @Injected(\.rubbishService) private var rubbishServiceFactory: RubbishService?
-    
-    public init(rubbishService: RubbishService? = nil) {
-        let service = rubbishService ?? Container.shared.rubbishService()
-        let rubbishSchedule = RubbishScheduleList(rubbishService: service)
+    public init() {
+        
+        let rubbishSchedule = RubbishScheduleList()
         super.init(rootView: rubbishSchedule)
     }
     

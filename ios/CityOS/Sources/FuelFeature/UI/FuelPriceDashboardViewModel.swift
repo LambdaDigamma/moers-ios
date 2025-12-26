@@ -31,24 +31,14 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
     
     private let logger: Logger = Logger(.coreUi)
     
-    private let petrolService: PetrolService
-    private let locationService: LocationService
-    private let geocodingService: GeocodingService
-    
-    @Injected(\.petrolService) private var petrolServiceFactory: PetrolService?
-    @Injected(\.locationService) private var locationServiceFactory: LocationService
-    @Injected(\.geocodingService) private var geocodingServiceFactory: GeocodingService
+    @Injected(\.petrolService) private var petrolService
+    @Injected(\.locationService) private var locationService
+    @Injected(\.geocodingService) private var geocodingService
     
     public init(
-        petrolService: PetrolService? = nil,
-        locationService: LocationService? = nil,
-        geocodingService: GeocodingService? = nil,
         initialState: DataState<PetrolPriceDashboardData, Error> = .loading,
         initialFuelStations: DataState<[PetrolStation], Error> = .loading
     ) {
-        self.petrolService = petrolService ?? petrolServiceFactory ?? DefaultPetrolService(userDefaults: .standard, apiKey: "")
-        self.locationService = locationService ?? locationServiceFactory
-        self.geocodingService = geocodingService ?? geocodingServiceFactory
         self.data = initialState
         self.fuelStations = initialFuelStations
         super.init()

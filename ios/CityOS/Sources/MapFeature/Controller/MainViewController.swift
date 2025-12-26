@@ -17,7 +17,9 @@ import FuelFeature
 
 public class MainViewController: PulleyViewController {
 
-    @LazyInjected var petrolManager: PetrolService
+    @LazyInjected(\.entryManager) var entryManager
+    @LazyInjected(\.petrolService) var petrolManager
+    @LazyInjected(\.cameraManager) var cameraManager
     
     public var coordinator: MapCoordintor? {
         didSet {
@@ -28,10 +30,8 @@ public class MainViewController: PulleyViewController {
     public var mapViewController: MapViewController!
     public var contentViewController: SearchDrawerViewController!
     public var locations: [Location] = []
-    public lazy var detailViewController = { DetailViewController(entryManager: entryManager) }()
+    public lazy var detailViewController = { DetailViewController() }()
     
-    private let cameraManager: CameraManagerProtocol
-    private let entryManager: EntryManagerProtocol
     private let eventBus: EventBus
     private var cancellables = Set<AnyCancellable>()
     
@@ -43,8 +43,6 @@ public class MainViewController: PulleyViewController {
     ) {
         
         self.eventBus = EventBus()
-        self.cameraManager = cameraManager
-        self.entryManager = entryManager
         
         super.init(contentViewController: contentViewController, drawerViewController: drawerViewController)
         

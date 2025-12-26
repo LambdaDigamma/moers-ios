@@ -125,7 +125,6 @@ public struct FuelStationDetailContent: View {
             
             AutoCalculatingDirectionsButton(
                 coordinate: fuelStation.coordinate,
-                locationService: Container.shared.locationService(),
                 action: {
                     AppleNavigationProvider()
                         .startNavigation(to: fuelStation.coordinate.toPoint(), withName: fuelStation.name)

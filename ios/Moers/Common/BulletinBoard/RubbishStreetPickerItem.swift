@@ -12,14 +12,14 @@ import BLTNBoard
 import CoreLocation
 import OSLog
 import Combine
-// import Resolver - removed (migrated to Factory)
+import Factory
 import RubbishFeature
 
 class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataSource {
 
-    @LazyInjected var rubbishService: RubbishService
-    @LazyInjected var geocodingService: GeocodingService
-    @LazyInjected var locationService: LocationService
+    @LazyInjected(\.rubbishService) var rubbishService
+    @LazyInjected(\.geocodingService) var geocodingService
+    @LazyInjected(\.locationService) var locationService
     
     private var streets: [RubbishFeature.RubbishCollectionStreet] = []
     private var cancellables = Set<AnyCancellable>()
