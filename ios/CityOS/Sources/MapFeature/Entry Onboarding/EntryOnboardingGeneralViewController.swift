@@ -223,7 +223,4 @@ extension EntryOnboardingGeneralViewController: UITextFieldDelegate {
     
 }
 
-    
-}
-
 #endif

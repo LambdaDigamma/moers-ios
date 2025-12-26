@@ -132,6 +132,3 @@ extension EntryHistoryViewController: UITableViewDataSource, UITableViewDelegate
     }
     
 }
-
-    
-}

@@ -244,6 +244,3 @@ extension EntryOnboardingOpeningHoursViewController: UITextFieldDelegate {
     }
     
 }
-
-    
-}

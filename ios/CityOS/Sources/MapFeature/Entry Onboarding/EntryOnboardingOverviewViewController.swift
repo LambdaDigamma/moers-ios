@@ -659,7 +659,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
             self.save()
         }
         
-        alert.overrideUserInterfaceStyle = .dark
+//        alert.overrideUserInterfaceStyle = .dark
         alert.addAction(saveAction)
         
         present(alert, animated: true, completion: nil)
@@ -697,7 +697,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
             )
         )
         
-        alert.overrideUserInterfaceStyle = .dark
+//        alert.overrideUserInterfaceStyle = .dark
         
         present(alert, animated: true, completion: nil)
         
@@ -713,7 +713,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
                 preferredStyle: .alert
             )
             
-            alert.overrideUserInterfaceStyle = .dark
+//            alert.overrideUserInterfaceStyle = .dark
             
             alert.addAction(
                 UIAlertAction(
@@ -739,7 +739,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
             preferredStyle: .alert
         )
         
-        alert.overrideUserInterfaceStyle = .dark
+//        alert.overrideUserInterfaceStyle = .dark
         
         alert.addAction(
             UIAlertAction(
@@ -769,7 +769,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
                 preferredStyle: .alert
             )
             
-            alert.overrideUserInterfaceStyle = .dark
+//            alert.overrideUserInterfaceStyle = .dark
             
             alert.addAction(
                 UIAlertAction(
@@ -877,11 +877,6 @@ extension EntryOnboardingOverviewViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
-    }
-    
-}
-
-        
     }
     
 }

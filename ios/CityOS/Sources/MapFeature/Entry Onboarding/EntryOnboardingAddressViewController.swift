@@ -345,6 +345,3 @@ extension HoshiTextField {
     }
     
 }
-
-    
-}

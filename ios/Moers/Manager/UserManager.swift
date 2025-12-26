@@ -57,15 +57,11 @@ public class UserManager {
     public var theme: ApplicationTheme {
         get {
             
-            let identifier = UserDefaults.standard.string(forKey: "Theme") ?? ApplicationTheme.dark.identifier
-            
-            let theme = ApplicationTheme.all.filter { $0.identifier == identifier }.first ?? ApplicationTheme.dark
-            
-            return theme
+            return ApplicationTheme.current
             
         }
         set {
-            UserDefaults.standard.set(newValue.identifier, forKey: "Theme")
+//            UserDefaults.standard.set(newValue.identifier, forKey: "Theme")
         }
     }
     

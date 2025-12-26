@@ -370,6 +370,3 @@ extension EntryOnboardingTagsViewController: LFSearchViewDataSource, LFSearchVie
     }
     
 }
-
-    
-}
