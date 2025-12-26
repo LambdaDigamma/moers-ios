@@ -15,7 +15,7 @@ import TagListView
 import Fuse
 import Combine
 import Core
-import Resolver
+import Factory
 
 // swiftlint:disable file_length
 
@@ -28,7 +28,7 @@ public struct CellIdentifier {
 
 class ContentViewController: UIViewController {
 
-    @LazyInjected var locationService: LocationService
+    @LazyInjected(\.locationService) var locationService
     
     // MARK: - UI
     

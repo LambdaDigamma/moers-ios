@@ -36,7 +36,6 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
         .package(url: "https://github.com/hmlongco/Factory", .upToNextMajor(from: "2.0.0")),
         .package(url: "https://github.com/LambdaDigamma/ModernNetworking", branch: "main"),
-        .package(url: "https://github.com/LambdaDigamma/Resolver", from: "1.1.5"),
         .package(url: "https://github.com/LambdaDigamma/Cache", .upToNextMajor(from: "6.0.0")),
         .package(url: "https://github.com/LambdaDigamma/fuse-swift", .upToNextMajor(from: "1.4.2")),
         .package(url: "https://github.com/LambdaDigamma/TagListView", from: "1.4.2"),
@@ -60,7 +59,6 @@ let package = Package(
                 .product(name: "MediaLibraryKit", package: "MediaLibraryKit"),
                 .product(name: "ModernNetworking", package: "ModernNetworking"),
                 .product(name: "Fuse", package: "fuse-swift"),
-                .product(name: "Resolver", package: "Resolver"),
                 .product(name: "Factory", package: "Factory"),
                 .product(name: "Haneke", package: "HanekeSwift")
             ],
@@ -107,7 +105,7 @@ let package = Package(
         // ---------------- ParkingFeature ----------------
         .target(
             name: "ParkingFeature",
-            dependencies: ["Core", "ModernNetworking", "Resolver"],
+            dependencies: ["Core", "ModernNetworking"],
             resources: [
                 .process("Resources")
             ]

@@ -10,11 +10,11 @@ import Core
 import UIKit
 import AppScaffold
 import MMEvents
-import Resolver
+import Factory
 
 class EventCoordinator: Coordinator {
     
-    @LazyInjected var eventService: EventService
+    @LazyInjected(\.eventService) var eventService
     
     var navigationController: CoordinatedNavigationController
     var eventViewController: MMEventsViewController?

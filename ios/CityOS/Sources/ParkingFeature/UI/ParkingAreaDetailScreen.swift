@@ -10,7 +10,7 @@ import Core
 import MapKit
 //import Charts
 import CoreLocation
-import Resolver
+import Factory
 
 public struct Marker: Identifiable {
     
@@ -218,15 +218,14 @@ public struct ParkingAreaDetailScreen: View {
         Divider()
             .padding(.horizontal)
         
-        let locationService: LocationService? = Resolver.optional()
+        let locationService = Container.shared.locationService()
         
-        if let coordinate = viewModel.location?.toCoordinate(), let locationService = locationService {
+        if let coordinate = viewModel.location?.toCoordinate() {
             
             VStack {
                 
                 AutoCalculatingDirectionsButton(
                     coordinate: coordinate,
-                    locationService: locationService,
                     action: openInMaps
                 )
                 

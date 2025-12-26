@@ -253,15 +253,6 @@
       }
     },
     {
-      "identity" : "resolver",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/LambdaDigamma/Resolver",
-      "state" : {
-        "revision" : "77e52514918f16a7cf64dc2afcbe28af8519e941",
-        "version" : "1.5.2"
-      }
-    },
-    {
       "identity" : "swift-algorithms",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-algorithms",

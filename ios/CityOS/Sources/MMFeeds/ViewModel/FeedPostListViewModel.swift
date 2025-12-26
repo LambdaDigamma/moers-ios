@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 import ModernNetworking
-import Resolver
 import Factory
 
 public class FeedPostListViewModel: ObservableObject {
@@ -39,16 +38,18 @@ public class FeedPostListViewModel: ObservableObject {
     
     private let dataLoadingEnabled: Bool
     
+    @Injected(\.feedService) private var feedServiceFactory: FeedService
+    
     /// This initializes the view model with a `Feed.ID`.
     public init(
         feedID: Feed.ID,
-        service: FeedService = Resolver.resolve(),
+        service: FeedService? = nil,
         postsPerLoad: Int = 10,
         automaticallyLoadFirstPage: Bool = true
     ) {
         
         self.repository = Container.shared.postRepository()
-        self.feedService = service
+        self.feedService = service ?? feedServiceFactory
         self.feedID = feedID
         self.postsPerLoad = postsPerLoad
         self.dataLoadingEnabled = true

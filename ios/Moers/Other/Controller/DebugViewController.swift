@@ -10,12 +10,12 @@ import Core
 import UIKit
 import UserNotifications
 import Combine
-import Resolver
+import Factory
 import RubbishFeature
 
 class DebugViewController: UIViewController {
     
-    @LazyInjected var rubbishService: RubbishService
+    @LazyInjected(\.rubbishService) var rubbishService
     
     lazy var rubbishItemsTextView: UITextView = {
         

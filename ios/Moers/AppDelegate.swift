@@ -13,7 +13,7 @@ import Firebase
 import Haneke
 import SwiftUI
 import AppScaffold
-import Resolver
+import Factory
 import ModernNetworking
 import RubbishFeature
 import MMEvents
@@ -96,11 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         if userActivity.activityType == "de.okfn.niederrhein.Moers.nextRubbish" {
             
-            let rubbishService: RubbishService? = Resolver.optional()
-            
-            guard let rubbishService = rubbishService else {
-                return false
-            }
+            let rubbishService = Container.shared.rubbishService()
             
             if rubbishService.isEnabled && rubbishService.rubbishStreet != nil {
                 tabBarController.selectedIndex = 0

@@ -10,15 +10,16 @@ import Core
 
 #if canImport(UIKit)
 import UIKit
-import Resolver
+import Factory
 import SwiftUI
 
 /// Hosts the `RubbishScheduleList` in a UIViewController
 /// so that it can be pushed via programmatic navigation.
 public class RubbishScheduleController: UIHostingController<RubbishScheduleList> {
     
-    public init(rubbishService: RubbishService = Resolver.resolve()) {
-        let rubbishSchedule = RubbishScheduleList(rubbishService: rubbishService)
+    public init() {
+        
+        let rubbishSchedule = RubbishScheduleList()
         super.init(rootView: rubbishSchedule)
     }
     

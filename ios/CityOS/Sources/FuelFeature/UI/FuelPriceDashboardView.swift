@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Core
+import Factory
 
 public struct FuelPriceDashboardView: View {
     
@@ -79,21 +80,19 @@ public struct FuelPriceDashboardView: View {
     
 }
 
-struct FuelPriceDashboardView_Previews: PreviewProvider {
+#Preview {
     
-    static var previews: some View {
-        
-        let service = StaticPetrolService()
-        let viewModel = FuelPriceDashboardViewModel(
-            petrolService: service,
-            initialState: .loading
-        )
-        
-        FuelPriceDashboardView(viewModel: viewModel)
-            .preferredColorScheme(.dark)
-            .padding()
-            .previewLayout(.sizeThatFits)
-        
+    Container.shared.petrolService.register {
+        StaticPetrolService()
     }
+    
+    let viewModel = FuelPriceDashboardViewModel(
+        initialState: .loading
+    )
+    
+    return FuelPriceDashboardView(viewModel: viewModel)
+        .preferredColorScheme(.dark)
+        .padding()
+        .previewLayout(.sizeThatFits)
     
 }

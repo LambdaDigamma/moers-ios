@@ -11,7 +11,7 @@ import UIKit
 import ModernNetworking
 import MMEvents
 import Cache
-import Resolver
+import Factory
 import OSLog
 import Core
 import EFAUI
@@ -29,7 +29,7 @@ public enum TabIndices: Int {
 
 class ApplicationCoordinator: NSObject {
 
-    @LazyInjected var loader: HTTPLoader
+    @Injected(\.httpLoader) var loader: HTTPLoader
     
     private let logger: Logger = Logger(.coreAppLifecycle)
     
@@ -41,8 +41,9 @@ class ApplicationCoordinator: NSObject {
     private var splitViewController: AppSplitViewController!
     
     convenience override init() {
-        let loader: HTTPLoader = Resolver.resolve()
-        self.init(entryManager: EntryManager(loader: loader))
+        @Injected(\.httpLoader) var loader: HTTPLoader
+        @Injected(\.entryManager) var entryManager: EntryManagerProtocol
+        self.init(entryManager: entryManager)
     }
     
     init(
@@ -80,11 +81,7 @@ class ApplicationCoordinator: NSObject {
     
     internal func rootViewController() -> UIViewController {
         
-        self.splitViewController = AppSplitViewController(
-            firstLaunch: firstLaunch,
-            locationManager: locationManager,
-            cameraManager: cameraManager
-        )
+        self.splitViewController = AppSplitViewController(firstLaunch: firstLaunch)
         
         // Restoring the user interface based on the current user activity
         splitViewController.onChangeTraitCollection = { _ in

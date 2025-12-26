@@ -12,7 +12,7 @@ import FuelFeature
 import RubbishFeature
 import ParkingFeature
 import WeatherFeature
-import Resolver
+import Factory
 import EFAUI
 
 public struct DashboardView<Content: View>: View {
@@ -113,7 +113,7 @@ public struct DashboardView<Content: View>: View {
         } else if item is ParkingDashboardConfiguration {
             
             NavigationLink {
-                ParkingAreaList(parkingService: Resolver.resolve())
+                ParkingAreaList(parkingService: Container.shared.parkingService() ?? DefaultParkingService(loader: Container.shared.httpLoader()))
             } label: {
                 ParkingDashboardView(viewModel: parkingViewModel)
             }

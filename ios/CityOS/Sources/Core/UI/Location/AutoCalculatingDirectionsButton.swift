@@ -5,6 +5,7 @@
 //  Created by Lennart Fischer on 30.01.22.
 //
 
+import Factory
 import SwiftUI
 import CoreLocation
 import MapKit
@@ -20,7 +21,6 @@ public struct AutoCalculatingDirectionsButton: View {
     public init(
         coordinate: CLLocationCoordinate2D,
         directionsMode: DirectionsMode = .driving,
-        locationService: LocationService,
         action: @escaping () -> Void
     ) {
         self.action = action
@@ -28,7 +28,6 @@ public struct AutoCalculatingDirectionsButton: View {
         self.directionsMode = directionsMode
         self._viewModel = .init(
             wrappedValue: .init(
-                locationService: locationService,
                 directionsMode: directionsMode
             )
         )
@@ -48,19 +47,20 @@ public struct AutoCalculatingDirectionsButton: View {
     
 }
 
-struct AutoCalculatingDirectionsButton_Previews: PreviewProvider {
-    static var previews: some View {
-        
+#Preview {
+    
+    Container.shared.locationService.register {
         let locationService = StaticLocationService()
         locationService.location = .init(.init(latitude: 51.451150, longitude: 6.614330))
-        
-        return AutoCalculatingDirectionsButton(
-            coordinate: .init(latitude: 51.449711, longitude: 6.629624),
-            locationService: locationService,
-            action: {}
-        )
-            .padding()
-            .previewLayout(.sizeThatFits)
-            .preferredColorScheme(.dark)
+        return locationService
     }
+    
+    return AutoCalculatingDirectionsButton(
+        coordinate: .init(latitude: 51.449711, longitude: 6.629624),
+        action: {}
+    )
+    .padding()
+    .previewLayout(.sizeThatFits)
+    .preferredColorScheme(.dark)
+    
 }

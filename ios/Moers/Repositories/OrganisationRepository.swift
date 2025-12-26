@@ -8,7 +8,7 @@
 
 import Foundation
 import Combine
-import Resolver
+import Factory
 import ModernNetworking
 import MMAPI
 
@@ -45,8 +45,10 @@ class RemoteOrganisationRepository: BaseOrganisationRepository, OrganisationRepo
     
     private let api: API
     
-    init(api: API = Resolver.resolve()) {
-        self.api = api
+    @Injected(\.httpLoader) private var loader: HTTPLoader
+    
+    init(api: API? = nil) {
+        self.api = api ?? API(loader: loader)
         super.init()
         self.loadData()
     }

@@ -8,12 +8,12 @@
 import SwiftUI
 import Core
 import CoreLocation
-import Resolver
+import Factory
 import Combine
 
 public class ParkingTimerViewModel: StandardViewModel {
     
-    @LazyInjected var locationService: LocationService
+    @LazyInjected(\.locationService) var locationService
     
     @Published var endDate: Date = Date()
     @Published var timerStarted: Bool = false

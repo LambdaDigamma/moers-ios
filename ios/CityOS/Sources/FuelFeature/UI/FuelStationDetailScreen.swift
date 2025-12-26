@@ -8,7 +8,7 @@
 import SwiftUI
 import Core
 import Combine
-import Resolver
+import Factory
 
 public struct FuelStationDetailScreen: View {
     
@@ -125,7 +125,6 @@ public struct FuelStationDetailContent: View {
             
             AutoCalculatingDirectionsButton(
                 coordinate: fuelStation.coordinate,
-                locationService: Resolver.resolve(),
                 action: {
                     AppleNavigationProvider()
                         .startNavigation(to: fuelStation.coordinate.toPoint(), withName: fuelStation.name)

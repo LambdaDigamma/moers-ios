@@ -13,16 +13,16 @@ import CoreLocation
 import Combine
 import RubbishFeature
 import FuelFeature
-import Resolver
+import Factory
 import UIKit
 
 // todo: Move Privacy Consent to Front of Onboarding
 public class OnboardingManager {
     
-    @LazyInjected var rubbishService: RubbishService
-    @LazyInjected var petrolService: PetrolService
-    @LazyInjected var geocodingService: GeocodingService
-    @LazyInjected var locationService: LocationService
+    @LazyInjected(\.rubbishService) var rubbishService: RubbishService
+    @LazyInjected(\.petrolService) var petrolService: PetrolService
+    @LazyInjected(\.geocodingService) var geocodingService: GeocodingService
+    @LazyInjected(\.locationService) var locationService: LocationService
     
     private let appearance: BLTNItemAppearance
     private var cancellables = Set<AnyCancellable>()
@@ -284,18 +284,18 @@ public class OnboardingManager {
         page.appearance = appearance
         page.isDismissable = false
         
-        page.actionHandler = { item in
+        page.actionHandler = { [weak self] item in
             
             let hour = Calendar.current.component(.hour, from: page.picker.date)
             let minutes = Calendar.current.component(.minute, from: page.picker.date)
             
-            if let rubbishSerivce: RubbishService? = Resolver.optional() {
-                rubbishSerivce?.registerNotifications(at: hour, minute: minutes)
+            if let rubbishService = self?.rubbishService {
+                rubbishService.registerNotifications(at: hour, minute: minutes)
             }
             
             AnalyticsManager.shared.logEnabledRubbishReminder(hour)
             
-            page.next = self.makeCompletionPage()
+            page.next = self?.makeCompletionPage()
             item.manager?.displayNextItem()
             
         }

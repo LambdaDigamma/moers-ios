@@ -13,11 +13,11 @@ import EFAUI
 import EFAAPI
 import AppFeedback
 import MapFeature
-import Resolver
+import Factory
 
 public class OtherCoordinator: Coordinator {
     
-    @LazyInjected var entryManager: EntryManagerProtocol
+    @LazyInjected(\.entryManager) var entryManager
     
     public var navigationController: CoordinatedNavigationController
     public var otherViewController: OtherViewController?

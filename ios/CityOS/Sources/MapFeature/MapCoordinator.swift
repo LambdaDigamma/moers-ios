@@ -9,26 +9,23 @@
 import Core
 import UIKit
 import AppScaffold
-import Resolver
+import Factory
 
 public class MapCoordintor: Coordinator {
     
-    @LazyInjected var entryManager: EntryManagerProtocol
-    @LazyInjected var cameraManager: CameraManagerProtocol
+    @LazyInjected(\.entryManager) var entryManager
+    @LazyInjected(\.cameraManager) var cameraManager
+    @LazyInjected(\.locationManager) var locationManager
     
     public var navigationController: CoordinatedNavigationController
-    
-    public var locationManager: LocationManagerProtocol
     
     public var mainViewController: MainViewController?
     
     public init(
-        navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
-        locationManager: LocationManagerProtocol
+        navigationController: CoordinatedNavigationController = CoordinatedNavigationController()
     ) {
     
         self.navigationController = navigationController
-        self.locationManager = locationManager
         
         self.navigationController.coordinator = self
         
@@ -37,9 +34,7 @@ public class MapCoordintor: Coordinator {
         
         let mainViewController = MainViewController(
             contentViewController: mapViewController,
-            drawerViewController: contentViewController,
-            cameraManager: cameraManager,
-            entryManager: entryManager
+            drawerViewController: contentViewController
         )
         
         mainViewController.navigationItem.largeTitleDisplayMode = .never

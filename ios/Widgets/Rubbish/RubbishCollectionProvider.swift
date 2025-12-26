@@ -10,7 +10,7 @@ import Foundation
 import WidgetKit
 import RubbishFeature
 import UserNotifications
-import Resolver
+import Factory
 import Combine
 
 class RubbishCollectionProvider: TimelineProvider {
@@ -25,7 +25,13 @@ class RubbishCollectionProvider: TimelineProvider {
         NetworkingConfiguration().executeInExtension()
         ServiceConfiguration().executeInExtension()
         
-        self.rubbishService = Resolver.resolve()
+        self.rubbishService = Container.shared.rubbishService() ?? StaticRubbishService(
+            rubbishStreet: nil,
+            isEnabled: false,
+            remindersEnabled: false,
+            reminderHour: 20,
+            reminderMinute: 0
+        )
     }
     
     func placeholder(in context: Context) -> RubbishCollectionEntry {

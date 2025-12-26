@@ -13,7 +13,7 @@ import Pulley
 import TagListView
 import Fuse
 import Combine
-import Resolver
+import Factory
 //import NewsFeature
 
 public enum DisplayMode {
@@ -46,7 +46,7 @@ public class SearchDrawerViewController: UIViewController {
         }
     }
     
-    @LazyInjected private var locationManager: LocationManagerProtocol
+    @LazyInjected(\.locationManager) private var locationManager
     
     public init() {
         self.searchDrawer = SearchDrawerView()

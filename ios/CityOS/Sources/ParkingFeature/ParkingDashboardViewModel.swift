@@ -7,7 +7,7 @@
 
 import Foundation
 import Core
-import Resolver
+import Factory
 import Combine
 
 public struct ParkingDashboardViewData {
@@ -36,7 +36,7 @@ public struct ParkingDashboardViewData {
 
 public class ParkingDashboardViewModel: StandardViewModel {
     
-    @LazyInjected var parkingService: ParkingService
+    @LazyInjected(\.parkingService) var parkingService
     
     @Published var parkingAreas: DataState<ParkingDashboardViewData, Error> = .loading
     

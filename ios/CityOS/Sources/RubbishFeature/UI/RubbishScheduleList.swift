@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Resolver
+import Factory
 import Core
 
 public struct RubbishScheduleList: View {
@@ -15,9 +15,9 @@ public struct RubbishScheduleList: View {
     @ObservedObject var viewModel: RubbishScheduleViewModel
     
     public init(
-        rubbishService: RubbishService = Resolver.resolve()
+        rubbishService: RubbishService? = nil
     ) {
-        self.viewModel = RubbishScheduleViewModel(rubbishService: rubbishService)
+        self.viewModel = RubbishScheduleViewModel()
     }
     
     public var body: some View {

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Resolver
+import Factory
 import Core
 import MapKit
 
@@ -142,25 +142,24 @@ public struct FuelStationList: View {
     
 }
 
-struct FuelStationList_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        let service = StaticPetrolService()
-        let viewModel = FuelPriceDashboardViewModel(
-            petrolService: service,
-            locationService: StaticLocationService(),
-            geocodingService: StaticGeocodingService(),
-            initialFuelStations: .success([
-                .stub(withID: "C5B7FF8B-9D7C-4485-A740-7601F221C40E")
-                    .setting(\.brand, to: "Shell"),
-                .stub(withID: "E01B9608-A2D1-4A21-9CF0-9DB39B0EF883")
-                    .setting(\.brand, to: "Markant"),
-                .stub(withID: "D682A96B-5CCE-4F18-9E6A-C9EEF98A447A")
-                    .setting(\.brand, to: "Aral"),
-            ])
-        )
-        
-        FuelStationList(viewModel: viewModel)
-            .preferredColorScheme(.dark)
+#Preview {
+    
+    Container.shared.petrolService.register {
+        StaticPetrolService()
     }
+    
+    let viewModel = FuelPriceDashboardViewModel(
+        initialFuelStations: .success([
+            .stub(withID: "C5B7FF8B-9D7C-4485-A740-7601F221C40E")
+            .setting(\.brand, to: "Shell"),
+            .stub(withID: "E01B9608-A2D1-4A21-9CF0-9DB39B0EF883")
+            .setting(\.brand, to: "Markant"),
+            .stub(withID: "D682A96B-5CCE-4F18-9E6A-C9EEF98A447A")
+            .setting(\.brand, to: "Aral"),
+        ])
+    )
+    
+    return FuelStationList(viewModel: viewModel)
+        .preferredColorScheme(.dark)
+    
 }

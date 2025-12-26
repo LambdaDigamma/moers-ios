@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Resolver
+import Factory
 import Combine
 import Factory
 

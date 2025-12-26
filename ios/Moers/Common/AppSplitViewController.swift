@@ -9,7 +9,7 @@
 import Core
 import Foundation
 import OSLog
-import Resolver
+import Factory
 import CoreLocation
 import Combine
 import UIKit
@@ -22,10 +22,10 @@ import MapFeature
 
 public class AppSplitViewController: SplitViewController {
     
-    @LazyInjected var rubbishService: RubbishService
-    @LazyInjected var petrolService: PetrolService
+    @LazyInjected(\.rubbishService) var rubbishService
+    @LazyInjected(\.petrolService) var petrolService
+    @LazyInjected(\.locationManager) var locationManager
     
-    let locationManager: LocationManagerProtocol
     let dashboard: DashboardCoordinator
     let news: NewsCoordinator
     let map: MapCoordintor
@@ -36,19 +36,11 @@ public class AppSplitViewController: SplitViewController {
     
     public init(
         firstLaunch: FirstLaunch,
-        locationManager: LocationManagerProtocol,
-        cameraManager: CameraManagerProtocol
     ) {
-        
-        self.locationManager = locationManager
         
         self.dashboard = DashboardCoordinator()
         self.news = NewsCoordinator()
-        
-        self.map = MapCoordintor(
-            locationManager: locationManager
-        )
-        
+        self.map = MapCoordintor()
         self.events = EventCoordinator()
         self.other = OtherCoordinator()
         
@@ -61,9 +53,7 @@ public class AppSplitViewController: SplitViewController {
         ]
         
         self.tabController = AppTabBarController(
-            firstLaunch: firstLaunch,
-            locationManager: locationManager,
-            cameraManager: cameraManager
+            firstLaunch: firstLaunch
         )
         
         let secondaryRootViewControllers = coordinators.map({ coordinator in
@@ -259,11 +249,7 @@ public class AppSplitViewController: SplitViewController {
     
     private func loadRubbishData() {
         
-        let rubbishService: RubbishService? = Resolver.optional()
-        
-        guard let rubbishService = rubbishService else {
-            return
-        }
+        let rubbishService = Container.shared.rubbishService()
         
         if rubbishService.isEnabled &&
             !firstLaunch.isFirstLaunch &&

@@ -9,7 +9,7 @@
 import Core
 import UIKit
 import MessageUI
-import Resolver
+import Factory
 import SwiftUI
 import AppFeedback
 import RubbishFeature
@@ -19,7 +19,7 @@ import MapFeature
 
 public class OtherViewController: UIViewController {
 
-    @LazyInjected private var entryManager: EntryManagerProtocol
+    @LazyInjected(\.entryManager) private var entryManager
     
     public var coordinator: OtherCoordinator?
     

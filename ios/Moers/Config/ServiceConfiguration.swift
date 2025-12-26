@@ -8,7 +8,6 @@
 
 import UIKit
 import AppScaffold
-import Resolver
 import ModernNetworking
 import Core
 import OSLog
@@ -35,7 +34,7 @@ import MapFeature
 
 public class ServiceConfiguration: BootstrappingProcedureStep {
     
-    private var loader: HTTPLoader = Resolver.resolve()
+    @Injected(\.httpLoader) private var loader: HTTPLoader
     
     private let logger: Logger = Logger(.coreAppConfig)
     
@@ -64,24 +63,22 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
         let locationService = DefaultLocationService()
         let geocodingService = DefaultGeocodingService()
         
-        Resolver.register { locationService as LocationService }
-        Resolver.register { geocodingService as GeocodingService }
-        
-        Container.shared.geocodingService.register { geocodingService as GeocodingService }
+        Container.shared.locationService.register { locationService }
+        Container.shared.geocodingService.register { geocodingService }
         
         let locationManager = LocationManager()
-        Resolver.register { locationManager as LocationManagerProtocol }
+        Container.shared.locationManager.register { locationManager }
         
         let entryManager = EntryManager(loader: loader)
-        Resolver.register { entryManager as EntryManagerProtocol }
+        Container.shared.entryManager.register { entryManager }
         
 //        let storageManager = StorageManager<Camera>()
         let cameraService = CameraManager(/*storageManager: Moers.StorageManager()*/)
-        Resolver.register { cameraService as CameraManagerProtocol }
+        Container.shared.cameraManager.register { cameraService }
         
 #if canImport(RubbishFeature)
         let rubbishService = DefaultRubbishService(loader: loader, userDefaults: UserDefaults.appGroup)
-        Resolver.register { rubbishService as RubbishService }
+        Container.shared.rubbishService.register { rubbishService }
 #endif
         
 #if canImport(FuelFeature)
@@ -89,24 +86,24 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
             userDefaults: UserDefaults.appGroup,
             apiKey: loadFuelApiKey()
         )
-        Resolver.register { petrolService as PetrolService }
+        Container.shared.petrolService.register { petrolService }
 #endif
         
 #if canImport(ParkingFeature)
         let parkingService = DefaultParkingService(loader: loader)
-        Resolver.register { parkingService as ParkingService }
+        Container.shared.parkingService.register { parkingService }
 #endif
         
 #if canImport(NewsFeature)
         let newsService = DefaultNewsService()
-        Resolver.register { newsService as NewsService }
+        Container.shared.newsService.register { newsService }
 #endif
         
 #if canImport(MMEvents)
         
         let eventService = DefaultEventService(loader)
 
-        Resolver.register { eventService as EventService }
+        Container.shared.eventService.register { eventService }
 #endif
         
         Container.shared.transitService.register {
@@ -128,8 +125,8 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
         let locationService = StaticLocationService()
         let geocodingService = StaticGeocodingService(defaultPlacemark: CoreSettings.defaultPlacemark())
         
-        Resolver.register { locationService as LocationService }
-        Resolver.register { geocodingService as GeocodingService }
+        Container.shared.locationService.register { locationService }
+        Container.shared.geocodingService.register { geocodingService }
         
 #if canImport(RubbishFeature)
         
@@ -152,22 +149,22 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
             reminderMinute: 0
         )
         
-        Resolver.register { rubbishService as RubbishService }
+        Container.shared.rubbishService.register { rubbishService }
 #endif
         
 #if canImport(FuelFeature)
         let fuelService = StaticPetrolService(petrolType: .diesel)
-        Resolver.register { fuelService as PetrolService }
+        Container.shared.petrolService.register { fuelService }
 #endif
         
 #if canImport(ParkingFeature)
         let parkingService = StaticParkingService()
-        Resolver.register { parkingService as ParkingService }
+        Container.shared.parkingService.register { parkingService }
 #endif
         
 #if canImport(NewsFeature)
         let newsService = StaticNewsService()
-        Resolver.register { newsService as NewsService }
+        Container.shared.newsService.register { newsService }
 #endif
         
     }

@@ -11,18 +11,18 @@ import Foundation
 import UIKit
 import SwiftUI
 import FeedKit
-import Resolver
+import Factory
 import Core
 
 public class NewsListViewController: UIHostingController<NewsList> {
     
     private var onShowArticle: (RSSFeedItem) -> Void
-    private let newsService: NewsService
+    
+    @LazyInjected(\.newsService) private var newsService
     
     public init(onShowArticle: @escaping (RSSFeedItem) -> Void) {
         self.onShowArticle = onShowArticle
-        self.newsService = Resolver.resolve()
-        super.init(rootView: NewsList(newsService: newsService, onShowArticle: onShowArticle))
+        super.init(rootView: NewsList(onShowArticle: onShowArticle))
     }
     
     public override func viewWillAppear(_ animated: Bool) {

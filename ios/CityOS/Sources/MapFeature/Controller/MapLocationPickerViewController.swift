@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import Combine
 import Core
-import Resolver
+import Factory
 
 protocol MapLocationPickerViewControllerDelegate: AnyObject {
     
@@ -21,7 +21,9 @@ protocol MapLocationPickerViewControllerDelegate: AnyObject {
 
 class MapLocationPickerViewController: UIViewController {
     
-    @LazyInjected var locationService: LocationService
+    @LazyInjected(\.locationService) var locationService
+    @LazyInjected(\.entryManager) var entryManager
+    
     
     lazy var mapView = { CoreViewFactory.map() }()
     lazy var pointer = { CoreViewFactory.imageView() }()
@@ -35,10 +37,7 @@ class MapLocationPickerViewController: UIViewController {
     private var currentPostcode: String = ""
     private var cancellables = Set<AnyCancellable>()
     
-    private var entryManager: EntryManagerProtocol
-    
-    init(entryManager: EntryManagerProtocol) {
-        self.entryManager = entryManager
+    init() {
         
         super.init(nibName: nil, bundle: nil)
         

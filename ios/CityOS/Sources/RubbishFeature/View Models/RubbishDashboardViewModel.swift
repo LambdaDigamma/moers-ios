@@ -9,12 +9,12 @@ import Foundation
 import Combine
 import Core
 import ModernNetworking
-import Resolver
+import Factory
 
 open class RubbishDashboardViewModel: StandardViewModel {
     
     @Published var state: DataState<[RubbishPickupItem], RubbishLoadingError> = .loading
-    @LazyInjected var rubbishService: RubbishService
+    @LazyInjected(\.rubbishService) var rubbishService
     
     public init(
         rubbishService: RubbishService? = nil,

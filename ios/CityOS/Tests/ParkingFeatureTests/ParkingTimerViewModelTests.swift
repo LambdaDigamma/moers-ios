@@ -7,7 +7,7 @@
 
 import XCTest
 import Core
-import Resolver
+import Factory
 @testable import ParkingFeature
 import CoreLocation
 
@@ -16,7 +16,7 @@ class ParkingTimerViewModelTests: XCTestCase {
     private var persistanceURL: URL!
     
     override func setUp() {
-        Resolver.register { StaticLocationService() as LocationService }
+        Container.shared.locationService.register { StaticLocationService() }
         persistanceURL = FileManager.default
             .urls(for: .documentDirectory, in: .userDomainMask)
             .first!

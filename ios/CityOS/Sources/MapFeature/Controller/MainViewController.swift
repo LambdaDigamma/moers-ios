@@ -12,12 +12,14 @@ import Pulley
 import EventBus
 import CoreLocation
 import Combine
-import Resolver
+import Factory
 import FuelFeature
 
 public class MainViewController: PulleyViewController {
 
-    @LazyInjected var petrolManager: PetrolService
+    @LazyInjected(\.entryManager) var entryManager
+    @LazyInjected(\.petrolService) var petrolManager
+    @LazyInjected(\.cameraManager) var cameraManager
     
     public var coordinator: MapCoordintor? {
         didSet {
@@ -28,23 +30,14 @@ public class MainViewController: PulleyViewController {
     public var mapViewController: MapViewController!
     public var contentViewController: SearchDrawerViewController!
     public var locations: [Location] = []
-    public lazy var detailViewController = { DetailViewController(entryManager: entryManager) }()
+    public lazy var detailViewController = { DetailViewController() }()
     
-    private let cameraManager: CameraManagerProtocol
-    private let entryManager: EntryManagerProtocol
     private let eventBus: EventBus
     private var cancellables = Set<AnyCancellable>()
     
-    required init(
-        contentViewController: UIViewController,
-        drawerViewController: UIViewController,
-        cameraManager: CameraManagerProtocol,
-        entryManager: EntryManagerProtocol
-    ) {
+    required init(contentViewController: UIViewController, drawerViewController: UIViewController) {
         
         self.eventBus = EventBus()
-        self.cameraManager = cameraManager
-        self.entryManager = entryManager
         
         super.init(contentViewController: contentViewController, drawerViewController: drawerViewController)
         
@@ -60,10 +53,6 @@ public class MainViewController: PulleyViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    required init(contentViewController: UIViewController, drawerViewController: UIViewController) {
-        fatalError("init(contentViewController:drawerViewController:) has not been implemented")
     }
     
     // MARK: - UIViewController Lifecycle
