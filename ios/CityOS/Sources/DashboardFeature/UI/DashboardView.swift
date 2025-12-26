@@ -105,10 +105,12 @@ public struct DashboardView<Content: View>: View {
                 RubbishDashboardPanel(viewModel: rubbishViewModel)
                     .foregroundColor(.primary)
             }
+            .buttonStyle(BasicPanelStyle())
             
         } else if item is PetrolDashboardConfiguration {
             
             FuelPriceDashboardView(viewModel: fuelViewModel)
+                .buttonStyle(BasicPanelStyle())
             
         } else if item is ParkingDashboardConfiguration {
             
@@ -117,6 +119,7 @@ public struct DashboardView<Content: View>: View {
             } label: {
                 ParkingDashboardView(viewModel: parkingViewModel)
             }
+            .buttonStyle(BasicPanelStyle())
             
         }
         
