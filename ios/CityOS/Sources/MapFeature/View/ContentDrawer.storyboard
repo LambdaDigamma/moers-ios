@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +11,7 @@
         <!--Content View Controller-->
         <scene sceneID="TYp-Yz-dkl">
             <objects>
-                <viewController storyboardIdentifier="DrawerContentViewController" id="pXR-Y2-PIM" customClass="ContentViewController" customModule="Moers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DrawerContentViewController" id="pXR-Y2-PIM" customClass="ContentViewController" customModule="MapFeature" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o9A-41-zdS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,14 +30,14 @@
                                                 </constraints>
                                             </view>
                                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Where do you want to go?" translatesAutoresizingMaskIntoConstraints="NO" id="Svj-Wg-uhD">
-                                                <rect key="frame" x="8" y="6" width="359" height="56"/>
+                                                <rect key="frame" x="8" y="6" width="359" height="64"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="pXR-Y2-PIM" id="qCf-gr-snh"/>
                                                 </connections>
                                             </searchBar>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rj8-Bm-N5e" customClass="TagListView" customModule="TagListView">
-                                                <rect key="frame" x="16" y="62" width="343" height="28"/>
+                                                <rect key="frame" x="16" y="70" width="343" height="20"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
@@ -92,6 +90,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="4bB-MO-Vac"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="eFV-9L-9Zp" secondAttribute="bottom" priority="751" constant="20" id="4Rg-js-X2F"/>
@@ -106,7 +105,6 @@
                             <constraint firstItem="xdS-YA-BpN" firstAttribute="centerX" secondItem="4bB-MO-Vac" secondAttribute="centerX" id="rOX-9n-nBJ"/>
                             <constraint firstItem="Wqv-0Y-WNG" firstAttribute="leading" secondItem="o9A-41-zdS" secondAttribute="leading" id="wkU-B1-RpA"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="4bB-MO-Vac"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>

@@ -51,20 +51,24 @@ class SearchResultTableViewCell: UITableViewCell {
         
         let margins = contentView.layoutMarginsGuide
         
-        let constraints = [searchImageView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 0),
-                           searchImageView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
-                           searchImageView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0),
-                           searchImageView.widthAnchor.constraint(equalTo: searchImageView.heightAnchor),
-                           titleLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
-                           titleLabel.leadingAnchor.constraint(equalTo: searchImageView.trailingAnchor, constant: 8),
-                           titleLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 0),
-                           subtitleLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0),
-                           subtitleLabel.leadingAnchor.constraint(equalTo: searchImageView.trailingAnchor, constant: 8),
-                           subtitleLabel.trailingAnchor.constraint(equalTo: checkmarkView.leadingAnchor, constant: -4),
-                           checkmarkView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-                           checkmarkView.heightAnchor.constraint(equalToConstant: 20),
-                           checkmarkView.widthAnchor.constraint(equalTo: checkmarkView.heightAnchor),
-                           checkmarkView.bottomAnchor.constraint(equalTo: margins.bottomAnchor)]
+        let constraints = [
+            searchImageView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 0),
+            searchImageView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
+            searchImageView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0),
+//            searchImageView.heightAnchor.constraint(equalToConstant: 100),
+            searchImageView.widthAnchor.constraint(equalTo: searchImageView.heightAnchor),
+            titleLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
+            titleLabel.leadingAnchor.constraint(equalTo: searchImageView.trailingAnchor, constant: 8),
+            titleLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 0),
+            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 0),
+            subtitleLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0),
+            subtitleLabel.leadingAnchor.constraint(equalTo: searchImageView.trailingAnchor, constant: 8),
+            subtitleLabel.trailingAnchor.constraint(equalTo: checkmarkView.leadingAnchor, constant: -4),
+            checkmarkView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            checkmarkView.heightAnchor.constraint(equalToConstant: 20),
+            checkmarkView.widthAnchor.constraint(equalTo: checkmarkView.heightAnchor),
+            checkmarkView.bottomAnchor.constraint(equalTo: margins.bottomAnchor)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         

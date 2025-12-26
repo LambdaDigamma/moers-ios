@@ -433,7 +433,7 @@ extension SearchDrawerViewController: UITableViewDataSource, UITableViewDelegate
         switch displayMode {
             
         case .list:
-            return 60
+            return UITableView.automaticDimension
             
         case .search(_, let tags, _):
             
@@ -442,11 +442,11 @@ extension SearchDrawerViewController: UITableViewDataSource, UITableViewDelegate
             if indexPath.row < numberOfTags {
                 return 50
             } else {
-                return 60
+                return UITableView.automaticDimension
             }
             
         case .filter:
-            return 60
+            return UITableView.automaticDimension
             
         }
         
