@@ -8,7 +8,6 @@
 
 import AppScaffold
 import UIKit
-import Gestalt
 import ModernNetworking
 import MMEvents
 import Cache

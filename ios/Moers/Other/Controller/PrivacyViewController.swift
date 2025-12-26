@@ -8,7 +8,6 @@
 
 import Core
 import UIKit
-import Gestalt
 
 // swiftlint:disable line_length
 class PrivacyViewController: UIViewController {
@@ -33,7 +32,7 @@ class PrivacyViewController: UIViewController {
         
         self.setupUI()
         self.setupConstraints()
-        self.setupTheming()
+        self.applyTheming()
         
     }
 
@@ -56,10 +55,10 @@ class PrivacyViewController: UIViewController {
         
     }
     
-    private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
-        
+    private func applyTheming() {
+        self.view.backgroundColor = UIColor.systemBackground
+        self.textView.backgroundColor = UIColor.systemBackground
+        self.textView.textColor = UIColor.label
     }
     
     let text =
@@ -120,17 +119,5 @@ class PrivacyViewController: UIViewController {
     Lennart Fischer
     info@lambdadigamma.com
     """
-    
-}
-
-extension PrivacyViewController: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        self.view.backgroundColor = UIColor.systemBackground // theme.backgroundColor
-        self.textView.backgroundColor = UIColor.systemBackground // theme.backgroundColor
-        self.textView.textColor = UIColor.label // theme.color
-    }
     
 }

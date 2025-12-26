@@ -55,15 +55,6 @@
       }
     },
     {
-      "identity" : "gestalt",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/regexident/Gestalt",
-      "state" : {
-        "revision" : "6469230fb1b81ea449312a855b410425030b287e",
-        "version" : "2.1.1"
-      }
-    },
-    {
       "identity" : "grdb.swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/groue/GRDB.swift",

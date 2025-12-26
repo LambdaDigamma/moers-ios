@@ -8,7 +8,7 @@
 
 import Core
 import UIKit
-import Gestalt
+
 
 class AuditChangeView: UIView {
     
@@ -62,8 +62,6 @@ class AuditChangeView: UIView {
         self.changeSetImageView.image = #imageLiteral(resourceName: "changeset")
         self.changeSetImageView.contentMode = .scaleAspectFit
         
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
-        
     }
     
     private func setupConstraints() {
@@ -93,17 +91,3 @@ class AuditChangeView: UIView {
     
 }
 
-extension AuditChangeView: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        self.backgroundColor = theme.backgroundColor
-        self.changedValueDescriptionLabel.textColor = theme.decentColor
-        self.oldValueLabel.textColor = UIColor(hexString: "FF0000")
-        self.newValueLabel.textColor = UIColor(hexString: "089C3B")
-        self.trailingSeparator.backgroundColor = theme.decentColor
-        self.leadingSeparator.backgroundColor = theme.decentColor
-    }
-    
-}

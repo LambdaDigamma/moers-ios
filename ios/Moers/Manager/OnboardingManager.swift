@@ -9,7 +9,6 @@
 import Foundation
 import Core
 import BLTNBoard
-import Gestalt
 import CoreLocation
 import Combine
 import RubbishFeature
@@ -362,27 +361,13 @@ extension OnboardingManager {
         
         let appearance = BLTNItemAppearance()
         
-        MMUIConfig.themeManager?.manage(theme: \ApplicationTheme.self, for: appearance)
+        appearance.titleTextColor = UIColor.label
+        appearance.descriptionTextColor = UIColor.label
+        appearance.actionButtonColor = UIColor.systemYellow
+        appearance.actionButtonTitleColor = UIColor.systemBackground
+        appearance.alternativeButtonTitleColor = UIColor.label
         
         return appearance
-        
-    }
-    
-}
-
-// MARK: - Notifications
-
-extension BLTNItemAppearance: @retroactive Themeable {
-    
-    public typealias Theme = ApplicationTheme
-    
-    public func apply(theme: Theme) {
-        
-        self.titleTextColor = theme.color
-        self.descriptionTextColor = theme.color
-        self.actionButtonColor = theme.accentColor
-        self.actionButtonTitleColor = theme.backgroundColor
-        self.alternativeButtonTitleColor = theme.color
         
     }
     

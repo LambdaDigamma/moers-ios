@@ -9,7 +9,6 @@
 import UIKit
 import Core
 import BLTNBoard
-import Gestalt
 import CoreLocation
 import OSLog
 import Combine
@@ -23,8 +22,6 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     @LazyInjected var locationService: LocationService
     
     private var streets: [RubbishFeature.RubbishCollectionStreet] = []
-    private var accentColor = UIColor.clear
-    private var decentColor = UIColor.clear
     private var cancellables = Set<AnyCancellable>()
     
     private let logger = Logger(.coreUi)
@@ -48,8 +45,7 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
         
         picker.delegate = self
         picker.dataSource = self
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
+        picker.backgroundColor = UIColor.systemBackground
         
     }
     
@@ -161,24 +157,12 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
         
         if highlighted {
             label.font = UIFont.systemFont(ofSize: 20.0, weight: UIFont.Weight.medium)
-            label.textColor = accentColor
+            label.textColor = UIColor.systemYellow
         } else {
             label.font = UIFont.systemFont(ofSize: 16.0, weight: UIFont.Weight.regular)
-            label.textColor = decentColor
+            label.textColor = UIColor.secondaryLabel
         }
         
-    }
-    
-}
-
-extension RubbishStreetPickerItem: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        self.accentColor = theme.accentColor
-        self.decentColor = theme.decentColor
-        self.picker.backgroundColor = theme.backgroundColor
     }
     
 }

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Gestalt
+
 import Core
 
 class OnboardingOverviewNotice: UIView {
@@ -56,19 +56,7 @@ class OnboardingOverviewNotice: UIView {
     
     private func setupTheming() {
         
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
-        
     }
     
 }
 
-extension OnboardingOverviewNotice: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        self.backgroundColor = theme.accentColor
-        self.noticeLabel.textColor = theme.backgroundColor
-    }
-    
-}

@@ -8,7 +8,7 @@
 
 import Core
 import UIKit
-import Gestalt
+
 import Pulley
 import TagListView
 import Fuse
@@ -75,8 +75,6 @@ public class SearchDrawerViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
         pulleyViewController?.delegate = self
         pulleyViewController?.setDrawerPosition(position: .open, animated: false)
@@ -556,13 +554,3 @@ extension SearchDrawerViewController {
     
 }
 
-extension SearchDrawerViewController: Themeable {
-    
-    public typealias Theme = ApplicationTheme
-    
-    public func apply(theme: ApplicationTheme) {
-        self.normalColor = theme.backgroundColor
-        self.highlightedColor = theme.backgroundColor.darker(by: 10)!
-    }
-    
-}

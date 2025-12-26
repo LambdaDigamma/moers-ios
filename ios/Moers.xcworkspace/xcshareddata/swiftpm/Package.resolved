@@ -21,10 +21,10 @@
     {
       "identity" : "app-scaffold-ios",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/lambdadigamma/app-scaffold-ios",
+      "location" : "https://github.com/LambdaDigamma/app-scaffold-ios",
       "state" : {
-        "revision" : "719edbd974dfb685afdc3e041673396face02bda",
-        "version" : "0.1.5"
+        "revision" : "7a100e48901e340c8f2f86d33cf380ec1bc2cbb1",
+        "version" : "1.0.1"
       }
     },
     {
@@ -88,15 +88,6 @@
       "state" : {
         "revision" : "0da39148e2ca8dc89c79d6b76dc45f19386a5dfa",
         "version" : "1.4.4"
-      }
-    },
-    {
-      "identity" : "gestalt",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/regexident/Gestalt",
-      "state" : {
-        "revision" : "6469230fb1b81ea449312a855b410425030b287e",
-        "version" : "2.1.1"
       }
     },
     {

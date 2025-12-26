@@ -8,7 +8,7 @@
 
 import Core
 import UIKit
-import Gestalt
+
 import TextFieldEffects
 import MapKit
 
@@ -125,8 +125,6 @@ class EntryOnboardingAddressViewController: UIViewController {
     }
     
     private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -343,41 +341,6 @@ extension HoshiTextField {
         } else {
             self.borderInactiveColor = UIColor.red
         }
-        
-    }
-    
-}
-
-extension EntryOnboardingAddressViewController: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        
-        let applyTheming: ((HoshiTextField) -> Void) = { textField in
-            
-            textField.borderActiveColor = theme.accentColor
-            textField.borderInactiveColor = theme.decentColor
-            textField.placeholderColor = theme.color
-            textField.textColor = theme.color
-            textField.tintColor = theme.accentColor
-            textField.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
-            textField.autocorrectionType = .no
-            
-        }
-        
-        self.view.backgroundColor = theme.backgroundColor
-        self.addressHeaderLabel.textColor = theme.decentColor
-        self.mapView.layer.cornerRadius = 10
-        self.infoLabel.textColor = theme.color
-        self.progressView.accentColor = theme.accentColor
-        self.progressView.decentColor = theme.decentColor
-        self.progressView.textColor = theme.color
-        
-        applyTheming(self.streetTextField)
-        applyTheming(self.houseNrTextField)
-        applyTheming(self.postcodeTextField)
-        applyTheming(self.placeTextField)
         
     }
     

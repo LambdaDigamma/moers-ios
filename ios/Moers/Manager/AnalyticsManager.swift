@@ -136,7 +136,7 @@ public class AnalyticsManager {
     public func logSelectedTheme(_ theme: ApplicationTheme) {
         
         if shouldLog {
-            Analytics.logEvent("Selected_Theme", parameters: ["identifier": theme.identifier])
+//            Analytics.logEvent("Selected_Theme", parameters: ["identifier": theme.identifier])
         }
         
     }

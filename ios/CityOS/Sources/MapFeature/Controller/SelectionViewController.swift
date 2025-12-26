@@ -8,7 +8,7 @@
 
 import Core
 import UIKit
-import Gestalt
+
 import Pulley
 import MapKit
 
@@ -116,8 +116,6 @@ class SelectionViewController: UIViewController {
     }
 
     private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -234,18 +232,3 @@ extension SelectionViewController: PulleyDrawerViewControllerDelegate {
     
 }
 
-extension SelectionViewController: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        self.view.backgroundColor = theme.backgroundColor
-        self.titleLabel.textColor = theme.color
-        self.tableView.backgroundColor = theme.backgroundColor
-        self.tableView.separatorColor = theme.separatorColor
-        self.gripperView.backgroundColor = UIColor.lightGray
-        self.headerView.backgroundColor = theme.backgroundColor
-        self.closeButton.tintColor = theme.decentColor
-    }
-    
-}

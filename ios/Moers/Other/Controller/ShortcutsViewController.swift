@@ -8,14 +8,11 @@
 
 import Core
 import UIKit
-import Gestalt
 import IntentsUI
 
 class ShortcutsViewController: UIViewController {
 
     lazy var intentStackView = { CoreViewFactory.stackView() }()
-    
-    private var textColor: UIColor = .black
     
     // MARK: - UIViewController Lifecycle
     
@@ -24,19 +21,14 @@ class ShortcutsViewController: UIViewController {
 
         self.title = "Siri Shortcuts"
         
-        if #available(iOS 12.0, *) {
-        
-            self.setupTheming()
-            self.setupUI()
-            self.setupConstraints()
-            
-        }
+        self.applyTheming()
+        self.setupUI()
+        self.setupConstraints()
             
     }
     
     // MARK: - Private Methods
     
-    @available(iOS 12.0, *)
     private func setupUI() {
         
         self.view.addSubview(intentStackView)
@@ -64,13 +56,10 @@ class ShortcutsViewController: UIViewController {
         
     }
     
-    private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
-        
+    private func applyTheming() {
+        self.view.backgroundColor = UIColor.systemBackground
     }
 
-    @available(iOS 12.0, *)
     private func makeIntentStack(name: String, shortcut: INShortcut) -> UIStackView {
         
         let stackView = CoreViewFactory.stackView()
@@ -78,7 +67,7 @@ class ShortcutsViewController: UIViewController {
         let button = INUIAddVoiceShortcutButton(style: .blackOutline)
         
         label.text = name
-        label.textColor = self.textColor
+        label.textColor = UIColor.label
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         
         button.shortcut = shortcut
@@ -95,7 +84,6 @@ class ShortcutsViewController: UIViewController {
     
 }
 
-@available(iOS 12.0, *)
 extension ShortcutsViewController: INUIAddVoiceShortcutButtonDelegate {
     
     func present(_ addVoiceShortcutViewController: INUIAddVoiceShortcutViewController, for addVoiceShortcutButton: INUIAddVoiceShortcutButton) {
@@ -110,7 +98,6 @@ extension ShortcutsViewController: INUIAddVoiceShortcutButtonDelegate {
     
 }
 
-@available(iOS 12.0, *)
 extension ShortcutsViewController: INUIAddVoiceShortcutViewControllerDelegate, INUIEditVoiceShortcutViewControllerDelegate {
     
     func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController, didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?) {
@@ -132,15 +119,4 @@ extension ShortcutsViewController: INUIAddVoiceShortcutViewControllerDelegate, I
     func editVoiceShortcutViewControllerDidCancel(_ controller: INUIEditVoiceShortcutViewController) {
         controller.dismiss(animated: true, completion: nil)
     }
-}
-
-extension ShortcutsViewController: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        self.view.backgroundColor = theme.backgroundColor
-        self.textColor = theme.color
-    }
-    
 }

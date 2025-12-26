@@ -8,7 +8,7 @@
 
 import Core
 import UIKit
-import Gestalt
+
 import TextFieldEffects
 import MapKit
 import TagListView
@@ -283,8 +283,6 @@ class EntryOnboardingOverviewViewController: UIViewController {
     }
     
     private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -661,7 +659,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
             self.save()
         }
         
-        alert.overrideUserInterfaceStyle = .dark
+//        alert.overrideUserInterfaceStyle = .dark
         alert.addAction(saveAction)
         
         present(alert, animated: true, completion: nil)
@@ -699,7 +697,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
             )
         )
         
-        alert.overrideUserInterfaceStyle = .dark
+//        alert.overrideUserInterfaceStyle = .dark
         
         present(alert, animated: true, completion: nil)
         
@@ -715,7 +713,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
                 preferredStyle: .alert
             )
             
-            alert.overrideUserInterfaceStyle = .dark
+//            alert.overrideUserInterfaceStyle = .dark
             
             alert.addAction(
                 UIAlertAction(
@@ -741,7 +739,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
             preferredStyle: .alert
         )
         
-        alert.overrideUserInterfaceStyle = .dark
+//        alert.overrideUserInterfaceStyle = .dark
         
         alert.addAction(
             UIAlertAction(
@@ -771,7 +769,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
                 preferredStyle: .alert
             )
             
-            alert.overrideUserInterfaceStyle = .dark
+//            alert.overrideUserInterfaceStyle = .dark
             
             alert.addAction(
                 UIAlertAction(
@@ -879,73 +877,6 @@ extension EntryOnboardingOverviewViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
-    }
-    
-}
-
-extension EntryOnboardingOverviewViewController: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        
-        self.view.backgroundColor = theme.backgroundColor
-        self.generalHeaderLabel.textColor = theme.decentColor
-        self.tagsHeaderLabel.textColor = theme.decentColor
-        self.addressHeaderLabel.textColor = theme.decentColor
-        self.contactHeaderLabel.textColor = theme.decentColor
-        self.openingHoursHeaderLabel.textColor = theme.decentColor
-        self.promptLabel.textColor = theme.color
-        self.tagsListView.tagBackgroundColor = theme.accentColor
-        self.tagsListView.textColor = theme.backgroundColor
-        self.tagsListView.removeIconLineColor = theme.backgroundColor
-        
-        self.mapView.layer.cornerRadius = 10
-        self.saveButton.setTitleColor(theme.backgroundColor, for: .normal)
-        self.saveButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
-        self.saveButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .selected)
-        
-        if #available(iOS 13.0, *) {
-            
-            navigationController?.navigationBar.barTintColor = theme.navigationBarColor
-            navigationController?.navigationBar.tintColor = theme.accentColor
-            navigationController?.navigationBar.prefersLargeTitles = true
-            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
-            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.accentColor]
-            navigationController?.navigationBar.isTranslucent = true
-            
-            let appearance = UINavigationBarAppearance()
-            
-            appearance.configureWithDefaultBackground()
-            appearance.backgroundColor = theme.navigationBarColor
-            
-            appearance.titleTextAttributes = [.foregroundColor : theme.accentColor]
-            appearance.largeTitleTextAttributes = [.foregroundColor : theme.accentColor]
-            
-            navigationController?.navigationBar.scrollEdgeAppearance = appearance
-            navigationController?.navigationBar.standardAppearance = appearance
-            
-        }
-        
-        // Style Search Controller
-        
-        self.cellTextColor = theme.color
-        self.cellBackgroundColor = theme.backgroundColor
-        self.searchController.searchBarBackgroundColor = theme.navigationBarColor
-        self.searchController.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
-        self.searchController.searchBar.textField?.textColor = theme.color
-        self.searchController.tableView.separatorColor = .clear
-        self.searchController.navigationItem.rightBarButtonItem?.tintColor = theme.accentColor
-        self.searchController.tableView.backgroundColor = theme.backgroundColor
-        self.searchController.separatorColor = theme.separatorColor
-        self.searchController.view.backgroundColor = theme.backgroundColor
-        self.searchController.navigationBarClosure = { bar in
-            
-            bar.barTintColor = theme.navigationBarColor
-            bar.tintColor = theme.accentColor
-            
-        }
-        
     }
     
 }

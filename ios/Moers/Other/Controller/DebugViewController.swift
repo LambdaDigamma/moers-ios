@@ -8,7 +8,6 @@
 
 import Core
 import UIKit
-import Gestalt
 import UserNotifications
 import Combine
 import Resolver
@@ -51,7 +50,7 @@ class DebugViewController: UIViewController {
 
         self.setupUI()
         self.setupConstraints()
-        self.setupTheming()
+        self.applyTheming()
         
         UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
             
@@ -117,24 +116,12 @@ class DebugViewController: UIViewController {
         
     }
 
-    private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
-        
-    }
-    
-}
-
-extension DebugViewController: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        self.view.backgroundColor = theme.backgroundColor
-        self.rubbishItemsTextView.textColor = theme.color
-        self.rubbishItemsTextView.backgroundColor = theme.backgroundColor
-        self.notificationItemsTextView.textColor = theme.color
-        self.notificationItemsTextView.backgroundColor = theme.backgroundColor
+    private func applyTheming() {
+        self.view.backgroundColor = UIColor.systemBackground
+        self.rubbishItemsTextView.textColor = UIColor.label
+        self.rubbishItemsTextView.backgroundColor = UIColor.systemBackground
+        self.notificationItemsTextView.textColor = UIColor.label
+        self.notificationItemsTextView.backgroundColor = UIColor.systemBackground
     }
     
 }

@@ -8,7 +8,7 @@
 
 import Core
 import UIKit
-import Gestalt
+
 import TextFieldEffects
 
 class EntryOnboardingOpeningHoursViewController: UIViewController {
@@ -157,8 +157,6 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
     }
     
     private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
     }
 
     private func setupOpeningHours() {
@@ -242,45 +240,6 @@ extension EntryOnboardingOpeningHoursViewController: UITextFieldDelegate {
         guard let textField = textField as? HoshiTextField else { return }
         
         textField.setValidInput(!(textField.text ?? "").isEmpty)
-        
-    }
-    
-}
-
-extension EntryOnboardingOpeningHoursViewController: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        
-        let applyTheming: ((HoshiTextField) -> Void) = { textField in
-            
-            textField.borderActiveColor = theme.accentColor
-            textField.borderInactiveColor = theme.decentColor
-            textField.placeholderColor = theme.color
-            textField.textColor = theme.color
-            textField.tintColor = theme.accentColor
-            textField.keyboardAppearance = theme.statusBarStyle == .lightContent ? .dark : .light
-            textField.autocorrectionType = .no
-            
-        }
-        
-        self.view.backgroundColor = theme.backgroundColor
-        self.openingHoursHeaderLabel.textColor = theme.color
-        self.progressView.accentColor = theme.accentColor
-        self.progressView.decentColor = theme.decentColor
-        self.progressView.textColor = theme.color
-        
-        self.openingHoursInfoLabel.textColor = theme.color
-        
-        applyTheming(self.mondayOHTextField)
-        applyTheming(self.tuesdayOHTextField)
-        applyTheming(self.wednesdayOHTextField)
-        applyTheming(self.thursdayOHTextField)
-        applyTheming(self.fridayOHTextField)
-        applyTheming(self.saturdayOHTextField)
-        applyTheming(self.sundayOHTextField)
-        applyTheming(self.otherOHTextField)
         
     }
     

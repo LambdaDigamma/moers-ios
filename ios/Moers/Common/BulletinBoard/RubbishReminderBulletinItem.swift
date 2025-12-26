@@ -9,7 +9,6 @@
 import Core
 import UIKit
 import BLTNBoard
-import Gestalt
 
 class RubbishReminderBulletinItem: BLTNPageItem {
     
@@ -23,8 +22,11 @@ class RubbishReminderBulletinItem: BLTNPageItem {
         picker.datePickerMode = .time
         picker.date = date ?? Date()
         picker.locale = Locale.current
+        picker.backgroundColor = UIColor.systemBackground
+        picker.preferredDatePickerStyle = .wheels
+        picker.tintColor = UIColor.systemYellow
         
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
+        self.appearance.actionButtonColor = UIColor.systemYellow
         
     }
     
@@ -35,29 +37,6 @@ class RubbishReminderBulletinItem: BLTNPageItem {
         
         return [picker]
         
-    }
-    
-}
-
-extension RubbishReminderBulletinItem: Themeable {
-    
-    typealias Theme = ApplicationTheme
-    
-    func apply(theme: Theme) {
-        self.appearance.actionButtonColor = theme.accentColor
-        self.picker.backgroundColor = theme.backgroundColor
-        
-        if #available(iOS 13.4, *) {
-            self.picker.preferredDatePickerStyle = UIDatePickerStyle.wheels
-        }
-        
-        if #available(iOS 14.0, *) {
-            self.picker.tintColor = theme.accentColor
-        } else {
-            self.picker.performSelector(inBackground: Selector(("setHighlightsToday:")), with: theme.accentColor)
-        }
-        
-        self.picker.setValue(theme.decentColor, forKey: "textColor")
     }
     
 }

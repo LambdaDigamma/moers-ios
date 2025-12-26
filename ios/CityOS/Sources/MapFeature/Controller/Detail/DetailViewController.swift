@@ -9,7 +9,7 @@
 import Core
 import UIKit
 import MapKit
-import Gestalt
+
 import Pulley
 import Combine
 import Resolver
@@ -138,8 +138,6 @@ public class DetailViewController: UIViewController {
     }
 
     private func setupTheming() {
-        
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
         
     }
     
@@ -370,21 +368,3 @@ extension DetailViewController: PulleyDrawerViewControllerDelegate {
     
 }
 
-extension DetailViewController: Themeable {
-    
-    public typealias Theme = ApplicationTheme
-    
-    public func apply(theme: Theme) {
-        
-        self.view.backgroundColor = theme.backgroundColor
-        self.nameLabel.textColor = theme.color
-        self.subtitleLabel.textColor = theme.color
-        self.closeButton.tintColor = theme.decentColor
-        self.subtitleLabel.textColor = theme.decentColor
-        self.routeButton.setBackgroundColor(color: theme.accentColor, forState: .normal)
-        self.routeButton.setBackgroundColor(color: theme.accentColor.darker(by: 10)!, forState: .highlighted)
-        self.routeButton.setTitleColor(theme.backgroundColor, for: .normal)
-        
-    }
-    
-}

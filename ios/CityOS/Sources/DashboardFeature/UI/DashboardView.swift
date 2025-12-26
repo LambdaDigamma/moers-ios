@@ -72,6 +72,7 @@ public struct DashboardView<Content: View>: View {
                 .padding()
                 
             }
+            .background(ApplicationTheme.current.dashboardBackground)
             
         }
         .toolbar {

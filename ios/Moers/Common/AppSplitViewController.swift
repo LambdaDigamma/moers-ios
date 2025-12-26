@@ -11,7 +11,6 @@ import Foundation
 import OSLog
 import Resolver
 import CoreLocation
-import Gestalt
 import Combine
 import UIKit
 import AppScaffold
@@ -97,7 +96,7 @@ public class AppSplitViewController: SplitViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.setupTheming()
+        self.applyTheming()
         self.loadRubbishData()
         
     }
@@ -116,6 +115,14 @@ public class AppSplitViewController: SplitViewController {
         
     }
     
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            applyTheming()
+        }
+    }
+    
     public override func configureSplitController() {
         super.configureSplitController()
         
@@ -123,10 +130,20 @@ public class AppSplitViewController: SplitViewController {
         
     }
     
-    private func setupTheming() {
+    private func applyTheming() {
+        let theme = ApplicationTheme.current
         
-        MMUIConfig.themeManager?.manage(theme: \Theme.self, for: self)
+        self.view.backgroundColor = theme.backgroundColor
+        self.bulletinManager.backgroundColor = theme.backgroundColor
+        self.bulletinManager.hidesHomeIndicator = false
+        self.bulletinManager.edgeSpacing = .compact
+        self.rubbishMigrationManager.backgroundColor = theme.backgroundColor
+        self.rubbishMigrationManager.hidesHomeIndicator = false
+        self.rubbishMigrationManager.edgeSpacing = .compact
         
+        let barAppearance = UIBarAppearance()
+        barAppearance.configureWithDefaultBackground()
+        barAppearance.backgroundColor = UIColor.systemBackground
     }
     
     private func setupMocked() {
@@ -290,28 +307,6 @@ public class AppSplitViewController: SplitViewController {
                 .store(in: &cancellables)
             
         }
-        
-    }
-    
-}
-
-extension AppSplitViewController: Themeable {
-    
-    public typealias Theme = ApplicationTheme
-    
-    public func apply(theme: Theme) {
-        
-        self.view.backgroundColor = theme.backgroundColor
-        self.bulletinManager.backgroundColor = theme.backgroundColor
-        self.bulletinManager.hidesHomeIndicator = false
-        self.bulletinManager.edgeSpacing = .compact
-        self.rubbishMigrationManager.backgroundColor = theme.backgroundColor
-        self.rubbishMigrationManager.hidesHomeIndicator = false
-        self.rubbishMigrationManager.edgeSpacing = .compact
-        
-        let barAppearance = UIBarAppearance()
-        barAppearance.configureWithDefaultBackground()
-        barAppearance.backgroundColor = UIColor.systemBackground
         
     }
     
