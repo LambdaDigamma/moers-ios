@@ -15,6 +15,7 @@ struct SearchResultCellView: View {
     let showCheckmark: Bool
     
     var body: some View {
+        
         HStack(spacing: 12) {
             
             LocationTypeIcon(
@@ -22,7 +23,7 @@ struct SearchResultCellView: View {
                 foregroundColor: Color.white
             )
             .aspectRatio(contentMode: .fit)
-            .frame(width: 44, height: 44)
+            .frame(width: 32, height: 32)
             
             VStack(alignment: .leading, spacing: 2) {
                 Text(title)
@@ -40,7 +41,10 @@ struct SearchResultCellView: View {
         .padding(.vertical, 8)
         .padding(.leading)
         .frame(maxWidth: .infinity, alignment: .leading)
+        .background(.clear)
+        
     }
+    
 }
 
 #Preview {

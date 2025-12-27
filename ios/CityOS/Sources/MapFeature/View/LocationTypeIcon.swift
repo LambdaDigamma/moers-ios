@@ -42,8 +42,10 @@ struct LocationTypeIcon: View {
             .fill(gradient)
             .overlay(alignment: .center) {
                 Image(systemName: "fuelpump.fill")
+                    .resizable()
                     .foregroundStyle(foregroundColor)
                     .imageScale(.medium)
+                    .padding(16)
             }
             .shadowMD()
         

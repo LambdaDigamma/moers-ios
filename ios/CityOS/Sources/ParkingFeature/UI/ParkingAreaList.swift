@@ -145,7 +145,7 @@ public struct ParkingAreaList: View {
                     startPoint: .top,
                     endPoint: .bottom
                 )
-                .frame(height: 443)
+                .frame(height: 44)
             }
         
     }

@@ -20,7 +20,7 @@ public class SearchDrawerView: UIView {
     lazy var tagList = { CoreViewFactory.tagListView() }()
     lazy var topSeparator = { CoreViewFactory.blankView() }()
     lazy var collectionView: UICollectionView = {
-        var config = UICollectionLayoutListConfiguration(appearance: .plain)
+        var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         config.showsSeparators = true
         let layout = UICollectionViewCompositionalLayout.list(using: config)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -48,6 +48,8 @@ public class SearchDrawerView: UIView {
     private func setupUI() {
         
         self.translatesAutoresizingMaskIntoConstraints = false
+        self.backgroundColor = .clear
+        self.collectionView.backgroundColor = .clear
         
         self.setupSearchWrapper()
         self.setupSearchBar()
