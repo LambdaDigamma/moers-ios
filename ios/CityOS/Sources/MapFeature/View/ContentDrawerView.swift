@@ -120,6 +120,6 @@ public class ContentDrawerView: UIView {
             bottomSeparatorView.heightAnchor.constraint(equalToConstant: 0.5)
         ]
         
-        NSLayoutConstraint.activate(constraints)
+        NSLayoutConstraint.activate(constraints.compactMap { $0 })
     }
 }

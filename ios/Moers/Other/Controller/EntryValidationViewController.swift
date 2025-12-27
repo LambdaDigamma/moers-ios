@@ -74,7 +74,7 @@ class EntryValidationViewController: UIViewController {
                 cell.contentConfiguration = UIHostingConfiguration {
                     EntryValidationCellView(
                         image: nil,
-                        title: entry.name ?? "",
+                        title: entry.name,
                         description: entry.createdAt?.format(format: "dd.MM.yyyy HH:mm") ?? ""
                     )
                 }

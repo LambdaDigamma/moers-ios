@@ -7,12 +7,19 @@
 
 import SwiftUI
 
-struct EntryValidationCellView: View {
+public struct EntryValidationCellView: View {
+    
     let image: UIImage?
     let title: String
     let description: String
     
-    var body: some View {
+    public init(image: UIImage?, title: String, description: String) {
+        self.image = image
+        self.title = title
+        self.description = description
+    }
+    
+    public var body: some View {
         HStack(spacing: 8) {
             if let image = image {
                 Image(uiImage: image)

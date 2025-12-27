@@ -115,7 +115,7 @@ final public class PetrolStation: NSObject, Location, Codable, MKAnnotation, Swi
         
         attributes.append("\(self.street) \(self.houseNumber ?? "")")
         
-        return attributes.joined(separator: " • ")
+        return attributes.joined(separator: " · ")
         
     }
     

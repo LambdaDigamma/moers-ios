@@ -8,25 +8,27 @@
 import SwiftUI
 
 struct SearchResultCellView: View {
+    
     let image: UIImage?
     let title: String
     let subtitle: String
     let showCheckmark: Bool
     
     var body: some View {
-        HStack(spacing: 8) {
-            if let image = image {
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 40, height: 40)
-            }
+        HStack(spacing: 12) {
             
-            VStack(alignment: .leading, spacing: 0) {
+            LocationTypeIcon(
+                backgroundColor: Color.blue,
+                foregroundColor: Color.white
+            )
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 44, height: 44)
+            
+            VStack(alignment: .leading, spacing: 2) {
                 Text(title)
-                    .font(.system(size: 18, weight: .medium))
+                    .font(.body)
+                    .fontWeight(.medium)
                     .foregroundColor(.primary)
-                    .minimumScaleFactor(0.5)
                     .lineLimit(1)
                 
                 Text(subtitle)
@@ -34,15 +36,10 @@ struct SearchResultCellView: View {
                     .foregroundColor(.secondary)
             }
             
-            Spacer()
-            
-            if showCheckmark {
-                Image(systemName: "checkmark")
-                    .foregroundColor(.blue)
-                    .frame(width: 20, height: 20)
-            }
         }
         .padding(.vertical, 8)
+        .padding(.leading)
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
@@ -54,5 +51,4 @@ struct SearchResultCellView: View {
         showCheckmark: true
     )
     .previewLayout(.sizeThatFits)
-    .padding()
 }

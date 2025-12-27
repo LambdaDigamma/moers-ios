@@ -88,7 +88,7 @@ public struct FuelStationList: View {
                     
                     VStack(alignment: .leading) {
                         
-                        Text("\(fuelStation.brand) • \(fuelStation.isOpen ? AppStrings.OpeningState.open : AppStrings.OpeningState.closed)")
+                        Text("\(fuelStation.brand) · \(fuelStation.isOpen ? AppStrings.OpeningState.open : AppStrings.OpeningState.closed)")
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.leading)
                         

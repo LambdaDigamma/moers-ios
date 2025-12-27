@@ -25,13 +25,7 @@ class RubbishCollectionProvider: TimelineProvider {
         NetworkingConfiguration().executeInExtension()
         ServiceConfiguration().executeInExtension()
         
-        self.rubbishService = Container.shared.rubbishService() ?? StaticRubbishService(
-            rubbishStreet: nil,
-            isEnabled: false,
-            remindersEnabled: false,
-            reminderHour: 20,
-            reminderMinute: 0
-        )
+        self.rubbishService = Container.shared.rubbishService()
     }
     
     func placeholder(in context: Context) -> RubbishCollectionEntry {

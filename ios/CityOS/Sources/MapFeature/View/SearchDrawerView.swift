@@ -25,7 +25,6 @@ public class SearchDrawerView: UIView {
         let layout = UICollectionViewCompositionalLayout.list(using: config)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = .systemBackground
         return cv
     }()
     

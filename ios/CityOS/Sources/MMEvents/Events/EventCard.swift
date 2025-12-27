@@ -100,7 +100,7 @@ public struct EventCard: View {
                             
                             Text(startDate, format: .relative(presentation: .numeric)) +
                             (viewModel.location != nil ?
-                             Text(" • \(viewModel.location ?? "")") :
+                             Text(" · \(viewModel.location ?? "")") :
                                 Text(""))
                             
                         }.lineLimit(1)
@@ -114,7 +114,7 @@ public struct EventCard: View {
                         Group {
                             
                             Text(dateRange) +
-                            (viewModel.location != nil ? Text(" • \(viewModel.location ?? "")") : Text(""))
+                            (viewModel.location != nil ? Text(" · \(viewModel.location ?? "")") : Text(""))
                             
                         }
                         .lineLimit(1)

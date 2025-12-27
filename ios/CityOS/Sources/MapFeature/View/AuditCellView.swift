@@ -136,6 +136,8 @@ struct AuditCellView: View {
                     oldValueRepresentation = value.format(pattern: "%.2f")
                 case .integer(let value):
                     oldValueRepresentation = String(value)
+                case .none:
+                    oldValueRepresentation = ""
                 }
             }
             

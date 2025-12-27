@@ -29,7 +29,7 @@ public struct CellIdentifier {
 
 enum ContentDrawerItem: Hashable {
     case tag(NSAttributedString, id: String)
-    case location(AnyLocation)
+    case location(Core.AnyLocation)
     
     func hash(into hasher: inout Hasher) {
         switch self {
@@ -166,7 +166,7 @@ class ContentViewController: UIViewController {
                 )
                 
             case .location(let anyLocation):
-                let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, AnyLocation> { cell, indexPath, anyLoc in
+                    let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Core.AnyLocation> { cell, indexPath, anyLoc in
                     let location = anyLoc.location
                     let showCheckmark: Bool
                     if let entry = location as? Entry {
@@ -179,7 +179,7 @@ class ContentViewController: UIViewController {
                         cell.contentConfiguration = UIHostingConfiguration {
                             SearchResultCellView(
                                 image: UIProperties.detailImage(for: location),
-                                title: location.title ?? "",
+                                title: (location.title ?? "") ?? "",
                                 subtitle: UIProperties.detailSubtitle(for: location),
                                 showCheckmark: showCheckmark
                             )
@@ -550,8 +550,7 @@ extension ContentViewController: PulleyDrawerViewControllerDelegate {
     func supportedDrawerPositions() -> [PulleyPosition] {
         
         if drawer.currentDisplayMode == .panel {
-            
-            self.gripperView.isHidden = true
+            self.contentDrawerView.gripperView.isHidden = true
             
             return [PulleyPosition.partiallyRevealed]
         }
@@ -577,11 +576,11 @@ extension ContentViewController: PulleyDrawerViewControllerDelegate {
         }
         
         if drawer.currentDisplayMode == .panel {
-            topSeparatorView.isHidden = drawer.drawerPosition == .collapsed
-            bottomSeparatorView.isHidden = drawer.drawerPosition == .collapsed
+            self.contentDrawerView.topSeparatorView.isHidden = drawer.drawerPosition == .collapsed
+            self.contentDrawerView.bottomSeparatorView.isHidden = drawer.drawerPosition == .collapsed
         } else {
-            topSeparatorView.isHidden = false
-            bottomSeparatorView.isHidden = true
+            self.contentDrawerView.topSeparatorView.isHidden = false
+            self.contentDrawerView.bottomSeparatorView.isHidden = true
         }
         
     }

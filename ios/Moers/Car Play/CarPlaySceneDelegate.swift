@@ -54,7 +54,7 @@ public class CarPlaySceneDelegate: UIResponder {
         let openItems = openParkingAreas.map({ (parkingArea: ParkingArea) -> CPListItem in
             let listItem = CPListItem(
                 text: parkingArea.name,
-                detailText: "\(parkingArea.freeSites)/\(parkingArea.capacity ?? 0) frei • \(parkingArea.currentOpeningState.name)",
+                detailText: "\(parkingArea.freeSites)/\(parkingArea.capacity ?? 0) frei · \(parkingArea.currentOpeningState.name)",
                 image: nil,
                 accessoryImage: nil,
                 accessoryType: .disclosureIndicator
@@ -71,7 +71,7 @@ public class CarPlaySceneDelegate: UIResponder {
         let closedItems = closedParkingAreas.map({ (parkingArea: ParkingArea) -> CPListItem in
             let listItem = CPListItem(
                 text: parkingArea.name,
-                detailText: "\(parkingArea.freeSites)/\(parkingArea.capacity ?? 0) frei • \(parkingArea.currentOpeningState.name)",
+                detailText: "\(parkingArea.freeSites)/\(parkingArea.capacity ?? 0) frei · \(parkingArea.currentOpeningState.name)",
                 image: nil,
                 accessoryImage: nil,
                 accessoryType: .disclosureIndicator
@@ -197,7 +197,7 @@ public class CarPlaySceneDelegate: UIResponder {
             
             let listItem = CPListItem(
                 text: "\(item.name)",
-                detailText: "\(item.price != nil ? "\(item.price ?? 0.0)" : "?")€ • \(item.distance)",
+                detailText: "\(item.price != nil ? "\(item.price ?? 0.0)" : "?")€ · \(item.distance)",
                 image: nil,
                 accessoryImage: nil,
                 accessoryType: .disclosureIndicator

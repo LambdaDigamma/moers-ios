@@ -25,7 +25,7 @@ public enum DisplayMode {
 
 enum SearchDrawerItem: Hashable {
     case tag(NSAttributedString, id: String)
-    case location(AnyLocation)
+    case location(Core.AnyLocation)
     
     func hash(into hasher: inout Hasher) {
         switch self {
@@ -64,6 +64,9 @@ public class SearchDrawerViewController: UIViewController {
     private var tags: [String] = []
     
     private var dataSource: UICollectionViewDiffableDataSource<Int, SearchDrawerItem>!
+    
+    private var tagCellRegistration: UICollectionView.CellRegistration<UICollectionViewListCell, NSAttributedString>!
+    private var locationCellRegistration: UICollectionView.CellRegistration<UICollectionViewListCell, Core.AnyLocation>!
     
     private var cancellables = Set<AnyCancellable>()
     private var normalColor = UIColor.clear
@@ -108,9 +111,56 @@ public class SearchDrawerViewController: UIViewController {
         pulleyViewController?.delegate = self
         pulleyViewController?.setDrawerPosition(position: .open, animated: false)
         
+        setupCellRegistrations()
     }
     
     // MARK: - Collection View
+    
+    private func setupCellRegistrations() {
+        tagCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, NSAttributedString> { cell, indexPath, attrStr in
+            if #available(iOS 16.0, *) {
+                cell.contentConfiguration = UIHostingConfiguration {
+                    Text(AttributedString(attrStr))
+                        .font(.system(size: 17))
+                }
+                .margins(.all, 0)
+            } else {
+                var content = cell.defaultContentConfiguration()
+                content.attributedText = attrStr
+                cell.contentConfiguration = content
+            }
+            cell.accessories = []
+        }
+        
+        locationCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Core.AnyLocation> { cell, indexPath, anyLoc in
+            let location = anyLoc.location
+            let showCheckmark: Bool
+            if let entry = location as? Entry {
+                showCheckmark = entry.isValidated
+            } else {
+                showCheckmark = true
+            }
+            
+            if #available(iOS 16.0, *) {
+                cell.contentConfiguration = UIHostingConfiguration {
+                    SearchResultCellView(
+                        image: UIProperties.detailImage(for: location),
+                        title: (location.title ?? "") ?? "",
+                        subtitle: UIProperties.detailSubtitle(for: location),
+                        showCheckmark: showCheckmark
+                    )
+                }
+                .margins(.all, 0)
+            } else {
+                var content = cell.defaultContentConfiguration()
+                content.text = location.title ?? ""
+                content.secondaryText = UIProperties.detailSubtitle(for: location)
+                content.image = UIProperties.detailImage(for: location)
+                cell.contentConfiguration = content
+            }
+            cell.accessories = [.disclosureIndicator()]
+        }
+    }
     
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Int, SearchDrawerItem>(
@@ -120,57 +170,15 @@ public class SearchDrawerViewController: UIViewController {
             
             switch item {
             case .tag(let attributedString, _):
-                let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, NSAttributedString> { cell, indexPath, attrStr in
-                    if #available(iOS 16.0, *) {
-                        cell.contentConfiguration = UIHostingConfiguration {
-                            Text(AttributedString(attrStr))
-                                .font(.system(size: 17))
-                        }
-                        .margins(.all, 0)
-                    } else {
-                        var content = cell.defaultContentConfiguration()
-                        content.attributedText = attrStr
-                        cell.contentConfiguration = content
-                    }
-                    cell.accessories = []
-                }
                 return collectionView.dequeueConfiguredReusableCell(
-                    using: cellRegistration,
+                    using: tagCellRegistration,
                     for: indexPath,
                     item: attributedString
                 )
                 
             case .location(let anyLocation):
-                let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, AnyLocation> { cell, indexPath, anyLoc in
-                    let location = anyLoc.location
-                    let showCheckmark: Bool
-                    if let entry = location as? Entry {
-                        showCheckmark = entry.isValidated
-                    } else {
-                        showCheckmark = true
-                    }
-                    
-                    if #available(iOS 16.0, *) {
-                        cell.contentConfiguration = UIHostingConfiguration {
-                            SearchResultCellView(
-                                image: UIProperties.detailImage(for: location),
-                                title: location.title ?? "",
-                                subtitle: UIProperties.detailSubtitle(for: location),
-                                showCheckmark: showCheckmark
-                            )
-                        }
-                        .margins(.all, 0)
-                    } else {
-                        var content = cell.defaultContentConfiguration()
-                        content.text = location.title ?? ""
-                        content.secondaryText = UIProperties.detailSubtitle(for: location)
-                        content.image = UIProperties.detailImage(for: location)
-                        cell.contentConfiguration = content
-                    }
-                    cell.accessories = [.disclosureIndicator()]
-                }
                 return collectionView.dequeueConfiguredReusableCell(
-                    using: cellRegistration,
+                    using: locationCellRegistration,
                     for: indexPath,
                     item: anyLocation
                 )
@@ -402,13 +410,17 @@ extension SearchDrawerViewController: UISearchBarDelegate {
         
         let tagsNotEmpty = !tags.isEmpty
         let locationsNotEmpty = !locations.isEmpty
-        let cellAtIndex0Exists = searchDrawer.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) != nil
+        let cellAtIndex0Exists = searchDrawer.collectionView.cellForItem(
+            at: IndexPath(row: 0, section: 0)
+        ) != nil
         
         if tagsNotEmpty && locationsNotEmpty && cellAtIndex0Exists {
             
-            self.searchDrawer.tableView.scrollToRow(at: IndexPath(row: 0, section: 0),
-                                                    at: UITableView.ScrollPosition.top,
-                                                    animated: false)
+            self.searchDrawer.collectionView.scrollToItem(
+                at: IndexPath(row: 0, section: 0),
+                at: UICollectionView.ScrollPosition.top,
+                animated: false
+            )
             
         }
         
