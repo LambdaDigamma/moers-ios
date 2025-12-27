@@ -2,7 +2,7 @@
 //  LiquidGlassButtonStyle.swift
 //  
 //
-//  Created by GitHub Copilot on 27.12.24.
+//  Created by Lennart Fischer on 27.12.24.
 //
 
 import SwiftUI
@@ -127,7 +127,7 @@ struct LiquidGlassButtonStyle_Preview: PreviewProvider {
             Button {
                 // Action
             } label: {
-                Text("\(Image(systemName: "bell.circle.fill")) Button with Icon")
+                Label("Button with Icon", systemImage: "bell.circle.fill")
             }
             .buttonStyle(LiquidGlassButtonStyle(prominence: .secondary))
             
