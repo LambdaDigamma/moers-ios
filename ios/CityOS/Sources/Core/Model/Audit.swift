@@ -65,18 +65,9 @@ public struct Audit: Codable, Hashable {
             }
             
             for (key, lhsValue) in lhs.baseValues {
-                guard let rhsValue = rhs.baseValues[key] else {
-                    return false
-                }
-                // Compare optional values
-                switch (lhsValue, rhsValue) {
-                case (.none, .none):
-                    continue
-                case (.some(let lv), .some(let rv)):
-                    if lv != rv {
-                        return false
-                    }
-                default:
+                let rhsValue = rhs.baseValues[key]
+                // Direct optional comparison since both are AuditGenericValue?
+                if lhsValue != rhsValue {
                     return false
                 }
             }

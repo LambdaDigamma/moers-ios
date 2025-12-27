@@ -113,7 +113,7 @@ struct AuditCellView: View {
         
         return audit.newValues.baseValues.compactMap { change -> AuditChange? in
             let newGenericValue = change.value
-            let oldGenericValue = audit.oldValues.baseValues[change.key] ?? nil
+            let oldGenericValue = audit.oldValues.baseValues[change.key]
             
             var newValueRepresentation = "n/v"
             if let newGenericValue = newGenericValue {
