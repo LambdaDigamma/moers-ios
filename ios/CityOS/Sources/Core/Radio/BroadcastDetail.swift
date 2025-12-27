@@ -126,9 +126,9 @@ public struct BroadcastDetail: View {
             }) {
                 
                 if !viewModel.enabledReminder {
-                    Text("\(Image(systemName: "bell.circle.fill")) \(AppStrings.Buergerfunk.remindMeAction)")
+                    Text("bell.circle.fill \(AppStrings.Buergerfunk.remindMeAction)", tableName: nil, bundle: .module)
                 } else {
-                    Text("\(Image(systemName: "bell.slash.circle.fill")) \(AppStrings.Buergerfunk.reminderActiveAction)")
+                    Text("bell.slash.circle.fill \(AppStrings.Buergerfunk.reminderActiveAction)", tableName: nil, bundle: .module)
                 }
                 
             }
@@ -152,7 +152,7 @@ public struct BroadcastDetail: View {
         
         VStack(alignment: .leading) {
             
-            Text("Weitere Sendungen")
+            Text("More broadcasts", tableName: nil, bundle: .module)
                 .fontWeight(.bold)
                 .padding(.bottom)
             
@@ -162,7 +162,7 @@ public struct BroadcastDetail: View {
             
             Divider()
             
-            Text("Ortsgespräche Rheinberg")
+            Text("Ortsgespräche Rheinberg", tableName: nil, bundle: .module)
                 .font(.body)
             
         }

@@ -84,7 +84,7 @@ public struct DashboardView<Content: View>: View {
 //                .foregroundColor(Color.yellow)
 //            }
         }
-        .navigationBarTitle(PackageStrings.Dashboard.title)
+        .navigationBarTitle("Today")
         .task {
             UserActivity.current = UserActivities.configureDashboardActivity()
             viewModel.load()

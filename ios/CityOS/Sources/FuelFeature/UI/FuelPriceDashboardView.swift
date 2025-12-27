@@ -32,7 +32,7 @@ public struct FuelPriceDashboardView: View {
                         
                         VStack(alignment: .leading, spacing: 4) {
                             
-                            Text("\(Image(systemName: "location.fill")) \(PackageStrings.Dashboard.currentLocation)")
+                            Label("Current location", systemImage: "location.fill")
                                 .font(.callout.weight(.medium))
                             
                             Text(viewModel.locationName.value ?? "Moers")
