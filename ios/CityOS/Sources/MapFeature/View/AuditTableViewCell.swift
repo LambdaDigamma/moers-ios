@@ -71,7 +71,7 @@ class AuditTableViewCell: UITableViewCell {
         "saturday": String(localized: "Saturday (Opening Hours)", bundle: .module),
         "sunday": String(localized: "Sunday (Opening Hours)", bundle: .module),
         "other": String(localized: "Other (Opening Hours)", bundle: .module),
-        "url": String(localized: "Websete", bundle: .module),
+        "url": String(localized: "Website", bundle: .module),
         "phone": String(localized: "Phone", bundle: .module),
     ]
     

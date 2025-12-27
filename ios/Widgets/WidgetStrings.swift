@@ -12,7 +12,7 @@ internal enum WidgetStrings {
     
     internal enum News {
         internal static let widgetTitle = String(localized: "News from Moers")
-        internal static let widgetDescription = String(localized: "Keep up to date with whats happening in and around Moers")
+        internal static let widgetDescription = String(localized: "Keep up to date with what's happening in and around Moers")
     }
     
     internal enum DepartureMonitor {

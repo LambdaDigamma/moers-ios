@@ -234,7 +234,8 @@ public class DetailViewController: UIViewController {
                 
                 guard let estimate = response else { return }
                 
-                self.routeButton.setTitle(String(localized: "Route (%d min)", bundle: .module).replacingOccurrences(of: "%d", with: "\(Int(floor(estimate.expectedTravelTime / 60))"), for: .normal)
+                let minutes = Int(floor(estimate.expectedTravelTime / 60))
+                self.routeButton.setTitle(String(localized: "Route (\(minutes) min)", bundle: .module), for: .normal)
                 
             })
             
