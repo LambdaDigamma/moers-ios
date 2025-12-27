@@ -441,7 +441,7 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
     
 }
 
-extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
+extension EventsViewController_Legacy: UITableViewDataSource, UITableViewDelegate {
     
     public func numberOfSections(in tableView: UITableView) -> Int {
         
