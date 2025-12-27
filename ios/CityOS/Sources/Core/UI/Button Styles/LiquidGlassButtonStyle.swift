@@ -39,30 +39,9 @@ public struct LiquidGlassButtonStyle: ButtonStyle {
         Group {
             switch prominence {
             case .primary:
-                configuration.label
-                    .font(.body.weight(.semibold))
-                    .padding()
-                    .foregroundColor(.black)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .background(Color.yellow)
-                    .cornerRadius(10)
-                    .opacity(configuration.isPressed ? 0.7 : 1)
+                makePrimaryButton(configuration: configuration, background: Color.yellow)
             case .secondary:
-                configuration.label
-                    .font(.body.weight(.semibold))
-                    .padding()
-                    .foregroundColor(.yellow)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .background {
-                        ZStack {
-                            // Base material for glass effect
-                            Color(UIColor.secondarySystemBackground)
-                            // Subtle overlay for better contrast with yellow text
-                            Color.black.opacity(0.1)
-                        }
-                    }
-                    .cornerRadius(10)
-                    .opacity(configuration.isPressed ? 0.7 : 1)
+                makeSecondaryButton(configuration: configuration, includeOverlay: true)
             }
         }
     }
@@ -73,24 +52,44 @@ public struct LiquidGlassButtonStyle: ButtonStyle {
     private func makeLegacyButton(configuration: Configuration) -> some View {
         switch prominence {
         case .primary:
-            configuration.label
-                .font(.body.weight(.semibold))
-                .padding()
-                .foregroundColor(.black)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .background(Color.yellow)
-                .cornerRadius(10)
-                .opacity(configuration.isPressed ? 0.7 : 1)
+            makePrimaryButton(configuration: configuration, background: Color.yellow)
         case .secondary:
-            configuration.label
-                .font(.body.weight(.semibold))
-                .padding()
-                .foregroundColor(.yellow)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .background(Color(UIColor.secondarySystemBackground))
-                .cornerRadius(10)
-                .opacity(configuration.isPressed ? 0.7 : 1)
+            makeSecondaryButton(configuration: configuration, includeOverlay: false)
         }
+    }
+    
+    // MARK: - Helper Methods
+    
+    private func makePrimaryButton(configuration: Configuration, background: Color) -> some View {
+        configuration.label
+            .font(.body.weight(.semibold))
+            .padding()
+            .foregroundColor(.black)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .background(background)
+            .cornerRadius(10)
+            .opacity(configuration.isPressed ? 0.7 : 1)
+    }
+    
+    @ViewBuilder
+    private func makeSecondaryButton(configuration: Configuration, includeOverlay: Bool) -> some View {
+        configuration.label
+            .font(.body.weight(.semibold))
+            .padding()
+            .foregroundColor(.yellow)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .background {
+                if includeOverlay {
+                    ZStack {
+                        Color(UIColor.secondarySystemBackground)
+                        Color.black.opacity(0.1)
+                    }
+                } else {
+                    Color(UIColor.secondarySystemBackground)
+                }
+            }
+            .cornerRadius(10)
+            .opacity(configuration.isPressed ? 0.7 : 1)
     }
 }
 
