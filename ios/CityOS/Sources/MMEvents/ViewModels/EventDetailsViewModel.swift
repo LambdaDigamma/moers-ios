@@ -94,7 +94,7 @@ public class EventDetailsViewModel: ObservableObject {
             } else if let locationName = $0?.extras?.location {
                 return locationName
             } else {
-                return String.localized("NotKnownLoc")
+                return String(localized: "NotKnownLoc", bundle: .module)
             }
             
         }.eraseToAnyPublisher()

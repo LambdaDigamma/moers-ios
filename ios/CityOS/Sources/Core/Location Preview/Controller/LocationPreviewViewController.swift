@@ -33,7 +33,7 @@ class LocationPreviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = String.localized("Venue")
+        self.title = String(localized: "Venue", bundle: .module)
         
         self.setupActions()
         

@@ -28,8 +28,8 @@ public struct User {
         
         public var name: String {
             switch self {
-                case .citizen: return String.localized("Citizen")
-                case .tourist: return String.localized("Tourist")
+                case .citizen: return String(localized: "Citizen", bundle: .module)
+                case .tourist: return String(localized: "Tourist", bundle: .module)
             }
         }
         

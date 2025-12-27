@@ -51,7 +51,7 @@ public class LocationInformationView: UIView {
         self.locationNameLabel.numberOfLines = 0
         self.locationDetailsLabel.numberOfLines = 0
         
-        self.routeButton.setTitle(String.localized("RouteButtonTitle"), for: .normal)
+        self.routeButton.setTitle(String(localized: "Route", bundle: .module), for: .normal)
         
     }
     

@@ -318,25 +318,25 @@ public class TrackerManager: TrackerManagerProtocol {
     
     private func convertTrackingPointsToTrackers(_ trackingPoints: [TrackingPoint]) -> [Tracker] {
         
-        let tracker01 = Tracker(name: "(1) \(String.localized("LoadingTracker"))",
+        let tracker01 = Tracker(name: "(1) \(String(localized: "Loading tracker...", bundle: .module))",
             deviceID: TrackerDeviceID.tracker1.rawValue,
             trackingPoints: trackingPoints
                 .filter { $0.deviceID == TrackerDeviceID.tracker1.rawValue }
                 .sorted(by: { $0.time < $1.time }))
         
-        let tracker02 = Tracker(name: "(2) \(String.localized("LoadingTracker"))",
+        let tracker02 = Tracker(name: "(2) \(String(localized: "Loading tracker...", bundle: .module))",
             deviceID: TrackerDeviceID.tracker2.rawValue,
             trackingPoints: trackingPoints
                 .filter { $0.deviceID == TrackerDeviceID.tracker2.rawValue }
                 .sorted(by: { $0.time < $1.time }))
         
-        let tracker03 = Tracker(name: "(3) \(String.localized("LoadingTracker"))",
+        let tracker03 = Tracker(name: "(3) \(String(localized: "Loading tracker...", bundle: .module))",
             deviceID: TrackerDeviceID.tracker3.rawValue,
             trackingPoints: trackingPoints
                 .filter { $0.deviceID == TrackerDeviceID.tracker3.rawValue }
                 .sorted(by: { $0.time < $1.time }))
         
-        let tracker04 = Tracker(name: "(4) \(String.localized("LoadingTracker"))",
+        let tracker04 = Tracker(name: "(4) \(String(localized: "Loading tracker...", bundle: .module))",
             deviceID: TrackerDeviceID.tracker4.rawValue,
             trackingPoints: trackingPoints
                 .filter { $0.deviceID == TrackerDeviceID.tracker4.rawValue }
