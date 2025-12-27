@@ -211,10 +211,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
             content.secondaryTextProperties.font = .systemFont(ofSize: 16)
             content.secondaryTextProperties.color = .secondaryLabel
             
-            cell.contentConfiguration = content
-            
-            // Add color indicator
-            var backgroundConfig = UIBackgroundConfiguration.listGroupedCell()
+            // Add color indicator by adjusting content margins and using a custom background
             if let color = event.model.extras?.color {
                 let indicatorColor: UIColor
                 if color == "yellow" {
@@ -229,10 +226,18 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
                     indicatorColor = UIColor.gray
                 }
                 
+                // Remove any existing indicator views to avoid duplicates
+                cell.contentView.subviews.forEach { subview in
+                    if subview.tag == 999 { // Tag for indicator view
+                        subview.removeFromSuperview()
+                    }
+                }
+                
                 // Create a custom view for the leading indicator
                 let indicatorView = UIView()
                 indicatorView.backgroundColor = indicatorColor
                 indicatorView.translatesAutoresizingMaskIntoConstraints = false
+                indicatorView.tag = 999 // Tag to identify indicator view
                 
                 cell.contentView.addSubview(indicatorView)
                 
@@ -245,9 +250,11 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
                 
                 // Adjust content insets to make room for indicator
                 content.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 8, leading: 32, bottom: 8, trailing: 16)
-                cell.contentConfiguration = content
             }
             
+            cell.contentConfiguration = content
+            
+            var backgroundConfig = UIBackgroundConfiguration.listGroupedCell()
             cell.backgroundConfiguration = backgroundConfig
             
             // Add heart icon for liked events
@@ -266,6 +273,8 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
                     return imageView
                 }(), placement: .trailing(displayed: .always))))
                 cell.accessories = accessories
+            } else {
+                cell.accessories = []
             }
         }
         
