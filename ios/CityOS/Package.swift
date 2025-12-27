@@ -28,7 +28,8 @@ let package = Package(
         .library(name: "EFAUI", targets: ["EFAUI"]),
         .executable(name: "EFACLI", targets: ["EFACLI"]),
         .library(name: "Core", targets: ["Core"]),
-        .library(name: "CoreCache", targets: ["CoreCache"])
+        .library(name: "CoreCache", targets: ["CoreCache"]),
+        .library(name: "Pulley", targets: ["Pulley"])
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-algorithms", from: "1.0.0"),
@@ -47,7 +48,6 @@ let package = Package(
         .package(url: "https://github.com/LambdaDigamma/HanekeSwift", .upToNextMajor(from: "0.14.0")),
         .package(url: "https://github.com/nmdias/FeedKit", .upToNextMajor(from: "9.0.0")),
         .package(url: "https://github.com/groue/GRDB.swift", branch: "master"),
-        .package(url: "https://github.com/52inc/Pulley", from: "2.9.1"),
         .package(url: "https://github.com/SvenTiigi/YouTubePlayerKit", from: "1.1.1"),
         .package(url: "https://github.com/CoreOffice/XMLCoder", from: "0.14.0"),
     ],
@@ -265,6 +265,6 @@ let package = Package(
                 .copy("Data")
             ]
         ),
-        
+        .target(name: "Pulley")
     ]
 )
