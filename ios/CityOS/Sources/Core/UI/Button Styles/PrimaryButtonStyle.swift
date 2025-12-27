@@ -7,21 +7,14 @@
 
 import SwiftUI
 
+/// Primary button style using Liquid Glass design pattern
+/// Uses modern materials on iOS 18+ with fallback for earlier versions
 public struct PrimaryButtonStyle: ButtonStyle {
     
     public init() {}
     
     public func makeBody(configuration: Configuration) -> some View {
-        
-        configuration.label
-            .font(.body.weight(.semibold))
-            .padding()
-            .foregroundColor(.black)
-            .frame(maxWidth: .infinity, alignment: .center)
-            .background(Color.yellow)
-            .cornerRadius(10)
-            .opacity(configuration.isPressed ? 0.7 : 1)
-        
+        LiquidGlassButtonStyle(prominence: .primary).makeBody(configuration: configuration)
     }
     
 }
