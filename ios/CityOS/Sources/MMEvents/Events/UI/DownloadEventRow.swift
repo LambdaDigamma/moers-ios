@@ -233,7 +233,7 @@ struct DownloadEventRow: View {
             
             viewModel.content.hasResource { (isDownloaded: Bool) in
                 
-                Text(EventPackageStrings.Download.content)
+                Text("Content")
                     .foregroundColor(isDownloaded ? Color.green : Color.red)
                 
                 Image(systemName: isDownloaded ? "checkmark.circle" : "xmark.circle")
@@ -244,7 +244,7 @@ struct DownloadEventRow: View {
             
             viewModel.content.isLoading {
                 
-                Text(EventPackageStrings.Download.content)
+                Text("Content")
                 
                 ProgressView().progressViewStyle(.circular)
                 
@@ -262,7 +262,7 @@ struct DownloadEventRow: View {
             
             viewModel.media.hasResource { (isDownloaded: Bool) in
                 
-                Text(EventPackageStrings.Download.media)
+                Text("Images")
                     .foregroundColor(isDownloaded ? Color.green : Color.red)
                 
                 Image(systemName: isDownloaded ? "checkmark.circle" : "xmark.circle")
@@ -272,7 +272,7 @@ struct DownloadEventRow: View {
             
             viewModel.media.isLoading {
                 
-                Text(EventPackageStrings.Download.media)
+                Text("Images")
                 
                 ProgressView().progressViewStyle(.circular)
                 

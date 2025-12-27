@@ -129,7 +129,7 @@ public struct FuelStationList: View {
             Button {
                 startNavigation(to: fuelStation)
             } label: {
-                Label(PackageStrings.FuelStationList.contextNavigationAction,
+                Label("Get directions",
                       systemImage: "arrow.triangle.turn.up.right.circle")
             }
         }

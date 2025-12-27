@@ -59,7 +59,7 @@ public struct DepartureMonitorForeground: View {
 //                        .layoutPriority(50)
                 
                 HStack {
-                    Text(EFAAPI.PackageStrings.DepartureMonitor.lastUpdatedAt) +
+                    Text("Last updated: ") +
                     Text(lastUpdatedAt, style: .relative)
                 }
 //                .layoutPriority(100)

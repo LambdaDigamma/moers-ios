@@ -181,7 +181,7 @@ public struct ParkingAreaList: View {
                 }
                 
             } label: {
-                Label(PackageStrings.ParkingAreaList.filter,
+                Label("Filter",
                       systemImage: "line.3.horizontal.decrease.circle")
                 .foregroundColor(Color.yellow)
             }

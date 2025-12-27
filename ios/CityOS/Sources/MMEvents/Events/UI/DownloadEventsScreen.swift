@@ -110,14 +110,14 @@ public struct DownloadEventsScreen: View {
                 Button(action: {
                     viewModel.download()
                 }) {
-                    Text(EventPackageStrings.Download.downloadTimetable)
+                    Text("Download timetable")
                 }
                 
             } header: {
-                Text(EventPackageStrings.Download.downloadHeader)
+                Text("Download data")
                     .frame(maxWidth: .infinity, alignment: .leading)
             } footer: {
-                Text(EventPackageStrings.Download.downloadFooter)
+                Text("Downloading the entire timetable may result in higher data usage.")
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
             
@@ -132,7 +132,7 @@ public struct DownloadEventsScreen: View {
                 }
                 
             } header: {
-                Text(EventPackageStrings.Download.downloadHeader)
+                Text("Download data")
             }
             
         }
