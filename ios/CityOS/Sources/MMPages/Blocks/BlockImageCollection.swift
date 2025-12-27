@@ -8,7 +8,7 @@
 import Foundation
 import ProseMirror
 
-public struct BlockImageCollection: Blockable {
+public struct BlockImageCollection: Blockable, Equatable {
     
     public static var type: BlockType = .imageCollection
     

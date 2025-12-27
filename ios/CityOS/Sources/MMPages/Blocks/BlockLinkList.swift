@@ -8,7 +8,7 @@
 import Foundation
 import ProseMirror
 
-public struct BlockLinkList: Blockable {
+public struct BlockLinkList: Blockable, Equatable {
     
     public static var type: BlockType = .youtubeVideo
     
@@ -18,7 +18,7 @@ public struct BlockLinkList: Blockable {
         case links = "links"
     }
     
-    public struct LinkEntry: Codable, Identifiable {
+    public struct LinkEntry: Codable, Identifiable, Equatable, Hashable {
         
         public let id: UUID = UUID()
         
@@ -36,7 +36,7 @@ public struct BlockLinkList: Blockable {
         
     }
         
-    public enum LinkIcon: String, Codable {
+    public enum LinkIcon: String, Codable, Equatable {
         case link = "link"
         case twitter = "twitter"
         case instagram = "instagram"
@@ -48,7 +48,7 @@ public struct BlockLinkList: Blockable {
         case soundCloud = "soundcloud"
     }
     
-    public enum LinkColor: String, Codable {
+    public enum LinkColor: String, Codable, Equatable {
         case red = "red"
         case yellow = "yellow"
         case pink = "pink"

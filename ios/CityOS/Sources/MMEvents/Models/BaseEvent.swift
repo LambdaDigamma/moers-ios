@@ -9,7 +9,7 @@ import Core
 import Foundation
 import ModernNetworking
 
-public protocol BaseEvent: Model, Stubbable, Equatable {
+public protocol BaseEvent: Model, Stubbable, Equatable, Hashable {
     
     associatedtype ID = Identifiable
     

@@ -9,7 +9,7 @@ import Core
 import Foundation
 import CoreLocation
 
-public struct EventExtras: Codable, Equatable {
+public struct EventExtras: Codable, Equatable, Hashable {
     
     // Common Attributes
     

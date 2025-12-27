@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum BlockType: String, CaseIterable, Codable, CaseIterableDefaultsLast {
+public enum BlockType: String, CaseIterable, Codable, CaseIterableDefaultsLast, Hashable, Equatable {
     
     case youtubeVideo = "youtube-video"
     case markdown = "markdown"
