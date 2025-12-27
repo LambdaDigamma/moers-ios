@@ -22,7 +22,7 @@ class SelectionViewController: UIViewController {
     lazy var separatorView: UIView = { CoreViewFactory.blankView() }()
     lazy var closeButton: UIButton = { CoreViewFactory.button() }()
     private var collectionView: UICollectionView!
-    private var dataSource: UICollectionViewDiffableDataSource<Section, Location>!
+    private var dataSource: UICollectionViewDiffableDataSource<Section, AnyLocation>!
     
     // swiftlint:disable:next force_cast
     lazy var drawer: MainViewController = { self.parent as! MainViewController }()
@@ -100,7 +100,8 @@ class SelectionViewController: UIViewController {
     }
     
     private func configureDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Location> { cell, indexPath, location in
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, AnyLocation> { cell, indexPath, anyLocation in
+            let location = anyLocation.location
             if #available(iOS 16.0, *) {
                 cell.contentConfiguration = UIHostingConfiguration {
                     SearchResultCellView(
@@ -122,18 +123,19 @@ class SelectionViewController: UIViewController {
             cell.accessories = [.disclosureIndicator()]
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Section, Location>(collectionView: collectionView) {
-            collectionView, indexPath, location in
-            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: location)
+        dataSource = UICollectionViewDiffableDataSource<Section, AnyLocation>(collectionView: collectionView) {
+            collectionView, indexPath, anyLocation in
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: anyLocation)
         }
         
         collectionView.delegate = self
     }
     
     private func updateSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Location>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, AnyLocation>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(clusteredLocations)
+        let items = clusteredLocations.map { AnyLocation($0) }
+        snapshot.appendItems(items)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     

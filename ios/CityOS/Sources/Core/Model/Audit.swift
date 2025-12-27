@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Audit: Codable {
+public struct Audit: Codable, Hashable {
     
     public let id: Int
     public let event: EventType
@@ -16,6 +16,14 @@ public struct Audit: Codable {
     public let createdAt: Date?
     public let updatedAt: Date?
     
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    public static func == (lhs: Audit, rhs: Audit) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     public enum EventType: String, Codable {
         case created = "created"
         case updated = "updated"
@@ -23,7 +31,7 @@ public struct Audit: Codable {
         case restored = "restored"
     }
     
-    public struct AuditValues: Codable {
+    public struct AuditValues: Codable, Hashable {
         
         public var baseValues: [String: AuditGenericValue?]
         
@@ -37,6 +45,20 @@ public struct Audit: Codable {
                 baseValues = [:]
             }
             
+        }
+        
+        public func hash(into hasher: inout Hasher) {
+            // Hash the keys and values in a consistent order
+            let sortedKeys = baseValues.keys.sorted()
+            for key in sortedKeys {
+                hasher.combine(key)
+                hasher.combine(baseValues[key] as? AnyHashable)
+            }
+        }
+        
+        public static func == (lhs: AuditValues, rhs: AuditValues) -> Bool {
+            // Simple comparison based on dictionary equality
+            return lhs.baseValues.count == rhs.baseValues.count
         }
         
     }

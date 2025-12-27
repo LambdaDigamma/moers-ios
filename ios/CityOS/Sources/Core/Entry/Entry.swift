@@ -200,3 +200,15 @@ extension Entry {
 //    }
     
 }
+
+extension Entry: Hashable {
+    
+    public static func == (lhs: Entry, rhs: Entry) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+}
