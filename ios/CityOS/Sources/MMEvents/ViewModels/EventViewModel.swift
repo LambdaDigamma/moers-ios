@@ -8,7 +8,7 @@
 import Core
 import Foundation
 
-public class EventViewModel<Event: BaseEvent> {
+public class EventViewModel<Event: BaseEvent>: Equatable, Hashable {
     
     open private(set) var model: Event
     private let now: Date
@@ -271,5 +271,13 @@ public class EventViewModel<Event: BaseEvent> {
 
     }
 
+    public static func == (lhs: EventViewModel<Event>, rhs: EventViewModel<Event>) -> Bool {
+        return lhs.model == rhs.model
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.model)
+    }
+    
 }
 

@@ -115,4 +115,26 @@ public struct PageBlock: BasePageBlock {
         )
     }
     
+    public static func == (lhs: PageBlock, rhs: PageBlock) -> Bool {
+        return lhs.id == rhs.id
+        && lhs.pageID == rhs.pageID
+        && lhs.type == rhs.type
+        && lhs.children == rhs.children
+        && lhs.mediaCollectionsContainer == rhs.mediaCollectionsContainer
+        && lhs.order == rhs.order
+        && lhs.createdAt == rhs.createdAt
+        && lhs.updatedAt == rhs.updatedAt
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(pageID)
+        hasher.combine(type)
+        hasher.combine(children)
+        hasher.combine(mediaCollectionsContainer)
+        hasher.combine(order)
+        hasher.combine(createdAt)
+        hasher.combine(updatedAt)
+    }
+    
 }

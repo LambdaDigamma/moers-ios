@@ -8,7 +8,7 @@
 import Foundation
 import ProseMirror
 
-public struct TextBlock: Blockable {
+public struct TextBlock: Blockable, Equatable {
     
     public static var type: BlockType = .text
     
@@ -20,6 +20,11 @@ public struct TextBlock: Blockable {
         case title = "title"
         case subtitle = "subtitle"
         case text = "text"
+    }
+    
+    public static func == (lhs: TextBlock, rhs: TextBlock) -> Bool {
+        return lhs.title == rhs.title
+            && lhs.subtitle == rhs.subtitle
     }
     
 }

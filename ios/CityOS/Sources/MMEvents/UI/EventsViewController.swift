@@ -66,7 +66,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
         case dated(String)
     }
     
-    private enum Item: Hashable {
+    private enum Item: Hashable, Equatable {
         case event(EventViewModel<Event>)
         case hint(String)
     }

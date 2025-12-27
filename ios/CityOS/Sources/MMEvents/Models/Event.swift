@@ -9,7 +9,7 @@ import Foundation
 import MMPages
 import MediaLibraryKit
 
-public struct Event: BaseEvent {
+public struct Event: BaseEvent, Equatable, Hashable {
     
     public typealias ID = Int
     
