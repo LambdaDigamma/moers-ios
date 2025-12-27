@@ -15,40 +15,40 @@ import FuelFeature
 
 class SettingsViewController: UIViewController {
 
-    private let standardCellIdentifier = "standard"
-    private let switchCellIdentifier = "switchCell"
+    private let onboardingManager = OnboardingManager()
     
-    lazy var tableView = { CoreViewFactory.tableView(with: .grouped) }()
+    lazy var collectionView: UICollectionView = {
+        var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+        configuration.headerMode = .supplementary
+        let layout = UICollectionViewCompositionalLayout.list(using: configuration)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .systemBackground
+        return collectionView
+    }()
+    
     lazy var manager = { makeManager(with: BLTNPageItem(title: "")) }()
     
-    var data: [TableViewSection] = []
+    var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
     @LazyInjected(\.rubbishService) var rubbishService
     @LazyInjected(\.petrolService) var petrolService
     
-    private let onboardingManager: OnboardingManager
-    
     init() {
-        
-        self.onboardingManager = OnboardingManager()
-        
         super.init(nibName: nil, bundle: nil)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - UIViewController Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setupUI()
-        self.setupConstraints()
-        self.setupTheming()
-        self.reloadRows()
+        setupUI()
+        setupConstraints()
+        setupDataSource()
+        reloadRows()
         
     }
     
@@ -59,40 +59,76 @@ class SettingsViewController: UIViewController {
         
     }
     
-    // MARK: - Private Methods
-    
     private func setupUI() {
-        
         title = String.localized("SettingsTitle")
-        view.addSubview(tableView)
+        view.addSubview(collectionView)
+        collectionView.delegate = self
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(OtherTableViewCell.self, forCellReuseIdentifier: standardCellIdentifier)
-        tableView.register(SwitchTableViewCell.self, forCellReuseIdentifier: switchCellIdentifier)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        let switchRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, SwitchItem> { [weak self] cell, indexPath, item in
+            guard let self = self else { return }
+            var content = cell.defaultContentConfiguration()
+            content.text = item.title
+            cell.contentConfiguration = content
+            
+            let switchView = UISwitch()
+            switchView.isOn = item.isOn
+            switchView.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
+            
+            cell.accessories = [.customView(configuration: .init(customView: switchView, placement: .trailing()))]
+        }
+        
+        let navigationRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, NavigationItem> { cell, indexPath, item in
+            var content = cell.defaultContentConfiguration()
+            content.text = item.title
+            cell.contentConfiguration = content
+            cell.accessories = [.disclosureIndicator()]
+        }
+        
+        dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) { collectionView, indexPath, item in
+            switch item {
+            case .navigation(let navigationItem):
+                return collectionView.dequeueConfiguredReusableCell(using: navigationRegistration, for: indexPath, item: navigationItem)
+            case .switch(let switchItem):
+                return collectionView.dequeueConfiguredReusableCell(using: switchRegistration, for: indexPath, item: switchItem)
+            }
+        }
+        
+        let headerRegistration = UICollectionView.SupplementaryRegistration<UICollectionViewListCell>(elementKind: UICollectionView.elementKindSectionHeader) { [weak self] supplementaryView, string, indexPath in
+            guard let self = self else { return }
+            let section = self.dataSource?.sectionIdentifier(for: indexPath.section)
+            var content = supplementaryView.defaultContentConfiguration()
+            content.text = section?.title
+            supplementaryView.contentConfiguration = content
+            supplementaryView.backgroundConfiguration = .clear()
+        }
+        
+        dataSource?.supplementaryViewProvider = { collectionView, kind, indexPath in
+            return collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: indexPath)
+        }
         
     }
     
     private func setupConstraints() {
-        
         let constraints: [NSLayoutConstraint] = [
-            tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ]
         
         NSLayoutConstraint.activate(constraints)
+    }
+    
+    private func setupDataSource() {
+        
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        
+        snapshot.appendSections([.user])
+        snapshot.appendItems([.navigation(NavigationItem(title: "", action: nil))], toSection: .user)
+        
+        dataSource?.apply(snapshot, animatingDifferences: false)
         
     }
-    
-    private func setupTheming() {
-        self.tableView.backgroundColor = UIColor.systemBackground
-        self.tableView.separatorColor = UIColor.separator
-    }
-    
-    // MARK: - Settings Rows
     
     private func showRubbishStreet() {
         
@@ -188,8 +224,6 @@ class SettingsViewController: UIViewController {
         
     }
     
-    // MARK: - Utilities
-    
     private func push(viewController: UIViewController.Type) {
         
         let vc = viewController.init()
@@ -197,7 +231,6 @@ class SettingsViewController: UIViewController {
         
     }
     
-    // swiftlint:disable:next function_body_length
     private func reloadRows() {
         
         let hour = rubbishService.reminderHour
@@ -230,47 +263,29 @@ class SettingsViewController: UIViewController {
         
         let userType = UserManager.shared.user.type
         
-        var sections: [TableViewSection] = []
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         
-        sections.append(TableViewSection(title: String.localized("User"),
-                                         rows: [NavigationRow(title: String.localized("UserType") + ": " + userType.name, action: showUserType)]))
+        snapshot.appendSections([.user])
+        snapshot.appendItems([.navigation(NavigationItem(title: String.localized("UserType") + ": " + userType.name, action: showUserType))], toSection: .user)
         
-        sections.append(TableViewSection(
-            title: String.localized("Petrol"),
-            rows: [
-                NavigationRow(
-                    title: String.localized("PetrolType") + ": " + petrolService.petrolType.name,
-                    action: showPetrolType
-                )
-            ]
-        ))
+        snapshot.appendSections([.petrol])
+        snapshot.appendItems([.navigation(NavigationItem(title: String.localized("PetrolType") + ": " + petrolService.petrolType.name, action: showPetrolType))], toSection: .petrol)
         
         if UserManager.shared.user.type == .citizen {
             
-            sections.append(TableViewSection(
-                title: String.localized("SettingsRubbishCollectionTitle"),
-                rows: [
-                    SwitchRow(
-                        title: String.localized("Activated"),
-                        switchOn: rubbishService.isEnabled,
-                        action: triggerRubbishCollection
-                    ),
-                    NavigationRow(
-                        title: String.localized("Street") + ": \(rubbishService.rubbishStreet?.displayName ?? "nicht ausgewählt")",
-                        action: showRubbishStreet
-                    ),
-                    NavigationRow(
-                        title: rubbishReminder,
-                        action: showRubbishReminder
-                    )
-                ]
-            ))
+            snapshot.appendSections([.rubbish])
+            
+            var items: [Item] = [
+                .switch(SwitchItem(title: String.localized("Activated"), isOn: rubbishService.isEnabled, action: triggerRubbishCollection)),
+                .navigation(NavigationItem(title: String.localized("Street") + ": \(rubbishService.rubbishStreet?.displayName ?? "nicht ausgewählt")", action: showRubbishStreet)),
+                .navigation(NavigationItem(title: rubbishReminder, action: showRubbishReminder))
+            ]
+            
+            snapshot.appendItems(items, toSection: .rubbish)
             
         }
         
-        self.data = sections
-        
-        self.tableView.reloadData()
+        dataSource?.apply(snapshot, animatingDifferences: true)
         
     }
     
@@ -312,68 +327,112 @@ class SettingsViewController: UIViewController {
         
     }
     
+    @objc private func switchChanged(_ sender: UISwitch) {
+        let point = sender.convert(CGPoint.zero, to: collectionView)
+        guard let indexPath = collectionView.indexPathForItem(at: point) else { return }
+        
+        switch dataSource?.itemIdentifier(for: indexPath) {
+        case .switch(let item):
+            item.action?(sender.isOn)
+        default:
+            break
+        }
+    }
+    
 }
 
-extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
+ extension SettingsViewController: UICollectionViewDelegate {
+     
+     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+         guard let item = dataSource?.itemIdentifier(for: indexPath) else { return true }
+         if case .switch = item {
+             return false
+         }
+         return true
+     }
+     
+     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+         collectionView.deselectItem(at: indexPath, animated: true)
+         
+         guard let item = dataSource?.itemIdentifier(for: indexPath) else { return }
+         
+         switch item {
+         case .navigation(let navigationItem):
+             navigationItem.action?()
+         default:
+             break
+         }
+     }
+     
+ }
+
+enum Section: Hashable {
+    case user
+    case petrol
+    case rubbish
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return data.count
-        
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return data[section].title
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return data[section].rows.count
-        
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        var cell: UITableViewCell
-        
-        if let navigationRow = data[indexPath.section].rows[indexPath.row] as? NavigationRow {
-            
-            cell = tableView.dequeueReusableCell(withIdentifier: standardCellIdentifier)!
-            
-            cell.textLabel?.text = navigationRow.title
-            cell.accessoryType = .disclosureIndicator
-            
-            if let otherCell = cell as? OtherTableViewCell {
-                otherCell.applyTheming()
-            }
-            
-        } else {
-            
-            let switchRow = data[indexPath.section].rows[indexPath.row] as? SwitchRow
-            
-            // swiftlint:disable:next force_cast
-            let switchCell = tableView.dequeueReusableCell(withIdentifier: switchCellIdentifier) as! SwitchTableViewCell
-            
-            switchCell.descriptionLabel.text = switchRow?.title
-            switchCell.switchControl.isOn = switchRow?.switchOn ?? false
-            switchCell.action = switchRow?.action
-            
-            cell = switchCell
-            
+    var title: String {
+        switch self {
+        case .user:
+            return String.localized("User")
+        case .petrol:
+            return String.localized("Petrol")
+        case .rubbish:
+            return String.localized("SettingsRubbishCollectionTitle")
         }
-        
-        cell.selectionStyle = .none
-        
-        return cell
-        
+    }
+}
+
+enum Item: Hashable {
+    case navigation(NavigationItem)
+    case `switch`(SwitchItem)
+    
+    func hash(into hasher: inout Hasher) {
+        switch self {
+        case .navigation(let item):
+            hasher.combine(item.title)
+        case .switch(let item):
+            hasher.combine(item.title)
+            hasher.combine(item.isOn)
+        }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        guard let navigationRow = data[indexPath.section].rows[indexPath.row] as? NavigationRow else { return }
-        
-        navigationRow.action?()
-        
+    static func == (lhs: Item, rhs: Item) -> Bool {
+        switch (lhs, rhs) {
+        case (.navigation(let lhsItem), .navigation(let rhsItem)):
+            return lhsItem.title == rhsItem.title
+        case (.switch(let lhsItem), .switch(let rhsItem)):
+            return lhsItem.title == rhsItem.title && lhsItem.isOn == rhsItem.isOn
+        default:
+            return false
+        }
+    }
+}
+
+struct NavigationItem: Hashable {
+    let title: String
+    let action: (() -> Void)?
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(title)
     }
     
+    static func == (lhs: NavigationItem, rhs: NavigationItem) -> Bool {
+        return lhs.title == rhs.title
+    }
+}
+
+struct SwitchItem: Hashable {
+    let title: String
+    let isOn: Bool
+    let action: ((Bool) -> Void)?
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(title)
+        hasher.combine(isOn)
+    }
+    
+    static func == (lhs: SwitchItem, rhs: SwitchItem) -> Bool {
+        return lhs.title == rhs.title && lhs.isOn == rhs.isOn
+    }
 }
