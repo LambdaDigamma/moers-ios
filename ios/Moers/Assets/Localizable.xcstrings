@@ -1,1200 +1,1010 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "AboutText" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "\nDiese App ist ein Projekt der Gruppe Code for Niederrhein und wurde von Lennart Fischer entwickelt. \nDie Daten stammen aus dem OpenData-Portal der Stadt Moers (offenesdatenportal.de) und die 360° Panoramen werden von der Moerser Firma Telepano (telepano.de) zur Verfügung gestellt.\n\nSie vermissen Ihr Geschäft in dieser App, Daten sind nicht aktuell oder wollen Feedback geben?\nKein Problem: Schreiben Sie einfach eine Email an moersapp@lambdadigamma.com!\n\nAlle Angaben zu Daten sind ohne Gewähr.\n"
+  "sourceLanguage": "en",
+  "strings": {
+    "\nDiese App ist ein Projekt der Gruppe Code for Niederrhein und wurde von Lennart Fischer entwickelt. \nDie Daten stammen aus dem OpenData-Portal der Stadt Moers (offenesdatenportal.de) und die 360° Panoramen werden von der Moerser Firma Telepano (telepano.de) zur Verfügung gestellt.\n\nSie vermissen Ihr Geschäft in dieser App, Daten sind nicht aktuell oder wollen Feedback geben?\nKein Problem: Schreiben Sie einfach eine Email an moersapp@lambdadigamma.com!\n\nAlle Angaben zu Daten sind ohne Gewähr.\n": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\nDiese App ist ein Projekt der Gruppe Code for Niederrhein und wurde von Lennart Fischer entwickelt. \nDie Daten stammen aus dem OpenData-Portal der Stadt Moers (offenesdatenportal.de) und die 360° Panoramen werden von der Moerser Firma Telepano (telepano.de) zur Verfügung gestellt.\n\nSie vermissen Ihr Geschäft in dieser App, Daten sind nicht aktuell oder wollen Feedback geben?\nKein Problem: Schreiben Sie einfach eine Email an moersapp@lambdadigamma.com!\n\nAlle Angaben zu Daten sind ohne Gewähr.\n"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "\nDiese App ist ein Projekt der Gruppe Code for Niederrhein und wurde von Lennart Fischer entwickelt. \nDie Daten stammen aus dem OpenData-Portal der Stadt Moers (offenesdatenportal.de) und die 360° Panoramen werden von der Moerser Firma Telepano (telepano.de) zur Verfügung gestellt.\n\nSie vermissen Ihr Geschäft in dieser App, Daten sind nicht aktuell oder wollen Feedback geben?\nKein Problem: Schreiben Sie einfach eine Email an moersapp@lambdadigamma.com!\n\nAlle Angaben zu Daten sind ohne Gewähr.\n"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\nDiese App ist ein Projekt der Gruppe Code for Niederrhein und wurde von Lennart Fischer entwickelt. \nDie Daten stammen aus dem OpenData-Portal der Stadt Moers (offenesdatenportal.de) und die 360° Panoramen werden von der Moerser Firma Telepano (telepano.de) zur Verfügung gestellt.\n\nSie vermissen Ihr Geschäft in dieser App, Daten sind nicht aktuell oder wollen Feedback geben?\nKein Problem: Schreiben Sie einfach eine Email an moersapp@lambdadigamma.com!\n\nAlle Angaben zu Daten sind ohne Gewähr.\n"
           }
         }
       }
     },
-    "AboutTitle" : {
-      "comment" : "Tab: Other",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Über"
+    "About": {
+      "comment": "Tab: Other",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Über"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "About"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About"
           }
         }
       }
     },
-    "Activated" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktiviert"
+    "Activated": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktiviert"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Activated"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activated"
           }
         }
       }
     },
-    "ActiveEventsHeadline" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Heute"
+    "Today": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Today"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today"
           }
         }
       }
     },
-    "Allow" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Erlauben"
+    "Allow": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlauben"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Allow"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow"
           }
         }
       }
     },
-    "App bewerten" : {
-      "comment" : "A button that allows the user to rate the app in the App Store.",
-      "isCommentAutoGenerated" : true
+    "App bewerten": {
+      "comment": "A button that allows the user to rate the app in the App Store.",
+      "isCommentAutoGenerated": true
     },
-    "Citizen" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bürger"
+    "Citizen": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bürger"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Citizen"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Citizen"
           }
         }
       }
     },
-    "CompletionPageActionButtonTitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Los geht's!"
+    "Get started": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los geht's!"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Get started"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get started"
           }
         }
       }
     },
-    "CompletionPageTitle" : {
-      "comment" : "Onboarding: Completion",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einrichtung beendet"
+    "Setup completed": {
+      "comment": "Onboarding: Completion",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einrichtung beendet"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Setup completed"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Setup completed"
           }
         }
       }
     },
-    "Diese App wird seit 2016 von Lennart Fischer ehrenamtlich entwickelt und gepflegt. Alle Daten, die in dieser App verwendet werden, sind als sogenannte Offene Daten verfügbar und tragen somit dazu bei, dass es diese App gibt. Falls Du Ideen für neue Funktionen hast, dann schreib mir gerne ein Feedback. Außerdem freue ich mich über eine (gute) Bewertung im App Store." : {
-      "comment" : "An introductory text about the app, including its development history, data usage, and feedback invitation.",
-      "isCommentAutoGenerated" : true
+    "Diese App wird seit 2016 von Lennart Fischer ehrenamtlich entwickelt und gepflegt. Alle Daten, die in dieser App verwendet werden, sind als sogenannte Offene Daten verfügbar und tragen somit dazu bei, dass es diese App gibt. Falls Du Ideen für neue Funktionen hast, dann schreib mir gerne ein Feedback. Außerdem freue ich mich über eine (gute) Bewertung im App Store.": {
+      "comment": "An introductory text about the app, including its development history, data usage, and feedback invitation.",
+      "isCommentAutoGenerated": true
     },
-    "Entdecken" : {
-      "comment" : "The title of the view.",
-      "isCommentAutoGenerated" : true
+    "Entdecken": {
+      "comment": "The title of the view.",
+      "isCommentAutoGenerated": true
     },
-    "Events" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Veranstaltungen"
+    "Events": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veranstaltungen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Events"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Events"
           }
         }
       }
     },
-    "Feedback" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Feedback"
+    "Feedback": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Feedback"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Feedback"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Feedback"
           }
         }
       }
     },
-    "Later" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Später"
+    "Later": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Später"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Later"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Later"
           }
         }
       }
     },
-    "Legal" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rechtliches"
+    "Legal": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechtliches"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Legal"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Legal"
           }
         }
       }
     },
-    "Lennart Fischer" : {
-      "comment" : "The name of the developer of the app.",
-      "isCommentAutoGenerated" : true
+    "Lennart Fischer": {
+      "comment": "The name of the developer of the app.",
+      "isCommentAutoGenerated": true
     },
-    "Licences" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lizenzen"
+    "Licences": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lizenzen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licences"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licences"
           }
         }
       }
     },
-    "Mein Moers" : {
-      "comment" : "The title of the app.",
-      "isCommentAutoGenerated" : true
+    "Mein Moers": {
+      "comment": "The title of the app.",
+      "isCommentAutoGenerated": true
     },
-    "Name %lld" : {
-      "comment" : "A text view displaying a name. The argument is a number.",
-      "isCommentAutoGenerated" : true
+    "Name %lld": {
+      "comment": "A text view displaying a name. The argument is a number.",
+      "isCommentAutoGenerated": true
     },
-    "NotActivated" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "nicht aktiviert"
+    "not activated": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "nicht aktiviert"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "not activated"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "not activated"
           }
         }
       }
     },
-    "OnboardingDescription" : {
-      "comment" : "Onboarding: Introduction",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Suche Geschäfte, Veranstaltungen & Parkplätze mit Live-Daten und bewege Dich mit interaktiven 360° Panoramen durch die Stadt! Finde die günstigste Tankstelle oder bekomme Erinnerungen für Leerungstermine der Mülltonnen."
+    "Search shops & parking lots with live data and move through the city with interactive 360° panoramas! Find the cheapest petrol station or get reminders for rubbish collection.": {
+      "comment": "Onboarding: Introduction",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suche Geschäfte, Veranstaltungen & Parkplätze mit Live-Daten und bewege Dich mit interaktiven 360° Panoramen durch die Stadt! Finde die günstigste Tankstelle oder bekomme Erinnerungen für Leerungstermine der Mülltonnen."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search shops & parking lots with live data and move through the city with interactive 360° panoramas! Find the cheapest petrol station or get reminders for rubbish collection."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search shops & parking lots with live data and move through the city with interactive 360° panoramas! Find the cheapest petrol station or get reminders for rubbish collection."
           }
         }
       }
     },
-    "OnboardingFirstPageActionButtonTitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fortfahren"
+    "Continue": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fortfahren"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Continue"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue"
           }
         }
       }
     },
-    "OnboardingLocationPageActionButtonTitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fortfahren"
+    "Mein Moers can use your location to find shops close to you and display nearby petrol prices.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mein Moers benutzt Deinen Standort, um Geschäfte in deiner Nähe zu finden und Dir Kraftstoffpreise in der Umgebung anzuzeigen."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Continue"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mein Moers can use your location to find shops close to you and display nearby petrol prices."
           }
         }
       }
     },
-    "OnboardingLocationPageDescription" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mein Moers benutzt Deinen Standort, um Geschäfte in deiner Nähe zu finden und Dir Kraftstoffpreise in der Umgebung anzuzeigen."
+    "Location": {
+      "comment": "Onboarding: Location",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standort"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mein Moers can use your location to find shops close to you and display nearby petrol prices."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Location"
           }
         }
       }
     },
-    "OnboardingLocationPageTitle" : {
-      "comment" : "Onboarding: Location",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Standort"
+    "Not now": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht jetzt"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Location"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not now"
           }
         }
       }
     },
-    "OnboardingNotificationPageActionButtonTitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fortfahren"
+    "Receive push notifications to keep up to date and be reminded of collection dates.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erhalte Push Notifications, um auf dem Laufenden zu bleiben und an Leerungstermine erinnert zu werden."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Continue"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Receive push notifications to keep up to date and be reminded of collection dates."
           }
         }
       }
     },
-    "OnboardingNotificationPageAlternativeButtonTitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nicht jetzt"
+    "Push Notifications": {
+      "comment": "Onboarding: Notifications",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Push-Mitteilungen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Not now"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Push Notifications"
           }
         }
       }
     },
-    "OnboardingNotificationPageDescription" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Erhalte Push Notifications, um auf dem Laufenden zu bleiben und an Leerungstermine erinnert zu werden."
+    "Mein Moers can show you the current petrol prices. Select your preferred petrol type.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mein Moers kann Dir die aktuellen Spritpreise anzeigen. Wähle hierfür Deine bevorzugte Kraftstoff-Art aus."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Receive push notifications to keep up to date and be reminded of collection dates."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mein Moers can show you the current petrol prices. Select your preferred petrol type."
           }
         }
       }
     },
-    "OnboardingNotificationPageTitle" : {
-      "comment" : "Onboarding: Notifications",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Push-Mitteilungen"
+    "Petrol Type": {
+      "comment": "Onboarding: Petrol",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kraftstoff"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Push Notifications"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Petrol Type"
           }
         }
       }
     },
-    "OnboardingPetrolTypePageActionButtonTitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fortfahren"
+    "Are you a visitor or citizen to the city of Moers?": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bist Du Besucher oder Bürger der Stadt Moers?"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Continue"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Are you a visitor or citizen to the city of Moers?"
           }
         }
       }
     },
-    "OnboardingPetrolTypePageDescription" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mein Moers kann Dir die aktuellen Spritpreise anzeigen. Wähle hierfür Deine bevorzugte Kraftstoff-Art aus."
+    "User": {
+      "comment": "User Type",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Benutzer"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mein Moers can show you the current petrol prices. Select your preferred petrol type."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "User"
           }
         }
       }
     },
-    "OnboardingPetrolTypePageTitle" : {
-      "comment" : "Onboarding: Petrol",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kraftstoff"
+    "Last time the operation was not completed and this data was temporarily saved. Do you want to keep them?": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beim letzten Mal wurde der Vorgang nicht abgeschlossen und diese Daten wurden zwischen gespeichert. Möchtest Du diese übernehmen?"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Petrol Type"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last time the operation was not completed and this data was temporarily saved. Do you want to keep them?"
           }
         }
       }
     },
-    "OnboardingUserTypeSelectorPageActionButtonTitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fortfahren"
+    "No": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nein"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Continue"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No"
           }
         }
       }
     },
-    "OnboardingUserTypeSelectorPageDescription" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bist Du Besucher oder Bürger der Stadt Moers?"
+    "Continue operation?": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vorgang fortsetzen?"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Are you a visitor or citizen to the city of Moers?"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue operation?"
           }
         }
       }
     },
-    "OnboardingUserTypeSelectorPageTitle" : {
-      "comment" : "Onboarding: User Type",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Benutzer"
+    "Yes": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ja"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "User"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yes"
           }
         }
       }
     },
-    "OtherDataTakeOldDataMessage" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Beim letzten Mal wurde der Vorgang nicht abgeschlossen und diese Daten wurden zwischen gespeichert. Möchtest Du diese übernehmen?"
+    "Add entry": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eintrag hinzufügen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Last time the operation was not completed and this data was temporarily saved. Do you want to keep them?"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add entry"
           }
         }
       }
     },
-    "OtherDataTakeOldDataNo" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nein"
+    "Data": {
+      "comment": "Data Section Other",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daten"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data"
           }
         }
       }
     },
-    "OtherDataTakeOldDataTitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vorgang fortsetzen?"
+    "Petrol": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kraftstoff"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Continue operation?"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Petrol"
           }
         }
       }
     },
-    "OtherDataTakeOldDataYes" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ja"
+    "Petrol Stations": {
+      "comment": "Dashboard: Petrol",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tankstellen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yes"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Petrol Stations"
           }
         }
       }
     },
-    "OtherSectionDataAddEntry" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eintrag hinzufügen"
+    "Type": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Art"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add entry"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type"
           }
         }
       }
     },
-    "OtherSectionDataTitle" : {
-      "comment" : "Data Section Other",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Daten"
+    "Move the crosshairs to the store on the map!": {
+      "comment": "Misc",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle die aktuelle Position aus oder bewege das Fadenkreuz auf das Geschäft auf der Karte!"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Data"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move the crosshairs to the store on the map!"
           }
         }
       }
     },
-    "Petrol" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kraftstoff"
+    "Read": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lesen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Petrol"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read"
           }
         }
       }
     },
-    "PetrolStationsTitle" : {
-      "comment" : "Dashboard: Petrol",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tankstellen"
+    "Understood": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verstanden"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Petrol Stations"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Understood"
           }
         }
       }
     },
-    "PetrolType" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Art"
+    "All data will be treated with the utmost care and confidentiality! \nBy using this app, you agree to the terms and conditions and privacy policy found in the menu.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Daten werden mit größter Vorsicht und höchster Vertraulichkeit behandelt! \nMit der Benutzung dieser App stimmen Sie den AGBs und Datenschutzbestimmungen, die Sie im Menü finden, zu."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Type"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All data will be treated with the utmost care and confidentiality! \nBy using this app, you agree to the terms and conditions and privacy policy found in the menu."
           }
         }
       }
     },
-    "PickerPromptText" : {
-      "comment" : "Misc",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wähle die aktuelle Position aus oder bewege das Fadenkreuz auf das Geschäft auf der Karte!"
+    "Privacy": {
+      "comment": "Onboarding: Privacy",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datenschutz"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Move the crosshairs to the store on the map!"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy"
           }
         }
       }
     },
-    "PrivacyAlternativeButton" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lesen"
+    "Privacy Policy": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datenschutz"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Read"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy Policy"
           }
         }
       }
     },
-    "PrivacyPageButtonTitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Verstanden"
+    "Reminder": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erinnerung"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Understood"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reminder"
           }
         }
       }
     },
-    "PrivacyPageDescription" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alle Daten werden mit größter Vorsicht und höchster Vertraulichkeit behandelt! \nMit der Benutzung dieser App stimmen Sie den AGBs und Datenschutzbestimmungen, die Sie im Menü finden, zu."
+    "Tomorrow will be collected: ": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morgen wird abgeholt: "
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "All data will be treated with the utmost care and confidentiality! \nBy using this app, you agree to the terms and conditions and privacy policy found in the menu."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tomorrow will be collected: "
           }
         }
       }
     },
-    "PrivacyPageTitle" : {
-      "comment" : "Onboarding: Privacy",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Datenschutz"
+    "Pick-up Schedule": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abfuhrkalender"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Privacy"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pick-up Schedule"
           }
         }
       }
     },
-    "PrivacyPolicy" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Datenschutz"
+    "Fortfahren": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fortfahren"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Privacy Policy"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fortfahren"
           }
         }
       }
     },
-    "ReminderText" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Erinnerung"
+    "Mein Moers can show you the collection dates of the garbage collection and remind you to expose them.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mein Moers kann Dir die Abfuhrtermine der Müllabfuhr zeigen und Dich daran erinnern, diese herauszustellen."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reminder"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mein Moers can show you the collection dates of the garbage collection and remind you to expose them."
           }
         }
       }
     },
-    "RubbishCollectionNotificationBody" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Morgen wird abgeholt: "
+    "Setup": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einstellen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tomorrow will be collected: "
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Setup"
           }
         }
       }
     },
-    "RubbishCollectionNotificationTitle" : {
-      "comment" : "Notifications: Rubbish",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abfuhrkalender"
+    "Mein Moers can remind you to put your trash cans on the street in time.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mein Moers kann Dich am Vortag zu einer bestimmen Uhrzeit daran erinnern, Deine Mülltonnen rechtzeitig an die Straße zu stellen."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pick-up Schedule"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mein Moers can remind you to put your trash cans on the street in time."
           }
         }
       }
     },
-    "RubbishCollectionPageActionButtonTitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fortfahren"
+    "Pick-up notifications": {
+      "comment": "Onboarding: Rubbish Collection Reminder",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abfuhr-Benachrichtigungen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fortfahren"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pick-up notifications"
           }
         }
       }
     },
-    "RubbishCollectionPageAlternativeButtonTitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nicht jetzt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Not now"
-          }
-        }
-      }
-    },
-    "RubbishCollectionPageDescription" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mein Moers kann Dir die Abfuhrtermine der Müllabfuhr zeigen und Dich daran erinnern, diese herauszustellen."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mein Moers can show you the collection dates of the garbage collection and remind you to expose them."
-          }
-        }
-      }
-    },
-    "RubbishCollectionPageTitle" : {
-      "comment" : "Onboarding: Rubbish Collection Introduction",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abfuhrkalender"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pick-up Schedule"
-          }
-        }
-      }
-    },
-    "RubbishCollectionReminderPageActionButtonTitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einstellen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Setup"
-          }
-        }
-      }
-    },
-    "RubbishCollectionReminderPageAlternativeButtonTitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nicht jetzt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Not now"
-          }
-        }
-      }
-    },
-    "RubbishCollectionReminderPageDescription" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mein Moers kann Dich am Vortag zu einer bestimmen Uhrzeit daran erinnern, Deine Mülltonnen rechtzeitig an die Straße zu stellen."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mein Moers can remind you to put your trash cans on the street in time."
-          }
-        }
-      }
-    },
-    "RubbishCollectionReminderPageTitle" : {
-      "comment" : "Onboarding: Rubbish Collection Reminder",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abfuhr-Benachrichtigungen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pick-up notifications"
-          }
-        }
-      }
-    },
-    "RubbishCollectionTitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Leerungen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pick-up Schedule"
-          }
-        }
-      }
-    },
-    "Sendung" : {
-      "comment" : "A button label that triggers the sending of a test notification.",
-      "isCommentAutoGenerated" : true
-    },
-    "SettingsRubbishCollectionTitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abfuhrkalender"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pick-up Schedule"
-          }
-        }
-      }
+    "Sendung": {
+      "comment": "A button label that triggers the sending of a test notification.",
+      "isCommentAutoGenerated": true
     },
-    "SettingsTitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einstellungen"
+    "Settings": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einstellungen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Settings"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings"
           }
         }
       }
     },
-    "Software-Entwickler" : {
-      "comment" : "A job title displayed in the developer section of the about screen.",
-      "isCommentAutoGenerated" : true
+    "Software-Entwickler": {
+      "comment": "A job title displayed in the developer section of the about screen.",
+      "isCommentAutoGenerated": true
     },
-    "Street" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Straße"
+    "Street": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Straße"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Street"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Street"
           }
         }
       }
     },
-    "TandC" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "AGBs"
+    "Terms and Conditions": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AGBs"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Terms and Conditions"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terms and Conditions"
           }
         }
       }
-    },
-    "Test" : {
-      "comment" : "A placeholder text that can be replaced with actual test data.",
-      "isCommentAutoGenerated" : true
     },
-    "ThemeTitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Theme"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Theme"
-          }
-        }
-      }
+    "Test": {
+      "comment": "A placeholder text that can be replaced with actual test data.",
+      "isCommentAutoGenerated": true
     },
-    "Tourist" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Besucher"
+    "Theme": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Theme"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tourist"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Theme"
           }
         }
       }
-    },
-    "Über" : {
-      "comment" : "The title of the screen.",
-      "isCommentAutoGenerated" : true
     },
-    "UIAdjustments" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Benutzeroberfläche"
+    "Tourist": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Besucher"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "User Interface"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tourist"
           }
         }
       }
     },
-    "Unknown" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "unbekannt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "unknown"
-          }
-        }
-      }
+    "Über": {
+      "comment": "The title of the screen.",
+      "isCommentAutoGenerated": true
     },
-    "Upcoming" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "In den nächsten Tagen"
+    "User Interface": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Benutzeroberfläche"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Upcoming"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "User Interface"
           }
         }
       }
     },
-    "User" : {
-      "comment" : "User Type",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Benutzer"
+    "Unknown": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "unbekannt"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "User"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "unknown"
           }
         }
       }
     },
-    "UserType" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Art"
+    "Upcoming": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In den nächsten Tagen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Type"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upcoming"
           }
         }
       }
     }
   },
-  "version" : "1.1"
+  "version": "1.1"
 }

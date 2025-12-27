@@ -68,7 +68,7 @@ class EntryOnboardingAddressViewController: UIViewController {
     
     private func setupUI() {
         
-        self.title = String.localized("EntryOnboardingAddressViewControllerTitle")
+        self.title = String(localized: "Add entry", bundle: .module)
         
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(contentView)
@@ -81,16 +81,16 @@ class EntryOnboardingAddressViewController: UIViewController {
         self.contentView.addSubview(mapView)
         self.contentView.addSubview(infoLabel)
         
-        self.progressView.currentStep = String.localized("EntryOnboardingAddressViewControllerCurrentStep")
+        self.progressView.currentStep = String(localized: "2. Enter address", bundle: .module)
         self.progressView.progress = 0.0
         
-        self.addressHeaderLabel.text = String.localized("EntryOnboardingAddressViewControllerAddress").uppercased()
-        self.streetTextField.placeholder = String.localized("EntryOnboardingAddressViewControllerStreet")
-        self.houseNrTextField.placeholder = String.localized("EntryOnboardingAddressViewControllerNumber")
-        self.postcodeTextField.placeholder = String.localized("EntryOnboardingAddressViewControllerPostcode")
-        self.placeTextField.placeholder = String.localized("EntryOnboardingAddressViewControllerPlace")
+        self.addressHeaderLabel.text = String(localized: "Addresse", bundle: .module).uppercased()
+        self.streetTextField.placeholder = String(localized: "Street", bundle: .module)
+        self.houseNrTextField.placeholder = String(localized: "Number", bundle: .module)
+        self.postcodeTextField.placeholder = String(localized: "Postcode", bundle: .module)
+        self.placeTextField.placeholder = String(localized: "Place", bundle: .module)
         
-        self.infoLabel.text = String.localized("EntryOnboardingAddressViewControllerInfo")
+        self.infoLabel.text = String(localized: "Enter all required information and continue.", bundle: .module)
         self.infoLabel.font = UIFont.systemFont(ofSize: 12)
         
         self.addressHeaderLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.semibold)
@@ -216,7 +216,7 @@ class EntryOnboardingAddressViewController: UIViewController {
         
         if streetTextField.text != "" && houseNrTextField.text != "" && postcodeTextField.text != "" && placeTextField.text != "" {
             
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: String.localized("EntryOnboardingAddressViewControllerNext"),
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Next", bundle: .module),
                                                                      style: .plain,
                                                                      target: self,
                                                                      action: #selector(self.continueOnboarding))
@@ -270,7 +270,7 @@ class EntryOnboardingAddressViewController: UIViewController {
                 self.mapView.setRegion(region, animated: false)
                 self.mapView.alpha = 1
                 
-                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: String.localized("EntryOnboardingAddressViewControllerNext"),
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Next", bundle: .module),
                                                                          style: .plain,
                                                                          target: self,
                                                                          action: #selector(self.continueOnboarding))

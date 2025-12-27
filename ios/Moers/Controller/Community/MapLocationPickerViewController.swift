@@ -106,7 +106,7 @@ class MapLocationPickerViewController: UIViewController {
         promptLabel.backgroundColor = UIColor.darkGray
         promptLabel.textColor = UIColor.white
         promptLabel.textAlignment = .center
-        promptLabel.text = String.localized("PickerPromptText")
+        promptLabel.text = String(localized: "Move the crosshairs to the store on the map!")
         promptLabel.numberOfLines = 0
         promptLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.semibold)
         promptLabel.layer.cornerRadius = 8

@@ -31,7 +31,7 @@ class SelectionViewController: UIViewController {
     public var clusteredLocations: [Location] = [] {
         didSet {
             
-            self.titleLabel.text = "\(clusteredLocations.count) " + String.localized("Entries")
+            self.titleLabel.text = "\(clusteredLocations.count) " + String(localized: "Entries", bundle: .module)
             self.updateSnapshot()
             
         }

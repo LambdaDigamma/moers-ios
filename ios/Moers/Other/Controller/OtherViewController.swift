@@ -68,19 +68,19 @@ public class OtherViewController: UIViewController {
             ),
             
             TableViewSection(
-                title: String.localized("OtherSectionDataTitle"),
+                title: String(localized: "Data"),
                 rows: [
                     NavigationRow(
-                        title: String.localized("OtherSectionDataAddEntry"),
+                        title: String(localized: "Add entry"),
                         action: coordinator?.showAddEntry ?? {}
                     )
                 ]
             ),
             TableViewSection(
-                title: String.localized("SettingsTitle"),
+                title: String(localized: "Settings"),
                 rows: [
                     NavigationRow(
-                        title: String.localized("SettingsTitle"),
+                        title: String(localized: "Settings"),
                         action: coordinator?.showSettings ?? {}
                     ),
                     NavigationRow(
@@ -93,11 +93,11 @@ public class OtherViewController: UIViewController {
                 title: "Info",
                 rows: [
                     NavigationRow(
-                        title: String.localized("AboutTitle"),
+                        title: String(localized: "About"),
                         action: coordinator?.showAbout ?? {}
                     ),
                     NavigationRow(
-                        title: String.localized("Feedback"),
+                        title: String(localized: "Feedback"),
                         action: coordinator?.showFeedback ?? {}
                     ),
                     NavigationRow(
@@ -107,18 +107,18 @@ public class OtherViewController: UIViewController {
                 ]
             ),
             TableViewSection(
-                title: String.localized("Legal"),
+                title: String(localized: "Legal"),
                 rows: [
                     NavigationRow(
-                        title: String.localized("TandC"),
+                        title: String(localized: "Terms and Conditions"),
                         action: coordinator?.showTaC ?? {}
                     ),
                     NavigationRow(
-                        title: String.localized("PrivacyPolicy"),
+                        title: String(localized: "Privacy Policy"),
                         action: coordinator?.showPrivacy ?? {}
                     ),
                     NavigationRow(
-                        title: String.localized("Licences"),
+                        title: String(localized: "Licences"),
                         action: coordinator?.showLicences ?? {}
                     )
                 ]

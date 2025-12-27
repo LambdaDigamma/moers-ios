@@ -69,7 +69,7 @@ public class ContentDrawerView: UIView {
         searchBar.barStyle = .default
         searchBar.isTranslucent = true
         searchBar.backgroundColor = UIColor.clear
-        searchBar.placeholder = String.localized("SearchBarPrompt")
+        searchBar.placeholder = String(localized: "Where do you want to go?", bundle: .module)
         
         // Setup tag list
         tagListView.enableRemoveButton = true

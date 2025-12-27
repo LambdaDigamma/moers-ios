@@ -85,8 +85,8 @@ class DetailEntryViewController: UIViewController {
     
     private func setupUI() {
         
-        self.callButton.setTitle(String.localized("CallAction"), for: .normal)
-        self.websiteButton.setTitle(String.localized("WebsiteAction"), for: .normal)
+        self.callButton.setTitle(String(localized: "Call", bundle: .module), for: .normal)
+        self.websiteButton.setTitle(String(localized: "Website", bundle: .module), for: .normal)
         self.callButton.layer.cornerRadius = 8
         self.websiteButton.layer.cornerRadius = 8
         self.callButton.clipsToBounds = true

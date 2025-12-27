@@ -28,7 +28,7 @@ class PrivacyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = String.localized("PrivacyPolicy")
+        self.title = String(localized: "Privacy Policy")
         
         self.setupUI()
         self.setupConstraints()

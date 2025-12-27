@@ -54,11 +54,11 @@ class DetailParkingViewController: UIViewController {
         self.view.addSubview(addressHeaderLabel)
         self.view.addSubview(addressLabel)
         
-        self.slotsHeaderLabel.text = String.localized("SlotsHeader")
-        self.totalHeaderLabel.text = String.localized("TotalHeader")
-        self.freeHeaderLabel.text = String.localized("FreeHeader")
-        self.statusHeaderLabel.text = String.localized("StatusHeader")
-        self.addressHeaderLabel.text = String.localized("AddressHeader")
+        self.slotsHeaderLabel.text = String(localized: "Slots", bundle: .module)
+        self.totalHeaderLabel.text = String(localized: "Total:", bundle: .module)
+        self.freeHeaderLabel.text = String(localized: "Free:", bundle: .module)
+        self.statusHeaderLabel.text = String(localized: "Status:", bundle: .module)
+        self.addressHeaderLabel.text = String(localized: "Address", bundle: .module)
         
         self.topSeparator.alpha = 0.5
         self.middleSeparator.alpha = 0.5

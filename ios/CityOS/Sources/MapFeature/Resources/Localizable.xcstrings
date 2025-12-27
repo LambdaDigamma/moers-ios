@@ -1,7 +1,7 @@
 {
   "sourceLanguage": "en",
   "strings": {
-    "AddressHeader": {
+    "Address": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -19,7 +19,7 @@
       }
     },
     "Änderungsprotokoll:": {},
-    "AuditingEntryFriday": {
+    "Friday (Opening Hours)": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -36,7 +36,7 @@
         }
       }
     },
-    "AuditingEntryHouseNumber": {
+    "House Number": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -53,7 +53,7 @@
         }
       }
     },
-    "AuditingEntryLatitude": {
+    "Latitude": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -70,7 +70,7 @@
         }
       }
     },
-    "AuditingEntryLongitude": {
+    "Longitude": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -87,7 +87,7 @@
         }
       }
     },
-    "AuditingEntryMonday": {
+    "Monday (Opening Hours)": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -104,8 +104,7 @@
         }
       }
     },
-    "AuditingEntryName": {
-      "comment": "Auditing Entry",
+    "Name": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -122,7 +121,7 @@
         }
       }
     },
-    "AuditingEntryOther": {
+    "Other (Opening Hours)": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -139,7 +138,7 @@
         }
       }
     },
-    "AuditingEntryPhone": {
+    "Phone": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -156,7 +155,7 @@
         }
       }
     },
-    "AuditingEntryPlace": {
+    "Place": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -173,13 +172,13 @@
         }
       }
     },
-    "AuditingEntryPostcode": {
+    "Postcode": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Postleitzahl"
+            "value": "PLZ"
           }
         },
         "en": {
@@ -190,7 +189,7 @@
         }
       }
     },
-    "AuditingEntrySaturday": {
+    "Saturday (Opening Hours)": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -207,7 +206,7 @@
         }
       }
     },
-    "AuditingEntryStreet": {
+    "Street": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -224,7 +223,7 @@
         }
       }
     },
-    "AuditingEntrySunday": {
+    "Sunday (Opening Hours)": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -241,13 +240,13 @@
         }
       }
     },
-    "AuditingEntryTags": {
+    "Tags": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Schlagworte"
+            "value": "Schlagwörter"
           }
         },
         "en": {
@@ -258,7 +257,7 @@
         }
       }
     },
-    "AuditingEntryThursday": {
+    "Thursday (Opening Hours)": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -275,7 +274,7 @@
         }
       }
     },
-    "AuditingEntryTuesday": {
+    "Tuesday (Opening Hours)": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -292,7 +291,7 @@
         }
       }
     },
-    "AuditingEntryWebsite": {
+    "Websete": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -309,7 +308,7 @@
         }
       }
     },
-    "AuditingEntryWednesday": {
+    "Mittwoch (Opening Hours)": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -326,7 +325,7 @@
         }
       }
     },
-    "CallAction": {
+    "Call": {
       "comment": "Map: Entries",
       "extractionState": "migrated",
       "localizations": {
@@ -378,7 +377,7 @@
         }
       }
     },
-    "EntryOnboardingAddressViewControllerAddress": {
+    "Addresse": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -395,7 +394,7 @@
         }
       }
     },
-    "EntryOnboardingAddressViewControllerCurrentStep": {
+    "2. Enter address": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -412,7 +411,7 @@
         }
       }
     },
-    "EntryOnboardingAddressViewControllerInfo": {
+    "Enter all required information and continue.": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -429,7 +428,7 @@
         }
       }
     },
-    "EntryOnboardingAddressViewControllerNext": {
+    "Next": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -446,7 +445,7 @@
         }
       }
     },
-    "EntryOnboardingAddressViewControllerNumber": {
+    "Number": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -463,1440 +462,7 @@
         }
       }
     },
-    "EntryOnboardingAddressViewControllerPlace": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ort"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Place"
-          }
-        }
-      }
-    },
-    "EntryOnboardingAddressViewControllerPostcode": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "PLZ"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Postcode"
-          }
-        }
-      }
-    },
-    "EntryOnboardingAddressViewControllerStreet": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Straße"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Street"
-          }
-        }
-      }
-    },
-    "EntryOnboardingAddressViewControllerTitle": {
-      "comment": "EntryOnboardingAddressViewController",
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eintrag hinzufügen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add entry"
-          }
-        }
-      }
-    },
-    "EntryOnboardingGeneralViewControllerContact": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kontakt (optional)"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Contact (optional)"
-          }
-        }
-      }
-    },
-    "EntryOnboardingGeneralViewControllerCurrentStep": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "3. Allgemeines & Kontakt"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "3. General & Contact"
-          }
-        }
-      }
-    },
-    "EntryOnboardingGeneralViewControllerGeneral": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Allgemeines"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "General"
-          }
-        }
-      }
-    },
-    "EntryOnboardingGeneralViewControllerName": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Name"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Name"
-          }
-        }
-      }
-    },
-    "EntryOnboardingGeneralViewControllerNext": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiter"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Next"
-          }
-        }
-      }
-    },
-    "EntryOnboardingGeneralViewControllerPhone": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Telefon"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phone"
-          }
-        }
-      }
-    },
-    "EntryOnboardingGeneralViewControllerTitle": {
-      "comment": "EntryOnboardingGeneralViewController",
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eintrag hinzufügen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add entry"
-          }
-        }
-      }
-    },
-    "EntryOnboardingGeneralViewControllerWebsite": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Webseite"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Website"
-          }
-        }
-      }
-    },
-    "EntryOnboardingLocationMenuViewControllerAddressAction": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eintrag mit Adresse hinzufügen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add entry with address"
-          }
-        }
-      }
-    },
-    "EntryOnboardingLocationMenuViewControllerCurrentStep": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "1. Eintrags-Verfahren wählen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "1. Select input method"
-          }
-        }
-      }
-    },
-    "EntryOnboardingLocationMenuViewControllerInfo": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Es gibt zwei Möglichkeiten, einen neuen Eintrag hinzu zu fügen: \nWenn Du gerade neben dem Ort stehst, kannst ihn am aktuellen Standort hinzufügen. \nAndernfalls kannst Du einen Ort an einer Adresse hinzufügen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "There are two ways to add a new entry: \nIf you are standing next to the location, you can add it at the current location. \nOtherwise, you can add a place at an address."
-          }
-        }
-      }
-    },
-    "EntryOnboardingLocationMenuViewControllerLocationAction": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eintrag am aktuellen Standort hinzufügen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add entry at your current location"
-          }
-        }
-      }
-    },
-    "EntryOnboardingLocationMenuViewControllerTitle": {
-      "comment": "EntryOnboardingLocationMenuViewController",
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eintrag hinzufügen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add entry"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOpeningHoursViewControllerCurrentStep": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "5. Öffnungszeiten eingeben"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "5. Enter opening hours"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOpeningHoursViewControllerFriday": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Freitag"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Friday"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOpeningHoursViewControllerInfo": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bitte verwende folgende Systematik:\nEinfache Öffnungszeiten: \"10:30 - 20:00\"\nKomplexere Öffnungszeiten mit Pause: \"09:30 - 12:30, 14:00 - 19:00\"\nOder Freitext: \"Geschlossen\", \"Ruhetag\", etc."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Please use the following format:\nSimple times: \"10:30 - 20:00\"\nComplex times with break: \"09:30 - 12:30, 14:00 - 19:00\"\nFreeform text: \"Geschlossen\", \"Ruhetag\", etc."
-          }
-        }
-      }
-    },
-    "EntryOnboardingOpeningHoursViewControllerMonday": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Montag"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Monday"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOpeningHoursViewControllerNext": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiter"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Next"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOpeningHoursViewControllerOpeningHours": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ÖFFNUNGSZEITEN (optional)"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opening hours (optional)"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOpeningHoursViewControllerOther": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonstiges"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Other"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOpeningHoursViewControllerSaturday": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Samstag"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Saturday"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOpeningHoursViewControllerSunuday": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonntag"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sunday"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOpeningHoursViewControllerThursday": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Donnerstag"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Thursday"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOpeningHoursViewControllerTitle": {
-      "comment": "EntryOnboardingOpeningHoursViewController",
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eintrag hinzufügen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add entry"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOpeningHoursViewControllerTuesday": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dienstag"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tuesday"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOpeningHoursViewControllerWednesday": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mittwoch"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wednesday"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewActionStore": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hinzufügen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewActionUpdate": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aktualisieren"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Update"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAddressHeader": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Adresse"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Addresse"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAddTag": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hinzufügen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add tag"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAddTagCell": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlagwort \"%1$@\" hinzufügen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add Tag \"%1$@\""
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAlertConfirmCancel": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Abbrechen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cancel"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAlertConfirmStoreMessage": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Willst Du diesen Eintrag wirklich hinzufügen? Achte darauf, dass Du auch wirklich die richtigen Informationen eingetragen hast. Nur so können andere davon profitieren!"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Do you want to add this entry? Make sure that you have entered the correct information. Only in this way others can profit from it!"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAlertConfirmTitle": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bist Du sicher?"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Are you sure?"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAlertConfirmUpdateMessage": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Willst Du diesen Eintrag wirklich aktualisieren? Achte darauf, dass Du auch wirklich die richtigen Informationen eingetragen hast. Nur so können andere davon profitieren!"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Do you want to update this entry? Make sure that you have entered the correct information. Only in this way others can profit from it!"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAlertConfirmYes": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ja"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Yes"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAlertFormErrorMessage": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Leider entsprechen nicht alle Eingaben dem gewünschten Format. Überprüfe sie."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unfortunately not all entries correspond to the required format. Check them."
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAlertFormErrorOkay": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Okay"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Okay"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAlertFormErrorTitle": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eingaben inkorrekt"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Inputs incorrect"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAlertNotAllowedErrorOkay": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Okay"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Okay"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAlertNotAllowedMessage": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Das Hinzufügen und ändern von Einträgen wurde aufgrund von Missbrauch zwischenzeitlich bis auf weiteres verboten."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Adding and updating of entries has been forbidden in the meantime until further notice due to abuse."
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAlertNotAllowedTitle": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nicht erlaubt!"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not allowed!"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAlertSuccessMessage": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vielen Dank für Deinen Beitrag!\nDein Eintrag ist jetzt auf der Karte zu finden!"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Thank you very much for your contribution! Your entry can now be found on the map!"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAlertSuccessOkay": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Okay"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Okay"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAlertSuccessTitleAdded": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eintrag hinzugefügt!"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Entry added!"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAlertSuccessTitleUpdated": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eintrag geändert!"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Entry updated!"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAlertUnknownErrorMessage": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ein unbekannter Fehler ist aufgetreten."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "An unknown error has occurred."
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAlertUnknownErrorOkay": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Okay"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Okay"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewAlertUnknownErrorTitle": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ein Fehler ist aufgetreten."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "An error has occurred."
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewContact": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kontakt"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Contact information"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewEditTitle": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bearbeiten"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Edit"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewGeneralHeader": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Allgemeines"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "General information"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewHouseNr": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nr"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Number"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewName": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Name"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Name"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewOpeningHoursFriday": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Freitag"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Friday"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewOpeningHoursHeader": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Öffnungszeiten"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opening Hours"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewOpeningHoursMonday": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Montag"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Monday"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewOpeningHoursOther": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonstiges"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Other"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewOpeningHoursSaturday": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Samstag"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Saturday"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewOpeningHoursSunday": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonntag"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sunday"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewOpeningHoursThursday": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Donnerstag"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Thursday"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewOpeningHoursTuesday": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dienstag"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tuesday"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewOpeningHoursWednesday": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mittwoch"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wednesday"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewPhone": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Telefon"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phone"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewPlace": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ort"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Place"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewPostcode": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "PLZ"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Postcode"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewSearchBarAddTag": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlagwort hinzufügen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add tag"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewStoreNotice": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Überprüfe Deine Eingaben. Du kannst ohne Datenverlust zurück kehren, um die Eingaben zu korrigieren."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Check your input. You can go back without losing any data to correct your inputs."
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewStreet": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Straße"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Street"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewSummaryTitle": {
-      "comment": "Entry Onboarding",
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zusammenfassung"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Summary"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewTagsHeader": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlagworte"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tags"
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewUpdateNotice": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Du kannst nur Name, Schlagworte, Kontakt-Daten und Öffnungszeiten bearbeiten."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "You can only edit name, tags, contact data and opening hours."
-          }
-        }
-      }
-    },
-    "EntryOnboardingOverviewWebsite": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Webseite (https:// vorangestellt)"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Website (with https://)"
-          }
-        }
-      }
-    },
-    "EntryOnboardingTagsViewControllerAddTag": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hinzufügen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add tag"
-          }
-        }
-      }
-    },
-    "EntryOnboardingTagsViewControllerAddTagCell": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlagwort \"%1$@\" hinzufügen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add tag \"%1$@\""
-          }
-        }
-      }
-    },
-    "EntryOnboardingTagsViewControllerCurrentStep": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "4. Schlagwörter eingeben"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "4. Enter tags"
-          }
-        }
-      }
-    },
-    "EntryOnboardingTagsViewControllerInfo": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Für die Suche sind gute Schlagworte wichtig! \nGute Schlagworte sind zum Beispiel Branchen, Produkt-Kategorien, Speisen oder Eigenschaften."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Good tags are important for the search! \nSuitable tags include branches, product categories, dishes or other attributes."
-          }
-        }
-      }
-    },
-    "EntryOnboardingTagsViewControllerNext": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiter"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Next"
-          }
-        }
-      }
-    },
-    "EntryOnboardingTagsViewControllerSearchBarPlaceholder": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlagwort hinzufügen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add tag"
-          }
-        }
-      }
-    },
-    "EntryOnboardingTagsViewControllerTags": {
-      "extractionState": "migrated",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlagwörter"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tags"
-          }
-        }
-      }
-    },
-    "EntryOnboardingTagsViewControllerTitle": {
+    "Add entry": {
       "comment": "EntryOnboardingTagsViewController",
       "extractionState": "migrated",
       "localizations": {
@@ -1914,7 +480,841 @@
         }
       }
     },
-    "FreeHeader": {
+    "Contact (optional)": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kontakt (optional)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contact (optional)"
+          }
+        }
+      }
+    },
+    "3. General & Contact": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3. Allgemeines & Kontakt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3. General & Contact"
+          }
+        }
+      }
+    },
+    "General": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allgemeines"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "General"
+          }
+        }
+      }
+    },
+    "Website": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Website"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Website"
+          }
+        }
+      }
+    },
+    "Add entry with address": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eintrag mit Adresse hinzufügen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add entry with address"
+          }
+        }
+      }
+    },
+    "1. Select input method": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1. Eintrags-Verfahren wählen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1. Select input method"
+          }
+        }
+      }
+    },
+    "There are two ways to add a new entry: \nIf you are standing next to the location, you can add it at the current location. \nOtherwise, you can add a place at an address.": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Es gibt zwei Möglichkeiten, einen neuen Eintrag hinzu zu fügen: \nWenn Du gerade neben dem Ort stehst, kannst ihn am aktuellen Standort hinzufügen. \nAndernfalls kannst Du einen Ort an einer Adresse hinzufügen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There are two ways to add a new entry: \nIf you are standing next to the location, you can add it at the current location. \nOtherwise, you can add a place at an address."
+          }
+        }
+      }
+    },
+    "Add entry at your current location": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eintrag am aktuellen Standort hinzufügen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add entry at your current location"
+          }
+        }
+      }
+    },
+    "5. Enter opening hours": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5. Öffnungszeiten eingeben"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5. Enter opening hours"
+          }
+        }
+      }
+    },
+    "Friday": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Freitag"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Friday"
+          }
+        }
+      }
+    },
+    "Please use the following format:\nSimple times: \"10:30 - 20:00\"\nComplex times with break: \"09:30 - 12:30, 14:00 - 19:00\"\nFreeform text: \"Geschlossen\", \"Ruhetag\", etc.": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bitte verwende folgende Systematik:\nEinfache Öffnungszeiten: \"10:30 - 20:00\"\nKomplexere Öffnungszeiten mit Pause: \"09:30 - 12:30, 14:00 - 19:00\"\nOder Freitext: \"Geschlossen\", \"Ruhetag\", etc."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Please use the following format:\nSimple times: \"10:30 - 20:00\"\nComplex times with break: \"09:30 - 12:30, 14:00 - 19:00\"\nFreeform text: \"Geschlossen\", \"Ruhetag\", etc."
+          }
+        }
+      }
+    },
+    "Monday": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Montag"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monday"
+          }
+        }
+      }
+    },
+    "Opening hours (optional)": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ÖFFNUNGSZEITEN (optional)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opening hours (optional)"
+          }
+        }
+      }
+    },
+    "Other": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonstiges"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other"
+          }
+        }
+      }
+    },
+    "Saturday": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Samstag"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saturday"
+          }
+        }
+      }
+    },
+    "Sunday": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonntag"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunday"
+          }
+        }
+      }
+    },
+    "Thursday": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Donnerstag"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thursday"
+          }
+        }
+      }
+    },
+    "Tuesday": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dienstag"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tuesday"
+          }
+        }
+      }
+    },
+    "Wednesday": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mittwoch"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wednesday"
+          }
+        }
+      }
+    },
+    "Add": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzufügen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add"
+          }
+        }
+      }
+    },
+    "Update": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktualisieren"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Update"
+          }
+        }
+      }
+    },
+    "Add tag": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlagwort hinzufügen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add tag"
+          }
+        }
+      }
+    },
+    "Add Tag \"%1$@\"": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlagwort \"%1$@\" hinzufügen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Tag \"%1$@\""
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abbrechen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "Do you want to add this entry? Make sure that you have entered the correct information. Only in this way others can profit from it!": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Willst Du diesen Eintrag wirklich hinzufügen? Achte darauf, dass Du auch wirklich die richtigen Informationen eingetragen hast. Nur so können andere davon profitieren!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do you want to add this entry? Make sure that you have entered the correct information. Only in this way others can profit from it!"
+          }
+        }
+      }
+    },
+    "Are you sure?": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bist Du sicher?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Are you sure?"
+          }
+        }
+      }
+    },
+    "Do you want to update this entry? Make sure that you have entered the correct information. Only in this way others can profit from it!": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Willst Du diesen Eintrag wirklich aktualisieren? Achte darauf, dass Du auch wirklich die richtigen Informationen eingetragen hast. Nur so können andere davon profitieren!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do you want to update this entry? Make sure that you have entered the correct information. Only in this way others can profit from it!"
+          }
+        }
+      }
+    },
+    "Yes": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ja"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yes"
+          }
+        }
+      }
+    },
+    "Unfortunately not all entries correspond to the required format. Check them.": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leider entsprechen nicht alle Eingaben dem gewünschten Format. Überprüfe sie."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unfortunately not all entries correspond to the required format. Check them."
+          }
+        }
+      }
+    },
+    "Okay": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Okay"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Okay"
+          }
+        }
+      }
+    },
+    "Inputs incorrect": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eingaben inkorrekt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inputs incorrect"
+          }
+        }
+      }
+    },
+    "Adding and updating of entries has been forbidden in the meantime until further notice due to abuse.": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Hinzufügen und ändern von Einträgen wurde aufgrund von Missbrauch zwischenzeitlich bis auf weiteres verboten."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adding and updating of entries has been forbidden in the meantime until further notice due to abuse."
+          }
+        }
+      }
+    },
+    "Not allowed!": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht erlaubt!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not allowed!"
+          }
+        }
+      }
+    },
+    "Thank you very much for your contribution! Your entry can now be found on the map!": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vielen Dank für Deinen Beitrag!\nDein Eintrag ist jetzt auf der Karte zu finden!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thank you very much for your contribution! Your entry can now be found on the map!"
+          }
+        }
+      }
+    },
+    "Entry added!": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eintrag hinzugefügt!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entry added!"
+          }
+        }
+      }
+    },
+    "Entry updated!": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eintrag geändert!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entry updated!"
+          }
+        }
+      }
+    },
+    "An unknown error has occurred.": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein unbekannter Fehler ist aufgetreten."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An unknown error has occurred."
+          }
+        }
+      }
+    },
+    "An error has occurred.": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein Fehler ist aufgetreten."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An error has occurred."
+          }
+        }
+      }
+    },
+    "Contact information": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kontakt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contact information"
+          }
+        }
+      }
+    },
+    "Edit": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bearbeiten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit"
+          }
+        }
+      }
+    },
+    "General information": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allgemeines"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "General information"
+          }
+        }
+      }
+    },
+    "Opening Hours": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öffnungszeiten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opening Hours"
+          }
+        }
+      }
+    },
+    "Check your input. You can go back without losing any data to correct your inputs.": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überprüfe Deine Eingaben. Du kannst ohne Datenverlust zurück kehren, um die Eingaben zu korrigieren."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check your input. You can go back without losing any data to correct your inputs."
+          }
+        }
+      }
+    },
+    "Summary": {
+      "comment": "Entry Onboarding",
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zusammenfassung"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Summary"
+          }
+        }
+      }
+    },
+    "You can only edit name, tags, contact data and opening hours.": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du kannst nur Name, Schlagworte, Kontakt-Daten und Öffnungszeiten bearbeiten."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You can only edit name, tags, contact data and opening hours."
+          }
+        }
+      }
+    },
+    "Website (with https://)": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Webseite (https:// vorangestellt)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Website (with https://)"
+          }
+        }
+      }
+    },
+    "Add tag \"%1$@\"": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlagwort \"%1$@\" hinzufügen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add tag \"%1$@\""
+          }
+        }
+      }
+    },
+    "4. Enter tags": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4. Schlagwörter eingeben"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4. Enter tags"
+          }
+        }
+      }
+    },
+    "Good tags are important for the search! \nSuitable tags include branches, product categories, dishes or other attributes.": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Für die Suche sind gute Schlagworte wichtig! \nGute Schlagworte sind zum Beispiel Branchen, Produkt-Kategorien, Speisen oder Eigenschaften."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Good tags are important for the search! \nSuitable tags include branches, product categories, dishes or other attributes."
+          }
+        }
+      }
+    },
+    "Free:": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -1931,7 +1331,7 @@
         }
       }
     },
-    "LocalityClosed": {
+    "closed": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -1948,7 +1348,7 @@
         }
       }
     },
-    "LocalityOpen": {
+    "open": {
       "comment": "Common",
       "extractionState": "migrated",
       "localizations": {
@@ -1966,7 +1366,7 @@
         }
       }
     },
-    "ParkingLotAscends": {
+    "raising": {
       "extractionState": "manual",
       "localizations": {
         "de": {
@@ -1983,7 +1383,7 @@
         }
       }
     },
-    "ParkingLotDescends": {
+    "falling": {
       "extractionState": "manual",
       "localizations": {
         "de": {
@@ -2000,7 +1400,7 @@
         }
       }
     },
-    "ParkingLotUnchanged": {
+    "unchanged": {
       "extractionState": "manual",
       "localizations": {
         "de": {
@@ -2017,7 +1417,7 @@
         }
       }
     },
-    "ParkingLotUndocumented": {
+    "undocumented": {
       "extractionState": "manual",
       "localizations": {
         "de": {
@@ -2034,7 +1434,7 @@
         }
       }
     },
-    "SearchBarPrompt": {
+    "Where do you want to go?": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -2051,7 +1451,7 @@
         }
       }
     },
-    "SearchMap": {
+    "Search on Map": {
       "comment": "Tab: Map",
       "extractionState": "manual",
       "localizations": {
@@ -2069,7 +1469,7 @@
         }
       }
     },
-    "SlotsHeader": {
+    "Slots": {
       "comment": "Map: Parking",
       "extractionState": "migrated",
       "localizations": {
@@ -2087,7 +1487,7 @@
         }
       }
     },
-    "StatusHeader": {
+    "Status:": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -2104,7 +1504,7 @@
         }
       }
     },
-    "TotalHeader": {
+    "Total:": {
       "extractionState": "migrated",
       "localizations": {
         "de": {
@@ -2121,19 +1521,36 @@
         }
       }
     },
-    "WebsiteAction": {
-      "extractionState": "migrated",
+    "Pick a location on the map": {
+      "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Website"
+            "value": "Wähle einen Ort auf der Karte"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Website"
+            "value": "Pick a location on the map"
+          }
+        }
+      }
+    },
+    "Price": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preis"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Price"
           }
         }
       }

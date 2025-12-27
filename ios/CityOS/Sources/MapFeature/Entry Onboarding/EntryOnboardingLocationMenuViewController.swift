@@ -51,18 +51,20 @@ public class EntryOnboardingLocationMenuViewController: UIViewController {
     
     private func setupUI() {
         
-        self.title = String.localized("EntryOnboardingLocationMenuViewControllerTitle")
+        self.title = String(localized: "Add entry", bundle: .module)
         
         self.view.addSubview(progressView)
         self.view.addSubview(addressButton)
         self.view.addSubview(locationButton)
         self.view.addSubview(infoLabel)
         
-        self.infoLabel.text = String.localized("EntryOnboardingLocationMenuViewControllerInfo")
+        self.infoLabel.text = String(localized: "There are two ways to add a new entry: 
+If you are standing next to the location, you can add it at the current location. 
+Otherwise, you can add a place at an address.", bundle: .module)
         self.infoLabel.numberOfLines = 0
         self.infoLabel.font = UIFont.systemFont(ofSize: 12)
-        self.addressButton.setTitle(String.localized("EntryOnboardingLocationMenuViewControllerAddressAction"), for: .normal)
-        self.locationButton.setTitle(String.localized("EntryOnboardingLocationMenuViewControllerLocationAction"), for: .normal)
+        self.addressButton.setTitle(String(localized: "Add entry with address", bundle: .module), for: .normal)
+        self.locationButton.setTitle(String(localized: "Add entry at your current location", bundle: .module), for: .normal)
         self.addressButton.titleLabel?.numberOfLines = 0
         self.locationButton.titleLabel?.numberOfLines = 0
         self.addressButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
@@ -76,7 +78,7 @@ public class EntryOnboardingLocationMenuViewController: UIViewController {
         self.locationButton.addTarget(self, action: #selector(enterLocation), for: .touchUpInside)
         self.addressButton.addTarget(self, action: #selector(enterAddress), for: .touchUpInside)
         
-        self.progressView.currentStep = String.localized("EntryOnboardingLocationMenuViewControllerCurrentStep")
+        self.progressView.currentStep = String(localized: "1. Select input method", bundle: .module)
         
     }
     

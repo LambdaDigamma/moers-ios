@@ -107,7 +107,7 @@ final public class PetrolStationViewModel: LocationViewModel, Location, Codable,
     // MARK: - Categorizable
     
     public var category: String { return "Petrol Station" }
-    public var localizedCategory: String { return String.localized("PetrolStation") }
+    public var localizedCategory: String { return String(localized: "Petrol Station", bundle: .module) }
     
     // MARK: - Fuse
     

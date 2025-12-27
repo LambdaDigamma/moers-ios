@@ -63,7 +63,7 @@ class SettingsViewController: UIViewController {
     
     private func setupUI() {
         
-        title = String.localized("SettingsTitle")
+        title = String(localized: "Settings")
         view.addSubview(tableView)
         
         tableView.delegate = self
@@ -222,24 +222,24 @@ class SettingsViewController: UIViewController {
                 minuteString += "\(minute)"
             }
             
-            rubbishReminder = String.localized("ReminderText") + ": \(hourString):\(minuteString)"
+            rubbishReminder = String(localized: "Reminder") + ": \(hourString):\(minuteString)"
             
         } else {
-            rubbishReminder = String.localized("ReminderText") + ": " + String.localized("NotActivated")
+            rubbishReminder = String(localized: "Reminder") + ": " + String(localized: "not activated")
         }
         
         let userType = UserManager.shared.user.type
         
         var sections: [TableViewSection] = []
         
-        sections.append(TableViewSection(title: String.localized("User"),
-                                         rows: [NavigationRow(title: String.localized("UserType") + ": " + userType.name, action: showUserType)]))
+        sections.append(TableViewSection(title: String(localized: "User"),
+                                         rows: [NavigationRow(title: String(localized: "Type") + ": " + userType.name, action: showUserType)]))
         
         sections.append(TableViewSection(
-            title: String.localized("Petrol"),
+            title: String(localized: "Petrol"),
             rows: [
                 NavigationRow(
-                    title: String.localized("PetrolType") + ": " + petrolService.petrolType.name,
+                    title: String(localized: "Type") + ": " + petrolService.petrolType.name,
                     action: showPetrolType
                 )
             ]
@@ -248,15 +248,15 @@ class SettingsViewController: UIViewController {
         if UserManager.shared.user.type == .citizen {
             
             sections.append(TableViewSection(
-                title: String.localized("SettingsRubbishCollectionTitle"),
+                title: String(localized: "Pick-up Schedule"),
                 rows: [
                     SwitchRow(
-                        title: String.localized("Activated"),
+                        title: String(localized: "Activated"),
                         switchOn: rubbishService.isEnabled,
                         action: triggerRubbishCollection
                     ),
                     NavigationRow(
-                        title: String.localized("Street") + ": \(rubbishService.rubbishStreet?.displayName ?? "nicht ausgewählt")",
+                        title: String(localized: "Street") + ": \(rubbishService.rubbishStreet?.displayName ?? "nicht ausgewählt")",
                         action: showRubbishStreet
                     ),
                     NavigationRow(

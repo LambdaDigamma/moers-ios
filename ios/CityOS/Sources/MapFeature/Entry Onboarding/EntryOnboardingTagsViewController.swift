@@ -68,7 +68,7 @@ class EntryOnboardingTagsViewController: UIViewController {
     
     private func setupUI() {
         
-        self.title = String.localized("EntryOnboardingTagsViewControllerTitle")
+        self.title = String(localized: "Add entry", bundle: .module)
         
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(contentView)
@@ -77,20 +77,21 @@ class EntryOnboardingTagsViewController: UIViewController {
         self.contentView.addSubview(tagsListView)
         self.contentView.addSubview(infoLabel)
         
-        self.progressView.currentStep = String.localized("EntryOnboardingTagsViewControllerCurrentStep")
+        self.progressView.currentStep = String(localized: "4. Enter tags", bundle: .module)
         self.progressView.progress = 0.4
         
         self.tagsHeaderLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.semibold)
-        self.tagsHeaderLabel.text = String.localized("EntryOnboardingTagsViewControllerTags")
+        self.tagsHeaderLabel.text = String(localized: "Tags", bundle: .module)
         
         self.infoLabel.font = UIFont.systemFont(ofSize: 12)
         self.infoLabel.numberOfLines = 0
-        self.infoLabel.text = String.localized("EntryOnboardingTagsViewControllerInfo")
+        self.infoLabel.text = String(localized: "Good tags are important for the search! 
+Suitable tags include branches, product categories, dishes or other attributes.", bundle: .module)
         
         self.searchController.delegate = self
         self.searchController.dataSource = self
         self.searchController.searchBar.textField?.returnKeyType = .next
-        self.searchController.searchBarPlaceHolder = String.localized("EntryOnboardingTagsViewControllerSearchBarPlaceholder")
+        self.searchController.searchBarPlaceHolder = String(localized: "Add tag", bundle: .module)
         
         let item = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(close))
         self.searchController.navigationItem.rightBarButtonItem = item
@@ -147,7 +148,7 @@ class EntryOnboardingTagsViewController: UIViewController {
         self.tagsListView.delegate = self
         self.tagsListView.enableRemoveButton = true
         
-        let addTagView = tagsListView.addTag(String.localized("EntryOnboardingTagsViewControllerAddTag"))
+        let addTagView = tagsListView.addTag(String(localized: "Add tag", bundle: .module))
 
         addTagView.tagBackgroundColor = UIColor.gray
         addTagView.textColor = UIColor.white
@@ -248,7 +249,7 @@ class EntryOnboardingTagsViewController: UIViewController {
         if !selectedTags.isEmpty {
             
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-                title: String.localized("EntryOnboardingTagsViewControllerNext"),
+                title: String(localized: "Next", bundle: .module),
                 style: .plain,
                 target: self,
                 action: #selector(self.continueOnboarding)
@@ -351,7 +352,7 @@ extension EntryOnboardingTagsViewController: LFSearchViewDataSource, LFSearchVie
             
             if let tag = self.searchController.searchBar?.textField?.text, tag.isNotEmptyOrWhitespace, !tags.contains(tag) {
                 
-                cell.textLabel?.text = String(format: String.localized("EntryOnboardingTagsViewControllerAddTagCell"), tag)
+                cell.textLabel?.text = String(format: String(localized: "Add tag "%1$@"", bundle: .module), tag)
                 
             }
             
