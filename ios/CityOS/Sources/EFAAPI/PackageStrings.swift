@@ -8,41 +8,33 @@
 import Foundation
 import Factory
 
-internal extension String {
-    
-    static func localized(_ key: String) -> String {
-        return NSLocalizedString(key, bundle: Bundle.module, value: "", comment: "")
-    }
-    
-}
-
 public enum PackageStrings {
     
     public enum ObjectFilter {
-        public static let noFilter = String.localized("ObjectFilter.noFilter")
-        public static let places = String.localized("ObjectFilter.places")
-        public static let stops = String.localized("ObjectFilter.stops")
-        public static let streets = String.localized("ObjectFilter.streets")
-        public static let addresses = String.localized("ObjectFilter.addresses")
-        public static let crossing = String.localized("ObjectFilter.crossing")
-        public static let pointsOfInterest = String.localized("ObjectFilter.pointsOfInterest")
-        public static let postcode = String.localized("ObjectFilter.postcode")
-        public static let unknown = String.localized("ObjectFilter.unknown")
+        public static let noFilter = String(localized: "No filter", bundle: .module)
+        public static let places = String(localized: "Place", bundle: .module)
+        public static let stops = String(localized: "Stop", bundle: .module)
+        public static let streets = String(localized: "Street", bundle: .module)
+        public static let addresses = String(localized: "Address", bundle: .module)
+        public static let crossing = String(localized: "Crossing", bundle: .module)
+        public static let pointsOfInterest = String(localized: "Point of interest", bundle: .module)
+        public static let postcode = String(localized: "Postcode", bundle: .module)
+        public static let unknown = String(localized: "Unknown", bundle: .module)
     }
     
     public enum DepartureMonitor {
-        public static let lastUpdatedAt = String.localized("DepartureMonitor.lastUpdatedAt")
+        public static let lastUpdatedAt = String(localized: "Last updated: ", bundle: .module)
     }
     
     public enum TrackChangeView {
-        public static let trackChangeTitle = String.localized("TrackChangeView.trackChangeTitle")
+        public static let trackChangeTitle = String(localized: "Track change", bundle: .module)
         public static func trackChangeTime(duration: String) -> String {
-            return String.localizedStringWithFormat(String.localized("TrackChangeView.trackChangeTime"), duration)
+            return String(localized: "Current changeover time: \(duration)", bundle: .module)
         }
     }
     
     public enum FootpathChangeView {
-        public static let footpathChangeTitle = String.localized("TrackChangeView.footpathChangeTitle")
+        public static let footpathChangeTitle = String(localized: "Footpath", bundle: .module)
     }
     
 }

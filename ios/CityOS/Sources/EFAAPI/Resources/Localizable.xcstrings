@@ -1,227 +1,227 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "DepartureMonitor.lastUpdatedAt" : {
-      "extractionState" : "migrated",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zuletzt aktualisiert: "
+  "sourceLanguage": "en",
+  "strings": {
+    "Last updated: ": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zuletzt aktualisiert: "
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Last updated: "
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last updated: "
           }
         }
       }
     },
-    "ObjectFilter.addresses" : {
-      "extractionState" : "migrated",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Adresse"
+    "Address": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adresse"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Address"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Address"
           }
         }
       }
     },
-    "ObjectFilter.crossing" : {
-      "extractionState" : "migrated",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kreuzung"
+    "Crossing": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kreuzung"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crossing"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crossing"
           }
         }
       }
     },
-    "ObjectFilter.noFilter" : {
-      "extractionState" : "migrated",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kein Filter"
+    "No filter": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein Filter"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No filter"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No filter"
           }
         }
       }
     },
-    "ObjectFilter.places" : {
-      "extractionState" : "migrated",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ort"
+    "Place": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ort"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Place"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Place"
           }
         }
       }
     },
-    "ObjectFilter.pointsOfInterest" : {
-      "extractionState" : "migrated",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Interessanter Ort"
+    "Point of interest": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Interessanter Ort"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Point of interest"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Point of interest"
           }
         }
       }
     },
-    "ObjectFilter.postcode" : {
-      "extractionState" : "migrated",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Postleitzahl"
+    "Postcode": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Postleitzahl"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Postcode"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Postcode"
           }
         }
       }
     },
-    "ObjectFilter.stops" : {
-      "extractionState" : "migrated",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Haltestelle"
+    "Stop": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haltestelle"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stop"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop"
           }
         }
       }
     },
-    "ObjectFilter.streets" : {
-      "extractionState" : "migrated",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Straße"
+    "Street": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Straße"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Street"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Street"
           }
         }
       }
     },
-    "ObjectFilter.unknown" : {
-      "extractionState" : "migrated",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unbekannt"
+    "Unknown": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unbekannt"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unknown"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown"
           }
         }
       }
     },
-    "TrackChangeView.footpathChangeTitle" : {
-      "extractionState" : "migrated",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fußweg"
+    "Footpath": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fußweg"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Footpath"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Footpath"
           }
         }
       }
     },
-    "TrackChangeView.trackChangeTime" : {
-      "extractionState" : "migrated",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktuelle Umsteigszeit: %@"
+    "Current changeover time: %@": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktuelle Umsteigszeit: %@"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Current changeover time: %@"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current changeover time: %@"
           }
         }
       }
     },
-    "TrackChangeView.trackChangeTitle" : {
-      "extractionState" : "migrated",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gleiswechsel"
+    "Track change": {
+      "extractionState": "migrated",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gleiswechsel"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Track change"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Track change"
           }
         }
       }
     }
   },
-  "version" : "1.1"
+  "version": "1.1"
 }
