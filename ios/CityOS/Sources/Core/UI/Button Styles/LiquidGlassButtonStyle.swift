@@ -53,7 +53,14 @@ public struct LiquidGlassButtonStyle: ButtonStyle {
                     .padding()
                     .foregroundColor(.yellow)
                     .frame(maxWidth: .infinity, alignment: .center)
-                    .background(.ultraThinMaterial)
+                    .background {
+                        ZStack {
+                            // Base material for glass effect
+                            Color(UIColor.secondarySystemBackground)
+                            // Subtle overlay for better contrast with yellow text
+                            Color.black.opacity(0.1)
+                        }
+                    }
                     .cornerRadius(10)
                     .opacity(configuration.isPressed ? 0.7 : 1)
             }
