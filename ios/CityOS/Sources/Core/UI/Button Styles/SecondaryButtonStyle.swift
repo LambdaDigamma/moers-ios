@@ -11,9 +11,7 @@ import SwiftUI
 /// Uses modern materials on iOS 18+ with fallback for earlier versions
 public struct SecondaryButtonStyle: ButtonStyle {
     
-    public init() {
-        
-    }
+    public init() {}
     
     public func makeBody(configuration: Configuration) -> some View {
         LiquidGlassButtonStyle(prominence: .secondary).makeBody(configuration: configuration)

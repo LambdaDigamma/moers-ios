@@ -19,27 +19,19 @@ public struct EfaPrimaryButtonStyle: ButtonStyle {
     
     public func makeBody(configuration: Configuration) -> some View {
         if #available(iOS 18.0, *) {
-            // Use iOS 18+ with modern materials
-            makeModernButton(configuration: configuration)
+            // On iOS 18+, we maintain the current implementation
+            // Future enhancements could include material effects while preserving accent colors
+            makeButton(configuration: configuration)
         } else {
             // Fallback for iOS 16-17
-            makeLegacyButton(configuration: configuration)
+            makeButton(configuration: configuration)
         }
     }
     
-    @available(iOS 18.0, *)
-    private func makeModernButton(configuration: Configuration) -> some View {
-        configuration.label
-            .font(.body.weight(.semibold))
-            .padding()
-            .foregroundColor(onAccent)
-            .frame(maxWidth: .infinity, alignment: .center)
-            .background(accent)
-            .cornerRadius(10)
-            .opacity(configuration.isPressed ? 0.7 : 1)
-    }
-    
-    private func makeLegacyButton(configuration: Configuration) -> some View {
+    /// Creates the button view with the configured accent colors
+    /// Note: Both iOS versions currently use the same implementation
+    /// to ensure consistent behavior with custom accent colors
+    private func makeButton(configuration: Configuration) -> some View {
         configuration.label
             .font(.body.weight(.semibold))
             .padding()
