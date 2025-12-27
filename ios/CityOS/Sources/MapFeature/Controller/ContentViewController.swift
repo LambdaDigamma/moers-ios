@@ -128,11 +128,11 @@ class ContentViewController: UIViewController {
     }
     
     private func setupSearchBar() {
-        self.contentDrawerView.contentDrawerView.searchBar.delegate = self
+        self.contentDrawerView.searchBar.delegate = self
     }
     
     private func setupTagListView() {
-        self.contentDrawerView.contentDrawerView.tagListView.delegate = self
+        self.contentDrawerView.tagListView.delegate = self
     }
     
     // MARK: - Collection View
@@ -221,8 +221,8 @@ class ContentViewController: UIViewController {
             return datasource.map { .location(AnyLocation($0)) }
             
         case .filter(_, let tagStrings, let items):
-            contentDrawerView.contentDrawerView.tagListView.removeAllTags()
-            contentDrawerView.contentDrawerView.tagListView.addTags(tagStrings)
+            contentDrawerView.tagListView.removeAllTags()
+            contentDrawerView.tagListView.addTags(tagStrings)
             return items.map { .location(AnyLocation($0)) }
             
         case .search(_, let tagAttrs, let items):
@@ -382,8 +382,12 @@ extension ContentViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        if !tags.isEmpty && !locations.isEmpty && tableView.cellForRow(at: IndexPath(row: 0, section: 0)) != nil {
-            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: false)
+        // Scroll to top if needed (UICollectionView doesn't need cellForItem check)
+        if !tags.isEmpty && !locations.isEmpty {
+            let indexPath = IndexPath(row: 0, section: 0)
+            if contentDrawerView.collectionView.numberOfItems(inSection: 0) > 0 {
+                contentDrawerView.collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+            }
         }
         
         if searchText.isNotEmptyOrWhitespace {
@@ -449,7 +453,7 @@ extension ContentViewController: UICollectionViewDelegate {
                 self.selectedTags.append(attrString.string)
             }
             
-            self.contentDrawerView.contentDrawerView.searchBar.text = ""
+            self.contentDrawerView.searchBar.text = ""
             
             self.contentDrawerView.headerSectionHeightConstraint.constant = 98
             
@@ -466,7 +470,7 @@ extension ContentViewController: UICollectionViewDelegate {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
-        self.contentDrawerView.contentDrawerView.searchBar.resignFirstResponder()
+        self.contentDrawerView.searchBar.resignFirstResponder()
         
     }
     
@@ -566,7 +570,7 @@ extension ContentViewController: PulleyDrawerViewControllerDelegate {
         //            headerSectionHeightConstraint.constant = 68.0
         //        }
         
-        tableView.isScrollEnabled = drawer.drawerPosition == .open || drawer.currentDisplayMode == .panel
+        contentDrawerView.collectionView.isScrollEnabled = drawer.drawerPosition == .open || drawer.currentDisplayMode == .panel
         
         if drawer.drawerPosition != .open {
             contentDrawerView.searchBar.resignFirstResponder()
