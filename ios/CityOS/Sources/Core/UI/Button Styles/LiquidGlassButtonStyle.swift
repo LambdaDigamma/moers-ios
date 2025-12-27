@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-/// A modern button style that uses iOS 18+ native button styles when available,
-/// with fallback support for iOS 16-17.
+/// A modern button style that provides the Liquid Glass design pattern
+/// with enhanced appearance on iOS 18+ and fallback support for iOS 16-17.
 public struct LiquidGlassButtonStyle: ButtonStyle {
     
     public enum Prominence {
@@ -24,7 +24,7 @@ public struct LiquidGlassButtonStyle: ButtonStyle {
     
     public func makeBody(configuration: Configuration) -> some View {
         if #available(iOS 18.0, *) {
-            // Use iOS 18+ native button styles with improved materials
+            // iOS 18+ with enhanced contrast for better accessibility
             makeModernButton(configuration: configuration)
         } else {
             // Fallback for iOS 16-17
@@ -44,7 +44,7 @@ public struct LiquidGlassButtonStyle: ButtonStyle {
                     .padding()
                     .foregroundColor(.black)
                     .frame(maxWidth: .infinity, alignment: .center)
-                    .background(.yellow)
+                    .background(Color.yellow)
                     .cornerRadius(10)
                     .opacity(configuration.isPressed ? 0.7 : 1)
             case .secondary:

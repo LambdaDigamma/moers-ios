@@ -1,10 +1,10 @@
 # Button Styles
 
-This directory contains reusable button styles for the CityOS application, now adapted to use the Liquid Glass design pattern.
+This directory contains reusable button styles for the CityOS application, adapted to use the Liquid Glass design pattern.
 
 ## Overview
 
-The button styles have been updated to provide a modern appearance with support for iOS 18+ features while maintaining backward compatibility with iOS 16-17.
+The button styles have been updated to provide a modern appearance with enhanced accessibility on iOS 18+ while maintaining backward compatibility with iOS 16-17.
 
 ## Available Button Styles
 
@@ -12,8 +12,8 @@ The button styles have been updated to provide a modern appearance with support 
 
 The core button style that implements the Liquid Glass design pattern. This style provides:
 
-- **iOS 18+**: Uses modern materials like `.ultraThinMaterial` for secondary buttons, providing a glass-like translucent effect
-- **iOS 16-17**: Falls back to solid colors with the same visual appearance
+- **iOS 18+**: Enhanced contrast with subtle overlays for better accessibility
+- **iOS 16-17**: Compatible fallback with the same visual appearance
 
 **Usage:**
 
@@ -50,7 +50,7 @@ Button("Save Changes") {
 
 ### SecondaryButtonStyle
 
-Secondary action button with yellow text and translucent background (glass effect on iOS 18+). Now uses `LiquidGlassButtonStyle` internally.
+Secondary action button with yellow text and subtle translucent background. Enhanced on iOS 18+ with improved contrast. Now uses `LiquidGlassButtonStyle` internally.
 
 **Usage:**
 
@@ -63,7 +63,7 @@ Button("Cancel") {
 
 ### EfaPrimaryButtonStyle
 
-Custom button style for EFA (transit) features with configurable accent colors via environment values. Enhanced with Liquid Glass design pattern.
+Custom button style for EFA (transit) features with configurable accent colors via environment values. Adapted with Liquid Glass design principles.
 
 **Usage:**
 
@@ -82,16 +82,17 @@ Button("Activate Trip") {
 
 The Liquid Glass design pattern emphasizes:
 
-1. **Translucency**: Using materials like `.ultraThinMaterial` on iOS 18+ for secondary buttons
-2. **Depth**: Visual hierarchy through backgrounds and opacity
+1. **Depth**: Layered backgrounds with subtle overlays
+2. **Translucency**: Semi-transparent effects for visual interest
 3. **Responsiveness**: Visual feedback on press (opacity changes)
-4. **Consistency**: Unified appearance across the application
+4. **Accessibility**: Enhanced contrast for better readability
+5. **Consistency**: Unified appearance across the application
 
 ### iOS Version Support
 
-All button styles now support:
+All button styles support:
 
-- **iOS 18+**: Modern materials and effects
+- **iOS 18+**: Enhanced accessibility with improved contrast
 - **iOS 16-17**: Compatible fallback implementations
 
 The styles automatically detect the iOS version and apply the appropriate implementation.
@@ -118,7 +119,7 @@ To create a custom button style with the Liquid Glass pattern, you can:
 
 1. Use `LiquidGlassButtonStyle` directly with custom prominence
 2. Create a new `ButtonStyle` that uses `LiquidGlassButtonStyle` internally (like `PrimaryButtonStyle` and `SecondaryButtonStyle`)
-3. Implement your own version checking and material usage
+3. Implement your own version checking and overlay effects
 
 ## Examples
 
