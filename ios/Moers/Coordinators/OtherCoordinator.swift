@@ -69,7 +69,13 @@ public class OtherCoordinator: Coordinator {
     
     public func showSettings() {
         
-        let settingsViewController = SettingsViewController()
+        let settingsViewController: UIViewController
+        
+        if #available(iOS 26.0, *) {
+            settingsViewController = SettingsViewController()
+        } else {
+            settingsViewController = LegacySettingsViewController()
+        }
         
         navigationController.pushViewController(settingsViewController, animated: true)
         
