@@ -48,6 +48,7 @@ public struct ParkingAreaList: View {
             VStack(spacing: 0) {
                 
                 map()
+                    
                 
                 freeLiveParkingAreasGrid()
                     .padding([.leading, .trailing, .top])
@@ -58,6 +59,8 @@ public struct ParkingAreaList: View {
             }
             
         }
+        .ignoresSafeArea(.container, edges: .top)
+        .background(ApplicationTheme.current.dashboardBackground)
         .navigationTitle(Text(PackageStrings.ParkingAreaList.title))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -105,11 +108,11 @@ public struct ParkingAreaList: View {
                         
                     } label: {
                         
-                        ParkingAreaDetail(viewModel: viewModel)
-                            .frame(maxWidth: .infinity)
-                            .background(Color(UIColor.secondarySystemBackground))
-                            .cornerRadius(16)
-                            .foregroundColor(Color(UIColor.label))
+                        CardPanelView {
+                            ParkingAreaDetail(viewModel: viewModel)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(Color(UIColor.label))
                         
                     }
                     
@@ -132,7 +135,18 @@ public struct ParkingAreaList: View {
         )
             .mapType(.standard)
             .showsUserLocation(true)
-            .frame(idealHeight: 300)
+            .frame(idealHeight: 400)
+            .overlay(alignment: .bottom) {
+                LinearGradient(
+                    colors: [
+                        Color.clear,
+                        ApplicationTheme.current.dashboardBackground
+                    ],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .frame(height: 443)
+            }
         
     }
     
