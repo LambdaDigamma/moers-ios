@@ -261,13 +261,13 @@ public struct EventListItem: View {
                         
                     } else if viewModel.isPreview {
                         
-                        Text(EventPackageStrings.notYetScheduled)
+                        Text("No time yet")
                             .lineLimit(1)
                         
                     }
                     
                 case .none:
-                    Text(EventPackageStrings.notYetScheduled)
+                    Text("No time yet")
                     
             }
             

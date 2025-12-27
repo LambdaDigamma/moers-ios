@@ -131,7 +131,7 @@ public struct FuelStationDetailContent: View {
                 }
             )
             
-            Text(PackageStrings.dataSource)
+            Text("Datasource: MTS-K via https://creativecommons.tankerkoenig.de - CC BY 4.0")
                 .foregroundColor(.secondary)
                 .font(.caption)
             

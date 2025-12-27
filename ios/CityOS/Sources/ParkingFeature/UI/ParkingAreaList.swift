@@ -61,7 +61,7 @@ public struct ParkingAreaList: View {
         }
         .ignoresSafeArea(.container, edges: .top)
         .background(ApplicationTheme.current.dashboardBackground)
-        .navigationTitle(Text(PackageStrings.ParkingAreaList.title))
+        .navigationTitle("Parking spaces")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             toolbarItem()
@@ -75,7 +75,7 @@ public struct ParkingAreaList: View {
                     .toolbar(content: {
                         ToolbarItem(placement: .cancellationAction) {
                             Button(action: { showParkingTimer = false }) {
-                                Text(PackageStrings.close)
+                                Text("Close")
                             }
                         }
                     })
@@ -91,10 +91,10 @@ public struct ParkingAreaList: View {
         VStack(alignment: .leading) {
             
             if viewModel.userGrantedLocation {
-                Text(PackageStrings.ParkingAreaList.titleNearYou)
+                Text("Free parking spaces near you")
                     .font(.title3.weight(.semibold))
             } else {
-                Text(PackageStrings.ParkingAreaList.title)
+                Text("Parking spaces")
                     .font(.title3.weight(.semibold))
             }
             
@@ -154,8 +154,8 @@ public struct ParkingAreaList: View {
     private func disclaimer() -> some View {
         
         VStack(alignment: .leading, spacing: 8) {
-            Text(PackageStrings.ParkingAreaList.disclaimer)
-            Text(PackageStrings.ParkingAreaList.dataSource)
+            Text("All data without liability. The current parking situation may differ from the data shown.")
+            Text("Data source: Parking management system of the city of Moers")
         }
         .font(.caption)
         .frame(maxWidth: .infinity)
@@ -171,7 +171,7 @@ public struct ParkingAreaList: View {
                 
                 Picker(
                     selection: $viewModel.filter,
-                    label: Text(PackageStrings.ParkingAreaList.filterDescription)
+                    label: Text("Filter parking spaces")
                 ) {
                     
                     ForEach(ParkingAreaFilterType.allCases, id: \.self) { filter in

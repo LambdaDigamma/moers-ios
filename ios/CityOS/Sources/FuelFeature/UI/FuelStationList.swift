@@ -47,7 +47,7 @@ public struct FuelStationList: View {
             }
             .padding()
             
-            Text(PackageStrings.dataSource)
+            Text("Datasource: MTS-K via https://creativecommons.tankerkoenig.de - CC BY 4.0")
                 .font(.footnote)
                 .foregroundColor(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -88,7 +88,7 @@ public struct FuelStationList: View {
                     
                     VStack(alignment: .leading) {
                         
-                        Text("\(fuelStation.brand) · \(fuelStation.isOpen ? AppStrings.OpeningState.open : AppStrings.OpeningState.closed)")
+                        Text("\(fuelStation.brand) · \(fuelStation.isOpen ? "Open" : "Closed")")
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.leading)
                         

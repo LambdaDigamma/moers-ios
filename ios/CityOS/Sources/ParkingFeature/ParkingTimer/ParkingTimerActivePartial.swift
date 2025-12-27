@@ -96,9 +96,12 @@ public struct ParkingTimerActivePartial: View {
                     
                     HStack {
 
-                        Text("\(PackageStrings.ParkingTimerActivePartial.backToCar) \(Image(systemName: "chevron.right"))")
-                            .fontWeight(.semibold)
-                            .foregroundColor(.primary)
+                        HStack {
+                            Text("Return to your car")
+                            Image(systemName: "chevron.right")
+                        }
+                        .fontWeight(.semibold)
+                        .foregroundColor(.primary)
 
                     }
                     .padding()
@@ -120,7 +123,7 @@ public struct ParkingTimerActivePartial: View {
         HStack {
             
             Button(action: cancel) {
-                Text(PackageStrings.ParkingTimerActivePartial.cancel)
+                Text("Cancel")
             }
             .buttonStyle(SecondaryButtonStyle())
             

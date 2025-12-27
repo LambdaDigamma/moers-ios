@@ -31,7 +31,7 @@ public struct RubbishDashboardPanel: View {
                 viewModel.state.hasResource { (items) in
                     
                     HStack {
-                        Text(PackageStrings.Waste.dashboardTitle)
+                        Text("Next collection dates")
                             .font(.title3)
                             .fontWeight(.semibold)
                         Spacer()
@@ -107,7 +107,7 @@ public struct RubbishDashboardPanel: View {
             VStack(spacing: 12) {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle())
-                Text(PackageStrings.Waste.loadingDashboard)
+                Text("Loading waste schedule…")
                     .fontWeight(.semibold)
                     .font(.callout)
             }
@@ -124,7 +124,7 @@ public struct RubbishDashboardPanel: View {
             HStack(spacing: 12) {
                 Image(systemName: "calendar.badge.exclamationmark")
                     .font(.largeTitle)
-                Text(PackageStrings.Waste.noUpcomingRubbishItems)
+                Text("No further dates could be found in the waste calendar.")
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
