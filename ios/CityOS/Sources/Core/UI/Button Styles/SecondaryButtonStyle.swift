@@ -7,27 +7,14 @@
 
 import SwiftUI
 
+/// Secondary button style using Liquid Glass design pattern
+/// Uses modern materials on iOS 18+ with fallback for earlier versions
 public struct SecondaryButtonStyle: ButtonStyle {
     
-    @Environment(\.isEnabled) var isEnabled
-    
-    public init() {
-        
-    }
+    public init() {}
     
     public func makeBody(configuration: Configuration) -> some View {
-        
-        let opacity = isEnabled ? (configuration.isPressed ? 0.7 : 1) : 0.5
-        
-        configuration.label
-            .font(.body.weight(.semibold))
-            .padding()
-            .foregroundColor(.yellow)
-            .frame(maxWidth: .infinity, alignment: .center)
-            .background(Color(UIColor.secondarySystemBackground))
-            .cornerRadius(10)
-            .opacity(opacity)
-        
+        LiquidGlassButtonStyle(prominence: .secondary).makeBody(configuration: configuration)
     }
     
 }
