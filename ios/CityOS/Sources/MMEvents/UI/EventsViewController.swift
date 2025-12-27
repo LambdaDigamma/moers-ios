@@ -3,6 +3,7 @@
 //  
 //
 //  Created by Lennart Fischer on 15.04.21.
+//  Updated for iOS 26+ UICollectionView with list configuration on 27.12.24.
 //
 
 
@@ -14,11 +15,20 @@ import OSLog
 import Combine
 import MMPages
 
+@available(iOS 26.0, *)
 open class EventsViewController: UIViewController, UISearchResultsUpdating {
     
     // MARK: - UI Elements
     
-    public private(set) lazy var tableView = { ViewFactory.tableView(with: .grouped) }()
+    public private(set) lazy var collectionView: UICollectionView = {
+        var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+        configuration.headerMode = .supplementary
+        let layout = UICollectionViewCompositionalLayout.list(using: configuration)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
+    }()
+    
     public private(set) lazy var searchController = { UISearchController(searchResultsController: nil) }()
     
     // MARK: - Config
@@ -37,13 +47,29 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     public var sectionUpcomingTitle = String.localized("Upcoming").uppercased()
     private var cancellables = Set<AnyCancellable>()
     
+    // MARK: - Data Source
+    
+    private enum Section: Hashable {
+        case favourites
+        case active
+        case upcoming
+        case dated(String)
+    }
+    
+    private enum Item: Hashable {
+        case event(EventViewModel<Event>)
+        case hint(String)
+    }
+    
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
+    
     // MARK: - Data
     
     public var events: [EventViewModel<Event>] = []
     private var currentDisplayMode = DisplayMode.overview(favouriteEvents: [], activeEvents: [], upcomingEvents: []) {
         didSet {
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self.applySnapshot()
             }
         }
     }
@@ -58,16 +84,15 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
         self.setupUI()
         self.setupConstraints()
         self.setupTheming()
+        self.configureDataSource()
         
     }
     
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if #available(iOS 11.0, *) {
-            self.navigationItem.largeTitleDisplayMode = .always
-            self.navigationController?.navigationBar.prefersLargeTitles = true
-        }
+        self.navigationItem.largeTitleDisplayMode = .always
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         
         self.setupInvalidators()
         self.loadData()
@@ -129,29 +154,20 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     
     private func setupUI() {
         
-        self.view.addSubview(tableView)
+        self.view.addSubview(collectionView)
         
         self.setupSearch()
         
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        self.tableView.cellLayoutMarginsFollowReadableWidth = true
-        self.tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
-        
-        if #available(iOS 11.0, *) {
-            self.tableView.contentInsetAdjustmentBehavior = .automatic
-        }
-        
-        self.registerDefaultCells()
+        self.collectionView.delegate = self
         
     }
     
     private func setupConstraints() {
         
-        let constraints = [tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                           tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                           tableView.topAnchor.constraint(equalTo: self.safeTopAnchor),
-                           tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)]
+        let constraints = [collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                           collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+                           collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+                           collectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)]
         
         NSLayoutConstraint.activate(constraints)
         
@@ -160,8 +176,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     private func setupTheming() {
         
         self.view.backgroundColor = UIColor.systemBackground
-        self.tableView.backgroundColor = UIColor.systemBackground
-        self.tableView.separatorColor = UIColor.separator
+        self.collectionView.backgroundColor = UIColor.systemBackground
         self.searchController.searchBar.tintColor = EventPackageConfiguration.accentColor
         
     }
@@ -177,22 +192,191 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
             
             self.definesPresentationContext = true
             
-            if #available(iOS 11.0, *) {
-                self.navigationItem.searchController = searchController
-            } else {
-                self.tableView.tableHeaderView = searchController.searchBar
-            }
+            self.navigationItem.searchController = searchController
             
         }
         
     }
     
-    private func registerDefaultCells() {
+    // MARK: - Data Source Configuration
+    
+    private func configureDataSource() {
         
-        self.tableView.register(EventTableViewCell.self)
-        self.tableView.register(HintTableViewCell.self)
-        self.tableView.register(EventHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: EventHeaderFooterView.identifier)
+        // Cell registration for events
+        let eventCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, EventViewModel<Event>> { cell, indexPath, event in
+            var content = UIListContentConfiguration.cell()
+            content.text = event.model.name
+            content.secondaryText = event.subtitle
+            content.textProperties.font = .boldSystemFont(ofSize: 18)
+            content.secondaryTextProperties.font = .systemFont(ofSize: 16)
+            content.secondaryTextProperties.color = .secondaryLabel
+            
+            cell.contentConfiguration = content
+            
+            // Add color indicator
+            var backgroundConfig = UIBackgroundConfiguration.listGroupedCell()
+            if let color = event.model.extras?.color {
+                let indicatorColor: UIColor
+                if color == "yellow" {
+                    indicatorColor = EventColors.yellow
+                } else if color == "green" {
+                    indicatorColor = EventColors.green
+                } else if color == "magenta" {
+                    indicatorColor = EventColors.magenta
+                } else if color == "blue" {
+                    indicatorColor = EventColors.lightBlue
+                } else {
+                    indicatorColor = UIColor.gray
+                }
+                
+                // Create a custom view for the leading indicator
+                let indicatorView = UIView()
+                indicatorView.backgroundColor = indicatorColor
+                indicatorView.translatesAutoresizingMaskIntoConstraints = false
+                
+                cell.contentView.addSubview(indicatorView)
+                
+                NSLayoutConstraint.activate([
+                    indicatorView.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 16),
+                    indicatorView.topAnchor.constraint(equalTo: cell.contentView.topAnchor, constant: 8),
+                    indicatorView.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor, constant: -8),
+                    indicatorView.widthAnchor.constraint(equalToConstant: 2)
+                ])
+                
+                // Adjust content insets to make room for indicator
+                content.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 8, leading: 32, bottom: 8, trailing: 16)
+                cell.contentConfiguration = content
+            }
+            
+            cell.backgroundConfiguration = backgroundConfig
+            
+            // Add heart icon for liked events
+            if event.isLiked {
+                let heartImage = Images.heartFill.withRenderingMode(.alwaysTemplate)
+                var accessories: [UICellAccessory] = []
+                accessories.append(.customView(configuration: .init(customView: {
+                    let imageView = UIImageView(image: heartImage)
+                    imageView.tintColor = EventPackageConfiguration.accentColor
+                    imageView.contentMode = .scaleAspectFit
+                    imageView.translatesAutoresizingMaskIntoConstraints = false
+                    NSLayoutConstraint.activate([
+                        imageView.widthAnchor.constraint(equalToConstant: 10),
+                        imageView.heightAnchor.constraint(equalToConstant: 10)
+                    ])
+                    return imageView
+                }(), placement: .trailing(displayed: .always))))
+                cell.accessories = accessories
+            }
+        }
         
+        // Cell registration for hints
+        let hintCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, String> { cell, indexPath, hint in
+            var content = UIListContentConfiguration.cell()
+            content.text = hint
+            content.textProperties.color = .secondaryLabel
+            content.textProperties.alignment = .center
+            cell.contentConfiguration = content
+            
+            var backgroundConfig = UIBackgroundConfiguration.listGroupedCell()
+            cell.backgroundConfiguration = backgroundConfig
+        }
+        
+        // Create data source
+        dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) { collectionView, indexPath, item in
+            switch item {
+            case .event(let event):
+                return collectionView.dequeueConfiguredReusableCell(using: eventCellRegistration, for: indexPath, item: event)
+            case .hint(let hint):
+                return collectionView.dequeueConfiguredReusableCell(using: hintCellRegistration, for: indexPath, item: hint)
+            }
+        }
+        
+        // Header registration
+        let headerRegistration = UICollectionView.SupplementaryRegistration<UICollectionViewListCell>(elementKind: UICollectionView.elementKindSectionHeader) { [weak self] headerView, elementKind, indexPath in
+            guard let self = self else { return }
+            
+            var content = UIListContentConfiguration.groupedHeader()
+            
+            let snapshot = self.dataSource.snapshot()
+            let section = snapshot.sectionIdentifiers[indexPath.section]
+            
+            switch section {
+            case .favourites:
+                content.text = self.sectionFavouritesTitle
+            case .active:
+                content.text = self.sectionActiveTitle
+            case .upcoming:
+                content.text = self.sectionUpcomingTitle
+            case .dated(let dateString):
+                content.text = dateString
+            }
+            
+            headerView.contentConfiguration = content
+        }
+        
+        dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
+            return collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: indexPath)
+        }
+    }
+    
+    private func applySnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        
+        switch currentDisplayMode {
+        case .overview(let favouriteEvents, let activeEvents, let upcomingEvents):
+            
+            snapshot.appendSections([.favourites])
+            if favouriteEvents.isEmpty {
+                snapshot.appendItems([.hint(String.localized("EventsNoFavourite"))], toSection: .favourites)
+            } else {
+                snapshot.appendItems(favouriteEvents.map { .event($0) }, toSection: .favourites)
+            }
+            
+            snapshot.appendSections([.active])
+            if activeEvents.isEmpty {
+                snapshot.appendItems([.hint(String.localized("EventsNoLive"))], toSection: .active)
+            } else {
+                snapshot.appendItems(activeEvents.map { .event($0) }, toSection: .active)
+            }
+            
+            snapshot.appendSections([.upcoming])
+            if upcomingEvents.isEmpty {
+                snapshot.appendItems([.hint(String.localized("EventsNoUpcoming"))], toSection: .upcoming)
+            } else {
+                snapshot.appendItems(upcomingEvents.map { .event($0) }, toSection: .upcoming)
+            }
+            
+        case .list(let keyedEvents):
+            if keyedEvents.isEmpty {
+                snapshot.appendSections([.dated("")])
+                snapshot.appendItems([.hint(String.localized("EventsNoUpcoming"))], toSection: .dated(""))
+            } else {
+                for (header, events) in keyedEvents {
+                    let section = Section.dated(header)
+                    snapshot.appendSections([section])
+                    snapshot.appendItems(events.map { .event($0) }, toSection: section)
+                }
+            }
+            
+        case .search(_, let searchedEvents):
+            for (header, events) in searchedEvents {
+                let section = Section.dated(header)
+                snapshot.appendSections([section])
+                snapshot.appendItems(events.map { .event($0) }, toSection: section)
+            }
+            
+        case .favourites(let keyedEvents):
+            for (header, events) in keyedEvents {
+                let section = Section.dated(header)
+                snapshot.appendSections([section])
+                snapshot.appendItems(events.map { .event($0) }, toSection: section)
+            }
+            
+        default:
+            break
+        }
+        
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
     
     public func rebuildData() {
@@ -237,7 +421,6 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
         
         self.logStatement("Updating UI.")
         
-//        self.events = EventManager.shared.filterEvents(events) // TODO: ullllsddsf
         self.rebuildData()
         
         self.logStatement("Updated UI.")
@@ -376,11 +559,6 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     
     open func showEventDetailViewController(for event: EventViewModel<Event>) {
         
-//        let viewModel = EventDetailsViewModel(model: event)
-//        let detailViewController = EventDetailViewController(viewModel: viewModel)
-//
-//        self.navigationController?.pushViewController(detailViewController, animated: true)
-        
         self.onShowEvent?(event.model.id, event.model.pageID)
         
     }
@@ -430,267 +608,50 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     
     private func logStatement(_ output: String) {
         
-        if #available(iOS 12.0, *) {
-            os_log(.info, "EventsViewController: %@", output)
-        } else {
-            print("EventsViewController: \(output)")
-        }
+        os_log(.info, "EventsViewController: %@", output)
         
     }
     
 }
 
-extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
+@available(iOS 26.0, *)
+extension EventsViewController: UICollectionViewDelegate {
     
-    public func numberOfSections(in tableView: UITableView) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
         
-        switch currentDisplayMode {
-            case .overview(_, _, _):
-                tableView.accessibilityIdentifier = "Events.Overview"
-                return 3
-                
-            case .list(let keyedEvents):
-                
-                if keyedEvents.isEmpty {
-                    return 1
-                }
-                
-                return keyedEvents.count
-                
-            case .search(_, let filteredEvents):
-                return filteredEvents.count
-                
-            case .favourites(let keyedEvents):
-                return keyedEvents.count
-                
-            default:
-                return 1
+        guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
+        
+        switch item {
+        case .event(let event):
+            self.showEventDetailViewController(for: event)
+        case .hint:
+            break
         }
-        
-    }
-    
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        switch currentDisplayMode {
-            
-            case .overview(let favouriteEvents, let activeEvents, let upcomingEvents):
-                
-                if section == 0 {
-                    if favouriteEvents.isEmpty {
-                        return 1
-                    } else {
-                        return favouriteEvents.count
-                    }
-                } else if section == 1 {
-                    if activeEvents.isEmpty {
-                        return 1
-                    } else {
-                        return activeEvents.count
-                    }
-                } else {
-                    if upcomingEvents.isEmpty {
-                        return 1
-                    } else {
-                        return upcomingEvents.count
-                    }
-                }
-                
-            case .list(let keyedEvents):
-                
-                if keyedEvents.isEmpty {
-                    return 1
-                }
-                
-                return keyedEvents[section].events.count
-                
-            case .search(_, let searchedEvents):
-                return searchedEvents[section].events.count
-                
-            case .favourites(let keyedEvents):
-                return keyedEvents[section].events.count
-                
-            default:
-                return 0
-        }
-        
-    }
-    
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        switch currentDisplayMode {
-            
-            case .overview(let favouriteEvents, let activeEvents, let upcomingEvents):
-                
-                if indexPath.section == 0 {
-                    
-                    if favouriteEvents.isEmpty {
-                        return hintCell(with: String.localized("EventsNoFavourite"), at: indexPath)
-                    } else {
-                        return eventCell(for: favouriteEvents[indexPath.row], at: indexPath)
-                    }
-                    
-                } else if indexPath.section == 1 {
-                    
-                    if activeEvents.isEmpty {
-                        return hintCell(with: String.localized("EventsNoLive"), at: indexPath)
-                    } else {
-                        return eventCell(for: activeEvents[indexPath.row], at: indexPath)
-                    }
-                    
-                } else {
-                    
-                    if upcomingEvents.isEmpty {
-                        return hintCell(with: String.localized("EventsNoUpcoming"), at: indexPath)
-                    } else {
-                        return eventCell(for: upcomingEvents[indexPath.row], at: indexPath)
-                    }
-                    
-                }
-                
-            case .list(let keyedEvents):
-                
-                if keyedEvents.isEmpty {
-                    return hintCell(with: String.localized("EventsNoUpcoming"), at: indexPath)
-                }
-                
-                let event = keyedEvents[indexPath.section].events[indexPath.row]
-                
-                return eventCell(for: event, at: indexPath)
-                
-            case .search(_, let searchedEvents):
-                
-                let event = searchedEvents[indexPath.section].events[indexPath.row]
-                
-                return eventCell(for: event, at: indexPath)
-                
-            case .favourites(let keyedEvents):
-                
-                let event = keyedEvents[indexPath.section].events[indexPath.row]
-                
-                return eventCell(for: event, at: indexPath)
-                
-            default:
-                
-                return UITableViewCell()
-                
-        }
-        
-    }
-    
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        switch currentDisplayMode {
-            
-            case .overview(let favouriteEvents, _, _):
-                if section == 0 && favouriteEvents.isEmpty {
-                    return 40
-                } else {
-                    return 40
-                }
-                
-            default:
-                return 40
-        }
-        
-    }
-    
-    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: EventHeaderFooterView.identifier) as! EventHeaderFooterView
-        
-        switch currentDisplayMode {
-            
-            case .overview(_, _, _):
-                
-                if section == 0 {
-                    
-                    header.title = sectionFavouritesTitle
-                    header.action = {
-                        self.showFavourites()
-                    }
-                    
-                } else if section == 1 {
-                    
-                    header.title = sectionActiveTitle
-                    header.showMoreButton = false
-                    
-                } else {
-                    
-                    header.title = sectionUpcomingTitle
-                    header.action = {
-                        self.showNext()
-                    }
-                    
-                }
-                
-            case .list(let keyedEvents):
-                
-                header.showMoreButton = false
-                
-                if !keyedEvents.isEmpty {
-                    header.title = keyedEvents[section].header
-                }
-                
-            case .search(_, let searchedEvents):
-                
-                header.showMoreButton = false
-                header.title = searchedEvents[section].header
-                
-            case .favourites(let keyedEvents):
-                
-                header.showMoreButton = false
-                header.title = keyedEvents[section].header
-                
-            default:
-                break
-        }
-        
-        return header
-        
-    }
-    
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        guard let cell = tableView.cellForRow(at: indexPath) as? EventTableViewCell else { return }
-        
-        guard let event = cell.event else { return }
-        
-        self.showEventDetailViewController(for: event)
-        
-    }
-    
-    public func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        
-        if let _ = tableView.cellForRow(at: indexPath) as? EventTableViewCell {
-            return true
-        } else {
-            return false
-        }
-        
-    }
-    
-    // MARK: - Cells
-    
-    private func eventCell(for event: EventViewModel<Event>, at indexPath: IndexPath) -> EventTableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as EventTableViewCell
-        
-        cell.event = event
-        
-        return cell
-        
-    }
-    
-    private func hintCell(with text: String, at indexPath: IndexPath) -> HintTableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as HintTableViewCell
-        
-        cell.hint = text
-        
-        return cell
-        
     }
     
 }
+
+// MARK: - Legacy Support Wrapper
+
+#if compiler(>=6.0)
+/// Factory method to create the appropriate events view controller based on iOS version
+public func createEventsViewController(
+    title: String = "",
+    isSearchEnabled: Bool = true,
+    events: [Event] = [],
+    displayMode: DisplayMode = DisplayMode.overview(
+        favouriteEvents: [],
+        activeEvents: [],
+        upcomingEvents: []
+    )
+) -> UIViewController {
+    if #available(iOS 26.0, *) {
+        return EventsViewController(title: title, isSearchEnabled: isSearchEnabled, events: events, displayMode: displayMode)
+    } else {
+        return EventsViewController_Legacy(title: title, isSearchEnabled: isSearchEnabled, events: events, displayMode: displayMode)
+    }
+}
+#endif
 
 #endif
