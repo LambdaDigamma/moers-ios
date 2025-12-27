@@ -8,6 +8,7 @@
 
 import Core
 import UIKit
+import SwiftUI
 
 
 class EntryHistoryViewController: UIViewController {
@@ -18,8 +19,8 @@ class EntryHistoryViewController: UIViewController {
     
     private let entryManager: EntryManagerProtocol
     private var audits: [Audit] = []
-    private var tableView: UITableView = { CoreViewFactory.tableView() }()
-    private let identifier = "auditCell"
+    private var collectionView: UICollectionView!
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Audit>!
     
     init(coordinator: MapCoordintor) {
         self.coordinator = coordinator
@@ -51,27 +52,73 @@ class EntryHistoryViewController: UIViewController {
     
     // MARK: - Private Methods
     
+    enum Section {
+        case main
+    }
+    
     private func setupUI() {
         
         self.title = "Historie"
         
-        self.view.addSubview(tableView)
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.translatesAutoresizingMaskIntoConstraints = false
-        self.tableView.estimatedRowHeight = UITableView.automaticDimension
-        self.tableView.estimatedSectionHeaderHeight = UITableView.automaticDimension
-        self.tableView.register(AuditTableViewCell.self, forCellReuseIdentifier: identifier)
+        // Setup collection view with list configuration
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(collectionView)
         
+        // Setup data source
+        configureDataSource()
+        
+    }
+    
+    private func createLayout() -> UICollectionViewLayout {
+        var config = UICollectionLayoutListConfiguration(appearance: .plain)
+        config.showsSeparators = true
+        return UICollectionViewCompositionalLayout.list(using: config)
+    }
+    
+    private func configureDataSource() {
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Audit> { cell, indexPath, audit in
+            if #available(iOS 16.0, *) {
+                cell.contentConfiguration = UIHostingConfiguration {
+                    AuditCellView(audit: audit)
+                }
+                .margins(.all, 0)
+            } else {
+                // Fallback for iOS 15
+                var content = cell.defaultContentConfiguration()
+                content.text = self.auditEventText(for: audit.event)
+                content.secondaryText = "vor " + (audit.updatedAt?.timeAgo() ?? "n/v")
+                cell.contentConfiguration = content
+            }
+            cell.accessories = []
+        }
+        
+        dataSource = UICollectionViewDiffableDataSource<Section, Audit>(collectionView: collectionView) {
+            collectionView, indexPath, audit in
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: audit)
+        }
+    }
+    
+    private func auditEventText(for event: Audit.EventType) -> String {
+        switch event {
+        case .created:
+            return "Eintrag erstellt"
+        case .updated:
+            return "Eintrag aktualisiert"
+        case .deleted:
+            return "Eintrag gelöscht"
+        case .restored:
+            return "Eintrag widerhergestellt"
+        }
     }
     
     private func setupConstraints() {
         
         let constraints = [
-            tableView.topAnchor.constraint(equalTo: self.safeTopAnchor),
-            tableView.leadingAnchor.constraint(equalTo: self.safeLeftAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.safeRightAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)
+            collectionView.topAnchor.constraint(equalTo: self.safeTopAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: self.safeLeftAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: self.safeRightAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)
         ]
         
         NSLayoutConstraint.activate(constraints)
@@ -96,7 +143,7 @@ class EntryHistoryViewController: UIViewController {
                     self.audits = audits.sorted(by: { (lhs, rhs) -> Bool in
                         return lhs.updatedAt ?? Date() > rhs.updatedAt ?? Date()
                     })
-                    self.tableView.reloadData()
+                    self.updateSnapshot()
                 }
                 
             case .failure(let error):
@@ -108,27 +155,11 @@ class EntryHistoryViewController: UIViewController {
         
     }
     
-}
-
-extension EntryHistoryViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return audits.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        // swiftlint:disable force_cast
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AuditTableViewCell
-        
-        cell.audit = audits[indexPath.row]
-        
-        return cell
-        
-    }
-    
-    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return false
+    private func updateSnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Audit>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(audits)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
     
 }

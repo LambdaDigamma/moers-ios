@@ -8,6 +8,7 @@
 
 import Core
 import UIKit
+import SwiftUI
 
 import Pulley
 import MapKit
@@ -20,7 +21,8 @@ class SelectionViewController: UIViewController {
     lazy var titleLabel: UILabel = { CoreViewFactory.label() }()
     lazy var separatorView: UIView = { CoreViewFactory.blankView() }()
     lazy var closeButton: UIButton = { CoreViewFactory.button() }()
-    lazy var tableView: UITableView = { CoreViewFactory.tableView() }()
+    private var collectionView: UICollectionView!
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Location>!
     
     // swiftlint:disable:next force_cast
     lazy var drawer: MainViewController = { self.parent as! MainViewController }()
@@ -30,7 +32,7 @@ class SelectionViewController: UIViewController {
         didSet {
             
             self.titleLabel.text = "\(clusteredLocations.count) " + String.localized("Entries")
-            self.tableView.reloadData()
+            self.updateSnapshot()
             
         }
     }
@@ -38,8 +40,12 @@ class SelectionViewController: UIViewController {
     private var drawerBottomSafeArea: CGFloat = 0.0 {
         didSet {
             self.loadViewIfNeeded()
-            self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: drawerBottomSafeArea + 50, right: 0.0)
+            self.collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: drawerBottomSafeArea + 50, right: 0.0)
         }
+    }
+    
+    enum Section {
+        case main
     }
     
     // MARK: - UIViewController Lifecycle
@@ -68,7 +74,6 @@ class SelectionViewController: UIViewController {
         self.view.addSubview(gripperView)
         self.view.addSubview(closeButton)
         self.headerView.addSubview(titleLabel)
-        self.view.addSubview(tableView)
         self.view.addSubview(separatorView)
         
         self.titleLabel.font = UIFont.systemFont(ofSize: 24, weight: UIFont.Weight.semibold)
@@ -77,10 +82,59 @@ class SelectionViewController: UIViewController {
         self.separatorView.alpha = 0.5
         self.closeButton.setImage(UIImage(systemName: "xmark.circle.fill")!.withRenderingMode(.alwaysTemplate), for: .normal)
         self.closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: CellIdentifier.searchResultCell)
         
+        // Setup collection view with list configuration
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(collectionView)
+        
+        // Setup data source
+        configureDataSource()
+        
+    }
+    
+    private func createLayout() -> UICollectionViewLayout {
+        var config = UICollectionLayoutListConfiguration(appearance: .plain)
+        config.showsSeparators = true
+        return UICollectionViewCompositionalLayout.list(using: config)
+    }
+    
+    private func configureDataSource() {
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Location> { cell, indexPath, location in
+            if #available(iOS 16.0, *) {
+                cell.contentConfiguration = UIHostingConfiguration {
+                    SearchResultCellView(
+                        image: UIProperties.detailImage(for: location),
+                        title: location.title ?? "",
+                        subtitle: UIProperties.detailSubtitle(for: location),
+                        showCheckmark: false
+                    )
+                }
+                .margins(.all, 0)
+            } else {
+                // Fallback for iOS 15
+                var content = cell.defaultContentConfiguration()
+                content.text = location.title ?? ""
+                content.secondaryText = UIProperties.detailSubtitle(for: location)
+                content.image = UIProperties.detailImage(for: location)
+                cell.contentConfiguration = content
+            }
+            cell.accessories = [.disclosureIndicator()]
+        }
+        
+        dataSource = UICollectionViewDiffableDataSource<Section, Location>(collectionView: collectionView) {
+            collectionView, indexPath, location in
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: location)
+        }
+        
+        collectionView.delegate = self
+    }
+    
+    private func updateSnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Location>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(clusteredLocations)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
     
     private func setupConstraints() {
@@ -105,10 +159,10 @@ class SelectionViewController: UIViewController {
             closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
             closeButton.heightAnchor.constraint(equalToConstant: 25),
             closeButton.widthAnchor.constraint(equalToConstant: 25),
-            tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: 0)
+            collectionView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: 0)
         ]
 
         NSLayoutConstraint.activate(constraints)
@@ -137,33 +191,11 @@ class SelectionViewController: UIViewController {
     
 }
 
-extension SelectionViewController: UITableViewDataSource, UITableViewDelegate {
+extension SelectionViewController: UICollectionViewDelegate {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        return clusteredLocations.count
-        
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: CellIdentifier.searchResultCell,
-            for: indexPath
-        ) as! SearchResultTableViewCell
-        // swiftlint:disable:previous force_cast
-        
-        let location = clusteredLocations[indexPath.row]
-        
-        cell.titleLabel.text = location.title ?? ""
-        cell.subtitleLabel.text = UIProperties.detailSubtitle(for: location)
-        cell.searchImageView.image = UIProperties.detailImage(for: location)
-        
-        return cell
-        
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
         
         drawer.setDrawerContentViewController(controller: drawer.detailViewController, animated: false)
         drawer.setDrawerPosition(position: .partiallyRevealed, animated: true)
@@ -178,10 +210,6 @@ extension SelectionViewController: UITableViewDataSource, UITableViewDelegate {
             
         }
         
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
     }
     
 }
@@ -220,11 +248,11 @@ extension SelectionViewController: PulleyDrawerViewControllerDelegate {
         
         drawerBottomSafeArea = bottomSafeArea
         
-        tableView.isScrollEnabled = drawer.drawerPosition == .open
+        collectionView.isScrollEnabled = drawer.drawerPosition == .open
         
         if drawer.currentDisplayMode == .panel {
         
-            tableView.isScrollEnabled = true
+            collectionView.isScrollEnabled = true
         
         }
         

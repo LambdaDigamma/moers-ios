@@ -9,12 +9,14 @@
 import Core
 import UIKit
 import MapFeature
+import SwiftUI
 
 class EntryValidationViewController: UIViewController {
 
     public var coordinator: DashboardCoordinator?
     
-    private lazy var tableView = { CoreViewFactory.tableView() }()
+    private var collectionView: UICollectionView!
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Entry>!
     private var entries: [Entry] = []
     private let entryManager: EntryManagerProtocol
     
@@ -42,25 +44,71 @@ class EntryValidationViewController: UIViewController {
     
     // MARK: - Private Methods
     
+    enum Section {
+        case main
+    }
+    
     private func setupUI() {
         
         self.title = "Einträge validieren"
         
-        self.view.addSubview(tableView)
+        // Setup collection view with list configuration
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(collectionView)
         
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.register(EntryValidationTableViewCell.self, forCellReuseIdentifier: "entryCell")
+        // Setup data source
+        configureDataSource()
         
+    }
+    
+    private func createLayout() -> UICollectionViewLayout {
+        var config = UICollectionLayoutListConfiguration(appearance: .plain)
+        config.showsSeparators = true
+        return UICollectionViewCompositionalLayout.list(using: config)
+    }
+    
+    private func configureDataSource() {
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Entry> { cell, indexPath, entry in
+            if #available(iOS 16.0, *) {
+                cell.contentConfiguration = UIHostingConfiguration {
+                    EntryValidationCellView(
+                        image: nil,
+                        title: entry.name ?? "",
+                        description: entry.createdAt?.format(format: "dd.MM.yyyy HH:mm") ?? ""
+                    )
+                }
+                .margins(.all, 0)
+            } else {
+                // Fallback for iOS 15
+                var content = cell.defaultContentConfiguration()
+                content.text = entry.name
+                content.secondaryText = entry.createdAt?.format(format: "dd.MM.yyyy HH:mm")
+                cell.contentConfiguration = content
+            }
+            cell.accessories = [.disclosureIndicator()]
+        }
+        
+        dataSource = UICollectionViewDiffableDataSource<Section, Entry>(collectionView: collectionView) {
+            collectionView, indexPath, entry in
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: entry)
+        }
+    }
+    
+    private func updateSnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Entry>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(entries)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
     
     private func setupConstraints() {
         
         let constraints = [
-            tableView.topAnchor.constraint(equalTo: self.safeTopAnchor),
-            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)
+            collectionView.topAnchor.constraint(equalTo: self.safeTopAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor)
         ]
         
         NSLayoutConstraint.activate(constraints)
@@ -69,8 +117,7 @@ class EntryValidationViewController: UIViewController {
     
     private func applyTheming() {
         self.view.backgroundColor = UIColor.systemBackground
-        self.tableView.backgroundColor = UIColor.systemBackground
-        self.tableView.separatorColor = UIColor.separator
+        self.collectionView.backgroundColor = UIColor.systemBackground
     }
     
     private func loadData() {
@@ -82,7 +129,7 @@ class EntryValidationViewController: UIViewController {
             case .success(let entries):
                 
                 self.entries = entries.filter { !$0.isValidated }
-                self.tableView.reloadData()
+                self.updateSnapshot()
                 
             case .failure(let error):
                 print(error.localizedDescription)
@@ -91,31 +138,6 @@ class EntryValidationViewController: UIViewController {
             
         }
         
-    }
-    
-}
-
-extension EntryValidationViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return entries.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "entryCell", for: indexPath) as? EntryValidationTableViewCell else { return UITableViewCell() }
-        
-        let entry = entries[indexPath.row]
-        
-        cell.titleLabel.text = entry.name
-        cell.descriptionLabel.text = entry.createdAt?.format(format: "dd.MM.yyyy HH:mm")
-        
-        return cell
-        
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
     }
     
 }
