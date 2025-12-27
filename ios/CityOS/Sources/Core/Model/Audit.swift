@@ -52,13 +52,36 @@ public struct Audit: Codable, Hashable {
             let sortedKeys = baseValues.keys.sorted()
             for key in sortedKeys {
                 hasher.combine(key)
-                hasher.combine(baseValues[key] as? AnyHashable)
+                if let value = baseValues[key] {
+                    hasher.combine(value)
+                }
             }
         }
         
         public static func == (lhs: AuditValues, rhs: AuditValues) -> Bool {
-            // Simple comparison based on dictionary equality
-            return lhs.baseValues.count == rhs.baseValues.count
+            // Compare dictionary contents properly
+            guard lhs.baseValues.count == rhs.baseValues.count else {
+                return false
+            }
+            
+            for (key, lhsValue) in lhs.baseValues {
+                guard let rhsValue = rhs.baseValues[key] else {
+                    return false
+                }
+                // Compare optional values
+                switch (lhsValue, rhsValue) {
+                case (.none, .none):
+                    continue
+                case (.some(let lv), .some(let rv)):
+                    if lv != rv {
+                        return false
+                    }
+                default:
+                    return false
+                }
+            }
+            
+            return true
         }
         
     }
