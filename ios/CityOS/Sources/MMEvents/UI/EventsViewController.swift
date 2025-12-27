@@ -5,6 +5,10 @@
 //  Created by Lennart Fischer on 15.04.21.
 //  Updated for iOS 26+ UICollectionView with list configuration on 27.12.24.
 //
+//  This is the iOS 26+ version of EventsViewController that uses UICollectionView
+//  with list configuration and .insetGrouped appearance style instead of UITableView.
+//  For iOS versions prior to 26, see EventsViewController_Legacy.
+//
 
 
 #if os(iOS)
@@ -15,6 +19,8 @@ import OSLog
 import Combine
 import MMPages
 
+/// Modern events list view controller for iOS 26+ using UICollectionView with list configuration.
+/// Uses the modern .insetGrouped appearance style for a cleaner, more contemporary look.
 @available(iOS 26.0, *)
 open class EventsViewController: UIViewController, UISearchResultsUpdating {
     

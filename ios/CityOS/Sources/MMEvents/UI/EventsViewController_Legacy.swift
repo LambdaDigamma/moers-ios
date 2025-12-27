@@ -1,8 +1,11 @@
 //
-//  EventsViewController.swift
+//  EventsViewController_Legacy.swift
 //  
 //
 //  Created by Lennart Fischer on 15.04.21.
+//
+//  This is the legacy version of EventsViewController for iOS versions prior to 26.
+//  Uses UITableView with .grouped style. For iOS 26+, see EventsViewController.
 //
 
 
@@ -14,6 +17,8 @@ import OSLog
 import Combine
 import MMPages
 
+/// Legacy events list view controller for iOS < 26 using UITableView.
+/// Deprecated in favor of the modern UICollectionView-based EventsViewController for iOS 26+.
 @available(iOS, deprecated: 26.0, message: "Use EventsViewController (iOS 26+) instead")
 open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdating {
     
