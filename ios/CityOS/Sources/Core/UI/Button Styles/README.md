@@ -4,7 +4,7 @@ This directory contains reusable button styles for the CityOS application, adapt
 
 ## Overview
 
-The button styles have been updated to provide a modern appearance with enhanced accessibility on iOS 18+ while maintaining backward compatibility with iOS 16-17.
+The button styles have been updated to provide a modern appearance with native Liquid Glass effects on iOS 26+, enhanced accessibility on iOS 18+, and backward compatibility with iOS 16-17.
 
 ## Available Button Styles
 
@@ -12,7 +12,8 @@ The button styles have been updated to provide a modern appearance with enhanced
 
 The core button style that implements the Liquid Glass design pattern. This style provides:
 
-- **iOS 18+**: Enhanced contrast with subtle overlays for better accessibility
+- **iOS 26+**: Native Liquid Glass effect using `.glassEffect()` with interactive tinting
+- **iOS 18-25**: Enhanced contrast with subtle overlays for better accessibility
 - **iOS 16-17**: Compatible fallback with the same visual appearance
 
 **Usage:**
@@ -34,6 +35,12 @@ Button("Cancel") {
 }
 .liquidGlassSecondary()
 ```
+
+**iOS 26 Features:**
+- Primary buttons use `.glassEffect(.regular.tint(.yellow.opacity(0.8)).interactive())` for a yellow-tinted glass appearance
+- Secondary buttons use `.glassEffect(.regular.interactive())` for a neutral glass appearance
+- Both include scale animations on press for tactile feedback
+- The glass effect automatically adapts to light/dark mode and surrounding content
 
 ### PrimaryButtonStyle
 
@@ -92,7 +99,8 @@ The Liquid Glass design pattern emphasizes:
 
 All button styles support:
 
-- **iOS 18+**: Enhanced accessibility with improved contrast
+- **iOS 26+**: Native Liquid Glass effect with `.glassEffect()` modifier
+- **iOS 18-25**: Enhanced accessibility with improved contrast
 - **iOS 16-17**: Compatible fallback implementations
 
 The styles automatically detect the iOS version and apply the appropriate implementation.
