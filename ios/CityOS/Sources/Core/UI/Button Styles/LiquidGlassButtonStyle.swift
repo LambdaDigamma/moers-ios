@@ -75,7 +75,6 @@ public struct LiquidGlassButtonStyle: ButtonStyle {
                 .cornerRadius(10)
                 .opacity(configuration.isPressed ? 0.7 : 1)
         case .secondary:
-            let opacity = configuration.isPressed ? 0.7 : 1.0
             configuration.label
                 .font(.body.weight(.semibold))
                 .padding()
@@ -83,7 +82,7 @@ public struct LiquidGlassButtonStyle: ButtonStyle {
                 .frame(maxWidth: .infinity, alignment: .center)
                 .background(Color(UIColor.secondarySystemBackground))
                 .cornerRadius(10)
-                .opacity(opacity)
+                .opacity(configuration.isPressed ? 0.7 : 1)
         }
     }
 }

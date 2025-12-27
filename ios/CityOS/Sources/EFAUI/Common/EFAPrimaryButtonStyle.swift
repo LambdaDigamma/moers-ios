@@ -8,8 +8,9 @@
 import SwiftUI
 
 /// EFA Primary Button Style with Liquid Glass design pattern
-/// Uses modern materials on iOS 18+ with fallback for earlier versions
 /// Supports custom accent colors via environment values
+/// Note: Currently uses the same implementation across iOS versions to ensure
+/// consistent behavior with custom accent colors
 public struct EfaPrimaryButtonStyle: ButtonStyle {
     
     @Environment(\.accent) var accent
@@ -18,20 +19,6 @@ public struct EfaPrimaryButtonStyle: ButtonStyle {
     public init() {}
     
     public func makeBody(configuration: Configuration) -> some View {
-        if #available(iOS 18.0, *) {
-            // On iOS 18+, we maintain the current implementation
-            // Future enhancements could include material effects while preserving accent colors
-            makeButton(configuration: configuration)
-        } else {
-            // Fallback for iOS 16-17
-            makeButton(configuration: configuration)
-        }
-    }
-    
-    /// Creates the button view with the configured accent colors
-    /// Note: Both iOS versions currently use the same implementation
-    /// to ensure consistent behavior with custom accent colors
-    private func makeButton(configuration: Configuration) -> some View {
         configuration.label
             .font(.body.weight(.semibold))
             .padding()
