@@ -18,6 +18,10 @@ import MMPages
 @available(iOS 26.0, *)
 open class EventsViewController: UIViewController, UISearchResultsUpdating {
     
+    // MARK: - Constants
+    
+    private static let indicatorViewTag = 999
+    
     // MARK: - UI Elements
     
     public private(set) lazy var collectionView: UICollectionView = {
@@ -228,7 +232,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
                 
                 // Remove any existing indicator views to avoid duplicates
                 cell.contentView.subviews.forEach { subview in
-                    if subview.tag == 999 { // Tag for indicator view
+                    if subview.tag == Self.indicatorViewTag {
                         subview.removeFromSuperview()
                     }
                 }
@@ -237,7 +241,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
                 let indicatorView = UIView()
                 indicatorView.backgroundColor = indicatorColor
                 indicatorView.translatesAutoresizingMaskIntoConstraints = false
-                indicatorView.tag = 999 // Tag to identify indicator view
+                indicatorView.tag = Self.indicatorViewTag
                 
                 cell.contentView.addSubview(indicatorView)
                 
