@@ -36,13 +36,11 @@ public struct LiquidGlassButtonStyle: ButtonStyle {
     
     @available(iOS 18.0, *)
     private func makeModernButton(configuration: Configuration) -> some View {
-        Group {
-            switch prominence {
-            case .primary:
-                makePrimaryButton(configuration: configuration, background: Color.yellow)
-            case .secondary:
-                makeSecondaryButton(configuration: configuration, includeOverlay: true)
-            }
+        switch prominence {
+        case .primary:
+            makePrimaryButton(configuration: configuration)
+        case .secondary:
+            makeSecondaryButton(configuration: configuration, includeOverlay: true)
         }
     }
     
@@ -52,7 +50,7 @@ public struct LiquidGlassButtonStyle: ButtonStyle {
     private func makeLegacyButton(configuration: Configuration) -> some View {
         switch prominence {
         case .primary:
-            makePrimaryButton(configuration: configuration, background: Color.yellow)
+            makePrimaryButton(configuration: configuration)
         case .secondary:
             makeSecondaryButton(configuration: configuration, includeOverlay: false)
         }
@@ -60,19 +58,21 @@ public struct LiquidGlassButtonStyle: ButtonStyle {
     
     // MARK: - Helper Methods
     
-    private func makePrimaryButton(configuration: Configuration, background: Color) -> some View {
+    private func makePrimaryButton(configuration: Configuration) -> some View {
         configuration.label
             .font(.body.weight(.semibold))
             .padding()
             .foregroundColor(.black)
             .frame(maxWidth: .infinity, alignment: .center)
-            .background(background)
+            .background(Color.yellow)
             .cornerRadius(10)
             .opacity(configuration.isPressed ? 0.7 : 1)
     }
     
     @ViewBuilder
     private func makeSecondaryButton(configuration: Configuration, includeOverlay: Bool) -> some View {
+        let baseBackground = Color(UIColor.secondarySystemBackground)
+        
         configuration.label
             .font(.body.weight(.semibold))
             .padding()
@@ -81,11 +81,11 @@ public struct LiquidGlassButtonStyle: ButtonStyle {
             .background {
                 if includeOverlay {
                     ZStack {
-                        Color(UIColor.secondarySystemBackground)
+                        baseBackground
                         Color.black.opacity(0.1)
                     }
                 } else {
-                    Color(UIColor.secondarySystemBackground)
+                    baseBackground
                 }
             }
             .cornerRadius(10)
