@@ -20,11 +20,11 @@ public enum DailyEventsDisplayMode: Int, CaseIterable, Identifiable, Hashable {
     public var title: String {
         switch self {
             case .compact:
-                return "Kompakt"
+                return String(localized: "Compact", bundle: .module)
             case .images:
-                return "Grafisch"
+                return String(localized: "Graphics", bundle: .module)
             case .venueGrid:
-                return "Ort Raster"
+                return String(localized: "Venue Grid", bundle: .module)
         }
     }
     
