@@ -33,7 +33,7 @@ public struct BroadcastList: View {
                 
 //                pastBroadcasts()
                 
-                Text(AppStrings.Buergerfunk.disclaimer)
+                Text("The information is supplied by Bürgerfunk Moers. There is no guarantee for correctness or completeness.")
                     .font(.caption)
                     .foregroundColor(.secondary)
                     .padding()
@@ -53,15 +53,15 @@ public struct BroadcastList: View {
         
         VStack(alignment: .leading, spacing: 12) {
             
-            Text(AppStrings.Buergerfunk.title)
+            Text("Community radio")
                 .font(.title2.weight(.semibold))
             
-            Text(AppStrings.Buergerfunk.description)
+            Text("Every day between 8 p.m. and 9 p.m. on Radio K.W. (Sundays and holidays from 7:04 p.m.), there is a slightly different kind of radio - community radio. People from the county of Wesel spend many hours of their free time in production studios to send an hour of radio programming over the airwaves every day.")
                 .font(.callout)
                 .foregroundColor(.secondary)
             
             Button(action: {}) {
-                Text("\(Image(systemName: "envelope.circle.fill")) \(AppStrings.Buergerfunk.contactAction)")
+                Label("Contact", systemImage: "envelope.circle.fill")
             }
             .buttonStyle(SecondaryButtonStyle())
             .padding(.top)
@@ -79,7 +79,7 @@ public struct BroadcastList: View {
             
             HStack(alignment: .firstTextBaseline) {
                 
-                Text(AppStrings.Buergerfunk.nextBroadcasts)
+                Text("Next broadcasts")
                     .font(.title3)
                     .fontWeight(.semibold)
                 
@@ -129,10 +129,13 @@ public struct BroadcastList: View {
             Button {
                 
             } label: {
-                Text("\(AppStrings.Buergerfunk.listenToPastBroadcasts) \(Image(systemName: "chevron.forward"))")
-                    .padding(.horizontal)
-                    .font(.title3.weight(.semibold))
-                    .foregroundColor(Color(UIColor.label))
+                HStack {
+                    Text("Listen to recent broadcasts")
+                    Image(systemName: "chevron.forward")
+                }
+                .padding(.horizontal)
+                .font(.title3.weight(.semibold))
+                .foregroundColor(Color(UIColor.label))
             }
             
             ScrollView(.horizontal, showsIndicators: false) {

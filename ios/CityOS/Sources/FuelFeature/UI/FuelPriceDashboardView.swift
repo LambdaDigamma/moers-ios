@@ -51,7 +51,7 @@ public struct FuelPriceDashboardView: View {
                                 .redacted(reason: viewModel.data.loading ? .placeholder : [])
                                 .font(.title.weight(.bold))
                             
-                            Text(PackageStrings.Dashboard.perL(viewModel.petrolType).uppercased())
+                            Text("per L \(viewModel.petrolType.name)".uppercased())
                                 .foregroundColor(.secondary)
                                 .font(.caption.weight(.medium))
                             
@@ -59,7 +59,7 @@ public struct FuelPriceDashboardView: View {
                         
                     }
                     
-                    Text(PackageStrings.Dashboard.stationsNearYou(viewModel.data.value?.numberOfStations ?? 20))
+                    Text("\(viewModel.data.value?.numberOfStations ?? 20) fuel stations in your area are currently open.")
                         .foregroundColor(.secondary)
                         .font(.callout)
                         .multilineTextAlignment(.leading)

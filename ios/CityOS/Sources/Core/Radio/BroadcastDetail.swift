@@ -126,9 +126,9 @@ public struct BroadcastDetail: View {
             }) {
                 
                 if !viewModel.enabledReminder {
-                    Text("bell.circle.fill \(AppStrings.Buergerfunk.remindMeAction)", tableName: nil, bundle: .module)
+                    Label("Remind me", systemImage: "bell.circle.fill")
                 } else {
-                    Text("bell.slash.circle.fill \(AppStrings.Buergerfunk.reminderActiveAction)", tableName: nil, bundle: .module)
+                    Label("Reminder active", systemImage: "bell.slash.circle.fill")
                 }
                 
             }
@@ -136,7 +136,7 @@ public struct BroadcastDetail: View {
             
             if viewModel.enabledReminder {
                 
-                Text(AppStrings.Buergerfunk.disableReminderInfo)
+                Text("Tap again to remove the reminder.")
                     .font(.footnote)
                     .foregroundColor(Color(UIColor.tertiaryLabel))
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -152,7 +152,7 @@ public struct BroadcastDetail: View {
         
         VStack(alignment: .leading) {
             
-            Text("More broadcasts", tableName: nil, bundle: .module)
+            Text("More broadcasts")
                 .fontWeight(.bold)
                 .padding(.bottom)
             
@@ -162,7 +162,7 @@ public struct BroadcastDetail: View {
             
             Divider()
             
-            Text("Ortsgespräche Rheinberg", tableName: nil, bundle: .module)
+            Text("Ortsgespräche Rheinberg")
                 .font(.body)
             
         }
