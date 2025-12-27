@@ -70,7 +70,7 @@ public struct UIProperties {
                 
                 let dist = prettifyDistance(distance: location.distance.converted(to: .meters).value)
                 
-                return "\(dist) • \(location.street) \(location.houseNumber ?? "")"
+                return "\(dist) · \(location.street) \(location.houseNumber ?? "")"
                 
             } else {
                 return location.street + " " + (location.houseNumber ?? "")
@@ -84,10 +84,10 @@ public struct UIProperties {
                 
                 let dist = prettifyDistance(distance: location.distance.converted(to: .meters).value)
                 
-                return dist + " • " + open + " • " + location.localizedCategory
+                return dist + " · " + location.localizedCategory
                 
             } else {
-                return open + " • " + location.localizedCategory
+                return open + " · " + location.localizedCategory
             }
             
         } else {
@@ -96,7 +96,7 @@ public struct UIProperties {
                 
                 let dist = prettifyDistance(distance: location.distance.converted(to: .meters).value)
                 
-                return "\(dist) • \(location.localizedCategory)"
+                return "\(dist) · \(location.localizedCategory)"
                 
             } else {
                 return location.localizedCategory

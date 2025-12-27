@@ -8,6 +8,7 @@
 
 import Core
 import UIKit
+import SwiftUI
 
 import Pulley
 import MapKit
@@ -26,27 +27,46 @@ public struct CellIdentifier {
     
 }
 
+enum ContentDrawerItem: Hashable {
+    case tag(NSAttributedString, id: String)
+    case location(Core.AnyLocation)
+    
+    func hash(into hasher: inout Hasher) {
+        switch self {
+        case .tag(_, let id):
+            hasher.combine("tag")
+            hasher.combine(id)
+        case .location(let anyLocation):
+            hasher.combine("location")
+            hasher.combine(anyLocation)
+        }
+    }
+    
+    static func == (lhs: ContentDrawerItem, rhs: ContentDrawerItem) -> Bool {
+        switch (lhs, rhs) {
+        case (.tag(_, let id1), .tag(_, let id2)):
+            return id1 == id2
+        case (.location(let loc1), .location(let loc2)):
+            return loc1 == loc2
+        default:
+            return false
+        }
+    }
+}
+
 class ContentViewController: UIViewController {
 
     @LazyInjected(\.locationService) var locationService
     
     // MARK: - UI
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var gripperView: UIView!
-    @IBOutlet weak var topSeparatorView: UIView!
-    @IBOutlet weak var bottomSeparatorView: UIView!
-    
-    @IBOutlet weak var tagListView: TagListView!
-    
-    @IBOutlet weak var gripperTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var headerSectionHeightConstraint: NSLayoutConstraint!
+    private let contentDrawerView = ContentDrawerView()
+    private var dataSource: UICollectionViewDiffableDataSource<Int, ContentDrawerItem>!
     
     private var drawerBottomSafeArea: CGFloat = 0.0 {
         didSet {
             self.loadViewIfNeeded()
-            self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: drawerBottomSafeArea, right: 0.0)
+            self.contentDrawerView.collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: drawerBottomSafeArea, right: 0.0)
         }
     }
     
@@ -73,6 +93,10 @@ class ContentViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
+    public override func loadView() {
+        view = contentDrawerView
+    }
+    
     // MARK: - UIViewController Lifecycle
     
     override func viewDidLoad() {
@@ -80,6 +104,7 @@ class ContentViewController: UIViewController {
         
         self.setupUI()
         self.setupTheming()
+        self.configureDataSource()
         
     }
     
@@ -92,50 +117,127 @@ class ContentViewController: UIViewController {
         
         self.setupPulleyUI()
         self.setupSearchBar()
-        self.setupTableView()
         self.setupTagListView()
         
-        self.headerSectionHeightConstraint.constant = 68.0
+        self.contentDrawerView.headerSectionHeightConstraint.constant = 68.0
         
     }
     
     private func setupPulleyUI() {
-        self.gripperView.layer.cornerRadius = 2.5
-        self.gripperView.backgroundColor = UIColor.lightGray
-        self.topSeparatorView.backgroundColor = UIColor.lightGray
-        self.topSeparatorView.alpha = 0.75
-        self.bottomSeparatorView.backgroundColor = UIColor.clear
+        // Gripper and separators are already configured in ContentDrawerView
     }
     
     private func setupSearchBar() {
-        self.searchBar.searchBarStyle = .minimal
-        self.searchBar.barStyle = .default
-        self.searchBar.isTranslucent = true
-        self.searchBar.backgroundColor = UIColor.clear
-        self.searchBar.placeholder = String.localized("SearchBarPrompt")
-        self.searchBar.delegate = self
-    }
-    
-    private func setupTableView() {
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        self.tableView.contentInsetAdjustmentBehavior = .never
-        self.tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: CellIdentifier.searchResultCell)
-        self.tableView.register(TagTableViewCell.self, forCellReuseIdentifier: CellIdentifier.tagCell)
+        self.contentDrawerView.searchBar.delegate = self
     }
     
     private func setupTagListView() {
-        self.tagListView.delegate = self
-        self.tagListView.enableRemoveButton = true
-        self.tagListView.paddingX = 12
-        self.tagListView.paddingY = 7
-        self.tagListView.marginX = 10
-        self.tagListView.marginY = 7
-        self.tagListView.removeIconLineWidth = 2
-        self.tagListView.removeButtonIconSize = 7
-        self.tagListView.textFont = UIFont.boldSystemFont(ofSize: 10)
-        self.tagListView.cornerRadius = 10
-        self.tagListView.backgroundColor = UIColor.clear
+        self.contentDrawerView.tagListView.delegate = self
+    }
+    
+    // MARK: - Collection View
+    
+    private func configureDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Int, ContentDrawerItem>(
+            collectionView: contentDrawerView.collectionView
+        ) { [weak self] collectionView, indexPath, item in
+            guard let self = self else { return UICollectionViewListCell() }
+            
+            switch item {
+            case .tag(let attributedString, _):
+                let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, NSAttributedString> { cell, indexPath, attrStr in
+                    if #available(iOS 16.0, *) {
+                        cell.contentConfiguration = UIHostingConfiguration {
+                            Text(AttributedString(attrStr))
+                                .font(.system(size: 17))
+                        }
+                        .margins(.all, 0)
+                    } else {
+                        var content = cell.defaultContentConfiguration()
+                        content.attributedText = attrStr
+                        cell.contentConfiguration = content
+                    }
+                    cell.accessories = []
+                }
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: cellRegistration,
+                    for: indexPath,
+                    item: attributedString
+                )
+                
+            case .location(let anyLocation):
+                    let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Core.AnyLocation> { cell, indexPath, anyLoc in
+                    let location = anyLoc.location
+                    let showCheckmark: Bool
+                    if let entry = location as? Entry {
+                        showCheckmark = entry.isValidated
+                    } else {
+                        showCheckmark = true
+                    }
+                    
+                    if #available(iOS 16.0, *) {
+                        cell.contentConfiguration = UIHostingConfiguration {
+                            SearchResultCellView(
+                                image: UIProperties.detailImage(for: location),
+                                title: (location.title ?? "") ?? "",
+                                subtitle: UIProperties.detailSubtitle(for: location),
+                                showCheckmark: showCheckmark
+                            )
+                        }
+                        .margins(.all, 0)
+                    } else {
+                        var content = cell.defaultContentConfiguration()
+                        content.text = location.title ?? ""
+                        content.secondaryText = UIProperties.detailSubtitle(for: location)
+                        content.image = UIProperties.detailImage(for: location)
+                        cell.contentConfiguration = content
+                    }
+                    cell.accessories = [.disclosureIndicator()]
+                }
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: cellRegistration,
+                    for: indexPath,
+                    item: anyLocation
+                )
+            }
+        }
+        
+        contentDrawerView.collectionView.delegate = self
+    }
+    
+    private func updateSnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, ContentDrawerItem>()
+        snapshot.appendSections([0])
+        
+        let items = itemsForCurrentDisplayMode()
+        snapshot.appendItems(items)
+        
+        dataSource.apply(snapshot, animatingDifferences: false)
+    }
+    
+    private func itemsForCurrentDisplayMode() -> [ContentDrawerItem] {
+        switch displayMode {
+        case .list:
+            return datasource.map { .location(AnyLocation($0)) }
+            
+        case .filter(_, let tagStrings, let items):
+            contentDrawerView.tagListView.removeAllTags()
+            contentDrawerView.tagListView.addTags(tagStrings)
+            return items.map { .location(AnyLocation($0)) }
+            
+        case .search(_, let tagAttrs, let items):
+            let numberOfTags = min(tagAttrs.count, 5)
+            var result: [ContentDrawerItem] = []
+            
+            for i in 0..<numberOfTags {
+                let id = "\(tagAttrs[i].string)-\(i)"
+                result.append(.tag(tagAttrs[i], id: id))
+            }
+            
+            result.append(contentsOf: items.map { .location(AnyLocation($0)) })
+            
+            return result
+        }
     }
     
     private func setupTheming() {
@@ -160,7 +262,7 @@ class ContentViewController: UIViewController {
 //            self.datasource = self.locations
 //
 //            DispatchQueue.main.async {
-//                self.tableView.reloadData()
+//                self.updateSnapshot()
 //            }
 //
 //        }
@@ -263,7 +365,7 @@ extension ContentViewController: UISearchBarDelegate {
             drawerVC.setDrawerPosition(position: .open, animated: true)
         }
         
-        let searchTerm = searchBar.text ?? ""
+        let searchTerm = contentDrawerView.searchBar.text ?? ""
         
         if !searchTerm.isEmpty {
             
@@ -272,7 +374,7 @@ extension ContentViewController: UISearchBarDelegate {
             
             displayMode = .search(searchTerm: searchTerm, tags: tags, items: items)
             
-            tableView.reloadData()
+            updateSnapshot()
             
         }
         
@@ -280,8 +382,12 @@ extension ContentViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        if !tags.isEmpty && !locations.isEmpty && tableView.cellForRow(at: IndexPath(row: 0, section: 0)) != nil {
-            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: false)
+        // Scroll to top if needed (UICollectionView doesn't need cellForItem check)
+        if !tags.isEmpty && !locations.isEmpty {
+            let indexPath = IndexPath(row: 0, section: 0)
+            if contentDrawerView.collectionView.numberOfItems(inSection: 0) > 0 {
+                contentDrawerView.collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+            }
         }
         
         if searchText.isNotEmptyOrWhitespace {
@@ -301,13 +407,13 @@ extension ContentViewController: UISearchBarDelegate {
             
         }
         
-        tableView.reloadData()
+        updateSnapshot()
         
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        let searchText = searchBar.text ?? ""
+        let searchText = contentDrawerView.searchBar.text ?? ""
         
         if searchText.isNotEmptyOrWhitespace {
             
@@ -323,204 +429,53 @@ extension ContentViewController: UISearchBarDelegate {
             
         }
         
-        searchBar.resignFirstResponder()
+        contentDrawerView.searchBar.resignFirstResponder()
         
-        tableView.reloadData()
+        updateSnapshot()
         
-        // Answers.logSearch(withQuery: searchBar.text, customAttributes: nil)
+        // Answers.logSearch(withQuery: contentDrawerView.searchBar.text, customAttributes: nil)
         
     }
     
 }
 
-extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
+extension ContentViewController: UICollectionViewDelegate {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
         
-        print(displayMode)
+        guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
         
-        switch displayMode {
-        
-        case .list:
-            return datasource.count
-            
-        case .filter(_, let tags, let items):
-            
-            tagListView.removeAllTags()
-            tagListView.addTags(tags)
-            
-            return items.count
-            
-        case .search(_, let tags, let items):
-            
-            if tags.count >= 5 {
-                return 5 + items.count
-            } else {
-                return tags.count + items.count
+        switch item {
+        case .tag(let attrString, _):
+            // Handle tag selection
+            if !selectedTags.contains(attrString.string) {
+                self.selectedTags.append(attrString.string)
             }
             
+            self.contentDrawerView.searchBar.text = ""
+            
+            self.contentDrawerView.headerSectionHeightConstraint.constant = 98
+            
+            let filteredItems = filterLocations(with: "")
+            
+            self.displayMode = .filter(searchTerm: "", selectedTags: selectedTags, items: filteredItems)
+            
+            self.updateSnapshot()
+            
+        case .location(let anyLocation):
+            selectLocaton(anyLocation.location)
         }
-        
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        func setupSearchResultCell(_ cell: SearchResultTableViewCell, _ location: Location) -> SearchResultTableViewCell {
-            
-            cell.titleLabel.text = location.title ?? ""
-            cell.subtitleLabel.text = UIProperties.detailSubtitle(for: location)
-            cell.searchImageView.image = UIProperties.detailImage(for: location)
-            
-            if let entry = location as? Entry {
-                if entry.isValidated {
-                    cell.checkmarkView.style = .green
-                } else {
-                    cell.checkmarkView.style = .nothing
-                }
-                
-            } else {
-                cell.checkmarkView.style = .green
-            }
-            
-            return cell
-            
-        }
-        
-        switch displayMode {
-            
-        case .list:
-            
-            // swiftlint:disable force_cast
-            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
-            
-            let location = datasource[indexPath.row]
-            
-            return setupSearchResultCell(cell, location)
-            
-        case .filter(_, _, let items):
-            
-            // swiftlint:disable force_cast
-            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
-            
-            let location = items[indexPath.row]
-            
-            print(location.tags)
-            
-            return setupSearchResultCell(cell, location)
-            
-        case .search(_, let tags, let items):
-            
-            let numberOfTags = tags.count >= 5 ? 5 : tags.count
-            
-            if indexPath.row < numberOfTags {
-            
-                // swiftlint:disable force_cast
-                let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.tagCell, for: indexPath) as! TagTableViewCell
-                
-                cell.titleLabel.attributedText = tags[indexPath.row]
-                
-                return cell
-                
-            } else {
-                
-                // swiftlint:disable force_cast
-                let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.searchResultCell, for: indexPath) as! SearchResultTableViewCell
-                
-                return setupSearchResultCell(cell, items[indexPath.row - numberOfTags])
-                
-            }
-            
-        }
-        
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        switch displayMode {
-        case .list:
-            
-            return 60
-            
-        case .search(_, let tags, _):
-            
-            let numberOfTags = tags.count >= 5 ? 5 : tags.count
-            
-            if indexPath.row < numberOfTags {
-                return 50
-            } else {
-                return 60
-            }
-            
-        case .filter:
-            return 60
-            
-        }
-        
-    }
-    
-    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        
-        guard let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell else { return }
-        
-        cell.backgroundColor = highlightedColor
-        
-    }
-    
-    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-        
-        guard let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell else { return }
-        
-        cell.backgroundColor = normalColor
-        
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        switch displayMode {
-        
-        case .list:
-            selectLocaton(datasource[indexPath.row])
-            
-        case .filter(_, _, let items):
-            selectLocaton(items[indexPath.row])
-            
-        case .search(_, let tags, let items):
-            
-            let numberOfTags = tags.count >= 5 ? 5 : tags.count
-            
-            if indexPath.row < numberOfTags {
-                
-                if !selectedTags.contains(tags[indexPath.row].string) {
-                    self.selectedTags.append(tags[indexPath.row].string)
-                }
-                
-                self.searchBar.text = ""
-                
-                self.headerSectionHeightConstraint.constant = 98
-                
-                let filteredItems = filterLocations(with: "")
-                
-                self.displayMode = .filter(searchTerm: "", selectedTags: selectedTags, items: filteredItems)
-                
-                self.tableView.reloadData()
-                
-            } else {
-                
-                selectLocaton(items[indexPath.row - numberOfTags])
-                
-            }
-            
-        }
-        
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
-        searchBar.resignFirstResponder()
+        self.contentDrawerView.searchBar.resignFirstResponder()
         
     }
     
 }
+
 
 extension ContentViewController: TagListViewDelegate {
     
@@ -531,13 +486,13 @@ extension ContentViewController: TagListViewDelegate {
         sender.removeTagView(tagView)
         
         if sender.tagViews.isEmpty {
-            self.headerSectionHeightConstraint.constant = 68.0
+            self.contentDrawerView.headerSectionHeightConstraint.constant = 68.0
             self.displayMode = .list
-            self.tableView.reloadData()
+            self.updateSnapshot()
         } else {
-            let searchText = searchBar.text ?? ""
+            let searchText = contentDrawerView.searchBar.text ?? ""
             self.displayMode = .filter(searchTerm: searchText, selectedTags: selectedTags, items: filterLocations(with: searchText))
-            self.tableView.reloadData()
+            self.updateSnapshot()
         }
         
     }
@@ -595,8 +550,7 @@ extension ContentViewController: PulleyDrawerViewControllerDelegate {
     func supportedDrawerPositions() -> [PulleyPosition] {
         
         if drawer.currentDisplayMode == .panel {
-            
-            self.gripperView.isHidden = true
+            self.contentDrawerView.gripperView.isHidden = true
             
             return [PulleyPosition.partiallyRevealed]
         }
@@ -615,18 +569,18 @@ extension ContentViewController: PulleyDrawerViewControllerDelegate {
         //            headerSectionHeightConstraint.constant = 68.0
         //        }
         
-        tableView.isScrollEnabled = drawer.drawerPosition == .open || drawer.currentDisplayMode == .panel
+        contentDrawerView.collectionView.isScrollEnabled = drawer.drawerPosition == .open || drawer.currentDisplayMode == .panel
         
         if drawer.drawerPosition != .open {
-            searchBar.resignFirstResponder()
+            contentDrawerView.searchBar.resignFirstResponder()
         }
         
         if drawer.currentDisplayMode == .panel {
-            topSeparatorView.isHidden = drawer.drawerPosition == .collapsed
-            bottomSeparatorView.isHidden = drawer.drawerPosition == .collapsed
+            self.contentDrawerView.topSeparatorView.isHidden = drawer.drawerPosition == .collapsed
+            self.contentDrawerView.bottomSeparatorView.isHidden = drawer.drawerPosition == .collapsed
         } else {
-            topSeparatorView.isHidden = false
-            bottomSeparatorView.isHidden = true
+            self.contentDrawerView.topSeparatorView.isHidden = false
+            self.contentDrawerView.bottomSeparatorView.isHidden = true
         }
         
     }

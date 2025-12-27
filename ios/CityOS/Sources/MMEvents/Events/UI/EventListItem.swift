@@ -229,7 +229,7 @@ public struct EventListItem: View {
                             
                             Text(startDate, format: .relative(presentation: .numeric)) +
                             (viewModel.location != nil ?
-                             Text(" • \(viewModel.location ?? "")") :
+                             Text(" · \(viewModel.location ?? "")") :
                                 Text(""))
                             
                         }.lineLimit(1)
@@ -243,7 +243,7 @@ public struct EventListItem: View {
                         Group {
                             
                             Text(dateRange) +
-                            (viewModel.location != nil ? Text(" • \(viewModel.location ?? "")") : Text(""))
+                            (viewModel.location != nil ? Text(" · \(viewModel.location ?? "")") : Text(""))
                             
                         }
                         .lineLimit(1)
@@ -254,7 +254,7 @@ public struct EventListItem: View {
                             
                             Text(startDate, style: .time) +
                             
-                            (viewModel.location != nil ? Text(" • \(viewModel.location ?? "")") : Text(""))
+                            (viewModel.location != nil ? Text(" · \(viewModel.location ?? "")") : Text(""))
                             
                         }
                         .lineLimit(1)

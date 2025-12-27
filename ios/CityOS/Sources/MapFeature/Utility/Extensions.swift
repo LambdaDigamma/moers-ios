@@ -85,9 +85,9 @@ extension Float: Formattable { }
 func prettifyDistance(distance: Double) -> String {
     
     if distance >= 1000 {
-        return Double(distance / 1000).format(pattern: "%.1f") + "km"
+        return Double(distance / 1000).format(pattern: "%.1f") + " km"
     } else {
-        return "\(Int(distance))m"
+        return "\(Int(distance)) m"
     }
     
 }

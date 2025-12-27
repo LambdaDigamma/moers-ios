@@ -52,7 +52,7 @@ public struct EventSubtitleView: View {
                             if #available(iOS 15.0, *) {
                                 Text(startDate, format: .relative(presentation: .numeric)) +
                                 (location != nil ?
-                                 Text(" • \(location ?? "")") :
+                                 Text(" · \(location ?? "")") :
                                     Text(""))
                             }
                             
@@ -67,7 +67,7 @@ public struct EventSubtitleView: View {
                         Group {
                             
                             Text(dateRange) +
-                            (location != nil ? Text(" • \(location ?? "")") : Text(""))
+                            (location != nil ? Text(" · \(location ?? "")") : Text(""))
                             
                         }
                         .lineLimit(1)

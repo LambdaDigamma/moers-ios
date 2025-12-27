@@ -164,18 +164,18 @@ public class EventViewModel<Event: BaseEvent> {
             if self.isActive {
                 
                 if ApplicationServerConfiguration.isMoersFestivalModeEnabled {
-                    return "\(locationRepresentation) • \(String.localized("LiveNow"))"
+                    return "\(locationRepresentation) · \(String.localized("LiveNow"))"
                 } else {
-                    return "\(locationRepresentation) • \(String.localized("LiveNow"))"
+                    return "\(locationRepresentation) · \(String.localized("LiveNow"))"
                 }
                 
             } else if startDate.isInBeforeInterval(minutes: 59) {
-                return "\(locationRepresentation) • \(countdownString)"
+                return "\(locationRepresentation) · \(countdownString)"
             }
             
         }
         
-        return "\(locationRepresentation) • \(timeString)"
+        return "\(locationRepresentation) · \(timeString)"
         
     }
     
@@ -186,11 +186,11 @@ public class EventViewModel<Event: BaseEvent> {
         if let extras = model.extras {
 
             if let isFree = extras.isFree, isFree {
-                ticket += " • " + String.localized("Free")
+                ticket += " · " + String.localized("Free")
             } else if let extraTicket = extras.visitWithExtraTicket, extraTicket {
-                ticket += " • " + String.localized("ExtraTicket")
+                ticket += " · " + String.localized("ExtraTicket")
             } else if let festivalTicket = extras.needsFestivalTicket, festivalTicket {
-                ticket += " • " + String.localized("NeedsFestivalTicket")
+                ticket += " · " + String.localized("NeedsFestivalTicket")
             }
 
         }

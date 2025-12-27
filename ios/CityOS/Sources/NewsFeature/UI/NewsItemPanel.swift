@@ -74,7 +74,7 @@ public struct NewsItemPanel: View {
                 
                 Group {
                     Text(publishedAt, formatter: Self.formatter) +
-                    Text(" • ") +
+                    Text(" · ") +
                     Text(source)
                 }
                 .font(.footnote)

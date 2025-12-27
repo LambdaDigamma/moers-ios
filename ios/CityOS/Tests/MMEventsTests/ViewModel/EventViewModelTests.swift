@@ -97,7 +97,7 @@ final class EventViewModelTests: XCTestCase {
         let viewModel = EventViewModel(event: event)
         
         XCTAssertFalse(viewModel.isActive)
-        XCTAssertEqual(viewModel.subtitle, "Site soon known • in 5min")
+        XCTAssertEqual(viewModel.subtitle, "Site soon known · in 5min")
         
     }
     
@@ -115,7 +115,7 @@ final class EventViewModelTests: XCTestCase {
         
         
         XCTAssertFalse(viewModel.isActive)
-        XCTAssertEqual(viewModel.subtitle, "Site soon known • in 45min")
+        XCTAssertEqual(viewModel.subtitle, "Site soon known · in 45min")
         
     }
     
@@ -130,7 +130,7 @@ final class EventViewModelTests: XCTestCase {
         
         let viewModel = EventViewModel(event: event)
         
-        XCTAssertEqual(viewModel.subtitle, "Site soon known • We, 03.04. 10:00 - 12:00")
+        XCTAssertEqual(viewModel.subtitle, "Site soon known · We, 03.04. 10:00 - 12:00")
         
     }
     
@@ -146,7 +146,7 @@ final class EventViewModelTests: XCTestCase {
         
         print(viewModel.subtitle)
         
-        XCTAssertEqual(viewModel.subtitle, "Site soon known • We, 03.04. 10:00")
+        XCTAssertEqual(viewModel.subtitle, "Site soon known · We, 03.04. 10:00")
         
     }
     
@@ -160,7 +160,7 @@ final class EventViewModelTests: XCTestCase {
         
         let viewModel = EventViewModel(event: event)
         
-        XCTAssertEqual(viewModel.subtitle, "Site soon known • We, 03.04.")
+        XCTAssertEqual(viewModel.subtitle, "Site soon known · We, 03.04.")
         
     }
     
@@ -174,7 +174,7 @@ final class EventViewModelTests: XCTestCase {
         
         let viewModel = EventViewModel(event: event)
         
-        XCTAssertEqual(viewModel.subtitle, "Site soon known • live now")
+        XCTAssertEqual(viewModel.subtitle, "Site soon known · live now")
         
     }
     
@@ -189,7 +189,7 @@ final class EventViewModelTests: XCTestCase {
         
         let viewModel = EventViewModel(event: event)
         
-        XCTAssertEqual(viewModel.subtitle, "Site soon known • live now")
+        XCTAssertEqual(viewModel.subtitle, "Site soon known · live now")
         
     }
     
@@ -212,7 +212,7 @@ final class EventViewModelTests: XCTestCase {
         
         let viewModel = EventViewModel(event: event)
         
-        XCTAssertEqual(viewModel.detailSubtitle, "Site soon known • live now • free")
+        XCTAssertEqual(viewModel.detailSubtitle, "Site soon known · live now · free")
         
     }
     
@@ -234,7 +234,7 @@ final class EventViewModelTests: XCTestCase {
         
         let viewModel = EventViewModel(event: event)
         
-        XCTAssertEqual(viewModel.detailSubtitle, "Site soon known • live now • festival/day ticket required")
+        XCTAssertEqual(viewModel.detailSubtitle, "Site soon known · live now · festival/day ticket required")
         
     }
     
@@ -256,7 +256,7 @@ final class EventViewModelTests: XCTestCase {
         
         let viewModel = EventViewModel(event: event)
         
-        XCTAssertEqual(viewModel.detailSubtitle, "Site soon known • live now • festival/day ticket or Mörzz-Ticket required (*)")
+        XCTAssertEqual(viewModel.detailSubtitle, "Site soon known · live now · festival/day ticket or Mörzz-Ticket required (*)")
         
     }
     
@@ -274,7 +274,7 @@ final class EventViewModelTests: XCTestCase {
         //
         //        let viewModel = EventViewModel(event: event)
         //
-        //        XCTAssertEqual(viewModel.subtitle, "Moving Act • We, 03.04. 10:00 - 12:00")
+        //        XCTAssertEqual(viewModel.subtitle, "Moving Act · We, 03.04. 10:00 - 12:00")
         //
     }
         

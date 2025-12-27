@@ -18,6 +18,9 @@
         }
       }
     },
+    "Änderungsprotokoll:" : {
+
+    },
     "AuditingEntryFriday" : {
       "extractionState" : "migrated",
       "localizations" : {
