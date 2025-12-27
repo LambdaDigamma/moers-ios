@@ -93,7 +93,7 @@ class DetailEntryViewController: UIViewController {
         self.websiteButton.clipsToBounds = true
         self.callButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         self.websiteButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        self.addressHeaderLabel.text = "Adresse"
+        self.addressHeaderLabel.text = String(localized: "Adress")
         self.callButton.addTarget(self, action: #selector(call), for: .touchUpInside)
         self.websiteButton.addTarget(self, action: #selector(openWebsite), for: .touchUpInside)
         self.editButton.addTarget(self, action: #selector(editEntry), for: .touchUpInside)
