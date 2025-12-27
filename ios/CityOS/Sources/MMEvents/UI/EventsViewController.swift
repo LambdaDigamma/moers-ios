@@ -32,8 +32,8 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     
     public var numberOfDisplayedUpcomingEvents = 12 { didSet { self.rebuildData() } }
     public var numberOfDisplayedUpcomingFavourites = 3 { didSet { self.rebuildData() } }
-    public var sectionFavouritesTitle = String(localized: "UpcomingFavourites", bundle: .module).uppercased()
-    public var sectionActiveTitle = String(localized: "LiveNow", bundle: .module).uppercased()
+    public var sectionFavouritesTitle = String(localized: "Upcoming Favorites", bundle: .module).uppercased()
+    public var sectionActiveTitle = String(localized: "live now", bundle: .module).uppercased()
     public var sectionUpcomingTitle = String(localized: "Upcoming", bundle: .module).uppercased()
     private var cancellables = Set<AnyCancellable>()
     
@@ -112,7 +112,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     public init() {
         super.init(nibName: nil, bundle: nil)
         
-        self.title = String(localized: "EventsTitle", bundle: .module)
+        self.title = String(localized: "Events", bundle: .module)
         
     }
     
@@ -172,7 +172,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
             
             self.searchController.searchResultsUpdater = self
             self.searchController.obscuresBackgroundDuringPresentation = false
-            self.searchController.searchBar.placeholder = String(localized: "SearchEventsPrompt", bundle: .module)
+            self.searchController.searchBar.placeholder = String(localized: "Search Events", bundle: .module)
             self.searchController.hidesNavigationBarDuringPresentation = true
             
             self.definesPresentationContext = true
@@ -326,7 +326,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
         
         for viewModel in events {
             
-            let key = viewModel.model.startDate?.format(format: "EEEE, dd.MM.yyyy") ?? "nicht bekannt"
+            let key = viewModel.model.startDate?.format(format: "EEEE, dd.MM.yyyy") ?? String(localized: "Not known", bundle: .module)
             
             var kEvent = keyedEvents[key] ?? []
             
@@ -403,7 +403,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     open func showNext() -> EventsViewController {
         
         let viewController = EventsViewController()
-        viewController.title = String(localized: "EventsTitle", bundle: .module)
+        viewController.title = String(localized: "Events", bundle: .module)
         
         self.navigationController?.pushViewController(viewController, animated: true)
         
@@ -524,7 +524,7 @@ extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
                 if indexPath.section == 0 {
                     
                     if favouriteEvents.isEmpty {
-                        return hintCell(with: String(localized: "EventsNoFavourite", bundle: .module), at: indexPath)
+                        return hintCell(with: String(localized: "No event has been marked as a favorite yet.", bundle: .module), at: indexPath)
                     } else {
                         return eventCell(for: favouriteEvents[indexPath.row], at: indexPath)
                     }
@@ -532,7 +532,7 @@ extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
                 } else if indexPath.section == 1 {
                     
                     if activeEvents.isEmpty {
-                        return hintCell(with: String(localized: "EventsNoLive", bundle: .module), at: indexPath)
+                        return hintCell(with: String(localized: "Currently there are no events taking place.", bundle: .module), at: indexPath)
                     } else {
                         return eventCell(for: activeEvents[indexPath.row], at: indexPath)
                     }
@@ -540,7 +540,7 @@ extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
                 } else {
                     
                     if upcomingEvents.isEmpty {
-                        return hintCell(with: String(localized: "EventsNoUpcoming", bundle: .module), at: indexPath)
+                        return hintCell(with: String(localized: "Currently there are no events scheduled. Come back soon!", bundle: .module), at: indexPath)
                     } else {
                         return eventCell(for: upcomingEvents[indexPath.row], at: indexPath)
                     }
@@ -549,9 +549,9 @@ extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
                 
             case .list(let keyedEvents):
                 
-                if keyedEvents.isEmpty {
-                    return hintCell(with: String(localized: "EventsNoUpcoming", bundle: .module), at: indexPath)
-                }
+                    if keyedEvents.isEmpty {
+                        return hintCell(with: String(localized: "Currently there are no events scheduled. Come back soon!", bundle: .module), at: indexPath)
+                    }
                 
                 let event = keyedEvents[indexPath.section].events[indexPath.row]
                 

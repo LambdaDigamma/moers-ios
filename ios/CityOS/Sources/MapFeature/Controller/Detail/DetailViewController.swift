@@ -206,7 +206,7 @@ public class DetailViewController: UIViewController {
     
     private func calculateETA() {
         
-        self.routeButton.setTitle("Route", for: .normal)
+        self.routeButton.setTitle(String(localized: "Route", bundle: .module), for: .normal)
         
         guard let destinationCoordinate = selectedLocation?.location.coordinate else { return }
         
@@ -234,7 +234,7 @@ public class DetailViewController: UIViewController {
                 
                 guard let estimate = response else { return }
                 
-                self.routeButton.setTitle("Route (\(Int(floor(estimate.expectedTravelTime / 60))) min)", for: .normal)
+                self.routeButton.setTitle(String(localized: "Route (%d min)", bundle: .module).replacingOccurrences(of: "%d", with: "\(Int(floor(estimate.expectedTravelTime / 60))"), for: .normal)
                 
             })
             
