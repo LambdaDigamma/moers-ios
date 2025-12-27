@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 import TagListView
 import Core
@@ -18,7 +19,15 @@ public class SearchDrawerView: UIView {
     lazy var searchBar = { CoreViewFactory.searchBar() }()
     lazy var tagList = { CoreViewFactory.tagListView() }()
     lazy var topSeparator = { CoreViewFactory.blankView() }()
-    lazy var tableView = { CoreViewFactory.tableView() }()
+    lazy var collectionView: UICollectionView = {
+        var config = UICollectionLayoutListConfiguration(appearance: .plain)
+        config.showsSeparators = true
+        let layout = UICollectionViewCompositionalLayout.list(using: config)
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.backgroundColor = .systemBackground
+        return cv
+    }()
     
     init() {
         super.init(frame: .zero)
@@ -44,7 +53,7 @@ public class SearchDrawerView: UIView {
         self.setupSearchWrapper()
         self.setupSearchBar()
         self.setupTagList()
-        self.setupTableView()
+        self.setupCollectionView()
         self.setupTopSeparator()
         self.setupGripper()
         
@@ -84,12 +93,8 @@ public class SearchDrawerView: UIView {
         self.tagList.accessibilityIdentifier = "TagList"
     }
     
-    private func setupTableView() {
-        self.addSubview(tableView)
-        self.tableView.register(SearchResultTableViewCell.self,
-                                forCellReuseIdentifier: CellIdentifier.searchResultCell)
-        self.tableView.register(TagTableViewCell.self,
-                                forCellReuseIdentifier: CellIdentifier.tagCell)
+    private func setupCollectionView() {
+        self.addSubview(collectionView)
     }
     
     private func setupTopSeparator() {
@@ -131,14 +136,14 @@ public class SearchDrawerView: UIView {
             searchBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             searchBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             searchWrapper.bottomAnchor.constraint(equalTo: tagList.bottomAnchor, constant: 8),
-            topSeparator.bottomAnchor.constraint(equalTo: tableView.topAnchor),
+            topSeparator.bottomAnchor.constraint(equalTo: collectionView.topAnchor),
             topSeparator.heightAnchor.constraint(equalToConstant: 0.5),
             topSeparator.leadingAnchor.constraint(equalTo: leadingAnchor),
             topSeparator.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: searchWrapper.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
+            collectionView.topAnchor.constraint(equalTo: searchWrapper.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
         ]
         
         constraints.forEach { $0.priority = .defaultLow }
