@@ -11,18 +11,18 @@ import Foundation
 internal enum WidgetStrings {
     
     internal enum News {
-        internal static let widgetTitle = String.localized("News.widgetTitle")
-        internal static let widgetDescription = String.localized("News.widgetDescription")
+        internal static let widgetTitle = String(localized: "News from Moers")
+        internal static let widgetDescription = String(localized: "Keep up to date with whats happening in and around Moers")
     }
     
     internal enum DepartureMonitor {
-        internal static let widgetTitle = String.localized("DepartureMonitor.widgetTitle")
-        internal static let widgetDescription = String.localized("DepartureMonitor.widgetDescription")
+        internal static let widgetTitle = String(localized: "Departure Monitor")
+        internal static let widgetDescription = String(localized: "View the next departures from the selected stop.")
     }
     
     internal enum RubbishCollection {
-        internal static let widgetTitle = String.localized("RubbishCollection.widgetTitle")
-        internal static let widgetDescription = String.localized("RubbishCollection.widgetDescription")
+        internal static let widgetTitle = String(localized: "Pickup Schedule")
+        internal static let widgetDescription = String(localized: "View the next pickup dates of your rubbish for your selected street.")
     }
     
 }
