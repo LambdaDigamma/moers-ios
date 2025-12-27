@@ -17,7 +17,7 @@ class EventCoordinator: Coordinator {
     @LazyInjected(\.eventService) var eventService
     
     var navigationController: CoordinatedNavigationController
-    var eventViewController: MMEventsViewController?
+    var eventViewController: UIViewController?
     
     init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController()
@@ -25,10 +25,19 @@ class EventCoordinator: Coordinator {
         
         self.navigationController = navigationController
         
-        let eventViewController = MMEventsViewController()
+        // Use the appropriate version based on iOS availability
+        let eventViewController: UIViewController & TabBarItemProvider & CoordinatorAssignable
+        if #available(iOS 26.0, *) {
+            let vc = MMEventsViewController()
+            vc.coordinator = self
+            eventViewController = vc
+        } else {
+            let vc = MMEventsViewController_Legacy()
+            vc.coordinator = self
+            eventViewController = vc
+        }
         
         eventViewController.tabBarItem = generateTabBarItem()
-        eventViewController.coordinator = self
         
         self.navigationController.coordinator = self
         self.navigationController.viewControllers = [eventViewController]
@@ -53,3 +62,17 @@ class EventCoordinator: Coordinator {
     }
     
 }
+
+// Protocol to make both versions compatible with the coordinator
+protocol TabBarItemProvider {
+    var tabBarItem: UITabBarItem! { get set }
+}
+
+protocol CoordinatorAssignable {
+    var coordinator: EventCoordinator? { get set }
+}
+
+extension MMEventsViewController_Legacy: TabBarItemProvider, CoordinatorAssignable {}
+
+@available(iOS 26.0, *)
+extension MMEventsViewController: TabBarItemProvider, CoordinatorAssignable {}
