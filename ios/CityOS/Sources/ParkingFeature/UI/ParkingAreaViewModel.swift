@@ -9,7 +9,7 @@ import Foundation
 import Core
 import MapKit
 
-public class ParkingAreaViewModel: ObservableObject, Identifiable {
+public class ParkingAreaViewModel: ObservableObject, Identifiable, Hashable {
     
     public let id: UUID = UUID()
     public let title: String
@@ -26,6 +26,14 @@ public class ParkingAreaViewModel: ObservableObject, Identifiable {
     )
     
     @Published var openingHours: DataState<[OpeningHourEntry], Error> = .loading
+    
+    public static func == (lhs: ParkingAreaViewModel, rhs: ParkingAreaViewModel) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
     
     public init(
         title: String,

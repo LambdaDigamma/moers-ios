@@ -14,6 +14,7 @@ public class BaseMapViewModel: StandardViewModel {
     @Published public var registeredAnnotationViews: [(MKAnnotationView.Type, String)] = []
     
     public var configureView: (_ mapView: MKMapView, _ annotation: MKAnnotation) -> MKAnnotationView?
+    public var onAnnotationSelected: ((GenericAnnotation) -> Void)?
     
     public init(annotations: [GenericAnnotation] = []) {
         self.annotations = annotations

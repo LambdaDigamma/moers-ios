@@ -33,20 +33,48 @@ extension CLAuthorizationStatus: CaseName {
     
 }
 
-public class DefaultLocationService: NSObject, LocationService, CLLocationManagerDelegate {
+public final class DefaultLocationService: NSObject, LocationService {
     
     private let locationManager: CLLocationManager
     private let logger: Logger
     
-    public var location: CurrentValueSubject<CLLocation, Error>
-    public var authorizationStatus: CurrentValueSubject<CLAuthorizationStatus, Never>
+    // MARK: - Async Streams
+    
+    public var locations: AsyncThrowingStream<CLLocation, Error> {
+        AsyncThrowingStream { continuation in
+            self.locationContinuation = continuation
+            
+            // Emit current value immediately (CurrentValueSubject semantics)
+            if let lastLocation {
+                continuation.yield(lastLocation)
+            }
+        }
+    }
+    
+    public var authorizationStatuses: AsyncStream<CLAuthorizationStatus> {
+        AsyncStream { continuation in
+            self.authorizationContinuation = continuation
+            
+            // Emit current value immediately
+            continuation.yield(self.lastAuthorizationStatus)
+        }
+    }
+    
+    // MARK: - Internal State
+    
+    private var locationContinuation: AsyncThrowingStream<CLLocation, Error>.Continuation?
+    private var authorizationContinuation: AsyncStream<CLAuthorizationStatus>.Continuation?
+    
+    private var lastLocation: CLLocation?
+    private var lastAuthorizationStatus: CLAuthorizationStatus
+    
+    // MARK: - Init
     
     public init(locationManager: CLLocationManager = CLLocationManager()) {
-        
-        self.logger = Logger(.coreApi)
-        self.location = CurrentValueSubject(locationManager.location ?? CLLocation())
         self.locationManager = locationManager
-        self.authorizationStatus = CurrentValueSubject(locationManager.authorizationStatus)
+        self.logger = Logger(.coreApi)
+        self.lastLocation = locationManager.location
+        self.lastAuthorizationStatus = locationManager.authorizationStatus
         
         super.init()
         
@@ -58,19 +86,18 @@ public class DefaultLocationService: NSObject, LocationService, CLLocationManage
             self.locationManager.activityType = .other
         }
 #endif
-        
-        self.authorizationStatus.send(locationManager.authorizationStatus)
-        
     }
     
+    // MARK: - Public API
+    
     public func requestWhenInUseAuthorization() {
-        if locationManager.authorizationStatus == .notDetermined {
+        guard locationManager.authorizationStatus == .notDetermined else { return }
+        
 #if os(macOS)
-            locationManager.requestAlwaysAuthorization()
+        locationManager.requestAlwaysAuthorization()
 #else
-            locationManager.requestWhenInUseAuthorization()
+        locationManager.requestWhenInUseAuthorization()
 #endif
-        }
     }
     
     public func requestCurrentLocation() {
@@ -80,31 +107,41 @@ public class DefaultLocationService: NSObject, LocationService, CLLocationManage
     public func stopMonitoring() {
         locationManager.stopUpdatingLocation()
     }
+}
+
+// MARK: - CLLocationManagerDelegate
+
+extension DefaultLocationService: CLLocationManagerDelegate {
     
-    // MARK: - CLLocationManagerDelegate
-    
-    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    public func locationManager(
+        _ manager: CLLocationManager,
+        didUpdateLocations locations: [CLLocation]
+    ) {
+        logger.log("Received location updates")
         
-        logger.log("Received location updates and sending them all onto the location subject")
-        
-        locations.forEach { self.location.send($0) }
-        
+        for location in locations {
+            lastLocation = location
+            locationContinuation?.yield(location)
+        }
     }
     
-    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    public func locationManager(
+        _ manager: CLLocationManager,
+        didFailWithError error: Error
+    ) {
+        logger.error("CLLocationManager failed: \(error.localizedDescription, privacy: .public)")
         
-        logger.error("CLLocationManager failed with error: \(error.localizedDescription, privacy: .public)")
-        
-        self.location.send(completion: .failure(error))
-        self.location = CurrentValueSubject(CLLocation())
-        
+        locationContinuation?.finish(throwing: error)
+        locationContinuation = nil
     }
     
-    public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    public func locationManager(
+        _ manager: CLLocationManager,
+        didChangeAuthorization status: CLAuthorizationStatus
+    ) {
+        logger.info("Authorization changed to \(status.name)")
         
-        logger.info("CLLocationManager changed authorization to \(status.name)")
-        
-        self.authorizationStatus.send(status)
+        lastAuthorizationStatus = status
+        authorizationContinuation?.yield(status)
     }
-    
 }

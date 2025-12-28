@@ -7,14 +7,13 @@
 
 import SwiftUI
 import Core
-import Combine
 import Factory
 
 public struct FuelStationDetailScreen: View {
     
     @StateObject var viewModel: FuelStationDetailViewModel
     
-    public init(load: @escaping () -> AnyPublisher<PetrolStation, Error>) {
+    public init(load: @escaping () async throws -> PetrolStation) {
         
         self._viewModel = .init(wrappedValue: FuelStationDetailViewModel(loadDetails: load))
         
@@ -37,7 +36,7 @@ public struct FuelStationDetailScreen: View {
             
         }
         .task {
-            viewModel.load()
+            await viewModel.load()
         }
         
     }
@@ -191,9 +190,7 @@ struct FuelStationDetail_Previews: PreviewProvider {
     static var previews: some View {
         FuelStationDetailScreen(
             load: {
-                Just(Self.fuelStation)
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
+                Self.fuelStation
             })
             .preferredColorScheme(.dark)
     }

@@ -8,8 +8,8 @@
 import Foundation
 import Core
 import Factory
-import Combine
 
+@MainActor
 public class RubbishScheduleViewModel: StandardViewModel {
     
     @LazyInjected(\.rubbishService) var rubbishService
@@ -23,40 +23,34 @@ public class RubbishScheduleViewModel: StandardViewModel {
         super.init()
     }
     
-    public func load() {
-        
+    public func load() async {
         self.setLoading()
         
         if !rubbishService.isEnabled {
             state = .error(.deactivated)
+            return
         }
         
-        if let street = rubbishService.rubbishStreet {
-            
-            rubbishService
-                .loadRubbishPickupItems(for: street)
-                .sink { [weak self] (completion: Subscribers.Completion<RubbishLoadingError>) in
-                    
-                    switch completion {
-                        case .failure(let error):
-                            self?.state = .error(error)
-                        default:
-                            break
-                    }
-                    
-                } receiveValue: { [weak self] (items: [RubbishPickupItem]) in
-                    
-                    let grouped = items.groupByDayIntoSections()
-                    
-                    self?.state = .success(grouped)
-                    
-                }
-                .store(in: &cancellables)
-            
-        } else {
+        guard let street = rubbishService.rubbishStreet else {
             state = .error(.noStreetConfigured)
+            return
         }
         
+        do {
+            let items = try await rubbishService.loadRubbishPickupItems(for: street)
+            let grouped = items.groupByDayIntoSections()
+            self.state = .success(grouped)
+        } catch let error as RubbishLoadingError {
+            self.state = .error(error)
+        } catch {
+            let rubbishError: RubbishLoadingError
+            if let apiError = error as? APIError {
+                rubbishError = .internalError(apiError)
+            } else {
+                rubbishError = .internalError(APIError.networkError(error))
+            }
+            self.state = .error(rubbishError)
+        }
     }
     
     public func setLoading() {

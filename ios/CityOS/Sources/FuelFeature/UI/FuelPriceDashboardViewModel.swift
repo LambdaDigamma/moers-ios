@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 import Core
 import CoreLocation
 import Factory
@@ -19,6 +18,7 @@ public struct PetrolPriceDashboardData {
     
 }
 
+@MainActor
 public class FuelPriceDashboardViewModel: StandardViewModel {
     
     @Published var petrolType: PetrolType = .diesel
@@ -46,70 +46,81 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
     
     /// Reloads location and updates the fuel stations
     /// and average price data of the dashboard.
-    public func load() {
-        
+    public func load() async {
         self.petrolType = petrolService.petrolType
         
         logger.info("Requesting current location and fuel station prices for '\(self.petrolType.rawValue, privacy: .public)' type.")
         
         locationService.requestCurrentLocation()
         
-        locationPublisher()
-            .flatMap { (location: CLLocation) -> AnyPublisher<String, Never> in
-            
-                self.logger.info("Loading placemark for the currently received location \(location.coordinate, privacy: .private)")
-                
-                return self.geocodingService
-                    .placemark(from: location)
-                    .map(\.city)
-                    .replaceError(with: "")
-                    .eraseToAnyPublisher()
-            
-            }
-            .replaceError(with: "")
-            .map({ DataState.success($0) })
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-            .sink(receiveValue: { data in
-                self.locationName = data
-            })
-            .store(in: &cancellables)
+        // todo: make this publisher react to the location updates via the stream on the location service
         
-        // does this need some kind of debouncing?
-        // can multiple locations be received so that
-        // too many requests get scheduled?
+        await loadLocationName()
+        await loadFuelStations()
+    }
+    
+    private func loadLocationName() async {
         
-        locationPublisher()
-            .flatMap { (location: CLLocation) -> AnyPublisher<[PetrolStation], Error> in
-
-                print("Location: \(location.coordinate)")
-
-                return self.petrolService.getPetrolStations(
-                    coordinate: location.coordinate,
-                    radius: self.defaultSearchRadius,
-                    sorting: .distance,
-                    type: self.petrolType,
-                    shouldReload: false
-                )
+        do {
+            
+            guard let location = await waitForValidLocation() else {
+                locationName = .success("")
+                return
             }
-            .eraseToAnyPublisher()
-            .sink { (completion: Subscribers.Completion<Error>) in
-
-                switch completion {
-                    case .failure(let error):
-                        print(error)
-                        self.data = .error(error)
-                    default: break
+            
+            logger.info("Loading placemark for the currently received location \(location.coordinate, privacy: .private)")
+            
+            let placemark = try await geocodingService.placemark(from: location)
+            locationName = .success(placemark.locality ?? "")
+            
+        } catch {
+            
+            logger.error("Failed to load location name: \(error.localizedDescription, privacy: .public)")
+            locationName = .success("")
+            
+        }
+        
+    }
+    
+    private func loadFuelStations() async {
+        
+        do {
+            
+            guard let location = await waitForValidLocation() else {
+                return
+            }
+            
+            logger.info("Loading fuel stations for location: \(location.coordinate, privacy: .private)")
+            
+            let stations = try await petrolService.getPetrolStations(
+                coordinate: location.coordinate,
+                radius: defaultSearchRadius,
+                sorting: .distance,
+                type: petrolType,
+                shouldReload: false
+            )
+            
+            self.fuelStations = .success(stations.filter { $0.isOpen })
+            self.calculateNewAverage(from: stations)
+            
+        } catch {
+            logger.error("Failed to load fuel stations: \(error.localizedDescription, privacy: .public)")
+            self.data = .error(error)
+        }
+        
+    }
+    
+    private func waitForValidLocation() async -> CLLocation? {
+        do {
+            for try await location in locationService.locations {
+                if location.coordinate.latitude != 0.0 && location.coordinate.longitude != 0.0 {
+                    return location
                 }
-
-            } receiveValue: { [weak self] (petrolStations: [PetrolStation]) in
-
-                self?.fuelStations = DataState<[PetrolStation], Error>.success(petrolStations.filter { $0.isOpen })
-                self?.calculateNewAverage(from: petrolStations)
-
             }
-            .store(in: &cancellables)
-            
+        } catch {
+            return CoreSettings.regionLocation
+        }
+        return nil
     }
     
     /// Takes fuel stations and calculates the average of the open stations.
@@ -143,26 +154,9 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
     /// all of it's fuel prices and opening hours.
     /// It uses the fuel service provided to the view model.
     /// - Parameter id: fuel station id
-    /// - Returns: a failable publisher of the station
-    public func loadFuelStation(id: PetrolStation.ID) -> AnyPublisher<PetrolStation, Error> {
-        return petrolService.getPetrolStation(id: id)
-    }
-    
-    // MARK: - Helper -
-    
-    /// Ask the location service to provide the latest user location.
-    /// Unallowed locations are being filtered out and only one location
-    /// is being returned in the publisher.
-    /// It does not throw exepections and instead they are replaced by
-    /// the region location in `CoreSettings`.
-    /// - Returns: a never-failing publisher of the user location
-    private func locationPublisher() -> AnyPublisher<CLLocation, Never> {
-        return locationService
-            .location
-            .replaceError(with: CoreSettings.regionLocation)
-            .filter({ $0.coordinate.latitude != 0.0 && $0.coordinate.longitude != 0.0 })
-            .prefix(1)
-            .eraseToAnyPublisher()
+    /// - Returns: the station or throws an error
+    public func loadFuelStation(id: PetrolStation.ID) async throws -> PetrolStation {
+        return try await petrolService.getPetrolStation(id: id)
     }
     
 }

@@ -71,22 +71,21 @@ class DebugViewController: UIViewController {
             return
         }
         
-        let pickupItems = rubbishService.loadRubbishPickupItems(for: street)
-        
-        pickupItems
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { (_: Subscribers.Completion<RubbishLoadingError>) in
+        Task {
+            do {
+                let pickupItems = try await rubbishService.loadRubbishPickupItems(for: street)
                 
-            }, receiveValue: { (items: [RubbishPickupItem]) in
-                
-                self.rubbishItemsTextView.text = "Collections: \(items.count)\n\n"
-                self.rubbishItemsTextView.text += items.map {
-                    $0.date.format(format: "dd.MM.yyyy") + " " + $0.type.title
+                await MainActor.run {
+                    self.rubbishItemsTextView.text = "Collections: \(pickupItems.count)\n\n"
+                    self.rubbishItemsTextView.text += pickupItems.map {
+                        $0.date.format(format: "dd.MM.yyyy") + " " + $0.type.title
+                    }
+                    .joined(separator: "\n")
                 }
-                .joined(separator: "\n")
-                
-            })
-            .store(in: &cancellables)
+            } catch {
+                print("Error loading rubbish pickup items: \(error.localizedDescription)")
+            }
+        }
         
     }
     

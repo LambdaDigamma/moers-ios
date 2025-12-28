@@ -68,7 +68,14 @@ public struct BaseMap: UIViewRepresentable {
             )
         }
         
-        uiView.addAnnotations(viewModel.annotations)
+        let existingAnnotations = Set(uiView.annotations.compactMap { $0 as? GenericAnnotation })
+        let newAnnotations = Set(viewModel.annotations)
+        
+        let annotationsToRemove = existingAnnotations.subtracting(newAnnotations)
+        let annotationsToAdd = newAnnotations.subtracting(existingAnnotations)
+        
+        uiView.removeAnnotations(Array(annotationsToRemove))
+        uiView.addAnnotations(Array(annotationsToAdd))
         
     }
     
@@ -91,6 +98,14 @@ public struct BaseMap: UIViewRepresentable {
         ) -> MKAnnotationView? {
             
             return parent.viewModel.configureView(mapView, annotation)
+            
+        }
+        
+        public func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+            
+            if let annotation = view.annotation as? GenericAnnotation {
+                parent.viewModel.onAnnotationSelected?(annotation)
+            }
             
         }
         

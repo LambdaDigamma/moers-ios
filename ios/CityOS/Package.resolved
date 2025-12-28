@@ -118,15 +118,6 @@
       }
     },
     {
-      "identity" : "pulley",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/52inc/Pulley",
-      "state" : {
-        "revision" : "9d58b995e7229aed0f86103397aff340f1bcad5d",
-        "version" : "2.9.2"
-      }
-    },
-    {
       "identity" : "swift-algorithms",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-algorithms",

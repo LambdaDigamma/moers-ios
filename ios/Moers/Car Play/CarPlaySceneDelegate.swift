@@ -11,7 +11,6 @@ import Factory
 import ParkingFeature
 import FuelFeature
 import CarPlay
-import Combine
 
 public class CarPlaySceneDelegate: UIResponder {
     
@@ -21,8 +20,6 @@ public class CarPlaySceneDelegate: UIResponder {
     
     public let parkingAreasTemplate: CPListTemplate = CPListTemplate(title: "Parkplätze", sections: [])
     public let fuelStationsTemplate: CPListTemplate = CPListTemplate(title: "Tankstellen", sections: [])
-    
-    private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Parking Areas -
     
@@ -34,15 +31,18 @@ public class CarPlaySceneDelegate: UIResponder {
     
     public func loadParkingLots() {
         
-        let parkingService = Container.shared.parkingService()
-        
-        parkingService.loadParkingAreas()
-            .sink { (completion: Subscribers.Completion<Error>) in
+        Task {
+            do {
+                let parkingService = Container.shared.parkingService()
+                let areas = try await parkingService.loadParkingAreas()
                 
-            } receiveValue: { (parkingAreas: [ParkingArea]) in
-                self.parkingAreas = parkingAreas
+                await MainActor.run {
+                    self.parkingAreas = areas
+                }
+            } catch {
+                print("Error loading parking areas: \(error.localizedDescription)")
             }
-            .store(in: &cancellables)
+        }
         
     }
     
@@ -165,27 +165,31 @@ public class CarPlaySceneDelegate: UIResponder {
     
     public func loadFuelStations() {
         
-        let locationService = Container.shared.locationService()
-        let fuelService = Container.shared.petrolService()
-        
-        let preferredPetrolType = fuelService.petrolType
-        
-        locationService.location
-            .flatMap { (location: CLLocation) in
-                return fuelService.getPetrolStations(
-                    coordinate: location.coordinate,
-                    radius: 20,
-                    sorting: .distance,
-                    type: preferredPetrolType,
-                    shouldReload: true
-                )
-            }
-            .sink { (completion: Subscribers.Completion<Error>) in
+        Task {
+            do {
+                let locationService = Container.shared.locationService()
+                let fuelService = Container.shared.petrolService()
                 
-            } receiveValue: { (fuelStations: [PetrolStation]) in
-                self.fuelStations = fuelStations
+                let preferredPetrolType = fuelService.petrolType
+                
+                for try await location in locationService.locations {
+                    let stations = try await fuelService.getPetrolStations(
+                        coordinate: location.coordinate,
+                        radius: 20,
+                        sorting: .distance,
+                        type: preferredPetrolType,
+                        shouldReload: true
+                    )
+                    
+                    await MainActor.run {
+                        self.fuelStations = stations
+                    }
+                    break
+                }
+            } catch {
+                print("Error loading fuel stations: \(error.localizedDescription)")
             }
-            .store(in: &cancellables)
+        }
         
     }
     

@@ -8,8 +8,8 @@
 import Foundation
 import Core
 import MapKit
-import Combine
 
+@MainActor
 public class ParkingAreaListViewModel: StandardViewModel {
     
     private let parkingService: ParkingService
@@ -22,6 +22,7 @@ public class ParkingAreaListViewModel: StandardViewModel {
         center: CoreSettings.regionCenter,
         span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
     )
+    @Published public var selectedParkingArea: ParkingAreaViewModel?
     
     public var mapViewModel = BaseMapViewModel()
     
@@ -49,43 +50,57 @@ public class ParkingAreaListViewModel: StandardViewModel {
             return nil
         }
         
-    }
-    
-    public func load() {
+        super.init()
         
-        if let locationService = locationService {
-            
-            let authorizationStatusAllowsFindingNearby = [
-                CLAuthorizationStatus.authorizedAlways,
-                CLAuthorizationStatus.authorizedAlways,
-            ].contains(locationService.authorizationStatus.value)
-            
-            self.userGrantedLocation = authorizationStatusAllowsFindingNearby
-            
+        self.mapViewModel.onAnnotationSelected = { [weak self] annotation in
+            guard let self = self,
+                  let parkingAnnotation = annotation as? ParkingAreaAnnotation,
+                  let parkingArea = self.parkingAreas.first(where: {
+                      $0.title == parkingAnnotation.title
+                  }) else {
+                return
+            }
+            self.selectedParkingArea = parkingArea
         }
         
-        parkingService.loadParkingAreas()
-            .sink { (_: Subscribers.Completion<Error>) in
+    }
+    
+    public func load() async {
+        if let locationService = locationService {
+            var hasAuthorizedStatus = false
+            
+            for await authorizationStatus in locationService.authorizationStatuses {
+                let authorizationStatusAllowsFindingNearby = [
+                    CLAuthorizationStatus.authorizedAlways,
+                    CLAuthorizationStatus.authorizedWhenInUse,
+                ].contains(authorizationStatus)
                 
-            } receiveValue: { (parkingAreas: [ParkingArea]) in
-                
-                self.parkingAreas = parkingAreas.map({ ParkingAreaViewModel(
-                    title: $0.name,
-                    free: $0.freeSites,
-                    total: $0.capacity ?? 0,
-                    location: $0.location,
-                    currentOpeningState: $0.currentOpeningState,
-                    updatedAt: $0.updatedAt ?? Date()
-                )})
-                
-                self.mapViewModel.annotations = parkingAreas.compactMap {
-                    guard let coordinate = $0.location?.toCoordinate() else { return nil }
-                    return ParkingAreaAnnotation(coordinate: coordinate, title: $0.name)
-                }
-                
+                hasAuthorizedStatus = authorizationStatusAllowsFindingNearby
+                break
             }
-            .store(in: &cancellables)
+            
+            self.userGrantedLocation = hasAuthorizedStatus
+        }
         
+        do {
+            let parkingAreas = try await parkingService.loadParkingAreas()
+            
+            self.parkingAreas = parkingAreas.map({ ParkingAreaViewModel(
+                title: $0.name,
+                free: $0.freeSites,
+                total: $0.capacity ?? 0,
+                location: $0.location,
+                currentOpeningState: $0.currentOpeningState,
+                updatedAt: $0.updatedAt ?? Date()
+            )})
+            
+            self.mapViewModel.annotations = parkingAreas.compactMap {
+                guard let coordinate = $0.location?.toCoordinate() else { return nil }
+                return ParkingAreaAnnotation(coordinate: coordinate, title: $0.name)
+            }
+        } catch {
+            print("Failed to load parking areas: \(error)")
+        }
     }
     
 }

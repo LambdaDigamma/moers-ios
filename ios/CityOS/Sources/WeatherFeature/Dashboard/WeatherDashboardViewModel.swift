@@ -9,6 +9,7 @@ import Core
 import Foundation
 
 @available(iOS 16.0, *)
+@MainActor
 public class WeatherDashboardViewModel: StandardViewModel {
     
     private let weatherService: DefaultWeatherService
@@ -19,17 +20,13 @@ public class WeatherDashboardViewModel: StandardViewModel {
         self.weatherService = DefaultWeatherService()
     }
     
-    public func load() {
-        
-        Task {
-            do {
-                self.data = .success(try await weatherService.loadDashboard())
-            } catch {
-                self.data = .error(error)
-                print(error)
-            }
+    public func load() async {
+        do {
+            self.data = .success(try await weatherService.loadDashboard())
+        } catch {
+            self.data = .error(error)
+            print(error)
         }
-        
     }
     
 }

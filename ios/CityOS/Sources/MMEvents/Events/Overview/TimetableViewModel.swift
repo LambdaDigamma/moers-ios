@@ -10,6 +10,7 @@ import Factory
 import Combine
 import Core
 
+@MainActor
 public class TimetableViewModel: ObservableObject {
     
     @Published public var dates: [Date] = []
@@ -62,13 +63,13 @@ public class TimetableViewModel: ObservableObject {
         
     }
     
-    public func load() {
-        
-        Task {
+    public func load() async {
+        do {
             try await repository.reloadEvents()
             print("RELOADING")
+        } catch {
+            print("Failed to reload events: \(error)")
         }
-        
     }
     
 }

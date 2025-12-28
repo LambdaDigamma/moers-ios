@@ -10,7 +10,6 @@ import Foundation
 import Core
 import BLTNBoard
 import CoreLocation
-import Combine
 import RubbishFeature
 import FuelFeature
 import Factory
@@ -25,7 +24,6 @@ public class OnboardingManager {
     @LazyInjected(\.locationService) var locationService: LocationService
     
     private let appearance: BLTNItemAppearance
-    private var cancellables = Set<AnyCancellable>()
     
     public init() {
         self.appearance = OnboardingManager.makeAppearance()
@@ -152,17 +150,17 @@ public class OnboardingManager {
             
             AnalyticsManager.shared.logEnabledLocation()
             
-            self.locationService.authorizationStatus.sink { (authorizationStatus: CLAuthorizationStatus) in
-                
-                if authorizationStatus == .notDetermined {
-                    self.locationService.requestWhenInUseAuthorization()
-                    item.manager?.displayNextItem()
-                } else {
-                    item.manager?.displayNextItem()
+            Task {
+                for await authorizationStatus in self.locationService.authorizationStatuses {
+                    if authorizationStatus == .notDetermined {
+                        self.locationService.requestWhenInUseAuthorization()
+                        item.manager?.displayNextItem()
+                    } else {
+                        item.manager?.displayNextItem()
+                    }
+                    break
                 }
-
             }
-            .store(in: &self.cancellables)
             
         }
         
@@ -180,8 +178,7 @@ public class OnboardingManager {
         
         page.image = #imageLiteral(resourceName: "PrivacyPrompt")
         page.imageAccessibilityLabel = "Privacy Icon"
-        page.descriptionText = String(localized: "All data will be treated with the utmost care and confidentiality! 
-By using this app, you agree to the terms and conditions and privacy policy found in the menu.")
+        page.descriptionText = String(localized: "All data will be treated with the utmost care and confidentiality! By using this app, you agree to the terms and conditions and privacy policy found in the menu.")
         page.actionButtonTitle = String(localized: "Understood")
         page.appearance = appearance
         page.isDismissable = false

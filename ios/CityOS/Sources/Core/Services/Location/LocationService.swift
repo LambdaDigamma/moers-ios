@@ -11,23 +11,22 @@ import Combine
 
 public protocol LocationService {
     
-    /// Sends the current authorization status
-    /// and publishes changes to it.
-    var authorizationStatus: CurrentValueSubject<CLAuthorizationStatus, Never> { get }
+    /// Emits the current authorization status
+    /// and all future changes.
+    var authorizationStatuses: AsyncStream<CLAuthorizationStatus> { get }
     
-    var location: CurrentValueSubject<CLLocation, Error> { get }
+    /// Emits location updates and may fail with an error.
+    var locations: AsyncThrowingStream<CLLocation, Error> { get }
     
     /// Requests the when-in-use authorization via
-    /// the underlaying `CLLocationManager`.
+    /// the underlying `CLLocationManager`.
     func requestWhenInUseAuthorization()
     
-    /// Trigger the underlaying `CLLocationManager` to
-    /// request one location of the user. That location is then
-    /// asychronously being pushed to the location subject.
+    /// Triggers the underlying `CLLocationManager` to
+    /// request one location of the user.
     func requestCurrentLocation()
     
-    /// Force the underlaying `CLLocationManager` to
+    /// Forces the underlying `CLLocationManager` to
     /// stop monitoring the user location.
     func stopMonitoring()
-    
 }

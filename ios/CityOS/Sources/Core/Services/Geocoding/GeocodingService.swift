@@ -7,10 +7,9 @@
 
 import Foundation
 import CoreLocation
-import Combine
 
 public protocol GeocodingService {
     
-    func placemark(from location: CLLocation) -> AnyPublisher<CLPlacemark, Error>
+    func placemark(from location: CLLocation) async throws -> CLPlacemark
     
 }

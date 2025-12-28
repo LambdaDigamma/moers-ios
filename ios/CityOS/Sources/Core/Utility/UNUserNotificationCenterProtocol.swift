@@ -10,14 +10,16 @@ import UserNotifications
 
 public protocol UNUserNotificationCenterProtocol: AnyObject {
     
-    func add(_ request: UNNotificationRequest, withCompletionHandler completionHandler: ((Error?) -> Void)?)
+    func add(_ request: UNNotificationRequest) async throws
     
     func removeAllPendingNotificationRequests()
     
-    func getPendingNotificationRequests(completionHandler: @escaping ([UNNotificationRequest]) -> Void)
+    func pendingNotificationRequests() async -> [UNNotificationRequest]
     
     func removePendingNotificationRequests(withIdentifiers: [String])
     
 }
 
-extension UNUserNotificationCenter: UNUserNotificationCenterProtocol { }
+extension UNUserNotificationCenter: UNUserNotificationCenterProtocol {
+    
+}

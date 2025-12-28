@@ -58,9 +58,7 @@ public class EntryOnboardingLocationMenuViewController: UIViewController {
         self.view.addSubview(locationButton)
         self.view.addSubview(infoLabel)
         
-        self.infoLabel.text = String(localized: "There are two ways to add a new entry: 
-If you are standing next to the location, you can add it at the current location. 
-Otherwise, you can add a place at an address.", bundle: .module)
+        self.infoLabel.text = String(localized: "There are two ways to add a new entry: If you are standing next to the location, you can add it at the current location. Otherwise, you can add a place at an address.", bundle: .module)
         self.infoLabel.numberOfLines = 0
         self.infoLabel.font = UIFont.systemFont(ofSize: 12)
         self.addressButton.setTitle(String(localized: "Add entry with address", bundle: .module), for: .normal)

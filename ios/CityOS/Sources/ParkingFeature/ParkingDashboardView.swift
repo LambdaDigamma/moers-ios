@@ -80,7 +80,7 @@ public struct ParkingDashboardView: View {
             
         }
         .task {
-            viewModel.load()
+            await viewModel.load()
         }
         
     }

@@ -94,7 +94,7 @@ public struct RubbishDashboardPanel: View {
             
         }
         .task {
-            viewModel.load()
+            await viewModel.load()
         }
         
     }

@@ -177,58 +177,59 @@ public class MainViewController: PulleyViewController {
     
     private func loadPetrolStations() {
         
-        let preferredPetrolType = petrolManager.petrolType
-        
-        let petrolStations = petrolManager.getPetrolStations(
-            coordinate: CLLocationCoordinate2D(latitude: 51.4516, longitude: 6.6255),
-            radius: 10,
-            sorting: .distance,
-            type: preferredPetrolType,
-            shouldReload: false
-        )
-        
-        petrolStations
-            .receive(on: DispatchQueue.main)
-            .sink { (_: Subscribers.Completion<Error>) in
+        Task {
+            do {
+                let preferredPetrolType = petrolManager.petrolType
                 
-            } receiveValue: { (stations: [FuelFeature.PetrolStation]) in
+                let petrolStations = try await petrolManager.getPetrolStations(
+                    coordinate: CLLocationCoordinate2D(latitude: 51.4516, longitude: 6.6255),
+                    radius: 10,
+                    sorting: .distance,
+                    type: preferredPetrolType,
+                    shouldReload: false
+                )
                 
-                let s = stations.map { (petrolStation: FuelFeature.PetrolStation) in
+                await MainActor.run {
                     
-                    return MapFeature.PetrolStationViewModel(
-                        id: petrolStation.id,
-                        name: petrolStation.name,
-                        brand: petrolStation.name,
-                        street: petrolStation.street,
-                        place: petrolStation.place,
-                        houseNumber: petrolStation.houseNumber,
-                        postCode: petrolStation.postCode,
-                        lat: petrolStation.lat, lng: petrolStation.lng,
-                        dist: petrolStation.dist,
-                        diesel: petrolStation.diesel,
-                        e5: petrolStation.e5,
-                        e10: petrolStation.e10,
-                        price: petrolStation.price,
-                        isOpen: petrolStation.isOpen,
-                        wholeDay: petrolStation.wholeDay,
-                        openingTimes: (petrolStation.openingTimes ?? []).map { p in
-                            MapFeature.PetrolStationViewModel.TimeEntry(text: p.text, start: p.start, end: p.end)
-                        },
-                        overrides: petrolStation.overrides,
-                        state: petrolStation.state
-                    )
+                    let s = petrolStations.map { (petrolStation: FuelFeature.PetrolStation) in
+                        
+                        return MapFeature.PetrolStationViewModel(
+                            id: petrolStation.id,
+                            name: petrolStation.name,
+                            brand: petrolStation.name,
+                            street: petrolStation.street,
+                            place: petrolStation.place,
+                            houseNumber: petrolStation.houseNumber,
+                            postCode: petrolStation.postCode,
+                            lat: petrolStation.lat, lng: petrolStation.lng,
+                            dist: petrolStation.dist,
+                            diesel: petrolStation.diesel,
+                            e5: petrolStation.e5,
+                            e10: petrolStation.e10,
+                            price: petrolStation.price,
+                            isOpen: petrolStation.isOpen,
+                            wholeDay: petrolStation.wholeDay,
+                            openingTimes: (petrolStation.openingTimes ?? []).map { p in
+                                MapFeature.PetrolStationViewModel.TimeEntry(text: p.text, start: p.start, end: p.end)
+                            },
+                            overrides: petrolStation.overrides,
+                            state: petrolStation.state
+                        )
+                        
+                    }
+                    
+                    self.eventBus.notify(PetrolDatasource.self) { subscriber in
+                        subscriber.didReceivePetrolStations(s)
+                    }
+                    
+                    self.locations = self.locations.filter { !($0 is MapFeature.PetrolStationViewModel) }
+                    self.locations.append(contentsOf: s)
                     
                 }
-                
-                self.eventBus.notify(PetrolDatasource.self) { subscriber in
-                    subscriber.didReceivePetrolStations(s)
-                }
-                
-                self.locations = self.locations.filter { !($0 is MapFeature.PetrolStationViewModel) }
-                self.locations.append(contentsOf: stations)
-                
+            } catch {
+                print("Error loading petrol stations: \(error.localizedDescription)")
             }
-            .store(in: &cancellables)
+        }
         
     }
     

@@ -11,7 +11,6 @@ import Core
 import BLTNBoard
 import CoreLocation
 import OSLog
-import Combine
 import Factory
 import RubbishFeature
 
@@ -22,7 +21,6 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     @LazyInjected(\.locationService) var locationService
     
     private var streets: [RubbishFeature.RubbishCollectionStreet] = []
-    private var cancellables = Set<AnyCancellable>()
     
     private let logger = Logger(.coreUi)
     
@@ -51,75 +49,63 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     
     private func loadStreets() {
         
-        let streets = rubbishService.loadRubbishCollectionStreets()
-        
-        streets
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { [weak self] (completion: Subscribers.Completion<Error>) in
+        Task {
+            do {
+                let streets = try await rubbishService.loadRubbishCollectionStreets()
                 
-                switch completion {
-                    case .failure(let error):
-                        self?.logger.error("Loading rubbish collection streets failed: \(error.localizedDescription)")
-                    default: break
+                await MainActor.run {
+                    self.streets = streets
+                    self.picker.reloadPickerView()
+                    self.loadUserLocationForStreetEstimation()
                 }
-                
-            }, receiveValue: { (streets: [RubbishFeature.RubbishCollectionStreet]) in
-                
-                self.streets = streets
-                self.picker.reloadPickerView()
-                
-                self.loadUserLocationForStreetEstimation()
-                
-            })
-            .store(in: &cancellables)
+            } catch {
+                self.logger.error("Loading rubbish collection streets failed: \(error.localizedDescription)")
+            }
+        }
         
     }
     
     private func loadUserLocationForStreetEstimation() {
         
-        locationService.authorizationStatus.sink { (authorizationStatus: CLAuthorizationStatus) in
-            if authorizationStatus == .authorizedWhenInUse {
-                self.estimateUserStreet()
+        Task {
+            for await authorizationStatus in locationService.authorizationStatuses {
+                if authorizationStatus == .authorizedWhenInUse {
+                    await estimateUserStreet()
+                }
             }
         }
-        .store(in: &cancellables)
         
     }
     
-    private func estimateUserStreet() {
+    private func estimateUserStreet() async {
         
         locationService.requestCurrentLocation()
         
-        locationService.location.sink { (_: Subscribers.Completion<Error>) in
+        do {
+            for try await location in locationService.locations {
+                await checkStreetExistance(for: location)
+                break
+            }
+        } catch {
             
-        } receiveValue: { (location: CLLocation) in
-            self.checkStreetExistance(for: location)
         }
-        .store(in: &cancellables)
         
     }
     
-    private func checkStreetExistance(for location: CLLocation) {
-        
-        geocodingService
-            .placemark(from: location)
-            .receive(on: DispatchQueue.main)
-            .sink { (_: Subscribers.Completion<Error>) in
-                
-            } receiveValue: { placemark in
-                
-                let userStreet = placemark.street
-                
-                if let rubbishStreet = self.streets.filter({ $0.street.contains(userStreet) }).first {
-                    
-                    self.picker.selectRow(self.streets.firstIndex(of: rubbishStreet) ?? 0, animated: true)
-                    self.picker.adjustCurrentSelectedAfterOrientationChanges()
-                    
-                }
-                
+    @MainActor
+    private func checkStreetExistance(for location: CLLocation) async {
+        do {
+            let placemark = try await geocodingService.placemark(from: location)
+            
+            let userStreet = placemark.street
+            
+            if let rubbishStreet = self.streets.filter({ $0.street.contains(userStreet) }).first {
+                self.picker.selectRow(self.streets.firstIndex(of: rubbishStreet) ?? 0, animated: true)
+                self.picker.adjustCurrentSelectedAfterOrientationChanges()
             }
-            .store(in: &cancellables)
-        
+        } catch {
+            self.logger.error("Failed to get placemark for location: \(error.localizedDescription, privacy: .private)")
+        }
     }
     
     // MARK: - BLNTPageItem

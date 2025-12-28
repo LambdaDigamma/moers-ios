@@ -13,12 +13,15 @@ public class ParkingAreaAnnotationView: MKMarkerAnnotationView {
     public override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         
-//        let configuration = UIImage.SymbolConfiguration(pointSize: 6, weight: .semibold)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 12, weight: .semibold)
         
-//        self.glyphImage = UIImage(systemName: "parkingsign", withConfiguration: configuration)
-        self.glyphText = "P"
+        if let image = UIImage(systemName: "parkingsign", withConfiguration: configuration) {
+            self.glyphImage = image
+        }
         self.markerTintColor = UIColor.systemBlue
         self.glyphTintColor = UIColor.white
+        self.displayPriority = .defaultHigh
+        self.canShowCallout = true
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -71,7 +71,7 @@ public struct RubbishScheduleList: View {
         }
         .task {
             UserActivity.current = UserActivities.configureRubbishScheduleActivity()
-            viewModel.load()
+            await viewModel.load()
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(PackageStrings.WasteSchedule.title)

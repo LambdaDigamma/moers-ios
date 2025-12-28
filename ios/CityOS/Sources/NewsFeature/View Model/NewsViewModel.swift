@@ -7,10 +7,10 @@
 
 import Factory
 import Foundation
-import Combine
 import Core
 import FeedKit
 
+@MainActor
 public class NewsViewModel: StandardViewModel {
     
     @LazyInjected(\.newsService) private var newsService
@@ -21,16 +21,13 @@ public class NewsViewModel: StandardViewModel {
         
     }
     
-    public func load() {
-        
-        newsService.loadNewsItems()
-            .sink { (_: Subscribers.Completion<Error>) in
-                
-            } receiveValue: { (items: [RSSFeedItem]) in
-                self.newsItems = items
-            }
-            .store(in: &cancellables)
-        
+    public func load() async {
+        do {
+            let items = try await newsService.loadNewsItems()
+            self.newsItems = items
+        } catch {
+            print("Failed to load news items: \(error)")
+        }
     }
     
 }

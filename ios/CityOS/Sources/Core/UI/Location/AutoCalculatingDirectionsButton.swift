@@ -41,7 +41,7 @@ public struct AutoCalculatingDirectionsButton: View {
             mode: directionsMode
         )
         .task {
-            viewModel.getETAFromUserLocation(to: coordinate)
+            await viewModel.getETAFromUserLocation(to: coordinate)
         }
     }
     
@@ -51,7 +51,7 @@ public struct AutoCalculatingDirectionsButton: View {
     
     Container.shared.locationService.register {
         let locationService = StaticLocationService()
-        locationService.location = .init(.init(latitude: 51.451150, longitude: 6.614330))
+        locationService.configureLocation(CLLocation(latitude: 51.451150, longitude: 6.614330))
         return locationService
     }
     

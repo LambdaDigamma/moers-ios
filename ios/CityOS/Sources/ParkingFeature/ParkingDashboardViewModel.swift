@@ -8,7 +8,6 @@
 import Foundation
 import Core
 import Factory
-import Combine
 
 public struct ParkingDashboardViewData {
     
@@ -34,6 +33,7 @@ public struct ParkingDashboardViewData {
     
 }
 
+@MainActor
 public class ParkingDashboardViewModel: StandardViewModel {
     
     @LazyInjected(\.parkingService) var parkingService
@@ -50,31 +50,24 @@ public class ParkingDashboardViewModel: StandardViewModel {
         
     }
     
-    public func load() {
-        
-        parkingService.loadDashboard()
-            .sink { (completion: Subscribers.Completion<Error>) in
-                
-                if let error = completion.error {
-                    self.parkingAreas = .error(error)
-                }
-                
-            } receiveValue: { (data: ParkingDashboardData) in
-                
-                let minimalDate = data.parkingAreas
-                    .sorted(by: { $0.updatedAt ?? Date.distantPast > $1.updatedAt ?? Date.distantPast })
-                    .first?
-                    .updatedAt
-                
-                let viewData = ParkingDashboardViewData(
-                    parkingAreas: data.parkingAreas,
-                    minimalLastUpdate: minimalDate ?? Date()
-                )
-                self.parkingAreas = .success(viewData)
-                
-            }
-            .store(in: &cancellables)
-        
+    public func load() async {
+        do {
+            let data = try await parkingService.loadDashboard()
+            
+            let minimalDate = data.parkingAreas
+                .sorted(by: { $0.updatedAt ?? Date.distantPast > $1.updatedAt ?? Date.distantPast })
+                .first?
+                .updatedAt
+            
+            let viewData = ParkingDashboardViewData(
+                parkingAreas: data.parkingAreas,
+                minimalLastUpdate: minimalDate ?? Date()
+            )
+            
+            self.parkingAreas = .success(viewData)
+        } catch {
+            self.parkingAreas = .error(error)
+        }
     }
     
 }

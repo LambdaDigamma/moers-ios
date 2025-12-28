@@ -6,11 +6,11 @@
 //
 
 import Foundation
-import Combine
 import Core
 import ModernNetworking
 import Factory
 
+@MainActor
 open class RubbishDashboardViewModel: StandardViewModel {
     
     @Published var state: DataState<[RubbishPickupItem], RubbishLoadingError> = .loading
@@ -28,38 +28,33 @@ open class RubbishDashboardViewModel: StandardViewModel {
         }
     }
     
-    public func load() {
-        
+    public func load() async {
         self.setLoading()
         
         if !rubbishService.isEnabled {
             state = .error(.deactivated)
+            return
         }
         
-        if let street = rubbishService.rubbishStreet {
-            
-            rubbishService
-                .loadRubbishPickupItems(for: street)
-                .sink { [weak self] (completion: Subscribers.Completion<RubbishLoadingError>) in
-                    
-                    switch completion {
-                        case .failure(let error):
-                            self?.state = .error(error)
-                        default:
-                            break
-                    }
-                    
-                } receiveValue: { [weak self] (items: [RubbishPickupItem]) in
-                    
-                    self?.state = .success(items)
-                    
-                }
-                .store(in: &cancellables)
-                
-        } else {
+        guard let street = rubbishService.rubbishStreet else {
             state = .error(.noStreetConfigured)
+            return
         }
         
+        do {
+            let items = try await rubbishService.loadRubbishPickupItems(for: street)
+            self.state = .success(items)
+        } catch let error as RubbishLoadingError {
+            self.state = .error(error)
+        } catch {
+            let rubbishError: RubbishLoadingError
+            if let apiError = error as? APIError {
+                rubbishError = .internalError(apiError)
+            } else {
+                rubbishError = .internalError(APIError.networkError(error))
+            }
+            self.state = .error(rubbishError)
+        }
     }
     
     private func setLoading() {

@@ -40,7 +40,7 @@ public struct FeedViewScreen: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .task {
-            viewModel.reload()
+            await viewModel.reload()
 //            if viewModel.items.isEmpty {
 //                viewModel.loadCurrentFeed()
 //            }
