@@ -92,26 +92,22 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     }
     
     private func checkStreetExistance(for location: CLLocation) {
-        
-        geocodingService
-            .placemark(from: location)
-            .receive(on: DispatchQueue.main)
-            .sink { (_: Subscribers.Completion<Error>) in
+        Task {
+            do {
+                let placemark = try await geocodingService.placemark(from: location)
                 
-            } receiveValue: { placemark in
-                
-                let userStreet = placemark.street
-                
-                if let rubbishStreet = self.streets.filter({ $0.street.contains(userStreet) }).first {
+                await MainActor.run {
+                    let userStreet = placemark.street
                     
-                    self.picker.selectRow(self.streets.firstIndex(of: rubbishStreet) ?? 0, animated: true)
-                    self.picker.adjustCurrentSelectedAfterOrientationChanges()
-                    
+                    if let rubbishStreet = self.streets.filter({ $0.street.contains(userStreet) }).first {
+                        self.picker.selectRow(self.streets.firstIndex(of: rubbishStreet) ?? 0, animated: true)
+                        self.picker.adjustCurrentSelectedAfterOrientationChanges()
+                    }
                 }
-                
+            } catch {
+                self.logger.error("Failed to get placemark for location: \(error.localizedDescription)")
             }
-            .store(in: &cancellables)
-        
+        }
     }
     
     // MARK: - BLNTPageItem
