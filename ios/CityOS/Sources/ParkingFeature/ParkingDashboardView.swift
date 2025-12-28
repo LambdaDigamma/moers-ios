@@ -38,7 +38,7 @@ public struct ParkingDashboardView: View {
                         .accessibilityHidden(true)
                     
                     Group {
-                        Text("Free parking spaces")
+                        Text("Free parking spaces", bundle: .module)
                             .font(.title3)
                             .fontWeight(.semibold)
                             .foregroundColor(.primary)
@@ -191,7 +191,8 @@ public struct ParkingDashboardView: View {
         VStack {
             
             Text(
-                "The data is no longer up to date. (\(data.minimalLastUpdate.formatted(.dateTime.day().month().year())))"
+                "The data is no longer up to date. (\(data.minimalLastUpdate.formatted(.dateTime.day().month().year())))",
+                bundle: .module
             )
             .font(.caption.weight(.medium))
             

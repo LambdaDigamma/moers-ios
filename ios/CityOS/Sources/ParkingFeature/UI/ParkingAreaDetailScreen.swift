@@ -117,7 +117,7 @@ public struct ParkingAreaDetailScreen: View {
             
             HStack {
                 
-                Text("Current occupancy")
+                Text("Current occupancy", bundle: .module)
                     .fontWeight(.semibold)
                     .unredacted()
                 
@@ -125,11 +125,11 @@ public struct ParkingAreaDetailScreen: View {
                 
                 HStack(spacing: 0) {
                     
-                    Text("\(viewModel.free)") +
-                    Text(" / \(viewModel.total)")
+                    Text("\(viewModel.free)", bundle: .module) +
+                    Text(" / \(viewModel.total)", bundle: .module)
                         .foregroundColor(.secondary)
                     
-                    Text(" free")
+                    Text(" free", bundle: .module)
                         .foregroundColor(.secondary)
                         .unredacted()
                     

@@ -188,7 +188,7 @@ public struct ActiveTripContainer: View {
         
         if !isBoardedTrain {
             Button(action: {}) {
-                Text("On the train already")
+                Text("On the train already", bundle: .module)
                     .foregroundColor(accent)
             }
         }

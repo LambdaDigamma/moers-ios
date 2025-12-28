@@ -91,7 +91,7 @@ public struct TimeInformation: View {
                 
                 HStack {
                     
-                    HStack { Image(systemName: "timer"); Text("Departing in \(realtimeDeparture, style: .relative)") }
+                    Text("\(Image(systemName: "timer")) Departing in \(realtimeDeparture, style: .relative)", bundle: .module)
                         .foregroundColor(onAccent)
                         .padding(.vertical, 6)
                         .padding(.horizontal, 12)
@@ -100,7 +100,7 @@ public struct TimeInformation: View {
                     
                     Spacer()
                     
-                    Text("Arrival")
+                    Text("Arrival", bundle: .module)
                         .padding(.vertical, 6)
                         .padding(.horizontal, 12)
                         .background(Color(UIColor.secondarySystemFill))

@@ -61,7 +61,7 @@ public struct ParkingAreaList: View {
         }
         .ignoresSafeArea(.container, edges: .top)
         .background(ApplicationTheme.current.dashboardBackground)
-        .navigationTitle("Parking spaces")
+        .navigationTitle(Text("Parking spaces", bundle: .module))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             toolbarItem()
@@ -75,7 +75,7 @@ public struct ParkingAreaList: View {
                     .toolbar(content: {
                         ToolbarItem(placement: .cancellationAction) {
                             Button(action: { showParkingTimer = false }) {
-                                Text("Close")
+                                Text("Close", bundle: .module)
                             }
                         }
                     })
@@ -91,10 +91,10 @@ public struct ParkingAreaList: View {
         VStack(alignment: .leading) {
             
             if viewModel.userGrantedLocation {
-                Text("Free parking spaces near you")
+                Text("Free parking spaces near you", bundle: .module)
                     .font(.title3.weight(.semibold))
             } else {
-                Text("Parking spaces")
+                Text("Parking spaces", bundle: .module)
                     .font(.title3.weight(.semibold))
             }
             
@@ -154,8 +154,8 @@ public struct ParkingAreaList: View {
     private func disclaimer() -> some View {
         
         VStack(alignment: .leading, spacing: 8) {
-            Text("All data without liability. The current parking situation may differ from the data shown.")
-            Text("Data source: Parking management system of the city of Moers")
+            Text("All data without liability. The current parking situation may differ from the data shown.", bundle: .module)
+            Text("Data source: Parking management system of the city of Moers", bundle: .module)
         }
         .font(.caption)
         .frame(maxWidth: .infinity)
@@ -171,7 +171,7 @@ public struct ParkingAreaList: View {
                 
                 Picker(
                     selection: $viewModel.filter,
-                    label: Text("Filter parking spaces")
+                    label: Text("Filter parking spaces", bundle: .module)
                 ) {
                     
                     ForEach(ParkingAreaFilterType.allCases, id: \.self) { filter in
@@ -181,9 +181,14 @@ public struct ParkingAreaList: View {
                 }
                 
             } label: {
-                Label("Filter",
-                      systemImage: "line.3.horizontal.decrease.circle")
+                
+                Label {
+                    Text("Filter", bundle: .module)
+                } icon: {
+                    Image(systemName: "line.3.horizontal.decrease.circle")
+                }
                 .foregroundColor(Color.yellow)
+                
             }
             
             Button(action: {

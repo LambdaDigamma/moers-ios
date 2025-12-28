@@ -158,7 +158,7 @@ public struct TripSearchScreen: View {
         viewModel.result.isEmpty() {
             
             ZStack {
-                Text(String(localized: "Start your search", bundle: .module))
+                Text("Start your search", bundle: .module)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             

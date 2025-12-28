@@ -105,7 +105,7 @@ public struct RubbishScheduleList: View {
                     
                     VStack(alignment: .leading, spacing: 4) {
                         
-                        Text("Selected street".uppercased())
+                        Text(String(localized: "Selected street", bundle: .module).uppercased())
                             .font(.footnote)
                             .fontWeight(.medium)
                             .foregroundColor(.accentColor)
@@ -124,7 +124,7 @@ public struct RubbishScheduleList: View {
 The waste calendar is provided by waste management company ENNI for the app.
 There is no guarantee that the data listed here is correct.
 If you have any problems, you should therefore rather contact ENNI itself.
-""")
+""", bundle: .module)
                         .font(.footnote)
                         .foregroundColor(.secondary)
                         .padding([.horizontal])
@@ -137,7 +137,7 @@ If you have any problems, you should therefore rather contact ENNI itself.
                     Button(action: {
                         showInfo = false
                     }) {
-                        Text("Close")
+                        Text("Close", bundle: .module)
                             .fontWeight(.semibold)
                     }
                 }

@@ -49,7 +49,7 @@ public struct TrackChangeView: View {
         VStack(alignment: .leading) {
             
             Group {
-                Text("\(Image(systemName: "shuffle")) Track change")
+                Text("\(Image(systemName: "shuffle")) Track change", bundle: .module)
             }
             .font(.body.weight(.semibold))
             .foregroundColor(.yellow)
@@ -68,7 +68,7 @@ public struct TrackChangeView: View {
             .frame(maxWidth: .infinity, alignment: .center)
             
             VStack(alignment: .center) {
-                Text("Current changeover time: \(data.formattedTime)")
+                Text("Current changeover time: \(data.formattedTime)", bundle: .module)
                     .foregroundColor(.secondary)
             }
             .frame(maxWidth: .infinity)
