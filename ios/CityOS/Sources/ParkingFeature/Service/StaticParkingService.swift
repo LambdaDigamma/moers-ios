@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 
 public class StaticParkingService: ParkingService {
     
@@ -83,23 +82,13 @@ public class StaticParkingService: ParkingService {
         
     }
     
-    public func loadParkingAreas() -> AnyPublisher<[ParkingArea], Error> {
-        
-        return Just(retrieveParkingAreas())
-            .setFailureType(to: Error.self)
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-        
+    public func loadParkingAreas() async throws -> [ParkingArea] {
+        return retrieveParkingAreas()
     }
     
-    public func loadDashboard() -> AnyPublisher<ParkingDashboardData, Error> {
-        
+    public func loadDashboard() async throws -> ParkingDashboardData {
         let parkingAreas = retrieveParkingAreas()
-        
-        return Just(ParkingDashboardData(parkingAreas: parkingAreas))
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-        
+        return ParkingDashboardData(parkingAreas: parkingAreas)
     }
     
 }

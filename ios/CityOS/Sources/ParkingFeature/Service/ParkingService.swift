@@ -6,12 +6,11 @@
 //
 
 import Foundation
-import Combine
 
 public protocol ParkingService {
     
-    func loadDashboard() -> AnyPublisher<ParkingDashboardData, Error>
+    func loadDashboard() async throws -> ParkingDashboardData
     
-    func loadParkingAreas() -> AnyPublisher<[ParkingArea], Error>
+    func loadParkingAreas() async throws -> [ParkingArea]
     
 }
