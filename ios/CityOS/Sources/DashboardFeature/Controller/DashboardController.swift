@@ -27,7 +27,7 @@ public class DashboardController: DefaultHostingController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = PackageStrings.Dashboard.title
+        self.title = String(localized: "Today", bundle: .module)
         
     }
     

@@ -63,7 +63,7 @@ public class EventHeaderFooterView: UITableViewHeaderFooterView {
         
         self.sectionLabel.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         
-        self.moreButton.setTitle(String.localized("ShowMore"), for: .normal)
+        self.moreButton.setTitle(String(localized: "Show more", bundle: .module), for: .normal)
         self.moreButton.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .bold)
         self.moreButton.addTarget(self, action: #selector(tapMoreButton), for: .touchUpInside)
         self.moreButton.titleLabel?.textAlignment = .right

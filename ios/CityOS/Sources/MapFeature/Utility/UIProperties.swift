@@ -78,7 +78,7 @@ public struct UIProperties {
             
         } else if let location = location as? PetrolStationViewModel {
             
-            let open = location.isOpen ? String.localized("LocalityOpen") : String.localized("LocalityClosed")
+            let open = location.isOpen ? String(localized: "open", bundle: .module) : String(localized: "closed", bundle: .module)
             
             if location.distance.value != 0 {
                 

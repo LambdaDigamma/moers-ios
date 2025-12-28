@@ -27,7 +27,7 @@ class TandCViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = String.localized("TandC")
+        self.title = String(localized: "Terms and Conditions")
         
         self.setupUI()
         self.setupConstraints()

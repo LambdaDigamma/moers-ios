@@ -47,7 +47,7 @@ public struct FuelStationList: View {
             }
             .padding()
             
-            Text(PackageStrings.dataSource)
+            Text("Datasource: MTS-K via https://creativecommons.tankerkoenig.de - CC BY 4.0", bundle: .module)
                 .font(.footnote)
                 .foregroundColor(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -88,7 +88,7 @@ public struct FuelStationList: View {
                     
                     VStack(alignment: .leading) {
                         
-                        Text("\(fuelStation.brand) · \(fuelStation.isOpen ? AppStrings.OpeningState.open : AppStrings.OpeningState.closed)")
+                        Text("\(fuelStation.brand) · \(fuelStation.isOpen ? "Open" : "Closed")", bundle: .module)
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.leading)
                         
@@ -129,8 +129,13 @@ public struct FuelStationList: View {
             Button {
                 startNavigation(to: fuelStation)
             } label: {
-                Label(PackageStrings.FuelStationList.contextNavigationAction,
-                      systemImage: "arrow.triangle.turn.up.right.circle")
+                
+                Label {
+                    Text("Get directions", bundle: .module)
+                } icon: {
+                    Image(systemName: "arrow.triangle.turn.up.right.circle")
+                }
+
             }
         }
         

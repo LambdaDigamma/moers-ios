@@ -16,14 +16,6 @@ public extension Collection {
     
 }
 
-internal extension String {
-    
-    static func localized(_ key: String) -> String {
-        return NSLocalizedString(key, bundle: Bundle.main, value: "", comment: "")
-    }
-    
-}
-
 extension NewsViewModel {
     
     public static let mocked: [NewsViewModel] = [

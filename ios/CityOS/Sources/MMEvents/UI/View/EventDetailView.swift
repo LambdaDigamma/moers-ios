@@ -134,7 +134,7 @@ open class EventDetailView: UIView, MKMapViewDelegate {
         self.setupSectionLocation()
         self.setupSectionInfo()
         
-        self.websiteButton.setTitle(String.localized("MoreInformation"), for: .normal)
+        self.websiteButton.setTitle(String(localized: "Learn more ➤", bundle: .module), for: .normal)
         self.websiteButton.titleLabel?.adjustsFontSizeToFitWidth = true
         self.websiteButton.titleLabel?.minimumScaleFactor = 0.5
         
@@ -208,7 +208,7 @@ open class EventDetailView: UIView, MKMapViewDelegate {
         /// Accessibility
         
         viewModel.subtitle.sink { (value: String?) in
-            self.subtitleLabel.accessibilityLabel = String.localized("EventDetailViewControllerSubtitleLabel")
+            self.subtitleLabel.accessibilityLabel = String(localized: "EventDetailViewControllerSubtitleLabel", bundle: .module)
             self.subtitleLabel.accessibilityValue = value
         }.store(in: &cancellables)
         
@@ -261,7 +261,7 @@ open class EventDetailView: UIView, MKMapViewDelegate {
                                                           left: eventDetailMargin,
                                                           bottom: 0,
                                                           right: eventDetailMargin)
-        self.noInformationLabel.text = String.localized("NoEventInformation")
+        self.noInformationLabel.text = String(localized: "No event information available", bundle: .module)
         self.noInformationLabel.textAlignment = .center
         self.layoutStack.addArrangedSubview(self.noInformationLabel)
         
@@ -383,7 +383,7 @@ open class EventDetailView: UIView, MKMapViewDelegate {
         self.ticketInfoTextView.font = UIFont.systemFont(ofSize: 14)
         self.ticketInfoTextView.isSelectable = false
         self.ticketInfoTextView.isScrollEnabled = false
-        self.ticketInfoTextView.text = String.localized("TicketMoerzzInfo")
+        self.ticketInfoTextView.text = String(localized: "Mörzz-Ticket information", bundle: .module)
         
         #if !os(tvOS)
         self.ticketInfoTextView.isEditable = false

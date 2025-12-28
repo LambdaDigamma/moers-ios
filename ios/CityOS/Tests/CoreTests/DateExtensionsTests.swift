@@ -51,7 +51,7 @@ final class DateExtensionsTests: XCTestCase {
         
         let dateString = date.beautify()
         
-        XCTAssert(dateString.contains("\(String.localized("Today"))"))
+        XCTAssert(dateString.contains("\(String(localized: "Today", bundle: .module))"))
         
     }
     
@@ -61,7 +61,7 @@ final class DateExtensionsTests: XCTestCase {
         
         let dateString = date.beautify()
         
-        XCTAssert(dateString.contains("\(String.localized("Tomorrow"))"))
+        XCTAssert(dateString.contains("\(String(localized: "Tomorrow", bundle: .module))"))
         
     }
     

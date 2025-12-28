@@ -10,63 +10,67 @@ import Foundation
 internal enum PackageStrings {
     
     internal enum Waste {
-        internal static let dashboardTitle = String.localized("Waste.dashboardTitle")
-        internal static let noUpcomingRubbishItems = String.localized("Waste.noUpcomingRubbishItems")
-        internal static let loadingDashboard = String.localized("Waste.loadingDashboard")
+        internal static let dashboardTitle = String(localized: "Next collection dates", bundle: .module)
+        internal static let noUpcomingRubbishItems = String(localized: "No further dates could be found in the waste calendar.", bundle: .module)
+        internal static let loadingDashboard = String(localized: "Loading waste schedule…", bundle: .module)
     }
     
     internal enum WasteType {
-        internal static let residual = String.localized("WasteType.residual")
-        internal static let organic = String.localized("WasteType.organic")
-        internal static let paper = String.localized("WasteType.paper")
-        internal static let yellow = String.localized("WasteType.yellow")
-        internal static let green = String.localized("WasteType.green")
+        internal static let residual = String(localized: "Residual Waste", bundle: .module)
+        internal static let organic = String(localized: "Organic Waste", bundle: .module)
+        internal static let paper = String(localized: "Paper Waste", bundle: .module)
+        internal static let yellow = String(localized: "Yellow Bag", bundle: .module)
+        internal static let green = String(localized: "Green Cuttings", bundle: .module)
     }
     
     internal enum WasteShort {
-        internal static let residual = String.localized("WasteTypeShort.residual")
-        internal static let organic = String.localized("WasteTypeShort.organic")
-        internal static let paper = String.localized("WasteTypeShort.paper")
-        internal static let yellow = String.localized("WasteTypeShort.yellow")
-        internal static let green = String.localized("WasteTypeShort.green")
+        internal static let residual = String(localized: "Residual", bundle: .module)
+        internal static let organic = String(localized: "Organic", bundle: .module)
+        internal static let paper = String(localized: "Paper", bundle: .module)
+        internal static let yellow = String(localized: "Yellow", bundle: .module)
+        internal static let green = String(localized: "Cuttings", bundle: .module)
     }
     
     internal enum WasteSchedule {
-        internal static let title = String.localized("WasteSchedule.title")
+        internal static let title = String(localized: "Waste schedule", bundle: .module)
         internal enum Info {
-            internal static let close = String.localized("WasteSchedule.Info.close")
-            internal static let selectedStreet = String.localized("WasteSchedule.Info.selectedStreet")
-            internal static let disclaimer = String.localized("WasteSchedule.Info.disclaimer")
+            internal static let close = String(localized: "Close", bundle: .module)
+            internal static let selectedStreet = String(localized: "Selected street", bundle: .module)
+            internal static let disclaimer = String(localized: """
+The waste calendar is provided by waste management company ENNI for the app.
+There is no guarantee that the data listed here is correct.
+If you have any problems, you should therefore rather contact ENNI itself.
+""", bundle: .module)
         }
     }
     
     internal enum RubbishDashboardError {
         
         internal enum Deactivated {
-            internal static let title = String.localized("RubbishDashboardError.Deactivated.title")
-            internal static let text = String.localized("RubbishDashboardError.Deactivated.text")
+            internal static let title = String(localized: "Waste schedule disabled", bundle: .module)
+            internal static let text = String(localized: "You can enable the waste schedule in the settings.", bundle: .module)
         }
         
         internal enum NotConfigured {
-            internal static let title = String.localized("RubbishDashboardError.NotConfigured.title")
-            internal static let text = String.localized("RubbishDashboardError.NotConfigured.text")
+            internal static let title = String(localized: "No street selected", bundle: .module)
+            internal static let text = String(localized: "You have not selected a street for which you want to see the waste schedule. Select a street in the settings first.", bundle: .module)
         }
         
         internal enum NoYearData {
-            internal static let title = String.localized("RubbishDashboardError.NoYearData.title")
-            internal static let text = String.localized("RubbishDashboardError.NoYearData.text")
+            internal static let title = String(localized: "Attention", bundle: .module)
+            internal static let text = String(localized: "No other pickup dates could be found in the waste schedule.", bundle: .module)
         }
         
         internal enum InternalError {
-            internal static let title = String.localized("RubbishDashboardError.InternalError.title")
+            internal static let title = String(localized: "Internal error", bundle: .module)
         }
         
     }
     
     internal enum Notification {
         
-        internal static let title = String.localized("RubbishCollectionNotification.title")
-        internal static let body = String.localized("RubbishCollectionNotification.body")
+        internal static let title = String(localized: "Pick-up Schedule", bundle: .module)
+        internal static let body = String(localized: "Tomorrow will be collected: ", bundle: .module)
         
     }
     

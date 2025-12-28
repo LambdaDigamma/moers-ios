@@ -51,7 +51,7 @@ public struct ParkingTimerConfigurationPartial: View {
         
         VStack {
             
-            sectionHeader(text: PackageStrings.ParkingTimerConfigurationPartial.sectionOverview)
+            sectionHeader(text: "Overview")
             
             HStack {
                 
@@ -145,16 +145,16 @@ public struct ParkingTimerConfigurationPartial: View {
     @ViewBuilder
     private func options() -> some View {
         
-        sectionHeader(text: PackageStrings.ParkingTimerConfigurationPartial.sectionOptions)
+        sectionHeader(text: "Settings")
         
         VStack(spacing: 8) {
             
             Toggle(isOn: $viewModel.enableNotifications) {
-                Text(PackageStrings.ParkingTimerConfigurationPartial.enableNotifications)
+                Text("Enable notifications", bundle: .module)
             }
             
             Toggle(isOn: $viewModel.saveParkingLocation) {
-                Text(PackageStrings.ParkingTimerConfigurationPartial.saveCarPosition)
+                Text("Save parking location", bundle: .module)
             }
             
         }
@@ -165,9 +165,9 @@ public struct ParkingTimerConfigurationPartial: View {
     }
     
     @ViewBuilder
-    private func sectionHeader(text: String) -> some View {
+    private func sectionHeader(text: LocalizedStringKey) -> some View {
         
-        Text(text)
+        Text(text, bundle: .module)
             .fontWeight(.semibold)
             .frame(maxWidth: .infinity, alignment: .leading)
         
@@ -181,7 +181,7 @@ public struct ParkingTimerConfigurationPartial: View {
             buildStepperButton()
             
             Button(action: viewModel.startTimer) {
-                Text(PackageStrings.ParkingTimerConfigurationPartial.startTimer)
+                Text("Start timer", bundle: .module)
             }
             .frame(maxHeight: 24)
             .buttonStyle(PrimaryButtonStyle())

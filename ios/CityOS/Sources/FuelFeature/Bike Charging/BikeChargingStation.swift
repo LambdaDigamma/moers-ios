@@ -59,7 +59,7 @@ public class BikeChargingStation: NSObject, Location {
     // MARK: - Categorizable
     
     public var category: String { return "Bike Charging Station" }
-    public var localizedCategory: String { return String.localized("BikeChargingStation") }
+    public var localizedCategory: String { return String(localized: "Bike Charging Station", bundle: .module) }
     
     public struct OpeningHours: Equatable {
         

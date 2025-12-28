@@ -19,7 +19,7 @@ public class LicencesViewController: DefaultHostingController {
     public override init() {
         self.viewModel = .init(loader: SettingsBundleLicenseLoader())
         super.init()
-        self.title = String.localized("Licences")
+        self.title = String(localized: "Licences")
     }
     
     required init?(coder: NSCoder) {

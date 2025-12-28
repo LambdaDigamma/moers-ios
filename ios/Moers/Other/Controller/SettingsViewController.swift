@@ -60,7 +60,8 @@ class SettingsViewController: UIViewController {
     }
     
     private func setupUI() {
-        title = String.localized("SettingsTitle")
+
+        title = String(localized: "Settings")
         view.addSubview(collectionView)
         collectionView.delegate = self
         
@@ -255,34 +256,72 @@ class SettingsViewController: UIViewController {
                 minuteString += "\(minute)"
             }
             
-            rubbishReminder = String.localized("ReminderText") + ": \(hourString):\(minuteString)"
+            rubbishReminder = String(localized: "Reminder") + ": \(hourString):\(minuteString)"
             
         } else {
-            rubbishReminder = String.localized("ReminderText") + ": " + String.localized("NotActivated")
+            rubbishReminder = String(localized: "Reminder") + ": " + String(localized: "not activated")
         }
         
         let userType = UserManager.shared.user.type
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         
+        // User section
         snapshot.appendSections([.user])
-        snapshot.appendItems([.navigation(NavigationItem(title: String.localized("UserType") + ": " + userType.name, action: showUserType))], toSection: .user)
-        
+        snapshot.appendItems(
+            [
+                .navigation(
+                    NavigationItem(
+                        title: String(localized: "Type") + ": " + userType.name,
+                        action: showUserType
+                    )
+                )
+            ],
+            toSection: .user
+        )
+
+        // Petrol section
         snapshot.appendSections([.petrol])
-        snapshot.appendItems([.navigation(NavigationItem(title: String.localized("PetrolType") + ": " + petrolService.petrolType.name, action: showPetrolType))], toSection: .petrol)
-        
+        snapshot.appendItems(
+            [
+                .navigation(
+                    NavigationItem(
+                        title: String(localized: "Type") + ": " + petrolService.petrolType.name,
+                        action: showPetrolType
+                    )
+                )
+            ],
+            toSection: .petrol
+        )
+
+        // Rubbish section (citizens only)
         if UserManager.shared.user.type == .citizen {
-            
+
             snapshot.appendSections([.rubbish])
-            
-            var items: [Item] = [
-                .switch(SwitchItem(title: String.localized("Activated"), isOn: rubbishService.isEnabled, action: triggerRubbishCollection)),
-                .navigation(NavigationItem(title: String.localized("Street") + ": \(rubbishService.rubbishStreet?.displayName ?? "nicht ausgewählt")", action: showRubbishStreet)),
-                .navigation(NavigationItem(title: rubbishReminder, action: showRubbishReminder))
+
+            let items: [Item] = [
+                .switch(
+                    SwitchItem(
+                        title: String(localized: "Activated"),
+                        isOn: rubbishService.isEnabled,
+                        action: triggerRubbishCollection
+                    )
+                ),
+                .navigation(
+                    NavigationItem(
+                        title: String(localized: "Street") + ": \(rubbishService.rubbishStreet?.displayName ?? String(localized: "NotSelected"))",
+                        action: showRubbishStreet
+                    )
+                ),
+                .navigation(
+                    NavigationItem(
+                        title: rubbishReminder,
+                        action: showRubbishReminder
+                    )
+                )
             ]
-            
+
             snapshot.appendItems(items, toSection: .rubbish)
-            
         }
         
         dataSource?.apply(snapshot, animatingDifferences: true)

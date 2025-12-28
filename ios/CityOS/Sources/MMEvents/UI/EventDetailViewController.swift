@@ -45,8 +45,8 @@ open class EventDetailViewController: UIViewController {
     // MARK: - Private Methods
     
     private func setupUI() {
-        
-//        self.title = String.localized("Details")
+         
+//        self.title = String(localized: "Details", bundle: .module)
         
         
 #if !os(tvOS)

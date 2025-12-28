@@ -54,8 +54,8 @@ class DetailPetrolStationViewController: UIViewController {
     
     private func setupUI() {
         
-        self.priceHeaderLabel.text = String.localized("PriceHeader")
-        self.addressHeaderLabel.text = String.localized("AddressHeader")
+        self.priceHeaderLabel.text = String(localized: "Price", bundle: .module)
+        self.addressHeaderLabel.text = String(localized: "Address", bundle: .module)
         
         self.topSeparator.alpha = 0.5
         self.addressSeparator.alpha = 0.5

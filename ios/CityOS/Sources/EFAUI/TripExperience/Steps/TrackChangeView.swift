@@ -49,8 +49,7 @@ public struct TrackChangeView: View {
         VStack(alignment: .leading) {
             
             Group {
-                Text("\(Image(systemName: "shuffle")) ")
-                + Text(EFAAPI.PackageStrings.TrackChangeView.trackChangeTitle)
+                Text("\(Image(systemName: "shuffle")) Track change", bundle: .module)
             }
             .font(.body.weight(.semibold))
             .foregroundColor(.yellow)
@@ -69,7 +68,7 @@ public struct TrackChangeView: View {
             .frame(maxWidth: .infinity, alignment: .center)
             
             VStack(alignment: .center) {
-                Text(EFAAPI.PackageStrings.TrackChangeView.trackChangeTime(duration: data.formattedTime))
+                Text("Current changeover time: \(data.formattedTime)", bundle: .module)
                     .foregroundColor(.secondary)
             }
             .frame(maxWidth: .infinity)

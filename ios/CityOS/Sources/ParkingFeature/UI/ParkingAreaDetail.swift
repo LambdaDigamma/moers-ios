@@ -85,12 +85,12 @@ public struct ParkingAreaDetail: View {
                     
                     HStack(alignment: .firstTextBaseline) {
                         
-                        Text("\(free)")
+                        Text("\(free)", bundle: .module)
                             .font(.title2.weight(.bold))
                         
                         +
                         
-                        Text(PackageStrings.ParkingAreaDetail.free(number: total))
+                        Text(" / \(total) free", bundle: .module)
                             .font(.headline)
                             .foregroundColor(.secondary)
                         

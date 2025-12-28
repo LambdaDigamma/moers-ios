@@ -39,8 +39,7 @@ public struct FootpathChangeView: View {
         VStack(alignment: .leading, spacing: 20) {
             
             Group {
-                Text("\(Image(systemName: "figure.walk"))  ")
-                + Text(EFAAPI.PackageStrings.FootpathChangeView.footpathChangeTitle)
+                Text("\(Image(systemName: "figure.walk"))  Footpath", bundle: .module)
             }
             .font(.body.weight(.semibold))
             .foregroundColor(.yellow)

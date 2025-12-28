@@ -32,7 +32,7 @@ public class TripExperienceViewController: UIHostingController<ActiveTripScreen>
     
     private func setupUI() {
         
-        self.title = "Details"
+        self.title = String(localized: "Details", bundle: .module)
         self.view.backgroundColor = .systemBackground
         
         NotificationCenter.default

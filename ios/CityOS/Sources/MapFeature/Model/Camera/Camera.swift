@@ -71,7 +71,7 @@ public final class Camera: NSObject, Location, Codable, Identifiable {
     // MARK: - Categorizable
     
     public var category: String { return "Camera" }
-    public var localizedCategory: String { return String.localized("Camera") }
+    public var localizedCategory: String { return String(localized: "360° Camera", bundle: .module) }
     
     // MARK: - Fuse
     

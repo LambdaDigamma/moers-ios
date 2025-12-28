@@ -91,9 +91,9 @@ class EntryOnboardingOverviewViewController: UIViewController {
     private func setupUI() {
         
         if overviewType == .summary {
-            self.title = String.localized("EntryOnboardingOverviewSummaryTitle")
+            self.title = String(localized: "Summary", bundle: .module)
         } else {
-            self.title = String.localized("EntryOnboardingOverviewEditTitle")
+            self.title = String(localized: "Edit", bundle: .module)
         }
         
         self.view.addSubview(scrollView)
@@ -150,35 +150,35 @@ class EntryOnboardingOverviewViewController: UIViewController {
             otherOHTextField
         ].forEach { $0.textFieldDelegate = self }
         
-        self.generalHeaderLabel.text = String.localized("EntryOnboardingOverviewGeneralHeader").uppercased()
-        self.nameTextField.placeholder = String.localized("EntryOnboardingOverviewName")
-        self.tagsHeaderLabel.text = String.localized("EntryOnboardingOverviewTagsHeader").uppercased()
-        self.addressHeaderLabel.text = String.localized("EntryOnboardingOverviewAddressHeader").uppercased()
-        self.streetTextField.placeholder = String.localized("EntryOnboardingOverviewStreet")
-        self.houseNrTextField.placeholder = String.localized("EntryOnboardingOverviewHouseNr")
-        self.postcodeTextField.placeholder = String.localized("EntryOnboardingOverviewPostcode")
-        self.placeTextField.placeholder = String.localized("EntryOnboardingOverviewPlace")
-        self.contactHeaderLabel.text = String.localized("EntryOnboardingOverviewContact").uppercased()
-        self.websiteTextField.placeholder = String.localized("EntryOnboardingOverviewWebsite")
-        self.phoneTextField.placeholder = String.localized("EntryOnboardingOverviewPhone")
-        self.openingHoursHeaderLabel.text = String.localized("EntryOnboardingOverviewOpeningHoursHeader").uppercased()
-        self.mondayOHTextField.placeholder = String.localized("EntryOnboardingOverviewOpeningHoursMonday")
-        self.tuesdayOHTextField.placeholder = String.localized("EntryOnboardingOverviewOpeningHoursTuesday")
-        self.wednesdayOHTextField.placeholder = String.localized("EntryOnboardingOverviewOpeningHoursWednesday")
-        self.thursdayOHTextField.placeholder = String.localized("EntryOnboardingOverviewOpeningHoursThursday")
-        self.fridayOHTextField.placeholder = String.localized("EntryOnboardingOverviewOpeningHoursFriday")
-        self.saturdayOHTextField.placeholder = String.localized("EntryOnboardingOverviewOpeningHoursSaturday")
-        self.sundayOHTextField.placeholder = String.localized("EntryOnboardingOverviewOpeningHoursSunday")
-        self.otherOHTextField.placeholder = String.localized("EntryOnboardingOverviewOpeningHoursOther")
+        self.generalHeaderLabel.text = String(localized: "General information", bundle: .module).uppercased()
+        self.nameTextField.placeholder = String(localized: "Name", bundle: .module)
+        self.tagsHeaderLabel.text = String(localized: "Tags", bundle: .module).uppercased()
+        self.addressHeaderLabel.text = String(localized: "Addresse", bundle: .module).uppercased()
+        self.streetTextField.placeholder = String(localized: "Street", bundle: .module)
+        self.houseNrTextField.placeholder = String(localized: "Number", bundle: .module)
+        self.postcodeTextField.placeholder = String(localized: "Postcode", bundle: .module)
+        self.placeTextField.placeholder = String(localized: "Place", bundle: .module)
+        self.contactHeaderLabel.text = String(localized: "Contact information", bundle: .module).uppercased()
+        self.websiteTextField.placeholder = String(localized: "Website (with https://)", bundle: .module)
+        self.phoneTextField.placeholder = String(localized: "Phone", bundle: .module)
+        self.openingHoursHeaderLabel.text = String(localized: "Opening Hours", bundle: .module).uppercased()
+        self.mondayOHTextField.placeholder = String(localized: "Monday", bundle: .module)
+        self.tuesdayOHTextField.placeholder = String(localized: "Tuesday", bundle: .module)
+        self.wednesdayOHTextField.placeholder = String(localized: "Wednesday", bundle: .module)
+        self.thursdayOHTextField.placeholder = String(localized: "Thursday", bundle: .module)
+        self.fridayOHTextField.placeholder = String(localized: "Friday", bundle: .module)
+        self.saturdayOHTextField.placeholder = String(localized: "Saturday", bundle: .module)
+        self.sundayOHTextField.placeholder = String(localized: "Sunday", bundle: .module)
+        self.otherOHTextField.placeholder = String(localized: "Other", bundle: .module)
         
         self.websiteTextField.textField.autocapitalizationType = .none
         
         if overviewType == EntryOverviewType.summary {
-            self.saveButton.setTitle(String.localized("EntryOnboardingOverviewActionStore"), for: .normal)
-            self.noticeView.notice = String.localized("EntryOnboardingOverviewStoreNotice")
+            self.saveButton.setTitle(String(localized: "Add", bundle: .module), for: .normal)
+            self.noticeView.notice = String(localized: "Check your input. You can go back without losing any data to correct your inputs.", bundle: .module)
         } else {
-            self.saveButton.setTitle(String.localized("EntryOnboardingOverviewActionUpdate"), for: .normal)
-            self.noticeView.notice = String.localized("EntryOnboardingOverviewUpdateNotice")
+            self.saveButton.setTitle(String(localized: "Update", bundle: .module), for: .normal)
+            self.noticeView.notice = String(localized: "You can only edit name, tags, contact data and opening hours.", bundle: .module)
         }
         
         self.tagsListView.enableRemoveButton = false
@@ -428,7 +428,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
         
         self.searchController.delegate = self
         self.searchController.dataSource = self
-        self.searchController.searchBarPlaceHolder = String.localized("EntryOnboardingOverviewSearchBarAddTag")
+        self.searchController.searchBarPlaceHolder = String(localized: "Add tag", bundle: .module)
         
         let item = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(close))
         self.searchController.navigationItem.rightBarButtonItem = item
@@ -469,7 +469,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
             self.tagsListView.delegate = self
             self.tagsListView.enableRemoveButton = true
             
-            let addTagView = tagsListView.addTag(String.localized("EntryOnboardingOverviewAddTag"))
+            let addTagView = tagsListView.addTag(String(localized: "Add tag", bundle: .module))
 
             addTagView.tagBackgroundColor = UIColor.gray
             addTagView.textColor = UIColor.white
@@ -635,17 +635,17 @@ class EntryOnboardingOverviewViewController: UIViewController {
     @objc private func alertConfirm() {
         
         let message = overviewType == .summary ?
-            String.localized("EntryOnboardingOverviewAlertConfirmStoreMessage") :
-            String.localized("EntryOnboardingOverviewAlertConfirmUpdateMessage")
+            String(localized: "Do you want to add this entry? Make sure that you have entered the correct information. Only in this way others can profit from it!", bundle: .module) :
+            String(localized: "Do you want to update this entry? Make sure that you have entered the correct information. Only in this way others can profit from it!", bundle: .module)
         
         let alert = UIAlertController(
-            title: String.localized("EntryOnboardingOverviewAlertConfirmTitle"),
+            title: String(localized: "Are you sure?", bundle: .module),
             message: message,
             preferredStyle: .alert
         )
         
         let action = UIAlertAction(
-            title: String.localized("EntryOnboardingOverviewAlertConfirmCancel"),
+            title: String(localized: "Cancel", bundle: .module),
             style: .cancel,
             handler: nil
         )
@@ -653,7 +653,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
         alert.addAction(action)
         
         let saveAction = UIAlertAction(
-            title: String.localized("EntryOnboardingOverviewAlertConfirmYes"),
+            title: String(localized: "Yes", bundle: .module),
             style: .default
         ) { _ in
             self.save()
@@ -669,16 +669,16 @@ class EntryOnboardingOverviewViewController: UIViewController {
     private func alertSuccess() {
         
         let title = overviewType == .summary ?
-            String.localized("EntryOnboardingOverviewAlertSuccessTitleAdded") :
-            String.localized("EntryOnboardingOverviewAlertSuccessTitleUpdated")
+            String(localized: "Entry added!", bundle: .module) :
+            String(localized: "Entry updated!", bundle: .module)
         
         let alert = UIAlertController(title: title,
-                                      message: String.localized("EntryOnboardingOverviewAlertSuccessMessage"),
+                                      message: String(localized: "Thank you very much for your contribution! Your entry can now be found on the map!", bundle: .module),
                                       preferredStyle: .alert)
         
         alert.addAction(
             UIAlertAction(
-                title: String.localized("EntryOnboardingOverviewAlertSuccessOkay"),
+                title: String(localized: "Okay", bundle: .module),
                 style: .default, handler: { _ in
                     
                     if self.overviewType == .summary {
@@ -708,8 +708,8 @@ class EntryOnboardingOverviewViewController: UIViewController {
         DispatchQueue.main.async {
             
             let alert = UIAlertController(
-                title: String.localized("EntryOnboardingOverviewAlertUnknownErrorTitle"),
-                message: String.localized("EntryOnboardingOverviewAlertUnknownErrorMessage"),
+                title: String(localized: "An error has occurred.", bundle: .module),
+                message: String(localized: "An unknown error has occurred.", bundle: .module),
                 preferredStyle: .alert
             )
             
@@ -717,7 +717,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
             
             alert.addAction(
                 UIAlertAction(
-                    title: String.localized("EntryOnboardingOverviewAlertUnknownErrorOkay"),
+                    title: String(localized: "Okay", bundle: .module),
                     style: .default,
                     handler: { _ in
                         
@@ -734,8 +734,8 @@ class EntryOnboardingOverviewViewController: UIViewController {
     private func alertNotAuthorized() {
         
         let alert = UIAlertController(
-            title: String.localized("EntryOnboardingOverviewAlertNotAllowedTitle"),
-            message: String.localized("EntryOnboardingOverviewAlertNotAllowedMessage"),
+            title: String(localized: "Not allowed!", bundle: .module),
+            message: String(localized: "Adding and updating of entries has been forbidden in the meantime until further notice due to abuse.", bundle: .module),
             preferredStyle: .alert
         )
         
@@ -743,7 +743,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
         
         alert.addAction(
             UIAlertAction(
-                title: String.localized("EntryOnboardingOverviewAlertNotAllowedErrorOkay"),
+                title: String(localized: "Okay", bundle: .module),
                 style: .default,
                 handler: { _ in
                     
@@ -764,8 +764,8 @@ class EntryOnboardingOverviewViewController: UIViewController {
         DispatchQueue.main.async {
             
             let alert = UIAlertController(
-                title: String.localized("EntryOnboardingOverviewAlertFormErrorTitle"),
-                message: String.localized("EntryOnboardingOverviewAlertFormErrorMessage"),
+                title: String(localized: "Inputs incorrect", bundle: .module),
+                message: String(localized: "Unfortunately not all entries correspond to the required format. Check them.", bundle: .module),
                 preferredStyle: .alert
             )
             
@@ -773,7 +773,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
             
             alert.addAction(
                 UIAlertAction(
-                    title: String.localized("EntryOnboardingOverviewAlertFormErrorOkay"),
+                    title: String(localized: "Okay", bundle: .module),
                     style: .default,
                     handler: { _ in
                         
@@ -959,7 +959,7 @@ extension EntryOnboardingOverviewViewController: LFSearchViewDataSource, LFSearc
             
             if let tag = self.searchController.searchBar?.textField?.text, tag.isNotEmptyOrWhitespace, !allLoadedTags.contains(tag) {
                 
-                cell.textLabel?.text = String(format: String.localized("EntryOnboardingOverviewAddTagCell"), tag)
+                cell.textLabel?.text = String(format: String(localized: "Add Tag "%1$@"", bundle: .module), tag)
                 
             }
             

@@ -40,9 +40,9 @@ public extension Date {
         var beautifiedDate = self.format(format: format)
         
         if isToday {
-            beautifiedDate = "\(String.localized("Today")), \(beautifiedDate)"
+            beautifiedDate = "\(String(localized: "Today", bundle: .module)), \(beautifiedDate)"
         } else if isTomorrow {
-            beautifiedDate = "\(String.localized("Tomorrow")), \(beautifiedDate)"
+            beautifiedDate = "\(String(localized: "Tomorrow", bundle: .module)), \(beautifiedDate)"
         }
         
         return beautifiedDate

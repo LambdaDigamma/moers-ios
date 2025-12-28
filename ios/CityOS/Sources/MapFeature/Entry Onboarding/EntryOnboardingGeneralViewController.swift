@@ -63,7 +63,7 @@ class EntryOnboardingGeneralViewController: UIViewController {
     
     private func setupUI() {
         
-        self.title = String.localized("EntryOnboardingGeneralViewControllerTitle")
+        self.title = String(localized: "Add entry", bundle: .module)
         
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(contentView)
@@ -74,14 +74,14 @@ class EntryOnboardingGeneralViewController: UIViewController {
         self.contentView.addSubview(websiteTextField)
         self.contentView.addSubview(phoneTextField)
         
-        self.progressView.currentStep = String.localized("EntryOnboardingGeneralViewControllerCurrentStep")
+        self.progressView.currentStep = String(localized: "3. General & Contact", bundle: .module)
         self.progressView.progress = 0.2
         
-        self.generalHeaderLabel.text = String.localized("EntryOnboardingGeneralViewControllerGeneral").uppercased()
-        self.contactHeaderLabel.text = String.localized("EntryOnboardingGeneralViewControllerContact").uppercased()
-        self.nameTextField.placeholder = String.localized("EntryOnboardingGeneralViewControllerName")
-        self.websiteTextField.placeholder = String.localized("EntryOnboardingGeneralViewControllerWebsite")
-        self.phoneTextField.placeholder = String.localized("EntryOnboardingGeneralViewControllerPhone")
+        self.generalHeaderLabel.text = String(localized: "General", bundle: .module).uppercased()
+        self.contactHeaderLabel.text = String(localized: "Contact (optional)", bundle: .module).uppercased()
+        self.nameTextField.placeholder = String(localized: "Name", bundle: .module)
+        self.websiteTextField.placeholder = String(localized: "Website", bundle: .module)
+        self.phoneTextField.placeholder = String(localized: "Phone", bundle: .module)
         self.nameTextField.delegate = self
         self.websiteTextField.delegate = self
         self.phoneTextField.delegate = self
@@ -179,7 +179,7 @@ class EntryOnboardingGeneralViewController: UIViewController {
         
         if nameTextField.text != "" {
             
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: String.localized("EntryOnboardingGeneralViewControllerNext"),
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Next", bundle: .module),
                                                                      style: .plain,
                                                                      target: self,
                                                                      action: #selector(self.continueOnboarding))

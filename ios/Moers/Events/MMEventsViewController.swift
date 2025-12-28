@@ -22,8 +22,8 @@ class MMEventsViewController: EventsViewController {
         super.viewDidLoad()
         
         self.numberOfDisplayedUpcomingEvents = 15
-        self.sectionUpcomingTitle = String.localized("Upcoming").uppercased()
-        self.sectionActiveTitle = String.localized("ActiveEventsHeadline").uppercased()
+        self.sectionUpcomingTitle = String(localized: "Upcoming").uppercased()
+        self.sectionActiveTitle = String(localized: "Today").uppercased()
         
     }
     

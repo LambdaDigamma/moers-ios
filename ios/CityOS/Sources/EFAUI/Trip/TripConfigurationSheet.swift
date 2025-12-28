@@ -23,7 +23,7 @@ public struct TripConfigurationSheet: View {
         NavigationView {
             
             Form {
-                Section(header: Text("Zeitpunkt")) {
+                Section(header: Text(String(localized: "Time", bundle: .module))) {
                     
                     VStack {
                         
@@ -33,24 +33,24 @@ public struct TripConfigurationSheet: View {
                                     .tag(mode)
                             }
                         } label: {
-                            Text("fjsdf")
+                            Text("")
                         }
                         .foregroundColor(.white)
                         .pickerStyle(.segmented)
                         
-                        DatePicker("Abfahrtszeit", selection: $searchDate)
+                        DatePicker("Date of Departure", selection: $searchDate)
                             .labelsHidden()
                         
                     }
                 }
                 
-                Section(header: Text("Verkehrsmittel")) {
+                Section(header: Text("Mode of Transport", bundle: .module)) {
                     ForEach(TransportType.allCases) { type in
                         Text(type.localizedName)
                     }
                 }
                 
-                Section(header: Text("Routentyp")) {
+                Section(header: Text("Route type", bundle: .module)) {
                     Picker(selection: $routeType) {
                         ForEach(RouteType.allCases, id: \.self) { mode in
                             Text(mode.localizedName)
@@ -58,13 +58,13 @@ public struct TripConfigurationSheet: View {
                                 .frame(maxWidth: .infinity)
                         }
                     } label: {
-                        Text("Routentyp")
+                        Text("Route type", bundle: .module)
                     }
                     .foregroundColor(.white)
                     .pickerStyle(.menu)
                 }
                 
-                Section(header: Text("Umsteigezeit")) {
+                Section(header: Text("Transfer time", bundle: .module)) {
                     Picker(selection: $changeSpeed) {
                         ForEach(ChangeSpeed.allCases, id: \.self) { mode in
                             Text(mode.localizedName)
@@ -72,7 +72,7 @@ public struct TripConfigurationSheet: View {
                                 .frame(maxWidth: .infinity)
                         }
                     } label: {
-                        Text("Umsteigezeit")
+                        Text("Transfer time", bundle: .module)
                     }
                     .foregroundColor(.white)
                     .pickerStyle(.menu)
@@ -117,7 +117,7 @@ public struct TripConfigurationSheet: View {
                 
 //            }
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("Suchoptionen ändern")
+            .navigationTitle(Text("Change search options", bundle: .module))
             
         }
         

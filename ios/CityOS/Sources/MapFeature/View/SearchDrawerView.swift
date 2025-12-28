@@ -76,7 +76,7 @@ public class SearchDrawerView: UIView {
         self.searchBar.searchBarStyle = .minimal
         self.searchBar.accessibilityIdentifier = "SearchBar"
         self.searchBar.backgroundColor = UIColor.clear
-        self.searchBar.placeholder = String.localized("SearchBarPrompt")
+        self.searchBar.placeholder = String(localized: "Where do you want to go?", bundle: .module)
     }
     
     private func setupTagList() {

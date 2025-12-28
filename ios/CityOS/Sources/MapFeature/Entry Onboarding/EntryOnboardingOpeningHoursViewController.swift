@@ -71,7 +71,7 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
     
     private func setupUI() {
         
-        self.title = String.localized("EntryOnboardingOpeningHoursViewControllerTitle")
+        self.title = String(localized: "Add entry", bundle: .module)
         
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(contentView)
@@ -80,17 +80,20 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
         self.contentView.addSubview(openingHoursStackView)
         self.contentView.addSubview(openingHoursInfoLabel)
         
-        self.openingHoursHeaderLabel.text = String.localized("EntryOnboardingOpeningHoursViewControllerOpeningHours")
-        self.mondayOHTextField.placeholder = String.localized("EntryOnboardingOpeningHoursViewControllerMonday")
-        self.tuesdayOHTextField.placeholder = String.localized("EntryOnboardingOpeningHoursViewControllerTuesday")
-        self.wednesdayOHTextField.placeholder = String.localized("EntryOnboardingOpeningHoursViewControllerWednesday")
-        self.thursdayOHTextField.placeholder = String.localized("EntryOnboardingOpeningHoursViewControllerThursday")
-        self.fridayOHTextField.placeholder = String.localized("EntryOnboardingOpeningHoursViewControllerFriday")
-        self.saturdayOHTextField.placeholder = String.localized("EntryOnboardingOpeningHoursViewControllerSaturday")
-        self.sundayOHTextField.placeholder = String.localized("EntryOnboardingOpeningHoursViewControllerSunuday")
-        self.otherOHTextField.placeholder = String.localized("EntryOnboardingOpeningHoursViewControllerOther")
+        self.openingHoursHeaderLabel.text = String(localized: "Opening hours (optional)", bundle: .module)
+        self.mondayOHTextField.placeholder = String(localized: "Monday", bundle: .module)
+        self.tuesdayOHTextField.placeholder = String(localized: "Tuesday", bundle: .module)
+        self.wednesdayOHTextField.placeholder = String(localized: "Wednesday", bundle: .module)
+        self.thursdayOHTextField.placeholder = String(localized: "Thursday", bundle: .module)
+        self.fridayOHTextField.placeholder = String(localized: "Friday", bundle: .module)
+        self.saturdayOHTextField.placeholder = String(localized: "Saturday", bundle: .module)
+        self.sundayOHTextField.placeholder = String(localized: "Sunday", bundle: .module)
+        self.otherOHTextField.placeholder = String(localized: "Other", bundle: .module)
         
-        self.openingHoursInfoLabel.text = String.localized("EntryOnboardingOpeningHoursViewControllerInfo")
+        self.openingHoursInfoLabel.text = String(localized: "Please use the following format:
+Simple times: "10:30 - 20:00"
+Complex times with break: "09:30 - 12:30, 14:00 - 19:00"
+Freeform text: "Geschlossen", "Ruhetag", etc.", bundle: .module)
         
         self.mondayOHTextField.delegate = self
         self.tuesdayOHTextField.delegate = self
@@ -105,10 +108,10 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
         self.openingHoursInfoLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.regular)
         self.openingHoursInfoLabel.numberOfLines = 0
         
-        self.progressView.currentStep = String.localized("EntryOnboardingOpeningHoursViewControllerCurrentStep")
+        self.progressView.currentStep = String(localized: "5. Enter opening hours", bundle: .module)
         self.progressView.progress = 0.6
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: String.localized("EntryOnboardingOpeningHoursViewControllerNext"),
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Next", bundle: .module),
                                                                  style: .plain,
                                                                  target: self,
                                                                  action: #selector(continueOnboarding))

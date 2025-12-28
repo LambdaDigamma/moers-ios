@@ -65,8 +65,8 @@ public class OnboardingManager {
         page.image = #imageLiteral(resourceName: "MoersAppIcon")
         page.imageAccessibilityLabel = "Mein Moers Logo"
         page.appearance = appearance
-        page.descriptionText = String.localized("OnboardingDescription")
-        page.actionButtonTitle = String.localized("OnboardingFirstPageActionButtonTitle")
+        page.descriptionText = String(localized: "Search shops & parking lots with live data and move through the city with interactive 360° panoramas! Find the cheapest petrol station or get reminders for rubbish collection.")
+        page.actionButtonTitle = String(localized: "Continue")
         page.isDismissable = false
         
         page.actionHandler = { item in
@@ -82,11 +82,11 @@ public class OnboardingManager {
     
     func makeUserTypePage(preSelected: User.UserType?) -> BLTNPageItem {
         
-        let page = SelectorBulletinPage<User.UserType>(title: String.localized("OnboardingUserTypeSelectorPageTitle"), preSelected: preSelected)
+        let page = SelectorBulletinPage<User.UserType>(title: String(localized: "User"), preSelected: preSelected)
         
         page.appearance = appearance
-        page.descriptionText = String.localized("OnboardingUserTypeSelectorPageDescription")
-        page.actionButtonTitle = String.localized("OnboardingUserTypeSelectorPageActionButtonTitle")
+        page.descriptionText = String(localized: "Are you a visitor or citizen to the city of Moers?")
+        page.actionButtonTitle = String(localized: "Continue")
         page.isDismissable = false
         page.onSelect = { type in
             
@@ -109,12 +109,12 @@ public class OnboardingManager {
     
     func makeNotitificationsPage() -> FeedbackPageBulletinItem {
         
-        let page = FeedbackPageBulletinItem(title: String.localized("OnboardingNotificationPageTitle"))
+        let page = FeedbackPageBulletinItem(title: String(localized: "Push Notifications"))
         page.image = #imageLiteral(resourceName: "NotificationPrompt")
         page.imageAccessibilityLabel = "Notifications Icon"
-        page.descriptionText = String.localized("OnboardingNotificationPageDescription")
-        page.actionButtonTitle = String.localized("OnboardingNotificationPageActionButtonTitle")
-//        page.alternativeButtonTitle = String.localized("OnboardingNotificationPageAlternativeButtonTitle")
+        page.descriptionText = String(localized: "Receive push notifications to keep up to date and be reminded of collection dates.")
+        page.actionButtonTitle = String(localized: "Continue")
+//        page.alternativeButtonTitle = String(localized: "Not now")
         page.appearance = appearance
         page.isDismissable = false
         
@@ -138,12 +138,12 @@ public class OnboardingManager {
     
     func makeLocationPage() -> FeedbackPageBulletinItem {
         
-        let page = FeedbackPageBulletinItem(title: String.localized("OnboardingLocationPageTitle"))
+        let page = FeedbackPageBulletinItem(title: String(localized: "Location"))
         
         page.image = #imageLiteral(resourceName: "LocationPrompt")
         page.imageAccessibilityLabel = "Location Icon"
-        page.descriptionText = String.localized("OnboardingLocationPageDescription")
-        page.actionButtonTitle = String.localized("OnboardingLocationPageActionButtonTitle")
+        page.descriptionText = String(localized: "Mein Moers can use your location to find shops close to you and display nearby petrol prices.")
+        page.actionButtonTitle = String(localized: "Continue")
 //        page.alternativeButtonTitle = String.localized("Later")
         page.appearance = appearance
         page.isDismissable = false
@@ -176,15 +176,16 @@ public class OnboardingManager {
     
     func makePrivacyPage() -> FeedbackPageBulletinItem {
         
-        let page = FeedbackPageBulletinItem(title: String.localized("PrivacyPageTitle"))
+        let page = FeedbackPageBulletinItem(title: String(localized: "Privacy"))
         
         page.image = #imageLiteral(resourceName: "PrivacyPrompt")
         page.imageAccessibilityLabel = "Privacy Icon"
-        page.descriptionText = String.localized("PrivacyPageDescription")
-        page.actionButtonTitle = String.localized("PrivacyPageButtonTitle")
+        page.descriptionText = String(localized: "All data will be treated with the utmost care and confidentiality! 
+By using this app, you agree to the terms and conditions and privacy policy found in the menu.")
+        page.actionButtonTitle = String(localized: "Understood")
         page.appearance = appearance
         page.isDismissable = false
-        page.alternativeButtonTitle = String.localized("PrivacyAlternativeButton")
+        page.alternativeButtonTitle = String(localized: "Read")
         page.alternativeHandler = { _ in
             
             let url = URL(string: "https://next.moers.app/legal/privacy")!
@@ -203,13 +204,13 @@ public class OnboardingManager {
     func makePetrolType(preSelected: FuelFeature.PetrolType?) -> BLTNPageItem {
         
         let page = SelectorBulletinPage<FuelFeature.PetrolType>(
-            title: String.localized("OnboardingPetrolTypePageTitle"),
+            title: String(localized: "Petrol Type"),
             preSelected: preSelected
         )
         
         page.appearance = appearance
-        page.descriptionText = String.localized("OnboardingPetrolTypePageDescription")
-        page.actionButtonTitle = String.localized("OnboardingPetrolTypePageActionButtonTitle")
+        page.descriptionText = String(localized: "Mein Moers can show you the current petrol prices. Select your preferred petrol type.")
+        page.actionButtonTitle = String(localized: "Continue")
         page.isDismissable = false
         
         page.onSelect = { (type: FuelFeature.PetrolType) in
@@ -236,14 +237,14 @@ public class OnboardingManager {
     func makeRubbishStreetPage() -> BLTNPageItem {
         
         let page = RubbishStreetPickerItem(
-            title: String.localized("RubbishCollectionPageTitle")
+            title: String(localized: "Pick-up Schedule")
         )
         
         page.appearance = appearance
-        page.descriptionText = String.localized("RubbishCollectionPageDescription")
+        page.descriptionText = String(localized: "Mein Moers can show you the collection dates of the garbage collection and remind you to expose them.")
         page.image = #imageLiteral(resourceName: "yellowWaste")
-        page.actionButtonTitle = String.localized("RubbishCollectionPageActionButtonTitle")
-        page.alternativeButtonTitle = String.localized("RubbishCollectionPageAlternativeButtonTitle")
+        page.actionButtonTitle = String(localized: "Fortfahren")
+        page.alternativeButtonTitle = String(localized: "Not now")
         
         page.isDismissable = false
         
@@ -276,11 +277,11 @@ public class OnboardingManager {
     
     func makeRubbishReminderPage() -> BLTNPageItem {
         
-        let page = RubbishReminderBulletinItem(title: String.localized("RubbishCollectionReminderPageTitle"))
-        page.descriptionText = String.localized("RubbishCollectionReminderPageDescription")
+        let page = RubbishReminderBulletinItem(title: String(localized: "Pick-up notifications"))
+        page.descriptionText = String(localized: "Mein Moers can remind you to put your trash cans on the street in time.")
         page.image = #imageLiteral(resourceName: "NotificationPrompt")
-        page.actionButtonTitle = String.localized("RubbishCollectionReminderPageActionButtonTitle")
-        page.alternativeButtonTitle = String.localized("RubbishCollectionReminderPageAlternativeButtonTitle")
+        page.actionButtonTitle = String(localized: "Setup")
+        page.alternativeButtonTitle = String(localized: "Not now")
         page.appearance = appearance
         page.isDismissable = false
         
@@ -311,7 +312,7 @@ public class OnboardingManager {
     
     func makeCompletionPage() -> BLTNPageItem {
         
-        let page = FeedbackPageBulletinItem(title: String.localized("CompletionPageTitle"))
+        let page = FeedbackPageBulletinItem(title: String(localized: "Setup completed"))
         page.image = #imageLiteral(resourceName: "IntroCompletion")
         page.imageAccessibilityLabel = "Checkmark"
         page.appearance = appearance
@@ -321,7 +322,7 @@ public class OnboardingManager {
         page.alternativeButton?.isHidden = true
         
         page.descriptionText = ""
-        page.actionButtonTitle = String.localized("CompletionPageActionButtonTitle")
+        page.actionButtonTitle = String(localized: "Get started")
         
         page.isDismissable = true
         

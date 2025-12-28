@@ -164,9 +164,9 @@ public class EventViewModel<Event: BaseEvent> {
             if self.isActive {
                 
                 if ApplicationServerConfiguration.isMoersFestivalModeEnabled {
-                    return "\(locationRepresentation) · \(String.localized("LiveNow"))"
+                    return "\(locationRepresentation) · \(String(localized: "live now", bundle: .module))"
                 } else {
-                    return "\(locationRepresentation) · \(String.localized("LiveNow"))"
+                    return "\(locationRepresentation) · \(String(localized: "live now", bundle: .module))"
                 }
                 
             } else if startDate.isInBeforeInterval(minutes: 59) {
@@ -186,11 +186,11 @@ public class EventViewModel<Event: BaseEvent> {
         if let extras = model.extras {
 
             if let isFree = extras.isFree, isFree {
-                ticket += " · " + String.localized("Free")
+                ticket += " · " + String(localized: "Free", bundle: .module)
             } else if let extraTicket = extras.visitWithExtraTicket, extraTicket {
-                ticket += " · " + String.localized("ExtraTicket")
+                ticket += " · " + String(localized: "festival/day ticket or Mörzz-Ticket required (*)", bundle: .module)
             } else if let festivalTicket = extras.needsFestivalTicket, festivalTicket {
-                ticket += " · " + String.localized("NeedsFestivalTicket")
+                ticket += " · " + String(localized: "festival/day ticket required", bundle: .module)
             }
 
         }
@@ -216,7 +216,7 @@ public class EventViewModel<Event: BaseEvent> {
         } else if let location = model.place {
             return location.name
         } else {
-            return String.localized("LocationNotKnown")
+            return String(localized: "not yet announced", bundle: .module)
         }
         
     }()
@@ -247,7 +247,7 @@ public class EventViewModel<Event: BaseEvent> {
             }
 
         } else {
-            return String.localized("NotKnownPrompt")
+            return String(localized: "not yet announced", bundle: .module)
         }
 
     }

@@ -32,8 +32,12 @@ public struct FuelPriceDashboardView: View {
                         
                         VStack(alignment: .leading, spacing: 4) {
                             
-                            Text("\(Image(systemName: "location.fill")) \(PackageStrings.Dashboard.currentLocation)")
-                                .font(.callout.weight(.medium))
+                            Label {
+                                Text("Current location", bundle: .module)
+                            } icon: {
+                                Image(systemName: "location.fill")
+                            }
+                            .font(.callout.weight(.medium))
                             
                             Text(viewModel.locationName.value ?? "Moers")
                                 .font(.title.weight(.bold))
@@ -51,7 +55,7 @@ public struct FuelPriceDashboardView: View {
                                 .redacted(reason: viewModel.data.loading ? .placeholder : [])
                                 .font(.title.weight(.bold))
                             
-                            Text(PackageStrings.Dashboard.perL(viewModel.petrolType).uppercased())
+                            Text(String(localized: "per L \(viewModel.petrolType.name)", bundle: .module).uppercased())
                                 .foregroundColor(.secondary)
                                 .font(.caption.weight(.medium))
                             
@@ -59,7 +63,7 @@ public struct FuelPriceDashboardView: View {
                         
                     }
                     
-                    Text(PackageStrings.Dashboard.stationsNearYou(viewModel.data.value?.numberOfStations ?? 20))
+                    Text("\(viewModel.data.value?.numberOfStations ?? 20) fuel stations in your area are currently open.", bundle: .module)
                         .foregroundColor(.secondary)
                         .font(.callout)
                         .multilineTextAlignment(.leading)

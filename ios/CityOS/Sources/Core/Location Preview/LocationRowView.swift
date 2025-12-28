@@ -63,7 +63,7 @@ public class LocationRowView: UIView {
         self.locationHeader.numberOfLines = 0
         self.locationLabel.numberOfLines = 0
         
-        self.locationHeader.text = String.localized("Venue")
+        self.locationHeader.text = String(localized: "Venue", bundle: .module)
         
     }
     
@@ -119,7 +119,7 @@ public class LocationRowView: UIView {
         self.imageView.accessibilityIdentifier = "LocationRow.LocationImage"
         
         self.location
-            .map { "\(String.localized("Venue")): \($0 ?? String.localized("Unknown"))" }
+            .map { "\(String(localized: "Venue", bundle: .module)): \($0 ?? String(localized: "Unknown", bundle: .module))" }
             .sink { (accessibilityLabel: String?) in
                 self.accessibilityLabel = accessibilityLabel
             }

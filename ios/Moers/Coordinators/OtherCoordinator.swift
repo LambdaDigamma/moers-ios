@@ -125,8 +125,8 @@ public class OtherCoordinator: Coordinator {
         if entryManager.entryStreet != nil || entryManager.entryLat != nil {
             
             let alert = UIAlertController(
-                title: String.localized("OtherDataTakeOldDataTitle"),
-                message: String.localized("OtherDataTakeOldDataMessage"),
+                title: String(localized: "Continue operation?"),
+                message: String(localized: "Last time the operation was not completed and this data was temporarily saved. Do you want to keep them?"),
                 preferredStyle: .alert
             )
             
@@ -134,7 +134,7 @@ public class OtherCoordinator: Coordinator {
             
             alert.addAction(
                 UIAlertAction(
-                    title: String.localized("OtherDataTakeOldDataNo"),
+                    title: String(localized: "No"),
                     style: .cancel,
                     handler: { _ in
                         self.entryManager.resetData()
@@ -148,7 +148,7 @@ public class OtherCoordinator: Coordinator {
             
             alert.addAction(
                 UIAlertAction(
-                    title: String.localized("OtherDataTakeOldDataYes"),
+                    title: String(localized: "Yes"),
                     style: .default,
                     handler: { _ in
                         let viewController = EntryOnboardingLocationMenuViewController()

@@ -28,7 +28,7 @@ public struct ParkingTimerScreen: View {
             }
             
         }
-        .navigationTitle(Text(PackageStrings.ParkingTimerScreen.title))
+        .navigationTitle(Text("Parking meter", bundle: .module))
         
     }
     
