@@ -19,15 +19,17 @@ public class DefaultNewsService: NewsService {
     }
     
     public func loadNewsItems() async throws -> [RSSFeedItem] {
-        let feed = try await getRheinischePost()
-        return (feed.items ?? [])
-            .map { item in
-                let source = RSSFeedItemSource()
-                source.value = feed.title
-                item.source = source
-                return item
-            }
-            .sorted(by: { ($0.date > $1.date ) })
+        
+        async let rpFeed = getRheinischePost()
+        async let lkFeed = getLokalkompass()
+        
+        let (rp, lk) = try await (rpFeed, lkFeed)
+        
+        let allItems = rp.items.clean(settingSource: "RP Online") + lk.items.clean(settingSource: "Lokalkompass")
+        
+        return allItems
+            .sorted { $0.date > $1.date }
+        
     }
     
     public func getRheinischePost() async throws -> RSSFeed {
@@ -35,7 +37,7 @@ public class DefaultNewsService: NewsService {
     }
     
     public func getLokalkompass() async throws -> RSSFeed {
-        return try await self.loadSource(url: URL(string: "https://www.lokalkompass.de/feed/action/mode/realm/ID/35/")!)
+        return try await self.loadSource(url: URL(string: "https://www.lokalkompass.de/moers/rss")!)
     }
     
     public func getNRZ() async throws -> RSSFeed {
@@ -62,6 +64,25 @@ public class DefaultNewsService: NewsService {
                 }
             }
         }
+    }
+    
+}
+
+public extension Optional<[RSSFeedItem]> {
+    
+    func clean(settingSource source: String) -> [RSSFeedItem] {
+        
+        guard let items = self else {
+            return []
+        }
+        
+        return items.map { item in
+            let itemSource = RSSFeedItemSource()
+            itemSource.value = source
+            item.source = itemSource
+            return item
+        }
+        
     }
     
 }

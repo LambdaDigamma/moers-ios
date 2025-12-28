@@ -42,7 +42,7 @@ public struct NewsList: View {
                                 headline: feedItem.title ?? "",
                                 source: feedItem.source?.value ?? "",
                                 publishedAt: feedItem.pubDate ?? Date(),
-                                imageURL: feedItem.enclosure?.attributes?.url ?? nil
+                                imageURL: feedItem.enclosure?.attributes?.url ?? feedItem.media?.mediaContents?.first?.attributes?.url ?? nil
                             )
                             
                         }

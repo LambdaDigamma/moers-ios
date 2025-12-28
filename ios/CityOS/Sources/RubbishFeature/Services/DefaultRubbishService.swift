@@ -243,7 +243,7 @@ public class DefaultRubbishService: RubbishService {
     
     // MARK: - Testing
     
-    private func registerTestNotification() {
+    private func registerTestNotification() async throws {
         
         let date = Date()
         
@@ -264,13 +264,7 @@ public class DefaultRubbishService: RubbishService {
         
         let request = UNNotificationRequest(identifier: "RubbishReminder", content: notificationContent, trigger: trigger)
         
-        notificationCenter.add(request, withCompletionHandler: { (error) in
-            
-            guard let error = error else { return }
-            
-            print(error.localizedDescription)
-            
-        })
+        try await notificationCenter.add(request)
         
     }
     

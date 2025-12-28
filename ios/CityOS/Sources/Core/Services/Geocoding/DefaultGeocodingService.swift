@@ -24,17 +24,26 @@ public class DefaultGeocodingService: GeocodingService {
     }
     
     public func placemark(from location: CLLocation) async throws -> CLPlacemark {
+        
         do {
+            
             let placemarks = try await geocoder.reverseGeocodeLocation(location)
+            
             guard let placemark = placemarks.first else {
+                
                 logger.error("No placemark found for location: \(location.coordinate.latitude, privacy: .private), \(location.coordinate.longitude, privacy: .private)")
+                
                 throw GeocodingError.noPlacemarkFound
+                
             }
+            
             return placemark
+            
         } catch {
             logger.error("Error while reverse geocoding location: \(error.localizedDescription, privacy: .private)")
             throw error
         }
+        
     }
     
 }

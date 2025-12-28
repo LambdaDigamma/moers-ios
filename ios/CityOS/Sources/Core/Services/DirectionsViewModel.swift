@@ -49,28 +49,26 @@ public class DirectionsViewModel: StandardViewModel {
         }
     }
     
-    public func getETAFromUserLocation(to destination: CLLocationCoordinate2D) {
-        Task {
-            do {
-                guard let userLocation = await waitForValidLocation() else {
-                    return
-                }
-                
-                let timeInterval = try await ETACalculator.execute(
-                    from: userLocation.coordinate,
-                    to: destination,
-                    with: directionsMode
-                )
-                
-                logger.log("Received eta and it would take \(timeInterval) seconds to get there.")
-                await MainActor.run {
-                    self.eta = .success(timeInterval)
-                }
-            } catch {
-                logger.error("Error while getting eta: \(error.localizedDescription, privacy: .public)")
-                await MainActor.run {
-                    self.eta = .error(error)
-                }
+    public func getETAFromUserLocation(to destination: CLLocationCoordinate2D) async {
+        do {
+            guard let userLocation = await waitForValidLocation() else {
+                return
+            }
+            
+            let timeInterval = try await ETACalculator.execute(
+                from: userLocation.coordinate,
+                to: destination,
+                with: directionsMode
+            )
+            
+            logger.log("Received eta and it would take \(timeInterval) seconds to get there.")
+            await MainActor.run {
+                self.eta = .success(timeInterval)
+            }
+        } catch {
+            logger.error("Error while getting eta: \(error.localizedDescription, privacy: .public)")
+            await MainActor.run {
+                self.eta = .error(error)
             }
         }
     }
@@ -98,33 +96,18 @@ public class ETACalculator {
         with directionsMode: DirectionsMode = .driving
     ) async throws -> TimeInterval {
         
-        return try await withCheckedThrowingContinuation { continuation in
-            let sourceItem = MKMapItem(placemark: MKPlacemark(coordinate: source))
-            let destinationItem = MKMapItem(placemark: MKPlacemark(coordinate: destination))
-            
-            let request = MKDirections.Request()
-            
-            request.source = sourceItem
-            request.destination = destinationItem
-            request.transportType = directionsMode.toDirectionsTransportType()
-            
-            let directions = MKDirections(request: request)
-            
-            directions.calculateETA { (response: MKDirections.ETAResponse?, error: Error?) in
-                
-                if let error = error {
-                    continuation.resume(throwing: error)
-                    return
-                }
-                
-                if let response = response {
-                    continuation.resume(returning: response.expectedTravelTime)
-                    return
-                }
-                
-                continuation.resume(throwing: DirectionsError.noResponse)
-            }
-        }
+        let sourceItem = MKMapItem(placemark: MKPlacemark(coordinate: source))
+        let destinationItem = MKMapItem(placemark: MKPlacemark(coordinate: destination))
+        
+        let request = MKDirections.Request()
+        request.source = sourceItem
+        request.destination = destinationItem
+        request.transportType = directionsMode.toDirectionsTransportType()
+        
+        let directions = MKDirections(request: request)
+        
+        let response = try await directions.calculateETA()
+        return response.expectedTravelTime
     }
     
 }

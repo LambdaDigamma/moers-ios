@@ -34,26 +34,30 @@ public struct NewsItemPanel: View {
 
         CardPanelView {
             
-            ZStack {
+            VStack(alignment: .leading, spacing: 0) {
                 
                 if let imageURL = imageURL, let url = URL(string: imageURL) {
                     LazyImage(url: url) { state in
                         if let image = state.image {
                             image
                                 .resizable()
-                                .aspectRatio(contentMode: .fill)
+                                .aspectRatio(contentMode: .fit)
                         } else if state.error != nil {
                             Color(UIColor.secondarySystemFill)
+                                .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fit)
                         } else {
                             Color(UIColor.secondarySystemFill)
+                                .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fit)
                         }
                     }
+                    .overlay(alignment: .bottomLeading) {
+                        textOverlay()
+                    }
+//                    .frame(maxWidth: .infinity, minHeight: 250, idealHeight: 250, maxHeight: 250)
                     
                 }
                 
             }
-            .frame(maxWidth: .infinity, minHeight: 250, idealHeight: 250, maxHeight: 250)
-            .overlay(textOverlay())
             
         }
         
@@ -63,31 +67,29 @@ public struct NewsItemPanel: View {
     @ViewBuilder
     private func textOverlay() -> some View {
         
-        ZStack(alignment: .bottom) {
+        VStack(alignment: .leading, spacing: 4) {
             
-            VStack(alignment: .leading, spacing: 4) {
-                
-                Text(headline)
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .lineLimit(2)
-                
-                Group {
-                    Text(publishedAt, formatter: Self.formatter) +
-                    Text(" · ") +
-                    Text(source)
-                }
-                .font(.footnote)
-                
+            Text(headline)
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .lineLimit(2)
+            
+            Group {
+                Text(publishedAt, formatter: Self.formatter) +
+                Text(" · ") +
+                Text(source)
             }
-            .foregroundColor(Color(UIColor.label))
-            .multilineTextAlignment(.leading)
-            .padding(.horizontal, 12)
-            .padding(.vertical, 12)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color(colorScheme == .dark ? UIColor.secondarySystemBackground : UIColor.systemBackground))
+            .font(.footnote)
             
-        }.frame(maxHeight: .infinity, alignment: .bottomLeading)
+        }
+        .foregroundColor(Color.white)
+        .multilineTextAlignment(.leading)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 16)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.top, 40)
+        .background(LinearGradient(colors: [.clear, .black.opacity(0.7), .black], startPoint: .top, endPoint: .bottom))
+//        .background(Color(colorScheme == .dark ? UIColor.secondarySystemBackground : UIColor.systemBackground))
         
     }
     

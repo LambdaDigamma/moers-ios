@@ -127,9 +127,14 @@ public class DefaultPetrolService: PetrolService {
         sorting: PetrolSorting,
         type: PetrolType
     ) async throws -> [PetrolStation] {
+        
         if apiKey.isEmptyOrWhitespace {
             logger.error("The petrol api key is empty. Please provide a valid api key.")
             throw APIError.noToken
+        }
+        
+        if radius > 25.0 {
+            logger.info("Search radius greater than 25.0 has no effect. Limiting to 25.0 kilometers.")
         }
         
         var request = HTTPRequest(
@@ -142,16 +147,11 @@ public class DefaultPetrolService: PetrolService {
         request.queryItems = [
             URLQueryItem(name: "lat", value: "\(coordinate.latitude)"),
             URLQueryItem(name: "lng", value: "\(coordinate.longitude)"),
-            URLQueryItem(name: "rad", value: "\(radius)"),
+            URLQueryItem(name: "rad", value: radius > 25.0 ? "25.0" : "\(radius)"),
             URLQueryItem(name: "sort", value: sorting.rawValue),
             URLQueryItem(name: "type", value: type.rawValue),
             URLQueryItem(name: "apikey", value: apiKey),
         ]
-        
-        if radius > 25.0 {
-            logger.info("Search radius should not be greater than 25.0")
-            return []
-        }
         
         guard let url = request.url else {
             throw APIError.unavailableURL

@@ -53,12 +53,16 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
         
         locationService.requestCurrentLocation()
         
+        // todo: make this publisher react to the location updates via the stream on the location service
+        
         await loadLocationName()
         await loadFuelStations()
     }
     
     private func loadLocationName() async {
+        
         do {
+            
             guard let location = await waitForValidLocation() else {
                 locationName = .success("")
                 return
@@ -68,14 +72,20 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
             
             let placemark = try await geocodingService.placemark(from: location)
             locationName = .success(placemark.locality ?? "")
+            
         } catch {
+            
             logger.error("Failed to load location name: \(error.localizedDescription, privacy: .public)")
             locationName = .success("")
+            
         }
+        
     }
     
     private func loadFuelStations() async {
+        
         do {
+            
             guard let location = await waitForValidLocation() else {
                 return
             }
@@ -92,10 +102,12 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
             
             self.fuelStations = .success(stations.filter { $0.isOpen })
             self.calculateNewAverage(from: stations)
+            
         } catch {
             logger.error("Failed to load fuel stations: \(error.localizedDescription, privacy: .public)")
             self.data = .error(error)
         }
+        
     }
     
     private func waitForValidLocation() async -> CLLocation? {

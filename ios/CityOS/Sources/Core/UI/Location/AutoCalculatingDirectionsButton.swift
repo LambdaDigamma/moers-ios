@@ -41,7 +41,7 @@ public struct AutoCalculatingDirectionsButton: View {
             mode: directionsMode
         )
         .task {
-            viewModel.getETAFromUserLocation(to: coordinate)
+            await viewModel.getETAFromUserLocation(to: coordinate)
         }
     }
     

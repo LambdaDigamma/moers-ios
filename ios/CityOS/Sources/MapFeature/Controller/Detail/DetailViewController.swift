@@ -224,20 +224,19 @@ public class DetailViewController: UIViewController {
                 for try await location in locationService.locations {
                     let directions = self.buildDirectionRequest(from: location.coordinate, to: destinationCoordinate)
                     
-                    directions.calculateETA(completionHandler: { (response, error) in
+                    do {
+                        let response = try await directions.calculateETA()
                         
-                        if let error = error {
-                            print(error.localizedDescription)
-                        }
+                        let minutes = Int(floor(response.expectedTravelTime / 60))
                         
-                        guard let estimate = response else { return }
-                        
-                        let minutes = Int(floor(estimate.expectedTravelTime / 60))
-                        DispatchQueue.main.async {
+                        await MainActor.run {
                             self.routeButton.setTitle(String(localized: "Route (\(minutes) min)", bundle: .module), for: .normal)
                         }
                         
-                    })
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                    
                     break
                 }
             } catch {
@@ -247,8 +246,10 @@ public class DetailViewController: UIViewController {
         
     }
     
-    private func buildDirectionRequest(from source: CLLocationCoordinate2D,
-                                       to destination: CLLocationCoordinate2D) -> MKDirections {
+    private func buildDirectionRequest(
+        from source: CLLocationCoordinate2D,
+        to destination: CLLocationCoordinate2D
+    ) -> MKDirections {
         
         let source = MKMapItem(placemark: MKPlacemark(coordinate: source))
         let destination = MKMapItem(placemark: MKPlacemark(coordinate: destination))

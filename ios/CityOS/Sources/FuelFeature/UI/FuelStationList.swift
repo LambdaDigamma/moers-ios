@@ -57,6 +57,7 @@ public struct FuelStationList: View {
                 .padding(.bottom)
             
         }
+        .background(ApplicationTheme.current.dashboardBackground)
         .navigationTitle(PackageStrings.FuelStationList.title)
         .navigationBarTitleDisplayMode(.inline)
         
@@ -76,57 +77,59 @@ public struct FuelStationList: View {
         fuelStation: FuelFeature.PetrolStation
     ) -> some View {
         
-        VStack {
+        CardPanelView{
             
-            HStack(alignment: .top) {
+            VStack {
                 
-                VStack(alignment: .leading, spacing: 8) {
+                HStack(alignment: .top) {
                     
-                    Text(fuelStation.title ?? fuelStation.brand)
-                        .font(.headline)
-                        .fontWeight(.bold)
-                        .multilineTextAlignment(.leading)
-                        .lineLimit(1)
-                    
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 8) {
                         
-                        Text("\(fuelStation.brand) · \(fuelStation.isOpen ? "Open" : "Closed")", bundle: .module)
-                            .foregroundColor(.secondary)
+                        Text(fuelStation.title ?? fuelStation.brand)
+                            .font(.headline)
+                            .fontWeight(.bold)
                             .multilineTextAlignment(.leading)
+                            .lineLimit(1)
                         
-                        if let subtitle = fuelStation.subtitle {
-                            Text(subtitle)
+                        VStack(alignment: .leading) {
+                            
+                            Text("\(fuelStation.brand) · \(fuelStation.isOpen ? "Open" : "Closed")", bundle: .module)
                                 .foregroundColor(.secondary)
                                 .multilineTextAlignment(.leading)
+                            
+                            if let subtitle = fuelStation.subtitle {
+                                Text(subtitle)
+                                    .foregroundColor(.secondary)
+                                    .multilineTextAlignment(.leading)
+                            }
+                            
                         }
+                        .font(.callout)
                         
                     }
-                    .font(.callout)
                     
-                }
-                
-                Spacer()
-                
-                if let price = fuelStation.price {
+                    Spacer()
                     
-                    Text(String(format: "%.2f€", price))
-                        .fontWeight(.bold)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(Color.green)
-                        .foregroundColor(.black)
-                        .cornerRadius(4)
+                    if let price = fuelStation.price {
+                        
+                        Text(String(format: "%.2f€", price))
+                            .fontWeight(.bold)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(Color.green)
+                            .foregroundColor(.black)
+                            .cornerRadius(4)
+                        
+                    }
                     
                 }
                 
             }
+            .padding()
+            .foregroundColor(.primary)
+            .frame(maxWidth: .infinity, alignment: .leading)
             
         }
-        .padding()
-        .foregroundColor(.primary)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(UIColor.secondarySystemBackground))
-        .cornerRadius(16)
         .contextMenu {
             Button {
                 startNavigation(to: fuelStation)
@@ -137,7 +140,7 @@ public struct FuelStationList: View {
                 } icon: {
                     Image(systemName: "arrow.triangle.turn.up.right.circle")
                 }
-
+                
             }
         }
         
