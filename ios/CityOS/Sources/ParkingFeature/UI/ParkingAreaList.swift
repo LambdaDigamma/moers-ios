@@ -13,6 +13,7 @@ public struct ParkingAreaList: View {
     
     @ObservedObject private var viewModel: ParkingAreaListViewModel
     @State var showParkingTimer: Bool = false
+    @State var showParkingAreaDetail: Bool = false
     
     private let gridSpacing: CGFloat = 16
     
@@ -79,6 +80,24 @@ public struct ParkingAreaList: View {
                             }
                         }
                     })
+                    .navigationBarTitleDisplayMode(.inline)
+            }
+        }
+        .sheet(item: Binding<ParkingAreaViewModel?>(
+            get: { viewModel.selectedParkingArea },
+            set: { if $0 == nil { viewModel.selectedParkingArea = nil } }
+        )) { parkingArea in
+            NavigationView {
+                ParkingAreaDetailScreen(viewModel: parkingArea)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button(action: {
+                                viewModel.selectedParkingArea = nil
+                            }) {
+                                Text("Close", bundle: .module)
+                            }
+                        }
+                    }
                     .navigationBarTitleDisplayMode(.inline)
             }
         }

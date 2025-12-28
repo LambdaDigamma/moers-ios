@@ -22,6 +22,7 @@ public class ParkingAreaListViewModel: StandardViewModel {
         center: CoreSettings.regionCenter,
         span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
     )
+    @Published public var selectedParkingArea: ParkingAreaViewModel?
     
     public var mapViewModel = BaseMapViewModel()
     
@@ -47,6 +48,19 @@ public class ParkingAreaListViewModel: StandardViewModel {
             }
             
             return nil
+        }
+        
+        super.init()
+        
+        self.mapViewModel.onAnnotationSelected = { [weak self] annotation in
+            guard let self = self,
+                  let parkingAnnotation = annotation as? ParkingAreaAnnotation,
+                  let parkingArea = self.parkingAreas.first(where: {
+                      $0.title == parkingAnnotation.title
+                  }) else {
+                return
+            }
+            self.selectedParkingArea = parkingArea
         }
         
     }
