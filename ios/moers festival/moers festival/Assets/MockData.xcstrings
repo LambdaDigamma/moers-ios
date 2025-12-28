@@ -1,0 +1,109 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Post1Summary" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We saw it clearly - Bambi has just blinked. At last the presale for moers festival 2021 can begin. Any questions? Find all the answers here. The limited numbers of festival- and day tickets can be odered here."
+          }
+        }
+      }
+    },
+    "Post1Title" : {
+      "comment" : "MockData.strings\n  moers festival\n\n  Created by Lennart Fischer on 06.02.21.\n  Copyright © 2021 Code for Niederrhein. All rights reserved.",
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Vorverkauf ist gestartet!"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Presale has started!"
+          }
+        }
+      }
+    },
+    "Post2Summary" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das moers festival bekommt im Jubiläumsjahr sogar zwei neue improviser in residence! Die New Yorker Kevin Shea und Matt Mottel sind in Moers keine Unbekannten. Mehrfach schon waren sie auf dem Festival zu Gast, vor allem als Duo Talibam!"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In the anniversary year, the festival even gets two new improvisers in residence! New Yorkers Kevin Shea and Matt Mottel are no strangers to Moers. Several times they have been guests at the festival, especially as Duo Talibam!"
+          }
+        }
+      }
+    },
+    "Post2Title" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to Kevin and Matt!"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to Kevin and Matt!"
+          }
+        }
+      }
+    },
+    "Post3Summary" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ja, auch 2021 hat das moers festival einen neuen improviser in residence! Wer das ist, verraten wir am Freitag, 29.01. um 11 h in einem Stream direkt aus der improviser's residency."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Of course there will be an Improviser in Residence in 2021 as well! We will uncover the secret on Friday, 29th January 2021, streamed live from the residency. The concert in which Mariá Portugal says goodbye and hands over the residency will be streamed on February 5th, 8 PM live from Altes Landratsamt Moers. Do not miss it!"
+          }
+        }
+      }
+    },
+    "Post3Title" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wer wird Improviser in Residence 2021?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Who will be Improviser in Residence 2021?"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.1"
+}

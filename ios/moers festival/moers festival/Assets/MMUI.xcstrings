@@ -1,0 +1,357 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "CountdownDays" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "days"
+          }
+        }
+      }
+    },
+    "CountdownHours" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hours"
+          }
+        }
+      }
+    },
+    "CountdownMinutes" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "minutes"
+          }
+        }
+      }
+    },
+    "CountdownSeconds" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "seconds"
+          }
+        }
+      }
+    },
+    "EventsNoFavourite" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du hast noch keine Veranstaltung als Favoriten markiert."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No event has been marked as a favorite yet."
+          }
+        }
+      }
+    },
+    "EventsNoLive" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gerade finden keine Veranstaltungen statt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Currently there are no events taking place."
+          }
+        }
+      }
+    },
+    "EventsNoUpcoming" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Momentan sind keine Veranstaltungen geplant. Komme demnächst noch einmal wieder!"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Currently there are no events scheduled. Come back soon!"
+          }
+        }
+      }
+    },
+    "EventsTitle" : {
+      "comment" : "MMUI.strings\n  Moers\n\n  Created by Lennart Fischer on 13.10.19.\n  Copyright © 2019 Lennart Fischer. All rights reserved.",
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Veranstaltungen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Events"
+          }
+        }
+      }
+    },
+    "Favourites" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favoriten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favourites"
+          }
+        }
+      }
+    },
+    "LiveNow" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "jetzt live"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "live now"
+          }
+        }
+      }
+    },
+    "MoreInformation" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mehr Informationen ➤"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Learn more ➤"
+          }
+        }
+      }
+    },
+    "NavigationButtonMovingAct" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktuelle Position zeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show current position"
+          }
+        }
+      }
+    },
+    "NoEventInformation" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine genaueren Informationen verfügbar."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No additional information available."
+          }
+        }
+      }
+    },
+    "NotKnownLoc" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "nicht bekannt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not known"
+          }
+        }
+      }
+    },
+    "RouteButtonTitle" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Route"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Route"
+          }
+        }
+      }
+    },
+    "SearchEventsPrompt" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suche Veranstaltungen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search Events"
+          }
+        }
+      }
+    },
+    "ShowMore" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mehr anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show more"
+          }
+        }
+      }
+    },
+    "TicketMoerzzInfo" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\n(*) Mit dem vor zwei Jahren eingeführten „Mörzz-Ticket“ € 15,-/€ 7,50 erm. im VVK (€ 20,-/€ 10,- AK) erwerben Fans und Freunde des Festivals Zutritt zu einer delikaten Auswahl hochkarätiger Veranstaltungen in Clubs, Kirchen, Cafés und anderen Einrichtungen. Darunter besonders hervorzuheben das Aktivbad Solimare, in dem zur Geisterstunde (am Pfingstmontag schon um 19.30 Uhr) Unterwasserkonzerte stattfinden und den mutigen Besuchern besondere Klangerlebnisse verschaffen (Badekleidung!). Wer auf der Schwimmnudel entspannt, kriegt den Klang aus der Tiefe und von oben. Das Mörzz-Ticket bietet Zugang zu Konzerten auf Weltniveau in besonderen Locations."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\n(*) With the \"Mörzz-Ticket\" introduced two years ago, € 15,-/€ 7,50 reduced in presale (€ 20,-/€ 10,- box-office), fans and friends of the festival gain access to a delicate selection of top-class events in clubs, churches, cafés and other facilities. Among them, the Solimare swimming centre should be highlighted, where underwater concerts take place at the ghostly hour (on Whit Monday at 7.30 p.m.) and where courageous visitors can enjoy special sound experiences (swimwear!). Those who relax on the swimming noodle get the sound from the depths and from above. The Mörzz ticket offers access to world-class concerts in special locations."
+          }
+        }
+      }
+    },
+    "Unknown" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "unbekannt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown"
+          }
+        }
+      }
+    },
+    "Upcoming" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bevorstehend"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upcoming"
+          }
+        }
+      }
+    },
+    "UpcomingFavourites" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bevorstehende Favoriten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upcoming Favorites"
+          }
+        }
+      }
+    },
+    "Venue" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Veranstaltungsort"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Venue"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.1"
+}
