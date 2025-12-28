@@ -105,25 +105,25 @@ public class AppTabBarController: AppScaffold.TabBarController {
                 
                 guard let nav = navigationController as? UINavigationController else { return }
                 
-                Styling.applyStyling(navigationController: nav, statusBarStyle: .default)
+//                Styling.applyStyling(navigationController: nav, statusBarStyle: .default)
                 
             }
             
         }
         
-        let appearance = UINavigationBarAppearance()
-        
-        appearance.configureWithDefaultBackground()
-        appearance.backgroundColor = theme.navigationBarColor
-        
-        appearance.titleTextAttributes = [.foregroundColor: theme.accentColor]
-        appearance.largeTitleTextAttributes = [.foregroundColor: theme.accentColor]
-        
-        guard let controller = self.viewControllers?[2] as? UINavigationController else {
-            return
-        }
-        
-        controller.navigationBar.scrollEdgeAppearance = appearance
+//        let appearance = UINavigationBarAppearance()
+//        
+//        appearance.configureWithDefaultBackground()
+//        appearance.backgroundColor = theme.navigationBarColor
+//        
+//        appearance.titleTextAttributes = [.foregroundColor: theme.accentColor]
+//        appearance.largeTitleTextAttributes = [.foregroundColor: theme.accentColor]
+//        
+//        guard let controller = self.viewControllers?[2] as? UINavigationController else {
+//            return
+//        }
+//        
+//        controller.navigationBar.scrollEdgeAppearance = appearance
         
     }
     

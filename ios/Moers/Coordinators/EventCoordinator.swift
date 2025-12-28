@@ -25,6 +25,8 @@ class EventCoordinator: Coordinator {
         
         self.navigationController = navigationController
         
+        
+        
         // Use the appropriate version based on iOS availability
         let eventViewController: UIViewController & TabBarItemProvider & CoordinatorAssignable
         if #available(iOS 26.0, *) {
@@ -43,7 +45,7 @@ class EventCoordinator: Coordinator {
         self.navigationController.viewControllers = [eventViewController]
         self.eventViewController = eventViewController
         
-        Styling.applyStyling(navigationController: navigationController, statusBarStyle: .darkContent)
+//        Styling.applyStyling(navigationController: navigationController, statusBarStyle: .darkContent)
         
     }
     
