@@ -90,10 +90,13 @@ class EntryOnboardingOpeningHoursViewController: UIViewController {
         self.sundayOHTextField.placeholder = String(localized: "Sunday", bundle: .module)
         self.otherOHTextField.placeholder = String(localized: "Other", bundle: .module)
         
-        self.openingHoursInfoLabel.text = String(localized: "Please use the following format:
+        self.openingHoursInfoLabel.text = String(localized:
+"""
+Please use the following format:
 Simple times: "10:30 - 20:00"
-Complex times with break: "09:30 - 12:30, 14:00 - 19:00"
-Freeform text: "Geschlossen", "Ruhetag", etc.", bundle: .module)
+Complex times with break: "09:30 - 12:30, 14:00 - 19:00
+Freeform text: "Geschlossen", "Ruhetag", etc."
+""", bundle: .module)
         
         self.mondayOHTextField.delegate = self
         self.tuesdayOHTextField.delegate = self

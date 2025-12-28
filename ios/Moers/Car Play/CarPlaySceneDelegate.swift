@@ -34,15 +34,18 @@ public class CarPlaySceneDelegate: UIResponder {
     
     public func loadParkingLots() {
         
-        let parkingService = Container.shared.parkingService()
-        
-        parkingService.loadParkingAreas()
-            .sink { (completion: Subscribers.Completion<Error>) in
+        Task {
+            do {
+                let parkingService = Container.shared.parkingService()
+                let areas = try await parkingService.loadParkingAreas()
                 
-            } receiveValue: { (parkingAreas: [ParkingArea]) in
-                self.parkingAreas = parkingAreas
+                await MainActor.run {
+                    self.parkingAreas = areas
+                }
+            } catch {
+                print("Error loading parking areas: \(error.localizedDescription)")
             }
-            .store(in: &cancellables)
+        }
         
     }
     
@@ -171,14 +174,24 @@ public class CarPlaySceneDelegate: UIResponder {
         let preferredPetrolType = fuelService.petrolType
         
         locationService.location
-            .flatMap { (location: CLLocation) in
-                return fuelService.getPetrolStations(
-                    coordinate: location.coordinate,
-                    radius: 20,
-                    sorting: .distance,
-                    type: preferredPetrolType,
-                    shouldReload: true
-                )
+            .flatMap { (location: CLLocation) -> AnyPublisher<[PetrolStation], Error> in
+                return Future<[PetrolStation], Error> { promise in
+                    Task {
+                        do {
+                            let stations = try await fuelService.getPetrolStations(
+                                coordinate: location.coordinate,
+                                radius: 20,
+                                sorting: .distance,
+                                type: preferredPetrolType,
+                                shouldReload: true
+                            )
+                            promise(.success(stations))
+                        } catch {
+                            promise(.failure(error))
+                        }
+                    }
+                }
+                .eraseToAnyPublisher()
             }
             .sink { (completion: Subscribers.Completion<Error>) in
                 

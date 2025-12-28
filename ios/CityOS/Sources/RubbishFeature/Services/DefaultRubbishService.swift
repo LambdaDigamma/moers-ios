@@ -128,7 +128,8 @@ public class DefaultRubbishService: RubbishService {
             let items = try await result.decoding([RubbishPickupItem].self)
             return items
         } catch {
-            throw RubbishLoadingError.internalError(error as? HTTPError ?? HTTPError.badRequest(nil))
+            let apiError = error as? APIError ?? APIError.networkError(error)
+            throw RubbishLoadingError.internalError(apiError)
         }
     }
     

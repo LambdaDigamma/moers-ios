@@ -180,8 +180,7 @@ public class OnboardingManager {
         
         page.image = #imageLiteral(resourceName: "PrivacyPrompt")
         page.imageAccessibilityLabel = "Privacy Icon"
-        page.descriptionText = String(localized: "All data will be treated with the utmost care and confidentiality! 
-By using this app, you agree to the terms and conditions and privacy policy found in the menu.")
+        page.descriptionText = String(localized: "All data will be treated with the utmost care and confidentiality! By using this app, you agree to the terms and conditions and privacy policy found in the menu.")
         page.actionButtonTitle = String(localized: "Understood")
         page.appearance = appearance
         page.isDismissable = false

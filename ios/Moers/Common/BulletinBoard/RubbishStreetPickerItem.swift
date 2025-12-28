@@ -51,27 +51,19 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     
     private func loadStreets() {
         
-        let streets = rubbishService.loadRubbishCollectionStreets()
-        
-        streets
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { [weak self] (completion: Subscribers.Completion<Error>) in
+        Task {
+            do {
+                let streets = try await rubbishService.loadRubbishCollectionStreets()
                 
-                switch completion {
-                    case .failure(let error):
-                        self?.logger.error("Loading rubbish collection streets failed: \(error.localizedDescription)")
-                    default: break
+                await MainActor.run {
+                    self.streets = streets
+                    self.picker.reloadPickerView()
+                    self.loadUserLocationForStreetEstimation()
                 }
-                
-            }, receiveValue: { (streets: [RubbishFeature.RubbishCollectionStreet]) in
-                
-                self.streets = streets
-                self.picker.reloadPickerView()
-                
-                self.loadUserLocationForStreetEstimation()
-                
-            })
-            .store(in: &cancellables)
+            } catch {
+                self.logger.error("Loading rubbish collection streets failed: \(error.localizedDescription)")
+            }
+        }
         
     }
     

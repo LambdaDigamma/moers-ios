@@ -256,41 +256,42 @@ public class AppSplitViewController: SplitViewController {
             onboardingManager.userDidCompleteSetup &&
             rubbishService.rubbishStreet != nil {
             
-            rubbishService.loadRubbishCollectionStreets()
-                .receive(on: DispatchQueue.main)
-                .sink { (_: Subscribers.Completion<Error>) in
+            Task {
+                do {
+                    let streets = try await rubbishService.loadRubbishCollectionStreets()
                     
-                } receiveValue: { (streets: [RubbishFeature.RubbishCollectionStreet]) in
-                    
-                    let currentStreetName = rubbishService.rubbishStreet?.street ?? ""
-                    let currentStreetAddition = rubbishService.rubbishStreet?.streetAddition
-                    
-                    if let filteredStreet = streets.filter({
-                        $0.street == currentStreetName &&
-                        $0.streetAddition == currentStreetAddition
-                    }).first {
+                    await MainActor.run {
+                        let currentStreetName = rubbishService.rubbishStreet?.street ?? ""
+                        let currentStreetAddition = rubbishService.rubbishStreet?.streetAddition
                         
-                        rubbishService.register(filteredStreet)
-                        
-                        if rubbishService.remindersEnabled {
-                            rubbishService.registerNotifications(
-                                at: rubbishService.reminderHour ?? 20,
-                                minute: rubbishService.reminderMinute ?? 00
-                            )
+                        if let filteredStreet = streets.filter({
+                            $0.street == currentStreetName &&
+                            $0.streetAddition == currentStreetAddition
+                        }).first {
+                            
+                            rubbishService.register(filteredStreet)
+                            
+                            if rubbishService.remindersEnabled {
+                                rubbishService.registerNotifications(
+                                    at: rubbishService.reminderHour ?? 20,
+                                    minute: rubbishService.reminderMinute ?? 00
+                                )
+                            }
+                            
+                        } else {
+                            
+                            rubbishService.disableStreet()
+                            
+                            self.rubbishMigrationManager.backgroundViewStyle = .dimmed
+                            self.rubbishMigrationManager.statusBarAppearance = .hidden
+                            self.rubbishMigrationManager.showBulletin(above: self)
+                            
                         }
-                        
-                    } else {
-                        
-                        rubbishService.disableStreet()
-                        
-                        self.rubbishMigrationManager.backgroundViewStyle = .dimmed
-                        self.rubbishMigrationManager.statusBarAppearance = .hidden
-                        self.rubbishMigrationManager.showBulletin(above: self)
-                        
                     }
-                    
+                } catch {
+                    print("Error loading rubbish collection streets: \(error.localizedDescription)")
                 }
-                .store(in: &cancellables)
+            }
             
         }
         

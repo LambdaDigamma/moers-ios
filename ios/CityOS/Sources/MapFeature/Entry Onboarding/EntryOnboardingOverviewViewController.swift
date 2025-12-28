@@ -959,7 +959,7 @@ extension EntryOnboardingOverviewViewController: LFSearchViewDataSource, LFSearc
             
             if let tag = self.searchController.searchBar?.textField?.text, tag.isNotEmptyOrWhitespace, !allLoadedTags.contains(tag) {
                 
-                cell.textLabel?.text = String(format: String(localized: "Add Tag "%1$@"", bundle: .module), tag)
+                cell.textLabel?.text = String(format: String(localized: "Add Tag \"%1$@\"", bundle: .module), tag)
                 
             }
             

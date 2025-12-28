@@ -84,13 +84,23 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
 
                 print("Location: \(location.coordinate)")
 
-                return self.petrolService.getPetrolStations(
-                    coordinate: location.coordinate,
-                    radius: self.defaultSearchRadius,
-                    sorting: .distance,
-                    type: self.petrolType,
-                    shouldReload: false
-                )
+                return Future<[PetrolStation], Error> { promise in
+                    Task {
+                        do {
+                            let stations = try await self.petrolService.getPetrolStations(
+                                coordinate: location.coordinate,
+                                radius: self.defaultSearchRadius,
+                                sorting: .distance,
+                                type: self.petrolType,
+                                shouldReload: false
+                            )
+                            promise(.success(stations))
+                        } catch {
+                            promise(.failure(error))
+                        }
+                    }
+                }
+                .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
             .sink { (completion: Subscribers.Completion<Error>) in
@@ -145,7 +155,17 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
     /// - Parameter id: fuel station id
     /// - Returns: a failable publisher of the station
     public func loadFuelStation(id: PetrolStation.ID) -> AnyPublisher<PetrolStation, Error> {
-        return petrolService.getPetrolStation(id: id)
+        return Future<PetrolStation, Error> { promise in
+            Task {
+                do {
+                    let station = try await self.petrolService.getPetrolStation(id: id)
+                    promise(.success(station))
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
+        .eraseToAnyPublisher()
     }
     
     // MARK: - Helper -

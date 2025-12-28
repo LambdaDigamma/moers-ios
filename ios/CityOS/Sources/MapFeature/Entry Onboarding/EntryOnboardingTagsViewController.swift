@@ -85,8 +85,7 @@ class EntryOnboardingTagsViewController: UIViewController {
         
         self.infoLabel.font = UIFont.systemFont(ofSize: 12)
         self.infoLabel.numberOfLines = 0
-        self.infoLabel.text = String(localized: "Good tags are important for the search! 
-Suitable tags include branches, product categories, dishes or other attributes.", bundle: .module)
+        self.infoLabel.text = String(localized: "Good tags are important for the search! Suitable tags include branches, product categories, dishes or other attributes.", bundle: .module)
         
         self.searchController.delegate = self
         self.searchController.dataSource = self
@@ -352,7 +351,7 @@ extension EntryOnboardingTagsViewController: LFSearchViewDataSource, LFSearchVie
             
             if let tag = self.searchController.searchBar?.textField?.text, tag.isNotEmptyOrWhitespace, !tags.contains(tag) {
                 
-                cell.textLabel?.text = String(format: String(localized: "Add tag "%1$@"", bundle: .module), tag)
+                cell.textLabel?.text = String(format: String(localized: "Add tag \"%1$@\"", bundle: .module), tag)
                 
             }
             

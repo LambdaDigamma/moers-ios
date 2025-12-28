@@ -50,10 +50,10 @@ public class RubbishScheduleViewModel: StandardViewModel {
             } catch {
                 await MainActor.run {
                     let rubbishError: RubbishLoadingError
-                    if let httpError = error as? HTTPError {
-                        rubbishError = .internalError(httpError)
+                    if let apiError = error as? APIError {
+                        rubbishError = .internalError(apiError)
                     } else {
-                        rubbishError = .internalError(HTTPError.unknown(error))
+                        rubbishError = .internalError(APIError.networkError(error))
                     }
                     self.state = .error(rubbishError)
                 }
