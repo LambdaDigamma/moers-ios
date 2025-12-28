@@ -49,7 +49,13 @@ public class RubbishScheduleViewModel: StandardViewModel {
                 }
             } catch {
                 await MainActor.run {
-                    self.state = .error(.internalError(error as? HTTPError ?? HTTPError.badRequest(nil)))
+                    let rubbishError: RubbishLoadingError
+                    if let httpError = error as? HTTPError {
+                        rubbishError = .internalError(httpError)
+                    } else {
+                        rubbishError = .internalError(HTTPError.unknown(error))
+                    }
+                    self.state = .error(rubbishError)
                 }
             }
         }

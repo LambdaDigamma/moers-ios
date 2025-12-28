@@ -127,7 +127,8 @@ public class DefaultPetrolService: PetrolService {
         sorting: PetrolSorting,
         type: PetrolType
     ) async throws -> [PetrolStation] {
-        if !guardApiKey() {
+        if apiKey.isEmptyOrWhitespace {
+            logger.error("The petrol api key is empty. Please provide a valid api key.")
             throw APIError.noToken
         }
         
@@ -185,20 +186,6 @@ public class DefaultPetrolService: PetrolService {
         }
         
         throw APIError.noData
-    }
-    
-    internal func guardApiKey() -> Bool {
-        
-        if apiKey.isEmptyOrWhitespace {
-            
-            logger.error("The petrol api key is empty. Please provide a valid api key.")
-            
-            return false
-            
-        }
-        
-        return true
-        
     }
     
 }
