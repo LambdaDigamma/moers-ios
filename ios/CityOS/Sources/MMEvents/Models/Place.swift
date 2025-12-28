@@ -9,7 +9,7 @@ import Core
 import Foundation
 import ModernNetworking
 
-public struct Place: Model, Stubbable {
+public struct Place: Model, Hashable, Stubbable {
     
     public typealias ID = Int
     

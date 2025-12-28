@@ -8,7 +8,7 @@
 import Foundation
 import ModernNetworking
 
-public protocol BasePage: Model, Stubbable {
+public protocol BasePage: Model, Stubbable, Hashable {
     
     associatedtype ID = Identifiable
     associatedtype UserID = Identifiable
