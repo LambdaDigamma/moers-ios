@@ -52,9 +52,11 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     
     public var numberOfDisplayedUpcomingEvents = 12 { didSet { self.rebuildData() } }
     public var numberOfDisplayedUpcomingFavourites = 3 { didSet { self.rebuildData() } }
+    
     public var sectionFavouritesTitle = String(localized: "Upcoming Favorites", bundle: .module).uppercased()
     public var sectionActiveTitle = String(localized: "Live now", bundle: .module).uppercased()
     public var sectionUpcomingTitle = String(localized: "Upcoming", bundle: .module).uppercased()
+    
     private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Data Source
@@ -147,7 +149,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     public init() {
         super.init(nibName: nil, bundle: nil)
         
-        self.title = String(localized: "Events", bundle: .module)
+        self.title = String(localized: "Events")
         
     }
     
@@ -197,7 +199,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
             
             self.searchController.searchResultsUpdater = self
             self.searchController.obscuresBackgroundDuringPresentation = false
-            self.searchController.searchBar.placeholder = String(localized: "Search Events", bundle: .module)
+            self.searchController.searchBar.placeholder = String(localized: "Search…")
             self.searchController.hidesNavigationBarDuringPresentation = true
             
             self.definesPresentationContext = true
@@ -346,14 +348,20 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
             
             snapshot.appendSections([.favourites])
             if favouriteEvents.isEmpty {
-                snapshot.appendItems([.hint(String(localized: "No event has been marked as a favorite yet.", bundle: .module))], toSection: .favourites)
+                snapshot.appendItems(
+                    [.hint(String(localized: "No event has been marked as a favorite yet.", bundle: .module))],
+                    toSection: .favourites
+                )
             } else {
                 snapshot.appendItems(favouriteEvents.map { .event($0) }, toSection: .favourites)
             }
             
             snapshot.appendSections([.active])
             if activeEvents.isEmpty {
-                snapshot.appendItems([.hint(String(localized: "Currently there are no events taking place.", bundle: .module))], toSection: .active)
+                snapshot.appendItems(
+                    [.hint(String(localized: "Currently there are no events taking place.", bundle: .module))],
+                    toSection: .active
+                )
             } else {
                 snapshot.appendItems(activeEvents.map { .event($0) }, toSection: .active)
             }
@@ -598,7 +606,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
         
         self.navigationController?.pushViewController(viewController, animated: true)
         
-        viewController.title = String(localized: "Favourites", bundle: .module)
+        viewController.title = String(localized: "Favourites")
         viewController.events = self.events
         viewController.currentDisplayMode = self.buildFavourites()
         
@@ -608,7 +616,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     open func showNext() -> EventsViewController {
         
         let viewController = EventsViewController()
-        viewController.title = String(localized: "Events", bundle: .module)
+        viewController.title = String(localized: "Events")
         
         self.navigationController?.pushViewController(viewController, animated: true)
         

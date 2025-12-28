@@ -194,8 +194,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LambdaDigamma/MediaLibraryKit",
       "state" : {
-        "revision" : "1e2b55b4499db6357a4ca6ab96baa9541346c9ff",
-        "version" : "1.0.0"
+        "revision" : "78a2714d237cb0af663509f02dca5e7a472ddcd5",
+        "version" : "1.0.1"
       }
     },
     {
@@ -309,7 +309,7 @@
     {
       "identity" : "swift-prosemirror",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/lambdadigamma/swift-prosemirror",
+      "location" : "https://github.com/LambdaDigamma/swift-prosemirror",
       "state" : {
         "revision" : "30b8594dc002f31c4e1e42a20b11eea74a020510",
         "version" : "0.0.9"

@@ -38,9 +38,9 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
     
     public var numberOfDisplayedUpcomingEvents = 12 { didSet { self.rebuildData() } }
     public var numberOfDisplayedUpcomingFavourites = 3 { didSet { self.rebuildData() } }
-    public var sectionFavouritesTitle = String.localized("UpcomingFavourites").uppercased()
-    public var sectionActiveTitle = String.localized("LiveNow").uppercased()
-    public var sectionUpcomingTitle = String.localized("Upcoming").uppercased()
+    public var sectionFavouritesTitle = String(localized: "Upcoming Favorites", bundle: .module).uppercased()
+    public var sectionActiveTitle = String(localized: "live now", bundle: .module).uppercased()
+    public var sectionUpcomingTitle = String(localized: "Upcoming", bundle: .module).uppercased()
     private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Data
@@ -118,7 +118,7 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
     public init() {
         super.init(nibName: nil, bundle: nil)
         
-        self.title = String.localized("EventsTitle")
+        self.title = String(localized: "Events", bundle: .module)
         
     }
     
@@ -178,7 +178,7 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
             
             self.searchController.searchResultsUpdater = self
             self.searchController.obscuresBackgroundDuringPresentation = false
-            self.searchController.searchBar.placeholder = String.localized("SearchEventsPrompt")
+            self.searchController.searchBar.placeholder = String(localized: "Search Events", bundle: .module)
             self.searchController.hidesNavigationBarDuringPresentation = true
             
             self.definesPresentationContext = true
@@ -205,7 +205,7 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
         
         DispatchQueue.main.async {
             switch self.currentDisplayMode {
-                
+                    
                 case .overview(_, _, _):
                     self.currentDisplayMode = self.buildOverview()
                     
@@ -243,7 +243,7 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
         
         self.logStatement("Updating UI.")
         
-//        self.events = EventManager.shared.filterEvents(events) // TODO: ullllsddsf
+        //        self.events = EventManager.shared.filterEvents(events) // TODO: ullllsddsf
         self.rebuildData()
         
         self.logStatement("Updated UI.")
@@ -332,7 +332,7 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
         
         for viewModel in events {
             
-            let key = viewModel.model.startDate?.format(format: "EEEE, dd.MM.yyyy") ?? "nicht bekannt"
+            let key = viewModel.model.startDate?.format(format: "EEEE, dd.MM.yyyy") ?? String(localized: "Not known", bundle: .module)
             
             var kEvent = keyedEvents[key] ?? []
             
@@ -382,10 +382,10 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
     
     open func showEventDetailViewController(for event: EventViewModel<Event>) {
         
-//        let viewModel = EventDetailsViewModel(model: event)
-//        let detailViewController = EventDetailViewController(viewModel: viewModel)
-//
-//        self.navigationController?.pushViewController(detailViewController, animated: true)
+        //        let viewModel = EventDetailsViewModel(model: event)
+        //        let detailViewController = EventDetailViewController(viewModel: viewModel)
+        //
+        //        self.navigationController?.pushViewController(detailViewController, animated: true)
         
         self.onShowEvent?(event.model.id, event.model.pageID)
         
@@ -399,7 +399,7 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
         
         self.navigationController?.pushViewController(viewController, animated: true)
         
-        viewController.title = String.localized("Favourites")
+        viewController.title = String(localized: "Favourites", bundle: .module)
         viewController.events = self.events
         viewController.currentDisplayMode = self.buildFavourites()
         
@@ -409,7 +409,7 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
     open func showNext() -> EventsViewController_Legacy {
         
         let viewController = EventsViewController_Legacy()
-        viewController.title = String.localized("EventsTitle")
+        viewController.title = String(localized: "Events", bundle: .module)
         
         self.navigationController?.pushViewController(viewController, animated: true)
         
@@ -478,7 +478,7 @@ extension EventsViewController_Legacy: UITableViewDataSource, UITableViewDelegat
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch currentDisplayMode {
-            
+                
             case .overview(let favouriteEvents, let activeEvents, let upcomingEvents):
                 
                 if section == 0 {
@@ -524,13 +524,13 @@ extension EventsViewController_Legacy: UITableViewDataSource, UITableViewDelegat
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch currentDisplayMode {
-            
+                
             case .overview(let favouriteEvents, let activeEvents, let upcomingEvents):
                 
                 if indexPath.section == 0 {
                     
                     if favouriteEvents.isEmpty {
-                        return hintCell(with: String.localized("EventsNoFavourite"), at: indexPath)
+                        return hintCell(with: String(localized: "No event has been marked as a favorite yet.", bundle: .module), at: indexPath)
                     } else {
                         return eventCell(for: favouriteEvents[indexPath.row], at: indexPath)
                     }
@@ -538,7 +538,7 @@ extension EventsViewController_Legacy: UITableViewDataSource, UITableViewDelegat
                 } else if indexPath.section == 1 {
                     
                     if activeEvents.isEmpty {
-                        return hintCell(with: String.localized("EventsNoLive"), at: indexPath)
+                        return hintCell(with: String(localized: "Currently there are no events taking place.", bundle: .module), at: indexPath)
                     } else {
                         return eventCell(for: activeEvents[indexPath.row], at: indexPath)
                     }
@@ -546,7 +546,7 @@ extension EventsViewController_Legacy: UITableViewDataSource, UITableViewDelegat
                 } else {
                     
                     if upcomingEvents.isEmpty {
-                        return hintCell(with: String.localized("EventsNoUpcoming"), at: indexPath)
+                        return hintCell(with: String(localized: "Currently there are no events scheduled. Come back soon!", bundle: .module), at: indexPath)
                     } else {
                         return eventCell(for: upcomingEvents[indexPath.row], at: indexPath)
                     }
@@ -556,7 +556,7 @@ extension EventsViewController_Legacy: UITableViewDataSource, UITableViewDelegat
             case .list(let keyedEvents):
                 
                 if keyedEvents.isEmpty {
-                    return hintCell(with: String.localized("EventsNoUpcoming"), at: indexPath)
+                    return hintCell(with: String(localized: "Currently there are no events scheduled. Come back soon!", bundle: .module), at: indexPath)
                 }
                 
                 let event = keyedEvents[indexPath.section].events[indexPath.row]
@@ -586,7 +586,7 @@ extension EventsViewController_Legacy: UITableViewDataSource, UITableViewDelegat
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         switch currentDisplayMode {
-            
+                
             case .overview(let favouriteEvents, _, _):
                 if section == 0 && favouriteEvents.isEmpty {
                     return 40
@@ -605,7 +605,7 @@ extension EventsViewController_Legacy: UITableViewDataSource, UITableViewDelegat
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: EventHeaderFooterView.identifier) as! EventHeaderFooterView
         
         switch currentDisplayMode {
-            
+                
             case .overview(_, _, _):
                 
                 if section == 0 {
