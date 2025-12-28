@@ -1,0 +1,55 @@
+/* 
+  Localizable.strings
+  moers festival
+
+  Created by Lennart Fischer on 29.01.18.
+  Copyright © 2018 CodeForNiederrhein. All rights reserved.
+*/
+"NewsTabItem" = "Nouvelles";
+"FAQTabItem" = "FAQ";
+"Details" = "Détails";
+"OtherTabItem" = "Autre";
+"InfoTabItem" = "Info & Tickets";
+"Add" = "Ajouter";
+"QuestionPrompt" = "Posez votre question:";
+"EventsTabItem" = "Manifestation";
+"SearchEventsPrompt" = "Chercher des manifestations";
+"OnboardingDescription" = "Découvrez Moers Festival";
+"OnboardingFirstPageActionButtonTitle" = "Continuer";
+"OnboardingNotificationPageTitle" = "Notifications push";
+"OnboardingNotificationPageDescription" = "Recevez les notifications push pour recevoir toutes les dernières nouvelles du Festival de Moers.";
+"OnboardingNotificationPageActionButtonTitle" = "Abonner";
+"OnboardingNotificationPageAlternativeButtonTitle" = "Pas maintenant";
+"MoersAppPageTitle" = "Mein Moers";
+"MoersAppPageDescription" = "Mein Moers est un ajout utile à cette application. Recherchez des magasins et des parkings avec des données en direct et déplacez-vous dans la ville avec des panoramas interactifs à 360° !";
+"MoersAppPageActionButtonTitle" = "Télécharger";
+"MoersAppPageAlternativeButtonTitle" = "Plus tard";
+"CompletionPageTitle" = "Configuration terminée";
+"CompletionPageActionButtonTitle" = "Commencer";
+"LoginFailedPageTitle" = "Mauvaise authentification";
+"ErrorPageActionButtonTitle" = "Ok";
+"LicensesTitle" = "Licenses";
+"AboutTitle" = "Info";
+"TicketsTitle" = "Tickets";
+"SponsorTitle" = "Partner";
+"LegalTitle" = "Legal";
+"StaffLoginTitle" = "Accès du personnel";
+"StaffLoginPageTitle" = "Accès du personnel";
+"StaffLoginPagePlaceholder" = "Password";
+"StaffLoginPageActionButtonTitle" = "Annoncer";
+"NewsOfficialSegmentTitle" = "Officiel";
+"NewsSocialSegmentTitle" = "Social";
+"SettingsTitle" = "Configurations";
+"DeleteAction" = "Delete";
+"MuteAction" = "Silence";
+"MutedPageDescription" = "Vous avez été silencieux par l'opérateur et ne pouvez plus poser de questions.";
+"NotKnownPrompt" = "pas encore connu";
+"RouteButtonTitle" = "Route";
+"FestivalHeading" = "Le festival";
+"LodgingHeading" = "Nuitée";
+"AccessibilityHeading" = "Barrière de liberté";
+"free" = "gratis";
+"NeedsFestivalTicket" = "Entrée avec ticket d'entrée au festival";
+"ExtraTicket" = "Billet du festival ou billet supplémentaire (*)";
+"SearchBarPrompt" = "Search a place";
+"Buy" = "Acheter";

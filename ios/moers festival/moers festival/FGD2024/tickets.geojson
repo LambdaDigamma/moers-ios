@@ -1,0 +1,7 @@
+{
+"type": "FeatureCollection",
+"name": "tickets",
+"features": [
+{ "type": "Feature", "properties": { "id": null, "name": "Ticketstand", "type": "tickets" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 6.621962, 51.4418258 ], [ 6.6218111, 51.4418726 ], [ 6.6217864, 51.4418486 ], [ 6.6219407, 51.4417976 ], [ 6.621962, 51.4418258 ] ] ] } }
+]
+}

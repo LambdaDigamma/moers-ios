@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "\/var\/folders\/c3\/nhvb43vd6458kcrgjf45v56w0000gn\/T\/tmpjq0xt4cobulkexport\/d7205b2e-7d76-4697-a954-2c0af59f7fd4",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": null, "name": "Fahrräder", "type": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 6.617921, 51.43966 ], [ 6.617534, 51.439175 ], [ 6.617237, 51.439263 ], [ 6.617624, 51.439744 ], [ 6.617921, 51.43966 ] ] ] ] } }
+]
+}

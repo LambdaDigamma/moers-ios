@@ -1,0 +1,28 @@
+/*
+  MMUI.strings
+  Moers
+
+  Created by Lennart Fischer on 13.10.19.
+  Copyright © 2019 Lennart Fischer. All rights reserved.
+*/
+
+"EventsTitle" = "Veranstaltungen";
+"SearchEventsPrompt" = "Suche Veranstaltungen";
+"ShowMore" = "Mehr anzeigen";
+"UpcomingFavourites" = "bevorstehende Favoriten";
+"Favourites" = "Favoriten";
+"Upcoming" = "Bevorstehend";
+"LiveNow" = "jetzt live";
+"RouteButtonTitle" = "Route";
+"EventsNoFavourite" = "Du hast noch keine Veranstaltung als Favoriten markiert.";
+"EventsNoLive" = "Gerade finden keine Veranstaltungen statt.";
+"EventsNoUpcoming" = "Momentan sind keine Veranstaltungen geplant. Komme demnächst noch einmal wieder!";
+"NavigationButtonMovingAct" = "Aktuelle Position zeigen";
+"MoreInformation" = "Mehr Informationen ➤";
+"Venue" = "Veranstaltungsort";
+"Unknown" = "unbekannt";
+"NotKnownLoc" = "nicht bekannt";
+"NoEventInformation" = "Keine genaueren Informationen verfügbar.";
+
+"TicketMoerzzInfo" = "
+(*) Mit dem vor zwei Jahren eingeführten „Mörzz-Ticket“ € 15,-/€ 7,50 erm. im VVK (€ 20,-/€ 10,- AK) erwerben Fans und Freunde des Festivals Zutritt zu einer delikaten Auswahl hochkarätiger Veranstaltungen in Clubs, Kirchen, Cafés und anderen Einrichtungen. Darunter besonders hervorzuheben das Aktivbad Solimare, in dem zur Geisterstunde (am Pfingstmontag schon um 19.30 Uhr) Unterwasserkonzerte stattfinden und den mutigen Besuchern besondere Klangerlebnisse verschaffen (Badekleidung!). Wer auf der Schwimmnudel entspannt, kriegt den Klang aus der Tiefe und von oben. Das Mörzz-Ticket bietet Zugang zu Konzerten auf Weltniveau in besonderen Locations.";

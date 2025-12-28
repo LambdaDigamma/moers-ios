@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "medical_services",
+"features": [
+{ "type": "Feature", "properties": { "id": null, "name": "Sanitätsdienst am Rodelberg", "type": "medical_service" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 6.6159666, 51.44361 ], [ 6.6158965, 51.4435288 ], [ 6.6159778, 51.4435011 ], [ 6.6160471, 51.4435842 ], [ 6.6159666, 51.44361 ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "Sanitätsdienst (Festivalhalle)", "type": "medical_service" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 6.6185691, 51.4398945 ], [ 6.6185344, 51.4399054 ], [ 6.6185025, 51.4398653 ], [ 6.6185363, 51.4398543 ], [ 6.6185691, 51.4398945 ] ] ] } }
+]
+}

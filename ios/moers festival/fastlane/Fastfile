@@ -1,0 +1,235 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+before_all do
+  ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "240"
+  ENV["SNAPSHOT_SIMULATOR_WAIT_FOR_BOOT_TIMEOUT"] = "5"
+end
+
+setup_travis
+default_platform(:ios)
+
+platform :ios do
+
+  # --- Utilies ---
+
+  desc "Sync signing"
+  lane :signing do
+    register_devices(
+      team_id: "77N8D7LGCZ",
+      devices: {
+        "Lennarts iPhone 8" => "e3f6fe313610d72f847e010d17af266b64781acf",
+        "Lennarts iPhone XS" => "00008020-000C584C2690003A",
+        "Lennarts iPad Pro" => "00008103-001C34490CF1001E",
+        "Lennarts iPhone 14 Pro" => "00008120-000E7C8C0E38C01E",
+        "Lennarts Apple Watch" => "00008006-000915E42183002E"
+      }
+    )
+    sync_code_signing(
+      type: "development",
+      force_for_new_devices: true,
+      app_identifier: [
+        "de.okfn.niederrhein.moers-festival", 
+        "de.okfn.niederrhein.moers-festival.Widgets",
+        "de.okfn.niederrhein.moers-festival.watchkitapp"
+      ]
+    )
+
+    sync_code_signing(
+      type: "appstore",
+      app_identifier: [
+        "de.okfn.niederrhein.moers-festival", 
+        "de.okfn.niederrhein.moers-festival.Widgets",
+        "de.okfn.niederrhein.moers-festival.watchkitapp"
+      ]
+    )
+
+    mapping = Actions.lane_context[
+      SharedValues::MATCH_PROVISIONING_PROFILE_MAPPING
+    ]
+  end
+
+  desc "Increment Version"
+  lane :increment do |options|
+
+    version = options[:version]
+
+    # Set App plist version
+    set_info_plist_value(
+      path: "moers festival/Config/Info.plist",
+      key: "CFBundleShortVersionString", 
+      value: version
+    )
+  
+    # Commit plists to git
+    git_commit(
+      path: [
+        "moers festival/Config/Info.plist",
+        "moers festival UITests/Info.plist",
+        "moers festival Tests/Info.plist"
+      ],
+      message: "moers festival iOS Version #{version} 🚀"
+    )
+
+  end
+
+  desc "Increment Build Number"
+  lane :increment_build do
+    increment_build_number_in_plist(target: 'moers festival')
+    increment_build_number_in_plist(target: 'moers festival UITests')
+    increment_build_number_in_plist(target: 'moers festival Tests')
+  end
+
+  # --- Tests ---
+
+  desc "Run All Unit Tests"
+  lane :test_unit do
+    run_tests(scheme: "moers festival",
+              devices: ["iPhone X"])
+  end
+
+  desc "Run All UI Tests"
+  lane :test_ui do
+    run_tests(scheme: "moers festival UITests")
+  end
+
+  # --- Distribution ---
+
+  desc "Release a new version of moers festival"
+  lane :release do |options|
+
+    ensure_git_status_clean
+    
+    ensure_git_branch(branch: 'master')
+
+    version = options[:version]
+
+    increment_build()
+    increment(version: version)
+
+    match(type: "appstore")
+    gym(scheme: "moers festival")
+    pilot(skip_waiting_for_build_processing: true)
+
+  end
+  
+  desc "Take screenshots"
+  lane :screenshots do
+
+    path = "~/Library/Developer/Xcode/DerivedData/moersfestival"
+    scheme = "Screenshots"
+    testplan = "Screenshots"
+    devices = [
+      "iPhone 14 Plus",
+      "iPhone 8 Plus",
+      "iPad Pro (12.9-inch) (6th generation)",
+
+
+      # "iPhone 8",
+      # "iPhone 8 Plus",
+      # "iPhone X",
+      # "iPhone Xs Max",
+      # "iPad Pro (12.9-inch) (2nd generation)",
+      # "iPad Pro (12.9-inch) (4th generation)"
+    ]
+
+    run_tests(
+      build_for_testing: true,
+      code_coverage: false,
+      derived_data_path: path,
+      devices: devices,
+      scheme: scheme,
+      testplan: testplan
+    )
+
+    capture_screenshots(
+      devices: devices,
+      skip_package_dependencies_resolution: true,
+      disable_package_automatic_updates: true,
+      derived_data_path: path,
+      override_status_bar: true,
+      override_status_bar_arguments: "--time 2007-01-09T09:41:00+01:00 --dataNetwork wifi --wifiMode active --wifiBars 3 --cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100",
+      headless: false,
+      test_without_building: true,
+      testplan: testplan
+      # clean: true
+    )
+    # frame_screenshots
+  end
+
+  desc "Upload screenshots"
+  lane :upload_screenshots do
+    deliver(
+      skip_metadata: true,
+      skip_screenshots: false,
+      skip_binary_upload: true
+    )
+  end
+
+  # --------- tvOS ----------
+
+  
+  # --- Utilities
+
+  desc "Increment Version tvOS"
+  lane :increment_tvos do |options|
+
+    version = options[:version]
+
+    # Set App plist version
+    set_info_plist_value(
+      path: "moers festival tvOS/Info.plist",
+      key: "CFBundleShortVersionString", 
+      value: version
+    )
+  
+    # Commit plists to git
+    git_commit(
+      path: [
+        "moers festival tvOS/Info.plist",
+      ],
+      message: "moers festival tvOS Version #{version} 🚀"
+    )
+
+  end
+
+  desc "Increment Build Number"
+  lane :increment_build_tvos do
+    increment_build_number_in_plist(target: 'moers festival tvOS')
+  end
+
+  # --- Distribution ---
+
+  desc "Release a new version of moers festival for tvOS"
+  lane :release_tvos do |options|
+
+    ensure_git_status_clean
+    
+    ensure_git_branch(branch: 'master')
+
+    version = options[:version]
+
+    increment_build_tvos()
+    increment_tvos(version: version)
+
+    match(type: "appstore", platform: "tvos")
+    gym(scheme: "moers festival tvOS")
+    deliver(platform: "appletvos")
+    # pilot(skip_waiting_for_build_processing: true)
+
+  end
+
+  desc "Match Development Certificate tvOS"
+  lane :match_dev_tvos do |options|
+    match(type: "development", platform: "tvos", force_for_new_devices: true)
+  end
+
+end

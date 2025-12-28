@@ -1,0 +1,165 @@
+/* Tab Items & Navigation Title */
+"NewsTabItem" = "News";
+"MapTabItem" = "Map";
+"UserScheduleTabItem" = "Favorites";
+"EventsTabItem" = "Schedule";
+"FAQTabItem" = "FAQ";
+"OtherTabItem" = "Other";
+"InfoTabItem" = "Info & Tickets";
+"Details" = "Details";
+"LicensesTitle" = "Licenses";
+"AboutTitle" = "About";
+"TicketsTitle" = "Tickets";
+"SponsorTitle" = "Partner";
+"LegalTitle" = "Legal";
+"Add" = "Add";
+"QuestionPrompt" = "Ask your question:";
+"SearchEventsPrompt" = "Search Events";
+"SearchBarPrompt" = "Search a place";
+
+/* Notifications */
+"EntryTitle" = "Welcome to the festival village!";
+"EntryBody" = "The moers festival app helps you to easily find your way around the program. You can also put together your own program in the app and get lots of other important information.";
+"EntrySubtitle" = "Nice to see you!";
+"ExitTitle" = "See you later!";
+"ExitBody" = "Thanks for coming. We hope you had fun!";
+
+/* Onboarding */
+"Allow" = "Allow";
+"Later" = "Later";
+"Continue" = "Continue";
+"OnboardingDescription" = "Discover the moers festival";
+"OnboardingFirstPageActionButtonTitle" = "Continue";
+"OnboardingNotificationPageTitle" = "Push Notifications";
+"OnboardingNotificationPageDescription" = "Receive push notifications to get all the latest news about Moers Festival.";
+"OnboardingNotificationPageActionButtonTitle" = "Subscribe";
+"OnboardingNotificationPageAlternativeButtonTitle" = "Not now";
+"OnboardingLocationPageTitle" = "Location";
+"OnboardingLocationPageDescription" = "Moers Festival uses your location to provide you with more detailed information about the sites and moving stages.";
+"PrivacyPageTitle" = "Privacy";
+"PrivacyPageDescription" = "All data will be treated with the utmost care and confidentiality! \nBy using this app, you agree to the terms and conditions and privacy policy found in the menu.";
+"PrivacyPageButtonTitle" = "Understood";
+"MoersAppPageTitle" = "Mein Moers";
+"MoersAppPageDescription" = "Mein Moers is a nice addition to this app. \nExplore the city with 360° panoramas, find shops and get current parking allocation data.";
+"MoersAppPageActionButtonTitle" = "Download";
+"MoersAppPageAlternativeButtonTitle" = "Later";
+"CompletionPageTitle" = "Setup completed";
+"CompletionPageActionButtonTitle" = "Get started";
+
+/* Staff Login */
+"StaffLoginTitle" = "Staff-Login";
+"StaffLoginPageTitle" = "Staff-Login";
+"StaffLoginPagePlaceholder" = "Password";
+"StaffLoginPageActionButtonTitle" = "Login";
+"LoginFailedPageTitle" = "Login failed";
+"ErrorPageActionButtonTitle" = "Okay";
+
+/* Tab: News */
+"NewsOfficialSegmentTitle" = "Official";
+"NewsSocialSegmentTitle" = "Social";
+
+/* Tab: Map */
+"LoadingTracker" = "Loading...";
+"NoDescription" = "No description provided.";
+"MovingActs" = "Moving Acts";
+"Stages" = "Venues";
+"NoMovingActs" = "Currently there are no 'moving acts'.";
+"LastUpdate" = "Last Update";
+
+/* Tab: Events */
+"ShowMore" = "Show more";
+"UpcomingFavourites" = "Upcoming Favorites";
+"Favourites" = "Favourites";
+"Upcoming" = "Upcoming";
+"LiveNow" = "live now";
+"RouteButtonTitle" = "Route";
+"EventsNoFavourite" = "No event has been marked as a favorite yet.";
+"EventsNoLive" = "Currently there are no events taking place.";
+"EventsNoUpcoming" = "Currently there are no events scheduled. Come back soon!";
+"NavigationButtonMovingAct" = "Show current position";
+
+/* Tab: Info & Ticket */
+"FestivalHeading" = "The festival";
+"LodgingHeading" = "Lodging";
+"AccessibilityHeading" = "Accessibility";
+"Retrospect" = "Retrospect";
+"Buy" = "Buy";
+
+/* / Tickets */
+"FestivalTickets" = "Festival ticket";
+"FestivalDate" = "May 29 - June 01";
+"MoerzzTicket" = "MÖRZZ-Ticket";
+"DayTicket" = "Day ticket";
+"FridayDate" = "Friday, 29th of May";
+"SaturdayDate" = "Saturday, 30th of May";
+"SundayDate" = "Sunday, 31th of May";
+"MondayDate" = "Monday, 01st of June";
+"VIPTicket" = "VIP festival ticket (**)";
+"EarlyBird" = "Early Bird";
+"Presale" = "Presale";
+"BoxOffice" = "Box office";
+"PresaleDiscount" = "Presale (discount)";
+
+/* Presale (discount) */
+"BoxOfficeDiscount" = "Box office (discount)";
+
+/* Accessibility */
+"EventDetailViewControllerSubtitleLabel" = "Site and date of this Event";
+
+/* NSUserActivity */
+"ShowNextEvents" = "Show the next events";
+"ShowSpecificEvent" = "Show the event";
+"EventKeyword" = "Events";
+"MFKeyword" = "moers festival";
+
+/* Shortcut Items */
+"ShortcutFavourites" = "Show Favourites";
+"ShortcutEvents" = "Show Events";
+"ShortcutNews" = "Show News";
+
+/* Spotlight */
+"VenueUnknown" = "Venue unknown";
+"CityUnknown" = "City unknown";
+
+/* Misc */
+"SettingsTitle" = "Settings";
+"DeleteAction" = "Delete";
+"MuteAction" = "Mute";
+"MutedPageDescription" = "You have been muted by the operator and can no longer ask questions.";
+"LoadingLivestream" = "Loading live stream...";
+"LivestreamInactiveTitle" = "Livestream not running";
+"LivestreamInactiveDescription" = "The livestream is currently not running. Check the schedule to see when the next event takes place.";
+"CountdownDays" = "days";
+"CountdownHours" = "hours";
+"CountdownMinutes" = "minutes";
+"CountdownSeconds" = "seconds";
+"CountdownText" = "
+Is this noch a jazz fest?
+
+You really want to give your children something?
+You long for rush, loudness, extreme experiences?
+You want to speak your language with other beings?
+You want to finally camp out in the hippocampus?
+You want to actually choose and decide for yourself?
+
+Come to Moers from June 03 to 06, 2022, come to moersland - come to Metamörsum! Because we want to celebrate with you and find out what the possible futures of the next 50 years of moers festival will be like.
+
+After our analogue online festival in 2020 and the first concerts ever with an audience at Whitsun 2021, after our exploration of the green screen in all its creative imperfection, after our pretending to be in the room just for you, there is the (unsurprising) realization that social events like the moers festival will have to react to unforeseeable influences in the future - political, climatic, pandemic...
+
+Moers remains true to itself and continues to improvise, showing attitude and possibilities. Definitely also at Whitsun 2022 - whether in the festival hall, on the Am Viehtheater, in moersland or on fleeing stages in the castle park; with light sense we venture again on a surreal trip through meadows, freedom, wild seas, semi-detached houses and moonscapes.
+";
+
+/* Other Section Texts */
+"WNItem1_6-1Title" = "New planning";
+"WNItem1_6-1Subtitle" = "Due to the current situation, the moers festival must unfortunately take place without any audience.";
+"WNItem1_6-2Title" = "Enjoy the app live";
+"WNItem1_6-2Subtitle" = "All concerts will be shown for free on Arte Concert and right in the app!";
+"WNItem1_6-3Title" = "Tickets";
+"WNItem1_6-3Subtitle" = "You can find information about ticket return or donation in the menu.";
+"WNItem1_6-4Title" = "moerschandise";
+"WNItem1_6-4Subtitle" = "If you want to support us, visit our moerschandise shop in the menu!";
+"TourTabItem" = "Exhibition";
+"ScanStationTitle" = "Scan Station";
+"ScanStationPrompt" = "Scan the QR code with the camera of your device. Simply move the marked square over the QR code on the floor.";
+
+"WNCompletionText" = "Continue";

@@ -1,0 +1,18 @@
+//
+//  Development.xcconfig
+//  moers festival
+//
+//  Created by Lennart Fischer on 10.06.19.
+//  Copyright © 2019 CodeForNiederrhein. All rights reserved.
+//
+
+// Server URL
+ROOT_URL = http:/$()/mein-moers.test/api/v2/
+
+// Auth
+CLIENT_ID = 2
+CLIENT_SECRET = jNMAQBsoiyRlyKyeM8Wly2Ffn54EEFukEjLDaccR
+
+// App Settings
+APP_NAME = moers festival (dev)
+APP_BUNDLE_ID = de.okfn.niederrhein.moers-festival.dev

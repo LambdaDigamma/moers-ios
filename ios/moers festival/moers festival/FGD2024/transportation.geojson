@@ -1,0 +1,7 @@
+{
+"type": "FeatureCollection",
+"name": "transportation",
+"features": [
+{ "type": "Feature", "properties": { "id": null, "name": "moersbikes", "type": "moersbikes" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 6.6181191, 51.4431597 ], [ 6.6175482, 51.4432167 ], [ 6.6175411, 51.4431904 ], [ 6.6181104, 51.4431317 ], [ 6.6181191, 51.4431597 ] ] ] } }
+]
+}

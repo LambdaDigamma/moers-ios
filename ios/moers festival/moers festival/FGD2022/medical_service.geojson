@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "\/var\/folders\/c3\/nhvb43vd6458kcrgjf45v56w0000gn\/T\/tmpwq620de9bulkexport\/d03152b4-7e74-4565-9e4b-3e904f1ea4ce",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": null, "name": "Sanitätsdienst am Rodelberg", "type": "medical_service" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 6.616008620450062, 51.443588106754568 ], [ 6.616036207321018, 51.443534456387773 ], [ 6.615896680864336, 51.443508335305346 ], [ 6.615865903961235, 51.443562392578428 ], [ 6.616008620450062, 51.443588106754568 ] ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "Sanitätsdienst (Festivalhalle)", "type": "medical_service" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 6.618142915580643, 51.440048525995586 ], [ 6.618102139354574, 51.439998875111542 ], [ 6.617973442412474, 51.440039992778622 ], [ 6.618014053427379, 51.440090027950177 ], [ 6.618142915580643, 51.440048525995586 ] ] ] ] } }
+]
+}

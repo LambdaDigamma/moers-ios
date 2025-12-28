@@ -23,7 +23,6 @@ public class FeedPostListViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    private let feedService: FeedService?
     private let repository: PostRepository
     
     /// This is the current page the last load took place for.
@@ -39,19 +38,17 @@ public class FeedPostListViewModel: ObservableObject {
     
     private let dataLoadingEnabled: Bool
     
-    @Injected(\.feedService) private var feedServiceFactory: FeedService
+    @Injected(\.feedService) private var feedService
     
     /// This initializes the view model with a `Feed.ID`.
     public init(
         feedID: Feed.ID,
-        service: FeedService? = nil,
         postsPerLoad: Int = 10,
         automaticallyLoadFirstPage: Bool = true
     ) {
         
-        self.repository = Container.shared.postRepository()
-        self.feedService = service ?? feedServiceFactory
         self.feedID = feedID
+        self.repository = Container.shared.postRepository()
         self.postsPerLoad = postsPerLoad
         self.dataLoadingEnabled = true
         self.automaticallyLoadFirstPage = automaticallyLoadFirstPage
@@ -68,7 +65,6 @@ public class FeedPostListViewModel: ObservableObject {
     /// This initializes the view model with some already
     /// loaded and ready to present post overviews.
     public init(feedID: Feed.ID, posts: [Post]) {
-        self.feedService = nil
         self.repository = Container.shared.postRepository()
         self.items = .success(posts)
         self.feedID = feedID

@@ -1,0 +1,14 @@
+{
+"type": "FeatureCollection",
+"name": "\/var\/folders\/c3\/nhvb43vd6458kcrgjf45v56w0000gn\/T\/tmpwq620de9bulkexport\/302bb5ff-2cfa-4902-9334-0e9adff1e666",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": null, "name": "Toiletten (Sporthalle)", "type": "toilets" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 6.620186450662614, 51.442477591526462 ], [ 6.620339016640602, 51.442349557097693 ], [ 6.620276131503316, 51.4423189635312 ], [ 6.620124845786846, 51.442449787617711 ], [ 6.620186450662614, 51.442477591526462 ] ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "Toiletten (am Filderbenden)", "type": "toilets" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 6.62029178769114, 51.442760212781472 ], [ 6.620435365983478, 51.442638389737766 ], [ 6.6203705259312, 51.442609502541075 ], [ 6.62022694763886, 51.442731325661839 ], [ 6.62029178769114, 51.442760212781472 ] ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "Toiletten (Rodelberg)", "type": "toilets" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 6.616433294776047, 51.4425564098715 ], [ 6.616370896493862, 51.442401050077301 ], [ 6.616264892770658, 51.442416843024418 ], [ 6.616328255307231, 51.442572363807301 ], [ 6.616433294776047, 51.4425564098715 ] ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "Toiletten (Park)", "type": "toilets" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 6.616195057061644, 51.44400373157162 ], [ 6.616245248970144, 51.443825444978714 ], [ 6.616089208402334, 51.443808217918061 ], [ 6.616039598500715, 51.443989546079123 ], [ 6.616195057061644, 51.44400373157162 ] ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "Toiletten (Streichelzoo)", "type": "toilets" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 6.616892221411175, 51.443079211915361 ], [ 6.616871394360634, 51.443035138832911 ], [ 6.616771649030321, 51.443057835518538 ], [ 6.616794862029412, 51.443099827991453 ], [ 6.616892221411175, 51.443079211915361 ] ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "Toiletten (am Solimare)", "type": "toilets" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 6.617259081706919, 51.439715087646412 ], [ 6.617129569578861, 51.439581088342941 ], [ 6.617061018075166, 51.43960519811489 ], [ 6.617194788228562, 51.439739908534719 ], [ 6.617259081706919, 51.439715087646412 ] ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "Toiletten (Backstage)", "type": "toilets" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 6.61931275456121, 51.439656355167607 ], [ 6.619276567897058, 51.43961287790156 ], [ 6.61918835088728, 51.439641062788859 ], [ 6.61922646962199, 51.4396848627282 ], [ 6.61931275456121, 51.439656355167607 ] ] ] ] } }
+]
+}

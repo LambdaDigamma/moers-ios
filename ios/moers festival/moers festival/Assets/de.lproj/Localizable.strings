@@ -1,0 +1,165 @@
+/* Tab Items & Navigation Title */
+"NewsTabItem" = "Neuigkeiten";
+"MapTabItem" = "Karte";
+"UserScheduleTabItem" = "Favoriten";
+"EventsTabItem" = "Spielplan";
+"FAQTabItem" = "FAQ";
+"OtherTabItem" = "Sonstiges";
+"InfoTabItem" = "Infos & Tickets";
+"Details" = "Details";
+"LicensesTitle" = "Lizenzen";
+"AboutTitle" = "Über";
+"TicketsTitle" = "Tickets";
+"SponsorTitle" = "Partner";
+"LegalTitle" = "Impressum";
+"Add" = "Hinzufügen";
+"QuestionPrompt" = "Stellen Sie Ihre Frage:";
+"SearchEventsPrompt" = "Suche Veranstaltungen";
+"SearchBarPrompt" = "Suche einen Ort";
+
+/* Notifications */
+"EntryTitle" = "Herzlich willkommen im Festivaldorf!";
+"EntryBody" = "Die moers festival App hilft Dir, Dich im Programm zurecht zu finden. Du kannst Dir außerdem in der App Dein eigenes Programm zusammenstellen und viele weitere wichtige Informationen bekommen.";
+"EntrySubtitle" = "Schön, dass Du da bist!";
+"ExitTitle" = "Auf Wiedersehen!";
+"ExitBody" = "Schön, dass Du da warst. Wir hoffen, Du hattest Spaß!";
+
+/* Onboarding */
+"Allow" = "Erlauben";
+"Later" = "Später";
+"Continue" = "Weiter";
+"OnboardingDescription" = "Entdecke das moers festival";
+"OnboardingFirstPageActionButtonTitle" = "Fortfahren";
+"OnboardingNotificationPageTitle" = "Push-Mitteilungen";
+"OnboardingNotificationPageDescription" = "Erhalte Push Notifications, um alles Aktuelle über das moers festival zu erfahren.";
+"OnboardingNotificationPageActionButtonTitle" = "Erhalten";
+"OnboardingNotificationPageAlternativeButtonTitle" = "Nicht jetzt";
+"OnboardingLocationPageTitle" = "Standort";
+"OnboardingLocationPageDescription" = "Moers Festival nutzt den Standort, um Dir detailiertere Informationen zu den Spielorten und mobilen Bühnen zu geben.";
+"PrivacyPageTitle" = "Datenschutz";
+"PrivacyPageDescription" = "Alle Daten werden mit größter Vorsicht und höchster Vertraulichkeit behandelt! \nMit der Benutzung dieser App stimmen Sie den AGBs und Datenschutzbestimmungen, die Sie im Menü finden, zu.";
+"PrivacyPageButtonTitle" = "Verstanden";
+"MoersAppPageTitle" = "Mein Moers";
+"MoersAppPageDescription" = "Mein Moers ist eine sinnvolle Ergänzung zu dieser App. \nSuche Geschäfte & Parkplätze mit Live-Daten und bewege Dich mit interaktiven 360° Panoramen durch die Stadt!";
+"MoersAppPageActionButtonTitle" = "Download";
+"MoersAppPageAlternativeButtonTitle" = "Später";
+"CompletionPageTitle" = "Einrichtung abgeschlossen";
+"CompletionPageActionButtonTitle" = "Los geht's!";
+
+/* Staff Login */
+"StaffLoginTitle" = "Mitarbeiter-Zugang";
+"StaffLoginPageTitle" = "Mitarbeiter-Zugang";
+"StaffLoginPagePlaceholder" = "Passwort";
+"StaffLoginPageActionButtonTitle" = "Anmelden";
+"LoginFailedPageTitle" = "Anmeldung fehlgeschlagen";
+"ErrorPageActionButtonTitle" = "Okay";
+
+/* Tab: News */
+"NewsOfficialSegmentTitle" = "Offiziell";
+"NewsSocialSegmentTitle" = "Sozial";
+
+/* Tab: Map */
+"LoadingTracker" = "Lädt...";
+"NoDescription" = "Keine Beschreibung vorhanden.";
+"MovingActs" = "Moving Acts";
+"Stages" = "Spielorte";
+"NoMovingActs" = "Momentan gibt es keine 'Moving Acts'.";
+"LastUpdate" = "Letztes Aktualisierung";
+
+/* Tab: Events */
+"ShowMore" = "Mehr anzeigen";
+"UpcomingFavourites" = "bevorstehende Favoriten";
+"Favourites" = "Favoriten";
+"Upcoming" = "Bevorstehend";
+"LiveNow" = "jetzt live";
+"RouteButtonTitle" = "Route";
+"EventsNoFavourite" = "Du hast noch keine Veranstaltung als Favoriten markiert.";
+"EventsNoLive" = "Gerade finden keine Veranstaltungen statt.";
+"EventsNoUpcoming" = "Momentan sind keine Veranstaltungen geplant. Komme demnächst noch einmal wieder!";
+"NavigationButtonMovingAct" = "Aktuelle Position zeigen";
+
+/* Tab: Info & Ticket */
+"FestivalHeading" = "Das Festival";
+"LodgingHeading" = "Schlafen";
+"AccessibilityHeading" = "Barrierefreiheit";
+"Retrospect" = "Rückblick";
+"Buy" = "Kaufen";
+
+/* / Tickets */
+"FestivalTickets" = "Festivaltickets";
+"FestivalDate" = "29. Mai bis 01. Juni";
+"MoerzzTicket" = "MÖRZZ-Ticket";
+"DayTicket" = "Tagesticket";
+"FridayDate" = "Freitag, 29. Mai";
+"SaturdayDate" = "Samstag, 30. Mai";
+"SundayDate" = "Sonntag, 31. Mai";
+"MondayDate" = "Montag, 01. Juni";
+"VIPTicket" = "VIP-Festivalticket (**)";
+"EarlyBird" = "Early Bird";
+"Presale" = "Vorverkauf";
+"BoxOffice" = "Tageskasse";
+"PresaleDiscount" = "Vorverkauf (ermäßigt)";
+
+/* Presale (discount) */
+"BoxOfficeDiscount" = "Tageskasse (ermäßigt)";
+
+/* Accessibility */
+"EventDetailViewControllerSubtitleLabel" = "Ort und Datum der Veranstaltung";
+
+/* NSUserActivity */
+"ShowNextEvents" = "Zeige die nächsten Veranstaltungen";
+"ShowSpecificEvent" = "Zeige die Veranstaltung";
+"EventKeyword" = "Veranstaltungen";
+"MFKeyword" = "moers festival";
+
+/* Shortcut Items */
+"ShortcutFavourites" = "Zeige Favoriten";
+"ShortcutEvents" = "Zeige Veranstaltungen";
+"ShortcutNews" = "Zeige Neuigkeiten";
+
+/* Spotlight */
+"VenueUnknown" = "Ort unbekannt";
+"CityUnknown" = "Stadt unbekannt";
+
+/* Misc */
+"SettingsTitle" = "Einstellungen";
+"DeleteAction" = "Löschen";
+"MuteAction" = "Stumm";
+"MutedPageDescription" = "Sie wurden vom Betreiber stumm geschaltet und können keine Fragen mehr stellen.";
+"LoadingLivestream" = "Lädt Livestream...";
+"LivestreamInactiveTitle" = "Livestream nicht aktiv";
+"LivestreamInactiveDescription" = "Der Livestream ist momentan nicht aktiv. Sieh im Spielplan nach, wann die nächste Veranstaltung stattfindet.";
+"CountdownDays" = "Tage";
+"CountdownHours" = "Stunden";
+"CountdownMinutes" = "Minuten";
+"CountdownSeconds" = "Sekunden";
+"CountdownText" = "
+Is this noch a jazz fest?
+
+Du möchtest Deinen Kindern wirklich etwas mitgeben?\n
+Du sehnst Dich nach Rausch, Lautstärke, Grenzerfahrungen?
+Du möchtest Deine Sprache mit anderen Wesen sprechen?
+Du willst endlich mal im Hippocampus zelten?
+Du willst tatsächlich selbst wählen und entscheiden?
+
+Komm vom 03. bis 06. Juni 2022 nach Moers, komm ins moersland - komm ins Metamörsum! Denn wir möchten mit Dir nachfeiern und auskundschaften, wie die möglichen Zukünfte der nächsten 50 Jahre moers festival wohl werden.
+
+Nach unserem analogen Online-Festival 2020 und den ersten Konzerten überhaupt mit Publikum zu Pfingsten 2021, nach unserer Erforschung des Greenscreens in seiner kreativen Unperfektheit, nach unserem für euch extra vorgetäuschten Raumvorhandenseinsgefühl steht die (wenig überraschende) Erkenntnis, dass soziale Ereignisse wie das moers festival auch künftig auf unabsehbare Einflüsse reagieren müssen – politisch, klimatisch, pandemisch…
+
+Moers bleibt sich treu und improvisiert weiter, zeigt Haltung und Möglichkeiten. Ganz bestimmt auch zu Pfingsten 2022 - ob in der Festivalhalle, auf dem Am Viehtheater, im moersland oder auf flüchtenden Bühnen im Schlosspark; mit leichtem Sinn wagen wir uns wieder auf einen surrealen Trip durch Wiesen, Freiheit, wilde Meere, Doppelhaushälften und Mondlandschaften.
+";
+
+/* Other Section Texts */
+"WNItem1_6-1Title" = "Neue Planung";
+"WNItem1_6-1Subtitle" = "Aufgrund der aktuellen Situation muss das moers festival leider ohne Publikum stattfinden.";
+"WNItem1_6-2Title" = "Live in der App";
+"WNItem1_6-2Subtitle" = "Alle Auftritte werden kostenlos auf Arte Concert und direkt in der App zu sehen sein!";
+"WNItem1_6-3Title" = "Tickets";
+"WNItem1_6-3Subtitle" = "Informationen zur Ticketrückgabe oder -spende findet ihr im Menü.";
+"WNItem1_6-4Title" = "moerschandise";
+"WNItem1_6-4Subtitle" = "Wenn ihr uns unterstützen wollt, besucht unseren moerschandise-Shop im Menü!";
+"TourTabItem" = "Ausstellung";
+"ScanStationTitle" = "Station scannen";
+"ScanStationPrompt" = "Scanne den QR Code mit der Kamera Deines Geräts. Bewege hierzu das markierte Quadrat über den QR Code auf dem Boden.";
+
+"WNCompletionText" = "Fortfahren";

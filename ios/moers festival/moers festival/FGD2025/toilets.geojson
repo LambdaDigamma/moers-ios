@@ -1,0 +1,10 @@
+{
+"type": "FeatureCollection",
+"name": "\/var\/folders\/c3\/nhvb43vd6458kcrgjf45v56w0000gn\/T\/tmpjq0xt4cobulkexport\/ca179d06-6786-42ea-a740-fbaa398e9e78",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": null, "name": "Sanitäranlagen (am Solimare)", "type": "toilets" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 6.617259, 51.439715 ], [ 6.61713, 51.439581 ], [ 6.617061, 51.439605 ], [ 6.617195, 51.43974 ], [ 6.617259, 51.439715 ] ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "Toiletten", "type": "toilets" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 6.619195, 51.43919 ], [ 6.61919, 51.439161 ], [ 6.619078, 51.439171 ], [ 6.619085, 51.439199 ], [ 6.619195, 51.43919 ] ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "Toiletten", "type": "toilets" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 6.61808, 51.44036 ], [ 6.618129, 51.440343 ], [ 6.618087, 51.440294 ], [ 6.618039, 51.440311 ], [ 6.61808, 51.44036 ] ] ] ] } }
+]
+}
