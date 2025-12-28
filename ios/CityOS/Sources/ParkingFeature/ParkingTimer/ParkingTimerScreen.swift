@@ -54,8 +54,6 @@ struct ParkingTimerScreen_Previews: PreviewProvider {
     
     static var previews: some View {
         
-//        Resolver.register { StaticLocationService() as LocationService }
-        
         NavigationView {
             ParkingTimerScreen()
                 .navigationBarTitleDisplayMode(.inline)

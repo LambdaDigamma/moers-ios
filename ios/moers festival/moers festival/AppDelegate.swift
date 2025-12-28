@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Resolver
 import UserNotifications
 import AppScaffold
 import FirebaseMessaging
@@ -127,6 +126,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Refresh Content -
     
     private func refreshEvents(completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        Container.shared.legacy
         
         guard let eventService: LegacyEventService = Resolver.optional() else { return }
         
