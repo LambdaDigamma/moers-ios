@@ -33,6 +33,7 @@ public struct ParkingDashboardViewData {
     
 }
 
+@MainActor
 public class ParkingDashboardViewModel: StandardViewModel {
     
     @LazyInjected(\.parkingService) var parkingService
@@ -49,29 +50,23 @@ public class ParkingDashboardViewModel: StandardViewModel {
         
     }
     
-    public func load() {
-        Task {
-            do {
-                let data = try await parkingService.loadDashboard()
-                
-                let minimalDate = data.parkingAreas
-                    .sorted(by: { $0.updatedAt ?? Date.distantPast > $1.updatedAt ?? Date.distantPast })
-                    .first?
-                    .updatedAt
-                
-                let viewData = ParkingDashboardViewData(
-                    parkingAreas: data.parkingAreas,
-                    minimalLastUpdate: minimalDate ?? Date()
-                )
-                
-                await MainActor.run {
-                    self.parkingAreas = .success(viewData)
-                }
-            } catch {
-                await MainActor.run {
-                    self.parkingAreas = .error(error)
-                }
-            }
+    public func load() async {
+        do {
+            let data = try await parkingService.loadDashboard()
+            
+            let minimalDate = data.parkingAreas
+                .sorted(by: { $0.updatedAt ?? Date.distantPast > $1.updatedAt ?? Date.distantPast })
+                .first?
+                .updatedAt
+            
+            let viewData = ParkingDashboardViewData(
+                parkingAreas: data.parkingAreas,
+                minimalLastUpdate: minimalDate ?? Date()
+            )
+            
+            self.parkingAreas = .success(viewData)
+        } catch {
+            self.parkingAreas = .error(error)
         }
     }
     

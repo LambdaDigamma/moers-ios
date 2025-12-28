@@ -9,6 +9,7 @@ import Foundation
 import Core
 import MapKit
 
+@MainActor
 public class ParkingAreaListViewModel: StandardViewModel {
     
     private let parkingService: ParkingService
@@ -50,7 +51,7 @@ public class ParkingAreaListViewModel: StandardViewModel {
         
     }
     
-    public func load() {
+    public func load() async {
         if let locationService = locationService {
             let authorizationStatusAllowsFindingNearby = [
                 CLAuthorizationStatus.authorizedAlways,
@@ -60,28 +61,24 @@ public class ParkingAreaListViewModel: StandardViewModel {
             self.userGrantedLocation = authorizationStatusAllowsFindingNearby
         }
         
-        Task {
-            do {
-                let parkingAreas = try await parkingService.loadParkingAreas()
-                
-                await MainActor.run {
-                    self.parkingAreas = parkingAreas.map({ ParkingAreaViewModel(
-                        title: $0.name,
-                        free: $0.freeSites,
-                        total: $0.capacity ?? 0,
-                        location: $0.location,
-                        currentOpeningState: $0.currentOpeningState,
-                        updatedAt: $0.updatedAt ?? Date()
-                    )})
-                    
-                    self.mapViewModel.annotations = parkingAreas.compactMap {
-                        guard let coordinate = $0.location?.toCoordinate() else { return nil }
-                        return ParkingAreaAnnotation(coordinate: coordinate, title: $0.name)
-                    }
-                }
-            } catch {
-                print("Failed to load parking areas: \(error)")
+        do {
+            let parkingAreas = try await parkingService.loadParkingAreas()
+            
+            self.parkingAreas = parkingAreas.map({ ParkingAreaViewModel(
+                title: $0.name,
+                free: $0.freeSites,
+                total: $0.capacity ?? 0,
+                location: $0.location,
+                currentOpeningState: $0.currentOpeningState,
+                updatedAt: $0.updatedAt ?? Date()
+            )})
+            
+            self.mapViewModel.annotations = parkingAreas.compactMap {
+                guard let coordinate = $0.location?.toCoordinate() else { return nil }
+                return ParkingAreaAnnotation(coordinate: coordinate, title: $0.name)
             }
+        } catch {
+            print("Failed to load parking areas: \(error)")
         }
     }
     

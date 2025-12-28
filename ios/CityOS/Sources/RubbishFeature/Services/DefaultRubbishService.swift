@@ -182,7 +182,7 @@ public class DefaultRubbishService: RubbishService {
                 self.invalidateRubbishReminderNotifications()
                 
                 // Recursively schedule all Notifications
-                self.scheduleNextNotification()
+                await self.scheduleNextNotification()
                 
             } catch {
                 print("Scheduling reminders failed: \(error.localizedDescription)")
@@ -212,45 +212,33 @@ public class DefaultRubbishService: RubbishService {
     }
     
     public func invalidateRubbishReminderNotifications() {
-        
-        notificationCenter.getPendingNotificationRequests { requests in
+        Task {
+            let requests = await notificationCenter.pendingNotificationRequests()
             
             let requestIdentifiers = requests
                 .filter { $0.identifier.contains("RubbishReminder") }
                 .map { $0.identifier }
             
-            self.notificationCenter.removePendingNotificationRequests(withIdentifiers: requestIdentifiers)
-            
+            notificationCenter.removePendingNotificationRequests(withIdentifiers: requestIdentifiers)
         }
-        
-        notificationCenter.removeAllPendingNotificationRequests()
-        
     }
     
-    private func scheduleNextNotification() {
-        
+    private func scheduleNextNotification() async {
         if let request = requests.popLast() {
-            self.scheduleNotification(request: request, completion: scheduleNextNotification)
+            await scheduleNotification(request: request)
+            await scheduleNextNotification()
         } else {
-            notificationCenter.getPendingNotificationRequests { (requests) in
-                print("Scheduled \(requests.count) notifications")
-            }
+            let requests = await notificationCenter.pendingNotificationRequests()
+            print("Scheduled \(requests.count) notifications")
         }
-        
     }
     
-    private func scheduleNotification(request: UNNotificationRequest, completion: @escaping () -> Void) {
-        
-        notificationCenter.add(request) { (error) in
-            
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                completion()
-            }
-            
+    private func scheduleNotification(request: UNNotificationRequest) async {
+        do {
+            try await notificationCenter.add(request)
+        } catch {
+            print(error.localizedDescription)
         }
-        
     }
     
     // MARK: - Testing

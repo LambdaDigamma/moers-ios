@@ -9,6 +9,7 @@ import Foundation
 import Core
 import Factory
 
+@MainActor
 public class RubbishScheduleViewModel: StandardViewModel {
     
     @LazyInjected(\.rubbishService) var rubbishService
@@ -22,7 +23,7 @@ public class RubbishScheduleViewModel: StandardViewModel {
         super.init()
     }
     
-    public func load() {
+    public func load() async {
         self.setLoading()
         
         if !rubbishService.isEnabled {
@@ -35,29 +36,20 @@ public class RubbishScheduleViewModel: StandardViewModel {
             return
         }
         
-        Task {
-            do {
-                let items = try await rubbishService.loadRubbishPickupItems(for: street)
-                let grouped = items.groupByDayIntoSections()
-                
-                await MainActor.run {
-                    self.state = .success(grouped)
-                }
-            } catch let error as RubbishLoadingError {
-                await MainActor.run {
-                    self.state = .error(error)
-                }
-            } catch {
-                await MainActor.run {
-                    let rubbishError: RubbishLoadingError
-                    if let apiError = error as? APIError {
-                        rubbishError = .internalError(apiError)
-                    } else {
-                        rubbishError = .internalError(APIError.networkError(error))
-                    }
-                    self.state = .error(rubbishError)
-                }
+        do {
+            let items = try await rubbishService.loadRubbishPickupItems(for: street)
+            let grouped = items.groupByDayIntoSections()
+            self.state = .success(grouped)
+        } catch let error as RubbishLoadingError {
+            self.state = .error(error)
+        } catch {
+            let rubbishError: RubbishLoadingError
+            if let apiError = error as? APIError {
+                rubbishError = .internalError(apiError)
+            } else {
+                rubbishError = .internalError(APIError.networkError(error))
             }
+            self.state = .error(rubbishError)
         }
     }
     

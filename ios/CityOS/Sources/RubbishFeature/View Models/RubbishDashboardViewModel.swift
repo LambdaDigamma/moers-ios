@@ -10,6 +10,7 @@ import Core
 import ModernNetworking
 import Factory
 
+@MainActor
 open class RubbishDashboardViewModel: StandardViewModel {
     
     @Published var state: DataState<[RubbishPickupItem], RubbishLoadingError> = .loading
@@ -27,7 +28,7 @@ open class RubbishDashboardViewModel: StandardViewModel {
         }
     }
     
-    public func load() {
+    public func load() async {
         self.setLoading()
         
         if !rubbishService.isEnabled {
@@ -40,27 +41,19 @@ open class RubbishDashboardViewModel: StandardViewModel {
             return
         }
         
-        Task {
-            do {
-                let items = try await rubbishService.loadRubbishPickupItems(for: street)
-                await MainActor.run {
-                    self.state = .success(items)
-                }
-            } catch let error as RubbishLoadingError {
-                await MainActor.run {
-                    self.state = .error(error)
-                }
-            } catch {
-                await MainActor.run {
-                    let rubbishError: RubbishLoadingError
-                    if let apiError = error as? APIError {
-                        rubbishError = .internalError(apiError)
-                    } else {
-                        rubbishError = .internalError(APIError.networkError(error))
-                    }
-                    self.state = .error(rubbishError)
-                }
+        do {
+            let items = try await rubbishService.loadRubbishPickupItems(for: street)
+            self.state = .success(items)
+        } catch let error as RubbishLoadingError {
+            self.state = .error(error)
+        } catch {
+            let rubbishError: RubbishLoadingError
+            if let apiError = error as? APIError {
+                rubbishError = .internalError(apiError)
+            } else {
+                rubbishError = .internalError(APIError.networkError(error))
             }
+            self.state = .error(rubbishError)
         }
     }
     
