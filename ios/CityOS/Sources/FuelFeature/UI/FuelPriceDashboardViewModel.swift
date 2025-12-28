@@ -140,10 +140,12 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
         
         let averagePrice = priceSum / Double(numberOfStations)
         
-        self.data = .success(PetrolPriceDashboardData(
-            averagePrice: averagePrice,
-            numberOfStations: numberOfStations
-        ))
+        DispatchQueue.main.async {
+            self.data = .success(PetrolPriceDashboardData(
+                averagePrice: averagePrice,
+                numberOfStations: numberOfStations
+            ))
+        }
         
         self.logger.log("Calculated fuel average is \(averagePrice, privacy: .public)€.")
         
