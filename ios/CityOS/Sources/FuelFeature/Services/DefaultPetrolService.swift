@@ -8,7 +8,6 @@
 import Core
 import Foundation
 import CoreLocation
-import Combine
 import ModernNetworking
 import OSLog
 
@@ -23,8 +22,6 @@ public class DefaultPetrolService: PetrolService {
     
     private let apiKey: String
     private let host: String = "creativecommons.tankerkoenig.de"
-    
-    private var cancellables = Set<AnyCancellable>()
     
     public init(
         userDefaults: UserDefaults = .standard,
@@ -66,15 +63,10 @@ public class DefaultPetrolService: PetrolService {
         }
     }
     
-    public func getPetrolStation(id: PetrolStation.ID) -> AnyPublisher<PetrolStation, Error> {
-        
+    public func getPetrolStation(id: PetrolStation.ID) async throws -> PetrolStation {
         if apiKey.isEmptyOrWhitespace {
-            
             logger.error("The petrol api key is empty. Please provide a valid api key.")
-            
-            return Fail(error: APIError.noToken)
-                .eraseToAnyPublisher()
-            
+            throw APIError.noToken
         }
         
         var request = HTTPRequest(
@@ -90,47 +82,19 @@ public class DefaultPetrolService: PetrolService {
         request.host = host
         
         guard let url = request.url else {
-            return Fail(error: APIError.unavailableURL).eraseToAnyPublisher()
+            throw APIError.unavailableURL
         }
         
-        return Deferred {
-            Future { promise in
-                
-                let request = URLRequest(url: url)
-                
-                let task = self.session.dataTask(with: request) { (data, _, error) in
-                    
-                    if let error = error {
-                        return promise(.failure(error))
-                    }
-                    
-                    guard let data = data else {
-                        return promise(.failure(APIError.noData))
-                    }
-                    
-                    do {
-                        
-                        let response = try self.decoder.decode(PetrolDetailResponse.self, from: data)
-                        
-                        if response.isValid, let station = response.station {
-                            return promise(.success(station))
-                        } else {
-                            return promise(.failure(APIError.noData))
-                        }
-                        
-                    } catch {
-                        return promise(.failure(error))
-                    }
-                    
-                }
-                
-                task.resume()
-                
-            }
-        }
-        .receive(on: DispatchQueue.main)
-        .eraseToAnyPublisher()
+        let urlRequest = URLRequest(url: url)
+        let (data, _) = try await session.data(for: urlRequest)
         
+        let response = try decoder.decode(PetrolDetailResponse.self, from: data)
+        
+        if response.isValid, let station = response.station {
+            return station
+        } else {
+            throw APIError.noData
+        }
     }
     
     public func getPetrolStations(
@@ -139,8 +103,7 @@ public class DefaultPetrolService: PetrolService {
         sorting: PetrolSorting,
         type: PetrolType,
         shouldReload: Bool = false
-    ) -> AnyPublisher<[PetrolStation], Error> {
-        
+    ) async throws -> [PetrolStation] {
         let requestLocation = CLLocation(
             latitude: coordinate.latitude,
             longitude: coordinate.longitude
@@ -148,34 +111,12 @@ public class DefaultPetrolService: PetrolService {
         
         self.lastLoadLocation = requestLocation
         
-//        let lastReloadLocationIsFarAway = requestLocation.distance(from: lastLoadLocation) > 15000
-        
-        let networkSource = sendRequest(
+        return try await sendRequest(
             coordinate: coordinate,
             radius: radius,
             sorting: sorting,
             type: type
         )
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-        
-        return networkSource
-        
-//        if shouldReload || lastReloadLocationIsFarAway {
-//
-//            let networkSource = sendRequest(
-//                coordinate: coordinate,
-//                radius: radius,
-//                sorting: sorting,
-//                type: type
-//            )
-//
-//            return networkSource
-//
-//        }
-//
-//        return storageManager.read(forKey: storageKey, with: decoder)
-        
     }
     
     // MARK: - Helper
@@ -185,10 +126,9 @@ public class DefaultPetrolService: PetrolService {
         radius: Double,
         sorting: PetrolSorting,
         type: PetrolType
-    ) -> AnyPublisher<[PetrolStation], Error> {
-        
+    ) async throws -> [PetrolStation] {
         if !guardApiKey() {
-            return Fail(error: APIError.noToken).eraseToAnyPublisher()
+            throw APIError.noToken
         }
         
         var request = HTTPRequest(
@@ -208,103 +148,43 @@ public class DefaultPetrolService: PetrolService {
         ]
         
         if radius > 25.0 {
-            
             logger.info("Search radius should not be greater than 25.0")
-            
-            return Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
-            
+            return []
         }
         
-        return Deferred {
-            Future { promise in
-                
-                guard let url = request.url else {
-                    return promise(.failure(APIError.unavailableURL))
-                }
-                
-                let request = URLRequest(url: url)
-                
-                let task = self.session.dataTask(with: request) { (data, _, error) in
-                    
-                    if let error = error {
-                        return promise(.failure(error))
-                    }
-                    
-                    guard let data = data else {
-                        return promise(.failure(APIError.noData))
-                    }
-                    
-                    let decodedPetrolStations = self.decodePetrolStations(from: data)
-                    
-                    decodedPetrolStations.sink { (completion: Combine.Subscribers.Completion<Error>) in
-                        
-                        switch completion {
-                            case .failure(let error):
-                                return promise(.failure(error))
-                            default: break
-                        }
-                        
-                    } receiveValue: { (stations: [PetrolStation]) in
-                        
-                        let encoder = JSONEncoder()
-                        _ = try? encoder.encode(stations)
-                        
-//                        if let data = encodedData {
-//                            self.storageManager.setLastReload(Date(), forKey: self.storageKey)
-//                            self.storageManager.write(data: data, forKey: self.storageKey)
-//                        }
-                        
-                        return promise(.success(stations))
-                        
-                    }
-                    .store(in: &self.cancellables)
-                    
-                }
-                
-                task.resume()
-            }
+        guard let url = request.url else {
+            throw APIError.unavailableURL
         }
-        .eraseToAnyPublisher()
         
+        let urlRequest = URLRequest(url: url)
+        let (data, _) = try await session.data(for: urlRequest)
+        
+        let stations = try await decodePetrolStations(from: data)
+        
+        // Optionally encode and save to storage
+        // let encoder = JSONEncoder()
+        // _ = try? encoder.encode(stations)
+        
+        return stations
     }
     
-    internal func decodePetrolStations(from data: Data) -> AnyPublisher<[PetrolStation], Error> {
+    internal func decodePetrolStations(from data: Data) async throws -> [PetrolStation] {
+        let response = try decoder.decode(PetrolRequestResponse.self, from: data)
         
-        return Deferred {
-            Future { promise in
-                
-                do {
-                    
-                    let response = try self.decoder.decode(PetrolRequestResponse.self, from: data)
-                    
-                    if response.isValid {
-                        
-                        if let stations = response.stations {
-                            
-                            stations.forEach({ station in
-                                station.name = station.name
-                                    .capitalized(with: Locale.autoupdatingCurrent)
-                                    .replacingOccurrences(of: "_", with: " ")
-                            })
-                            
-                            return promise(.success(stations))
-                            
-                        } else {
-                            
-                            return promise(.failure(APIError.noData))
-                            
-                        }
-                        
-                    }
-                    
-                } catch {
-                    return promise(.failure(error))
+        if response.isValid {
+            if let stations = response.stations {
+                stations.forEach { station in
+                    station.name = station.name
+                        .capitalized(with: Locale.autoupdatingCurrent)
+                        .replacingOccurrences(of: "_", with: " ")
                 }
-                
+                return stations
+            } else {
+                throw APIError.noData
             }
         }
-        .eraseToAnyPublisher()
         
+        throw APIError.noData
     }
     
     internal func guardApiKey() -> Bool {
