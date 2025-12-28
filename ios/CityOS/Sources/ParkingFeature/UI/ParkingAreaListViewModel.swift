@@ -8,7 +8,6 @@
 import Foundation
 import Core
 import MapKit
-import Combine
 
 public class ParkingAreaListViewModel: StandardViewModel {
     
