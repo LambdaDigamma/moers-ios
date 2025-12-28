@@ -42,7 +42,7 @@ public struct WeatherDashboardView: View {
             
         }
         .task {
-            viewModel.load()
+            await viewModel.load()
         }
         
     }

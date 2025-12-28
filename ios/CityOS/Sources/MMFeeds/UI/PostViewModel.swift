@@ -82,21 +82,21 @@ public class PostViewModel: ObservableObject {
     /// Call the reload method on UI events like `onAppear` in order to reload
     /// the data from network if the cached data is not up to date according
     /// to protocol cache information.
-    public func reload() {
-        
-        Task {
+    public func reload() async {
+        do {
             try await repository.reloadPost(for: postID)
+        } catch {
+            print("Failed to reload post: \(error)")
         }
-        
     }
     
-    public func refresh() {
-        
-        Task {
+    public func refresh() async {
+        do {
             try await repository.refreshPost(for: postID)
-            pageViewModel?.refresh()
+            await pageViewModel?.refresh()
+        } catch {
+            print("Failed to refresh post: \(error)")
         }
-        
     }
     
 }

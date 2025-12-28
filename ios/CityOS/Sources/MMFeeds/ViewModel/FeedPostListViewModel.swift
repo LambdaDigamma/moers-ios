@@ -94,20 +94,20 @@ public class FeedPostListViewModel: ObservableObject {
     /// Call the reload method on UI events like `onAppear` in order to reload
     /// the data from network if the cached data is not up to date according
     /// to protocol cache information.
-    public func reload() {
-        
-        Task {
+    public func reload() async {
+        do {
             try await repository.reloadFeed(for: feedID, perPage: 50)
+        } catch {
+            print("Failed to reload feed: \(error)")
         }
-        
     }
     
-    public func refresh() {
-        
-        Task {
+    public func refresh() async {
+        do {
             try await repository.refreshFeed(for: feedID, perPage: 50)
+        } catch {
+            print("Failed to refresh feed: \(error)")
         }
-        
     }
     
     // MARK: - Observer

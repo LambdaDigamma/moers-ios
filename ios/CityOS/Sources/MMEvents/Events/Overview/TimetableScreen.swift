@@ -50,7 +50,7 @@ public struct TimetableScreen: View {
             
         }
         .task {
-            viewModel.load()
+            await viewModel.load()
         }
 //        .toolbar {
 //            ToolbarItem(placement: .primaryAction) {

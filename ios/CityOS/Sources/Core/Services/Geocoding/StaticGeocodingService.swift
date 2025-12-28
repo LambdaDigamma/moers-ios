@@ -6,7 +6,6 @@
 //
 
 import CoreLocation
-import Combine
 import Intents
 import Contacts
 
@@ -25,17 +24,9 @@ public class StaticGeocodingService: GeocodingService {
     }
     
     /// Returns the placemark specified via the `loadPlacemark` closure that
-    /// can be set on the `StaticGeocodingService`. Publisher is received on the main queue.
-    public func placemark(from location: CLLocation) -> AnyPublisher<CLPlacemark, Error> {
-        
-        return Deferred {
-            return Future { promise in
-                promise(self.loadPlacemark(location))
-            }
-        }
-        .receive(on: DispatchQueue.main)
-        .eraseToAnyPublisher()
-        
+    /// can be set on the `StaticGeocodingService`.
+    public func placemark(from location: CLLocation) async throws -> CLPlacemark {
+        return try loadPlacemark(location).get()
     }
     
 }

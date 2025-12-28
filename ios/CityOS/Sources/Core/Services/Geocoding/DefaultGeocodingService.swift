@@ -7,7 +7,6 @@
 
 import Foundation
 import CoreLocation
-import Combine
 import OSLog
 
 public class DefaultGeocodingService: GeocodingService {
@@ -20,22 +19,21 @@ public class DefaultGeocodingService: GeocodingService {
         self.logger = Logger(.coreApi)
     }
     
-    public func placemark(from location: CLLocation) -> AnyPublisher<CLPlacemark, Error> {
-        
-        return Deferred {
-            Future { promise in
-                self.geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-                    if let error = error {
-                        self.logger.error("Error while reverse geocoding location: \(error.localizedDescription, privacy: .private)")
-                        promise(.failure(error))
-                    }
-                    if let placemarks = placemarks, let placemark = placemarks.first {
-                        promise(.success(placemark))
-                    }
-                }
+    public func placemark(from location: CLLocation) async throws -> CLPlacemark {
+        do {
+            let placemarks = try await geocoder.reverseGeocodeLocation(location)
+            guard let placemark = placemarks.first else {
+                throw GeocodingError.noPlacemarkFound
             }
-        }.eraseToAnyPublisher()
-        
+            return placemark
+        } catch {
+            logger.error("Error while reverse geocoding location: \(error.localizedDescription, privacy: .private)")
+            throw error
+        }
     }
     
+}
+
+public enum GeocodingError: Error {
+    case noPlacemarkFound
 }

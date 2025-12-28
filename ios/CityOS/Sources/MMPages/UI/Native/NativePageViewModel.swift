@@ -53,20 +53,20 @@ public class NativePageViewModel: ObservableObject {
     /// Call the reload method on UI events like `onAppear` in order to reload
     /// the data from network if the cached data is not up to date according
     /// to protocol cache information.
-    public func reload() {
-        
-        Task {
+    public func reload() async {
+        do {
             try await repository.reloadPage(for: pageID)
+        } catch {
+            print("Failed to reload page: \(error)")
         }
-        
     }
     
-    public func refresh() {
-        
-        Task {
+    public func refresh() async {
+        do {
             try await repository.refreshPage(for: pageID)
+        } catch {
+            print("Failed to refresh page: \(error)")
         }
-        
     }
     
     public func cancel() {

@@ -49,7 +49,7 @@ struct PostDetailScreen: View {
             
         }
         .task {
-            viewModel.reload()
+            await viewModel.reload()
         }
         
     }
@@ -86,7 +86,7 @@ struct PostDetailScreen: View {
             
         }
         .refreshable {
-            viewModel.refresh()
+            await viewModel.refresh()
         }
         
     }
