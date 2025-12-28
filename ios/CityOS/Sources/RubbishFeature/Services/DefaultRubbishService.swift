@@ -8,7 +8,6 @@
 import Foundation
 import UserNotifications
 import Core
-import Combine
 import ModernNetworking
 
 #if canImport(WidgetKit)
@@ -26,7 +25,6 @@ public class DefaultRubbishService: RubbishService {
 //    private let storageStreetsManager: AnyStoragable<RubbishCollectionStreet>
     private let storageKeyStreets = "streets"
     private let storageKeyPickups = "pickups"
-    private var cancellables = Set<AnyCancellable>()
     private var requests: [UNNotificationRequest] = []
     
     public init(
@@ -100,113 +98,38 @@ public class DefaultRubbishService: RubbishService {
         
     }
     
-    public func loadRubbishCollectionStreets() -> AnyPublisher<[RubbishCollectionStreet], Error> {
-        
+    public func loadRubbishCollectionStreets() async throws -> [RubbishCollectionStreet] {
         let request = HTTPRequest(
             method: .get,
             path: "/api/v2/rubbish/streets",
             queryItems: [URLQueryItem(name: "all", value: "1")]
         )
         
-        return Deferred {
-            return Future { promise in
-                self.loader.load(request) { (result: HTTPResult) in
-                    result.decoding([RubbishCollectionStreet].self) { (result: Result<[RubbishCollectionStreet], HTTPError>) in
-                        switch result {
-                            case .success(let items):
-                                
-                                let sorted = items.sorted { lhs, rhs in
-                                    return lhs.displayName < rhs.displayName
-                                }
-                                
-                                promise(.success(sorted))
-                                
-                            case .failure(let error):
-                                promise(.failure(error))
-                        }
-                    }
-                }
-            }
-        }
-        .receive(on: DispatchQueue.main)
-        .eraseToAnyPublisher()
+        let result = await loader.load(request)
+        let items = try await result.decoding([RubbishCollectionStreet].self)
         
+        let sorted = items.sorted { lhs, rhs in
+            return lhs.displayName < rhs.displayName
+        }
+        
+        return sorted
     }
     
     public func loadRubbishPickupItems(
         for street: RubbishCollectionStreet
-    ) -> AnyPublisher<[RubbishPickupItem], RubbishLoadingError> {
-        
+    ) async throws -> [RubbishPickupItem] {
         let request = HTTPRequest(
             method: .get,
             path: "/api/v2/rubbish/streets/\(street.id)/pickups"
         )
         
-        return Deferred {
-            return Future { promise in
-                self.loader.load(request) { (result: HTTPResult) in
-                    result.decoding([RubbishPickupItem].self) { (result: Result<[RubbishPickupItem], HTTPError>) in
-                        switch result {
-                            case .success(let items):
-                                promise(.success(items))
-                            case .failure(let error):
-                                promise(.failure(RubbishLoadingError.internalError(error)))
-                        }
-                    }
-                }
-            }
+        do {
+            let result = await loader.load(request)
+            let items = try await result.decoding([RubbishPickupItem].self)
+            return items
+        } catch {
+            throw RubbishLoadingError.internalError(error as? HTTPError ?? HTTPError.badRequest(nil))
         }
-        .receive(on: DispatchQueue.main)
-        .eraseToAnyPublisher()
-        
-    }
-    
-    internal func decodeStreets(from data: Data) -> AnyPublisher<[RubbishCollectionStreet], Error> {
-        
-        return Deferred {
-            Future { promise in
-                
-                do {
-                    
-                    let streets = try self.decoder.decode([RubbishCollectionStreet].self, from: data)
-                    
-                    return promise(.success(streets))
-                    
-                } catch {
-                    if let error = error as? DecodingError {
-                        print(error)
-                    }
-                    return promise(.failure(error))
-                }
-                
-            }
-        }
-        .eraseToAnyPublisher()
-        
-    }
-    
-    internal func decodePickupItems(from data: Data) -> AnyPublisher<[RubbishPickupItem], Error> {
-        
-        return Deferred {
-            Future { promise in
-                
-                do {
-                    
-                    let pickupItems = try self.decoder.decode([RubbishPickupItem].self, from: data)
-                    
-                    return promise(.success(pickupItems))
-                    
-                } catch let error as DecodingError {
-                    return promise(.failure(error))
-                } catch {
-                    print(error.localizedDescription)
-                    return promise(.failure(error))
-                }
-                
-            }
-        }
-        .eraseToAnyPublisher()
-        
     }
     
     // MARK: - Notifications
@@ -217,30 +140,16 @@ public class DefaultRubbishService: RubbishService {
         self.reminderMinute = minute
         self.remindersEnabled = true
         
-        let queue = OperationQueue()
-        
-        queue.addOperation {
-            
+        Task {
             guard let rubbishStreet = self.rubbishStreet else {
                 return
             }
             
-            let items = self.loadRubbishPickupItems(for: rubbishStreet)
-            
-            items.sink { (completion: Combine.Subscribers.Completion<RubbishLoadingError>) in
-                
-                switch completion {
-                    case .failure(let error):
-                        print("Scheduling reminders failed: \(error.localizedDescription)")
-                    default: break
-                }
-                
-            } receiveValue: { (items: [RubbishPickupItem]) in
+            do {
+                let items = try await self.loadRubbishPickupItems(for: rubbishStreet)
                 
                 // Build Rubbish Collection Notification Requests
-                
                 for item in items {
-                    
                     let notificationContent = UNMutableNotificationContent()
                     
                     notificationContent.badge = 1
@@ -251,11 +160,8 @@ public class DefaultRubbishService: RubbishService {
 #endif
                     
                     let date = item.date
-                    
                     let calendar = Calendar.current
-                    
                     var dateComponents = DateComponents()
-                    
                     let previousDate = calendar.date(byAdding: .day, value: -1, to: date) ?? Date()
                     
                     dateComponents.day = calendar.component(.day, from: previousDate)
@@ -266,26 +172,21 @@ public class DefaultRubbishService: RubbishService {
                     dateComponents.second = 0
                     
                     let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-                    
                     let identifier = "RubbishReminder-\(dateComponents.day ?? 0)-\(dateComponents.month ?? 0)-\(dateComponents.year ?? 0)-\(item.type.rawValue)"
-                    
                     let request = UNNotificationRequest(identifier: identifier, content: notificationContent, trigger: trigger)
                     
                     self.requests.append(request)
-                    
                 }
                 
                 self.invalidateRubbishReminderNotifications()
                 
                 // Recursively schedule all Notifications
-                
                 self.scheduleNextNotification()
                 
+            } catch {
+                print("Scheduling reminders failed: \(error.localizedDescription)")
             }
-            .store(in: &self.cancellables)
-            
         }
-        
     }
     
     public func disableReminder() {

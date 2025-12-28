@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 
 public protocol RubbishService {
     
@@ -18,11 +17,11 @@ public protocol RubbishService {
     
     func register(_ street: RubbishCollectionStreet)
     
-    func loadRubbishCollectionStreets() -> AnyPublisher<[RubbishCollectionStreet], Error>
+    func loadRubbishCollectionStreets() async throws -> [RubbishCollectionStreet]
     
     func loadRubbishPickupItems(
         for street: RubbishCollectionStreet
-    ) -> AnyPublisher<[RubbishPickupItem], RubbishLoadingError>
+    ) async throws -> [RubbishPickupItem]
     
     func registerNotifications(at hour: Int, minute: Int)
     

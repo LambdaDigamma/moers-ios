@@ -29,37 +29,34 @@ open class RubbishDashboardViewModel: StandardViewModel {
     }
     
     public func load() {
-        
         self.setLoading()
         
         if !rubbishService.isEnabled {
             state = .error(.deactivated)
+            return
         }
         
-        if let street = rubbishService.rubbishStreet {
-            
-            rubbishService
-                .loadRubbishPickupItems(for: street)
-                .sink { [weak self] (completion: Subscribers.Completion<RubbishLoadingError>) in
-                    
-                    switch completion {
-                        case .failure(let error):
-                            self?.state = .error(error)
-                        default:
-                            break
-                    }
-                    
-                } receiveValue: { [weak self] (items: [RubbishPickupItem]) in
-                    
-                    self?.state = .success(items)
-                    
-                }
-                .store(in: &cancellables)
-                
-        } else {
+        guard let street = rubbishService.rubbishStreet else {
             state = .error(.noStreetConfigured)
+            return
         }
         
+        Task {
+            do {
+                let items = try await rubbishService.loadRubbishPickupItems(for: street)
+                await MainActor.run {
+                    self.state = .success(items)
+                }
+            } catch let error as RubbishLoadingError {
+                await MainActor.run {
+                    self.state = .error(error)
+                }
+            } catch {
+                await MainActor.run {
+                    self.state = .error(.internalError(error as? HTTPError ?? HTTPError.badRequest(nil)))
+                }
+            }
+        }
     }
     
     private func setLoading() {
