@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 import ModernNetworking
 import Core
 
@@ -33,70 +32,36 @@ public class DefaultParkingService: ParkingService {
         self.loader = loader
     }
     
-    public func loadParkingAreas() -> AnyPublisher<[ParkingArea], Error> {
-        
+    public func loadParkingAreas() async throws -> [ParkingArea] {
         let request = HTTPRequest(
             method: .get,
             path: "parking-areas"
         )
         
-        return Deferred {
-            return Future { promise in
-                
-                self.loader.load(request) { (result: HTTPResult) in
-                    
-                    guard let data = result.response?.body else {
-                        promise(.failure(URLError(.cannotDecodeRawData)))
-                        return
-                    }
-                    
-                    do {
-                        let response = try ParkingArea.decoder.decode(DataResponse<ParkingAreaResponse>.self, from: data)
-                        promise(.success(response.data.parkingAreas.sorted(by: { $0.currentOpeningState > $1.currentOpeningState })))
-                    } catch {
-                        promise(.failure(error))
-                    }
-                    
-                }
-                
-            }
-        }
-        .receive(on: DispatchQueue.main)
-        .eraseToAnyPublisher()
+        let result = await loader.load(request)
         
+        guard let data = result.response?.body else {
+            throw URLError(.cannotDecodeRawData)
+        }
+        
+        let response = try ParkingArea.decoder.decode(DataResponse<ParkingAreaResponse>.self, from: data)
+        return response.data.parkingAreas.sorted(by: { $0.currentOpeningState > $1.currentOpeningState })
     }
     
-    public func loadDashboard() -> AnyPublisher<ParkingDashboardData, Error> {
-        
+    public func loadDashboard() async throws -> ParkingDashboardData {
         let request = HTTPRequest(
             method: .get,
             path: "parking/dashboard"
         )
         
-        return Deferred {
-            return Future { promise in
-                
-                self.loader.load(request) { (result: HTTPResult) in
-                    
-                    guard let data = result.response?.body else {
-                        promise(.failure(URLError(.cannotDecodeRawData)))
-                        return
-                    }
-                    
-                    do {
-                        let response = try ParkingArea.decoder.decode(DataResponse<ParkingDashboardData>.self, from: data)
-                        promise(.success(response.data))
-                    } catch {
-                        promise(.failure(error))
-                    }
-                    
-                }
-                
-            }
-        }
-        .receive(on: DispatchQueue.main)
-        .eraseToAnyPublisher()
+        let result = await loader.load(request)
         
+        guard let data = result.response?.body else {
+            throw URLError(.cannotDecodeRawData)
+        }
+        
+        let response = try ParkingArea.decoder.decode(DataResponse<ParkingDashboardData>.self, from: data)
+        return response.data
     }
     
 }

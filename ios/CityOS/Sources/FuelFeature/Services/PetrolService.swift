@@ -7,7 +7,6 @@
 
 import Foundation
 import CoreLocation
-import Combine
 
 public protocol PetrolService {
     
@@ -21,10 +20,10 @@ public protocol PetrolService {
         sorting: PetrolSorting,
         type: PetrolType,
         shouldReload: Bool
-    ) -> AnyPublisher<[PetrolStation], Error>
+    ) async throws -> [PetrolStation]
     
     func getPetrolStation(
         id: PetrolStation.ID
-    ) -> AnyPublisher<PetrolStation, Error>
+    ) async throws -> PetrolStation
     
 }

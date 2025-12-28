@@ -7,7 +7,6 @@
 
 import Foundation
 import CoreLocation
-import Combine
 
 public class StaticPetrolService: PetrolService {
     
@@ -110,25 +109,14 @@ public class StaticPetrolService: PetrolService {
         sorting: PetrolSorting,
         type: PetrolType,
         shouldReload: Bool
-    ) -> AnyPublisher<[PetrolStation], Error> {
-        
-        let stations = loadPetrolStations()
-        
-        return Just(stations)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+    ) async throws -> [PetrolStation] {
+        return loadPetrolStations()
     }
     
     public func getPetrolStation(
         id: PetrolStation.ID
-    ) -> AnyPublisher<PetrolStation, Error> {
-        
-        let station = loadPetrolStation(id)
-        
-        return Just(station)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-        
+    ) async throws -> PetrolStation {
+        return loadPetrolStation(id)
     }
     
 }

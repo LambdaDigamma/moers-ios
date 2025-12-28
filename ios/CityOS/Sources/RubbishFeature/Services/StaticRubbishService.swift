@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 
 public class StaticRubbishService: RubbishService {
     
@@ -34,9 +33,8 @@ public class StaticRubbishService: RubbishService {
         self.rubbishStreet = street
     }
     
-    public func loadRubbishCollectionStreets() -> AnyPublisher<[RubbishCollectionStreet], Error> {
-        
-        return Just([
+    public func loadRubbishCollectionStreets() async throws -> [RubbishCollectionStreet] {
+        return [
             RubbishCollectionStreet(
                 id: 1,
                 street: "Musterstraße",
@@ -57,26 +55,17 @@ public class StaticRubbishService: RubbishService {
                 greenWaste: 0,
                 sweeperDay: ""
             ),
-        ])
-            .setFailureType(to: Error.self)
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-        
+        ]
     }
     
     public func loadRubbishPickupItems(
         for street: RubbishCollectionStreet
-    ) -> AnyPublisher<[RubbishPickupItem], RubbishLoadingError> {
-        
-        return Just([
+    ) async throws -> [RubbishPickupItem] {
+        return [
             RubbishPickupItem(date: .init(timeIntervalSinceNow: 3 * 24 * 60 * 60), type: .plastic),
             RubbishPickupItem(date: .init(timeIntervalSinceNow: 5 * 24 * 60 * 60), type: .paper),
             RubbishPickupItem(date: .init(timeIntervalSinceNow: 6 * 24 * 60 * 60), type: .organic),
-        ])
-        .setFailureType(to: RubbishLoadingError.self)
-        .receive(on: DispatchQueue.main)
-        .eraseToAnyPublisher()
-        
+        ]
     }
     
     public func registerNotifications(at hour: Int, minute: Int) {

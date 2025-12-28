@@ -11,14 +11,12 @@ import WidgetKit
 import RubbishFeature
 import UserNotifications
 import Factory
-import Combine
 
 class RubbishCollectionProvider: TimelineProvider {
     
     typealias Entry = RubbishCollectionEntry
     
     private let rubbishService: RubbishService
-    private var cancellables = Set<AnyCancellable>()
     
     public init() {
         
@@ -44,23 +42,16 @@ class RubbishCollectionProvider: TimelineProvider {
         
         if let street = rubbishService.rubbishStreet {
             
-            rubbishService.loadRubbishPickupItems(for: street)
-                .sink { (completion: Subscribers.Completion<RubbishLoadingError>) in
-                    
-                    switch completion {
-                        case .failure(let error):
-                            print(error)
-                        default: break
-                    }
-                    
-                } receiveValue: { (items: [RubbishPickupItem]) in
-                    
+            Task {
+                do {
+                    let items = try await rubbishService.loadRubbishPickupItems(for: street)
                     let entry = RubbishCollectionEntry(date: Date(), rubbishPickupItems: items)
-                    
                     completion(.init(entries: [entry], policy: .after(startOfNextDay)))
-                    
+                } catch {
+                    print(error)
+                    completion(.init(entries: [], policy: .after(startOfNextDay)))
                 }
-                .store(in: &cancellables)
+            }
             
         } else {
             
