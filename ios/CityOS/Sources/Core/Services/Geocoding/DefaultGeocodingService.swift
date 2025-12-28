@@ -27,7 +27,7 @@ public class DefaultGeocodingService: GeocodingService {
         do {
             let placemarks = try await geocoder.reverseGeocodeLocation(location)
             guard let placemark = placemarks.first else {
-                logger.error("No placemark found for location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
+                logger.error("No placemark found for location: \(location.coordinate.latitude, privacy: .private), \(location.coordinate.longitude, privacy: .private)")
                 throw GeocodingError.noPlacemarkFound
             }
             return placemark
