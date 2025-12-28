@@ -57,7 +57,7 @@ public struct NewsList: View {
             
         }
         .task {
-            viewModel.load()
+            await viewModel.load()
         }
     }
     
