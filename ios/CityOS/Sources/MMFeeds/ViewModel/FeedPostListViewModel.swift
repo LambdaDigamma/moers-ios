@@ -10,6 +10,7 @@ import Combine
 import ModernNetworking
 import Factory
 
+@MainActor
 public class FeedPostListViewModel: ObservableObject {
     
     public var feedID: Feed.ID {

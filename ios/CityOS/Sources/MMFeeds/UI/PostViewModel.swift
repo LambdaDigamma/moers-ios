@@ -11,6 +11,7 @@ import Factory
 import Combine
 import SwiftUI
 
+@MainActor
 public class PostViewModel: ObservableObject {
     
     var cancellables = Set<AnyCancellable>()

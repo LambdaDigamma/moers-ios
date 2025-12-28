@@ -10,6 +10,7 @@ import Factory
 import Combine
 import Factory
 
+@MainActor
 public class NativePageViewModel: ObservableObject {
     
     var cancellables = Set<AnyCancellable>()
