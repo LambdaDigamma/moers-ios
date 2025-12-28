@@ -60,7 +60,7 @@ public struct NewsItemPanel: View {
             }
             
         }
-        
+        .cardPanelBorder(CardPanelBorder(color: colorScheme == .dark ? Color.white.opacity(0.2) : .clear, lineWidth: 1))
         
     }
     
