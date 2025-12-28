@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import Combine
 import FeedKit
 
 public protocol NewsService {
     
-    func loadNewsItems() -> AnyPublisher<[RSSFeedItem], Error>
+    func loadNewsItems() async throws -> [RSSFeedItem]
     
 }

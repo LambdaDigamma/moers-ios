@@ -22,15 +22,16 @@ public class NewsViewModel: StandardViewModel {
     }
     
     public func load() {
-        
-        newsService.loadNewsItems()
-            .sink { (_: Subscribers.Completion<Error>) in
-                
-            } receiveValue: { (items: [RSSFeedItem]) in
-                self.newsItems = items
+        Task {
+            do {
+                let items = try await newsService.loadNewsItems()
+                await MainActor.run {
+                    self.newsItems = items
+                }
+            } catch {
+                print("Failed to load news items: \(error)")
             }
-            .store(in: &cancellables)
-        
+        }
     }
     
 }

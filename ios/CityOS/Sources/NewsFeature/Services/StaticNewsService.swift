@@ -7,7 +7,6 @@
 
 import Foundation
 import FeedKit
-import Combine
 
 // swiftlint:disable type_body_length
 // swiftlint:disable function_body_length
@@ -18,8 +17,7 @@ public class StaticNewsService: NewsService {
         
     }
     
-    public func loadNewsItems() -> AnyPublisher<[RSSFeedItem], Error> {
-        
+    public func loadNewsItems() async throws -> [RSSFeedItem] {
         let data = """
         <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:admin="http://webns.net/mvcb/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
             <channel>
@@ -375,19 +373,15 @@ public class StaticNewsService: NewsService {
         let feed = try? result.get().rssFeed
         
         let items = (feed?.items ?? [])
-            .map({ (item: RSSFeedItem) -> RSSFeedItem in
+            .map { item in
                 let source = RSSFeedItemSource()
                 source.value = feed?.title ?? ""
                 item.source = source
                 return item
-            })
+            }
             .sorted(by: { ($0.date > $1.date ) })
         
-        return Just(items)
-            .setFailureType(to: Error.self)
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-        
+        return items
     }
     
 }
