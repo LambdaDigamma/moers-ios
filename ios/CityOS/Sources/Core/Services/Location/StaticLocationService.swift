@@ -67,6 +67,7 @@ public final class StaticLocationService: LocationService {
     }
     
     public func configureLocation(_ location: CLLocation) {
-        
+        currentLocation = location
+        locationContinuation?.yield(location)
     }
 }
