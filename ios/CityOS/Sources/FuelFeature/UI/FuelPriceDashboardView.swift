@@ -75,7 +75,7 @@ public struct FuelPriceDashboardView: View {
                 
             }
             .task {
-                viewModel.load()
+                await viewModel.load()
             }
         }
         .foregroundColor(Color.primary)

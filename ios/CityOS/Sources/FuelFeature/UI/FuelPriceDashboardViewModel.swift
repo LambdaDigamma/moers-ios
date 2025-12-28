@@ -18,6 +18,7 @@ public struct PetrolPriceDashboardData {
     
 }
 
+@MainActor
 public class FuelPriceDashboardViewModel: StandardViewModel {
     
     @Published var petrolType: PetrolType = .diesel
@@ -45,18 +46,15 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
     
     /// Reloads location and updates the fuel stations
     /// and average price data of the dashboard.
-    public func load() {
-        
+    public func load() async {
         self.petrolType = petrolService.petrolType
         
         logger.info("Requesting current location and fuel station prices for '\(self.petrolType.rawValue, privacy: .public)' type.")
         
         locationService.requestCurrentLocation()
         
-        Task {
-            await loadLocationName()
-            await loadFuelStations()
-        }
+        await loadLocationName()
+        await loadFuelStations()
     }
     
     private func loadLocationName() async {
@@ -69,15 +67,10 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
             logger.info("Loading placemark for the currently received location \(location.coordinate, privacy: .private)")
             
             let placemark = try await geocodingService.placemark(from: location)
-            
-            await MainActor.run {
-                locationName = .success(placemark.locality ?? "")
-            }
+            locationName = .success(placemark.locality ?? "")
         } catch {
             logger.error("Failed to load location name: \(error.localizedDescription, privacy: .public)")
-            await MainActor.run {
-                locationName = .success("")
-            }
+            locationName = .success("")
         }
     }
     
@@ -97,15 +90,11 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
                 shouldReload: false
             )
             
-            await MainActor.run {
-                self.fuelStations = .success(stations.filter { $0.isOpen })
-                self.calculateNewAverage(from: stations)
-            }
+            self.fuelStations = .success(stations.filter { $0.isOpen })
+            self.calculateNewAverage(from: stations)
         } catch {
             logger.error("Failed to load fuel stations: \(error.localizedDescription, privacy: .public)")
-            await MainActor.run {
-                self.data = .error(error)
-            }
+            self.data = .error(error)
         }
     }
     
@@ -140,12 +129,10 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
         
         let averagePrice = priceSum / Double(numberOfStations)
         
-        DispatchQueue.main.async {
-            self.data = .success(PetrolPriceDashboardData(
-                averagePrice: averagePrice,
-                numberOfStations: numberOfStations
-            ))
-        }
+        self.data = .success(PetrolPriceDashboardData(
+            averagePrice: averagePrice,
+            numberOfStations: numberOfStations
+        ))
         
         self.logger.log("Calculated fuel average is \(averagePrice, privacy: .public)€.")
         
