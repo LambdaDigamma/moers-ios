@@ -23,7 +23,9 @@ public class FuelStationListViewController: UIHostingController<FuelStationList>
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        viewModel.load()
+        Task {
+            await viewModel.load()
+        }
         UserActivity.current = UserActivities.configureFuelStations()
         
     }

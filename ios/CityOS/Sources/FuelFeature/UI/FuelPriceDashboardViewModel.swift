@@ -122,36 +122,6 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
         return nil
     }
     
-    /// Ask the location service to provide the latest user location.
-    /// Unallowed locations are being filtered out and only one location
-    /// is being returned.
-    /// It does not throw exceptions and instead they are replaced by
-    /// the region location in `CoreSettings`.
-    /// - Returns: an async stream of the user location
-    private var locationStream: AsyncStream<CLLocation> {
-        AsyncStream { continuation in
-            var task: Task<Void, Never>?
-            
-            task = Task {
-                do {
-                    for try await location in locationService.locations {
-                        let validLocation = location.coordinate.latitude != 0.0 && location.coordinate.longitude != 0.0
-                        
-                        if validLocation {
-                            continuation.yield(location)
-                            continuation.finish()
-                            task?.cancel()
-                            return
-                        }
-                    }
-                } catch {
-                    continuation.yield(CoreSettings.regionLocation)
-                    continuation.finish()
-                }
-            }
-        }
-    }
-    
     /// Takes fuel stations and calculates the average of the open stations.
     /// The view models data property updates the user interface.
     /// - Parameter petrolStations: a list of fuel stations

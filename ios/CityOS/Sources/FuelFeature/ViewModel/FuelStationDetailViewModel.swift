@@ -8,6 +8,7 @@
 import Foundation
 import Core
 
+@MainActor
 public class FuelStationDetailViewModel: StandardViewModel {
     
     @Published public var state: DataState<PetrolStation, Error> = .loading
@@ -20,18 +21,12 @@ public class FuelStationDetailViewModel: StandardViewModel {
         self.loadDetails = loadDetails
     }
     
-    public func load() {
-        Task {
-            do {
-                let fuelStation = try await loadDetails()
-                await MainActor.run {
-                    self.state = .success(fuelStation)
-                }
-            } catch {
-                await MainActor.run {
-                    self.state = .error(error)
-                }
-            }
+    public func load() async {
+        do {
+            let fuelStation = try await loadDetails()
+            self.state = .success(fuelStation)
+        } catch {
+            self.state = .error(error)
         }
     }
     
