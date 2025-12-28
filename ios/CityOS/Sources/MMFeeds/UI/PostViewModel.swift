@@ -93,7 +93,9 @@ public class PostViewModel: ObservableObject {
     public func refresh() async {
         do {
             try await repository.refreshPost(for: postID)
-            await pageViewModel?.refresh()
+            if let pageViewModel = pageViewModel {
+                await pageViewModel.refresh()
+            }
         } catch {
             print("Failed to refresh post: \(error)")
         }

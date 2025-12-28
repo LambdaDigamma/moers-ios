@@ -9,6 +9,10 @@ import Foundation
 import CoreLocation
 import OSLog
 
+public enum GeocodingError: Error {
+    case noPlacemarkFound
+}
+
 public class DefaultGeocodingService: GeocodingService {
     
     private let geocoder: CLGeocoder
@@ -33,8 +37,4 @@ public class DefaultGeocodingService: GeocodingService {
         }
     }
     
-}
-
-public enum GeocodingError: Error {
-    case noPlacemarkFound
 }

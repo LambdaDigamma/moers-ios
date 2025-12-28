@@ -105,7 +105,7 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
                     }
                 }
             } catch {
-                self.logger.error("Failed to get placemark for location: \(error.localizedDescription)")
+                self.logger.error("Failed to get placemark for location: \(error.localizedDescription, privacy: .private)")
             }
         }
     }
