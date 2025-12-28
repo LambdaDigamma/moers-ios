@@ -80,7 +80,7 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
                 return
             }
             
-            print("Location: \(location.coordinate)")
+            logger.info("Loading fuel stations for location: \(location.coordinate, privacy: .private)")
             
             let stations = try await petrolService.getPetrolStations(
                 coordinate: location.coordinate,
