@@ -51,7 +51,7 @@ public struct NativePageView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .environmentObject(actionTransmitter)
         .task {
-            viewModel.reload()
+            await viewModel.reload()
         }
         .onDisappear {
             viewModel.cancel()

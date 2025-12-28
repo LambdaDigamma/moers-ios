@@ -31,7 +31,9 @@ public struct FuelStationList: View {
                         NavigationLink {
                             
                             FuelStationDetailScreen(
-                                load: { viewModel.loadFuelStation(id: fuelStation.id) }
+                                load: {
+                                    try await viewModel.loadFuelStation(id: fuelStation.id)
+                                }
                             )
                             
                         } label: {

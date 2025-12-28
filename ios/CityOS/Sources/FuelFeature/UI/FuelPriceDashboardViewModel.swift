@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 import Core
 import CoreLocation
 import Factory
@@ -54,72 +53,103 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
         
         locationService.requestCurrentLocation()
         
-        locationPublisher()
-            .flatMap { (location: CLLocation) -> AnyPublisher<String, Never> in
-            
-                self.logger.info("Loading placemark for the currently received location \(location.coordinate, privacy: .private)")
-                
-                return self.geocodingService
-                    .placemark(from: location)
-                    .map(\.city)
-                    .replaceError(with: "")
-                    .eraseToAnyPublisher()
-            
+        Task {
+            await loadLocationName()
+            await loadFuelStations()
+        }
+    }
+    
+    private func loadLocationName() async {
+        do {
+            guard let location = await waitForValidLocation() else {
+                locationName = .success("")
+                return
             }
-            .replaceError(with: "")
-            .map({ DataState.success($0) })
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-            .sink(receiveValue: { data in
-                self.locationName = data
-            })
-            .store(in: &cancellables)
-        
-        // does this need some kind of debouncing?
-        // can multiple locations be received so that
-        // too many requests get scheduled?
-        
-        locationPublisher()
-            .flatMap { (location: CLLocation) -> AnyPublisher<[PetrolStation], Error> in
-
-                print("Location: \(location.coordinate)")
-
-                return Future<[PetrolStation], Error> { promise in
-                    Task {
-                        do {
-                            let stations = try await self.petrolService.getPetrolStations(
-                                coordinate: location.coordinate,
-                                radius: self.defaultSearchRadius,
-                                sorting: .distance,
-                                type: self.petrolType,
-                                shouldReload: false
-                            )
-                            promise(.success(stations))
-                        } catch {
-                            promise(.failure(error))
+            
+            logger.info("Loading placemark for the currently received location \(location.coordinate, privacy: .private)")
+            
+            let placemark = try await geocodingService.placemark(from: location)
+            
+            await MainActor.run {
+                locationName = .success(placemark.locality ?? "")
+            }
+        } catch {
+            logger.error("Failed to load location name: \(error.localizedDescription, privacy: .public)")
+            await MainActor.run {
+                locationName = .success("")
+            }
+        }
+    }
+    
+    private func loadFuelStations() async {
+        do {
+            guard let location = await waitForValidLocation() else {
+                return
+            }
+            
+            print("Location: \(location.coordinate)")
+            
+            let stations = try await petrolService.getPetrolStations(
+                coordinate: location.coordinate,
+                radius: defaultSearchRadius,
+                sorting: .distance,
+                type: petrolType,
+                shouldReload: false
+            )
+            
+            await MainActor.run {
+                self.fuelStations = .success(stations.filter { $0.isOpen })
+                self.calculateNewAverage(from: stations)
+            }
+        } catch {
+            logger.error("Failed to load fuel stations: \(error.localizedDescription, privacy: .public)")
+            await MainActor.run {
+                self.data = .error(error)
+            }
+        }
+    }
+    
+    private func waitForValidLocation() async -> CLLocation? {
+        do {
+            for try await location in locationService.locations {
+                if location.coordinate.latitude != 0.0 && location.coordinate.longitude != 0.0 {
+                    return location
+                }
+            }
+        } catch {
+            return CoreSettings.regionLocation
+        }
+        return nil
+    }
+    
+    /// Ask the location service to provide the latest user location.
+    /// Unallowed locations are being filtered out and only one location
+    /// is being returned.
+    /// It does not throw exceptions and instead they are replaced by
+    /// the region location in `CoreSettings`.
+    /// - Returns: an async stream of the user location
+    private var locationStream: AsyncStream<CLLocation> {
+        AsyncStream { continuation in
+            var task: Task<Void, Never>?
+            
+            task = Task {
+                do {
+                    for try await location in locationService.locations {
+                        let validLocation = location.coordinate.latitude != 0.0 && location.coordinate.longitude != 0.0
+                        
+                        if validLocation {
+                            continuation.yield(location)
+                            continuation.finish()
+                            task?.cancel()
+                            return
                         }
                     }
+                } catch {
+                    continuation.yield(CoreSettings.regionLocation)
+                    continuation.finish()
                 }
-                .eraseToAnyPublisher()
             }
-            .eraseToAnyPublisher()
-            .sink { (completion: Subscribers.Completion<Error>) in
-
-                switch completion {
-                    case .failure(let error):
-                        print(error)
-                        self.data = .error(error)
-                    default: break
-                }
-
-            } receiveValue: { [weak self] (petrolStations: [PetrolStation]) in
-
-                self?.fuelStations = DataState<[PetrolStation], Error>.success(petrolStations.filter { $0.isOpen })
-                self?.calculateNewAverage(from: petrolStations)
-
-            }
-            .store(in: &cancellables)
-            
+        }
     }
     
     /// Takes fuel stations and calculates the average of the open stations.
@@ -155,36 +185,9 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
     /// all of it's fuel prices and opening hours.
     /// It uses the fuel service provided to the view model.
     /// - Parameter id: fuel station id
-    /// - Returns: a failable publisher of the station
-    public func loadFuelStation(id: PetrolStation.ID) -> AnyPublisher<PetrolStation, Error> {
-        return Future<PetrolStation, Error> { promise in
-            Task {
-                do {
-                    let station = try await self.petrolService.getPetrolStation(id: id)
-                    promise(.success(station))
-                } catch {
-                    promise(.failure(error))
-                }
-            }
-        }
-        .eraseToAnyPublisher()
-    }
-    
-    // MARK: - Helper -
-    
-    /// Ask the location service to provide the latest user location.
-    /// Unallowed locations are being filtered out and only one location
-    /// is being returned in the publisher.
-    /// It does not throw exepections and instead they are replaced by
-    /// the region location in `CoreSettings`.
-    /// - Returns: a never-failing publisher of the user location
-    private func locationPublisher() -> AnyPublisher<CLLocation, Never> {
-        return locationService
-            .location
-            .replaceError(with: CoreSettings.regionLocation)
-            .filter({ $0.coordinate.latitude != 0.0 && $0.coordinate.longitude != 0.0 })
-            .prefix(1)
-            .eraseToAnyPublisher()
+    /// - Returns: the station or throws an error
+    public func loadFuelStation(id: PetrolStation.ID) async throws -> PetrolStation {
+        return try await petrolService.getPetrolStation(id: id)
     }
     
 }

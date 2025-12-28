@@ -53,12 +53,19 @@ public class ParkingAreaListViewModel: StandardViewModel {
     
     public func load() async {
         if let locationService = locationService {
-            let authorizationStatusAllowsFindingNearby = [
-                CLAuthorizationStatus.authorizedAlways,
-                CLAuthorizationStatus.authorizedAlways,
-            ].contains(locationService.authorizationStatus.value)
+            var hasAuthorizedStatus = false
             
-            self.userGrantedLocation = authorizationStatusAllowsFindingNearby
+            for await authorizationStatus in locationService.authorizationStatuses {
+                let authorizationStatusAllowsFindingNearby = [
+                    CLAuthorizationStatus.authorizedAlways,
+                    CLAuthorizationStatus.authorizedWhenInUse,
+                ].contains(authorizationStatus)
+                
+                hasAuthorizedStatus = authorizationStatusAllowsFindingNearby
+                break
+            }
+            
+            self.userGrantedLocation = hasAuthorizedStatus
         }
         
         do {

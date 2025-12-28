@@ -11,7 +11,6 @@ import UIKit
 import MapKit
 
 import Pulley
-import Combine
 import Factory
 import Core
 
@@ -29,8 +28,6 @@ public class DetailViewController: UIViewController {
     private lazy var contentView: UIScrollView = { CoreViewFactory.scrollView() }()
     private lazy var closeButton: UIButton = { CoreViewFactory.button() }()
     private lazy var routeButton: UIButton = { CoreViewFactory.button() }()
-    
-    private var cancellables = Set<AnyCancellable>()
     
     private weak var child: UIViewController? {
         willSet {
@@ -210,37 +207,43 @@ public class DetailViewController: UIViewController {
         
         guard let destinationCoordinate = selectedLocation?.location.coordinate else { return }
         
-        locationService.authorizationStatus.sink { _ in
-            self.setupDistance(to: destinationCoordinate)
+        Task {
+            for await _ in locationService.authorizationStatuses {
+                self.setupDistance(to: destinationCoordinate)
+            }
         }
-        .store(in: &cancellables)
         
     }
     
     private func setupDistance(to destinationCoordinate: CLLocationCoordinate2D) {
         
         locationService.requestCurrentLocation()
-        locationService.location.sink { _ in
-            
-        } receiveValue: { (location: CLLocation) in
-            
-            let directions = self.buildDirectionRequest(from: location.coordinate, to: destinationCoordinate)
-            
-            directions.calculateETA(completionHandler: { (response, error) in
-                
-                if let error = error {
-                    print(error.localizedDescription)
+        
+        Task {
+            do {
+                for try await location in locationService.locations {
+                    let directions = self.buildDirectionRequest(from: location.coordinate, to: destinationCoordinate)
+                    
+                    directions.calculateETA(completionHandler: { (response, error) in
+                        
+                        if let error = error {
+                            print(error.localizedDescription)
+                        }
+                        
+                        guard let estimate = response else { return }
+                        
+                        let minutes = Int(floor(estimate.expectedTravelTime / 60))
+                        DispatchQueue.main.async {
+                            self.routeButton.setTitle(String(localized: "Route (\(minutes) min)", bundle: .module), for: .normal)
+                        }
+                        
+                    })
+                    break
                 }
+            } catch {
                 
-                guard let estimate = response else { return }
-                
-                let minutes = Int(floor(estimate.expectedTravelTime / 60))
-                self.routeButton.setTitle(String(localized: "Route (\(minutes) min)", bundle: .module), for: .normal)
-                
-            })
-            
+            }
         }
-        .store(in: &cancellables)
         
     }
     

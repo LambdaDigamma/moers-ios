@@ -9,7 +9,6 @@ import SwiftUI
 import Core
 import CoreLocation
 import Factory
-import Combine
 
 public class ParkingTimerViewModel: StandardViewModel {
     
@@ -77,40 +76,52 @@ public class ParkingTimerViewModel: StandardViewModel {
     
     private func setupObservers() {
         
-        self.$time
-            .receive(on: DispatchQueue.main)
-            .sink { (time: TimeInterval) in
+        Task { @MainActor in
+            for await time in $time.values {
                 if !self.timerStarted {
                     self.endDate = Date(timeIntervalSinceNow: time)
                 }
             }
-            .store(in: &cancellables)
+        }
         
-        self.$saveParkingLocation
-            .receive(on: DispatchQueue.main)
-            .filter({ $0 == true })
-            .sink { _ in
-                if !self.timerStarted {
-                    self.loadCurrentLocation()
+        Task { @MainActor in
+            for await saveParkingLocation in $saveParkingLocation.values {
+                if saveParkingLocation && !self.timerStarted {
+                    await self.loadCurrentLocation()
                 }
             }
-            .store(in: &cancellables)
+        }
         
-        self.locationService.location.sink { (_: Subscribers.Completion<Error>) in
-            
-        } receiveValue: { (location: CLLocation) in
-            if !self.timerStarted {
-                self.carPosition = location.coordinate
+        Task {
+            do {
+                for try await location in locationService.locations {
+                    if !self.timerStarted {
+                        await MainActor.run {
+                            self.carPosition = location.coordinate
+                        }
+                    }
+                }
+            } catch {
+                
             }
         }
-        .store(in: &cancellables)
         
     }
     
-    public func loadCurrentLocation() {
+    public func loadCurrentLocation() async {
         
         self.locationService.requestCurrentLocation()
-        self.carPosition = locationService.location.value.coordinate
+        
+        do {
+            for try await location in locationService.locations {
+                await MainActor.run {
+                    self.carPosition = location.coordinate
+                }
+                break
+            }
+        } catch {
+            
+        }
         
     }
     

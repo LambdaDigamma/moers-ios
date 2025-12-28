@@ -9,7 +9,6 @@
 import UIKit
 import MapKit
 import CoreLocation
-import Combine
 import Core
 import Factory
 
@@ -35,7 +34,6 @@ class MapLocationPickerViewController: UIViewController {
     private var currentHouseNumber: String = ""
     private var currentPlace: String = ""
     private var currentPostcode: String = ""
-    private var cancellables = Set<AnyCancellable>()
     
     init() {
         
@@ -80,20 +78,23 @@ class MapLocationPickerViewController: UIViewController {
         
         self.setupMap(centeringOn: CLLocationCoordinate2D(latitude: 51.4516, longitude: 6.6255))
         
-        locationService.authorizationStatus.sink { authorizationStatus in
-            
-            if authorizationStatus == .authorizedWhenInUse {
-                self.locationService.requestCurrentLocation()
-                self.locationService.location.receive(on: DispatchQueue.main)
-                    .sink(receiveCompletion: { (_: Subscribers.Completion<Error>) in
+        Task {
+            for await authorizationStatus in locationService.authorizationStatuses {
+                if authorizationStatus == .authorizedWhenInUse {
+                    self.locationService.requestCurrentLocation()
+                    
+                    do {
+                        for try await location in locationService.locations {
+                            await MainActor.run {
+                                self.setupMap(centeringOn: location.coordinate)
+                            }
+                        }
+                    } catch {
                         
-                    }, receiveValue: { (location: CLLocation) in
-                        self.setupMap(centeringOn: location.coordinate)
-                    })
-                    .store(in: &self.cancellables)
+                    }
+                }
             }
-            
-        }.store(in: &cancellables)
+        }
         
         mapView.delegate = self
         mapView.showsUserLocation = true
@@ -165,15 +166,20 @@ class MapLocationPickerViewController: UIViewController {
     @objc private func focusOnUserLocation() {
         
         locationService.requestCurrentLocation()
-        locationService.location
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { (_: Subscribers.Completion<Error>) in
+        
+        Task {
+            do {
+                for try await location in locationService.locations {
+                    await MainActor.run {
+                        self.setupMap(centeringOn: location.coordinate)
+                        self.executeReverseGeocode()
+                    }
+                    break
+                }
+            } catch {
                 
-            }, receiveValue: { (location: CLLocation) in
-                self.setupMap(centeringOn: location.coordinate)
-                self.executeReverseGeocode()
-            })
-            .store(in: &cancellables)
+            }
+        }
         
     }
     

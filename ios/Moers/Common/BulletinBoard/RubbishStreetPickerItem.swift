@@ -11,7 +11,6 @@ import Core
 import BLTNBoard
 import CoreLocation
 import OSLog
-import Combine
 import Factory
 import RubbishFeature
 
@@ -22,7 +21,6 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     @LazyInjected(\.locationService) var locationService
     
     private var streets: [RubbishFeature.RubbishCollectionStreet] = []
-    private var cancellables = Set<AnyCancellable>()
     
     private let logger = Logger(.coreUi)
     
@@ -69,25 +67,28 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     
     private func loadUserLocationForStreetEstimation() {
         
-        locationService.authorizationStatus.sink { (authorizationStatus: CLAuthorizationStatus) in
-            if authorizationStatus == .authorizedWhenInUse {
-                self.estimateUserStreet()
+        Task {
+            for await authorizationStatus in locationService.authorizationStatuses {
+                if authorizationStatus == .authorizedWhenInUse {
+                    await estimateUserStreet()
+                }
             }
         }
-        .store(in: &cancellables)
         
     }
     
-    private func estimateUserStreet() {
+    private func estimateUserStreet() async {
         
         locationService.requestCurrentLocation()
         
-        locationService.location.sink { (_: Subscribers.Completion<Error>) in
+        do {
+            for try await location in locationService.locations {
+                await checkStreetExistance(for: location)
+                break
+            }
+        } catch {
             
-        } receiveValue: { (location: CLLocation) in
-            self.checkStreetExistance(for: location)
         }
-        .store(in: &cancellables)
         
     }
     

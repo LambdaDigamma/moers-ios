@@ -68,11 +68,8 @@ public class InTrainMapViewModel: StandardViewModel {
     
     public func start() {
         
-        let location = locationObject
+        locationObject
             .$location
-            .share()
-        
-        location
             .receive(on: DispatchQueue.main)
             .sink { (location: CLLocation?) in
                 
@@ -91,34 +88,24 @@ public class InTrainMapViewModel: StandardViewModel {
         
         locationObject.beginUpdates(.authorizedWhenInUse)
         
-        let timerPublisher = Timer.publish(every: 30, on: .main, in: .common)
-            .autoconnect()
-            .eraseToAnyPublisher()
-        
-        let geocoded = timerPublisher
-            .setFailureType(to: Error.self)
-            .flatMap { output in
-                
-                if let location = self.locationObject.location {
-                    return self.geocodingService.placemark(from: location).eraseToAnyPublisher()
-                } else {
-                    return Fail<CLPlacemark, Error>(error: APIError.noData)
-                        .eraseToAnyPublisher()
+        Task {
+            let timerStream = Timer.publish(every: 30, on: .main, in: .common)
+                .autoconnect()
+                .values
+            
+            for await _ in timerStream {
+                do {
+                    if let location = locationObject.location {
+                        let placemark = try await geocodingService.placemark(from: location)
+                        await MainActor.run {
+                            self.currentPlace = placemark.locality
+                        }
+                    }
+                } catch {
+                    
                 }
-                
             }
-            .eraseToAnyPublisher()
-        
-        geocoded
-            .map(\.city)
-            .eraseToAnyPublisher()
-            .receive(on: DispatchQueue.main)
-            .sink { (completion: Subscribers.Completion<Error>) in
-                
-            } receiveValue: { (city: String) in
-                self.currentPlace = city
-            }
-            .store(in: &cancellables)
+        }
         
     }
     

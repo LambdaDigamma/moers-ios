@@ -7,31 +7,32 @@
 
 import Foundation
 import Core
-import Combine
 
 public class FuelStationDetailViewModel: StandardViewModel {
     
     @Published public var state: DataState<PetrolStation, Error> = .loading
     
-    private let loadDetails: () -> AnyPublisher<PetrolStation, Error>
+    private let loadDetails: () async throws -> PetrolStation
     
     public init(
-        loadDetails: @escaping () -> AnyPublisher<PetrolStation, Error>
+        loadDetails: @escaping () async throws -> PetrolStation
     ) {
         self.loadDetails = loadDetails
     }
     
     public func load() {
-        
-        loadDetails()
-            .receive(on: DispatchQueue.main)
-            .sink { (_: Subscribers.Completion<Error>) in
-                
-            } receiveValue: { (fuelStation: PetrolStation) in
-                self.state = .success(fuelStation)
+        Task {
+            do {
+                let fuelStation = try await loadDetails()
+                await MainActor.run {
+                    self.state = .success(fuelStation)
+                }
+            } catch {
+                await MainActor.run {
+                    self.state = .error(error)
+                }
             }
-            .store(in: &cancellables)
-        
+        }
     }
     
 }
