@@ -8,7 +8,6 @@
 
 import Core
 import SwiftUI
-import Resolver
 import CoreLocation
 import MMEvents
 
@@ -18,7 +17,6 @@ public struct EventMetadataScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    private let locationService: LocationService
     private let onShowPlace: (Place.ID) -> Void
     
     public init(
@@ -27,7 +25,6 @@ public struct EventMetadataScreen: View {
         onShowPlace: @escaping (Place.ID) -> Void = { _ in }
     ) {
         self.viewModel = viewModel
-        self.locationService = locationService ?? Resolver.resolve()
         self.onShowPlace = onShowPlace
     }
     
@@ -200,7 +197,6 @@ public struct EventMetadataScreen: View {
                 AutoCalculatingDirectionsButton(
                     coordinate: coordinate.toCoordinate(),
                     directionsMode: .walking,
-                    locationService: locationService,
                     action: {
                         AppleNavigationProvider()
                             .startNavigation(

@@ -7,16 +7,20 @@
 //
 
 import UIKit
-import Resolver
 import Foundation
 import AppScaffold
 import ModernNetworking
 import Core
 import MMEvents
+import Factory
 
 class ServiceConfiguration: BootstrappingProcedureStep {
     
-    @LazyInjected var loader: HTTPLoader
+    @LazyInjected(\.httpLoader) var loader
+    
+    init() {
+        
+    }
     
     func execute(with application: UIApplication) {
         
@@ -24,9 +28,17 @@ class ServiceConfiguration: BootstrappingProcedureStep {
         let festivalEventService = DefaultFestivalEventService(loader: loader)
         let locationEventService = DefaultLocationEventService(loader: loader)
         
-        Resolver.register { locationService as LocationService }
-        Resolver.register { festivalEventService as FestivalEventService }
-        Resolver.register { locationEventService as LocationEventService }
+        Container.shared.locationService.register {
+            locationService as LocationService
+        }
+        
+        Container.shared.festivalEventService.register {
+            festivalEventService as FestivalEventService
+        }
+        
+        Container.shared.locationEventService.register {
+            locationEventService as LocationEventService
+        }
         
     }
     

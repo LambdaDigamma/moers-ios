@@ -10,13 +10,13 @@ import Core
 import MMPages
 import MMEvents
 import UIKit
-import Resolver
 import Combine
+import Factory
 
 public class EventViewController: DefaultHostingController {
     
-    @LazyInjected var eventService: LegacyEventService
-    @LazyInjected var pageService: PageService
+    @LazyInjected(\.legacyEventService) var eventService
+    @LazyInjected(\.pageService) var pageService
     
     private var cancellables = Set<AnyCancellable>()
     

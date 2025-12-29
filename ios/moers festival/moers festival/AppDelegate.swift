@@ -14,6 +14,7 @@ import FirebaseCore
 import MMEvents
 import Combine
 import OSLog
+import Factory
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -127,9 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func refreshEvents(completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        Container.shared.legacy
-        
-        guard let eventService: LegacyEventService = Resolver.optional() else { return }
+        let eventService: LegacyEventService = Container.shared.legacyEventService()
         
         eventService.invalidateCache()
         
@@ -141,7 +140,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func refreshMap(completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        let service: LocationEventService = Resolver.resolve()
+        let service: LocationEventService = Container.shared.locationEventService()
         
         Task {
             await service.updateLocalFestivalArchive(force: true)

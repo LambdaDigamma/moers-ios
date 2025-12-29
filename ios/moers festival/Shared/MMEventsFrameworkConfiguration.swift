@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Resolver
 import AppScaffold
 import ModernNetworking
 import Cache
@@ -18,7 +17,7 @@ class MMEventsFrameworkConfiguration: BootstrappingProcedureStep {
     
     func execute(with application: UIApplication) {
         
-        let loader: HTTPLoader = Resolver.resolve()
+        let loader: HTTPLoader = Container.shared.httpLoader()
         let database = Container.shared.appDatabase.resolve()
         
         let placeStore = self.setupPlaces(loader: loader)
@@ -69,7 +68,9 @@ class MMEventsFrameworkConfiguration: BootstrappingProcedureStep {
             reader: Container.shared.appDatabase.resolve().reader
         )
         
-        Resolver.register { legacyService as LegacyEventService }
+        Container.shared.legacyEventService.register {
+            legacyService as LegacyEventService
+        }
         
         Container.shared.eventRepository.scope(.cached).register {
             EventRepository(

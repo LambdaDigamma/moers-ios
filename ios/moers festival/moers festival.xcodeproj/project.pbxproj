@@ -3,14 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 71;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		DF055B942D8B8FD7007E4393 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = DF055B932D8B8FD7007E4393 /* FirebaseAnalytics */; };
 		DF055B962D8B8FD7007E4393 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = DF055B952D8B8FD7007E4393 /* FirebaseCore */; };
 		DF055B982D8B8FD7007E4393 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = DF055B972D8B8FD7007E4393 /* FirebaseMessaging */; };
-		DF057CB32200BDF000811476 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF057CB22200BDF000811476 /* Media.xcassets */; };
 		DF16BB452625F2270047F294 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF16BB442625F2270047F294 /* MainView.swift */; };
 		DF16BB6C2625F3ED0047F294 /* VideoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF16BB6B2625F3ED0047F294 /* VideoListView.swift */; };
 		DF16BB722625F5E10047F294 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF16BB712625F5E10047F294 /* PlayerView.swift */; };
@@ -43,22 +42,19 @@
 		DF5975C42F01E08D00512386 /* MMPages in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C32F01E08D00512386 /* MMPages */; };
 		DF5975C62F01E08D00512386 /* MapFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C52F01E08D00512386 /* MapFeature */; };
 		DF5975C82F01E08D00512386 /* NewsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C72F01E08D00512386 /* NewsFeature */; };
-		DF5978CB2F01E98600512386 /* MMUI.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = DF5978CA2F01E98600512386 /* MMUI.xcstrings */; };
-		DF5978CD2F01E98600512386 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = DF5978CC2F01E98600512386 /* Localizable.xcstrings */; };
-		DF5978CF2F01E98600512386 /* MMAPI.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = DF5978CE2F01E98600512386 /* MMAPI.xcstrings */; };
-		DF5978D12F01E98700512386 /* MockData.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = DF5978D02F01E98600512386 /* MockData.xcstrings */; };
+		DF5978E62F01F3C800512386 /* Container+PageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5978E52F01F3C800512386 /* Container+PageService.swift */; };
+		DF5978E72F01F3C800512386 /* Container+LegacyEventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5978E32F01F3C800512386 /* Container+LegacyEventService.swift */; };
+		DF5978E82F01F3C800512386 /* Container+LocationEventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5978E42F01F3C800512386 /* Container+LocationEventService.swift */; };
 		DF5F729F27F07C34002AB4B8 /* AppScaffold in Frameworks */ = {isa = PBXBuildFile; productRef = DF5F729E27F07C34002AB4B8 /* AppScaffold */; };
 		DF62C61A2247B98E008425EC /* ContentDrawer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF62C6192247A349008425EC /* ContentDrawer.storyboard */; };
 		DF68FFF3282AEDD500C63690 /* FGD2022 in Resources */ = {isa = PBXBuildFile; fileRef = DF68FFF2282AEDD500C63690 /* FGD2022 */; };
 		DF7FB53527F672E300F718F2 /* StateViewController in Frameworks */ = {isa = PBXBuildFile; productRef = DF7FB53427F672E300F718F2 /* StateViewController */; };
 		DF82B76F2BED3750005F41F2 /* FGD2024 in Resources */ = {isa = PBXBuildFile; fileRef = DF82B76E2BED3750005F41F2 /* FGD2024 */; };
-		DF83A8C225890FB0002E5C62 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF83A8C125890FB0002E5C62 /* Colors.xcassets */; };
 		DF8709F227F2E2F7005A1B1A /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8709F127F2E2F7005A1B1A /* AppStrings.swift */; };
 		DF87132C247EC79B00CDE769 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF87132B247EC79B00CDE769 /* Extensions.swift */; };
 		DF87132F247EC88700CDE769 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF871331247EC88700CDE769 /* Localizable.strings */; };
 		DF87B2F5201DFB2700E1B97C /* AutomaticSnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF87B2F4201DFB2700E1B97C /* AutomaticSnapshots.swift */; };
 		DF87B2FD201DFB6100E1B97C /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF87B2FC201DFB6100E1B97C /* SnapshotHelper.swift */; };
-		DF87B2FF201E179F00E1B97C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF87B2FE201E179F00E1B97C /* Assets.xcassets */; };
 		DF883B01247EC0A2003B8F28 /* CountdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF883B00247EC0A2003B8F28 /* CountdownViewController.swift */; };
 		DF9B4E6427F668A200817DA3 /* INSPhotoGallery in Frameworks */ = {isa = PBXBuildFile; productRef = DF9B4E6327F668A200817DA3 /* INSPhotoGallery */; };
 		DFA0BC50247E7554003F0F7F /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0BC4F247E7554003F0F7F /* PlayerViewController.swift */; };
@@ -100,7 +96,6 @@
 		DFD8B78F29BD362C004C5D6C /* AppDatabase+Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8B78E29BD362C004C5D6C /* AppDatabase+Container.swift */; };
 		DFD8B79129BD370C004C5D6C /* AppDatabase+Migrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8B79029BD370C004C5D6C /* AppDatabase+Migrator.swift */; };
 		DFD8B7A129BDF5B1004C5D6C /* BaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8B7A029BDF5B1004C5D6C /* BaseRepository.swift */; };
-		DFD8B86B209D08380030E0C1 /* Sponsor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFD8B86A209D08380030E0C1 /* Sponsor.xcassets */; };
 		DFE12B672073853F006764FC /* Licenses.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFE12B662073853F006764FC /* Licenses.plist */; };
 		DFFA54ED2A0153E9000ECEC5 /* moers-festival.localhost _api_v1_events (GET).json in Resources */ = {isa = PBXBuildFile; fileRef = DFFA54EA2A0153E8000ECEC5 /* moers-festival.localhost _api_v1_events (GET).json */; };
 		DFFA54EE2A0153E9000ECEC5 /* moers-festival.localhost _api_v1_feeds_3_posts (GET).json in Resources */ = {isa = PBXBuildFile; fileRef = DFFA54EB2A0153E8000ECEC5 /* moers-festival.localhost _api_v1_feeds_3_posts (GET).json */; };
@@ -142,28 +137,23 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		DFA90CCE29E945D700FF8366 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 13;
+			dstSubfolder = PlugIns;
 			files = (
 			);
 			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFD4563829E93A3C00F26F37 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
+			dstSubfolder = Product;
 			files = (
 			);
 			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DF057CB22200BDF000811476 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		DF16BB442625F2270047F294 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		DF16BB6B2625F3ED0047F294 /* VideoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListView.swift; sourceTree = "<group>"; };
 		DF16BB712625F5E10047F294 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
@@ -200,10 +190,9 @@
 		DF565FF925AF1C1900692425 /* NetworkingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingConfiguration.swift; sourceTree = "<group>"; };
 		DF56600C25AF46C900692425 /* UILaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILaunchTests.swift; sourceTree = "<group>"; };
 		DF5978C92F01E98600512386 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/LaunchScreen.xcstrings; sourceTree = "<group>"; };
-		DF5978CA2F01E98600512386 /* MMUI.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = MMUI.xcstrings; sourceTree = "<group>"; };
-		DF5978CC2F01E98600512386 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		DF5978CE2F01E98600512386 /* MMAPI.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = MMAPI.xcstrings; sourceTree = "<group>"; };
-		DF5978D02F01E98600512386 /* MockData.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = MockData.xcstrings; sourceTree = "<group>"; };
+		DF5978E32F01F3C800512386 /* Container+LegacyEventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+LegacyEventService.swift"; sourceTree = "<group>"; };
+		DF5978E42F01F3C800512386 /* Container+LocationEventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+LocationEventService.swift"; sourceTree = "<group>"; };
+		DF5978E52F01F3C800512386 /* Container+PageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+PageService.swift"; sourceTree = "<group>"; };
 		DF62C6192247A349008425EC /* ContentDrawer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContentDrawer.storyboard; sourceTree = "<group>"; };
 		DF68FFF2282AEDD500C63690 /* FGD2022 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FGD2022; sourceTree = "<group>"; };
 		DF82B7642BED3702005F41F2 /* camping.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = camping.geojson; sourceTree = "<group>"; };
@@ -216,7 +205,6 @@
 		DF82B76B2BED3702005F41F2 /* toilets.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = toilets.geojson; sourceTree = "<group>"; };
 		DF82B76C2BED3702005F41F2 /* transportation.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = transportation.geojson; sourceTree = "<group>"; };
 		DF82B76E2BED3750005F41F2 /* FGD2024 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FGD2024; sourceTree = "<group>"; };
-		DF83A8C125890FB0002E5C62 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		DF8709F127F2E2F7005A1B1A /* AppStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
 		DF87132B247EC79B00CDE769 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DF871330247EC88700CDE769 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -225,7 +213,6 @@
 		DF87B2F4201DFB2700E1B97C /* AutomaticSnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticSnapshots.swift; sourceTree = "<group>"; };
 		DF87B2F6201DFB2700E1B97C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF87B2FC201DFB6100E1B97C /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
-		DF87B2FE201E179F00E1B97C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF883B00247EC0A2003B8F28 /* CountdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownViewController.swift; sourceTree = "<group>"; };
 		DF92FBFF257BF9CE00BE1DA5 /* FirebaseABTesting.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseABTesting.xcframework; path = Frameworks/FirebaseABTesting.xcframework; sourceTree = "<group>"; };
 		DF92FC00257BF9CE00BE1DA5 /* FirebaseRemoteConfig.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseRemoteConfig.xcframework; path = Frameworks/FirebaseRemoteConfig.xcframework; sourceTree = "<group>"; };
@@ -276,8 +263,7 @@
 		DFD8B78E29BD362C004C5D6C /* AppDatabase+Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDatabase+Container.swift"; sourceTree = "<group>"; };
 		DFD8B79029BD370C004C5D6C /* AppDatabase+Migrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDatabase+Migrator.swift"; sourceTree = "<group>"; };
 		DFD8B7A029BDF5B1004C5D6C /* BaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRepository.swift; sourceTree = "<group>"; };
-		DFD8B86A209D08380030E0C1 /* Sponsor.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sponsor.xcassets; sourceTree = "<group>"; };
-		DFE12B662073853F006764FC /* Licenses.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Licenses.plist; path = "moers festival/Assets/Licenses.plist"; sourceTree = SOURCE_ROOT; };
+		DFE12B662073853F006764FC /* Licenses.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Licenses.plist; path = "moers festival/Licenses.plist"; sourceTree = SOURCE_ROOT; };
 		DFE90E7F29E3227A0054BCF1 /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 		DFEC02F8262ABD6200D46B28 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DFFA54EA2A0153E8000ECEC5 /* moers-festival.localhost _api_v1_events (GET).json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "moers-festival.localhost _api_v1_events (GET).json"; sourceTree = "<group>"; };
@@ -287,7 +273,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		DF5975FE2F01E4F400512386 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		DF5975FE2F01E4F400512386 /* Exceptions for "Config" folder in "moers festival" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Development.xcconfig,
@@ -297,7 +283,7 @@
 			);
 			target = DF35B385201DC72900118FD1 /* moers festival */;
 		};
-		DF5977152F01E7E400512386 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		DF5977152F01E7E400512386 /* Exceptions for "Utility" folder in "moers festival" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				AppColors.swift,
@@ -311,28 +297,102 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		DF1E14152DF0B49B007015DC /* FGD2025 */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = FGD2025; sourceTree = "<group>"; };
-		DF5975E92F01E4F400512386 /* Config */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (DF5975FE2F01E4F400512386 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Config; sourceTree = "<group>"; };
-		DF5976062F01E4F900512386 /* Coordinator */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Coordinator; sourceTree = "<group>"; };
-		DF5976222F01E52E00512386 /* News */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = News; sourceTree = "<group>"; };
-		DF59762C2F01E53600512386 /* User Schedule */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "User Schedule"; sourceTree = "<group>"; };
-		DF5976312F01E56B00512386 /* Live */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Live; sourceTree = "<group>"; };
-		DF5976342F01E5B500512386 /* Info */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Info; sourceTree = "<group>"; };
-		DF5976902F01E5F500512386 /* View */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = View; sourceTree = "<group>"; };
-		DF5976D92F01E63300512386 /* ViewModels */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModels; sourceTree = "<group>"; };
-		DF5976ED2F01E63600512386 /* Extensions */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Extensions; sourceTree = "<group>"; };
-		DF5976FA2F01E7DB00512386 /* Manager */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Manager; sourceTree = "<group>"; };
-		DF59770F2F01E7E400512386 /* Utility */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (DF5977152F01E7E400512386 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Utility; sourceTree = "<group>"; };
-		DF5977172F01E7F700512386 /* Preview Content */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Preview Content"; sourceTree = "<group>"; };
-		DF5977522F01E82300512386 /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
-		DF5977962F01E86D00512386 /* Controller */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Controller; sourceTree = "<group>"; };
-		DF5978912F01E91B00512386 /* Venues */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Venues; sourceTree = "<group>"; };
+		DF1E14152DF0B49B007015DC /* FGD2025 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FGD2025;
+			sourceTree = "<group>";
+		};
+		DF5975E92F01E4F400512386 /* Config */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF5975FE2F01E4F400512386 /* Exceptions for "Config" folder in "moers festival" target */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		DF5976062F01E4F900512386 /* Coordinator */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		DF5976222F01E52E00512386 /* News */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = News;
+			sourceTree = "<group>";
+		};
+		DF59762C2F01E53600512386 /* User Schedule */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "User Schedule";
+			sourceTree = "<group>";
+		};
+		DF5976312F01E56B00512386 /* Live */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Live;
+			sourceTree = "<group>";
+		};
+		DF5976342F01E5B500512386 /* Info */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Info;
+			sourceTree = "<group>";
+		};
+		DF5976902F01E5F500512386 /* View */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = View;
+			sourceTree = "<group>";
+		};
+		DF5976D92F01E63300512386 /* ViewModels */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DF5976ED2F01E63600512386 /* Extensions */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DF5976FA2F01E7DB00512386 /* Manager */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		DF59770F2F01E7E400512386 /* Utility */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF5977152F01E7E400512386 /* Exceptions for "Utility" folder in "moers festival" target */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		DF5977172F01E7F700512386 /* Preview Content */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DF5977522F01E82300512386 /* Model */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DF5977962F01E86D00512386 /* Controller */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DF5978912F01E91B00512386 /* Venues */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Venues;
+			sourceTree = "<group>";
+		};
+		DF5978DA2F01EDAC00512386 /* Assets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Assets;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		DF35B383201DC72900118FD1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DF5F729F27F07C34002AB4B8 /* AppScaffold in Frameworks */,
 				DF7FB53527F672E300F718F2 /* StateViewController in Frameworks */,
@@ -352,59 +412,44 @@
 				DF055B982D8B8FD7007E4393 /* FirebaseMessaging in Frameworks */,
 				DF9B4E6427F668A200817DA3 /* INSPhotoGallery in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF40D6C0247E73D40054199C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DF559F2E26493D140076516C /* MMEvents in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF87B2EF201DFB2700E1B97C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFA90CB629E945D600FF8366 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DFA90CBD29E945D600FF8366 /* SwiftUI.framework in Frameworks */,
 				DFA90CBB29E945D600FF8366 /* WidgetKit.framework in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFB15F0822AF082D00441FB5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFD4561129E93A3A00F26F37 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFD4562029E93A3B00F26F37 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFD4562A29E93A3C00F26F37 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -460,45 +505,49 @@
 		DF35B388201DC72900118FD1 /* moers festival */ = {
 			isa = PBXGroup;
 			children = (
+				DF68FFF2282AEDD500C63690 /* FGD2022 */,
+				DF82B76E2BED3750005F41F2 /* FGD2024 */,
+				DFC9094A21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle */,
+				DF39C7D125A22CEB000ABCC3 /* Settings.bundle */,
+				DFADF95B2829C13300A15FE1 /* intermediate.geojson */,
+				DFADF9572829AB9000A15FE1 /* map.geojson */,
 				DFADF9552829915E00A15FE1 /* Moers.gpx */,
 				DFFA54F02A015D89000ECEC5 /* Screenshot.gpx */,
-				DF35B389201DC72900118FD1 /* AppDelegate.swift */,
-				DFC1111527F6476700348268 /* AppSplitViewController.swift */,
-				DFB593002586D5C200BAD901 /* ApplicationController.swift */,
+				DFE12B662073853F006764FC /* Licenses.plist */,
+				DF62C6192247A349008425EC /* ContentDrawer.storyboard */,
+				DFC1111327F6457800348268 /* AccessibilityIdentifiers.swift */,
 				DF39C7A025A1D737000ABCC3 /* AppConfiguration.swift */,
-				DF8709F127F2E2F7005A1B1A /* AppStrings.swift */,
 				DFD8B78429BD2702004C5D6C /* AppDatabase.swift */,
 				DFD8B78E29BD362C004C5D6C /* AppDatabase+Container.swift */,
 				DFD8B79029BD370C004C5D6C /* AppDatabase+Migrator.swift */,
-				DFC1111327F6457800348268 /* AccessibilityIdentifiers.swift */,
-				DFB592F02586C4F800BAD901 /* SceneDelegate.swift */,
-				DF5975E92F01E4F400512386 /* Config */,
-				DF5976062F01E4F900512386 /* Coordinator */,
-				DF5976222F01E52E00512386 /* News */,
-				DF59762C2F01E53600512386 /* User Schedule */,
-				DF5976312F01E56B00512386 /* Live */,
-				DF5978912F01E91B00512386 /* Venues */,
-				DF5976342F01E5B500512386 /* Info */,
-				DF5977522F01E82300512386 /* Model */,
-				DF5976902F01E5F500512386 /* View */,
-				DF5977962F01E86D00512386 /* Controller */,
-				DF5976D92F01E63300512386 /* ViewModels */,
-				DF5976ED2F01E63600512386 /* Extensions */,
-				DF5976FA2F01E7DB00512386 /* Manager */,
-				DF59770F2F01E7E400512386 /* Utility */,
-				DF4CB97C2403B75D00CCFB5A /* Assets */,
-				DF5977172F01E7F700512386 /* Preview Content */,
-				DF35B392201DC72900118FD1 /* LaunchScreen.storyboard */,
-				DF62C6192247A349008425EC /* ContentDrawer.storyboard */,
-				DFADF9572829AB9000A15FE1 /* map.geojson */,
-				DFADF95B2829C13300A15FE1 /* intermediate.geojson */,
-				DF1E14152DF0B49B007015DC /* FGD2025 */,
-				DF82B76E2BED3750005F41F2 /* FGD2024 */,
-				DF68FFF2282AEDD500C63690 /* FGD2022 */,
-				DFC9094A21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle */,
-				DF39C7D125A22CEB000ABCC3 /* Settings.bundle */,
-				DFADF96C282A66DF00A15FE1 /* Map Icons.xcassets */,
+				DF35B389201DC72900118FD1 /* AppDelegate.swift */,
+				DFB593002586D5C200BAD901 /* ApplicationController.swift */,
+				DFC1111527F6476700348268 /* AppSplitViewController.swift */,
+				DF8709F127F2E2F7005A1B1A /* AppStrings.swift */,
 				DFD8B7A029BDF5B1004C5D6C /* BaseRepository.swift */,
+				DF5978E32F01F3C800512386 /* Container+LegacyEventService.swift */,
+				DF5978E42F01F3C800512386 /* Container+LocationEventService.swift */,
+				DF5978E52F01F3C800512386 /* Container+PageService.swift */,
+				DFB592F02586C4F800BAD901 /* SceneDelegate.swift */,
+				DFADF96C282A66DF00A15FE1 /* Map Icons.xcassets */,
+				DF5978DA2F01EDAC00512386 /* Assets */,
+				DF5975E92F01E4F400512386 /* Config */,
+				DF5977962F01E86D00512386 /* Controller */,
+				DF5976062F01E4F900512386 /* Coordinator */,
+				DF5976ED2F01E63600512386 /* Extensions */,
+				DF1E14152DF0B49B007015DC /* FGD2025 */,
+				DF5976342F01E5B500512386 /* Info */,
+				DF35B392201DC72900118FD1 /* LaunchScreen.storyboard */,
+				DF5976312F01E56B00512386 /* Live */,
+				DF5976FA2F01E7DB00512386 /* Manager */,
+				DF5977522F01E82300512386 /* Model */,
+				DF5976222F01E52E00512386 /* News */,
+				DF5977172F01E7F700512386 /* Preview Content */,
+				DF59762C2F01E53600512386 /* User Schedule */,
+				DF59770F2F01E7E400512386 /* Utility */,
+				DF5978912F01E91B00512386 /* Venues */,
+				DF5976902F01E5F500512386 /* View */,
+				DF5976D92F01E63300512386 /* ViewModels */,
 			);
 			path = "moers festival";
 			sourceTree = "<group>";
@@ -518,22 +567,6 @@
 				DF871331247EC88700CDE769 /* Localizable.strings */,
 			);
 			path = "moers festival tvOS";
-			sourceTree = "<group>";
-		};
-		DF4CB97C2403B75D00CCFB5A /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				DF5978D02F01E98600512386 /* MockData.xcstrings */,
-				DF5978CC2F01E98600512386 /* Localizable.xcstrings */,
-				DF5978CE2F01E98600512386 /* MMAPI.xcstrings */,
-				DF5978CA2F01E98600512386 /* MMUI.xcstrings */,
-				DFE12B662073853F006764FC /* Licenses.plist */,
-				DF87B2FE201E179F00E1B97C /* Assets.xcassets */,
-				DFD8B86A209D08380030E0C1 /* Sponsor.xcassets */,
-				DF057CB22200BDF000811476 /* Media.xcassets */,
-				DF83A8C125890FB0002E5C62 /* Colors.xcassets */,
-			);
-			path = Assets;
 			sourceTree = "<group>";
 		};
 		DF559F2F264946980076516C /* Config */ = {
@@ -733,8 +766,6 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			fileSystemSynchronizedGroups = (
 				DF1E14152DF0B49B007015DC /* FGD2025 */,
 				DF5975E92F01E4F400512386 /* Config */,
@@ -751,6 +782,7 @@
 				DF5977522F01E82300512386 /* Model */,
 				DF5977962F01E86D00512386 /* Controller */,
 				DF5978912F01E91B00512386 /* Venues */,
+				DF5978DA2F01EDAC00512386 /* Assets */,
 			);
 			name = "moers festival";
 			packageProductDependencies = (
@@ -785,8 +817,6 @@
 				DF40D6C1247E73D40054199C /* Resources */,
 			);
 			buildRules = (
-			);
-			dependencies = (
 			);
 			name = "moers festival tvOS";
 			packageProductDependencies = (
@@ -824,8 +854,6 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			name = WidgetsExtension;
 			productName = WidgetsExtension;
 			productReference = DFA90CB929E945D600FF8366 /* WidgetsExtension.appex */;
@@ -858,8 +886,6 @@
 				DFD4561229E93A3A00F26F37 /* Resources */,
 			);
 			buildRules = (
-			);
-			dependencies = (
 			);
 			name = "moers festival Watch App";
 			productName = "moers festival Watch Watch App";
@@ -954,7 +980,6 @@
 				};
 			};
 			buildConfigurationList = DF35B381201DC72900118FD1 /* Build configuration list for PBXProject "moers festival" */;
-			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -976,6 +1001,7 @@
 				DF055B922D8B8FD7007E4393 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				DF5975BC2F01E08D00512386 /* XCLocalSwiftPackageReference "../CityOS" */,
 			);
+			preferredProjectObjectVersion = 90;
 			productRefGroup = DF35B387201DC72900118FD1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -995,115 +1021,90 @@
 /* Begin PBXResourcesBuildPhase section */
 		DF35B384201DC72900118FD1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DF82B76F2BED3750005F41F2 /* FGD2024 in Resources */,
 				DFADF9582829AB9000A15FE1 /* map.geojson in Resources */,
 				DFADF95C2829C13300A15FE1 /* intermediate.geojson in Resources */,
-				DF83A8C225890FB0002E5C62 /* Colors.xcassets in Resources */,
 				DF62C61A2247B98E008425EC /* ContentDrawer.storyboard in Resources */,
-				DF87B2FF201E179F00E1B97C /* Assets.xcassets in Resources */,
-				DF057CB32200BDF000811476 /* Media.xcassets in Resources */,
-				DFD8B86B209D08380030E0C1 /* Sponsor.xcassets in Resources */,
-				DF5978CF2F01E98600512386 /* MMAPI.xcstrings in Resources */,
 				DF39C7D225A22CEB000ABCC3 /* Settings.bundle in Resources */,
 				DF68FFF3282AEDD500C63690 /* FGD2022 in Resources */,
 				DFADF9562829915E00A15FE1 /* Moers.gpx in Resources */,
-				DF5978CB2F01E98600512386 /* MMUI.xcstrings in Resources */,
 				DFC9094B21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle in Resources */,
 				DFE12B672073853F006764FC /* Licenses.plist in Resources */,
-				DF5978CD2F01E98600512386 /* Localizable.xcstrings in Resources */,
 				DF35B394201DC72900118FD1 /* LaunchScreen.storyboard in Resources */,
-				DF5978D12F01E98700512386 /* MockData.xcstrings in Resources */,
 				DFADF96D282A66DF00A15FE1 /* Map Icons.xcassets in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF40D6C1247E73D40054199C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DF40D6D2247E73D60054199C /* LaunchScreen.storyboard in Resources */,
 				DF87132F247EC88700CDE769 /* Localizable.strings in Resources */,
 				DF40D6CF247E73D60054199C /* Assets.xcassets in Resources */,
 				DF40D6CD247E73D40054199C /* Main.storyboard in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF87B2F0201DFB2700E1B97C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DFFA54ED2A0153E9000ECEC5 /* moers-festival.localhost _api_v1_events (GET).json in Resources */,
 				DFFA54EF2A0153E9000ECEC5 /* moers-festival.localhost _api_v1_pages_369 (GET).json in Resources */,
 				DFFA54EE2A0153E9000ECEC5 /* moers-festival.localhost _api_v1_feeds_3_posts (GET).json in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFA90CB729E945D600FF8366 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DFA90CC729E945D700FF8366 /* Assets.xcassets in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFB15F0922AF082D00441FB5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFD4561229E93A3A00F26F37 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DFD4561E29E93A3B00F26F37 /* Preview Assets.xcassets in Resources */,
 				DFD4561B29E93A3B00F26F37 /* Assets.xcassets in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFD4562129E93A3B00F26F37 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFD4562B29E93A3C00F26F37 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		DFB708BE25AEFE4900D3318F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# cd $PROJECT_DIR\n# cd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"\n# RELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)\n# BUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" Info.plist)\n# VERSION_STRING=\"$RELEASE_VERSION ($BUILD_NUMBER)\"\n# /usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $VERSION_STRING\" Settings.bundle/Root.plist\n\n# if [ $CONFIGURATION == \"Release\" ]; then\n#    rm -rf \"$BUILD_APP_DIR/Settings.bundle\"\n# fi\n";
+			shellScript = (
+				"# cd $PROJECT_DIR",
+				"# cd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"",
+				"# RELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)",
+				"# BUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" Info.plist)",
+				"# VERSION_STRING=\"$RELEASE_VERSION ($BUILD_NUMBER)\"",
+				"# /usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $VERSION_STRING\" Settings.bundle/Root.plist",
+				"",
+				"# if [ $CONFIGURATION == \"Release\" ]; then",
+				"#    rm -rf \"$BUILD_APP_DIR/Settings.bundle\"",
+				"# fi",
+				"",
+			);
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DF35B382201DC72900118FD1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DF35B38A201DC72900118FD1 /* AppDelegate.swift in Sources */,
 				DF8709F227F2E2F7005A1B1A /* AppStrings.swift in Sources */,
@@ -1115,17 +1116,18 @@
 				DF39C7A125A1D737000ABCC3 /* AppConfiguration.swift in Sources */,
 				DFA90CCA29E945D700FF8366 /* Widgets.intentdefinition in Sources */,
 				DFC1111427F6457800348268 /* AccessibilityIdentifiers.swift in Sources */,
+				DF5978E62F01F3C800512386 /* Container+PageService.swift in Sources */,
+				DF5978E72F01F3C800512386 /* Container+LegacyEventService.swift in Sources */,
+				DF5978E82F01F3C800512386 /* Container+LocationEventService.swift in Sources */,
 				DFB592F12586C4F800BAD901 /* SceneDelegate.swift in Sources */,
 				DFD8B78F29BD362C004C5D6C /* AppDatabase+Container.swift in Sources */,
 				DF39C7B825A2154E000ABCC3 /* MMAPIFrameworkConfiguration.swift in Sources */,
 				DFD8B7A129BDF5B1004C5D6C /* BaseRepository.swift in Sources */,
 				DFC1111627F6476700348268 /* AppSplitViewController.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF40D6BF247E73D40054199C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DF87132C247EC79B00CDE769 /* Extensions.swift in Sources */,
 				DF16BB772625F8FE0047F294 /* PlainNavigationLinkButton.swift in Sources */,
@@ -1141,22 +1143,18 @@
 				DF559F322649470A0076516C /* NetworkingConfiguration.swift in Sources */,
 				DF40D6C6247E73D40054199C /* AppDelegate.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF87B2EE201DFB2700E1B97C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DF87B2F5201DFB2700E1B97C /* AutomaticSnapshots.swift in Sources */,
 				DF56600D25AF46C900692425 /* UILaunchTests.swift in Sources */,
 				DF87B2FD201DFB6100E1B97C /* SnapshotHelper.swift in Sources */,
 				DFFA54F12A01635D000ECEC5 /* AccessibilityIdentifiers.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFA90CB529E945D600FF8366 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DFA90CEA29E97A0700FF8366 /* ScheduleTimelineEntry.swift in Sources */,
 				DFA90CE229E9763D00FF8366 /* WidgetScheduleView.swift in Sources */,
@@ -1171,41 +1169,32 @@
 				DFA90CE829E9798E00FF8366 /* ScheduleTimelineProvider.swift in Sources */,
 				DFA90CDE29E9532300FF8366 /* ScheduleMedium.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFB15F0722AF082D00441FB5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFD4561029E93A3A00F26F37 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DFA90CB429E93BC700FF8366 /* EventList.swift in Sources */,
 				DFD4561929E93A3A00F26F37 /* ContentView.swift in Sources */,
 				DFD4561729E93A3A00F26F37 /* WatchApp.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFD4561F29E93A3B00F26F37 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DFD4562829E93A3C00F26F37 /* moers_festival_Watch_Watch_AppTests.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DFD4562929E93A3C00F26F37 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				DFD4563229E93A3C00F26F37 /* moers_festival_Watch_Watch_AppUITests.swift in Sources */,
 				DFD4563429E93A3C00F26F37 /* moers_festival_Watch_Watch_AppUITestsLaunchTests.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -1272,7 +1261,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		DF40D6D6247E73D60054199C /* Debug */ = {
+		DF40D6D6247E73D60054199C /* Debug configuration for PBXNativeTarget "moers festival tvOS" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
 			baseConfigurationReferenceRelativePath = Production.xcconfig;
@@ -1348,7 +1337,7 @@
 			};
 			name = Debug;
 		};
-		DF40D6D9247E73D60054199C /* Release */ = {
+		DF40D6D9247E73D60054199C /* Release configuration for PBXNativeTarget "moers festival tvOS" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
 			baseConfigurationReferenceRelativePath = Production.xcconfig;
@@ -1418,7 +1407,7 @@
 			};
 			name = Release;
 		};
-		DFA90CD129E945D700FF8366 /* Debug */ = {
+		DFA90CD129E945D700FF8366 /* Debug configuration for PBXNativeTarget "WidgetsExtension" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1502,7 +1491,7 @@
 			};
 			name = Debug;
 		};
-		DFA90CD429E945D700FF8366 /* Release */ = {
+		DFA90CD429E945D700FF8366 /* Release configuration for PBXNativeTarget "WidgetsExtension" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1581,7 +1570,7 @@
 			};
 			name = Release;
 		};
-		DFB15EF922AE625500441FB5 /* Debug */ = {
+		DFB15EF922AE625500441FB5 /* Debug configuration for PBXProject "moers festival" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
 			baseConfigurationReferenceRelativePath = Production.xcconfig;
@@ -1647,7 +1636,7 @@
 			};
 			name = Debug;
 		};
-		DFB15EFA22AE625500441FB5 /* Debug */ = {
+		DFB15EFA22AE625500441FB5 /* Debug configuration for PBXNativeTarget "moers festival" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
 			baseConfigurationReferenceRelativePath = Production.xcconfig;
@@ -1696,7 +1685,7 @@
 			};
 			name = Debug;
 		};
-		DFB15EFB22AE625500441FB5 /* Debug */ = {
+		DFB15EFB22AE625500441FB5 /* Debug configuration for PBXNativeTarget "moers festival UITests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
 			baseConfigurationReferenceRelativePath = Production.xcconfig;
@@ -1718,7 +1707,7 @@
 			};
 			name = Debug;
 		};
-		DFB15EFF22AE62F300441FB5 /* Release */ = {
+		DFB15EFF22AE62F300441FB5 /* Release configuration for PBXProject "moers festival" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
 			baseConfigurationReferenceRelativePath = Production.xcconfig;
@@ -1778,7 +1767,7 @@
 			};
 			name = Release;
 		};
-		DFB15F0022AE62F300441FB5 /* Release */ = {
+		DFB15F0022AE62F300441FB5 /* Release configuration for PBXNativeTarget "moers festival" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
 			baseConfigurationReferenceRelativePath = Production.xcconfig;
@@ -1825,7 +1814,7 @@
 			};
 			name = Release;
 		};
-		DFB15F0122AE62F300441FB5 /* Release */ = {
+		DFB15F0122AE62F300441FB5 /* Release configuration for PBXNativeTarget "moers festival UITests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
 			baseConfigurationReferenceRelativePath = Production.xcconfig;
@@ -1847,7 +1836,7 @@
 			};
 			name = Release;
 		};
-		DFB15F1522AF082E00441FB5 /* Debug */ = {
+		DFB15F1522AF082E00441FB5 /* Debug configuration for PBXNativeTarget "moers festival Tests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
 			baseConfigurationReferenceRelativePath = Production.xcconfig;
@@ -1924,7 +1913,7 @@
 			};
 			name = Debug;
 		};
-		DFB15F1822AF082E00441FB5 /* Release */ = {
+		DFB15F1822AF082E00441FB5 /* Release configuration for PBXNativeTarget "moers festival Tests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
 			baseConfigurationReferenceRelativePath = Production.xcconfig;
@@ -1995,7 +1984,7 @@
 			};
 			name = Release;
 		};
-		DFD4563B29E93A3C00F26F37 /* Debug */ = {
+		DFD4563B29E93A3C00F26F37 /* Debug configuration for PBXNativeTarget "moers festival Watch App" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2079,7 +2068,7 @@
 			};
 			name = Debug;
 		};
-		DFD4563E29E93A3C00F26F37 /* Release */ = {
+		DFD4563E29E93A3C00F26F37 /* Release configuration for PBXNativeTarget "moers festival Watch App" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2158,7 +2147,7 @@
 			};
 			name = Release;
 		};
-		DFD4564129E93A3C00F26F37 /* Debug */ = {
+		DFD4564129E93A3C00F26F37 /* Debug configuration for PBXNativeTarget "moers festival Watch Watch AppTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2230,7 +2219,7 @@
 			};
 			name = Debug;
 		};
-		DFD4564429E93A3C00F26F37 /* Release */ = {
+		DFD4564429E93A3C00F26F37 /* Release configuration for PBXNativeTarget "moers festival Watch Watch AppTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2296,7 +2285,7 @@
 			};
 			name = Release;
 		};
-		DFD4564729E93A3C00F26F37 /* Debug */ = {
+		DFD4564729E93A3C00F26F37 /* Debug configuration for PBXNativeTarget "moers festival Watch Watch AppUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2367,7 +2356,7 @@
 			};
 			name = Debug;
 		};
-		DFD4564A29E93A3C00F26F37 /* Release */ = {
+		DFD4564A29E93A3C00F26F37 /* Release configuration for PBXNativeTarget "moers festival Watch Watch AppUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2439,82 +2428,73 @@
 		DF35B381201DC72900118FD1 /* Build configuration list for PBXProject "moers festival" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DFB15EF922AE625500441FB5 /* Debug */,
-				DFB15EFF22AE62F300441FB5 /* Release */,
+				DFB15EF922AE625500441FB5 /* Debug configuration for PBXProject "moers festival" */,
+				DFB15EFF22AE62F300441FB5 /* Release configuration for PBXProject "moers festival" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		DF35B398201DC72900118FD1 /* Build configuration list for PBXNativeTarget "moers festival" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DFB15EFA22AE625500441FB5 /* Debug */,
-				DFB15F0022AE62F300441FB5 /* Release */,
+				DFB15EFA22AE625500441FB5 /* Debug configuration for PBXNativeTarget "moers festival" */,
+				DFB15F0022AE62F300441FB5 /* Release configuration for PBXNativeTarget "moers festival" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		DF40D6DA247E73D60054199C /* Build configuration list for PBXNativeTarget "moers festival tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DF40D6D6247E73D60054199C /* Debug */,
-				DF40D6D9247E73D60054199C /* Release */,
+				DF40D6D6247E73D60054199C /* Debug configuration for PBXNativeTarget "moers festival tvOS" */,
+				DF40D6D9247E73D60054199C /* Release configuration for PBXNativeTarget "moers festival tvOS" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		DF87B2F9201DFB2700E1B97C /* Build configuration list for PBXNativeTarget "moers festival UITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DFB15EFB22AE625500441FB5 /* Debug */,
-				DFB15F0122AE62F300441FB5 /* Release */,
+				DFB15EFB22AE625500441FB5 /* Debug configuration for PBXNativeTarget "moers festival UITests" */,
+				DFB15F0122AE62F300441FB5 /* Release configuration for PBXNativeTarget "moers festival UITests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		DFA90CD529E945D700FF8366 /* Build configuration list for PBXNativeTarget "WidgetsExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DFA90CD129E945D700FF8366 /* Debug */,
-				DFA90CD429E945D700FF8366 /* Release */,
+				DFA90CD129E945D700FF8366 /* Debug configuration for PBXNativeTarget "WidgetsExtension" */,
+				DFA90CD429E945D700FF8366 /* Release configuration for PBXNativeTarget "WidgetsExtension" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		DFB15F1222AF082E00441FB5 /* Build configuration list for PBXNativeTarget "moers festival Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DFB15F1522AF082E00441FB5 /* Debug */,
-				DFB15F1822AF082E00441FB5 /* Release */,
+				DFB15F1522AF082E00441FB5 /* Debug configuration for PBXNativeTarget "moers festival Tests" */,
+				DFB15F1822AF082E00441FB5 /* Release configuration for PBXNativeTarget "moers festival Tests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		DFD4564B29E93A3C00F26F37 /* Build configuration list for PBXNativeTarget "moers festival Watch App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DFD4563B29E93A3C00F26F37 /* Debug */,
-				DFD4563E29E93A3C00F26F37 /* Release */,
+				DFD4563B29E93A3C00F26F37 /* Debug configuration for PBXNativeTarget "moers festival Watch App" */,
+				DFD4563E29E93A3C00F26F37 /* Release configuration for PBXNativeTarget "moers festival Watch App" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		DFD4564C29E93A3C00F26F37 /* Build configuration list for PBXNativeTarget "moers festival Watch Watch AppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DFD4564129E93A3C00F26F37 /* Debug */,
-				DFD4564429E93A3C00F26F37 /* Release */,
+				DFD4564129E93A3C00F26F37 /* Debug configuration for PBXNativeTarget "moers festival Watch Watch AppTests" */,
+				DFD4564429E93A3C00F26F37 /* Release configuration for PBXNativeTarget "moers festival Watch Watch AppTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		DFD4564D29E93A3C00F26F37 /* Build configuration list for PBXNativeTarget "moers festival Watch Watch AppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DFD4564729E93A3C00F26F37 /* Debug */,
-				DFD4564A29E93A3C00F26F37 /* Release */,
+				DFD4564729E93A3C00F26F37 /* Debug configuration for PBXNativeTarget "moers festival Watch Watch AppUITests" */,
+				DFD4564A29E93A3C00F26F37 /* Release configuration for PBXNativeTarget "moers festival Watch Watch AppUITests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */

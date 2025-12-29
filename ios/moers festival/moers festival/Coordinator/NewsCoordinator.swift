@@ -13,17 +13,14 @@ import ModernNetworking
 import Cache
 import MMPages
 import MMFeeds
-import Resolver
 import SafariServices
 import Combine
 import Factory
 
 public class NewsCoordinator: Coordinator {
     
-    private var feedService: FeedService
-    private var pageService: PageService
-    
-    private let repository: PostRepository
+    @LazyInjected(\.feedService) private var feedService
+    @LazyInjected(\.pageRepository) private var repository
     
     public var navigationController: CoordinatedNavigationController
     private var cancellables = Set<AnyCancellable>()
@@ -33,10 +30,6 @@ public class NewsCoordinator: Coordinator {
     public init(navigationController: CoordinatedNavigationController = CoordinatedNavigationController()) {
         
         self.navigationController = navigationController
-        
-        self.feedService = Resolver.resolve()
-        self.pageService = Resolver.resolve()
-        self.repository = Container.shared.postRepository()
         
         self.navigationController.navigationBar.prefersLargeTitles = true
         self.navigationController.coordinator = self

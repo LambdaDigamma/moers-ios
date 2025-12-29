@@ -12,7 +12,6 @@ import MapKit
 import MMEvents
 import MMPages
 import Combine
-import Resolver
 import SwiftUI
 import NukeUI
 import MediaLibraryKit
@@ -23,6 +22,8 @@ import ModernNetworking
 
 public class ModernEventDetailViewController: DefaultHostingController {
     
+    @LazyInjected(\.legacyEventService) private var eventService
+    
     public var coordinator: SharedCoordinator?
     
     private let viewModel: EventDetailViewModel
@@ -30,7 +31,6 @@ public class ModernEventDetailViewController: DefaultHostingController {
     private let favoriteEventsStore: FavoriteEventsStore?
     
     private let eventID: Event.ID
-    private var eventService: LegacyEventService
     private var likeBarButtonItem: UIBarButtonItem?
     private var actionTransmitter = ActionTransmitter()
     private var cancellables = Set<AnyCancellable>()
@@ -45,9 +45,8 @@ public class ModernEventDetailViewController: DefaultHostingController {
     
     // MARK: - Init -
     
-    public init(eventID: Event.ID, eventService: LegacyEventService? = nil) {
+    public init(eventID: Event.ID) {
         self.eventID = eventID
-        self.eventService = eventService ?? Resolver.resolve()
         self.viewModel = EventDetailViewModel(eventID: eventID)
         self.favoriteEventsStore = Container.shared.favoriteEventsStore()
         
@@ -225,8 +224,7 @@ struct ModernEventDetailViewController_Previews: PreviewProvider {
         
         UINavigationController(
             rootViewController: ModernEventDetailViewController(
-                eventID: 1,
-                eventService: eventService
+                eventID: 1
             )
         )
         .preview

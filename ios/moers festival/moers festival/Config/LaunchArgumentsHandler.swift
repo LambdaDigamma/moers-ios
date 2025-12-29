@@ -8,7 +8,6 @@
 
 import UIKit
 import AppScaffold
-import Resolver
 import ModernNetworking
 import MMFeeds
 

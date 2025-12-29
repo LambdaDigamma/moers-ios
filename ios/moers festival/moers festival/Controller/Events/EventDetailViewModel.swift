@@ -12,7 +12,6 @@ import Combine
 import MMEvents
 import MMPages
 import MediaLibraryKit
-import Resolver
 import Foundation
 import CoreLocation
 import Factory
@@ -27,10 +26,10 @@ public struct EventDetailScreenData {
 
 public class EventDetailViewModel: StandardViewModel {
     
-    private let eventService: LegacyEventService
-    private let logger: Logger = Logger(.coreAppLifecycle)
+    @LazyInjected(\.legacyEventService) var legacyEventService
+    @LazyInjected(\.festivalEventService) var festivalEventService
     
-    private let festivalEventService: FestivalEventService
+    private let logger: Logger = Logger(.coreAppLifecycle)
     
     @Published public var eventID: Event.ID?
     @Published public var pageID: MMPages.Page.ID?
@@ -43,11 +42,9 @@ public class EventDetailViewModel: StandardViewModel {
     
     let repository: EventRepository
     
-    public init(eventID: Event.ID?, eventService: LegacyEventService? = nil) {
+    public init(eventID: Event.ID?) {
         self.eventID = eventID
-        self.eventService = eventService ?? Resolver.resolve()
         self.repository = Container.shared.eventRepository()
-        self.festivalEventService = Resolver.resolve()
         super.init()
         self.setupListener()
     }

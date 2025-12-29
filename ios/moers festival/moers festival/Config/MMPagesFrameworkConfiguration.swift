@@ -8,7 +8,6 @@
 
 import UIKit
 import AppScaffold
-import Resolver
 import ModernNetworking
 import Cache
 import MMPages
@@ -32,7 +31,9 @@ class MMPagesFrameworkConfiguration: BootstrappingProcedureStep {
             reader: Container.shared.appDatabase.resolve().reader
         )
         
-        Resolver.register { service as PageService }
+        Container.shared.pageService.register {
+            service as PageService
+        }
         
         Container.shared.pageRepository.scope(.cached).register {
             PageRepository(service: service, store: store)

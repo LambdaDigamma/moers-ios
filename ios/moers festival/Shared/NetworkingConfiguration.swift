@@ -9,7 +9,6 @@
 import UIKit
 import AppScaffold
 import ModernNetworking
-import Resolver
 import Core
 import Factory
 
@@ -47,8 +46,6 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
         guard let loader = setupLoaderChain(with: environment) else {
             fatalError("Networking stack could not be setup.")
         }
-        
-        Resolver.register { loader }
         
         Container.shared.httpLoader.scope(.cached).register() {
             loader

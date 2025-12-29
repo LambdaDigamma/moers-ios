@@ -7,7 +7,6 @@
 //
 
 import Core
-import Resolver
 import Foundation
 import UIKit
 import SwiftUI
@@ -15,10 +14,11 @@ import MMEvents
 import MMPages
 import Combine
 import SafariServices
+import Factory
 
 public class VenueDetailController: DefaultHostingController {
     
-    @LazyInjected var service: LocationEventService
+    @LazyInjected(\.locationEventService) var service
     
     public weak var coordinator: SharedCoordinator?
     

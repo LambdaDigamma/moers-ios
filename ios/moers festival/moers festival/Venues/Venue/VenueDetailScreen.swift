@@ -7,14 +7,11 @@
 //
 
 import Core
-import Resolver
 import SwiftUI
 import MMEvents
 import MMPages
 
 public struct VenueDetailScreen: View {
-    
-    let locationService: LocationService? = Resolver.optional()
     
     @ObservedObject var viewModel: VenueDetailViewModel
     
@@ -122,13 +119,11 @@ public struct VenueDetailScreen: View {
     @ViewBuilder
     private func navigation() -> some View {
         
-        if let point = viewModel.point,
-           let locationService = locationService {
+        if let point = viewModel.point {
             
             AutoCalculatingDirectionsButton(
                 coordinate: point.toCoordinate(),
                 directionsMode: .walking,
-                locationService: locationService,
                 action: {
                     AppleNavigationProvider().startNavigation(to: point, withName: viewModel.name)
                 }

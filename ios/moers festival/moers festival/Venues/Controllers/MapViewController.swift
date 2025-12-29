@@ -11,13 +11,13 @@ import UIKit
 import MapKit
 import Pulley
 import Combine
-import Resolver
 import MMEvents
 import Factory
 
 class MapViewController: UIViewController, PulleyPrimaryContentControllerDelegate {
     
-    private var service: LocationEventService = Resolver.resolve()
+    @LazyInjected(\.locationEventService) private var service
+    
     private let repository: PlaceRepository = Container.shared.placeRepository()
     
     private lazy var coordinator = { return parent as! MapCoordinatorViewController }()

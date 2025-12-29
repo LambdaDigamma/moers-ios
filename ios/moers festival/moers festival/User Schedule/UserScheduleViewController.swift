@@ -221,8 +221,7 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
         guard let eventID = item?.eventID else { return }
         
         let detailController = ModernEventDetailViewController(
-            eventID: eventID,
-            eventService: nil
+            eventID: eventID
         )
         
         self.navigationController?.pushViewController(detailController, animated: true)

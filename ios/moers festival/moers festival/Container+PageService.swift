@@ -13,7 +13,7 @@ public extension Container {
 
     var pageService: Factory<PageService> {
         self {
-            nil // Will be configured at runtime
+            DefaultPageService(Container.shared.httpLoader())
         }
     }
 

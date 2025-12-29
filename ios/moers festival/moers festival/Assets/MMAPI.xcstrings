@@ -3,7 +3,7 @@
   "strings" : {
     "BikeChargingStation" : {
       "comment" : "BikeChargingStation",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -21,7 +21,7 @@
     },
     "Camera" : {
       "comment" : "Camera",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -38,7 +38,7 @@
       }
     },
     "Diesel" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -55,7 +55,7 @@
       }
     },
     "E5" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -72,7 +72,7 @@
       }
     },
     "E10" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -89,7 +89,7 @@
       }
     },
     "ExtraTicket" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -107,7 +107,7 @@
     },
     "Free" : {
       "comment" : "Moers Festival",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -124,7 +124,7 @@
       }
     },
     "GreenWaste" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -142,7 +142,7 @@
     },
     "LiveNow" : {
       "comment" : "Events",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -159,7 +159,7 @@
       }
     },
     "LocationNotKnown" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -176,7 +176,7 @@
       }
     },
     "NeedsFestivalTicket" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -193,7 +193,7 @@
       }
     },
     "NotKnownPrompt" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -210,7 +210,7 @@
       }
     },
     "OrganicWaste" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -227,7 +227,7 @@
       }
     },
     "PaperWaste" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -245,7 +245,7 @@
     },
     "ParkingLot" : {
       "comment" : "ParkingLot",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -262,7 +262,7 @@
       }
     },
     "ParkingLotAscends" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -279,7 +279,7 @@
       }
     },
     "ParkingLotDescends" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -296,7 +296,7 @@
       }
     },
     "ParkingLotUnchanged" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -313,7 +313,7 @@
       }
     },
     "ParkingLotUndocumented" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -331,7 +331,7 @@
     },
     "PetrolStation" : {
       "comment" : "Petrol",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -349,7 +349,7 @@
     },
     "ResidualWaste" : {
       "comment" : "Waste",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -366,7 +366,7 @@
       }
     },
     "RubbishCollectionNotificationBody" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -384,7 +384,7 @@
     },
     "RubbishCollectionNotificationTitle" : {
       "comment" : "Rubbish Notifications",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -402,7 +402,7 @@
     },
     "Today" : {
       "comment" : "Date+Extensions",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -419,7 +419,7 @@
       }
     },
     "Tomorrow" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -436,7 +436,7 @@
       }
     },
     "YellowWaste" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {

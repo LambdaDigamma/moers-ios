@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Post1Summary" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -20,7 +20,7 @@
     },
     "Post1Title" : {
       "comment" : "MockData.strings\n  moers festival\n\n  Created by Lennart Fischer on 06.02.21.\n  Copyright © 2021 Code for Niederrhein. All rights reserved.",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -37,7 +37,7 @@
       }
     },
     "Post2Summary" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -54,7 +54,7 @@
       }
     },
     "Post2Title" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -71,7 +71,7 @@
       }
     },
     "Post3Summary" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -88,7 +88,7 @@
       }
     },
     "Post3Title" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {

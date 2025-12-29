@@ -8,7 +8,6 @@
 
 import Core
 import SwiftUI
-import Resolver
 import MMEvents
 import Factory
 import Combine

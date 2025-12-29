@@ -11,25 +11,26 @@ import MMEvents
 import MMPages
 import MMEvents
 import AppScaffold
-import Resolver
 import Combine
 import SwiftUI
+import Factory
 
 public class EventCoordinator: SharedCoordinator {
     
-    @LazyInjected var pageService: PageService
-    @LazyInjected var eventService: LegacyEventService
+    @LazyInjected(\.pageService) var pageService
+    @LazyInjected(\.legacyEventService) var eventService
     
-    public let eventManager: LegacyEventService
     private var events: [MMEvents.Event] = []
-    private var eventViewController = MFEventsViewController()
     
+    private let timetable: TimetableViewController
     
     public init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
         eventService: LegacyEventService
     ) {
-        self.eventManager = eventService
+        
+        self.timetable = TimetableViewController()
+        
         super.init(navigationController: navigationController)
         
         self.navigationController.navigationBar.prefersLargeTitles = true
@@ -42,19 +43,12 @@ public class EventCoordinator: SharedCoordinator {
             selectedImage: nil
         )
         
-        eventViewController.coordinator = self
-        eventViewController.tabBarItem = tabBarItem
-        eventViewController.title = String.localized("EventsTabItem")
+        self.timetable.title = String.localized("EventsTabItem")
         
-        let timetable = TimetableViewController()
-        
-        timetable.title = String.localized("EventsTabItem")
-        
-        timetable.onShowEvent = { (eventID: Event.ID) in
+        self.timetable.onShowEvent = { (eventID: Event.ID) in
             self.showDetail(for: eventID)
         }
         
-//        self.navigationController.viewControllers = [eventViewController]
         self.navigationController.viewControllers = [timetable]
         
     }
@@ -75,8 +69,7 @@ public class EventCoordinator: SharedCoordinator {
         self.navigationController.popToRootViewController(animated: true)
         
         let detailController = ModernEventDetailViewController(
-            eventID: eventID,
-            eventService: eventService
+            eventID: eventID
         )
 
         detailController.coordinator = self
@@ -103,15 +96,15 @@ public class EventCoordinator: SharedCoordinator {
     
     func showNextEvents() {
         
-        self.navigationController.popToRootViewController(animated: true)
-        self.eventViewController.showNext()
+//        self.navigationController.popToRootViewController(animated: true)
+//        self.eventViewController.showNext()
         
     }
     
     func showFavouriteEvents() {
         
-        self.navigationController.popToRootViewController(animated: true)
-        self.eventViewController.showFavourites()
+//        self.navigationController.popToRootViewController(animated: true)
+//        self.eventViewController.showFavourites()
         
     }
     

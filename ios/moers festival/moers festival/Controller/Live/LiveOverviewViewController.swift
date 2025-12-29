@@ -10,15 +10,15 @@ import UIKit
 import MMEvents
 import AVKit
 import StateViewController
-import Resolver
 import OSLog
 import Combine
+import Factory
 
 class LiveOverviewViewController: StateViewController<LivestreamState> {
     
     public var coordinator: LiveCoordinator?
     
-    @LazyInjected var eventService: LegacyEventService
+    @LazyInjected(\.legacyEventService) var eventService
     
     private lazy var loadingController =  { LoadingViewController(loadingHint: String.localized("LoadingLivestream")) }()
     private lazy var activeStreamViewController = { ActiveStreamViewController() }()

@@ -9,14 +9,14 @@
 import Core
 import UIKit
 import Pulley
-import Resolver
 import EventBus
 import Combine
 import MMEvents
+import Factory
 
 class MapCoordinatorViewController: PulleyViewController {
 
-    @LazyInjected var locationService: LocationEventService
+    @LazyInjected(\.locationEventService) var locationService
     
     public var coordinator: MapCoordinator?
     

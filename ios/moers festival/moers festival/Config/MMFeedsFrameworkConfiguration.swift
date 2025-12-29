@@ -8,7 +8,6 @@
 
 import UIKit
 import AppScaffold
-import Resolver
 import ModernNetworking
 import Cache
 import MMFeeds
@@ -26,7 +25,9 @@ class MMFeedsFrameworkConfiguration: BootstrappingProcedureStep {
                 
                 let mockedFeedService = createMockedFeedService()
                 
-                Resolver.register { mockedFeedService as FeedService }
+                Container.shared.feedService.register {
+                    mockedFeedService
+                }
                 
                 return
             }
@@ -38,7 +39,9 @@ class MMFeedsFrameworkConfiguration: BootstrappingProcedureStep {
             
             let service = DefaultFeedService(loader, cache)
             
-            Resolver.register { service as FeedService }
+            Container.shared.feedService.register {
+                service as FeedService
+            }
             
         } catch {
             

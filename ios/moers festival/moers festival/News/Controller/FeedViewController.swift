@@ -9,11 +9,11 @@
 import UIKit
 import Combine
 import MMFeeds
-import Resolver
+import Factory
 
 public class FeedViewController: UIViewController {
 
-    @LazyInjected var feedService: FeedService
+    @LazyInjected(\.feedService) var feedService
     
     private lazy var collectionView: UICollectionView = {
         return ViewFactory.collectionView(layout: buildCollectionViewLayout())
@@ -29,7 +29,7 @@ public class FeedViewController: UIViewController {
     public init() {
         super.init(nibName: nil, bundle: nil)
         
-        self.viewModel = FeedPostListViewModel(feedID: 3, service: feedService)
+        self.viewModel = FeedPostListViewModel(feedID: 3)
     }
     
     required init?(coder: NSCoder) {
