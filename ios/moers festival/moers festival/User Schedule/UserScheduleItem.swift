@@ -7,12 +7,19 @@
 //
 
 import Foundation
+import MMEvents
 
 enum UserScheduleSection: Hashable {
     case main(DateComponents?)
+    case empty
 }
 
-struct UserScheduleItem: Identifiable, Hashable {
+enum UserScheduleItem: Hashable, Equatable {
+    case event(EventListItemViewModel)
+    case placeholder
+}
+
+struct UserScheduleLegacyItem: Identifiable, Hashable {
     
     var id: UUID = UUID()
     var title: String

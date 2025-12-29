@@ -167,8 +167,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LambdaDigamma/swift-prosemirror",
       "state" : {
-        "revision" : "d4e169fb793bead5b29a0f269c70a4c529dc35af",
-        "version" : "0.0.7"
+        "revision" : "30b8594dc002f31c4e1e42a20b11eea74a020510",
+        "version" : "0.0.9"
       }
     },
     {

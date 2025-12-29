@@ -24,9 +24,8 @@ public class EventCoordinator: SharedCoordinator {
     
     private let timetable: TimetableViewController
     
-    public init(
-        navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
-        eventService: LegacyEventService
+    public override init(
+        navigationController: CoordinatedNavigationController = CoordinatedNavigationController()
     ) {
         
         self.timetable = TimetableViewController()
@@ -37,12 +36,6 @@ public class EventCoordinator: SharedCoordinator {
         self.navigationController.coordinator = self
         self.navigationController.menuItem = makeMenuItem()
         
-        let tabBarItem = UITabBarItem(
-            title: self.navigationController.menuItem?.title,
-            image: self.navigationController.menuItem?.image,
-            selectedImage: nil
-        )
-        
         self.timetable.title = String.localized("EventsTabItem")
         
         self.timetable.onShowEvent = { (eventID: Event.ID) in
@@ -50,12 +43,6 @@ public class EventCoordinator: SharedCoordinator {
         }
         
         self.navigationController.viewControllers = [timetable]
-        
-    }
-    
-    func setEvents(_ events: [MMEvents.Event]) {
-        
-        self.events = events
         
     }
     

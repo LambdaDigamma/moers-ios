@@ -59,7 +59,7 @@ class OtherView: UIView {
     private func setupTheming() {
         
         self.tableView.separatorColor = UIColor.separator
-        self.tableView.backgroundColor = UIColor.systemBackground
+//        self.tableView.backgroundColor = UIColor.systemBackground
         
     }
     

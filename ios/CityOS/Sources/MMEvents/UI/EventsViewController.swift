@@ -296,6 +296,16 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
             content.text = hint
             content.textProperties.color = .secondaryLabel
             content.textProperties.alignment = .center
+            
+            if hint == String(localized: "No event has been marked as a favorite yet.", bundle: .module) {
+                content.image = UIImage(systemName: "heart.slash")
+                content.imageProperties.tintColor = .secondaryLabel
+                content.imageToTextPadding = 12
+                var textProperties = content.textProperties
+                textProperties.alignment = .center
+                content.textProperties = textProperties
+            }
+            
             cell.contentConfiguration = content
             
             var backgroundConfig = UIBackgroundConfiguration.listGroupedCell()
@@ -401,10 +411,18 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
             }
             
         case .favourites(let keyedEvents):
-            for (header, events) in keyedEvents {
-                let section = Section.dated(header)
-                snapshot.appendSections([section])
-                snapshot.appendItems(events.map { .event($0) }, toSection: section)
+            if keyedEvents.isEmpty {
+                snapshot.appendSections([.dated("")])
+                snapshot.appendItems(
+                    [.hint(String(localized: "No event has been marked as a favorite yet.", bundle: .module))],
+                    toSection: .dated("")
+                )
+            } else {
+                for (header, events) in keyedEvents {
+                    let section = Section.dated(header)
+                    snapshot.appendSections([section])
+                    snapshot.appendItems(events.map { .event($0) }, toSection: section)
+                }
             }
             
         default:

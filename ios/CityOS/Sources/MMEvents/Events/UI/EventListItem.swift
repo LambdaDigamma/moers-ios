@@ -12,7 +12,7 @@ import MediaLibraryKit
 import Factory
 import Combine
 
-public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable {
+public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable, Equatable {
     
     public let id: UUID = .init()
     

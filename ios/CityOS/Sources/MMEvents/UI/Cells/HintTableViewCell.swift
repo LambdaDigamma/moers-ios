@@ -20,6 +20,13 @@ public class HintTableViewCell: UITableViewCell {
         }
     }
     
+    public var image: UIImage? {
+        didSet {
+            self.imageView?.image = image
+            self.imageView?.tintColor = .secondaryLabel
+        }
+    }
+    
     private var hintLabel = { ViewFactory.label() }()
     
     // MARK: - Inits
@@ -45,7 +52,9 @@ public class HintTableViewCell: UITableViewCell {
         
         self.hintLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
         self.hintLabel.numberOfLines = 0
-        self.hintLabel.textAlignment = .left
+        self.hintLabel.textAlignment = .center
+        
+        self.imageView?.contentMode = .scaleAspectFit
         
     }
     
@@ -62,6 +71,13 @@ public class HintTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate(constraints)
         
+        if let imageView = imageView {
+            NSLayoutConstraint.activate([
+                imageView.widthAnchor.constraint(equalToConstant: 40),
+                imageView.heightAnchor.constraint(equalToConstant: 40)
+            ])
+        }
+        
     }
     
     private func setupTheming() {
@@ -70,6 +86,7 @@ public class HintTableViewCell: UITableViewCell {
         self.backgroundColor = UIColor.systemBackground
 #endif
         self.hintLabel.textColor = UIColor.secondaryLabel
+        self.imageView?.tintColor = .secondaryLabel
         
     }
     

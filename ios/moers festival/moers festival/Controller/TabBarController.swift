@@ -51,7 +51,7 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
             entryManager: entryManager,
             trackerManager: trackerManager
         )
-        self.event = EventCoordinator(eventService: eventService)
+        self.event = EventCoordinator()
         self.other = OtherCoordinator()
         
         super.init(nibName: nil, bundle: nil)

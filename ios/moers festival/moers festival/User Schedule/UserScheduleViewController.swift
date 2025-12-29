@@ -17,7 +17,7 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
 
     @LazyInjected(\.favoriteEventsStore) var favoriteEventsStore
     
-    var dataSource: UICollectionViewDiffableDataSource<UserScheduleSection, EventListItemViewModel>?
+    var dataSource: UICollectionViewDiffableDataSource<UserScheduleSection, UserScheduleItem>?
     var cancellables = Set<AnyCancellable>()
     
     let dateComponentsFormatter = DateComponentsFormatter()
@@ -67,35 +67,46 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
                 
             }, receiveValue: { (events: [FavoriteEventInfo]) in
                 
-                let groupedDictionary = OrderedDictionary(grouping: events) { element in
-                    element.event.startDate.getDateForGroup(acceptedOffset: 3 * 60 * 60)
-                }
-                    .mapValues {
-                        $0.map {
-                            EventListItemViewModel(
-                                eventID: $0.event.toBase().id,
-                                title: $0.event.toBase().name,
-                                startDate: $0.event.toBase().startDate,
-                                endDate: $0.event.toBase().endDate,
-                                location: $0.place?.name,
-                                media: nil,
-                                isOpenEnd: $0.event.toBase().extras?.openEnd ?? false,
-                                isLiked: true,
-                                isPreview: $0.event.toBase().isPreview
-                            )
-                        }
+                if events.isEmpty {
+                    
+                    var snapshot = NSDiffableDataSourceSnapshot<UserScheduleSection, UserScheduleItem>()
+                    snapshot.appendSections([.empty])
+                    snapshot.appendItems([.placeholder])
+                    self.dataSource?.apply(snapshot)
+                    
+                } else {
+                
+                    let groupedDictionary = OrderedDictionary(grouping: events) { element in
+                        element.event.startDate.getDateForGroup(acceptedOffset: 3 * 60 * 60)
                     }
-                
-                var snapshot = NSDiffableDataSourceSnapshot<UserScheduleSection, EventListItemViewModel>()
-                
-                for (key, value) in groupedDictionary {
+                        .mapValues {
+                            $0.map {
+                                UserScheduleItem.event(EventListItemViewModel(
+                                    eventID: $0.event.toBase().id,
+                                    title: $0.event.toBase().name,
+                                    startDate: $0.event.toBase().startDate,
+                                    endDate: $0.event.toBase().endDate,
+                                    location: $0.place?.name,
+                                    media: nil,
+                                    isOpenEnd: $0.event.toBase().extras?.openEnd ?? false,
+                                    isLiked: true,
+                                    isPreview: $0.event.toBase().isPreview
+                                ))
+                            }
+                        }
                     
-                    snapshot.appendSections([.main(key)])
-                    snapshot.appendItems(value)
+                    var snapshot = NSDiffableDataSourceSnapshot<UserScheduleSection, UserScheduleItem>()
+                    
+                    for (key, value) in groupedDictionary {
+                        
+                        snapshot.appendSections([.main(key)])
+                        snapshot.appendItems(value)
+                        
+                    }
+                    
+                    self.dataSource?.apply(snapshot)
                     
                 }
-                
-                self.dataSource?.apply(snapshot)
                 
             })
             .store(in: &cancellables)
@@ -143,7 +154,7 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
         dateComponentsFormatter.allowedUnits = [.day, .month, .year]
         dateComponentsFormatter.unitsStyle = .full
         
-        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewCell, EventListItemViewModel> { cell, indexPath, item in
+        let eventCellRegistration = UICollectionView.CellRegistration<UICollectionViewCell, EventListItemViewModel> { cell, indexPath, item in
             cell.contentConfiguration = UIHostingConfiguration {
                 
                 EventListItem(viewModel: item)
@@ -152,6 +163,17 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
             }
             cell.backgroundConfiguration = .listPlainCell()
             
+        }
+        
+        let placeholderCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, String> { cell, indexPath, hint in
+            var content = UIListContentConfiguration.cell()
+            content.text = hint
+            content.textProperties.color = .secondaryLabel
+            content.textProperties.alignment = .center
+            content.image = UIImage(systemName: "heart.slash")
+            content.imageProperties.tintColor = .secondaryLabel
+            content.imageToTextPadding = 12
+            cell.contentConfiguration = content
         }
         
         let headerRegistration = UICollectionView.SupplementaryRegistration<UICollectionViewListCell>(
@@ -171,6 +193,8 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
                     } else {
                         configuration.text = EventPackageStrings.notYetScheduled
                     }
+                case .empty:
+                    break
                 
             }
             
@@ -180,17 +204,27 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
         }
         
         /// Create a datasource and connect it to  collection view `collectionView`
-        dataSource = UICollectionViewDiffableDataSource<UserScheduleSection, EventListItemViewModel>(
+        dataSource = UICollectionViewDiffableDataSource<UserScheduleSection, UserScheduleItem>(
             collectionView: collectionView
-        ) { (collectionView: UICollectionView, indexPath: IndexPath, item: EventListItemViewModel) -> UICollectionViewCell? in
+        ) { (collectionView: UICollectionView, indexPath: IndexPath, item: UserScheduleItem) -> UICollectionViewCell? in
             
-            let cell = collectionView.dequeueConfiguredReusableCell(
-                using: cellRegistration,
-                for: indexPath,
-                item: item
-            )
+            switch item {
+            case .event(let eventViewModel):
+                let cell = collectionView.dequeueConfiguredReusableCell(
+                    using: eventCellRegistration,
+                    for: indexPath,
+                    item: eventViewModel
+                )
+                return cell
+            case .placeholder:
+                let cell = collectionView.dequeueConfiguredReusableCell(
+                    using: placeholderCellRegistration,
+                    for: indexPath,
+                    item: String(localized: "No event has been marked as a favorite yet.")
+                )
+                return cell
+            }
             
-            return cell
         }
         
         dataSource!.supplementaryViewProvider = { [unowned self]
@@ -218,7 +252,9 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
         
         let item = dataSource?.itemIdentifier(for: indexPath)
         
-        guard let eventID = item?.eventID else { return }
+        guard case .event(let eventViewModel) = item else { return }
+        
+        guard let eventID = eventViewModel.eventID else { return }
         
         let detailController = ModernEventDetailViewController(
             eventID: eventID

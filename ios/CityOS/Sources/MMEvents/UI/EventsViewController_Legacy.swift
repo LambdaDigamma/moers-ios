@@ -467,6 +467,9 @@ extension EventsViewController_Legacy: UITableViewDataSource, UITableViewDelegat
                 return filteredEvents.count
                 
             case .favourites(let keyedEvents):
+                if keyedEvents.isEmpty {
+                    return 1
+                }
                 return keyedEvents.count
                 
             default:
@@ -513,6 +516,9 @@ extension EventsViewController_Legacy: UITableViewDataSource, UITableViewDelegat
                 return searchedEvents[section].events.count
                 
             case .favourites(let keyedEvents):
+                if keyedEvents.isEmpty {
+                    return 1
+                }
                 return keyedEvents[section].events.count
                 
             default:
@@ -570,6 +576,12 @@ extension EventsViewController_Legacy: UITableViewDataSource, UITableViewDelegat
                 return eventCell(for: event, at: indexPath)
                 
             case .favourites(let keyedEvents):
+                
+                if keyedEvents.isEmpty {
+                    let cell = hintCell(with: String(localized: "No event has been marked as a favorite yet.", bundle: .module), at: indexPath)
+                    cell.image = UIImage(systemName: "heart.slash")
+                    return cell
+                }
                 
                 let event = keyedEvents[indexPath.section].events[indexPath.row]
                 

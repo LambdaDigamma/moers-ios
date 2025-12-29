@@ -38,7 +38,7 @@ public class AppSplitViewController: AppScaffold.SplitViewController {
             entryManager: entryManager,
             trackerManager: trackerManager
         )
-        self.event = EventCoordinator(eventService: eventService)
+        self.event = EventCoordinator()
         self.other = OtherCoordinator()
         
         let coordinators: [Coordinator] = [
