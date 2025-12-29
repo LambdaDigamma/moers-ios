@@ -9,7 +9,6 @@
 import UIKit
 import AppScaffold
 import ModernNetworking
-import Resolver
 
 extension ServerEnvironment {
     
@@ -35,7 +34,9 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
             fatalError("Networking stack could not be setup.")
         }
         
-        Resolver.register { loader }
+        Container.shared.httpLoader.register {
+            loader
+        }
         
     }
     

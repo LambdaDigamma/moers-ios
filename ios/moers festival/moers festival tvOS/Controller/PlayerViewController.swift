@@ -9,12 +9,12 @@
 import Foundation
 import AVKit
 import MMEvents
-import Resolver
 import Combine
+import Factory
 
 class PlayerViewController: AVPlayerViewController {
     
-    @LazyInjected var eventService: MMEvents.LegacyEventService
+    @LazyInjected(\.legacyEventService) var eventService
     
     private var livestreamData: MMEvents.LivestreamData!
     

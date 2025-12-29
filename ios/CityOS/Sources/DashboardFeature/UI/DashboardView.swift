@@ -75,15 +75,7 @@ public struct DashboardView<Content: View>: View {
             .background(ApplicationTheme.current.dashboardBackground)
             
         }
-        .toolbar {
-//            ToolbarItem(placement: .primaryAction) {
-//                Button(action: {}) {
-//                    Image(systemName: "gear")
-//                        .foregroundColor(Color.yellow)
-//                }
-//                .foregroundColor(Color.yellow)
-//            }
-        }
+        .inlineLargeNavigation()
         .navigationBarTitle("Today")
         .task {
             UserActivity.current = UserActivities.configureDashboardActivity()

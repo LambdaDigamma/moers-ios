@@ -10,32 +10,16 @@
 		DF055B942D8B8FD7007E4393 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = DF055B932D8B8FD7007E4393 /* FirebaseAnalytics */; };
 		DF055B962D8B8FD7007E4393 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = DF055B952D8B8FD7007E4393 /* FirebaseCore */; };
 		DF055B982D8B8FD7007E4393 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = DF055B972D8B8FD7007E4393 /* FirebaseMessaging */; };
-		DF16BB452625F2270047F294 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF16BB442625F2270047F294 /* MainView.swift */; };
-		DF16BB6C2625F3ED0047F294 /* VideoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF16BB6B2625F3ED0047F294 /* VideoListView.swift */; };
-		DF16BB722625F5E10047F294 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF16BB712625F5E10047F294 /* PlayerView.swift */; };
-		DF16BB772625F8FE0047F294 /* PlainNavigationLinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF16BB762625F8FE0047F294 /* PlainNavigationLinkButton.swift */; };
-		DF16BB7C2625F9210047F294 /* VideoThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF16BB7B2625F9210047F294 /* VideoThumbnailView.swift */; };
 		DF35B38A201DC72900118FD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF35B389201DC72900118FD1 /* AppDelegate.swift */; };
 		DF35B394201DC72900118FD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF35B392201DC72900118FD1 /* LaunchScreen.storyboard */; };
 		DF39C7A125A1D737000ABCC3 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF39C7A025A1D737000ABCC3 /* AppConfiguration.swift */; };
-		DF39C7B825A2154E000ABCC3 /* MMAPIFrameworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF39C7B725A2154E000ABCC3 /* MMAPIFrameworkConfiguration.swift */; };
 		DF39C7D225A22CEB000ABCC3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DF39C7D125A22CEB000ABCC3 /* Settings.bundle */; };
-		DF3A967325A5C65E00C19DAC /* MMEventsFrameworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3A967225A5C65E00C19DAC /* MMEventsFrameworkConfiguration.swift */; };
-		DF40D6C6247E73D40054199C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF40D6C5247E73D40054199C /* AppDelegate.swift */; };
-		DF40D6CD247E73D40054199C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF40D6CB247E73D40054199C /* Main.storyboard */; };
-		DF40D6CF247E73D60054199C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF40D6CE247E73D60054199C /* Assets.xcassets */; };
-		DF40D6D2247E73D60054199C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF40D6D0247E73D60054199C /* LaunchScreen.storyboard */; };
 		DF559F2E26493D140076516C /* MMEvents in Frameworks */ = {isa = PBXBuildFile; productRef = DF559F2D26493D140076516C /* MMEvents */; };
-		DF559F322649470A0076516C /* NetworkingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF565FF925AF1C1900692425 /* NetworkingConfiguration.swift */; };
-		DF559F35264947340076516C /* MMAPIFrameworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF39C7B725A2154E000ABCC3 /* MMAPIFrameworkConfiguration.swift */; };
-		DF559F36264947950076516C /* MMEventsFrameworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3A967225A5C65E00C19DAC /* MMEventsFrameworkConfiguration.swift */; };
 		DF562909257BB4F1005FC7BA /* WhatsNewKit in Frameworks */ = {isa = PBXBuildFile; productRef = DF562908257BB4F1005FC7BA /* WhatsNewKit */; };
 		DF56290B257BB4F1005FC7BA /* Waxwing in Frameworks */ = {isa = PBXBuildFile; productRef = DF56290A257BB4F1005FC7BA /* Waxwing */; };
 		DF56290D257BB4F1005FC7BA /* SwiftyMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = DF56290C257BB4F1005FC7BA /* SwiftyMarkdown */; };
 		DF56291A257BB6E3005FC7BA /* BLTNBoard in Frameworks */ = {isa = PBXBuildFile; productRef = DF562919257BB6E3005FC7BA /* BLTNBoard */; };
 		DF562933257BBA68005FC7BA /* EventBus in Frameworks */ = {isa = PBXBuildFile; productRef = DF562932257BBA68005FC7BA /* EventBus */; };
-		DF565FFA25AF1C1900692425 /* NetworkingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF565FF925AF1C1900692425 /* NetworkingConfiguration.swift */; };
-		DF56600D25AF46C900692425 /* UILaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF56600C25AF46C900692425 /* UILaunchTests.swift */; };
 		DF5975BE2F01E08D00512386 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975BD2F01E08D00512386 /* Core */; };
 		DF5975C02F01E08D00512386 /* MMEvents in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975BF2F01E08D00512386 /* MMEvents */; };
 		DF5975C22F01E08D00512386 /* MMFeeds in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C12F01E08D00512386 /* MMFeeds */; };
@@ -51,31 +35,9 @@
 		DF7FB53527F672E300F718F2 /* StateViewController in Frameworks */ = {isa = PBXBuildFile; productRef = DF7FB53427F672E300F718F2 /* StateViewController */; };
 		DF82B76F2BED3750005F41F2 /* FGD2024 in Resources */ = {isa = PBXBuildFile; fileRef = DF82B76E2BED3750005F41F2 /* FGD2024 */; };
 		DF8709F227F2E2F7005A1B1A /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8709F127F2E2F7005A1B1A /* AppStrings.swift */; };
-		DF87132C247EC79B00CDE769 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF87132B247EC79B00CDE769 /* Extensions.swift */; };
-		DF87132F247EC88700CDE769 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF871331247EC88700CDE769 /* Localizable.strings */; };
-		DF87B2F5201DFB2700E1B97C /* AutomaticSnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF87B2F4201DFB2700E1B97C /* AutomaticSnapshots.swift */; };
-		DF87B2FD201DFB6100E1B97C /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF87B2FC201DFB6100E1B97C /* SnapshotHelper.swift */; };
-		DF883B01247EC0A2003B8F28 /* CountdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF883B00247EC0A2003B8F28 /* CountdownViewController.swift */; };
 		DF9B4E6427F668A200817DA3 /* INSPhotoGallery in Frameworks */ = {isa = PBXBuildFile; productRef = DF9B4E6327F668A200817DA3 /* INSPhotoGallery */; };
-		DFA0BC50247E7554003F0F7F /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0BC4F247E7554003F0F7F /* PlayerViewController.swift */; };
-		DFA90CB429E93BC700FF8366 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA90CB329E93BC700FF8366 /* EventList.swift */; };
 		DFA90CBB29E945D600FF8366 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA90CBA29E945D600FF8366 /* WidgetKit.framework */; };
 		DFA90CBD29E945D600FF8366 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA90CBC29E945D600FF8366 /* SwiftUI.framework */; };
-		DFA90CC029E945D600FF8366 /* WidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA90CBF29E945D600FF8366 /* WidgetsBundle.swift */; };
-		DFA90CC229E945D600FF8366 /* WidgetsLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA90CC129E945D600FF8366 /* WidgetsLiveActivity.swift */; };
-		DFA90CC429E945D600FF8366 /* Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA90CC329E945D600FF8366 /* Widgets.swift */; };
-		DFA90CC729E945D700FF8366 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFA90CC629E945D700FF8366 /* Assets.xcassets */; };
-		DFA90CC929E945D700FF8366 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = DFA90CC529E945D600FF8366 /* Widgets.intentdefinition */; };
-		DFA90CCA29E945D700FF8366 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = DFA90CC529E945D600FF8366 /* Widgets.intentdefinition */; };
-		DFA90CDB29E94A7700FF8366 /* ScheduleSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA90CD829E94A6A00FF8366 /* ScheduleSmall.swift */; };
-		DFA90CDE29E9532300FF8366 /* ScheduleMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA90CDC29E9531F00FF8366 /* ScheduleMedium.swift */; };
-		DFA90CE029E9536600FF8366 /* WidgetScheduleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA90CDF29E9536600FF8366 /* WidgetScheduleData.swift */; };
-		DFA90CE229E9763D00FF8366 /* WidgetScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA90CE129E9763D00FF8366 /* WidgetScheduleView.swift */; };
-		DFA90CE429E9774500FF8366 /* WidgetKinds.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA90CE329E9774500FF8366 /* WidgetKinds.swift */; };
-		DFA90CE629E977F500FF8366 /* ScheduleWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA90CE529E977F500FF8366 /* ScheduleWidget.swift */; };
-		DFA90CE829E9798E00FF8366 /* ScheduleTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA90CE729E9798E00FF8366 /* ScheduleTimelineProvider.swift */; };
-		DFA90CEA29E97A0700FF8366 /* ScheduleTimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA90CE929E97A0700FF8366 /* ScheduleTimelineEntry.swift */; };
-		DFAAF72A247ED2D400A9DC2D /* InactiveStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAAF729247ED2D400A9DC2D /* InactiveStreamViewController.swift */; };
 		DFADF9562829915E00A15FE1 /* Moers.gpx in Resources */ = {isa = PBXBuildFile; fileRef = DFADF9552829915E00A15FE1 /* Moers.gpx */; };
 		DFADF9582829AB9000A15FE1 /* map.geojson in Resources */ = {isa = PBXBuildFile; fileRef = DFADF9572829AB9000A15FE1 /* map.geojson */; };
 		DFADF95C2829C13300A15FE1 /* intermediate.geojson in Resources */ = {isa = PBXBuildFile; fileRef = DFADF95B2829C13300A15FE1 /* intermediate.geojson */; };
@@ -85,21 +47,11 @@
 		DFC1111427F6457800348268 /* AccessibilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1111327F6457800348268 /* AccessibilityIdentifiers.swift */; };
 		DFC1111627F6476700348268 /* AppSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1111527F6476700348268 /* AppSplitViewController.swift */; };
 		DFC9094B21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DFC9094A21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle */; };
-		DFD4561729E93A3A00F26F37 /* WatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD4561629E93A3A00F26F37 /* WatchApp.swift */; };
-		DFD4561929E93A3A00F26F37 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD4561829E93A3A00F26F37 /* ContentView.swift */; };
-		DFD4561B29E93A3B00F26F37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFD4561A29E93A3B00F26F37 /* Assets.xcassets */; };
-		DFD4561E29E93A3B00F26F37 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFD4561D29E93A3B00F26F37 /* Preview Assets.xcassets */; };
-		DFD4562829E93A3C00F26F37 /* moers_festival_Watch_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD4562729E93A3C00F26F37 /* moers_festival_Watch_Watch_AppTests.swift */; };
-		DFD4563229E93A3C00F26F37 /* moers_festival_Watch_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD4563129E93A3C00F26F37 /* moers_festival_Watch_Watch_AppUITests.swift */; };
-		DFD4563429E93A3C00F26F37 /* moers_festival_Watch_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD4563329E93A3C00F26F37 /* moers_festival_Watch_Watch_AppUITestsLaunchTests.swift */; };
 		DFD8B78529BD2702004C5D6C /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8B78429BD2702004C5D6C /* AppDatabase.swift */; };
 		DFD8B78F29BD362C004C5D6C /* AppDatabase+Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8B78E29BD362C004C5D6C /* AppDatabase+Container.swift */; };
 		DFD8B79129BD370C004C5D6C /* AppDatabase+Migrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8B79029BD370C004C5D6C /* AppDatabase+Migrator.swift */; };
 		DFD8B7A129BDF5B1004C5D6C /* BaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8B7A029BDF5B1004C5D6C /* BaseRepository.swift */; };
 		DFE12B672073853F006764FC /* Licenses.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFE12B662073853F006764FC /* Licenses.plist */; };
-		DFFA54ED2A0153E9000ECEC5 /* moers-festival.localhost _api_v1_events (GET).json in Resources */ = {isa = PBXBuildFile; fileRef = DFFA54EA2A0153E8000ECEC5 /* moers-festival.localhost _api_v1_events (GET).json */; };
-		DFFA54EE2A0153E9000ECEC5 /* moers-festival.localhost _api_v1_feeds_3_posts (GET).json in Resources */ = {isa = PBXBuildFile; fileRef = DFFA54EB2A0153E8000ECEC5 /* moers-festival.localhost _api_v1_feeds_3_posts (GET).json */; };
-		DFFA54EF2A0153E9000ECEC5 /* moers-festival.localhost _api_v1_pages_369 (GET).json in Resources */ = {isa = PBXBuildFile; fileRef = DFFA54EC2A0153E8000ECEC5 /* moers-festival.localhost _api_v1_pages_369 (GET).json */; };
 		DFFA54F12A01635D000ECEC5 /* AccessibilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1111327F6457800348268 /* AccessibilityIdentifiers.swift */; };
 /* End PBXBuildFile section */
 
@@ -154,11 +106,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DF16BB442625F2270047F294 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		DF16BB6B2625F3ED0047F294 /* VideoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListView.swift; sourceTree = "<group>"; };
-		DF16BB712625F5E10047F294 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
-		DF16BB762625F8FE0047F294 /* PlainNavigationLinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainNavigationLinkButton.swift; sourceTree = "<group>"; };
-		DF16BB7B2625F9210047F294 /* VideoThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoThumbnailView.swift; sourceTree = "<group>"; };
 		DF1C0B19257BD5DC00C956C1 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
 		DF1C0B1A257BD5DC00C956C1 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = Frameworks/GoogleAppMeasurement.framework; sourceTree = "<group>"; };
 		DF1C0B1B257BD5DC00C956C1 /* FirebaseInstanceID.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseInstanceID.xcframework; path = Frameworks/FirebaseInstanceID.xcframework; sourceTree = "<group>"; };
@@ -177,18 +124,8 @@
 		DF35B389201DC72900118FD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF35B393201DC72900118FD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF39C7A025A1D737000ABCC3 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
-		DF39C7B725A2154E000ABCC3 /* MMAPIFrameworkConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMAPIFrameworkConfiguration.swift; sourceTree = "<group>"; };
 		DF39C7D125A22CEB000ABCC3 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		DF3A967225A5C65E00C19DAC /* MMEventsFrameworkConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMEventsFrameworkConfiguration.swift; sourceTree = "<group>"; };
 		DF40D6C3247E73D40054199C /* moers festival tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moers festival tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF40D6C5247E73D40054199C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DF40D6CC247E73D40054199C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DF40D6CE247E73D60054199C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DF40D6D1247E73D60054199C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		DF40D6D3247E73D60054199C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DF559F30264946A70076516C /* NetworkingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingConfiguration.swift; sourceTree = "<group>"; };
-		DF565FF925AF1C1900692425 /* NetworkingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingConfiguration.swift; sourceTree = "<group>"; };
-		DF56600C25AF46C900692425 /* UILaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILaunchTests.swift; sourceTree = "<group>"; };
 		DF5978C92F01E98600512386 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/LaunchScreen.xcstrings; sourceTree = "<group>"; };
 		DF5978E32F01F3C800512386 /* Container+LegacyEventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+LegacyEventService.swift"; sourceTree = "<group>"; };
 		DF5978E42F01F3C800512386 /* Container+LocationEventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+LocationEventService.swift"; sourceTree = "<group>"; };
@@ -206,59 +143,25 @@
 		DF82B76C2BED3702005F41F2 /* transportation.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = transportation.geojson; sourceTree = "<group>"; };
 		DF82B76E2BED3750005F41F2 /* FGD2024 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FGD2024; sourceTree = "<group>"; };
 		DF8709F127F2E2F7005A1B1A /* AppStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
-		DF87132B247EC79B00CDE769 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		DF871330247EC88700CDE769 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		DF871332247EC88900CDE769 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DF87B2F2201DFB2700E1B97C /* moers festival UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moers festival UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF87B2F4201DFB2700E1B97C /* AutomaticSnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticSnapshots.swift; sourceTree = "<group>"; };
-		DF87B2F6201DFB2700E1B97C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DF87B2FC201DFB6100E1B97C /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
-		DF883B00247EC0A2003B8F28 /* CountdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownViewController.swift; sourceTree = "<group>"; };
 		DF92FBFF257BF9CE00BE1DA5 /* FirebaseABTesting.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseABTesting.xcframework; path = Frameworks/FirebaseABTesting.xcframework; sourceTree = "<group>"; };
 		DF92FC00257BF9CE00BE1DA5 /* FirebaseRemoteConfig.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseRemoteConfig.xcframework; path = Frameworks/FirebaseRemoteConfig.xcframework; sourceTree = "<group>"; };
-		DFA0BC4F247E7554003F0F7F /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
-		DFA90CB329E93BC700FF8366 /* EventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
 		DFA90CB929E945D600FF8366 /* WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFA90CBA29E945D600FF8366 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		DFA90CBC29E945D600FF8366 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		DFA90CBF29E945D600FF8366 /* WidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsBundle.swift; sourceTree = "<group>"; };
-		DFA90CC129E945D600FF8366 /* WidgetsLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsLiveActivity.swift; sourceTree = "<group>"; };
-		DFA90CC329E945D600FF8366 /* Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets.swift; sourceTree = "<group>"; };
-		DFA90CC529E945D600FF8366 /* Widgets.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Widgets.intentdefinition; sourceTree = "<group>"; };
-		DFA90CC629E945D700FF8366 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DFA90CC829E945D700FF8366 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DFA90CD829E94A6A00FF8366 /* ScheduleSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSmall.swift; sourceTree = "<group>"; };
-		DFA90CDC29E9531F00FF8366 /* ScheduleMedium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleMedium.swift; sourceTree = "<group>"; };
-		DFA90CDF29E9536600FF8366 /* WidgetScheduleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetScheduleData.swift; sourceTree = "<group>"; };
-		DFA90CE129E9763D00FF8366 /* WidgetScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetScheduleView.swift; sourceTree = "<group>"; };
-		DFA90CE329E9774500FF8366 /* WidgetKinds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetKinds.swift; sourceTree = "<group>"; };
-		DFA90CE529E977F500FF8366 /* ScheduleWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScheduleWidget.swift; path = ../../ScheduleWidget.swift; sourceTree = "<group>"; };
-		DFA90CE729E9798E00FF8366 /* ScheduleTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTimelineProvider.swift; sourceTree = "<group>"; };
-		DFA90CE929E97A0700FF8366 /* ScheduleTimelineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTimelineEntry.swift; sourceTree = "<group>"; };
-		DFAAF729247ED2D400A9DC2D /* InactiveStreamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InactiveStreamViewController.swift; sourceTree = "<group>"; };
-		DFAAF735247F1C5C00A9DC2D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DFAAF736247F1C6200A9DC2D /* de */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = de; path = de.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DFADF9552829915E00A15FE1 /* Moers.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Moers.gpx; sourceTree = "<group>"; };
 		DFADF9572829AB9000A15FE1 /* map.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map.geojson; sourceTree = "<group>"; };
 		DFADF95B2829C13300A15FE1 /* intermediate.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = intermediate.geojson; sourceTree = "<group>"; };
 		DFADF96C282A66DF00A15FE1 /* Map Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Map Icons.xcassets"; sourceTree = "<group>"; };
 		DFB15F0B22AF082D00441FB5 /* moers festival Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moers festival Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DFB15F0F22AF082E00441FB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DFB592F02586C4F800BAD901 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DFB593002586D5C200BAD901 /* ApplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
 		DFC1111327F6457800348268 /* AccessibilityIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifiers.swift; sourceTree = "<group>"; };
 		DFC1111527F6476700348268 /* AppSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSplitViewController.swift; sourceTree = "<group>"; };
 		DFC9094A21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppMessagingDisplayResources.bundle; sourceTree = "<group>"; };
 		DFD4561429E93A3A00F26F37 /* moers festival.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moers festival.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DFD4561629E93A3A00F26F37 /* WatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchApp.swift; sourceTree = "<group>"; };
-		DFD4561829E93A3A00F26F37 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		DFD4561A29E93A3B00F26F37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DFD4561D29E93A3B00F26F37 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DFD4562329E93A3B00F26F37 /* moers festival Watch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moers festival Watch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DFD4562729E93A3C00F26F37 /* moers_festival_Watch_Watch_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moers_festival_Watch_Watch_AppTests.swift; sourceTree = "<group>"; };
 		DFD4562D29E93A3C00F26F37 /* moers festival Watch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moers festival Watch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DFD4563129E93A3C00F26F37 /* moers_festival_Watch_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moers_festival_Watch_Watch_AppUITests.swift; sourceTree = "<group>"; };
-		DFD4563329E93A3C00F26F37 /* moers_festival_Watch_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moers_festival_Watch_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DFD8B78429BD2702004C5D6C /* AppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
 		DFD8B78E29BD362C004C5D6C /* AppDatabase+Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDatabase+Container.swift"; sourceTree = "<group>"; };
 		DFD8B79029BD370C004C5D6C /* AppDatabase+Migrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDatabase+Migrator.swift"; sourceTree = "<group>"; };
@@ -266,9 +169,6 @@
 		DFE12B662073853F006764FC /* Licenses.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Licenses.plist; path = "moers festival/Licenses.plist"; sourceTree = SOURCE_ROOT; };
 		DFE90E7F29E3227A0054BCF1 /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 		DFEC02F8262ABD6200D46B28 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		DFFA54EA2A0153E8000ECEC5 /* moers-festival.localhost _api_v1_events (GET).json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "moers-festival.localhost _api_v1_events (GET).json"; sourceTree = "<group>"; };
-		DFFA54EB2A0153E8000ECEC5 /* moers-festival.localhost _api_v1_feeds_3_posts (GET).json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "moers-festival.localhost _api_v1_feeds_3_posts (GET).json"; sourceTree = "<group>"; };
-		DFFA54EC2A0153E8000ECEC5 /* moers-festival.localhost _api_v1_pages_369 (GET).json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "moers-festival.localhost _api_v1_pages_369 (GET).json"; sourceTree = "<group>"; };
 		DFFA54F02A015D89000ECEC5 /* Screenshot.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Screenshot.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -293,6 +193,35 @@
 				RemoteConfigDefaults.plist,
 			);
 			target = DF35B385201DC72900118FD1 /* moers festival */;
+		};
+		DF59793D2F03256D00512386 /* Exceptions for "moers festival tvOS" folder in "moers festival tvOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Config/NetworkingConfiguration.swift,
+				Info.plist,
+			);
+			target = DF40D6C2247E73D40054199C /* moers festival tvOS */;
+		};
+		DF5979932F0325C000512386 /* Exceptions for "Widgets" folder in "moers festival" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Widgets.intentdefinition,
+			);
+			target = DF35B385201DC72900118FD1 /* moers festival */;
+		};
+		DF5979942F0325C000512386 /* Exceptions for "Widgets" folder in "WidgetsExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = DFA90CB829E945D600FF8366 /* WidgetsExtension */;
+		};
+		DF78E39C2F032EDD00E29277 /* Exceptions for "moers festival UITests" folder in "moers festival UITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = DF87B2F1201DFB2700E1B97C /* moers festival UITests */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -388,6 +317,56 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		DF5978EE2F03250B00512386 /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		DF59792B2F03256C00512386 /* moers festival tvOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF59793D2F03256D00512386 /* Exceptions for "moers festival tvOS" folder in "moers festival tvOS" target */,
+			);
+			path = "moers festival tvOS";
+			sourceTree = "<group>";
+		};
+		DF5979442F03257400512386 /* moers festival Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "moers festival Watch App";
+			sourceTree = "<group>";
+		};
+		DF59794B2F03257800512386 /* moers festival Watch Watch AppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "moers festival Watch Watch AppTests";
+			sourceTree = "<group>";
+		};
+		DF59794F2F03257C00512386 /* moers festival Watch Watch AppUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "moers festival Watch Watch AppUITests";
+			sourceTree = "<group>";
+		};
+		DF5979832F0325C000512386 /* Widgets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF5979932F0325C000512386 /* Exceptions for "Widgets" folder in "moers festival" target */,
+				DF5979942F0325C000512386 /* Exceptions for "Widgets" folder in "WidgetsExtension" target */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		DF78E3942F032EDD00E29277 /* moers festival UITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF78E39C2F032EDD00E29277 /* Exceptions for "moers festival UITests" folder in "moers festival UITests" target */,
+			);
+			path = "moers festival UITests";
+			sourceTree = "<group>";
+		};
+		DF78E39E2F032EE200E29277 /* moers festival Tests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "moers festival Tests";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -454,18 +433,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DF16BB432625F2110047F294 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				DF16BB442625F2270047F294 /* MainView.swift */,
-				DF16BB6B2625F3ED0047F294 /* VideoListView.swift */,
-				DF16BB712625F5E10047F294 /* PlayerView.swift */,
-				DF16BB762625F8FE0047F294 /* PlainNavigationLinkButton.swift */,
-				DF16BB7B2625F9210047F294 /* VideoThumbnailView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		DF35B37D201DC72900118FD1 = {
 			isa = PBXGroup;
 			children = (
@@ -474,14 +441,14 @@
 				DFE90E7F29E3227A0054BCF1 /* TestPlan.xctestplan */,
 				DF1C1B6D29FA710E008FB9FA /* Screenshots.xctestplan */,
 				DF35B388201DC72900118FD1 /* moers festival */,
-				DFB15F0C22AF082E00441FB5 /* moers festival Tests */,
-				DF87B2F3201DFB2700E1B97C /* moers festival UITests */,
-				DF40D6C4247E73D40054199C /* moers festival tvOS */,
-				DF559F31264946CE0076516C /* Shared */,
-				DFD4561529E93A3A00F26F37 /* moers festival Watch App */,
-				DFD4562629E93A3C00F26F37 /* moers festival Watch Watch AppTests */,
-				DFD4563029E93A3C00F26F37 /* moers festival Watch Watch AppUITests */,
-				DFA90CBE29E945D600FF8366 /* Widgets */,
+				DF78E39E2F032EE200E29277 /* moers festival Tests */,
+				DF78E3942F032EDD00E29277 /* moers festival UITests */,
+				DF59792B2F03256C00512386 /* moers festival tvOS */,
+				DF5978EE2F03250B00512386 /* Shared */,
+				DF5979442F03257400512386 /* moers festival Watch App */,
+				DF59794B2F03257800512386 /* moers festival Watch Watch AppTests */,
+				DF59794F2F03257C00512386 /* moers festival Watch Watch AppUITests */,
+				DF5979832F0325C000512386 /* Widgets */,
 				DF35B387201DC72900118FD1 /* Products */,
 				DF9446D2201E870A00C85C64 /* Frameworks */,
 			);
@@ -552,41 +519,6 @@
 			path = "moers festival";
 			sourceTree = "<group>";
 		};
-		DF40D6C4247E73D40054199C /* moers festival tvOS */ = {
-			isa = PBXGroup;
-			children = (
-				DF40D6C5247E73D40054199C /* AppDelegate.swift */,
-				DF559F2F264946980076516C /* Config */,
-				DF16BB432625F2110047F294 /* Views */,
-				DF883AFF247EC071003B8F28 /* Controller */,
-				DF87132A247EC78800CDE769 /* Utilities */,
-				DF40D6CB247E73D40054199C /* Main.storyboard */,
-				DF40D6CE247E73D60054199C /* Assets.xcassets */,
-				DF40D6D0247E73D60054199C /* LaunchScreen.storyboard */,
-				DF40D6D3247E73D60054199C /* Info.plist */,
-				DF871331247EC88700CDE769 /* Localizable.strings */,
-			);
-			path = "moers festival tvOS";
-			sourceTree = "<group>";
-		};
-		DF559F2F264946980076516C /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				DF559F30264946A70076516C /* NetworkingConfiguration.swift */,
-			);
-			path = Config;
-			sourceTree = "<group>";
-		};
-		DF559F31264946CE0076516C /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				DF565FF925AF1C1900692425 /* NetworkingConfiguration.swift */,
-				DF39C7B725A2154E000ABCC3 /* MMAPIFrameworkConfiguration.swift */,
-				DF3A967225A5C65E00C19DAC /* MMEventsFrameworkConfiguration.swift */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
 		DF82B76D2BED3702005F41F2 /* FGD2024 */ = {
 			isa = PBXGroup;
 			children = (
@@ -602,36 +534,6 @@
 			);
 			name = FGD2024;
 			path = "moers festival/FGD2024";
-			sourceTree = "<group>";
-		};
-		DF87132A247EC78800CDE769 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				DF87132B247EC79B00CDE769 /* Extensions.swift */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
-		DF87B2F3201DFB2700E1B97C /* moers festival UITests */ = {
-			isa = PBXGroup;
-			children = (
-				DFFA54E92A015223000ECEC5 /* Fixtures */,
-				DF87B2FC201DFB6100E1B97C /* SnapshotHelper.swift */,
-				DF87B2F4201DFB2700E1B97C /* AutomaticSnapshots.swift */,
-				DF56600C25AF46C900692425 /* UILaunchTests.swift */,
-				DF87B2F6201DFB2700E1B97C /* Info.plist */,
-			);
-			path = "moers festival UITests";
-			sourceTree = "<group>";
-		};
-		DF883AFF247EC071003B8F28 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				DFA0BC4F247E7554003F0F7F /* PlayerViewController.swift */,
-				DF883B00247EC0A2003B8F28 /* CountdownViewController.swift */,
-				DFAAF729247ED2D400A9DC2D /* InactiveStreamViewController.swift */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		DF9446D2201E870A00C85C64 /* Frameworks */ = {
@@ -656,98 +558,6 @@
 				DFA90CBC29E945D600FF8366 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		DFA90CBE29E945D600FF8366 /* Widgets */ = {
-			isa = PBXGroup;
-			children = (
-				DFA90CBF29E945D600FF8366 /* WidgetsBundle.swift */,
-				DFA90CC129E945D600FF8366 /* WidgetsLiveActivity.swift */,
-				DFA90CC329E945D600FF8366 /* Widgets.swift */,
-				DFA90CE329E9774500FF8366 /* WidgetKinds.swift */,
-				DFA90CD629E9473600FF8366 /* Widgets */,
-				DFA90CC529E945D600FF8366 /* Widgets.intentdefinition */,
-				DFA90CC629E945D700FF8366 /* Assets.xcassets */,
-				DFA90CC829E945D700FF8366 /* Info.plist */,
-			);
-			path = Widgets;
-			sourceTree = "<group>";
-		};
-		DFA90CD629E9473600FF8366 /* Widgets */ = {
-			isa = PBXGroup;
-			children = (
-				DFA90CD729E94A6400FF8366 /* Schedule */,
-			);
-			path = Widgets;
-			sourceTree = "<group>";
-		};
-		DFA90CD729E94A6400FF8366 /* Schedule */ = {
-			isa = PBXGroup;
-			children = (
-				DFA90CDC29E9531F00FF8366 /* ScheduleMedium.swift */,
-				DFA90CD829E94A6A00FF8366 /* ScheduleSmall.swift */,
-				DFA90CE929E97A0700FF8366 /* ScheduleTimelineEntry.swift */,
-				DFA90CE729E9798E00FF8366 /* ScheduleTimelineProvider.swift */,
-				DFA90CE529E977F500FF8366 /* ScheduleWidget.swift */,
-				DFA90CE129E9763D00FF8366 /* WidgetScheduleView.swift */,
-				DFA90CDF29E9536600FF8366 /* WidgetScheduleData.swift */,
-			);
-			path = Schedule;
-			sourceTree = "<group>";
-		};
-		DFB15F0C22AF082E00441FB5 /* moers festival Tests */ = {
-			isa = PBXGroup;
-			children = (
-				DFB15F0F22AF082E00441FB5 /* Info.plist */,
-			);
-			path = "moers festival Tests";
-			sourceTree = "<group>";
-		};
-		DFD4561529E93A3A00F26F37 /* moers festival Watch App */ = {
-			isa = PBXGroup;
-			children = (
-				DFD4561629E93A3A00F26F37 /* WatchApp.swift */,
-				DFD4561829E93A3A00F26F37 /* ContentView.swift */,
-				DFA90CB329E93BC700FF8366 /* EventList.swift */,
-				DFD4561A29E93A3B00F26F37 /* Assets.xcassets */,
-				DFD4561C29E93A3B00F26F37 /* Preview Content */,
-			);
-			path = "moers festival Watch App";
-			sourceTree = "<group>";
-		};
-		DFD4561C29E93A3B00F26F37 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				DFD4561D29E93A3B00F26F37 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		DFD4562629E93A3C00F26F37 /* moers festival Watch Watch AppTests */ = {
-			isa = PBXGroup;
-			children = (
-				DFD4562729E93A3C00F26F37 /* moers_festival_Watch_Watch_AppTests.swift */,
-			);
-			path = "moers festival Watch Watch AppTests";
-			sourceTree = "<group>";
-		};
-		DFD4563029E93A3C00F26F37 /* moers festival Watch Watch AppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				DFD4563129E93A3C00F26F37 /* moers_festival_Watch_Watch_AppUITests.swift */,
-				DFD4563329E93A3C00F26F37 /* moers_festival_Watch_Watch_AppUITestsLaunchTests.swift */,
-			);
-			path = "moers festival Watch Watch AppUITests";
-			sourceTree = "<group>";
-		};
-		DFFA54E92A015223000ECEC5 /* Fixtures */ = {
-			isa = PBXGroup;
-			children = (
-				DFFA54EA2A0153E8000ECEC5 /* moers-festival.localhost _api_v1_events (GET).json */,
-				DFFA54EB2A0153E8000ECEC5 /* moers-festival.localhost _api_v1_feeds_3_posts (GET).json */,
-				DFFA54EC2A0153E8000ECEC5 /* moers-festival.localhost _api_v1_pages_369 (GET).json */,
-			);
-			path = Fixtures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -783,6 +593,7 @@
 				DF5977962F01E86D00512386 /* Controller */,
 				DF5978912F01E91B00512386 /* Venues */,
 				DF5978DA2F01EDAC00512386 /* Assets */,
+				DF5978EE2F03250B00512386 /* Shared */,
 			);
 			name = "moers festival";
 			packageProductDependencies = (
@@ -818,6 +629,10 @@
 			);
 			buildRules = (
 			);
+			fileSystemSynchronizedGroups = (
+				DF5978EE2F03250B00512386 /* Shared */,
+				DF59792B2F03256C00512386 /* moers festival tvOS */,
+			);
 			name = "moers festival tvOS";
 			packageProductDependencies = (
 				DF559F2D26493D140076516C /* MMEvents */,
@@ -839,6 +654,9 @@
 			dependencies = (
 				DF87B2F8201DFB2700E1B97C /* PBXTargetDependency */,
 			);
+			fileSystemSynchronizedGroups = (
+				DF78E3942F032EDD00E29277 /* moers festival UITests */,
+			);
 			name = "moers festival UITests";
 			productName = "moers festival UITests";
 			productReference = DF87B2F2201DFB2700E1B97C /* moers festival UITests.xctest */;
@@ -853,6 +671,9 @@
 				DFA90CB729E945D600FF8366 /* Resources */,
 			);
 			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				DF5979832F0325C000512386 /* Widgets */,
 			);
 			name = WidgetsExtension;
 			productName = WidgetsExtension;
@@ -887,6 +708,9 @@
 			);
 			buildRules = (
 			);
+			fileSystemSynchronizedGroups = (
+				DF5979442F03257400512386 /* moers festival Watch App */,
+			);
 			name = "moers festival Watch App";
 			productName = "moers festival Watch Watch App";
 			productReference = DFD4561429E93A3A00F26F37 /* moers festival.app */;
@@ -905,6 +729,9 @@
 			dependencies = (
 				DFD4562529E93A3B00F26F37 /* PBXTargetDependency */,
 			);
+			fileSystemSynchronizedGroups = (
+				DF59794B2F03257800512386 /* moers festival Watch Watch AppTests */,
+			);
 			name = "moers festival Watch Watch AppTests";
 			productName = "moers festival Watch Watch AppTests";
 			productReference = DFD4562329E93A3B00F26F37 /* moers festival Watch Watch AppTests.xctest */;
@@ -922,6 +749,9 @@
 			);
 			dependencies = (
 				DFD4562F29E93A3C00F26F37 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				DF59794F2F03257C00512386 /* moers festival Watch Watch AppUITests */,
 			);
 			name = "moers festival Watch Watch AppUITests";
 			productName = "moers festival Watch Watch AppUITests";
@@ -988,6 +818,7 @@
 				de,
 			);
 			mainGroup = DF35B37D201DC72900118FD1;
+			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				DFFD495F245F70CB0052830A /* XCRemoteSwiftPackageReference "WhatsNewKit" */,
 				DFFD4962246034A40052830A /* XCRemoteSwiftPackageReference "Waxwing" */,
@@ -1038,24 +869,16 @@
 		DF40D6C1247E73D40054199C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
-				DF40D6D2247E73D60054199C /* LaunchScreen.storyboard in Resources */,
-				DF87132F247EC88700CDE769 /* Localizable.strings in Resources */,
-				DF40D6CF247E73D60054199C /* Assets.xcassets in Resources */,
-				DF40D6CD247E73D40054199C /* Main.storyboard in Resources */,
 			);
 		};
 		DF87B2F0201DFB2700E1B97C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
-				DFFA54ED2A0153E9000ECEC5 /* moers-festival.localhost _api_v1_events (GET).json in Resources */,
-				DFFA54EF2A0153E9000ECEC5 /* moers-festival.localhost _api_v1_pages_369 (GET).json in Resources */,
-				DFFA54EE2A0153E9000ECEC5 /* moers-festival.localhost _api_v1_feeds_3_posts (GET).json in Resources */,
 			);
 		};
 		DFA90CB729E945D600FF8366 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
-				DFA90CC729E945D700FF8366 /* Assets.xcassets in Resources */,
 			);
 		};
 		DFB15F0922AF082D00441FB5 /* Resources */ = {
@@ -1066,8 +889,6 @@
 		DFD4561229E93A3A00F26F37 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
-				DFD4561E29E93A3B00F26F37 /* Preview Assets.xcassets in Resources */,
-				DFD4561B29E93A3B00F26F37 /* Assets.xcassets in Resources */,
 			);
 		};
 		DFD4562129E93A3B00F26F37 /* Resources */ = {
@@ -1109,19 +930,15 @@
 				DF35B38A201DC72900118FD1 /* AppDelegate.swift in Sources */,
 				DF8709F227F2E2F7005A1B1A /* AppStrings.swift in Sources */,
 				DFD8B79129BD370C004C5D6C /* AppDatabase+Migrator.swift in Sources */,
-				DF3A967325A5C65E00C19DAC /* MMEventsFrameworkConfiguration.swift in Sources */,
-				DF565FFA25AF1C1900692425 /* NetworkingConfiguration.swift in Sources */,
 				DFD8B78529BD2702004C5D6C /* AppDatabase.swift in Sources */,
 				DFB593012586D5C200BAD901 /* ApplicationController.swift in Sources */,
 				DF39C7A125A1D737000ABCC3 /* AppConfiguration.swift in Sources */,
-				DFA90CCA29E945D700FF8366 /* Widgets.intentdefinition in Sources */,
 				DFC1111427F6457800348268 /* AccessibilityIdentifiers.swift in Sources */,
 				DF5978E62F01F3C800512386 /* Container+PageService.swift in Sources */,
 				DF5978E72F01F3C800512386 /* Container+LegacyEventService.swift in Sources */,
 				DF5978E82F01F3C800512386 /* Container+LocationEventService.swift in Sources */,
 				DFB592F12586C4F800BAD901 /* SceneDelegate.swift in Sources */,
 				DFD8B78F29BD362C004C5D6C /* AppDatabase+Container.swift in Sources */,
-				DF39C7B825A2154E000ABCC3 /* MMAPIFrameworkConfiguration.swift in Sources */,
 				DFD8B7A129BDF5B1004C5D6C /* BaseRepository.swift in Sources */,
 				DFC1111627F6476700348268 /* AppSplitViewController.swift in Sources */,
 			);
@@ -1129,45 +946,17 @@
 		DF40D6BF247E73D40054199C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
-				DF87132C247EC79B00CDE769 /* Extensions.swift in Sources */,
-				DF16BB772625F8FE0047F294 /* PlainNavigationLinkButton.swift in Sources */,
-				DF16BB452625F2270047F294 /* MainView.swift in Sources */,
-				DF16BB7C2625F9210047F294 /* VideoThumbnailView.swift in Sources */,
-				DF16BB6C2625F3ED0047F294 /* VideoListView.swift in Sources */,
-				DF559F36264947950076516C /* MMEventsFrameworkConfiguration.swift in Sources */,
-				DF16BB722625F5E10047F294 /* PlayerView.swift in Sources */,
-				DF559F35264947340076516C /* MMAPIFrameworkConfiguration.swift in Sources */,
-				DFAAF72A247ED2D400A9DC2D /* InactiveStreamViewController.swift in Sources */,
-				DF883B01247EC0A2003B8F28 /* CountdownViewController.swift in Sources */,
-				DFA0BC50247E7554003F0F7F /* PlayerViewController.swift in Sources */,
-				DF559F322649470A0076516C /* NetworkingConfiguration.swift in Sources */,
-				DF40D6C6247E73D40054199C /* AppDelegate.swift in Sources */,
 			);
 		};
 		DF87B2EE201DFB2700E1B97C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
-				DF87B2F5201DFB2700E1B97C /* AutomaticSnapshots.swift in Sources */,
-				DF56600D25AF46C900692425 /* UILaunchTests.swift in Sources */,
-				DF87B2FD201DFB6100E1B97C /* SnapshotHelper.swift in Sources */,
 				DFFA54F12A01635D000ECEC5 /* AccessibilityIdentifiers.swift in Sources */,
 			);
 		};
 		DFA90CB529E945D600FF8366 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
-				DFA90CEA29E97A0700FF8366 /* ScheduleTimelineEntry.swift in Sources */,
-				DFA90CE229E9763D00FF8366 /* WidgetScheduleView.swift in Sources */,
-				DFA90CC929E945D700FF8366 /* Widgets.intentdefinition in Sources */,
-				DFA90CE029E9536600FF8366 /* WidgetScheduleData.swift in Sources */,
-				DFA90CE429E9774500FF8366 /* WidgetKinds.swift in Sources */,
-				DFA90CC229E945D600FF8366 /* WidgetsLiveActivity.swift in Sources */,
-				DFA90CC429E945D600FF8366 /* Widgets.swift in Sources */,
-				DFA90CE629E977F500FF8366 /* ScheduleWidget.swift in Sources */,
-				DFA90CDB29E94A7700FF8366 /* ScheduleSmall.swift in Sources */,
-				DFA90CC029E945D600FF8366 /* WidgetsBundle.swift in Sources */,
-				DFA90CE829E9798E00FF8366 /* ScheduleTimelineProvider.swift in Sources */,
-				DFA90CDE29E9532300FF8366 /* ScheduleMedium.swift in Sources */,
 			);
 		};
 		DFB15F0722AF082D00441FB5 /* Sources */ = {
@@ -1178,22 +967,16 @@
 		DFD4561029E93A3A00F26F37 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
-				DFA90CB429E93BC700FF8366 /* EventList.swift in Sources */,
-				DFD4561929E93A3A00F26F37 /* ContentView.swift in Sources */,
-				DFD4561729E93A3A00F26F37 /* WatchApp.swift in Sources */,
 			);
 		};
 		DFD4561F29E93A3B00F26F37 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
-				DFD4562829E93A3C00F26F37 /* moers_festival_Watch_Watch_AppTests.swift in Sources */,
 			);
 		};
 		DFD4562929E93A3C00F26F37 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
-				DFD4563229E93A3C00F26F37 /* moers_festival_Watch_Watch_AppUITests.swift in Sources */,
-				DFD4563429E93A3C00F26F37 /* moers_festival_Watch_Watch_AppUITestsLaunchTests.swift in Sources */,
 			);
 		};
 /* End PBXSourcesBuildPhase section */
@@ -1229,33 +1012,6 @@
 				DF5978C92F01E98600512386 /* mul */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		DF40D6CB247E73D40054199C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DF40D6CC247E73D40054199C /* Base */,
-				DFAAF735247F1C5C00A9DC2D /* en */,
-				DFAAF736247F1C6200A9DC2D /* de */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		DF40D6D0247E73D60054199C /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DF40D6D1247E73D60054199C /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		DF871331247EC88700CDE769 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DF871330247EC88700CDE769 /* en */,
-				DF871332247EC88900CDE769 /* de */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
