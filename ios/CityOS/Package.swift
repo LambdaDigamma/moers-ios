@@ -47,7 +47,7 @@ let package = Package(
         .package(url: "https://github.com/LambdaDigamma/MediaLibraryKit", .upToNextMajor(from: "1.0.0")),
         .package(url: "https://github.com/LambdaDigamma/HanekeSwift", .upToNextMajor(from: "0.14.0")),
         .package(url: "https://github.com/nmdias/FeedKit", .upToNextMajor(from: "9.0.0")),
-        .package(url: "https://github.com/groue/GRDB.swift", branch: "master"),
+        .package(url: "https://github.com/groue/GRDB.swift", .upToNextMajor(from: "7.9.0")),
         .package(url: "https://github.com/SvenTiigi/YouTubePlayerKit", from: "1.1.1"),
         .package(url: "https://github.com/CoreOffice/XMLCoder", from: "0.14.0"),
     ],
