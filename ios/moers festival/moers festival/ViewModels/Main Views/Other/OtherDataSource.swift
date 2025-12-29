@@ -8,44 +8,65 @@
 
 import UIKit
 
-class OtherDataSource: NSObject, UITableViewDataSource {
+class OtherDataSource: NSObject {
     
     // MARK: - Properties
     
     private let viewModel: OtherViewModel
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Row>?
     
     public init(viewModel: OtherViewModel) {
         self.viewModel = viewModel
         super.init()
     }
     
-    // MARK: - UITableViewDataSource
+    // MARK: - Setup
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.numberOfSections
+    public func setupDataSource(collectionView: UICollectionView) {
+        
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Row> { cell, indexPath, row in
+            var content = cell.defaultContentConfiguration()
+            content.text = row.title
+            cell.contentConfiguration = content
+            cell.accessories = [.disclosureIndicator()]
+        }
+        
+        let headerRegistration = UICollectionView.SupplementaryRegistration<UICollectionViewListCell>(elementKind: UICollectionView.elementKindSectionHeader) { [weak self] supplementaryView, string, indexPath in
+            guard let self = self else { return }
+            var content = supplementaryView.defaultContentConfiguration()
+            content.text = self.viewModel.header(for: indexPath.section)
+            supplementaryView.contentConfiguration = content
+            supplementaryView.backgroundConfiguration = .clear()
+        }
+        
+        dataSource = UICollectionViewDiffableDataSource<Section, Row>(collectionView: collectionView) { collectionView, indexPath, row in
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: row)
+        }
+        
+        dataSource?.supplementaryViewProvider = { collectionView, kind, indexPath in
+            return collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: indexPath)
+        }
+        
+        update()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows(in: section)
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func update() {
         
-        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as UITableViewCell
+        let sections = viewModel.sections
         
-        cell.backgroundColor = UIColor.systemBackground
-        cell.textLabel?.textColor = UIColor.label
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Row>()
+        snapshot.appendSections(sections)
         
-        cell.textLabel?.text = viewModel.title(for: indexPath)
-        cell.accessoryType = .disclosureIndicator
-        cell.selectionStyle = .none
+        for section in sections {
+            snapshot.appendItems(section.rows, toSection: section)
+        }
         
-        return cell
+        dataSource?.apply(snapshot, animatingDifferences: false)
         
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return viewModel.header(for: section)
+    public func itemIdentifier(for indexPath: IndexPath) -> Row? {
+        return dataSource?.itemIdentifier(for: indexPath)
     }
     
 }

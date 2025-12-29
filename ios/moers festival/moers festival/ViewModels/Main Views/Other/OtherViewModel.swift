@@ -14,7 +14,7 @@ struct OtherViewModel {
     
     public var updateHandler: () -> Void = {}
     
-    private var sections: [Section]
+    var sections: [Section]
     
     public init(sections: [Section]) {
         self.sections = sections

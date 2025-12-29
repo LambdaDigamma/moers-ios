@@ -41,7 +41,7 @@ class OtherViewController: UIViewController {
         otherView = OtherView(viewModel: viewModel)
         view = otherView
         
-        otherView.setTableViewDelegate(self)
+        otherView.setCollectionViewDelegate(self)
         
     }
     
@@ -172,9 +172,9 @@ class OtherViewController: UIViewController {
     
 }
 
-extension OtherViewController: UITableViewDelegate {
+extension OtherViewController: UICollectionViewDelegate {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let action = viewModel.rowAction(for: indexPath)
         

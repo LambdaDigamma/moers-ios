@@ -8,16 +8,32 @@
 
 import Foundation
 
-struct Section {
+struct Section: Hashable {
     
     let title: String
     var rows: [Row]
     
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(title)
+    }
+    
+    static func == (lhs: Section, rhs: Section) -> Bool {
+        return lhs.title == rhs.title
+    }
+    
 }
 
-struct Row {
+struct Row: Hashable {
     
     let title: String
     let action: (() -> ())?
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(title)
+    }
+    
+    static func == (lhs: Row, rhs: Row) -> Bool {
+        return lhs.title == rhs.title
+    }
     
 }

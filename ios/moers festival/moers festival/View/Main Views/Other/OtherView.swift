@@ -30,26 +30,30 @@ class OtherView: UIView {
     
     // MARK: - UI
     
-    private lazy var tableView = { ViewFactory.tableView(with: .grouped) }()
+    lazy var collectionView: UICollectionView = {
+        var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+        configuration.headerMode = .supplementary
+        let layout = UICollectionViewCompositionalLayout.list(using: configuration)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .systemBackground
+        return collectionView
+    }()
     
     private func setupUI() {
         
-        self.addSubview(tableView)
-        
-        self.tableView.dataSource = dataSource
-        self.tableView.register(UITableViewCell.self)
-        self.tableView.translatesAutoresizingMaskIntoConstraints = false
-        self.tableView.cellLayoutMarginsFollowReadableWidth = true
+        self.addSubview(collectionView)
+        dataSource.setupDataSource(collectionView: collectionView)
         
     }
     
     private func setupConstraints() {
         
         let constraints = [
-            tableView.topAnchor.constraint(equalTo: self.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            collectionView.topAnchor.constraint(equalTo: self.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ]
         
         NSLayoutConstraint.activate(constraints)
@@ -58,17 +62,16 @@ class OtherView: UIView {
     
     private func setupTheming() {
         
-        self.tableView.separatorColor = UIColor.separator
-//        self.tableView.backgroundColor = UIColor.systemBackground
+        self.collectionView.backgroundColor = UIColor.systemBackground
         
     }
     
-    public func setTableViewDelegate(_ delegate: UITableViewDelegate) {
-        self.tableView.delegate = delegate
+    public func setCollectionViewDelegate(_ delegate: UICollectionViewDelegate) {
+        self.collectionView.delegate = delegate
     }
     
     public func update() {
-        self.tableView.reloadData()
+        dataSource.update()
     }
     
 }
