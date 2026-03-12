@@ -7,8 +7,8 @@
 //
 
 // Server URL
-ROOT_URL = https:/$()/next.moers.app/api/v2/
-BASE_URL = https:/$()/next.moers.app/
+ROOT_URL = https:/$()/staging.moers.app/api/v2/
+BASE_URL = https:/$()/staging.moers.app/
 
 // Auth
 CLIENT_ID = 2

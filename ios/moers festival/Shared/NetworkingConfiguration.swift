@@ -16,7 +16,7 @@ extension ServerEnvironment {
     
     public static let local = ServerEnvironment(host: "moers-festival.localhost", pathPrefix: "/api/v1")
     public static let staging = ServerEnvironment(host: "beta.moers-festival.de", pathPrefix: "/api/v1")
-    public static let production = ServerEnvironment(host: "app.moers-festival.de", pathPrefix: "/api/v1")
+    public static let production = ServerEnvironment(host: "moers.app", pathPrefix: "/api/v1")
     
 }
 

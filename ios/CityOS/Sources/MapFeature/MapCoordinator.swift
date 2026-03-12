@@ -19,7 +19,7 @@ public class MapCoordintor: Coordinator {
     
     public var navigationController: CoordinatedNavigationController
     
-    public var mainViewController: MainViewController?
+    public var mainViewController: LegacyMainViewController?
     
     public init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController()
@@ -32,10 +32,12 @@ public class MapCoordintor: Coordinator {
         let mapViewController = MapViewController()
         let contentViewController = SearchDrawerViewController()
         
-        let mainViewController = MainViewController(
+        let mainViewController = LegacyMainViewController(
             contentViewController: mapViewController,
             drawerViewController: contentViewController
         )
+        
+//        let mainViewController = MainMapViewController()
         
         mainViewController.navigationItem.largeTitleDisplayMode = .never
         mainViewController.tabBarItem = generateTabBarItem()

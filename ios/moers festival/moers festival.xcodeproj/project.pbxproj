@@ -12,7 +12,6 @@
 		DF055B982D8B8FD7007E4393 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = DF055B972D8B8FD7007E4393 /* FirebaseMessaging */; };
 		DF35B38A201DC72900118FD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF35B389201DC72900118FD1 /* AppDelegate.swift */; };
 		DF35B394201DC72900118FD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF35B392201DC72900118FD1 /* LaunchScreen.storyboard */; };
-		DF39C7A125A1D737000ABCC3 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF39C7A025A1D737000ABCC3 /* AppConfiguration.swift */; };
 		DF39C7D225A22CEB000ABCC3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DF39C7D125A22CEB000ABCC3 /* Settings.bundle */; };
 		DF559F2E26493D140076516C /* MMEvents in Frameworks */ = {isa = PBXBuildFile; productRef = DF559F2D26493D140076516C /* MMEvents */; };
 		DF562909257BB4F1005FC7BA /* WhatsNewKit in Frameworks */ = {isa = PBXBuildFile; productRef = DF562908257BB4F1005FC7BA /* WhatsNewKit */; };
@@ -26,15 +25,11 @@
 		DF5975C42F01E08D00512386 /* MMPages in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C32F01E08D00512386 /* MMPages */; };
 		DF5975C62F01E08D00512386 /* MapFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C52F01E08D00512386 /* MapFeature */; };
 		DF5975C82F01E08D00512386 /* NewsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C72F01E08D00512386 /* NewsFeature */; };
-		DF5978E62F01F3C800512386 /* Container+PageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5978E52F01F3C800512386 /* Container+PageService.swift */; };
-		DF5978E72F01F3C800512386 /* Container+LegacyEventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5978E32F01F3C800512386 /* Container+LegacyEventService.swift */; };
-		DF5978E82F01F3C800512386 /* Container+LocationEventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5978E42F01F3C800512386 /* Container+LocationEventService.swift */; };
 		DF5F729F27F07C34002AB4B8 /* AppScaffold in Frameworks */ = {isa = PBXBuildFile; productRef = DF5F729E27F07C34002AB4B8 /* AppScaffold */; };
 		DF62C61A2247B98E008425EC /* ContentDrawer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF62C6192247A349008425EC /* ContentDrawer.storyboard */; };
 		DF68FFF3282AEDD500C63690 /* FGD2022 in Resources */ = {isa = PBXBuildFile; fileRef = DF68FFF2282AEDD500C63690 /* FGD2022 */; };
 		DF7FB53527F672E300F718F2 /* StateViewController in Frameworks */ = {isa = PBXBuildFile; productRef = DF7FB53427F672E300F718F2 /* StateViewController */; };
 		DF82B76F2BED3750005F41F2 /* FGD2024 in Resources */ = {isa = PBXBuildFile; fileRef = DF82B76E2BED3750005F41F2 /* FGD2024 */; };
-		DF8709F227F2E2F7005A1B1A /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8709F127F2E2F7005A1B1A /* AppStrings.swift */; };
 		DF9B4E6427F668A200817DA3 /* INSPhotoGallery in Frameworks */ = {isa = PBXBuildFile; productRef = DF9B4E6327F668A200817DA3 /* INSPhotoGallery */; };
 		DFA90CBB29E945D600FF8366 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA90CBA29E945D600FF8366 /* WidgetKit.framework */; };
 		DFA90CBD29E945D600FF8366 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA90CBC29E945D600FF8366 /* SwiftUI.framework */; };
@@ -44,15 +39,9 @@
 		DFADF96D282A66DF00A15FE1 /* Map Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFADF96C282A66DF00A15FE1 /* Map Icons.xcassets */; };
 		DFB592F12586C4F800BAD901 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB592F02586C4F800BAD901 /* SceneDelegate.swift */; };
 		DFB593012586D5C200BAD901 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB593002586D5C200BAD901 /* ApplicationController.swift */; };
-		DFC1111427F6457800348268 /* AccessibilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1111327F6457800348268 /* AccessibilityIdentifiers.swift */; };
 		DFC1111627F6476700348268 /* AppSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1111527F6476700348268 /* AppSplitViewController.swift */; };
 		DFC9094B21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DFC9094A21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle */; };
-		DFD8B78529BD2702004C5D6C /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8B78429BD2702004C5D6C /* AppDatabase.swift */; };
-		DFD8B78F29BD362C004C5D6C /* AppDatabase+Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8B78E29BD362C004C5D6C /* AppDatabase+Container.swift */; };
-		DFD8B79129BD370C004C5D6C /* AppDatabase+Migrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8B79029BD370C004C5D6C /* AppDatabase+Migrator.swift */; };
-		DFD8B7A129BDF5B1004C5D6C /* BaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8B7A029BDF5B1004C5D6C /* BaseRepository.swift */; };
 		DFE12B672073853F006764FC /* Licenses.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFE12B662073853F006764FC /* Licenses.plist */; };
-		DFFA54F12A01635D000ECEC5 /* AccessibilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1111327F6457800348268 /* AccessibilityIdentifiers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,13 +112,9 @@
 		DF35B386201DC72900118FD1 /* moers festival.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moers festival.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF35B389201DC72900118FD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF35B393201DC72900118FD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		DF39C7A025A1D737000ABCC3 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		DF39C7D125A22CEB000ABCC3 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		DF40D6C3247E73D40054199C /* moers festival tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moers festival tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF5978C92F01E98600512386 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/LaunchScreen.xcstrings; sourceTree = "<group>"; };
-		DF5978E32F01F3C800512386 /* Container+LegacyEventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+LegacyEventService.swift"; sourceTree = "<group>"; };
-		DF5978E42F01F3C800512386 /* Container+LocationEventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+LocationEventService.swift"; sourceTree = "<group>"; };
-		DF5978E52F01F3C800512386 /* Container+PageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+PageService.swift"; sourceTree = "<group>"; };
 		DF62C6192247A349008425EC /* ContentDrawer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContentDrawer.storyboard; sourceTree = "<group>"; };
 		DF68FFF2282AEDD500C63690 /* FGD2022 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FGD2022; sourceTree = "<group>"; };
 		DF82B7642BED3702005F41F2 /* camping.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = camping.geojson; sourceTree = "<group>"; };
@@ -142,7 +127,6 @@
 		DF82B76B2BED3702005F41F2 /* toilets.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = toilets.geojson; sourceTree = "<group>"; };
 		DF82B76C2BED3702005F41F2 /* transportation.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = transportation.geojson; sourceTree = "<group>"; };
 		DF82B76E2BED3750005F41F2 /* FGD2024 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FGD2024; sourceTree = "<group>"; };
-		DF8709F127F2E2F7005A1B1A /* AppStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
 		DF87B2F2201DFB2700E1B97C /* moers festival UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moers festival UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF92FBFF257BF9CE00BE1DA5 /* FirebaseABTesting.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseABTesting.xcframework; path = Frameworks/FirebaseABTesting.xcframework; sourceTree = "<group>"; };
 		DF92FC00257BF9CE00BE1DA5 /* FirebaseRemoteConfig.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseRemoteConfig.xcframework; path = Frameworks/FirebaseRemoteConfig.xcframework; sourceTree = "<group>"; };
@@ -156,16 +140,11 @@
 		DFB15F0B22AF082D00441FB5 /* moers festival Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moers festival Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFB592F02586C4F800BAD901 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DFB593002586D5C200BAD901 /* ApplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
-		DFC1111327F6457800348268 /* AccessibilityIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifiers.swift; sourceTree = "<group>"; };
 		DFC1111527F6476700348268 /* AppSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSplitViewController.swift; sourceTree = "<group>"; };
 		DFC9094A21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppMessagingDisplayResources.bundle; sourceTree = "<group>"; };
 		DFD4561429E93A3A00F26F37 /* moers festival.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moers festival.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFD4562329E93A3B00F26F37 /* moers festival Watch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moers festival Watch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFD4562D29E93A3C00F26F37 /* moers festival Watch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moers festival Watch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DFD8B78429BD2702004C5D6C /* AppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
-		DFD8B78E29BD362C004C5D6C /* AppDatabase+Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDatabase+Container.swift"; sourceTree = "<group>"; };
-		DFD8B79029BD370C004C5D6C /* AppDatabase+Migrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDatabase+Migrator.swift"; sourceTree = "<group>"; };
-		DFD8B7A029BDF5B1004C5D6C /* BaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRepository.swift; sourceTree = "<group>"; };
 		DFE12B662073853F006764FC /* Licenses.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Licenses.plist; path = "moers festival/Licenses.plist"; sourceTree = SOURCE_ROOT; };
 		DFE90E7F29E3227A0054BCF1 /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 		DFEC02F8262ABD6200D46B28 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -186,7 +165,6 @@
 		DF5977152F01E7E400512386 /* Exceptions for "Utility" folder in "moers festival" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				AppColors.swift,
 				config.json,
 				"GoogleService-Info.plist",
 				Park/Dorf.plist,
@@ -220,6 +198,13 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+			);
+			target = DF87B2F1201DFB2700E1B97C /* moers festival UITests */;
+		};
+		DFE8342A2F1BE88500A3DECD /* Exceptions for "Support" folder in "moers festival UITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AccessibilityIdentifiers.swift,
 			);
 			target = DF87B2F1201DFB2700E1B97C /* moers festival UITests */;
 		};
@@ -262,11 +247,6 @@
 		DF5976342F01E5B500512386 /* Info */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Info;
-			sourceTree = "<group>";
-		};
-		DF5976902F01E5F500512386 /* View */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = View;
 			sourceTree = "<group>";
 		};
 		DF5976D92F01E63300512386 /* ViewModels */ = {
@@ -365,6 +345,19 @@
 		DF78E39E2F032EE200E29277 /* moers festival Tests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "moers festival Tests";
+			sourceTree = "<group>";
+		};
+		DFE834252F1BE82F00A3DECD /* Database */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Database;
+			sourceTree = "<group>";
+		};
+		DFE834292F1BE84000A3DECD /* Support */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DFE8342A2F1BE88500A3DECD /* Exceptions for "Support" folder in "moers festival UITests" target */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -482,25 +475,16 @@
 				DFFA54F02A015D89000ECEC5 /* Screenshot.gpx */,
 				DFE12B662073853F006764FC /* Licenses.plist */,
 				DF62C6192247A349008425EC /* ContentDrawer.storyboard */,
-				DFC1111327F6457800348268 /* AccessibilityIdentifiers.swift */,
-				DF39C7A025A1D737000ABCC3 /* AppConfiguration.swift */,
-				DFD8B78429BD2702004C5D6C /* AppDatabase.swift */,
-				DFD8B78E29BD362C004C5D6C /* AppDatabase+Container.swift */,
-				DFD8B79029BD370C004C5D6C /* AppDatabase+Migrator.swift */,
 				DF35B389201DC72900118FD1 /* AppDelegate.swift */,
 				DFB593002586D5C200BAD901 /* ApplicationController.swift */,
 				DFC1111527F6476700348268 /* AppSplitViewController.swift */,
-				DF8709F127F2E2F7005A1B1A /* AppStrings.swift */,
-				DFD8B7A029BDF5B1004C5D6C /* BaseRepository.swift */,
-				DF5978E32F01F3C800512386 /* Container+LegacyEventService.swift */,
-				DF5978E42F01F3C800512386 /* Container+LocationEventService.swift */,
-				DF5978E52F01F3C800512386 /* Container+PageService.swift */,
 				DFB592F02586C4F800BAD901 /* SceneDelegate.swift */,
 				DFADF96C282A66DF00A15FE1 /* Map Icons.xcassets */,
 				DF5978DA2F01EDAC00512386 /* Assets */,
 				DF5975E92F01E4F400512386 /* Config */,
 				DF5977962F01E86D00512386 /* Controller */,
 				DF5976062F01E4F900512386 /* Coordinator */,
+				DFE834252F1BE82F00A3DECD /* Database */,
 				DF5976ED2F01E63600512386 /* Extensions */,
 				DF1E14152DF0B49B007015DC /* FGD2025 */,
 				DF5976342F01E5B500512386 /* Info */,
@@ -510,10 +494,10 @@
 				DF5977522F01E82300512386 /* Model */,
 				DF5976222F01E52E00512386 /* News */,
 				DF5977172F01E7F700512386 /* Preview Content */,
+				DFE834292F1BE84000A3DECD /* Support */,
 				DF59762C2F01E53600512386 /* User Schedule */,
 				DF59770F2F01E7E400512386 /* Utility */,
 				DF5978912F01E91B00512386 /* Venues */,
-				DF5976902F01E5F500512386 /* View */,
 				DF5976D92F01E63300512386 /* ViewModels */,
 			);
 			path = "moers festival";
@@ -584,7 +568,6 @@
 				DF59762C2F01E53600512386 /* User Schedule */,
 				DF5976312F01E56B00512386 /* Live */,
 				DF5976342F01E5B500512386 /* Info */,
-				DF5976902F01E5F500512386 /* View */,
 				DF5976D92F01E63300512386 /* ViewModels */,
 				DF5976ED2F01E63600512386 /* Extensions */,
 				DF5976FA2F01E7DB00512386 /* Manager */,
@@ -594,6 +577,8 @@
 				DF5978912F01E91B00512386 /* Venues */,
 				DF5978DA2F01EDAC00512386 /* Assets */,
 				DF5978EE2F03250B00512386 /* Shared */,
+				DFE834252F1BE82F00A3DECD /* Database */,
+				DFE834292F1BE84000A3DECD /* Support */,
 			);
 			name = "moers festival";
 			packageProductDependencies = (
@@ -927,18 +912,8 @@
 			isa = PBXSourcesBuildPhase;
 			files = (
 				DF35B38A201DC72900118FD1 /* AppDelegate.swift in Sources */,
-				DF8709F227F2E2F7005A1B1A /* AppStrings.swift in Sources */,
-				DFD8B79129BD370C004C5D6C /* AppDatabase+Migrator.swift in Sources */,
-				DFD8B78529BD2702004C5D6C /* AppDatabase.swift in Sources */,
 				DFB593012586D5C200BAD901 /* ApplicationController.swift in Sources */,
-				DF39C7A125A1D737000ABCC3 /* AppConfiguration.swift in Sources */,
-				DFC1111427F6457800348268 /* AccessibilityIdentifiers.swift in Sources */,
-				DF5978E62F01F3C800512386 /* Container+PageService.swift in Sources */,
-				DF5978E72F01F3C800512386 /* Container+LegacyEventService.swift in Sources */,
-				DF5978E82F01F3C800512386 /* Container+LocationEventService.swift in Sources */,
 				DFB592F12586C4F800BAD901 /* SceneDelegate.swift in Sources */,
-				DFD8B78F29BD362C004C5D6C /* AppDatabase+Container.swift in Sources */,
-				DFD8B7A129BDF5B1004C5D6C /* BaseRepository.swift in Sources */,
 				DFC1111627F6476700348268 /* AppSplitViewController.swift in Sources */,
 			);
 		};
@@ -950,7 +925,6 @@
 		DF87B2EE201DFB2700E1B97C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
-				DFFA54F12A01635D000ECEC5 /* AccessibilityIdentifiers.swift in Sources */,
 			);
 		};
 		DFA90CB529E945D600FF8366 /* Sources */ = {

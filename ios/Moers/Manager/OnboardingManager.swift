@@ -150,7 +150,7 @@ public class OnboardingManager {
             
             AnalyticsManager.shared.logEnabledLocation()
             
-            Task {
+            Task { @MainActor in
                 for await authorizationStatus in self.locationService.authorizationStatuses {
                     if authorizationStatus == .notDetermined {
                         self.locationService.requestWhenInUseAuthorization()
@@ -185,7 +185,7 @@ public class OnboardingManager {
         page.alternativeButtonTitle = String(localized: "Read")
         page.alternativeHandler = { _ in
             
-            let url = URL(string: "https://next.moers.app/legal/privacy")!
+            let url = URL(string: "https://moers.app/legal/privacy")!
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }

@@ -45,17 +45,6 @@ public class OtherCoordinator: Coordinator {
         
         showPage(url: URL(string: "https://www.moers-festival.de/tickets/")!)
         
-//        let viewModel = TicketsListViewModel(mainTicket: Ticket.tickets2020[0],
-//                                             dayTickets: Array(Ticket.tickets2020[5...8]),
-//                                             moerzzTickets: Array(Ticket.tickets2020[1...4]),
-//                                             vipTicket: Ticket.tickets2020[9],
-//                                             earlyBirdTicket: Ticket.tickets2020[10])
-//
-//        let ticketsViewController = TicketsListViewController(viewModel: viewModel)
-//        ticketsViewController.coordinator = self
-//
-//        self.navigationController.pushViewController(ticketsViewController, animated: true)
-        
     }
     
     public func showFestivalDorf() {

@@ -38,16 +38,16 @@ class MMEventsViewController: EventsViewController {
     
     override func loadData() {
         
-//        guard let eventService = coordinator?.eventService else { return }
+        guard let eventService = coordinator?.eventService else { return }
         
-//        Task {
-//
-//            try await eventService.index(cacheMode: .revalidate, withPages: true)
-//
-//        }
-//
-//        eventService.
-//
+        Task {
+
+            let response = try await eventService.index(cacheMode: .revalidate, withPages: true)
+
+            print(response)
+            
+        }
+//        
 //        let eventObserver = eventService.loadEvents()
 //
 //        eventObserver.sink { [weak self] completion in
@@ -70,7 +70,7 @@ class MMEventsViewController: EventsViewController {
 //            self.rebuildData()
 //
 //        }.store(in: &cancellables)
-        
+//        
     }
     
     override func filterActive(events: [EventViewModel<Event>]) -> [EventViewModel<Event>] {

@@ -170,16 +170,6 @@ struct ViewFactory {
         
     }
     
-    static func ticketView(viewModel: TicketViewModel) -> TicketView {
-        
-        let ticketView = TicketView(viewModel: viewModel)
-        
-        ticketView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return ticketView
-        
-    }
-    
     static func paddingLabel() -> PaddingLabel {
         
         let paddingLabel = PaddingLabel()

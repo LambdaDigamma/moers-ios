@@ -15,7 +15,7 @@ import Combine
 import Factory
 import FuelFeature
 
-public class MainViewController: PulleyViewController {
+public class LegacyMainViewController: PulleyViewController {
 
     @LazyInjected(\.entryManager) var entryManager
     @LazyInjected(\.petrolService) var petrolManager

@@ -27,7 +27,7 @@ public class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
     lazy var map = { return CoreViewFactory.map() }()
     
     // swiftlint:disable:next force_cast
-    lazy var drawer = { return self.parent as! MainViewController }()
+    lazy var drawer = { return self.parent as! LegacyMainViewController }()
     
     private var locations: [Location] = []
     

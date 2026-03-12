@@ -387,7 +387,7 @@ extension SearchDrawerViewController: UISearchBarDelegate {
     
     public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
-        if let drawer = self.parent as? MainViewController {
+        if let drawer = self.parent as? LegacyMainViewController {
             drawer.setDrawerPosition(position: .open, animated: true)
         }
         
