@@ -15,7 +15,7 @@ pluginManagement {
         maven("https://jitpack.io")
     }
     plugins {
-        kotlin("jvm") version "2.0.20"
+        kotlin("jvm") version "2.2.21"
     }
 }
 plugins {

@@ -15,11 +15,11 @@
  * modules in the project.
  * The following are only a few examples of the types of properties you can define.
  */
-extra["sdkVersion"] = 35
-extra["minSdkVersion"] = 21
-extra["targetSdkVersion"] = 35
-extra["sourceCompatibility"] = JavaVersion.VERSION_11
-extra["targetCompatibility"] = JavaVersion.VERSION_11
+extra["sdkVersion"] = 36
+extra["minSdkVersion"] = 23
+extra["targetSdkVersion"] = 36
+extra["sourceCompatibility"] = JavaVersion.VERSION_17
+extra["targetCompatibility"] = JavaVersion.VERSION_17
 
 buildscript {
 

@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Screenshots" type="AppleRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-FASTLANE_SNAPSHOT YES" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Moers" TARGET_NAME="Moers" CONFIG_NAME="Debug (Production)" IS_LOCATION_SIMULATION_SUPPORTED="true" SCHEME_NAME="Screenshots" IS_LOCATION_SIMULATION_ALLOWED="true" LOCATION_SCENARIO_ID="../../Moers/Moers.gpx" LOCATION_SCENARIO_TYPE="0" APPLICATION_LANGUAGE="de" APPLICATION_REGION="DE" DEVELOPMENT_TEAM="${TEAM_ID}" RUN_TARGET_PROJECT_NAME="Moers" RUN_TARGET_NAME="Moers" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
+    <embedded_app_extension_list />
+    <method v="2">
+      <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+    </method>
+  </configuration>
+</component>

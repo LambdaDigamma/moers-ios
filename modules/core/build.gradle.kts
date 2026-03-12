@@ -17,12 +17,10 @@ val minSdkVersion: Int by rootProject.extra
 kotlin {
 
     androidTarget {
-
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
-
     }
 
     iosX64()
@@ -61,8 +59,11 @@ kotlin {
             implementation(libs.androidx.datastore.preferences)
 
             // Compose
+            implementation(project.dependencies.platform(libs.androidx.compose.bom))
             implementation(libs.androidx.compose.ui)
             implementation(libs.androidx.material3)
+            implementation(libs.androidx.material.icons.core)
+            implementation(libs.androidx.material.icons.extended)
             implementation(libs.androidx.compose.ui.tooling.preview)
             implementation(libs.androidx.compose.runtime.livedata)
 

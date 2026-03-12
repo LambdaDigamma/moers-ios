@@ -1,5 +1,5 @@
+import org.gradle.internal.extensions.stdlib.toDefaultLowerCase
 import org.jetbrains.kotlin.konan.properties.loadProperties
-import org.jetbrains.kotlin.util.capitalizeDecapitalize.toLowerCaseAsciiOnly
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.util.Properties
@@ -118,6 +118,8 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.runtime.livedata)
     implementation(libs.androidx.material)
+    implementation(libs.androidx.material.icons.core)
+    implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.material3)
 
     // Coil
@@ -223,7 +225,7 @@ tasks.create("incrementVersion") {
 
         val versionProperties = getCurrentVersionProperties()
         val versionName = versionProperties.getProperty(Keys.VERSION_NAME)
-        val mode = project.properties["mode"]?.toString()?.toLowerCaseAsciiOnly()
+        val mode = project.properties["mode"]?.toString()?.toDefaultLowerCase()
 
         var (major, minor, patch) = versionName.split(".")
 
@@ -244,7 +246,7 @@ tasks.create("incrementVersion") {
         var newVersion = "$major.$minor.$patch"
 
         val overrideVersion =
-            project.properties["overrideVersion"]?.toString()?.toLowerCaseAsciiOnly()
+            project.properties["overrideVersion"]?.toString()?.toDefaultLowerCase()
         overrideVersion?.let { newVersion = it }
 
         versionProperties.setProperty(Keys.VERSION_NAME, newVersion)
