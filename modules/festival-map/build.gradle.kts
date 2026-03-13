@@ -70,7 +70,7 @@ dependencies {
 
     implementation(project(":modules:core"))
     implementation(project(":modules:pages"))
-    implementation(project(":modules:festival-medialibrary"))
+    implementation(project(":modules:medialibrary"))
 
     implementation(platform(libs.compose.bom))
     implementation(libs.accompanist.swipe.refresh)

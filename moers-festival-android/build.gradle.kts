@@ -68,7 +68,7 @@ android {
 dependencies {
     implementation(project(":modules:core"))
     implementation(project(":modules:festival-events"))
-    implementation(project(":modules:festival-medialibrary"))
+    implementation(project(":modules:medialibrary"))
     implementation(project(":modules:pages"))
     implementation(project(":modules:festival-map"))
     implementation(project(":modules:festival-news"))
