@@ -10,18 +10,25 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/androidApp" />
             <option value="$PROJECT_DIR$/modules" />
             <option value="$PROJECT_DIR$/modules/core" />
             <option value="$PROJECT_DIR$/modules/events" />
+            <option value="$PROJECT_DIR$/modules/festival-core" />
+            <option value="$PROJECT_DIR$/modules/festival-events" />
+            <option value="$PROJECT_DIR$/modules/festival-map" />
+            <option value="$PROJECT_DIR$/modules/festival-medialibrary" />
+            <option value="$PROJECT_DIR$/modules/festival-news" />
+            <option value="$PROJECT_DIR$/modules/festival-pages" />
+            <option value="$PROJECT_DIR$/modules/festival-prosemirror" />
             <option value="$PROJECT_DIR$/modules/fuel" />
             <option value="$PROJECT_DIR$/modules/news" />
             <option value="$PROJECT_DIR$/modules/parking" />
             <option value="$PROJECT_DIR$/modules/radio" />
             <option value="$PROJECT_DIR$/modules/rubbish" />
+            <option value="$PROJECT_DIR$/moers-android" />
+            <option value="$PROJECT_DIR$/moers-festival-android" />
           </set>
         </option>
-        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

@@ -1,41 +1,115 @@
+@file:Suppress("UnstableApiUsage")
+
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-    alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.android.library) apply false
+    id("com.android.application")
     alias(libs.plugins.detekt)
-    alias(libs.plugins.hilt) apply false
-    alias(libs.plugins.junit) apply false
-    alias(libs.plugins.kotlin) apply false
-    alias(libs.plugins.kotlin.kapt) apply false
-    alias(libs.plugins.kotlin.parcelize) apply false
-    alias(libs.plugins.kotlin.serialization) apply false
-    alias(libs.plugins.ksp) apply false
-    alias(libs.plugins.compose.compiler) apply false
-    id("com.google.gms.google-services") version "4.4.2" apply false
+    alias(libs.plugins.firebase.crashlytics)
+    alias(libs.plugins.google.services)
+    id("dagger.hilt.android.plugin")
+    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.composeCompiler)
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
+android {
+    compileSdk = 36
+    namespace = "com.lambdadigamma.moersfestival"
+
+    defaultConfig {
+        applicationId = "com.lambdadigamma.moersfestival"
+        minSdk = 24
+        targetSdk = 35
+        versionCode = 32
+        versionName = "2.7.1"
     }
-    dependencies {
-        classpath(libs.google.services)
-        classpath(libs.firebase.crashlytics.gradle)
-        classpath(libs.secrets.gradle.plugin)
+
+    buildFeatures {
+        buildConfig = true
+        compose = true
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            isShrinkResources = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android.txt"),
+                "proguard-rules.pro"
+            )
+            // TODO: for development purposes, remember to create a release signing config when releasing proper app
+            signingConfig = signingConfigs.getByName("debug")
+        }
+    }
+
+    compileOptions {
+//        isCoreLibraryDesugaringEnabled = true
+
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
+    }
+
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
+    }
+    packaging {
+        resources.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
     }
 }
 
-allprojects {
-    apply(
-        plugin = "io.gitlab.arturbosch.detekt"
-    )
+dependencies {
+    implementation(project(":modules:core"))
+    implementation(project(":modules:festival-events"))
+    implementation(project(":modules:festival-medialibrary"))
+    implementation(project(":modules:festival-pages"))
+    implementation(project(":modules:festival-map"))
+    implementation(project(":modules:festival-news"))
 
-    detekt {
-        buildUponDefaultConfig = true
-        config = files("$rootDir/gradle/detekt.yml")
-    }
+    implementation(platform(libs.compose.bom))
+
+    implementation(libs.hilt)
+    implementation(libs.navigation) // needed for Room
+    implementation(libs.room.ktx)
+    implementation(libs.timber)
+    implementation(libs.compose.ui.preview)
+    implementation(libs.compose.runtime.livedata)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.icons)
+    implementation(libs.accompanist.systemuicontroller)
+    implementation(libs.core.ktx)
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.android)
+
+    implementation(libs.activity.ktx)
+
+    implementation(platform(libs.firebase.platform))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.messaging)
+    implementation(libs.firebase.crashlytics)
+
+    ksp(libs.hilt.compiler)
+    ksp(libs.room.compiler)
+
+//    coreLibraryDesugaring(libs.desugar)
+
+    detektPlugins(libs.detekt.compose.rules)
 }
 
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+}
+
+secrets {
+    // To add your Maps API key to this project:
+    // 1. Add this line to your local.properties file, where YOUR_API_KEY is your API key:
+    //        MAPS_API_KEY=YOUR_API_KEY
+    defaultPropertiesFileName = "local.defaults.properties"
 }

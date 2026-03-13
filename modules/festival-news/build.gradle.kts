@@ -49,10 +49,10 @@ android {
 
     sourceSets {
         getByName("androidTest") {
-            java.srcDir(project(":modules:festival-core").file("src/androidTest/java"))
+            java.srcDir(project(":modules:core").file("src/androidTest/java"))
         }
         getByName("test") {
-            java.srcDir(project(":modules:festival-core").file("src/test/java"))
+            java.srcDir(project(":modules:core").file("src/test/java"))
         }
     }
 }
@@ -69,7 +69,7 @@ kotlin {
 
 dependencies {
 
-    implementation(project(":modules:festival-core"))
+    implementation(project(":modules:core"))
     implementation(project(":modules:festival-pages"))
     implementation(project(":modules:festival-medialibrary"))
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name" translatable="false">moers festival</string>
     <string name="app_information_paragraph1">This app is developed and provided voluntarily by Lennart Fischer.</string>
     <string name="app_information_paragraph2">"More information about moers festival can be found on the official website: "</string>
     <string name="about_this_app">About this app</string>

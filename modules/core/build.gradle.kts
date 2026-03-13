@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    id("org.jetbrains.kotlin.plugin.parcelize")
     alias(libs.plugins.ksp)
     alias(libs.plugins.composeCompiler)
 }
@@ -34,6 +35,8 @@ kotlin {
             implementation(libs.material)
 
             implementation(libs.kotlinx.coroutines.android)
+            implementation(libs.lifecycle.runtime.compose)
+            implementation(libs.lifecycle.viewmodel.ktx)
 
             // Google Play Services
             implementation(libs.play.services.location)
@@ -49,10 +52,14 @@ kotlin {
             implementation(libs.androidx.hilt.navigation.compose)
 
             // Retrofit
+            implementation(libs.gson)
             implementation(libs.retrofit)
             implementation(libs.converter.simplexml)
             implementation(libs.converter.gson)
+            implementation(libs.kotlin.serialization)
+            implementation(libs.kotlin.serialization.converter)
             implementation(libs.retrofit.mock)
+            implementation(libs.okhttp.logging.interceptor)
 
             // Datastore
             implementation(libs.androidx.datastore)
@@ -66,16 +73,23 @@ kotlin {
             implementation(libs.androidx.material.icons.extended)
             implementation(libs.androidx.compose.ui.tooling.preview)
             implementation(libs.androidx.compose.runtime.livedata)
+            implementation(libs.androidx.navigation.compose)
 
             // Google Maps
             implementation(libs.maps.compose)
             implementation(libs.play.services.maps)
 
             implementation(libs.accompanist.swiperefresh)
+            implementation(libs.accompanist.systemuicontroller)
+            implementation(libs.timber)
         }
         androidUnitTest.dependencies {
             implementation(libs.junit)
             implementation(libs.room.testing)
+            implementation(libs.test.junit)
+            implementation(libs.test.kotlin)
+            implementation(libs.test.kotlin.coroutines)
+            implementation(libs.test.turbine)
         }
         androidInstrumentedTest.dependencies {
             implementation(libs.androidx.core)
@@ -85,6 +99,7 @@ kotlin {
             implementation(libs.androidx.truth)
             implementation(libs.androidx.espresso.core)
             implementation(libs.kotlinx.coroutines.test)
+            implementation(libs.test.android.hilt)
         }
     }
 }
@@ -113,6 +128,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.15"
