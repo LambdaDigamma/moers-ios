@@ -47,7 +47,7 @@ include(":modules:festival-events")
 include(":modules:festival-map")
 include(":modules:festival-medialibrary")
 include(":modules:festival-news")
-include(":modules:festival-pages")
+include(":modules:pages")
 include(":modules:prosemirror")
 
 include(":moers-android")

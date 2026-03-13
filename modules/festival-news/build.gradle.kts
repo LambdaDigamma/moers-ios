@@ -70,7 +70,7 @@ kotlin {
 dependencies {
 
     implementation(project(":modules:core"))
-    implementation(project(":modules:festival-pages"))
+    implementation(project(":modules:pages"))
     implementation(project(":modules:festival-medialibrary"))
 
     implementation(platform(libs.compose.bom))
