@@ -59,6 +59,30 @@ workRuntimeKtx = "2.11.1"
 xmlutil = "0.91.3"
 coreKtx = "1.18.0"
 material = "1.13.0"
+activityKtx = "1.13.0"
+androidJunit5Plugin = "2.0.1"
+androidMapsUtils = "4.1.1"
+coil3 = "3.4.0"
+compose-compiler = "1.5.12"
+composeWebview = "0.33.6"
+customview = "1.2.0"
+customviewPoolingcontainer = "1.1.0"
+detekt = "1.23.8"
+detektComposeRules = "0.5.6"
+firebase = "34.10.0"
+firebaseCrashlyticsGradle = "3.0.6"
+flexibleBottomsheetMaterial3 = "0.2.0"
+googleServices = "4.4.4"
+kotlinSerializationConverter = "1.0.0"
+kotlinxSerializationJson = "1.10.0"
+okhttpLoggingInterceptor = "5.3.2"
+okio = "3.17.0"
+photoCompose = "1.0.1"
+store5 = "5.1.0-alpha08"
+testJunit = "6.0.3"
+testMockk = "1.14.9"
+testTurbine = "1.2.1"
+timber = "5.0.1"
 
 [libraries]
 accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanistSwiperefresh" }
@@ -138,15 +162,89 @@ room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "
 room-runtime-android = { group = "androidx.room", name = "room-runtime-android", version.ref = "roomCommon" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomCommon" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
+activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
+accompanist-swipe-refresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanistSwiperefresh" }
+android-maps-utils = { module = "com.google.maps.android:android-maps-utils", version.ref = "androidMapsUtils" }
+coil = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil3" }
+coil-network = { group = "io.coil-kt.coil3", name = "coil-network-ktor3", version.ref = "coil3" }
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+compose-icons = { module = "androidx.compose.material:material-icons-extended" }
+compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
+compose-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "compose" }
+compose-ui-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "androidx-ui-tooling" }
+compose-webview = { module = "io.github.kevinnzou:compose-webview", version.ref = "composeWebview" }
+core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+customview = { module = "androidx.customview:customview", version.ref = "customview" }
+customview-poolingcontainer = { module = "androidx.customview:customview-poolingcontainer", version.ref = "customviewPoolingcontainer" }
+datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
+datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+debug-compose-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+detekt-compose-rules = { module = "io.nlopez.compose.rules:detekt", version.ref = "detektComposeRules" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
+firebase-messaging = { module = "com.google.firebase:firebase-messaging" }
+firebase-platform = { module = "com.google.firebase:firebase-bom", version.ref = "firebase" }
+flexible-bottomsheet-material3 = { module = "com.github.skydoves:flexible-bottomsheet-material3", version.ref = "flexibleBottomsheetMaterial3" }
+gms-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
+gms-services = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMaps" }
+hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
+kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+kotlin-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "kotlinSerializationConverter" }
+lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata", version.ref = "lifecycleVersion" }
+lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleVersion" }
+lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycleVersion" }
+navigation = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigationCompose" }
+navigation-hilt = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+okhttp-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttpLoggingInterceptor" }
+okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
+photo-compose = { module = "io.github.fornewid:photo-compose", version.ref = "photoCompose" }
+retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+room = { module = "androidx.room:room-runtime", version.ref = "roomCommon" }
+store5 = { module = "org.mobilenativefoundation.store:store5", version.ref = "store5" }
+test-android-compose = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "androidx-ui-tooling" }
+test-android-hilt = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
+test-android-hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+test-android-runner = { module = "androidx.test:runner", version.ref = "androidXTestVersion" }
+test-junit = { module = "org.junit.jupiter:junit-jupiter", version.ref = "testJunit" }
+test-kotlin = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+test-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesAndroid" }
+test-mockk = { module = "io.mockk:mockk", version.ref = "testMockk" }
+test-turbine = { module = "app.cash.turbine:turbine", version.ref = "testTurbine" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-ui-tooling" }
+ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsGradle" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+junit = { id = "de.mannodermaus.android-junit5", version.ref = "androidJunit5Plugin" }
 kmpNativeCoroutines = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "kmpNativeCoroutines" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 room = { id = "androidx.room", version.ref = "roomCommon" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+
+[bundles]
+common-test = [
+    "test-junit",
+    "test-kotlin",
+    "test-kotlin-coroutines",
+    "test-mockk",
+    "test-turbine",
+]
+common-android-test = [
+    "test-android-compose",
+    "test-android-hilt",
+    "test-android-runner",
+]

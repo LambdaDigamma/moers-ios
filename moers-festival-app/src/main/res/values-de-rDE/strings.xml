@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_information_paragraph1">Diese App wird ehrenamtlich von Lennart Fischer entwickelt und bereitgestellt.</string>
+    <string name="app_information_paragraph2">"Weitere Informationen zum moers festival können auf der offiziellen Webseite gefunden werden: "</string>
+    <string name="about_this_app">Informationen zur App</string>
+    <string name="notification_channel_default_description">Benachrichtigungen zum moers festival</string>
+    <string name="navigation_news">Neuigkeiten</string>
+    <string name="navigation_events">Spielplan</string>
+    <string name="navigation_info">Info</string>
+    <string name="navigation_favorites">Favoriten</string>
+    <string name="navigation_map">Karte</string>
+</resources>
