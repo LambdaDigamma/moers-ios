@@ -8,5 +8,17 @@
     <string name="navigation_events">Spielplan</string>
     <string name="navigation_info">Info</string>
     <string name="navigation_favorites">Favoriten</string>
+
+    <string name="info_section_festival">Festival</string>
+    <string name="info_section_other">Sonstiges</string>
+    <string name="info_row_tickets">Tickets</string>
+    <string name="info_row_festivaldorf">Festivaldorf</string>
+    <string name="info_row_volunteers">Volunteers</string>
+    <string name="info_row_moersland">moersland</string>
+    <string name="info_row_lodging">Schlafen</string>
+    <string name="info_row_accessibility">Barrierefreiheit</string>
+    <string name="info_row_moerschandise">moerschandise</string>
+    <string name="info_row_sponsors">Förderer &amp; Partner</string>
+    <string name="info_row_legal">Impressum</string>
     <string name="navigation_map">Karte</string>
 </resources>

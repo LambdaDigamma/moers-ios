@@ -84,6 +84,7 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.compose.icons)
     implementation(libs.accompanist.systemuicontroller)
+    implementation(libs.compose.webview)
     implementation(libs.core.ktx)
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.android)

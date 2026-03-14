@@ -13,6 +13,8 @@ sealed class NavigationDestination(
 
     data object Info : NavigationDestination("infoDestination")
 
+    data object Web : NavigationDestination("web?url={url}")
+
     data object EventDownload : NavigationDestination("download-events")
 
     data object FavoriteEvents : NavigationDestination("favorite-events")

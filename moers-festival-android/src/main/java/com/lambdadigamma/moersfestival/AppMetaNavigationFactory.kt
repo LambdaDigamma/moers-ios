@@ -2,7 +2,9 @@ package com.lambdadigamma.moersfestival
 
 import androidx.compose.material3.Text
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.lambdadigamma.core.navigation.NavigationDestination
 import com.lambdadigamma.core.navigation.NavigationFactory
 import com.lambdadigamma.core.navigation.NavigationManager
@@ -23,7 +25,17 @@ class AppMetaNavigationFactory @Inject constructor() : NavigationFactory {
         }
 
         builder.composable(NavigationDestination.Info.route) {
-            InfoScreen()
+            InfoScreen(navigationManager = navigationManager)
+        }
+
+        builder.composable(
+            route = NavigationDestination.Web.route,
+            arguments = listOf(navArgument("url") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val url = backStackEntry.arguments?.getString("url") ?: ""
+            WebViewScreen(url = url, onBack = {
+                navigationManager.navigateBack()
+            })
         }
 
     }
