@@ -41,7 +41,6 @@ import com.lambdadigamma.events.presentation.timetable.TimetableUiState
 fun TimetableScreen(
     uiState: TimetableUiState,
     onIntent: (TimetableIntent) -> Unit,
-    onShowAppInformation: () -> Unit = {},
     onShowDownload: () -> Unit = {},
     pagerState: PagerState,
     currentIndex: MutableState<Int>
@@ -50,8 +49,6 @@ fun TimetableScreen(
     LaunchedEffect(key1 = "refreshTimetable", block = {
 //        onIntent(TimetableIntent.GetEvents)
     })
-
-    var expanded by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -71,31 +68,6 @@ fun TimetableScreen(
                             painter = painterResource(id = R.drawable.baseline_download_24),
                             contentDescription = stringResource(R.string.download_timetable)
                         )
-                    }
-                    IconButton(onClick = { expanded = true }) {
-                        Icon(
-                            Icons.Default.MoreVert,
-                            contentDescription = stringResource(R.string.more)
-                        )
-                    }
-                    Box(
-                        modifier = Modifier
-                            .wrapContentSize(Alignment.TopEnd)
-                    ) {
-                        DropdownMenu(
-                            expanded = expanded,
-                            onDismissRequest = { expanded = false }
-                        ) {
-//                            DropdownMenuItem(
-//                                text = { Text(stringResource(R.string.download_timetable)) },
-//                                onClick = onShowDownload
-//                            )
-//                            Divider()
-                            DropdownMenuItem(
-                                text = { Text(stringResource(R.string.about_this_app)) },
-                                onClick = { onShowAppInformation() }
-                            )
-                        }
                     }
                 }
             )

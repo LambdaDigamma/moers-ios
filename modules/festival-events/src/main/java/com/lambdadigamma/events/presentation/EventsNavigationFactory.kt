@@ -38,12 +38,6 @@ class EventsNavigationFactory @Inject constructor() : NavigationFactory {
                     }
                     navigationManager.navigate(command)
                 },
-                onShowAppInformation = {
-                    val command = object : NavigationCommand {
-                        override val destination = NavigationDestination.AppInformation.route
-                    }
-                    navigationManager.navigate(command)
-                },
                 onShowDownload = {
                     val command = object : NavigationCommand {
                         override val destination = NavigationDestination.EventDownload.route

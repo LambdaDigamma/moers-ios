@@ -21,7 +21,6 @@ import com.lambdadigamma.events.presentation.timetable.TimetableViewModel
 fun TimetableRoute(
     viewModel: TimetableViewModel = hiltViewModel(),
     onShowEvent: (Int) -> Unit,
-    onShowAppInformation: () -> Unit,
     onShowDownload: () -> Unit,
     pagerState: PagerState = rememberPagerState(
         initialPage = 0,
@@ -44,7 +43,6 @@ fun TimetableRoute(
     TimetableScreen(
         uiState = uiState,
         onIntent = viewModel::acceptIntent,
-        onShowAppInformation = onShowAppInformation,
         onShowDownload = onShowDownload,
         pagerState = pagerState,
         currentIndex = currentIndex
