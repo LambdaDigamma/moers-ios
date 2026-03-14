@@ -1,18 +1,25 @@
 package com.lambdadigamma.map.data.repository
 
+import com.lambdadigamma.events.data.local.dao.PlaceDao
+import com.lambdadigamma.events.data.local.model.PlaceCached
 import com.lambdadigamma.map.data.FestivalMapGeoJsonParser
 import com.lambdadigamma.map.data.model.FestivalMapLayer
 import com.lambdadigamma.map.data.model.FestivalMapLayerType
+import com.lambdadigamma.map.data.model.FestivalMapPlace
 import com.lambdadigamma.map.data.source.FestivalMapAssetSource
 import com.lambdadigamma.map.data.source.FestivalMapCacheSource
 import com.lambdadigamma.map.data.source.FestivalMapRefreshTracker
 import com.lambdadigamma.map.data.source.FestivalMapRemoteSource
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 internal interface FestivalMapRepository {
     suspend fun loadLayers(): List<FestivalMapLayer>
+
+    fun observePlaces(): Flow<List<FestivalMapPlace>>
 
     suspend fun refreshLayers(force: Boolean = false): Result<Unit>
 }
@@ -23,10 +30,18 @@ internal class DefaultFestivalMapRepository @Inject constructor(
     private val refreshTracker: FestivalMapRefreshTracker,
     private val remoteSource: FestivalMapRemoteSource,
     private val parser: FestivalMapGeoJsonParser,
+    private val placeDao: PlaceDao,
 ) : FestivalMapRepository {
 
     override suspend fun loadLayers(): List<FestivalMapLayer> = withContext(Dispatchers.IO) {
         FestivalMapLayerType.ordered.map(::loadLayer)
+    }
+
+    override fun observePlaces(): Flow<List<FestivalMapPlace>> {
+        return placeDao.getPlaces()
+            .map { places ->
+                places.map(PlaceCached::toFestivalMapPlace)
+            }
     }
 
     override suspend fun refreshLayers(force: Boolean): Result<Unit> = withContext(Dispatchers.IO) {
@@ -82,4 +97,21 @@ internal class DefaultFestivalMapRepository @Inject constructor(
     private companion object {
         const val REFRESH_TTL_MINUTES = 120L
     }
+}
+
+private fun PlaceCached.toFestivalMapPlace(): FestivalMapPlace {
+    return FestivalMapPlace(
+        id = id,
+        name = name,
+        point = com.lambdadigamma.map.data.model.FestivalMapCoordinate(
+            latitude = lat,
+            longitude = lng,
+        ),
+        addressLine1 = listOfNotNull(streetName, streetNumber)
+            .joinToString(separator = " ")
+            .trim(),
+        addressLine2 = listOfNotNull(postalCode, postalTown)
+            .joinToString(separator = " ")
+            .trim(),
+    )
 }

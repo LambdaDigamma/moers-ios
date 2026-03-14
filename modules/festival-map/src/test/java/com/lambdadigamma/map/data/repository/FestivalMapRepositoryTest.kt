@@ -1,11 +1,15 @@
 package com.lambdadigamma.map.data.repository
 
+import com.lambdadigamma.events.data.local.dao.PlaceDao
+import com.lambdadigamma.events.data.local.model.PlaceCached
 import com.lambdadigamma.map.data.FestivalMapGeoJsonParser
 import com.lambdadigamma.map.data.model.FestivalMapLayerType
 import com.lambdadigamma.map.data.source.FestivalMapAssetSource
 import com.lambdadigamma.map.data.source.FestivalMapCacheSource
 import com.lambdadigamma.map.data.source.FestivalMapRefreshTracker
 import com.lambdadigamma.map.data.source.FestivalMapRemoteSource
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -81,6 +85,7 @@ class FestivalMapRepositoryTest {
             refreshTracker = FakeFestivalMapRefreshTracker(),
             remoteSource = remoteSource,
             parser = FestivalMapGeoJsonParser(),
+            placeDao = FakePlaceDao(),
         )
     }
 
@@ -188,4 +193,10 @@ private class FakeFestivalMapRefreshTracker : FestivalMapRefreshTracker {
     ): Boolean = true
 
     override fun markRefreshed(type: FestivalMapLayerType) = Unit
+}
+
+private class FakePlaceDao : PlaceDao {
+    override fun getPlaces(): Flow<List<PlaceCached>> = flowOf(emptyList())
+
+    override suspend fun savePlaces(places: List<PlaceCached>) = Unit
 }
