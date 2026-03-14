@@ -1,21 +1,9 @@
 package com.lambdadigamma.map.presentation
 
-import android.os.Parcelable
-import com.lambdadigamma.events.presentation.detail.EventDetailDisplayable
-import kotlinx.parcelize.Parcelize
-
-@Parcelize
-data class MapUiState(
+internal data class MapUiState(
+    val layers: List<com.lambdadigamma.map.data.model.FestivalMapLayer> = emptyList(),
+    val selectedFeature: com.lambdadigamma.map.data.model.FestivalMapFeature? = null,
     val isLoading: Boolean = false,
-    val event: EventDetailDisplayable? = null,
-    val isError: Throwable? = null,
-) : Parcelable {
-
-    sealed class PartialState {
-        data object Loading : PartialState()
-
-        data class Fetched(val event: EventDetailDisplayable) : PartialState()
-
-        data class Error(val throwable: Throwable) : PartialState()
-    }
-}
+    val isRefreshing: Boolean = false,
+    val refreshError: Throwable? = null,
+)

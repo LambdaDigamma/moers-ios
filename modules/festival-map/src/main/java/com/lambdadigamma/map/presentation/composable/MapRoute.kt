@@ -1,22 +1,19 @@
 package com.lambdadigamma.map.presentation.composable
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.lambdadigamma.map.presentation.MapScreen
 import com.lambdadigamma.map.presentation.MapViewModel
 
 @Composable
-fun MapRoute(
-//    viewModel: MapViewModel = hiltViewModel()
+internal fun MapRoute(
+    viewModel: MapViewModel = hiltViewModel(),
 ) {
+    val uiState = viewModel.uiState.collectAsStateWithLifecycle()
 
-//    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-
-//    MapScreen(
-//        uiState = uiState
-//    )
-    BasicMapImage()
-
+    MapScreen(
+        uiState = uiState.value,
+        onIntent = viewModel::acceptIntent,
+    )
 }

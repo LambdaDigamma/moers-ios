@@ -272,6 +272,6 @@ tasks.create("incrementVersionCode") {
 secrets {
     // To add your Maps API key to this project:
     // 1. Add this line to your local.properties file, where YOUR_API_KEY is your API key:
-    //        MAPS_API_KEY=YOUR_API_KEY
+    //        MOERS_MAPS_API_KEY=YOUR_API_KEY
     defaultPropertiesFileName = "local.defaults.properties"
 }

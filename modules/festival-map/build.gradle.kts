@@ -102,7 +102,6 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.android.maps.utils)
     implementation(libs.core.ktx)
-    implementation(libs.photo.compose)
     implementation(libs.store5)
     implementation(libs.okio)
     implementation(libs.ktor.client.core)
@@ -110,6 +109,7 @@ dependencies {
     implementation(project(":modules:festival-events"))
     implementation(libs.flexible.bottomsheet.material3)
     testImplementation(libs.bundles.common.test)
+    testImplementation(libs.junit)
     androidTestImplementation(libs.bundles.common.android.test)
     debugImplementation(libs.debug.compose.manifest)
 

@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="map_title">Map</string>
+    <string name="map_refresh">Refresh map</string>
+    <string name="map_refresh_error">Couldn’t refresh map data: %1$s</string>
+    <string name="map_selected_layer">Layer: %1$s</string>
+    <string name="map_selected_booth">Booth: %1$d</string>
+    <string name="map_selected_food">Food stand</string>
+    <string name="map_layer_surfaces">Festival grounds</string>
+    <string name="map_layer_camping">Camping</string>
+    <string name="map_layer_stages">Stages</string>
+    <string name="map_layer_transportation">Transportation</string>
+    <string name="map_layer_medical_service">Medical service</string>
+    <string name="map_layer_tickets">Tickets</string>
+    <string name="map_layer_toilets">Toilets</string>
+    <string name="map_layer_dorf">Dorf</string>
 </resources>

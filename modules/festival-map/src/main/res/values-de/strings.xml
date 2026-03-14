@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="map_title">Karte</string>
+    <string name="map_refresh">Karte aktualisieren</string>
+    <string name="map_refresh_error">Kartendaten konnten nicht aktualisiert werden: %1$s</string>
+    <string name="map_selected_layer">Ebene: %1$s</string>
+    <string name="map_selected_booth">Stand: %1$d</string>
+    <string name="map_selected_food">Essensstand</string>
+    <string name="map_layer_surfaces">Festivalgelände</string>
+    <string name="map_layer_camping">Camping</string>
+    <string name="map_layer_stages">Bühnen</string>
+    <string name="map_layer_transportation">Anreise</string>
+    <string name="map_layer_medical_service">Sanitätsdienst</string>
+    <string name="map_layer_tickets">Tickets</string>
+    <string name="map_layer_toilets">Toiletten</string>
+    <string name="map_layer_dorf">Dorf</string>
 </resources>
