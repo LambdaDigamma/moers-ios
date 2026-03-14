@@ -15,6 +15,7 @@ public struct EventDetailInformationRow: View {
     private let title: String
     private let startDate: Date?
     private let endDate: Date?
+    private let scheduleDisplayMode: EventScheduleDisplayMode
     private let timeDisplayMode: TimeDisplayMode
     private let location: String?
     private let artists: [String]
@@ -24,6 +25,7 @@ public struct EventDetailInformationRow: View {
         title: String,
         startDate: Date?,
         endDate: Date?,
+        scheduleDisplayMode: EventScheduleDisplayMode,
         timeDisplayMode: TimeDisplayMode,
         location: String? = nil,
         artists: [String] = [],
@@ -32,6 +34,7 @@ public struct EventDetailInformationRow: View {
         self.title = title
         self.startDate = startDate
         self.endDate = endDate
+        self.scheduleDisplayMode = scheduleDisplayMode
         self.timeDisplayMode = timeDisplayMode
         self.location = location
         self.artists = artists
@@ -69,29 +72,39 @@ public struct EventDetailInformationRow: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             
-            Label {
-                
-                HStack {
+            if scheduleDisplayMode.showsDateComponent {
+                Label {
                     
-                    if timeDisplayMode == .none {
-                        Text(EventPackageStrings.notYetScheduled)
-                    } else if let startDate, isOpenEnd {
-                        Text(startDate, style: .time)
-                    } else if let dateRange = EventUtilities.dateRange(startDate: startDate, endDate: endDate) {
-                        Text(dateRange)
-                    } else {
-                        Text(EventPackageStrings.notYetScheduled)
+                    HStack {
+                        
+                        if timeDisplayMode == .date, let startDate {
+                            if let endDate, !Calendar.current.isDate(startDate, inSameDayAs: endDate) {
+                                Text(startDate, style: .date) +
+                                Text(" - ") +
+                                Text(endDate, style: .date)
+                            } else {
+                                Text(startDate, style: .date)
+                            }
+                        } else if timeDisplayMode == .none {
+                            Text(EventPackageStrings.notYetScheduled)
+                        } else if let startDate, isOpenEnd {
+                            Text(startDate, style: .time)
+                        } else if let dateRange = EventUtilities.dateRange(startDate: startDate, endDate: endDate) {
+                            Text(dateRange)
+                        } else {
+                            Text(EventPackageStrings.notYetScheduled)
+                        }
+                        
+                        Spacer()
+                        
                     }
                     
-                    Spacer()
-                    
+                } icon: {
+                    Image(systemName: "calendar.circle")
+                        .frame(minWidth: 20)
                 }
-                
-            } icon: {
-                Image(systemName: "calendar.circle")
-                    .frame(minWidth: 20)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
             
             Label {
                 
@@ -170,6 +183,7 @@ struct EventDetailInformationRow_Previews: PreviewProvider {
             title: "SEABROOK TRIO (US)",
             startDate: Date(timeIntervalSinceNow: 60 * 5),
             endDate: Date(timeIntervalSinceNow: 60 * 45),
+            scheduleDisplayMode: .dateTime,
             timeDisplayMode: .relative,
             location: nil,
             artists: ["Anna Webber (sax)","Max Johnson (bass)","Michael Sarin (drums)"]
@@ -181,6 +195,7 @@ struct EventDetailInformationRow_Previews: PreviewProvider {
             title: "SEABROOK TRIO (US)",
             startDate: Date(timeIntervalSinceNow: 60 * 5),
             endDate: Date(timeIntervalSinceNow: 60 * 45),
+            scheduleDisplayMode: .dateTime,
             timeDisplayMode: .live,
             location: nil,
             artists: ["Anna Webber (sax)","Max Johnson (bass)","Michael Sarin (drums)"]

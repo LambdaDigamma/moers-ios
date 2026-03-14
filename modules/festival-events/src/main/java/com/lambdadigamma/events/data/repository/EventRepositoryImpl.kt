@@ -174,6 +174,23 @@ class EventRepositoryImpl @Inject constructor(
                             }
                         TimetableSection(events = sectionEvents, range = sections.first)
                     }
+                    .toMutableList()
+
+                val undatedEvents = events
+                    .filter { it.event.startDate == null }
+                    .map { item ->
+                        item.event.toDomainModel().apply {
+                            place = item.place?.toDomainModel()
+                            isFavorite = item.isLiked
+                        }.toPresentationModel()
+                    }
+
+                if (undatedEvents.isNotEmpty()) {
+                    sections += TimetableSection(
+                        events = undatedEvents,
+                        isUndated = true,
+                    )
+                }
 
                 TimetableData(sections = sections, currentIndex = 0)
             }
@@ -326,6 +343,23 @@ class EventRepositoryImpl @Inject constructor(
                             }
                         FavoriteEventsSection(events = sectionEvents, range = sections.first)
                     }
+                    .toMutableList()
+
+                val undatedEvents = events
+                    .filter { it.event!!.event.startDate == null }
+                    .map { item ->
+                        item.event!!.event.toDomainModel().apply {
+                            place = item.event.place?.toDomainModel()
+                            isFavorite = true
+                        }.toPresentationModel()
+                    }
+
+                if (undatedEvents.isNotEmpty()) {
+                    sections += FavoriteEventsSection(
+                        events = undatedEvents,
+                        isUndated = true,
+                    )
+                }
 
                 FavoriteEventsData(sections = sections, currentIndex = 0)
             }

@@ -120,9 +120,26 @@ public struct EventCard: View {
                         .lineLimit(1)
                         
                     }
+
+                case .date:
+                    if let startDate = viewModel.startDate {
+                        Group {
+                            Text(startDate, style: .date) +
+                            (viewModel.location != nil ? Text(" · \(viewModel.location ?? "")") : Text(""))
+                        }
+                        .lineLimit(1)
+                    } else if let location = viewModel.location {
+                        Text(location)
+                            .lineLimit(1)
+                    }
                     
                 case .none:
-                    Text("Keine Zeit")
+                    if let location = viewModel.location {
+                        Text(location)
+                            .lineLimit(1)
+                    } else {
+                        Text("Keine Zeit")
+                    }
                     
             }
             
@@ -151,7 +168,7 @@ struct EventCard_Previews: PreviewProvider {
             startDate: Date(),
             endDate: Date().addingTimeInterval(60 * 30),
             location: "Bettenkamper Meer",
-            isPreview: false
+            scheduleDisplayMode: .dateTime
         ))
         .padding()
         .preferredColorScheme(.dark)

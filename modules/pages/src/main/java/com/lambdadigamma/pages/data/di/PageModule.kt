@@ -33,7 +33,7 @@ internal object PageModule {
         @ApplicationContext context: Context
     ): PageService {
         return ServiceFactory.getService(
-            baseUrl = "https://app.moers-festival.de/api/v1/",
+            baseUrl = "https://moers.app/api/v1/festival/",
             gsonBuilder = { gsonBuilder ->
                 gsonBuilder
                     .registerTypeAdapter(MediaCollectionsContainer::class.java, MediaCollectionsContainerDeserializer())

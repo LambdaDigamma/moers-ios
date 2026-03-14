@@ -58,7 +58,7 @@ public class DayEventsViewModel: ObservableObject, Identifiable {
                         location: $0.place?.name,
                         media: $0.mediaCollections.getFirstMedia(for: "header"),
                         isOpenEnd: $0.extras?.openEnd ?? false,
-                        isPreview: $0.isPreview
+                        scheduleDisplayMode: $0.scheduleDisplayMode
                     )
                 }
                 

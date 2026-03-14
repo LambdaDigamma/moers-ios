@@ -9,6 +9,20 @@ import Core
 import Foundation
 import CoreLocation
 
+public enum EventScheduleDisplayMode: String, Codable, Equatable, Hashable {
+    case hidden = "hidden"
+    case date = "date"
+    case dateTime = "date_time"
+
+    public var showsDateComponent: Bool {
+        self != .hidden
+    }
+
+    public var showsTimeComponent: Bool {
+        self == .dateTime
+    }
+}
+
 public struct EventExtras: Codable, Equatable, Hashable {
     
     // Common Attributes
@@ -36,6 +50,7 @@ public struct EventExtras: Codable, Equatable, Hashable {
     public var isMovingAct: Bool? = nil
     public var shape: [[Double]]? = nil
     public var tickets: String? = nil
+    public var scheduleDisplay: EventScheduleDisplayMode? = nil
     public var isPreview: Bool? = nil
     
     enum CodingKeys: String, CodingKey {
@@ -58,6 +73,7 @@ public struct EventExtras: Codable, Equatable, Hashable {
         case isMovingAct
         case shape
         case tickets
+        case scheduleDisplay = "schedule_display"
         case isPreview = "is_preview"
     }
     
@@ -79,6 +95,7 @@ public struct EventExtras: Codable, Equatable, Hashable {
         isMovingAct: Bool? = nil,
         shape: [[Double]]? = nil,
         tickets: String? = nil,
+        scheduleDisplay: EventScheduleDisplayMode? = nil,
         isPreview: Bool? = nil
     ) {
         
@@ -100,6 +117,7 @@ public struct EventExtras: Codable, Equatable, Hashable {
         self.isMovingAct = isMovingAct
         self.shape = shape
         self.tickets = tickets
+        self.scheduleDisplay = scheduleDisplay
         self.isPreview = isPreview
         
     }

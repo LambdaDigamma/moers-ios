@@ -7,7 +7,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -18,10 +18,9 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.ExperimentalTextApi
+import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.UrlAnnotation
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,7 +35,7 @@ fun AppInformationRoute(onBack: () -> Unit) {
 
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalTextApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppInformationScreen(onBack: () -> Unit) {
 
@@ -50,7 +49,7 @@ fun AppInformationScreen(onBack: () -> Unit) {
             navigationIcon = {
                 IconButton(onClick = onBack) {
                     Icon(
-                        imageVector = Icons.Default.ArrowBack,
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = stringResource(R.string.navigation_back)
                     )
                 }
@@ -84,11 +83,10 @@ fun AppInformationScreen(onBack: () -> Unit) {
                             textDecoration = TextDecoration.Underline
                         )
                     )
-                    this.addUrlAnnotation(
-                        start = this.length,
-                        end = this.length + "moers-festival.de".length,
-                        urlAnnotation = UrlAnnotation("https://www.moers-festival.de")
-                    )
+                    this.pushLink(LinkAnnotation.Url("https://www.moers-festival.de"))
+                    append("moers-festival.de")
+                    this.pop()
+                    this.pop()
                     appendLine()
 
                 }

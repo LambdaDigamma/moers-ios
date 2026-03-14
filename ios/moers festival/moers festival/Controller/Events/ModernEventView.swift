@@ -94,6 +94,7 @@ public struct ModernEventView: View {
                             title: event.name,
                             startDate: screenData.startDate,
                             endDate: screenData.endDate,
+                            scheduleDisplayMode: screenData.scheduleDisplayMode,
                             timeDisplayMode: screenData.timeMode,
                             location: viewModel.location?.name,
                             artists: event.artists?.compactMap { $0 } ?? [],

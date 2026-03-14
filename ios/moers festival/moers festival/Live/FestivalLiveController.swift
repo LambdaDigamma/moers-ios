@@ -19,7 +19,7 @@ public class FestivalLiveController: DefaultHostingController {
     
     public override init() {
         
-        var components = URLComponents(string: "https://archiv.moers-festival.de/festival22/livestream")!
+        var components = URLComponents(string: "https://moers.app/live")!
         
         let queryStandalone = URLQueryItem(name: "standalone", value: "true")
         components.queryItems = [queryStandalone]

@@ -13,10 +13,13 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ScrollableTabRow
+import androidx.compose.material3.SecondaryScrollableTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
+import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -29,15 +32,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.swiperefresh.SwipeRefresh
-import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.lambdadigamma.events.R
 import com.lambdadigamma.events.presentation.composable.EventItem
 import com.lambdadigamma.events.presentation.timetable.TimetableIntent
 import com.lambdadigamma.events.presentation.timetable.TimetableUiState
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun TimetableContent(
     modifier: Modifier = Modifier,
@@ -69,7 +70,7 @@ fun TimetableContent(
             .fillMaxSize(),
     ) {
         if (titles.isNotEmpty()) {
-            ScrollableTabRow(
+            SecondaryScrollableTabRow(
                 selectedTabIndex = selectedIndex,
                 edgePadding = 0.dp
             ) {
@@ -95,8 +96,8 @@ fun TimetableContent(
             }
         }
 
-        SwipeRefresh(
-            state = rememberSwipeRefreshState(uiState.isLoading),
+        PullToRefreshBox(
+            isRefreshing = uiState.isLoading,
             onRefresh = { onIntent(TimetableIntent.RefreshEvents) },
             modifier = Modifier
                 .fillMaxSize(),

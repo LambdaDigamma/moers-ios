@@ -73,9 +73,24 @@ public struct EventSubtitleView: View {
                         .lineLimit(1)
                         
                     }
+
+                case .date:
+                    if let startDate = startDate {
+                        Group {
+                            Text(startDate, style: .date) +
+                            (location != nil ? Text(" · \(location ?? "")") : Text(""))
+                        }
+                        .lineLimit(1)
+                    } else if let location = location {
+                        Text(location)
+                    }
                     
                 case .none:
-                    Text("Keine Zeit")
+                    if let location = location {
+                        Text(location)
+                    } else {
+                        Text("Keine Zeit")
+                    }
                     
             }
             

@@ -45,7 +45,7 @@ public class PageViewModel: ObservableObject {
                 
             } receiveValue: { (page: Page) in
                 
-                if let slug = page.slug, let url = URL(string: "https://archiv.moers-festival.de/\(slug)") {
+                if let slug = page.slug, let url = URL(string: "https://moers.app/\(slug)") {
                     
                     if var components = URLComponents(url: url, resolvingAgainstBaseURL: false) {
                     

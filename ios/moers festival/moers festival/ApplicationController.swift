@@ -48,7 +48,7 @@ class ApplicationController: NSObject, ApplicationControlling {
         trackerManager: TrackerManagerProtocol = TrackerManager(storageManager: StorageManager())
     ) {
         
-        ApplicationServerConfiguration.baseURL = "https://archiv.moers-festival.de/api/v1/"
+        ApplicationServerConfiguration.baseURL = "https://moers.app/api/v1/festival/"
         
         EventPackageConfiguration.accentColor = UIColor(named: "AccentColor")!
         EventPackageConfiguration.onAccentColor = UIColor(named: "OnAccent")!
@@ -115,16 +115,19 @@ class ApplicationController: NSObject, ApplicationControlling {
                 
                 if customUrl.contains("http://") {
                     customUrl = customUrl.replacingOccurrences(of: "http://", with: "")
-                    environment = ServerEnvironment(scheme: "http", host: customUrl, pathPrefix: "/api/v1")
+                    environment = ServerEnvironment(scheme: "http", host: customUrl, pathPrefix: "/api/v1/festival")
                 } else if customUrl.contains("https://") {
                     customUrl = customUrl.replacingOccurrences(of: "https://", with: "")
-                    environment = ServerEnvironment(scheme: "https", host: customUrl, pathPrefix: "/api/v1")
+                    environment = ServerEnvironment(scheme: "https", host: customUrl, pathPrefix: "/api/v1/festival")
                 } else {
-                    environment = ServerEnvironment(scheme: "https", host: customUrl, pathPrefix: "/api/v1")
+                    environment = ServerEnvironment(scheme: "https", host: customUrl, pathPrefix: "/api/v1/festival")
                 }
                 
             case "production":
                 environment = .production
+
+            case "staging":
+                environment = .staging
                 
             case "local":
                 environment = .local

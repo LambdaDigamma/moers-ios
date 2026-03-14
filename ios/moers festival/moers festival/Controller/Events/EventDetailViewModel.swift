@@ -20,6 +20,7 @@ public struct EventDetailScreenData {
     
     public var startDate: Date?
     public var endDate: Date?
+    public var scheduleDisplayMode: EventScheduleDisplayMode
     public var timeMode: TimeDisplayMode
     
 }
@@ -79,10 +80,11 @@ public class EventDetailViewModel: StandardViewModel {
                     self.screenData = .init(
                         startDate: event.startDate,
                         endDate: event.endDate,
+                        scheduleDisplayMode: event.scheduleDisplayMode,
                         timeMode: EventUtilities.timeDisplayMode(
                             startDate: event.startDate,
                             endDate: event.endDate,
-                            isPreview: event.isPreview
+                            scheduleDisplayMode: event.scheduleDisplayMode
                         )
                     )
                 }
@@ -118,10 +120,11 @@ public class EventDetailViewModel: StandardViewModel {
                     self.screenData = .init(
                         startDate: event.startDate,
                         endDate: event.endDate,
+                        scheduleDisplayMode: event.scheduleDisplayMode,
                         timeMode: EventUtilities.timeDisplayMode(
                             startDate: event.startDate,
                             endDate: event.endDate,
-                            isPreview: event.isPreview
+                            scheduleDisplayMode: event.scheduleDisplayMode
                         )
                     )
                 }

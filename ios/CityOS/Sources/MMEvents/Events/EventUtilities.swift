@@ -9,6 +9,7 @@ import Foundation
 
 public enum TimeDisplayMode {
     case none
+    case date
     case range
     case relative
     case live
@@ -17,6 +18,8 @@ public enum TimeDisplayMode {
         switch self {
             case .none:
                 return "none"
+            case .date:
+                return "date"
             case .range:
                 return "range"
             case .relative:
@@ -66,10 +69,18 @@ public enum EventUtilities {
         
     }
     
-    public static func timeDisplayMode(startDate: Date?, endDate: Date?, isPreview: Bool) -> TimeDisplayMode {
-        
-        if isPreview {
+    public static func timeDisplayMode(
+        startDate: Date?,
+        endDate: Date?,
+        scheduleDisplayMode: EventScheduleDisplayMode
+    ) -> TimeDisplayMode {
+
+        if !scheduleDisplayMode.showsDateComponent {
             return .none
+        }
+
+        if !scheduleDisplayMode.showsTimeComponent {
+            return startDate == nil ? .none : .date
         }
         
         guard let startDate = startDate else {

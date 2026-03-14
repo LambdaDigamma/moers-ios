@@ -31,6 +31,7 @@ import com.lambdadigamma.core.geo.Point
 import com.lambdadigamma.core.ui.MoersFestivalTheme
 import com.lambdadigamma.core.ui.formatted
 import com.lambdadigamma.core.ui.formattedShort
+import com.lambdadigamma.events.data.local.model.ScheduleDisplayMode
 import com.lambdadigamma.events.R
 import com.lambdadigamma.events.presentation.EventDisplayable
 import com.lambdadigamma.events.presentation.detail.PlaceDisplayable
@@ -44,7 +45,19 @@ import java.util.TimeZone
 @Composable
 fun EventItem(event: EventDisplayable, onEventClick: (Int) -> Unit) {
 
-    val timeDescription = if (event.isOpenEnd) {
+    val timeDescription = if (!event.showsDateComponent) {
+        null
+    } else if (!event.showsTimeComponent) {
+        if (event.startDate != null) {
+            DateUtils.formatDateTime(
+                LocalContext.current,
+                event.startDate.time,
+                DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_ABBREV_MONTH or DateUtils.FORMAT_SHOW_WEEKDAY
+            )
+        } else {
+            stringResource(R.string.date_tba)
+        }
+    } else if (event.isOpenEnd) {
         if (event.startDate != null) {
             DateUtils.formatDateTime(
                 LocalContext.current,
@@ -64,6 +77,8 @@ fun EventItem(event: EventDisplayable, onEventClick: (Int) -> Unit) {
         stringResource(R.string.location_unknown)
     }
 
+    val supportingText = listOfNotNull(timeDescription, locationDescription).joinToString(" • ")
+
     Column {
         ListItem(
             modifier = Modifier.clickable { onEventClick(event.id) },
@@ -81,7 +96,7 @@ fun EventItem(event: EventDisplayable, onEventClick: (Int) -> Unit) {
             },
             supportingContent = {
                 BasicText(
-                    text = "$timeDescription • $locationDescription",
+                    text = supportingText,
                     style = MaterialTheme.typography.bodyLarge
                         .copy(
                             color = MaterialTheme.colorScheme.onBackground

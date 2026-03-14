@@ -15,6 +15,7 @@
     <string name="lineup_tba">Besetzung tba</string>
     <string name="location_unknown">Spielort tba</string>
     <string name="date_tba">Zeit tba</string>
+    <string name="no_time_yet">Noch keine Uhrzeit</string>
     <string name="is_favorite">Veranstaltung ist Favorit</string>
     <string name="no_additional_information">Keine weiteren Informationen vorhanden.</string>
     <string name="about_this_app">Informationen zur App</string>

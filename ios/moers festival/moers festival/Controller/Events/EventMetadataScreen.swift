@@ -146,30 +146,28 @@ public struct EventMetadataScreen: View {
     
     @ViewBuilder
     private func dateRow() -> some View {
-        
-        if let isPreview = viewModel.event?.isPreview, isPreview {
-            
+        if let event = viewModel.event, event.showsDateComponent {
             DetailEntry {
                 Text(EventPackageStrings.startHeader)
             } content: {
-                Text(EventPackageStrings.notYetScheduled)
-            }
-            
-        } else {
-            
-            DetailEntry {
-                Text(EventPackageStrings.startHeader)
-            } content: {
-                if let startDate = viewModel.event?.startDate {
-                    Text(startDate, style: .time) +
-                    Text(" (") +
-                    Text(startDate, style: .date) + Text(")")
+                if let startDate = event.startDate {
+                    if event.showsTimeComponent {
+                        Text(startDate, style: .time) +
+                        Text(" (") +
+                        Text(startDate, style: .date) + Text(")")
+                    } else if let endDate = event.endDate, !Calendar.current.isDate(startDate, inSameDayAs: endDate) {
+                        Text(startDate, style: .date) +
+                        Text(" - ") +
+                        Text(endDate, style: .date)
+                    } else {
+                        Text(startDate, style: .date)
+                    }
                 } else {
                     Text(EventPackageStrings.unknown)
                 }
             }
             
-            if let endDate = viewModel.event?.endDate, !(viewModel.event?.isOpenEnd ?? false) {
+            if event.showsTimeComponent, let endDate = event.endDate, !event.isOpenEnd {
                 
                 Divider()
                     .padding(.leading)
@@ -182,7 +180,6 @@ public struct EventMetadataScreen: View {
                     Text(endDate, style: .date) + Text(")")
                 }
             }
-            
         }
         
     }

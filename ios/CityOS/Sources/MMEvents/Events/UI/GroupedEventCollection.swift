@@ -134,7 +134,7 @@ struct GroupedEventCollection_Previews: PreviewProvider {
                 startDate: event.startDate,
                 endDate: event.endDate,
                 location: event.place?.name,
-                isPreview: false
+                scheduleDisplayMode: .dateTime
             )
         }
     }()

@@ -21,32 +21,23 @@ public struct TimetableScreen: View {
     public var body: some View {
         
         ZStack {
-            
-            switch displayMode {
-                case .compact:
-                    CompactEventsView(viewModel: viewModel)
-                case .images:
-                    ExtendedEventsView(viewModel: viewModel)
-                case .venueGrid:
-                    VenueEventsGrid()
+
+            if viewModel.allEventsHideSchedule {
+
+                PreviewListEventsView()
+
+            } else {
+
+                switch displayMode {
+                    case .compact:
+                        CompactEventsView(viewModel: viewModel)
+                    case .images:
+                        ExtendedEventsView(viewModel: viewModel)
+                    case .venueGrid:
+                        VenueEventsGrid()
+                }
+
             }
-            
-//            if viewModel.allEventsArePreview {
-//                
-//                PreviewListEventsView()
-//                
-//            } else {
-//                
-//                switch displayMode {
-//                    case .compact:
-//                        CompactEventsView(viewModel: viewModel)
-//                    case .images:
-//                        ExtendedEventsView(viewModel: viewModel)
-//                    case .venueGrid:
-//                        VenueEventsGrid()
-//                }
-//                
-//            }
             
         }
         .task {

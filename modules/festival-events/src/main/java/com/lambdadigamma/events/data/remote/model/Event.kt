@@ -2,6 +2,7 @@ package com.lambdadigamma.events.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 import com.lambdadigamma.events.data.local.model.EventExtras
+import com.lambdadigamma.events.data.local.model.ScheduleDisplayMode
 import com.lambdadigamma.medialibrary.MediaCollectionsContainer
 import com.lambdadigamma.pages.data.remote.model.Page
 import java.util.Date
@@ -48,4 +49,19 @@ data class Event(
             return extras?.isOpenEnd ?: false
         }
 
+    val scheduleDisplayMode: ScheduleDisplayMode
+        get() {
+            return extras?.scheduleDisplayMode
+                ?: if (extras?.isPreview == true) {
+                    ScheduleDisplayMode.DATE
+                } else {
+                    ScheduleDisplayMode.DATE_TIME
+                }
+        }
+
+    val showsDateComponent: Boolean
+        get() = scheduleDisplayMode.showsDateComponent
+
+    val showsTimeComponent: Boolean
+        get() = scheduleDisplayMode.showsTimeComponent
 }

@@ -122,7 +122,7 @@
       </LocationScenarioReference>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release (Staging)"
+      buildConfiguration = "Release (Production)"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -139,10 +139,10 @@
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Debug (Staging)">
+      buildConfiguration = "Debug (Production)">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release (Staging)"
+      buildConfiguration = "Release (Production)"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

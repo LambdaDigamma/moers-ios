@@ -25,7 +25,7 @@ public class DefaultFestivalEventService: FestivalEventService {
         
         let request = HTTPRequest(
             method: .get,
-            path: "/api/v1/festival/events/\(eventID)"
+            path: "/api/v1/festival/festival/events/\(eventID)"
         )
         
         return Deferred {
@@ -62,7 +62,7 @@ public class DefaultFestivalEventService: FestivalEventService {
         
         let request = HTTPRequest(
             method: .get,
-            path: "/api/v1/festival/events/\(eventID)"
+            path: "/api/v1/festival/festival/events/\(eventID)"
         )
         
         return request

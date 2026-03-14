@@ -25,7 +25,7 @@ struct ScanStationView: View {
                 CBScanner(
                     supportBarcode: .constant([.qr]),
                     scanInterval: .constant(5.0),
-                    mockBarCode: .constant(BarcodeData(value: "https://archiv.moers-festival.de/moers21/sonderprojekte/ausstellung/ort/1", type: .qr))
+                    mockBarCode: .constant(BarcodeData(value: "https://moers.app/moers21/sonderprojekte/ausstellung/ort/1", type: .qr))
                 ) {
                     
                     scannedQRCode($0.value)

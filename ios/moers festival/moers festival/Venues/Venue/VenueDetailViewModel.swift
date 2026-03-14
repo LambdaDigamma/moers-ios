@@ -47,7 +47,7 @@ public class VenueDetailViewModel: StandardViewModel {
             startDate: event.startDate,
             endDate: event.endDate,
             location: event.place?.name,
-            isPreview: event.isPreview
+            scheduleDisplayMode: event.scheduleDisplayMode
         )
     }
     
@@ -76,15 +76,15 @@ public class VenueDetailViewModel: StandardViewModel {
                     .map({ (event: Event) in
                         return EventListItemViewModel(
                             eventID: event.id,
-                            title: event.name,
-                            startDate: event.startDate,
-                            endDate: event.endDate,
-                            location: event.place?.name,
-                            media: event.mediaCollections.getFirstMedia(for: "header"),
-                            isOpenEnd: event.extras?.openEnd ?? false,
-                            isPreview: event.isPreview
-                        )
-                    })
+                        title: event.name,
+                        startDate: event.startDate,
+                        endDate: event.endDate,
+                        location: event.place?.name,
+                        media: event.mediaCollections.getFirstMedia(for: "header"),
+                        isOpenEnd: event.extras?.openEnd ?? false,
+                        scheduleDisplayMode: event.scheduleDisplayMode
+                    )
+                })
                 
             }
             .store(in: &cancellables)

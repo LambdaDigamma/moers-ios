@@ -1,6 +1,7 @@
 package com.lambdadigamma.events.presentation
 
 import android.os.Parcelable
+import com.lambdadigamma.events.data.local.model.ScheduleDisplayMode
 import com.lambdadigamma.events.presentation.detail.PlaceDisplayable
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
@@ -14,10 +15,17 @@ data class EventDisplayable(
     val endDate: Date?,
     val place: PlaceDisplayable?,
     val isFavorite: Boolean = false,
-    val isOpenEnd: Boolean
+    val isOpenEnd: Boolean,
+    val scheduleDisplayMode: ScheduleDisplayMode = ScheduleDisplayMode.DATE_TIME
 ) : Parcelable {
 
     @IgnoredOnParcel
-    val dateRange: ClosedRange<Date>? = EventUtilities.dateRange(startDate, endDate)
+    val showsDateComponent: Boolean = scheduleDisplayMode.showsDateComponent
+
+    @IgnoredOnParcel
+    val showsTimeComponent: Boolean = scheduleDisplayMode.showsTimeComponent
+
+    @IgnoredOnParcel
+    val dateRange: ClosedRange<Date>? = if (showsTimeComponent) EventUtilities.dateRange(startDate, endDate) else null
 
 }

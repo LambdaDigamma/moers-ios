@@ -22,6 +22,7 @@ interface PostDao {
     @Query("SELECT * FROM posts")
     fun getPosts(): Flow<List<PostCached>>
 
+    @Transaction
     @Query("SELECT * FROM posts WHERE id = :postId")
     fun getPost(postId: Int): Flow<PostWithPageCached?>
 

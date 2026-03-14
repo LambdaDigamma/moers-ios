@@ -58,7 +58,7 @@ class TicketViewModel {
     }
     
     public var url: URL {
-        return ticket.buyURL ?? URL(string: "https://www.archiv.moers-festival.de/")!
+        return ticket.buyURL ?? URL(string: "https://moers.app/")!
     }
     
     public var buyEnabled: Bool {

@@ -11,6 +11,7 @@ fun Event.toPresentationModel() = EventDisplayable(
     startDate = startDate,
     endDate = endDate,
     isOpenEnd = isOpenEnd,
+    scheduleDisplayMode = scheduleDisplayMode,
     place = place?.toPresentationModel(),
     isFavorite = isFavorite == true
 )
@@ -24,7 +25,8 @@ fun Event.toDetailPresentationModel() = EventDetailDisplayable(
     mediaCollections = mediaCollections,
     place = place?.toPresentationModel(),
     isFavorite = isFavorite == true,
-    isOpenEnd = isOpenEnd
+    isOpenEnd = isOpenEnd,
+    scheduleDisplayMode = scheduleDisplayMode
 )
 
 fun EventDetailData.toPresentationModel() = EventDetailDisplayable(
@@ -37,5 +39,6 @@ fun EventDetailData.toPresentationModel() = EventDetailDisplayable(
     blocks = page?.blocks.orEmpty(),
     place = event.place?.toPresentationModel(),
     isOpenEnd = event.isOpenEnd,
+    scheduleDisplayMode = event.scheduleDisplayMode,
     isFavorite = this.isFavorite
 )

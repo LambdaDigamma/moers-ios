@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.lambdadigamma.core.ui.MoersFestivalTheme
 import com.lambdadigamma.core.ui.formatted
+import com.lambdadigamma.events.data.local.model.ScheduleDisplayMode
 import com.lambdadigamma.events.R
 import java.util.Date
 
@@ -28,12 +29,25 @@ fun EventDetailMetadata(
     startDate: Date?,
     time: ClosedRange<Date>?,
     isOpenEnd: Boolean = false,
+    scheduleDisplayMode: ScheduleDisplayMode = ScheduleDisplayMode.DATE_TIME,
     artists: List<String>
 ) {
 
     val locationDescription = location ?: stringResource(R.string.location_unknown)
 
-    val timeDescription = if (isOpenEnd) {
+    val timeDescription = if (!scheduleDisplayMode.showsDateComponent) {
+        null
+    } else if (!scheduleDisplayMode.showsTimeComponent) {
+        if (startDate != null) {
+            DateUtils.formatDateTime(
+                LocalContext.current,
+                startDate.time,
+                DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_ABBREV_MONTH or DateUtils.FORMAT_SHOW_WEEKDAY
+            )
+        } else {
+            stringResource(R.string.date_tba)
+        }
+    } else if (isOpenEnd) {
         if (startDate != null) {
             DateUtils.formatDateTime(
                 LocalContext.current,
@@ -66,8 +80,10 @@ fun EventDetailMetadata(
                 Icon(painter = painterResource(id = R.drawable.location_on_20), contentDescription = null)
             })
 
-            LabelWithIcon(label = timeDescription) {
-                Icon(painter = painterResource(id = R.drawable.schedule_20), contentDescription = null)
+            if (timeDescription != null) {
+                LabelWithIcon(label = timeDescription) {
+                    Icon(painter = painterResource(id = R.drawable.schedule_20), contentDescription = null)
+                }
             }
 
             LabelWithIcon(label = artistsDescription) {
@@ -92,6 +108,7 @@ private fun EventDetailMetadataPreviews_Light() {
             startDate = Date(1622120400000L),
             time = Date(1622120400000L)..Date(1622127600000L),
             artists = listOf(""),
+            scheduleDisplayMode = ScheduleDisplayMode.DATE,
         )
 
     }

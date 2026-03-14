@@ -16,7 +16,7 @@ public class TimetableViewModel: ObservableObject {
     @Published public var dates: [Date] = []
     @Published var selectedDate: Date = .init()
     @Published var daysViewModels: [DayEventsViewModel] = []
-    @Published var allEventsArePreview: Bool = false
+    @Published var allEventsHideSchedule: Bool = false
     
     public var events: [EventListItemViewModel] {
         daysViewModels.map { $0.events }.reduce([], +)
@@ -43,8 +43,8 @@ public class TimetableViewModel: ObservableObject {
                 
             } receiveValue: { (events: [Event]) in
                 
-                self.allEventsArePreview = events.allSatisfy { event in
-                    event.isPreview
+                self.allEventsHideSchedule = !events.isEmpty && events.allSatisfy { event in
+                    !event.showsDateComponent
                 }
                 
                 self.dates = DateUtils.sortedUniqueDates(events.compactMap { $0.startDate })

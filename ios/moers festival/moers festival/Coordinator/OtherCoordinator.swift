@@ -105,7 +105,7 @@ public class OtherCoordinator: Coordinator {
     
     public func showLegal() {
         
-        self.showBrowser(with: URL(string: "https://archiv.moers-festival.de/impressum")!)
+        self.showBrowser(with: URL(string: "https://moers.app/impressum")!)
         
     }
     

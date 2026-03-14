@@ -1,7 +1,6 @@
 package com.lambdadigamma.moersfestival.notifications
 
 import android.Manifest
-import android.app.LauncherActivity
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent

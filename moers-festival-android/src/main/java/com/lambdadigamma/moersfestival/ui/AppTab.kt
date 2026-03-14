@@ -6,9 +6,9 @@ import com.lambdadigamma.core.navigation.NavigationDestination
 import com.lambdadigamma.moersfestival.R
 
 enum class AppTab(
-    @StringRes val title: Int,
-    @DrawableRes val inactiveIcon: Int,
-    @DrawableRes val activeIcon: Int,
+    @param:StringRes val title: Int,
+    @param:DrawableRes val inactiveIcon: Int,
+    @param:DrawableRes val activeIcon: Int,
     val route: String
 ) {
 //    DASHBOARD(

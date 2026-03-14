@@ -16,12 +16,13 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -31,8 +32,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.swiperefresh.SwipeRefresh
-import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.lambdadigamma.events.R
 import com.lambdadigamma.events.presentation.composable.EventItem
 import com.lambdadigamma.events.presentation.detail.composable.EventDetailLoading
@@ -41,7 +40,7 @@ import com.lambdadigamma.events.presentation.favorites.FavoriteEventsUiState
 import com.lambdadigamma.events.presentation.timetable.TimetableIntent
 import com.lambdadigamma.events.presentation.timetable.TimetableUiState
 
-@OptIn(ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun FavoriteEventsScreen(
     uiState: FavoriteEventsUiState,
@@ -68,8 +67,8 @@ fun FavoriteEventsScreen(
 
         val localContext = LocalContext.current
 
-        SwipeRefresh(
-            state = rememberSwipeRefreshState(uiState.isLoading),
+        PullToRefreshBox(
+            isRefreshing = uiState.isLoading,
             onRefresh = { onIntent(FavoriteEventsIntent.GetEvents) },
             modifier = Modifier
                 .padding(top = it.calculateTopPadding()),
@@ -83,7 +82,7 @@ fun FavoriteEventsScreen(
                     for ((index, section) in uiState.data.sections.withIndex()) {
 
                         stickyHeader(
-                            key = section.range.first,
+                            key = section.range?.first ?: "undated-$index",
                         ) {
 
                             Column(
@@ -99,11 +98,15 @@ fun FavoriteEventsScreen(
                                 ) {
 
                                     Text(
-                                        text = DateUtils.formatDateTime(
-                                            localContext,
-                                            section.range.first.time,
-                                            DateUtils.FORMAT_SHOW_WEEKDAY
-                                        ),
+                                        text = if (section.isUndated || section.range == null) {
+                                            stringResource(R.string.no_time_yet)
+                                        } else {
+                                            DateUtils.formatDateTime(
+                                                localContext,
+                                                section.range.first.time,
+                                                DateUtils.FORMAT_SHOW_WEEKDAY
+                                            )
+                                        },
                                         color = MaterialTheme.colorScheme.onSecondaryContainer,
                                         fontWeight = FontWeight.SemiBold,
                                     )

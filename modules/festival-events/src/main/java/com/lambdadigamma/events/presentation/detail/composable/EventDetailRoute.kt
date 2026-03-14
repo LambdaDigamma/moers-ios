@@ -2,7 +2,7 @@ package com.lambdadigamma.events.presentation.detail.composable
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.lambdadigamma.events.presentation.detail.EventDetailViewModel
 

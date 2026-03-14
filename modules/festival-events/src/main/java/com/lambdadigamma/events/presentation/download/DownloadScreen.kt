@@ -9,9 +9,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -28,7 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.lambdadigamma.core.R
 import com.lambdadigamma.core.ui.MoersFestivalTheme
@@ -63,7 +63,7 @@ fun DownloadEventsScreen(
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(
-                            imageVector = Icons.Default.ArrowBack,
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = stringResource(R.string.navigation_back)
                         )
                     }
@@ -111,7 +111,7 @@ fun DownloadEventsScreen(
 //
 //                        }
 
-//                        Divider(color = MaterialTheme.colorScheme.surfaceVariant)
+//                        HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
 //
 //                        Row(modifier = Modifier
 //                            .padding()
@@ -131,7 +131,7 @@ fun DownloadEventsScreen(
 //
 //                        }
 
-                        Divider(color = MaterialTheme.colorScheme.surfaceVariant)
+                        HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
 
                         Button(
                             modifier = Modifier
@@ -146,7 +146,7 @@ fun DownloadEventsScreen(
 
                     }
 
-                    Divider(color = MaterialTheme.colorScheme.surfaceVariant)
+                    HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
 
                 }
 
@@ -158,7 +158,7 @@ fun DownloadEventsScreen(
                         name = item.name,
                         contentState = if (item.hasPageDownloaded) DownloadEventState.DOWNLOADED else DownloadEventState.NOT_DOWNLOADED,
                     ))
-                    Divider(color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.padding(start = 16.dp))
+                    HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.padding(start = 16.dp))
                 }
 
             }

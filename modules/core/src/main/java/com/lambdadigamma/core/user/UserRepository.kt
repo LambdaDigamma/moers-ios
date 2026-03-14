@@ -12,7 +12,7 @@ import javax.inject.Inject
 const val USER_TYPE_KEY = "user.user_type"
 
 class UserRepository @Inject constructor(
-    @ApplicationContext val context: Context
+    @param:ApplicationContext private val context: Context,
 ) {
 
     private val dataStore = context.dataStore

@@ -27,7 +27,7 @@ public class DefaultLocationEventService: LocationEventService {
         
         let request = HTTPRequest(
             method: .get,
-            path: "/api/v1/locations"
+            path: "/api/v1/festival/locations"
         )
         
         return Deferred {
@@ -51,7 +51,7 @@ public class DefaultLocationEventService: LocationEventService {
         
         let request = HTTPRequest(
             method: .get,
-            path: "/api/v1/map/venues/\(id)"
+            path: "/api/v1/festival/map/venues/\(id)"
         )
         
         return Deferred {

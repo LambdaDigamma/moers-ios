@@ -10,12 +10,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.ExperimentalTextApi
+import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.ParagraphStyle
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.UrlAnnotation
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.BaselineShift
@@ -26,7 +25,6 @@ import com.lambdadigamma.prosemirror.nodes.NodeParagraph
 import com.lambdadigamma.prosemirror.nodes.NodeText
 import com.lambdadigamma.prosemirror.nodes.ProsemirrorNode
 
-@OptIn(ExperimentalTextApi::class)
 fun AnnotatedString.Builder.appendMarkdownChildren(
     parent: ProsemirrorNode, colors: ColorScheme
 ) {
@@ -70,7 +68,7 @@ fun AnnotatedString.Builder.appendMarkdownChildren(
                                 textDecoration = TextDecoration.Underline,
                                 fontWeight = FontWeight.SemiBold
                             ))
-                            pushUrlAnnotation(UrlAnnotation(mark.attrs?.href.orEmpty()))
+                            pushLink(LinkAnnotation.Url(mark.attrs?.href.orEmpty()))
                         }
                     }
                 }
@@ -106,7 +104,6 @@ fun AnnotatedString.Builder.appendMarkdownChildren(
 
 }
 
-@OptIn(ExperimentalTextApi::class)
 @Composable
 fun MarkdownText(text: AnnotatedString, style: TextStyle, modifier: Modifier = Modifier) {
     val uriHandler = LocalUriHandler.current
@@ -118,37 +115,18 @@ fun MarkdownText(text: AnnotatedString, style: TextStyle, modifier: Modifier = M
             detectTapGestures { offset ->
                 layoutResult.value?.let { layoutResult ->
                     val position = layoutResult.getOffsetForPosition(offset)
-                    text.getUrlAnnotations(position, position)
+                    text.getLinkAnnotations(position, position)
                         .firstOrNull()
                         ?.let { sa ->
-                            uriHandler.openUri(sa.item.url)
+                            val link = sa.item
+                            if (link is LinkAnnotation.Url) {
+                                uriHandler.openUri(link.url)
+                            }
                         }
-//                    text.getStringAnnotations(position, position)
-//                        .firstOrNull()
-//                        ?.let { sa ->
-//                            if (sa.tag == TAG_URL) {
-//                                uriHandler.openUri(sa.item)
-//                            }
-//                        }
                 }
             }
         },
         style = style,
-//        inlineContent = mapOf(
-//            TAG_IMAGE_URL to InlineTextContent(
-//                Placeholder(style.fontSize, style.fontSize, PlaceholderVerticalAlign.Bottom)
-//            ) {
-//                Image(
-//                    painter = rememberImagePainter(
-//                        data = it,
-//                    ),
-//                    contentDescription = null,
-//                    modifier = modifier,
-//                    alignment = Alignment.Center
-//                )
-//
-//            }
-//        ),
         onTextLayout = { layoutResult.value = it }
     )
 }

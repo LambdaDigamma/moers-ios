@@ -14,8 +14,9 @@ data class TimetableData(
 
 @Parcelize
 data class TimetableSection(
-    val range: Pair<Date, Date>,
+    val range: Pair<Date, Date>? = null,
     val events: List<EventDisplayable>,
+    val isUndated: Boolean = false,
 ): Parcelable
 
 @Immutable

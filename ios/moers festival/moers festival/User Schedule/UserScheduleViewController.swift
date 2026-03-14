@@ -90,7 +90,7 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
                                     media: nil,
                                     isOpenEnd: $0.event.toBase().extras?.openEnd ?? false,
                                     isLiked: true,
-                                    isPreview: $0.event.toBase().isPreview
+                                    scheduleDisplayMode: $0.event.toBase().scheduleDisplayMode
                                 ))
                             }
                         }

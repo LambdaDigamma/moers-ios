@@ -14,9 +14,9 @@ import Factory
 
 extension ServerEnvironment {
     
-    public static let local = ServerEnvironment(host: "moers-festival.localhost", pathPrefix: "/api/v1")
-    public static let staging = ServerEnvironment(host: "beta.moers-festival.de", pathPrefix: "/api/v1")
-    public static let production = ServerEnvironment(host: "moers.app", pathPrefix: "/api/v1")
+    public static let local = ServerEnvironment(host: "moers-festival.localhost", pathPrefix: "/api/v1/festival")
+    public static let staging = ServerEnvironment(host: "staging.moers.app", pathPrefix: "/api/v1/festival")
+    public static let production = ServerEnvironment(host: "moers.app", pathPrefix: "/api/v1/festival")
     
 }
 
@@ -75,12 +75,12 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
                 
                 if customUrl.contains("http://") {
                     customUrl = customUrl.replacingOccurrences(of: "http://", with: "")
-                    environment = ServerEnvironment(scheme: "http", host: customUrl)
+                    environment = ServerEnvironment(scheme: "http", host: customUrl, pathPrefix: "/api/v1/festival")
                 } else if customUrl.contains("https://") {
                     customUrl = customUrl.replacingOccurrences(of: "https://", with: "")
-                    environment = ServerEnvironment(scheme: "https", host: customUrl)
+                    environment = ServerEnvironment(scheme: "https", host: customUrl, pathPrefix: "/api/v1/festival")
                 } else {
-                    environment = ServerEnvironment(scheme: "https", host: customUrl)
+                    environment = ServerEnvironment(scheme: "https", host: customUrl, pathPrefix: "/api/v1/festival")
                 }
                 
             case "production":
@@ -119,7 +119,7 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
 //            }
             
             if copy.path.hasPrefix("/") == false {
-                copy.path = "/api/v1/" + copy.path
+                copy.path = "/api/v1/festival/" + copy.path
             }
             
             return copy

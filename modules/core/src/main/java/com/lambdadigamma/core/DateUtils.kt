@@ -141,7 +141,7 @@ fun Context.getColorFromAttr(
 fun parseDate(date: String, format: String): Date {
 
     val dateFormat = SimpleDateFormat(format, Locale.getDefault())
-    return dateFormat.parse(date)
+    return dateFormat.parse(date)!!
 
 }
 

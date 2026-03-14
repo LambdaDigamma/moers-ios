@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -63,10 +63,11 @@ fun EventDetailContent(event: EventDetailDisplayable) {
                 time = event.dateRange,
                 artists = event.artists,
                 startDate = event.startDate,
-                isOpenEnd = event.isOpenEnd
+                isOpenEnd = event.isOpenEnd,
+                scheduleDisplayMode = event.scheduleDisplayMode
             )
 
-            Divider(color = MaterialTheme.colorScheme.surfaceVariant)
+            HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
 
             if (event.blocks.isNotEmpty()) {
 
@@ -89,7 +90,7 @@ fun EventDetailContent(event: EventDetailDisplayable) {
 
             if (event.place != null) {
 
-                Divider(color = MaterialTheme.colorScheme.surfaceVariant)
+                HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
 
                 PlaceInformation(place = event.place, modifier = Modifier
                     .padding(16.dp)

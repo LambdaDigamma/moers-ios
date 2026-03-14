@@ -7,7 +7,7 @@
 //
 
 // Server URL
-ROOT_URL = https:/$()/archiv.moers-festival.de/
+ROOT_URL = https:/$()/moers.app/
 
 // Auth
 CLIENT_ID = 2

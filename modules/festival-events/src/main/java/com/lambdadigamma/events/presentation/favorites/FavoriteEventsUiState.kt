@@ -14,8 +14,9 @@ data class FavoriteEventsData(
 
 @Parcelize
 data class FavoriteEventsSection(
-    val range: Pair<Date, Date>,
+    val range: Pair<Date, Date>? = null,
     val events: List<EventDisplayable>,
+    val isUndated: Boolean = false,
 ): Parcelable
 
 @Immutable

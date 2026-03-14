@@ -59,7 +59,7 @@ internal object NetworkModule {
         return Retrofit
             .Builder()
             .addConverterFactory(json.asConverterFactory(contentType))
-            .baseUrl("https://app.moers-festival.de")
+            .baseUrl("https://moers.app")
             .client(okHttpClient)
             .build()
     }

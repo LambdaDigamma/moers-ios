@@ -1,6 +1,7 @@
 package com.lambdadigamma.events.presentation.detail
 
 import android.os.Parcelable
+import com.lambdadigamma.events.data.local.model.ScheduleDisplayMode
 import com.lambdadigamma.events.presentation.EventUtilities
 import com.lambdadigamma.medialibrary.MediaCollectionsContainer
 import com.lambdadigamma.pages.data.remote.model.Page
@@ -20,10 +21,17 @@ data class EventDetailDisplayable(
     val mediaCollections: MediaCollectionsContainer = MediaCollectionsContainer(),
     val blocks: List<PageBlock> = emptyList(),
     val isOpenEnd: Boolean,
+    val scheduleDisplayMode: ScheduleDisplayMode = ScheduleDisplayMode.DATE_TIME,
     val isFavorite: Boolean = false,
 ) : Parcelable {
 
     @IgnoredOnParcel
-    val dateRange: ClosedRange<Date>? = EventUtilities.dateRange(startDate, endDate)
+    val showsDateComponent: Boolean = scheduleDisplayMode.showsDateComponent
+
+    @IgnoredOnParcel
+    val showsTimeComponent: Boolean = scheduleDisplayMode.showsTimeComponent
+
+    @IgnoredOnParcel
+    val dateRange: ClosedRange<Date>? = if (showsTimeComponent) EventUtilities.dateRange(startDate, endDate) else null
 
 }

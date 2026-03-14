@@ -65,8 +65,8 @@ interface EventService {
                 .build()
 
             return Retrofit.Builder()
-                .baseUrl("https://app.moers-festival.de/api/v1/")
-//                .baseUrl("https://moers-festival.localhost/api/v1/")
+                .baseUrl("https://moers.app/api/v1/festival/")
+//                .baseUrl("https://moers-festival.localhost/api/v1/festival/")
                 .client(client)
                 .addConverterFactory(
                     GsonConverterFactory.create(
