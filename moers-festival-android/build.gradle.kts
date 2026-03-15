@@ -1,6 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
     id("com.android.application")
@@ -14,6 +16,20 @@ plugins {
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
+val versionPropertiesFile = project.file("version.properties")
+fun getCurrentVersionProperties(): Properties {
+    return Properties().apply {
+        load(FileInputStream(versionPropertiesFile))
+    }
+}
+
+object Keys {
+    const val VERSION_NAME = "VERSION_NAME"
+    const val VERSION_CODE = "VERSION_CODE"
+}
+
+val versionProperties = getCurrentVersionProperties()
+
 android {
     compileSdk = 36
     namespace = "com.lambdadigamma.moersfestival"
@@ -22,8 +38,8 @@ android {
         applicationId = "com.lambdadigamma.moersfestival"
         minSdk = 24
         targetSdk = 35
-        versionCode = 32
-        versionName = "2.7.1"
+        versionCode = versionProperties[Keys.VERSION_CODE].toString().toInt()
+        versionName = versionProperties[Keys.VERSION_NAME].toString()
     }
 
     buildFeatures {
@@ -113,4 +129,54 @@ secrets {
     // 1. Add this line to your local.properties file, where YOUR_API_KEY is your API key:
     //        FESTIVAL_MAPS_API_KEY=YOUR_API_KEY
     defaultPropertiesFileName = "local.defaults.properties"
+}
+
+tasks.create("incrementVersion") {
+    group = "versioning"
+    description = "Increments the version to make the app ready for next release."
+    doLast {
+
+        val versionProperties = getCurrentVersionProperties()
+        val versionName = versionProperties.getProperty(Keys.VERSION_NAME)
+        val mode = project.properties["mode"]?.toString()?.lowercase()
+
+        var (major, minor, patch) = versionName.split(".")
+
+        when (mode) {
+            "major" -> {
+                major = (major.toInt() + 1).toString()
+                minor = "0"
+                patch = "0"
+            }
+            "minor" -> {
+                minor = (minor.toInt() + 1).toString()
+                patch = "0"
+            }
+            else -> {
+                patch = (patch.toInt() + 1).toString()
+            }
+        }
+        var newVersion = "$major.$minor.$patch"
+
+        val overrideVersion =
+            project.properties["overrideVersion"]?.toString()?.lowercase()
+        overrideVersion?.let { newVersion = it }
+
+        versionProperties.setProperty(Keys.VERSION_NAME, newVersion)
+        versionProperties.store(versionPropertiesFile.writer(), null)
+
+    }
+}
+
+tasks.create("incrementVersionCode") {
+    group = "versioning"
+    description = "Increments the version code."
+    doLast {
+
+        val versionProperties = getCurrentVersionProperties()
+        val currentVersionCode = versionProperties[Keys.VERSION_CODE].toString().toInt()
+        versionProperties.setProperty(Keys.VERSION_CODE, (currentVersionCode + 1).toString())
+        versionProperties.store(versionPropertiesFile.writer(), null)
+
+    }
 }
