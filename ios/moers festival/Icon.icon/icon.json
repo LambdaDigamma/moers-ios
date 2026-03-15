@@ -7,7 +7,7 @@
       "layers" : [
         {
           "blend-mode" : "plus-lighter",
-          "glass" : true,
+          "glass" : false,
           "image-name" : "mf26_logo_21-25_weiss_screen.png",
           "name" : "mf26_logo_21-25_weiss_screen",
           "position" : {

@@ -35,7 +35,7 @@ interface EventService {
     @GET("events")
     suspend fun getAllEvents(): DataResponse<List<Event>>
 
-    @GET("festival/content")
+    @GET("content")
     suspend fun getContent(): DataResponse<List<Event>>
 
     @GET("events/{id}")

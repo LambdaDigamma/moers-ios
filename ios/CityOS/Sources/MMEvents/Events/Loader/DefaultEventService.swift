@@ -60,7 +60,7 @@ extension DefaultEventService {
                 case .show(let eventID):
                     return "events/\(eventID)"
                 case .downloadContent:
-                    return "festival/content"
+                    return "content"
             }
         }
     }
