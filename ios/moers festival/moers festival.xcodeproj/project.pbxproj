@@ -1371,11 +1371,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "moers festival/Utility/moers festival.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 39;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "moers\\ festival/Preview\\ Content/Preview\\ Assets.xcassets";
-				DEVELOPMENT_TEAM = 77N8D7LGCZ;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 77N8D7LGCZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/moers\\ festival",
@@ -1396,6 +1398,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development de.okfn.niederrhein.moers-festival";
 				SWIFT_OBJC_BRIDGING_HEADER = "moers festival/Utility/moers-festival-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1504,10 +1507,12 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "moers festival/Utility/moers festival.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 39;
 				DEVELOPMENT_ASSET_PATHS = "moers\\ festival/Preview\\ Content/Preview\\ Assets.xcassets";
-				DEVELOPMENT_TEAM = 77N8D7LGCZ;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 77N8D7LGCZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/moers\\ festival",
@@ -1528,6 +1533,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore de.okfn.niederrhein.moers-festival";
 				SWIFT_OBJC_BRIDGING_HEADER = "moers festival/Utility/moers-festival-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
