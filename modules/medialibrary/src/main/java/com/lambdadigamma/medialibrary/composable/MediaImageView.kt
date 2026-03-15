@@ -1,7 +1,5 @@
 package com.lambdadigamma.medialibrary.composable
 
-import android.graphics.Color
-import androidx.compose.foundation.background
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,7 +28,7 @@ fun MediaImageView(
     AsyncImage(
         model = media.fullUrl,
         contentDescription = media.alt ?: media.caption ?: media.credits,
-        modifier = modifier.background(androidx.compose.ui.graphics.Color.Red),
+        modifier = modifier,
         transform = transform,
         onState = onState,
         alignment = alignment,

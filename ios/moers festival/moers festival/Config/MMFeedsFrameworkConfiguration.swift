@@ -12,6 +12,7 @@ import ModernNetworking
 import Cache
 import MMFeeds
 import Factory
+import Combine
 
 class MMFeedsFrameworkConfiguration: BootstrappingProcedureStep {
     
@@ -50,7 +51,7 @@ class MMFeedsFrameworkConfiguration: BootstrappingProcedureStep {
             
         }
         
-        let service = DefaultPostService(loader)
+        let service = FestivalNewsPostService(loader)
         let store = PostStore(
             writer: Container.shared.appDatabase.resolve().dbWriter,
             reader: Container.shared.appDatabase.resolve().reader
@@ -77,6 +78,87 @@ class MMFeedsFrameworkConfiguration: BootstrappingProcedureStep {
         ]
         
         return MockFeedService(posts: mockedPosts)
+        
+    }
+    
+}
+
+private final class FestivalNewsPostService: PostService {
+    
+    private let loader: HTTPLoader
+    private let defaultService: DefaultPostService
+    
+    init(_ loader: HTTPLoader = URLSessionLoader()) {
+        self.loader = loader
+        self.defaultService = DefaultPostService(loader)
+    }
+    
+    func index(for feedID: Feed.ID, page: Int, perPage: Int, cacheMode: CacheMode) -> AnyPublisher<ResourceCollection<Post>, Error> {
+        
+        var request = Self.indexRequest(page: page, perPage: perPage)
+        
+        request.cachePolicy = cacheMode.policy
+        
+        return Deferred {
+            Future { promise in
+                self.loader.load(request) { result in
+                    promise(result)
+                }
+            }
+        }
+        .eraseToAnyPublisher()
+        .compactMap { $0.body }
+        .decode(type: ResourceCollection<Post>.self, decoder: Feed.decoder)
+        .map { resource in
+            ResourceCollection(
+                data: resource.data.map { post in
+                    var normalizedPost = post
+                    normalizedPost.feedID = normalizedPost.feedID ?? feedID
+                    return normalizedPost
+                },
+                links: resource.links ?? ResourceLinks(),
+                meta: resource.meta ?? ResourceMeta()
+            )
+        }
+        .eraseToAnyPublisher()
+        
+    }
+    
+    func index(for feedID: Feed.ID, page: Int, perPage: Int, cacheMode: CacheMode) async throws -> ResourceCollection<Post> {
+        
+        var request = Self.indexRequest(page: page, perPage: perPage)
+        
+        request.cachePolicy = cacheMode.policy
+        
+        let result = await loader.load(request)
+        let resource = try await result.decoding(ResourceCollection<Post>.self)
+        
+        return ResourceCollection(
+            data: resource.data.map { post in
+                var normalizedPost = post
+                normalizedPost.feedID = normalizedPost.feedID ?? feedID
+                return normalizedPost
+            },
+            links: resource.links ?? ResourceLinks(),
+            meta: resource.meta ?? ResourceMeta()
+        )
+        
+    }
+    
+    func show(for postID: Post.ID, cacheMode: CacheMode) async throws -> Resource<Post> {
+        try await defaultService.show(for: postID, cacheMode: cacheMode)
+    }
+    
+    private static func indexRequest(page: Int, perPage: Int) -> HTTPRequest {
+        
+        var request = HTTPRequest(path: "news")
+        
+        request.queryItems = [
+            URLQueryItem(name: "page[size]", value: String(perPage)),
+            URLQueryItem(name: "page[number]", value: String(page))
+        ]
+        
+        return request
         
     }
     

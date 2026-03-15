@@ -47,6 +47,10 @@ class PostRepositoryImpl @Inject constructor(
     private val pageDao: PageDao
 ) : PostRepository {
 
+    companion object {
+        private const val FESTIVAL_NEWS_FEED_ID = 3
+    }
+
     override fun getPost(postId: PostId): Flow<PostDetailData?> {
 
         return postDao.getPost(postId)
@@ -96,10 +100,17 @@ class PostRepositoryImpl @Inject constructor(
 
     override suspend fun refreshPosts() {
         postApi
-            .getPosts(size = 20, page = 1, feedId = 3)
+            .getFestivalNews(size = 20, page = 1)
             .data
-            .also { events ->
-                save(events)
+            .map { post ->
+                if (post.feedId == 0) {
+                    post.copy(feedId = FESTIVAL_NEWS_FEED_ID)
+                } else {
+                    post
+                }
+            }
+            .also { posts ->
+                save(posts)
             }
     }
 

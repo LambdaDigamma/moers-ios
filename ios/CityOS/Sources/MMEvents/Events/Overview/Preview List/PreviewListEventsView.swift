@@ -49,7 +49,7 @@ class PreviewListEventsViewModel: StandardViewModel {
                             startDate: $0.startDate,
                             endDate: $0.endDate,
                             location: $0.place?.name,
-                            media: $0.mediaCollections.getFirstMedia(for: "header"),
+                            media: $0.headerMedia,
                             isOpenEnd: $0.extras?.openEnd ?? false,
                             scheduleDisplayMode: $0.scheduleDisplayMode
                         )

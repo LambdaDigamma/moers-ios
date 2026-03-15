@@ -34,6 +34,7 @@ class NewsViewModel @Inject constructor(
             is NewsListIntent.GetNews -> getNews()
             is NewsListIntent.RefreshNews -> refreshNews()
             is NewsListIntent.ShowPost -> showPost(intent.id)
+            is NewsListIntent.OpenExternalPost -> openExternalPost(intent.url)
         }
 
     }
@@ -80,7 +81,11 @@ class NewsViewModel @Inject constructor(
     }
 
     private fun refreshNews(): Flow<NewsListUiState.PartialState> = flow {
+        emit(NewsListUiState.PartialState.Loading)
         refreshPostsUseCase()
+            .onSuccess {
+                emit(NewsListUiState.PartialState.Fetched(data = uiState.value.data))
+            }
             .onFailure {
                 emit(NewsListUiState.PartialState.Error(it))
             }
@@ -91,6 +96,12 @@ class NewsViewModel @Inject constructor(
 //            publishEvent(RocketsEvent.OpenWebBrowserWithDetails(uri))
 //        }
         publishEvent(NewsListEvents.ShowNews(id))
+
+        return emptyFlow()
+    }
+
+    private fun openExternalPost(url: String): Flow<NewsListUiState.PartialState> {
+        publishEvent(NewsListEvents.OpenExternalLink(url))
 
         return emptyFlow()
     }

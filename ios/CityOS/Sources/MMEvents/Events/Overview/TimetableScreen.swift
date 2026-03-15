@@ -40,7 +40,7 @@ public struct TimetableScreen: View {
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 8)
-                .background(Color(UIColor.secondarySystemBackground))
+                .background(Color.clear)
             }
             
             ZStack {

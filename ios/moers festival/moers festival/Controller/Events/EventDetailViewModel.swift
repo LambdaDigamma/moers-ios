@@ -73,7 +73,7 @@ public class EventDetailViewModel: StandardViewModel {
                 self.pageID = response.page?.id
                 self.event = response.event
                 self.eventID = response.event?.id
-                self.header = response.event?.mediaCollections.getFirstMedia(for: "header")
+                self.header = response.event?.headerMedia
                 self.location = response.place
 
                 if let event = response.event {
@@ -113,7 +113,7 @@ public class EventDetailViewModel: StandardViewModel {
 
                 self.pageID = event?.pageID
                 self.event = event
-                self.header = event?.mediaCollections.getFirstMedia(for: "header")
+                self.header = event?.headerMedia
                 self.location = event?.place
 
                 if let event {

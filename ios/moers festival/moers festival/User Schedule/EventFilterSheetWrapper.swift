@@ -7,6 +7,9 @@ struct EventFilterSheetWrapper: View {
     let isFavoritesFilterEnabled: Bool
     
     var body: some View {
-        EventFilterSheet(filter: $box.filter, isFavoritesFilterEnabled: isFavoritesFilterEnabled)
+        EventFilterSheet(
+            filter: $box.filter,
+            isFavoritesFilterEnabled: isFavoritesFilterEnabled
+        )
     }
 }

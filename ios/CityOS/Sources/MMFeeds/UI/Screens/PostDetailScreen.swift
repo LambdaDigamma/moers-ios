@@ -63,7 +63,7 @@ struct PostDetailScreen: View {
                 
                 viewModel.pageState.hasResource { (page: Page) in
                     
-                    if let media = post.mediaCollections?.getFirstMedia(for: "insel") {
+                    if let media = post.headerMedia {
                         
                         GenericMediaView(media: media, resizingMode: .aspectFill)
                             .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fill)

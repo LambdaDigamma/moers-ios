@@ -25,7 +25,7 @@ public struct InstagramPostView: View {
         
         VStack(alignment: .leading, spacing: 0) {
             
-            if let media = post.mediaCollections?.getFirstMedia(for: "default") {
+            if let media = post.headerMedia {
                 
                 GenericMediaView(media: media, resizingMode: .aspectFill)
                     .aspectRatio(post.mediaAspectRatio(), contentMode: .fit)

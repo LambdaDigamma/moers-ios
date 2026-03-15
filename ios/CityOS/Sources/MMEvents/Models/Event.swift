@@ -33,6 +33,12 @@ public struct Event: BaseEvent, Equatable, Hashable {
     
     public var mediaCollections: MediaCollectionsContainer
     
+    public var headerMedia: Media? {
+        return mediaCollections.getFirstMedia(for: "header")
+            ?? mediaCollections.getFirstMedia(for: "default")
+            ?? mediaCollections.getFirstMedia(for: "insel")
+    }
+    
     public init(
         id: ID,
         name: String,

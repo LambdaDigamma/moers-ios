@@ -10,4 +10,6 @@ sealed class NewsListIntent {
 
     data class ShowPost(val id: Int) : NewsListIntent()
 
+    data class OpenExternalPost(val url: String) : NewsListIntent()
+
 }

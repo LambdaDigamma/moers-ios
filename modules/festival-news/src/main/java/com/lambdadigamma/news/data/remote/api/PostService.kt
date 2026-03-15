@@ -14,7 +14,6 @@ import com.lambdadigamma.events.data.remote.model.EventOverviewResponse
 import com.lambdadigamma.medialibrary.MediaCollectionsContainer
 import com.lambdadigamma.medialibrary.MediaCollectionsContainerDeserializer
 import com.lambdadigamma.medialibrary.MediaCollectionsContainerSerializer
-import com.lambdadigamma.news.data.remote.model.FeedId
 import com.lambdadigamma.news.data.remote.model.Post
 import com.lambdadigamma.pages.data.remote.api.registerPageBlockTypeAdapter
 import okhttp3.Cache
@@ -30,9 +29,8 @@ import java.util.Date
 
 interface PostService {
 
-    @GET("feeds/{id}/posts")
-    suspend fun getPosts(
-        @Path("id") feedId: FeedId,
+    @GET("news")
+    suspend fun getFestivalNews(
         @Query("page[size]") size: Int,
         @Query("page[number]") page: Int,
     ): DataResponse<List<Post>>

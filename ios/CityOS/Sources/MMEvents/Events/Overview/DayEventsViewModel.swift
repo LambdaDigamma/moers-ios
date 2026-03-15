@@ -86,7 +86,7 @@ public class DayEventsViewModel: ObservableObject, Identifiable {
                         startDate: event.startDate,
                         endDate: event.endDate,
                         location: event.place?.name,
-                        media: event.mediaCollections.getFirstMedia(for: "header"),
+                        media: event.headerMedia,
                         isOpenEnd: event.extras?.openEnd ?? false,
                         isLiked: favoriteIDs.contains(Int64(event.id)),
                         scheduleDisplayMode: event.scheduleDisplayMode

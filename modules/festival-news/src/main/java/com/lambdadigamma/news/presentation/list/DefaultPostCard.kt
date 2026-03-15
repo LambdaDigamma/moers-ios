@@ -22,7 +22,7 @@ fun DefaultPostCard(post: PostDisplayable, modifier: Modifier = Modifier, onClic
 
     Card(onClick) {
 
-        post.mediaCollections.getFirstMedia("default")?.let { media ->
+        (post.mediaCollections.getFirstMedia("header") ?: post.mediaCollections.getFirstMedia("default"))?.let { media ->
             MediaImageView(
                 media = media,
                 alignment = Alignment.TopCenter,
