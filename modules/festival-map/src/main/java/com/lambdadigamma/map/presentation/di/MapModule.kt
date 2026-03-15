@@ -20,6 +20,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dagger.multibindings.IntoSet
+import java.time.Clock
 import javax.inject.Singleton
 
 @Module
@@ -55,5 +56,11 @@ internal object MapServiceModule {
     @Singleton
     fun provideFgdService(): FGDService {
         return RetrofitClient.retrofit.create(FGDService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideClock(): Clock {
+        return Clock.systemDefaultZone()
     }
 }

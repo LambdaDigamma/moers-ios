@@ -25,4 +25,7 @@
     <string name="download_timetable_cta">Download</string>
     <string name="content">Content</string>
     <string name="no_favorites">Put together your own plan for the moers festival.</string>
+    <string name="venue_detail_events">Events at this venue</string>
+    <string name="venue_detail_no_events">No events are currently assigned to this venue.</string>
+    <string name="venue_detail_not_found">Venue not found.</string>
 </resources>

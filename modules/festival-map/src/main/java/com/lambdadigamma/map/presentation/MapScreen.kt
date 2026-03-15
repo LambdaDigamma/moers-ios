@@ -1,27 +1,33 @@
 package com.lambdadigamma.map.presentation
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Refresh
-import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.lambdadigamma.core.ui.TopBar
 import com.lambdadigamma.map.R
 import com.lambdadigamma.map.presentation.composable.FestivalMapView
 import com.lambdadigamma.map.presentation.composable.MapDrawerContent
@@ -32,55 +38,64 @@ import com.lambdadigamma.map.presentation.composable.MapSelectionCard
 internal fun MapScreen(
     uiState: MapUiState,
     onIntent: (MapIntent) -> Unit,
+    onShowPlace: (Long) -> Unit,
 ) {
     val scaffoldState = rememberBottomSheetScaffoldState()
 
-    BottomSheetScaffold(
-        scaffoldState = scaffoldState,
-        sheetPeekHeight = 168.dp,
-        sheetDragHandle = { BottomSheetDefaults.DragHandle() },
-        topBar = {
-            TopBar(
-                title = stringResource(R.string.map_title),
-                actions = {
-                    IconButton(
-                        enabled = !uiState.isRefreshing,
-                        onClick = { onIntent(MapIntent.Refresh) },
-                    ) {
-                        Icon(
-                            imageVector = Icons.Rounded.Refresh,
-                            contentDescription = stringResource(R.string.map_refresh),
-                        )
-                    }
-                },
-            )
-        },
-        sheetContent = {
-            MapDrawerContent(
-                uiState = uiState,
-                onIntent = onIntent,
-            )
-        },
-    ) { paddingValues ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues),
-        ) {
+    BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+        val sheetTopInset = maxHeight * 0.1f
+        val drawerMinContentHeight = maxHeight - sheetTopInset
+
+        Box(modifier = Modifier.fillMaxSize()) {
             FestivalMapView(
                 uiState = uiState,
                 onIntent = onIntent,
                 modifier = Modifier.fillMaxSize(),
             )
 
+            BottomSheetScaffold(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = sheetTopInset),
+                scaffoldState = scaffoldState,
+                sheetPeekHeight = 168.dp,
+                sheetDragHandle = { PassiveDragHandle() },
+                containerColor = Color.Transparent,
+                sheetContent = {
+                    MapDrawerContent(
+                        uiState = uiState,
+                        onIntent = onIntent,
+                        onShowPlace = onShowPlace,
+                        minContentHeight = drawerMinContentHeight,
+                    )
+                },
+            ) { _ ->
+                Box(modifier = Modifier.fillMaxSize())
+            }
+
             Box(
                 modifier = Modifier
                     .align(Alignment.TopCenter)
-                    .padding(16.dp),
+                    .statusBarsPadding()
+                    .padding(top = 16.dp, start = 16.dp, end = 16.dp),
             ) {
                 if (uiState.isRefreshing) {
                     LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
                 }
+            }
+
+            FilledIconButton(
+                enabled = !uiState.isRefreshing,
+                onClick = { onIntent(MapIntent.Refresh) },
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .statusBarsPadding()
+                    .padding(top = 12.dp, end = 16.dp),
+            ) {
+                Icon(
+                    imageVector = Icons.Rounded.Refresh,
+                    contentDescription = stringResource(R.string.map_refresh),
+                )
             }
 
             uiState.refreshError?.localizedMessage
@@ -89,7 +104,8 @@ internal fun MapScreen(
                     ElevatedCard(
                         modifier = Modifier
                             .align(Alignment.TopCenter)
-                            .padding(top = 24.dp, start = 16.dp, end = 16.dp),
+                            .statusBarsPadding()
+                            .padding(top = 64.dp, start = 16.dp, end = 16.dp),
                     ) {
                         Text(
                             text = stringResource(R.string.map_refresh_error, message),
@@ -103,15 +119,30 @@ internal fun MapScreen(
                     selection = selection,
                     modifier = Modifier
                         .align(Alignment.BottomCenter)
-                        .padding(start = 16.dp, end = 16.dp, bottom = 184.dp),
+                        .padding(start = 16.dp, end = 16.dp, bottom = 180.dp),
                 )
             }
 
             if (uiState.isLoading && uiState.layers.isEmpty()) {
                 CircularProgressIndicator(
                     modifier = Modifier.align(Alignment.Center),
+                    color = MaterialTheme.colorScheme.primary,
                 )
             }
         }
     }
+}
+
+@Composable
+private fun PassiveDragHandle() {
+    Box(
+        modifier = Modifier
+            .padding(vertical = 8.dp)
+            .width(52.dp)
+            .height(6.dp)
+            .background(
+                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.9f),
+                shape = RoundedCornerShape(percent = 50),
+            ),
+    )
 }

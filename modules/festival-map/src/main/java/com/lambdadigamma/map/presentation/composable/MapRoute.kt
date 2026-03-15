@@ -8,6 +8,7 @@ import com.lambdadigamma.map.presentation.MapViewModel
 
 @Composable
 internal fun MapRoute(
+    onShowPlace: (Long) -> Unit,
     viewModel: MapViewModel = hiltViewModel(),
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
@@ -15,5 +16,6 @@ internal fun MapRoute(
     MapScreen(
         uiState = uiState.value,
         onIntent = viewModel::acceptIntent,
+        onShowPlace = onShowPlace,
     )
 }

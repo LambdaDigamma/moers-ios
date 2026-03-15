@@ -9,8 +9,18 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface PlaceDao {
 
-    @Query("SELECT * FROM places ORDER BY name ASC")
-    fun getPlaces(): Flow<List<PlaceCached>>
+    @Query(
+        """
+        SELECT DISTINCT places.* FROM places
+        INNER JOIN events ON events.placeId = places.id
+        WHERE events.collection = :collection
+        ORDER BY places.name ASC
+        """
+    )
+    fun getFestivalPlaces(collection: String): Flow<List<PlaceCached>>
+
+    @Query("SELECT * FROM places WHERE id = :id LIMIT 1")
+    fun getPlace(id: Long): Flow<PlaceCached?>
 
     @Upsert
     suspend fun savePlaces(places: List<PlaceCached>)

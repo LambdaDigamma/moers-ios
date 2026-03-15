@@ -22,6 +22,7 @@ data class Event(
 
     @SerializedName("url") var url: String? = null,
     @SerializedName("category") var category: String? = null,
+    @SerializedName("collection") var collection: String? = null,
 
     @SerializedName("place") var place: Place? = null,
     @SerializedName("page") var page: Page? = null,

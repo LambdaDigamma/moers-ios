@@ -14,6 +14,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import java.time.Clock
+import java.time.LocalDate
 import javax.inject.Inject
 
 internal interface FestivalMapRepository {
@@ -31,6 +33,7 @@ internal class DefaultFestivalMapRepository @Inject constructor(
     private val remoteSource: FestivalMapRemoteSource,
     private val parser: FestivalMapGeoJsonParser,
     private val placeDao: PlaceDao,
+    private val clock: Clock = Clock.systemDefaultZone(),
 ) : FestivalMapRepository {
 
     override suspend fun loadLayers(): List<FestivalMapLayer> = withContext(Dispatchers.IO) {
@@ -38,7 +41,7 @@ internal class DefaultFestivalMapRepository @Inject constructor(
     }
 
     override fun observePlaces(): Flow<List<FestivalMapPlace>> {
-        return placeDao.getPlaces()
+        return placeDao.getFestivalPlaces(currentFestivalCollection(clock))
             .map { places ->
                 places.map(PlaceCached::toFestivalMapPlace)
             }
@@ -97,6 +100,11 @@ internal class DefaultFestivalMapRepository @Inject constructor(
     private companion object {
         const val REFRESH_TTL_MINUTES = 120L
     }
+}
+
+internal fun currentFestivalCollection(clock: Clock): String {
+    val year = LocalDate.now(clock).year % 100
+    return "festival%02d".format(year)
 }
 
 private fun PlaceCached.toFestivalMapPlace(): FestivalMapPlace {

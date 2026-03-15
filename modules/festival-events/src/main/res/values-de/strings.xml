@@ -25,4 +25,7 @@
     <string name="download_timetable_cta">Herunterladen</string>
     <string name="content">Inhalt</string>
     <string name="no_favorites">Stelle deinen eigenen Plan zum moers festival zusammen.</string>
+    <string name="venue_detail_events">Veranstaltungen an diesem Ort</string>
+    <string name="venue_detail_no_events">Diesem Ort sind derzeit keine Veranstaltungen zugeordnet.</string>
+    <string name="venue_detail_not_found">Ort wurde nicht gefunden.</string>
 </resources>

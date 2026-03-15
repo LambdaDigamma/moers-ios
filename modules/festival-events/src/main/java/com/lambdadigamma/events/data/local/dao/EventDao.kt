@@ -54,6 +54,10 @@ interface EventDao {
         endDate: Long
     ): Flow<List<EventWithPlaceCached>>
 
+    @Transaction
+    @Query("SELECT events.*, CASE WHEN liked_events.eventId IS NOT NULL THEN 1 ELSE 0 END AS isLiked FROM events LEFT JOIN liked_events ON events.id = liked_events.eventId WHERE placeId = :placeId ORDER BY startDate ASC")
+    fun getEventsForPlace(placeId: Int): Flow<List<EventWithPlaceCached>>
+
     @Query("DELETE FROM events")
     suspend fun deleteAllEvents()
 

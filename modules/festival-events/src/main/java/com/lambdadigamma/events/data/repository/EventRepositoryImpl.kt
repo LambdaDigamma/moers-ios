@@ -209,6 +209,25 @@ class EventRepositoryImpl @Inject constructor(
 
     }
 
+    override fun getPlace(placeId: Long): Flow<com.lambdadigamma.events.data.remote.model.Place?> {
+        return placeDao.getPlace(placeId)
+            .map { cachedPlace ->
+                cachedPlace?.toDomainModel()
+            }
+    }
+
+    override fun getEventsForPlace(placeId: Long): Flow<List<Event>> {
+        return eventDao.getEventsForPlace(placeId.toInt())
+            .map { events ->
+                events.map { item ->
+                    item.event.toDomainModel().apply {
+                        place = item.place?.toDomainModel()
+                        isFavorite = item.isLiked
+                    }
+                }
+            }
+    }
+
     override fun getEventDetail(eventId: Int): Flow<EventDetailData?> {
 
         return eventDao.getEventDetailWithPlace(eventId)

@@ -24,7 +24,7 @@ import com.lambdadigamma.pages.data.local.dao.PageDao
 import com.lambdadigamma.pages.data.local.model.PageBlockCached
 import com.lambdadigamma.pages.data.local.model.PageCached
 
-private const val DATABASE_VERSION = 7
+private const val DATABASE_VERSION = 8
 
 // Migration from 1 to 2, Room 2.1.0.
 val MIGRATION_1_2 = object : Migration(1, 2) {
@@ -42,6 +42,12 @@ val MIGRATION_1_2 = object : Migration(1, 2) {
 val MIGRATION_6_7 = object : Migration(6, 7) {
     override fun migrate(db: SupportSQLiteDatabase) {
         db.execSQL("DROP TABLE IF EXISTS RocketCached")
+    }
+}
+
+val MIGRATION_7_8 = object : Migration(7, 8) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("ALTER TABLE events ADD COLUMN collection TEXT")
     }
 }
 

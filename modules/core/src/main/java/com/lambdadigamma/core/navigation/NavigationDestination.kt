@@ -23,6 +23,8 @@ sealed class NavigationDestination(
 
     data object EventDetail : NavigationDestination("events/{eventId}")
 
+    data object VenueDetail : NavigationDestination("venues/{placeId}")
+
     data object AppInformation : NavigationDestination("app/information")
 
     data object Back : NavigationDestination("navigationBack")

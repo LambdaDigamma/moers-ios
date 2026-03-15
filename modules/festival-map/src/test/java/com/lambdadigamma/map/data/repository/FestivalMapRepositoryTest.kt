@@ -10,6 +10,9 @@ import com.lambdadigamma.map.data.source.FestivalMapRefreshTracker
 import com.lambdadigamma.map.data.source.FestivalMapRemoteSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
+import java.time.Clock
+import java.time.Instant
+import java.time.ZoneOffset
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -74,10 +77,25 @@ class FestivalMapRepositoryTest {
         assertEquals("Cached", cacheSource.values[FestivalMapLayerType.Surfaces]?.let(::extractName))
     }
 
+    @Test
+    fun `should observe places for current festival collection`() = kotlinx.coroutines.test.runTest {
+        val placeDao = FakePlaceDao()
+        val objectUnderTest = createRepository(
+            placeDao = placeDao,
+            clock = Clock.fixed(Instant.parse("2026-03-15T12:00:00Z"), ZoneOffset.UTC),
+        )
+
+        objectUnderTest.observePlaces()
+
+        assertEquals("festival26", placeDao.requestedCollection)
+    }
+
     private fun createRepository(
         assetSource: FakeFestivalMapAssetSource = FakeFestivalMapAssetSource(),
         cacheSource: FakeFestivalMapCacheSource = FakeFestivalMapCacheSource(),
         remoteSource: FakeFestivalMapRemoteSource = FakeFestivalMapRemoteSource(),
+        placeDao: FakePlaceDao = FakePlaceDao(),
+        clock: Clock = Clock.systemUTC(),
     ): FestivalMapRepository {
         return DefaultFestivalMapRepository(
             assetSource = assetSource,
@@ -85,7 +103,8 @@ class FestivalMapRepositoryTest {
             refreshTracker = FakeFestivalMapRefreshTracker(),
             remoteSource = remoteSource,
             parser = FestivalMapGeoJsonParser(),
-            placeDao = FakePlaceDao(),
+            placeDao = placeDao,
+            clock = clock,
         )
     }
 
@@ -196,7 +215,15 @@ private class FakeFestivalMapRefreshTracker : FestivalMapRefreshTracker {
 }
 
 private class FakePlaceDao : PlaceDao {
-    override fun getPlaces(): Flow<List<PlaceCached>> = flowOf(emptyList())
+    var requestedCollection: String? = null
+        private set
+
+    override fun getFestivalPlaces(collection: String): Flow<List<PlaceCached>> {
+        requestedCollection = collection
+        return flowOf(emptyList())
+    }
+
+    override fun getPlace(id: Long): Flow<PlaceCached?> = flowOf(null)
 
     override suspend fun savePlaces(places: List<PlaceCached>) = Unit
 }

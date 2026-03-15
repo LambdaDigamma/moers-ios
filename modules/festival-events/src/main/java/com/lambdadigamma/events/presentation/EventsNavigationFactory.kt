@@ -16,6 +16,7 @@ import com.lambdadigamma.events.presentation.timetable.composable.TimetableRoute
 import com.lambdadigamma.events.presentation.detail.composable.EventDetailRoute
 import com.lambdadigamma.events.presentation.download.DownloadEventsRoute
 import com.lambdadigamma.events.presentation.favorites.composable.FavoriteEventsRoute
+import com.lambdadigamma.events.presentation.venue.composable.VenueDetailRoute
 import javax.inject.Inject
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -81,6 +82,25 @@ class EventsNavigationFactory @Inject constructor() : NavigationFactory {
             EventDetailRoute(onBack = {
                 navigationManager.navigateBack()
             })
+        }
+        builder.composable(
+            route = NavigationDestination.VenueDetail.route,
+            arguments = listOf(navArgument("placeId") { type = NavType.LongType }),
+            deepLinks = listOf(
+                navDeepLink { uriPattern = "moersfestival://venues/{placeId}" }
+            )
+        ) {
+            VenueDetailRoute(
+                onBack = {
+                    navigationManager.navigateBack()
+                },
+                onShowEvent = { id ->
+                    val command = object : NavigationCommand {
+                        override val destination = NavigationDestination.EventDetail.route.replace("{eventId}", id.toString())
+                    }
+                    navigationManager.navigate(command)
+                },
+            )
         }
     }
 }

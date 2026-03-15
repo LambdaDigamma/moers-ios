@@ -21,6 +21,7 @@ data class EventCached(
 
     var url: String? = null,
     var category: String? = null,
+    var collection: String? = null,
 
     var extras: EventExtras? = null,
 
