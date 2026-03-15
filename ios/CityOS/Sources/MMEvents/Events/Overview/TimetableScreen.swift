@@ -63,6 +63,7 @@ public struct TimetableScreen: View {
                 }
                 
             }
+            .padding(.bottom, 80) // Account for the tab bar height while flowing behind it
             
         }
         .task {
@@ -81,6 +82,7 @@ public struct TimetableScreen: View {
             EventFilterSheet(filter: $viewModel.filter)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .ignoresSafeArea(edges: .bottom)
         .navigationTitle(EventPackageStrings.timetable)
         
     }

@@ -42,6 +42,7 @@
 		DFC1111627F6476700348268 /* AppSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1111527F6476700348268 /* AppSplitViewController.swift */; };
 		DFC9094B21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DFC9094A21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle */; };
 		DFE12B672073853F006764FC /* Licenses.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFE12B662073853F006764FC /* Licenses.plist */; };
+		DFF1C5D22F66E20F000A84D1 /* Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = DFF1C5D12F66E1F4000A84D1 /* Icon.icon */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +149,7 @@
 		DFE12B662073853F006764FC /* Licenses.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Licenses.plist; path = "moers festival/Licenses.plist"; sourceTree = SOURCE_ROOT; };
 		DFE90E7F29E3227A0054BCF1 /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 		DFEC02F8262ABD6200D46B28 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DFF1C5D12F66E1F4000A84D1 /* Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = Icon.icon; sourceTree = "<group>"; };
 		DFFA54F02A015D89000ECEC5 /* Screenshot.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Screenshot.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -429,6 +431,7 @@
 		DF35B37D201DC72900118FD1 = {
 			isa = PBXGroup;
 			children = (
+				DFF1C5D12F66E1F4000A84D1 /* Icon.icon */,
 				DF82B76D2BED3702005F41F2 /* FGD2024 */,
 				DFEC02F8262ABD6200D46B28 /* README.md */,
 				DFE90E7F29E3227A0054BCF1 /* TestPlan.xctestplan */,
@@ -846,6 +849,7 @@
 				DFADF9562829915E00A15FE1 /* Moers.gpx in Resources */,
 				DFC9094B21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle in Resources */,
 				DFE12B672073853F006764FC /* Licenses.plist in Resources */,
+				DFF1C5D22F66E20F000A84D1 /* Icon.icon in Resources */,
 				DF35B394201DC72900118FD1 /* LaunchScreen.storyboard in Resources */,
 				DFADF96D282A66DF00A15FE1 /* Map Icons.xcassets in Resources */,
 			);
@@ -1372,8 +1376,9 @@
 			baseConfigurationReferenceRelativePath = Production.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = 2025;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "moers festival/Utility/moers festival.entitlements";
@@ -1504,8 +1509,9 @@
 			baseConfigurationReferenceRelativePath = Production.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = 2025;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "moers festival/Utility/moers festival.entitlements";

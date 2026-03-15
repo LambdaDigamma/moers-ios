@@ -99,6 +99,9 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.edgesForExtendedLayout = [.bottom]
+        self.extendedLayoutIncludesOpaqueBars = true
+        
         self.setupUI()
         self.setupConstraints()
         self.setupCollectionViewDataSource()
@@ -128,7 +131,7 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
             mainStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             mainStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             mainStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            mainStackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            mainStackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
         ]
         
         NSLayoutConstraint.activate(constraints)

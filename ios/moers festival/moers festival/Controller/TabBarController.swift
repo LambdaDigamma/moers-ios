@@ -219,8 +219,7 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
                 nav.navigationBar.barTintColor = UIColor.label
                 nav.navigationBar.prefersLargeTitles = true
                 nav.navigationBar.barStyle = .black
-                nav.navigationBar.isOpaque = false
-                nav.navigationBar.isTranslucent = false
+                nav.navigationBar.isTranslucent = true
                 nav.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
                 nav.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
                 
@@ -240,8 +239,7 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
             self.tabBar.barTintColor = UIColor.systemBackground
             self.tabBar.tintColor = AppColors.navigationAccent
             self.tabBar.barStyle = .black
-            self.tabBar.isOpaque = false
-            self.tabBar.isTranslucent = false
+            self.tabBar.isTranslucent = true
             
             self.tabBar.barStyle = .black
             
