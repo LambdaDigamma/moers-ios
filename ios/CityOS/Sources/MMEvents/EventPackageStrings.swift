@@ -33,6 +33,9 @@ public enum EventPackageStrings {
     public static let showOnlyFavorites = String(localized: "Show only favorites", bundle: .module)
     public static let favoritesSection = String(localized: "Favorites", bundle: .module)
     
+    public static let filterActive = String(localized: "Filter active", bundle: .module)
+    public static let clearFilter = String(localized: "Clear", bundle: .module)
+    
     public static let noEventsForFilter = String(localized: "No events found for the selected filter.", bundle: .module)
     public static let noFavoriteEventsForFilter = String(localized: "No favorite events found for the selected filter.", bundle: .module)
     

@@ -34,6 +34,50 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
         return collectionView
     }()
     
+    private lazy var filterBar: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .secondarySystemBackground
+        view.isHidden = true
+        
+        let icon = UIImageView(image: UIImage(systemName: "line.3.horizontal.decrease.circle.fill"))
+        icon.tintColor = AppColors.navigationAccent
+        icon.contentMode = .scaleAspectFit
+        icon.translatesAutoresizingMaskIntoConstraints = false
+        
+        let label = UILabel()
+        label.text = EventPackageStrings.filterActive
+        label.font = .preferredFont(forTextStyle: .subheadline)
+        label.textColor = .secondaryLabel
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        let button = UIButton(type: .system)
+        button.setTitle(EventPackageStrings.clearFilter, for: .normal)
+        button.titleLabel?.font = .preferredFont(forTextStyle: .subheadline).bold()
+        button.addTarget(self, action: #selector(clearFilter), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        let stack = UIStackView(arrangedSubviews: [icon, label, UIView(), button])
+        stack.axis = .horizontal
+        stack.spacing = 8
+        stack.alignment = .center
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(stack)
+        
+        NSLayoutConstraint.activate([
+            stack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            stack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            stack.topAnchor.constraint(equalTo: view.topAnchor, constant: 8),
+            stack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8),
+            
+            icon.widthAnchor.constraint(equalToConstant: 20),
+            icon.heightAnchor.constraint(equalToConstant: 20)
+        ])
+        
+        return view
+    }()
+    
     // MARK: - UIViewController Lifecycle -
     
     override func viewDidLoad() {
@@ -48,6 +92,7 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
     
     func setupUI() {
         
+        self.view.addSubview(filterBar)
         self.view.addSubview(collectionView)
         self.collectionView.delegate = self
         
@@ -58,19 +103,29 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
             action: #selector(showFilter)
         )
         
+        self.updateFilterBar()
+        
     }
     
     func setupConstraints() {
         
         let constraints = [
+            filterBar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            filterBar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            filterBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            
             collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: self.filterBar.bottomAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
         ]
         
         NSLayoutConstraint.activate(constraints)
         
+    }
+    
+    @objc func clearFilter() {
+        self.filter = .empty
     }
     
     @objc func showFilter() {
@@ -90,8 +145,13 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
         
         self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: filter.isEmpty ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
         
+        self.updateFilterBar()
         self.setupLoadListeners()
         
+    }
+    
+    private func updateFilterBar() {
+        self.filterBar.isHidden = filter.isEmpty
     }
     
     func setupLoadListeners() {

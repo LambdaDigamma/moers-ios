@@ -21,23 +21,47 @@ public struct TimetableScreen: View {
     
     public var body: some View {
         
-        ZStack {
-
-            if viewModel.allEventsHideSchedule {
-
-                PreviewListEventsView()
-
-            } else {
-
-                switch displayMode {
-                    case .compact:
-                        CompactEventsView(viewModel: viewModel)
-                    case .images:
-                        ExtendedEventsView(viewModel: viewModel)
-                    case .venueGrid:
-                        VenueEventsGrid()
+        VStack(spacing: 0) {
+            
+            if !viewModel.filter.isEmpty {
+                HStack {
+                    Image(systemName: "line.3.horizontal.decrease.circle.fill")
+                        .foregroundColor(.accentColor)
+                    Text(EventPackageStrings.filterActive)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                    
+                    Spacer()
+                    
+                    Button(EventPackageStrings.clearFilter) {
+                        viewModel.filter = .empty
+                    }
+                    .font(.subheadline.bold())
                 }
-
+                .padding(.horizontal)
+                .padding(.vertical, 8)
+                .background(Color(UIColor.secondarySystemBackground))
+            }
+            
+            ZStack {
+    
+                if viewModel.allEventsHideSchedule {
+    
+                    PreviewListEventsView()
+    
+                } else {
+    
+                    switch displayMode {
+                        case .compact:
+                            CompactEventsView(viewModel: viewModel)
+                        case .images:
+                            ExtendedEventsView(viewModel: viewModel)
+                        case .venueGrid:
+                            VenueEventsGrid()
+                    }
+    
+                }
+                
             }
             
         }
