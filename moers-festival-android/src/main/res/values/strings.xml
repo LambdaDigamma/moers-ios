@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">moers festival</string>
+    <string name="app_information_paragraph1">This app is developed and provided voluntarily by Lennart Fischer.</string>
+    <string name="app_information_paragraph2">"More information about moers festival can be found on the official website: "</string>
+    <string name="about_this_app">About this app</string>
+    <string name="navigation_news">News</string>
+    <string name="navigation_map">Map</string>
+    <string name="navigation_events">Timetable</string>
+    <string name="navigation_info">Info</string>
+    <string name="navigation_favorites">Favorites</string>
+
+    <string name="info_section_festival">Festival</string>
+    <string name="info_section_other">Other</string>
+    <string name="info_row_tickets">Tickets</string>
+    <string name="info_row_festivaldorf">Festivaldorf</string>
+    <string name="info_row_volunteers">Volunteers</string>
+    <string name="info_row_moersland">moersland</string>
+    <string name="info_row_lodging">Lodging</string>
+    <string name="info_row_accessibility">Accessibility</string>
+    <string name="info_row_moerschandise">moerschandise</string>
+    <string name="info_row_sponsors">Sponsors</string>
+    <string name="info_row_legal">Legal</string>
+
+    <string name="notification_channel_default_name" translatable="false">moers festival</string>
+    <string name="notification_channel_default_description">Notifications for moers festival</string>
+
+    <string name="default_notification_channel_id" translatable="false">default_channel</string>
+    <string name="default_notification_channel_name">Notifications</string>
+    <string name="default_notification_channel_description">Get information about schedule changes, weather and other short-term notices.</string>
+
+</resources>

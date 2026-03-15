@@ -14,8 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.accompanist.swiperefresh.SwipeRefresh
-import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import com.lambdadigamma.core.R
 import com.lambdadigamma.core.Resource
 import com.lambdadigamma.core.Status
@@ -46,11 +45,9 @@ fun <Data> ResourcefulContent(
     })
 
     val currentState by resource.observeAsState()
-    val swipeRefreshState =
-        rememberSwipeRefreshState(isRefreshing = currentState?.isLoading() ?: false)
 
-    SwipeRefresh(
-        state = swipeRefreshState,
+    PullToRefreshBox(
+        isRefreshing = currentState?.isLoading() ?: false,
         onRefresh = onLoad,
     ) {
         when (currentState?.status) {

@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "\/var\/folders\/c3\/nhvb43vd6458kcrgjf45v56w0000gn\/T\/tmpjq0xt4cobulkexport\/067ce8bd-5e44-472b-abd6-24d47490f0c6",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": null, "name": "Festivalhalle", "type": "stage", "outdoor": 0 }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 6.619086, 51.44028 ], [ 6.61891, 51.440072 ], [ 6.618677, 51.440143 ], [ 6.61885, 51.440355 ], [ 6.619086, 51.44028 ] ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "Freibadbühne", "type": "stage", "outdoor": 1 }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 6.615879, 51.44079 ], [ 6.615908, 51.440738 ], [ 6.615796, 51.440713 ], [ 6.615768, 51.440766 ], [ 6.615879, 51.44079 ] ] ] ] } }
+]
+}

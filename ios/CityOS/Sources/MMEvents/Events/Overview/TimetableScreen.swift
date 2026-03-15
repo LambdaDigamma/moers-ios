@@ -11,6 +11,7 @@ public struct TimetableScreen: View {
     
     @State var search = ""
     @AppStorage("currentEventDisplayMode") private var displayMode: DailyEventsDisplayMode = .compact
+    @State private var showingFilter = false
     
     @StateObject var viewModel = TimetableViewModel()
     
@@ -20,57 +21,68 @@ public struct TimetableScreen: View {
     
     public var body: some View {
         
-        ZStack {
+        VStack(spacing: 0) {
             
-            switch displayMode {
-                case .compact:
-                    CompactEventsView(viewModel: viewModel)
-                case .images:
-                    ExtendedEventsView(viewModel: viewModel)
-                case .venueGrid:
-                    VenueEventsGrid()
+            if !viewModel.filter.isEmpty {
+                HStack {
+                    Image(systemName: "line.3.horizontal.decrease.circle.fill")
+                        .foregroundColor(.accentColor)
+                    Text(EventPackageStrings.filterActive)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                    
+                    Spacer()
+                    
+                    Button(EventPackageStrings.clearFilter) {
+                        viewModel.filter = .empty
+                    }
+                    .font(.subheadline.bold())
+                }
+                .padding(.horizontal)
+                .padding(.vertical, 8)
+                .background(Color.clear)
             }
             
-//            if viewModel.allEventsArePreview {
-//                
-//                PreviewListEventsView()
-//                
-//            } else {
-//                
-//                switch displayMode {
-//                    case .compact:
-//                        CompactEventsView(viewModel: viewModel)
-//                    case .images:
-//                        ExtendedEventsView(viewModel: viewModel)
-//                    case .venueGrid:
-//                        VenueEventsGrid()
-//                }
-//                
-//            }
+            ZStack {
+    
+                if viewModel.allEventsHideSchedule {
+    
+                    PreviewListEventsView()
+    
+                } else {
+    
+                    switch displayMode {
+                        case .compact:
+                            CompactEventsView(viewModel: viewModel)
+                        case .images:
+                            ExtendedEventsView(viewModel: viewModel)
+                        case .venueGrid:
+                            VenueEventsGrid()
+                    }
+    
+                }
+                
+            }
+            .padding(.bottom, 80) // Account for the tab bar height while flowing behind it
             
         }
         .task {
             await viewModel.load()
         }
-//        .toolbar {
-//            ToolbarItem(placement: .primaryAction) {
-//                Section {
-//                    Menu {
-//                        Picker(selection: $displayMode, label: Text("Sorting options")) {
-//                            ForEach(DailyEventsDisplayMode.allCases) { (displayMode: DailyEventsDisplayMode) in
-//                                Text(displayMode.title)
-//                                    .tag(displayMode)
-//                                    .id(displayMode.rawValue)
-//                            }
-//                        }
-//                    }
-//                    label: {
-//                        Label("Add", systemImage: "rectangle.grid.1x2")
-//                    }
-//                }
-//            }
-//        }
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button {
+                    showingFilter = true
+                } label: {
+                    Label(EventPackageStrings.filter, systemImage: viewModel.filter.isEmpty ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
+                }
+            }
+        }
+        .sheet(isPresented: $showingFilter) {
+            EventFilterSheet(filter: $viewModel.filter)
+        }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .ignoresSafeArea(edges: .bottom)
         .navigationTitle(EventPackageStrings.timetable)
         
     }

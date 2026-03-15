@@ -37,7 +37,7 @@ public struct BigNewsFeedView: View {
                         
                     })
                 
-            } else if let media = post.mediaCollections?.getFirstMedia(for: "default") {
+            } else if let media = post.headerMedia {
                 
                 GenericMediaView(media: media, resizingMode: .aspectFill)
                     .aspectRatio(post.mediaAspectRatio(), contentMode: .fit)

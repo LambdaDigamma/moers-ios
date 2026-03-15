@@ -1,0 +1,26 @@
+//
+//  PlainNavigationLinkButton.swift
+//  moers festival tvOS
+//
+//  Created by Lennart Fischer on 13.04.21.
+//  Copyright © 2021 Code for Niederrhein. All rights reserved.
+//
+
+import SwiftUI
+
+struct PlainNavigationLinkButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        PlainNavigationLinkButton(configuration: configuration)
+    }
+}
+
+struct PlainNavigationLinkButton: View {
+    @Environment(\.isFocused) var focused: Bool
+    let configuration: ButtonStyle.Configuration
+    
+    var body: some View {
+        configuration.label
+            .scaleEffect(focused ? 1.1 : 1)
+            .focusable(true)
+    }
+}

@@ -16,16 +16,20 @@ public class DayEventsViewModel: ObservableObject, Identifiable {
     internal let date: Date
     internal let startDate: Date
     internal let endDate: Date
+    internal let filter: EventFilter
     
     @Published var events: [EventListItemViewModel] = []
+    
+    @LazyInjected(\.favoriteEventsStore) var favoriteEventsStore: FavoriteEventsStore?
     
     private let repository: EventRepository
     private let logger = Logger(.coreUi)
     
     private var cancellables = Set<AnyCancellable>()
     
-    public init(date: Date) {
+    public init(date: Date, filter: EventFilter = .init()) {
         self.date = date
+        self.filter = filter
         self.repository = Container.shared.eventRepository()
         
         let range = DateUtils.calculateDateRange(for: date, offset: EventUtilities.defaultDayOffset)
@@ -39,26 +43,53 @@ public class DayEventsViewModel: ObservableObject, Identifiable {
     public func setupObserver() {
         
         cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
         
-        repository.events(between: startDate, and: endDate)
+        let favoriteEventsPublisher = favoriteEventsStore?.observeFavoriteEvents()
+            .map { (favoriteInfos: [FavoriteEventInfo]) in
+                Set(favoriteInfos.compactMap { $0.event.id })
+            }
+            .replaceError(with: Set<Int64>())
+            .eraseToAnyPublisher() ?? Just(Set<Int64>()).eraseToAnyPublisher()
+        
+        Publishers.CombineLatest(
+            repository.events(between: startDate, and: endDate).replaceError(with: []),
+            favoriteEventsPublisher
+        )
             .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-            .sink { (completion: Subscribers.Completion<Error>) in
+            .sink { (events, favoriteIDs) in
                 
-                self.logger.error("\(completion.debugDescription)")
-                
-            } receiveValue: { (events: [Event]) in
-                
-                self.events = events.map {
+                self.events = events
+                    .filter { event in
+                        
+                        // Venue Filter
+                        if !self.filter.venueIDs.isEmpty {
+                            guard let placeID = event.place?.id, self.filter.venueIDs.contains(placeID) else {
+                                return false
+                            }
+                        }
+                        
+                        // Favorites Filter
+                        if self.filter.showOnlyFavorites {
+                            guard favoriteIDs.contains(Int64(event.id)) else {
+                                return false
+                            }
+                        }
+                        
+                        return true
+                        
+                    }
+                    .map { event in
                     return EventListItemViewModel(
-                        eventID: $0.id,
-                        title: $0.name,
-                        startDate: $0.startDate,
-                        endDate: $0.endDate,
-                        location: $0.place?.name,
-                        media: $0.mediaCollections.getFirstMedia(for: "header"),
-                        isOpenEnd: $0.extras?.openEnd ?? false,
-                        isPreview: $0.isPreview
+                        eventID: event.id,
+                        title: event.name,
+                        startDate: event.startDate,
+                        endDate: event.endDate,
+                        location: event.place?.name,
+                        media: event.headerMedia,
+                        isOpenEnd: event.extras?.openEnd ?? false,
+                        isLiked: favoriteIDs.contains(Int64(event.id)),
+                        scheduleDisplayMode: event.scheduleDisplayMode
                     )
                 }
                 
@@ -91,7 +122,7 @@ public class DayEventsViewModel: ObservableObject, Identifiable {
     }
     
     public var id: String {
-        return self.date.formatted(date: .numeric, time: .omitted)
+        return "\(self.date.formatted(date: .numeric, time: .omitted))-\(self.filter.hashValue)"
     }
     
 }

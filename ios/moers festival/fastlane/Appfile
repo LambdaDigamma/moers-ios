@@ -1,0 +1,8 @@
+app_identifier "de.okfn.niederrhein.moers-festival" # The bundle identifier of your app
+apple_id "lennart.fischer.dev@icloud.com" # Your Apple email address
+
+itc_team_id "77N8D7LGCZ" # iTunes Connect Team ID
+# team_id "93C29USLP6" # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile

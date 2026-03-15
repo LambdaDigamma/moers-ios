@@ -1,0 +1,100 @@
+name: Release Moers Festival Android Version
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        type: choice
+        required: true
+        description: Android Version
+        default: build
+        options:
+          - build
+          - patch
+          - minor
+          - major
+
+jobs:
+  distribute:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up ruby env
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+
+      - name: Install bundle
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      - name: Configure Keystore
+        run: |
+          echo "$ANDROID_KEYSTORE_FILE" > keystore.jks.b64
+          base64 -d -i keystore.jks.b64 > moers-festival-android/Keystore.jks
+          echo "keyAlias=$ANDROID_KEYSTORE_KEY_ALIAS" >> keystore.properties
+          echo "storePassword=$ANDROID_KEYSTORE_STORE_PASSWORD" >> keystore.properties
+          echo "keyPassword=$ANDROID_KEYSTORE_KEY_PASSWORD" >> keystore.properties
+        env:
+          ANDROID_KEYSTORE_FILE: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_FILE }}
+          ANDROID_KEYSTORE_KEY_ALIAS: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_KEY_ALIAS }}
+          ANDROID_KEYSTORE_KEY_PASSWORD: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_KEY_PASSWORD }}
+          ANDROID_KEYSTORE_STORE_PASSWORD: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_STORE_PASSWORD }}
+
+      - name: Setup local.properties
+        run: |
+          echo "$ANDROID_LOCAL_PROPERTIES" > local.properties
+        env:
+          ANDROID_LOCAL_PROPERTIES: ${{ secrets.ANDROID_LOCAL_PROPERTIES }}
+
+      - name: Create Google Play Config file
+        run: |
+          echo "$ANDROID_PLAY_CONFIG_JSON" > play_config.json.b64
+          base64 -d -i play_config.json.b64 > play_config.json
+        env:
+          ANDROID_PLAY_CONFIG_JSON: ${{ secrets.ANDROID_FESTIVAL_PLAY_CONFIG_JSON }}
+
+      - name: Version Bump
+        run: |
+          echo "Executing version bump: ${{ github.event.inputs.version_bump }}"
+          cd moers-festival-android
+          bundle exec fastlane android increment_version_code
+          
+          if [ "${{ github.event.inputs.version_bump }}" != "build" ]; then
+            bundle exec fastlane android increment_version mode:${{ github.event.inputs.version_bump }}
+          else
+            echo "Skipping version name bump as 'build' was selected."
+          fi
+
+      - name: Distribute app to internal track
+        run: |
+          cd moers-festival-android
+          bundle exec fastlane android deploy_internal
+        env:
+          KEYSTORE_PATH: "Keystore.jks"
+          STORE_PASSWORD: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_KEY_PASSWORD }}
+
+      - name: Commit version bump and tag
+        run: |
+          VERSION_NAME=$(grep VERSION_NAME moers-festival-android/version.properties | cut -d'=' -f2 | tr -d ' ')
+          VERSION_CODE=$(grep VERSION_CODE moers-festival-android/version.properties | cut -d'=' -f2 | tr -d ' ')
+          TAG_NAME="festival-android/${VERSION_NAME}/${VERSION_CODE}"
+          
+          echo "Version Name: $VERSION_NAME"
+          echo "Version Code: $VERSION_CODE"
+          echo "Tag Name: $TAG_NAME"
+          
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git add moers-festival-android/version.properties
+          git commit -m "🚀 Bump Moers Festival Android version to $VERSION_NAME ($VERSION_CODE)"
+          git tag $TAG_NAME
+          git push origin HEAD
+          git push origin $TAG_NAME

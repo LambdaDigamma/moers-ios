@@ -123,8 +123,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/groue/GRDB.swift",
       "state" : {
-        "branch" : "master",
-        "revision" : "3ecb5c54553559217592d21a6d9841becb891b38"
+        "revision" : "36e30a6f1ef10e4194f6af0cff90888526f0c115",
+        "version" : "7.10.0"
       }
     },
     {
@@ -236,15 +236,6 @@
       }
     },
     {
-      "identity" : "pulley",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/52inc/Pulley",
-      "state" : {
-        "revision" : "355bb7c53d4d430334422ad05a97fbe43ce326db",
-        "version" : "2.9.1"
-      }
-    },
-    {
       "identity" : "swift-algorithms",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-algorithms",
@@ -294,8 +285,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/lambdadigamma/swift-prosemirror",
       "state" : {
-        "revision" : "c0e72c54b2de82237bbf0dbd8364ab512a323207",
-        "version" : "0.0.6"
+        "revision" : "30b8594dc002f31c4e1e42a20b11eea74a020510",
+        "version" : "0.0.9"
       }
     },
     {

@@ -20,7 +20,19 @@ public class HintTableViewCell: UITableViewCell {
         }
     }
     
+    public var image: UIImage? {
+        didSet {
+            self.iconImageView.image = image
+            self.iconImageView.tintColor = .secondaryLabel
+        }
+    }
+    
     private var hintLabel = { ViewFactory.label() }()
+    private let iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     
     // MARK: - Inits
     
@@ -41,11 +53,15 @@ public class HintTableViewCell: UITableViewCell {
     
     private func setupUI() {
         
+        self.contentView.addSubview(iconImageView)
         self.contentView.addSubview(hintLabel)
         
+        self.hintLabel.translatesAutoresizingMaskIntoConstraints = false
         self.hintLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
         self.hintLabel.numberOfLines = 0
-        self.hintLabel.textAlignment = .left
+        self.hintLabel.textAlignment = .center
+        
+        self.iconImageView.contentMode = .scaleAspectFit
         
     }
     
@@ -57,7 +73,12 @@ public class HintTableViewCell: UITableViewCell {
             hintLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 4),
             hintLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
             hintLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-            hintLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -4)
+            hintLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -4),
+            
+            iconImageView.trailingAnchor.constraint(equalTo: margins.leadingAnchor, constant: -8),
+            iconImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            iconImageView.widthAnchor.constraint(equalToConstant: 40),
+            iconImageView.heightAnchor.constraint(equalToConstant: 40)
         ]
         
         NSLayoutConstraint.activate(constraints)
@@ -70,6 +91,7 @@ public class HintTableViewCell: UITableViewCell {
         self.backgroundColor = UIColor.systemBackground
 #endif
         self.hintLabel.textColor = UIColor.secondaryLabel
+        self.iconImageView.tintColor = .secondaryLabel
         
     }
     

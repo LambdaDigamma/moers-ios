@@ -1,0 +1,27 @@
+{
+  "configurations" : [
+    {
+      "id" : "3B30A056-7BAE-4CF6-9175-D465C8DFC393",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "UILaunchTests"
+      ],
+      "target" : {
+        "containerPath" : "container:moers festival.xcodeproj",
+        "identifier" : "DF87B2F1201DFB2700E1B97C",
+        "name" : "moers festival UITests"
+      }
+    }
+  ],
+  "version" : 1
+}

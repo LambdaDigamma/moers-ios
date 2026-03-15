@@ -1,0 +1,61 @@
+{
+  "configurations" : [
+    {
+      "id" : "98EAA16B-6129-4180-A7C3-29BF337FADC9",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "language" : "en",
+    "region" : "US",
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:..\/Moers\/Core",
+        "identifier" : "CoreTests",
+        "name" : "CoreTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/ModernNetworking",
+        "identifier" : "ModernNetworkingTests",
+        "name" : "ModernNetworkingTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/MediaLibraryKit",
+        "identifier" : "MediaLibraryKitTests",
+        "name" : "MediaLibraryKitTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/mmfeeds-ios",
+        "identifier" : "MMFeedsTests",
+        "name" : "MMFeedsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Moers\/mmpages-ios",
+        "identifier" : "MMPagesTests",
+        "name" : "MMPagesTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Moers\/mmevents-ios",
+        "identifier" : "MMEventsTests",
+        "name" : "MMEventsTests"
+      }
+    }
+  ],
+  "version" : 1
+}

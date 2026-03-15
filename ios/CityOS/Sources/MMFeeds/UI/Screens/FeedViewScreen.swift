@@ -8,6 +8,7 @@
 import SwiftUI
 import ModernNetworking
 import Cache
+import Factory
 
 public struct FeedViewScreen: View {
     
@@ -103,24 +104,30 @@ public struct FeedViewScreen: View {
 
 #Preview {
     
-    let loader = EncodingMockLoader(model: Feed.stub(withID: 1)
-        .setting(\.name, to: "Feed")
-        .setting(\.posts, to: [
-            Post.stub(withID: 1),
-            Post.stub(withID: 2)
-        ])
-    )
+    Container.shared.feedService.register {
+        
+        let loader = EncodingMockLoader(model: Feed.stub(withID: 1)
+            .setting(\.name, to: "Feed")
+            .setting(\.posts, to: [
+                Post.stub(withID: 1),
+                Post.stub(withID: 2)
+            ])
+        )
+        
+        let cache = try! Storage<String, Feed>(
+            diskConfig: DiskConfig(name: "FeedService"),
+            memoryConfig: MemoryConfig(),
+            transformer: TransformerFactory.forCodable(ofType: Feed.self)
+        )
+        
+        return DefaultFeedService(loader, cache)
+        
+    }
     
-    let cache = try! Storage<String, Feed>(
-        diskConfig: DiskConfig(name: "FeedService"),
-        memoryConfig: MemoryConfig(),
-        transformer: TransformerFactory.forCodable(ofType: Feed.self)
-    )
     
-    let service = DefaultFeedService(loader, cache)
-    let viewModel = FeedPostListViewModel(feedID: 3, service: service)
+    let viewModel = FeedPostListViewModel(feedID: 3)
     
-    FeedViewScreen(viewModel: viewModel, showPost: { post in
+    return FeedViewScreen(viewModel: viewModel, showPost: { post in
         
     })
     

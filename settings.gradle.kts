@@ -15,7 +15,7 @@ pluginManagement {
         maven("https://jitpack.io")
     }
     plugins {
-        kotlin("jvm") version "2.0.20"
+        kotlin("jvm") version "2.2.21"
     }
 }
 plugins {
@@ -43,5 +43,14 @@ include(":modules:events")
 include(":modules:parking")
 include(":modules:rubbish")
 include(":modules:radio")
+include(":modules:festival-events")
+include(":modules:festival-map")
+include(":modules:medialibrary")
+include(":modules:festival-news")
+include(":modules:pages")
+include(":modules:prosemirror")
 
-include(":androidApp")
+include(":moers-android")
+project(":moers-android").projectDir = file("moers-android")
+include(":moers-festival-android")
+project(":moers-festival-android").projectDir = file("moers-festival-android")

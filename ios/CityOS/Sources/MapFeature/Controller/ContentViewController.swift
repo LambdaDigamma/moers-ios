@@ -71,7 +71,7 @@ class ContentViewController: UIViewController {
     }
     
     // swiftlint:disable:next force_cast
-    private lazy var drawer = { self.parent as! MainViewController }()
+    private lazy var drawer = { self.parent as! LegacyMainViewController }()
     private var normalColor = UIColor.clear
     private var highlightedColor = UIColor.clear
     private let fuse = Fuse(location: 0, distance: 100, threshold: 0.45, maxPatternLength: 32, isCaseSensitive: false)
@@ -361,7 +361,7 @@ extension ContentViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
-        if let drawerVC = self.parent as? MainViewController {
+        if let drawerVC = self.parent as? LegacyMainViewController {
             drawerVC.setDrawerPosition(position: .open, animated: true)
         }
         

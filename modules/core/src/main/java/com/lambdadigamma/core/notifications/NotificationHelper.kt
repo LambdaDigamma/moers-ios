@@ -1,5 +1,6 @@
 package com.lambdadigamma.moers.utils.notifications
 
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -8,6 +9,7 @@ import android.os.Build
 object NotificationHelper {
 
     fun createNotificationChannel(
+        channelId: String,
         context: Context,
         importance: Int,
         showBadge: Boolean,
@@ -17,12 +19,15 @@ object NotificationHelper {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-            val channelId = "${context.packageName}-$name"
             val channel = NotificationChannel(channelId, name, importance)
             channel.description = description
             channel.setShowBadge(showBadge)
+            channel.lockscreenVisibility = Notification.VISIBILITY_PUBLIC
 
             val notificationManager = context.getSystemService(NotificationManager::class.java)
+            if (notificationManager.getNotificationChannel(channelId) != null) {
+                return
+            }
             notificationManager?.createNotificationChannel(channel)
 
         }

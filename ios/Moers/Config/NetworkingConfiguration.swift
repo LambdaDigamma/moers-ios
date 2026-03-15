@@ -20,7 +20,7 @@ extension ServerEnvironment {
     public static let local = ServerEnvironment(host: "mein-moers.localhost", pathPrefix: "/api/v1")
 //    public static let development = ServerEnvironment(host: "development.moers.app", pathPrefix: "/api/v1")
     public static let staging = ServerEnvironment(host: "staging.moers.app", pathPrefix: "/api/v1")
-    public static let production = ServerEnvironment(host: "next.moers.app", pathPrefix: "/api/v1")
+    public static let production = ServerEnvironment(host: "moers.app", pathPrefix: "/api/v1")
     
 }
 
@@ -117,13 +117,6 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
             
             copy.headers.updateValue("application/json; charset=utf-8", forKey: "Accept")
             copy.headers.updateValue(preferredLocale, forKey: "Accept-Language")
-            
-//            let resolver = Resolver()
-//            let tokenStore: TokenStore = Resolver.resolve() as TokenStore
-            
-//            if let token = tokenStore.getToken() {
-//                copy.headers.updateValue("Bearer \(token)", forKey: "Authorization")
-//            }
             
             if copy.path.hasPrefix("/") == false {
                 copy.path = "/api/v1" + copy.path

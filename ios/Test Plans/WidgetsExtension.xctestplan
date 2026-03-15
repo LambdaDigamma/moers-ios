@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "A1C9D532-9A4A-4C68-97B2-56808D4A0B44",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Moers.xcodeproj",
+        "identifier" : "DFB161B2267651D6009D2754",
+        "name" : "Moers Unit Tests"
+      }
+    }
+  ],
+  "version" : 1
+}

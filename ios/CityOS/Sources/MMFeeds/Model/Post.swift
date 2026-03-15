@@ -32,9 +32,14 @@ public struct Post: BasePost, Codable {
     public var extras: PostExtras?
     
     public var mediaCollections: MediaCollectionsContainer?
-    
-    public static func stub(withID id: Int) -> Post {
-        return Post(id: id,
+
+    public var headerMedia: Media? {
+        return mediaCollections?.getFirstMedia(for: "header")
+            ?? mediaCollections?.getFirstMedia(for: "default")
+            ?? mediaCollections?.getFirstMedia(for: "insel")
+    }
+
+    public static func stub(withID id: Int) -> Post {        return Post(id: id,
                     title: "Test Feed Item",
                     summary: "That is a very short description of the feed item.",
                     feedID: 0,

@@ -1,0 +1,31 @@
+# A list of devices you want to take the screenshots from
+devices([
+  "iPhone 8",
+  "iPhone 14 Pro",
+  "iPhone 13 Pro",
+  # "iPhone 8",
+  # "iPhone 8 Plus",
+  # "iPhone X",
+  # "iPhone Xs Max",
+  # "iPad Pro (12.9-inch) (2nd generation)",
+  # "iPad Pro (12.9-inch) (4th generation)"
+])
+
+# A list of supported languages
+languages([
+    "en-US",  
+    "de-DE",
+])
+
+# The name of the scheme which contains the UI Tests
+scheme("Screenshots")
+testplan("Screenshots")
+
+# Where should the resulting screenshots be stored?
+output_directory "./fastlane/screenshots"
+
+override_status_bar(true)
+localize_simulator(true)
+dark_mode(false)
+disable_slide_to_type(true)
+skip_open_summary(true)

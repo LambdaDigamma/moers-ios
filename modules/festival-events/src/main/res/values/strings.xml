@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigation_events">Events</string>
+    <string name="navigation_top_bar">Events</string>
+    <string name="event_detail_no_place">Venue unknown</string>
+    <string name="event_detail_venue_headline">Venue</string>
+    <string name="event_detail_venue_unknown">Unknown</string>
+    <string name="attendance_mode_mixed">Mixed</string>
+    <string name="attendance_mode_offline">Offline</string>
+    <string name="attendance_mode_online">Online</string>
+    <string name="event_organizer_headline">Organizer</string>
+    <string name="event_organizer_unknown">Organizer unknown</string>
+    <string name="timetable">Timetable</string>
+    <string name="favorites">Your Favorites</string>
+    <string name="lineup_tba">Lineup tba</string>
+    <string name="location_unknown">Venue unknown</string>
+    <string name="date_tba">Date tba</string>
+    <string name="no_time_yet">No time yet</string>
+    <string name="is_favorite">Event is favorite</string>
+    <string name="no_additional_information">No additional information available.</string>
+    <string name="about_this_app">About this app</string>
+    <string name="more">More</string>
+    <string name="download_timetable">Download timetable</string>
+    <string name="download_timetable_description">You can download the whole timetable to use it even when you are offline. Use this functionality to keep the timetable up to date as well.</string>
+    <string name="download_timetable_cta">Download</string>
+    <string name="content">Content</string>
+    <string name="no_favorites">Put together your own plan for the moers festival.</string>
+    <string name="venue_detail_events">Events at this venue</string>
+    <string name="venue_detail_no_events">No events are currently assigned to this venue.</string>
+    <string name="venue_detail_not_found">Venue not found.</string>
+</resources>

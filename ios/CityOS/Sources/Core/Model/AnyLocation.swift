@@ -7,7 +7,6 @@
 
 import Foundation
 import MapKit
-import Core
 
 /// Type-erased wrapper for Location protocol to enable Hashable conformance
 public struct AnyLocation: Hashable {

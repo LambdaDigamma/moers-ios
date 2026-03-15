@@ -59,8 +59,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/groue/GRDB.swift",
       "state" : {
-        "branch" : "master",
-        "revision" : "aa0079aeb82a4bf00324561a40bffe68c6fe1c26"
+        "revision" : "36e30a6f1ef10e4194f6af0cff90888526f0c115",
+        "version" : "7.10.0"
       }
     },
     {
@@ -167,8 +167,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LambdaDigamma/swift-prosemirror",
       "state" : {
-        "revision" : "d4e169fb793bead5b29a0f269c70a4c529dc35af",
-        "version" : "0.0.7"
+        "revision" : "30b8594dc002f31c4e1e42a20b11eea74a020510",
+        "version" : "0.0.9"
       }
     },
     {

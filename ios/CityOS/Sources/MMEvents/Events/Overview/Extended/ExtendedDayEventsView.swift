@@ -11,36 +11,54 @@ public struct ExtendedDayEventsView: View {
     
     private let date: Date
     
-    @StateObject var viewModel: DayEventsViewModel
+    @ObservedObject var viewModel: DayEventsViewModel
     @EnvironmentObject var transmitter: TimetableTransmitter
     
-    public init(date: Date) {
-        self.date = date
-        self._viewModel = StateObject(wrappedValue: DayEventsViewModel(date: date))
+    public init(viewModel: DayEventsViewModel) {
+        self.date = viewModel.date
+        self.viewModel = viewModel
     }
     
     public var body: some View {
         
-        ScrollView{
-            LazyVStack {
+        ZStack {
+            
+            if viewModel.events.isEmpty && !viewModel.filter.isEmpty {
+                VStack(spacing: 16) {
+                    Image(systemName: "line.3.horizontal.decrease.circle")
+                        .font(.system(size: 48))
+                        .foregroundColor(.secondary)
+                    Text(EventPackageStrings.noEventsForFilter)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.secondary)
+                        .padding(.horizontal)
+                }
+            } else {
                 
-                ForEach(viewModel.events) { event in
-                    
-                    Button(action: {
-                        if let eventID = event.eventID {
-                            transmitter.dispatchShowEvent(eventID)
+                ScrollView{
+                    LazyVStack {
+                        
+                        ForEach(viewModel.events) { event in
+                            
+                            Button(action: {
+                                if let eventID = event.eventID {
+                                    transmitter.dispatchShowEvent(eventID)
+                                }
+                            }) {
+                                
+                                EventCard(viewModel: event)
+                                
+                                
+                            }
+                            
                         }
-                    }) {
-                        
-                        EventCard(viewModel: event)
-                        
                         
                     }
-                    
+                    .padding()
                 }
                 
             }
-            .padding()
+            
         }
         .task {
             await viewModel.reload()

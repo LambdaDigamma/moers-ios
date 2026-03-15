@@ -93,7 +93,7 @@ public class DefaultLegacyEventService: LegacyEventService {
         
         let request = HTTPRequest(
             method: .get,
-            path: "/api/v1/events/\(eventID)"
+            path: "/api/v1/festival/events/\(eventID)"
         )
         
         return Deferred {

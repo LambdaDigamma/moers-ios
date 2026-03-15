@@ -31,10 +31,10 @@ public struct ExtendedEventsView: View {
             
             TabView(selection: $viewModel.selectedDate) {
                 
-                ForEach(viewModel.dates, id: \.self) { date in
+                ForEach(viewModel.daysViewModels) { dateViewModel in
                     
-                    ExtendedDayEventsView(date: date)
-                        .tag(date)
+                    ExtendedDayEventsView(viewModel: dateViewModel)
+                        .tag(dateViewModel.date)
                     
                 }
                 

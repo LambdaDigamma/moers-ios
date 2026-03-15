@@ -26,7 +26,7 @@ public class DefaultPlaceService: PlaceService {
         
         let request = HTTPRequest(
             method: .get,
-            path: "/api/v1/locations"
+            path: "/api/v1/festival/locations"
         )
         
         return Deferred {
@@ -50,7 +50,7 @@ public class DefaultPlaceService: PlaceService {
         
         let request = HTTPRequest(
             method: .get,
-            path: "/api/v1/locations"
+            path: "/api/v1/festival/locations"
         )
         
         let result = await self.loader.load(request)
@@ -67,7 +67,7 @@ public class DefaultPlaceService: PlaceService {
         
         let request = HTTPRequest(
             method: .get,
-            path: "/api/v1/locations/\(placeID)"
+            path: "/api/v1/festival/locations/\(placeID)"
         )
         
         let result = await self.loader.load(request)

@@ -1,0 +1,16 @@
+{
+    "minVersion": "1.0.0",
+    "structure": {
+        "initialView": {
+            "type": "tabs",
+            "useSidebarIfNeeded": true,
+            "children": [
+                {
+                    "type": "navigation",
+                    "title": "Map",
+                    "imageName": "map"
+                }
+            ]
+        }
+    }
+}

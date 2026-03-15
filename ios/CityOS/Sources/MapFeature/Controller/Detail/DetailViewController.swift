@@ -151,7 +151,7 @@ public class DetailViewController: UIViewController {
     
     @objc private func close() {
         
-        if let drawer = self.parent as? MainViewController {
+        if let drawer = self.parent as? LegacyMainViewController {
             
             guard let contentDrawer = drawer.contentViewController else { return }
             guard let mapDrawer = drawer.mapViewController else { return }
@@ -340,7 +340,7 @@ extension DetailViewController: PulleyDrawerViewControllerDelegate {
     
     public func partialRevealDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
         
-        if let pulleyVC = self.parent as? MainViewController {
+        if let pulleyVC = self.parent as? LegacyMainViewController {
             
             let height = pulleyVC.mapViewController.map.frame.height
             

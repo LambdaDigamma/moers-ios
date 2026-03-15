@@ -12,7 +12,7 @@ import MediaLibraryKit
 import Factory
 import Combine
 
-public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable {
+public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable, Equatable {
     
     public let id: UUID = .init()
     
@@ -26,7 +26,7 @@ public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable {
     @Published public var media: Media?
     
     @Published public var isOpenEnd: Bool = false
-    @Published public var isPreview: Bool = false
+    @Published public var scheduleDisplayMode: EventScheduleDisplayMode = .dateTime
     
     @Published public var isLiked: Bool = false
     
@@ -41,7 +41,7 @@ public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable {
         media: Media? = nil,
         isOpenEnd: Bool = false,
         isLiked: Bool = false,
-        isPreview: Bool
+        scheduleDisplayMode: EventScheduleDisplayMode = .dateTime
     ) {
         self.eventID = eventID
         self.title = title
@@ -51,7 +51,7 @@ public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable {
         self.media = media
         self.isLiked = isLiked
         self.isOpenEnd = isOpenEnd
-        self.isPreview = isPreview
+        self.scheduleDisplayMode = scheduleDisplayMode
         self.favoriteEventsStore = Container.shared.favoriteEventsStore()
         super.init()
         self.setupListeners()
@@ -63,23 +63,24 @@ public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable {
             endDate: endDate
         )
     }
+
+    public var showsDateComponent: Bool {
+        return scheduleDisplayMode.showsDateComponent
+    }
+
+    public var showsTimeComponent: Bool {
+        return scheduleDisplayMode.showsTimeComponent
+    }
     
     public var dateRange: ClosedRange<Date>? {
-        
-        if isPreview {
-            return nil
-        }
-        
-        if !isOpenEnd {
-            
+        if showsTimeComponent && !isOpenEnd {
             return EventUtilities.dateRange(
                 startDate: startDate,
                 endDate: endDate
             )
-            
-        } else {
-            return nil
         }
+
+        return nil
         
     }
     
@@ -87,7 +88,7 @@ public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable {
         return EventUtilities.timeDisplayMode(
             startDate: startDate,
             endDate: endDate,
-            isPreview: isPreview
+            scheduleDisplayMode: scheduleDisplayMode
         )
     }
     
@@ -118,6 +119,7 @@ public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable {
         lhs.color == rhs.color &&
         lhs.media == rhs.media &&
         lhs.isOpenEnd == rhs.isOpenEnd &&
+        lhs.scheduleDisplayMode == rhs.scheduleDisplayMode &&
         lhs.isLiked == rhs.isLiked
         
     }
@@ -131,6 +133,7 @@ public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable {
         hasher.combine(color)
         hasher.combine(media)
         hasher.combine(isOpenEnd)
+        hasher.combine(scheduleDisplayMode)
         hasher.combine(isLiked)
     }
     
@@ -248,7 +251,7 @@ public struct EventListItem: View {
                         }
                         .lineLimit(1)
                         
-                    } else if let startDate = viewModel.startDate, !viewModel.isPreview {
+                    } else if let startDate = viewModel.startDate, viewModel.showsTimeComponent {
                         
                         Group {
                             
@@ -259,15 +262,40 @@ public struct EventListItem: View {
                         }
                         .lineLimit(1)
                         
-                    } else if viewModel.isPreview {
-                        
+                    } else if let location = viewModel.location, !viewModel.showsDateComponent {
+                        Text(location)
+                            .lineLimit(1)
+                    } else {
                         Text("No time yet", bundle: .module)
                             .lineLimit(1)
+                    }
+
+                case .date:
+                    if let startDate = viewModel.startDate {
                         
+                        Group {
+                            
+                            Text(startDate, style: .date) +
+                            (viewModel.location != nil ? Text(" · \(viewModel.location ?? "")") : Text(""))
+                            
+                        }
+                        .lineLimit(1)
+                        
+                    } else if let location = viewModel.location {
+                        Text(location)
+                            .lineLimit(1)
+                    } else {
+                        Text("No time yet", bundle: .module)
+                            .lineLimit(1)
                     }
                     
                 case .none:
-                    Text("No time yet", bundle: .module)
+                    if let location = viewModel.location {
+                        Text(location)
+                            .lineLimit(1)
+                    } else {
+                        Text("No time yet", bundle: .module)
+                    }
                     
             }
             
@@ -286,7 +314,7 @@ struct EventListItem_Previews: PreviewProvider {
             title: "Ghost Dogs (DE)",
             location: "Aula Gymnasium Filder Benden",
             isLiked: true,
-            isPreview: false
+            scheduleDisplayMode: .hidden
         )
         
         let future = EventListItemViewModel(
@@ -294,7 +322,7 @@ struct EventListItem_Previews: PreviewProvider {
             startDate: Date(timeIntervalSinceNow: 160 * 60),
             endDate: Date(timeIntervalSinceNow: 190 * 60),
             location: "Aula Gymnasium Filder Benden",
-            isPreview: false
+            scheduleDisplayMode: .dateTime
         )
         
         let upcoming = EventListItemViewModel(
@@ -302,7 +330,7 @@ struct EventListItem_Previews: PreviewProvider {
             startDate: Date(timeIntervalSinceNow: 5 * 60),
             endDate: Date(timeIntervalSinceNow: 35 * 60),
             location: "Aula Gymnasium Filder Benden",
-            isPreview: false
+            scheduleDisplayMode: .date
         )
         
         upcoming.color = .blue
@@ -312,7 +340,7 @@ struct EventListItem_Previews: PreviewProvider {
             startDate: Date(timeIntervalSinceNow: -5 * 60),
             endDate: Date(timeIntervalSinceNow: 35 * 60),
             location: "Aula Gymnasium Filder Benden",
-            isPreview: false
+            scheduleDisplayMode: .dateTime
         )
         
         return Group {

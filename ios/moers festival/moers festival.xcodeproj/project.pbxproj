@@ -1,0 +1,2408 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 100;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DF055B942D8B8FD7007E4393 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = DF055B932D8B8FD7007E4393 /* FirebaseAnalytics */; };
+		DF055B962D8B8FD7007E4393 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = DF055B952D8B8FD7007E4393 /* FirebaseCore */; };
+		DF055B982D8B8FD7007E4393 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = DF055B972D8B8FD7007E4393 /* FirebaseMessaging */; };
+		DF35B38A201DC72900118FD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF35B389201DC72900118FD1 /* AppDelegate.swift */; };
+		DF35B394201DC72900118FD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF35B392201DC72900118FD1 /* LaunchScreen.storyboard */; };
+		DF39C7D225A22CEB000ABCC3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DF39C7D125A22CEB000ABCC3 /* Settings.bundle */; };
+		DF559F2E26493D140076516C /* MMEvents in Frameworks */ = {isa = PBXBuildFile; productRef = DF559F2D26493D140076516C /* MMEvents */; };
+		DF562909257BB4F1005FC7BA /* WhatsNewKit in Frameworks */ = {isa = PBXBuildFile; productRef = DF562908257BB4F1005FC7BA /* WhatsNewKit */; };
+		DF56290B257BB4F1005FC7BA /* Waxwing in Frameworks */ = {isa = PBXBuildFile; productRef = DF56290A257BB4F1005FC7BA /* Waxwing */; };
+		DF56290D257BB4F1005FC7BA /* SwiftyMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = DF56290C257BB4F1005FC7BA /* SwiftyMarkdown */; };
+		DF56291A257BB6E3005FC7BA /* BLTNBoard in Frameworks */ = {isa = PBXBuildFile; productRef = DF562919257BB6E3005FC7BA /* BLTNBoard */; };
+		DF562933257BBA68005FC7BA /* EventBus in Frameworks */ = {isa = PBXBuildFile; productRef = DF562932257BBA68005FC7BA /* EventBus */; };
+		DF5975BE2F01E08D00512386 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975BD2F01E08D00512386 /* Core */; };
+		DF5975C02F01E08D00512386 /* MMEvents in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975BF2F01E08D00512386 /* MMEvents */; };
+		DF5975C22F01E08D00512386 /* MMFeeds in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C12F01E08D00512386 /* MMFeeds */; };
+		DF5975C42F01E08D00512386 /* MMPages in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C32F01E08D00512386 /* MMPages */; };
+		DF5975C62F01E08D00512386 /* MapFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C52F01E08D00512386 /* MapFeature */; };
+		DF5975C82F01E08D00512386 /* NewsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C72F01E08D00512386 /* NewsFeature */; };
+		DF5F729F27F07C34002AB4B8 /* AppScaffold in Frameworks */ = {isa = PBXBuildFile; productRef = DF5F729E27F07C34002AB4B8 /* AppScaffold */; };
+		DF62C61A2247B98E008425EC /* ContentDrawer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF62C6192247A349008425EC /* ContentDrawer.storyboard */; };
+		DF68FFF3282AEDD500C63690 /* FGD2022 in Resources */ = {isa = PBXBuildFile; fileRef = DF68FFF2282AEDD500C63690 /* FGD2022 */; };
+		DF7FB53527F672E300F718F2 /* StateViewController in Frameworks */ = {isa = PBXBuildFile; productRef = DF7FB53427F672E300F718F2 /* StateViewController */; };
+		DF82B76F2BED3750005F41F2 /* FGD2024 in Resources */ = {isa = PBXBuildFile; fileRef = DF82B76E2BED3750005F41F2 /* FGD2024 */; };
+		DF9B4E6427F668A200817DA3 /* INSPhotoGallery in Frameworks */ = {isa = PBXBuildFile; productRef = DF9B4E6327F668A200817DA3 /* INSPhotoGallery */; };
+		DFA90CBB29E945D600FF8366 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA90CBA29E945D600FF8366 /* WidgetKit.framework */; };
+		DFA90CBD29E945D600FF8366 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA90CBC29E945D600FF8366 /* SwiftUI.framework */; };
+		DFADF9562829915E00A15FE1 /* Moers.gpx in Resources */ = {isa = PBXBuildFile; fileRef = DFADF9552829915E00A15FE1 /* Moers.gpx */; };
+		DFADF9582829AB9000A15FE1 /* map.geojson in Resources */ = {isa = PBXBuildFile; fileRef = DFADF9572829AB9000A15FE1 /* map.geojson */; };
+		DFADF95C2829C13300A15FE1 /* intermediate.geojson in Resources */ = {isa = PBXBuildFile; fileRef = DFADF95B2829C13300A15FE1 /* intermediate.geojson */; };
+		DFADF96D282A66DF00A15FE1 /* Map Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFADF96C282A66DF00A15FE1 /* Map Icons.xcassets */; };
+		DFB592F12586C4F800BAD901 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB592F02586C4F800BAD901 /* SceneDelegate.swift */; };
+		DFB593012586D5C200BAD901 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB593002586D5C200BAD901 /* ApplicationController.swift */; };
+		DFC1111627F6476700348268 /* AppSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1111527F6476700348268 /* AppSplitViewController.swift */; };
+		DFC9094B21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DFC9094A21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle */; };
+		DFE12B672073853F006764FC /* Licenses.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFE12B662073853F006764FC /* Licenses.plist */; };
+		DFF1C5D22F66E20F000A84D1 /* Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = DFF1C5D12F66E1F4000A84D1 /* Icon.icon */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DF87B2F7201DFB2700E1B97C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF35B37E201DC72900118FD1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DF35B385201DC72900118FD1;
+			remoteInfo = "moers festival";
+		};
+		DFB15F1022AF082E00441FB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF35B37E201DC72900118FD1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DF35B385201DC72900118FD1;
+			remoteInfo = "moers festival";
+		};
+		DFD4562429E93A3B00F26F37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF35B37E201DC72900118FD1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DFD4561329E93A3A00F26F37;
+			remoteInfo = "moers festival Watch Watch App";
+		};
+		DFD4562E29E93A3C00F26F37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF35B37E201DC72900118FD1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DFD4561329E93A3A00F26F37;
+			remoteInfo = "moers festival Watch Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DFA90CCE29E945D700FF8366 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "";
+			dstSubfolder = PlugIns;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+		};
+		DFD4563829E93A3C00F26F37 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolder = Product;
+			files = (
+			);
+			name = "Embed Watch Content";
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		DF1C0B19257BD5DC00C956C1 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		DF1C0B1A257BD5DC00C956C1 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = Frameworks/GoogleAppMeasurement.framework; sourceTree = "<group>"; };
+		DF1C0B1B257BD5DC00C956C1 /* FirebaseInstanceID.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseInstanceID.xcframework; path = Frameworks/FirebaseInstanceID.xcframework; sourceTree = "<group>"; };
+		DF1C0B1C257BD5DC00C956C1 /* FirebaseCoreDiagnostics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseCoreDiagnostics.xcframework; path = Frameworks/FirebaseCoreDiagnostics.xcframework; sourceTree = "<group>"; };
+		DF1C0B1D257BD5DC00C956C1 /* nanopb.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = nanopb.xcframework; path = Frameworks/nanopb.xcframework; sourceTree = "<group>"; };
+		DF1C0B1E257BD5DD00C956C1 /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleUtilities.xcframework; path = Frameworks/GoogleUtilities.xcframework; sourceTree = "<group>"; };
+		DF1C0B1F257BD5DD00C956C1 /* FIRAnalyticsConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FIRAnalyticsConnector.framework; path = Frameworks/FIRAnalyticsConnector.framework; sourceTree = "<group>"; };
+		DF1C0B20257BD5DD00C956C1 /* GoogleDataTransport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleDataTransport.xcframework; path = Frameworks/GoogleDataTransport.xcframework; sourceTree = "<group>"; };
+		DF1C0B21257BD5DD00C956C1 /* FirebaseCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseCore.xcframework; path = Frameworks/FirebaseCore.xcframework; sourceTree = "<group>"; };
+		DF1C0B22257BD5DD00C956C1 /* PromisesObjC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = PromisesObjC.xcframework; path = Frameworks/PromisesObjC.xcframework; sourceTree = "<group>"; };
+		DF1C0B23257BD5DD00C956C1 /* Protobuf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Protobuf.xcframework; path = Frameworks/Protobuf.xcframework; sourceTree = "<group>"; };
+		DF1C0B24257BD5DD00C956C1 /* FirebaseMessaging.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseMessaging.xcframework; path = Frameworks/FirebaseMessaging.xcframework; sourceTree = "<group>"; };
+		DF1C0B25257BD5DD00C956C1 /* FirebaseInstallations.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseInstallations.xcframework; path = Frameworks/FirebaseInstallations.xcframework; sourceTree = "<group>"; };
+		DF1C1B6D29FA710E008FB9FA /* Screenshots.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Screenshots.xctestplan; sourceTree = "<group>"; };
+		DF35B386201DC72900118FD1 /* moers festival.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moers festival.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF35B389201DC72900118FD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DF35B393201DC72900118FD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DF39C7D125A22CEB000ABCC3 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		DF40D6C3247E73D40054199C /* moers festival tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moers festival tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF5978C92F01E98600512386 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/LaunchScreen.xcstrings; sourceTree = "<group>"; };
+		DF62C6192247A349008425EC /* ContentDrawer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContentDrawer.storyboard; sourceTree = "<group>"; };
+		DF68FFF2282AEDD500C63690 /* FGD2022 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FGD2022; sourceTree = "<group>"; };
+		DF82B7642BED3702005F41F2 /* camping.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = camping.geojson; sourceTree = "<group>"; };
+		DF82B7652BED3702005F41F2 /* dorf_old.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = dorf_old.geojson; sourceTree = "<group>"; };
+		DF82B7662BED3702005F41F2 /* dorf.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = dorf.geojson; sourceTree = "<group>"; };
+		DF82B7672BED3702005F41F2 /* medical_service.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = medical_service.geojson; sourceTree = "<group>"; };
+		DF82B7682BED3702005F41F2 /* stages.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = stages.geojson; sourceTree = "<group>"; };
+		DF82B7692BED3702005F41F2 /* surfaces.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = surfaces.geojson; sourceTree = "<group>"; };
+		DF82B76A2BED3702005F41F2 /* tickets.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = tickets.geojson; sourceTree = "<group>"; };
+		DF82B76B2BED3702005F41F2 /* toilets.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = toilets.geojson; sourceTree = "<group>"; };
+		DF82B76C2BED3702005F41F2 /* transportation.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = transportation.geojson; sourceTree = "<group>"; };
+		DF82B76E2BED3750005F41F2 /* FGD2024 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FGD2024; sourceTree = "<group>"; };
+		DF87B2F2201DFB2700E1B97C /* moers festival UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moers festival UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF92FBFF257BF9CE00BE1DA5 /* FirebaseABTesting.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseABTesting.xcframework; path = Frameworks/FirebaseABTesting.xcframework; sourceTree = "<group>"; };
+		DF92FC00257BF9CE00BE1DA5 /* FirebaseRemoteConfig.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseRemoteConfig.xcframework; path = Frameworks/FirebaseRemoteConfig.xcframework; sourceTree = "<group>"; };
+		DFA90CB929E945D600FF8366 /* WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFA90CBA29E945D600FF8366 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		DFA90CBC29E945D600FF8366 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		DFADF9552829915E00A15FE1 /* Moers.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Moers.gpx; sourceTree = "<group>"; };
+		DFADF9572829AB9000A15FE1 /* map.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map.geojson; sourceTree = "<group>"; };
+		DFADF95B2829C13300A15FE1 /* intermediate.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = intermediate.geojson; sourceTree = "<group>"; };
+		DFADF96C282A66DF00A15FE1 /* Map Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Map Icons.xcassets"; sourceTree = "<group>"; };
+		DFB15F0B22AF082D00441FB5 /* moers festival Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moers festival Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFB592F02586C4F800BAD901 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		DFB593002586D5C200BAD901 /* ApplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
+		DFC1111527F6476700348268 /* AppSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSplitViewController.swift; sourceTree = "<group>"; };
+		DFC9094A21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppMessagingDisplayResources.bundle; sourceTree = "<group>"; };
+		DFD4561429E93A3A00F26F37 /* moers festival.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moers festival.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFD4562329E93A3B00F26F37 /* moers festival Watch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moers festival Watch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFD4562D29E93A3C00F26F37 /* moers festival Watch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moers festival Watch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFE12B662073853F006764FC /* Licenses.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Licenses.plist; path = "moers festival/Licenses.plist"; sourceTree = SOURCE_ROOT; };
+		DFE90E7F29E3227A0054BCF1 /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
+		DFEC02F8262ABD6200D46B28 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DFF1C5D12F66E1F4000A84D1 /* Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = Icon.icon; sourceTree = "<group>"; };
+		DFFA54F02A015D89000ECEC5 /* Screenshot.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Screenshot.gpx; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		DF5975FE2F01E4F400512386 /* Exceptions for "Config" folder in "moers festival" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Development.xcconfig,
+				Info.plist,
+				Production.xcconfig,
+				Staging.xcconfig,
+			);
+			target = DF35B385201DC72900118FD1 /* moers festival */;
+		};
+		DF5977152F01E7E400512386 /* Exceptions for "Utility" folder in "moers festival" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				config.json,
+				"GoogleService-Info.plist",
+				Park/Dorf.plist,
+				RemoteConfigDefaults.plist,
+			);
+			target = DF35B385201DC72900118FD1 /* moers festival */;
+		};
+		DF59793D2F03256D00512386 /* Exceptions for "moers festival tvOS" folder in "moers festival tvOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Config/NetworkingConfiguration.swift,
+				Info.plist,
+			);
+			target = DF40D6C2247E73D40054199C /* moers festival tvOS */;
+		};
+		DF5979932F0325C000512386 /* Exceptions for "Widgets" folder in "moers festival" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Widgets.intentdefinition,
+			);
+			target = DF35B385201DC72900118FD1 /* moers festival */;
+		};
+		DF5979942F0325C000512386 /* Exceptions for "Widgets" folder in "WidgetsExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = DFA90CB829E945D600FF8366 /* WidgetsExtension */;
+		};
+		DF78E39C2F032EDD00E29277 /* Exceptions for "moers festival UITests" folder in "moers festival UITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = DF87B2F1201DFB2700E1B97C /* moers festival UITests */;
+		};
+		DFE8342A2F1BE88500A3DECD /* Exceptions for "Support" folder in "moers festival UITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AccessibilityIdentifiers.swift,
+			);
+			target = DF87B2F1201DFB2700E1B97C /* moers festival UITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		DF1E14152DF0B49B007015DC /* FGD2025 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FGD2025;
+			sourceTree = "<group>";
+		};
+		DF5975E92F01E4F400512386 /* Config */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF5975FE2F01E4F400512386 /* Exceptions for "Config" folder in "moers festival" target */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		DF5976062F01E4F900512386 /* Coordinator */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		DF5976222F01E52E00512386 /* News */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = News;
+			sourceTree = "<group>";
+		};
+		DF59762C2F01E53600512386 /* User Schedule */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "User Schedule";
+			sourceTree = "<group>";
+		};
+		DF5976312F01E56B00512386 /* Live */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Live;
+			sourceTree = "<group>";
+		};
+		DF5976342F01E5B500512386 /* Info */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Info;
+			sourceTree = "<group>";
+		};
+		DF5976D92F01E63300512386 /* ViewModels */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DF5976ED2F01E63600512386 /* Extensions */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DF5976FA2F01E7DB00512386 /* Manager */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		DF59770F2F01E7E400512386 /* Utility */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF5977152F01E7E400512386 /* Exceptions for "Utility" folder in "moers festival" target */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		DF5977172F01E7F700512386 /* Preview Content */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DF5977522F01E82300512386 /* Model */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DF5977962F01E86D00512386 /* Controller */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DF5978912F01E91B00512386 /* Venues */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Venues;
+			sourceTree = "<group>";
+		};
+		DF5978DA2F01EDAC00512386 /* Assets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		DF5978EE2F03250B00512386 /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		DF59792B2F03256C00512386 /* moers festival tvOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF59793D2F03256D00512386 /* Exceptions for "moers festival tvOS" folder in "moers festival tvOS" target */,
+			);
+			path = "moers festival tvOS";
+			sourceTree = "<group>";
+		};
+		DF5979442F03257400512386 /* moers festival Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "moers festival Watch App";
+			sourceTree = "<group>";
+		};
+		DF59794B2F03257800512386 /* moers festival Watch Watch AppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "moers festival Watch Watch AppTests";
+			sourceTree = "<group>";
+		};
+		DF59794F2F03257C00512386 /* moers festival Watch Watch AppUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "moers festival Watch Watch AppUITests";
+			sourceTree = "<group>";
+		};
+		DF5979832F0325C000512386 /* Widgets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF5979932F0325C000512386 /* Exceptions for "Widgets" folder in "moers festival" target */,
+				DF5979942F0325C000512386 /* Exceptions for "Widgets" folder in "WidgetsExtension" target */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		DF78E3942F032EDD00E29277 /* moers festival UITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF78E39C2F032EDD00E29277 /* Exceptions for "moers festival UITests" folder in "moers festival UITests" target */,
+			);
+			path = "moers festival UITests";
+			sourceTree = "<group>";
+		};
+		DF78E39E2F032EE200E29277 /* moers festival Tests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "moers festival Tests";
+			sourceTree = "<group>";
+		};
+		DFE834252F1BE82F00A3DECD /* Database */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Database;
+			sourceTree = "<group>";
+		};
+		DFE834292F1BE84000A3DECD /* Support */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DFE8342A2F1BE88500A3DECD /* Exceptions for "Support" folder in "moers festival UITests" target */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DF35B383201DC72900118FD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				DF5F729F27F07C34002AB4B8 /* AppScaffold in Frameworks */,
+				DF7FB53527F672E300F718F2 /* StateViewController in Frameworks */,
+				DF56290B257BB4F1005FC7BA /* Waxwing in Frameworks */,
+				DF5975C42F01E08D00512386 /* MMPages in Frameworks */,
+				DF5975C62F01E08D00512386 /* MapFeature in Frameworks */,
+				DF562909257BB4F1005FC7BA /* WhatsNewKit in Frameworks */,
+				DF5975C82F01E08D00512386 /* NewsFeature in Frameworks */,
+				DF56290D257BB4F1005FC7BA /* SwiftyMarkdown in Frameworks */,
+				DF5975BE2F01E08D00512386 /* Core in Frameworks */,
+				DF562933257BBA68005FC7BA /* EventBus in Frameworks */,
+				DF055B962D8B8FD7007E4393 /* FirebaseCore in Frameworks */,
+				DF5975C02F01E08D00512386 /* MMEvents in Frameworks */,
+				DF56291A257BB6E3005FC7BA /* BLTNBoard in Frameworks */,
+				DF5975C22F01E08D00512386 /* MMFeeds in Frameworks */,
+				DF055B942D8B8FD7007E4393 /* FirebaseAnalytics in Frameworks */,
+				DF055B982D8B8FD7007E4393 /* FirebaseMessaging in Frameworks */,
+				DF9B4E6427F668A200817DA3 /* INSPhotoGallery in Frameworks */,
+			);
+		};
+		DF40D6C0247E73D40054199C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				DF559F2E26493D140076516C /* MMEvents in Frameworks */,
+			);
+		};
+		DF87B2EF201DFB2700E1B97C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		DFA90CB629E945D600FF8366 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				DFA90CBD29E945D600FF8366 /* SwiftUI.framework in Frameworks */,
+				DFA90CBB29E945D600FF8366 /* WidgetKit.framework in Frameworks */,
+			);
+		};
+		DFB15F0822AF082D00441FB5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		DFD4561129E93A3A00F26F37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		DFD4562029E93A3B00F26F37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		DFD4562A29E93A3C00F26F37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DF35B37D201DC72900118FD1 = {
+			isa = PBXGroup;
+			children = (
+				DFF1C5D12F66E1F4000A84D1 /* Icon.icon */,
+				DF82B76D2BED3702005F41F2 /* FGD2024 */,
+				DFEC02F8262ABD6200D46B28 /* README.md */,
+				DFE90E7F29E3227A0054BCF1 /* TestPlan.xctestplan */,
+				DF1C1B6D29FA710E008FB9FA /* Screenshots.xctestplan */,
+				DF35B388201DC72900118FD1 /* moers festival */,
+				DF78E39E2F032EE200E29277 /* moers festival Tests */,
+				DF78E3942F032EDD00E29277 /* moers festival UITests */,
+				DF59792B2F03256C00512386 /* moers festival tvOS */,
+				DF5978EE2F03250B00512386 /* Shared */,
+				DF5979442F03257400512386 /* moers festival Watch App */,
+				DF59794B2F03257800512386 /* moers festival Watch Watch AppTests */,
+				DF59794F2F03257C00512386 /* moers festival Watch Watch AppUITests */,
+				DF5979832F0325C000512386 /* Widgets */,
+				DF35B387201DC72900118FD1 /* Products */,
+				DF9446D2201E870A00C85C64 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		DF35B387201DC72900118FD1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DF35B386201DC72900118FD1 /* moers festival.app */,
+				DF87B2F2201DFB2700E1B97C /* moers festival UITests.xctest */,
+				DFB15F0B22AF082D00441FB5 /* moers festival Tests.xctest */,
+				DF40D6C3247E73D40054199C /* moers festival tvOS.app */,
+				DFD4561429E93A3A00F26F37 /* moers festival.app */,
+				DFD4562329E93A3B00F26F37 /* moers festival Watch Watch AppTests.xctest */,
+				DFD4562D29E93A3C00F26F37 /* moers festival Watch Watch AppUITests.xctest */,
+				DFA90CB929E945D600FF8366 /* WidgetsExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DF35B388201DC72900118FD1 /* moers festival */ = {
+			isa = PBXGroup;
+			children = (
+				DF68FFF2282AEDD500C63690 /* FGD2022 */,
+				DF82B76E2BED3750005F41F2 /* FGD2024 */,
+				DFC9094A21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle */,
+				DF39C7D125A22CEB000ABCC3 /* Settings.bundle */,
+				DFADF95B2829C13300A15FE1 /* intermediate.geojson */,
+				DFADF9572829AB9000A15FE1 /* map.geojson */,
+				DFADF9552829915E00A15FE1 /* Moers.gpx */,
+				DFFA54F02A015D89000ECEC5 /* Screenshot.gpx */,
+				DFE12B662073853F006764FC /* Licenses.plist */,
+				DF62C6192247A349008425EC /* ContentDrawer.storyboard */,
+				DF35B389201DC72900118FD1 /* AppDelegate.swift */,
+				DFB593002586D5C200BAD901 /* ApplicationController.swift */,
+				DFC1111527F6476700348268 /* AppSplitViewController.swift */,
+				DFB592F02586C4F800BAD901 /* SceneDelegate.swift */,
+				DFADF96C282A66DF00A15FE1 /* Map Icons.xcassets */,
+				DF5978DA2F01EDAC00512386 /* Assets */,
+				DF5975E92F01E4F400512386 /* Config */,
+				DF5977962F01E86D00512386 /* Controller */,
+				DF5976062F01E4F900512386 /* Coordinator */,
+				DFE834252F1BE82F00A3DECD /* Database */,
+				DF5976ED2F01E63600512386 /* Extensions */,
+				DF1E14152DF0B49B007015DC /* FGD2025 */,
+				DF5976342F01E5B500512386 /* Info */,
+				DF35B392201DC72900118FD1 /* LaunchScreen.storyboard */,
+				DF5976312F01E56B00512386 /* Live */,
+				DF5976FA2F01E7DB00512386 /* Manager */,
+				DF5977522F01E82300512386 /* Model */,
+				DF5976222F01E52E00512386 /* News */,
+				DF5977172F01E7F700512386 /* Preview Content */,
+				DFE834292F1BE84000A3DECD /* Support */,
+				DF59762C2F01E53600512386 /* User Schedule */,
+				DF59770F2F01E7E400512386 /* Utility */,
+				DF5978912F01E91B00512386 /* Venues */,
+				DF5976D92F01E63300512386 /* ViewModels */,
+			);
+			path = "moers festival";
+			sourceTree = "<group>";
+		};
+		DF82B76D2BED3702005F41F2 /* FGD2024 */ = {
+			isa = PBXGroup;
+			children = (
+				DF82B7642BED3702005F41F2 /* camping.geojson */,
+				DF82B7652BED3702005F41F2 /* dorf_old.geojson */,
+				DF82B7662BED3702005F41F2 /* dorf.geojson */,
+				DF82B7672BED3702005F41F2 /* medical_service.geojson */,
+				DF82B7682BED3702005F41F2 /* stages.geojson */,
+				DF82B7692BED3702005F41F2 /* surfaces.geojson */,
+				DF82B76A2BED3702005F41F2 /* tickets.geojson */,
+				DF82B76B2BED3702005F41F2 /* toilets.geojson */,
+				DF82B76C2BED3702005F41F2 /* transportation.geojson */,
+			);
+			name = FGD2024;
+			path = "moers festival/FGD2024";
+			sourceTree = "<group>";
+		};
+		DF9446D2201E870A00C85C64 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF92FBFF257BF9CE00BE1DA5 /* FirebaseABTesting.xcframework */,
+				DF92FC00257BF9CE00BE1DA5 /* FirebaseRemoteConfig.xcframework */,
+				DF1C0B1F257BD5DD00C956C1 /* FIRAnalyticsConnector.framework */,
+				DF1C0B19257BD5DC00C956C1 /* FirebaseAnalytics.framework */,
+				DF1C0B21257BD5DD00C956C1 /* FirebaseCore.xcframework */,
+				DF1C0B1C257BD5DC00C956C1 /* FirebaseCoreDiagnostics.xcframework */,
+				DF1C0B25257BD5DD00C956C1 /* FirebaseInstallations.xcframework */,
+				DF1C0B1B257BD5DC00C956C1 /* FirebaseInstanceID.xcframework */,
+				DF1C0B24257BD5DD00C956C1 /* FirebaseMessaging.xcframework */,
+				DF1C0B1A257BD5DC00C956C1 /* GoogleAppMeasurement.framework */,
+				DF1C0B20257BD5DD00C956C1 /* GoogleDataTransport.xcframework */,
+				DF1C0B1E257BD5DD00C956C1 /* GoogleUtilities.xcframework */,
+				DF1C0B1D257BD5DC00C956C1 /* nanopb.xcframework */,
+				DF1C0B22257BD5DD00C956C1 /* PromisesObjC.xcframework */,
+				DF1C0B23257BD5DD00C956C1 /* Protobuf.xcframework */,
+				DFA90CBA29E945D600FF8366 /* WidgetKit.framework */,
+				DFA90CBC29E945D600FF8366 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DF35B385201DC72900118FD1 /* moers festival */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF35B398201DC72900118FD1 /* Build configuration list for PBXNativeTarget "moers festival" */;
+			buildPhases = (
+				DF35B383201DC72900118FD1 /* Frameworks */,
+				DF35B382201DC72900118FD1 /* Sources */,
+				DF35B384201DC72900118FD1 /* Resources */,
+				DFB708BE25AEFE4900D3318F /* ShellScript */,
+				DFD4563829E93A3C00F26F37 /* Embed Watch Content */,
+				DFA90CCE29E945D700FF8366 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				DF1E14152DF0B49B007015DC /* FGD2025 */,
+				DF5975E92F01E4F400512386 /* Config */,
+				DF5976062F01E4F900512386 /* Coordinator */,
+				DF5976222F01E52E00512386 /* News */,
+				DF59762C2F01E53600512386 /* User Schedule */,
+				DF5976312F01E56B00512386 /* Live */,
+				DF5976342F01E5B500512386 /* Info */,
+				DF5976D92F01E63300512386 /* ViewModels */,
+				DF5976ED2F01E63600512386 /* Extensions */,
+				DF5976FA2F01E7DB00512386 /* Manager */,
+				DF5977172F01E7F700512386 /* Preview Content */,
+				DF5977522F01E82300512386 /* Model */,
+				DF5977962F01E86D00512386 /* Controller */,
+				DF5978912F01E91B00512386 /* Venues */,
+				DF5978DA2F01EDAC00512386 /* Assets */,
+				DF5978EE2F03250B00512386 /* Shared */,
+				DFE834252F1BE82F00A3DECD /* Database */,
+				DFE834292F1BE84000A3DECD /* Support */,
+			);
+			name = "moers festival";
+			packageProductDependencies = (
+				DF562908257BB4F1005FC7BA /* WhatsNewKit */,
+				DF56290A257BB4F1005FC7BA /* Waxwing */,
+				DF56290C257BB4F1005FC7BA /* SwiftyMarkdown */,
+				DF562919257BB6E3005FC7BA /* BLTNBoard */,
+				DF562932257BBA68005FC7BA /* EventBus */,
+				DF5F729E27F07C34002AB4B8 /* AppScaffold */,
+				DF9B4E6327F668A200817DA3 /* INSPhotoGallery */,
+				DF7FB53427F672E300F718F2 /* StateViewController */,
+				DF055B932D8B8FD7007E4393 /* FirebaseAnalytics */,
+				DF055B952D8B8FD7007E4393 /* FirebaseCore */,
+				DF055B972D8B8FD7007E4393 /* FirebaseMessaging */,
+				DF5975BD2F01E08D00512386 /* Core */,
+				DF5975BF2F01E08D00512386 /* MMEvents */,
+				DF5975C12F01E08D00512386 /* MMFeeds */,
+				DF5975C32F01E08D00512386 /* MMPages */,
+				DF5975C52F01E08D00512386 /* MapFeature */,
+				DF5975C72F01E08D00512386 /* NewsFeature */,
+			);
+			productName = "moers festival";
+			productReference = DF35B386201DC72900118FD1 /* moers festival.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DF40D6C2247E73D40054199C /* moers festival tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF40D6DA247E73D60054199C /* Build configuration list for PBXNativeTarget "moers festival tvOS" */;
+			buildPhases = (
+				DF40D6BF247E73D40054199C /* Sources */,
+				DF40D6C0247E73D40054199C /* Frameworks */,
+				DF40D6C1247E73D40054199C /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				DF5978EE2F03250B00512386 /* Shared */,
+				DF59792B2F03256C00512386 /* moers festival tvOS */,
+			);
+			name = "moers festival tvOS";
+			packageProductDependencies = (
+				DF559F2D26493D140076516C /* MMEvents */,
+			);
+			productName = "moers festival tvOS";
+			productReference = DF40D6C3247E73D40054199C /* moers festival tvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DF87B2F1201DFB2700E1B97C /* moers festival UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF87B2F9201DFB2700E1B97C /* Build configuration list for PBXNativeTarget "moers festival UITests" */;
+			buildPhases = (
+				DF87B2EE201DFB2700E1B97C /* Sources */,
+				DF87B2EF201DFB2700E1B97C /* Frameworks */,
+				DF87B2F0201DFB2700E1B97C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DF87B2F8201DFB2700E1B97C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				DF78E3942F032EDD00E29277 /* moers festival UITests */,
+			);
+			name = "moers festival UITests";
+			productName = "moers festival UITests";
+			productReference = DF87B2F2201DFB2700E1B97C /* moers festival UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		DFA90CB829E945D600FF8366 /* WidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFA90CD529E945D700FF8366 /* Build configuration list for PBXNativeTarget "WidgetsExtension" */;
+			buildPhases = (
+				DFA90CB529E945D600FF8366 /* Sources */,
+				DFA90CB629E945D600FF8366 /* Frameworks */,
+				DFA90CB729E945D600FF8366 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				DF5979832F0325C000512386 /* Widgets */,
+			);
+			name = WidgetsExtension;
+			productName = WidgetsExtension;
+			productReference = DFA90CB929E945D600FF8366 /* WidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		DFB15F0A22AF082D00441FB5 /* moers festival Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFB15F1222AF082E00441FB5 /* Build configuration list for PBXNativeTarget "moers festival Tests" */;
+			buildPhases = (
+				DFB15F0722AF082D00441FB5 /* Sources */,
+				DFB15F0822AF082D00441FB5 /* Frameworks */,
+				DFB15F0922AF082D00441FB5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DFB15F1122AF082E00441FB5 /* PBXTargetDependency */,
+			);
+			name = "moers festival Tests";
+			productName = "moers festival Tests";
+			productReference = DFB15F0B22AF082D00441FB5 /* moers festival Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DFD4561329E93A3A00F26F37 /* moers festival Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFD4564B29E93A3C00F26F37 /* Build configuration list for PBXNativeTarget "moers festival Watch App" */;
+			buildPhases = (
+				DFD4561029E93A3A00F26F37 /* Sources */,
+				DFD4561129E93A3A00F26F37 /* Frameworks */,
+				DFD4561229E93A3A00F26F37 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				DF5979442F03257400512386 /* moers festival Watch App */,
+			);
+			name = "moers festival Watch App";
+			productName = "moers festival Watch Watch App";
+			productReference = DFD4561429E93A3A00F26F37 /* moers festival.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DFD4562229E93A3B00F26F37 /* moers festival Watch Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFD4564C29E93A3C00F26F37 /* Build configuration list for PBXNativeTarget "moers festival Watch Watch AppTests" */;
+			buildPhases = (
+				DFD4561F29E93A3B00F26F37 /* Sources */,
+				DFD4562029E93A3B00F26F37 /* Frameworks */,
+				DFD4562129E93A3B00F26F37 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DFD4562529E93A3B00F26F37 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				DF59794B2F03257800512386 /* moers festival Watch Watch AppTests */,
+			);
+			name = "moers festival Watch Watch AppTests";
+			productName = "moers festival Watch Watch AppTests";
+			productReference = DFD4562329E93A3B00F26F37 /* moers festival Watch Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DFD4562C29E93A3C00F26F37 /* moers festival Watch Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFD4564D29E93A3C00F26F37 /* Build configuration list for PBXNativeTarget "moers festival Watch Watch AppUITests" */;
+			buildPhases = (
+				DFD4562929E93A3C00F26F37 /* Sources */,
+				DFD4562A29E93A3C00F26F37 /* Frameworks */,
+				DFD4562B29E93A3C00F26F37 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DFD4562F29E93A3C00F26F37 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				DF59794F2F03257C00512386 /* moers festival Watch Watch AppUITests */,
+			);
+			name = "moers festival Watch Watch AppUITests";
+			productName = "moers festival Watch Watch AppUITests";
+			productReference = DFD4562D29E93A3C00F26F37 /* moers festival Watch Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DF35B37E201DC72900118FD1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				DefaultBuildSystemTypeForWorkspace = Latest;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 2640;
+				ORGANIZATIONNAME = "Code for Niederrhein";
+				TargetAttributes = {
+					DF35B385201DC72900118FD1 = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1020;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+					DF40D6C2247E73D40054199C = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					DF87B2F1201DFB2700E1B97C = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1020;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DF35B385201DC72900118FD1;
+					};
+					DFA90CB829E945D600FF8366 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					DFB15F0A22AF082D00441FB5 = {
+						CreatedOnToolsVersion = 10.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DF35B385201DC72900118FD1;
+					};
+					DFD4561329E93A3A00F26F37 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					DFD4562229E93A3B00F26F37 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = DFD4561329E93A3A00F26F37;
+					};
+					DFD4562C29E93A3C00F26F37 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = DFD4561329E93A3A00F26F37;
+					};
+				};
+			};
+			buildConfigurationList = DF35B381201DC72900118FD1 /* Build configuration list for PBXProject "moers festival" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				de,
+			);
+			mainGroup = DF35B37D201DC72900118FD1;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DFFD495F245F70CB0052830A /* XCRemoteSwiftPackageReference "WhatsNewKit" */,
+				DFFD4962246034A40052830A /* XCRemoteSwiftPackageReference "Waxwing" */,
+				DFD086B4246DC90E00B15A96 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */,
+				DF562918257BB6E3005FC7BA /* XCRemoteSwiftPackageReference "BulletinBoard" */,
+				DF562931257BBA68005FC7BA /* XCRemoteSwiftPackageReference "eventbus" */,
+				DF5F729D27F07C34002AB4B8 /* XCRemoteSwiftPackageReference "app-scaffold-ios" */,
+				DF9B4E6227F668A200817DA3 /* XCRemoteSwiftPackageReference "INSPhotoGallery" */,
+				DF7FB53327F670D500F718F2 /* XCRemoteSwiftPackageReference "stateviewcontroller" */,
+				DF055B922D8B8FD7007E4393 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				DF5975BC2F01E08D00512386 /* XCLocalSwiftPackageReference "../CityOS" */,
+			);
+			preferredProjectObjectVersion = 100;
+			productRefGroup = DF35B387201DC72900118FD1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DF35B385201DC72900118FD1 /* moers festival */,
+				DF87B2F1201DFB2700E1B97C /* moers festival UITests */,
+				DFB15F0A22AF082D00441FB5 /* moers festival Tests */,
+				DF40D6C2247E73D40054199C /* moers festival tvOS */,
+				DFD4561329E93A3A00F26F37 /* moers festival Watch App */,
+				DFD4562229E93A3B00F26F37 /* moers festival Watch Watch AppTests */,
+				DFD4562C29E93A3C00F26F37 /* moers festival Watch Watch AppUITests */,
+				DFA90CB829E945D600FF8366 /* WidgetsExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DF35B384201DC72900118FD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+				DF82B76F2BED3750005F41F2 /* FGD2024 in Resources */,
+				DFADF9582829AB9000A15FE1 /* map.geojson in Resources */,
+				DFADF95C2829C13300A15FE1 /* intermediate.geojson in Resources */,
+				DF62C61A2247B98E008425EC /* ContentDrawer.storyboard in Resources */,
+				DF39C7D225A22CEB000ABCC3 /* Settings.bundle in Resources */,
+				DF68FFF3282AEDD500C63690 /* FGD2022 in Resources */,
+				DFADF9562829915E00A15FE1 /* Moers.gpx in Resources */,
+				DFC9094B21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle in Resources */,
+				DFE12B672073853F006764FC /* Licenses.plist in Resources */,
+				DFF1C5D22F66E20F000A84D1 /* Icon.icon in Resources */,
+				DF35B394201DC72900118FD1 /* LaunchScreen.storyboard in Resources */,
+				DFADF96D282A66DF00A15FE1 /* Map Icons.xcassets in Resources */,
+			);
+		};
+		DF40D6C1247E73D40054199C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		DF87B2F0201DFB2700E1B97C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		DFA90CB729E945D600FF8366 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		DFB15F0922AF082D00441FB5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		DFD4561229E93A3A00F26F37 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		DFD4562129E93A3B00F26F37 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		DFD4562B29E93A3C00F26F37 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DFB708BE25AEFE4900D3318F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			shellPath = /bin/sh;
+			shellScript = (
+				"# cd $PROJECT_DIR",
+				"# cd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"",
+				"# RELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)",
+				"# BUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" Info.plist)",
+				"# VERSION_STRING=\"$RELEASE_VERSION ($BUILD_NUMBER)\"",
+				"# /usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $VERSION_STRING\" Settings.bundle/Root.plist",
+				"",
+				"# if [ $CONFIGURATION == \"Release\" ]; then",
+				"#    rm -rf \"$BUILD_APP_DIR/Settings.bundle\"",
+				"# fi",
+				"",
+			);
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DF35B382201DC72900118FD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+				DF35B38A201DC72900118FD1 /* AppDelegate.swift in Sources */,
+				DFB593012586D5C200BAD901 /* ApplicationController.swift in Sources */,
+				DFB592F12586C4F800BAD901 /* SceneDelegate.swift in Sources */,
+				DFC1111627F6476700348268 /* AppSplitViewController.swift in Sources */,
+			);
+		};
+		DF40D6BF247E73D40054199C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		DF87B2EE201DFB2700E1B97C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		DFA90CB529E945D600FF8366 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		DFB15F0722AF082D00441FB5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		DFD4561029E93A3A00F26F37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		DFD4561F29E93A3B00F26F37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		DFD4562929E93A3C00F26F37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DF87B2F8201DFB2700E1B97C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DF35B385201DC72900118FD1 /* moers festival */;
+			targetProxy = DF87B2F7201DFB2700E1B97C /* PBXContainerItemProxy */;
+		};
+		DFB15F1122AF082E00441FB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DF35B385201DC72900118FD1 /* moers festival */;
+			targetProxy = DFB15F1022AF082E00441FB5 /* PBXContainerItemProxy */;
+		};
+		DFD4562529E93A3B00F26F37 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DFD4561329E93A3A00F26F37 /* moers festival Watch App */;
+			targetProxy = DFD4562429E93A3B00F26F37 /* PBXContainerItemProxy */;
+		};
+		DFD4562F29E93A3C00F26F37 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DFD4561329E93A3A00F26F37 /* moers festival Watch App */;
+			targetProxy = DFD4562E29E93A3C00F26F37 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DF35B392201DC72900118FD1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DF35B393201DC72900118FD1 /* Base */,
+				DF5978C92F01E98600512386 /* mul */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DF40D6D6247E73D60054199C /* Debug configuration for PBXNativeTarget "moers festival tvOS" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
+			baseConfigurationReferenceRelativePath = Production.xcconfig;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image 2021";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 77N8D7LGCZ;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "moers festival tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore de.okfn.niederrhein.moers-festival tvos";
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 14.0;
+			};
+			name = Debug;
+		};
+		DF40D6D9247E73D60054199C /* Release configuration for PBXNativeTarget "moers festival tvOS" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
+			baseConfigurationReferenceRelativePath = Production.xcconfig;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image 2021";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 77N8D7LGCZ;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "moers festival tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore de.okfn.niederrhein.moers-festival tvos";
+				SDKROOT = appletvos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 14.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DFA90CD129E945D700FF8366 /* Debug configuration for PBXNativeTarget "WidgetsExtension" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 77N8D7LGCZ;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Widgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Code for Niederrhein. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival.Widgets";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development de.okfn.niederrhein.moers-festival.Widgets";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DFA90CD429E945D700FF8366 /* Release configuration for PBXNativeTarget "WidgetsExtension" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 77N8D7LGCZ;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Widgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Code for Niederrhein. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival.Widgets";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore de.okfn.niederrhein.moers-festival.Widgets";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DFB15EF922AE625500441FB5 /* Debug configuration for PBXProject "moers festival" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
+			baseConfigurationReferenceRelativePath = Production.xcconfig;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DFB15EFA22AE625500441FB5 /* Debug configuration for PBXNativeTarget "moers festival" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
+			baseConfigurationReferenceRelativePath = Production.xcconfig;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "moers festival/Utility/moers festival.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 39;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "moers\\ festival/Preview\\ Content/Preview\\ Assets.xcassets";
+				DEVELOPMENT_TEAM = 77N8D7LGCZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/moers\\ festival",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/moers festival/Config/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 2.1.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "moers festival/Utility/moers-festival-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/moers\\ festival/Utility",
+				);
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		DFB15EFB22AE625500441FB5 /* Debug configuration for PBXNativeTarget "moers festival UITests" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
+			baseConfigurationReferenceRelativePath = Production.xcconfig;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 93C29USLP6;
+				INFOPLIST_FILE = "moers festival UITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "moers festival";
+			};
+			name = Debug;
+		};
+		DFB15EFF22AE62F300441FB5 /* Release configuration for PBXProject "moers festival" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
+			baseConfigurationReferenceRelativePath = Production.xcconfig;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DFB15F0022AE62F300441FB5 /* Release configuration for PBXNativeTarget "moers festival" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
+			baseConfigurationReferenceRelativePath = Production.xcconfig;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "moers festival/Utility/moers festival.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 39;
+				DEVELOPMENT_ASSET_PATHS = "moers\\ festival/Preview\\ Content/Preview\\ Assets.xcassets";
+				DEVELOPMENT_TEAM = 77N8D7LGCZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/moers\\ festival",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/moers festival/Config/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 2.1.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "moers festival/Utility/moers-festival-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
+					"${PROJECT_DIR}/moers\\ festival/Utility",
+				);
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		DFB15F0122AE62F300441FB5 /* Release configuration for PBXNativeTarget "moers festival UITests" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
+			baseConfigurationReferenceRelativePath = Production.xcconfig;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 93C29USLP6;
+				INFOPLIST_FILE = "moers festival UITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "moers festival";
+			};
+			name = Release;
+		};
+		DFB15F1522AF082E00441FB5 /* Debug configuration for PBXNativeTarget "moers festival Tests" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
+			baseConfigurationReferenceRelativePath = Production.xcconfig;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TX3HU8833D;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "moers festival Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/moers festival.app/moers festival";
+			};
+			name = Debug;
+		};
+		DFB15F1822AF082E00441FB5 /* Release configuration for PBXNativeTarget "moers festival Tests" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = DF5975E92F01E4F400512386 /* Config */;
+			baseConfigurationReferenceRelativePath = Production.xcconfig;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TX3HU8833D;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "moers festival Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/moers festival.app/moers festival";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DFD4563B29E93A3C00F26F37 /* Debug configuration for PBXNativeTarget "moers festival Watch App" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_ASSET_PATHS = "\"moers festival Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = 77N8D7LGCZ;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "de.okfn.niederrhein.moers-festival";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival.watchkitapp";
+				PRODUCT_NAME = "moers festival";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match Development de.okfn.niederrhein.moers-festival.watchkitapp";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+			};
+			name = Debug;
+		};
+		DFD4563E29E93A3C00F26F37 /* Release configuration for PBXNativeTarget "moers festival Watch App" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "\"moers festival Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = 77N8D7LGCZ;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "de.okfn.niederrhein.moers-festival";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival.watchkitapp";
+				PRODUCT_NAME = "moers festival";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match AppStore de.okfn.niederrhein.moers-festival.watchkitapp";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+			};
+			name = Release;
+		};
+		DFD4564129E93A3C00F26F37 /* Debug configuration for PBXNativeTarget "moers festival Watch Watch AppTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 93C29USLP6;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival-Watch-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/moers festival Watch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/moers festival Watch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+			};
+			name = Debug;
+		};
+		DFD4564429E93A3C00F26F37 /* Release configuration for PBXNativeTarget "moers festival Watch Watch AppTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 93C29USLP6;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival-Watch-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/moers festival Watch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/moers festival Watch Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+			};
+			name = Release;
+		};
+		DFD4564729E93A3C00F26F37 /* Debug configuration for PBXNativeTarget "moers festival Watch Watch AppUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 93C29USLP6;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival-Watch-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "moers festival Watch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+			};
+			name = Debug;
+		};
+		DFD4564A29E93A3C00F26F37 /* Release configuration for PBXNativeTarget "moers festival Watch Watch AppUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival-Watch-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "moers festival Watch Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DF35B381201DC72900118FD1 /* Build configuration list for PBXProject "moers festival" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFB15EF922AE625500441FB5 /* Debug configuration for PBXProject "moers festival" */,
+				DFB15EFF22AE62F300441FB5 /* Release configuration for PBXProject "moers festival" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		DF35B398201DC72900118FD1 /* Build configuration list for PBXNativeTarget "moers festival" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFB15EFA22AE625500441FB5 /* Debug configuration for PBXNativeTarget "moers festival" */,
+				DFB15F0022AE62F300441FB5 /* Release configuration for PBXNativeTarget "moers festival" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		DF40D6DA247E73D60054199C /* Build configuration list for PBXNativeTarget "moers festival tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF40D6D6247E73D60054199C /* Debug configuration for PBXNativeTarget "moers festival tvOS" */,
+				DF40D6D9247E73D60054199C /* Release configuration for PBXNativeTarget "moers festival tvOS" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		DF87B2F9201DFB2700E1B97C /* Build configuration list for PBXNativeTarget "moers festival UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFB15EFB22AE625500441FB5 /* Debug configuration for PBXNativeTarget "moers festival UITests" */,
+				DFB15F0122AE62F300441FB5 /* Release configuration for PBXNativeTarget "moers festival UITests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		DFA90CD529E945D700FF8366 /* Build configuration list for PBXNativeTarget "WidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFA90CD129E945D700FF8366 /* Debug configuration for PBXNativeTarget "WidgetsExtension" */,
+				DFA90CD429E945D700FF8366 /* Release configuration for PBXNativeTarget "WidgetsExtension" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		DFB15F1222AF082E00441FB5 /* Build configuration list for PBXNativeTarget "moers festival Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFB15F1522AF082E00441FB5 /* Debug configuration for PBXNativeTarget "moers festival Tests" */,
+				DFB15F1822AF082E00441FB5 /* Release configuration for PBXNativeTarget "moers festival Tests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		DFD4564B29E93A3C00F26F37 /* Build configuration list for PBXNativeTarget "moers festival Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFD4563B29E93A3C00F26F37 /* Debug configuration for PBXNativeTarget "moers festival Watch App" */,
+				DFD4563E29E93A3C00F26F37 /* Release configuration for PBXNativeTarget "moers festival Watch App" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		DFD4564C29E93A3C00F26F37 /* Build configuration list for PBXNativeTarget "moers festival Watch Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFD4564129E93A3C00F26F37 /* Debug configuration for PBXNativeTarget "moers festival Watch Watch AppTests" */,
+				DFD4564429E93A3C00F26F37 /* Release configuration for PBXNativeTarget "moers festival Watch Watch AppTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		DFD4564D29E93A3C00F26F37 /* Build configuration list for PBXNativeTarget "moers festival Watch Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFD4564729E93A3C00F26F37 /* Debug configuration for PBXNativeTarget "moers festival Watch Watch AppUITests" */,
+				DFD4564A29E93A3C00F26F37 /* Release configuration for PBXNativeTarget "moers festival Watch Watch AppUITests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		DF5975BC2F01E08D00512386 /* XCLocalSwiftPackageReference "../CityOS" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../CityOS;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DF055B922D8B8FD7007E4393 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
+			};
+		};
+		DF562918257BB6E3005FC7BA /* XCRemoteSwiftPackageReference "BulletinBoard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexisakers/BulletinBoard";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		DF562931257BBA68005FC7BA /* XCRemoteSwiftPackageReference "eventbus" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lambdadigamma/eventbus";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.2;
+			};
+		};
+		DF5F729D27F07C34002AB4B8 /* XCRemoteSwiftPackageReference "app-scaffold-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LambdaDigamma/app-scaffold-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		DF7FB53327F670D500F718F2 /* XCRemoteSwiftPackageReference "stateviewcontroller" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lambdadigamma/stateviewcontroller";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		DF9B4E6227F668A200817DA3 /* XCRemoteSwiftPackageReference "INSPhotoGallery" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LambdaDigamma/INSPhotoGallery";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		DFD086B4246DC90E00B15A96 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimonFairbairn/SwiftyMarkdown";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.1;
+			};
+		};
+		DFFD495F245F70CB0052830A /* XCRemoteSwiftPackageReference "WhatsNewKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SvenTiigi/WhatsNewKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		DFFD4962246034A40052830A /* XCRemoteSwiftPackageReference "Waxwing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JanGorman/Waxwing";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DF055B932D8B8FD7007E4393 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF055B922D8B8FD7007E4393 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		DF055B952D8B8FD7007E4393 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF055B922D8B8FD7007E4393 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		DF055B972D8B8FD7007E4393 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF055B922D8B8FD7007E4393 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		DF559F2D26493D140076516C /* MMEvents */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MMEvents;
+		};
+		DF562908257BB4F1005FC7BA /* WhatsNewKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFFD495F245F70CB0052830A /* XCRemoteSwiftPackageReference "WhatsNewKit" */;
+			productName = WhatsNewKit;
+		};
+		DF56290A257BB4F1005FC7BA /* Waxwing */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFFD4962246034A40052830A /* XCRemoteSwiftPackageReference "Waxwing" */;
+			productName = Waxwing;
+		};
+		DF56290C257BB4F1005FC7BA /* SwiftyMarkdown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFD086B4246DC90E00B15A96 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */;
+			productName = SwiftyMarkdown;
+		};
+		DF562919257BB6E3005FC7BA /* BLTNBoard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF562918257BB6E3005FC7BA /* XCRemoteSwiftPackageReference "BulletinBoard" */;
+			productName = BLTNBoard;
+		};
+		DF562932257BBA68005FC7BA /* EventBus */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF562931257BBA68005FC7BA /* XCRemoteSwiftPackageReference "eventbus" */;
+			productName = EventBus;
+		};
+		DF5975BD2F01E08D00512386 /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
+		DF5975BF2F01E08D00512386 /* MMEvents */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MMEvents;
+		};
+		DF5975C12F01E08D00512386 /* MMFeeds */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MMFeeds;
+		};
+		DF5975C32F01E08D00512386 /* MMPages */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MMPages;
+		};
+		DF5975C52F01E08D00512386 /* MapFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MapFeature;
+		};
+		DF5975C72F01E08D00512386 /* NewsFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NewsFeature;
+		};
+		DF5F729E27F07C34002AB4B8 /* AppScaffold */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF5F729D27F07C34002AB4B8 /* XCRemoteSwiftPackageReference "app-scaffold-ios" */;
+			productName = AppScaffold;
+		};
+		DF7FB53427F672E300F718F2 /* StateViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF7FB53327F670D500F718F2 /* XCRemoteSwiftPackageReference "stateviewcontroller" */;
+			productName = StateViewController;
+		};
+		DF9B4E6327F668A200817DA3 /* INSPhotoGallery */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF9B4E6227F668A200817DA3 /* XCRemoteSwiftPackageReference "INSPhotoGallery" */;
+			productName = INSPhotoGallery;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = DF35B37E201DC72900118FD1 /* Project object */;
+}

@@ -33,6 +33,12 @@ public struct Event: BaseEvent, Equatable, Hashable {
     
     public var mediaCollections: MediaCollectionsContainer
     
+    public var headerMedia: Media? {
+        return mediaCollections.getFirstMedia(for: "header")
+            ?? mediaCollections.getFirstMedia(for: "default")
+            ?? mediaCollections.getFirstMedia(for: "insel")
+    }
+    
     public init(
         id: ID,
         name: String,
@@ -109,9 +115,29 @@ public struct Event: BaseEvent, Equatable, Hashable {
         return false
         
     }
+
+    public var scheduleDisplayMode: EventScheduleDisplayMode {
+        if let scheduleDisplay = extras?.scheduleDisplay {
+            return scheduleDisplay
+        }
+
+        if extras?.isPreview == true {
+            return .date
+        }
+
+        return .dateTime
+    }
+
+    public var showsDateComponent: Bool {
+        return scheduleDisplayMode.showsDateComponent
+    }
+
+    public var showsTimeComponent: Bool {
+        return scheduleDisplayMode.showsTimeComponent
+    }
     
     public var isPreview: Bool {
-        return extras?.isPreview ?? false
+        return scheduleDisplayMode == .date
     }
     
 }

@@ -1,0 +1,94 @@
+name: Release Moers Festival iOS Version
+permissions: write-all
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        type: choice
+        required: true
+        description: iOS Version
+        default: build
+        options:
+          - build
+          - patch
+          - minor
+          - major
+
+jobs:
+  build-ios:
+    runs-on: macos-15
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Decode and Store Google Services Plist
+        run: |
+          echo "${{ secrets.IOS_FESTIVAL_GOOGLE_SERVICES_INFO_PLIST }}" | base64 --decode > "ios/moers festival/moers festival/Utility/GoogleService-Info.plist"
+
+      - name: Set up ruby env
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+
+      - name: Install bundle
+        run: |
+          cd "ios/moers festival"
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      - name: Version Bump
+        run: |
+          echo "Executing version bump: ${{ github.event.inputs.version_bump }}"
+          cd "ios/moers festival"
+          bundle exec fastlane ios increment_build
+          
+          if [ "${{ github.event.inputs.version_bump }}" != "build" ]; then
+            bundle exec fastlane ios increment_version type:${{ github.event.inputs.version_bump }}
+          else
+            echo "Skipping version name bump as 'build' was selected."
+          fi
+
+      - name: Ship iOS App
+        run: |
+          cd "ios/moers festival"
+          bundle exec fastlane ios upload
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY: ${{ secrets.ASC_KEY }}
+          CI: true
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          BASIC_AUTH: lambdadigamma:${{ secrets.GITHUB_TOKEN }}
+          MATCH_GITHUB_TOKEN: ${{ secrets.MATCH_GITHUB_TOKEN }}
+          FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 120
+          FASTLANE_XCODEBUILD_SETTINGS_RETRIES: 5
+
+      - name: Get iOS version and build number
+        id: ios_version
+        run: |
+          IOS_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "ios/moers festival/moers festival/Config/Info.plist")
+          IOS_BUILD=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "ios/moers festival/moers festival/Config/Info.plist")
+          TAG_NAME="festival-ios/${IOS_VERSION}/${IOS_BUILD}"
+
+          echo "iOS Version: $IOS_VERSION"
+          echo "iOS Build: $IOS_BUILD"
+          echo "Tag Name: $TAG_NAME"
+
+          echo "ios_version=$IOS_VERSION" >> $GITHUB_ENV
+          echo "ios_build=$IOS_BUILD" >> $GITHUB_ENV
+          echo "tag_name=$TAG_NAME" >> $GITHUB_ENV
+
+      - name: Commit version bump and tag
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🚀 Bump Moers Festival iOS version to ${{ env.ios_version }} (${{ env.ios_build }})"
+          tagging_message: "${{ env.tag_name }}"
+          file_pattern: '*.plist'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

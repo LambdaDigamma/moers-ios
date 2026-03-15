@@ -25,7 +25,7 @@ class SelectionViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Section, Core.AnyLocation>!
     
     // swiftlint:disable:next force_cast
-    lazy var drawer: MainViewController = { self.parent as! MainViewController }()
+    lazy var drawer: LegacyMainViewController = { self.parent as! LegacyMainViewController }()
     
     public var annotation: MKAnnotation?
     public var clusteredLocations: [Location] = [] {

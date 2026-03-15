@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigation_events">Veranstaltungen</string>
+    <string name="navigation_top_bar">Veranstaltungen</string>
+    <string name="event_detail_no_place">Ort unbekannt</string>
+    <string name="event_detail_venue_headline">Veranstaltungsort</string>
+    <string name="event_detail_venue_unknown">Unbekannt</string>
+    <string name="attendance_mode_mixed">Mixed</string>
+    <string name="attendance_mode_offline">Offline</string>
+    <string name="attendance_mode_online">Online</string>
+    <string name="event_organizer_headline">Veranstalter</string>
+    <string name="event_organizer_unknown">Unbekannt</string>
+    <string name="timetable">Spielplan</string>
+    <string name="favorites">Deine Favoriten</string>
+    <string name="lineup_tba">Besetzung tba</string>
+    <string name="location_unknown">Spielort tba</string>
+    <string name="date_tba">Zeit tba</string>
+    <string name="no_time_yet">Noch keine Uhrzeit</string>
+    <string name="is_favorite">Veranstaltung ist Favorit</string>
+    <string name="no_additional_information">Keine weiteren Informationen vorhanden.</string>
+    <string name="about_this_app">Informationen zur App</string>
+    <string name="more">Mehr</string>
+    <string name="download_timetable">Spielplan herunterladen</string>
+    <string name="download_timetable_description">Du kannst den ganzen Spielplan herunterladen, um ihn auch ohne Internetverbindung zu nutzen. Nutze diese Funktion auch, um den Spielplan aktuell zu halten.</string>
+    <string name="download_timetable_cta">Herunterladen</string>
+    <string name="content">Inhalt</string>
+    <string name="no_favorites">Stelle deinen eigenen Plan zum moers festival zusammen.</string>
+    <string name="venue_detail_events">Veranstaltungen an diesem Ort</string>
+    <string name="venue_detail_no_events">Diesem Ort sind derzeit keine Veranstaltungen zugeordnet.</string>
+    <string name="venue_detail_not_found">Ort wurde nicht gefunden.</string>
+</resources>

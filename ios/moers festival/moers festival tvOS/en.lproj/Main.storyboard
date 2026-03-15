@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="20037" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+    <device id="appleTV" appearance="light"/>
+    <dependencies>
+        <deployment identifier="tvOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Countdown View Controller-->
+        <scene sceneID="e7K-2B-uNI">
+            <objects>
+                <viewController id="kWR-ab-a2n" customClass="CountdownViewController" customModule="moers_festival_tvOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6Z0-kW-tay"/>
+                        <viewControllerLayoutGuide type="bottom" id="boW-aM-Ioi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Sr8-6d-3cf">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" axis="vertical" distribution="fillProportionally" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="sd6-C0-jkQ">
+                                <rect key="frame" x="80" y="60" width="1750" height="960"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plakat" translatesAutoresizingMaskIntoConstraints="NO" id="5Wc-dB-ohZ">
+                                        <rect key="frame" x="375" y="0.0" width="1000" height="500"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="500" id="8Dh-Qy-lic"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Days 5 Hours 43 Minutes 3 Seconds" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3c-CH-HR4">
+                                        <rect key="frame" x="247" y="516" width="1256" height="73.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IBT-BP-77c">
+                                        <rect key="frame" x="3" y="605.5" width="1744" height="354.5"/>
+                                        <string key="text">This years Whitsun sees anything but the fight for the future! Our familiar cultural live is overran by organic monsters that are stealing our social coexistence. They have set fire to art, education and culture. Already one year ago we set sails to save the Moers utopia from these fire-spitting beasts. Actually we have been on this mission for half a decade – together with you. So hey, let´s celebrate!
+
+What started as a riot, wanted to denazify, make the world more just and positive, remained a magnetic place for liberated music and experiments – has been consistently Avantgarde and reliably brought the unexpected. The festivals anniversary sees the final fight between the past and future. Mœrphs and Pyrills kindle and extinguish in the analogue-digital time tunnel between venues, camping, vegan sausage stalls and pandemic misery.
+
+Do you want to know where to put your picnic blanket without ruffle or excitement?</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jpm-SL-eOB"/>
+                        <constraints>
+                            <constraint firstItem="jpm-SL-eOB" firstAttribute="trailing" secondItem="sd6-C0-jkQ" secondAttribute="trailing" constant="10" id="8xI-9A-gE0"/>
+                            <constraint firstItem="sd6-C0-jkQ" firstAttribute="leading" secondItem="jpm-SL-eOB" secondAttribute="leading" id="TeX-Gg-IRG"/>
+                            <constraint firstItem="sd6-C0-jkQ" firstAttribute="top" secondItem="jpm-SL-eOB" secondAttribute="top" id="bQa-26-goV"/>
+                            <constraint firstItem="jpm-SL-eOB" firstAttribute="bottom" secondItem="sd6-C0-jkQ" secondAttribute="bottom" id="sXQ-xf-q85"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="countdownLabel" destination="g3c-CH-HR4" id="Q1Q-dn-Cpg"/>
+                        <outlet property="marketingImageView" destination="5Wc-dB-ohZ" id="oDt-11-D41"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ejr-tf-B8r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2246" y="-1926"/>
+        </scene>
+        <!--Inactive Stream View Controller-->
+        <scene sceneID="uXs-PI-9AO">
+            <objects>
+                <viewController id="4oi-gm-atX" customClass="InactiveStreamViewController" customModule="moers_festival_tvOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Clo-sb-1W3"/>
+                        <viewControllerLayoutGuide type="bottom" id="I7b-x7-Z0r"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aq5-Bi-r8F">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="gCA-tV-Kbf">
+                                <rect key="frame" x="80" y="689" width="1760" height="242"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The livestream is currently not active." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmh-wa-E2O">
+                                        <rect key="frame" x="422.5" y="0.0" width="915" height="69"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="As soon as it continues, the livestream is automatically reloaded. If this does not happen, you can also reload manually." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKf-j6-f5L">
+                                        <rect key="frame" x="289.5" y="85" width="1181" height="71"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="1200" id="t6z-Bd-DCJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r06-Rj-ghU">
+                                        <rect key="frame" x="782" y="172" width="196" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="6Lh-yT-7S7"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <state key="normal" title="Reload"/>
+                                        <connections>
+                                            <action selector="reloadButtonPressed:" destination="4oi-gm-atX" eventType="primaryActionTriggered" id="jx5-iD-ZJw"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error" translatesAutoresizingMaskIntoConstraints="NO" id="88L-ea-VBv">
+                                <rect key="frame" x="730" y="100" width="460" height="573"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="88L-ea-VBv" secondAttribute="height" multiplier="57:71" id="yO4-EV-S1g"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tGa-gE-9TF"/>
+                        <constraints>
+                            <constraint firstItem="tGa-gE-9TF" firstAttribute="trailing" secondItem="gCA-tV-Kbf" secondAttribute="trailing" id="5oo-Vs-ZrR"/>
+                            <constraint firstItem="tGa-gE-9TF" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gCA-tV-Kbf" secondAttribute="bottom" priority="500" id="6wc-Og-dv3"/>
+                            <constraint firstItem="88L-ea-VBv" firstAttribute="top" secondItem="tGa-gE-9TF" secondAttribute="top" constant="40" id="MaO-09-6v9"/>
+                            <constraint firstItem="gCA-tV-Kbf" firstAttribute="top" secondItem="88L-ea-VBv" secondAttribute="bottom" constant="16" id="RRo-vv-MJQ"/>
+                            <constraint firstItem="gCA-tV-Kbf" firstAttribute="leading" secondItem="tGa-gE-9TF" secondAttribute="leading" id="bR9-cg-yt2"/>
+                            <constraint firstItem="gCA-tV-Kbf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="tGa-gE-9TF" secondAttribute="top" priority="500" id="mWK-ZV-uPg"/>
+                            <constraint firstItem="88L-ea-VBv" firstAttribute="centerX" secondItem="aq5-Bi-r8F" secondAttribute="centerX" id="rBW-OT-xhc"/>
+                            <constraint firstItem="gCA-tV-Kbf" firstAttribute="centerY" secondItem="aq5-Bi-r8F" secondAttribute="centerY" multiplier="1.5" id="uTR-Ek-5Qw"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="AJ9-mZ-L0p"/>
+                    <connections>
+                        <outlet property="errorImageView" destination="88L-ea-VBv" id="NTa-de-FkH"/>
+                        <outlet property="reloadButton" destination="r06-Rj-ghU" id="WzU-Ul-xXe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NDb-r6-Xl4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4660" y="-603"/>
+        </scene>
+        <!--Live-->
+        <scene sceneID="wYm-mO-snl">
+            <objects>
+                <avPlayerViewController title="Live" videoGravity="AVLayerVideoGravityResizeAspect" id="8gM-WG-1pP" customClass="PlayerViewController" customModule="moers_festival_tvOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Live" image="play.fill" catalog="system" id="546-9N-Vfq" userLabel="Live"/>
+                    <simulatedTabBarMetrics key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <segue destination="kWR-ab-a2n" kind="showDetail" identifier="showCountdown" id="tuJ-o7-UVx"/>
+                        <segue destination="4oi-gm-atX" kind="showDetail" identifier="showInactive" id="U7J-gG-O8Z"/>
+                    </connections>
+                </avPlayerViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fos-D5-fn1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2246" y="-603"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="yl2-sM-qoP">
+            <objects>
+                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="120"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="8gM-WG-1pP" kind="relationship" relationship="viewControllers" id="RXE-FS-CZO"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="40" y="-603"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="error" width="228" height="289"/>
+        <image name="plakat" width="1000" height="707"/>
+        <image name="play.fill" catalog="system" width="112" height="128"/>
+        <systemColor name="secondaryLabelColor">
+            <color white="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

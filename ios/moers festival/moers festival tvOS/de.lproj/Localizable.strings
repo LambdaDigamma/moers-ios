@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  moers festival
+
+  Created by Lennart Fischer on 27.05.20.
+  Copyright © 2020 CodeForNiederrhein. All rights reserved.
+*/
+
+"CountdownDays" = "Tage";
+"CountdownHours" = "Stunden";
+"CountdownMinutes" = "Minuten";
+"CountdownSeconds" = "Sekunden";

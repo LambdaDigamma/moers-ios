@@ -1,0 +1,7 @@
+/build
+/local.properties
+/google-services.json
+/fastlane/.env
+/fastlane/report.xml
+/Keystore/Keystore.jks
+.DS_Store

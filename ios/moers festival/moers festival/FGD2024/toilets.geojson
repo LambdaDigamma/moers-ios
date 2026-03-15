@@ -1,0 +1,14 @@
+{
+"type": "FeatureCollection",
+"name": "toilets",
+"features": [
+{ "type": "Feature", "properties": { "id": null, "name": "Toiletten (Sporthalle)", "type": "toilets" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 6.620364, 51.4423735 ], [ 6.6202964, 51.442343 ], [ 6.6203006, 51.4423377 ], [ 6.6202679, 51.4423197 ], [ 6.6203236, 51.4422775 ], [ 6.620425, 51.4423232 ], [ 6.620364, 51.4423735 ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "Toiletten (Rodelberg)", "type": "toilets" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 6.6164579, 51.4425887 ], [ 6.6163703, 51.4426027 ], [ 6.6163059, 51.4424405 ], [ 6.616395, 51.4424273 ], [ 6.6164579, 51.4425887 ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "Toiletten (Park)", "type": "toilets" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 6.6161868, 51.4440144 ], [ 6.6160646, 51.4440009 ], [ 6.6161082, 51.4438434 ], [ 6.6162295, 51.443859 ], [ 6.6161868, 51.4440144 ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "Toiletten (Streichelzoo)", "type": "toilets" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 6.6169116, 51.443095 ], [ 6.6168151, 51.4431145 ], [ 6.6167906, 51.4430666 ], [ 6.6168885, 51.4430484 ], [ 6.6169116, 51.443095 ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "Sanitäranlagen (am Solimare)", "type": "toilets" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 6.6172591, 51.4397151 ], [ 6.6171948, 51.4397399 ], [ 6.617061, 51.4396052 ], [ 6.6171296, 51.4395811 ], [ 6.6172591, 51.4397151 ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "Toilettenwagen (Park)", "type": "toilets" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 6.6169504, 51.4432295 ], [ 6.6167697, 51.4432636 ], [ 6.6167521, 51.4432303 ], [ 6.6169357, 51.4431961 ], [ 6.6169504, 51.4432295 ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "Toilettenwagen (an der Festivalhalle)", "type": "toilets" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 6.6185462, 51.4398441 ], [ 6.6184875, 51.4398614 ], [ 6.6183995, 51.4397522 ], [ 6.6184536, 51.4397328 ], [ 6.6185462, 51.4398441 ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "Toiletten", "type": "toilets" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 6.6200723, 51.442625 ], [ 6.6200118, 51.4426742 ], [ 6.6199121, 51.4426287 ], [ 6.6199622, 51.4425814 ], [ 6.6200005, 51.4425998 ], [ 6.6200043, 51.4425932 ], [ 6.6200723, 51.442625 ] ] ] } }
+]
+}

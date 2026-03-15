@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "\/var\/folders\/c3\/nhvb43vd6458kcrgjf45v56w0000gn\/T\/tmpjq0xt4cobulkexport\/fe62d920-bf88-4833-90c6-c45e0a3182d4",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": null, "name": "Sanitätsdienst", "type": "medical_service" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 6.618214, 51.439909 ], [ 6.618147, 51.439827 ], [ 6.618096, 51.439844 ], [ 6.618168, 51.439925 ], [ 6.618214, 51.439909 ] ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "Sanitätsdienst", "type": "medical_service" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 6.618094, 51.439784 ], [ 6.618059, 51.439729 ], [ 6.618019, 51.43974 ], [ 6.618053, 51.439795 ], [ 6.618094, 51.439784 ] ] ] ] } }
+]
+}

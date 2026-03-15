@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "tv2021-black.png",
+      "idiom" : "tv"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

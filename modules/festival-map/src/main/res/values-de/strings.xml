@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="map_title">Karte</string>
+    <string name="map_refresh">Karte aktualisieren</string>
+    <string name="map_refresh_error">Kartendaten konnten nicht aktualisiert werden: %1$s</string>
+    <string name="map_drawer_search_label">Suche</string>
+    <string name="map_drawer_search_placeholder">Orte oder Stände finden</string>
+    <string name="map_drawer_places">Orte</string>
+    <string name="map_drawer_booths">Stände</string>
+    <string name="map_drawer_empty_state">Keine passenden Orte oder Stände gefunden.</string>
+    <string name="map_drawer_unnamed_booth">Unbenannter Stand</string>
+    <string name="map_selected_layer">Ebene: %1$s</string>
+    <string name="map_selected_booth">Stand: %1$d</string>
+    <string name="map_selected_food">Essensstand</string>
+    <string name="map_layer_surfaces">Festivalgelände</string>
+    <string name="map_layer_camping">Camping</string>
+    <string name="map_layer_stages">Bühnen</string>
+    <string name="map_layer_transportation">Anreise</string>
+    <string name="map_layer_medical_service">Sanitätsdienst</string>
+    <string name="map_layer_tickets">Tickets</string>
+    <string name="map_layer_toilets">Toiletten</string>
+    <string name="map_layer_dorf">Dorf</string>
+</resources>
