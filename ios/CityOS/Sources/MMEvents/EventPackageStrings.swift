@@ -23,6 +23,15 @@ public enum EventPackageStrings {
     
     public static let timetable = String(localized: "Timetable", bundle: .module)
     
+    public static let filter = String(localized: "Filter", bundle: .module)
+    public static let venues = String(localized: "Venues", bundle: .module)
+    public static let done = String(localized: "Done", bundle: .module)
+    public static let reset = String(localized: "Reset", bundle: .module)
+    public static let venuesSection = String(localized: "Venues", bundle: .module)
+    
+    public static let noEventsForFilter = String(localized: "No events found for the selected filter.", bundle: .module)
+    public static let noFavoriteEventsForFilter = String(localized: "No favorite events found for the selected filter.", bundle: .module)
+    
     public enum Download {
         
         public static let downloadHeader = String(localized: "Download data", bundle: .module)
