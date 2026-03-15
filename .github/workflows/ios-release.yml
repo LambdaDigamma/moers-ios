@@ -19,11 +19,13 @@ jobs:
   build-ios:
     runs-on: macos-26
     steps:
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_26.3.app
 
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          submodules: 'true'
+          submodules: "true"
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Decode and Store Google Services Plist
@@ -37,7 +39,7 @@ jobs:
       - name: Set up ruby env
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3'
+          ruby-version: "3.3"
           bundler-cache: true
           working-directory: ios
 
@@ -52,7 +54,7 @@ jobs:
           echo "Executing version bump: ${{ github.event.inputs.version_bump }}"
           cd ios
           bundle exec fastlane ios increment_build
-          
+
           if [ "${{ github.event.inputs.version_bump }}" != "build" ]; then
             bundle exec fastlane ios increment_version type:${{ github.event.inputs.version_bump }}
           else
@@ -94,6 +96,6 @@ jobs:
         with:
           commit_message: "🚀 Bump iOS version to ${{ env.ios_version }} (${{ env.ios_build }})"
           tagging_message: "${{ env.tag_name }}"
-          file_pattern: '*.plist'
+          file_pattern: "*.plist"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
