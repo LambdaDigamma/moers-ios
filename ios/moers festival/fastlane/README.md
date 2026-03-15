@@ -23,13 +23,13 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Sync signing
 
-### ios increment
+### ios increment_version
 
 ```sh
-[bundle exec] fastlane ios increment
+[bundle exec] fastlane ios increment_version
 ```
 
-Increment Version
+Increment version number (patch, minor, major)
 
 ### ios increment_build
 
@@ -39,21 +39,21 @@ Increment Version
 
 Increment Build Number
 
-### ios test_unit
+### ios upload
 
 ```sh
-[bundle exec] fastlane ios test_unit
+[bundle exec] fastlane ios upload
 ```
 
-Run All Unit Tests
+Upload to TestFlight / ASC
 
-### ios test_ui
+### ios load_asc_api_key
 
 ```sh
-[bundle exec] fastlane ios test_ui
+[bundle exec] fastlane ios load_asc_api_key
 ```
 
-Run All UI Tests
+Load ASC API Key information
 
 ### ios release
 

@@ -1,21 +1,14 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
+# frozen_string_literal: true
+require 'base64'
 
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
-
-before_all do
-  ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "240"
-  ENV["SNAPSHOT_SIMULATOR_WAIT_FOR_BOOT_TIMEOUT"] = "5"
-end
-
-setup_travis
 default_platform(:ios)
+
+# Configuration
+APP_IDENTIFIERS = [
+  "de.okfn.niederrhein.moers-festival", 
+  "de.okfn.niederrhein.moers-festival.Widgets",
+  "de.okfn.niederrhein.moers-festival.watchkitapp"
+].freeze
 
 platform :ios do
 
@@ -33,28 +26,14 @@ platform :ios do
         "Lennarts Apple Watch" => "00008006-000915E42183002E"
       }
     )
-    sync_code_signing(
-      type: "development",
-      force_for_new_devices: true,
-      app_identifier: [
-        "de.okfn.niederrhein.moers-festival", 
-        "de.okfn.niederrhein.moers-festival.Widgets",
-        "de.okfn.niederrhein.moers-festival.watchkitapp"
-      ]
-    )
-
-    sync_code_signing(
-      type: "appstore",
-      app_identifier: [
-        "de.okfn.niederrhein.moers-festival", 
-        "de.okfn.niederrhein.moers-festival.Widgets",
-        "de.okfn.niederrhein.moers-festival.watchkitapp"
-      ]
-    )
-
-    mapping = Actions.lane_context[
-      SharedValues::MATCH_PROVISIONING_PROFILE_MAPPING
-    ]
+    
+    ["development", "appstore"].each do |type|
+      sync_code_signing(
+        type: type,
+        force_for_new_devices: type == "development",
+        app_identifier: APP_IDENTIFIERS
+      )
+    end
   end
 
   desc "Increment version number (patch, minor, major)"
@@ -118,6 +97,7 @@ platform :ios do
     
     match(
       type: 'appstore',
+      app_identifier: APP_IDENTIFIERS,
       git_basic_authorization: encoded_credentials
     )
     gym(scheme: "moers festival")

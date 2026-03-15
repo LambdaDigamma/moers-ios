@@ -239,6 +239,7 @@ DEPENDENCIES
   fastlane
   logger
   mutex_m
+  nkf
 
 BUNDLED WITH
   4.0.8
