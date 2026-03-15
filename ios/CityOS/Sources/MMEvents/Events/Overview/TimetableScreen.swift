@@ -11,6 +11,7 @@ public struct TimetableScreen: View {
     
     @State var search = ""
     @AppStorage("currentEventDisplayMode") private var displayMode: DailyEventsDisplayMode = .compact
+    @State private var showingFilter = false
     
     @StateObject var viewModel = TimetableViewModel()
     
@@ -43,24 +44,18 @@ public struct TimetableScreen: View {
         .task {
             await viewModel.load()
         }
-//        .toolbar {
-//            ToolbarItem(placement: .primaryAction) {
-//                Section {
-//                    Menu {
-//                        Picker(selection: $displayMode, label: Text("Sorting options")) {
-//                            ForEach(DailyEventsDisplayMode.allCases) { (displayMode: DailyEventsDisplayMode) in
-//                                Text(displayMode.title)
-//                                    .tag(displayMode)
-//                                    .id(displayMode.rawValue)
-//                            }
-//                        }
-//                    }
-//                    label: {
-//                        Label("Add", systemImage: "rectangle.grid.1x2")
-//                    }
-//                }
-//            }
-//        }
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button {
+                    showingFilter = true
+                } label: {
+                    Label(EventPackageStrings.filter, systemImage: viewModel.filter.isEmpty ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
+                }
+            }
+        }
+        .sheet(isPresented: $showingFilter) {
+            EventFilterSheet(filter: $viewModel.filter)
+        }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .navigationTitle(EventPackageStrings.timetable)
         

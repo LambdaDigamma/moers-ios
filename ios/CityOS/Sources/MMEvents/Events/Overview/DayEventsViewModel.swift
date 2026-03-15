@@ -16,6 +16,7 @@ public class DayEventsViewModel: ObservableObject, Identifiable {
     internal let date: Date
     internal let startDate: Date
     internal let endDate: Date
+    internal let filter: EventFilter
     
     @Published var events: [EventListItemViewModel] = []
     
@@ -24,8 +25,9 @@ public class DayEventsViewModel: ObservableObject, Identifiable {
     
     private var cancellables = Set<AnyCancellable>()
     
-    public init(date: Date) {
+    public init(date: Date, filter: EventFilter = .init()) {
         self.date = date
+        self.filter = filter
         self.repository = Container.shared.eventRepository()
         
         let range = DateUtils.calculateDateRange(for: date, offset: EventUtilities.defaultDayOffset)
@@ -49,7 +51,17 @@ public class DayEventsViewModel: ObservableObject, Identifiable {
                 
             } receiveValue: { (events: [Event]) in
                 
-                self.events = events.map {
+                self.events = events
+                    .filter { event in
+                        if self.filter.venueIDs.isEmpty {
+                            return true
+                        }
+                        guard let placeID = event.place?.id else {
+                            return false
+                        }
+                        return self.filter.venueIDs.contains(placeID)
+                    }
+                    .map {
                     return EventListItemViewModel(
                         eventID: $0.id,
                         title: $0.name,

@@ -17,6 +17,11 @@ public class TimetableViewModel: ObservableObject {
     @Published var selectedDate: Date = .init()
     @Published var daysViewModels: [DayEventsViewModel] = []
     @Published var allEventsHideSchedule: Bool = false
+    @Published public var filter: EventFilter = .init() {
+        didSet {
+            self.updateDaysViewModels()
+        }
+    }
     
     public var events: [EventListItemViewModel] {
         daysViewModels.map { $0.events }.reduce([], +)
@@ -49,7 +54,7 @@ public class TimetableViewModel: ObservableObject {
                 
                 self.dates = DateUtils.sortedUniqueDates(events.compactMap { $0.startDate })
                 
-                self.daysViewModels = self.dates.map { DayEventsViewModel(date: $0) }
+                self.updateDaysViewModels()
                 
                 if self.dates.contains(where: { $0.isToday }) {
                     self.selectedDate = self.dates.filter { $0.isToday }.first ?? self.dates.first ?? Date()
@@ -61,6 +66,10 @@ public class TimetableViewModel: ObservableObject {
             .store(in: &cancellables)
 
         
+    }
+    
+    private func updateDaysViewModels() {
+        self.daysViewModels = self.dates.map { DayEventsViewModel(date: $0, filter: self.filter) }
     }
     
     public func load() async {

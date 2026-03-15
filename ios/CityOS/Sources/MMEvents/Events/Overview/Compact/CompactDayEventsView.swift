@@ -23,23 +23,37 @@ public struct CompactDayEventsView: View {
         
         ZStack {
             
-            List {
-                
-                ForEach(viewModel.events) { event in
-                    Button(action: {
-                        if let eventID = event.eventID {
-                            transmitter.dispatchShowEvent(eventID)
+            if viewModel.events.isEmpty && !viewModel.filter.isEmpty {
+                VStack(spacing: 16) {
+                    Image(systemName: "line.3.horizontal.decrease.circle")
+                        .font(.system(size: 48))
+                        .foregroundColor(.secondary)
+                    Text(EventPackageStrings.noEventsForFilter)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.secondary)
+                        .padding(.horizontal)
+                }
+            } else {
+            
+                List {
+                    
+                    ForEach(viewModel.events) { event in
+                        Button(action: {
+                            if let eventID = event.eventID {
+                                transmitter.dispatchShowEvent(eventID)
+                            }
+                        }) {
+                            EventListItem(viewModel: event)
                         }
-                    }) {
-                        EventListItem(viewModel: event)
+                        .accessibilityIdentifier("Event-Row-\(event.eventID ?? 0)")
                     }
-                    .accessibilityIdentifier("Event-Row-\(event.eventID ?? 0)")
+                    
+                }
+                .listStyle(.plain)
+                .refreshable {
+                    await viewModel.refresh()
                 }
                 
-            }
-            .listStyle(.plain)
-            .refreshable {
-                await viewModel.refresh()
             }
             
         }
