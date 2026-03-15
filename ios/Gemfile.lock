@@ -231,8 +231,8 @@ GEM
       xcpretty (~> 0.2, >= 0.0.7)
 
 PLATFORMS
-  arm64-darwin-24
   arm64-darwin-23
+  arm64-darwin-24
   ruby
 
 DEPENDENCIES
@@ -343,4 +343,4 @@ CHECKSUMS
   xcpretty-travis-formatter (1.0.1) sha256=aacc332f17cb7b2cba222994e2adc74223db88724fe76341483ad3098e232f93
 
 BUNDLED WITH
-  2.6.6
+   2.6.6

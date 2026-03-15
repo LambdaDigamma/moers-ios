@@ -108,9 +108,18 @@ platform :ios do
   lane :upload do |options|
     load_asc_api_key()
 
+    require 'base64'
+
+    username = "LambdaDigamma"
+    token = ENV['MATCH_GITHUB_TOKEN']
+    encoded_credentials = Base64.strict_encode64("#{username}:#{token}")
+
     setup_ci if ENV['CI']
     
-    match(type: 'appstore')
+    match(
+      type: 'appstore',
+      git_basic_authorization: encoded_credentials
+    )
     gym(scheme: "moers festival")
     pilot(skip_waiting_for_build_processing: true)
   end
