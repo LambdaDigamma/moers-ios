@@ -12,6 +12,8 @@ import com.lambdadigamma.core.navigation.NavigationFactory
 import com.lambdadigamma.core.navigation.NavigationManager
 import com.lambdadigamma.news.presentation.detail.PostDetailRoute
 import com.lambdadigamma.news.presentation.list.NewsListRoute
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 import javax.inject.Inject
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -27,12 +29,21 @@ class NewsNavigationFactory @Inject constructor() : NavigationFactory {
                 navDeepLink { uriPattern = "moersfestival://posts" }
             )
         ) {
-            NewsListRoute(onShowPost = { id ->
-                val command = object : NavigationCommand {
-                    override val destination = NavigationDestination.NewsDetail.route.replace("{postId}", id.toString())
+            NewsListRoute(
+                onShowPost = { id ->
+                    val command = object : NavigationCommand {
+                        override val destination = NavigationDestination.NewsDetail.route.replace("{postId}", id.toString())
+                    }
+                    navigationManager.navigate(command)
+                },
+                onShowUrl = { url ->
+                    val encodedUrl = URLEncoder.encode(url, StandardCharsets.UTF_8.toString())
+                    val command = object : NavigationCommand {
+                        override val destination = NavigationDestination.Web.route.replace("{url}", encodedUrl)
+                    }
+                    navigationManager.navigate(command)
                 }
-                navigationManager.navigate(command)
-            })
+            )
         }
         builder.composable(
             NavigationDestination.NewsDetail.route,
