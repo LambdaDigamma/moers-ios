@@ -13,6 +13,13 @@ import MMEvents
 import Combine
 import OrderedCollections
 
+final class FilterBox: ObservableObject {
+    @Published var filter: EventFilter
+    init(filter: EventFilter) {
+        self.filter = filter
+    }
+}
+
 class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
 
     @LazyInjected(\.favoriteEventsStore) var favoriteEventsStore
@@ -25,6 +32,8 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
     
     var dataSource: UICollectionViewDiffableDataSource<UserScheduleSection, UserScheduleItem>?
     var cancellables = Set<AnyCancellable>()
+    private var favoritesCancellable: AnyCancellable?
+    private var filterCancellable: AnyCancellable?
     
     let dateComponentsFormatter = DateComponentsFormatter()
     
@@ -34,10 +43,17 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
         return collectionView
     }()
     
+    private lazy var mainStackView: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [filterBar, collectionView])
+        stack.axis = .vertical
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
     private lazy var filterBar: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .secondarySystemBackground
+        view.backgroundColor = .clear
         view.isHidden = true
         
         let icon = UIImageView(image: UIImage(systemName: "line.3.horizontal.decrease.circle.fill"))
@@ -92,8 +108,7 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
     
     func setupUI() {
         
-        self.view.addSubview(filterBar)
-        self.view.addSubview(collectionView)
+        self.view.addSubview(mainStackView)
         self.collectionView.delegate = self
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -110,14 +125,10 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
     func setupConstraints() {
         
         let constraints = [
-            filterBar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            filterBar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            filterBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            
-            collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: self.filterBar.bottomAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            mainStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            mainStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            mainStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            mainStackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
         ]
         
         NSLayoutConstraint.activate(constraints)
@@ -130,11 +141,18 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
     
     @objc func showFilter() {
         
-        let filterView = EventFilterSheet(filter: Binding(get: {
-            self.filter
-        }, set: { newFilter in
-            self.filter = newFilter
-        }), isFavoritesFilterEnabled: false)
+        let box = FilterBox(filter: self.filter)
+        
+        filterCancellable = box.$filter
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] newFilter in
+                // We update our local filter when the box changes.
+                // This triggers the PersistedFilter setter.
+                self?.filter = newFilter
+            }
+        
+        let filterView = EventFilterSheetWrapper(box: box, isFavoritesFilterEnabled: false)
         
         let hostingController = UIHostingController(rootView: filterView)
         self.present(hostingController, animated: true)
@@ -156,10 +174,9 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
     
     func setupLoadListeners() {
         
-        cancellables.forEach { $0.cancel() }
-        cancellables.removeAll()
+        favoritesCancellable?.cancel()
         
-        favoriteEventsStore?.observeFavoriteEvents()
+        favoritesCancellable = favoriteEventsStore?.observeFavoriteEvents()
             .sink(receiveCompletion: { (completion: Subscribers.Completion<any Error>) in
                 
             }, receiveValue: { (events: [FavoriteEventInfo]) in
@@ -216,7 +233,6 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
                 }
                 
             })
-            .store(in: &cancellables)
         
     }
     

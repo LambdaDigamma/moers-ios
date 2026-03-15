@@ -88,3 +88,9 @@ extension UIApplication {
             .first { $0.activationState == .foregroundActive } as? UIWindowScene
     }
 }
+
+extension UIFont {
+    func bold() -> UIFont {
+        return UIFont(descriptor: self.fontDescriptor.withSymbolicTraits(.traitBold)!, size: 0)
+    }
+}

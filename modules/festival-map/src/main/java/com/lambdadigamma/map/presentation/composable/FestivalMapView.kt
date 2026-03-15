@@ -15,11 +15,18 @@ import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.MapProperties
 import com.google.maps.android.compose.MapUiSettings
 import com.google.maps.android.compose.Marker
+import com.google.maps.android.compose.MarkerInfoWindowContent
 import com.google.maps.android.compose.Polygon
 import com.google.maps.android.compose.rememberUpdatedMarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.ui.unit.dp
 import com.lambdadigamma.map.R
 import com.lambdadigamma.map.data.model.FestivalMapCoordinate
+import com.lambdadigamma.map.data.model.FestivalMapFeature
 import com.lambdadigamma.map.data.model.FestivalMapGeometry
 import com.lambdadigamma.map.data.model.FestivalMapLayerType
 import com.lambdadigamma.map.presentation.MapIntent
@@ -36,6 +43,11 @@ internal fun FestivalMapView(
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(MAP_CENTER, 16f)
     }
+    val selectedBooth = (uiState.selection as? MapSelection.Feature)
+        ?.takeIf { selection -> selection.value.layerType == FestivalMapLayerType.Dorf }
+    val boothMarkerState = selectedBooth?.let { selection ->
+        rememberUpdatedMarkerState(position = selection.focusPoint().toLatLng())
+    }
 
     LaunchedEffect(uiState.selection?.stableId) {
         val selection = uiState.selection ?: return@LaunchedEffect
@@ -46,6 +58,10 @@ internal fun FestivalMapView(
                 if (selection is MapSelection.Place) 17f else 18f,
             ),
         )
+    }
+
+    LaunchedEffect(selectedBooth?.stableId) {
+        boothMarkerState?.showInfoWindow()
     }
 
     GoogleMap(
@@ -67,6 +83,26 @@ internal fun FestivalMapView(
             mapStyleOptions = MapStyleOptions.loadRawResourceStyle(context, R.raw.map_style),
         ),
     ) {
+        selectedBooth?.let { selection ->
+            MarkerInfoWindowContent(
+                state = boothMarkerState ?: return@let,
+                title = selection.value.calloutTitle(context.getString(R.string.map_drawer_unnamed_booth)),
+                snippet = selection.value.calloutSnippet(context.getString(R.string.map_selected_food)),
+                icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE),
+                zIndex = FestivalMapLayerType.Dorf.zIndex + 1f,
+                onClick = {
+                    onIntent(MapIntent.SelectFeature(selection.value))
+                    false
+                },
+            ) {
+                BoothCalloutContent(
+                    feature = selection.value,
+                    unnamedBoothLabel = context.getString(R.string.map_drawer_unnamed_booth),
+                    foodLabel = context.getString(R.string.map_selected_food),
+                )
+            }
+        }
+
         uiState.places.forEach { place ->
             Marker(
                 state = rememberUpdatedMarkerState(
@@ -141,6 +177,50 @@ private fun FestivalMapGeometry.asPolygons(): List<PolygonRings> {
 
 private fun FestivalMapCoordinate.toLatLng(): LatLng {
     return LatLng(latitude, longitude)
+}
+
+@Composable
+private fun BoothCalloutContent(
+    feature: FestivalMapFeature,
+    unnamedBoothLabel: String,
+    foodLabel: String,
+) {
+    Column(modifier = Modifier.padding(vertical = 2.dp)) {
+        Text(
+            text = feature.calloutTitle(unnamedBoothLabel),
+            style = MaterialTheme.typography.titleSmall,
+            color = Color.Black,
+        )
+
+        feature.calloutSnippet(foodLabel)
+            ?.let { snippet ->
+                Text(
+                    text = snippet,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Color.DarkGray,
+                )
+            }
+    }
+}
+
+private fun FestivalMapFeature.calloutTitle(unnamedBoothLabel: String): String {
+    return name
+        ?.takeIf { value -> value.isNotBlank() }
+        ?: boothNumber?.let { booth -> "Booth $booth" }
+        ?: unnamedBoothLabel
+}
+
+private fun FestivalMapFeature.calloutSnippet(foodLabel: String): String? {
+    return buildList {
+        boothNumber?.let { booth -> add("Booth $booth") }
+        if (isFood == true) add(foodLabel)
+        description
+            ?.takeIf { value -> value.isNotBlank() }
+            ?.let(::add)
+    }
+        .distinct()
+        .joinToString(separator = "\n")
+        .takeIf { value -> value.isNotBlank() }
 }
 
 private data class LayerStyle(

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 90;
+	objectVersion = 100;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -752,7 +752,7 @@
 				BuildIndependentTargetsInParallel = YES;
 				DefaultBuildSystemTypeForWorkspace = Latest;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 2620;
+				LastUpgradeCheck = 2640;
 				ORGANIZATIONNAME = "Code for Niederrhein";
 				TargetAttributes = {
 					DF35B385201DC72900118FD1 = {
@@ -816,7 +816,7 @@
 				DF055B922D8B8FD7007E4393 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				DF5975BC2F01E08D00512386 /* XCLocalSwiftPackageReference "../CityOS" */,
 			);
-			preferredProjectObjectVersion = 90;
+			preferredProjectObjectVersion = 100;
 			productRefGroup = DF35B387201DC72900118FD1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

@@ -38,14 +38,18 @@ public struct EventFilterSheet: View {
                     
                     HStack {
                         Button(EventPackageStrings.selectAll) {
-                            filter.venueIDs = Set(venues.map { $0.id })
+                            var newFilter = filter
+                            newFilter.venueIDs = Set(venues.map { $0.id })
+                            filter = newFilter
                         }
                         .buttonStyle(.borderless)
                         
                         Spacer()
                         
                         Button(EventPackageStrings.deselectAll) {
-                            filter.venueIDs = []
+                            var newFilter = filter
+                            newFilter.venueIDs = []
+                            filter = newFilter
                         }
                         .buttonStyle(.borderless)
                     }
@@ -53,11 +57,13 @@ public struct EventFilterSheet: View {
                     
                     ForEach(venues, id: \.id) { venue in
                         Button(action: {
-                            if filter.venueIDs.contains(venue.id) {
-                                filter.venueIDs.remove(venue.id)
+                            var newFilter = filter
+                            if newFilter.venueIDs.contains(venue.id) {
+                                newFilter.venueIDs.remove(venue.id)
                             } else {
-                                filter.venueIDs.insert(venue.id)
+                                newFilter.venueIDs.insert(venue.id)
                             }
+                            filter = newFilter
                         }) {
                             HStack {
                                 Text(venue.name)
