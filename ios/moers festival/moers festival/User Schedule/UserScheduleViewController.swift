@@ -17,6 +17,12 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
 
     @LazyInjected(\.favoriteEventsStore) var favoriteEventsStore
     
+    var filter: EventFilter = .init() {
+        didSet {
+            self.reload()
+        }
+    }
+    
     var dataSource: UICollectionViewDiffableDataSource<UserScheduleSection, UserScheduleItem>?
     var cancellables = Set<AnyCancellable>()
     
@@ -45,6 +51,13 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
         self.view.addSubview(collectionView)
         self.collectionView.delegate = self
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: filter.isEmpty ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill"),
+            style: .plain,
+            target: self,
+            action: #selector(showFilter)
+        )
+        
     }
     
     func setupConstraints() {
@@ -60,14 +73,48 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
         
     }
     
+    @objc func showFilter() {
+        
+        let filterView = EventFilterSheet(filter: Binding(get: {
+            self.filter
+        }, set: { newFilter in
+            self.filter = newFilter
+        }))
+        
+        let hostingController = UIHostingController(rootView: filterView)
+        self.present(hostingController, animated: true)
+        
+    }
+    
+    func reload() {
+        
+        self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: filter.isEmpty ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
+        
+        self.setupLoadListeners()
+        
+    }
+    
     func setupLoadListeners() {
+        
+        cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
         
         favoriteEventsStore?.observeFavoriteEvents()
             .sink(receiveCompletion: { (completion: Subscribers.Completion<any Error>) in
                 
             }, receiveValue: { (events: [FavoriteEventInfo]) in
                 
-                if events.isEmpty {
+                let filteredEvents = events.filter { info in
+                    if self.filter.venueIDs.isEmpty {
+                        return true
+                    }
+                    guard let placeID = info.place?.id else {
+                        return false
+                    }
+                    return self.filter.venueIDs.contains(Int(placeID))
+                }
+                
+                if filteredEvents.isEmpty {
                     
                     var snapshot = NSDiffableDataSourceSnapshot<UserScheduleSection, UserScheduleItem>()
                     snapshot.appendSections([.empty])
@@ -76,7 +123,7 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
                     
                 } else {
                 
-                    let groupedDictionary = OrderedDictionary(grouping: events) { element in
+                    let groupedDictionary = OrderedDictionary(grouping: filteredEvents) { element in
                         element.event.startDate.getDateForGroup(acceptedOffset: 3 * 60 * 60)
                     }
                         .mapValues {
@@ -217,10 +264,11 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
                 )
                 return cell
             case .placeholder:
+                let message = self.filter.isEmpty ? String(localized: "No event has been marked as a favorite yet.") : EventPackageStrings.noFavoriteEventsForFilter
                 let cell = collectionView.dequeueConfiguredReusableCell(
                     using: placeholderCellRegistration,
                     for: indexPath,
-                    item: String(localized: "No event has been marked as a favorite yet.")
+                    item: message
                 )
                 return cell
             }
