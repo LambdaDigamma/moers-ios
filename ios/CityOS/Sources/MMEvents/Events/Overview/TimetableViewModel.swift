@@ -9,6 +9,7 @@ import Foundation
 import Factory
 import Combine
 import Core
+import SwiftUI
 
 @MainActor
 public class TimetableViewModel: ObservableObject {
@@ -17,8 +18,10 @@ public class TimetableViewModel: ObservableObject {
     @Published var selectedDate: Date = .init()
     @Published var daysViewModels: [DayEventsViewModel] = []
     @Published var allEventsHideSchedule: Bool = false
-    @Published public var filter: EventFilter = .init() {
+    
+    @PersistedFilter(key: "timetableFilter") public var filter: EventFilter {
         didSet {
+            self.objectWillChange.send()
             self.updateDaysViewModels()
         }
     }

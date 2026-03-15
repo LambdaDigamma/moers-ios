@@ -28,6 +28,10 @@ public enum EventPackageStrings {
     public static let done = String(localized: "Done", bundle: .module)
     public static let reset = String(localized: "Reset", bundle: .module)
     public static let venuesSection = String(localized: "Venues", bundle: .module)
+    public static let selectAll = String(localized: "Select all", bundle: .module)
+    public static let deselectAll = String(localized: "Deselect all", bundle: .module)
+    public static let showOnlyFavorites = String(localized: "Show only favorites", bundle: .module)
+    public static let favoritesSection = String(localized: "Favorites", bundle: .module)
     
     public static let noEventsForFilter = String(localized: "No events found for the selected filter.", bundle: .module)
     public static let noFavoriteEventsForFilter = String(localized: "No favorite events found for the selected filter.", bundle: .module)

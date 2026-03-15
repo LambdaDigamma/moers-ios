@@ -17,7 +17,7 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
 
     @LazyInjected(\.favoriteEventsStore) var favoriteEventsStore
     
-    var filter: EventFilter = .init() {
+    @PersistedFilter(key: "favoritesFilter") var filter: EventFilter {
         didSet {
             self.reload()
         }
@@ -79,7 +79,7 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
             self.filter
         }, set: { newFilter in
             self.filter = newFilter
-        }))
+        }), isFavoritesFilterEnabled: false)
         
         let hostingController = UIHostingController(rootView: filterView)
         self.present(hostingController, animated: true)
