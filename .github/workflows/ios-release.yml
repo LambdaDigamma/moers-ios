@@ -72,7 +72,8 @@ jobs:
       - name: Ship iOS App
         run: |
           cd ios
-          export GYM_CLONED_SOURCE_PACKAGES_PATH=SourcePackages
+          mkdir -p SourcePackages
+          export GYM_CLONED_SOURCE_PACKAGES_PATH="$(pwd)/SourcePackages"
           bundle exec fastlane ios upload
         env:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
@@ -105,6 +106,6 @@ jobs:
         with:
           commit_message: "🚀 Bump iOS version to ${{ env.ios_version }} (${{ env.ios_build }})"
           tagging_message: "${{ env.tag_name }}"
-          file_pattern: "*.plist"
+          file_pattern: "**/Info.plist"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

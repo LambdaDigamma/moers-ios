@@ -56,6 +56,7 @@ timeline.xctimeline
 
 # Swift Package Manager
 .build/
+SourcePackages/
 
 # Xcode
 *.mode1v3
@@ -79,6 +80,8 @@ ios/vendor
 ios/vendor/bundle
 ios/Moers/Resources/Tankerkoenig-Info.plist
 ios/Moers/Resources/GoogleService-Info.plist
+ios/moers festival/moers festival/Utility/GoogleService-Info.plist
+ios/moers festival/moers festival/Utility/RemoteConfigDefaults.plist
 ios/GoogleService-Info.plist
 .kotlin
 
