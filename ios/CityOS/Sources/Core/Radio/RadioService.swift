@@ -105,20 +105,18 @@ public class RadioService: RadioServiceProtocol {
     
     #if canImport(UserNotifications)
     
-    public func toggleReminder(for broadcast: RadioBroadcast, completion: @escaping (_ reminderIsEnabled: Bool) -> Void) {
+    public func toggleReminder(for broadcast: RadioBroadcast) async -> Bool {
+
+        let requests = await notificationCenter.pendingNotificationRequests()
         
-        notificationCenter.getPendingNotificationRequests { (requests: [UNNotificationRequest]) in
-
-            let broadcastIdentifier = self.reminderIdentifier(for: broadcast.id)
-            
-            if requests.contains(where: { $0.identifier == broadcastIdentifier }) {
-                self.notificationCenter.removePendingNotificationRequests(withIdentifiers: [broadcastIdentifier])
-                completion(false)
-            } else {
-                self.scheduleReminder(for: broadcast)
-                completion(true)
-            }
-
+        let broadcastIdentifier = self.reminderIdentifier(for: broadcast.id)
+        
+        if requests.contains(where: { $0.identifier == broadcastIdentifier }) {
+            self.notificationCenter.removePendingNotificationRequests(withIdentifiers: [broadcastIdentifier])
+            return false
+        } else {
+            self.scheduleReminder(for: broadcast)
+            return true
         }
         
     }

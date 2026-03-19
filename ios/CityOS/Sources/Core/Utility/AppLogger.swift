@@ -11,7 +11,7 @@ import OSLog
 extension OSLog {
     
     /// Use the Bundle ID as the subsystem
-    nonisolated(unsafe) internal static let subsystem = Bundle.main.bundleIdentifier ?? "app.moers.core"
+    internal static let subsystem = Bundle.main.bundleIdentifier ?? "app.moers.core"
     
     /// Application lifecycle
     public static let coreAppLifecycle = OSLog(subsystem: subsystem, category: "appLifecycle")

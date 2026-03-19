@@ -259,6 +259,7 @@ let package = Package(
                 .product(name: "ModernNetworking", package: "ModernNetworking"),
                 .product(name: "MediaLibraryKit", package: "MediaLibraryKit"),
                 .product(name: "GRDB", package: "GRDB.swift"),
+                .product(name: "Cache", package: "Cache")
             ],
             swiftSettings: settings
         ),

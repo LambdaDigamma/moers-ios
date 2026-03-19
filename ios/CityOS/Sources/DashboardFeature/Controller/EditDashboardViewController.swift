@@ -7,7 +7,7 @@
 
 import UIKit
 
-public struct DashboardConfigurationItem: Identifiable, Hashable {
+public struct DashboardConfigurationItem: Identifiable, Hashable, Sendable {
     
     public let id = UUID()
     

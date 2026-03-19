@@ -53,7 +53,7 @@ public class MapCoordintor: Coordinator {
         
     }
     
-    private func generateTabBarItem() -> UITabBarItem {
+    @MainActor private func generateTabBarItem() -> UITabBarItem {
         
         let tabBarItem = UITabBarItem(
             title: AppStrings.Menu.map,

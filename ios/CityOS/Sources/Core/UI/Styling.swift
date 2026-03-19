@@ -13,6 +13,7 @@ import UIKit
 
 public enum Styling {
     
+    @MainActor
     public static func applyStyling(
         navigationController: UINavigationController,
         statusBarStyle: UIStatusBarStyle = .darkContent

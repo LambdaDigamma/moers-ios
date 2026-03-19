@@ -12,7 +12,7 @@ public enum StorageError: Error {
     case cantWrite(Error)
 }
 
-public class DiskStorage {
+public final class DiskStorage: @unchecked Sendable {
     private let queue: DispatchQueue
     private let fileManager: FileManager
     private let path: URL

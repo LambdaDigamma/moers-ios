@@ -126,11 +126,13 @@ private enum Metrics {
 // MARK: - Convenience Extensions
 
 public extension Button {
-    
+
+    @MainActor
     func liquidGlassPrimary() -> some View {
         buttonStyle(LiquidGlassButtonStyle(prominence: .primary))
     }
-    
+
+    @MainActor
     func liquidGlassSecondary() -> some View {
         buttonStyle(LiquidGlassButtonStyle(prominence: .secondary))
     }

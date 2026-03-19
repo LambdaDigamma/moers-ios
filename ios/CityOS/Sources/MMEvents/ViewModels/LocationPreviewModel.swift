@@ -8,7 +8,7 @@
 import Core
 import Foundation
 import CoreLocation
-import Combine
+@preconcurrency import Combine
 
 public struct LocationPreviewModel {
     

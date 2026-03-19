@@ -14,6 +14,7 @@ import MapKit
 import WebKit
 #endif
 
+@MainActor
 public struct ViewFactory {
     
     public static func blankView() -> UIView {

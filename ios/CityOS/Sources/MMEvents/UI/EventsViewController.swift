@@ -266,7 +266,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
             
             cell.contentConfiguration = content
             
-            var backgroundConfig = UIBackgroundConfiguration.listGroupedCell()
+            let backgroundConfig = UIBackgroundConfiguration.listGroupedCell()
             cell.backgroundConfiguration = backgroundConfig
             
             // Add heart icon for liked events
@@ -308,7 +308,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
             
             cell.contentConfiguration = content
             
-            var backgroundConfig = UIBackgroundConfiguration.listGroupedCell()
+            let backgroundConfig = UIBackgroundConfiguration.listGroupedCell()
             cell.backgroundConfiguration = backgroundConfig
         }
         

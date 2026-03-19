@@ -52,6 +52,5 @@ struct AuditChangeRowView: View {
         oldValue: "Old Name",
         newValue: "New Name"
     )
-    .previewLayout(.sizeThatFits)
     .padding()
 }
