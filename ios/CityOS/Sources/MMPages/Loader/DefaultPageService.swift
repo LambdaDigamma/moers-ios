@@ -10,8 +10,8 @@ import Combine
 import ModernNetworking
 
 public class DefaultPageService: PageService {
-    
-    private let loader: HTTPLoader
+
+    nonisolated(unsafe) private let loader: HTTPLoader
     
     public init(_ loader: HTTPLoader = URLSessionLoader()) {
         self.loader = loader

@@ -21,6 +21,7 @@ public class MapCoordintor: Coordinator {
     
     public var mainViewController: LegacyMainViewController?
     
+    @MainActor
     public init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController()
     ) {

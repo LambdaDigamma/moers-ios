@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import MMCommon
 
 public struct ProgressTourCardView: View {
     

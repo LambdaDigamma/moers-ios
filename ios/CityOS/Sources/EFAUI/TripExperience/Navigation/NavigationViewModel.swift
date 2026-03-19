@@ -9,6 +9,7 @@ import Foundation
 import MapKit
 import Core
 
+@MainActor
 public class NavigationViewModel: ObservableObject {
     
     @Published public var source: Point
@@ -47,18 +48,14 @@ public class NavigationViewModel: ObservableObject {
     }
     
     public func load() async {
-        
+
         do {
             let response = try await self.calculateDirections(from: source, to: destination)
-            await MainActor.run {
-                self.directions = .success(response)
-            }
+            self.directions = .success(response)
         } catch {
-            await MainActor.run {
-                self.directions = .error(error)
-            }
+            self.directions = .error(error)
         }
-        
+
     }
     
 }

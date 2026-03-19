@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Audit: Codable, Hashable {
+public struct Audit: Codable, Hashable, Sendable {
     
     public let id: Int
     public let event: EventType
@@ -24,14 +24,14 @@ public struct Audit: Codable, Hashable {
         return lhs.id == rhs.id
     }
     
-    public enum EventType: String, Codable {
+    public enum EventType: String, Codable, Sendable {
         case created = "created"
         case updated = "updated"
         case deleted = "deleted"
         case restored = "restored"
     }
     
-    public struct AuditValues: Codable, Hashable {
+    public struct AuditValues: Codable, Hashable, Sendable {
         
         public var baseValues: [String: AuditGenericValue?]
         

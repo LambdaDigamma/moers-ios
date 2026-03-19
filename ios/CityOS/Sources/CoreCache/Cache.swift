@@ -40,6 +40,7 @@ public class DefaultCache<CacheData: Codable>: Cache {
         self.storage = try Storage<String, Data>(
             diskConfig: diskConfig,
             memoryConfig: memoryConfig,
+            fileManager: .default,
             transformer: TransformerFactory.forCodable(ofType: Data.self)
         )
         

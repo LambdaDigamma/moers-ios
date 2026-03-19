@@ -27,7 +27,7 @@ public struct CellIdentifier {
     
 }
 
-enum ContentDrawerItem: Hashable {
+enum ContentDrawerItem: Hashable, @unchecked Sendable {
     case tag(NSAttributedString, id: String)
     case location(Core.AnyLocation)
     

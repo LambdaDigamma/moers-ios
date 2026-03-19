@@ -45,6 +45,7 @@ public class TimetableViewModel: ObservableObject {
     public func setupObserver() {
         
         repository.events()
+            .receive(on: DispatchQueue.main)
             .sink { (completion: Subscribers.Completion<Error>) in
                 
                 
@@ -56,14 +57,9 @@ public class TimetableViewModel: ObservableObject {
                 }
                 
                 self.dates = DateUtils.sortedUniqueDates(events.compactMap { $0.startDate })
+                self.selectedDate = self.resolvedSelectedDate(for: self.dates)
                 
                 self.updateDaysViewModels()
-                
-                if self.dates.contains(where: { $0.isToday }) {
-                    self.selectedDate = self.dates.filter { $0.isToday }.first ?? self.dates.first ?? Date()
-                } else {
-                    self.selectedDate = self.dates.first ?? Date()
-                }
                 
             }
             .store(in: &cancellables)
@@ -82,6 +78,19 @@ public class TimetableViewModel: ObservableObject {
         } catch {
             print("Failed to reload events: \(error)")
         }
+    }
+
+    private func resolvedSelectedDate(for dates: [Date]) -> Date {
+        
+        if dates.contains(selectedDate) {
+            return selectedDate
+        }
+        
+        if let today = dates.first(where: { $0.isToday }) {
+            return today
+        }
+        
+        return dates.first ?? Date()
     }
     
 }

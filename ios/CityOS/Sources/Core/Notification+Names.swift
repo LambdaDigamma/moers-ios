@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 public extension Notification.Name {
     
     static let updateFavorites = Notification.Name("Notification.updateFavorites")

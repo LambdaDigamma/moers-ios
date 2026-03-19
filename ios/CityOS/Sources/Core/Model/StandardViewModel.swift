@@ -9,12 +9,11 @@ import Foundation
 import Combine
 import SwiftUI
 
+@MainActor
 open class StandardViewModel: ObservableObject {
-    
+
     open var cancellables = Set<AnyCancellable>()
-    
-    public init() {
-        
-    }
-    
+
+    public init() {}
+
 }

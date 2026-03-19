@@ -7,7 +7,7 @@
 
 import Core
 import UIKit
-import LinkPresentation
+@preconcurrency import LinkPresentation
 import OSLog
 
 public let eventDetailMargin: CGFloat = 16 // UIDevice.current.userInterfaceIdiom == .phone ? 16 : 0

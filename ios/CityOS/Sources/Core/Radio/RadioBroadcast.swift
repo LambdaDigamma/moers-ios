@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct RadioBroadcast: Codable, Identifiable {
+public struct RadioBroadcast: Codable, Identifiable, Sendable {
     
     public typealias ID = Int
     public typealias UID = String
@@ -60,6 +60,7 @@ public struct RadioBroadcast: Codable, Identifiable {
         case updatedAt = "updated_at"
     }
     
+    @MainActor
     public func toViewModel() -> RadioBroadcastViewModel {
         return RadioBroadcastViewModel(from: self)
     }

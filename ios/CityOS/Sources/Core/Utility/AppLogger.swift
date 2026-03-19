@@ -11,7 +11,7 @@ import OSLog
 extension OSLog {
     
     /// Use the Bundle ID as the subsystem
-    internal static var subsystem = Bundle.main.bundleIdentifier ?? "app.moers.core"
+    nonisolated(unsafe) internal static let subsystem = Bundle.main.bundleIdentifier ?? "app.moers.core"
     
     /// Application lifecycle
     public static let coreAppLifecycle = OSLog(subsystem: subsystem, category: "appLifecycle")
@@ -39,7 +39,7 @@ extension OSLog {
 /// Wrapping OSLogType in a custom AppLogType to make it possible to
 /// swap the logger afterwards without changing an endless number of
 /// log statements throughout the packages and app.
-public struct AppLogType : Equatable, RawRepresentable {
+public struct AppLogType: Equatable, RawRepresentable, Sendable {
     
     public var rawValue: UInt8
     

@@ -12,7 +12,7 @@ import Cache
 
 public class DefaultFeedService: FeedService {
     
-    private let loader: HTTPLoader
+    nonisolated(unsafe) private let loader: HTTPLoader
     private let cache: Storage<String, Feed>
     
     public init(_ loader: HTTPLoader = URLSessionLoader(), _ cache: Storage<String, Feed>) {

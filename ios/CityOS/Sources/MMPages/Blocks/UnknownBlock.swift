@@ -9,6 +9,6 @@ import Foundation
 
 final public class UnknownBlock: NSObject, Blockable {
     
-    public static var type: BlockType = .unknown
+    public static let type: BlockType = .unknown
     
 }

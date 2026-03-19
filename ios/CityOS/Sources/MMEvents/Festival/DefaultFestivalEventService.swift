@@ -10,12 +10,12 @@ import Combine
 import MMPages
 import Foundation
 import MediaLibraryKit
-import ModernNetworking
+@preconcurrency import ModernNetworking
 import Factory
 
 public class DefaultFestivalEventService: FestivalEventService {
     
-    private let loader: HTTPLoader
+    nonisolated(unsafe) private let loader: HTTPLoader
     
     public init(loader: HTTPLoader) {
         self.loader = loader
@@ -45,7 +45,8 @@ public class DefaultFestivalEventService: FestivalEventService {
         
     }
     
-    public func show(eventID: Event.ID, cacheMode: CacheMode) async throws -> FestivalEventPageResponse {
+    @concurrent
+    public nonisolated func show(eventID: Event.ID, cacheMode: CacheMode) async throws -> FestivalEventPageResponse {
         
         var request = self.generateShowRequest(eventID: eventID)
         
@@ -58,7 +59,7 @@ public class DefaultFestivalEventService: FestivalEventService {
         
     }
     
-    private func generateShowRequest(eventID: Event.ID) -> HTTPRequest {
+    private nonisolated func generateShowRequest(eventID: Event.ID) -> HTTPRequest {
         
         let request = HTTPRequest(
             method: .get,

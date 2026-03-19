@@ -11,6 +11,7 @@ import MapKit
 import WebKit
 #endif
 
+@MainActor
 public enum CoreViewFactory {
     
     public static func locationRowView() -> LocationRowView {

@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import MMCommon
 
 public struct TourOverviewView: View {
     

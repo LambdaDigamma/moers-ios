@@ -11,7 +11,7 @@ import Combine
 import MMPages
 import Foundation
 import MediaLibraryKit
-import ModernNetworking
+@preconcurrency import ModernNetworking
 
 public protocol FestivalEventService {
     

@@ -10,7 +10,7 @@ import ProseMirror
 
 public struct TextBlock: Blockable, Equatable {
     
-    public static var type: BlockType = .text
+    public static let type: BlockType = .text
     
     public var title: String?
     public var subtitle: String?

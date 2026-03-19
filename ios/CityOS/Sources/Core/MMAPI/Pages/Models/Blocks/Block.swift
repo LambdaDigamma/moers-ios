@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum BlockType: String, CaseIterable, Codable, CaseIterableDefaultsLast {
+public enum BlockType: String, CaseIterable, Codable, Sendable, CaseIterableDefaultsLast {
     
     case markdown = "markdown"
     case soundcloud = "soundcloud"

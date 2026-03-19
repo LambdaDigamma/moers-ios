@@ -15,28 +15,29 @@ import MapKit
 // - Hütten solider einfärben
 // -
 
-
-public class SurfaceFeature: GeoFeature<SurfaceFeature.Properties>, FGDDecodableFeature {
+public struct SurfaceProperties: Codable {
+    public let name: String
+    public let type: String
+    public var fenced: Bool = false
     
-    public struct Properties: Codable {
-        public let name: String
-        public let type: String
-        public var fenced: Bool = false
-        
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.name = try container.decode(String.self, forKey: .name)
-            self.type = try container.decode(String.self, forKey: .type)
-            self.fenced = try container.decodeIfPresent(Bool.self, forKey: .fenced) ?? false
-        }
-        
-        public enum CodingKeys: String, CodingKey {
-            case name = "name"
-            case type = "type"
-            case fenced = "fenced"
-        }
-        
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.type = try container.decode(String.self, forKey: .type)
+        self.fenced = try container.decodeIfPresent(Bool.self, forKey: .fenced) ?? false
     }
+    
+    public enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case type = "type"
+        case fenced = "fenced"
+    }
+    
+}
+
+public class SurfaceFeature: GeoFeature<SurfaceProperties>, FGDDecodableFeature {
+    
+    public typealias Properties = SurfaceProperties
     
 }
 

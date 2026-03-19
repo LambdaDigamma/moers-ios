@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum BlockType: String, CaseIterable, Codable, CaseIterableDefaultsLast, Hashable, Equatable {
+public enum BlockType: String, CaseIterable, Codable, CaseIterableDefaultsLast, Hashable, Equatable, Sendable {
     
     case youtubeVideo = "youtube-video"
     case markdown = "markdown"
@@ -37,7 +37,7 @@ public protocol Blockable: Codable {
     
 }
 
-public class AnyBlockable: Codable {
+public class AnyBlockable: Codable, @unchecked Sendable {
     
     public var base: any Blockable
     

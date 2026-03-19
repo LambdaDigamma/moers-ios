@@ -9,7 +9,7 @@ import Foundation
 
 final public class MarkdownBlock: NSObject, Blockable {
     
-    public static var type: BlockType = .markdown
+    public static let type: BlockType = .markdown
     
     public init(text: String) {
         self.text = text

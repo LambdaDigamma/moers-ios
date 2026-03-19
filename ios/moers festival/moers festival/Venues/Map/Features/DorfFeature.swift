@@ -9,39 +9,41 @@
 import Core
 import MapKit
 
-public class DorfFeature: GeoFeature<DorfFeature.Properties>, FGDDecodableFeature {
+public struct DorfProperties: Codable {
+    public let name: String?
+    public let type: String?
+    public let food: Int?
+    public let boothNo: Int?
+    public let description: String?
     
-    public struct Properties: Codable {
-        public let name: String?
-        public let type: String?
-        public let food: Int?
-        public let boothNo: Int?
-        public let description: String?
-        
-        var isFood: Bool {
-            return food == 1
-        }
-        
-        public init(from decoder: any Decoder) throws {
-            let container: KeyedDecodingContainer<DorfFeature.Properties.CodingKeys> = try decoder.container(
-                keyedBy: DorfFeature.Properties.CodingKeys.self
-            )
-            self.name = try container.decodeIfPresent(String.self, forKey: DorfFeature.Properties.CodingKeys.name)
-            self.type = try container.decodeIfPresent(String.self, forKey: DorfFeature.Properties.CodingKeys.type)
-            self.food = try container.decodeIfPresent(Int.self, forKey: DorfFeature.Properties.CodingKeys.food)
-            self.boothNo = try container.decodeIfPresent(Int.self, forKey: DorfFeature.Properties.CodingKeys.boothNo)
-            self.description = try container.decodeIfPresent(String.self, forKey: DorfFeature.Properties.CodingKeys.description)
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case name
-            case type
-            case food
-            case boothNo
-            case description = "desc"
-        }
-        
+    var isFood: Bool {
+        return food == 1
     }
+    
+    public init(from decoder: any Decoder) throws {
+        let container: KeyedDecodingContainer<DorfProperties.CodingKeys> = try decoder.container(
+            keyedBy: DorfProperties.CodingKeys.self
+        )
+        self.name = try container.decodeIfPresent(String.self, forKey: DorfProperties.CodingKeys.name)
+        self.type = try container.decodeIfPresent(String.self, forKey: DorfProperties.CodingKeys.type)
+        self.food = try container.decodeIfPresent(Int.self, forKey: DorfProperties.CodingKeys.food)
+        self.boothNo = try container.decodeIfPresent(Int.self, forKey: DorfProperties.CodingKeys.boothNo)
+        self.description = try container.decodeIfPresent(String.self, forKey: DorfProperties.CodingKeys.description)
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case type
+        case food
+        case boothNo
+        case description = "desc"
+    }
+    
+}
+
+public class DorfFeature: GeoFeature<DorfProperties>, FGDDecodableFeature {
+    
+    public typealias Properties = DorfProperties
     
 }
 

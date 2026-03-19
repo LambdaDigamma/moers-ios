@@ -137,14 +137,20 @@ public struct ViewFactory {
         
     }
     
-    public static func collectionView(layout: UICollectionViewLayout = UICollectionViewFlowLayout()) -> UICollectionView {
-        
+    @MainActor
+    public static func collectionView() -> UICollectionView {
+        return collectionView(layout: UICollectionViewFlowLayout())
+    }
+
+    @MainActor
+    public static func collectionView(layout: UICollectionViewLayout) -> UICollectionView {
+
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
+
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         return collectionView
-        
+
     }
     
     public static func blurView() -> UIVisualEffectView {

@@ -117,6 +117,7 @@ public struct FeedViewScreen: View {
         let cache = try! Storage<String, Feed>(
             diskConfig: DiskConfig(name: "FeedService"),
             memoryConfig: MemoryConfig(),
+            fileManager: .default,
             transformer: TransformerFactory.forCodable(ofType: Feed.self)
         )
         

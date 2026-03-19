@@ -8,9 +8,9 @@
 
 import Foundation
 
-class LoRaManager {
-    
-    public static var shared = LoRaManager()
+final class LoRaManager: Sendable {
+
+    public static let shared = LoRaManager()
     
     private let session = URLSession.shared
     private let loRaServer = "http://m090web3.krzn.de:1880/"

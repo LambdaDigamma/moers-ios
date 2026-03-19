@@ -8,7 +8,7 @@
 
 import UIKit
 import AppScaffold
-import ModernNetworking
+@preconcurrency import ModernNetworking
 import Core
 import Factory
 

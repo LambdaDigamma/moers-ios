@@ -57,9 +57,6 @@ public struct CompactDayEventsView: View {
             }
             
         }
-        .task {
-            await viewModel.reload()
-        }
         
     }
     

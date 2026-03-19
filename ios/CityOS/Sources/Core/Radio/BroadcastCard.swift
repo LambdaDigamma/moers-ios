@@ -46,8 +46,8 @@ public struct BroadcastCard: View {
 }
 
 struct BroadcastCard_Preview: PreviewProvider {
-    
-    static var previews: some View {
+
+    @MainActor static var previews: some View {
         
         BroadcastCard(source: "https://www.nrwision.de/fileadmin/_processed_assets_/4/3/csm_thumb_buergerradiomeerbeck_a_02_2021.mp3_09fb752572.jpg", title: "Some title")
             .previewLayout(.sizeThatFits)

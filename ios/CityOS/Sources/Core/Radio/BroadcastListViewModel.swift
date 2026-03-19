@@ -16,6 +16,7 @@ public class BroadcastListViewModel: StandardViewModel {
     
     private let service: RadioServiceProtocol
     
+    @MainActor
     public init(service: RadioServiceProtocol) {
         self.service = service
     }
@@ -26,9 +27,11 @@ public class BroadcastListViewModel: StandardViewModel {
             .sink { (completion: Subscribers.Completion<Error>) in
                 print(completion)
             } receiveValue: { (broadcasts: [RadioBroadcast]) in
-                self.upcomingBroadcasts = Array(broadcasts.prefix(8))
-                self.broadcasts = broadcasts
-                self.viewModels = self.upcomingBroadcasts.map { $0.toViewModel() }
+                MainActor.assumeIsolated {
+                    self.upcomingBroadcasts = Array(broadcasts.prefix(8))
+                    self.broadcasts = broadcasts
+                    self.viewModels = self.upcomingBroadcasts.map { $0.toViewModel() }
+                }
             }
             .store(in: &cancellables)
         

@@ -377,14 +377,13 @@ public class DefaultTransitService: TransitService {
     
     // MARK: - Helpers
     
-    public static let defaultDecoder: XMLDecoder = {
+    nonisolated(unsafe) public static let defaultDecoder: XMLDecoder = {
         
         let decoder = XMLDecoder()
         let format = DateFormatter()
         
         format.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         
-//        decoder.
         decoder.dateDecodingStrategy = .formatted(format)
         
         return decoder

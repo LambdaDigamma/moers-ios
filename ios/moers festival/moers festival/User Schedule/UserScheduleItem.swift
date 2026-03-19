@@ -9,12 +9,12 @@
 import Foundation
 import MMEvents
 
-enum UserScheduleSection: Hashable {
+nonisolated enum UserScheduleSection: Hashable {
     case main(DateComponents?)
     case empty
 }
 
-enum UserScheduleItem: Hashable, Equatable {
+nonisolated enum UserScheduleItem: Hashable, Equatable {
     case event(EventListItemViewModel)
     case placeholder
 }

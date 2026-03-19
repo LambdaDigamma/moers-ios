@@ -23,6 +23,7 @@ public enum GeoFeatureError: LocalizedError {
     case invalidData
 }
 
+@MainActor
 open class GeoFeature<Properties: Decodable>: NSObject {
     
     public let identifier: UUID

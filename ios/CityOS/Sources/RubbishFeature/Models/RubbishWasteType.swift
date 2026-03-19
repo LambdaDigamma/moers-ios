@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-public enum RubbishWasteType: String, Codable, Equatable, Hashable, CaseIterable {
+public enum RubbishWasteType: String, Codable, Equatable, Hashable, CaseIterable, Sendable {
     
     case residual = "residual"
     case organic = "organic"

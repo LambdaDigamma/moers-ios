@@ -34,7 +34,7 @@ public struct TicketOptionRecord: Equatable, Codable {
 
 extension TicketOptionRecord: FetchableRecord, MutablePersistableRecord {
     
-    public static var databaseTableName: String = TicketOptionTableDefinition.tableName
+    public static let databaseTableName: String = TicketOptionTableDefinition.tableName
     
     public enum Columns {
         static let createdAt = Column(CodingKeys.createdAt.rawValue)

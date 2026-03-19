@@ -103,40 +103,33 @@ public class PageView: UIStackView {
     }
     
     private func addLinkBlock(linkBlock: ExternalLinkBlock) {
-        
+
         guard let url = URL(string: linkBlock.url) else { return }
 
-        if #available(iOS 13.0, *) {
-            
-            #if !os(tvOS)
-            
-            let linkView = LPLinkView(url: url)
+        #if !os(tvOS)
+
+        let linkView = LPLinkView(url: url)
+
+        Task { @MainActor in
             let provider = LPMetadataProvider()
-            provider.startFetchingMetadata(for: url) { (metadata, error) in
-                if let md = metadata {
-                    DispatchQueue.main.async {
-                        linkView.metadata = md
-                        linkView.sizeToFit()
-                    }
-                }
+            if let md = try? await provider.startFetchingMetadata(for: url) {
+                linkView.metadata = md
+                linkView.sizeToFit()
             }
-            
-            linkView.backgroundColor = UIColor.white
-            linkView.layer.cornerRadius = 10
-            linkView.tintColor = UIColor.white
-            
-            let containerView = ContainerView(contentView: linkView,
-                                              edgeInsets: UIEdgeInsets(top: 0, left: eventDetailMargin, bottom: 0, right: eventDetailMargin))
-            
-            views.append(containerView)
-            addArrangedSubview(containerView)
-            
-            #endif
-            
-        } else {
-            // Fallback on earlier versions
         }
-        
+
+        linkView.backgroundColor = UIColor.white
+        linkView.layer.cornerRadius = 10
+        linkView.tintColor = UIColor.white
+
+        let containerView = ContainerView(contentView: linkView,
+                                          edgeInsets: UIEdgeInsets(top: 0, left: eventDetailMargin, bottom: 0, right: eventDetailMargin))
+
+        views.append(containerView)
+        addArrangedSubview(containerView)
+
+        #endif
+
     }
     
 }

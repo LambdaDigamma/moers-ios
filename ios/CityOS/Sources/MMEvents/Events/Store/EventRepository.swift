@@ -29,7 +29,7 @@ extension Container {
     
 }
 
-public class EventRepository {
+public class EventRepository: @unchecked Sendable {
     
     public let store: EventStore
     public let service: EventService

@@ -34,53 +34,50 @@ extension CLAuthorizationStatus: CaseName {
 }
 
 public final class DefaultLocationService: NSObject, LocationService {
-    
+
     private let locationManager: CLLocationManager
     private let logger: Logger
-    
+
     // MARK: - Async Streams
-    
-    public var locations: AsyncThrowingStream<CLLocation, Error> {
-        AsyncThrowingStream { continuation in
-            self.locationContinuation = continuation
-            
-            // Emit current value immediately (CurrentValueSubject semantics)
-            if let lastLocation {
-                continuation.yield(lastLocation)
-            }
-        }
-    }
-    
-    public var authorizationStatuses: AsyncStream<CLAuthorizationStatus> {
-        AsyncStream { continuation in
-            self.authorizationContinuation = continuation
-            
-            // Emit current value immediately
-            continuation.yield(self.lastAuthorizationStatus)
-        }
-    }
-    
+
+    public let locations: AsyncThrowingStream<CLLocation, Error>
+    public let authorizationStatuses: AsyncStream<CLAuthorizationStatus>
+
     // MARK: - Internal State
-    
-    private var locationContinuation: AsyncThrowingStream<CLLocation, Error>.Continuation?
-    private var authorizationContinuation: AsyncStream<CLAuthorizationStatus>.Continuation?
-    
+
+    private let locationContinuation: AsyncThrowingStream<CLLocation, Error>.Continuation
+    private let authorizationContinuation: AsyncStream<CLAuthorizationStatus>.Continuation
+
     private var lastLocation: CLLocation?
     private var lastAuthorizationStatus: CLAuthorizationStatus
-    
+
     // MARK: - Init
-    
+
     public init(locationManager: CLLocationManager = CLLocationManager()) {
         self.locationManager = locationManager
         self.logger = Logger(.coreApi)
         self.lastLocation = locationManager.location
         self.lastAuthorizationStatus = locationManager.authorizationStatus
-        
+
+        let (locationStream, locationContinuation) = AsyncThrowingStream.makeStream(of: CLLocation.self)
+        self.locations = locationStream
+        self.locationContinuation = locationContinuation
+
+        let (authStream, authContinuation) = AsyncStream.makeStream(of: CLAuthorizationStatus.self)
+        self.authorizationStatuses = authStream
+        self.authorizationContinuation = authContinuation
+
         super.init()
-        
+
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
+
+        // Emit current authorization status immediately (CurrentValueSubject semantics)
+        authContinuation.yield(locationManager.authorizationStatus)
+        if let lastLocation {
+            locationContinuation.yield(lastLocation)
+        }
+
 #if os(watchOS)
         if #available(watchOS 4.0, *) {
             self.locationManager.activityType = .other
@@ -106,6 +103,7 @@ public final class DefaultLocationService: NSObject, LocationService {
     
     public func stopMonitoring() {
         locationManager.stopUpdatingLocation()
+        locationContinuation.finish()
     }
 }
 
@@ -121,7 +119,7 @@ extension DefaultLocationService: CLLocationManagerDelegate {
         
         for location in locations {
             lastLocation = location
-            locationContinuation?.yield(location)
+            locationContinuation.yield(location)
         }
     }
     
@@ -131,8 +129,7 @@ extension DefaultLocationService: CLLocationManagerDelegate {
     ) {
         logger.error("CLLocationManager failed: \(error.localizedDescription, privacy: .public)")
         
-        locationContinuation?.finish(throwing: error)
-        locationContinuation = nil
+        locationContinuation.finish(throwing: error)
     }
     
     public func locationManager(
@@ -142,6 +139,6 @@ extension DefaultLocationService: CLLocationManagerDelegate {
         logger.info("Authorization changed to \(status.name)")
         
         lastAuthorizationStatus = status
-        authorizationContinuation?.yield(status)
+        authorizationContinuation.yield(status)
     }
 }

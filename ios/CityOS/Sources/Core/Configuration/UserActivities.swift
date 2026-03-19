@@ -183,12 +183,13 @@ public enum UserActivities {
     
 }
 
+@MainActor
 public enum UserActivity {
-    
+
     public static var current: NSUserActivity? {
         didSet {
             current?.becomeCurrent()
         }
     }
-    
+
 }

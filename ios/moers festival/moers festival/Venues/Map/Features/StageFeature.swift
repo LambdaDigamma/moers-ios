@@ -9,12 +9,14 @@
 import Core
 import MapKit
 
-public class StageFeature: GeoFeature<StageFeature.Properties>, FGDDecodableFeature {
+public struct StageProperties: Codable {
+    public let name: String
+    public let type: String
+}
+
+public class StageFeature: GeoFeature<StageProperties>, FGDDecodableFeature {
     
-    public struct Properties: Codable {
-        public let name: String
-        public let type: String
-    }
+    public typealias Properties = StageProperties
     
 }
 
@@ -27,4 +29,3 @@ extension StageFeature: StylableFeature {
     }
     
 }
-

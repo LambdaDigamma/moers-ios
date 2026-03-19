@@ -23,7 +23,7 @@ public enum DisplayMode {
     case filter(searchTerm: String?, selectedTags: [String], items: [Location])
 }
 
-enum SearchDrawerItem: Hashable {
+enum SearchDrawerItem: Hashable, @unchecked Sendable {
     case tag(NSAttributedString, id: String)
     case location(Core.AnyLocation)
     

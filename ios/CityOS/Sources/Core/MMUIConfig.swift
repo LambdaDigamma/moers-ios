@@ -11,6 +11,7 @@ import UIKit
 
 public typealias MarkdownConverter = ((String) -> NSAttributedString)
 
+@MainActor
 public struct MMUIConfig {
     
     /// The shared theme using native iOS colors

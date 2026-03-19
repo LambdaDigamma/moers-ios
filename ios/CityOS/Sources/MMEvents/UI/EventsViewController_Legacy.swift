@@ -32,7 +32,7 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
     private let fuse = Fuse(threshold: 0.25, isCaseSensitive: false)
     
     private var updateInterval: TimeInterval = 60.0
-    private var updateTimer: Timer!
+    nonisolated(unsafe) private var updateTimer: Timer!
     
     private var isSearchEnabled = true
     

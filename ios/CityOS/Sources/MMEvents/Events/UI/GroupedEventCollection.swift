@@ -9,6 +9,7 @@
 import SwiftUI
 import Core
 
+@MainActor
 fileprivate func groupEvents(
     _ events: [EventListItemViewModel]
 ) -> [(String, [EventListItemViewModel])] {

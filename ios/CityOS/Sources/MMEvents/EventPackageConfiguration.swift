@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 public struct EventPackageConfiguration {
-    public static var eventActiveMinuteThreshold: Measurement<UnitDuration> = Measurement(value: 30.0, unit: .minutes)
-    public static var accentColor: UIColor = .systemBlue
-    public static var onAccentColor: UIColor = .white
+    nonisolated(unsafe) public static var eventActiveMinuteThreshold: Measurement<UnitDuration> = Measurement(value: 30.0, unit: .minutes)
+    nonisolated(unsafe) public static var accentColor: UIColor = .systemBlue
+    nonisolated(unsafe) public static var onAccentColor: UIColor = .white
 }

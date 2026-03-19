@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import MediaLibraryKit
+@preconcurrency import MediaLibraryKit
 
-public struct PageBlock: BasePageBlock {
+public struct PageBlock: BasePageBlock, Sendable {
     
     public typealias ID = Int
     

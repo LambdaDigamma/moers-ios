@@ -1,6 +1,11 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 6.2
 
 import PackageDescription
+
+let settings: [SwiftSetting] = [
+    .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
+    .enableUpcomingFeature("InferIsolatedConformances")
+]
 
 let package = Package(
     name: "CityOS",
@@ -37,7 +42,7 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
         .package(url: "https://github.com/hmlongco/Factory", .upToNextMajor(from: "2.0.0")),
         .package(url: "https://github.com/LambdaDigamma/ModernNetworking", branch: "main"),
-        .package(url: "https://github.com/LambdaDigamma/Cache", .upToNextMajor(from: "6.0.0")),
+        .package(url: "https://github.com/hyperoslo/Cache", .upToNextMajor(from: "7.4.0")),
         .package(url: "https://github.com/LambdaDigamma/fuse-swift", .upToNextMajor(from: "1.4.2")),
         .package(url: "https://github.com/LambdaDigamma/TagListView", from: "1.4.2"),
         .package(url: "https://github.com/LambdaDigamma/EventBus", from: "0.5.2"),
@@ -46,10 +51,10 @@ let package = Package(
         .package(url: "https://github.com/LambdaDigamma/swift-prosemirror", .upToNextMajor(from: "0.0.8")),
         .package(url: "https://github.com/LambdaDigamma/MediaLibraryKit", .upToNextMajor(from: "1.0.0")),
         .package(url: "https://github.com/LambdaDigamma/HanekeSwift", .upToNextMajor(from: "0.14.0")),
-        .package(url: "https://github.com/nmdias/FeedKit", .upToNextMajor(from: "9.0.0")),
+        .package(url: "https://github.com/nmdias/FeedKit", .upToNextMajor(from: "10.4.0")),
         .package(url: "https://github.com/groue/GRDB.swift", .upToNextMajor(from: "7.9.0")),
-        .package(url: "https://github.com/SvenTiigi/YouTubePlayerKit", from: "1.1.1"),
-        .package(url: "https://github.com/CoreOffice/XMLCoder", from: "0.14.0"),
+        .package(url: "https://github.com/SvenTiigi/YouTubePlayerKit", from: "2.0.0"),
+        .package(url: "https://github.com/CoreOffice/XMLCoder", from: "0.18.0"),
     ],
     targets: [
         // ---------------- Core ----------------
@@ -62,33 +67,40 @@ let package = Package(
                 .product(name: "Factory", package: "Factory"),
                 .product(name: "Haneke", package: "HanekeSwift")
             ],
-            resources: [.process("Resources")]
+            resources: [.process("Resources")],
+            swiftSettings: settings
         ),
         .target(
             name: "CoreCache",
-            dependencies: ["Core", "Cache"]
+            dependencies: ["Core", "Cache"],
+            swiftSettings: settings
         ),
         .testTarget(
             name: "CoreTests",
-            dependencies: ["Core", "CoreCache"]
+            dependencies: ["Core", "CoreCache"],
+            swiftSettings: settings
         ),
         // ---------------- PlaybackKit ----------------
         .target(
             name: "PlaybackKit",
-            dependencies: ["Core", "Factory"]
+            dependencies: ["Core", "Factory"],
+            swiftSettings: settings
         ),
         .testTarget(
             name: "PlaybackKitTests",
-            dependencies: ["WeatherFeature"]
+            dependencies: ["WeatherFeature"],
+            swiftSettings: settings
         ),
         // ---------------- WeatherFeature ----------------
         .target(
             name: "WeatherFeature",
-            dependencies: ["Core", "Factory"]
+            dependencies: ["Core", "Factory"],
+            swiftSettings: settings
         ),
         .testTarget(
             name: "WeatherFeatureTests",
-            dependencies: ["WeatherFeature"]
+            dependencies: ["WeatherFeature"],
+            swiftSettings: settings
         ),
         // ---------------- RubbishFeature ----------------
         .target(
@@ -96,11 +108,13 @@ let package = Package(
             dependencies: ["Core", "ModernNetworking"],
             resources: [
                 .process("Resources")
-            ]
+            ],
+            swiftSettings: settings
         ),
         .testTarget(
             name: "RubbishFeatureTests",
-            dependencies: ["RubbishFeature"]
+            dependencies: ["RubbishFeature"],
+            swiftSettings: settings
         ),
         // ---------------- ParkingFeature ----------------
         .target(
@@ -108,11 +122,13 @@ let package = Package(
             dependencies: ["Core", "ModernNetworking"],
             resources: [
                 .process("Resources")
-            ]
+            ],
+            swiftSettings: settings
         ),
         .testTarget(
             name: "ParkingFeatureTests",
-            dependencies: ["ParkingFeature"]
+            dependencies: ["ParkingFeature"],
+            swiftSettings: settings
         ),
         // ---------------- DashboardFeature ----------------
         .target(
@@ -120,20 +136,24 @@ let package = Package(
             dependencies: [
                 "Core", "FuelFeature", "RubbishFeature", "ParkingFeature", "WeatherFeature",
                 "EFAAPI", "EFAUI"
-            ]
+            ],
+            swiftSettings: settings
         ),
         .testTarget(
             name: "DashboardFeatureTests",
-            dependencies: ["DashboardFeature"]
+            dependencies: ["DashboardFeature"],
+            swiftSettings: settings
         ),
         // ---------------- NewsFeature ----------------
         .target(
             name: "NewsFeature",
-            dependencies: ["Core", "FeedKit"]
+            dependencies: ["Core", "FeedKit"],
+            swiftSettings: settings
         ),
         .testTarget(
             name: "NewsFeatureTests",
-            dependencies: ["NewsFeature"]
+            dependencies: ["NewsFeature"],
+            swiftSettings: settings
         ),
         // ---------------- FuelFeature ----------------
         .target(
@@ -143,11 +163,13 @@ let package = Package(
                 .product(name: "Fuse", package: "fuse-swift"),
                 .product(name: "ModernNetworking", package: "ModernNetworking"),
             ],
-            resources: [.process("Resources")]
+            resources: [.process("Resources")],
+            swiftSettings: settings
         ),
         .testTarget(
             name: "FuelFeatureTests",
-            dependencies: ["FuelFeature"]
+            dependencies: ["FuelFeature"],
+            swiftSettings: settings
         ),
         // ---------------- MapFeature ----------------
         .target(
@@ -163,11 +185,13 @@ let package = Package(
             ],
             resources: [
                 .process("Resources")
-            ]
+            ],
+            swiftSettings: settings
         ),
         .testTarget(
             name: "MapFeatureTests",
-            dependencies: ["MapFeature"]
+            dependencies: ["MapFeature"],
+            swiftSettings: settings
         ),
         
         // ---------------- MMEvents ----------------
@@ -184,11 +208,13 @@ let package = Package(
             ],
             resources: [
                 .process("Resources")
-            ]
+            ],
+            swiftSettings: settings
         ),
         .testTarget(
             name: "MMEventsTests",
-            dependencies: ["MMEvents"]
+            dependencies: ["MMEvents"],
+            swiftSettings: settings
         ),
         // ---------------- MMPages ----------------
         .target(
@@ -201,25 +227,29 @@ let package = Package(
                 .product(name: "ProseMirror", package: "swift-prosemirror"),
                 .product(name: "GRDB", package: "GRDB.swift"),
                 .product(name: "Factory", package: "Factory")
-            ]
+            ],
+            swiftSettings: settings
         ),
         .testTarget(
             name: "MMPagesTests",
             dependencies: ["MMPages"],
             resources: [
                 .process("Resources")
-            ]
+            ],
+            swiftSettings: settings
         ),
         // ---------------- MMTours ----------------
         .target(
             name: "MMTours",
             dependencies: [
                 .byName(name: "Core")
-            ]
+            ],
+            swiftSettings: settings
         ),
         .testTarget(
             name: "MMToursTests",
-            dependencies: ["MMTours"]
+            dependencies: ["MMTours"],
+            swiftSettings: settings
         ),
         // ---------------- MMFeeds ----------------
         .target(
@@ -229,14 +259,16 @@ let package = Package(
                 .product(name: "ModernNetworking", package: "ModernNetworking"),
                 .product(name: "MediaLibraryKit", package: "MediaLibraryKit"),
                 .product(name: "GRDB", package: "GRDB.swift"),
-            ]
+            ],
+            swiftSettings: settings
         ),
         .testTarget(
             name: "MMFeedsTests",
             dependencies: ["MMFeeds"],
             resources: [
                 .process("Resources")
-            ]
+            ],
+            swiftSettings: settings
         ),
         
         // ---------------- EFAAPI ----------------
@@ -248,23 +280,30 @@ let package = Package(
                 "Factory",
                 "Core"
             ],
-            resources: [.process("Resources")]
+            resources: [.process("Resources")],
+            swiftSettings: settings
         ),
         .target(
             name: "EFAUI",
-            dependencies: ["EFAAPI", "Factory", "Core"]
+            dependencies: ["EFAAPI", "Factory", "Core"],
+            swiftSettings: settings
         ),
         .executableTarget(
             name: "EFACLI",
-            dependencies: ["EFAAPI", "Factory"]
+            dependencies: ["EFAAPI", "Factory"],
+            swiftSettings: settings
         ),
         .testTarget(
             name: "EFAAPITests",
             dependencies: ["EFAAPI"],
             resources: [
                 .copy("Data")
-            ]
+            ],
+            swiftSettings: settings
         ),
-        .target(name: "Pulley")
+        .target(
+            name: "Pulley",
+            swiftSettings: settings
+        )
     ]
 )

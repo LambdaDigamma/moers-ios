@@ -11,6 +11,7 @@ import Foundation
 import MapKit
 import Contacts
 
+@MainActor
 public class AppleNavigationProvider: NavigationProvider {
     
     public init() {}

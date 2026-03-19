@@ -9,9 +9,9 @@
 import Foundation
 import GRDB
 import MMPages
-import MediaLibraryKit
+@preconcurrency import MediaLibraryKit
 
-public struct EventRecord: Equatable, Codable {
+public struct EventRecord: Equatable, Codable, Sendable {
     
     public var id: Int64?
     public var name: String
@@ -93,7 +93,7 @@ public struct EventRecord: Equatable, Codable {
 
 extension EventRecord: FetchableRecord, MutablePersistableRecord {
     
-    public static var databaseTableName: String = EventTableDefinition.tableName
+    public static let databaseTableName: String = EventTableDefinition.tableName
     
     public enum Columns {
         static let name = Column(CodingKeys.name)

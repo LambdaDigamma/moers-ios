@@ -11,6 +11,7 @@ import Combine
 import EFAAPI
 import Factory
 
+@MainActor
 public class DashboardViewModel: ObservableObject {
     
     private let loader: DashboardConfigLoader

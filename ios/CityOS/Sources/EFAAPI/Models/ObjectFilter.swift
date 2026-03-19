@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct ObjectFilter: OptionSet, Hashable, CaseIterable {
+public struct ObjectFilter: OptionSet, Hashable, CaseIterable, Sendable {
     
     public typealias RawValue = Int
     public let rawValue: RawValue
@@ -56,7 +56,7 @@ public struct ObjectFilter: OptionSet, Hashable, CaseIterable {
      */
     public static let postcode         = ObjectFilter(rawValue: 1 << 6)
 
-    public static var allCases: [ObjectFilter] = [
+    public static let allCases: [ObjectFilter] = [
         ObjectFilter.places,
         ObjectFilter.stops,
         ObjectFilter.streets,

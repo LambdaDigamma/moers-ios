@@ -146,7 +146,7 @@ final public class PetrolStation: NSObject, Location, Codable, MKAnnotation, Swi
     
     #endif
     
-    public static let distanceFormatter: MeasurementFormatter = {
+    nonisolated(unsafe) public static let distanceFormatter: MeasurementFormatter = {
         let formatter = MeasurementFormatter()
         formatter.unitStyle = .short
         formatter.unitOptions = [.providedUnit]

@@ -16,7 +16,7 @@ import UIKit
  - open:              When the drawer is fully open.
  - closed:            When the drawer is off-screen at the bottom of the view. Note: Users cannot close or reopen the drawer on their own. You must set this programatically
  */
-@objc public class PulleyPosition: NSObject {
+@objc public final class PulleyPosition: NSObject, Sendable {
     
     public static let collapsed = PulleyPosition(rawValue: 0)
     public static let partiallyRevealed = PulleyPosition(rawValue: 1)

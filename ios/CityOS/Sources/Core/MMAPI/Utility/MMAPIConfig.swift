@@ -17,9 +17,9 @@ public struct MMAPIConfig {
         self.baseURL = baseURL
     }
     
-    public static var baseURL = ""
-    public static var petrolAPIKey: String?
-    public static var isMoersFestivalModeEnabled = true
+    nonisolated(unsafe) public static var baseURL = ""
+    nonisolated(unsafe) public static var petrolAPIKey: String?
+    nonisolated(unsafe) public static var isMoersFestivalModeEnabled = true
     
     public static func registerBaseURL(_ url: String) {
         self.baseURL = url

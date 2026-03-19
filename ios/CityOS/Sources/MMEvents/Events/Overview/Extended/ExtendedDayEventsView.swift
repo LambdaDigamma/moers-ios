@@ -60,9 +60,6 @@ public struct ExtendedDayEventsView: View {
             }
             
         }
-        .task {
-            await viewModel.reload()
-        }
         
     }
     

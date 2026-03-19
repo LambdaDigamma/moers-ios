@@ -14,7 +14,7 @@ import OSLog
 
 public class DefaultPlaceService: PlaceService {
     
-    private let loader: HTTPLoader
+    nonisolated(unsafe) private let loader: HTTPLoader
     private let logger: Logger
     
     public init(loader: HTTPLoader) {

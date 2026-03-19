@@ -16,19 +16,17 @@ public class ToiletRenderer: MKMultiPolygonRenderer {
     private var rendererStrokeColor: UIColor = UIColor.clear
     private var rendererFillColor: UIColor = UIColor.clear
     
-    public override init(overlay: MKOverlay) {
+    nonisolated public override init(overlay: MKOverlay) {
         super.init(overlay: overlay)
-        
         self.setupColors()
     }
-    
-    public override init(multiPolygon: MKMultiPolygon) {
+
+    nonisolated public override init(multiPolygon: MKMultiPolygon) {
         super.init(multiPolygon: multiPolygon)
-        
         self.setupColors()
     }
-    
-    private func setupColors() {
+
+    nonisolated private func setupColors() {
         
         self.rendererLineWidth = 1
         self.rendererStrokeColor = UIColor.systemBlue.withAlphaComponent(0.75)
@@ -41,7 +39,7 @@ public class ToiletRenderer: MKMultiPolygonRenderer {
         
     }
     
-    public override func draw(
+    nonisolated public override func draw(
         _ mapRect: MKMapRect,
         zoomScale: MKZoomScale,
         in context: CGContext

@@ -128,6 +128,7 @@ public struct WebViewWrapper : UIViewRepresentable {
         return Coordinator(action: action, webViewStateModel: webViewStateModel)
     }
     
+    @MainActor
     public final class Coordinator: NSObject {
         
         @ObservedObject var webViewStateModel: WebViewStateModel

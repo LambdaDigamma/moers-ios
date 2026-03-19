@@ -28,7 +28,7 @@ extension Container {
     
 }
 
-public class PlaceRepository {
+public class PlaceRepository: @unchecked Sendable {
     
     public let store: PlaceStore
     public let service: PlaceService

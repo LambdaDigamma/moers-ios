@@ -9,12 +9,14 @@
 import Core
 import MapKit
 
-public class MedicalServiceFeature: GeoFeature<MedicalServiceFeature.Properties>, FGDDecodableFeature {
+public struct MedicalServiceProperties: Codable {
+    public let name: String
+    public let type: String
+}
+
+public class MedicalServiceFeature: GeoFeature<MedicalServiceProperties>, FGDDecodableFeature {
     
-    public struct Properties: Codable {
-        public let name: String
-        public let type: String
-    }
+    public typealias Properties = MedicalServiceProperties
     
 }
 

@@ -57,6 +57,7 @@ public class StaticRadioService: RadioServiceProtocol {
     
 }
 
+@MainActor
 public class RadioService: RadioServiceProtocol {
     
     public static let shared: RadioService = RadioService()

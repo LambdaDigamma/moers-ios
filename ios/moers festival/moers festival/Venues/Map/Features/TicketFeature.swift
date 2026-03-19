@@ -9,12 +9,14 @@
 import Core
 import MapKit
 
-public class TicketFeature: GeoFeature<TicketFeature.Properties>, FGDDecodableFeature {
+public struct TicketProperties: Codable {
+    public let name: String
+    public let type: String
+}
+
+public class TicketFeature: GeoFeature<TicketProperties>, FGDDecodableFeature {
     
-    public struct Properties: Codable {
-        public let name: String
-        public let type: String
-    }
+    public typealias Properties = TicketProperties
     
 }
 

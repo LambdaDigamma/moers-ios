@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct PostExtras: Codable, Equatable, Hashable {
+public struct PostExtras: Codable, Equatable, Hashable, Sendable {
     
     let cta: String?
     let videoFiles: [VimeoVideoFileDescription]?

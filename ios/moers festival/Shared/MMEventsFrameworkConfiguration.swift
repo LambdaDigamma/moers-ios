@@ -10,7 +10,7 @@ import UIKit
 import AppScaffold
 import ModernNetworking
 import Cache
-import MMEvents
+@preconcurrency import MMEvents
 import Factory
 
 class MMEventsFrameworkConfiguration: BootstrappingProcedureStep {
@@ -23,8 +23,10 @@ class MMEventsFrameworkConfiguration: BootstrappingProcedureStep {
         let placeStore = self.setupPlaces(loader: loader)
         self.setupEvents(loader: loader, placeStore: placeStore)
         
+        let dbWriter = database.dbWriter
+        let dbReader = database.reader
         Container.shared.favoriteEventsStore.scope(.singleton).register {
-            FavoriteEventsStore(writer: database.dbWriter, reader: database.reader)
+            FavoriteEventsStore(writer: dbWriter, reader: dbReader)
         }
         
     }

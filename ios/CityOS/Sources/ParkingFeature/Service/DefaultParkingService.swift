@@ -13,8 +13,8 @@ public struct ParkingAreaResponse: Model {
     
     public let parkingAreas: [ParkingArea]
     
-    public static var decoder: JSONDecoder = ParkingArea.decoder
-    public static var encoder: JSONEncoder = ParkingArea.encoder
+    public static let decoder: JSONDecoder = ParkingArea.decoder
+    public static let encoder: JSONEncoder = ParkingArea.encoder
     
     public enum CodingKeys: String, CodingKey {
         case parkingAreas = "parking_areas"
@@ -23,8 +23,8 @@ public struct ParkingAreaResponse: Model {
 }
 
 public class DefaultParkingService: ParkingService {
-    
-    private let loader: HTTPLoader
+
+    nonisolated(unsafe) private let loader: HTTPLoader
     
     public init(
         loader: HTTPLoader

@@ -13,12 +13,12 @@ class FestivalhalleMapOverlayView: MKOverlayRenderer {
     
     var overlayImage: UIImage
     
-    init(overlay: MKOverlay, overlayImage: UIImage) {
+    nonisolated init(overlay: MKOverlay, overlayImage: UIImage) {
         self.overlayImage = overlayImage
         super.init(overlay: overlay)
     }
-    
-    override func draw(_ mapRect: MKMapRect, zoomScale: MKZoomScale, in context: CGContext) {
+
+    nonisolated override func draw(_ mapRect: MKMapRect, zoomScale: MKZoomScale, in context: CGContext) {
         
         guard let imageReference = overlayImage.cgImage else { return }
         
