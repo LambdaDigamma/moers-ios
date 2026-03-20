@@ -33,28 +33,15 @@ public class MapCoordinator: SharedCoordinator {
         self.navigationController.coordinator = self
         self.navigationController.menuItem = makeMenuItem()
         
+        let mainViewController = NewMapViewController()
         
-        let mainViewController = MapCoordinatorViewController(
-            contentViewController: MapViewController(),
-            drawerViewController: DrawerFestivalMapViewController(viewModel: .init())
-        )
-        
-        mainViewController.coordinator = self
-        mainViewController.drawerViewController.coordinator = self
-        
-//        let mapViewController = MapViewController()
-//        let contentViewController = UIStoryboard(
-//            name: "ContentDrawer",
-//            bundle: nil
-//        ).instantiateViewController(withIdentifier: "DrawerViewController") as! DrawerViewController
-//
 //        let mainViewController = MapCoordinatorViewController(
-//            contentViewController: mapViewController,
-//            drawerViewController: contentViewController
+//            contentViewController: MapViewController(),
+//            drawerViewController: DrawerFestivalMapViewController(viewModel: .init())
 //        )
-//
+        
 //        mainViewController.coordinator = self
-//        contentViewController.coordinator = self
+//        mainViewController.drawerViewController.coordinator = self
         
         self.navigationController.viewControllers = [mainViewController]
         

@@ -107,7 +107,13 @@ class MapCoordinatorViewController: PulleyViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         self.navigationItem.title = "Karte"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(loadData))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .refresh,
+            target: self,
+            action: #selector(loadData)
+        )
+        
+        self.pulleyViewController?.drawerCornerRadius = 48
         
     }
     

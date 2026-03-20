@@ -213,8 +213,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LambdaDigamma/ModernNetworking",
       "state" : {
-        "branch" : "main",
-        "revision" : "c72f489ecf6afe3be37cec47f7e613b1a7b8c2a7"
+        "revision" : "a8726231832ad378b765abd322105a3daba694ff",
+        "version" : "2.0.0"
       }
     },
     {
