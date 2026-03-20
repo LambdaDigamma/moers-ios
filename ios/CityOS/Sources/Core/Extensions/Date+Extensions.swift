@@ -6,20 +6,50 @@
 //
 
 import Foundation
+import os
+
+// MARK: - DateFormatter Cache
+
+/// State wrapper that opts out of Sendable checking; thread-safety is enforced by `OSAllocatedUnfairLock`.
+private struct _FormatterCacheState: @unchecked Sendable {
+    var formatters: [String: DateFormatter] = [:]
+}
+
+/// Thread-safe cache for `DateFormatter` instances, keyed by format string and locale identifier.
+/// Avoids the expense of creating a new `DateFormatter` on every call.
+/// Note: The cache is unbounded; in practice, the number of distinct format/locale combinations
+/// used within the app is small, so unbounded growth is not a concern here.
+private let _dateFormatterCacheLock = OSAllocatedUnfairLock<_FormatterCacheState>(initialState: .init())
+
+private func _cachedDateFormatter(dateFormat: String, locale: Locale) -> DateFormatter {
+    let cacheKey = "\(dateFormat)|\(locale.identifier)"
+    return _dateFormatterCacheLock.withLock { state in
+        if let cached = state.formatters[cacheKey] {
+            return cached
+        }
+        let formatter = DateFormatter()
+        formatter.locale = locale
+        formatter.dateFormat = dateFormat
+        state.formatters[cacheKey] = formatter
+        return formatter
+    }
+}
 
 public extension Date {
 
+    // MARK: - Private Constants
+
+    private static let _deLocale = Locale(identifier: "DE_de")
+
+    // MARK: - Formatting
+
     func format(format: String) -> String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.autoupdatingCurrent
-        formatter.dateFormat = format
+        let formatter = _cachedDateFormatter(dateFormat: format, locale: .autoupdatingCurrent)
         return formatter.string(from: self)
     }
 
     static func from(_ dateString: String, withFormat format: String) -> Date? {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "DE_de") // TODO: Is this right?
-        formatter.dateFormat = format
+        let formatter = _cachedDateFormatter(dateFormat: format, locale: _deLocale) // TODO: Is this right?
         return formatter.date(from: dateString)
     }
     

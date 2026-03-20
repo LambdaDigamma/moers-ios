@@ -23,10 +23,26 @@ public struct AnyLocation: Hashable, @unchecked Sendable {
     
     // Hashable conformance
     public static func == (lhs: AnyLocation, rhs: AnyLocation) -> Bool {
-        return (lhs.base as AnyObject) === (rhs.base as AnyObject)
+        // Compare by reference for reference types
+        if let lhsObj = lhs.base as? AnyObject,
+           let rhsObj = rhs.base as? AnyObject {
+            return lhsObj === rhsObj
+        }
+        // Fallback to comparing names and coordinates for value types
+        return lhs.base.name == rhs.base.name &&
+               lhs.base.coordinate.latitude == rhs.base.coordinate.latitude &&
+               lhs.base.coordinate.longitude == rhs.base.coordinate.longitude
     }
 
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(ObjectIdentifier(base as AnyObject))
+        // For reference types, use object identifier
+        if let obj = base as? AnyObject {
+            hasher.combine(ObjectIdentifier(obj))
+        } else {
+            // For value types, hash based on name and coordinate
+            hasher.combine(base.name)
+            hasher.combine(base.coordinate.latitude)
+            hasher.combine(base.coordinate.longitude)
+        }
     }
 }
