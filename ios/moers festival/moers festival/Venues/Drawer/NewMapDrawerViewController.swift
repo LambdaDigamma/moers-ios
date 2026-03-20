@@ -47,13 +47,13 @@ class NewMapDrawerViewController: UIViewController {
         return searchBar
     }()
     
-    private lazy var gripper: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.systemGray3
-        view.layer.cornerRadius = 2.5
-        return view
-    }()
+//    private lazy var gripper: UIView = {
+//        let view = UIView()
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.backgroundColor = UIColor.systemGray3
+//        view.layer.cornerRadius = 2.5
+//        return view
+//    }()
     
     private lazy var collectionView: UICollectionView = {
         let layout = createLayout()
@@ -80,7 +80,7 @@ class NewMapDrawerViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         
-        view.addSubview(gripper)
+//        view.addSubview(gripper)
         view.addSubview(searchBar)
         view.addSubview(collectionView)
         
@@ -90,12 +90,12 @@ class NewMapDrawerViewController: UIViewController {
     private func setupConstraints() {
         
         NSLayoutConstraint.activate([
-            gripper.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
-            gripper.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            gripper.widthAnchor.constraint(equalToConstant: 36),
-            gripper.heightAnchor.constraint(equalToConstant: 5),
+//            gripper.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+//            gripper.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+//            gripper.widthAnchor.constraint(equalToConstant: 36),
+//            gripper.heightAnchor.constraint(equalToConstant: 5),
             
-            searchBar.topAnchor.constraint(equalTo: gripper.bottomAnchor, constant: 8),
+            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             searchBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             searchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
             
@@ -276,6 +276,15 @@ class NewMapDrawerViewController: UIViewController {
             return nil
         }
     }
+    
+    // MARK: - Drawer
+    
+    override var sheetPresentationController: UISheetPresentationController? {
+        super.sheetPresentationController
+        
+        
+    }
+    
 }
 
 // MARK: - UICollectionViewDelegate

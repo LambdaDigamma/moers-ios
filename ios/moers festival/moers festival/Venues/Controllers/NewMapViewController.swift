@@ -53,6 +53,7 @@ class NewMapViewController: UIViewController {
     }()
     
     private var drawerViewController: NewMapDrawerViewController?
+    private var sheetTransitioningDelegate: TabSheetTransitioningDelegate?
     private var currentFeatures: [StylableFeature] = []
     private var festivalGeoData: FGDCollection?
     
@@ -262,30 +263,47 @@ class NewMapViewController: UIViewController {
     
     private func presentDrawer() {
         
+//        let drawer = NewMapDrawerViewController()
+//        drawer.delegate = self
+//        drawer.mapViewController = self
+//        
+//        self.drawerViewController = drawer
+//        
+//        if let sheet = drawer.sheetPresentationController {
+//            
+//            sheet.detents = [
+//                .custom(identifier: .init("collapsed")) { _ in 120 },
+//                .medium(),
+//                .large()
+//            ]
+//            
+//            sheet.prefersGrabberVisible = true
+//            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+////            sheet.preferredCornerRadius = 48
+//            sheet.largestUndimmedDetentIdentifier = .medium
+////            sheet.widthFollowsPreferredContentSizeBehavior = true
+//            
+//            sheet.delegate = self
+//        }
+//        
+//        tabBarController?.present(drawer, animated: true)
+        
         let drawer = NewMapDrawerViewController()
         drawer.delegate = self
         drawer.mapViewController = self
         
         self.drawerViewController = drawer
         
-        if let sheet = drawer.sheetPresentationController {
-            
-            sheet.detents = [
-                .custom(identifier: .init("collapsed")) { _ in 120 },
-                .medium(),
-                .large()
-            ]
-            
-            sheet.prefersGrabberVisible = true
-            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
-            sheet.preferredCornerRadius = 48
-            sheet.largestUndimmedDetentIdentifier = .medium
-//            sheet.widthFollowsPreferredContentSizeBehavior = true
-            
-            sheet.delegate = self
-        }
+        let transitionDelegate = TabSheetTransitioningDelegate()
+        transitionDelegate.sheetDelegate = self
+        self.sheetTransitioningDelegate = transitionDelegate
         
-        present(drawer, animated: true)
+        drawer.modalPresentationStyle = .custom
+        drawer.transitioningDelegate = transitionDelegate
+        
+        self.tabBarController?.present(drawer, animated: false)
+        
+//        present(drawer, animated: true)
     }
     
     // MARK: - Public Methods
@@ -435,16 +453,22 @@ extension NewMapViewController: UISheetPresentationControllerDelegate {
 extension NewMapViewController: NewMapDrawerDelegate {
     
     func drawerDidSelectBooth(_ booth: DorfFeature) {
-        
-        dismiss(animated: true) { [weak self] in
-            self?.focusOnFeature(booth)
+
+        if let sheet = drawerViewController?.sheetPresentationController {
+            sheet.animateChanges {
+                sheet.selectedDetentIdentifier = .init("collapsed")
+            }
         }
+
+        focusOnFeature(booth)
     }
-    
+
     func drawerDidSelectVenue(_ venue: FestivalPlaceRowUi) {
-        
-        dismiss(animated: true) {
-            // Handle venue selection - could navigate to detail using venue.id
+
+        if let sheet = drawerViewController?.sheetPresentationController {
+            sheet.animateChanges {
+                sheet.selectedDetentIdentifier = .init("collapsed")
+            }
         }
     }
 }
