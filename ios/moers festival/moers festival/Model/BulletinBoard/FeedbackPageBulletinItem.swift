@@ -9,26 +9,18 @@
 import UIKit
 import BLTNBoard
 
-class FeedbackPageBulletinItem: BLTNPageItem {
-    
-    private let feedbackGenerator = SelectionFeedbackGenerator()
-    
-    override func actionButtonTapped(sender: UIButton) {
-        
-        feedbackGenerator.prepare()
-        feedbackGenerator.selectionChanged()
-        
+nonisolated class FeedbackPageBulletinItem: BLTNPageItem {
+
+    nonisolated override init(title: String) {
+        super.init(title: title)
+    }
+
+    nonisolated override func actionButtonTapped(sender: UIButton) {
         super.actionButtonTapped(sender: sender)
-        
     }
-    
-    override func alternativeButtonTapped(sender: UIButton) {
-        
-        feedbackGenerator.prepare()
-        feedbackGenerator.selectionChanged()
-        
+
+    nonisolated override func alternativeButtonTapped(sender: UIButton) {
         super.alternativeButtonTapped(sender: sender)
-        
     }
-    
+
 }

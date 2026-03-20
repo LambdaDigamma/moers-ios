@@ -69,7 +69,9 @@ public class PageViewController: UIViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        pageViewModel.loadPage()
+        Task {
+            await pageViewModel.loadPage()
+        }
         
     }
     
@@ -135,27 +137,17 @@ public class PageViewController: UIViewController {
     
     // MARK: - Data Handling
     
-    private func loadPage() {
+    private func loadPage() async {
         
         if let pageService = pageService, let pageID = pageID {
             
-            let pageLoading = pageService.loadPage(for: pageID)
+            do {
+                let resource = try await pageService.show(for: pageID, cacheMode: .cached)
+                self.page = .success(resource.data)
+            } catch {
+                print(error)
+            }
             
-            pageLoading.sink { (completion: Subscribers.Completion<Error>) in
-                
-                switch completion {
-                    case .failure(let error):
-                        print(error)
-                    case .finished:
-                        break
-                }
-                
-            } receiveValue: { (page: Page) in
-                
-                self.page = .success(page)
-                
-            }.store(in: &cancellables)
-
         }
         
     }

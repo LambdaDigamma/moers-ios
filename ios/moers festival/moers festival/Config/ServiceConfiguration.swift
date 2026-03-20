@@ -9,37 +9,29 @@
 import UIKit
 import Foundation
 import AppScaffold
-import ModernNetworking
+@preconcurrency import ModernNetworking
 import Core
 import MMEvents
-import Factory
+ import Factory
 
 class ServiceConfiguration: BootstrappingProcedureStep {
-    
-    @LazyInjected(\.httpLoader) var loader
-    
-    init() {
-        
-    }
-    
+
     func execute(with application: UIApplication) {
-        
-        let locationService = DefaultLocationService()
-        let festivalEventService = DefaultFestivalEventService(loader: loader)
-        let locationEventService = DefaultLocationEventService(loader: loader)
-        
+
         Container.shared.locationService.register {
-            locationService as LocationService
+            DefaultLocationService() as LocationService
         }
-        
+
         Container.shared.festivalEventService.register {
-            festivalEventService as FestivalEventService
+            let loader = Container.shared.httpLoader.resolve()
+            return DefaultFestivalEventService(loader: loader) as FestivalEventService
         }
-        
+
         Container.shared.locationEventService.register {
-            locationEventService as LocationEventService
+            let loader = Container.shared.httpLoader.resolve()
+            return DefaultLocationEventService(loader: loader) as LocationEventService
         }
-        
+
     }
-    
+
 }

@@ -56,41 +56,38 @@ public class EventDetailViewModel: StandardViewModel {
             return
         }
 
-        festivalEventService.show(eventID: eventID)
-            .receive(on: DispatchQueue.main)
-            .sink { (completion: Subscribers.Completion<Error>) in
+        Task { [weak self] in
+            guard let self else { return }
 
-                switch completion {
-                    case .failure(let error):
-                        self.logger.error("\(error.localizedDescription)")
-                        print(error)
-                    default: break
-                }
+            do {
+                let response = try await self.festivalEventService.show(eventID: eventID, cacheMode: .cached)
 
-            } receiveValue: { (response: FestivalEventPageResponse) in
+                await MainActor.run {
+                    self.page = response.page
+                    self.pageID = response.page?.id
+                    self.event = response.event
+                    self.eventID = response.event?.id
+                    self.header = response.event?.headerMedia
+                    self.location = response.place
 
-                self.page = response.page
-                self.pageID = response.page?.id
-                self.event = response.event
-                self.eventID = response.event?.id
-                self.header = response.event?.headerMedia
-                self.location = response.place
-
-                if let event = response.event {
-                    self.screenData = .init(
-                        startDate: event.startDate,
-                        endDate: event.endDate,
-                        scheduleDisplayMode: event.scheduleDisplayMode,
-                        timeMode: EventUtilities.timeDisplayMode(
+                    if let event = response.event {
+                        self.screenData = .init(
                             startDate: event.startDate,
                             endDate: event.endDate,
-                            scheduleDisplayMode: event.scheduleDisplayMode
+                            scheduleDisplayMode: event.scheduleDisplayMode,
+                            timeMode: EventUtilities.timeDisplayMode(
+                                startDate: event.startDate,
+                                endDate: event.endDate,
+                                scheduleDisplayMode: event.scheduleDisplayMode
+                            )
                         )
-                    )
+                    }
                 }
-
+            } catch {
+                self.logger.error("\(error.localizedDescription)")
+                print(error)
             }
-            .store(in: &cancellables)
+        }
         
     }
     

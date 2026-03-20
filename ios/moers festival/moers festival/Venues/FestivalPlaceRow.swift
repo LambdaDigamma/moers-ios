@@ -9,14 +9,14 @@
 import SwiftUI
 import MMEvents
 
-struct FestivalPlaceRowUi: Identifiable, Hashable {
+nonisolated struct FestivalPlaceRowUi: Identifiable, Hashable, Sendable {
     
     let id: Int
     let name: String
     let description: String
     let timeInformation: TimeInformation?
     
-    enum TimeInformation: Hashable, Equatable {
+    nonisolated enum TimeInformation: Hashable, Equatable, Sendable {
         case live
         case date(Date)
     }

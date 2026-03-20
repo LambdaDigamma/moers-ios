@@ -1,5 +1,5 @@
 {
-  "originHash" : "9258f4ef0f4c2da548ecc040c8fc7f67b5a59a2ab57a19646dacb05a60de32fd",
+  "originHash" : "3143ed8238b047d162749594a209212d055582d4e194100a5210ea3955343e3c",
   "pins" : [
     {
       "identity" : "app-scaffold-ios",
@@ -96,8 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LambdaDigamma/ModernNetworking",
       "state" : {
-        "branch" : "main",
-        "revision" : "c72f489ecf6afe3be37cec47f7e613b1a7b8c2a7"
+        "revision" : "a8726231832ad378b765abd322105a3daba694ff",
+        "version" : "2.0.0"
       }
     },
     {

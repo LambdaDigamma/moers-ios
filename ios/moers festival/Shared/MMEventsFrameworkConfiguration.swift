@@ -11,17 +11,16 @@ import AppScaffold
 import ModernNetworking
 import Cache
 @preconcurrency import MMEvents
-import Factory
+@preconcurrency import Factory
 
 class MMEventsFrameworkConfiguration: BootstrappingProcedureStep {
     
     func execute(with application: UIApplication) {
         
-        let loader: HTTPLoader = Container.shared.httpLoader()
         let database = Container.shared.appDatabase.resolve()
         
-        let placeStore = self.setupPlaces(loader: loader)
-        self.setupEvents(loader: loader, placeStore: placeStore)
+        self.setupPlaces()
+        self.setupEvents()
         
         let dbWriter = database.dbWriter
         let dbReader = database.reader
@@ -31,54 +30,42 @@ class MMEventsFrameworkConfiguration: BootstrappingProcedureStep {
         
     }
     
-    private func setupPlaces(loader: HTTPLoader) -> PlaceStore {
-        
-        let store = PlaceStore(
-            writer: Container.shared.appDatabase.resolve().dbWriter,
-            reader: Container.shared.appDatabase.resolve().reader
-        )
-        
-        let service = DefaultPlaceService(loader: loader)
+    private func setupPlaces() {
         
         Container.shared.placeRepository.scope(.cached).register {
-            PlaceRepository(
-                store: store,
-                service: service
+            let database = Container.shared.appDatabase.resolve()
+            
+            return PlaceRepository(
+                store: PlaceStore(writer: database.dbWriter, reader: database.reader),
+                service: DefaultPlaceService(loader: Container.shared.httpLoader())
             )
         }
         
-        return store
-        
     }
     
-    private func setupEvents(loader: HTTPLoader, placeStore: PlaceStore) {
+    private func setupEvents() {
         
         EventPackageConfiguration.eventActiveMinuteThreshold = .init(value: 30, unit: .minutes)
-        
-        let cache = ApplicationController.eventCache()
-        let legacyService = DefaultLegacyEventService(loader, cache)
-        
-        let service = DefaultEventService(loader)
 //        let service = StaticEventService(events: .success([
 //            .stub(withID: 1).setting(\.startDate, to: Date()),
 //            .stub(withID: 2).setting(\.startDate, to: Date().addingTimeInterval(60 * 60 * 24)),
 //            .stub(withID: 3).setting(\.startDate, to: Date().addingTimeInterval(60 * 60 * 24 * 2)),
 //        ]))
         
-        let store = EventStore(
-            writer: Container.shared.appDatabase.resolve().dbWriter,
-            reader: Container.shared.appDatabase.resolve().reader
-        )
-        
         Container.shared.legacyEventService.register {
-            legacyService as LegacyEventService
+            let cache = ApplicationController.eventCache()
+            let loader: HTTPLoader = Container.shared.httpLoader()
+            return DefaultLegacyEventService(loader, cache) as LegacyEventService
         }
         
         Container.shared.eventRepository.scope(.cached).register {
-            EventRepository(
-                store: store,
-                service: service,
-                placeStore: placeStore,
+            let database = Container.shared.appDatabase.resolve()
+            let loader: HTTPLoader = Container.shared.httpLoader()
+            
+            return EventRepository(
+                store: EventStore(writer: database.dbWriter, reader: database.reader),
+                service: DefaultEventService(loader),
+                placeStore: Container.shared.placeRepository().store,
                 pageStore: Container.shared.pageRepository().store
             )
         }

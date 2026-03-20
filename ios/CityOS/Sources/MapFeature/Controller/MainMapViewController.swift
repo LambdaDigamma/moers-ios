@@ -56,7 +56,7 @@ public class MainMapViewController: UIViewController {
                 sheet.detents = [
                     UISheetPresentationController.Detent.large(),
                     UISheetPresentationController.Detent.medium(),
-                    UISheetPresentationController.Detent.custom { [weak self] info in
+                    UISheetPresentationController.Detent.custom { _ in
                         
                         return vc.tabBarHeight
                         

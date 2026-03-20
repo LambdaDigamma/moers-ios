@@ -11,7 +11,6 @@ import UIKit
 import Pulley
 import EventBus
 import CoreLocation
-import Combine
 import Factory
 import FuelFeature
 
@@ -33,7 +32,6 @@ public class LegacyMainViewController: PulleyViewController {
     public lazy var detailViewController = { DetailViewController() }()
     
     private let eventBus: EventBus
-    private var cancellables = Set<AnyCancellable>()
     
     required init(contentViewController: UIViewController, drawerViewController: UIViewController) {
         
@@ -90,37 +88,32 @@ public class LegacyMainViewController: PulleyViewController {
         
         self.locations.removeAll()
         
-        OperationQueue.main.addOperation {
+        Task {
             
-            self.loadEntries()
+            await self.loadEntries()
             self.loadParkingLots()
             self.loadPetrolStations()
-            self.loadCameras()
+            await self.loadCameras()
             
         }
         
     }
     
-    private func loadEntries() {
+    private func loadEntries() async {
         
-        entryManager.get { (result) in
+        do {
             
-            switch result {
-                
-            case .success(let entries):
-                
-                self.eventBus.notify(EntryDatasource.self, closure: { subscriber in
-                    subscriber.didReceiveEntries(entries)
-                })
-                
-                self.locations = self.locations.filter { !($0 is Entry) }
-                self.locations.append(contentsOf: entries)
-                
-            case .failure(let error):
-                print(error.localizedDescription)
-                
-            }
+            let entries = try await entryManager.get()
             
+            self.eventBus.notify(EntryDatasource.self, closure: { subscriber in
+                subscriber.didReceiveEntries(entries)
+            })
+            
+            self.locations = self.locations.filter { !($0 is Entry) }
+            self.locations.append(contentsOf: entries)
+            
+        } catch {
+            print(error.localizedDescription)
         }
         
     }
@@ -149,30 +142,21 @@ public class LegacyMainViewController: PulleyViewController {
         
     }
     
-    private func loadCameras() {
-        
-        let cameras = cameraManager.getCameras(shouldReload: false)
-        
-        cameras.sink { (completion: Subscribers.Completion<Error>) in
-            
-            switch completion {
-                case .failure(let error):
-                    print(error.localizedDescription)
-                default: break
-            }
-            
-        } receiveValue: { (cameras: [Camera]) in
-            
+    private func loadCameras() async {
+
+        do {
+            let cameras = try await cameraManager.getCameras(shouldReload: false)
+
             self.eventBus.notify(CameraDatasource.self) { subscriber in
                 subscriber.didReceiveCameras(cameras)
             }
-            
+
             self.locations = self.locations.filter { !($0 is Camera) }
             self.locations.append(contentsOf: cameras)
-            
+        } catch {
+            print(error.localizedDescription)
         }
-        .store(in: &cancellables)
-        
+
     }
     
     private func loadPetrolStations() {

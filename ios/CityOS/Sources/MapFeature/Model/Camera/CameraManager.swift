@@ -13,7 +13,7 @@ import Combine
 
 public protocol CameraManagerProtocol {
     
-    func getCameras(shouldReload: Bool) -> AnyPublisher<[Camera], Error>
+    func getCameras(shouldReload: Bool) async throws -> [Camera]
     
 
 }
@@ -33,63 +33,60 @@ public class CameraManager: CameraManagerProtocol {
     
     // MARK: - API Interface
     
-    public func getCameras(shouldReload: Bool = false) -> AnyPublisher<[Camera], Error> {
-        
-        if storageManager.shouldReload(interval: 60 * 6, forKey: storageKey) || shouldReload {
-            
-            let storageSource = storageManager.read(forKey: storageKey, with: decoder)
-            let networkSource = loadCamerasNetwork()
-            
-            return storageSource.merge(with: networkSource).eraseToAnyPublisher()
-            
+    public func getCameras(shouldReload: Bool = false) async throws -> [Camera] {
+
+        let mustReload = storageManager.shouldReload(interval: 60 * 6, forKey: storageKey) || shouldReload
+        let cachedCameras = try await loadCamerasFromCache()
+
+        if !mustReload && !cachedCameras.isEmpty {
+            return cachedCameras
         }
-        
-        return storageManager.read(forKey: storageKey, with: decoder)
-        
+
+        do {
+            let networkCameras = try await loadCamerasNetwork()
+            if !networkCameras.isEmpty {
+                return networkCameras
+            }
+            return cachedCameras
+        } catch {
+            if !cachedCameras.isEmpty {
+                return cachedCameras
+            }
+            throw error
+        }
+
     }
     
     // MARK: - Helper
     
-    internal func loadCamerasNetwork() -> AnyPublisher<[Camera], Error> {
-        
-        return Deferred {
-            
-            return Future<[Camera], Error> { promise in
-                
-                guard let url = URL(string: "https://raw.githubusercontent.com/noelsch/360Moers/master/360moers_OpenData.csv") else {
-                    return promise(.failure(APIError.unavailableURL))
-                }
-                
-                let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                    
-                    print("CameraManager: Loaded Cameras from Network")
-                    
-                    if let error = error {
-                        promise(.failure(error))
-                    }
-                    
-                    guard let data = data else {
-                        promise(.failure(APIError.noData))
-                        return
-                    }
-                    
-                    let decodedCameras = self.decodeCSVtoJSON(from: data)
-                    
-                    self.storageManager.setLastReload(Date(), forKey: self.storageKey)
-                    self.storageManager.write(data: decodedCameras.jsonData, forKey: self.storageKey)
-                    
-                    promise(.success(decodedCameras.cameras))
-                    
-                }
-                
-                task.resume()
-                
-            }
-            
-            
+    internal func loadCamerasNetwork() async throws -> [Camera] {
+
+        guard let url = URL(string: "https://raw.githubusercontent.com/noelsch/360Moers/master/360moers_OpenData.csv") else {
+            throw APIError.unavailableURL
         }
-        .eraseToAnyPublisher()
-        
+
+        print("CameraManager: Loaded Cameras from Network")
+
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let decodedCameras = decodeCSVtoJSON(from: data)
+
+        storageManager.setLastReload(Date(), forKey: storageKey)
+        storageManager.write(data: decodedCameras.jsonData, forKey: storageKey)
+
+        return decodedCameras.cameras
+
+    }
+
+    internal func loadCamerasFromCache() async throws -> [Camera] {
+
+        let publisher = storageManager.read(forKey: storageKey, with: decoder)
+
+        for try await cameras in publisher.values {
+            return cameras
+        }
+
+        return []
+
     }
     
     internal func buildReadURL() throws -> URL {

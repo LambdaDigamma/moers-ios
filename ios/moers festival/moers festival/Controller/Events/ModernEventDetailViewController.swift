@@ -170,8 +170,8 @@ public class ModernEventDetailViewController: DefaultHostingController {
                 .receive(on: DispatchQueue.main)
                 .sink { (completion: Subscribers.Completion<Error>) in
                     
-                    if let error = completion.debugDescription {
-                        self.logger.error("\(error)")
+                    if case .failure(let error) = completion {
+                        self.logger.error("\(error.localizedDescription)")
                     }
                     
                 } receiveValue: { (isLiked: Bool) in

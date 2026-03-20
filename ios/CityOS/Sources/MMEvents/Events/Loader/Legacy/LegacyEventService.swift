@@ -7,24 +7,23 @@
 
 import Foundation
 import ModernNetworking
-import Combine
 import Cache
 import Core
 import OSLog
 
 public protocol LegacyEventService {
     
-    func loadEvents() -> AnyPublisher<[Event], Error>
+    func loadEvents() async throws -> [Event]
     
-    func loadEventsFromNetwork() -> AnyPublisher<[Event], Error>
+    func loadEventsFromNetwork() async throws -> [Event]
     
-    func loadEventsFromPersistence() -> AnyPublisher<[Event], Error>
+    func loadEventsFromPersistence() async throws -> [Event]
     
-    func loadStream() -> AnyPublisher<StreamConfig, Error>
+    func loadStream() async throws -> StreamConfig
     
     func invalidateCache()
     
-    func show(eventID: Event.ID) -> AnyPublisher<Event, Error>
+    func show(eventID: Event.ID) async throws -> Event
     
 }
 

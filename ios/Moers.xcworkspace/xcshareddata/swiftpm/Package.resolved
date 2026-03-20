@@ -1,5 +1,5 @@
 {
-  "originHash" : "f7c10ff7bd13ff78396f1af7bc9d4f47c60d6cd49889e03fe4672a912fb6750d",
+  "originHash" : "dfe38e052216c8f3d1048b5e2a4ab3efb9e6611647f2f8c25596d918ed68cf22",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -213,8 +213,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LambdaDigamma/ModernNetworking",
       "state" : {
-        "branch" : "main",
-        "revision" : "c72f489ecf6afe3be37cec47f7e613b1a7b8c2a7"
+        "revision" : "a8726231832ad378b765abd322105a3daba694ff",
+        "version" : "2.0.0"
       }
     },
     {

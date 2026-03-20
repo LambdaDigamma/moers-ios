@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 import ModernNetworking
 
 public class MockPostService: PostService {
@@ -17,20 +16,6 @@ public class MockPostService: PostService {
     public init(result: Result<Post, Error>, results: Result<[Post], Error>) {
         self.result = result
         self.results = results
-    }
-    
-    public func index(for feedID: Feed.ID, page: Int, perPage: Int, cacheMode: CacheMode) -> AnyPublisher<ResourceCollection<Post>, Error> {
-        
-        switch results {
-            case .success(let success):
-                return Just(ResourceCollection(data: success, links: .init(), meta: .init()))
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
-            case .failure(let failure):
-                return Fail(error: failure)
-                    .eraseToAnyPublisher()
-        }
-        
     }
     
     public func index(for feedID: Feed.ID, page: Int, perPage: Int, cacheMode: CacheMode) async throws -> ResourceCollection<Post> {

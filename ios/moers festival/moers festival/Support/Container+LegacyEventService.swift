@@ -19,6 +19,7 @@ public extension Container {
                 try! Storage<String, [Event]>(
                     diskConfig: DiskConfig(name: "LegacyEventService"),
                     memoryConfig: MemoryConfig(),
+                    fileManager: .default,
                     transformer: TransformerFactory.forCodable(ofType: [Event].self)
                 )
             )

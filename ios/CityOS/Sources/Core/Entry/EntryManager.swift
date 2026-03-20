@@ -8,17 +8,16 @@
 
 import Foundation
 import ModernNetworking
-import Combine
 
 public protocol EntryManagerProtocol {
     
-    func get(completion: @escaping (Result<[Entry], Error>) -> ())
+    func get() async throws -> [Entry]
     
-    func store(entry: Entry, completion: @escaping (Result<Entry, Error>) -> ())
+    func store(entry: Entry) async throws -> Entry
     
-    func update(entry: Entry, completion: @escaping (Result<Entry, Error>) -> ())
+    func update(entry: Entry) async throws -> Entry
     
-    func fetchHistory(entry: Entry, completion: @escaping (Result<[Audit], Error>) -> ())
+    func fetchHistory(entry: Entry) async throws -> [Audit]
     
     func extractTags(entries: [Entry]) -> [String]
     
@@ -47,7 +46,7 @@ public protocol EntryManagerProtocol {
 
 public class EntryManager: EntryManagerProtocol {
     
-    private let loader: HTTPLoader
+    nonisolated(unsafe) private let loader: HTTPLoader
     
     public init(loader: HTTPLoader) {
         self.loader = loader
@@ -55,50 +54,26 @@ public class EntryManager: EntryManagerProtocol {
     
     private var session = URLSession.shared
     
-    public func get(completion: @escaping (Result<[Entry], Error>) -> ()) {
+    public func get() async throws -> [Entry] {
         
         let request = HTTPRequest(path: "/api/v2/entries")
         
-        self.loader.load(request) { (result: HTTPResult) in
-            
-            switch result {
-                case .success(_):
-                    
-                    guard let response = result.response else {
-                        completion(.failure(APIError.unknownResponse))
-                        return
-                    }
-                    
-                    if response.statusCode == .ok {
-                        result.decoding([Entry].self) { result in
-                            switch result {
-                                case .success(let response):
-                                    
-                                    completion(.success(response))
-                                case .failure(let decodingError):
-                                    if let error = decodingError.underlyingError as? DecodingError {
-                                        completion(.failure(APIError.decodingError(error)))
-                                    } else {
-                                        completion(.failure(APIError.unknownResponse))
-                                    }
-                                    
-                            }
-                        }
-                    }
-                    
-                    break
-                    
-                case .failure(let error):
-                    completion(.failure(error))
-            }
-            
+        let result = await loader.load(request)
+        
+        guard let response = result.response else {
+            throw APIError.unknownResponse
         }
+        
+        if response.statusCode == .ok {
+            let entries = try await result.decoding([Entry].self)
+            return entries
+        }
+        
+        throw result.error ?? APIError.unknownResponse
         
     }
     
-    public func store(entry: Entry, completion: @escaping (Result<Entry, Error>) -> ()) {
-        
-//        guard let url = URL(string: MMAPIConfig.baseURL + "entries") else { return }
+    public func store(entry: Entry) async throws -> Entry {
         
         let payload = data(from: entry)
         
@@ -108,131 +83,72 @@ public class EntryManager: EntryManagerProtocol {
         
         let request = HTTPRequest(method: .post, path: "/api/v2/entries", body: body)
         
-        loader.load(request) { result in
-            
-            switch result {
-                
-                case .success(let response):
-                    
-                    let decoder = JSONDecoder()
-                    
-                    let formatter = DateFormatter()
-                    formatter.dateFormat = "yyyy-MM-dd H:mm:ss"
-                    
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    decoder.dateDecodingStrategy = .formatted(formatter)
-                    
-                    do {
-                        
-                        guard let data = response.body else {
-                            completion(.failure(APIError.noData))
-                            return
-                        }
-                        
-                        let entry = try decoder.decode(Entry.self, from: data)
-                        
-                        completion(.success(entry))
-                        
-                    } catch {
-                        completion(.failure(error))
-                    }
-                    
-                case .failure(let error):
-                    completion(.failure(error))
-                    
-            }
-            
+        let result = await loader.load(request)
+        
+        let decoder = JSONDecoder()
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd H:mm:ss"
+        
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .formatted(formatter)
+        
+        guard let data = result.response?.body else {
+            throw APIError.noData
         }
+        
+        let entry = try decoder.decode(Entry.self, from: data)
+        
+        return entry
         
     }
     
-    public func update(entry: Entry, completion: @escaping (Result<Entry, Error>) -> ()) {
-        
-//        guard let url = URL(string: MMAPIConfig.baseURL + "entries/\(entry.id)") else { return }
+    public func update(entry: Entry) async throws -> Entry {
         
         let payload = data(from: entry)
         let request = HTTPRequest(method: .put, path: "/api/v2/entries/\(entry.id)", body: DataBody(payload))
         
-        loader.load(request) { result in
-            
-            switch result {
-                
-                case .success(let response):
-                    
-                    let decoder = JSONDecoder()
-                    
-                    let formatter = DateFormatter()
-                    formatter.dateFormat = "yyyy-MM-dd H:mm:ss"
-                    
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    decoder.dateDecodingStrategy = .formatted(formatter)
-                    
-                    do {
-                        
-                        guard let data = response.body else {
-                            completion(.failure(APIError.noData))
-                            return
-                        }
-                        
-                        let entry = try decoder.decode(Entry.self, from: data)
-                        
-                        completion(.success(entry))
-                        
-                    } catch {
-                        completion(.failure(error))
-                    }
-                    
-                case .failure(let error):
-                    completion(.failure(error))
-                    
-            }
-            
+        let result = await loader.load(request)
+        
+        let decoder = JSONDecoder()
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd H:mm:ss"
+        
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .formatted(formatter)
+        
+        guard let data = result.response?.body else {
+            throw APIError.noData
         }
-         
+        
+        let entry = try decoder.decode(Entry.self, from: data)
+        
+        return entry
+        
     }
     
-    public func fetchHistory(entry: Entry, completion: @escaping (Result<[Audit], Error>) -> ()) {
-        
-//        guard let url = URL(string: MMAPIConfig.baseURL + "entries/\(entry.id)/history") else { return }
+    public func fetchHistory(entry: Entry) async throws -> [Audit] {
         
         let request = HTTPRequest(path: "/api/v2/entries/\(entry.id)/history")
         
-        loader.load(request) { result in
-            
-            switch result {
-                
-                case .success(let response):
-                    
-                    let decoder = JSONDecoder()
-                    
-                    let formatter = DateFormatter()
-                    formatter.dateFormat = "yyyy-MM-dd H:mm:ss"
-                    
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    decoder.dateDecodingStrategy = .formatted(formatter)
-                    
-                    do {
-                        
-                        guard let data = response.body else {
-                            completion(.failure(APIError.noData))
-                            return
-                        }
-                        
-                        let audits = try decoder.decode([Audit].self, from: data)
-                        
-                        completion(.success(audits))
-                        
-                    } catch {
-                        
-                        completion(.failure(error))
-                    }
-                    
-                case .failure(let error):
-                    completion(.failure(error))
-                    
-            }
-            
+        let result = await loader.load(request)
+        
+        let decoder = JSONDecoder()
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd H:mm:ss"
+        
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .formatted(formatter)
+        
+        guard let data = result.response?.body else {
+            throw APIError.noData
         }
+        
+        let audits = try decoder.decode([Audit].self, from: data)
+        
+        return audits
         
     }
     

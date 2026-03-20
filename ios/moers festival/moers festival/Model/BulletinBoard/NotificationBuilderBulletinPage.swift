@@ -6,95 +6,97 @@
 //  Copyright © 2018 CodeForNiederrhein. All rights reserved.
 //
 
-import UIKit
+@preconcurrency import UIKit
 import BLTNBoard
 
-class NotificationBuilderBulletinPage: FeedbackPageBulletinItem {
-    
+nonisolated class NotificationBuilderBulletinPage: FeedbackPageBulletinItem {
+
+    nonisolated override init(title: String) {
+        super.init(title: title)
+    }
+
     @objc public var titleTextField: UITextField!
     @objc public var bodyTextField: UITextField!
-    
+
     @objc public var textInputHandler: ((BLTNActionItem, String?) -> Void)? = nil
-    
-    override func makeViewsUnderTitle(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
-        
+
+    nonisolated override func makeViewsUnderTitle(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
+
         titleTextField = interfaceBuilder.makeTextField(placeholder: "Titel", returnKey: .next, delegate: self)
         titleTextField.keyboardAppearance = .dark
         titleTextField.translatesAutoresizingMaskIntoConstraints = false
         titleTextField.heightAnchor.constraint(equalToConstant: 55).isActive = true
         titleTextField.layer.cornerRadius = 12
         titleTextField.layer.borderWidth = 2
-        
+
         bodyTextField = interfaceBuilder.makeTextField(placeholder: "Text", returnKey: .done, delegate: self)
         bodyTextField.keyboardAppearance = .dark
         bodyTextField.translatesAutoresizingMaskIntoConstraints = false
         bodyTextField.heightAnchor.constraint(equalToConstant: 55).isActive = true
         bodyTextField.layer.cornerRadius = 12
         bodyTextField.layer.borderWidth = 2
-        
-        self.titleTextField.layer.borderColor = AppColors.navigationAccent.cgColor
+
+        self.titleTextField.layer.borderColor = UIColor.systemYellow.cgColor
         self.titleTextField.backgroundColor = UIColor.systemBackground
-        self.titleTextField.tintColor = AppColors.navigationAccent
+        self.titleTextField.tintColor = UIColor.systemYellow
         self.titleTextField.textColor = UIColor.label
         self.titleTextField.attributedPlaceholder = NSAttributedString(
             string: "Titel",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText]
         )
-        
-        self.bodyTextField.layer.borderColor = AppColors.navigationAccent.cgColor
+
+        self.bodyTextField.layer.borderColor = UIColor.systemYellow.cgColor
         self.bodyTextField.backgroundColor = UIColor.systemBackground
-        self.bodyTextField.tintColor = AppColors.navigationAccent
+        self.bodyTextField.tintColor = UIColor.systemYellow
         self.bodyTextField.textColor = UIColor.label
         self.bodyTextField.attributedPlaceholder = NSAttributedString(
             string: "Text",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText]
         )
-        
+
         return [titleTextField, bodyTextField]
-        
+
     }
-    
-    override func tearDown() {
+
+    nonisolated override func tearDown() {
         super.tearDown()
         titleTextField?.delegate = nil
     }
-    
-    override func actionButtonTapped(sender: UIButton) {
-        
+
+    nonisolated override func actionButtonTapped(sender: UIButton) {
+
         if titleTextField.text != "" {
-            
             super.actionButtonTapped(sender: sender)
-            
         }
-        
+
     }
-    
+
 }
 
 extension NotificationBuilderBulletinPage: UITextFieldDelegate {
-    
+
     @objc open func isInputValid(text: String?) -> Bool {
-        
+
         if text == nil || text!.isEmpty {
             return false
         }
-        
+
         return true
-        
+
     }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
+
         if titleTextField.text != "" {
-            
+
             textField.resignFirstResponder()
-            
+
             return true
-            
+
         } else {
             return false
         }
-        
+
     }
-    
+
 }

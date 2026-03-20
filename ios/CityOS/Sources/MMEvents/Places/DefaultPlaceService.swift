@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Combine
 import Factory
 import ModernNetworking
 import OSLog
@@ -20,30 +19,6 @@ public class DefaultPlaceService: PlaceService {
     public init(loader: HTTPLoader) {
         self.loader = loader
         self.logger = Logger(.coreApi)
-    }
-    
-    public func getPlaces() -> AnyPublisher<[Place], Error> {
-        
-        let request = HTTPRequest(
-            method: .get,
-            path: "/api/v1/festival/locations"
-        )
-        
-        return Deferred {
-            Future { promise in
-                self.loader.load(request) { (result) in
-                    promise(result)
-                }
-            }
-        }
-        .compactMap { $0.body }
-        .decode(type: Resource<[Place]>.self, decoder: Place.decoder)
-        .map({
-            return $0.data
-        })
-        .receive(on: DispatchQueue.main)
-        .eraseToAnyPublisher()
-        
     }
     
     public func getPlaces() async throws -> ResourceCollection<Place> {

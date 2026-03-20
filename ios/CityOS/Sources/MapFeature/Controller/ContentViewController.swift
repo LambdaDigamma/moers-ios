@@ -140,9 +140,7 @@ class ContentViewController: UIViewController {
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Int, ContentDrawerItem>(
             collectionView: contentDrawerView.collectionView
-        ) { [weak self] collectionView, indexPath, item in
-            guard let self = self else { return UICollectionViewListCell() }
-            
+        ) { collectionView, indexPath, item in
             switch item {
             case .tag(let attributedString, _):
                 let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, NSAttributedString> { cell, indexPath, attrStr in
@@ -586,4 +584,3 @@ extension ContentViewController: PulleyDrawerViewControllerDelegate {
     }
     
 }
-

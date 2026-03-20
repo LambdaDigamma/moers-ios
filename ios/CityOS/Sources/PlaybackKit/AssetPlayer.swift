@@ -191,7 +191,7 @@ public class AssetPlayer {
 
         var languageOptionGroups: [MPNowPlayingInfoLanguageOptionGroup] = []
         var currentLanguageOptions: [MPNowPlayingInfoLanguageOption] = []
-
+        
         if asset.statusOfValue(forKey: AssetPlayer.mediaSelectionKey, error: nil) == .loaded {
 
             // Examine each media selection group.

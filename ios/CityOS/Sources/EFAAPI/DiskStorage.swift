@@ -40,7 +40,7 @@ extension DiskStorage: WritableStorage {
         }
     }
     
-    public func save(value: Data, for key: String, handler: @escaping Handler<Data>) {
+    public func save(value: Data, for key: String, handler: @escaping @Sendable Handler<Data>) {
         queue.async {
             do {
                 try self.save(value: value, for: key)
@@ -78,7 +78,7 @@ extension DiskStorage: ReadableStorage {
         return data
     }
     
-    public func fetchValue(for key: String, handler: @escaping Handler<Data>) {
+    public func fetchValue(for key: String, handler: @escaping @Sendable Handler<Data>) {
         queue.async {
             handler(Result { try self.fetchValue(for: key) })
         }

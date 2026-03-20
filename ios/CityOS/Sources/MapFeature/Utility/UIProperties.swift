@@ -46,6 +46,7 @@ public struct UIProperties {
         
     }
     
+    @MainActor
     public static func detailViewController(for location: Location) -> UIViewController {
         
         if location is Camera {

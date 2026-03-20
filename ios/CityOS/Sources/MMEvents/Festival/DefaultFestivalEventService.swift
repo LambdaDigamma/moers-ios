@@ -6,7 +6,6 @@
 //
 
 import Core
-import Combine
 import MMPages
 import Foundation
 import MediaLibraryKit
@@ -19,30 +18,6 @@ public class DefaultFestivalEventService: FestivalEventService {
     
     public init(loader: HTTPLoader) {
         self.loader = loader
-    }
-    
-    public func show(eventID: Event.ID) -> AnyPublisher<FestivalEventPageResponse, Error> {
-        
-        let request = HTTPRequest(
-            method: .get,
-            path: "/api/v1/festival/events/\(eventID)/page"
-        )
-        
-        return Deferred {
-            Future { promise in
-                self.loader.load(request) { (result) in
-                    promise(result)
-                }
-            }
-        }
-        .compactMap { $0.body }
-        .decode(type: Resource<FestivalEventPageResponse>.self, decoder: Event.decoder)
-        .map({
-            return $0.data
-        })
-        .receive(on: DispatchQueue.main)
-        .eraseToAnyPublisher()
-        
     }
     
     @concurrent

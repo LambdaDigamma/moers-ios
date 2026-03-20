@@ -12,7 +12,7 @@ let package = Package(
     defaultLocalization: "en",
     platforms: [
         .iOS(.v16),
-        .macOS(.v11),
+        .macOS(.v12),
         .watchOS(.v7),
         .tvOS(.v14)
     ],
@@ -41,7 +41,7 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-collections.git", from: "1.1.0"),
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
         .package(url: "https://github.com/hmlongco/Factory", .upToNextMajor(from: "2.0.0")),
-        .package(url: "https://github.com/LambdaDigamma/ModernNetworking", branch: "main"),
+        .package(url: "https://github.com/LambdaDigamma/ModernNetworking", .upToNextMajor(from: "2.0.0")),
         .package(url: "https://github.com/hyperoslo/Cache", .upToNextMajor(from: "7.4.0")),
         .package(url: "https://github.com/LambdaDigamma/fuse-swift", .upToNextMajor(from: "1.4.2")),
         .package(url: "https://github.com/LambdaDigamma/TagListView", from: "1.4.2"),

@@ -7,14 +7,13 @@
 
 import Foundation
 import XMLCoder
-import Combine
 import ModernNetworking
 import CoreLocation
 
 public class DefaultTransitService: TransitService {
     
     private let languageCode: String
-    private let loader: HTTPLoader
+    nonisolated(unsafe) private let loader: HTTPLoader
     private let standardCoordinateOutputFormat: CoordinateOutputFormat = .wgs84
     
     public init(
@@ -38,7 +37,7 @@ public class DefaultTransitService: TransitService {
         searchText: String,
         objectFilter: ObjectFilter = .noFilter,
         maxNumberOfResults: Int = 50
-    ) -> AnyPublisher<StopFinderResponse, HTTPError> {
+    ) async throws -> StopFinderResponse {
         
         var request = HTTPRequest(
             method: .get,
@@ -55,50 +54,29 @@ public class DefaultTransitService: TransitService {
             URLQueryItem(name: "UTFMacro", value: "1"),
         ]
         
-        return Deferred {
-            
-            return Future<StopFinderResponse, HTTPError> { promise in
-                
-                self.loader.load(request) { (result: HTTPResult) in
-                    
-                    result.decodingXML(
-                        StopFinderResponse.self,
-                        decoder: Self.defaultDecoder
-                    ) { (result: Result<StopFinderResponse, HTTPError>) in
-                        
-                        switch result {
-                            case .success(let response):
-                                promise(.success(response))
-                            case .failure(let error):
-                                promise(.failure(error))
-                        }
-                        
-                    }
-                    
-                }
-                
-            }
-            
-        }.eraseToAnyPublisher()
+        let result = await loader.load(request)
+        
+        return try await result.decodingXML(
+            StopFinderResponse.self,
+            request: request,
+            decoder: Self.defaultDecoder
+        )
         
     }
     
     public func findTransitLocation(
         for searchTerm: String,
         filtering objectFilter: ObjectFilter
-    ) -> AnyPublisher<[TransitLocation], HTTPError> {
+    ) async throws -> [TransitLocation] {
         
-        self.sendRawStopFinderRequest(searchText: searchTerm, objectFilter: objectFilter)
-            .map({ (response: StopFinderResponse) in
-                return response.stopFinderRequest
-                    .odv
-                    .name?
-                    .elements?
-                    .sorted(by: { $0.matchQuality > $1.matchQuality })
-                    .map({ TransitLocation(odvNameElement: $0) }) ?? []
-            })
-            .replaceEmpty(with: [])
-            .eraseToAnyPublisher()
+        let response = try await sendRawStopFinderRequest(searchText: searchTerm, objectFilter: objectFilter)
+        
+        return response.stopFinderRequest
+            .odv
+            .name?
+            .elements?
+            .sorted(by: { $0.matchQuality > $1.matchQuality })
+            .map({ TransitLocation(odvNameElement: $0) }) ?? []
         
     }
     
@@ -106,7 +84,7 @@ public class DefaultTransitService: TransitService {
         for coordinate: CLLocationCoordinate2D,
         filtering objectFilter: ObjectFilter,
         maxNumberOfResults: Int = 20
-    ) -> AnyPublisher<[TransitLocation], HTTPError> {
+    ) async throws -> [TransitLocation] {
         
         var request = HTTPRequest(
             method: .get,
@@ -123,49 +101,29 @@ public class DefaultTransitService: TransitService {
             URLQueryItem(name: "UTFMacro", value: "1"),
         ]
         
-        return Deferred {
-            
-            return Future<StopFinderResponse, HTTPError> { promise in
-                
-                self.loader.load(request) { (result: HTTPResult) in
-                    
-                    result.decodingXML(
-                        StopFinderResponse.self,
-                        decoder: Self.defaultDecoder
-                    ) { (result: Result<StopFinderResponse, HTTPError>) in
-                        
-                        switch result {
-                            case .success(let response):
-                                promise(.success(response))
-                            case .failure(let error):
-                                promise(.failure(error))
-                        }
-                        
-                    }
-                    
-                }
-                
-            }
-            
-        }
-        .map({ (response: StopFinderResponse) in
-            return response.stopFinderRequest
-                .odv
-                .assignedStops?
-                .stops
-                .sorted(by: { $0.distanceTime < $1.distanceTime })
-                .map({
-                    TransitLocation(
-                        stationID: $0.stopID,
-                        statelessIdentifier: $0.value,
-                        locationType: .stop,
-                        name: $0.name,
-                        description: $0.nameWithPlace,
-                        coordinates: $0.coordinates
-                    )
-                }) ?? []
-        })
-        .eraseToAnyPublisher()
+        let result = await loader.load(request)
+        
+        let response = try await result.decodingXML(
+            StopFinderResponse.self,
+            request: request,
+            decoder: Self.defaultDecoder
+        )
+        
+        return response.stopFinderRequest
+            .odv
+            .assignedStops?
+            .stops
+            .sorted(by: { $0.distanceTime < $1.distanceTime })
+            .map({
+                TransitLocation(
+                    stationID: $0.stopID,
+                    statelessIdentifier: $0.value,
+                    locationType: .stop,
+                    name: $0.name,
+                    description: $0.nameWithPlace,
+                    coordinates: $0.coordinates
+                )
+            }) ?? []
         
     }
     
@@ -173,7 +131,7 @@ public class DefaultTransitService: TransitService {
     
     public func sendRawDepartureMonitorRequest(
         id: Station.ID
-    ) -> AnyPublisher<DepartureMonitorResponse, HTTPError> {
+    ) async throws -> DepartureMonitorResponse {
         
         var request = HTTPRequest(
             method: .get,
@@ -191,57 +149,31 @@ public class DefaultTransitService: TransitService {
             URLQueryItem(name: "UTFMacro", value: "1")
         ]
         
-        return Deferred {
-            
-            return Future<DepartureMonitorResponse, HTTPError> { promise in
-                
-                self.loader.load(request) { (result: HTTPResult) in
-                    
-                    result.decodingXML(
-                        DepartureMonitorResponse.self,
-                        decoder: Self.defaultDecoder
-                    ) { (result: Result<DepartureMonitorResponse, HTTPError>) in
-                        
-                        switch result {
-                            case .success(let response):
-                                promise(.success(response))
-                            case .failure(let error):
-                                promise(.failure(error))
-                        }
-                        
-                    }
-                    
-                }
-                
-            }
-            
-        }.eraseToAnyPublisher()
+        let result = await loader.load(request)
+        
+        return try await result.decodingXML(
+            DepartureMonitorResponse.self,
+            request: request,
+            decoder: Self.defaultDecoder
+        )
         
     }
     
-    public func departureMonitor(id: Station.ID) -> AnyPublisher<DepartureMonitorData, Error> {
+    public func departureMonitor(id: Station.ID) async throws -> DepartureMonitorData {
         
-        return sendRawDepartureMonitorRequest(id: id)
-            .map { (response: DepartureMonitorResponse) in
-                
-                let departures = response.departureMonitorRequest.departures
-                    .departures
-                    .map { DepartureViewModel(departure: $0) }
-                
-                let name = response.departureMonitorRequest.odv.name?.elements?.first?.name ?? "Unbekannt"
-                
-                return DepartureMonitorData(
-                    date: response.now,
-                    name: name,
-                    departures: departures
-                )
-                
-            }
-            .mapError({ error in
-                return error as Error
-            })
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
+        let response = try await sendRawDepartureMonitorRequest(id: id)
+        
+        let departures = response.departureMonitorRequest.departures
+            .departures
+            .map { DepartureViewModel(departure: $0) }
+        
+        let name = response.departureMonitorRequest.odv.name?.elements?.first?.name ?? "Unbekannt"
+        
+        return DepartureMonitorData(
+            date: response.now,
+            name: name,
+            departures: departures
+        )
         
     }
     
@@ -251,9 +183,9 @@ public class DefaultTransitService: TransitService {
         origin: Stop.ID,
         destination: Stop.ID,
         tripDate: TripDate
-    ) -> AnyPublisher<TripResponse, HTTPError> {
+    ) async throws -> TripResponse {
         
-        return sendTripRequest(
+        return try await sendTripRequest(
             origin: "\(origin)",
             destination: "\(destination)",
             tripDate: tripDate
@@ -266,7 +198,7 @@ public class DefaultTransitService: TransitService {
         destination: String,
         config: TripRequest.Configuration = .init(),
         tripDate: TripDate
-    ) -> AnyPublisher<TripResponse, HTTPError> {
+    ) async throws -> TripResponse {
         
         var request = HTTPRequest(
             method: .get,
@@ -297,31 +229,13 @@ public class DefaultTransitService: TransitService {
             URLQueryItem(name: "mode", value: "direct"),
         ]
         
-        return Deferred {
-            
-            return Future<TripResponse, HTTPError> { promise in
-                
-                self.loader.load(request) { (result: HTTPResult) in
-                    
-                    result.decodingXML(
-                        TripResponse.self,
-                        decoder: Self.defaultDecoder
-                    ) { (result: Result<TripResponse, HTTPError>) in
-                        
-                        switch result {
-                            case .success(let response):
-                                promise(.success(response))
-                            case .failure(let error):
-                                promise(.failure(error))
-                        }
-                        
-                    }
-                    
-                }
-                
-            }
-            
-        }.eraseToAnyPublisher()
+        let result = await loader.load(request)
+        
+        return try await result.decodingXML(
+            TripResponse.self,
+            request: request,
+            decoder: Self.defaultDecoder
+        )
         
     }
     
@@ -329,7 +243,7 @@ public class DefaultTransitService: TransitService {
     
     public func geoObject(
         lines: [LineIdentifiable]
-    ) -> AnyPublisher<GeoITDRequest, HTTPError> {
+    ) async throws -> GeoITDRequest {
         
         var request = HTTPRequest(
             method: .get,
@@ -347,31 +261,13 @@ public class DefaultTransitService: TransitService {
             URLQueryItem(name: "coordOutputFormat", value: CoordinateOutputFormat.wgs84.rawValue)
         ] + lineQueryItems
         
-        return Deferred {
-            
-            return Future<GeoITDRequest, HTTPError> { promise in
-                
-                self.loader.load(request) { (result: HTTPResult) in
-                    
-                    result.decodingXML(
-                        GeoITDRequest.self,
-                        decoder: Self.defaultDecoder
-                    ) { (result: Result<GeoITDRequest, HTTPError>) in
-                        
-                        switch result {
-                            case .success(let response):
-                                promise(.success(response))
-                            case .failure(let error):
-                                promise(.failure(error))
-                        }
-                        
-                    }
-                    
-                }
-                
-            }
-            
-        }.eraseToAnyPublisher()
+        let result = await loader.load(request)
+        
+        return try await result.decodingXML(
+            GeoITDRequest.self,
+            request: request,
+            decoder: Self.defaultDecoder
+        )
         
     }
     

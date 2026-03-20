@@ -11,7 +11,6 @@ import MMEvents
 import AVKit
 import StateViewController
 import OSLog
-import Combine
 import Factory
 
 class LiveOverviewViewController: StateViewController<LivestreamState> {
@@ -25,8 +24,6 @@ class LiveOverviewViewController: StateViewController<LivestreamState> {
     private lazy var inactiveStreamViewController = { InactiveStreamViewController() }()
     
     private let logger = Logger(.default)
-    
-    private var cancellables = Set<AnyCancellable>()
     
     private var updateInterval: TimeInterval = 60.0
     private var updateCheckTimer: Timer!
@@ -82,30 +79,24 @@ class LiveOverviewViewController: StateViewController<LivestreamState> {
     
     private func reloadStreamURL() {
         
-        let streamConfig = eventService.loadStream()
-            .map { (config: MMEvents.StreamConfig) in
-                return MMEvents.LivestreamData(streamConfig: config, events: config.events)
+        Task { [weak self] in
+            guard let self else { return }
+            
+            do {
+                let config = try await self.eventService.loadStream()
+                let data = MMEvents.LivestreamData(streamConfig: config, events: config.events)
+                
+                await MainActor.run {
+                    self.livestreamData = data
+                    self.processLivestreamData(data)
+                }
+            } catch {
+                await MainActor.run {
+                    self.logger.error("An error occured: \(error.localizedDescription)")
+                    self.setInactiveState()
+                }
             }
-//        .filter({ !$0.events.isEmpty })
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-        
-        streamConfig.sink { [weak self] (completion: Subscribers.Completion<Publishers.Map<AnyPublisher<MMEvents.StreamConfig, Error>, MMEvents.LivestreamData>.Failure>) in
-
-            switch completion {
-                case .failure(let error):
-                    self?.logger.error("An error occured: \(error.localizedDescription)")
-                    self?.setInactiveState()
-                default: break
-            }
-
-        } receiveValue: { [weak self] (data: MMEvents.LivestreamData) in
-
-            self?.livestreamData = data
-            self?.processLivestreamData(data)
-
         }
-        .store(in: &cancellables)
         
     }
     

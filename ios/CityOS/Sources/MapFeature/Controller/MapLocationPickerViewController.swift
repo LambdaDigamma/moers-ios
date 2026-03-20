@@ -125,30 +125,35 @@ class MapLocationPickerViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Weiter", style: .plain, target: self, action: #selector(continueOnboarding))
         
-        executeReverseGeocode()
+        Task {
+            await executeReverseGeocode()
+        }
         
     }
     
     private func setupConstraints() {
         
-        let constraints = [mapView.topAnchor.constraint(equalTo: self.safeTopAnchor),
-                           mapView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                           mapView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                           mapView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor),
-                           pointer.centerXAnchor.constraint(equalTo: mapView.centerXAnchor),
-                           pointer.centerYAnchor.constraint(equalTo: mapView.centerYAnchor), // , constant: 44
-                           pointer.widthAnchor.constraint(equalToConstant: 20),
-                           pointer.heightAnchor.constraint(equalTo: pointer.widthAnchor),
-                           streetLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           streetLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           streetLabel.bottomAnchor.constraint(equalTo: self.promptLabel.topAnchor, constant: -16),
-                           promptLabel.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: -40),
-                           promptLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           promptLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           userLocationButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-                           userLocationButton.bottomAnchor.constraint(equalTo: streetLabel.topAnchor, constant: -8),
-                           userLocationButton.widthAnchor.constraint(equalToConstant: 60),
-                           userLocationButton.heightAnchor.constraint(equalTo: userLocationButton.widthAnchor)]
+        let constraints = [
+            mapView.topAnchor.constraint(equalTo: self.safeTopAnchor),
+            mapView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            mapView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor),
+            pointer.centerXAnchor.constraint(equalTo: mapView.centerXAnchor),
+            pointer.centerYAnchor.constraint(equalTo: mapView.centerYAnchor),
+            // , constant: 44
+            pointer.widthAnchor.constraint(equalToConstant: 20),
+            pointer.heightAnchor.constraint(equalTo: pointer.widthAnchor),
+            streetLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            streetLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            streetLabel.bottomAnchor.constraint(equalTo: self.promptLabel.topAnchor, constant: -16),
+            promptLabel.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: -40),
+            promptLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            promptLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            userLocationButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            userLocationButton.bottomAnchor.constraint(equalTo: streetLabel.topAnchor, constant: -8),
+            userLocationButton.widthAnchor.constraint(equalToConstant: 60),
+            userLocationButton.heightAnchor.constraint(equalTo: userLocationButton.widthAnchor)
+        ]
         
         NSLayoutConstraint.activate(constraints)
         
@@ -172,8 +177,8 @@ class MapLocationPickerViewController: UIViewController {
                 for try await location in locationService.locations {
                     await MainActor.run {
                         self.setupMap(centeringOn: location.coordinate)
-                        self.executeReverseGeocode()
                     }
+                    await self.executeReverseGeocode()
                     break
                 }
             } catch {
@@ -200,16 +205,18 @@ class MapLocationPickerViewController: UIViewController {
         
     }
     
-    private func executeReverseGeocode() {
+    private func executeReverseGeocode() async {
         
         let coordinate = mapView.centerCoordinate
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         
         let geocoder = CLGeocoder()
         
-        geocoder.reverseGeocodeLocation(location) { (placemarks, _) in
+        do {
             
-            guard let placemark = placemarks?.first else { return }
+            let placemarks = try await geocoder.reverseGeocodeLocation(location)
+            
+            guard let placemark = placemarks.first else { return }
             
             self.currentStreet = placemark.thoroughfare ?? ""
             self.currentHouseNumber = placemark.subThoroughfare ?? ""
@@ -217,6 +224,8 @@ class MapLocationPickerViewController: UIViewController {
             self.currentPlace = placemark.locality ?? ""
             
             self.streetLabel.text = "\(placemark.thoroughfare ?? "") \(placemark.subThoroughfare ?? "")"
+            
+        } catch {
             
         }
         
@@ -231,7 +240,9 @@ class MapLocationPickerViewController: UIViewController {
         mapView.setCenter(coordinate, animated: true)
         mapView.setRegion(region, animated: true)
         
-        executeReverseGeocode()
+        Task {
+            await executeReverseGeocode()
+        }
         
     }
     
@@ -241,7 +252,9 @@ extension MapLocationPickerViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
-        executeReverseGeocode()
+        Task {
+            await executeReverseGeocode()
+        }
         
     }
     

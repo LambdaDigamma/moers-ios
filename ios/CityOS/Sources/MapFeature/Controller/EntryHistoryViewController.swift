@@ -133,24 +133,16 @@ class EntryHistoryViewController: UIViewController {
         
         guard let entry = entry else { return }
         
-        entryManager.fetchHistory(entry: entry) { (result) in
-            
-            switch result {
-                
-            case .success(let audits):
-                
-                DispatchQueue.main.async {
-                    self.audits = audits.sorted(by: { (lhs, rhs) -> Bool in
-                        return lhs.updatedAt ?? Date() > rhs.updatedAt ?? Date()
-                    })
-                    self.updateSnapshot()
-                }
-                
-            case .failure(let error):
+        Task {
+            do {
+                let audits = try await entryManager.fetchHistory(entry: entry)
+                self.audits = audits.sorted(by: { (lhs, rhs) -> Bool in
+                    return lhs.updatedAt ?? Date() > rhs.updatedAt ?? Date()
+                })
+                self.updateSnapshot()
+            } catch {
                 print(error.localizedDescription)
-                
             }
-            
         }
         
     }

@@ -17,7 +17,7 @@ public extension AppDatabase {
     /// The DatabaseMigrator that defines the database schema.
     ///
     /// See <https://swiftpackageindex.com/groue/grdb.swift/documentation/grdb/migrations>
-    internal var migrator: DatabaseMigrator {
+    nonisolated internal var migrator: DatabaseMigrator {
         var migrator = DatabaseMigrator()
         
 //#if DEBUG

@@ -77,13 +77,21 @@ public class PlaceRepository: @unchecked Sendable {
         
     }
     
-    public func data() -> AnyPublisher<[Place], Error> {
-        
-        return Publishers.Concatenate(
-            prefix: store.fetch().map({ $0.map({ $0.toBase() }) }),
-            suffix: service.getPlaces()
-        ).eraseToAnyPublisher()
-        
+    public func data() async throws -> [Place] {
+
+        let cachedPlaces = (try? await fetch()) ?? []
+
+        do {
+            let places = try await service.getPlaces().data
+            _ = try await store.updateOrCreate(places.map({ $0.toRecord() }))
+            return places
+        } catch {
+            if !cachedPlaces.isEmpty {
+                return cachedPlaces
+            }
+            throw error
+        }
+
     }
     
     public func changeObserver() -> AnyPublisher<[Place], Error> {

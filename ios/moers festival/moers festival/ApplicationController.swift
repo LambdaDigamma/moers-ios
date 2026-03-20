@@ -140,11 +140,12 @@ class ApplicationController: NSObject, ApplicationControlling {
         
     }
     
-    static func eventCache() -> Storage<String, [Event]> {
+    nonisolated static func eventCache() -> Storage<String, [Event]> {
         
         return try! Storage<String, [Event]>(
             diskConfig: DiskConfig(name: "EventService"),
             memoryConfig: MemoryConfig(),
+            fileManager: .default,
             transformer: TransformerFactory.forCodable(ofType: [Event].self)
         )
         

@@ -8,9 +8,12 @@
 
 import Foundation
 import CoreLocation
-@preconcurrency import Combine
 
 public struct LocationPreviewModel {
+
+    private enum LocationPreviewError: Error {
+        case coordinateNotFound
+    }
     
     let name: String
     let coordinate: CLLocationCoordinate2D?
@@ -41,42 +44,30 @@ public struct LocationPreviewModel {
         
     }
     
-    public var mapCoordinate: AnyPublisher<CLLocationCoordinate2D, Error> {
-        
-        return Deferred {
-            Future { promise in
-                
-                if let coordinate = self.coordinate {
-                    promise(.success(coordinate))
-                }
-                
-                let geocoder = CLGeocoder()
-                
-                let components = [
-                    self.street,
-                    self.houseNumber,
-                    self.postcode ?? "47441",
-                    self.place ?? "Moers"
-                ]
-                
-                let address = components.compactMap { $0 }.reduce("") { "\($0), \($1)" }
-                
-                geocoder.geocodeAddressString(address) { (placemarks, error) in
-                    
-                    if let error = error {
-                        return promise(.failure(error))
-                    }
-                    
-                    if let placemark = placemarks?.first,
-                       let coordinate = placemark.location?.coordinate {
-                        return promise(.success(coordinate))
-                    }
-                    
-                }
-                
-            }
-        }.eraseToAnyPublisher()
-        
+    public func mapCoordinate() async throws -> CLLocationCoordinate2D {
+
+        if let coordinate {
+            return coordinate
+        }
+
+        let geocoder = CLGeocoder()
+
+        let components = [
+            street,
+            houseNumber,
+            postcode ?? "47441",
+            place ?? "Moers"
+        ]
+
+        let address = components.compactMap { $0 }.reduce("") { "\($0), \($1)" }
+        let placemarks = try await geocoder.geocodeAddressString(address)
+
+        if let coordinate = placemarks.first?.location?.coordinate {
+            return coordinate
+        }
+
+        throw LocationPreviewError.coordinateNotFound
+
     }
     
 }

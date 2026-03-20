@@ -522,50 +522,27 @@ class EntryOnboardingOverviewViewController: UIViewController {
         entry.sunday = sundayOHTextField.text
         entry.other = otherOHTextField.text
         
-        entryManager.store(entry: entry) { (result) in
-            
-            switch result {
-                
-            case .success(_):
-                
-                DispatchQueue.main.async {
-                    
-                    self.alertSuccess()
-                    self.entryManager.resetData()
-                    
-                    // todo:
-//                    guard let tabBarController = self.tabBarController as? AppTabBarController else { return }
-//
-//                    tabBarController.map.mainViewController?.addLocation(entry)
-                    
-                }
-                
-            case .failure(let error):
-                
+        Task {
+            do {
+                _ = try await entryManager.store(entry: entry)
+                self.alertSuccess()
+                self.entryManager.resetData()
+            } catch {
                 print(error.localizedDescription)
                 print((error as? DecodingError) ?? "")
                 
-                guard let error = error as? APIError else {
-                    self.alertUnknownError()
-                    return
-                }
-                
-                switch error {
-                case .notAuthorized:
-                    self.alertNotAuthorized()
-                case .unprocessableEntity(let errorBag):
-                    
-                    DispatchQueue.main.async {
+                if let error = error as? APIError {
+                    switch error {
+                    case .notAuthorized:
+                        self.alertNotAuthorized()
+                    case .unprocessableEntity(let errorBag):
                         self.alertErrorInForm(with: errorBag)
                         self.form.receivedError(errorBag: errorBag)
+                    default:
+                        break
                     }
-                    
-                default:
-                    break
                 }
-                
             }
-            
         }
         
     }
@@ -585,47 +562,28 @@ class EntryOnboardingOverviewViewController: UIViewController {
         entry.other = otherOHTextField.text
         entry.tags = selectedTags
         
-        entryManager.update(entry: entry) { (result) in
-            
-            DispatchQueue.main.async {
-            
-                switch result {
-                    
-                case .success:
-                    
-                    self.alertSuccess()
-                    
-                    // todo
-                        
-//                    guard let tabBarController = self.tabBarController as? AppTabBarController else { return }
-                    
-//                    tabBarController.map.mainViewController?.loadData()
-                    
-                    // todo: Update Entry in Map
-                    
-                case .failure(let error):
-                    
-                    print(error.localizedDescription)
-                    print((error as? DecodingError) ?? "")
-                    
-                    guard let error = error as? APIError else {
-                        self.alertUnknownError()
-                        return
-                    }
-                    
-                    switch error {
-                    case .notAuthorized:
-                        self.alertNotAuthorized()
-                    case .unprocessableEntity(let errorBag):
-                        self.alertErrorInForm(with: errorBag)
-                    default:
-                        break
-                    }
-                    
+        Task {
+            do {
+                _ = try await entryManager.update(entry: entry)
+                self.alertSuccess()
+            } catch {
+                print(error.localizedDescription)
+                print((error as? DecodingError) ?? "")
+                
+                guard let error = error as? APIError else {
+                    self.alertUnknownError()
+                    return
                 }
                 
+                switch error {
+                case .notAuthorized:
+                    self.alertNotAuthorized()
+                case .unprocessableEntity(let errorBag):
+                    self.alertErrorInForm(with: errorBag)
+                default:
+                    break
+                }
             }
-            
         }
         
     }

@@ -8,6 +8,7 @@
 
 import UIKit
 
+@MainActor
 public protocol LFSearchViewDataSource {
     
     func searchView(_ searchView: LFSearchViewController, tableView: UITableView, numberOfRowsInSection section: Int) -> Int

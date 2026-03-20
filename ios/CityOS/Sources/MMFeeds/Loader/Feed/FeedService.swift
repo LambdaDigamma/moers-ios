@@ -6,15 +6,12 @@
 //
 
 import Foundation
-import Combine
 import ModernNetworking
 import Cache
 
 public protocol FeedService {
     
-    func loadFeedFromNetwork(feedID: Feed.ID, perPage: Int) -> AnyPublisher<Feed, Error>
-    
-    func loadPosts(for feedID: Feed.ID, page: Int, perPage: Int) -> AnyPublisher<ResourceCollection<Post>, Error>
+    func loadFeedFromNetwork(feedID: Feed.ID, perPage: Int) async throws -> Feed
     
     func loadPosts(for feedID: Feed.ID, page: Int, perPage: Int) async throws -> ResourceCollection<Post>
     

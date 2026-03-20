@@ -11,18 +11,12 @@ import AppScaffold
 import ModernNetworking
 import MMFeeds
 
-public class LaunchArgumentsHandler: BaseLaunchArgumentsHandler {
-    
-    public static var shouldUseMockedFeed: Bool = {
-        return false
-    }()
-    
-    public static var shouldUseMockedTour: Bool = {
-        return true
-    }()
-    
-    public static var shouldUseMockedEvents: Bool = {
-        return true
-    }()
-    
+nonisolated public class LaunchArgumentsHandler: BaseLaunchArgumentsHandler {
+
+    public static let shouldUseMockedFeed = false
+
+    public static let shouldUseMockedTour = true
+
+    public static let shouldUseMockedEvents = true
+
 }

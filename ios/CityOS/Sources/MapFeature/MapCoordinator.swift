@@ -68,6 +68,7 @@ public class MapCoordintor: Coordinator {
         
     }
     
+    @MainActor
     public func showSearch() {
         
         mainViewController?.setDrawerPosition(position: .open, animated: true)

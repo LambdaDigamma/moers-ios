@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 import ModernNetworking
 import Core
 
@@ -18,28 +17,13 @@ public class MockFeedService: FeedService {
         self.posts = posts
     }
     
-    public func loadFeedFromNetwork(feedID: Feed.ID, perPage: Int) -> AnyPublisher<Feed, Error> {
+    public func loadFeedFromNetwork(feedID: Feed.ID, perPage: Int) async throws -> Feed {
         
         let feed = Feed.stub(withID: feedID)
             .setting(\.name, to: "Main Feed")
             .setting(\.posts, to: posts)
 
-        return Just(feed)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
-    
-    public func loadPosts(for feedID: Feed.ID, page: Int, perPage: Int) -> AnyPublisher<ResourceCollection<Post>, Error> {
-        
-        let resourceCollection = ResourceCollection<Post>(
-            data: Array<Post>.stub(withCount: 10, startingAt: 10),
-            links: ResourceLinks(),
-            meta: ResourceMeta()
-        )
-        
-        return Just(resourceCollection)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+        return feed
     }
     
     public func loadPosts(for feedID: Feed.ID, page: Int, perPage: Int) async throws -> ResourceCollection<Post> {

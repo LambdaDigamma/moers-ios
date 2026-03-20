@@ -11,11 +11,7 @@ import MapKit
 import SwiftUI
 
 public class CampingAreaRenderer: MKMultiPolygonRenderer {
-    
-    private var rendererLineWidth: CGFloat = 1
-    private var rendererStrokeColor: UIColor = UIColor.clear
-    private var rendererFillColor: UIColor = UIColor.clear
-    
+
     nonisolated public override init(overlay: MKOverlay) {
         super.init(overlay: overlay)
         self.setupColors()
@@ -27,18 +23,20 @@ public class CampingAreaRenderer: MKMultiPolygonRenderer {
     }
 
     nonisolated private func setupColors() {
-        
-        self.rendererLineWidth = 1
-        self.rendererStrokeColor = UIColor.systemBrown.withAlphaComponent(0.75)
-        self.rendererFillColor = UIColor.systemBrown.lighter(by: 5)?
+
+        let rendererLineWidth: CGFloat = 1
+        let rendererStrokeColor = UIColor.systemBrown.withAlphaComponent(0.75)
+        let rendererFillColor = UIColor.systemBrown.lighter(by: 5)?
             .withAlphaComponent(0.3) ?? .clear
-        
-        self.lineWidth = rendererLineWidth
-        self.strokeColor = rendererStrokeColor
-        self.fillColor = rendererFillColor
-        
+
+        MainActor.assumeIsolated {
+            self.lineWidth = rendererLineWidth
+            self.strokeColor = rendererStrokeColor
+            self.fillColor = rendererFillColor
+        }
+
     }
-    
+
     nonisolated public override func draw(
         _ mapRect: MKMapRect,
         zoomScale: MKZoomScale,
@@ -46,17 +44,17 @@ public class CampingAreaRenderer: MKMultiPolygonRenderer {
     ) {
         super.draw(mapRect, zoomScale: zoomScale, in: context)
     }
-    
+
 }
 
 struct CampingAreaRenderer_Previews: PreviewProvider {
-    
+
     static var previews: some View {
-        
+
         let viewController = OverlayRendererPreviewController<CampingAreaRenderer>()
         return UINavigationController(rootViewController: viewController)
             .preview
-        
+
     }
-    
+
 }

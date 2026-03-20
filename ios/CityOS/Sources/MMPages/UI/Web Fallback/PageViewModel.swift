@@ -28,27 +28,19 @@ public class PageViewModel: ObservableObject {
         self.pageID = pageID
     }
     
-    public func loadPage() {
+    public func loadPage() async {
         
         if let pageService = pageService {
             
-            let pageLoading = pageService.loadPage(for: pageID)
-            
-            pageLoading.receive(on: DispatchQueue.main).sink { (completion: Subscribers.Completion<Error>) in
+            do {
                 
-                switch completion {
-                    case .failure(let error):
-                        print(error)
-                    case .finished:
-                        break
-                }
-                
-            } receiveValue: { (page: Page) in
+                let resource = try await pageService.show(for: pageID, cacheMode: .cached)
+                let page = resource.data
                 
                 if let slug = page.slug, let url = URL(string: "https://moers.app/\(slug)") {
                     
                     if var components = URLComponents(url: url, resolvingAgainstBaseURL: false) {
-                    
+                        
                         let queryStandalone = URLQueryItem(name: "standalone", value: "true")
                         components.queryItems = [queryStandalone]
                         
@@ -65,7 +57,9 @@ public class PageViewModel: ObservableObject {
                 
                 self.page = .success(page)
                 
-            }.store(in: &cancellables)
+            } catch {
+                print(error)
+            }
             
         }
         

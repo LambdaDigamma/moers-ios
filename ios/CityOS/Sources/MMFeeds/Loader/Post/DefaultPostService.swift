@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 import ModernNetworking
 import Cache
 
@@ -16,26 +15,6 @@ public class DefaultPostService: PostService {
     
     public init(_ loader: HTTPLoader = URLSessionLoader()) {
         self.loader = loader
-    }
-    
-    public func index(for feedID: Feed.ID, page: Int = 1, perPage: Int = 10, cacheMode: CacheMode) -> AnyPublisher<ResourceCollection<Post>, Error> {
-        
-        var request = Self.indexRequest(feedID: feedID, page: page, perPage: perPage)
-        
-        request.cachePolicy = cacheMode.policy
-        
-        return Deferred {
-            Future { promise in
-                self.loader.load(request) { (result) in
-                    promise(result)
-                }
-            }
-        }
-        .eraseToAnyPublisher()
-        .compactMap { $0.body }
-        .decode(type: ResourceCollection<Post>.self, decoder: Feed.decoder)
-        .eraseToAnyPublisher()
-        
     }
     
     public func index(for feedID: Feed.ID, page: Int = 1, perPage: Int = 10, cacheMode: CacheMode) async throws -> ResourceCollection<Post> {
@@ -113,4 +92,3 @@ extension DefaultPostService {
     }
     
 }
-
