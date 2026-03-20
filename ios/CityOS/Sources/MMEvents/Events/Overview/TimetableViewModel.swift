@@ -58,11 +58,7 @@ public class TimetableViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { combinedValue in
                 let (events, favoriteEventIDs) = combinedValue
-                
-                self.allEventsHideSchedule = !events.isEmpty && events.allSatisfy { event in
-                    !event.showsDateComponent
-                }
-                
+
                 self.storedEvents = events
                 self.favoriteEventIDs = favoriteEventIDs
                 self.rebuildDays()
@@ -119,6 +115,14 @@ public class TimetableViewModel: ObservableObject {
     
     private func rebuildDays() {
         
+        let visibleEvents = storedEvents.filter { event in
+            matchesFilter(for: event, favoriteEventIDs: favoriteEventIDs)
+        }
+        
+        self.allEventsHideSchedule = !visibleEvents.isEmpty && visibleEvents.allSatisfy { event in
+            !event.showsDateComponent
+        }
+        
         self.days = DateUtils.sortedUniqueDates(storedEvents.compactMap { $0.startDate })
             .map { date in
                 let range = DateUtils.calculateDateRange(
@@ -126,7 +130,7 @@ public class TimetableViewModel: ObservableObject {
                     offset: EventUtilities.defaultDayOffset
                 )
                 
-                let events = storedEvents
+                let events = visibleEvents
                     .filter { event in
                         guard let startDate = event.startDate else {
                             return false
@@ -135,8 +139,8 @@ public class TimetableViewModel: ObservableObject {
                         guard (range.startDate...range.endDate).contains(startDate) else {
                             return false
                         }
-                        
-                        return matchesFilter(for: event, favoriteEventIDs: favoriteEventIDs)
+
+                        return true
                     }
                     .map { event in
                         EventListItemViewModel(

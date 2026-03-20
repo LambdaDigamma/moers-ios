@@ -55,8 +55,8 @@ public class EventRepository: @unchecked Sendable {
     
     public func events() -> AnyPublisher<[Event], Error> {
         
-        return store.observeAllEvents()
-            .map { $0.map { $0.toBase() } }
+        return store.observeAllEventsWithPlace()
+            .map { $0.map { $0.event.toBase(with: $0.place?.toBase()) } }
             .eraseToAnyPublisher()
         
     }

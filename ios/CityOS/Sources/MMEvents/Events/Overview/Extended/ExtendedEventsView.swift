@@ -81,7 +81,11 @@ public struct ExtendedEventsView: View {
             Calendar.autoupdatingCurrent.isDate($0.date, inSameDayAs: date)
         }) else { return }
         
-        selectedPage = index
+        guard selectedPage != index else { return }
+        
+        withAnimation(.easeInOut(duration: 0.25)) {
+            selectedPage = index
+        }
     }
     
     private func syncSelectedPageFromModel() {

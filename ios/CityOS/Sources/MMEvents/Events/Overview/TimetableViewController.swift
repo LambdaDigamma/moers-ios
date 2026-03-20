@@ -29,7 +29,7 @@ public class TimetableViewController: UIHostingController<AnyView> {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.edgesForExtendedLayout = [.all]
+//        self.edgesForExtendedLayout = [.all]
         self.extendedLayoutIncludesOpaqueBars = true
         
         self.setupUI()

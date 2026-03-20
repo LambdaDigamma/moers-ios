@@ -57,6 +57,8 @@ public struct CompactEventsView: View {
                 
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
+            .animation(.easeInOut(duration: 1.0), value: selectedPage)
+            .transition(.slide)
             .onChange(of: selectedPage) { newValue in
                 guard viewModel.days.indices.contains(newValue) else { return }
                 viewModel.selectDate(viewModel.days[newValue].date)
@@ -82,7 +84,11 @@ public struct CompactEventsView: View {
             Calendar.autoupdatingCurrent.isDate($0.date, inSameDayAs: date)
         }) else { return }
         
-        selectedPage = index
+        guard selectedPage != index else { return }
+        
+        withAnimation(.default) {
+            selectedPage = index
+        }
     }
     
     private func syncSelectedPageFromModel() {
