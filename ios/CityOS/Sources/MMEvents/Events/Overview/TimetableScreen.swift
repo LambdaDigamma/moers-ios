@@ -9,11 +9,11 @@ import SwiftUI
 
 public struct TimetableScreen: View {
     
-    @State var search = ""
+    @State private var search = ""
     @AppStorage("currentEventDisplayMode") private var displayMode: DailyEventsDisplayMode = .compact
     @State private var showingFilter = false
     
-    @StateObject var viewModel = TimetableViewModel()
+    @StateObject private var viewModel = TimetableViewModel()
     
     public init() {
         

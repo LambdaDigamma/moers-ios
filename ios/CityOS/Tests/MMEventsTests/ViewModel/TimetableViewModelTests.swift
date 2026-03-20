@@ -38,8 +38,8 @@ final class TimetableViewModelTests: XCTestCase {
         let viewModel = TimetableViewModel()
         let secondUpdateApplied = expectation(description: "Second timetable update applied")
         var updateCount = 0
-        let datesCancellable = viewModel
-            .$dates
+        let daysCancellable = viewModel
+            .$days
             .dropFirst()
             .sink { _ in
                 updateCount += 1
@@ -47,9 +47,9 @@ final class TimetableViewModelTests: XCTestCase {
                     secondUpdateApplied.fulfill()
                 }
             }
-        
+
         let firstUpdateApplied = expectation(description: "First timetable update applied")
-        let firstUpdateCancellable = viewModel.$dates
+        let firstUpdateCancellable = viewModel.$days
             .filter { $0.count == 2 }
             .first()
             .sink { _ in firstUpdateApplied.fulfill() }
@@ -68,7 +68,7 @@ final class TimetableViewModelTests: XCTestCase {
         await fulfillment(of: [firstUpdateApplied], timeout: 1)
         firstUpdateCancellable.cancel()
 
-        viewModel.selectedDate = selectedDay
+        viewModel.selectDate(selectedDay)
         
         try await store.deleteAllAndInsert([
             Event.stub(withID: 1)
@@ -82,9 +82,53 @@ final class TimetableViewModelTests: XCTestCase {
         ])
         
         await fulfillment(of: [secondUpdateApplied], timeout: 1)
-        datesCancellable.cancel()
+        daysCancellable.cancel()
         
         XCTAssertEqual(viewModel.selectedDate, selectedDay)
+    }
+    
+    func testSelectedDateNormalizesToAvailableDayWhenAssignedWithTimeComponent() async throws {
+        
+        let database = MemoryDatabase.default()
+        let store = EventStore(writer: database, reader: database)
+        let repository = EventRepository(
+            store: store,
+            service: StaticEventService(events: .success([])),
+            pageStore: nil
+        )
+        
+        Container.shared.eventRepository.register { repository }
+        
+        let firstDay = makeDate(year: 2030, month: 5, day: 17, hour: 12)
+        let secondDay = makeDate(year: 2030, month: 5, day: 18, hour: 12)
+        let selectedDayWithTime = makeDate(year: 2030, month: 5, day: 18, hour: 19)
+        let normalizedSelectedDay = Calendar.autoupdatingCurrent.startOfDay(for: secondDay)
+        
+        let viewModel = TimetableViewModel()
+        let updateApplied = expectation(description: "Timetable update applied")
+        let daysCancellable = viewModel.$days
+            .filter { $0.count == 2 }
+            .first()
+            .sink { _ in updateApplied.fulfill() }
+        
+        try await store.deleteAllAndInsert([
+            Event.stub(withID: 1)
+                .setting(\.startDate, to: firstDay)
+                .setting(\.updatedAt, to: makeDate(year: 2030, month: 5, day: 1, hour: 12))
+                .toRecord(),
+            Event.stub(withID: 2)
+                .setting(\.startDate, to: secondDay)
+                .setting(\.updatedAt, to: makeDate(year: 2030, month: 5, day: 1, hour: 12))
+                .toRecord()
+        ])
+        
+        await fulfillment(of: [updateApplied], timeout: 1)
+        daysCancellable.cancel()
+        
+        viewModel.selectDate(selectedDayWithTime)
+        
+        XCTAssertEqual(viewModel.selectedDate, normalizedSelectedDay)
+        XCTAssertEqual(viewModel.dates.last, normalizedSelectedDay)
     }
     
     private func makeDate(year: Int, month: Int, day: Int, hour: Int) -> Date {

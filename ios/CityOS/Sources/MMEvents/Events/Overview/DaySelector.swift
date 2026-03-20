@@ -9,9 +9,9 @@ import SwiftUI
 
 struct DaySelector: View {
     
-    @Binding var selectedDate: Date
-    
-    var dates: [Date]
+    let selectedDate: Date
+    let dates: [Date]
+    let onSelectDate: (Date) -> Void
     
     var body: some View {
         
@@ -19,12 +19,12 @@ struct DaySelector: View {
             
             ForEach(dates, id: \.self) { date in
                 Button(action: {
-                    withAnimation {
-                        selectedDate = date
-                    }
+                    onSelectDate(date)
                 }) {
                     DayItem(date: date, isActive: isSameDay(lhs: date, rhs: selectedDate))
                 }
+                .buttonStyle(.plain)
+                .contentShape(Rectangle())
             }
             
         }
@@ -42,11 +42,15 @@ struct DaySelector: View {
 
 struct DaySelector_Previews: PreviewProvider {
     static var previews: some View {
-        DaySelector(selectedDate: .constant(Date()), dates: [
-            Date(),
-            Date(timeIntervalSinceNow: 60 * 60 * 24),
-            Date(timeIntervalSinceNow: 60 * 60 * 24 * 2)
-        ])
+        DaySelector(
+            selectedDate: Date(),
+            dates: [
+                Date(),
+                Date(timeIntervalSinceNow: 60 * 60 * 24),
+                Date(timeIntervalSinceNow: 60 * 60 * 24 * 2)
+            ],
+            onSelectDate: { _ in }
+        )
         .padding()
         .previewLayout(.sizeThatFits)
     }
