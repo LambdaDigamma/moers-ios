@@ -41,8 +41,9 @@ public class MapCoordintor: Coordinator {
 //        let mainViewController = MainMapViewController()
         
         mainViewController.navigationItem.largeTitleDisplayMode = .never
-        mainViewController.tabBarItem = generateTabBarItem()
         mainViewController.coordinator = self
+        
+        self.navigationController.tabBarItem = generateTabBarItem()
         
         self.navigationController.viewControllers = [mainViewController]
         self.mainViewController = mainViewController

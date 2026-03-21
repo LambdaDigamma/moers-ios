@@ -32,11 +32,11 @@ public class OtherCoordinator: Coordinator {
         
         let otherViewController = OtherViewController()
         
-        otherViewController.tabBarItem = generateTabBarItem()
         otherViewController.coordinator = self
         
         self.navigationController.coordinator = self
         self.navigationController.viewControllers = [otherViewController]
+        self.navigationController.tabBarItem = generateTabBarItem()
         self.otherViewController = otherViewController
         
         Styling.applyStyling(navigationController: navigationController, statusBarStyle: .darkContent)

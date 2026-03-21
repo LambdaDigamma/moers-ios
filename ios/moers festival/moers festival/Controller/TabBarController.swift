@@ -78,7 +78,7 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
         self.viewControllers = [
             news.navigationController,
 //            live.navigationController,
-            map.navigationController,
+            map.rootViewController,
             userSchedule.navigationController,
 //            tour.navigationController,
             event.navigationController,
@@ -191,7 +191,6 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let viewControllers = [
             self.news.navigationController,
             self.live.navigationController,
-            self.map.navigationController,
             self.event.navigationController,
             self.other.navigationController
         ]

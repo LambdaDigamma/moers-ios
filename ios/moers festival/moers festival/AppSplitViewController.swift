@@ -41,7 +41,7 @@ public class AppSplitViewController: AppScaffold.SplitViewController {
         self.event = EventCoordinator()
         self.other = OtherCoordinator()
         
-        let coordinators: [Coordinator] = [
+        let tabRepresentables: [any AppScaffold.TabRepresentable] = [
             news,
 //            live,
             map,
@@ -55,9 +55,7 @@ public class AppSplitViewController: AppScaffold.SplitViewController {
             trackerManager: trackerManager
         )
         
-        let secondaryRootViewControllers = coordinators.map({ coordinator in
-            coordinator.navigationController
-        })
+        let secondaryRootViewControllers = tabRepresentables.map(\.rootViewController)
         
         self.launchInterceptor = LaunchInterceptor(firstLaunch: firstLaunch)
         

@@ -40,20 +40,12 @@ class NewMapDrawerViewController: UIViewController {
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
-        searchBar.placeholder = "Search for venue…"
+        searchBar.placeholder = String(localized: "Search for venue…")
         searchBar.searchBarStyle = .minimal
         searchBar.isTranslucent = true
         searchBar.delegate = self
         return searchBar
     }()
-    
-//    private lazy var gripper: UIView = {
-//        let view = UIView()
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.backgroundColor = UIColor.systemGray3
-//        view.layer.cornerRadius = 2.5
-//        return view
-//    }()
     
     private lazy var collectionView: UICollectionView = {
         let layout = createLayout()
@@ -78,32 +70,37 @@ class NewMapDrawerViewController: UIViewController {
     
     private func setupUI() {
         
-        view.backgroundColor = .systemBackground
-        
-//        view.addSubview(gripper)
         view.addSubview(searchBar)
         view.addSubview(collectionView)
         
-        searchBar.tintColor = .systemYellow
+        if #available(iOS 26.0, *) {
+            self.view.backgroundColor = .clear
+        } else {
+            self.view.backgroundColor = UIColor.systemBackground
+        }
+        
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tabBarController?.tabBar.bounds.height ?? 50, right: 0)
+        
     }
     
     private func setupConstraints() {
         
         NSLayoutConstraint.activate([
-//            gripper.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
-//            gripper.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-//            gripper.widthAnchor.constraint(equalToConstant: 36),
-//            gripper.heightAnchor.constraint(equalToConstant: 5),
+            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 4),
+            searchBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 4),
+            searchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -4),
             
-            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            searchBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
-            searchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
-            
-            collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 8),
+            collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 0),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+    
+    // MARK: - Actions
+    
+    public func setCollectionViewScrollInteraction(isEnabled: Bool) {
+        collectionView.isScrollEnabled = isEnabled
     }
     
     // MARK: - Data
@@ -275,14 +272,6 @@ class NewMapDrawerViewController: UIViewController {
             
             return nil
         }
-    }
-    
-    // MARK: - Drawer
-    
-    override var sheetPresentationController: UISheetPresentationController? {
-        super.sheetPresentationController
-        
-        
     }
     
 }

@@ -25,7 +25,6 @@
 		DF5975C42F01E08D00512386 /* MMPages in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C32F01E08D00512386 /* MMPages */; };
 		DF5975C62F01E08D00512386 /* MapFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C52F01E08D00512386 /* MapFeature */; };
 		DF5975C82F01E08D00512386 /* NewsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C72F01E08D00512386 /* NewsFeature */; };
-		DF5F729F27F07C34002AB4B8 /* AppScaffold in Frameworks */ = {isa = PBXBuildFile; productRef = DF5F729E27F07C34002AB4B8 /* AppScaffold */; };
 		DF62C61A2247B98E008425EC /* ContentDrawer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF62C6192247A349008425EC /* ContentDrawer.storyboard */; };
 		DF68FFF3282AEDD500C63690 /* FGD2022 in Resources */ = {isa = PBXBuildFile; fileRef = DF68FFF2282AEDD500C63690 /* FGD2022 */; };
 		DF7FB53527F672E300F718F2 /* StateViewController in Frameworks */ = {isa = PBXBuildFile; productRef = DF7FB53427F672E300F718F2 /* StateViewController */; };
@@ -368,7 +367,6 @@
 		DF35B383201DC72900118FD1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				DF5F729F27F07C34002AB4B8 /* AppScaffold in Frameworks */,
 				DF7FB53527F672E300F718F2 /* StateViewController in Frameworks */,
 				DF56290B257BB4F1005FC7BA /* Waxwing in Frameworks */,
 				DF5975C42F01E08D00512386 /* MMPages in Frameworks */,
@@ -590,7 +588,6 @@
 				DF56290C257BB4F1005FC7BA /* SwiftyMarkdown */,
 				DF562919257BB6E3005FC7BA /* BLTNBoard */,
 				DF562932257BBA68005FC7BA /* EventBus */,
-				DF5F729E27F07C34002AB4B8 /* AppScaffold */,
 				DF9B4E6327F668A200817DA3 /* INSPhotoGallery */,
 				DF7FB53427F672E300F718F2 /* StateViewController */,
 				DF055B932D8B8FD7007E4393 /* FirebaseAnalytics */,
@@ -813,7 +810,6 @@
 				DFD086B4246DC90E00B15A96 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */,
 				DF562918257BB6E3005FC7BA /* XCRemoteSwiftPackageReference "BulletinBoard" */,
 				DF562931257BBA68005FC7BA /* XCRemoteSwiftPackageReference "eventbus" */,
-				DF5F729D27F07C34002AB4B8 /* XCRemoteSwiftPackageReference "app-scaffold-ios" */,
 				DF9B4E6227F668A200817DA3 /* XCRemoteSwiftPackageReference "INSPhotoGallery" */,
 				DF7FB53327F670D500F718F2 /* XCRemoteSwiftPackageReference "stateviewcontroller" */,
 				DF055B922D8B8FD7007E4393 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
@@ -2284,14 +2280,6 @@
 				minimumVersion = 0.5.2;
 			};
 		};
-		DF5F729D27F07C34002AB4B8 /* XCRemoteSwiftPackageReference "app-scaffold-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LambdaDigamma/app-scaffold-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		DF7FB53327F670D500F718F2 /* XCRemoteSwiftPackageReference "stateviewcontroller" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lambdadigamma/stateviewcontroller";
@@ -2402,11 +2390,6 @@
 		DF5975C72F01E08D00512386 /* NewsFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NewsFeature;
-		};
-		DF5F729E27F07C34002AB4B8 /* AppScaffold */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF5F729D27F07C34002AB4B8 /* XCRemoteSwiftPackageReference "app-scaffold-ios" */;
-			productName = AppScaffold;
 		};
 		DF7FB53427F672E300F718F2 /* StateViewController */ = {
 			isa = XCSwiftPackageProductDependency;

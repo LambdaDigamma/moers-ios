@@ -12,14 +12,19 @@ import MMEvents
 import AppScaffold
 import Pulley
 
-public class MapCoordinator: SharedCoordinator {
+public class MapCoordinator: TabRepresentable {
     
     public let eventService: LegacyEventService
     public let entryManager: EntryManagerProtocol
     public let trackerManager: TrackerManagerProtocol
     
+    public let mainViewController: NewMapViewController
+    
+    public var rootViewController: UIViewController { mainViewController }
+    
+    public var tabBarItem: UITabBarItem? { mainViewController.tabBarItem }
+    
     public init(
-        navigationController: CoordinatedNavigationController = CoordinatedNavigationController(),
         eventService: LegacyEventService,
         entryManager: EntryManagerProtocol,
         trackerManager: TrackerManagerProtocol
@@ -27,24 +32,9 @@ public class MapCoordinator: SharedCoordinator {
         self.eventService = eventService
         self.entryManager = entryManager
         self.trackerManager = trackerManager
-        super.init(navigationController: navigationController)
         
-        self.navigationController.navigationBar.prefersLargeTitles = true
-        self.navigationController.coordinator = self
-        self.navigationController.menuItem = makeMenuItem()
-        
-        let mainViewController = NewMapViewController()
-        
-//        let mainViewController = MapCoordinatorViewController(
-//            contentViewController: MapViewController(),
-//            drawerViewController: DrawerFestivalMapViewController(viewModel: .init())
-//        )
-        
-//        mainViewController.coordinator = self
-//        mainViewController.drawerViewController.coordinator = self
-        
-        self.navigationController.viewControllers = [mainViewController]
-        
+        self.mainViewController = NewMapViewController()
+        self.mainViewController.tabBarItem = makeMenuItem().toBarItem()
     }
     
     private func makeMenuItem() -> MenuItem {
@@ -57,15 +47,36 @@ public class MapCoordinator: SharedCoordinator {
         
     }
     
-    public func showEvent(eventID: Event.ID) {
+    public func pushPlaceDetail(placeID: Place.ID) {
+        let viewController = VenueDetailController(placeID: placeID)
+        mainViewController.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    public func showPlaceDetail(placeID: Place.ID, showCloseButton: Bool = true) {
+        let viewController = VenueDetailController(placeID: placeID)
+        viewController.modalPresentationStyle = .formSheet
+        viewController.showCloseButton = showCloseButton
         
-        guard let currentModalNavigationController = currentModalNavigationController else {
-            return
-        }
+        let navController = UINavigationController(rootViewController: viewController)
+        navController.modalPresentationStyle = .formSheet
+        mainViewController.present(navController, animated: true)
+    }
+    
+}
+
+extension MenuItem {
+    
+    public func toBarItem() -> UITabBarItem {
         
-        let viewController = ModernEventDetailViewController(eventID: eventID)
+        let tabBarItem = UITabBarItem(
+            title: self.title,
+            image: self.image,
+            selectedImage: nil
+        )
         
-        currentModalNavigationController.pushViewController(viewController, animated: true)
+        tabBarItem.accessibilityIdentifier = self.accessibilityIdentifier
+        
+        return tabBarItem
         
     }
     

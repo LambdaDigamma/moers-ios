@@ -32,6 +32,10 @@ public class AppTabBarController: AppScaffold.TabBarController {
     let events: EventCoordinator
     let other: OtherCoordinator
     
+    var tabs: [any AppScaffold.TabRepresentable] {
+        [dashboard, news, map, events, other]
+    }
+    
     init(firstLaunch: FirstLaunch) {
         
         self.firstLaunch = firstLaunch
@@ -57,13 +61,7 @@ public class AppTabBarController: AppScaffold.TabBarController {
         
         self.loadCurrentLocation()
         
-        self.viewControllers = [
-            dashboard.navigationController,
-            news.navigationController,
-            map.navigationController,
-            events.navigationController,
-            other.navigationController
-        ]
+        self.viewControllers = tabs.map(\.rootViewController)
         
         self.tabBar.accessibilityIdentifier = AccessibilityIdentifiers.tabBar
         

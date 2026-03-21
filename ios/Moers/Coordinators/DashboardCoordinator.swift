@@ -34,8 +34,6 @@ public class DashboardCoordinator: Coordinator {
             self.openTrip()
         })
 //        let activity = UserActivities.configureDashboardActivity()
-        
-        controller.tabBarItem = generateTabBarItem()
 //        controller.userActivity = activity
 //        controller.navigationItem.rightBarButtonItems = [
 //            .init(image: UIImage(systemName: "slider.vertical.3"), style: .plain, target: self, action: #selector(showEditDashboard))
@@ -43,6 +41,7 @@ public class DashboardCoordinator: Coordinator {
 //        activity.becomeCurrent()
         
         self.navigationController.viewControllers = [controller]
+        self.navigationController.tabBarItem = generateTabBarItem()
         
         Styling.applyStyling(navigationController: navigationController, statusBarStyle: .darkContent)
         

@@ -1,15 +1,6 @@
 {
-  "originHash" : "3143ed8238b047d162749594a209212d055582d4e194100a5210ea3955343e3c",
+  "originHash" : "4f15d151a504b7ccd829d02ad6ec00c6481169c8888e6f2729cda5011f86046d",
   "pins" : [
-    {
-      "identity" : "app-scaffold-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/LambdaDigamma/app-scaffold-ios",
-      "state" : {
-        "revision" : "7a100e48901e340c8f2f86d33cf380ec1bc2cbb1",
-        "version" : "1.0.1"
-      }
-    },
     {
       "identity" : "cache",
       "kind" : "remoteSourceControl",

@@ -47,7 +47,6 @@ let package = Package(
         .package(url: "https://github.com/LambdaDigamma/TagListView", from: "1.4.2"),
         .package(url: "https://github.com/LambdaDigamma/EventBus", from: "0.5.2"),
         .package(url: "https://github.com/LambdaDigamma/TextFieldEffects", branch: "master"),
-        .package(url: "https://github.com/LambdaDigamma/app-scaffold-ios", from: "1.0.0"),
         .package(url: "https://github.com/LambdaDigamma/swift-prosemirror", .upToNextMajor(from: "0.0.8")),
         .package(url: "https://github.com/LambdaDigamma/MediaLibraryKit", .upToNextMajor(from: "1.0.0")),
         .package(url: "https://github.com/LambdaDigamma/HanekeSwift", .upToNextMajor(from: "0.14.0")),
@@ -78,6 +77,11 @@ let package = Package(
         .testTarget(
             name: "CoreTests",
             dependencies: ["Core", "CoreCache"],
+            swiftSettings: settings
+        ),
+        // ---------------- PlaybackKit ----------------
+        .target(
+            name: "AppScaffold",
             swiftSettings: settings
         ),
         // ---------------- PlaybackKit ----------------
@@ -175,7 +179,7 @@ let package = Package(
         .target(
             name: "MapFeature",
             dependencies: [
-                .product(name: "AppScaffold", package: "app-scaffold-ios"),
+                .byName(name: "AppScaffold"),
                 .byName(name: "Core"),
                 .byName(name: "TagListView"),
                 .byName(name: "Pulley"),

@@ -13,7 +13,7 @@ import MMEvents
 import Factory
 import Combine
 
-class NewMapViewController: UIViewController {
+public class NewMapViewController: UIViewController {
     
     // MARK: - Properties
     
@@ -29,27 +29,7 @@ class NewMapViewController: UIViewController {
         map.mapType = .mutedStandard
         map.showsUserLocation = true
         map.showsCompass = false
-        map.overrideUserInterfaceStyle = .light
         return map
-    }()
-    
-    private lazy var blurView: UIVisualEffectView = {
-        let blur = UIBlurEffect(style: .light)
-        let view = UIVisualEffectView(effect: blur)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private lazy var gradientLayer: CAGradientLayer = {
-        let gradient = CAGradientLayer()
-        gradient.colors = [
-            UIColor.white.cgColor,
-            UIColor.white.withAlphaComponent(0.8).cgColor,
-            UIColor.clear.cgColor
-        ]
-        gradient.locations = [0, 0.8, 1]
-        gradient.type = .axial
-        return gradient
     }()
     
     private var drawerViewController: NewMapDrawerViewController?
@@ -59,7 +39,7 @@ class NewMapViewController: UIViewController {
     
     // MARK: - Lifecycle
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
@@ -68,18 +48,10 @@ class NewMapViewController: UIViewController {
         loadFestivalData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    public override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
         
-        if drawerViewController == nil {
-            presentDrawer()
-        }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        gradientLayer.frame = blurView.bounds
+        presentDrawer()
     }
     
     // MARK: - Setup
@@ -89,9 +61,7 @@ class NewMapViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         view.addSubview(mapView)
-        view.addSubview(blurView)
         
-        blurView.layer.mask = gradientLayer
     }
     
     private func setupConstraints() {
@@ -101,11 +71,6 @@ class NewMapViewController: UIViewController {
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mapView.topAnchor.constraint(equalTo: view.topAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            blurView.topAnchor.constraint(equalTo: view.topAnchor),
-            blurView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            blurView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            blurView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
     }
     
@@ -137,6 +102,7 @@ class NewMapViewController: UIViewController {
         )
         
         mapView.pointOfInterestFilter = MKPointOfInterestFilter(including: [.publicTransport])
+        
     }
     
     // MARK: - Data Loading
@@ -263,31 +229,6 @@ class NewMapViewController: UIViewController {
     
     private func presentDrawer() {
         
-//        let drawer = NewMapDrawerViewController()
-//        drawer.delegate = self
-//        drawer.mapViewController = self
-//        
-//        self.drawerViewController = drawer
-//        
-//        if let sheet = drawer.sheetPresentationController {
-//            
-//            sheet.detents = [
-//                .custom(identifier: .init("collapsed")) { _ in 120 },
-//                .medium(),
-//                .large()
-//            ]
-//            
-//            sheet.prefersGrabberVisible = true
-//            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
-////            sheet.preferredCornerRadius = 48
-//            sheet.largestUndimmedDetentIdentifier = .medium
-////            sheet.widthFollowsPreferredContentSizeBehavior = true
-//            
-//            sheet.delegate = self
-//        }
-//        
-//        tabBarController?.present(drawer, animated: true)
-        
         let drawer = NewMapDrawerViewController()
         drawer.delegate = self
         drawer.mapViewController = self
@@ -298,12 +239,12 @@ class NewMapViewController: UIViewController {
         transitionDelegate.sheetDelegate = self
         self.sheetTransitioningDelegate = transitionDelegate
         
+        drawer.isModalInPresentation = true
         drawer.modalPresentationStyle = .custom
         drawer.transitioningDelegate = transitionDelegate
         
-        self.tabBarController?.present(drawer, animated: false)
-        
-//        present(drawer, animated: true)
+        self.present(drawer, animated: false)
+
     }
     
     // MARK: - Public Methods
@@ -331,7 +272,7 @@ class NewMapViewController: UIViewController {
         }
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
         .darkContent
     }
 }
@@ -340,7 +281,7 @@ class NewMapViewController: UIViewController {
 
 extension NewMapViewController: MKMapViewDelegate {
     
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+    public func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         
         guard let shape = overlay as? (MKShape & MKGeoJSONObject),
               let feature = currentFeatures.first(where: { $0.geometry.contains(where: { $0 == shape }) }) else {
@@ -367,7 +308,7 @@ extension NewMapViewController: MKMapViewDelegate {
         return renderer
     }
     
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    public func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         if annotation is MKUserLocation { return nil }
         
@@ -431,7 +372,7 @@ extension NewMapViewController: MKMapViewDelegate {
         return nil
     }
     
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+    public func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
         mapView.removeAnnotations(mapView.annotations.filter { !($0 is MKUserLocation) })
         showAnnotationsIfNeeded()
@@ -442,10 +383,18 @@ extension NewMapViewController: MKMapViewDelegate {
 
 extension NewMapViewController: UISheetPresentationControllerDelegate {
     
-    func sheetDidDetent(_ sheetPresentationController: UISheetPresentationController) {
+    public func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController) {
+        
+        if sheetPresentationController.selectedDetentIdentifier == .nearFull {
+            drawerViewController?.setCollectionViewScrollInteraction(isEnabled: true)
+        } else {
+            drawerViewController?.setCollectionViewScrollInteraction(isEnabled: false)
+        }
         
         drawerViewController?.searchBar.resignFirstResponder()
+        
     }
+    
 }
 
 // MARK: - NewMapDrawerDelegate
@@ -456,7 +405,7 @@ extension NewMapViewController: NewMapDrawerDelegate {
 
         if let sheet = drawerViewController?.sheetPresentationController {
             sheet.animateChanges {
-                sheet.selectedDetentIdentifier = .init("collapsed")
+                sheet.selectedDetentIdentifier = .small
             }
         }
 
@@ -467,7 +416,7 @@ extension NewMapViewController: NewMapDrawerDelegate {
 
         if let sheet = drawerViewController?.sheetPresentationController {
             sheet.animateChanges {
-                sheet.selectedDetentIdentifier = .init("collapsed")
+                sheet.selectedDetentIdentifier = .small
             }
         }
     }

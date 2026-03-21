@@ -39,10 +39,9 @@ class EventCoordinator: Coordinator {
             eventViewController = vc
         }
         
-        eventViewController.tabBarItem = generateTabBarItem()
-        
         self.navigationController.coordinator = self
         self.navigationController.viewControllers = [eventViewController]
+        self.navigationController.tabBarItem = generateTabBarItem()
         self.eventViewController = eventViewController
         
 //        Styling.applyStyling(navigationController: navigationController, statusBarStyle: .darkContent)

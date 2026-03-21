@@ -8,41 +8,50 @@
 
 import UIKit
 
+extension UISheetPresentationController.Detent.Identifier {
+    
+    static let small = UISheetPresentationController.Detent.Identifier("small")
+    static let nearFull = UISheetPresentationController.Detent.Identifier("nearFull")
+    
+}
+
 class TabSheetTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
-
+    
     weak var sheetDelegate: UISheetPresentationControllerDelegate?
-
+    
     func presentationController(
         forPresented presented: UIViewController,
         presenting: UIViewController?,
         source: UIViewController
     ) -> UIPresentationController? {
-
-        let nearLargeIdentifier = UISheetPresentationController.Detent.Identifier("nearLarge")
-
+        
         let sheet = TabSheetPresentationController(
             presentedViewController: presented,
             presenting: presenting,
             source: source
         )
-
+        
         sheet.detents = [
-            .custom(identifier: .init("collapsed")) { _ in 120 },
+            .custom(identifier: .small) { _ in
+                return 105
+            },
             .medium(),
-            .custom(identifier: nearLargeIdentifier) { context in
-                context.maximumDetentValue - 0.1
-            }
+            .custom(identifier: .nearFull, resolver: { context in
+                context.maximumDetentValue
+//                source.view.bounds.height * 0.9
+            })
         ]
-
-        sheet.largestUndimmedDetentIdentifier = nearLargeIdentifier
+        
+        sheet.selectedDetentIdentifier = .small
+        sheet.largestUndimmedDetentIdentifier = .nearFull
         sheet.prefersGrabberVisible = true
-//        sheet.preferredCornerRadius = 48
         sheet.prefersScrollingExpandsWhenScrolledToEdge = false
         
         if let sheetDelegate {
             sheet.delegate = sheetDelegate
         }
-
+        
         return sheet
     }
+    
 }
