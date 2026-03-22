@@ -20,6 +20,8 @@ public class NewMapViewController: UIViewController {
     @LazyInjected(\.placeRepository) var placeRepository
     @LazyInjected(\.locationEventService) var locationService
     
+    public var coordinator: EventCoordinator?
+    
     private var cancellables = Set<AnyCancellable>()
     
     private lazy var mapView: MKMapView = {
@@ -45,6 +47,7 @@ public class NewMapViewController: UIViewController {
         setupUI()
         setupConstraints()
         setupMap()
+        setupListeners()
         loadFestivalData()
     }
     
@@ -103,6 +106,31 @@ public class NewMapViewController: UIViewController {
         
         mapView.pointOfInterestFilter = MKPointOfInterestFilter(including: [.publicTransport])
         
+    }
+    
+    private func setupListeners() {
+        
+        placeRepository.changeObserver()
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                
+            } receiveValue: { [weak self] places in
+                guard let self = self else { return }
+                
+                let existingVenueAnnotations = self.mapView.annotations.filter { $0 is VenueAnnotation }
+                self.mapView.removeAnnotations(existingVenueAnnotations)
+                
+                let venueAnnotations = places.map { place in
+                    VenueAnnotation(
+                        title: place.name,
+                        coordinate: CLLocationCoordinate2D(latitude: place.lat, longitude: place.lng),
+                        placeID: place.id
+                    )
+                }
+                
+                self.mapView.addAnnotations(venueAnnotations)
+            }
+            .store(in: &cancellables)
     }
     
     // MARK: - Data Loading
@@ -229,9 +257,12 @@ public class NewMapViewController: UIViewController {
     
     private func presentDrawer() {
         
+        if let drawerViewController, presentedViewController === drawerViewController {
+            return
+        }
+        
         let drawer = NewMapDrawerViewController()
         drawer.delegate = self
-        drawer.mapViewController = self
         
         self.drawerViewController = drawer
         
@@ -248,6 +279,23 @@ public class NewMapViewController: UIViewController {
     }
     
     // MARK: - Public Methods
+    
+    private func showPlaceDetail(placeID: Place.ID) {
+        
+        let viewController = VenueDetailController(placeID: placeID)
+        viewController.coordinator = coordinator
+        viewController.modalPresentationStyle = .formSheet
+        viewController.showCloseButton = true
+        
+        let navController = UINavigationController(rootViewController: viewController)
+        navController.modalPresentationStyle = .formSheet
+        
+        if let presenter = (presentedViewController as? NewMapDrawerViewController) ?? drawerViewController {
+            presenter.present(navController, animated: true)
+        } else {
+            present(navController, animated: true)
+        }
+    }
     
     func focusOnFeature(_ feature: DorfFeature) {
         
@@ -275,6 +323,7 @@ public class NewMapViewController: UIViewController {
     public override var preferredStatusBarStyle: UIStatusBarStyle {
         .darkContent
     }
+    
 }
 
 // MARK: - MKMapViewDelegate
@@ -312,7 +361,18 @@ extension NewMapViewController: MKMapViewDelegate {
         
         if annotation is MKUserLocation { return nil }
         
-        if let dorfAnnotation = annotation as? DorfAnnotation {
+        if let venueAnnotation = annotation as? VenueAnnotation {
+            
+            var view = mapView.dequeueReusableAnnotationView(withIdentifier: "venueAnnotation") as? VenueAnnotationView
+            
+            if view == nil {
+                view = VenueAnnotationView(annotation: venueAnnotation, reuseIdentifier: "venueAnnotation")
+            }
+            
+            view?.annotation = venueAnnotation
+            
+            return view
+        } else if let dorfAnnotation = annotation as? DorfAnnotation {
             
             var view = mapView.dequeueReusableAnnotationView(withIdentifier: "dorfAnnotation") as? DorfAnnotationView
             
@@ -374,8 +434,20 @@ extension NewMapViewController: MKMapViewDelegate {
     
     public func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
-        mapView.removeAnnotations(mapView.annotations.filter { !($0 is MKUserLocation) })
+        mapView.removeAnnotations(
+            mapView.annotations.filter {
+                !($0 is MKUserLocation) && !($0 is VenueAnnotation)
+            }
+        )
+        
         showAnnotationsIfNeeded()
+    }
+    
+    public func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        
+        if let venueAnnotation = view.annotation as? VenueAnnotation {
+            showPlaceDetail(placeID: venueAnnotation.placeID)
+        }
     }
 }
 
@@ -417,6 +489,17 @@ extension NewMapViewController: NewMapDrawerDelegate {
         if let sheet = drawerViewController?.sheetPresentationController {
             sheet.animateChanges {
                 sheet.selectedDetentIdentifier = .small
+            }
+        }
+        
+        showPlaceDetail(placeID: venue.id)
+    }
+    
+    func drawerDidBeginSearch() {
+        
+        if let sheet = drawerViewController?.sheetPresentationController {
+            sheet.animateChanges {
+                sheet.selectedDetentIdentifier = .nearFull
             }
         }
     }

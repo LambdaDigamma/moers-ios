@@ -27,7 +27,8 @@ public class MapCoordinator: TabRepresentable {
     public init(
         eventService: LegacyEventService,
         entryManager: EntryManagerProtocol,
-        trackerManager: TrackerManagerProtocol
+        trackerManager: TrackerManagerProtocol,
+        eventCoordinator: EventCoordinator? = nil
     ) {
         self.eventService = eventService
         self.entryManager = entryManager
@@ -35,6 +36,7 @@ public class MapCoordinator: TabRepresentable {
         
         self.mainViewController = NewMapViewController()
         self.mainViewController.tabBarItem = makeMenuItem().toBarItem()
+        self.mainViewController.coordinator = eventCoordinator
     }
     
     private func makeMenuItem() -> MenuItem {
@@ -49,14 +51,16 @@ public class MapCoordinator: TabRepresentable {
     
     public func pushPlaceDetail(placeID: Place.ID) {
         let viewController = VenueDetailController(placeID: placeID)
+        viewController.coordinator = mainViewController.coordinator
         mainViewController.navigationController?.pushViewController(viewController, animated: true)
     }
-    
+
     public func showPlaceDetail(placeID: Place.ID, showCloseButton: Bool = true) {
         let viewController = VenueDetailController(placeID: placeID)
+        viewController.coordinator = mainViewController.coordinator
         viewController.modalPresentationStyle = .formSheet
         viewController.showCloseButton = showCloseButton
-        
+
         let navController = UINavigationController(rootViewController: viewController)
         navController.modalPresentationStyle = .formSheet
         mainViewController.present(navController, animated: true)

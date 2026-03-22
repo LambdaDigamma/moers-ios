@@ -25,7 +25,9 @@ public class ModernEventDetailViewController: DefaultHostingController {
     @LazyInjected(\.legacyEventService) private var eventService
     
     public var coordinator: SharedCoordinator?
-    
+
+    public var showCloseButton: Bool = false
+
     private let viewModel: EventDetailViewModel
     
     private let favoriteEventsStore: FavoriteEventsStore?
@@ -76,16 +78,12 @@ public class ModernEventDetailViewController: DefaultHostingController {
     }
     
     public override func hostView() -> AnyView {
-        
         ModernEventView(
             viewModel: viewModel,
             actionTransmitter: actionTransmitter,
-            showDetails: {
-                self.showMetadata()
-            }
+            showDetails: { self.showMetadata() }
         )
-            .toAnyView()
-        
+        .toAnyView()
     }
     
     // MARK: - Toolbar -
@@ -101,6 +99,8 @@ public class ModernEventDetailViewController: DefaultHostingController {
 //            action: #selector(showSharesheet)
 //        ))
         
+        
+        
         likeBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "heart"),
             style: .plain,
@@ -109,16 +109,28 @@ public class ModernEventDetailViewController: DefaultHostingController {
         )
         
         rightBarButtonsItems.append(likeBarButtonItem!)
-        
+
 #if !os(tvOS)
         navigationItem.largeTitleDisplayMode = .never
 #endif
         navigationItem.rightBarButtonItems = rightBarButtonsItems
-        
+
+        if showCloseButton {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(
+                barButtonSystemItem: .close,
+                target: self,
+                action: #selector(close)
+            )
+        }
+
     }
-    
+
+    @objc private func close() {
+        dismiss(animated: true)
+    }
+
     // MARK: - Actions -
-    
+
     @objc private func showSharesheet() {
         
         guard let page = viewModel.page, let resourceURL = page.resourceUrl else {

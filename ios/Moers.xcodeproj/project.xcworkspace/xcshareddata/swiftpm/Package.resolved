@@ -20,15 +20,6 @@
       }
     },
     {
-      "identity" : "app-scaffold-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/lambdadigamma/app-scaffold-ios",
-      "state" : {
-        "revision" : "7a100e48901e340c8f2f86d33cf380ec1bc2cbb1",
-        "version" : "1.0.1"
-      }
-    },
-    {
       "identity" : "bulletinboard",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/alexaubry/BulletinBoard.git",
@@ -40,10 +31,10 @@
     {
       "identity" : "cache",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/LambdaDigamma/Cache",
+      "location" : "https://github.com/hyperoslo/Cache",
       "state" : {
-        "revision" : "034756303012a8e005c986b19969fbcd0b86612e",
-        "version" : "6.0.1"
+        "revision" : "24e47109e31b2031cb26e25cc1b81b607496066c",
+        "version" : "7.4.0"
       }
     },
     {
@@ -69,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nmdias/FeedKit",
       "state" : {
-        "revision" : "68493a33d862c33c9a9f67ec729b3b7df1b20ade",
-        "version" : "9.1.2"
+        "revision" : "e55b2cafaf67370092c91193cfb8a8b008e05888",
+        "version" : "10.4.0"
       }
     },
     {
@@ -195,8 +186,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LambdaDigamma/ModernNetworking",
       "state" : {
-        "branch" : "main",
-        "revision" : "8d25ae3cf27bdb5f390dabfd31913e61cd1223c4"
+        "revision" : "a8726231832ad378b765abd322105a3daba694ff",
+        "version" : "2.0.0"
       }
     },
     {
@@ -321,8 +312,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/CoreOffice/XMLCoder.git",
       "state" : {
-        "revision" : "b1e944cbd0ef33787b13f639a5418d55b3bed501",
-        "version" : "0.17.1"
+        "revision" : "5e1ada828d2618ecb79c974e03f79c8f4df90b71",
+        "version" : "0.18.0"
       }
     },
     {
@@ -330,8 +321,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SvenTiigi/YouTubePlayerKit.git",
       "state" : {
-        "revision" : "6bbba75c8a8927e8073765849e22707d96b55205",
-        "version" : "1.5.2"
+        "revision" : "1ae827573024ab13dd6adea33b25d3eef6ff667c",
+        "version" : "2.0.5"
       }
     }
   ],

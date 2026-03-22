@@ -14,8 +14,13 @@ import Factory
 import Combine
 
 protocol NewMapDrawerDelegate: AnyObject {
+    
     func drawerDidSelectBooth(_ booth: DorfFeature)
+    
     func drawerDidSelectVenue(_ venue: FestivalPlaceRowUi)
+    
+    func drawerDidBeginSearch()
+    
 }
 
 class NewMapDrawerViewController: UIViewController {
@@ -23,7 +28,6 @@ class NewMapDrawerViewController: UIViewController {
     // MARK: - Properties
     
     weak var delegate: NewMapDrawerDelegate?
-    weak var mapViewController: NewMapViewController?
     
     @LazyInjected(\.placeRepository) var placeRepository
     
@@ -32,6 +36,7 @@ class NewMapDrawerViewController: UIViewController {
     var dataSource: UICollectionViewDiffableDataSource<DrawerFestivalMapSection, DrawerItem>!
     
     private var places: [Place] = []
+    private var allPlaces: [Place] = []
     private var booths: [DorfFeature] = []
     private var filteredBooths: [DorfFeature] = []
     
@@ -66,6 +71,23 @@ class NewMapDrawerViewController: UIViewController {
         loadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(receiveUpdateGeoData),
+            name: .updateFestivalGeoData,
+            object: nil
+        )
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self, name: .updateFestivalGeoData, object: nil)
+    }
+    
     // MARK: - Setup
     
     private func setupUI() {
@@ -74,7 +96,7 @@ class NewMapDrawerViewController: UIViewController {
         view.addSubview(collectionView)
         
         if #available(iOS 26.0, *) {
-            self.view.backgroundColor = .clear
+            
         } else {
             self.view.backgroundColor = UIColor.systemBackground
         }
@@ -119,8 +141,7 @@ class NewMapDrawerViewController: UIViewController {
             let festivalGeoData = try FGDArchiveDecoder().decode(directory)
             
             self.booths = festivalGeoData.dorf
-            self.filteredBooths = booths
-            reloadDataSource()
+            applySearch(searchBar.text ?? "")
             
         } catch {
             print("Error loading booths: \(error)")
@@ -136,16 +157,8 @@ class NewMapDrawerViewController: UIViewController {
             } receiveValue: { [weak self] places in
                 guard let self = self else { return }
                 
-                let searchText = self.searchBar.text ?? ""
-                
-                self.places = places.filter { place in
-                    if searchText.isEmpty {
-                        return true
-                    }
-                    return place.name.localizedCaseInsensitiveContains(searchText)
-                }
-                
-                self.reloadDataSource()
+                self.allPlaces = places.sorted(by: { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending })
+                self.applySearch(self.searchBar.text ?? "")
             }
             .store(in: &cancellables)
     }
@@ -170,15 +183,28 @@ class NewMapDrawerViewController: UIViewController {
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
     
-    private func filterBooths(with searchText: String) {
+    private func applySearch(_ searchText: String) {
         
-        if searchText.isEmpty {
+        let sanitizedSearchText = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if sanitizedSearchText.isEmpty {
+            places = allPlaces
             filteredBooths = booths
         } else {
-            filteredBooths = booths.filter { ($0.properties.name ?? "").localizedCaseInsensitiveContains(searchText) }
+            places = allPlaces.filter {
+                $0.name.localizedCaseInsensitiveContains(sanitizedSearchText)
+            }
+            
+            filteredBooths = booths.filter {
+                ($0.properties.name ?? "").localizedCaseInsensitiveContains(sanitizedSearchText)
+            }
         }
         
         reloadDataSource()
+    }
+    
+    @objc private func receiveUpdateGeoData() {
+        loadBooths()
     }
     
     // MARK: - Collection View
@@ -302,8 +328,12 @@ extension NewMapDrawerViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        filterBooths(with: searchText)
-        observePlaces()
+        applySearch(searchText)
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        delegate?.drawerDidBeginSearch()
+        return true
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

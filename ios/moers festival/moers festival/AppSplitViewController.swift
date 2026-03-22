@@ -33,12 +33,13 @@ public class AppSplitViewController: AppScaffold.SplitViewController {
         
         self.news = NewsCoordinator()
         self.live = LiveCoordinator()
+        self.event = EventCoordinator()
         self.map = MapCoordinator(
             eventService: eventService,
             entryManager: entryManager,
-            trackerManager: trackerManager
+            trackerManager: trackerManager,
+            eventCoordinator: event
         )
-        self.event = EventCoordinator()
         self.other = OtherCoordinator()
         
         let tabRepresentables: [any AppScaffold.TabRepresentable] = [

@@ -16,7 +16,7 @@ public struct ModernEventView: View {
     @ObservedObject var actionTransmitter: ActionTransmitter
     
     private let showDetails: () -> Void
-    
+
     public init(
         viewModel: EventDetailViewModel,
         actionTransmitter: ActionTransmitter,

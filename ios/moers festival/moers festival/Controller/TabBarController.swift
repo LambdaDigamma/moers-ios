@@ -46,12 +46,13 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
         self.news = NewsCoordinator()
         self.live = LiveCoordinator()
         self.userSchedule = UserScheduleCoordinator()
+        self.event = EventCoordinator()
         self.map = MapCoordinator(
             eventService: eventService,
             entryManager: entryManager,
-            trackerManager: trackerManager
+            trackerManager: trackerManager,
+            eventCoordinator: event
         )
-        self.event = EventCoordinator()
         self.other = OtherCoordinator()
         
         super.init(nibName: nil, bundle: nil)

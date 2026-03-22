@@ -120,14 +120,14 @@ public class VenueDetailController: DefaultHostingController {
                 print(error)
             }
         }
-            
+        
     }
     
     // MARK: - Actions -
     
     public func onSelectEvent(eventID: Event.ID) {
         
-        coordinator?.pushEventDetail(eventID: eventID)
+        coordinator?.showEventDetail(eventID: eventID)
         
     }
     
