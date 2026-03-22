@@ -70,7 +70,7 @@ jobs:
           cd "ios/moers festival"
           mkdir -p SourcePackages
           export GYM_CLONED_SOURCE_PACKAGES_PATH="$(pwd)/SourcePackages"
-          bundle exec fastlane ios upload
+          bundle exec fastlane ios upload --verbose
         env:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
@@ -81,6 +81,18 @@ jobs:
           MATCH_GITHUB_TOKEN: ${{ secrets.MATCH_GITHUB_TOKEN }}
           FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 120
           FASTLANE_XCODEBUILD_SETTINGS_RETRIES: 5
+          FASTLANE_DISABLE_COLORS: 1
+
+      - name: Upload iOS build logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: festival-ios-build-logs-${{ github.run_id }}
+          if-no-files-found: warn
+          path: |
+            ios/moers festival/fastlane/buildlogs/**
+            /Users/runner/Library/Logs/gym/**
+            /Users/runner/Library/Developer/Xcode/DerivedData/**/Logs/Build/**
 
       - name: Get iOS version and build number
         id: ios_version
