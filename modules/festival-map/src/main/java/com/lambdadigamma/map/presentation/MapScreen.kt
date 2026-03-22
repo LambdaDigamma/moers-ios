@@ -1,8 +1,8 @@
 package com.lambdadigamma.map.presentation
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,32 +15,54 @@ import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.lambdadigamma.map.R
+import com.lambdadigamma.map.presentation.composable.BoothDetailContent
 import com.lambdadigamma.map.presentation.composable.FestivalMapView
 import com.lambdadigamma.map.presentation.composable.MapDrawerContent
-import com.lambdadigamma.map.presentation.composable.MapSelectionCard
+import com.lambdadigamma.map.presentation.composable.PlaceDetailContent
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun MapScreen(
     uiState: MapUiState,
     onIntent: (MapIntent) -> Unit,
-    onShowPlace: (Long) -> Unit,
+    onShowEvent: (Int) -> Unit,
 ) {
     val scaffoldState = rememberBottomSheetScaffoldState()
+
+    val sheetPeekHeight = when (uiState.selection) {
+        null -> 168.dp
+        is MapSelection.Feature -> 148.dp
+        is MapSelection.Place -> 210.dp
+    }
+
+    LaunchedEffect(uiState.selection?.stableId) {
+        when (uiState.selection) {
+            null -> { /* leave sheet where it is */ }
+            is MapSelection.Feature,
+            is MapSelection.Place,
+            -> {
+                if (scaffoldState.bottomSheetState.currentValue == SheetValue.Expanded) {
+                    scaffoldState.bottomSheetState.partialExpand()
+                }
+            }
+        }
+    }
 
     BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
         val sheetTopInset = maxHeight * 0.1f
@@ -58,16 +80,31 @@ internal fun MapScreen(
                     .fillMaxSize()
                     .padding(top = sheetTopInset),
                 scaffoldState = scaffoldState,
-                sheetPeekHeight = 168.dp,
+                sheetPeekHeight = sheetPeekHeight,
                 sheetDragHandle = { PassiveDragHandle() },
                 containerColor = Color.Transparent,
                 sheetContent = {
-                    MapDrawerContent(
-                        uiState = uiState,
-                        onIntent = onIntent,
-                        onShowPlace = onShowPlace,
-                        minContentHeight = drawerMinContentHeight,
-                    )
+                    when (val selection = uiState.selection) {
+                        null -> MapDrawerContent(
+                            uiState = uiState,
+                            onIntent = onIntent,
+                            minContentHeight = drawerMinContentHeight,
+                        )
+
+                        is MapSelection.Feature -> BoothDetailContent(
+                            feature = selection.value,
+                            onDismiss = { onIntent(MapIntent.ClearSelection) },
+                        )
+
+                        is MapSelection.Place -> PlaceDetailContent(
+                            place = selection.value,
+                            events = uiState.placeEvents,
+                            isLoadingEvents = uiState.isLoadingEvents,
+                            onDismiss = { onIntent(MapIntent.ClearSelection) },
+                            onShowEvent = onShowEvent,
+                            minContentHeight = drawerMinContentHeight,
+                        )
+                    }
                 },
             ) { _ ->
                 Box(modifier = Modifier.fillMaxSize())
@@ -113,15 +150,6 @@ internal fun MapScreen(
                         )
                     }
                 }
-
-            uiState.selection?.let { selection ->
-                MapSelectionCard(
-                    selection = selection,
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .padding(start = 16.dp, end = 16.dp, bottom = 180.dp),
-                )
-            }
 
             if (uiState.isLoading && uiState.layers.isEmpty()) {
                 CircularProgressIndicator(

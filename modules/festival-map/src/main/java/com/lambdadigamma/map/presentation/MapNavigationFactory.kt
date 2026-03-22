@@ -25,9 +25,10 @@ class MapNavigationFactory @Inject constructor() : NavigationFactory {
             )
         ) {
             MapRoute(
-                onShowPlace = { placeId ->
+                onShowEvent = { eventId ->
                     val command = object : NavigationCommand {
-                        override val destination = NavigationDestination.VenueDetail.route.replace("{placeId}", placeId.toString())
+                        override val destination = NavigationDestination.EventDetail.route
+                            .replace("{eventId}", eventId.toString())
                     }
                     navigationManager.navigate(command)
                 },

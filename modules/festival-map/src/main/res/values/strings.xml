@@ -9,6 +9,8 @@
     <string name="map_drawer_booths">Booths</string>
     <string name="map_drawer_empty_state">No matching places or booths.</string>
     <string name="map_drawer_unnamed_booth">Unnamed booth</string>
+    <string name="map_place_events">Events</string>
+    <string name="map_place_no_events">No events scheduled.</string>
     <string name="map_selected_layer">Layer: %1$s</string>
     <string name="map_selected_booth">Booth: %1$d</string>
     <string name="map_selected_food">Food stand</string>
