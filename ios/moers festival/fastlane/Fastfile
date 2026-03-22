@@ -14,6 +14,19 @@ platform :ios do
 
   # --- Utilies ---
 
+  def increment_build_number_for_plist(path)
+    current_build = get_info_plist_value(path: path, key: "CFBundleVersion").to_i
+    new_build = (current_build + 1).to_s
+
+    set_info_plist_value(
+      path: path,
+      key: "CFBundleVersion",
+      value: new_build
+    )
+
+    UI.message("Updated build number in #{path}: #{current_build} -> #{new_build}")
+  end
+
   desc "Sync signing"
   lane :signing do
     register_devices(
@@ -76,9 +89,13 @@ platform :ios do
 
   desc "Increment Build Number"
   lane :increment_build do
-    increment_build_number_in_plist(target: 'moers festival')
-    increment_build_number_in_plist(target: 'moers festival UITests')
-    increment_build_number_in_plist(target: 'moers festival Tests')
+    [
+      "moers festival/Config/Info.plist",
+      "moers festival UITests/Info.plist",
+      "moers festival Tests/Info.plist"
+    ].each do |plist_path|
+      increment_build_number_for_plist(plist_path)
+    end
   end
 
   # --- Distribution ---
@@ -215,7 +232,7 @@ platform :ios do
 
   desc "Increment Build Number"
   lane :increment_build_tvos do
-    increment_build_number_in_plist(target: 'moers festival tvOS')
+    increment_build_number_for_plist("moers festival tvOS/Info.plist")
   end
 
   # --- Distribution ---
