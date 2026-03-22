@@ -12,7 +12,7 @@ import ModernNetworking
 import MMEvents
 import OSLog
 
-nonisolated public final class DefaultLocationEventService: LocationEventService {
+nonisolated public final class DefaultLocationEventService: LocationEventService, @unchecked Sendable {
 
     nonisolated(unsafe) private let loader: HTTPLoader
     private let logger: Logger
@@ -67,23 +67,26 @@ nonisolated public final class DefaultLocationEventService: LocationEventService
             FGDCollection.CodingKeys.transporation.rawValue,
         ]
 
-        for archive in archives {
-            await self.updateLocalFeatures(for: archive, reset: force)
+        // Resolve file URLs on the main actor once before spawning concurrent tasks.
+        let fileUrls: [String: URL] = await MainActor.run {
+            LocalFGDStore.createDirectoryIfNeeded()
+            return Dictionary(uniqueKeysWithValues: archives.compactMap { key in
+                LocalFGDStore.getFileUrl(key: key).map { (key, $0) }
+            })
+        }
+
+        await withTaskGroup(of: Void.self) { group in
+            for archive in archives {
+                guard let fileUrl = fileUrls[archive] else { continue }
+                group.addTask { await self.updateLocalFeatures(for: archive, fileUrl: fileUrl, reset: force) }
+            }
         }
 
         NotificationCenter.default.post(name: .updateFestivalGeoData, object: nil)
 
     }
 
-    private func updateLocalFeatures(for key: String, reset: Bool = false) async {
-
-        await MainActor.run {
-            LocalFGDStore.createDirectoryIfNeeded()
-        }
-
-        guard let fileUrl = await MainActor.run(body: {
-            LocalFGDStore.getFileUrl(key: key)
-        }) else { return }
+    private func updateLocalFeatures(for key: String, fileUrl: URL, reset: Bool = false) async {
 
         let lastUpdate = LastUpdate(key: "fgd-\(key)")
         var request = HTTPRequest(path: "/fgd/\(key).geojson")

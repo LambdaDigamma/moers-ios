@@ -48,13 +48,35 @@ public class NewMapViewController: UIViewController {
         setupConstraints()
         setupMap()
         setupListeners()
-        loadFestivalData()
+
+        Task {
+            await loadFestivalDataFromDisk()
+            await locationService.updateLocalFestivalArchive(force: false)
+            await loadFestivalDataFromDisk()
+        }
     }
     
     public override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
-        
+
         presentDrawer()
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(receiveUpdateGeoData),
+            name: .updateFestivalGeoData,
+            object: nil
+        )
+    }
+
+    public override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        NotificationCenter.default.removeObserver(self, name: .updateFestivalGeoData, object: nil)
+    }
+
+    @objc private func receiveUpdateGeoData() {
+        Task { await loadFestivalDataFromDisk() }
     }
     
     // MARK: - Setup
@@ -134,34 +156,29 @@ public class NewMapViewController: UIViewController {
     }
     
     // MARK: - Data Loading
-    
-    private func loadFestivalData() {
-        
-        do {
-            guard let directory = LocalFGDStore.directory() else { return }
-            
-            let festivalGeoData = try FGDArchiveDecoder().decode(directory)
-            
-            self.festivalGeoData = festivalGeoData
-            self.currentFeatures = []
-            
-            currentFeatures.append(contentsOf: festivalGeoData.surfaces)
-            currentFeatures.append(contentsOf: festivalGeoData.stages)
-            currentFeatures.append(contentsOf: festivalGeoData.camping)
-            currentFeatures.append(contentsOf: festivalGeoData.transporation)
-            currentFeatures.append(contentsOf: festivalGeoData.dorf)
-            currentFeatures.append(contentsOf: festivalGeoData.medicalService)
-            currentFeatures.append(contentsOf: festivalGeoData.toilets)
-            currentFeatures.append(contentsOf: festivalGeoData.tickets)
-            
-            DispatchQueue.main.async {
-                self.addOverlays()
-                self.showAnnotationsIfNeeded()
-            }
-            
-        } catch {
-            print("Error loading festival data: \(error)")
-        }
+
+    @MainActor
+    private func loadFestivalDataFromDisk() async {
+        guard let directory = LocalFGDStore.directory() else { return }
+        guard let collection = try? FGDArchiveDecoder().decode(directory) else { return }
+        applyFestivalData(collection)
+    }
+
+    @MainActor
+    private func applyFestivalData(_ collection: FGDCollection) {
+        festivalGeoData = collection
+        currentFeatures = []
+        currentFeatures.append(contentsOf: collection.surfaces)
+        currentFeatures.append(contentsOf: collection.stages)
+        currentFeatures.append(contentsOf: collection.camping)
+        currentFeatures.append(contentsOf: collection.transporation)
+        currentFeatures.append(contentsOf: collection.dorf)
+        currentFeatures.append(contentsOf: collection.medicalService)
+        currentFeatures.append(contentsOf: collection.toilets)
+        currentFeatures.append(contentsOf: collection.tickets)
+        addOverlays()
+        showAnnotationsIfNeeded()
+        drawerViewController?.updateBooths(collection.dorf)
     }
     
     private func addOverlays() {

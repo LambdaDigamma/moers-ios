@@ -8,10 +8,15 @@
 
 import Foundation
 
+nonisolated public enum DrawerFestivalMapSection: Hashable, Sendable {
+    case main
+    case booths
+}
+
 nonisolated enum DrawerItem: Hashable, Sendable {
-    
+
     case venue(FestivalPlaceRowUi)
-    
+
     case booth(DorfFeature)
-    
+
 }
