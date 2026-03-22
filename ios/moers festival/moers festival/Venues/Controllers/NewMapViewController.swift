@@ -12,6 +12,7 @@ import Core
 import MMEvents
 import Factory
 import Combine
+import OSLog
 
 public class NewMapViewController: UIViewController {
     
@@ -23,6 +24,8 @@ public class NewMapViewController: UIViewController {
     public var coordinator: EventCoordinator?
     
     private var cancellables = Set<AnyCancellable>()
+    private var loadTask: Task<Void, Never>?
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "moers-festival", category: "NewMapViewController")
     
     private lazy var mapView: MKMapView = {
         let map = MKMapView()
@@ -48,13 +51,40 @@ public class NewMapViewController: UIViewController {
         setupConstraints()
         setupMap()
         setupListeners()
-        loadFestivalData()
+
+        loadTask = Task { [weak self] in
+            guard let self else { return }
+            await loadFestivalDataFromDisk()
+            await locationService.updateLocalFestivalArchive(force: false)
+            await loadFestivalDataFromDisk()
+        }
     }
     
     public override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
-        
+
         presentDrawer()
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(receiveUpdateGeoData),
+            name: .updateFestivalGeoData,
+            object: nil
+        )
+    }
+
+    public override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        NotificationCenter.default.removeObserver(self, name: .updateFestivalGeoData, object: nil)
+    }
+
+    deinit {
+        loadTask?.cancel()
+    }
+
+    @objc private func receiveUpdateGeoData() {
+        Task { [weak self] in await self?.loadFestivalDataFromDisk() }
     }
     
     // MARK: - Setup
@@ -134,34 +164,33 @@ public class NewMapViewController: UIViewController {
     }
     
     // MARK: - Data Loading
-    
-    private func loadFestivalData() {
-        
+
+    @MainActor
+    private func loadFestivalDataFromDisk() async {
+        guard let directory = LocalFGDStore.directory() else { return }
         do {
-            guard let directory = LocalFGDStore.directory() else { return }
-            
-            let festivalGeoData = try FGDArchiveDecoder().decode(directory)
-            
-            self.festivalGeoData = festivalGeoData
-            self.currentFeatures = []
-            
-            currentFeatures.append(contentsOf: festivalGeoData.surfaces)
-            currentFeatures.append(contentsOf: festivalGeoData.stages)
-            currentFeatures.append(contentsOf: festivalGeoData.camping)
-            currentFeatures.append(contentsOf: festivalGeoData.transporation)
-            currentFeatures.append(contentsOf: festivalGeoData.dorf)
-            currentFeatures.append(contentsOf: festivalGeoData.medicalService)
-            currentFeatures.append(contentsOf: festivalGeoData.toilets)
-            currentFeatures.append(contentsOf: festivalGeoData.tickets)
-            
-            DispatchQueue.main.async {
-                self.addOverlays()
-                self.showAnnotationsIfNeeded()
-            }
-            
+            let collection = try FGDArchiveDecoder().decode(directory)
+            applyFestivalData(collection)
         } catch {
-            print("Error loading festival data: \(error)")
+            logger.error("Failed to decode festival geo data: \(error)")
         }
+    }
+
+    @MainActor
+    private func applyFestivalData(_ collection: FGDCollection) {
+        festivalGeoData = collection
+        currentFeatures = []
+        currentFeatures.append(contentsOf: collection.surfaces)
+        currentFeatures.append(contentsOf: collection.stages)
+        currentFeatures.append(contentsOf: collection.camping)
+        currentFeatures.append(contentsOf: collection.transporation)
+        currentFeatures.append(contentsOf: collection.dorf)
+        currentFeatures.append(contentsOf: collection.medicalService)
+        currentFeatures.append(contentsOf: collection.toilets)
+        currentFeatures.append(contentsOf: collection.tickets)
+        addOverlays()
+        showAnnotationsIfNeeded()
+        drawerViewController?.updateBooths(collection.dorf)
     }
     
     private func addOverlays() {

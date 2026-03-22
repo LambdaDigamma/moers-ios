@@ -12,14 +12,12 @@ import ModernNetworking
 import MMEvents
 import OSLog
 
-nonisolated public final class DefaultLocationEventService: LocationEventService {
+public final class DefaultLocationEventService: LocationEventService, @unchecked Sendable {
 
     nonisolated(unsafe) private let loader: HTTPLoader
-    private let logger: Logger
 
-    public init(loader: HTTPLoader) {
+    public nonisolated init(loader: HTTPLoader) {
         self.loader = loader
-        self.logger = Logger(.coreApi)
     }
 
     public func getLocations() async throws -> [Place] {
@@ -67,23 +65,31 @@ nonisolated public final class DefaultLocationEventService: LocationEventService
             FGDCollection.CodingKeys.transporation.rawValue,
         ]
 
-        for archive in archives {
-            await self.updateLocalFeatures(for: archive, reset: force)
+        // Resolve file URLs on the main actor once before spawning concurrent tasks.
+        let fileUrls: [String: URL] = await MainActor.run {
+            LocalFGDStore.createDirectoryIfNeeded()
+            return Dictionary(
+                archives.compactMap { key in
+                    LocalFGDStore.getFileUrl(key: key).map { (key, $0) }
+                },
+                uniquingKeysWith: { first, _ in first }
+            )
         }
 
-        NotificationCenter.default.post(name: .updateFestivalGeoData, object: nil)
+        await withTaskGroup(of: Void.self) { group in
+            for archive in archives {
+                guard let fileUrl = fileUrls[archive] else { continue }
+                group.addTask { await self.updateLocalFeatures(for: archive, fileUrl: fileUrl, reset: force) }
+            }
+        }
+
+        await MainActor.run {
+            NotificationCenter.default.post(name: .updateFestivalGeoData, object: nil)
+        }
 
     }
 
-    private func updateLocalFeatures(for key: String, reset: Bool = false) async {
-
-        await MainActor.run {
-            LocalFGDStore.createDirectoryIfNeeded()
-        }
-
-        guard let fileUrl = await MainActor.run(body: {
-            LocalFGDStore.getFileUrl(key: key)
-        }) else { return }
+    private func updateLocalFeatures(for key: String, fileUrl: URL, reset: Bool = false) async {
 
         let lastUpdate = LastUpdate(key: "fgd-\(key)")
         var request = HTTPRequest(path: "/fgd/\(key).geojson")
@@ -91,12 +97,10 @@ nonisolated public final class DefaultLocationEventService: LocationEventService
         request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
 
         if reset {
-            logger.info("Resetting festival geo data for key: \(key)")
             lastUpdate.reset()
         }
 
         if !lastUpdate.shouldReload(ttl: .minutes(120)) {
-            logger.info("Skip reloading festival geo data for key: \(key)")
             return
         }
 

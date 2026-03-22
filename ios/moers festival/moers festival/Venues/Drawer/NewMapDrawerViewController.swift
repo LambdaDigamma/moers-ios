@@ -73,19 +73,6 @@ class NewMapDrawerViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(receiveUpdateGeoData),
-            name: .updateFestivalGeoData,
-            object: nil
-        )
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        NotificationCenter.default.removeObserver(self, name: .updateFestivalGeoData, object: nil)
     }
     
     // MARK: - Setup
@@ -121,31 +108,19 @@ class NewMapDrawerViewController: UIViewController {
     
     // MARK: - Actions
     
-    public func setCollectionViewScrollInteraction(isEnabled: Bool) {
+    func setCollectionViewScrollInteraction(isEnabled: Bool) {
         collectionView.isScrollEnabled = isEnabled
     }
     
     // MARK: - Data
     
     private func loadData() {
-        
-        loadBooths()
         observePlaces()
     }
-    
-    private func loadBooths() {
-        
-        do {
-            guard let directory = LocalFGDStore.directory() else { return }
-            
-            let festivalGeoData = try FGDArchiveDecoder().decode(directory)
-            
-            self.booths = festivalGeoData.dorf
-            applySearch(searchBar.text ?? "")
-            
-        } catch {
-            print("Error loading booths: \(error)")
-        }
+
+    func updateBooths(_ booths: [DorfFeature]) {
+        self.booths = booths
+        applySearch(searchBar.text ?? "")
     }
     
     private func observePlaces() {
@@ -201,10 +176,6 @@ class NewMapDrawerViewController: UIViewController {
         }
         
         reloadDataSource()
-    }
-    
-    @objc private func receiveUpdateGeoData() {
-        loadBooths()
     }
     
     // MARK: - Collection View
