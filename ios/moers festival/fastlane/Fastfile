@@ -117,7 +117,17 @@ platform :ios do
       app_identifier: APP_IDENTIFIERS,
       git_basic_authorization: encoded_credentials
     )
-    gym(scheme: "moers festival")
+    gym_options = {
+      scheme: "moers festival"
+    }
+
+    if ENV['CI']
+      gym_options[:cloned_source_packages_path] = "./SourcePackages"
+      gym_options[:skip_package_dependencies_resolution] = true
+      gym_options[:disable_package_automatic_updates] = true
+    end
+
+    gym(**gym_options)
     pilot(skip_waiting_for_build_processing: true)
   end
 

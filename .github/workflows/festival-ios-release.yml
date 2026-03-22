@@ -49,7 +49,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: "ios/moers festival/SourcePackages"
-          key: ${{ runner.os }}-festival-spm-${{ hashFiles('ios/moers festival/moers festival.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+          key: ${{ runner.os }}-festival-spm-${{ hashFiles('ios/**/Package.resolved') }}
           restore-keys: |
             ${{ runner.os }}-festival-spm-
 
@@ -68,8 +68,31 @@ jobs:
       - name: Ship iOS App
         run: |
           cd "ios/moers festival"
+          rm -rf SourcePackages
           mkdir -p SourcePackages
           export GYM_CLONED_SOURCE_PACKAGES_PATH="$(pwd)/SourcePackages"
+
+          # Xcode 26.3 occasionally crashes in package graph updates. Resolve
+          # dependencies separately and retry once with a fresh checkout path.
+          for attempt in 1 2; do
+            echo "Resolving Swift packages (attempt $attempt/2)"
+            if xcodebuild -resolvePackageDependencies \
+              -project "moers festival.xcodeproj" \
+              -scheme "moers festival" \
+              -clonedSourcePackagesDirPath "$GYM_CLONED_SOURCE_PACKAGES_PATH"; then
+              break
+            fi
+
+            if [ "$attempt" -eq 2 ]; then
+              echo "Swift package resolution failed after retry."
+              exit 1
+            fi
+
+            echo "Retrying package resolution with a clean SourcePackages directory..."
+            rm -rf SourcePackages
+            mkdir -p SourcePackages
+          done
+
           bundle exec fastlane ios upload --verbose
         env:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
