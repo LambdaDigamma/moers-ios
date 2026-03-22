@@ -108,7 +108,7 @@ class NewMapDrawerViewController: UIViewController {
     
     // MARK: - Actions
     
-    public func setCollectionViewScrollInteraction(isEnabled: Bool) {
+    func setCollectionViewScrollInteraction(isEnabled: Bool) {
         collectionView.isScrollEnabled = isEnabled
     }
     
@@ -118,7 +118,7 @@ class NewMapDrawerViewController: UIViewController {
         observePlaces()
     }
 
-    public func updateBooths(_ booths: [DorfFeature]) {
+    func updateBooths(_ booths: [DorfFeature]) {
         self.booths = booths
         applySearch(searchBar.text ?? "")
     }

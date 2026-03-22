@@ -12,14 +12,12 @@ import ModernNetworking
 import MMEvents
 import OSLog
 
-nonisolated public final class DefaultLocationEventService: LocationEventService, @unchecked Sendable {
+public final class DefaultLocationEventService: LocationEventService, @unchecked Sendable {
 
     nonisolated(unsafe) private let loader: HTTPLoader
-    private let logger: Logger
 
-    public init(loader: HTTPLoader) {
+    public nonisolated init(loader: HTTPLoader) {
         self.loader = loader
-        self.logger = Logger(.coreApi)
     }
 
     public func getLocations() async throws -> [Place] {
@@ -70,9 +68,12 @@ nonisolated public final class DefaultLocationEventService: LocationEventService
         // Resolve file URLs on the main actor once before spawning concurrent tasks.
         let fileUrls: [String: URL] = await MainActor.run {
             LocalFGDStore.createDirectoryIfNeeded()
-            return Dictionary(uniqueKeysWithValues: archives.compactMap { key in
-                LocalFGDStore.getFileUrl(key: key).map { (key, $0) }
-            })
+            return Dictionary(
+                archives.compactMap { key in
+                    LocalFGDStore.getFileUrl(key: key).map { (key, $0) }
+                },
+                uniquingKeysWith: { first, _ in first }
+            )
         }
 
         await withTaskGroup(of: Void.self) { group in
@@ -82,7 +83,9 @@ nonisolated public final class DefaultLocationEventService: LocationEventService
             }
         }
 
-        NotificationCenter.default.post(name: .updateFestivalGeoData, object: nil)
+        await MainActor.run {
+            NotificationCenter.default.post(name: .updateFestivalGeoData, object: nil)
+        }
 
     }
 
@@ -94,12 +97,10 @@ nonisolated public final class DefaultLocationEventService: LocationEventService
         request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
 
         if reset {
-            logger.info("Resetting festival geo data for key: \(key)")
             lastUpdate.reset()
         }
 
         if !lastUpdate.shouldReload(ttl: .minutes(120)) {
-            logger.info("Skip reloading festival geo data for key: \(key)")
             return
         }
 
