@@ -27,6 +27,7 @@
 		DF5975C82F01E08D00512386 /* NewsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C72F01E08D00512386 /* NewsFeature */; };
 		DF62C61A2247B98E008425EC /* ContentDrawer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF62C6192247A349008425EC /* ContentDrawer.storyboard */; };
 		DF68FFF3282AEDD500C63690 /* FGD2022 in Resources */ = {isa = PBXBuildFile; fileRef = DF68FFF2282AEDD500C63690 /* FGD2022 */; };
+		DF7B18782F704D6C00D88E92 /* WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DFA90CB929E945D600FF8366 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DF7FB53527F672E300F718F2 /* StateViewController in Frameworks */ = {isa = PBXBuildFile; productRef = DF7FB53427F672E300F718F2 /* StateViewController */; };
 		DF82B76F2BED3750005F41F2 /* FGD2024 in Resources */ = {isa = PBXBuildFile; fileRef = DF82B76E2BED3750005F41F2 /* FGD2024 */; };
 		DF9B4E6427F668A200817DA3 /* INSPhotoGallery in Frameworks */ = {isa = PBXBuildFile; productRef = DF9B4E6327F668A200817DA3 /* INSPhotoGallery */; };
@@ -45,6 +46,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		DF7B18792F704D6C00D88E92 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF35B37E201DC72900118FD1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DFA90CB829E945D600FF8366;
+			remoteInfo = WidgetsExtension;
+		};
 		DF87B2F7201DFB2700E1B97C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DF35B37E201DC72900118FD1 /* Project object */;
@@ -81,6 +89,7 @@
 			dstPath = "";
 			dstSubfolder = PlugIns;
 			files = (
+				DF7B18782F704D6C00D88E92 /* WidgetsExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 		};
@@ -561,6 +570,9 @@
 			);
 			buildRules = (
 			);
+			dependencies = (
+				DF7B187A2F704D6C00D88E92 /* PBXTargetDependency */,
+			);
 			fileSystemSynchronizedGroups = (
 				DF1E14152DF0B49B007015DC /* FGD2025 */,
 				DF5975E92F01E4F400512386 /* Config */,
@@ -891,19 +903,7 @@
 		DFB708BE25AEFE4900D3318F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			shellPath = /bin/sh;
-			shellScript = (
-				"# cd $PROJECT_DIR",
-				"# cd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"",
-				"# RELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)",
-				"# BUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" Info.plist)",
-				"# VERSION_STRING=\"$RELEASE_VERSION ($BUILD_NUMBER)\"",
-				"# /usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $VERSION_STRING\" Settings.bundle/Root.plist",
-				"",
-				"# if [ $CONFIGURATION == \"Release\" ]; then",
-				"#    rm -rf \"$BUILD_APP_DIR/Settings.bundle\"",
-				"# fi",
-				"",
-			);
+			shellScript = "# cd $PROJECT_DIR\n# cd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"\n# RELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)\n# BUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" Info.plist)\n# VERSION_STRING=\"$RELEASE_VERSION ($BUILD_NUMBER)\"\n# /usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $VERSION_STRING\" Settings.bundle/Root.plist\n\n# if [ $CONFIGURATION == \"Release\" ]; then\n#    rm -rf \"$BUILD_APP_DIR/Settings.bundle\"\n# fi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -955,6 +955,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		DF7B187A2F704D6C00D88E92 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DFA90CB829E945D600FF8366 /* WidgetsExtension */;
+			targetProxy = DF7B18792F704D6C00D88E92 /* PBXContainerItemProxy */;
+		};
 		DF87B2F8201DFB2700E1B97C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DF35B385201DC72900118FD1 /* moers festival */;
