@@ -69,19 +69,19 @@ public struct TimetableScreen: View {
             await viewModel.load()
         }
         .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Menu {
-                    ForEach(DailyEventsDisplayMode.allCases) { mode in
-                        Button {
-                            displayMode = mode
-                        } label: {
-                            Label(mode.title, systemImage: mode.systemImage)
-                        }
-                    }
-                } label: {
-                    Label(EventPackageStrings.displayMode, systemImage: displayMode.systemImage)
-                }
-            }
+//            ToolbarItem(placement: .topBarLeading) {
+//                Menu {
+//                    ForEach(DailyEventsDisplayMode.allCases) { mode in
+//                        Button {
+//                            displayMode = mode
+//                        } label: {
+//                            Label(mode.title, systemImage: mode.systemImage)
+//                        }
+//                    }
+//                } label: {
+//                    Label(EventPackageStrings.displayMode, systemImage: displayMode.systemImage)
+//                }
+//            }
 
             ToolbarItem(placement: .primaryAction) {
                 Button {
