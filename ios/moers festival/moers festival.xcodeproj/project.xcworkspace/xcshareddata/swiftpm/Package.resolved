@@ -204,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/lambdadigamma/MediaLibraryKit",
       "state" : {
-        "revision" : "1e2b55b4499db6357a4ca6ab96baa9541346c9ff",
-        "version" : "1.0.0"
+        "revision" : "78a2714d237cb0af663509f02dca5e7a472ddcd5",
+        "version" : "1.0.1"
       }
     },
     {

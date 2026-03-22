@@ -48,7 +48,7 @@ let package = Package(
         .package(url: "https://github.com/LambdaDigamma/EventBus", from: "0.5.2"),
         .package(url: "https://github.com/LambdaDigamma/TextFieldEffects", branch: "master"),
         .package(url: "https://github.com/LambdaDigamma/swift-prosemirror", .upToNextMajor(from: "0.0.8")),
-        .package(url: "https://github.com/LambdaDigamma/MediaLibraryKit", .upToNextMajor(from: "1.0.0")),
+        .package(url: "https://github.com/LambdaDigamma/MediaLibraryKit", .upToNextMajor(from: "1.0.1")),
         .package(url: "https://github.com/LambdaDigamma/HanekeSwift", .upToNextMajor(from: "0.14.0")),
         .package(url: "https://github.com/nmdias/FeedKit", .upToNextMajor(from: "10.4.0")),
         .package(url: "https://github.com/groue/GRDB.swift", .upToNextMajor(from: "7.9.0")),
