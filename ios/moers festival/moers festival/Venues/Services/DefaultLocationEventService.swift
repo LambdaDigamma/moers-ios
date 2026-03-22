@@ -12,14 +12,12 @@ import ModernNetworking
 import MMEvents
 import OSLog
 
-public actor DefaultLocationEventService: LocationEventService {
+public final class DefaultLocationEventService: LocationEventService, @unchecked Sendable {
 
-    private let loader: HTTPLoader
-    private let logger: Logger
+    nonisolated(unsafe) private let loader: HTTPLoader
 
-    public init(loader: HTTPLoader) {
+    public nonisolated init(loader: HTTPLoader) {
         self.loader = loader
-        self.logger = Logger(.coreApi)
     }
 
     public func getLocations() async throws -> [Place] {
@@ -85,7 +83,9 @@ public actor DefaultLocationEventService: LocationEventService {
             }
         }
 
-        NotificationCenter.default.post(name: .updateFestivalGeoData, object: nil)
+        await MainActor.run {
+            NotificationCenter.default.post(name: .updateFestivalGeoData, object: nil)
+        }
 
     }
 
@@ -97,12 +97,10 @@ public actor DefaultLocationEventService: LocationEventService {
         request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
 
         if reset {
-            logger.info("Resetting festival geo data for key: \(key)")
             lastUpdate.reset()
         }
 
         if !lastUpdate.shouldReload(ttl: .minutes(120)) {
-            logger.info("Skip reloading festival geo data for key: \(key)")
             return
         }
 
