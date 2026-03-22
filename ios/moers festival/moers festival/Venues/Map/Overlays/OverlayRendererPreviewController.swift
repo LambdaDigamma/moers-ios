@@ -29,13 +29,9 @@ extension UIViewController {
 }
 
 
-public class OverlayRendererPreviewController<MultiPolygonRenderer: MKMultiPolygonRenderer>: UIViewController, MKMapViewDelegate {
+final class OverlayRendererPreviewController<MultiPolygonRenderer: MKMultiPolygonRenderer>: UIViewController, MKMapViewDelegate {
     
-    lazy var map: MKMapView = {
-        let map = MKMapView()
-        map.translatesAutoresizingMaskIntoConstraints = false
-        return map
-    }()
+    private let map = MKMapView()
     
 //    private let multiPolygonRenderer: MultiPolygonRenderer
     
@@ -61,6 +57,7 @@ public class OverlayRendererPreviewController<MultiPolygonRenderer: MKMultiPolyg
     
     private func setupUI() {
         
+        map.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(map)
         self.map.delegate = self
         

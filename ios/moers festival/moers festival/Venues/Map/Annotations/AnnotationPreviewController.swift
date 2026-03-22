@@ -10,13 +10,9 @@ import UIKit
 import MapKit
 import SwiftUI
 
-public class AnnotationPreviewController<AnnotationView: MKAnnotationView>: UIViewController, MKMapViewDelegate {
+final class AnnotationPreviewController<AnnotationView: MKAnnotationView>: UIViewController, MKMapViewDelegate {
     
-    lazy var map: MKMapView = {
-        let map = MKMapView()
-        map.translatesAutoresizingMaskIntoConstraints = false
-        return map
-    }()
+    private let map = MKMapView()
     
     public init() {
         super.init(nibName: nil, bundle: nil)
@@ -41,6 +37,7 @@ public class AnnotationPreviewController<AnnotationView: MKAnnotationView>: UIVi
     
     private func setupUI() {
         
+        map.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(map)
         self.map.delegate = self
         
