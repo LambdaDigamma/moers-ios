@@ -12,6 +12,7 @@ import Core
 import MMEvents
 import Factory
 import Combine
+import OSLog
 
 public class NewMapViewController: UIViewController {
     
@@ -23,6 +24,8 @@ public class NewMapViewController: UIViewController {
     public var coordinator: EventCoordinator?
     
     private var cancellables = Set<AnyCancellable>()
+    private var loadTask: Task<Void, Never>?
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "moers-festival", category: "NewMapViewController")
     
     private lazy var mapView: MKMapView = {
         let map = MKMapView()
@@ -49,7 +52,8 @@ public class NewMapViewController: UIViewController {
         setupMap()
         setupListeners()
 
-        Task {
+        loadTask = Task { [weak self] in
+            guard let self else { return }
             await loadFestivalDataFromDisk()
             await locationService.updateLocalFestivalArchive(force: false)
             await loadFestivalDataFromDisk()
@@ -75,8 +79,12 @@ public class NewMapViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: .updateFestivalGeoData, object: nil)
     }
 
+    deinit {
+        loadTask?.cancel()
+    }
+
     @objc private func receiveUpdateGeoData() {
-        Task { await loadFestivalDataFromDisk() }
+        Task { [weak self] in await self?.loadFestivalDataFromDisk() }
     }
     
     // MARK: - Setup
@@ -160,8 +168,12 @@ public class NewMapViewController: UIViewController {
     @MainActor
     private func loadFestivalDataFromDisk() async {
         guard let directory = LocalFGDStore.directory() else { return }
-        guard let collection = try? FGDArchiveDecoder().decode(directory) else { return }
-        applyFestivalData(collection)
+        do {
+            let collection = try FGDArchiveDecoder().decode(directory)
+            applyFestivalData(collection)
+        } catch {
+            logger.error("Failed to decode festival geo data: \(error)")
+        }
     }
 
     @MainActor
