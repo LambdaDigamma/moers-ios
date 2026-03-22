@@ -32,6 +32,26 @@ public class TimetableViewModel: ObservableObject {
     public var events: [EventListItemViewModel] {
         days.flatMap(\.events)
     }
+
+    /// Unique venue names for the selected day, ordered by first event appearance.
+    public var venues: [String] {
+        let dayEvents = eventsForSelectedDay()
+        var seen = Set<String>()
+        var result: [String] = []
+        for event in dayEvents {
+            if let location = event.location, !seen.contains(location) {
+                seen.insert(location)
+                result.append(location)
+            }
+        }
+        return result
+    }
+
+    public func eventsForSelectedDay() -> [EventListItemViewModel] {
+        days.first(where: {
+            Calendar.autoupdatingCurrent.isDate($0.date, inSameDayAs: selectedDate)
+        })?.events ?? []
+    }
     
     @LazyInjected(\.favoriteEventsStore) private var favoriteEventsStore
     

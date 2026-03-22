@@ -27,5 +27,16 @@ public enum DailyEventsDisplayMode: Int, CaseIterable, Identifiable, Hashable {
                 return String(localized: "Venue Grid", bundle: .module)
         }
     }
-    
+
+    public var systemImage: String {
+        switch self {
+            case .compact:
+                return "list.bullet"
+            case .images:
+                return "photo"
+            case .venueGrid:
+                return "calendar.day.timeline.left"
+        }
+    }
+
 }

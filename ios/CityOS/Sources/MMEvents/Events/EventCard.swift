@@ -30,6 +30,7 @@ public struct EventCard: View {
             .background(Color.tertiarySystemBackground)
             .frame(maxWidth: .infinity)
             .aspectRatio(CGSize(width: 16, height: 10), contentMode: .fit)
+            .clipped()
             .cornerRadius(16)
             
 //            Rectangle()
