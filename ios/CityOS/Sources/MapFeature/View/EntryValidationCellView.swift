@@ -49,6 +49,5 @@ public struct EntryValidationCellView: View {
         title: "Sample Entry",
         description: "This is a validation entry"
     )
-    .previewLayout(.sizeThatFits)
     .padding()
 }

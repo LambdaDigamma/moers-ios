@@ -10,7 +10,7 @@ import FeedKit
 import OSLog
 import Core
 
-public class DefaultNewsService: NewsService {
+public struct DefaultNewsService: NewsService, Sendable {
     
     private let logger: Logger = Logger(.coreApi)
     
@@ -25,7 +25,7 @@ public class DefaultNewsService: NewsService {
         
         let (rp, lk) = try await (rpFeed, lkFeed)
         
-        let allItems = rp.items.clean(settingSource: "RP Online") + lk.items.clean(settingSource: "Lokalkompass")
+        let allItems = (rp.channel?.items.clean(settingSource: "RP Online") ?? []) + (lk.channel?.items.clean(settingSource: "Lokalkompass") ?? [])
         
         return allItems
             .sorted { $0.date > $1.date }
@@ -45,25 +45,15 @@ public class DefaultNewsService: NewsService {
     }
     
     private func loadSource(url: URL) async throws -> RSSFeed {
-        return try await withCheckedThrowingContinuation { continuation in
-            let parser = FeedParser(URL: url)
-            
-            parser.parseAsync(queue: DispatchQueue.global(qos: .userInitiated)) { [weak self] result in
-                switch result {
-                case .success(let feed):
-                    if let rssFeed = feed.rssFeed {
-                        continuation.resume(returning: rssFeed)
-                    } else {
-                        self?.logger.error("The provided feed is no rss feed.")
-                        continuation.resume(throwing: URLError(.cannotDecodeRawData))
-                    }
-                    
-                case .failure(let error):
-                    self?.logger.error("Failed loading feed: \(error.localizedDescription, privacy: .public)")
-                    continuation.resume(throwing: error)
-                }
-            }
+        
+        let feed = try await Feed(remoteURL: url)
+        
+        if let rss = feed.rss {
+            return rss
+        } else {
+            throw URLError(.cannotDecodeRawData)
         }
+        
     }
     
 }
@@ -77,8 +67,8 @@ public extension Optional<[RSSFeedItem]> {
         }
         
         return items.map { item in
-            let itemSource = RSSFeedItemSource()
-            itemSource.value = source
+            var item = item
+            let itemSource = RSSFeedSource(text: source)
             item.source = itemSource
             return item
         }

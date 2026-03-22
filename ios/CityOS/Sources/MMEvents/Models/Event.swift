@@ -7,9 +7,9 @@
 
 import Foundation
 import MMPages
-import MediaLibraryKit
+@preconcurrency import MediaLibraryKit
 
-public struct Event: BaseEvent, Equatable, Hashable {
+public struct Event: BaseEvent, Equatable, Hashable, Sendable {
     
     public typealias ID = Int
     

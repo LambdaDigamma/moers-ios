@@ -143,6 +143,24 @@ final public class EventStore {
             .eraseToAnyPublisher()
         
     }
+
+    public func observeAllEventsWithPlace() -> AnyPublisher<[EventWithPlace], Error> {
+        
+        let request = EventRecord
+            .including(optional: EventRecord.place)
+            .order(EventRecord.Columns.startDate.asc)
+        
+        let observation = ValueObservation
+            .tracking { db in
+                try EventWithPlace.fetchAll(db, request)
+            }
+            .removeDuplicates()
+        
+        return observation
+            .publisher(in: reader, scheduling: .immediate)
+            .eraseToAnyPublisher()
+        
+    }
     
     public func observeEvent(id: Event.ID) -> AnyPublisher<EventWithPlace?, Error> {
         

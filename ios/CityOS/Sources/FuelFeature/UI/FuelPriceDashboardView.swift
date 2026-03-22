@@ -97,6 +97,5 @@ public struct FuelPriceDashboardView: View {
     return FuelPriceDashboardView(viewModel: viewModel)
         .preferredColorScheme(.dark)
         .padding()
-        .previewLayout(.sizeThatFits)
     
 }

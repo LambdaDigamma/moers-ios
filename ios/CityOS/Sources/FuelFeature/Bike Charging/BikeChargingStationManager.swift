@@ -10,9 +10,9 @@ import Foundation
 import CoreLocation
 
 // todo: reimplement this
-public struct BikeChargingStationManager {
+public struct BikeChargingStationManager: Sendable {
     
-    public static var shared = BikeChargingStationManager()
+    public static let shared = BikeChargingStationManager()
     
     private let url = URL(string: "https://www.offenesdatenportal.de/dataset/16cf7d90-dbbb-4ce1-aeec-762dfb49b973/resource/4a3b89d7-3301-45bf-97f6-9ba06b23256f/download/e-bike-ladestationen-neu.csv")
     

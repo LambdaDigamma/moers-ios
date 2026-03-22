@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum DrawerItem: Hashable {
+nonisolated enum DrawerItem: Hashable, Sendable {
     
     case venue(FestivalPlaceRowUi)
     

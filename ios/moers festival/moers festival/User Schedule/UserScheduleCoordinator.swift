@@ -38,10 +38,6 @@ class UserScheduleCoordinator: SharedCoordinator {
         
     }
     
-    func rootViewController() -> UIViewController {
-        navigationController
-    }
-    
     private func makeMenuItem() -> MenuItem {
         
         return MenuItem(

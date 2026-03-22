@@ -10,7 +10,7 @@ import Factory
 import ModernNetworking
 
 public extension Container {
-
+    
     var locationEventService: Factory<LocationEventService> {
         self {
             DefaultLocationEventService(loader: self.httpLoader())

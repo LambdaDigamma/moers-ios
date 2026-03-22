@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Publication: Codable, Equatable, Hashable {
+public struct Publication: Codable, Equatable, Hashable, Sendable {
     var order: Int?
     var createdAt: Date? = Date()
     var updatedAt: Date? = Date()

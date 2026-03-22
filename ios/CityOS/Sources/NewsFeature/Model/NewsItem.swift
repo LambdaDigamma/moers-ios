@@ -15,7 +15,6 @@ public protocol NewsItem: Hashable {
     
 }
 
-extension RSSFeedItem: @retroactive Hashable {}
 extension RSSFeedItem: NewsItem {
     
     public var date: Date {
@@ -23,7 +22,7 @@ extension RSSFeedItem: NewsItem {
     }
     
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(self.guid?.value)
+        hasher.combine(self.guid?.text)
         hasher.combine(self.title)
         hasher.combine(self.description)
     }

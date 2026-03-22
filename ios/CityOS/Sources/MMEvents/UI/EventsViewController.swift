@@ -46,7 +46,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     private let fuse = Fuse(threshold: 0.25, isCaseSensitive: false)
     
     private var updateInterval: TimeInterval = 60.0
-    private var updateTimer: Timer!
+    nonisolated(unsafe) private var updateTimer: Timer!
     
     private var isSearchEnabled = true
     
@@ -68,7 +68,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
         case dated(String)
     }
     
-    private enum Item: Hashable, Equatable {
+    private enum Item: Hashable, Equatable, @unchecked Sendable {
         case event(EventViewModel<Event>)
         case hint(String)
     }
@@ -266,7 +266,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
             
             cell.contentConfiguration = content
             
-            var backgroundConfig = UIBackgroundConfiguration.listGroupedCell()
+            let backgroundConfig = UIBackgroundConfiguration.listGroupedCell()
             cell.backgroundConfiguration = backgroundConfig
             
             // Add heart icon for liked events
@@ -308,7 +308,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
             
             cell.contentConfiguration = content
             
-            var backgroundConfig = UIBackgroundConfiguration.listGroupedCell()
+            let backgroundConfig = UIBackgroundConfiguration.listGroupedCell()
             cell.backgroundConfiguration = backgroundConfig
         }
         
@@ -689,6 +689,7 @@ extension EventsViewController: UICollectionViewDelegate {
 
 #if compiler(>=6.0)
 /// Factory method to create the appropriate events view controller based on iOS version
+@MainActor
 public func createEventsViewController(
     title: String = "",
     isSearchEnabled: Bool = true,

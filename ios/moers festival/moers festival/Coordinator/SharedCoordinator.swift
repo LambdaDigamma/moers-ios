@@ -41,6 +41,26 @@ public class SharedCoordinator: Coordinator {
         
     }
     
+    public func showEventDetail(eventID: Event.ID) {
+
+        let detailController = ModernEventDetailViewController(
+            eventID: eventID
+        )
+
+        detailController.coordinator = self
+        detailController.showCloseButton = true
+
+        let modalNavController = UINavigationController(rootViewController: detailController)
+        modalNavController.modalPresentationStyle = .formSheet
+
+        var presenter: UIViewController = self.navigationController
+        while let presented = presenter.presentedViewController {
+            presenter = presented
+        }
+        presenter.present(modalNavController, animated: true)
+
+    }
+    
     public func pushPlaceDetail(placeID: Place.ID) {
         
         let usedNavigationController = currentModalNavigationController ?? navigationController

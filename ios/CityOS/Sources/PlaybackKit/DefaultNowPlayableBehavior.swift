@@ -9,10 +9,10 @@
 import Foundation
 import MediaPlayer
 
-public class DefaultNowPlayableBehavior: NowPlayable {
-    
+public class DefaultNowPlayableBehavior: NowPlayable, @unchecked Sendable {
+
     public var defaultAllowsExternalPlayback: Bool { return true }
-    
+
     public var defaultRegisteredCommands: [NowPlayableCommand] {
         return [
             .togglePausePlay,
@@ -28,12 +28,12 @@ public class DefaultNowPlayableBehavior: NowPlayable {
             .disableLanguageOption
         ]
     }
-    
+
     /// By default, no commands are disabled.
     public var defaultDisabledCommands: [NowPlayableCommand] {
         return []
     }
-    
+
     /// The observer of audio session interruption notifications.
     private var interruptionObserver: NSObjectProtocol!
     

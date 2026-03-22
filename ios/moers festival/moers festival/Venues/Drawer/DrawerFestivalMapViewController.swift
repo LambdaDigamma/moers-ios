@@ -15,7 +15,7 @@ import Combine
 import Pulley
 import GRDB
 
-public enum DrawerFestivalMapSection {
+nonisolated public enum DrawerFestivalMapSection: Hashable, Sendable {
     case main
     case booths
 }

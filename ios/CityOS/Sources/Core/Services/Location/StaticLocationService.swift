@@ -10,46 +10,46 @@ import CoreLocation
 import Combine
 
 public final class StaticLocationService: LocationService {
-    
+
     // MARK: - Streams
-    
-    public var authorizationStatuses: AsyncStream<CLAuthorizationStatus> {
-        AsyncStream { continuation in
-            self.authorizationContinuation = continuation
-            continuation.yield(currentAuthorizationStatus)
-        }
-    }
-    
-    public var locations: AsyncThrowingStream<CLLocation, Error> {
-        AsyncThrowingStream { continuation in
-            self.locationContinuation = continuation
-            continuation.yield(currentLocation)
-        }
-    }
-    
+
+    public let authorizationStatuses: AsyncStream<CLAuthorizationStatus>
+    public let locations: AsyncThrowingStream<CLLocation, Error>
+
     // MARK: - Internal State
-    
+
     private var currentAuthorizationStatus: CLAuthorizationStatus
     private var currentLocation: CLLocation
-    
-    private var authorizationContinuation: AsyncStream<CLAuthorizationStatus>.Continuation?
-    private var locationContinuation: AsyncThrowingStream<CLLocation, Error>.Continuation?
-    
+
+    private let authorizationContinuation: AsyncStream<CLAuthorizationStatus>.Continuation
+    private let locationContinuation: AsyncThrowingStream<CLLocation, Error>.Continuation
+
     // MARK: - Init
-    
+
     public init(
         authorizationStatus: CLAuthorizationStatus = .authorizedAlways,
         initialLocation: CLLocation = CoreSettings.regionLocation
     ) {
         self.currentAuthorizationStatus = authorizationStatus
         self.currentLocation = initialLocation
+
+        let (authStream, authContinuation) = AsyncStream.makeStream(of: CLAuthorizationStatus.self)
+        self.authorizationStatuses = authStream
+        self.authorizationContinuation = authContinuation
+
+        let (locationStream, locationContinuation) = AsyncThrowingStream.makeStream(of: CLLocation.self)
+        self.locations = locationStream
+        self.locationContinuation = locationContinuation
+
+        authContinuation.yield(authorizationStatus)
+        locationContinuation.yield(initialLocation)
     }
     
     // MARK: - Public API
     
     public func requestWhenInUseAuthorization() {
         currentAuthorizationStatus = .authorizedWhenInUse
-        authorizationContinuation?.yield(.authorizedWhenInUse)
+        authorizationContinuation.yield(.authorizedWhenInUse)
     }
     
     public func requestCurrentLocation() {
@@ -59,15 +59,15 @@ public final class StaticLocationService: LocationService {
         )
         
         currentLocation = location
-        locationContinuation?.yield(location)
+        locationContinuation.yield(location)
     }
-    
+
     public func stopMonitoring() {
         // No-op (static service)
     }
     
     public func configureLocation(_ location: CLLocation) {
         currentLocation = location
-        locationContinuation?.yield(location)
+        locationContinuation.yield(location)
     }
 }

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 import ModernNetworking
 
 public class StaticPlaceService: PlaceService {
@@ -24,20 +23,6 @@ public class StaticPlaceService: PlaceService {
                 return ResourceCollection(data: success, links: .init(), meta: .init())
             case .failure(let failure):
                 throw failure
-        }
-        
-    }
-    
-    public func getPlaces() -> AnyPublisher<[Place], Error> {
-        
-        switch places {
-            case .success(let success):
-                return Just(success)
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
-            case .failure(let failure):
-                return Fail(error: failure)
-                    .eraseToAnyPublisher()
         }
         
     }

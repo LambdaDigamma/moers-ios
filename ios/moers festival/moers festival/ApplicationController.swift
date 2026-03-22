@@ -62,25 +62,6 @@ class ApplicationController: NSObject, ApplicationControlling {
         self.entryManager = entryManager
         self.trackerManager = trackerManager
         
-//        let configurationURL = URL(string: "https://s3.eu-central-1.amazonaws.com/com.donnywals.blog/config.json")!
-//
-//        let configProvider = ConfigurationProvider<AppConfiguration>(
-//            remoteLoader: DefaultRemoteConfigurationLoader(configurationURL: configurationURL),
-//            localLoader: DefaultLocalConfigurationLoader()
-//        )
-//
-//        configProvider.updateConfiguration()
-        
-//        let config = DefaultLocalConfigurationLoader<AppConfiguration>().defaultConfig
-        
-//        configProvider.$configuration.sink { newConfig in
-//
-//            print("Configuration")
-//            print(newConfig)
-//
-//        }
-//        .store(in: &cancellables)
-    
 //        self.setupNotificationCenter()
         
     }
@@ -140,11 +121,12 @@ class ApplicationController: NSObject, ApplicationControlling {
         
     }
     
-    static func eventCache() -> Storage<String, [Event]> {
+    nonisolated static func eventCache() -> Storage<String, [Event]> {
         
         return try! Storage<String, [Event]>(
             diskConfig: DiskConfig(name: "EventService"),
             memoryConfig: MemoryConfig(),
+            fileManager: .default,
             transformer: TransformerFactory.forCodable(ofType: [Event].self)
         )
         
@@ -278,9 +260,6 @@ class ApplicationController: NSObject, ApplicationControlling {
     }
     
     public func openMap(animated: Bool = false) {
-        
-        currentMap.navigationController.popToRootViewController(animated: false)
-        currentMap.navigationController.dismiss(animated: false)
         
         if splitViewController.displayCompact {
             splitViewController.tabController.selectedIndex = TabIndices.maps.rawValue

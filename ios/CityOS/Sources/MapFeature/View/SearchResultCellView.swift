@@ -54,5 +54,4 @@ struct SearchResultCellView: View {
         subtitle: "123 Main St",
         showCheckmark: true
     )
-    .previewLayout(.sizeThatFits)
 }

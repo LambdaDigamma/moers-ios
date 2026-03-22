@@ -9,6 +9,6 @@ import Foundation
 
 final public class SoundCloudBlock: NSObject, Blockable {
     
-    public static var type: BlockType = .soundcloud
+    public static let type: BlockType = .soundcloud
     
 }

@@ -26,7 +26,7 @@ public class CoreSettings {
         longitude: regionCenter.longitude
     )
     
-    public static var userDefaults = UserDefaults.standard
+    nonisolated(unsafe) public static let userDefaults = UserDefaults.standard
     
 }
 

@@ -21,6 +21,7 @@ public class MapCoordintor: Coordinator {
     
     public var mainViewController: LegacyMainViewController?
     
+    @MainActor
     public init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController()
     ) {
@@ -40,8 +41,9 @@ public class MapCoordintor: Coordinator {
 //        let mainViewController = MainMapViewController()
         
         mainViewController.navigationItem.largeTitleDisplayMode = .never
-        mainViewController.tabBarItem = generateTabBarItem()
         mainViewController.coordinator = self
+        
+        self.navigationController.tabBarItem = generateTabBarItem()
         
         self.navigationController.viewControllers = [mainViewController]
         self.mainViewController = mainViewController
@@ -52,7 +54,7 @@ public class MapCoordintor: Coordinator {
         
     }
     
-    private func generateTabBarItem() -> UITabBarItem {
+    @MainActor private func generateTabBarItem() -> UITabBarItem {
         
         let tabBarItem = UITabBarItem(
             title: AppStrings.Menu.map,
@@ -67,6 +69,7 @@ public class MapCoordintor: Coordinator {
         
     }
     
+    @MainActor
     public func showSearch() {
         
         mainViewController?.setDrawerPosition(position: .open, animated: true)

@@ -9,21 +9,24 @@ import SwiftUI
 
 public struct ExtendedDayEventsView: View {
     
-    private let date: Date
+    private let day: TimetableDay
+    private let isFilterActive: Bool
     
-    @ObservedObject var viewModel: DayEventsViewModel
-    @EnvironmentObject var transmitter: TimetableTransmitter
+    @EnvironmentObject private var transmitter: TimetableTransmitter
     
-    public init(viewModel: DayEventsViewModel) {
-        self.date = viewModel.date
-        self.viewModel = viewModel
+    public init(
+        day: TimetableDay,
+        isFilterActive: Bool
+    ) {
+        self.day = day
+        self.isFilterActive = isFilterActive
     }
     
     public var body: some View {
         
         ZStack {
             
-            if viewModel.events.isEmpty && !viewModel.filter.isEmpty {
+            if day.events.isEmpty && isFilterActive {
                 VStack(spacing: 16) {
                     Image(systemName: "line.3.horizontal.decrease.circle")
                         .font(.system(size: 48))
@@ -38,7 +41,7 @@ public struct ExtendedDayEventsView: View {
                 ScrollView{
                     LazyVStack {
                         
-                        ForEach(viewModel.events) { event in
+                        ForEach(day.events) { event in
                             
                             Button(action: {
                                 if let eventID = event.eventID {
@@ -59,9 +62,6 @@ public struct ExtendedDayEventsView: View {
                 
             }
             
-        }
-        .task {
-            await viewModel.reload()
         }
         
     }

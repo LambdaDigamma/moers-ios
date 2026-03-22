@@ -7,15 +7,12 @@
 //
 
 import Core
-import Combine
 import MMPages
 import Foundation
 import MediaLibraryKit
-import ModernNetworking
+@preconcurrency import ModernNetworking
 
 public protocol FestivalEventService {
-    
-    func show(eventID: Event.ID) -> AnyPublisher<FestivalEventPageResponse, Error>
     
     func show(eventID: Event.ID, cacheMode: CacheMode) async throws -> FestivalEventPageResponse
     

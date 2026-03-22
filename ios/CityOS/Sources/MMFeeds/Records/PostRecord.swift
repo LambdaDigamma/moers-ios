@@ -7,9 +7,9 @@
 
 import Foundation
 import GRDB
-import MediaLibraryKit
+@preconcurrency import MediaLibraryKit
 
-struct PostRecord: Equatable, Codable {
+struct PostRecord: Equatable, Codable, Sendable {
     
     public var id: Int64?
     public var title: String
@@ -50,10 +50,10 @@ struct PostRecord: Equatable, Codable {
 
 extension PostRecord: FetchableRecord, MutablePersistableRecord {
 
-    public static var databaseTableName: String = "posts"
+    public static let databaseTableName: String = "posts"
 
-    static var databaseColumnDecodingStrategy: DatabaseColumnDecodingStrategy = .useDefaultKeys
-    static var databaseColumnEncodingStrategy: DatabaseColumnEncodingStrategy = .useDefaultKeys
+    static let databaseColumnDecodingStrategy: DatabaseColumnDecodingStrategy = .useDefaultKeys
+    static let databaseColumnEncodingStrategy: DatabaseColumnEncodingStrategy = .useDefaultKeys
     
     internal enum Columns {
         static let publishedAt = Column("published_at")

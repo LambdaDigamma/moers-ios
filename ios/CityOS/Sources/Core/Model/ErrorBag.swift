@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct ErrorBag: Equatable, Codable {
+public struct ErrorBag: Equatable, Codable, Sendable {
     
     public var message: String
     public var errors: [String: [String]]

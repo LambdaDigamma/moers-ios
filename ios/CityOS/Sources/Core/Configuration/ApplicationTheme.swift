@@ -11,7 +11,7 @@ import SwiftUI
 
 /// A unified theme configuration that uses iOS native colors for light/dark mode support.
 /// This replaces the old Gestalt-based theming with Apple's recommended approach.
-public struct ApplicationTheme {
+public struct ApplicationTheme: Sendable {
     
     /// Shared instance using native iOS semantic colors
     public static let current = ApplicationTheme()

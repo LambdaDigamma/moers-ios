@@ -7,14 +7,13 @@
 
 import Foundation
 import ModernNetworking
-import Combine
 import Cache
 import Core
 import OSLog
 
 public class DefaultLegacyEventService: LegacyEventService {
     
-    private let loader: HTTPLoader
+    nonisolated(unsafe) private let loader: HTTPLoader
     private let cache: Storage<String, [Event]>
     private let logger: Logger = .init(.coreApi)
     
@@ -25,19 +24,19 @@ public class DefaultLegacyEventService: LegacyEventService {
         self.cache = cache
     }
     
-    public func loadEvents() -> AnyPublisher<[Event], Error> {
+    public func loadEvents() async throws -> [Event] {
         
         if lastUpdate.shouldReload(ttl: .minutes(5)) {
             logger.info("Should reload all events")
-            return loadEventsFromNetwork()
+            return try await loadEventsFromNetwork()
         } else {
             logger.info("Do not reload all events")
-            return loadEventsFromPersistence()
+            return try await loadEventsFromPersistence()
         }
         
     }
     
-    public func loadEventsFromNetwork() -> AnyPublisher<[Event], Error> {
+    public func loadEventsFromNetwork() async throws -> [Event] {
         
         var request = HTTPRequest(path: Endpoint.index.path())
         
@@ -48,68 +47,46 @@ public class DefaultLegacyEventService: LegacyEventService {
         print("headers: ")
         print(request.headers)
         
-        return Deferred {
-            Future { promise in
-                self.loader.load(request) { (result) in
-                    promise(result)
-                }
-            }
-        }
-        .eraseToAnyPublisher()
-        .compactMap { $0.body }
-        .decode(type: ResourceCollection<Event>.self, decoder: Event.decoder)
-        .map({
-            $0.data.chronologically()
-        })
-        .map({
-            self.cache.async.setObject($0, forKey: CachingKeys.events.rawValue) { (result) in }
-            self.lastUpdate.setNow()
-            return $0
-        })
-        .eraseToAnyPublisher()
+        let result = await loader.load(request)
+        
+        let resource = try await result.decoding(ResourceCollection<Event>.self, using: Event.decoder)
+        
+        let events = resource.data.chronologically()
+        
+        self.cache.async.setObject(events, forKey: CachingKeys.events.rawValue) { (result) in }
+        self.lastUpdate.setNow()
+        
+        return events
         
     }
     
-    public func loadEventsFromPersistence() -> AnyPublisher<[Event], Error> {
+    public func loadEventsFromPersistence() async throws -> [Event] {
         
-        return Deferred {
-            Future { promise in
-                self.cache.async.object(forKey: CachingKeys.events.rawValue) { (result: Result<[Event], Error>) in
-                    switch result {
-                        case .success(let success):
-                            promise(.success(success))
-                            break
-                        case .failure(let failure):
-                            promise(.failure(failure))
-                    }
+        return try await withCheckedThrowingContinuation { continuation in
+            self.cache.async.object(forKey: CachingKeys.events.rawValue) { (result: Result<[Event], Error>) in
+                switch result {
+                    case .success(let success):
+                        continuation.resume(returning: success)
+                    case .failure(let failure):
+                        continuation.resume(throwing: failure)
                 }
             }
         }
-        .eraseToAnyPublisher()
         
     }
     
-    public func show(eventID: Event.ID) -> AnyPublisher<Event, Error> {
+    public func show(eventID: Event.ID) async throws -> Event {
         
         let request = HTTPRequest(
             method: .get,
             path: "/api/v1/festival/events/\(eventID)"
         )
         
-        return Deferred {
-            Future { promise in
-                self.loader.load(request) { (result) in
-                    promise(result)
-                }
-            }
-        }
-        .compactMap { $0.body }
-        .decode(type: Resource<Event>.self, decoder: Event.decoder)
-        .map({
-            return $0.data
-        })
-        .receive(on: DispatchQueue.main)
-        .eraseToAnyPublisher()
+        let result = await loader.load(request)
+        
+        let resource = try await result.decoding(Resource<Event>.self, using: Event.decoder)
+        
+        return resource.data
         
     }
     
@@ -118,21 +95,13 @@ public class DefaultLegacyEventService: LegacyEventService {
         try? cache.removeAll()
     }
     
-    public func loadStream() -> AnyPublisher<StreamConfig, Error> {
+    public func loadStream() async throws -> StreamConfig {
         
         let request = HTTPRequest(path: Endpoint.stream.path())
         
-        return Deferred {
-            Future { promise in
-                self.loader.load(request) { (result) in
-                    promise(result)
-                }
-            }
-        }
-        .eraseToAnyPublisher()
-        .compactMap { $0.body }
-        .decode(type: StreamConfig.self, decoder: StreamConfig.decoder)
-        .eraseToAnyPublisher()
+        let result = await loader.load(request)
+        
+        return try await result.decoding(StreamConfig.self, using: StreamConfig.decoder)
         
     }
     

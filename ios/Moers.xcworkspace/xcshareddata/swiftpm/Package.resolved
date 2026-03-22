@@ -1,4 +1,5 @@
 {
+  "originHash" : "e77cf407512d600c3715d20af3ad4a743f96bd7c30c173325a75f3dd15072dc3",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -19,15 +20,6 @@
       }
     },
     {
-      "identity" : "app-scaffold-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/lambdadigamma/app-scaffold-ios",
-      "state" : {
-        "revision" : "7a100e48901e340c8f2f86d33cf380ec1bc2cbb1",
-        "version" : "1.0.1"
-      }
-    },
-    {
       "identity" : "bulletinboard",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/alexaubry/BulletinBoard.git",
@@ -39,10 +31,10 @@
     {
       "identity" : "cache",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/LambdaDigamma/Cache",
+      "location" : "https://github.com/hyperoslo/Cache",
       "state" : {
-        "revision" : "034756303012a8e005c986b19969fbcd0b86612e",
-        "version" : "6.0.1"
+        "revision" : "24e47109e31b2031cb26e25cc1b81b607496066c",
+        "version" : "7.4.0"
       }
     },
     {
@@ -68,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nmdias/FeedKit",
       "state" : {
-        "revision" : "68493a33d862c33c9a9f67ec729b3b7df1b20ade",
-        "version" : "9.1.2"
+        "revision" : "e55b2cafaf67370092c91193cfb8a8b008e05888",
+        "version" : "10.4.0"
       }
     },
     {
@@ -131,8 +123,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/groue/GRDB.swift",
       "state" : {
-        "revision" : "aa0079aeb82a4bf00324561a40bffe68c6fe1c26",
-        "version" : "7.9.0"
+        "revision" : "36e30a6f1ef10e4194f6af0cff90888526f0c115",
+        "version" : "7.10.0"
       }
     },
     {
@@ -212,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LambdaDigamma/ModernNetworking",
       "state" : {
-        "branch" : "main",
-        "revision" : "c72f489ecf6afe3be37cec47f7e613b1a7b8c2a7"
+        "revision" : "a8726231832ad378b765abd322105a3daba694ff",
+        "version" : "2.0.0"
       }
     },
     {
@@ -230,8 +222,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kean/Nuke.git",
       "state" : {
-        "revision" : "0ead44350d2737db384908569c012fe67c421e4d",
-        "version" : "12.8.0"
+        "revision" : "83e19143355b02e9261edb2323b3e1e93287ebb9",
+        "version" : "12.9.0"
       }
     },
     {
@@ -284,8 +276,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections.git",
       "state" : {
-        "revision" : "7b847a3b7008b2dc2f47ca3110d8c782fb2e5c7e",
-        "version" : "1.3.0"
+        "revision" : "8d9834a6189db730f6264db7556a7ffb751e99ee",
+        "version" : "1.4.0"
       }
     },
     {
@@ -338,8 +330,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-protobuf.git",
       "state" : {
-        "revision" : "c5ab62237f21cad094812719a1bbe29443407c5f",
-        "version" : "1.34.1"
+        "revision" : "a008af1a102ff3dd6cc3764bb69bf63226d0f5f6",
+        "version" : "1.36.1"
       }
     },
     {
@@ -401,10 +393,10 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SvenTiigi/YouTubePlayerKit",
       "state" : {
-        "revision" : "fe1c1ec340f6d79866131432ecaa190fd6bbc4cb",
-        "version" : "1.9.0"
+        "revision" : "1ae827573024ab13dd6adea33b25d3eef6ff667c",
+        "version" : "2.0.5"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

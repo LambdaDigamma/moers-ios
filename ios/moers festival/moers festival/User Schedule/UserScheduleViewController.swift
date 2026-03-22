@@ -34,6 +34,7 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
     var cancellables = Set<AnyCancellable>()
     private var favoritesCancellable: AnyCancellable?
     private var filterCancellable: AnyCancellable?
+    private var eventViewModelsByID: [UUID: EventListItemViewModel] = [:]
     
     let dateComponentsFormatter = DateComponentsFormatter()
     
@@ -195,6 +196,7 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
                 }
                 
                 if filteredEvents.isEmpty {
+                    self.eventViewModelsByID = [:]
                     
                     var snapshot = NSDiffableDataSourceSnapshot<UserScheduleSection, UserScheduleItem>()
                     snapshot.appendSections([.empty])
@@ -203,12 +205,13 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
                     
                 } else {
                 
+                    var eventViewModelsByID: [UUID: EventListItemViewModel] = [:]
                     let groupedDictionary = OrderedDictionary(grouping: filteredEvents) { element in
                         element.event.startDate.getDateForGroup(acceptedOffset: 3 * 60 * 60)
                     }
                         .mapValues {
                             $0.map {
-                                UserScheduleItem.event(EventListItemViewModel(
+                                let viewModel = EventListItemViewModel(
                                     eventID: $0.event.toBase().id,
                                     title: $0.event.toBase().name,
                                     startDate: $0.event.toBase().startDate,
@@ -218,9 +221,12 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
                                     isOpenEnd: $0.event.toBase().extras?.openEnd ?? false,
                                     isLiked: true,
                                     scheduleDisplayMode: $0.event.toBase().scheduleDisplayMode
-                                ))
+                                )
+                                eventViewModelsByID[viewModel.id] = viewModel
+                                return UserScheduleItem.event(viewModel.id)
                             }
                         }
+                    self.eventViewModelsByID = eventViewModelsByID
                     
                     var snapshot = NSDiffableDataSourceSnapshot<UserScheduleSection, UserScheduleItem>()
                     
@@ -335,7 +341,10 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
         ) { (collectionView: UICollectionView, indexPath: IndexPath, item: UserScheduleItem) -> UICollectionViewCell? in
             
             switch item {
-            case .event(let eventViewModel):
+            case .event(let eventViewModelID):
+                guard let eventViewModel = self.eventViewModelsByID[eventViewModelID] else {
+                    return nil
+                }
                 let cell = collectionView.dequeueConfiguredReusableCell(
                     using: eventCellRegistration,
                     for: indexPath,
@@ -379,7 +388,8 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
         
         let item = dataSource?.itemIdentifier(for: indexPath)
         
-        guard case .event(let eventViewModel) = item else { return }
+        guard case .event(let eventViewModelID) = item else { return }
+        guard let eventViewModel = eventViewModelsByID[eventViewModelID] else { return }
         
         guard let eventID = eventViewModel.eventID else { return }
         

@@ -35,8 +35,8 @@ public class WebViewStateModel: ObservableObject {
 
 public struct WebView: View {
     public enum NavigationAction {
-        case decidePolicy(WKNavigationAction, (WKNavigationActionPolicy) -> Void)
-        case didRecieveAuthChallange(URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Void)
+        case decidePolicy(WKNavigationAction, @MainActor @Sendable (WKNavigationActionPolicy) -> Void)
+        case didRecieveAuthChallange(URLAuthenticationChallenge, @MainActor @Sendable (URLSession.AuthChallengeDisposition, URLCredential?) -> Void)
         case didStartProvisionalNavigation(WKNavigation)
         case didReceiveServerRedirectForProvisionalNavigation(WKNavigation)
         case didCommit(WKNavigation)
@@ -128,6 +128,7 @@ public struct WebViewWrapper : UIViewRepresentable {
         return Coordinator(action: action, webViewStateModel: webViewStateModel)
     }
     
+    @MainActor
     public final class Coordinator: NSObject {
         
         @ObservedObject var webViewStateModel: WebViewStateModel
@@ -145,7 +146,7 @@ public struct WebViewWrapper : UIViewRepresentable {
 
 extension WebViewWrapper.Coordinator: WKNavigationDelegate {
     
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping @MainActor @Sendable (WKNavigationActionPolicy) -> Void) {
         
         if action == nil {
             decisionHandler(.allow)
@@ -189,7 +190,7 @@ extension WebViewWrapper.Coordinator: WKNavigationDelegate {
         action?(.didFail(navigation, error))
     }
     
-    public func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+    public func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping @MainActor @Sendable (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         
         if action == nil  {
             completionHandler(.performDefaultHandling, nil)

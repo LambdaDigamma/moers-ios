@@ -8,6 +8,7 @@
 
 import UIKit
 
+@MainActor
 class OtherDataSource: NSObject {
     
     // MARK: - Properties
@@ -39,11 +40,11 @@ class OtherDataSource: NSObject {
             supplementaryView.backgroundConfiguration = .clear()
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Section, Row>(collectionView: collectionView) { collectionView, indexPath, row in
+        dataSource = UICollectionViewDiffableDataSource<Section, Row>(collectionView: collectionView) { (collectionView: UICollectionView, indexPath: IndexPath, row: Row) -> UICollectionViewCell? in
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: row)
         }
         
-        dataSource?.supplementaryViewProvider = { collectionView, kind, indexPath in
+        dataSource?.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
             return collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: indexPath)
         }
         

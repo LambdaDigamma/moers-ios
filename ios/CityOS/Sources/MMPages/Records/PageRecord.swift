@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import MediaLibraryKit
+@preconcurrency import MediaLibraryKit
 import GRDB
 
-public struct PageRecord: Equatable {
+public struct PageRecord: Equatable, Sendable {
     
     public var id: Int64?
     
@@ -32,10 +32,10 @@ public struct PageRecord: Equatable {
 
 extension PageRecord: Codable, FetchableRecord, MutablePersistableRecord {
     
-    public static var databaseTableName: String = PageTableDefinition.tableName
-    
-    public static var databaseColumnDecodingStrategy: DatabaseColumnDecodingStrategy = .convertFromSnakeCase
-    public static var databaseColumnEncodingStrategy: DatabaseColumnEncodingStrategy = .convertToSnakeCase
+    public static let databaseTableName: String = PageTableDefinition.tableName
+
+    public static let databaseColumnDecodingStrategy: DatabaseColumnDecodingStrategy = .convertFromSnakeCase
+    public static let databaseColumnEncodingStrategy: DatabaseColumnEncodingStrategy = .convertToSnakeCase
     
     public enum Columns {
         static let publishedAt = Column("published_at")

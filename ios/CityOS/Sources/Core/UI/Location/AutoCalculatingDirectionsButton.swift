@@ -60,7 +60,6 @@ public struct AutoCalculatingDirectionsButton: View {
         action: {}
     )
     .padding()
-    .previewLayout(.sizeThatFits)
     .preferredColorScheme(.dark)
     
 }

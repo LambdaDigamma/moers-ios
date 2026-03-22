@@ -11,6 +11,7 @@ import Combine
 import OSLog
 import Core
 
+@MainActor
 public class DayEventsViewModel: ObservableObject, Identifiable {
     
     internal let date: Date
@@ -58,7 +59,7 @@ public class DayEventsViewModel: ObservableObject, Identifiable {
         )
             .receive(on: DispatchQueue.main)
             .sink { (events, favoriteIDs) in
-                
+                MainActor.assumeIsolated {
                 self.events = events
                     .filter { event in
                         
@@ -80,19 +81,19 @@ public class DayEventsViewModel: ObservableObject, Identifiable {
                         
                     }
                     .map { event in
-                    return EventListItemViewModel(
-                        eventID: event.id,
-                        title: event.name,
-                        startDate: event.startDate,
-                        endDate: event.endDate,
-                        location: event.place?.name,
-                        media: event.headerMedia,
-                        isOpenEnd: event.extras?.openEnd ?? false,
-                        isLiked: favoriteIDs.contains(Int64(event.id)),
-                        scheduleDisplayMode: event.scheduleDisplayMode
-                    )
+                        return EventListItemViewModel(
+                            eventID: event.id,
+                            title: event.name,
+                            startDate: event.startDate,
+                            endDate: event.endDate,
+                            location: event.place?.name,
+                            media: event.headerMedia,
+                            isOpenEnd: event.extras?.openEnd ?? false,
+                            isLiked: favoriteIDs.contains(Int64(event.id)),
+                            scheduleDisplayMode: event.scheduleDisplayMode
+                        )
+                    }
                 }
-                
             }
             .store(in: &cancellables)
         

@@ -107,7 +107,7 @@ public struct DashboardView<Content: View>: View {
         } else if item is ParkingDashboardConfiguration {
             
             NavigationLink {
-                ParkingAreaList(parkingService: Container.shared.parkingService() ?? DefaultParkingService(loader: Container.shared.httpLoader()))
+                ParkingAreaList(parkingService: Container.shared.parkingService())
             } label: {
                 ParkingDashboardView(viewModel: parkingViewModel)
             }

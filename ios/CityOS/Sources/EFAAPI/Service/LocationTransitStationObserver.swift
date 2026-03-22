@@ -22,28 +22,20 @@ public class DefaultLocationTransitStationObserver {
         
     }
     
-    public func stationFinder(coordinate: CLLocationCoordinate2D) {
+    public func stationFinder(coordinate: CLLocationCoordinate2D) async {
         
-        transitService.findTransitLocation(
-            for: coordinate,
-            filtering: .stops,
-            maxNumberOfResults: 20
-        )
-        .sink { (completion: Subscribers.Completion<HTTPError>) in
-            
-            switch completion {
-                case .failure(let error):
-                    print(error)
-                default: break
-            }
-            
-        } receiveValue: { (locations: [TransitLocation]) in
+        do {
+            let locations = try await transitService.findTransitLocation(
+                for: coordinate,
+                filtering: .stops,
+                maxNumberOfResults: 20
+            )
             
             print("TransitLocations")
             print(locations)
-            
+        } catch {
+            print(error)
         }
-        .store(in: &cancellables)
         
     }
     

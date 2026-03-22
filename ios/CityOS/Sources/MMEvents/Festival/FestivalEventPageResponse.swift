@@ -8,10 +8,10 @@
 import Core
 import MMPages
 import Foundation
-import MediaLibraryKit
+@preconcurrency import MediaLibraryKit
 import ModernNetworking
 
-public struct FestivalEventPageResponse: Model {
+public struct FestivalEventPageResponse: Model, Sendable {
     
     public let header: Media?
     public let event: Event?

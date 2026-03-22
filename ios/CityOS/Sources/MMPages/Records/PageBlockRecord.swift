@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import MediaLibraryKit
+@preconcurrency import MediaLibraryKit
 import GRDB
 
-public struct PageBlockRecord: Equatable {
+public struct PageBlockRecord: Equatable, Sendable {
     
     public var id: Int64?
     
@@ -70,7 +70,7 @@ public struct PageBlockRecord: Equatable {
 
 extension PageBlockRecord: Codable, FetchableRecord, MutablePersistableRecord {
     
-    public static var databaseTableName: String = PageBlockTableDefinition.tableName
+    public static let databaseTableName: String = PageBlockTableDefinition.tableName
     
     public enum Columns {
         static let pageID = Column("page_id")

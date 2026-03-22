@@ -20,6 +20,7 @@ public extension Container {
                 try! Storage<String, Feed>(
                     diskConfig: DiskConfig(name: "FeedService"),
                     memoryConfig: MemoryConfig(),
+                    fileManager: .default,
                     transformer: TransformerFactory.forCodable(ofType: Feed.self)
                 )
             )

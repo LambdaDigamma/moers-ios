@@ -7,32 +7,20 @@
 
 import Foundation
 
-fileprivate var stringFormatter: DateFormatter = {
-    let dateFormatter = DateFormatter()
-    dateFormatter.locale = Locale.autoupdatingCurrent
-    return dateFormatter
-}()
-
-fileprivate var fromDateFormatter: DateFormatter = {
-    let dateFormatter = DateFormatter()
-    dateFormatter.locale = Locale(identifier: "DE_de") // TODO: Is this right?
-    return dateFormatter
-}()
-
 public extension Date {
-    
+
     func format(format: String) -> String {
-        
-        stringFormatter.dateFormat = format
-        return stringFormatter.string(from: self)
-        
+        let formatter = DateFormatter()
+        formatter.locale = Locale.autoupdatingCurrent
+        formatter.dateFormat = format
+        return formatter.string(from: self)
     }
-    
+
     static func from(_ dateString: String, withFormat format: String) -> Date? {
-        
-        fromDateFormatter.dateFormat = format
-        return fromDateFormatter.date(from: dateString)
-        
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "DE_de") // TODO: Is this right?
+        formatter.dateFormat = format
+        return formatter.date(from: dateString)
     }
     
     func beautify(format: String = "E dd.MM.yyyy") -> String {

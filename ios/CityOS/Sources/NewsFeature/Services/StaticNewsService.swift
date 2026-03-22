@@ -368,14 +368,12 @@ public class StaticNewsService: NewsService {
         </rss>
         """
         
-        let parser = FeedParser(data: data.data(using: .utf8)!)
-        let result = parser.parse()
-        let feed = try? result.get().rssFeed
+        let feed = try RSSFeed(string: data)
         
-        let items = (feed?.items ?? [])
+        let items = (feed.channel?.items ?? [])
             .map { item in
-                let source = RSSFeedItemSource()
-                source.value = feed?.title ?? ""
+                var item = item
+                let source = RSSFeedSource(text: feed.channel?.title ?? "")
                 item.source = source
                 return item
             }

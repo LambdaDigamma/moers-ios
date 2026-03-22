@@ -101,8 +101,8 @@ public struct BroadcastRow: View {
 }
 
 public struct BroadcastRow_Preview: PreviewProvider {
-    
-    public static var previews: some View {
+
+    @MainActor public static var previews: some View {
         BroadcastRow(
             title: "Landeskirchschicht in Kamp-Lintfort",
             subtitle: "9/10/21, 6:04 – 7:24 PM",

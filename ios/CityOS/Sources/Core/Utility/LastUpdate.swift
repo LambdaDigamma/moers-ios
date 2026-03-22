@@ -68,7 +68,7 @@ public class LastUpdate {
         defaults.set(nil, forKey: defaultsKey)
     }
     
-    public static let dateFormatter: ISO8601DateFormatter = {
+    nonisolated(unsafe) public static let dateFormatter: ISO8601DateFormatter = {
         let dateFormatter = ISO8601DateFormatter()
         return dateFormatter
     }()

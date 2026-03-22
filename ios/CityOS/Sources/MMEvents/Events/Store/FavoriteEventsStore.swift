@@ -23,7 +23,7 @@ extension Container {
 }
 
 // Fetch all liked events along with their details
-public struct FavoriteEventInfo: Decodable, FetchableRecord, Equatable {
+public struct FavoriteEventInfo: Decodable, FetchableRecord, Equatable, Sendable {
     public var favorite: FavoriteEventRecord
     public var event: EventRecord
     public var place: PlaceRecord?

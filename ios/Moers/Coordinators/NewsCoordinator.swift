@@ -36,10 +36,10 @@ public class NewsCoordinator: NSObject, Coordinator, SFSafariViewControllerDeleg
         
         newsViewController.navigationItem.largeTitleDisplayMode = .always
         newsViewController.title = AppStrings.Menu.news
-        newsViewController.tabBarItem = generateTabBarItem()
 //        newsViewController.coordinator = self
         
         self.navigationController.viewControllers = [newsViewController]
+        self.navigationController.tabBarItem = generateTabBarItem()
         
         Styling.applyStyling(navigationController: navigationController, statusBarStyle: .darkContent)
         

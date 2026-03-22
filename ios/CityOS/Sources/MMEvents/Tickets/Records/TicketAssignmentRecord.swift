@@ -29,7 +29,7 @@ public struct TicketAssignmentRecord: Codable, Equatable {
 
 extension TicketAssignmentRecord: FetchableRecord, MutablePersistableRecord {
     
-    public static var databaseTableName: String = TicketAssignmentTableDefinition.tableName
+    public static let databaseTableName: String = TicketAssignmentTableDefinition.tableName
     
     public enum Columns {
         static let createdAt = Column(CodingKeys.createdAt.rawValue)

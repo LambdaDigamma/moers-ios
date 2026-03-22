@@ -10,15 +10,12 @@ import Core
 import MMPages
 import MMEvents
 import UIKit
-import Combine
 import Factory
 
 public class EventViewController: DefaultHostingController {
     
     @LazyInjected(\.legacyEventService) var eventService
     @LazyInjected(\.pageService) var pageService
-    
-    private var cancellables = Set<AnyCancellable>()
     
     public var eventID: Event.ID? {
         didSet {
@@ -42,31 +39,33 @@ public class EventViewController: DefaultHostingController {
         guard let eventID = eventID else {
             return
         }
-        
-        eventService.show(eventID: eventID)
-            .sink { (completion: Subscribers.Completion<Error>) in
-                print(completion)
-            } receiveValue: { (event: Event) in
-                
+
+        Task { [weak self] in
+            guard let self else { return }
+            
+            do {
+                let event = try await self.eventService.show(eventID: eventID)
                 guard let pageID = event.pageID else { return }
                 
-                let pageViewController = PageViewController(pageID: pageID, pageService: self.pageService)
-                
-                pageViewController.config = .init(showShare: true, showLike: true)
-//                pageViewController.config.likeState = {
-//                    return viewModel.isLiked
-//                }
-//                pageViewController.config.toggleLike = {
-//                    return viewModel.toggleLike()
-//                }
-                
-                self.navigationController?.pushViewController(pageViewController, animated: true)
-                
-                
-                
-                print(event)
+                await MainActor.run {
+                    let pageViewController = PageViewController(pageID: pageID, pageService: self.pageService)
+                    
+                    pageViewController.config = .init(showShare: true, showLike: true)
+//                    pageViewController.config.likeState = {
+//                        return viewModel.isLiked
+//                    }
+//                    pageViewController.config.toggleLike = {
+//                        return viewModel.toggleLike()
+//                    }
+                    
+                    self.navigationController?.pushViewController(pageViewController, animated: true)
+                    
+                    print(event)
+                }
+            } catch {
+                print(error)
             }
-            .store(in: &cancellables)
+        }
             
     }
     

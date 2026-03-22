@@ -35,7 +35,9 @@ public enum EventUtilities {
     
     public static let defaultTimeInterval: TimeInterval = 30 * 60
     
-    public static let defaultDayOffset: TimeInterval = 60 * 60 * 4
+    /// Day offset - events after this hour (default 6 AM) belong to the next day.
+    /// Events between 0:00 and this hour belong to the previous day.
+    public static let defaultDayOffset: TimeInterval = 60 * 60 * 6
     
     public static func isActive(startDate: Date?, endDate: Date?) -> Bool {
         

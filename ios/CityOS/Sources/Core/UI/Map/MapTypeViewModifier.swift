@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 public struct ShowsUserLocationKey: EnvironmentKey {
-    public static var defaultValue: Bool = false
+    public static let defaultValue: Bool = false
 }
 
 public extension EnvironmentValues {
@@ -34,7 +34,7 @@ public struct ShowsUserLocation: ViewModifier {
 }
 
 public struct MapTypeKey: EnvironmentKey {
-    public static var defaultValue: MKMapType = .mutedStandard
+    public static let defaultValue: MKMapType = .mutedStandard
 }
 
 public extension EnvironmentValues {

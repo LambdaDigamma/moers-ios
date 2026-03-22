@@ -172,8 +172,8 @@ public struct BroadcastList: View {
 }
 
 struct BroadcastList_Preview: PreviewProvider {
-    
-    static var previews: some View {
+
+    @MainActor static var previews: some View {
         
         let viewModel = BroadcastListViewModel(service: StaticRadioService())
         

@@ -25,7 +25,6 @@
 		DF5975C42F01E08D00512386 /* MMPages in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C32F01E08D00512386 /* MMPages */; };
 		DF5975C62F01E08D00512386 /* MapFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C52F01E08D00512386 /* MapFeature */; };
 		DF5975C82F01E08D00512386 /* NewsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C72F01E08D00512386 /* NewsFeature */; };
-		DF5F729F27F07C34002AB4B8 /* AppScaffold in Frameworks */ = {isa = PBXBuildFile; productRef = DF5F729E27F07C34002AB4B8 /* AppScaffold */; };
 		DF62C61A2247B98E008425EC /* ContentDrawer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF62C6192247A349008425EC /* ContentDrawer.storyboard */; };
 		DF68FFF3282AEDD500C63690 /* FGD2022 in Resources */ = {isa = PBXBuildFile; fileRef = DF68FFF2282AEDD500C63690 /* FGD2022 */; };
 		DF7FB53527F672E300F718F2 /* StateViewController in Frameworks */ = {isa = PBXBuildFile; productRef = DF7FB53427F672E300F718F2 /* StateViewController */; };
@@ -368,7 +367,6 @@
 		DF35B383201DC72900118FD1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				DF5F729F27F07C34002AB4B8 /* AppScaffold in Frameworks */,
 				DF7FB53527F672E300F718F2 /* StateViewController in Frameworks */,
 				DF56290B257BB4F1005FC7BA /* Waxwing in Frameworks */,
 				DF5975C42F01E08D00512386 /* MMPages in Frameworks */,
@@ -590,7 +588,6 @@
 				DF56290C257BB4F1005FC7BA /* SwiftyMarkdown */,
 				DF562919257BB6E3005FC7BA /* BLTNBoard */,
 				DF562932257BBA68005FC7BA /* EventBus */,
-				DF5F729E27F07C34002AB4B8 /* AppScaffold */,
 				DF9B4E6327F668A200817DA3 /* INSPhotoGallery */,
 				DF7FB53427F672E300F718F2 /* StateViewController */,
 				DF055B932D8B8FD7007E4393 /* FirebaseAnalytics */,
@@ -813,7 +810,6 @@
 				DFD086B4246DC90E00B15A96 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */,
 				DF562918257BB6E3005FC7BA /* XCRemoteSwiftPackageReference "BulletinBoard" */,
 				DF562931257BBA68005FC7BA /* XCRemoteSwiftPackageReference "eventbus" */,
-				DF5F729D27F07C34002AB4B8 /* XCRemoteSwiftPackageReference "app-scaffold-ios" */,
 				DF9B4E6227F668A200817DA3 /* XCRemoteSwiftPackageReference "INSPhotoGallery" */,
 				DF7FB53327F670D500F718F2 /* XCRemoteSwiftPackageReference "stateviewcontroller" */,
 				DF055B922D8B8FD7007E4393 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
@@ -895,7 +891,19 @@
 		DFB708BE25AEFE4900D3318F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			shellPath = /bin/sh;
-			shellScript = "# cd $PROJECT_DIR\n# cd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"\n# RELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)\n# BUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" Info.plist)\n# VERSION_STRING=\"$RELEASE_VERSION ($BUILD_NUMBER)\"\n# /usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $VERSION_STRING\" Settings.bundle/Root.plist\n\n# if [ $CONFIGURATION == \"Release\" ]; then\n#    rm -rf \"$BUILD_APP_DIR/Settings.bundle\"\n# fi\n";
+			shellScript = (
+				"# cd $PROJECT_DIR",
+				"# cd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"",
+				"# RELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)",
+				"# BUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" Info.plist)",
+				"# VERSION_STRING=\"$RELEASE_VERSION ($BUILD_NUMBER)\"",
+				"# /usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $VERSION_STRING\" Settings.bundle/Root.plist",
+				"",
+				"# if [ $CONFIGURATION == \"Release\" ]; then",
+				"#    rm -rf \"$BUILD_APP_DIR/Settings.bundle\"",
+				"# fi",
+				"",
+			);
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1374,7 +1382,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 39;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_ASSET_PATHS = "moers\\ festival/Preview\\ Content/Preview\\ Assets.xcassets";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 77N8D7LGCZ;
@@ -1387,6 +1395,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/moers festival/Config/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INTENTS_CODEGEN_LANGUAGE = "Objective-C";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1399,9 +1408,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development de.okfn.niederrhein.moers-festival";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_OBJC_BRIDGING_HEADER = "moers festival/Utility/moers-festival-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_UPCOMING_FEATURE_GLOBAL_CONCURRENCY = NO;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}",
@@ -1522,6 +1535,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/moers festival/Config/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INTENTS_CODEGEN_LANGUAGE = "Objective-C";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1534,8 +1548,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore de.okfn.niederrhein.moers-festival";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_OBJC_BRIDGING_HEADER = "moers festival/Utility/moers-festival-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_UPCOMING_FEATURE_GLOBAL_CONCURRENCY = NO;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}",
@@ -2262,14 +2280,6 @@
 				minimumVersion = 0.5.2;
 			};
 		};
-		DF5F729D27F07C34002AB4B8 /* XCRemoteSwiftPackageReference "app-scaffold-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LambdaDigamma/app-scaffold-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		DF7FB53327F670D500F718F2 /* XCRemoteSwiftPackageReference "stateviewcontroller" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lambdadigamma/stateviewcontroller";
@@ -2380,11 +2390,6 @@
 		DF5975C72F01E08D00512386 /* NewsFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NewsFeature;
-		};
-		DF5F729E27F07C34002AB4B8 /* AppScaffold */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF5F729D27F07C34002AB4B8 /* XCRemoteSwiftPackageReference "app-scaffold-ios" */;
-			productName = AppScaffold;
 		};
 		DF7FB53427F672E300F718F2 /* StateViewController */ = {
 			isa = XCSwiftPackageProductDependency;

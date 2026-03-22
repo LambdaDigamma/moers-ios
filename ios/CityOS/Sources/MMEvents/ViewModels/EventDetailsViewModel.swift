@@ -11,6 +11,7 @@ import Foundation
 import MapKit
 import Combine
 
+@MainActor
 public class EventDetailsViewModel: ObservableObject {
     
     public private(set) var config: EventDetailViewConfig?
@@ -240,9 +241,9 @@ public class EventDetailsViewModel: ObservableObject {
 
 public extension EventDetailsViewModel {
     
-    static let keyLikes = "LikeIDs"
+    nonisolated static let keyLikes = "LikeIDs"
     
-    static func getLikedIDs() -> [Int] {
+    nonisolated static func getLikedIDs() -> [Int] {
         
         let likeIDs = UserDefaults.standard.array(forKey: keyLikes) as? [Int]
         
@@ -250,7 +251,7 @@ public extension EventDetailsViewModel {
         
     }
     
-    static func toggleLike(for id: Int) -> Bool {
+    nonisolated static func toggleLike(for id: Int) -> Bool {
         
         var likedIDs = getLikedIDs()
         var isLiked = false
@@ -273,7 +274,7 @@ public extension EventDetailsViewModel {
         
     }
     
-    static func setLikeStatus(likeStatus: Bool, for id: Int) {
+    nonisolated static func setLikeStatus(likeStatus: Bool, for id: Int) {
         
         var likedIDs = getLikedIDs()
         
@@ -291,7 +292,7 @@ public extension EventDetailsViewModel {
         
     }
     
-    static func isLiked(id: Int) -> Bool {
+    nonisolated static func isLiked(id: Int) -> Bool {
         
         return getLikedIDs().first(where: { $0 == id }) != nil
         

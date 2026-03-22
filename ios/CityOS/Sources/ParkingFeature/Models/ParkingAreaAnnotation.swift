@@ -17,7 +17,7 @@ public class ParkingAreaAnnotation: GenericAnnotation, InteractsWithAnnotationVi
         
     }
     
-    public static var reuseIdentifier: String = "parking_area_annotation_view"
+    public static let reuseIdentifier: String = "parking_area_annotation_view"
     
 //    public override func annotationView() -> MKAnnotationView.Type {
 //        return ParkingAreaAnnotationView.self

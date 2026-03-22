@@ -36,13 +36,14 @@ public struct NewsList: View {
                             onShowArticle(feedItem)
                         }) {
                             
-//                            Text(feedItem.title ?? "")
-
+                            let feedURL = feedItem.enclosure?.attributes?.url
+                            let mediaURL = feedItem.media?.contents?.first?.attributes?.url
+                            
                             NewsItemPanel(
                                 headline: feedItem.title ?? "",
-                                source: feedItem.source?.value ?? "",
+                                source: feedItem.source?.text ?? "",
                                 publishedAt: feedItem.pubDate ?? Date(),
-                                imageURL: feedItem.enclosure?.attributes?.url ?? feedItem.media?.mediaContents?.first?.attributes?.url ?? nil
+                                imageURL: feedURL ?? mediaURL ?? nil
                             )
                             
                         }
@@ -75,7 +76,7 @@ public struct NewsList: View {
 }
 
 #Preview {
-    
+
     Container.shared.newsService.register {
         DefaultNewsService()
     }

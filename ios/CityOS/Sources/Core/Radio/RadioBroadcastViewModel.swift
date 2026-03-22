@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 public class RadioBroadcastViewModel: Identifiable, ObservableObject {
     
     public let id: Int

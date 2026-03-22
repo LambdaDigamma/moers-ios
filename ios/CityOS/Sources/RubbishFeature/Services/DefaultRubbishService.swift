@@ -14,9 +14,10 @@ import ModernNetworking
 import WidgetKit
 #endif
 
+@MainActor
 public class DefaultRubbishService: RubbishService {
     
-    private let loader: HTTPLoader
+    nonisolated(unsafe) private let loader: HTTPLoader
     private var notificationCenter: UNUserNotificationCenterProtocol
     private let decoder: JSONDecoder
     private let session = URLSession.shared

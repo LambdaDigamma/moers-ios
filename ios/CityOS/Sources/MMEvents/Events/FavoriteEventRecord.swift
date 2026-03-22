@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-public struct FavoriteEventRecord: Equatable, Codable {
+public struct FavoriteEventRecord: Equatable, Codable, Sendable {
     
     public var id: Int64?
     public var eventID: Int64
@@ -27,7 +27,7 @@ public struct FavoriteEventRecord: Equatable, Codable {
 
 extension FavoriteEventRecord: FetchableRecord, MutablePersistableRecord {
     
-    public static var databaseTableName: String = FavoriteEventsTableDefinition.tableName
+    public static let databaseTableName: String = FavoriteEventsTableDefinition.tableName
     
     public enum Columns {
         static let eventID = Column(CodingKeys.eventID)

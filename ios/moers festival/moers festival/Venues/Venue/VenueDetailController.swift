@@ -92,37 +92,42 @@ public class VenueDetailController: DefaultHostingController {
     
     public func loadData() {
         
-        self.service
-            .showVenue(id: placeID)
-            .sink { (completion: Subscribers.Completion<Error>) in
-                
-            } receiveValue: { (place: Place) in
-                self.viewModel.name = place.name
-                self.viewModel.subtitle = "\(place.streetName ?? "") \(place.streetNumber ?? "")"
-                
-                if let streetName = place.streetName {
-                    self.viewModel.addressLine1 = "\(streetName) \(place.streetNumber ?? "")"
-                }
-                
-                if let town = place.postalTown {
-                    self.viewModel.addressLine2 = "\(town) \(place.postalCode ?? "")"
-                }
-                
-                self.viewModel.point = Point(latitude: place.lat, longitude: place.lng)
-//                self.viewModel.events = place.events.map {
-//                    EventListItemViewModel(eventID: $0.id, title: $0.name, startDate: $0.startDate, endDate: $0.endDate, location: nil)
-//                }
-                self.viewModel.pageID = place.pageID
-            }
-            .store(in: &viewModel.cancellables)
+        Task { [weak self] in
+            guard let self else { return }
             
+            do {
+                let place = try await self.service.showVenue(id: self.placeID)
+                
+                await MainActor.run {
+                    self.viewModel.name = place.name
+                    self.viewModel.subtitle = "\(place.streetName ?? "") \(place.streetNumber ?? "")"
+                    
+                    if let streetName = place.streetName {
+                        self.viewModel.addressLine1 = "\(streetName) \(place.streetNumber ?? "")"
+                    }
+                    
+                    if let town = place.postalTown {
+                        self.viewModel.addressLine2 = "\(town) \(place.postalCode ?? "")"
+                    }
+                    
+                    self.viewModel.point = Point(latitude: place.lat, longitude: place.lng)
+//                    self.viewModel.events = place.events.map {
+//                        EventListItemViewModel(eventID: $0.id, title: $0.name, startDate: $0.startDate, endDate: $0.endDate, location: nil)
+//                    }
+                    self.viewModel.pageID = place.pageID
+                }
+            } catch {
+                print(error)
+            }
+        }
+        
     }
     
     // MARK: - Actions -
     
     public func onSelectEvent(eventID: Event.ID) {
         
-        coordinator?.pushEventDetail(eventID: eventID)
+        coordinator?.showEventDetail(eventID: eventID)
         
     }
     

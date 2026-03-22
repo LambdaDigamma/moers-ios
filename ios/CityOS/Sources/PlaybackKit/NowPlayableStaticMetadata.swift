@@ -8,7 +8,7 @@
 import Foundation
 import MediaPlayer
 
-extension MPNowPlayingInfoMediaType: Codable {}
+extension MPNowPlayingInfoMediaType: @retroactive Decodable, @retroactive Encodable {}
 
 public struct NowPlayableStaticMetadata: Equatable, Hashable {
     

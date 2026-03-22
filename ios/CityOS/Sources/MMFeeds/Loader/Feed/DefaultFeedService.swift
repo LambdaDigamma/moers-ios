@@ -6,13 +6,12 @@
 //
 
 import Foundation
-import Combine
 import ModernNetworking
 import Cache
 
 public class DefaultFeedService: FeedService {
     
-    private let loader: HTTPLoader
+    nonisolated(unsafe) private let loader: HTTPLoader
     private let cache: Storage<String, Feed>
     
     public init(_ loader: HTTPLoader = URLSessionLoader(), _ cache: Storage<String, Feed>) {
@@ -20,52 +19,14 @@ public class DefaultFeedService: FeedService {
         self.cache = cache
     }
     
-    public func loadFeedFromNetwork(feedID: Feed.ID, perPage: Int = 10) -> AnyPublisher<Feed, Error> {
+    public func loadFeedFromNetwork(feedID: Feed.ID, perPage: Int = 10) async throws -> Feed {
         
         let request = HTTPRequest(path: Endpoint.show(feedID: feedID).path())
         
-        return Deferred {
-            Future { promise in
-                self.loader.load(request) { (result) in
-                    promise(result)
-                }
-            }
-        }
-        .eraseToAnyPublisher()
-        .compactMap { $0.body }
-        .decode(type: Resource<Feed>.self, decoder: Feed.decoder)
-        .map({
-            //            self.cache.async.setObject($0, forKey: "events") { (result) in }
-            return $0.data
-        })
-        .eraseToAnyPublisher()
+        let result = await loader.load(request)
+        let resource = try await result.decoding(Resource<Feed>.self, using: Feed.decoder)
         
-    }
-    
-    public func loadPosts(for feedID: Feed.ID, page: Int = 1, perPage: Int = 10) -> AnyPublisher<ResourceCollection<Post>, Error> {
-        
-        var request = HTTPRequest(path: Endpoint.showPosts(feedID: feedID).path())
-        
-        request.queryItems = [
-            URLQueryItem(name: "page[size]", value: String(perPage)),
-            URLQueryItem(name: "page[number]", value: String(page))
-        ]
-        
-        return Deferred {
-            Future { promise in
-                self.loader.load(request) { (result) in
-                    promise(result)
-                }
-            }
-        }
-        .eraseToAnyPublisher()
-        .compactMap { $0.body }
-        .decode(type: ResourceCollection<Post>.self, decoder: Feed.decoder)
-//        .map({
-            //            self.cache.async.setObject($0, forKey: "events") { (result) in }
-//            return $0.data
-//        })
-        .eraseToAnyPublisher()
+        return resource.data
         
     }
     
@@ -80,33 +41,23 @@ public class DefaultFeedService: FeedService {
         
         let result = await loader.load(request)
         
-        let posts = try await result.decoding(ResourceCollection<Post>.self)
+        let posts = try await result.decoding(ResourceCollection<Post>.self, using: Feed.decoder)
         
         return posts
         
     }
     
-    public func loadFeed(page: Int = 1) -> AnyPublisher<Feed, Error> {
+    public func loadFeed(page: Int = 1) async throws -> Feed {
         
         var request = HTTPRequest(path: Endpoint.index.path())
         
         request.queryItems = [URLQueryItem(name: "page", value: String(page))]
         
-        return Deferred {
-            Future { promise in
-                self.loader.load(request) { (result) in
-                    promise(result)
-                }
-            }
-        }
-        .eraseToAnyPublisher()
-        .compactMap { $0.body }
-        .decode(type: Resource<Feed>.self, decoder: Feed.decoder)
-        .map({
-            //            self.cache.async.setObject($0, forKey: "events") { (result) in }
-            return $0.data
-        })
-        .eraseToAnyPublisher()
+        let result = await loader.load(request)
+        
+        let resource = try await result.decoding(Resource<Feed>.self, using: Feed.decoder)
+        
+        return resource.data
         
     }
     

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import MMCommon
 import MapKit
 
 public struct MapTourCardView: View {

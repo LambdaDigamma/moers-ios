@@ -46,12 +46,13 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
         self.news = NewsCoordinator()
         self.live = LiveCoordinator()
         self.userSchedule = UserScheduleCoordinator()
+        self.event = EventCoordinator()
         self.map = MapCoordinator(
             eventService: eventService,
             entryManager: entryManager,
-            trackerManager: trackerManager
+            trackerManager: trackerManager,
+            eventCoordinator: event
         )
-        self.event = EventCoordinator()
         self.other = OtherCoordinator()
         
         super.init(nibName: nil, bundle: nil)
@@ -78,7 +79,7 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
         self.viewControllers = [
             news.navigationController,
 //            live.navigationController,
-            map.navigationController,
+            map.rootViewController,
             userSchedule.navigationController,
 //            tour.navigationController,
             event.navigationController,
@@ -191,7 +192,6 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let viewControllers = [
             self.news.navigationController,
             self.live.navigationController,
-            self.map.navigationController,
             self.event.navigationController,
             self.other.navigationController
         ]

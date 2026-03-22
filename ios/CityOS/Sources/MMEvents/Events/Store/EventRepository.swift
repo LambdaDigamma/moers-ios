@@ -29,7 +29,7 @@ extension Container {
     
 }
 
-public class EventRepository {
+public class EventRepository: @unchecked Sendable {
     
     public let store: EventStore
     public let service: EventService
@@ -55,8 +55,8 @@ public class EventRepository {
     
     public func events() -> AnyPublisher<[Event], Error> {
         
-        return store.observeAllEvents()
-            .map { $0.map { $0.toBase() } }
+        return store.observeAllEventsWithPlace()
+            .map { $0.map { $0.event.toBase(with: $0.place?.toBase()) } }
             .eraseToAnyPublisher()
         
     }

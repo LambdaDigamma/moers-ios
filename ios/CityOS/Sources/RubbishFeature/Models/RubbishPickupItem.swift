@@ -8,7 +8,7 @@
 import Foundation
 import ModernNetworking
 
-public struct RubbishPickupItem: Model, Codable, Identifiable, Equatable {
+public struct RubbishPickupItem: Model, Codable, Identifiable, Equatable, Sendable {
     
     public let id: UUID = UUID()
     
@@ -25,7 +25,7 @@ public struct RubbishPickupItem: Model, Codable, Identifiable, Equatable {
         case type
     }
     
-    public static var placeholder: [RubbishPickupItem] = {
+    public static let placeholder: [RubbishPickupItem] = {
         
         let now = Date()
         
@@ -34,7 +34,7 @@ public struct RubbishPickupItem: Model, Codable, Identifiable, Equatable {
             RubbishPickupItem(date: now, type: .paper),
             RubbishPickupItem(date: Date(timeIntervalSinceNow: 1 * 24 * 60 * 60), type: .plastic),
             RubbishPickupItem(date: Date(timeIntervalSinceNow: 2 * 24 * 60 * 60), type: .residual)
-          ]
+        ]
     }()
     
     public static var decoder: JSONDecoder {

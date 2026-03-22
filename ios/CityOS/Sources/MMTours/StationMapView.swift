@@ -8,7 +8,6 @@
 
 import SwiftUI
 import MapKit
-import MMTours
 
 struct StationMapView: View {
     

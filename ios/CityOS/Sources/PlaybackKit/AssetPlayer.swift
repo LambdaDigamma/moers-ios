@@ -10,6 +10,7 @@ import MediaPlayer
 import OSLog
 
 // swiftlint:disable file_length
+@MainActor
 public class AssetPlayer {
 
     private let logger: Logger = Logger(.default)
@@ -113,18 +114,18 @@ public class AssetPlayer {
             if player.currentItem != nil {
 
                 itemObserver = player.observe(\.currentItem, options: .initial) {
-                    [unowned self] _, _ in
-                    self.handlePlayerItemChange()
+                    [weak self] _, _ in
+                    Task { @MainActor [weak self] in self?.handlePlayerItemChange() }
                 }
 
                 rateObserver = player.observe(\.rate, options: .initial) {
-                    [unowned self] _, _ in
-                    self.handlePlaybackChange()
+                    [weak self] _, _ in
+                    Task { @MainActor [weak self] in self?.handlePlaybackChange() }
                 }
 
                 statusObserver = player.observe(\.currentItem?.status, options: .initial) {
-                    [unowned self] _, _ in
-                    self.handlePlaybackChange()
+                    [weak self] _, _ in
+                    Task { @MainActor [weak self] in self?.handlePlaybackChange() }
                 }
             }
 
@@ -190,7 +191,7 @@ public class AssetPlayer {
 
         var languageOptionGroups: [MPNowPlayingInfoLanguageOptionGroup] = []
         var currentLanguageOptions: [MPNowPlayingInfoLanguageOption] = []
-
+        
         if asset.statusOfValue(forKey: AssetPlayer.mediaSelectionKey, error: nil) == .loaded {
 
             // Examine each media selection group.
@@ -322,10 +323,9 @@ public class AssetPlayer {
 
         if case .stopped = playerState { return }
 
-        player.seek(to: time, toleranceBefore: .zero, toleranceAfter: .zero) {
-            isFinished in
+        player.seek(to: time, toleranceBefore: .zero, toleranceAfter: .zero) { [weak self] isFinished in
             if isFinished {
-                self.handlePlaybackChange()
+                Task { @MainActor [weak self] in self?.handlePlaybackChange() }
             }
         }
     }

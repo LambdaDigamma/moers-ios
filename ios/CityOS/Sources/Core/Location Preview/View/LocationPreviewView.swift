@@ -30,6 +30,7 @@ public class LocationPreviewView: UIView, MKMapViewDelegate {
     }
     
     private var cancellables = Set<AnyCancellable>()
+    private var annotationTask: Task<Void, Never>?
     
     // MARK: - UI
     
@@ -78,28 +79,37 @@ public class LocationPreviewView: UIView, MKMapViewDelegate {
     }
     
     private func bindData() {
-        
-        viewModel.annotation.sink { (completion: Subscribers.Completion<Error>) in
-            
-        } receiveValue: { (annotation: MKPointAnnotation) in
-            
-            let distance: CLLocationDistance = 1000
-            let region = MKCoordinateRegion(center: annotation.coordinate,
-                                            latitudinalMeters: distance,
-                                            longitudinalMeters: distance)
-            
-            self.map.addAnnotation(annotation)
-            self.map.setCenter(annotation.coordinate, animated: true)
-            self.map.setRegion(region, animated: true)
-            
-            self.coordinate = annotation.coordinate
-            
-        }
-        .store(in: &cancellables)
 
         viewModel.name.assign(to: \.locationName.value, on: locationInformation).store(in: &cancellables)
         viewModel.details.assign(to: \.locationDetails.value, on: locationInformation).store(in: &cancellables)
+
+        annotationTask = Task { [weak self] in
+            guard let self else { return }
+
+            do {
+                let annotation = try await self.viewModel.annotation()
+                await MainActor.run {
+                    let distance: CLLocationDistance = 1000
+                    let region = MKCoordinateRegion(
+                        center: annotation.coordinate,
+                        latitudinalMeters: distance,
+                        longitudinalMeters: distance
+                    )
+
+                    self.map.addAnnotation(annotation)
+                    self.map.setCenter(annotation.coordinate, animated: true)
+                    self.map.setRegion(region, animated: true)
+                    self.coordinate = annotation.coordinate
+                }
+            } catch {
+                // Keep current map state if geocoding fails.
+            }
+        }
         
+    }
+
+    deinit {
+        annotationTask?.cancel()
     }
     
     // MARK: - Map Setup

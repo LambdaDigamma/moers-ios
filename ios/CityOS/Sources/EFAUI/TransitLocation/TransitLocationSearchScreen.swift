@@ -172,6 +172,7 @@ public struct TransitLocationSearchScreen: View {
     
 }
 
+@MainActor
 struct TransitLocationSearchView_Previews: PreviewProvider {
     
     static let service: DefaultTransitService = {

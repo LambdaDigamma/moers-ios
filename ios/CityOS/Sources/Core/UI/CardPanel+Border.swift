@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct CardPanelBorder {
+public struct CardPanelBorder: Sendable {
     public let color: Color
     public let lineWidth: CGFloat
     

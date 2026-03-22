@@ -9,7 +9,7 @@ import Core
 import Foundation
 import CoreLocation
 
-public enum EventScheduleDisplayMode: String, Codable, Equatable, Hashable {
+public enum EventScheduleDisplayMode: String, Codable, Equatable, Hashable, Sendable {
     case hidden = "hidden"
     case date = "date"
     case dateTime = "date_time"
@@ -23,7 +23,7 @@ public enum EventScheduleDisplayMode: String, Codable, Equatable, Hashable {
     }
 }
 
-public struct EventExtras: Codable, Equatable, Hashable {
+public struct EventExtras: Codable, Equatable, Hashable, Sendable {
     
     // Common Attributes
     

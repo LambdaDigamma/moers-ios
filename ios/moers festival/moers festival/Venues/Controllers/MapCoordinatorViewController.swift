@@ -29,7 +29,7 @@ class MapCoordinatorViewController: PulleyViewController {
     
     public var trackers: [Tracker] = []
     public var entries: [Entry] = []
-    private var timer: Timer!
+    private var timer: Timer?
     
     required init(
         contentViewController: UIViewController,
@@ -50,7 +50,6 @@ class MapCoordinatorViewController: PulleyViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        timer?.invalidate()
     }
     
     // MARK: - UIViewController Lifecycle
@@ -84,13 +83,12 @@ class MapCoordinatorViewController: PulleyViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.timer = Timer.scheduledTimer(
-            timeInterval: 60,
-            target: self,
-            selector: #selector(loadTracker),
-            userInfo: nil,
-            repeats: true
-        )
+        self.timer?.invalidate()
+        self.timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
+            Task { @MainActor in
+                self?.loadTracker()
+            }
+        }
         
     }
     
@@ -109,7 +107,13 @@ class MapCoordinatorViewController: PulleyViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         self.navigationItem.title = "Karte"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(loadData))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .refresh,
+            target: self,
+            action: #selector(loadData)
+        )
+        
+        self.pulleyViewController?.drawerCornerRadius = 48
         
     }
     
@@ -129,15 +133,14 @@ class MapCoordinatorViewController: PulleyViewController {
 //        self.loadTracker()
 //        self.loadLocations()
         
-        self.locationService.getLocations()
-            .sink { (completion: Subscribers.Completion<Error>) in
-                
-                print(completion)
-                
-            } receiveValue: { (places: [Place]) in
-                
+        Task { [weak self] in
+            guard let self else { return }
+
+            do {
+                let places = try await self.locationService.getLocations()
+
                 print(places)
-                
+
                 self.entries = places.map { (place: Place) in
                     return Entry(
                         id: place.id,
@@ -150,20 +153,18 @@ class MapCoordinatorViewController: PulleyViewController {
                         lng: place.lng
                     )
                 }
-                
-//                self.entries = entries
-//
+
                 self.eventBus.notify(LocationDatasource.self, closure: { subscriber in
                     subscriber.didReceiveLocations(Array(Set(self.entries)))
                 })
-//
-//                print(entries)
+            } catch {
+                print(error)
             }
-            .store(in: &cancellables)
+            }
         
     }
     
-    @objc private func loadTracker() {
+    @MainActor @objc private func loadTracker() {
         
 //        self.trackers.removeAll()
 //
@@ -203,44 +204,20 @@ class MapCoordinatorViewController: PulleyViewController {
     }
     
     private func loadLocations() {
-        
-        OperationQueue.main.addOperation {
-            
-            guard let manager = self.coordinator?.eventService else { return }
-            
-            let cachedEvents = manager.loadEvents()
-            
-            cachedEvents.sink { (completion: Subscribers.Completion<Error>) in
-                
-                switch completion {
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                    case .finished:
-                        break
-                }
-                
-            } receiveValue: { (events: [Event]) in
-                
+
+        guard let manager = self.coordinator?.eventService else { return }
+
+        Task { [weak self] in
+            guard let self else { return }
+
+            do {
+                let events = try await manager.loadEvents()
+
                 self.entries.removeAll()
-                
-                if !events.isEmpty {
-                    self.poplulateEntries(with: events)
-                } else {
-                    
-                    let loadedEvents = manager.loadEvents()
-                    
-                    loadedEvents.sink { (_: Subscribers.Completion<Error>) in
-                        
-                    } receiveValue: { (events: [Event]) in
-                        self.poplulateEntries(with: events)
-                    }
-                    .store(in: &self.cancellables)
-                    
-                }
-                
+                self.poplulateEntries(with: events)
+            } catch {
+                print(error.localizedDescription)
             }
-            .store(in: &self.cancellables)
-            
         }
         
     }

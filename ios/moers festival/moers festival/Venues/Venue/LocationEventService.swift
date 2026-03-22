@@ -7,7 +7,6 @@
 //
 
 import Core
-import Combine
 import Foundation
 import ModernNetworking
 import MMEvents
@@ -15,9 +14,9 @@ import OSLog
 
 public protocol LocationEventService {
     
-    func getLocations() -> AnyPublisher<[Place], Error>
+    func getLocations() async throws -> [Place]
     
-    func showVenue(id: Place.ID) -> AnyPublisher<Place, Error>
+    func showVenue(id: Place.ID) async throws -> Place
     
     func updateLocalFestivalArchive(force: Bool) async
     

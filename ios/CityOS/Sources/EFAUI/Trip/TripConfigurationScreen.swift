@@ -267,6 +267,7 @@ public struct TripConfigurationScreen: View {
     
 }
 
+@MainActor
 struct TripConfigurationScreen_Previews: PreviewProvider {
     
     static var previews: some View {

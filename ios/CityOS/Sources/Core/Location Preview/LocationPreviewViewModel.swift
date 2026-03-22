@@ -14,19 +14,16 @@ public struct LocationPreviewViewModel {
     
     public let model: LocationPreviewModel
     
-    public var annotation: AnyPublisher<MKPointAnnotation, Error> {
-        
-        return model.mapCoordinate.map({ coordinate in
-            
-            let annotation = MKPointAnnotation()
-            
-            annotation.coordinate = coordinate
-            annotation.title = self.model.name
-            
-            return annotation
-            
-        }).eraseToAnyPublisher()
-        
+    public func annotation() async throws -> MKPointAnnotation {
+
+        let coordinate = try await model.mapCoordinate()
+        let annotation = MKPointAnnotation()
+
+        annotation.coordinate = coordinate
+        annotation.title = model.name
+
+        return annotation
+
     }
     
     public var name: CurrentValueSubject<String, Never> {

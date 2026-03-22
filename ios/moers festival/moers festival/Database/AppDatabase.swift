@@ -13,7 +13,7 @@ import GRDB
 ///
 /// It applies the pratices recommended at
 /// <https://github.com/groue/GRDB.swift/blob/master/Documentation/GoodPracticesForDesigningRecordTypes.md>
-public struct AppDatabase {
+nonisolated public struct AppDatabase {
     
     /// Creates an `AppDatabase`, and make sure the database schema is ready.
     public init(_ dbWriter: any DatabaseWriter) throws {
@@ -38,7 +38,7 @@ public struct AppDatabase {
 // reading methods.
 extension AppDatabase {
     /// Provides a read-only access to the database
-    var reader: DatabaseReader {
+    nonisolated var reader: DatabaseReader {
         dbWriter
     }
 }

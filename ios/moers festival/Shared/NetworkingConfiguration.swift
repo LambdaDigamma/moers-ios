@@ -8,9 +8,9 @@
 
 import UIKit
 import AppScaffold
-import ModernNetworking
+@preconcurrency import ModernNetworking
 import Core
-import Factory
+@preconcurrency import Factory
 
 extension ServerEnvironment {
     
@@ -43,12 +43,15 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
         
         print("Recognized environment with host: \(environment.host)")
         
-        guard let loader = setupLoaderChain(with: environment) else {
+        guard NetworkingConfiguration.setupLoaderChain(with: environment) != nil else {
             fatalError("Networking stack could not be setup.")
         }
         
         Container.shared.httpLoader.scope(.cached).register() {
-            loader
+            guard let loader = NetworkingConfiguration.setupLoaderChain(with: environment) else {
+                fatalError("Networking stack could not be setup.")
+            }
+            return loader
         }
         
     }
@@ -102,7 +105,7 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
         
     }
     
-    private func setupLoaderChain(with environment: ServerEnvironment) -> HTTPLoader? {
+    private static nonisolated func setupLoaderChain(with environment: ServerEnvironment) -> HTTPLoader? {
         
         let modifier = ModifyRequestLoader { request in
             
@@ -128,7 +131,7 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
         
         let resetGuard = ResetGuardLoader()
         let applyEnvironment = ApplyEnvironmentLoader(environment: environment)
-        let sessionConfiguration = sessionConfiguration()
+        let sessionConfiguration = self.sessionConfiguration()
         let session = URLSession(configuration: sessionConfiguration)
         let sessionLoader = URLSessionLoader(session)
 //        let printLoader = PrintLoader()
@@ -151,7 +154,7 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
         
     }
     
-    func sessionConfiguration() -> URLSessionConfiguration {
+    private static nonisolated func sessionConfiguration() -> URLSessionConfiguration {
         
         let configuration = URLSessionConfiguration.default
         

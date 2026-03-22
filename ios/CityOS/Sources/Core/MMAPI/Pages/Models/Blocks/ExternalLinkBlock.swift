@@ -9,7 +9,7 @@ import Foundation
 
 final public class ExternalLinkBlock: NSObject, Blockable {
     
-    public static var type: BlockType = .externalLink
+    public static let type: BlockType = .externalLink
     
     public var url: String
     

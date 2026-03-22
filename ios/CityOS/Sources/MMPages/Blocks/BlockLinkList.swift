@@ -10,7 +10,7 @@ import ProseMirror
 
 public struct BlockLinkList: Blockable, Equatable {
     
-    public static var type: BlockType = .youtubeVideo
+    public static let type: BlockType = .youtubeVideo
     
     public var links: [LinkEntry] = []
     

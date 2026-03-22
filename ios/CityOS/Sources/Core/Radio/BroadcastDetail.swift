@@ -176,7 +176,7 @@ public struct BroadcastDetail: View {
 }
 
 struct BroadcastDetail_Previews: PreviewProvider {
-    static var previews: some View {
+    @MainActor static var previews: some View {
         
         let viewModel = RadioBroadcastViewModel(
             id: 1,

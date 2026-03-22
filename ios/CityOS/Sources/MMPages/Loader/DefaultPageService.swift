@@ -6,36 +6,14 @@
 //
 
 import Foundation
-import Combine
 import ModernNetworking
 
 public class DefaultPageService: PageService {
-    
-    private let loader: HTTPLoader
+
+    nonisolated(unsafe) private let loader: HTTPLoader
     
     public init(_ loader: HTTPLoader = URLSessionLoader()) {
         self.loader = loader
-    }
-    
-    public func loadPage(for pageID: Page.ID) -> AnyPublisher<Page, Error> {
-        
-        let request = Self.showRequest(pageID: pageID)
-        
-        return Deferred {
-            Future { promise in
-                self.loader.load(request) { (result) in
-                    promise(result)
-                }
-            }
-        }
-        .eraseToAnyPublisher()
-        .compactMap { $0.body }
-        .decode(type: Resource<Page>.self, decoder: Page.decoder)
-        .map({
-            return $0.data
-        })
-        .eraseToAnyPublisher()
-        
     }
     
     public func show(for pageID: Page.ID, cacheMode: CacheMode = .cached) async throws -> Resource<Page> {

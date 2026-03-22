@@ -60,7 +60,9 @@ class EntryOnboardingAddressViewController: UIViewController {
         self.postcodeTextField.text = entryManager.entryPostcode
         self.placeTextField.text = entryManager.entryPlace
         
-        self.checkDataInput()
+        Task {
+            await self.checkDataInput()
+        }
         
     }
     
@@ -229,6 +231,7 @@ class EntryOnboardingAddressViewController: UIViewController {
         
     }
     
+    @MainActor
     private func invalidateUI() {
         
         self.navigationItem.rightBarButtonItem = nil
@@ -238,22 +241,17 @@ class EntryOnboardingAddressViewController: UIViewController {
         
     }
     
-    private func startGeocodingAddress(street: String, houseNumber: String, postcode: String, place: String) {
+    @MainActor
+    private func startGeocodingAddress(street: String, houseNumber: String, postcode: String, place: String) async {
         
         let geocoder = CLGeocoder()
         let addressString = "\(street) \(houseNumber), \(postcode) \(place)"
         
-        geocoder.geocodeAddressString(addressString) { (placemarks, error) in
+        do {
             
-            if let error = error {
-                
-                self.invalidateUI()
-                
-                print(error.localizedDescription)
-                
-            }
+            let placemarks = try await geocoder.geocodeAddressString(addressString)
             
-            if let placemark = placemarks?.first {
+            if let placemark = placemarks.first {
                 
                 guard let coordinate = placemark.location?.coordinate else { return }
                 
@@ -270,20 +268,25 @@ class EntryOnboardingAddressViewController: UIViewController {
                 self.mapView.setRegion(region, animated: false)
                 self.mapView.alpha = 1
                 
-                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Next", bundle: .module),
-                                                                         style: .plain,
-                                                                         target: self,
-                                                                         action: #selector(self.continueOnboarding))
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+                    title: String(localized: "Next", bundle: .module),
+                    style: .plain,
+                    target: self,
+                    action: #selector(self.continueOnboarding)
+                )
                 
             } else {
                 self.invalidateUI()
             }
             
+        } catch {
+            self.invalidateUI()
+            print(error.localizedDescription)
         }
         
     }
     
-    private func checkDataInput() {
+    private func checkDataInput() async {
         
         let street = streetTextField.text ?? ""
         let houseNumber = houseNrTextField.text ?? ""
@@ -292,10 +295,12 @@ class EntryOnboardingAddressViewController: UIViewController {
         
         if street != "" && houseNumber != "" && postcode != "" && place != "" {
             
-            self.startGeocodingAddress(street: street,
-                                       houseNumber: houseNumber,
-                                       postcode: postcode,
-                                       place: place)
+            await self.startGeocodingAddress(
+                street: street,
+                houseNumber: houseNumber,
+                postcode: postcode,
+                place: place
+            )
             
         } else {
             self.invalidateUI()
@@ -326,7 +331,9 @@ extension EntryOnboardingAddressViewController: UITextFieldDelegate {
             
         }
         
-        checkDataInput()
+        Task {
+            await checkDataInput()
+        }
         
     }
     

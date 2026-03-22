@@ -14,23 +14,30 @@ import SwiftUI
 @MainActor
 public class TimetableViewModel: ObservableObject {
     
-    @Published public var dates: [Date] = []
-    @Published var selectedDate: Date = .init()
-    @Published var daysViewModels: [DayEventsViewModel] = []
+    @Published public private(set) var days: [TimetableDay] = []
+    @Published public private(set) var selectedDate: Date = Date().stripTimeComponent()
     @Published var allEventsHideSchedule: Bool = false
     
     @PersistedFilter(key: "timetableFilter") public var filter: EventFilter {
         didSet {
             self.objectWillChange.send()
-            self.updateDaysViewModels()
+            self.rebuildDays()
         }
     }
     
-    public var events: [EventListItemViewModel] {
-        daysViewModels.map { $0.events }.reduce([], +)
+    public var dates: [Date] {
+        days.map(\.date)
     }
     
+    public var events: [EventListItemViewModel] {
+        days.flatMap(\.events)
+    }
+    
+    @LazyInjected(\.favoriteEventsStore) private var favoriteEventsStore
+    
     private let repository: EventRepository
+    private var storedEvents: [Event] = []
+    private var favoriteEventIDs = Set<Int64>()
     
     public var cancellables = Set<AnyCancellable>()
     
@@ -44,26 +51,17 @@ public class TimetableViewModel: ObservableObject {
     
     public func setupObserver() {
         
-        repository.events()
-            .sink { (completion: Subscribers.Completion<Error>) in
-                
-                
-                
-            } receiveValue: { (events: [Event]) in
-                
-                self.allEventsHideSchedule = !events.isEmpty && events.allSatisfy { event in
-                    !event.showsDateComponent
-                }
-                
-                self.dates = DateUtils.sortedUniqueDates(events.compactMap { $0.startDate })
-                
-                self.updateDaysViewModels()
-                
-                if self.dates.contains(where: { $0.isToday }) {
-                    self.selectedDate = self.dates.filter { $0.isToday }.first ?? self.dates.first ?? Date()
-                } else {
-                    self.selectedDate = self.dates.first ?? Date()
-                }
+        Publishers.CombineLatest(
+            repository.events().replaceError(with: []),
+            favoriteEventsPublisher()
+        )
+            .receive(on: DispatchQueue.main)
+            .sink { combinedValue in
+                let (events, favoriteEventIDs) = combinedValue
+
+                self.storedEvents = events
+                self.favoriteEventIDs = favoriteEventIDs
+                self.rebuildDays()
                 
             }
             .store(in: &cancellables)
@@ -71,8 +69,15 @@ public class TimetableViewModel: ObservableObject {
         
     }
     
-    private func updateDaysViewModels() {
-        self.daysViewModels = self.dates.map { DayEventsViewModel(date: $0, filter: self.filter) }
+    public func selectDate(_ date: Date) {
+        let resolvedDate = self.resolvedSelectedDate(
+            for: self.dates,
+            preferredDate: date
+        )
+        
+        guard selectedDate != resolvedDate else { return }
+        
+        self.selectedDate = resolvedDate
     }
     
     public func load() async {
@@ -82,6 +87,119 @@ public class TimetableViewModel: ObservableObject {
         } catch {
             print("Failed to reload events: \(error)")
         }
+    }
+    
+    public func refresh() async {
+        do {
+            try await repository.refreshEvents()
+        } catch {
+            print("Failed to refresh events: \(error)")
+        }
+    }
+
+    private func favoriteEventsPublisher() -> AnyPublisher<Set<Int64>, Never> {
+        
+        if let favoriteEventsStore {
+            return favoriteEventsStore.observeFavoriteEvents()
+                .map { favoriteInfos in
+                    Set(favoriteInfos.compactMap { $0.event.id })
+                }
+                .replaceError(with: Set<Int64>())
+                .eraseToAnyPublisher()
+        } else {
+            return Just(Set<Int64>())
+                .eraseToAnyPublisher()
+        }
+        
+    }
+    
+    private func rebuildDays() {
+        
+        let visibleEvents = storedEvents.filter { event in
+            matchesFilter(for: event, favoriteEventIDs: favoriteEventIDs)
+        }
+        
+        self.allEventsHideSchedule = !visibleEvents.isEmpty && visibleEvents.allSatisfy { event in
+            !event.showsDateComponent
+        }
+        
+        self.days = DateUtils.sortedUniqueDates(storedEvents.compactMap { $0.startDate })
+            .map { date in
+                let range = DateUtils.calculateDateRange(
+                    for: date,
+                    offset: EventUtilities.defaultDayOffset
+                )
+                
+                let events = visibleEvents
+                    .filter { event in
+                        guard let startDate = event.startDate else {
+                            return false
+                        }
+                        
+                        guard (range.startDate...range.endDate).contains(startDate) else {
+                            return false
+                        }
+
+                        return true
+                    }
+                    .map { event in
+                        EventListItemViewModel(
+                            eventID: event.id,
+                            title: event.name,
+                            startDate: event.startDate,
+                            endDate: event.endDate,
+                            location: event.place?.name,
+                            media: event.headerMedia,
+                            isOpenEnd: event.extras?.openEnd ?? false,
+                            isLiked: favoriteEventIDs.contains(Int64(event.id)),
+                            scheduleDisplayMode: event.scheduleDisplayMode
+                        )
+                    }
+                
+                return TimetableDay(date: date, events: events)
+            }
+        
+        self.selectDate(selectedDate)
+        
+    }
+    
+    private func matchesFilter(
+        for event: Event,
+        favoriteEventIDs: Set<Int64>
+    ) -> Bool {
+        
+        if !filter.venueIDs.isEmpty {
+            guard let placeID = event.place?.id, filter.venueIDs.contains(placeID) else {
+                return false
+            }
+        }
+        
+        if filter.showOnlyFavorites {
+            guard favoriteEventIDs.contains(Int64(event.id)) else {
+                return false
+            }
+        }
+        
+        return true
+        
+    }
+    
+    private func resolvedSelectedDate(
+        for dates: [Date],
+        preferredDate: Date
+    ) -> Date {
+        
+        if let matchingDate = dates.first(where: {
+            Calendar.autoupdatingCurrent.isDate($0, inSameDayAs: preferredDate)
+        }) {
+            return matchingDate
+        }
+        
+        if let today = dates.first(where: { $0.isToday }) {
+            return today
+        }
+        
+        return dates.first ?? preferredDate.stripTimeComponent()
     }
     
 }

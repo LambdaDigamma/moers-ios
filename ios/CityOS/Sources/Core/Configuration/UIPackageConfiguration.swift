@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+@MainActor
 public struct UIPackageConfiguration {
     public static var accentColor: UIColor = .systemBlue
     public static var onAccentColor: UIColor = .white

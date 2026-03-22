@@ -7,7 +7,6 @@
 
 import Foundation
 import ModernNetworking
-import Combine
 import CoreLocation
 
 public class StaticTransitService: TransitService {
@@ -23,11 +22,9 @@ public class StaticTransitService: TransitService {
     public func findTransitLocation(
         for searchTerm: String,
         filtering objectFilter: ObjectFilter
-    ) -> AnyPublisher<[TransitLocation], HTTPError> {
+    ) async throws -> [TransitLocation] {
     
-        return Just(loadStations())
-            .setFailureType(to: HTTPError.self)
-            .eraseToAnyPublisher()
+        return loadStations()
         
     }
     
@@ -35,15 +32,13 @@ public class StaticTransitService: TransitService {
         for coordinate: CLLocationCoordinate2D,
         filtering objectFilter: ObjectFilter,
         maxNumberOfResults: Int
-    ) -> AnyPublisher<[TransitLocation], HTTPError> {
+    ) async throws -> [TransitLocation] {
         
-        return Just(loadStations())
-            .setFailureType(to: HTTPError.self)
-            .eraseToAnyPublisher()
+        return loadStations()
         
     }
     
-    public func departureMonitor(id: Station.ID) -> AnyPublisher<DepartureMonitorData, Error> {
+    public func departureMonitor(id: Station.ID) async throws -> DepartureMonitorData {
         
         let departureMonitor = DepartureMonitorData(
             date: .init(),
@@ -81,9 +76,7 @@ public class StaticTransitService: TransitService {
             ]
         )
         
-        return Just(departureMonitor)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+        return departureMonitor
         
     }
     
@@ -92,7 +85,7 @@ public class StaticTransitService: TransitService {
         destination: String,
         config: TripRequest.Configuration,
         tripDate: TripDate
-    ) -> AnyPublisher<TripResponse, HTTPError> {
+    ) async throws -> TripResponse {
         
         let tripRequest = TripRequest(
             requestID: 0,
@@ -108,13 +101,11 @@ public class StaticTransitService: TransitService {
         
         let response = TripResponse(language: "", sessionID: "", now: Date(), tripRequest: tripRequest)
         
-        return Just(response)
-            .setFailureType(to: HTTPError.self)
-            .eraseToAnyPublisher()
+        return response
         
     }
     
-    public func geoObject(lines: [LineIdentifiable]) -> AnyPublisher<GeoITDRequest, HTTPError> {
+    public func geoObject(lines: [LineIdentifiable]) async throws -> GeoITDRequest {
         
         let geoRequest = ITDGeoObjectRequest(
             requestID: 0,
@@ -131,9 +122,7 @@ public class StaticTransitService: TransitService {
             geoObjectRequest: geoRequest
         )
         
-        return Just(request)
-            .setFailureType(to: HTTPError.self)
-            .eraseToAnyPublisher()
+        return request
         
     }
     

@@ -13,7 +13,7 @@ public class LaunchArguments {
     
     private let keyUseMockedData = "mocked"
     
-    public func useMockedData() -> Bool {
+    public nonisolated func useMockedData() -> Bool {
         return CommandLine.arguments.contains("-mocked")
 //        return UserDefaults.standard.bool(forKey: keyUseMockedData)
     }

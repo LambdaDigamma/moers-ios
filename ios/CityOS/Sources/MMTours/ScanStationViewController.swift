@@ -49,12 +49,6 @@ class ScanStationViewController: UIViewController {
     
     @objc private func showPage(url: String) {
         
-        do {
-//            try self.coordinator?.showQRCodePage(url: url, sender: self)
-        } catch {
-            print(error) // TODO: Show Alert
-        }
-        
     }
     
     @objc private func cancelScan() {

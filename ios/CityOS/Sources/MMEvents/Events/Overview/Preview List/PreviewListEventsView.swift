@@ -32,9 +32,11 @@ class PreviewListEventsViewModel: StandardViewModel {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
             .sink { (completion: Subscribers.Completion<Error>) in
-                
-                self.logger.error("\(completion.debugDescription)")
-                
+
+                if case .failure(let error) = completion {
+                    self.logger.error("\(String(describing: error))")
+                }
+
             } receiveValue: { (events: [Event]) in
                 
                 self.events = events
