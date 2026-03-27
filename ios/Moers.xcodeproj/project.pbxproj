@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 100;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -687,7 +687,7 @@
 				DFE59D3928D871B800BD0236 /* XCRemoteSwiftPackageReference "swift-license-ui" */,
 				DFD0004B2EFD58CE00B449FB /* XCLocalSwiftPackageReference "CityOS" */,
 			);
-			preferredProjectObjectVersion = 100;
+			preferredProjectObjectVersion = 90;
 			productRefGroup = DF1A49601F6AAB7000E9108B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

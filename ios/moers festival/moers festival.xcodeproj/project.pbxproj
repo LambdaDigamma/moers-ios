@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 100;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -826,7 +826,7 @@
 				DF055B922D8B8FD7007E4393 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				DF5975BC2F01E08D00512386 /* XCLocalSwiftPackageReference "../CityOS" */,
 			);
-			preferredProjectObjectVersion = 100;
+			preferredProjectObjectVersion = 90;
 			productRefGroup = DF35B387201DC72900118FD1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
