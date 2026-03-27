@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 90;
+	objectVersion = 100;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -564,7 +564,6 @@
 				DF35B383201DC72900118FD1 /* Frameworks */,
 				DF35B382201DC72900118FD1 /* Sources */,
 				DF35B384201DC72900118FD1 /* Resources */,
-				DFB708BE25AEFE4900D3318F /* ShellScript */,
 				DFD4563829E93A3C00F26F37 /* Embed Watch Content */,
 				DFA90CCE29E945D700FF8366 /* Embed Foundation Extensions */,
 			);
@@ -827,7 +826,7 @@
 				DF055B922D8B8FD7007E4393 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				DF5975BC2F01E08D00512386 /* XCLocalSwiftPackageReference "../CityOS" */,
 			);
-			preferredProjectObjectVersion = 90;
+			preferredProjectObjectVersion = 100;
 			productRefGroup = DF35B387201DC72900118FD1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -898,26 +897,6 @@
 			);
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		DFB708BE25AEFE4900D3318F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			shellPath = /bin/sh;
-			shellScript = (
-				"# cd $PROJECT_DIR",
-				"# cd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"",
-				"# RELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)",
-				"# BUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" Info.plist)",
-				"# VERSION_STRING=\"$RELEASE_VERSION ($BUILD_NUMBER)\"",
-				"# /usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $VERSION_STRING\" Settings.bundle/Root.plist",
-				"",
-				"# if [ $CONFIGURATION == \"Release\" ]; then",
-				"#    rm -rf \"$BUILD_APP_DIR/Settings.bundle\"",
-				"# fi",
-				"",
-			);
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DF35B382201DC72900118FD1 /* Sources */ = {

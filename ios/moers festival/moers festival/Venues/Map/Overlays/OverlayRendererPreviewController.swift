@@ -42,6 +42,9 @@ final class OverlayRendererPreviewController<MultiPolygonRenderer: MKMultiPolygo
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // Work around a Swift 6.3 release-optimizer crash in the synthesized deinit.
+    deinit {}
     
     public override func viewDidLoad() {
         super.viewDidLoad()
