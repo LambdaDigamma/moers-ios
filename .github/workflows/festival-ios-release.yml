@@ -20,7 +20,9 @@ jobs:
     runs-on: macos-26
     steps:
       - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode_26.4.app
+        # macos-26 currently ships Xcode 26.4 RC without the matching iOS platform.
+        # Pin 26.3 until the runner image is fixed upstream.
+        run: sudo xcode-select -s /Applications/Xcode_26.3.app
 
       - name: Checkout repository
         uses: actions/checkout@v4
