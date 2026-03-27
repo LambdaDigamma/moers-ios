@@ -29,12 +29,10 @@ extension Container {
 }
 
 public class PlaceRepository: @unchecked Sendable {
-    
+
     public let store: PlaceStore
     public let service: PlaceService
-    
-    public var cancellables = Set<AnyCancellable>()
-    
+
     public init(store: PlaceStore, service: PlaceService) {
         self.store = store
         self.service = service

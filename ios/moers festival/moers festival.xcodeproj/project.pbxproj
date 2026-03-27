@@ -903,7 +903,19 @@
 		DFB708BE25AEFE4900D3318F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			shellPath = /bin/sh;
-			shellScript = "# cd $PROJECT_DIR\n# cd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"\n# RELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)\n# BUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" Info.plist)\n# VERSION_STRING=\"$RELEASE_VERSION ($BUILD_NUMBER)\"\n# /usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $VERSION_STRING\" Settings.bundle/Root.plist\n\n# if [ $CONFIGURATION == \"Release\" ]; then\n#    rm -rf \"$BUILD_APP_DIR/Settings.bundle\"\n# fi\n";
+			shellScript = (
+				"# cd $PROJECT_DIR",
+				"# cd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"",
+				"# RELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)",
+				"# BUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" Info.plist)",
+				"# VERSION_STRING=\"$RELEASE_VERSION ($BUILD_NUMBER)\"",
+				"# /usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $VERSION_STRING\" Settings.bundle/Root.plist",
+				"",
+				"# if [ $CONFIGURATION == \"Release\" ]; then",
+				"#    rm -rf \"$BUILD_APP_DIR/Settings.bundle\"",
+				"# fi",
+				"",
+			);
 		};
 /* End PBXShellScriptBuildPhase section */
 

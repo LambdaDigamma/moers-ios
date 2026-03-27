@@ -96,3 +96,4 @@ keystore.properties
 *.dSYM
 .env
 .idea/workspace.xml
+ios/CityOS/Package.resolved

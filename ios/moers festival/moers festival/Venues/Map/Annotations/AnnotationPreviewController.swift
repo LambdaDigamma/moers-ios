@@ -21,6 +21,8 @@ final class AnnotationPreviewController<AnnotationView: MKAnnotationView>: UIVie
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    deinit {}
     
     public var annotationProducer: ((CLLocationCoordinate2D) -> MKAnnotation)?
     

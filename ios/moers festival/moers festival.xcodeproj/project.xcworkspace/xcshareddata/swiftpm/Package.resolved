@@ -1,5 +1,5 @@
 {
-  "originHash" : "4fe2502aa8412aca2a6a6df3ed42ff690ad1995853200f19cb819347f2dbe388",
+  "originHash" : "2c7a81f3de21babdedfabf4920b82753d8c994447e662d2f142ed897b318ff7a",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -17,15 +17,6 @@
       "state" : {
         "revision" : "61b85103a1aeed8218f17c794687781505fbbef5",
         "version" : "11.2.0"
-      }
-    },
-    {
-      "identity" : "app-scaffold-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/LambdaDigamma/app-scaffold-ios",
-      "state" : {
-        "revision" : "1392e931087750991a3cdb36d8afa3931faeca75",
-        "version" : "1.0.0"
       }
     },
     {
