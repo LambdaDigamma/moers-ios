@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct GeoObjectLineResponse: Codable, DynamicNodeDecoding {
+public struct GeoObjectLineResponse: Codable, DynamicNodeDecoding, Sendable {
     
     public let lineItemList: LineItemList
     
@@ -27,7 +27,7 @@ public struct GeoObjectLineResponse: Codable, DynamicNodeDecoding {
     
 }
 
-public struct LineItemList: Codable, DynamicNodeDecoding {
+public struct LineItemList: Codable, DynamicNodeDecoding, Sendable {
     
     public let lineItems: [LineItem]
     
@@ -50,7 +50,7 @@ public struct LineItemList: Codable, DynamicNodeDecoding {
 import MapKit
 #endif
 
-public struct LineItem: Codable, DynamicNodeDecoding {
+public struct LineItem: Codable, Sendable, DynamicNodeDecoding {
     
     public let completePath: Bool
     public let servingLine: ITDServingLine

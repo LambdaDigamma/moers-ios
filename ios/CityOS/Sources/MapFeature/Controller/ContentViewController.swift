@@ -228,8 +228,9 @@ class ContentViewController: UIViewController {
             var result: [ContentDrawerItem] = []
             
             for i in 0..<numberOfTags {
-                let id = "\(tagAttrs[i].string)-\(i)"
-                result.append(.tag(tagAttrs[i], id: id))
+                let nsAttr = NSAttributedString(tagAttrs[i])
+                let id = "\(nsAttr.string)-\(i)"
+                result.append(.tag(nsAttr, id: id))
             }
             
             result.append(contentsOf: items.map { .location(AnyLocation($0)) })
@@ -268,28 +269,24 @@ class ContentViewController: UIViewController {
         
     }
     
-    private func searchTags(with searchTerm: String) -> [NSAttributedString] {
-    
+    private func searchTags(with searchTerm: String) -> [AttributedString] {
+
         let results = fuse.search(searchTerm, in: tags)
-        
-        let boldAttrs = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)]
-        
-        let filteredTags: [NSAttributedString] = results.sorted(by: { $0.score < $1.score }).map { result in
-            
+
+        return results.sorted(by: { $0.score < $1.score }).map { result in
             let tag = tags[result.index]
-            
-            let attributedString = NSMutableAttributedString(string: tag)
-            
-            result.ranges.map(Range.init).map(NSRange.init).forEach {
-                attributedString.addAttributes(boldAttrs, range: $0)
+            var attributedString = AttributedString(tag)
+
+            for range in result.ranges {
+                let nsRange = NSRange(location: range.lowerBound, length: range.upperBound - range.lowerBound + 1)
+                if let attrRange = Range(nsRange, in: attributedString) {
+                    attributedString[attrRange].font = .boldSystemFont(ofSize: 17)
+                }
             }
-            
+
             return attributedString
-            
         }
-        
-        return filteredTags
-        
+
     }
     
     private func searchLocations(with searchTerm: String) -> [Location] {

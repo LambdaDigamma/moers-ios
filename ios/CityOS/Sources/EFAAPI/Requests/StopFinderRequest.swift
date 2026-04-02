@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct StopFinderRequest: Codable, DynamicNodeDecoding {
+public struct StopFinderRequest: Codable, Sendable, DynamicNodeDecoding {
     
     public let requestID: Int
     public let odv: ODV

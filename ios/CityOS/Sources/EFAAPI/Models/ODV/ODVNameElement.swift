@@ -10,7 +10,7 @@ import XMLCoder
 
 public typealias StatelessIdentifier = String
 
-public struct ODVNameElement: Codable, DynamicNodeDecoding, BaseStubbable {
+public struct ODVNameElement: Codable, Sendable, DynamicNodeDecoding, BaseStubbable {
     
     public var id: Int?
     public var listIndex: Int?

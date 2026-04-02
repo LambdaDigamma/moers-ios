@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public final class StopFinderResponse: Codable, DynamicNodeDecoding, BaseModel, @unchecked Sendable {
+public final class StopFinderResponse: Codable, DynamicNodeDecoding, BaseModel, Sendable {
     
     public let language: String
     public let sessionID: Int

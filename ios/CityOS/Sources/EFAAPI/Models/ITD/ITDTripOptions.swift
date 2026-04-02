@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ITDTripOptions: Codable, DynamicNodeDecoding {
+public struct ITDTripOptions: Codable, Sendable, DynamicNodeDecoding {
     
     public let userDefined: Bool
     

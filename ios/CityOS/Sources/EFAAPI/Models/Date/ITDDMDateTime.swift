@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ITDDMDateTime: Codable, DynamicNodeDecoding {
+public struct ITDDMDateTime: Codable, Sendable, DynamicNodeDecoding {
     
     /// `deparr`
     var mode: String?

@@ -12,7 +12,7 @@ import Fuse
 import Core
 
 // swiftlint:disable identifier_name
-final public class PetrolStation: NSObject, Location, Codable, MKAnnotation, Swift.Identifiable, MKRepresentable {
+final public class PetrolStation: NSObject, Location, Codable, MKAnnotation, Swift.Identifiable, MKRepresentable, @unchecked Sendable {
     
     public typealias ID = String
     

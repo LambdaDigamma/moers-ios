@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ITDSingleTicket: Codable, DynamicNodeDecoding {
+public struct ITDSingleTicket: Codable, Sendable, DynamicNodeDecoding {
     
     public let net: String
     public let toPR: Int

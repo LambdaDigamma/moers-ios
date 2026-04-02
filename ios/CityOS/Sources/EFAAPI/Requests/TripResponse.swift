@@ -10,7 +10,7 @@ import Foundation
 import Foundation
 import XMLCoder
 
-public struct TripResponse: Codable, DynamicNodeDecoding, BaseModel, @unchecked Sendable {
+public struct TripResponse: Codable, DynamicNodeDecoding, BaseModel, Sendable {
     
     public let language: String
     public let sessionID: String

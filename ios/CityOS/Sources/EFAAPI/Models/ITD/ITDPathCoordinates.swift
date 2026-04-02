@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ITDPathCoordinates: Codable, DynamicNodeDecoding {
+public struct ITDPathCoordinates: Codable, Sendable, DynamicNodeDecoding {
     
     public let coordinateBaseElemList: ITDCoordinateBaseElemList
     
@@ -27,7 +27,7 @@ public struct ITDPathCoordinates: Codable, DynamicNodeDecoding {
     
 }
 
-public struct ITDCoordinateBaseElemList: Codable, DynamicNodeDecoding {
+public struct ITDCoordinateBaseElemList: Codable, Sendable, DynamicNodeDecoding {
     
     public let coordinates: [ITDCoordinateBaseElem]
     
@@ -46,7 +46,7 @@ public struct ITDCoordinateBaseElemList: Codable, DynamicNodeDecoding {
     
 }
 
-public struct ITDCoordinateBaseElem: Codable, DynamicNodeDecoding {
+public struct ITDCoordinateBaseElem: Codable, Sendable, DynamicNodeDecoding {
     
     public let x: Double
     public let y: Double

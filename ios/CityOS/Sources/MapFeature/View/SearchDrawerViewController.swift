@@ -19,12 +19,12 @@ import Factory
 
 public enum DisplayMode {
     case list
-    case search(searchTerm: String, tags: [NSAttributedString], items: [Location])
+    case search(searchTerm: String, tags: [AttributedString], items: [Location])
     case filter(searchTerm: String?, selectedTags: [String], items: [Location])
 }
 
 enum SearchDrawerItem: Hashable, @unchecked Sendable {
-    case tag(NSAttributedString, id: String)
+    case tag(AttributedString, id: String)
     case location(Core.AnyLocation)
     
     func hash(into hasher: inout Hasher) {
@@ -65,7 +65,7 @@ public class SearchDrawerViewController: UIViewController {
     
     private var dataSource: UICollectionViewDiffableDataSource<Int, SearchDrawerItem>!
     
-    private var tagCellRegistration: UICollectionView.CellRegistration<UICollectionViewListCell, NSAttributedString>!
+    private var tagCellRegistration: UICollectionView.CellRegistration<UICollectionViewListCell, AttributedString>!
     private var locationCellRegistration: UICollectionView.CellRegistration<UICollectionViewListCell, Core.AnyLocation>!
     
     private var cancellables = Set<AnyCancellable>()
@@ -117,16 +117,16 @@ public class SearchDrawerViewController: UIViewController {
     // MARK: - Collection View
     
     private func setupCellRegistrations() {
-        tagCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, NSAttributedString> { cell, indexPath, attrStr in
+        tagCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, AttributedString> { cell, indexPath, attrStr in
             if #available(iOS 16.0, *) {
                 cell.contentConfiguration = UIHostingConfiguration {
-                    Text(AttributedString(attrStr))
+                    Text(attrStr)
                         .font(.system(size: 17))
                 }
                 .margins(.all, 0)
             } else {
                 var content = cell.defaultContentConfiguration()
-                content.attributedText = attrStr
+                content.attributedText = NSAttributedString(attrStr)
                 cell.contentConfiguration = content
             }
             cell.accessories = []
@@ -213,7 +213,7 @@ public class SearchDrawerViewController: UIViewController {
             var result: [SearchDrawerItem] = []
             
             for i in 0..<numberOfTags {
-                let id = "\(tagAttrs[i].string)-\(i)"
+                let id = "\(tagAttrs[i])-\(i)"
                 result.append(.tag(tagAttrs[i], id: id))
             }
             
@@ -252,24 +252,24 @@ public class SearchDrawerViewController: UIViewController {
         
     }
     
-    private func searchTags(with searchTerm: String) -> [NSAttributedString] {
+    private func searchTags(with searchTerm: String) -> [AttributedString] {
     
         let results = fuse.search(searchTerm, in: tags)
         
-        let boldAttrs = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)]
+        var filteredTags: [AttributedString] = []
         
-        let filteredTags: [NSAttributedString] = results.sorted(by: { $0.score < $1.score }).map { result in
-            
+        for result in results.sorted(by: { $0.score < $1.score }) {
             let tag = tags[result.index]
+            var attributedString = AttributedString(tag)
             
-            let attributedString = NSMutableAttributedString(string: tag)
-            
-            result.ranges.map(Range.init).map(NSRange.init).forEach {
-                attributedString.addAttributes(boldAttrs, range: $0)
+            for range in result.ranges {
+                let nsRange = NSRange(location: range.lowerBound, length: range.upperBound - range.lowerBound + 1)
+                if let attrRange = Range(nsRange, in: attributedString) {
+                    attributedString[attrRange].font = .boldSystemFont(ofSize: 17)
+                }
             }
             
-            return attributedString
-            
+            filteredTags.append(attributedString)
         }
         
         return filteredTags
@@ -472,9 +472,9 @@ extension SearchDrawerViewController: UICollectionViewDelegate {
         
         switch item {
         case .tag(let attrString, _):
-            // Handle tag selection
-            if !selectedTags.contains(attrString.string) {
-                self.selectedTags.append(attrString.string)
+            let tagString = NSAttributedString(attrString).string
+            if !selectedTags.contains(tagString) {
+                self.selectedTags.append(tagString)
             }
             
             self.searchDrawer.searchBar.text = ""

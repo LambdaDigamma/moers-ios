@@ -13,7 +13,7 @@ import Fuse
 
 public typealias PanoID = Int
 
-public final class Camera: NSObject, Location, Codable, Identifiable {
+public final class Camera: NSObject, Location, Codable, Identifiable, @unchecked Sendable {
     
     public var id: PanoID
     @objc public dynamic var name: String

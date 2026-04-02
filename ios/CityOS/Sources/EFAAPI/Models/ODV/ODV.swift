@@ -24,7 +24,7 @@ public extension Collection where Element == ODV {
 /// It refers to the role that the point has within a request.
 /// The determination of points (stops, addresses, points of interest, ...) using the
 /// EFA Location Server is outlined. ODVs allow a single field search.
-public struct ODV: Codable, DynamicNodeDecoding {
+public struct ODV: Codable, Sendable, DynamicNodeDecoding {
     
     public var type: String
     public var usage: ODVUsageType

@@ -10,7 +10,7 @@ import Foundation
 import Foundation
 import XMLCoder
 
-public struct ITDMeansOfTransport: Codable, Equatable, Hashable, DynamicNodeDecoding, LineIdentifiable {
+public struct ITDMeansOfTransport: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding, LineIdentifiable {
     
     public let name: String
     public let shortName: String

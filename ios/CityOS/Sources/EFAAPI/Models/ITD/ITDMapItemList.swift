@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ITDMapItemList: Codable, DynamicNodeDecoding {
+public struct ITDMapItemList: Codable, Sendable, DynamicNodeDecoding {
     
     public var items: [ITDMapItem]
     

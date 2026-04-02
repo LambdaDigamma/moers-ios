@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct DepartureMonitorResponse: Codable, DynamicNodeDecoding, BaseModel, @unchecked Sendable {
+public struct DepartureMonitorResponse: Codable, DynamicNodeDecoding, BaseModel, Sendable {
     
     public let language: String
     public let sessionID: Int

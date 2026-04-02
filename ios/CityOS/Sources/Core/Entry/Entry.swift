@@ -11,7 +11,7 @@ import MapKit
 import Fuse
 import ModernNetworking
 
-public class Entry: NSObject, Decodable, Location, Model {
+public final class Entry: NSObject, Decodable, Location, Model, @unchecked Sendable {
     
     public var id: Int
     @objc dynamic public var name: String

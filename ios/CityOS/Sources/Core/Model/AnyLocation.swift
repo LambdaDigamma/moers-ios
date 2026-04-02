@@ -9,7 +9,7 @@ import Foundation
 import MapKit
 
 /// Type-erased wrapper for Location protocol to enable Hashable conformance
-public struct AnyLocation: Hashable, @unchecked Sendable {
+public struct AnyLocation: Hashable, Sendable {
     
     private let base: any Location
     

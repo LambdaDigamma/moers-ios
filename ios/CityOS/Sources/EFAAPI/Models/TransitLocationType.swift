@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum TransitLocationType: String, Codable, Hashable, Equatable {
+public enum TransitLocationType: String, Codable, Hashable, Equatable, Sendable {
     
     /// `anyTypeSort` of 1
     case location = "loc"

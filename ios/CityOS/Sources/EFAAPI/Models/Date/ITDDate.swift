@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ITDDate: Codable, Equatable, Hashable, DynamicNodeDecoding {
+public struct ITDDate: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
     
     public var weekday: Int
     public var year: Int

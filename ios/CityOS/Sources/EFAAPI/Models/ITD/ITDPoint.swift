@@ -9,7 +9,7 @@ import Foundation
 import XMLCoder
 import CoreLocation
 
-public struct ITDPoint: Codable, Equatable, Hashable, DynamicNodeDecoding {
+public struct ITDPoint: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
     
     public let stopID: Int
     public var usage: Usage = .none
@@ -44,7 +44,7 @@ public struct ITDPoint: Codable, Equatable, Hashable, DynamicNodeDecoding {
         }
     }
     
-    public enum Usage: String, Codable, Hashable {
+    public enum Usage: String, Codable, Hashable, Sendable {
         case departure = "departure"
         case arrival = "arrival"
         case via = "via"

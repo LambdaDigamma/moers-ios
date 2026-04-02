@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ITDRBLControlled: Codable, Hashable, Equatable, DynamicNodeDecoding {
+public struct ITDRBLControlled: Codable, Hashable, Equatable, Sendable, DynamicNodeDecoding {
     
     public let delayMinutes: Int
     public let delayMinutesArr: Int

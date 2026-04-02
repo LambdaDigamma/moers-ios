@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ITDTripDateTime: Codable, Equatable, Hashable, DynamicNodeDecoding {
+public struct ITDTripDateTime: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
     
     public let depArrType: DepArrType
     public let dateTime: ITDDateTime
@@ -23,7 +23,7 @@ public struct ITDTripDateTime: Codable, Equatable, Hashable, DynamicNodeDecoding
         }
     }
     
-    public enum DepArrType: String, Codable {
+    public enum DepArrType: String, Codable, Sendable {
         case departure = "dep"
         case arrival = "arr"
         

@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ITDServingLines: Codable, DynamicNodeDecoding {
+public struct ITDServingLines: Codable, DynamicNodeDecoding, Sendable {
     
     public var lines: [ITDServingLine]
     

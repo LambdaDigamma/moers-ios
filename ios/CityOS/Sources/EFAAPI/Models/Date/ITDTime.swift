@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ITDTime: Codable, Equatable, Hashable, DynamicNodeDecoding {
+public struct ITDTime: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
     
     public var hour: Int
     public var minute: Int

@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct DepartureMonitorRequest: Codable, DynamicNodeDecoding {
+public struct DepartureMonitorRequest: Codable, Sendable, DynamicNodeDecoding {
         
     public let requestID: Int
     public let odv: ODV

@@ -11,7 +11,7 @@ import Foundation
 import MapKit
 import Fuse
 
-final public class PetrolStationViewModel: LocationViewModel, Location, Codable, MKAnnotation, Identifiable {
+final public class PetrolStationViewModel: LocationViewModel, Location, Codable, MKAnnotation, Identifiable, @unchecked Sendable {
     
     public var id: String
     @objc public dynamic var name: String

@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ITDDeparture: Codable, DynamicNodeDecoding, BaseStubbable, Equatable {
+public struct ITDDeparture: Codable, Sendable, DynamicNodeDecoding, BaseStubbable, Equatable {
     
     public var regularDateTime: ITDDateTime
     public var actualDateTime: ITDDateTime?

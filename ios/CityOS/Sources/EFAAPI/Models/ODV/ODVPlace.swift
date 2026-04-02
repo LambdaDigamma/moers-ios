@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ODVPlace: Codable, DynamicNodeDecoding {
+public struct ODVPlace: Codable, Sendable, DynamicNodeDecoding {
     
     public var state: String
     

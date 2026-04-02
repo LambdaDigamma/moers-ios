@@ -39,7 +39,7 @@ public extension ITDRoute {
     
 }
 
-public struct ITDRoute: Codable, DynamicNodeDecoding, Identifiable {
+public struct ITDRoute: Codable, Sendable, DynamicNodeDecoding, Identifiable {
     
     public let idx: Int
     public let active: Int
