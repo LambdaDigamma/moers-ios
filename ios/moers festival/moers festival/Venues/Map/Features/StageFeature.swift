@@ -23,8 +23,16 @@ public class StageFeature: GeoFeature<StageProperties>, FGDDecodableFeature {
 extension StageFeature: StylableFeature {
     
     public func configure(overlayRenderer: MKOverlayPathRenderer) {
-        overlayRenderer.strokeColor = UIColor.black.withAlphaComponent(0.5)
-        overlayRenderer.fillColor = UIColor.black.withAlphaComponent(0.2)
+        overlayRenderer.strokeColor = UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor.white.withAlphaComponent(0.5)
+                : UIColor.black.withAlphaComponent(0.5)
+        }
+        overlayRenderer.fillColor = UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor.white.withAlphaComponent(0.2)
+                : UIColor.black.withAlphaComponent(0.2)
+        }
         overlayRenderer.lineWidth = 1.0
     }
     

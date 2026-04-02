@@ -23,8 +23,16 @@ public class ToiletFeature: GeoFeature<ToiletProperties>, FGDDecodableFeature {
 extension ToiletFeature: StylableFeature {
     
     public func configure(overlayRenderer: MKOverlayPathRenderer) {
-        overlayRenderer.strokeColor = UIColor.systemBlue.withAlphaComponent(0.3)
-        overlayRenderer.fillColor = UIColor.systemBlue.withAlphaComponent(0.2)
+        overlayRenderer.strokeColor = UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor.systemBlue.withAlphaComponent(0.5)
+                : UIColor.systemBlue.withAlphaComponent(0.3)
+        }
+        overlayRenderer.fillColor = UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor.systemBlue.withAlphaComponent(0.3)
+                : UIColor.systemBlue.withAlphaComponent(0.2)
+        }
         overlayRenderer.lineWidth = 1.0
     }
     

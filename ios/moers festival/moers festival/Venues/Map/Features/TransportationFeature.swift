@@ -23,8 +23,16 @@ public class TransportationFeature: GeoFeature<TransportationProperties>, FGDDec
 extension TransportationFeature: StylableFeature {
     
     public func configure(overlayRenderer: MKOverlayPathRenderer) {
-        overlayRenderer.strokeColor = UIColor.systemYellow.withAlphaComponent(0.5)
-        overlayRenderer.fillColor = UIColor.systemYellow.withAlphaComponent(0.4)
+        overlayRenderer.strokeColor = UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor.systemYellow.withAlphaComponent(0.7)
+                : UIColor.systemYellow.withAlphaComponent(0.5)
+        }
+        overlayRenderer.fillColor = UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor.systemYellow.withAlphaComponent(0.5)
+                : UIColor.systemYellow.withAlphaComponent(0.4)
+        }
         overlayRenderer.lineWidth = 1.0
     }
     

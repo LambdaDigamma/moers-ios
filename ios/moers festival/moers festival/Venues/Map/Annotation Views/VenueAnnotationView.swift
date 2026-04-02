@@ -14,11 +14,10 @@ import MapKit
 public class AlternativeVenueAnnotationView: MKAnnotationView {
     
     private let size: CGFloat = 30.0
-    private let annotationColor = UIColor(hexString: "#000000")!
     
     public override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-        
+
 //        self.markerTintColor = .systemBlue
 //        self.glyphImage = UIImage(named: "toilet")
 //        self.titleVisibility = .hidden
@@ -30,8 +29,8 @@ public class AlternativeVenueAnnotationView: MKAnnotationView {
 //        self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: size, height: size)
         self.layer.cornerRadius = 4 // self.layer.frame.height / 2
         self.layer.borderWidth = 1.0
-        self.layer.borderColor = annotationColor.cgColor
-        self.backgroundColor = annotationColor
+        self.layer.borderColor = UIColor.label.cgColor
+        self.backgroundColor = UIColor.label
         self.canShowCallout = false
         
         

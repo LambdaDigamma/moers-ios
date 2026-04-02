@@ -349,8 +349,20 @@ public class NewMapViewController: UIViewController {
         }
     }
     
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+    
     public override var preferredStatusBarStyle: UIStatusBarStyle {
-        .darkContent
+        if traitCollection.userInterfaceStyle == .dark {
+            return .lightContent
+        } else {
+            return .darkContent
+        }
     }
     
 }

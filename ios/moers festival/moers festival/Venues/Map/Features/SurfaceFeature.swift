@@ -45,7 +45,12 @@ extension SurfaceFeature: StylableFeature {
     
     public func configure(overlayRenderer: MKOverlayPathRenderer) {
         
-        overlayRenderer.strokeColor = UIColor.systemBrown.withAlphaComponent(self.properties.fenced ? 0.8 : 0.2)
+        let alpha = self.properties.fenced ? 0.8 : 0.2
+        overlayRenderer.strokeColor = UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor.systemBrown.withAlphaComponent(alpha)
+                : UIColor.systemBrown.withAlphaComponent(alpha)
+        }
         overlayRenderer.fillColor = UIColor.systemBrown.withAlphaComponent(0.0)
         overlayRenderer.lineWidth = self.properties.fenced ? 2.0 : 1.0
     }

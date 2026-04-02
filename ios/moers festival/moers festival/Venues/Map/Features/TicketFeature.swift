@@ -23,8 +23,16 @@ public class TicketFeature: GeoFeature<TicketProperties>, FGDDecodableFeature {
 extension TicketFeature: StylableFeature {
     
     public func configure(overlayRenderer: MKOverlayPathRenderer) {
-        overlayRenderer.strokeColor = UIColor.blue.withAlphaComponent(0.5)
-        overlayRenderer.fillColor = UIColor.blue.withAlphaComponent(0.3)
+        overlayRenderer.strokeColor = UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor.systemBlue.withAlphaComponent(0.7)
+                : UIColor.blue.withAlphaComponent(0.5)
+        }
+        overlayRenderer.fillColor = UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor.systemBlue.withAlphaComponent(0.4)
+                : UIColor.blue.withAlphaComponent(0.3)
+        }
         overlayRenderer.lineWidth = 1.0
     }
     

@@ -50,8 +50,16 @@ public class DorfFeature: GeoFeature<DorfProperties>, FGDDecodableFeature {
 extension DorfFeature: StylableFeature {
     
     public func configure(overlayRenderer: MKOverlayPathRenderer) {
-        overlayRenderer.strokeColor = UIColor.black.withAlphaComponent(0.3)
-        overlayRenderer.fillColor = UIColor.black.withAlphaComponent(0.2)
+        overlayRenderer.strokeColor = UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor.white.withAlphaComponent(0.3)
+                : UIColor.black.withAlphaComponent(0.3)
+        }
+        overlayRenderer.fillColor = UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor.white.withAlphaComponent(0.2)
+                : UIColor.black.withAlphaComponent(0.2)
+        }
         overlayRenderer.lineWidth = 1.0
     }
     

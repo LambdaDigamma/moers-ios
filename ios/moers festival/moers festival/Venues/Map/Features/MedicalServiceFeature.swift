@@ -23,8 +23,16 @@ public class MedicalServiceFeature: GeoFeature<MedicalServiceProperties>, FGDDec
 extension MedicalServiceFeature: StylableFeature {
     
     public func configure(overlayRenderer: MKOverlayPathRenderer) {
-        overlayRenderer.strokeColor = UIColor.systemGreen.withAlphaComponent(0.3)
-        overlayRenderer.fillColor = UIColor.systemGreen.withAlphaComponent(0.2)
+        overlayRenderer.strokeColor = UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor.systemGreen.withAlphaComponent(0.5)
+                : UIColor.systemGreen.withAlphaComponent(0.3)
+        }
+        overlayRenderer.fillColor = UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor.systemGreen.withAlphaComponent(0.3)
+                : UIColor.systemGreen.withAlphaComponent(0.2)
+        }
         overlayRenderer.lineWidth = 1.0
     }
     
