@@ -1,64 +1,91 @@
 import React from "react";
 import { Still } from "remotion";
-import {
-  FestivalPromo,
-  festivalAppStoreStills,
-} from "./components/FestivalPromo";
-import { iPhone17Pro } from "./apple-screenshot-sizes";
+import { FestivalPromo } from "./components/FestivalPromo";
+import { iPhone17Pro, ScreenshotSize } from "./apple-screenshot-sizes";
 import { setRemotionImageLoader } from "./components/PhoneFrame";
 
-// Initialize Remotion image loader
 setRemotionImageLoader();
 
-export const RemotionRoot: React.FC = () => {
-  // iPhone 17 Pro carousel dimensions: 4 screenshots + 3 dead zones
-  const promoWidth = iPhone17Pro.portrait.width * 4 + 20 * 3;
-  const promoHeight = iPhone17Pro.portrait.height;
+interface ScreenshotCollection {
+  name: string;
+  /** A component type or a pre-rendered JSX element to display as the canvas. */
+  canvas: React.ComponentType | React.ReactElement;
+  screenshotSize: ScreenshotSize;
+  numberOfScreens: number;
+}
 
+/** Wraps a canvas with a dead-zone overlay and returns a stable component for use with Remotion Still. */
+function toStillComponent(
+  canvas: React.ComponentType | React.ReactElement,
+  screenshotSize: ScreenshotSize,
+  numberOfScreens: number,
+  spacing: number,
+): React.ComponentType {
+  const Canvas = React.isValidElement(canvas)
+    ? () => canvas
+    : (canvas as React.ComponentType);
+
+  return function WithDeadZone() {
+    return (
+      <div style={{ position: "relative", width: "100%", height: "100%" }}>
+        <Canvas />
+        {spacing > 0 &&
+          Array.from({ length: numberOfScreens - 1 }, (_, i) => (
+            <div
+              key={i}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: (i + 1) * screenshotSize.width + i * spacing,
+                width: spacing,
+                height: screenshotSize.height,
+                backgroundColor: "rgba(255, 0, 0, 0.4)",
+                pointerEvents: "none",
+              }}
+            />
+          ))}
+      </div>
+    );
+  };
+}
+
+const screenshotCollections: ScreenshotCollection[] = [
+  {
+    name: "moers-festival-17-pro",
+    canvas: FestivalPromo,
+    numberOfScreens: 4,
+    screenshotSize: iPhone17Pro.portrait,
+  },
+];
+
+const INTER_SCREENSHOT_SPACING = 20;
+
+// Pre-build stable Still components outside of render so they are not recreated on every render.
+const collectionEntries = screenshotCollections.map((c) => ({
+  ...c,
+  StillComponent: toStillComponent(
+    c.canvas,
+    c.screenshotSize,
+    c.numberOfScreens,
+    INTER_SCREENSHOT_SPACING,
+  ),
+}));
+
+export const RemotionRoot: React.FC = () => {
   return (
     <>
-      {/* Promotional composition ON iPhone 17 Pro canvas with device frames */}
-      <Still
-        id="festival-promo"
-        component={FestivalPromo}
-        width={promoWidth}
-        height={promoHeight}
-        defaultProps={{ backgroundImage: undefined }}
-      />
-
-      {/* App Store stills - Use these for actual App Store submission */}
-      {/* These have the dead zone overlays for proper screenshot spacing */}
-      <Still
-        id={festivalAppStoreStills.iphone17Pro.id}
-        component={festivalAppStoreStills.iphone17Pro.component}
-        width={festivalAppStoreStills.iphone17Pro.width}
-        height={festivalAppStoreStills.iphone17Pro.height}
-        defaultProps={festivalAppStoreStills.iphone17Pro.defaultProps}
-      />
-
-      <Still
-        id={festivalAppStoreStills.iphone14Plus.id}
-        component={festivalAppStoreStills.iphone14Plus.component}
-        width={festivalAppStoreStills.iphone14Plus.width}
-        height={festivalAppStoreStills.iphone14Plus.height}
-        defaultProps={festivalAppStoreStills.iphone14Plus.defaultProps}
-      />
-
-      <Still
-        id={festivalAppStoreStills.iphone8Plus.id}
-        component={festivalAppStoreStills.iphone8Plus.component}
-        width={festivalAppStoreStills.iphone8Plus.width}
-        height={festivalAppStoreStills.iphone8Plus.height}
-        defaultProps={festivalAppStoreStills.iphone8Plus.defaultProps}
-      />
-
-      <Still
-        id={festivalAppStoreStills.ipadPro.id}
-        component={festivalAppStoreStills.ipadPro.component}
-        width={festivalAppStoreStills.ipadPro.width}
-        height={festivalAppStoreStills.ipadPro.height}
-        defaultProps={festivalAppStoreStills.ipadPro.defaultProps}
-      />
+      {collectionEntries.map((collection) => (
+        <Still
+          key={collection.name}
+          id={collection.name}
+          component={collection.StillComponent}
+          width={
+            collection.screenshotSize.width * collection.numberOfScreens +
+            INTER_SCREENSHOT_SPACING * (collection.numberOfScreens - 1)
+          }
+          height={collection.screenshotSize.height}
+        />
+      ))}
     </>
   );
 };

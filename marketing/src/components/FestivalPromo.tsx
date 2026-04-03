@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Img, staticFile } from "remotion";
 import { z } from "zod";
-import { IPhone17ProFrame, IPhone16Frame, IPhoneAirFrame } from "./PhoneFrame";
+import { IPhone17ProFrame } from "./PhoneFrame";
 
 const festivalColors = {
   background: "#0a0a0a",
@@ -42,17 +42,15 @@ export const FestivalPromo: React.FC<FestivalPromoProps> = ({
         overflow: "hidden",
       }}
     >
-      {backgroundImage && (
-        <Img
-          src={staticFile(backgroundImage)}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            opacity: 0.25,
-          }}
-        />
-      )}
+      <Img
+        src={staticFile("assets/background.png")}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          opacity: 0.25,
+        }}
+      />
 
       <div
         style={{
@@ -123,14 +121,14 @@ export const FestivalPromo: React.FC<FestivalPromoProps> = ({
             zIndex: 2,
           }}
         >
-          <IPhone16Frame color="Black">
+          <IPhone17ProFrame color="Silver">
             <Img
               src={staticFile(
-                `${screenshotBase}/iPhone 14 Plus-1-event_detail.png`,
+                `${screenshotBase}/iPhone 17 Pro-1-event_detail.png`,
               )}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
-          </IPhone16Frame>
+          </IPhone17ProFrame>
         </div>
 
         <div
@@ -139,12 +137,12 @@ export const FestivalPromo: React.FC<FestivalPromoProps> = ({
             zIndex: 1,
           }}
         >
-          <IPhoneAirFrame color="Sky Blue">
+          <IPhone17ProFrame color="Silver">
             <Img
-              src={staticFile(`${screenshotBase}/iPhone 8 Plus-2-info.png`)}
+              src={staticFile(`${screenshotBase}/iPhone 17 Pro-2-info.png`)}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
-          </IPhoneAirFrame>
+          </IPhone17ProFrame>
         </div>
       </div>
 
