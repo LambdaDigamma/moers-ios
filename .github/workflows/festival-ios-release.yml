@@ -163,6 +163,7 @@ jobs:
             Focus on what users will notice: new features, visible improvements, and bug fixes.
             Ignore CI changes, dependency updates, and internal refactoring.
             Keep the total length under 4000 characters.
+            Do not use any emoji or special Unicode symbols — App Store Connect rejects them.
 
       - name: Detect changed modules
         id: modules
