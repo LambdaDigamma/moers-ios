@@ -105,11 +105,20 @@ export type IPadColor = "Silver";
 interface FrameDefinition {
   folder: string;
   screenArea: {
-    top: string;
-    left: string;
-    right: string;
-    bottom: string;
-    borderRadius: string;
+    portrait: {
+      top: string;
+      left: string;
+      right: string;
+      bottom: string;
+      borderRadius: string;
+    };
+    landscape: {
+      top: string;
+      left: string;
+      right: string;
+      bottom: string;
+      borderRadius: string;
+    };
   };
 }
 
@@ -117,121 +126,229 @@ const frameDefinitions: Record<string, FrameDefinition> = {
   "iPhone 17 Pro": {
     folder: "iPhone 17 Pro",
     screenArea: {
-      top: "2%",
-      left: "5%",
-      right: "5%",
-      bottom: "2.5%",
-      borderRadius: "8%",
+      portrait: {
+        top: "2%",
+        left: "5%",
+        right: "5%",
+        bottom: "2.5%",
+        borderRadius: "8%",
+      },
+      landscape: {
+        top: "5%",
+        left: "2%",
+        right: "2%",
+        bottom: "5%",
+        borderRadius: "8%",
+      },
     },
   },
   "iPhone 17 Pro Max": {
     folder: "iPhone 17 Pro Max",
     screenArea: {
-      top: "2.2%",
-      left: "5.1%",
-      right: "5.1%",
-      bottom: "2.2%",
-      borderRadius: "8%",
+      portrait: {
+        top: "2.2%",
+        left: "5.1%",
+        right: "5.1%",
+        bottom: "2.2%",
+        borderRadius: "7%",
+      },
+      landscape: {
+        top: "5.1%",
+        left: "2.2%",
+        right: "2.2%",
+        bottom: "5.1%",
+        borderRadius: "7%",
+      },
     },
   },
   "iPhone 17": {
     folder: "iPhone 17",
     screenArea: {
-      top: "2.5%",
-      left: "5.9%",
-      right: "5.7%",
-      bottom: "2.6%",
-      borderRadius: "8%",
+      portrait: {
+        top: "2.5%",
+        left: "5.3%",
+        right: "5.3%",
+        bottom: "2.5%",
+        borderRadius: "8%",
+      },
+      landscape: {
+        top: "5.9%",
+        left: "2.5%",
+        right: "2.6%",
+        bottom: "5.7%",
+        borderRadius: "8%",
+      },
     },
   },
   "iPhone 16 Pro": {
     folder: "iPhone 16 Pro",
     screenArea: {
-      top: "2.5%",
-      left: "5.4%",
-      right: "5.4%",
-      bottom: "2.5%",
-      borderRadius: "8%",
+      portrait: {
+        top: "2.5%",
+        left: "5.3%",
+        right: "5.3%",
+        bottom: "2.5%",
+        borderRadius: "8%",
+      },
+      landscape: {
+        top: "5.2%",
+        left: "2.4%",
+        right: "2.4%",
+        bottom: "5.2%",
+        borderRadius: "8%",
+      },
     },
   },
   "iPhone 16 Pro Max": {
     folder: "iPhone 16 Pro Max",
     screenArea: {
-      top: "2.2%",
-      left: "5.1%",
-      right: "5.1%",
-      bottom: "2.2%",
-      borderRadius: "8%",
+      portrait: {
+        top: "2.2%",
+        left: "5.0%",
+        right: "5.0%",
+        bottom: "2.2%",
+        borderRadius: "7%",
+      },
+      landscape: {
+        top: "5.1%",
+        left: "2.2%",
+        right: "2.2%",
+        bottom: "5.1%",
+        borderRadius: "8%",
+      },
     },
   },
   "iPhone 16": {
     folder: "iPhone 16",
     screenArea: {
-      top: "3.2%",
-      left: "6.6%",
-      right: "6.6%",
-      bottom: "3.2%",
-      borderRadius: "8%",
+      portrait: {
+        top: "3.2%",
+        left: "6.6%",
+        right: "6.6%",
+        bottom: "3.2%",
+        borderRadius: "7%",
+      },
+      landscape: {
+        top: "6.6%",
+        left: "3.2%",
+        right: "3.2%",
+        bottom: "6.6%",
+        borderRadius: "7%",
+      },
     },
   },
   "iPhone 16 Plus": {
     folder: "iPhone 16 Plus",
     screenArea: {
-      top: "2.9%",
-      left: "6.1%",
-      right: "6.1%",
-      bottom: "2.9%",
-      borderRadius: "7%",
+      portrait: {
+        top: "2.9%",
+        left: "6.1%",
+        right: "6.1%",
+        bottom: "2.9%",
+        borderRadius: "7%",
+      },
+      landscape: {
+        top: "6.1%",
+        left: "2.9%",
+        right: "2.9%",
+        bottom: "6.1%",
+        borderRadius: "7%",
+      },
     },
   },
   "iPhone Air": {
     folder: "iPhone Air",
     screenArea: {
-      top: "2.5%",
-      left: "4.5%",
-      right: "4.3%",
-      bottom: "2.5%",
-      borderRadius: "8%",
+      portrait: {
+        top: "2.5%",
+        left: "4.3%",
+        right: "4.3%",
+        bottom: "2.5%",
+        borderRadius: "8%",
+      },
+      landscape: {
+        top: "4.5%",
+        left: "2.5%",
+        right: "2.5%",
+        bottom: "4.3%",
+        borderRadius: "8%",
+      },
     },
   },
   "iPad Pro 13 - M4": {
     folder: "iPad Pro 13 - M4",
     screenArea: {
-      top: "3%",
-      left: "7%",
-      right: "7%",
-      bottom: "3%",
-      borderRadius: "12px",
+      portrait: {
+        top: "3%",
+        left: "7%",
+        right: "7%",
+        bottom: "3%",
+        borderRadius: "12px",
+      },
+      landscape: {
+        top: "7%",
+        left: "3%",
+        right: "3%",
+        bottom: "7%",
+        borderRadius: "12px",
+      },
     },
   },
   "iPad Air 11 - M2": {
     folder: 'iPad Air 11" - M2',
     screenArea: {
-      top: "3.5%",
-      left: "8%",
-      right: "8%",
-      bottom: "3.5%",
-      borderRadius: "12px",
+      portrait: {
+        top: "3.5%",
+        left: "8%",
+        right: "8%",
+        bottom: "3.5%",
+        borderRadius: "12px",
+      },
+      landscape: {
+        top: "8%",
+        left: "3.5%",
+        right: "3.5%",
+        bottom: "8%",
+        borderRadius: "12px",
+      },
     },
   },
   "iPad mini": {
     folder: "iPad mini",
     screenArea: {
-      top: "4%",
-      left: "9%",
-      right: "9%",
-      bottom: "4%",
-      borderRadius: "12px",
+      portrait: {
+        top: "4%",
+        left: "9%",
+        right: "9%",
+        bottom: "4%",
+        borderRadius: "12px",
+      },
+      landscape: {
+        top: "9%",
+        left: "4%",
+        right: "4%",
+        bottom: "9%",
+        borderRadius: "12px",
+      },
     },
   },
   iPad: {
     folder: "iPad",
     screenArea: {
-      top: "4%",
-      left: "8%",
-      right: "8%",
-      bottom: "4%",
-      borderRadius: "16px",
+      portrait: {
+        top: "4%",
+        left: "8%",
+        right: "8%",
+        bottom: "4%",
+        borderRadius: "16px",
+      },
+      landscape: {
+        top: "8%",
+        left: "4%",
+        right: "4%",
+        bottom: "8%",
+        borderRadius: "16px",
+      },
     },
   },
 };
@@ -320,13 +437,13 @@ export const PhoneFrame: React.FC<PhoneFrameProps> = ({
         <div
           style={{
             position: "absolute",
-            top: frameDef.screenArea.top,
-            left: frameDef.screenArea.left,
-            right: frameDef.screenArea.right,
-            bottom: frameDef.screenArea.bottom,
+            top: frameDef.screenArea[orientation].top,
+            left: frameDef.screenArea[orientation].left,
+            right: frameDef.screenArea[orientation].right,
+            bottom: frameDef.screenArea[orientation].bottom,
             zIndex: 0,
             overflow: "hidden",
-            borderRadius: frameDef.screenArea.borderRadius,
+            borderRadius: frameDef.screenArea[orientation].borderRadius,
             backgroundColor: "white",
           }}
         >

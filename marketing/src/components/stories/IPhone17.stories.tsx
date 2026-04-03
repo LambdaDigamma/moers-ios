@@ -9,7 +9,8 @@ const meta: Meta<typeof IPhone17Frame> = {
     (Story) => (
       <div
         style={{
-          height: "600px",
+          minHeight: "600px",
+          minWidth: "800px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -45,7 +46,7 @@ export const PortraitBlack: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Black",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#0000ff" }} />
     ),
   },
 };
@@ -56,7 +57,7 @@ export const PortraitWhite: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "White",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#0000ff" }} />
     ),
   },
 };
@@ -67,7 +68,7 @@ export const PortraitLavender: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Lavender",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#0000ff" }} />
     ),
   },
 };
@@ -78,7 +79,7 @@ export const PortraitMistBlue: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Mist Blue",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#0000ff" }} />
     ),
   },
 };
@@ -89,7 +90,7 @@ export const PortraitSage: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Sage",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#0000ff" }} />
     ),
   },
 };
@@ -100,7 +101,7 @@ export const LandscapeBlack: StoryObj<typeof meta> = {
     orientation: "landscape",
     color: "Black",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#0000ff" }} />
     ),
   },
 };

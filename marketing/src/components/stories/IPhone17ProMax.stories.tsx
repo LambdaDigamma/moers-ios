@@ -13,7 +13,8 @@ const meta: Meta<typeof IPhone17ProMaxFrame> = {
     (Story) => (
       <div
         style={{
-          height: "600px",
+          minHeight: "600px",
+          minWidth: "800px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -64,7 +65,7 @@ export const PortraitDeepBlue: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Deep Blue",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#0000ff" }} />
     ),
   },
 };
@@ -75,7 +76,7 @@ export const PortraitCosmicOrange: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Cosmic Orange",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#0000ff" }} />
     ),
   },
 };

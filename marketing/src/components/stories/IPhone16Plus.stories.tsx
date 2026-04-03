@@ -9,7 +9,8 @@ const meta: Meta<typeof IPhone16PlusFrame> = {
     (Story) => (
       <div
         style={{
-          height: "600px",
+          minHeight: "600px",
+          minWidth: "800px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

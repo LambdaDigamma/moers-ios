@@ -9,7 +9,8 @@ const meta: Meta<typeof IPadPro13M4Frame> = {
     (Story) => (
       <div
         style={{
-          height: "600px",
+          minHeight: "600px",
+          minWidth: "800px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
