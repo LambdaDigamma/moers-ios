@@ -18,7 +18,6 @@
 		DF56290B257BB4F1005FC7BA /* Waxwing in Frameworks */ = {isa = PBXBuildFile; productRef = DF56290A257BB4F1005FC7BA /* Waxwing */; };
 		DF56290D257BB4F1005FC7BA /* SwiftyMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = DF56290C257BB4F1005FC7BA /* SwiftyMarkdown */; };
 		DF56291A257BB6E3005FC7BA /* BLTNBoard in Frameworks */ = {isa = PBXBuildFile; productRef = DF562919257BB6E3005FC7BA /* BLTNBoard */; };
-		DF562933257BBA68005FC7BA /* EventBus in Frameworks */ = {isa = PBXBuildFile; productRef = DF562932257BBA68005FC7BA /* EventBus */; };
 		DF5975BE2F01E08D00512386 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975BD2F01E08D00512386 /* Core */; };
 		DF5975C02F01E08D00512386 /* MMEvents in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975BF2F01E08D00512386 /* MMEvents */; };
 		DF5975C22F01E08D00512386 /* MMFeeds in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C12F01E08D00512386 /* MMFeeds */; };
@@ -384,7 +383,6 @@
 				DF5975C82F01E08D00512386 /* NewsFeature in Frameworks */,
 				DF56290D257BB4F1005FC7BA /* SwiftyMarkdown in Frameworks */,
 				DF5975BE2F01E08D00512386 /* Core in Frameworks */,
-				DF562933257BBA68005FC7BA /* EventBus in Frameworks */,
 				DF055B962D8B8FD7007E4393 /* FirebaseCore in Frameworks */,
 				DF5975C02F01E08D00512386 /* MMEvents in Frameworks */,
 				DF56291A257BB6E3005FC7BA /* BLTNBoard in Frameworks */,
@@ -598,7 +596,6 @@
 				DF56290A257BB4F1005FC7BA /* Waxwing */,
 				DF56290C257BB4F1005FC7BA /* SwiftyMarkdown */,
 				DF562919257BB6E3005FC7BA /* BLTNBoard */,
-				DF562932257BBA68005FC7BA /* EventBus */,
 				DF9B4E6327F668A200817DA3 /* INSPhotoGallery */,
 				DF7FB53427F672E300F718F2 /* StateViewController */,
 				DF055B932D8B8FD7007E4393 /* FirebaseAnalytics */,
@@ -820,8 +817,7 @@
 				DFFD4962246034A40052830A /* XCRemoteSwiftPackageReference "Waxwing" */,
 				DFD086B4246DC90E00B15A96 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */,
 				DF562918257BB6E3005FC7BA /* XCRemoteSwiftPackageReference "BulletinBoard" */,
-				DF562931257BBA68005FC7BA /* XCRemoteSwiftPackageReference "eventbus" */,
-				DF9B4E6227F668A200817DA3 /* XCRemoteSwiftPackageReference "INSPhotoGallery" */,
+					DF9B4E6227F668A200817DA3 /* XCRemoteSwiftPackageReference "INSPhotoGallery" */,
 				DF7FB53327F670D500F718F2 /* XCRemoteSwiftPackageReference "stateviewcontroller" */,
 				DF055B922D8B8FD7007E4393 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				DF5975BC2F01E08D00512386 /* XCLocalSwiftPackageReference "../CityOS" */,
@@ -2262,18 +2258,10 @@
 		};
 		DF562918257BB6E3005FC7BA /* XCRemoteSwiftPackageReference "BulletinBoard" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/alexisakers/BulletinBoard";
+			repositoryURL = "https://github.com/LambdaDigamma/BulletinBoard";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.0.0;
-			};
-		};
-		DF562931257BBA68005FC7BA /* XCRemoteSwiftPackageReference "eventbus" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/lambdadigamma/eventbus";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.5.2;
 			};
 		};
 		DF7FB53327F670D500F718F2 /* XCRemoteSwiftPackageReference "stateviewcontroller" */ = {
@@ -2357,11 +2345,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DF562918257BB6E3005FC7BA /* XCRemoteSwiftPackageReference "BulletinBoard" */;
 			productName = BLTNBoard;
-		};
-		DF562932257BBA68005FC7BA /* EventBus */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DF562931257BBA68005FC7BA /* XCRemoteSwiftPackageReference "eventbus" */;
-			productName = EventBus;
 		};
 		DF5975BD2F01E08D00512386 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;

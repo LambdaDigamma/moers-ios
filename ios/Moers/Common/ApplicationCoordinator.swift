@@ -27,6 +27,7 @@ public enum TabIndices: Int {
     
 }
 
+@MainActor
 class ApplicationCoordinator: NSObject {
 
     @Injected(\.httpLoader) var loader: HTTPLoader

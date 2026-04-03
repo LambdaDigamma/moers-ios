@@ -45,7 +45,6 @@ let package = Package(
         .package(url: "https://github.com/hyperoslo/Cache", .upToNextMajor(from: "7.4.0")),
         .package(url: "https://github.com/LambdaDigamma/fuse-swift", .upToNextMajor(from: "1.4.2")),
         .package(url: "https://github.com/LambdaDigamma/TagListView", from: "1.4.2"),
-        .package(url: "https://github.com/LambdaDigamma/EventBus", from: "0.5.2"),
         .package(url: "https://github.com/LambdaDigamma/TextFieldEffects", branch: "master"),
         .package(url: "https://github.com/LambdaDigamma/swift-prosemirror", .upToNextMajor(from: "0.0.8")),
         .package(url: "https://github.com/LambdaDigamma/MediaLibraryKit", .upToNextMajor(from: "1.0.1")),
@@ -183,8 +182,7 @@ let package = Package(
                 .byName(name: "Core"),
                 .byName(name: "TagListView"),
                 .byName(name: "Pulley"),
-                .byName(name: "EventBus"),
-                .byName(name: "TextFieldEffects"),
+.byName(name: "TextFieldEffects"),
                 .byName(name: "FuelFeature"),
             ],
             resources: [

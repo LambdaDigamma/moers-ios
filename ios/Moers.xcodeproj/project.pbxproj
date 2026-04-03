@@ -1804,7 +1804,7 @@
 		};
 		DFE1ED692538C24800FDD44A /* XCRemoteSwiftPackageReference "BulletinBoard" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/alexaubry/BulletinBoard.git";
+			repositoryURL = "https://github.com/LambdaDigamma/BulletinBoard";
 			requirement = {
 				branch = develop;
 				kind = branch;

@@ -18,6 +18,7 @@ import RubbishFeature
 import MapFeature
 import FuelFeature
 
+@MainActor
 public class AppTabBarController: AppScaffold.TabBarController {
 
     @LazyInjected(\.rubbishService) var rubbishService
@@ -32,7 +33,7 @@ public class AppTabBarController: AppScaffold.TabBarController {
     let events: EventCoordinator
     let other: OtherCoordinator
     
-    var tabs: [any AppScaffold.TabRepresentable] {
+    public var internalTabs: [any AppScaffold.TabRepresentable] {
         [dashboard, news, map, events, other]
     }
     
@@ -61,7 +62,7 @@ public class AppTabBarController: AppScaffold.TabBarController {
         
         self.loadCurrentLocation()
         
-        self.viewControllers = tabs.map(\.rootViewController)
+        self.viewControllers = internalTabs.map(\.rootViewController)
         
         self.tabBar.accessibilityIdentifier = AccessibilityIdentifiers.tabBar
         

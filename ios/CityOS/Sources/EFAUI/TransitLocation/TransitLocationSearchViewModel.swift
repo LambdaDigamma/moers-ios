@@ -11,10 +11,11 @@ import EFAAPI
 import ModernNetworking
 import OSLog
 
+@MainActor
 public class TransitLocationSearchViewModel: ObservableObject {
     
     private let service: TransitService
-    private var cancellables = Set<AnyCancellable>()
+    private var searchTask: Task<Void, Never>?
     
     @Published public var searchTerm: String = ""
     @Published public var transitLocations: [TransitLocation] = []
@@ -26,52 +27,37 @@ public class TransitLocationSearchViewModel: ObservableObject {
         $searchTerm
             .debounce(for: .milliseconds(400), scheduler: RunLoop.main)
             .removeDuplicates()
-            .map({ (search) -> String? in
-                if search.count < 1 {
-                    self.transitLocations = []
+            .map { search -> String? in
+                if search.isEmpty {
                     return nil
                 }
-                
                 return search
-            })
-            .compactMap{ $0 }
-            .sink(receiveValue: { (search) in
-                
-                self.searchStation(searchText: search)
-                
-//                if !self.searchText.isEmpty {
-//                    self.filteredData = self.allData.
-//                    filter { $0.contains(str) }
-//                } else {
-//                    self.filteredData = self.allData
-//                }
-            }).store(in: &cancellables)
-        
+            }
+            .compactMap { $0 }
+            .sink { [weak self] search in
+                self?.performSearch(searchText: search)
+            }
     }
     
     public var searchActive: Bool {
-        return searchTerm != ""
+        return !searchTerm.isEmpty
     }
     
     // MARK: - Loading -
     
-    public func searchStation(searchText: String) {
+    private func performSearch(searchText: String) {
+        searchTask?.cancel()
         
-        service.findTransitLocation(for: searchText, filtering: [])
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { (completion: Subscribers.Completion<HTTPError>) in
-                
-                switch completion {
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                    default: break
-                }
-                
-            }, receiveValue: { (transitLocations: [TransitLocation]) in
+        searchTask = Task {
+            do {
+                let transitLocations = try await self.service.findTransitLocation(for: searchText, filtering: [])
+                guard !Task.isCancelled else { return }
                 self.transitLocations = transitLocations
-            })
-            .store(in: &cancellables)
-        
+            } catch {
+                guard !Task.isCancelled else { return }
+                print(error.localizedDescription)
+            }
+        }
     }
     
     // MARK: - Recent -

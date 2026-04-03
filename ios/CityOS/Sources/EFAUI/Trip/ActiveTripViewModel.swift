@@ -81,32 +81,24 @@ public class ActiveTripViewModel: StandardViewModel {
             dateTimeType = .arrival
         }
         
-        transitService.sendTripRequest(
-            origin: trip.request.origin.id,
-            destination: trip.request.destination.id,
-            config: .init(),
-            tripDate: trip.request.tripDate.toExperience()
-        )
-        .sink { (error: Subscribers.Completion<HTTPError>) in
-            
-            switch error {
-                case .failure(let error):
-                    self.trip = .error(error)
-                    
-                default: break
+        Task {
+            do {
+                let response = try await transitService.sendTripRequest(
+                    origin: trip.request.origin.id,
+                    destination: trip.request.destination.id,
+                    config: .init(),
+                    tripDate: trip.request.tripDate.toExperience()
+                )
+                
+                self.trip = .success(.init(
+                    response: trip.response,
+                    raw: response.tripRequest
+                ))
+                
+            } catch {
+                self.trip = .error(error)
             }
-            
-        } receiveValue: { (response: TripResponse) in
-            
-            self.trip = .success(.init(
-                response: trip.response,
-                raw: response.tripRequest
-            ))
-            
-//            response.tripRequest.itinerary.routeList
-            
         }
-        .store(in: &cancellables)
         
     }
     

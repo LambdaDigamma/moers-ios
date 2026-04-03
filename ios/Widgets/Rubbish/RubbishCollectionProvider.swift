@@ -18,6 +18,7 @@ class RubbishCollectionProvider: TimelineProvider {
     
     private let rubbishService: RubbishService
     
+    @MainActor
     public init() {
         
         NetworkingConfiguration().executeInExtension()

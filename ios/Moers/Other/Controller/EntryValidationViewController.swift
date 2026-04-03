@@ -38,7 +38,10 @@ class EntryValidationViewController: UIViewController {
         self.setupUI()
         self.setupConstraints()
         self.applyTheming()
-        self.loadData()
+        
+        Task {
+            await self.loadData()
+        }
         
     }
     
@@ -120,24 +123,17 @@ class EntryValidationViewController: UIViewController {
         self.collectionView.backgroundColor = UIColor.systemBackground
     }
     
-    private func loadData() {
+    private func loadData() async {
         
-        entryManager.get { (result) in
-            
-            switch result {
-                
-            case .success(let entries):
-                
-                self.entries = entries.filter { !$0.isValidated }
-                self.updateSnapshot()
-                
-            case .failure(let error):
-                print(error.localizedDescription)
-                
-            }
-            
+        do {
+            let entries = try await entryManager.get()
+            self.entries = entries.filter { !$0.isValidated }
+        } catch {
+            print(error.localizedDescription)
         }
         
+        self.entries = entries.filter { !$0.isValidated }
+                
     }
     
 }

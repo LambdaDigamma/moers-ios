@@ -45,7 +45,9 @@ public class DashboardCoordinator: Coordinator {
         
         Styling.applyStyling(navigationController: navigationController, statusBarStyle: .darkContent)
         
-        self.setupLocationListener()
+        Task {
+            await self.setupLocationListener()
+        }
         
     }
     
@@ -89,9 +91,9 @@ public class DashboardCoordinator: Coordinator {
         
     }
     
-    private func setupLocationListener() {
+    private func setupLocationListener() async {
         
-        observer.stationFinder(coordinate: CLLocationCoordinate2D(latitude: 50.76772, longitude: 6.09205))
+        await observer.stationFinder(coordinate: CLLocationCoordinate2D(latitude: 50.76772, longitude: 6.09205))
         
     }
     

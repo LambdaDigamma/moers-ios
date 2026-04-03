@@ -65,7 +65,7 @@ public class TripSearchViewModel: ObservableObject {
         }
     }
     
-    public func search() {
+    public func search() async {
         
         guard let originID = originID, let destinationID = destinationID else {
             return
@@ -73,37 +73,30 @@ public class TripSearchViewModel: ObservableObject {
         
         self.result = .loading
         
-        transitService.sendTripRequest(
-            origin: originID,
-            destination: destinationID,
-            config: .init(),
-            tripDate: .departure(Date().addingTimeInterval(5 * 60 * 60))
-        )
-            .sink { (completion: Subscribers.Completion<HTTPError>) in
-                
-                switch completion {
-                    case .failure(let error):
-                        
-                        print(error.underlyingError ?? "")
-                        
-                        self.result = .error(error)
-                    default: break
-                }
-                
-            } receiveValue: { [weak self] (response: TripResponse) in
-                
-                if self?.origin == nil, let nameElement = response.tripRequest.odv.origin?.name?.elements?.first {
-                    self?.origin = .init(odvNameElement: nameElement)
-                }
-                
-                if self?.destination == nil, let nameElement = response.tripRequest.odv.destination?.name?.elements?.first {
-                    self?.destination = .init(odvNameElement: nameElement)
-                }
-                
-                self?.result = .success(response.tripRequest)
-                
+        do {
+            let response = try await transitService.sendTripRequest(
+                origin: originID,
+                destination: destinationID,
+                config: .init(),
+                tripDate: .departure(Date().addingTimeInterval(5 * 60 * 60))
+            )
+            
+            if self.origin == nil, let nameElement = response.tripRequest.odv.origin?.name?.elements?.first {
+                self.origin = .init(odvNameElement: nameElement)
             }
-            .store(in: &cancellables)
+            
+            if self.destination == nil, let nameElement = response.tripRequest.odv.destination?.name?.elements?.first {
+                self.destination = .init(odvNameElement: nameElement)
+            }
+            
+            self.result = .success(response.tripRequest)
+            
+        } catch let error as HTTPError {
+            print(error.underlyingError ?? "")
+            self.result = .error(error)
+        } catch {
+            self.result = .error(error)
+        }
         
     }
     

@@ -110,7 +110,9 @@ public class OtherCoordinator: Coordinator {
             viewModel.destinationID = data.destinationID
         }
         
-        viewModel.search()
+        Task {
+            await viewModel.search()
+        }
         
         let viewController = TripSearchViewController(viewModel: viewModel)
         

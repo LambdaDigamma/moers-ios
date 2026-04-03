@@ -38,7 +38,7 @@ public struct TripSearchScreen: View {
         .navigationTitle(Text("Verbindungen"))
         .navigationBarTitleDisplayMode(.inline)
         .task {
-            viewModel.search()
+            await viewModel.search()
         }
         .sheet(isPresented: $showConfiguration) {
             TripConfigurationSheet()

@@ -41,6 +41,8 @@ public struct BaseMap: UIViewRepresentable {
         view.setRegion(region.wrappedValue, animated: false)
         view.showsUserLocation = context.environment.showsUserLocation
         view.tintColor = UIColor.systemBlue
+        view.cameraZoomRange = CoreSettings.cameraZoomRange
+        view.cameraBoundary = CoreSettings.cameraBoundary()
         
 //        view.addAnnotation(GenericAnnotation(coordinate: CoreSettings.regionCenter))
         

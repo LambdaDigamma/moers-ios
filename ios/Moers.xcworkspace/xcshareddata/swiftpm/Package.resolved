@@ -1,5 +1,5 @@
 {
-  "originHash" : "5e9ceb933d03ebe400ae5825938f565d532b4bee1c01e02222e22088b554f932",
+  "originHash" : "5648eeafa0c7370dd3dd8d2ceebc9adf1064bdd61629a65fab040fe8541e8af0",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -22,7 +22,7 @@
     {
       "identity" : "bulletinboard",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/alexaubry/BulletinBoard.git",
+      "location" : "https://github.com/LambdaDigamma/BulletinBoard",
       "state" : {
         "branch" : "develop",
         "revision" : "7b35bb98d776f869851f345696215def30814de2"
@@ -35,15 +35,6 @@
       "state" : {
         "revision" : "24e47109e31b2031cb26e25cc1b81b607496066c",
         "version" : "7.4.0"
-      }
-    },
-    {
-      "identity" : "eventbus",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/lambdadigamma/eventbus",
-      "state" : {
-        "revision" : "f4b1b7a35bc20165e7d3aaeebc808dd3ab14874b",
-        "version" : "0.5.2"
       }
     },
     {

@@ -9,7 +9,6 @@
 import Core
 import UIKit
 import Pulley
-import EventBus
 import CoreLocation
 import Factory
 import FuelFeature
@@ -31,22 +30,17 @@ public class LegacyMainViewController: PulleyViewController {
     public var locations: [Location] = []
     public lazy var detailViewController = { DetailViewController() }()
     
-    private let eventBus: EventBus
-    
     required init(contentViewController: UIViewController, drawerViewController: UIViewController) {
-        
-        self.eventBus = EventBus()
-        
+
         super.init(contentViewController: contentViewController, drawerViewController: drawerViewController)
-        
+
         self.displayMode = .automatic
-        
+
         self.mapViewController = contentViewController as? MapViewController
         self.contentViewController = drawerViewController as? SearchDrawerViewController
-        
-        self.setupObserver()
+
         self.loadData()
-        
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -71,19 +65,7 @@ public class LegacyMainViewController: PulleyViewController {
     }
     
     // MARK: - Private Methods
-    
-    private func setupObserver() {
-        
-        self.eventBus.add(subscriber: contentViewController, for: EntryDatasource.self)
-        self.eventBus.add(subscriber: contentViewController, for: CameraDatasource.self)
-        self.eventBus.add(subscriber: contentViewController, for: PetrolDatasource.self)
-        
-        self.eventBus.add(subscriber: mapViewController, for: EntryDatasource.self)
-        self.eventBus.add(subscriber: mapViewController, for: CameraDatasource.self)
-        self.eventBus.add(subscriber: mapViewController, for: PetrolDatasource.self)
-        
-    }
-    
+
     public func loadData() {
         
         self.locations.removeAll()
@@ -105,9 +87,8 @@ public class LegacyMainViewController: PulleyViewController {
             
             let entries = try await entryManager.get()
             
-            self.eventBus.notify(EntryDatasource.self, closure: { subscriber in
-                subscriber.didReceiveEntries(entries)
-            })
+            self.contentViewController.didReceiveEntries(entries)
+            self.mapViewController.didReceiveEntries(entries)
             
             self.locations = self.locations.filter { !($0 is Entry) }
             self.locations.append(contentsOf: entries)
@@ -147,9 +128,8 @@ public class LegacyMainViewController: PulleyViewController {
         do {
             let cameras = try await cameraManager.getCameras(shouldReload: false)
 
-            self.eventBus.notify(CameraDatasource.self) { subscriber in
-                subscriber.didReceiveCameras(cameras)
-            }
+            self.contentViewController.didReceiveCameras(cameras)
+            self.mapViewController.didReceiveCameras(cameras)
 
             self.locations = self.locations.filter { !($0 is Camera) }
             self.locations.append(contentsOf: cameras)
@@ -202,9 +182,8 @@ public class LegacyMainViewController: PulleyViewController {
                         
                     }
                     
-                    self.eventBus.notify(PetrolDatasource.self) { subscriber in
-                        subscriber.didReceivePetrolStations(s)
-                    }
+                    self.contentViewController.didReceivePetrolStations(s)
+                    self.mapViewController.didReceivePetrolStations(s)
                     
                     self.locations = self.locations.filter { !($0 is MapFeature.PetrolStationViewModel) }
                     self.locations.append(contentsOf: s)

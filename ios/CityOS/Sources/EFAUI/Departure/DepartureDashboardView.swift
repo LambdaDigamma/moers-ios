@@ -21,28 +21,19 @@ public class DashboardDepartureViewModel: ObservableObject {
     
     @Published var data: DataState<DepartureDashboardData, Error> = .loading
     
-    private var cancellables: Set<AnyCancellable> = .init()
-    
     @Injected(\.transitService) private var transitService
     
-    public func load() {
+    public func load() async {
         
-        transitService.departureMonitor(id: 20016032)
-            .sink { (completion: Subscribers.Completion<Error>) in
-                
-                switch completion {
-                    case .failure(let error):
-                        self.data = .error(error)
-                    default: break
-                }
-                
-            } receiveValue: { (data: DepartureMonitorData) in
-                self.data = .success(.init(
-                    stationName: data.name,
-                    departures: data.departures
-                ))
-            }
-            .store(in: &cancellables)
+        do {
+            let data = try await transitService.departureMonitor(id: 20016032)
+            self.data = .success(.init(
+                stationName: data.name,
+                departures: data.departures
+            ))
+        } catch {
+            self.data = .error(error)
+        }
         
     }
     
@@ -85,7 +76,7 @@ public struct DepartureDashboardView: View {
         }
         .frame(maxWidth: .infinity)
         .task {
-            viewModel.load()
+            await viewModel.load()
         }
         
     }

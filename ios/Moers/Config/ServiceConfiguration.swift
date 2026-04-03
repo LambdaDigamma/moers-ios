@@ -32,6 +32,7 @@ import Cache
 import MMEvents
 import MapFeature
 
+@MainActor
 public class ServiceConfiguration: BootstrappingProcedureStep {
     
     @Injected(\.httpLoader) private var loader: HTTPLoader
