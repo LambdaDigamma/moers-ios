@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@theme {
+  --font-splendid:
+    "Splendid 66", "Splendid 66 Bold", "Splendid 66 light", serif;
+  --font-atkinson: "Atkinson Hyperlegible", sans-serif;
+  --font-typewriter: "TravelingTypewriter", monospace;
+}
