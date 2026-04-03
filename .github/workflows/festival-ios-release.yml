@@ -41,12 +41,6 @@ jobs:
           bundler-cache: true
           working-directory: "ios/moers festival"
 
-      - name: Install bundle
-        run: |
-          cd "ios/moers festival"
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
-
       - name: Cache Swift Packages
         uses: actions/cache@v4
         with:
@@ -70,30 +64,29 @@ jobs:
       - name: Ship iOS App
         run: |
           cd "ios/moers festival"
-          rm -rf SourcePackages
           mkdir -p SourcePackages
           export GYM_CLONED_SOURCE_PACKAGES_PATH="$(pwd)/SourcePackages"
 
-          # Xcode 26.3 occasionally crashes in package graph updates. Resolve
-          # dependencies separately and retry once with a fresh checkout path.
-          for attempt in 1 2; do
-            echo "Resolving Swift packages (attempt $attempt/2)"
-            if xcodebuild -resolvePackageDependencies \
-              -project "moers festival.xcodeproj" \
-              -scheme "moers festival" \
-              -clonedSourcePackagesDirPath "$GYM_CLONED_SOURCE_PACKAGES_PATH"; then
-              break
-            fi
-
-            if [ "$attempt" -eq 2 ]; then
-              echo "Swift package resolution failed after retry."
-              exit 1
-            fi
+          # Xcode 26.3 occasionally crashes in package graph updates. Try with
+          # cached packages first; only wipe and retry on failure.
+          echo "Resolving Swift packages (attempt 1/2, using cache if available)"
+          if ! xcodebuild -resolvePackageDependencies \
+            -project "moers festival.xcodeproj" \
+            -scheme "moers festival" \
+            -clonedSourcePackagesDirPath "$GYM_CLONED_SOURCE_PACKAGES_PATH"; then
 
             echo "Retrying package resolution with a clean SourcePackages directory..."
             rm -rf SourcePackages
             mkdir -p SourcePackages
-          done
+
+            if ! xcodebuild -resolvePackageDependencies \
+              -project "moers festival.xcodeproj" \
+              -scheme "moers festival" \
+              -clonedSourcePackagesDirPath "$GYM_CLONED_SOURCE_PACKAGES_PATH"; then
+              echo "Swift package resolution failed after retry."
+              exit 1
+            fi
+          fi
 
           bundle exec fastlane ios upload --verbose
         env:
@@ -193,12 +186,6 @@ jobs:
           ruby-version: "3.3"
           bundler-cache: true
           working-directory: "ios/moers festival"
-
-      - name: Install bundle
-        run: |
-          cd "ios/moers festival"
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
 
       - name: Upload release notes to App Store Connect
         run: |
