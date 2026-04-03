@@ -294,22 +294,22 @@ const frameDefinitions: Record<string, FrameDefinition> = {
       },
     },
   },
-  "iPad Air 11 - M2": {
+  'iPad Air 11" - M2': {
     folder: 'iPad Air 11" - M2',
     screenArea: {
       portrait: {
-        top: "3.5%",
-        left: "8%",
-        right: "8%",
-        bottom: "3.5%",
-        borderRadius: "12px",
+        top: "4.9%",
+        left: "6.8%",
+        right: "6.8%",
+        bottom: "4.9%",
+        borderRadius: "1.8%",
       },
       landscape: {
-        top: "8%",
-        left: "3.5%",
-        right: "3.5%",
-        bottom: "8%",
-        borderRadius: "12px",
+        top: "6.8%",
+        left: "4.9%",
+        right: "4.9%",
+        bottom: "6.8%",
+        borderRadius: "1.8%",
       },
     },
   },
@@ -363,12 +363,15 @@ function getFrameImagePath(
     throw new Error(`Unknown device: ${device}`);
   }
 
+  // Use the folder name to match actual file naming
+  const deviceName = frameDef.folder;
+
   if (color) {
-    return `${frameDef.folder}/${device} - ${color} - ${orientation.charAt(0).toUpperCase() + orientation.slice(1)}.png`;
+    return `${frameDef.folder}/${deviceName} - ${color} - ${orientation.charAt(0).toUpperCase() + orientation.slice(1)}.png`;
   }
 
   // Try to find a default
-  return `${frameDef.folder}/${device} - ${orientation.charAt(0).toUpperCase() + orientation.slice(1)}.png`;
+  return `${frameDef.folder}/${deviceName} - ${orientation.charAt(0).toUpperCase() + orientation.slice(1)}.png`;
 }
 
 // =============================================================================
@@ -657,7 +660,11 @@ export const IPadAir11M2Frame: React.FC<IPadAir11M2FrameProps> = ({
   orientation = "portrait",
   color = "Space Gray",
 }) => (
-  <PhoneFrame device="iPad Air 11 - M2" orientation={orientation} color={color}>
+  <PhoneFrame
+    device='iPad Air 11" - M2'
+    orientation={orientation}
+    color={color}
+  >
     {children}
   </PhoneFrame>
 );
