@@ -142,3 +142,77 @@ jobs:
           file_pattern: "**/Info.plist"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  generate-changelog:
+    needs: build-ios
+    runs-on: ubuntu-latest
+    outputs:
+      changelog: ${{ steps.changelog.outputs.changelog }}
+      modules_changed: ${{ steps.modules.outputs.changed_modules }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate changelog for iOS app
+        id: changelog
+        uses: inventas/github-action-ai-changelog@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tag_prefix: festival-ios
+          module_paths: "ios/moers festival,modules"
+          output_format: text
+          output_file: "ios/moers festival/fastlane/metadata/en-US/release_notes.txt"
+          custom_instructions: >
+            These are release notes for the Moers Festival iOS app published on the App Store.
+            Focus on what users will notice: new features, visible improvements, and bug fixes.
+            Ignore CI changes, dependency updates, and internal refactoring.
+            Keep the total length under 4000 characters.
+
+      - name: Detect changed modules
+        id: modules
+        run: |
+          PREV_TAG=$(git tag -l "festival-ios*" --sort=-v:refname | sed -n '2p')
+          MODULES="core events festival-events festival-map festival-news medialibrary news pages parking prosemirror radio rubbish fuel"
+
+          CHANGED=""
+          for module in $MODULES; do
+            count=$(git diff --name-only ${PREV_TAG}..HEAD -- "modules/$module" 2>/dev/null | wc -l)
+            if [ "$count" -gt 0 ]; then
+              CHANGED="$CHANGED $module"
+            fi
+          done
+
+          echo "changed_modules=$CHANGED" >> $GITHUB_OUTPUT
+
+      - name: Set up ruby env
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+          working-directory: "ios/moers festival"
+
+      - name: Install bundle
+        run: |
+          cd "ios/moers festival"
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      - name: Upload release notes to App Store Connect
+        run: |
+          cd "ios/moers festival"
+          bundle exec fastlane ios upload_release_notes
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY: ${{ secrets.ASC_KEY }}
+
+      - name: Upload release notes as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: festival-ios-release-notes
+          path: "ios/moers festival/fastlane/metadata/en-US/release_notes.txt"
+          retention-days: 30

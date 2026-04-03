@@ -204,6 +204,19 @@ platform :ios do
     # frame_screenshots
   end
 
+  desc "Upload release notes to App Store Connect (skips binary and screenshots)"
+  lane :upload_release_notes do
+    load_asc_api_key()
+    deliver(
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      force: true,
+      submit_for_review: false,
+      run_precheck_before_submit: false,
+      app_identifier: "de.okfn.niederrhein.moers-festival"
+    )
+  end
+
   desc "Upload screenshots"
   lane :upload_screenshots do
     deliver(
