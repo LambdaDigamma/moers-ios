@@ -4,3 +4,6 @@ dist
 .env
 
 out
+
+*storybook.log
+storybook-static
