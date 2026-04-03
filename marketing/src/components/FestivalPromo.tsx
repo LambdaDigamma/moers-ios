@@ -36,11 +36,29 @@ const ScreenshotSlot: React.FC<{
   );
 };
 
+const NoiseOverlay: React.FC = () => (
+  <svg className="absolute inset-0 w-full h-full opacity-[0.15] pointer-events-none">
+    <filter id="noiseFilter">
+      <feTurbulence 
+        type="fractalNoise" 
+        baseFrequency="0.65" 
+        numOctaves="3" 
+        stitchTiles="stitch" 
+      />
+    </filter>
+    <rect width="100%" height="100%" filter="url(#noiseFilter)" />
+  </svg>
+);
+
 const Background: React.FC = () => (
-  <Img
-    src={staticFile("assets/background.png")}
-    className="absolute inset-0 object-cover w-full h-full blur-xl scale-105"
-  />
+  <div className="absolute inset-0 overflow-hidden">
+    <Img
+      src={staticFile("assets/background.png")}
+      className="absolute inset-0 object-cover w-full h-full blur-2xl scale-110 opacity-60"
+    />
+    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/70" />
+    <NoiseOverlay />
+  </div>
 );
 
 const Headline: React.FC<{
@@ -51,7 +69,7 @@ const Headline: React.FC<{
 }> = ({ children, style, className, fontSize = 96 }) => (
   <h1
     className={clsx(
-      "font-typewriter leading-tight font-bold text-white absolute",
+      "font-typewriter leading-[1.1] font-bold text-white absolute tracking-tight drop-shadow-2xl",
       className,
     )}
     style={{ fontSize, ...style }}
@@ -68,27 +86,31 @@ export const FestivalPromo: React.FC<FestivalPromoProps> = ({
   const base = `moers-festival/${locale}`;
 
   return (
-    <AbsoluteFill className="bg-[#0a0a0a] w-full h-full overflow-hidden">
+    <AbsoluteFill className="bg-[#050505] w-full h-full overflow-hidden">
       {/* ── Slot 0: Timetable — hero intro ── */}
       <ScreenshotSlot index={0}>
         <Background />
-        <div className="absolute top-[80px] left-0 right-0 flex justify-center">
-          <Img src={staticFile("assets/logo.png")} style={{ width: "40%" }} />
+        <div className="absolute top-[100px] left-0 right-0 flex justify-center z-10">
+          <Img 
+            src={staticFile("assets/logo.png")} 
+            style={{ width: "45%", filter: "drop-shadow(0 10px 30px rgba(0,0,0,0.5))" }} 
+          />
         </div>
         <Headline
-          fontSize={100}
-          style={{ top: 380, left: 80, right: 80 }}
+          fontSize={110}
+          className="px-[90px]"
+          style={{ top: 480, left: 0, right: 0 }}
         >
           {t(l, "slot0_headline")}
         </Headline>
         <div
           className="absolute"
           style={{
-            width: screenshotSize.width * 0.9,
-            left: 140,
-            bottom: -500,
-            transform: "rotate(-5deg)",
-            transformOrigin: "bottom left",
+            width: screenshotSize.width * 0.90,
+            left: "52%",
+            bottom: -580,
+            transform: "translateX(-50%) rotate(-2deg)",
+            filter: "drop-shadow(0 30px 100px rgba(0,0,0,0.8))",
           }}
         >
           <IPhone17ProFrame>
@@ -101,19 +123,20 @@ export const FestivalPromo: React.FC<FestivalPromoProps> = ({
       <ScreenshotSlot index={1}>
         <Background />
         <Headline
-          fontSize={88}
-          className="text-center"
-          style={{ top: 100, left: 80, right: 80 }}
+          fontSize={100}
+          className="text-center px-12"
+          style={{ top: 120, left: 0, right: 0 }}
         >
           {t(l, "slot1_headline")}
         </Headline>
         <div
           className="absolute"
           style={{
-            width: screenshotSize.width * 0.8,
+            width: screenshotSize.width * 0.85,
             left: "50%",
-            top: 420,
-            transform: "translateX(-50%) rotate(3deg)",
+            top: 480,
+            transform: "translateX(-50%) rotate(2deg)",
+            filter: "drop-shadow(0 30px 100px rgba(0,0,0,0.8))",
           }}
         >
           <IPhone17ProFrame>
@@ -130,11 +153,11 @@ export const FestivalPromo: React.FC<FestivalPromoProps> = ({
         <div
           className="absolute"
           style={{
-            width: screenshotSize.width * 0.75,
-            left: -80,
-            top: 180,
-            transform: "rotate(-4deg)",
-            transformOrigin: "top left",
+            width: screenshotSize.width * 0.8,
+            left: -120,
+            top: 160,
+            transform: "rotate(-5deg)",
+            filter: "drop-shadow(0 30px 100px rgba(0,0,0,0.8))",
           }}
         >
           <IPhone17ProFrame>
@@ -142,9 +165,9 @@ export const FestivalPromo: React.FC<FestivalPromoProps> = ({
           </IPhone17ProFrame>
         </div>
         <Headline
-          fontSize={88}
-          className="text-right"
-          style={{ bottom: 180, left: 80, right: 80 }}
+          fontSize={100}
+          className="text-right px-12"
+          style={{ bottom: 240, left: 0, right: 0 }}
         >
           {t(l, "slot2_headline")}
         </Headline>
@@ -156,10 +179,11 @@ export const FestivalPromo: React.FC<FestivalPromoProps> = ({
         <div
           className="absolute"
           style={{
-            width: screenshotSize.width * 0.82,
+            width: screenshotSize.width * 0.88,
             left: "50%",
-            top: -200,
-            transform: "translateX(-50%) rotate(-8deg)",
+            top: -150,
+            transform: "translateX(-50%) rotate(-6deg)",
+            filter: "drop-shadow(0 30px 100px rgba(0,0,0,0.8))",
           }}
         >
           <IPhone17ProFrame>
@@ -167,9 +191,9 @@ export const FestivalPromo: React.FC<FestivalPromoProps> = ({
           </IPhone17ProFrame>
         </div>
         <Headline
-          fontSize={88}
-          className="text-center"
-          style={{ bottom: 200, left: 80, right: 80 }}
+          fontSize={100}
+          className="text-center px-12"
+          style={{ bottom: 240, left: 0, right: 0 }}
         >
           {t(l, "slot3_headline")}
         </Headline>
