@@ -121,17 +121,17 @@ const frameDefinitions: Record<string, FrameDefinition> = {
       left: "5%",
       right: "5%",
       bottom: "2.5%",
-      borderRadius: "90px",
+      borderRadius: "8%",
     },
   },
   "iPhone 17 Pro Max": {
     folder: "iPhone 17 Pro Max",
     screenArea: {
-      top: "3.2%",
-      left: "10.5%",
-      right: "10.5%",
-      bottom: "3.2%",
-      borderRadius: "38px",
+      top: "2.2%",
+      left: "5.1%",
+      right: "5.1%",
+      bottom: "2.3%",
+      borderRadius: "8%",
     },
   },
   "iPhone 17": {
