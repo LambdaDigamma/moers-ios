@@ -1,33 +1,35 @@
 import "./index.css";
 import React from "react";
 import { Still } from "remotion";
-import { FestivalPromo } from "./components/FestivalPromo";
+import type { ZodType } from "zod";
+import { FestivalPromo, FestivalPromoSchema } from "./components/FestivalPromo";
 import { iPhone17Pro, ScreenshotSize } from "./apple-screenshot-sizes";
 import { setRemotionImageLoader } from "./components/PhoneFrame";
 import { ScreenshotProvider } from "./components/ScreenshotContext";
 
 setRemotionImageLoader();
 
+type AnyProps = Record<string, unknown>;
+
 interface ScreenshotCollection {
   name: string;
-  /** A component type or a pre-rendered JSX element to display as the canvas. */
-  canvas: React.ComponentType | React.ReactElement;
+  canvas: React.ComponentType<AnyProps>;
   screenshotSize: ScreenshotSize;
   numberOfScreens: number;
+  schema: ZodType<AnyProps>;
+  defaultProps: AnyProps;
 }
 
 /** Wraps a canvas with a dead-zone overlay and returns a stable component for use with Remotion Still. */
 function toStillComponent(
-  canvas: React.ComponentType | React.ReactElement,
+  canvas: React.ComponentType<AnyProps>,
   screenshotSize: ScreenshotSize,
   numberOfScreens: number,
   spacing: number,
-): React.ComponentType {
-  const Canvas = React.isValidElement(canvas)
-    ? () => canvas
-    : (canvas as React.ComponentType);
+): React.ComponentType<AnyProps> {
+  const Canvas = canvas;
 
-  return function WithDeadZone() {
+  return function WithDeadZone(props: AnyProps) {
     return (
       <ScreenshotProvider
         screenshotSize={screenshotSize}
@@ -35,7 +37,7 @@ function toStillComponent(
         totalScreens={numberOfScreens}
       >
         <div style={{ position: "relative", width: "100%", height: "100%" }}>
-          <Canvas />
+          <Canvas {...props} />
           {spacing > 0 &&
             Array.from({ length: numberOfScreens - 1 }, (_, i) => (
               <div
@@ -57,16 +59,18 @@ function toStillComponent(
   };
 }
 
+const INTER_SCREENSHOT_SPACING = 20;
+
 const screenshotCollections: ScreenshotCollection[] = [
   {
     name: "moers-festival-17-pro",
-    canvas: FestivalPromo,
+    canvas: FestivalPromo as React.ComponentType<AnyProps>,
     numberOfScreens: 4,
     screenshotSize: iPhone17Pro.portrait,
+    schema: FestivalPromoSchema as ZodType<AnyProps>,
+    defaultProps: { locale: "de-DE" },
   },
 ];
-
-const INTER_SCREENSHOT_SPACING = 20;
 
 // Pre-build stable Still components outside of render so they are not recreated on every render.
 const collectionEntries = screenshotCollections.map((c) => ({
@@ -87,6 +91,8 @@ export const RemotionRoot: React.FC = () => {
           key={collection.name}
           id={collection.name}
           component={collection.StillComponent}
+          schema={collection.schema}
+          defaultProps={collection.defaultProps}
           width={
             collection.screenshotSize.width * collection.numberOfScreens +
             INTER_SCREENSHOT_SPACING * (collection.numberOfScreens - 1)

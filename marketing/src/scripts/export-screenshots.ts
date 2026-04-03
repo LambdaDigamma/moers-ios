@@ -16,6 +16,7 @@ interface ExportOptions {
   displaySize?: string;
   orientation?: "portrait" | "landscape";
   output?: string;
+  locale?: "de-DE" | "en-US";
   list?: boolean;
 }
 
@@ -97,9 +98,10 @@ async function exportScreenshot(
   outputPath: string,
   width: number,
   height: number,
+  locale: "de-DE" | "en-US" = "de-DE",
 ) {
   console.log(
-    `📦 Exporting ${compositionId} (${width}x${height}) to ${outputPath}...`,
+    `📦 Exporting ${compositionId} [${locale}] (${width}x${height}) to ${outputPath}...`,
   );
 
   const bundlePath = await bundle({
@@ -107,7 +109,9 @@ async function exportScreenshot(
     outDir: path.join(process.cwd(), ".remotion/bundle"),
   });
 
-  const comps = await getCompositions(bundlePath);
+  const comps = await getCompositions(bundlePath, {
+    inputProps: { locale },
+  });
   const composition = comps.find((c) => c.id === compositionId);
 
   if (!composition) {
@@ -118,6 +122,7 @@ async function exportScreenshot(
     composition,
     serveUrl: bundlePath,
     output: outputPath,
+    inputProps: { locale },
   });
 
   console.log(`✅ Exported: ${outputPath}`);
@@ -149,6 +154,10 @@ async function main() {
       case "--output":
       case "-out":
         options.output = args[++i];
+        break;
+      case "--locale":
+      case "-loc":
+        options.locale = args[++i] as "de-DE" | "en-US";
         break;
       case "--help":
       case "-h":
@@ -204,10 +213,11 @@ async function main() {
 
     try {
       await exportScreenshot(
-        "PreviewCard",
+        "moers-festival-17-pro",
         outputPath,
         device.dimensions.width,
         device.dimensions.height,
+        options.locale ?? "de-DE",
       );
     } catch (e) {
       console.log(`  ⚠️  Could not export (composition may not exist): ${e}`);
