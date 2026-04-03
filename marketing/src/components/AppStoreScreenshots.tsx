@@ -3,6 +3,8 @@ import { AbsoluteFill, Img, staticFile } from "remotion";
 import { z } from "zod";
 import type { ScreenshotSize } from "../apple-screenshot-sizes";
 import { iPhone17Pro } from "../apple-screenshot-sizes";
+import { ScreenshotProvider } from "./ScreenshotContext";
+import { ScreenshotContainer } from "./ScreenshotContainer";
 
 export const appStoreScreenshotSchema = z.object({
   imageUrls: z.array(z.string()),
@@ -104,29 +106,18 @@ const AppStoreScreenshotWide: React.FC<AppStoreScreenshotProps> = ({
 type SingleScreenshotProps = {
   imageUrl: string;
   screenshotSize: ScreenshotSize;
+  children?: React.ReactNode;
 };
 
 export const AppStoreSingleScreenshot: React.FC<SingleScreenshotProps> = ({
   imageUrl,
   screenshotSize,
+  children,
 }) => {
   return (
-    <AbsoluteFill
-      style={{
-        width: screenshotSize.width,
-        height: screenshotSize.height,
-        backgroundColor: "white",
-      }}
-    >
-      <Img
-        src={staticFile(imageUrl)}
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-        }}
-      />
-    </AbsoluteFill>
+    <ScreenshotProvider screenshotSize={screenshotSize} totalScreens={1}>
+      <ScreenshotContainer imageUrl={imageUrl}>{children}</ScreenshotContainer>
+    </ScreenshotProvider>
   );
 };
 

@@ -1,7 +1,9 @@
 import React from "react";
-import { AbsoluteFill, Img, staticFile } from "remotion";
+import { AbsoluteFill } from "remotion";
 import { z } from "zod";
 import type { ScreenshotSize } from "../apple-screenshot-sizes";
+import { ScreenshotProvider, useScreenshotContext } from "./ScreenshotContext";
+import { ScreenshotContainer } from "./ScreenshotContainer";
 
 export const screenshotSchema = z.object({
   imageUrls: z.array(z.string()),
@@ -31,6 +33,28 @@ function getScreenshotPosition(
   };
 }
 
+const ScreenshotSlot: React.FC<{
+  imageUrl: string;
+  index: number;
+}> = ({ imageUrl, index }) => {
+  const { screenshotSize } = useScreenshotContext();
+
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left: index * (screenshotSize.width + 20),
+        top: 0,
+        width: screenshotSize.width,
+        height: screenshotSize.height,
+        overflow: "hidden",
+      }}
+    >
+      <ScreenshotContainer imageUrl={imageUrl} />
+    </div>
+  );
+};
+
 export const ScreenshotCarousel: React.FC<ScreenshotProps> = ({
   imageUrls,
   deviceDimensions,
@@ -43,73 +67,57 @@ export const ScreenshotCarousel: React.FC<ScreenshotProps> = ({
 
   const totalWidth = numScreens * deviceWidth + (numScreens - 1) * spacing;
 
+  const screenshotSize: ScreenshotSize = {
+    width: deviceWidth,
+    height: deviceHeight,
+    orientation: deviceDimensions.orientation,
+  };
+
   return (
-    <AbsoluteFill
-      style={{
-        width: totalWidth,
-        height: deviceHeight,
-        backgroundColor: "white",
-        position: "relative",
-      }}
+    <ScreenshotProvider
+      screenshotSize={screenshotSize}
+      spacing={spacing}
+      totalScreens={numScreens}
     >
-      {imageUrls.slice(0, numScreens).map((url, index) => {
-        const pos = getScreenshotPosition(
-          index,
-          deviceWidth,
-          deviceHeight,
-          spacing,
-        );
-        return (
-          <div
-            key={index}
-            style={{
-              position: "absolute",
-              left: pos.left,
-              top: pos.top,
-              width: deviceWidth,
-              height: deviceHeight,
-              overflow: "hidden",
-            }}
-          >
-            <Img
-              src={staticFile(url)}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-              }}
-            />
-          </div>
-        );
-      })}
-      )
-      {showOverlay && spacing > 0 && (
-        <>
-          {Array.from({ length: numScreens - 1 }, (_, i) => {
-            const pos = getScreenshotPosition(
-              i + 1,
-              deviceWidth,
-              deviceHeight,
-              spacing,
-            );
-            return (
-              <div
-                key={`overlay-${i}`}
-                style={{
-                  position: "absolute",
-                  left: pos.left - spacing,
-                  top: 0,
-                  width: spacing,
-                  height: deviceHeight,
-                  backgroundColor: overlayColor,
-                  opacity: 0.5,
-                }}
-              />
-            );
-          })}
-        </>
-      )}
-    </AbsoluteFill>
+      <AbsoluteFill
+        style={{
+          width: totalWidth,
+          height: deviceHeight,
+          backgroundColor: "white",
+          position: "relative",
+        }}
+      >
+        {imageUrls.slice(0, numScreens).map((url, index) => (
+          <ScreenshotSlot key={index} imageUrl={url} index={index} />
+        ))}
+        {showOverlay && spacing > 0 && (
+          <>
+            {Array.from({ length: numScreens - 1 }, (_, i) => {
+              const pos = getScreenshotPosition(
+                i + 1,
+                deviceWidth,
+                deviceHeight,
+                spacing,
+              );
+              return (
+                <div
+                  key={`overlay-${i}`}
+                  style={{
+                    position: "absolute",
+                    left: pos.left - spacing,
+                    top: 0,
+                    width: spacing,
+                    height: deviceHeight,
+                    backgroundColor: overlayColor,
+                    opacity: 0.5,
+                  }}
+                />
+              );
+            })}
+          </>
+        )}
+      </AbsoluteFill>
+    </ScreenshotProvider>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { AbsoluteFill } from "remotion";
 import type { ScreenshotSize } from "../apple-screenshot-sizes";
+import { ScreenshotProvider } from "./ScreenshotContext";
 
 type ScreenshotCanvasProps = {
   screenshotWidth: number;
@@ -29,40 +30,52 @@ export const ScreenshotCanvas: React.FC<ScreenshotCanvasProps> = ({
 }) => {
   const slots = React.Children.toArray(children);
 
-  return (
-    <AbsoluteFill>
-      {slots.map((child, i) => (
-        <div
-          key={i}
-          style={{
-            position: "absolute",
-            left: i * (screenshotWidth + spacing),
-            top: 0,
-            width: screenshotWidth,
-            height: screenshotHeight,
-            overflow: "hidden",
-          }}
-        >
-          {child}
-        </div>
-      ))}
+  const screenshotSize: ScreenshotSize = {
+    width: screenshotWidth,
+    height: screenshotHeight,
+    orientation: "portrait",
+  };
 
-      {showDeadZone &&
-        spacing > 0 &&
-        Array.from({ length: slots.length - 1 }, (_, i) => (
+  return (
+    <ScreenshotProvider
+      screenshotSize={screenshotSize}
+      spacing={spacing}
+      totalScreens={slots.length}
+    >
+      <AbsoluteFill>
+        {slots.map((child, i) => (
           <div
-            key={`dz-${i}`}
+            key={i}
             style={{
               position: "absolute",
-              left: (i + 1) * screenshotWidth + i * spacing,
+              left: i * (screenshotWidth + spacing),
               top: 0,
-              width: spacing,
+              width: screenshotWidth,
               height: screenshotHeight,
-              backgroundColor: "rgba(255, 0, 0, 0.35)",
+              overflow: "hidden",
             }}
-          />
+          >
+            {child}
+          </div>
         ))}
-    </AbsoluteFill>
+
+        {showDeadZone &&
+          spacing > 0 &&
+          Array.from({ length: slots.length - 1 }, (_, i) => (
+            <div
+              key={`dz-${i}`}
+              style={{
+                position: "absolute",
+                left: (i + 1) * screenshotWidth + i * spacing,
+                top: 0,
+                width: spacing,
+                height: screenshotHeight,
+                backgroundColor: "rgba(255, 0, 0, 0.35)",
+              }}
+            />
+          ))}
+      </AbsoluteFill>
+    </ScreenshotProvider>
   );
 };
 

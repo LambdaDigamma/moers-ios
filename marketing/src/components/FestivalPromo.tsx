@@ -2,225 +2,6 @@ import React from "react";
 import { AbsoluteFill, Img, staticFile } from "remotion";
 import { z } from "zod";
 import { IPhone17ProFrame } from "./PhoneFrame";
-
-const festivalColors = {
-  background: "#0a0a0a",
-  accent: "#ff6b35",
-  text: "#ffffff",
-  secondary: "#888888",
-};
-
-const Text: React.FC<{
-  style?: React.CSSProperties;
-  children: React.ReactNode;
-}> = ({ style, children }) => <div style={style}>{children}</div>;
-
-export const FestivalPromoSchema = z.object({
-  backgroundImage: z.string().optional(),
-});
-
-export type FestivalPromoProps = z.infer<typeof FestivalPromoSchema>;
-
-const FEATURES = [
-  { icon: "◉", label: "Events" },
-  { icon: "◎", label: "Details" },
-  { icon: "◈", label: "Info" },
-  { icon: "◇", label: "Map" },
-];
-
-export const FestivalPromo: React.FC<FestivalPromoProps> = ({
-  backgroundImage,
-}) => {
-  const screenshotBase = "moers-festival/en-US";
-
-  return (
-    <AbsoluteFill
-      style={{
-        backgroundColor: festivalColors.background,
-        width: "100%",
-        height: "100%",
-        overflow: "hidden",
-      }}
-    >
-      <Img
-        src={staticFile("assets/background.png")}
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          opacity: 0.25,
-        }}
-      />
-
-      <div
-        style={{
-          position: "absolute",
-          top: 40,
-          left: 0,
-          right: 0,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          zIndex: 10,
-        }}
-      >
-        <Text
-          style={{
-            fontFamily: "monospace",
-            fontSize: 32,
-            fontWeight: 700,
-            color: festivalColors.text,
-            letterSpacing: 4,
-          }}
-        >
-          MOERS FESTIVAL
-        </Text>
-        <Text
-          style={{
-            fontFamily: "monospace",
-            fontSize: 12,
-            fontWeight: 400,
-            color: festivalColors.accent,
-            letterSpacing: 2,
-            marginTop: 4,
-          }}
-        >
-          MOERS 2026
-        </Text>
-      </div>
-
-      <div
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 30,
-        }}
-      >
-        <div
-          style={{
-            transform: "rotate(-8deg) translateX(20px) translateY(-40px)",
-            zIndex: 3,
-          }}
-        >
-          <IPhone17ProFrame color="Silver">
-            <Img
-              src={staticFile(`${screenshotBase}/iPhone 17 Pro-0-events.png`)}
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
-          </IPhone17ProFrame>
-        </div>
-
-        <div
-          style={{
-            transform: "rotate(2deg) translateX(-10px) translateY(10px)",
-            zIndex: 2,
-          }}
-        >
-          <IPhone17ProFrame color="Silver">
-            <Img
-              src={staticFile(
-                `${screenshotBase}/iPhone 17 Pro-1-event_detail.png`,
-              )}
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
-          </IPhone17ProFrame>
-        </div>
-
-        <div
-          style={{
-            transform: "rotate(12deg) translateX(0px) translateY(50px)",
-            zIndex: 1,
-          }}
-        >
-          <IPhone17ProFrame color="Silver">
-            <Img
-              src={staticFile(`${screenshotBase}/iPhone 17 Pro-2-info.png`)}
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
-          </IPhone17ProFrame>
-        </div>
-      </div>
-
-      <div
-        style={{
-          position: "absolute",
-          bottom: 40,
-          left: 0,
-          right: 0,
-          display: "flex",
-          justifyContent: "center",
-          gap: 40,
-        }}
-      >
-        {FEATURES.map((feature, index) => (
-          <div
-            key={index}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 6,
-            }}
-          >
-            <Text
-              style={{
-                fontFamily: "monospace",
-                fontSize: 10,
-                fontWeight: 600,
-                color: festivalColors.accent,
-              }}
-            >
-              {feature.icon}
-            </Text>
-            <Text
-              style={{
-                fontFamily: "monospace",
-                fontSize: 10,
-                fontWeight: 400,
-                color: festivalColors.secondary,
-              }}
-            >
-              {feature.label}
-            </Text>
-          </div>
-        ))}
-      </div>
-
-      <div
-        style={{
-          position: "absolute",
-          bottom: 20,
-          left: 0,
-          right: 0,
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <Text
-          style={{
-            fontFamily: "monospace",
-            fontSize: 8,
-            fontWeight: 400,
-            color: festivalColors.secondary,
-            letterSpacing: 1,
-          }}
-        >
-          APP STORE →
-        </Text>
-      </div>
-    </AbsoluteFill>
-  );
-};
-
-// =============================================================================
-// App Store Still - Uses the carousel system with frames
-// This creates the actual App Store deliverables with dead zone overlays
-// =============================================================================
-
 import {
   ScreenshotCarousel,
   createScreenshotCarouselProps,
@@ -231,6 +12,66 @@ import {
   iPhone8Plus,
   iPadPro13Gen6,
 } from "../apple-screenshot-sizes";
+import { useScreenshotContext } from "./ScreenshotContext";
+
+export const FestivalPromoSchema = z.object({});
+
+export type FestivalPromoProps = z.infer<typeof FestivalPromoSchema>;
+
+const ScreenshotSlot: React.FC<{
+  index: number;
+  children?: React.ReactNode;
+}> = ({ index, children }) => {
+  const { screenshotSize, spacing } = useScreenshotContext();
+
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left: index * (screenshotSize.width + spacing),
+        top: 0,
+        width: screenshotSize.width,
+        height: screenshotSize.height,
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+
+export const FestivalPromo: React.FC<FestivalPromoProps> = () => {
+  const screenshotBase = "moers-festival/en-US";
+  const { totalScreens } = useScreenshotContext();
+
+  const imageUrls = [
+    `${screenshotBase}/iPhone 17 Pro-0-events.png`,
+    `${screenshotBase}/iPhone 17 Pro-1-event_detail.png`,
+    `${screenshotBase}/iPhone 17 Pro-2-info.png`,
+    `${screenshotBase}/iPhone 17 Pro-3-map.png`,
+  ];
+
+  return (
+    <AbsoluteFill className="bg-[#0a0a0a] w-full h-full overflow-hidden">
+      <Img
+        src={staticFile("assets/background.png")}
+        className="absolute w-full h-full object-cover opacity-25 -z-10"
+      />
+      {Array.from({ length: Math.min(totalScreens, 3) }).map((_, index) => (
+        <ScreenshotSlot
+          key={index}
+          index={index}
+        >
+          <div className="bg-red-500 absolute w-full h-full"></div>
+        </ScreenshotSlot>
+      ))}
+    </AbsoluteFill>
+  );
+};
+
+// =============================================================================
+// App Store Still - Uses the carousel system with frames
+// This creates the actual App Store deliverables with dead zone overlays
+// =============================================================================
 
 // Create App Store stills using the carousel system (with dead zone overlays)
 export const createFestivalAppStoreStill = () => {

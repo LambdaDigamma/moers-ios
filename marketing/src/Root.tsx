@@ -1,8 +1,10 @@
+import "./index.css";
 import React from "react";
 import { Still } from "remotion";
 import { FestivalPromo } from "./components/FestivalPromo";
 import { iPhone17Pro, ScreenshotSize } from "./apple-screenshot-sizes";
 import { setRemotionImageLoader } from "./components/PhoneFrame";
+import { ScreenshotProvider } from "./components/ScreenshotContext";
 
 setRemotionImageLoader();
 
@@ -27,24 +29,30 @@ function toStillComponent(
 
   return function WithDeadZone() {
     return (
-      <div style={{ position: "relative", width: "100%", height: "100%" }}>
-        <Canvas />
-        {spacing > 0 &&
-          Array.from({ length: numberOfScreens - 1 }, (_, i) => (
-            <div
-              key={i}
-              style={{
-                position: "absolute",
-                top: 0,
-                left: (i + 1) * screenshotSize.width + i * spacing,
-                width: spacing,
-                height: screenshotSize.height,
-                backgroundColor: "rgba(255, 0, 0, 0.4)",
-                pointerEvents: "none",
-              }}
-            />
-          ))}
-      </div>
+      <ScreenshotProvider
+        screenshotSize={screenshotSize}
+        spacing={spacing}
+        totalScreens={numberOfScreens}
+      >
+        <div style={{ position: "relative", width: "100%", height: "100%" }}>
+          <Canvas />
+          {spacing > 0 &&
+            Array.from({ length: numberOfScreens - 1 }, (_, i) => (
+              <div
+                key={i}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: (i + 1) * screenshotSize.width + i * spacing,
+                  width: spacing,
+                  height: screenshotSize.height,
+                  backgroundColor: "rgba(255, 0, 0, 0.4)",
+                  pointerEvents: "none",
+                }}
+              />
+            ))}
+        </div>
+      </ScreenshotProvider>
     );
   };
 }
