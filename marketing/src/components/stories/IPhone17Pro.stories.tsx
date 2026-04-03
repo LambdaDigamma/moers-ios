@@ -5,6 +5,20 @@ const meta: Meta<typeof IPhone17ProFrame> = {
   title: "Device Frames/iPhone 17 Pro",
   component: IPhone17ProFrame,
   parameters: { layout: "centered" },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          height: "600px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     orientation: {
       control: "select",

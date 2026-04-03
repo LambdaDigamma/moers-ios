@@ -130,18 +130,18 @@ const frameDefinitions: Record<string, FrameDefinition> = {
       top: "2.2%",
       left: "5.1%",
       right: "5.1%",
-      bottom: "2.3%",
+      bottom: "2.2%",
       borderRadius: "8%",
     },
   },
   "iPhone 17": {
     folder: "iPhone 17",
     screenArea: {
-      top: "3.5%",
-      left: "11%",
-      right: "11%",
-      bottom: "3.5%",
-      borderRadius: "40px",
+      top: "2.5%",
+      left: "5.9%",
+      right: "5.7%",
+      bottom: "2.6%",
+      borderRadius: "8%",
     },
   },
   "iPhone 16 Pro": {
@@ -149,49 +149,49 @@ const frameDefinitions: Record<string, FrameDefinition> = {
     screenArea: {
       top: "2.5%",
       left: "5.4%",
-      right: "5.5%",
-      bottom: "2.7%",
-      borderRadius: "80px",
+      right: "5.4%",
+      bottom: "2.5%",
+      borderRadius: "8%",
     },
   },
   "iPhone 16 Pro Max": {
     folder: "iPhone 16 Pro Max",
     screenArea: {
-      top: "3.5%",
-      left: "11.5%",
-      right: "11.5%",
-      bottom: "3.5%",
-      borderRadius: "38px",
+      top: "2.2%",
+      left: "5.1%",
+      right: "5.1%",
+      bottom: "2.2%",
+      borderRadius: "8%",
     },
   },
   "iPhone 16": {
     folder: "iPhone 16",
     screenArea: {
-      top: "3.86%",
-      left: "12.22%",
-      right: "12.06%",
-      bottom: "3.88%",
-      borderRadius: "40px",
+      top: "3.2%",
+      left: "6.6%",
+      right: "6.6%",
+      bottom: "3.2%",
+      borderRadius: "8%",
     },
   },
   "iPhone 16 Plus": {
     folder: "iPhone 16 Plus",
     screenArea: {
-      top: "3.5%",
-      left: "11.5%",
-      right: "11.5%",
-      bottom: "3.5%",
-      borderRadius: "38px",
+      top: "2.9%",
+      left: "6.1%",
+      right: "6.1%",
+      bottom: "2.9%",
+      borderRadius: "7%",
     },
   },
   "iPhone Air": {
     folder: "iPhone Air",
     screenArea: {
-      top: "3.5%",
-      left: "11%",
-      right: "11%",
-      bottom: "3.5%",
-      borderRadius: "40px",
+      top: "2.5%",
+      left: "4.5%",
+      right: "4.3%",
+      bottom: "2.5%",
+      borderRadius: "8%",
     },
   },
   "iPad Pro 13 - M4": {
@@ -279,6 +279,8 @@ export const PhoneFrame: React.FC<PhoneFrameProps> = ({
       <div
         style={{
           position: "relative",
+          width: "100%",
+          height: "100%",
           backgroundColor: "#1a1a1a",
           borderRadius: "40px",
           padding: "15px",
@@ -304,9 +306,15 @@ export const PhoneFrame: React.FC<PhoneFrameProps> = ({
     const staticFilePath = pathTransformer(`frames/${framePath}`);
 
     return (
-      <div style={{ position: "relative" }}>
+      <div style={{ position: "relative", width: "100%", height: "100%" }}>
         <ImageComponent
-          style={{ position: "relative", zIndex: 10 }}
+          style={{
+            position: "relative",
+            zIndex: 10,
+            width: "100%",
+            height: "100%",
+            display: "block",
+          }}
           src={staticFilePath}
         />
         <div
@@ -332,6 +340,8 @@ export const PhoneFrame: React.FC<PhoneFrameProps> = ({
       <div
         style={{
           position: "relative",
+          maxWidth: "100%",
+          height: "auto",
           backgroundColor: "#1a1a1a",
           borderRadius: "40px",
           padding: "15px",

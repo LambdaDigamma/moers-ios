@@ -9,6 +9,20 @@ const meta: Meta<typeof IPhone17ProMaxFrame> = {
   title: "Device Frames/iPhone 17 Pro Max",
   component: IPhone17ProMaxFrame,
   parameters: { layout: "centered" },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          height: "600px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     orientation: {
       control: "select",

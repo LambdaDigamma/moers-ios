@@ -5,6 +5,20 @@ const meta: Meta<typeof IPhoneAirFrame> = {
   title: "Device Frames/iPhone Air",
   component: IPhoneAirFrame,
   parameters: { layout: "centered" },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          height: "600px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     orientation: {
       control: "select",
@@ -30,7 +44,7 @@ export const PortraitSpaceBlack: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Space Black",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };
@@ -41,7 +55,7 @@ export const PortraitCloudWhite: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Cloud White",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };
@@ -52,7 +66,7 @@ export const PortraitSkyBlue: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Sky Blue",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };
@@ -63,7 +77,7 @@ export const PortraitLightGold: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Light Gold",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };
@@ -74,7 +88,7 @@ export const LandscapeSpaceBlack: StoryObj<typeof meta> = {
     orientation: "landscape",
     color: "Space Black",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };

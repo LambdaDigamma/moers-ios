@@ -5,6 +5,20 @@ const meta: Meta<typeof IPadFrame> = {
   title: "Device Frames/iPad",
   component: IPadFrame,
   parameters: { layout: "centered" },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          height: "600px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     orientation: {
       control: "select",
@@ -25,7 +39,7 @@ export const PortraitSilver: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Silver",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };
@@ -36,7 +50,7 @@ export const LandscapeSilver: StoryObj<typeof meta> = {
     orientation: "landscape",
     color: "Silver",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };

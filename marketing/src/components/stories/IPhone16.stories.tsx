@@ -5,6 +5,20 @@ const meta: Meta<typeof IPhone16Frame> = {
   title: "Device Frames/iPhone 16",
   component: IPhone16Frame,
   parameters: { layout: "centered" },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          height: "600px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     orientation: {
       control: "select",
@@ -31,7 +45,7 @@ export const PortraitBlack: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Black",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };
@@ -42,7 +56,7 @@ export const PortraitWhite: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "White",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };
@@ -53,7 +67,7 @@ export const PortraitPink: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Pink",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };
@@ -64,7 +78,7 @@ export const PortraitTeal: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Teal",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };
@@ -75,7 +89,7 @@ export const PortraitUltramarine: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Ultramarine",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };

@@ -5,6 +5,20 @@ const meta: Meta<typeof IPadMiniFrame> = {
   title: "Device Frames/iPad mini",
   component: IPadMiniFrame,
   parameters: { layout: "centered" },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          height: "600px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     orientation: {
       control: "select",
@@ -25,7 +39,7 @@ export const PortraitStarlight: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Starlight",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };
@@ -36,7 +50,7 @@ export const LandscapeStarlight: StoryObj<typeof meta> = {
     orientation: "landscape",
     color: "Starlight",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };

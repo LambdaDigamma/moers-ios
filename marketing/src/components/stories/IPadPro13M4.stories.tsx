@@ -5,6 +5,20 @@ const meta: Meta<typeof IPadPro13M4Frame> = {
   title: "Device Frames/iPad Pro 13 M4",
   component: IPadPro13M4Frame,
   parameters: { layout: "centered" },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          height: "600px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     orientation: {
       control: "select",
@@ -25,7 +39,7 @@ export const PortraitSpaceGray: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Space Gray",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };
@@ -36,7 +50,7 @@ export const PortraitSilver: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Silver",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };
@@ -47,7 +61,7 @@ export const LandscapeSpaceGray: StoryObj<typeof meta> = {
     orientation: "landscape",
     color: "Space Gray",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };

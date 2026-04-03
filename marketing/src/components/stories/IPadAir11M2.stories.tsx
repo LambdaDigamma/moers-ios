@@ -5,6 +5,20 @@ const meta: Meta<typeof IPadAir11M2Frame> = {
   title: "Device Frames/iPad Air 11 M2",
   component: IPadAir11M2Frame,
   parameters: { layout: "centered" },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          height: "600px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     orientation: {
       control: "select",
@@ -31,7 +45,7 @@ export const PortraitSpaceGray: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Space Gray",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };
@@ -42,7 +56,7 @@ export const PortraitBlue: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Blue",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };
@@ -53,7 +67,7 @@ export const PortraitPurple: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Purple",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };
@@ -64,7 +78,7 @@ export const PortraitStardust: StoryObj<typeof meta> = {
     orientation: "portrait",
     color: "Stardust",
     children: (
-      <div style={{ width: "100%", height: "100%", background: "#f0f0f0" }} />
+      <div style={{ width: "100%", height: "100%", background: "#ff0000" }} />
     ),
   },
 };
