@@ -63,6 +63,7 @@ public struct EventDetailInformationRow: View {
                 .font(.headline)
                 .fontWeight(.semibold)
                 .foregroundColor(.primary)
+                .accessibilityIdentifier("EventDetail.Title")
             
             Label {
                 Text(location ?? EventPackageStrings.locationNotKnown) + Text(" \(Image(systemName: "chevron.right"))")
@@ -70,6 +71,7 @@ public struct EventDetailInformationRow: View {
                 Image(systemName: "mappin.circle")
                     .frame(minWidth: 20)
             }
+            .accessibilityIdentifier("EventDetail.Location")
             .frame(maxWidth: .infinity, alignment: .leading)
             
             if scheduleDisplayMode.showsDateComponent {
@@ -103,6 +105,7 @@ public struct EventDetailInformationRow: View {
                     Image(systemName: "calendar.circle")
                         .frame(minWidth: 20)
                 }
+                .accessibilityIdentifier("EventDetail.DateTime")
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
             
@@ -117,6 +120,7 @@ public struct EventDetailInformationRow: View {
                 Image(systemName: "person.2.circle")
                     .frame(minWidth: 20)
             }
+            .accessibilityIdentifier("EventDetail.Artists")
             .frame(maxWidth: .infinity, alignment: .leading)
             
             

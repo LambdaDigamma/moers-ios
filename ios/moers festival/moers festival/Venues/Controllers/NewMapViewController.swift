@@ -34,6 +34,7 @@ public class NewMapViewController: UIViewController {
         map.mapType = .mutedStandard
         map.showsUserLocation = true
         map.showsCompass = false
+        map.accessibilityIdentifier = "FestivalMap"
         return map
     }()
     

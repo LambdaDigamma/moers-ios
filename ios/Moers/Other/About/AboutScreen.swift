@@ -77,7 +77,7 @@ public struct AboutScreen: View {
             }
             
         }
-        .navigationTitle(Text("Über"))
+        .navigationTitle(Text("About"))
         .navigationBarTitleDisplayMode(.large)
         
     }
@@ -118,7 +118,7 @@ public struct AboutScreen: View {
         
         VStack {
             
-            Button("App bewerten", action: onOpenReview)
+            Button("Rate this app", action: onOpenReview)
                 .buttonStyle(PrimaryButtonStyle())
                 .accessibility(identifier: "About.rateButton")
             

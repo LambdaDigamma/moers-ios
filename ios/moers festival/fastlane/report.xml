@@ -10,17 +10,12 @@
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: register_devices" time="14.411839">
+      <testcase classname="fastlane.lanes" name="1: run_tests" time="23.971032">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: sync_code_signing" time="18.096039">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="3: sync_code_signing" time="16.838363">
+      <testcase classname="fastlane.lanes" name="2: capture_screenshots" time="260.458438">
         
       </testcase>
     

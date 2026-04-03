@@ -5,7 +5,7 @@ default_platform(:ios)
 
 # Configuration
 APP_IDENTIFIERS = [
-  "de.okfn.niederrhein.moers-festival", 
+  "de.okfn.niederrhein.moers-festival",
   "de.okfn.niederrhein.moers-festival.Widgets",
   "de.okfn.niederrhein.moers-festival.watchkitapp"
 ].freeze
@@ -39,7 +39,7 @@ platform :ios do
         "Lennarts Apple Watch" => "00008006-000915E42183002E"
       }
     )
-    
+
     ["development", "appstore"].each do |type|
       sync_code_signing(
         type: type,
@@ -82,7 +82,7 @@ platform :ios do
 
     set_info_plist_value(
       path: "moers festival/Config/Info.plist",
-      key: "CFBundleShortVersionString", 
+      key: "CFBundleShortVersionString",
       value: new_version
     )
   end
@@ -111,7 +111,7 @@ platform :ios do
     encoded_credentials = Base64.strict_encode64("#{username}:#{token}")
 
     setup_ci if ENV['CI']
-    
+
     match(
       type: 'appstore',
       app_identifier: APP_IDENTIFIERS,
@@ -146,7 +146,7 @@ platform :ios do
   lane :release do |options|
 
     ensure_git_status_clean
-    
+
     ensure_git_branch(branch: 'master')
 
     version = options[:version]
@@ -159,25 +159,14 @@ platform :ios do
     pilot(skip_waiting_for_build_processing: true)
 
   end
-  
+
   desc "Take screenshots"
   lane :screenshots do
 
     path = "~/Library/Developer/Xcode/DerivedData/moersfestival"
-    scheme = "Screenshots"
-    testplan = "Screenshots"
+    scheme = "moers festival UITests"
     devices = [
-      "iPhone 14 Plus",
-      "iPhone 8 Plus",
-      "iPad Pro (12.9-inch) (6th generation)",
-
-
-      # "iPhone 8",
-      # "iPhone 8 Plus",
-      # "iPhone X",
-      # "iPhone Xs Max",
-      # "iPad Pro (12.9-inch) (2nd generation)",
-      # "iPad Pro (12.9-inch) (4th generation)"
+      "iPhone 17 Pro",
     ]
 
     run_tests(
@@ -185,8 +174,7 @@ platform :ios do
       code_coverage: false,
       derived_data_path: path,
       devices: devices,
-      scheme: scheme,
-      testplan: testplan
+      scheme: scheme
     )
 
     capture_screenshots(
@@ -197,11 +185,8 @@ platform :ios do
       override_status_bar: true,
       override_status_bar_arguments: "--time 2007-01-09T09:41:00+01:00 --dataNetwork wifi --wifiMode active --wifiBars 3 --cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100",
       headless: false,
-      test_without_building: true,
-      testplan: testplan
-      # clean: true
+      test_without_building: true
     )
-    # frame_screenshots
   end
 
   desc "Upload release notes to App Store Connect (skips binary and screenshots)"
@@ -228,7 +213,7 @@ platform :ios do
 
   # --------- tvOS ----------
 
-  
+
   # --- Utilities
 
   desc "Increment Version tvOS"
@@ -239,10 +224,10 @@ platform :ios do
     # Set App plist version
     set_info_plist_value(
       path: "moers festival tvOS/Info.plist",
-      key: "CFBundleShortVersionString", 
+      key: "CFBundleShortVersionString",
       value: version
     )
-  
+
     # Commit plists to git
     git_commit(
       path: [
@@ -264,7 +249,7 @@ platform :ios do
   lane :release_tvos do |options|
 
     ensure_git_status_clean
-    
+
     ensure_git_branch(branch: 'master')
 
     version = options[:version]

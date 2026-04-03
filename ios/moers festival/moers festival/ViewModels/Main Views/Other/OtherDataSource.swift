@@ -30,6 +30,7 @@ class OtherDataSource: NSObject {
             content.text = row.title
             cell.contentConfiguration = content
             cell.accessories = [.disclosureIndicator()]
+            cell.accessibilityIdentifier = "InfoCell-\(row.title.replacingOccurrences(of: " ", with: "_"))"
         }
         
         let headerRegistration = UICollectionView.SupplementaryRegistration<UICollectionViewListCell>(elementKind: UICollectionView.elementKindSectionHeader) { [weak self] supplementaryView, string, indexPath in

@@ -14,9 +14,9 @@ struct DaySelector: View {
     let onSelectDate: (Date) -> Void
     
     var body: some View {
-        
+
         HStack(spacing: 20) {
-            
+
             ForEach(dates, id: \.self) { date in
                 Button(action: {
                     onSelectDate(date)
@@ -25,10 +25,13 @@ struct DaySelector: View {
                 }
                 .buttonStyle(.plain)
                 .contentShape(Rectangle())
+                .accessibilityIdentifier("DayItem-\(date.formatted(.dateTime.year().month().day()))")
+                .accessibilityLabel(date.formatted(.dateTime.weekday(.wide).day().month()))
             }
-            
+
         }
-        
+        .accessibilityIdentifier("DaySelector")
+
     }
 
     func isSameDay(lhs: Date, rhs: Date) -> Bool {

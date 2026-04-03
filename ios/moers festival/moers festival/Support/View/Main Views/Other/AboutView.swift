@@ -75,7 +75,7 @@ public struct About: View {
             }
             
         }
-        .navigationTitle(Text("Über"))
+        .navigationTitle(Text("About"))
         .navigationBarTitleDisplayMode(.large)
         
     }
@@ -127,7 +127,7 @@ public struct About: View {
         
         VStack(alignment: .leading) {
             
-            Text("Diese App wird seit 2018 von Lennart Fischer entwickelt und gepflegt. Anfangs noch reines Volunteer-Projekt, ist sie nun zu einem essentiellen Bestandteil des Festivals geworden. Falls Du Ideen für neue Funktionen hast, dann schreib mir gerne ein Feedback. Außerdem freue ich mich über eine (gute) Bewertung im App Store.")
+            Text("This app has been developed and maintained by Lennart Fischer since 2018. What started out as a purely volunteer project has now become an essential part of the festival. If you have any ideas for new features, please feel free to send me your feedback. I’d also appreciate a (positive) review in the App Store.")
                 .frame(maxWidth: .infinity, alignment: .leading)
             
         }
@@ -156,7 +156,7 @@ public struct About: View {
                 .accessibilityIdentifier("About.rateButton")
                 
             } else {
-                Button("App bewerten", action: onOpenReview)
+                Button("Rate this app", action: onOpenReview)
                     .buttonStyle(ProminentButtonStyle())
                     .accessibility(identifier: "About.rateButton")
             }

@@ -37,6 +37,7 @@ class OtherView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .systemBackground
+        collectionView.accessibilityIdentifier = "InfoCollectionView"
         return collectionView
     }()
     

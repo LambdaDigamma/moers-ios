@@ -71,6 +71,14 @@ Release a new version of moers festival
 
 Take screenshots
 
+### ios upload_release_notes
+
+```sh
+[bundle exec] fastlane ios upload_release_notes
+```
+
+Upload release notes to App Store Connect (skips binary and screenshots)
+
 ### ios upload_screenshots
 
 ```sh

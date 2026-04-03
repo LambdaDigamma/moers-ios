@@ -37,6 +37,7 @@ public struct ModernEventView: View {
 
                     GenericMediaView(media: viewModel.header, resizingMode: .aspectFill)
                         .aspectRatio(CGSize(width: header.responsiveWidth ?? 16, height: header.responsiveHeight ?? 9), contentMode: .fill)
+                        .accessibilityIdentifier("EventDetail.HeaderImage")
 
                     if let credits = header.credits, !credits.isEmptyOrWhitespace {
                         Text("© \(credits)")
@@ -89,7 +90,7 @@ public struct ModernEventView: View {
                     Button(action: {
                         showDetails()
                     }) {
-                        
+
                         EventDetailInformationRow(
                             title: event.name,
                             startDate: screenData.startDate,
@@ -100,8 +101,9 @@ public struct ModernEventView: View {
                             artists: event.artists?.compactMap { $0 } ?? [],
                             isOpenEnd: event.isOpenEnd
                         )
-                        
+
                     }
+                    .accessibilityIdentifier("EventDetail.MetadataRow")
                     
                     Divider()
                     
