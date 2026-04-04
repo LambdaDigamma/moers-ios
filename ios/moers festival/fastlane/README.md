@@ -79,6 +79,14 @@ Take screenshots
 
 Upload release notes to App Store Connect (skips binary and screenshots)
 
+### ios capture_screenshots
+
+```sh
+[bundle exec] fastlane ios capture_screenshots
+```
+
+Capture and process screenshots only (without upload)
+
 ### ios screenshots_pipeline
 
 ```sh

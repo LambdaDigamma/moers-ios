@@ -82,7 +82,8 @@ jobs:
         if: github.event.inputs.update_screenshots == 'true'
         run: |
           cd "ios/moers festival"
-          bundle exec fastlane ios screenshots
+          bundle exec fastlane ios ensure_app_version
+          bundle exec fastlane ios capture
 
       - name: Fix symlinks and render processed screenshots
         if: github.event.inputs.update_screenshots == 'true'

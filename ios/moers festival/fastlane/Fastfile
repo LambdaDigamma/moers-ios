@@ -160,7 +160,7 @@ platform :ios do
   end
 
   desc "Take screenshots"
-  lane :screenshots do
+  lane :capture do
 
     path = "~/Library/Developer/Xcode/DerivedData/moersfestival"
     scheme = "moers festival UITests"
@@ -202,7 +202,7 @@ platform :ios do
   end
 
   desc "Capture and process screenshots only (without upload)"
-  lane :capture_screenshots do
+  lane :capture_process_screenshots do
     fastlane_dir = __dir__
     screenshots_dir = File.join(fastlane_dir, "screenshots")
     marketing_dir   = File.expand_path("../../../marketing", fastlane_dir)
@@ -216,7 +216,7 @@ platform :ios do
     }
 
     # Step 1: Capture raw screenshots from simulator
-    screenshots()
+    capture()
 
     # Step 2: Render processed stills via Remotion
     sh("cd '#{marketing_dir}' && bun run src/scripts/export-stills.ts --locale de-DE && bun run src/scripts/export-stills.ts --locale en-US")
@@ -237,8 +237,30 @@ platform :ios do
 
   desc "Full screenshot pipeline: capture, process via Remotion, replace and upload"
   lane :screenshots_pipeline do
-    capture_screenshots()
+    ensure_app_version()
+    capture_process_screenshots()
     upload_screenshots()
+  end
+
+  desc "Create a new App Store version if needed"
+  lane :ensure_app_version do
+    load_asc_api_key()
+    
+    version_number = get_info_plist_value(
+      path: "moers festival/Config/Info.plist",
+      key: "CFBundleShortVersionString"
+    )
+    
+    deliver(
+      skip_metadata: true,
+      skip_screenshots: true,
+      skip_binary_upload: true,
+      force: true,
+      run_precheck_before_submit: false,
+      skip_app_version_update: false,
+      app_version: version_number,
+      automatic_release: false
+    )
   end
 
   desc "Upload screenshots"
@@ -252,7 +274,8 @@ platform :ios do
       overwrite_screenshots: true,
       force: true,
       run_precheck_before_submit: false,
-      skip_app_version_update: false,
+      skip_app_version_update: true,
+      use_live_version: true,
       automatic_release: false
     )
   end
