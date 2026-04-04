@@ -22,7 +22,7 @@ on:
 
 jobs:
   build-ios:
-    runs-on: macos-26
+    runs-on: ${{ github.event.inputs.update_screenshots == 'true' && 'macos-26-xlarge' || 'macos-26' }}
     steps:
       - name: Select Xcode
         # macos-26 currently ships Xcode 26.4 RC without the matching iOS platform.
