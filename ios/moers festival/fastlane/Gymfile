@@ -1,0 +1,3 @@
+scheme("moers festival")
+workspace("../Moers.xcworkspace")
+clean(false)

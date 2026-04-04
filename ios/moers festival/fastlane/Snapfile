@@ -1,4 +1,5 @@
 scheme("moers festival UITests")
+workspace("../Moers.xcworkspace")
 
 derived_data_path("~/Library/Developer/Xcode/DerivedData/moersfestival")
 

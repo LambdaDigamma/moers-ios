@@ -106,7 +106,7 @@ jobs:
           # cached packages first; only wipe and retry on failure.
           echo "Resolving Swift packages (attempt 1/2, using cache if available)"
           if ! xcodebuild -resolvePackageDependencies \
-            -project "moers festival.xcodeproj" \
+            -workspace "../Moers.xcworkspace" \
             -scheme "moers festival" \
             -clonedSourcePackagesDirPath "$SPM_DIR"; then
 
@@ -114,7 +114,7 @@ jobs:
             rm -rf SourcePackages && mkdir -p SourcePackages
 
             xcodebuild -resolvePackageDependencies \
-              -project "moers festival.xcodeproj" \
+              -workspace "../Moers.xcworkspace" \
               -scheme "moers festival" \
               -clonedSourcePackagesDirPath "$SPM_DIR" || exit 1
           fi
@@ -131,6 +131,8 @@ jobs:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           MATCH_GITHUB_TOKEN: ${{ secrets.MATCH_GITHUB_TOKEN }}
           GYM_CLONED_SOURCE_PACKAGES_PATH: ./SourcePackages
+          GYM_SKIP_PACKAGE_DEPENDENCIES_RESOLUTION: true
+          GYM_DISABLE_PACKAGE_AUTOMATIC_UPDATES: true
           FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 120
           FASTLANE_XCODEBUILD_SETTINGS_RETRIES: 5
           FASTLANE_DISABLE_COLORS: 1

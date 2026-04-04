@@ -138,16 +138,7 @@ platform :ios do
 
   desc "Build the app for release"
   lane :build_release do
-    gym_options = { scheme: "moers festival" }
-
-    if ENV['CI']
-      spm_path = ENV.fetch("GYM_CLONED_SOURCE_PACKAGES_PATH", "./SourcePackages")
-      gym_options[:cloned_source_packages_path] = spm_path
-      gym_options[:skip_package_dependencies_resolution] = true
-      gym_options[:disable_package_automatic_updates] = true
-    end
-
-    gym(**gym_options)
+    gym
   end
 
   # ============ Distribution ============
