@@ -2,6 +2,7 @@ import { loadFont } from "@remotion/fonts";
 import { staticFile } from "remotion";
 
 export const loadFestivalFonts = async () => {
+  if (typeof window === "undefined") return;
   await Promise.all([
     loadFont({
       family: "Atkinson Hyperlegible",

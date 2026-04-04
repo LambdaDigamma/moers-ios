@@ -15,45 +15,14 @@
   },
   "testTargets" : [
     {
+      "skippedTests" : [
+        "AutomaticSnapshots",
+        "AutomaticSnapshots\/testTakeScreenshots()"
+      ],
       "target" : {
-        "containerPath" : "container:..\/Moers\/Core",
-        "identifier" : "CoreTests",
-        "name" : "CoreTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:..\/ModernNetworking",
-        "identifier" : "ModernNetworkingTests",
-        "name" : "ModernNetworkingTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:..\/MediaLibraryKit",
-        "identifier" : "MediaLibraryKitTests",
-        "name" : "MediaLibraryKitTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:..\/mmfeeds-ios",
-        "identifier" : "MMFeedsTests",
-        "name" : "MMFeedsTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:..\/Moers\/mmpages-ios",
-        "identifier" : "MMPagesTests",
-        "name" : "MMPagesTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:..\/Moers\/mmevents-ios",
-        "identifier" : "MMEventsTests",
-        "name" : "MMEventsTests"
+        "containerPath" : "container:moers festival.xcodeproj",
+        "identifier" : "DF87B2F1201DFB2700E1B97C",
+        "name" : "moers festival UITests"
       }
     }
   ],

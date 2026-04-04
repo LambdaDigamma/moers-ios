@@ -54,9 +54,9 @@ const Background: React.FC = () => (
   <div className="absolute inset-0 overflow-hidden">
     <Img
       src={staticFile("assets/background.png")}
-      className="absolute inset-0 object-cover w-full h-full blur-2xl scale-110 opacity-60"
+      className="absolute inset-0 object-cover w-full h-full blur-2xl scale-110 opacity-70"
     />
-    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/70" />
+    {/*<div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/50" />*/}
     <NoiseOverlay />
   </div>
 );
