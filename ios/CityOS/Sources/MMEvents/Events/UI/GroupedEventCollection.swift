@@ -51,7 +51,7 @@ public struct GroupedEventCollection: View {
     
     public init(
         viewModels: [EventListItemViewModel],
-        containerBackground: Color = Color(UIColor.systemBackground),
+        containerBackground: Color = .clear,
         onSelectEvent: @escaping (Event.ID) -> Void = { _ in }
     ) {
         self.viewModels = viewModels

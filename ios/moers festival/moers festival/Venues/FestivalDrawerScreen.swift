@@ -89,7 +89,7 @@ struct FestivalDrawerView: View {
         VStack(alignment: .leading, spacing: 8) {
             
             HStack {
-                Text("Kategorien")
+                Text("Categories")
                     .fontWeight(.semibold)
                     .foregroundColor(.secondary)
                 
@@ -117,7 +117,7 @@ struct FestivalDrawerView: View {
         VStack(alignment: .leading, spacing: 8) {
             
             HStack {
-                Text("Stages")
+                Text("Venues")
                     .fontWeight(.semibold)
                     .foregroundColor(.secondary)
                 

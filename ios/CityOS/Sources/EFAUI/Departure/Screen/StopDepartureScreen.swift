@@ -33,7 +33,7 @@ public struct StopDepartureScreen: View {
                     if let currentStop = viewModel.currentStop {
                         Text(currentStop.name)
                     } else {
-                        Text("Haltestelle auswählen")
+                        Text(String(localized: "Select stop", bundle: .module))
                     }
                     
                 }

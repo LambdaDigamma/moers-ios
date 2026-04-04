@@ -624,7 +624,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
         
         self.navigationController?.pushViewController(viewController, animated: true)
         
-        viewController.title = String(localized: "Favourites")
+        viewController.title = String(localized: "Favorites", bundle: .module)
         viewController.events = self.events
         viewController.currentDisplayMode = self.buildFavourites()
         

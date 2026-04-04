@@ -11,8 +11,8 @@ import Combine
 
 public class LocationInformationView: UIView {
     
-    public var locationName = CurrentValueSubject<String, Never>("nicht bekannnt")
-    public var locationDetails = CurrentValueSubject<String, Never>("nicht bekannt")
+    public var locationName = CurrentValueSubject<String, Never>(String(localized: "not known", bundle: .module))
+    public var locationDetails = CurrentValueSubject<String, Never>(String(localized: "not known", bundle: .module))
     public private(set) var startNavigation: PassthroughSubject<Void, Never>!
     
     private var cancellables = Set<AnyCancellable>()

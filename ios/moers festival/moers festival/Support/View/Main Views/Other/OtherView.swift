@@ -34,6 +34,7 @@ class OtherView: UIView {
         var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         configuration.headerMode = .supplementary
         let layout = UICollectionViewCompositionalLayout.list(using: configuration)
+        layout.configuration.contentInsetsReference = .readableContent
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .systemBackground
@@ -42,7 +43,6 @@ class OtherView: UIView {
     }()
     
     private func setupUI() {
-        
         self.addSubview(collectionView)
         dataSource.setupDataSource(collectionView: collectionView)
         
@@ -51,7 +51,7 @@ class OtherView: UIView {
     private func setupConstraints() {
         
         let constraints = [
-            collectionView.topAnchor.constraint(equalTo: self.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
@@ -73,6 +73,10 @@ class OtherView: UIView {
     
     public func update() {
         dataSource.update()
+    }
+
+    public func rowAction(for indexPath: IndexPath) -> (() -> Void)? {
+        dataSource.itemIdentifier(for: indexPath)?.action
     }
     
 }

@@ -20,8 +20,8 @@ enum BulletinDataSource {
         page.image = #imageLiteral(resourceName: "Icon")
         page.imageAccessibilityLabel = "Moers Festival Logo"
         page.appearance = makeAppearance()
-        page.descriptionText = String.localized("OnboardingDescription")
-        page.actionButtonTitle = String.localized("OnboardingFirstPageActionButtonTitle")
+        page.descriptionText = String.localized("Discover the moers festival")
+        page.actionButtonTitle = String.localized("Continue")
         page.isDismissable = false
                 
         page.actionHandler = { item in
@@ -36,13 +36,13 @@ enum BulletinDataSource {
     
     static func makeNotitificationsPage() -> FeedbackPageBulletinItem {
         
-        let page = FeedbackPageBulletinItem(title: String.localized("OnboardingNotificationPageTitle"))
+        let page = FeedbackPageBulletinItem(title: String.localized("Push Notifications"))
         page.image = #imageLiteral(resourceName: "NotificationPrompt")
         page.imageAccessibilityLabel = "Notifications Icon"
         page.appearance = makeAppearance()
-        page.descriptionText = String.localized("OnboardingNotificationPageDescription")
-        page.actionButtonTitle = String.localized("OnboardingNotificationPageActionButtonTitle")
-        page.alternativeButtonTitle = String.localized("OnboardingNotificationPageAlternativeButtonTitle")
+        page.descriptionText = String.localized("Receive push notifications to get all the latest news about Moers Festival.")
+        page.actionButtonTitle = String.localized("Subscribe")
+        page.alternativeButtonTitle = String.localized("Not now")
         
         page.isDismissable = false
         
@@ -65,11 +65,11 @@ enum BulletinDataSource {
     
     static func makeLocationPage() -> FeedbackPageBulletinItem {
         
-        let page = FeedbackPageBulletinItem(title: String.localized("OnboardingLocationPageTitle"))
+        let page = FeedbackPageBulletinItem(title: String.localized("Location"))
         
         page.image = #imageLiteral(resourceName: "LocationPrompt")
         page.imageAccessibilityLabel = "Location Icon"
-        page.descriptionText = String.localized("OnboardingLocationPageDescription")
+        page.descriptionText = String.localized("Moers Festival uses your location to provide you with more detailed information about the sites and moving stages.")
         page.actionButtonTitle = String.localized("Continue")
 //        page.alternativeButtonTitle = String.localized("Later")
         page.appearance = makeAppearance()
@@ -105,12 +105,12 @@ enum BulletinDataSource {
     
     static func makePrivacyPage() -> FeedbackPageBulletinItem {
         
-        let page = FeedbackPageBulletinItem(title: String.localized("PrivacyPageTitle"))
+        let page = FeedbackPageBulletinItem(title: String.localized("Privacy"))
         
         page.image = #imageLiteral(resourceName: "PrivacyPrompt")
         page.imageAccessibilityLabel = "Privacy Icon"
-        page.descriptionText = String.localized("PrivacyPageDescription")
-        page.actionButtonTitle = String.localized("PrivacyPageButtonTitle")
+        page.descriptionText = String.localized("All data will be treated with the utmost care and confidentiality! \nBy using this app, you agree to the terms and conditions and privacy policy found in the menu.")
+        page.actionButtonTitle = String.localized("Understood")
         page.appearance = makeAppearance()
         page.isDismissable = false
         
@@ -124,13 +124,13 @@ enum BulletinDataSource {
     
     static func makeMoersAppPage() -> FeedbackPageBulletinItem {
         
-        let page = FeedbackPageBulletinItem(title: String.localized("MoersAppPageTitle"))
+        let page = FeedbackPageBulletinItem(title: String.localized("Mein Moers"))
         page.image = #imageLiteral(resourceName: "MoersAppIcon")
         page.imageAccessibilityLabel = "Moers App Icon Icon"
         page.appearance = makeAppearance()
-        page.descriptionText = String.localized("MoersAppPageDescription")
-        page.actionButtonTitle = String.localized("MoersAppPageActionButtonTitle")
-        page.alternativeButtonTitle = String.localized("MoersAppPageAlternativeButtonTitle")
+        page.descriptionText = String.localized("Mein Moers is a nice addition to this app. \nExplore the city with 360° panoramas, find shops and get current parking allocation data.")
+        page.actionButtonTitle = String.localized("Download")
+        page.alternativeButtonTitle = String.localized("Later")
         
         page.isDismissable = false
         
@@ -156,7 +156,7 @@ enum BulletinDataSource {
     
     static func makeCompletionPage() -> BLTNPageItem {
         
-        let page = BLTNPageItem(title: String.localized("CompletionPageTitle"))
+        let page = BLTNPageItem(title: String.localized("Setup completed"))
         page.image = #imageLiteral(resourceName: "IntroCompletion")
         page.imageAccessibilityLabel = "Checkmark"
         page.appearance = makeAppearance()
@@ -166,7 +166,7 @@ enum BulletinDataSource {
         page.alternativeButton?.isHidden = true
         
         page.descriptionText = ""
-        page.actionButtonTitle = String.localized("CompletionPageActionButtonTitle")
+        page.actionButtonTitle = String.localized("Get started")
         
         page.isDismissable = true
         
@@ -194,7 +194,7 @@ enum BulletinDataSource {
         page.alternativeButton?.isHidden = true
         
         page.descriptionText = ""
-        page.actionButtonTitle = String.localized("ErrorPageActionButtonTitle")
+        page.actionButtonTitle = String.localized("Okay")
         
         page.isDismissable = true
         
@@ -208,9 +208,9 @@ enum BulletinDataSource {
     
     static func makeStaffLoginPage(completion: @escaping ((Bool) -> ())) -> StaffLoginBulletinPage {
         
-        let page = StaffLoginBulletinPage(title: String.localized("StaffLoginPageTitle"))
+        let page = StaffLoginBulletinPage(title: String.localized("Staff Login"))
         page.appearance = makeAppearance()
-        page.actionButtonTitle = String.localized("StaffLoginPageActionButtonTitle")
+        page.actionButtonTitle = String.localized("Login")
         page.isDismissable = true
         
         page.textInputHandler = { (item, text) in
@@ -252,8 +252,8 @@ enum BulletinDataSource {
         page.appearance.actionButtonTitleColor = .white
         page.alternativeButton?.isHidden = true
         
-        page.descriptionText = String.localized("MutedPageDescription")
-        page.actionButtonTitle = String.localized("ErrorPageActionButtonTitle")
+        page.descriptionText = String.localized("You have been muted by the operator and can no longer ask questions.")
+        page.actionButtonTitle = String.localized("Okay")
         
         page.isDismissable = true
         
@@ -267,10 +267,10 @@ enum BulletinDataSource {
     
     static func makeNotificationBuilderPage() -> FeedbackPageBulletinItem {
         
-        let page = NotificationBuilderBulletinPage(title: "Push-Nachricht")
+        let page = NotificationBuilderBulletinPage(title: String.localized("Push Notification"))
         page.appearance = makeAppearance()
-        page.actionButtonTitle = "Senden"
-        page.alternativeButtonTitle = "Abbrechen"
+        page.actionButtonTitle = String.localized("Send")
+        page.alternativeButtonTitle = String.localized("Cancel")
         page.isDismissable = true
         
         page.alternativeHandler = { item in

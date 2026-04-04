@@ -38,7 +38,6 @@
 		DFADF96D282A66DF00A15FE1 /* Map Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFADF96C282A66DF00A15FE1 /* Map Icons.xcassets */; };
 		DFB592F12586C4F800BAD901 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB592F02586C4F800BAD901 /* SceneDelegate.swift */; };
 		DFB593012586D5C200BAD901 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB593002586D5C200BAD901 /* ApplicationController.swift */; };
-		DFC1111627F6476700348268 /* AppSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1111527F6476700348268 /* AppSplitViewController.swift */; };
 		DFC9094B21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DFC9094A21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle */; };
 		DFE12B672073853F006764FC /* Licenses.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFE12B662073853F006764FC /* Licenses.plist */; };
 		DFF1C5D22F66E20F000A84D1 /* Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = DFF1C5D12F66E1F4000A84D1 /* Icon.icon */; };
@@ -148,7 +147,6 @@
 		DFB15F0B22AF082D00441FB5 /* moers festival Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moers festival Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFB592F02586C4F800BAD901 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DFB593002586D5C200BAD901 /* ApplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
-		DFC1111527F6476700348268 /* AppSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSplitViewController.swift; sourceTree = "<group>"; };
 		DFC9094A21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppMessagingDisplayResources.bundle; sourceTree = "<group>"; };
 		DFD4561429E93A3A00F26F37 /* moers festival.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moers festival.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFD4562329E93A3B00F26F37 /* moers festival Watch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moers festival Watch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -485,7 +483,6 @@
 				DF62C6192247A349008425EC /* ContentDrawer.storyboard */,
 				DF35B389201DC72900118FD1 /* AppDelegate.swift */,
 				DFB593002586D5C200BAD901 /* ApplicationController.swift */,
-				DFC1111527F6476700348268 /* AppSplitViewController.swift */,
 				DFB592F02586C4F800BAD901 /* SceneDelegate.swift */,
 				DFADF96C282A66DF00A15FE1 /* Map Icons.xcassets */,
 				DF5978DA2F01EDAC00512386 /* Assets */,
@@ -901,7 +898,6 @@
 				DF35B38A201DC72900118FD1 /* AppDelegate.swift in Sources */,
 				DFB593012586D5C200BAD901 /* ApplicationController.swift in Sources */,
 				DFB592F12586C4F800BAD901 /* SceneDelegate.swift in Sources */,
-				DFC1111627F6476700348268 /* AppSplitViewController.swift in Sources */,
 			);
 		};
 		DF40D6BF247E73D40054199C /* Sources */ = {

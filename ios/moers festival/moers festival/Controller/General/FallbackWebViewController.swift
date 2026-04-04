@@ -38,6 +38,20 @@ class FallbackWebViewController: UIViewController {
         self.setupConstraints()
         
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if isPresentedInModalNavigationController {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(
+                barButtonSystemItem: .close,
+                target: self,
+                action: #selector(close)
+            )
+        } else {
+            navigationItem.leftBarButtonItem = nil
+        }
+    }
     
     private func setupUI() {
         
@@ -88,6 +102,16 @@ class FallbackWebViewController: UIViewController {
         
         return configuration
         
+    }
+
+    private var isPresentedInModalNavigationController: Bool {
+        guard let navigationController else { return false }
+        return navigationController.presentingViewController != nil && navigationController.viewControllers.first === self
+    }
+
+    @objc
+    private func close() {
+        navigationController?.dismiss(animated: true)
     }
     
 }

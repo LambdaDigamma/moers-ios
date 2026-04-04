@@ -53,13 +53,13 @@ public struct FeedViewScreen: View {
     private func success(items: [Post]) -> some View {
         
         ScrollView {
-            
+
             let columns = self.columnCount(for: screenSize.width)
-            
+
             LazyVGrid(columns: columns, spacing: 20) {
-                
+
                 ForEach(items) { post in
-                    
+
                     if post.extras?.type == "instagram" {
                         InstagramPostView(post: post, showPost: { showPost($0.id) })
                     } else {
@@ -73,9 +73,10 @@ public struct FeedViewScreen: View {
 //                        }
 
                 }
-                
             }
-            .padding(20)
+            .frame(maxWidth: 1_080, alignment: .top)
+            .padding(.horizontal, horizontalPadding(for: screenSize.width))
+            .padding(.vertical, 20)
             
         }
         .onGeometryChange(for: CGSize.self) { proxy in
@@ -88,15 +89,19 @@ public struct FeedViewScreen: View {
     }
     
     private func columnCount(for width: CGFloat) -> [GridItem] {
-        if width > 600 {
-//            return Array(repeating: GridItem(.adaptive(minimum: 150), spacing: 10), count: 3)
-            return Array(repeating: GridItem(.flexible(), spacing: 12, alignment: .top), count: 3)
+        if width > 1_000 {
+            return Array(repeating: GridItem(.flexible(), spacing: 20, alignment: .top), count: 2)
+        } else if width > 700 {
+            return Array(repeating: GridItem(.flexible(), spacing: 16, alignment: .top), count: 2)
         } else if width > 500 {
             return Array(repeating: GridItem(.flexible(), spacing: 12, alignment: .top), count: 2)
         } else {
             return Array(repeating: GridItem(.flexible(), spacing: 12, alignment: .top), count: 1)
-//            return [GridItem(.adaptive(minimum: 150), spacing: 10)]
         }
+    }
+
+    private func horizontalPadding(for width: CGFloat) -> CGFloat {
+        width > 1_000 ? 32 : 20
     }
 
     

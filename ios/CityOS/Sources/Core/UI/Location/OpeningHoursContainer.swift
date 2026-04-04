@@ -19,7 +19,7 @@ public struct OpeningHoursContainer: View {
         
         VStack(alignment: .leading, spacing: 4) {
             
-            Text("Öffnungszeiten")
+            Text(String(localized: "Opening hours", bundle: .module))
                 .fontWeight(.semibold)
                 .padding(.bottom, 8)
                 .unredacted()
@@ -33,7 +33,7 @@ public struct OpeningHoursContainer: View {
                     }
                 }
             } else {
-                Text("Keine Öffnungszeiten bekannt")
+                Text(String(localized: "No opening hours known", bundle: .module))
                     .foregroundColor(.secondary)
             }
             

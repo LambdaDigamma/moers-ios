@@ -110,7 +110,7 @@ struct ToiletAnnotationView_Previews: PreviewProvider {
         >()
         
         viewController.annotationProducer = { coordinate in
-            return ToiletAnnotation(title: "Toiletten", coordinate: coordinate)
+            return ToiletAnnotation(title: "Toilets", coordinate: coordinate)
         }
         
         return UINavigationController(rootViewController: viewController)

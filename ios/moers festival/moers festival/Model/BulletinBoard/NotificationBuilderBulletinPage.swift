@@ -21,6 +21,9 @@ nonisolated class NotificationBuilderBulletinPage: FeedbackPageBulletinItem {
     @objc public var textInputHandler: ((BLTNActionItem, String?) -> Void)? = nil
 
     nonisolated override func makeViewsUnderTitle(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
+        let accentColor = UIColor(dynamicProvider: { traitCollection in
+            traitCollection.userInterfaceStyle == .dark ? .systemYellow : .black
+        })
 
         titleTextField = interfaceBuilder.makeTextField(placeholder: "Titel", returnKey: .next, delegate: self)
         titleTextField.keyboardAppearance = .dark
@@ -36,18 +39,18 @@ nonisolated class NotificationBuilderBulletinPage: FeedbackPageBulletinItem {
         bodyTextField.layer.cornerRadius = 12
         bodyTextField.layer.borderWidth = 2
 
-        self.titleTextField.layer.borderColor = UIColor.systemYellow.cgColor
+        self.titleTextField.layer.borderColor = accentColor.cgColor
         self.titleTextField.backgroundColor = UIColor.systemBackground
-        self.titleTextField.tintColor = UIColor.systemYellow
+        self.titleTextField.tintColor = accentColor
         self.titleTextField.textColor = UIColor.label
         self.titleTextField.attributedPlaceholder = NSAttributedString(
             string: "Titel",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText]
         )
 
-        self.bodyTextField.layer.borderColor = UIColor.systemYellow.cgColor
+        self.bodyTextField.layer.borderColor = accentColor.cgColor
         self.bodyTextField.backgroundColor = UIColor.systemBackground
-        self.bodyTextField.tintColor = UIColor.systemYellow
+        self.bodyTextField.tintColor = accentColor
         self.bodyTextField.textColor = UIColor.label
         self.bodyTextField.attributedPlaceholder = NSAttributedString(
             string: "Text",

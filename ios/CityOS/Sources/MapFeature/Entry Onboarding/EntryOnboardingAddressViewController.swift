@@ -86,7 +86,7 @@ class EntryOnboardingAddressViewController: UIViewController {
         self.progressView.currentStep = String(localized: "2. Enter address", bundle: .module)
         self.progressView.progress = 0.0
         
-        self.addressHeaderLabel.text = String(localized: "Addresse", bundle: .module).uppercased()
+        self.addressHeaderLabel.text = String(localized: "Address", bundle: .module).uppercased()
         self.streetTextField.placeholder = String(localized: "Street", bundle: .module)
         self.houseNrTextField.placeholder = String(localized: "Number", bundle: .module)
         self.postcodeTextField.placeholder = String(localized: "Postcode", bundle: .module)

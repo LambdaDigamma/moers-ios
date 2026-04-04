@@ -28,13 +28,11 @@ class ApplicationController: NSObject, ApplicationControlling {
     private let entryManager: EntryManagerProtocol
     private let trackerManager: TrackerManagerProtocol
     
-    var tabBarController: TabBarController? {
-        splitViewController.tabController
-    }
+    var tabBarController: TabBarController? { rootTabBarController }
     
     private let logger: Logger = Logger(.coreAppLifecycle)
     
-    private var splitViewController: AppSplitViewController!
+    private var rootTabBarController: TabBarController?
     
     var cancellables = Set<AnyCancellable>()
     
@@ -67,16 +65,16 @@ class ApplicationController: NSObject, ApplicationControlling {
     }
     
     func rootViewController() -> UIViewController {
-        
-        self.splitViewController = AppSplitViewController(
-            firstLaunch: firstLaunch,
+        let tabBarController = TabBarController(
             eventService: eventService,
             entryManager: entryManager,
             trackerManager: trackerManager
         )
-        
-        return splitViewController
-        
+
+        self.rootTabBarController = tabBarController
+
+        return tabBarController
+
     }
 
     static func loadServerEnvironment() -> ServerEnvironment {
@@ -176,46 +174,52 @@ class ApplicationController: NSObject, ApplicationControlling {
 //        }
         
         self.openOther()
-        self.splitViewController.tabController.showWebpage(url: url)
+        self.tabBarController?.showWebpage(url: url)
         
     }
     
     // MARK: - Coordinator Handling -
     
     internal var currentNews: NewsCoordinator {
-        return splitViewController.displayCompact
-        ? splitViewController.tabController.news
-        : splitViewController.news
+        guard let rootTabBarController else {
+            fatalError("Root controller was not configured before resolving the news coordinator.")
+        }
+        return rootTabBarController.news
     }
     
     internal var currentLive: LiveCoordinator {
-        return splitViewController.displayCompact
-        ? splitViewController.tabController.live
-        : splitViewController.live
+        guard let rootTabBarController else {
+            fatalError("Root controller was not configured before resolving the live coordinator.")
+        }
+        return rootTabBarController.live
     }
     
     internal var currentMap: MapCoordinator {
-        return splitViewController.displayCompact
-        ? splitViewController.tabController.map
-        : splitViewController.map
+        guard let rootTabBarController else {
+            fatalError("Root controller was not configured before resolving the map coordinator.")
+        }
+        return rootTabBarController.map
     }
     
     internal var currentUserSchedule: UserScheduleCoordinator {
-        return splitViewController.displayCompact
-        ? splitViewController.tabController.userSchedule
-        : splitViewController.tabController.userSchedule // todo: fix this and add user schedule to sidebar
+        guard let rootTabBarController else {
+            fatalError("Root controller was not configured before resolving the user schedule coordinator.")
+        }
+        return rootTabBarController.userSchedule
     }
     
     internal var currentEvents: EventCoordinator {
-        return splitViewController.displayCompact
-        ? splitViewController.tabController.event
-        : splitViewController.event
+        guard let rootTabBarController else {
+            fatalError("Root controller was not configured before resolving the event coordinator.")
+        }
+        return rootTabBarController.event
     }
     
     internal var currentOther: OtherCoordinator {
-        return splitViewController.displayCompact
-        ? splitViewController.tabController.other
-        : splitViewController.other
+        guard let rootTabBarController else {
+            fatalError("Root controller was not configured before resolving the other coordinator.")
+        }
+        return rootTabBarController.other
     }
     
     // MARK: - Actions -
@@ -236,11 +240,7 @@ class ApplicationController: NSObject, ApplicationControlling {
         
         currentNews.navigationController.popToRootViewController(animated: false)
         
-        if splitViewController.displayCompact {
-            splitViewController.tabController.selectedIndex = TabIndices.news.rawValue
-        } else {
-            splitViewController.selectSidebarItem(.news)
-        }
+        activateTopLevelDestination(.news)
         
     }
     
@@ -248,65 +248,42 @@ class ApplicationController: NSObject, ApplicationControlling {
         
         currentNews.navigationController.popToRootViewController(animated: false)
         currentNews.navigationController.dismiss(animated: false)
-        
-        if splitViewController.displayCompact {
-            splitViewController.tabController.selectedIndex = TabIndices.news.rawValue
-            splitViewController.tabController.news.showPost(postID: postID)
-        } else {
-            splitViewController.selectSidebarItem(.news)
-            splitViewController.news.showPost(postID: postID)
-        }
+
+        activateTopLevelDestination(.news)
+        currentNews.showPost(postID: postID)
         
     }
     
     public func openMap(animated: Bool = false) {
         
-        if splitViewController.displayCompact {
-            splitViewController.tabController.selectedIndex = TabIndices.maps.rawValue
-        } else {
-            splitViewController.selectSidebarItem(.map)
-        }
+        activateTopLevelDestination(.maps)
         
     }
     
     public func openUserSchedule(animated: Bool = false) {
         
-        currentUserSchedule.navigationController.popToRootViewController(animated: false)
         currentUserSchedule.navigationController.dismiss(animated: false)
         
-        if splitViewController.displayCompact {
-            splitViewController.tabController.selectedIndex = TabIndices.userSchedule.rawValue
-        } else {
-//            splitViewController.selectSidebarItem(.map)
-        }
+        activateTopLevelDestination(.userSchedule)
+        currentUserSchedule.showOverview(animated: false)
         
     }
     
     public func openEvents(animated: Bool = false) {
         
-        currentEvents.navigationController.popToRootViewController(animated: false)
         currentEvents.navigationController.dismiss(animated: false)
         
-        if splitViewController.displayCompact {
-            splitViewController.tabController.selectedIndex = TabIndices.events.rawValue
-        } else {
-            splitViewController.selectSidebarItem(.events)
-        }
+        activateTopLevelDestination(.events)
+        currentEvents.showOverview(animated: false)
         
     }
     
     public func openEventDetail(eventID: Event.ID, animated: Bool = false) {
         
-        currentEvents.navigationController.popToRootViewController(animated: false)
         currentEvents.navigationController.dismiss(animated: false)
-        
-        if splitViewController.displayCompact {
-            splitViewController.tabController.selectedIndex = TabIndices.events.rawValue
-            splitViewController.tabController.event.pushEventDetail(eventID: eventID, animated: animated)
-        } else {
-            splitViewController.selectSidebarItem(.events)
-            splitViewController.event.pushEventDetail(eventID: eventID, animated: animated)
-        }
+
+        activateTopLevelDestination(.events)
+        currentEvents.showDetail(for: eventID, animated: animated)
         
     }
     
@@ -315,14 +292,18 @@ class ApplicationController: NSObject, ApplicationControlling {
         currentOther.navigationController.popToRootViewController(animated: false)
         currentOther.navigationController.dismiss(animated: false)
         
-        if splitViewController.displayCompact {
-            splitViewController.tabController.selectedIndex = TabIndices.other.rawValue
-        } else {
-            splitViewController.selectSidebarItem(.other)
-        }
+        activateTopLevelDestination(.other)
         
     }
     
+}
+
+private extension ApplicationController {
+
+    func activateTopLevelDestination(_ tabIndex: TabIndices) {
+        rootTabBarController?.selectedIndex = tabIndex.rawValue
+    }
+
 }
 
 extension Coordinator {
@@ -335,12 +316,32 @@ extension Coordinator {
             
             fallbackController.navigationItem.largeTitleDisplayMode = .never
             fallbackController.navigationCallback = { url in
-                
-                self.showPage(url: url)
-                
+
+                let nextController = FallbackWebViewController(url: url)
+                nextController.navigationItem.largeTitleDisplayMode = .never
+                nextController.navigationCallback = fallbackController.navigationCallback
+
+                if UIDevice.current.userInterfaceIdiom == .pad,
+                   let navigationController = fallbackController.navigationController {
+                    navigationController.pushViewController(nextController, animated: true)
+                } else {
+                    self.showPage(url: url)
+                }
             }
-            
-            self.navigationController.pushViewController(fallbackController, animated: true)
+
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                let navigationController = UINavigationController(rootViewController: fallbackController)
+                navigationController.modalPresentationStyle = .formSheet
+
+                var presenter: UIViewController = self.navigationController
+                while let presented = presenter.presentedViewController {
+                    presenter = presented
+                }
+
+                presenter.present(navigationController, animated: true)
+            } else {
+                self.navigationController.pushViewController(fallbackController, animated: true)
+            }
             
         }
         

@@ -266,8 +266,8 @@ public class ParkingTimerViewModel: StandardViewModel {
         let content = UNMutableNotificationContent()
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
         
-        content.title = "Deine Parkuhr läuft ab!"
-        content.body = "In 10min ist Deine Parkzeit zu Ende."
+        content.title = String(localized: "Your parking timer is about to expire!", bundle: .module)
+        content.body = String(localized: "Your parking time will end in 10 minutes.", bundle: .module)
         
         if #available(iOS 15.0, *) {
             content.interruptionLevel = .timeSensitive

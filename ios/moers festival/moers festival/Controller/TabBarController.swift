@@ -75,14 +75,15 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
 
         self.delegate = self
+        self.configureDisplayMode()
         
         self.viewControllers = [
             news.navigationController,
 //            live.navigationController,
             map.rootViewController,
-            userSchedule.navigationController,
+            userSchedule.rootViewController,
 //            tour.navigationController,
-            event.navigationController,
+            event.rootViewController,
             other.navigationController
         ]
         
@@ -94,7 +95,7 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
             markdown.h1.fontStyle = FontStyle.bold
             markdown.h2.fontStyle = FontStyle.bold
             markdown.h3.fontStyle = FontStyle.boldItalic
-            markdown.link.color = UIColor.yellow
+            markdown.link.color = AppColors.navigationAccent
             markdown.underlineLinks = false
             markdown.bullet = "•"
             
@@ -122,12 +123,12 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
         if shortcutItem.type == AppShortcuts.favorites {
             
-            selectedViewController = userSchedule.navigationController
-            event.showFavouriteEvents()
+            selectedViewController = userSchedule.rootViewController
+            userSchedule.showOverview()
             
         } else if shortcutItem.type == AppShortcuts.events {
             
-            selectedViewController = event.navigationController
+            selectedViewController = event.rootViewController
             event.showNextEvents()
             
         } else if shortcutItem.type == AppShortcuts.news {
@@ -150,7 +151,7 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
                 
                 if let identifier = activityIdentifier.components(separatedBy: ".").last, let id = Int(identifier) {
                     
-                    self.selectedViewController = event.navigationController
+                    self.selectedViewController = event.rootViewController
                     self.event.showDetail(for: id)
                     
                 }
@@ -159,17 +160,17 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
             
         } else if userActivity.activityType == "de.okfn.niederrhein.moers-festival.openNextEvents" {
             
-            self.selectedViewController = event.navigationController
+            self.selectedViewController = event.rootViewController
             self.event.showNextEvents()
             
         } else if userActivity.activityType == "de.okfn.niederrhein.moers-festival.openFavouriteEvents" {
             
-            self.selectedViewController = event.navigationController
-            self.event.showFavouriteEvents()
+            self.selectedViewController = userSchedule.rootViewController
+            self.userSchedule.showOverview()
             
         } else if userActivity.activityType == "de.okfn.niederrhein.moers-festival.openEvent", let parameters = userActivity.userInfo as? [String: Int] {
             
-            self.selectedViewController = event.navigationController
+            self.selectedViewController = event.rootViewController
             
             if let id = parameters["id"] {
                 
@@ -186,12 +187,21 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     // MARK: - Private Methods -
+
+    private func configureDisplayMode() {
+        guard #available(iOS 18.0, *), traitCollection.userInterfaceIdiom == .pad else {
+            return
+        }
+
+        self.mode = .tabBar
+    }
     
     private func setupTheming() {
         
         let viewControllers = [
             self.news.navigationController,
             self.live.navigationController,
+            self.userSchedule.navigationController,
             self.event.navigationController,
             self.other.navigationController
         ]
@@ -296,14 +306,14 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
         let contentEntry = UNMutableNotificationContent()
         contentEntry.badge = nil
-        contentEntry.title = String.localized("EntryTitle")
-        contentEntry.body = String.localized("EntryBody")
-        contentEntry.subtitle = String.localized("EntrySubtitle")
+        contentEntry.title = String.localized("Welcome to the festival village!")
+        contentEntry.body = String.localized("The moers festival app helps you to easily find your way around the program. You can also put together your own program in the app and get lots of other important information.")
+        contentEntry.subtitle = String.localized("Nice to see you!")
         
         let contentExit = UNMutableNotificationContent()
         contentExit.badge = nil
-        contentExit.body = String.localized("ExitBody")
-        contentExit.title = String.localized("ExitTitle")
+        contentExit.body = String.localized("Thanks for coming. We hope you had fun!")
+        contentExit.title = String.localized("See you later!")
         
         let exitRequest = UNNotificationRequest(identifier: "festival-village-exit", content: contentExit, trigger: triggerExit)
         let entryRequest = UNNotificationRequest(identifier: "festival-village-entry", content: contentEntry, trigger: triggerEntry)
@@ -346,14 +356,26 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
         fallbackController.navigationItem.largeTitleDisplayMode = .never
         fallbackController.navigationCallback = { url in
-            
-            self.showWebpage(url: url)
-            
-            print("callback")
-            print(url)
+
+            let nextController = FallbackWebViewController(url: url)
+            nextController.navigationItem.largeTitleDisplayMode = .never
+            nextController.navigationCallback = fallbackController.navigationCallback
+
+            if UIDevice.current.userInterfaceIdiom == .pad,
+               let navigationController = fallbackController.navigationController {
+                navigationController.pushViewController(nextController, animated: true)
+            } else {
+                self.showWebpage(url: url)
+            }
         }
-        
-        self.other.navigationController.pushViewController(fallbackController, animated: true)
+
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            let navigationController = UINavigationController(rootViewController: fallbackController)
+            navigationController.modalPresentationStyle = .formSheet
+            other.navigationController.present(navigationController, animated: true)
+        } else {
+            self.other.navigationController.pushViewController(fallbackController, animated: true)
+        }
         
     }
     

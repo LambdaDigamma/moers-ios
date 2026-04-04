@@ -20,6 +20,9 @@ nonisolated class StaffLoginBulletinPage: FeedbackPageBulletinItem {
     }
 
     nonisolated override func makeViewsUnderTitle(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
+        let accentColor = UIColor(dynamicProvider: { traitCollection in
+            traitCollection.userInterfaceStyle == .dark ? .systemYellow : .black
+        })
 
         textField = interfaceBuilder.makeTextField(placeholder: "", returnKey: .done, delegate: self)
         textField.keyboardAppearance = .dark
@@ -28,9 +31,9 @@ nonisolated class StaffLoginBulletinPage: FeedbackPageBulletinItem {
         textField.layer.cornerRadius = 12
         textField.layer.borderWidth = 2
 
-        self.textField.layer.borderColor = UIColor.systemYellow.cgColor
+        self.textField.layer.borderColor = accentColor.cgColor
         self.textField.backgroundColor = UIColor.systemBackground
-        self.textField.tintColor = UIColor.systemYellow
+        self.textField.tintColor = accentColor
         self.textField.textColor = UIColor.label
 
         return [textField]

@@ -51,7 +51,7 @@ public struct FootpathChangeView: View {
                     .frame(maxWidth: 2, maxHeight: 40)
                     .padding(.horizontal, 8)
                 
-                Text("413 m Fußweg (ca. 6 min)")
+                Text("413 m \(String(localized: "Footpath", bundle: .module)) (approx. 6 min)")
                 
             }
             

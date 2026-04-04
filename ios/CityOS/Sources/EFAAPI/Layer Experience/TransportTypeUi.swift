@@ -109,64 +109,64 @@ public enum TransportTypeUi: String, Codable, CaseIterable, Hashable, Equatable 
     public var localizedName: String {
         switch self {
             case .footpath:
-                return "Fußweg"
+                return String(localized: "Footpath", bundle: .module)
                 
             case .train:
-                return "Zug"
+                return String(localized: "Train", bundle: .module)
                 
             case .suburbanRailway:
-                return "S-Bahn"
+                return String(localized: "Suburban Railway", bundle: .module)
                 
             case .subway:
-                return "U-Bahn"
+                return String(localized: "Subway", bundle: .module)
                 
             case .metro:
-                return "Stadtbahn"
+                return String(localized: "Metro", bundle: .module)
                 
             case .tram:
-                return "Straßenbahn"
+                return String(localized: "Tram", bundle: .module)
                 
             case .cityBus:
-                return "Stadtbus"
+                return String(localized: "City Bus", bundle: .module)
                 
             case .regionalBus:
-                return "Regionalbus"
+                return String(localized: "Regional Bus", bundle: .module)
                 
             case .rapidBus:
-                return "Schnellbus"
+                return String(localized: "Rapid Bus", bundle: .module)
                 
             case .cableCar:
-                return "Seil-/Zahnradbahn"
+                return String(localized: "Cable Car", bundle: .module)
                 
             case .onCallBus:
-                return "AST/Rufbus"
+                return String(localized: "On-call Bus", bundle: .module)
                 
             case .suspensionRailway:
-                return "Schwebebahn"
+                return String(localized: "Suspension Railway", bundle: .module)
                 
             case .plane:
-                return "Flugzeug"
+                return String(localized: "Plane", bundle: .module)
                 
             case .regionalTrain:
-                return "Regionalzug"
+                return String(localized: "Regional Train", bundle: .module)
                 
             case .nationalTrain:
-                return "Nationaler Zug"
+                return String(localized: "National Train", bundle: .module)
                 
             case .internationalTrain:
-                return "Internationaler Zug"
+                return String(localized: "International Train", bundle: .module)
                 
             case .highSpeedTrain:
-                return "Hochgeschwindigkeitszug"
+                return String(localized: "High-speed Train", bundle: .module)
                 
             case .railReplacementService:
-                return "Schienenersatzverkehr"
+                return String(localized: "Rail Replacement Service", bundle: .module)
                 
             case .shuttleTrain:
-                return "Schuttlezug"
+                return String(localized: "Shuttle Train", bundle: .module)
                 
             case .communityBus:
-                return "Bürgerbus"
+                return String(localized: "Community Bus", bundle: .module)
         }
     }
     

@@ -43,7 +43,7 @@ public struct TripConfigurationScreen: View {
                 HStack {
                     
                     Button(action: openSelectOrigin) {
-                        Text(viewModel.origin?.name ?? "Abfahrt auswählen")
+                        Text(viewModel.origin?.name ?? String(localized: "Select departure", bundle: .module))
                             .fontWeight(.semibold)
                             .foregroundColor(.primary)
                             .padding(.horizontal)
@@ -75,7 +75,7 @@ public struct TripConfigurationScreen: View {
                 HStack {
                     
                     Button(action: openSelectDestination) {
-                        Text(viewModel.destination?.name ?? "Ziel auswählen")
+                        Text(viewModel.destination?.name ?? String(localized: "Select destination", bundle: .module))
                             .fontWeight(.semibold)
                             .foregroundColor(.primary)
                             .fontWeight(.semibold)
@@ -103,7 +103,7 @@ public struct TripConfigurationScreen: View {
                 .padding(.bottom)
                 
                 Button(action: search) {
-                    Text("Verbindung suchen")
+                    Text(String(localized: "Search connection", bundle: .module))
                         .fontWeight(.semibold)
                         .foregroundColor(.black)
                         .padding()
@@ -124,7 +124,7 @@ public struct TripConfigurationScreen: View {
             .padding()
             
         }
-        .navigationTitle(Text("Auskunft"))
+        .navigationTitle(Text(String(localized: "Trip Planner", bundle: .module)))
         .sheet(isPresented: $showSelectOrigin) {
             NavigationView {
                 TransitLocationSearchScreen(
@@ -153,14 +153,14 @@ public struct TripConfigurationScreen: View {
             
             HStack {
                 
-                Text("Favoriten")
+                Text(String(localized: "Favorites", bundle: .module))
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Spacer()
                 
                 Button(action: {}) {
-                    Text("Alle \(Image(systemName: "chevron.right"))")
+                    Text("\(String(localized: "All", bundle: .module)) \(Image(systemName: "chevron.right"))")
                         .fontWeight(.semibold)
                 }
                 .foregroundColor(.yellow)
@@ -190,7 +190,7 @@ public struct TripConfigurationScreen: View {
         
         VStack(alignment: .leading) {
             
-            Text("Du kannst keine Tickets über diese App kaufen, da es keine Möglichkeit der Integration gibt.")
+            Text(String(localized: "You cannot buy tickets through this app because there is no integration option.", bundle: .module))
                 .font(.caption)
                 .foregroundColor(.secondary)
             

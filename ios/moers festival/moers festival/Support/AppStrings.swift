@@ -11,11 +11,11 @@ import Foundation
 enum AppStrings {
     
     public enum News {
-        public static let title = String.localized("NewsTabItem")
+        public static let title = String.localized("News")
     }
     
     public enum Map {
-        public static let title = String.localized("MapTabItem")
+        public static let title = String.localized("Map")
     }
     
     public enum Live {
@@ -23,16 +23,16 @@ enum AppStrings {
     }
     
     public enum Events {
-        public static let title = String.localized("EventsTabItem")
+        public static let title = String.localized("Schedule")
     }
     
     public enum UserSchedule {
-        public static let title = String.localized("UserScheduleTabItem")
+        public static let title = String.localized("Favorites")
     }
     
     public enum Info {
-        public static let shortTitle = "Infos"
-        public static let title = String.localized("InfoTabItem")
+        public static let shortTitle = "Info"
+        public static let title = String.localized("Info & Tickets")
     }
     
 }

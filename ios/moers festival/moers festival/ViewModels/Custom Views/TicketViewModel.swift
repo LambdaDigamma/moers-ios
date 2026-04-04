@@ -29,15 +29,15 @@ class TicketViewModel {
     }
     
     public var boxOffice: String {
-        return "\(String.localized("BoxOffice")): \(ticket.priceBoxOffice)€"
+        return "\(String.localized("Box office")): \(ticket.priceBoxOffice)€"
     }
     
     public var discountSale: String {
-        return "\(String.localized("PresaleDiscount")): \(ticket.pricePresaleDiscount)€ (*)"
+        return "\(String.localized("Presale (discount)")): \(ticket.pricePresaleDiscount)€ (*)"
     }
     
     public var discountBoxOfficeSale: String {
-        return "\(String.localized("BoxOfficeDiscount")): \(ticket.priceBoxOfficeDiscount)€ (*)"
+        return "\(String.localized("Box office (discount)")): \(ticket.priceBoxOfficeDiscount)€ (*)"
     }
     
     public var image: UIImage {

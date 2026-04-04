@@ -25,7 +25,7 @@ struct AuditCellView: View {
             "place": String(localized: "Place", bundle: .module),
             "monday": String(localized: "Monday (Opening Hours)", bundle: .module),
             "tuesday": String(localized: "Tuesday (Opening Hours)", bundle: .module),
-            "wednesday": String(localized: "Mittwoch (Opening Hours)", bundle: .module),
+            "wednesday": String(localized: "Wednesday (Opening Hours)", bundle: .module),
             "thursday": String(localized: "Thursday (Opening Hours)", bundle: .module),
             "friday": String(localized: "Friday (Opening Hours)", bundle: .module),
             "saturday": String(localized: "Saturday (Opening Hours)", bundle: .module),
@@ -38,7 +38,12 @@ struct AuditCellView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("vor " + (audit.updatedAt?.timeAgo() ?? "n/v"))
+            Text(
+                String(
+                    format: String(localized: "%@ ago", bundle: .module),
+                    audit.updatedAt?.timeAgo() ?? String(localized: "n/a", bundle: .module)
+                )
+            )
                 .font(.system(size: 12, weight: .semibold))
                 .foregroundColor(.primary)
             
@@ -56,7 +61,7 @@ struct AuditCellView: View {
             }
             
             if audit.event == .updated {
-                Text("Änderungsprotokoll:")
+                Text(String(localized: "Change log:", bundle: .module))
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(.primary)
                     .padding(.top, 4)
@@ -91,13 +96,13 @@ struct AuditCellView: View {
     private var eventText: String {
         switch audit.event {
         case .created:
-            return "Eintrag erstellt"
+            return String(localized: "Entry created", bundle: .module)
         case .updated:
-            return "Eintrag aktualisiert"
+            return String(localized: "Entry updated", bundle: .module)
         case .deleted:
-            return "Eintrag gelöscht"
+            return String(localized: "Entry deleted", bundle: .module)
         case .restored:
-            return "Eintrag widerhergestellt"
+            return String(localized: "Entry restored", bundle: .module)
         }
     }
     
@@ -115,7 +120,7 @@ struct AuditCellView: View {
             let newGenericValue = change.value
             let oldGenericValue = audit.oldValues.baseValues[change.key]
             
-            var newValueRepresentation = "n/v"
+            var newValueRepresentation = String(localized: "n/a", bundle: .module)
             if let newGenericValue = newGenericValue {
                 switch newGenericValue {
                 case .string(let value):
@@ -127,7 +132,7 @@ struct AuditCellView: View {
                 }
             }
             
-            var oldValueRepresentation = "n/v"
+            var oldValueRepresentation = String(localized: "n/a", bundle: .module)
             if let oldGenericValue = oldGenericValue {
                 switch oldGenericValue {
                 case .string(let value):

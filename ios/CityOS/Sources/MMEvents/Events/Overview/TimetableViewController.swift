@@ -39,6 +39,7 @@ public class TimetableViewController: UIHostingController<AnyView> {
     private func setupUI() {
         
         self.navigationItem.largeTitleDisplayMode = .never
+        self.view.backgroundColor = .clear
         
     }
     

@@ -289,6 +289,7 @@ let package = Package(
         .target(
             name: "EFAUI",
             dependencies: ["EFAAPI", "Factory", "Core"],
+            resources: [.process("Resources")],
             swiftSettings: settings
         ),
         .executableTarget(

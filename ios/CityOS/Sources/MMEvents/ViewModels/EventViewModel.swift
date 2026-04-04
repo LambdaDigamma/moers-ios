@@ -186,7 +186,7 @@ public class EventViewModel<Event: BaseEvent>: Equatable, Hashable {
         if let extras = model.extras {
 
             if let isFree = extras.isFree, isFree {
-                ticket += " · " + String(localized: "Free", bundle: .module)
+                ticket += " · " + String(localized: "free", bundle: .module)
             } else if let extraTicket = extras.visitWithExtraTicket, extraTicket {
                 ticket += " · " + String(localized: "festival/day ticket or Mörzz-Ticket required (*)", bundle: .module)
             } else if let festivalTicket = extras.needsFestivalTicket, festivalTicket {
@@ -280,4 +280,3 @@ public class EventViewModel<Event: BaseEvent>: Equatable, Hashable {
     }
     
 }
-

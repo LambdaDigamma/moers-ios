@@ -37,6 +37,8 @@ public struct ModernEventView: View {
 
                     GenericMediaView(media: viewModel.header, resizingMode: .aspectFill)
                         .aspectRatio(CGSize(width: header.responsiveWidth ?? 16, height: header.responsiveHeight ?? 9), contentMode: .fill)
+                        .frame(maxWidth: .infinity, maxHeight: 520)
+                        .clipped()
                         .accessibilityIdentifier("EventDetail.HeaderImage")
 
                     if let credits = header.credits, !credits.isEmptyOrWhitespace {

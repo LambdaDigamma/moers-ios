@@ -142,7 +142,7 @@ open class EventDetailView: UIView, MKMapViewDelegate {
             self.websiteAction?()
         }), for: .touchUpInside)
         
-        self.reminderButton.setTitle("Erinnerung einrichten", for: .normal)
+        self.reminderButton.setTitle(String(localized: "Set reminder", bundle: .module), for: .normal)
         self.reminderButton.isHidden = true
         
         self.reminderButton.addAction(UIAction(handler: { _ in
@@ -208,7 +208,7 @@ open class EventDetailView: UIView, MKMapViewDelegate {
         /// Accessibility
         
         viewModel.subtitle.sink { (value: String?) in
-            self.subtitleLabel.accessibilityLabel = String(localized: "EventDetailViewControllerSubtitleLabel", bundle: .module)
+            self.subtitleLabel.accessibilityLabel = String(localized: "Event subtitle", bundle: .module)
             self.subtitleLabel.accessibilityValue = value
         }.store(in: &cancellables)
         

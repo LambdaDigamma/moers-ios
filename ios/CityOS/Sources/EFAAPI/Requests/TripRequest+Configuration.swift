@@ -20,11 +20,11 @@ public enum RouteType: String, Codable, CaseIterable, Identifiable {
     public var localizedName: String {
         switch self {
             case .leastTime:
-                return "schnellste Verbindung"
+                return String(localized: "Fastest route", bundle: .module)
             case .leastInterchange:
-                return "wenigste Umstiege"
+                return String(localized: "Fewest transfers", bundle: .module)
             case .leastWalking:
-                return "kürzeste Fußwege"
+                return String(localized: "Shortest walking distance", bundle: .module)
         }
     }
     
@@ -43,11 +43,11 @@ public enum ChangeSpeed: String, Codable, CaseIterable, Identifiable {
     public var localizedName: String {
         switch self {
             case .fast:
-                return "Schnell"
+                return String(localized: "Fast", bundle: .module)
             case .normal:
-                return "Normal"
+                return String(localized: "Normal", bundle: .module)
             case .slow:
-                return "Langsam"
+                return String(localized: "Slow", bundle: .module)
         }
     }
     

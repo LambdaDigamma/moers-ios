@@ -36,7 +36,15 @@ class OtherViewController: UIViewController {
     
     override func loadView() {
         
-        self.viewModel = OtherViewModel(sections: loadSections())
+        self.viewModel = OtherViewModel(
+            hero: OtherHeroContent(
+                title: "Infos für deinen Festivalbesuch",
+                subtitle: "Alles Wichtige zu Tickets, Festivaldorf, Volunteers und weiteren Angeboten rund um das Festival.",
+                symbolName: "info.circle.fill",
+                iconStyle: .indigo
+            ),
+            sections: loadSections()
+        )
         
         otherView = OtherView(viewModel: viewModel)
         view = otherView
@@ -56,7 +64,7 @@ class OtherViewController: UIViewController {
     
     private func setupUI() {
         
-        self.navigationItem.title = String.localized("InfoTabItem")
+        self.navigationItem.title = String.localized("Info & Tickets")
         
     }
     
@@ -70,35 +78,35 @@ class OtherViewController: UIViewController {
         
         var sections =  [
             Section(
-                title: String.localized("FestivalHeading"),
+                title: String.localized("The festival"),
                 rows: [
-                    Row(title: EventPackageStrings.Download.downloadTimetable, action: coordinator?.showDownload),
-                    Row(title: String.localized("TicketsTitle"), action: coordinator?.showTickets),
-                    Row(title: "Festivaldorf", action: coordinator?.showFestivalDorf),
-                    Row(title: "Volunteers", action: coordinator?.showVolunteers),
+                    Row(title: EventPackageStrings.Download.downloadTimetable, symbolName: "arrow.down.circle.fill", iconStyle: .blue, action: coordinator?.showDownload),
+                    Row(title: String.localized("Tickets"), symbolName: "ticket.fill", iconStyle: .orange, action: coordinator?.showTickets),
+                    Row(title: String.localized("Festival Village"), symbolName: "map.fill", iconStyle: .green, action: coordinator?.showFestivalDorf),
+                    Row(title: "Volunteers", symbolName: "person.2.fill", iconStyle: .indigo, action: coordinator?.showVolunteers),
 //                    Row(title: "FAQ", action: coordinator?.showFAQ),
-                    Row(title: "moersland", action: coordinator?.showMoersland),
+                    Row(title: "moersland", symbolName: "sparkles", iconStyle: .mint, action: coordinator?.showMoersland),
 //                    Row(title: "Team", action: coordinator?.showTeam),
 //                    Row(title: "451", action: coordinator?.show451),
-                    Row(title: String.localized("LodgingHeading"), action: coordinator?.showLodging),
+                    Row(title: String.localized("Lodging"), symbolName: "bed.double.fill", iconStyle: .teal, action: coordinator?.showLodging),
                                     
 //                    Row(title: "Moers Festival Express", action: coordinator?.showMFESchedule),
 //                    Row(title: String.localized("TicketsTitle"), action: coordinator?.showTickets),
 //                    Row(title: String.localized("LodgingHeading"), action: coordinator?.showLodging),
-                    Row(title: String.localized("AccessibilityHeading"), action: coordinator?.showAccessibilty),
+                    Row(title: String.localized("Awareness and Accessibility"), symbolName: "accessibility", iconStyle: .blue, action: coordinator?.showAccessibilty),
 //                    Row(title: "Ticket spenden / zurückgeben", action: coordinator?.showDonateTicket),
                                     
-                    Row(title: "moerschandise", action: coordinator?.showShop),
-                    Row(title: String.localized("SponsorTitle"), action: coordinator?.showSponsor)
+                    Row(title: "moerschandise", symbolName: "bag.fill", iconStyle: .pink, action: coordinator?.showShop),
+                    Row(title: String.localized("Partner"), symbolName: "heart.text.square.fill", iconStyle: .red, action: coordinator?.showSponsor)
                 ]
             ),
              Section(
-                title: String.localized("OtherTabItem"),
+                title: String.localized("Other"),
                 rows: [
-                    Row(title: String.localized("AboutTitle"), action: coordinator?.showAbout),
-                    Row(title: String.localized("LegalTitle"), action: coordinator?.showLegal),
-                    Row(title: String.localized("LicensesTitle"), action: coordinator?.showLicense),
-                    Row(title: String.localized("StaffLoginTitle"), action: showStaffLogin)
+                    Row(title: String.localized("About"), symbolName: "info.circle.fill", iconStyle: .blue, action: coordinator?.showAbout),
+                    Row(title: String.localized("Legal"), symbolName: "doc.text.fill", iconStyle: .gray, action: coordinator?.showLegal),
+                    Row(title: String.localized("Licenses"), symbolName: "curlybraces.square.fill", iconStyle: .gray, action: coordinator?.showLicense),
+                    Row(title: String.localized("Staff Login"), symbolName: "person.badge.key.fill", iconStyle: .gray, action: showStaffLogin)
                 ]
              )
         ]
@@ -108,10 +116,12 @@ class OtherViewController: UIViewController {
             sections[2].rows.removeLast()
             sections.append(
                 Section(
-                    title: "Mitarbeiter",
+                    title: String.localized("Staff"),
                     rows: [
                         Row(
-                            title: "Push Benachrichtigungen",
+                            title: String.localized("Push Notifications"),
+                            symbolName: "bell.badge.fill",
+                            iconStyle: .red,
                             action: showPushNotificationPage
                         )
                     ]
@@ -176,9 +186,10 @@ extension OtherViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let action = viewModel.rowAction(for: indexPath)
+        let action = otherView.rowAction(for: indexPath)
         
         action?()
+        collectionView.deselectItem(at: indexPath, animated: true)
         
     }
     

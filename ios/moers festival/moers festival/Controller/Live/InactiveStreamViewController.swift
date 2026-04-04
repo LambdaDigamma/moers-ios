@@ -40,10 +40,10 @@ class InactiveStreamViewController: UIViewController {
         self.errorImage.image = UIImage(named: "error_mu")
         self.errorImage.contentMode = .scaleAspectFit
         self.errorImage.clipsToBounds = true
-        self.titleLabel.text = String.localized("LivestreamInactiveTitle")
+        self.titleLabel.text = String.localized("Livestream not running")
         self.titleLabel.font = .systemFont(ofSize: 20, weight: .semibold)
         self.titleLabel.textAlignment = .center
-        self.descriptionLabel.text = String.localized("LivestreamInactiveDescription")
+        self.descriptionLabel.text = String.localized("The livestream is currently not running. Check the schedule to see when the next event takes place.")
         self.descriptionLabel.numberOfLines = 0
         self.descriptionLabel.textAlignment = .center
         

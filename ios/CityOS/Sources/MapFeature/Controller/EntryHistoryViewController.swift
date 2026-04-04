@@ -58,7 +58,7 @@ class EntryHistoryViewController: UIViewController {
     
     private func setupUI() {
         
-        self.title = "Historie"
+        self.title = String(localized: "History", bundle: .module)
         
         // Setup collection view with list configuration
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
@@ -87,7 +87,10 @@ class EntryHistoryViewController: UIViewController {
                 // Fallback for iOS 15
                 var content = cell.defaultContentConfiguration()
                 content.text = self.auditEventText(for: audit.event)
-                content.secondaryText = "vor " + (audit.updatedAt?.timeAgo() ?? "n/v")
+                content.secondaryText = String(
+                    format: String(localized: "%@ ago", bundle: .module),
+                    audit.updatedAt?.timeAgo() ?? String(localized: "n/a", bundle: .module)
+                )
                 cell.contentConfiguration = content
             }
             cell.accessories = []
@@ -102,13 +105,13 @@ class EntryHistoryViewController: UIViewController {
     private func auditEventText(for event: Audit.EventType) -> String {
         switch event {
         case .created:
-            return "Eintrag erstellt"
+            return String(localized: "Entry created", bundle: .module)
         case .updated:
-            return "Eintrag aktualisiert"
+            return String(localized: "Entry updated", bundle: .module)
         case .deleted:
-            return "Eintrag gelöscht"
+            return String(localized: "Entry deleted", bundle: .module)
         case .restored:
-            return "Eintrag widerhergestellt"
+            return String(localized: "Entry restored", bundle: .module)
         }
     }
     

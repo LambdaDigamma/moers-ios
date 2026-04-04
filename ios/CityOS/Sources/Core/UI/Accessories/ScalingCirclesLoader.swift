@@ -82,7 +82,7 @@ public struct ScalingCirclesLoader: View {
                         value: shouldAnimate
                     )
             }
-            Text("Lädt...")
+            Text(String(localized: "Loading…", bundle: .module))
                 .foregroundColor(Color.secondary)
                 .font(.body)
         }
@@ -106,4 +106,3 @@ struct ScalingCirclesLoader_Previews: PreviewProvider {
     }
     
 }
-

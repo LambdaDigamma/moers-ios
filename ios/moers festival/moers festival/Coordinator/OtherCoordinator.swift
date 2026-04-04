@@ -178,6 +178,9 @@ public class OtherCoordinator: Coordinator {
         let vc = SFSafariViewController(url: url, configuration: config)
         vc.preferredBarTintColor = UIColor.systemBackground
         vc.preferredControlTintColor = AppColors.navigationAccent
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            vc.modalPresentationStyle = .formSheet
+        }
         
         navigationController.present(vc, animated: true)
         
@@ -185,7 +188,15 @@ public class OtherCoordinator: Coordinator {
     
     private func makeStandardViewModel() -> OtherViewModel {
         
-        let viewModel = OtherViewModel(sections: [])
+        let viewModel = OtherViewModel(
+            hero: OtherHeroContent(
+                title: "",
+                subtitle: "",
+                symbolName: "info.circle.fill",
+                iconStyle: .indigo
+            ),
+            sections: []
+        )
         
         return viewModel
         

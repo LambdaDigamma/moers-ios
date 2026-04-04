@@ -45,7 +45,7 @@ class SponsorViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     private func setupUI() {
         
-        self.title = String.localized("SponsorTitle")
+        self.title = String.localized("Partner")
         
         self.sponsorView.setCollectionViewDelegate(self)
         

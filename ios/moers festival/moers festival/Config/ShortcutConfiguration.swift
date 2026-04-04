@@ -24,7 +24,7 @@ class ShortcutConfiguration: BootstrappingProcedureStep {
         let iconFavorites = UIApplicationShortcutIcon(type: .favorite)
         let itemFavorites = UIApplicationShortcutItem(
             type: AppShortcuts.favorites,
-            localizedTitle: String.localized("ShortcutFavourites"),
+            localizedTitle: String.localized("Show Favourites"),
             localizedSubtitle: nil,
             icon: iconFavorites,
             userInfo: nil
@@ -34,7 +34,7 @@ class ShortcutConfiguration: BootstrappingProcedureStep {
         let iconEvents = UIApplicationShortcutIcon(type: .date)
         let itemEvents = UIApplicationShortcutItem(
             type: AppShortcuts.events,
-            localizedTitle: String.localized("ShortcutEvents"),
+            localizedTitle: String.localized("Show Events"),
             localizedSubtitle: nil,
             icon: iconEvents,
             userInfo: nil
@@ -43,7 +43,7 @@ class ShortcutConfiguration: BootstrappingProcedureStep {
         let iconNews = UIApplicationShortcutIcon(type: .time)
         let itemNews = UIApplicationShortcutItem(
             type: AppShortcuts.news,
-            localizedTitle: String.localized("ShortcutNews"),
+            localizedTitle: String.localized("Show News"),
             localizedSubtitle: nil,
             icon: iconNews,
             userInfo: nil

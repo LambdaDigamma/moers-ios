@@ -17,7 +17,7 @@ class SponsorViewModel {
     }
     
     let sponsors2018 = [
-        "Die Hauptförderer": [
+        String(localized: "Primary Sponsors"): [
             Sponsor(name: "Stadt Moers",
                     image: #imageLiteral(resourceName: "moers"),
                     url: URL(string: "http://moers.de/")),
@@ -40,12 +40,12 @@ class SponsorViewModel {
                     image: #imageLiteral(resourceName: "arte_concert"),
                     url: URL(string: "https://www.arte.tv/de/videos/arte-concert/"))
         ],
-        "Die Premium Partner": [
+        String(localized: "Premium Partners"): [
             Sponsor(name: "Kulturprojekte Niederrhein e.V.",
                     image: #imageLiteral(resourceName: "kulturprojekte-niederrhein"),
                     url: URL(string: "http://www.kulturprojekte-niederrhein.de/"))
         ],
-        "Die Förderer": [
+        String(localized: "Sponsors"): [
             Sponsor(name: "ENNI",
                     image: #imageLiteral(resourceName: "enni"),
                     url: URL(string: "http://www.enni.de/")),
@@ -62,7 +62,7 @@ class SponsorViewModel {
                     image: #imageLiteral(resourceName: "sci"),
                     url: URL(string: "http://sci.spirito.de/"))
         ],
-        "Die Medienpartner": [
+        String(localized: "Media Partners"): [
             Sponsor(name: "jazzthetik",
                     image: #imageLiteral(resourceName: "jazzthetik"),
                     url: URL(string: "http://www.jazzthetik.de/")),

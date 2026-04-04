@@ -27,7 +27,7 @@ class AboutViewModel {
     }
     
     public var infoText: String {
-        return "Diese App ist ein Projekt der Gruppe CodeForNiederrhein und wurde von Lennart Fischer entwickelt.\n\n\nAlle Angaben zu Daten sind ohne Gewähr."
+        return String(localized: "This app is a project by the Code for Niederrhein group and was developed by Lennart Fischer.\n\n\nAll data is provided without guarantee.")
     }
     
 }

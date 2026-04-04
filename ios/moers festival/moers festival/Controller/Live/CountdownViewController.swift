@@ -98,7 +98,7 @@ class CountdownViewController: UIViewController {
         self.headerImageView.contentMode = .scaleAspectFill
         self.headerImageView.layer.masksToBounds = true
         self.descriptionLabel.font = .systemFont(ofSize: 16, weight: .regular)
-        self.descriptionLabel.text = String.localized("CountdownText")
+        self.descriptionLabel.text = String.localized("\nIs this noch a jazz fest?\n\nYou really want to give your children something?\nYou long for rush, loudness, extreme experiences?\nYou want to speak your language with other beings?\nYou want to finally camp out in the hippocampus?\nYou want to actually choose and decide for yourself?\n\nCome to Moers from June 03 to 06, 2022, come to moersland - come to Metamörsum! Because we want to celebrate with you and find out what the possible futures of the next 50 years of moers festival will be like.\n\nAfter our analogue online festival in 2020 and the first concerts ever with an audience at Whitsun 2021, after our exploration of the green screen in all its creative imperfection, after our pretending to be in the room just for you, there is the (unsurprising) realization that social events like the moers festival will have to react to unforeseeable influences in the future - political, climatic, pandemic...\n\nMoers remains true to itself and continues to improvise, showing attitude and possibilities. Definitely also at Whitsun 2022 - whether in the festival hall, on the Am Viehtheater, in moersland or on fleeing stages in the castle park; with light sense we venture again on a surreal trip through meadows, freedom, wild seas, semi-detached houses and moonscapes.\n")
         self.descriptionLabel.numberOfLines = 0
         
     }
@@ -142,7 +142,7 @@ class CountdownViewController: UIViewController {
 
         guard let days = timeLeft.day, let hours = timeLeft.hour, let minutes = timeLeft.minute, let seconds = timeLeft.second else { return }
         
-        countdownLabel.text = "\(days) \(String.localized("CountdownDays")) \(hours) \(String.localized("CountdownHours")) \(minutes) \(String.localized("CountdownMinutes")) \(seconds) \(String.localized("CountdownSeconds"))"
+        countdownLabel.text = "\(days) \(String.localized("days")) \(hours) \(String.localized("hours")) \(minutes) \(String.localized("minutes")) \(seconds) \(String.localized("seconds"))"
         
     }
     

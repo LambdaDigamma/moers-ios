@@ -28,7 +28,7 @@ public enum TransportationUserActivity {
         activity.isEligibleForHandoff = true
         activity.isEligibleForSearch = true
         activity.isEligibleForPrediction = true
-        activity.title = "Fahrt planen"
+        activity.title = String(localized: "Plan trip", bundle: .module)
         
         return activity
         
@@ -44,11 +44,14 @@ public enum TransportationUserActivity {
         activity.isEligibleForHandoff = true
         activity.isEligibleForSearch = true
         activity.isEligibleForPrediction = true
-        activity.title = "Verbindungen für \(origin) nach \(destination)"
+        activity.title = String(
+            format: String(localized: "Connections from %1$@ to %2$@", bundle: .module),
+            origin,
+            destination
+        )
         
         return activity
         
     }
     
 }
-

@@ -153,7 +153,7 @@ class EntryOnboardingOverviewViewController: UIViewController {
         self.generalHeaderLabel.text = String(localized: "General information", bundle: .module).uppercased()
         self.nameTextField.placeholder = String(localized: "Name", bundle: .module)
         self.tagsHeaderLabel.text = String(localized: "Tags", bundle: .module).uppercased()
-        self.addressHeaderLabel.text = String(localized: "Addresse", bundle: .module).uppercased()
+        self.addressHeaderLabel.text = String(localized: "Address", bundle: .module).uppercased()
         self.streetTextField.placeholder = String(localized: "Street", bundle: .module)
         self.houseNrTextField.placeholder = String(localized: "Number", bundle: .module)
         self.postcodeTextField.placeholder = String(localized: "Postcode", bundle: .module)

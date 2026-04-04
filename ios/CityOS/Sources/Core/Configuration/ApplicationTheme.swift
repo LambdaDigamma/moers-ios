@@ -25,7 +25,18 @@ public struct ApplicationTheme: Sendable {
     public var backgroundColor: UIColor { UIColor.systemBackground }
     
     /// Accent color for interactive elements
-    public var accentColor: UIColor { UIColor.systemYellow }
+    public var accentColor: UIColor {
+        UIColor(dynamicProvider: { traitCollection in
+            switch traitCollection.userInterfaceStyle {
+                case .dark:
+                    return .systemYellow
+                case .light, .unspecified:
+                    return .black
+                @unknown default:
+                    return .black
+            }
+        })
+    }
     
     /// Secondary text color for less prominent content
     public var decentColor: UIColor { UIColor.secondaryLabel }

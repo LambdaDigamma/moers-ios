@@ -20,9 +20,9 @@ public enum TransitLocationSearchMode: String, Hashable {
         
         switch self {
             case .departure:
-                return "Von"
+                return String(localized: "From", bundle: .module)
             case .arrival:
-                return "Nach"
+                return String(localized: "To", bundle: .module)
             case .via:
                 return "Via"
             case .general:
@@ -35,13 +35,13 @@ public enum TransitLocationSearchMode: String, Hashable {
         
         switch self {
             case .departure:
-                return "Abfahrt suchen"
+                return String(localized: "Search departure", bundle: .module)
             case .arrival:
-                return "Ziel suchen"
+                return String(localized: "Search destination", bundle: .module)
             case .via:
-                return "Zwischenstop suchen"
+                return String(localized: "Search stopover", bundle: .module)
             case .general:
-                return "Stop suchen"
+                return String(localized: "Search stop", bundle: .module)
         }
         
     }
@@ -101,7 +101,7 @@ public struct TransitLocationSearchScreen: View {
                     .foregroundColor(.secondary)
                     .opacity(0.7)
                 
-                TextField("Wähle einen Punkt…", text: $viewModel.searchTerm)
+                TextField(String(localized: "Choose a stop…", bundle: .module), text: $viewModel.searchTerm)
                     .textContentType(UITextContentType.location)
                     .textFieldStyle(.plain)
                 

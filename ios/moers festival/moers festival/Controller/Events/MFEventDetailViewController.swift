@@ -53,14 +53,14 @@ extension MFEventDetailViewController {
         
         if let event = viewModel.model {
             
-            let title = "\(String.localized("ShowSpecificEvent")) \"\(title)\""
+            let title = "\(String.localized("Show the event")) \"\(title)\""
             
             activity.title = title
             activity.isEligibleForSearch = true
             activity.expirationDate = event.endDate
             activity.userInfo = ["id": event.id]
-            activity.keywords = [String.localized("EventKeyword"),
-                                 String.localized("MFKeyword"),
+            activity.keywords = [String.localized("Events"),
+                                 String.localized("moers festival"),
                                  event.extras?.location ?? "Ort",
                                  event.name]
             

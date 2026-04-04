@@ -1,0 +1,185 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "From": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Von"
+          }
+        }
+      }
+    },
+    "To": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nach"
+          }
+        }
+      }
+    },
+    "Search departure": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abfahrt suchen"
+          }
+        }
+      }
+    },
+    "Search destination": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ziel suchen"
+          }
+        }
+      }
+    },
+    "Search stopover": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zwischenstopp suchen"
+          }
+        }
+      }
+    },
+    "Search stop": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haltestelle suchen"
+          }
+        }
+      }
+    },
+    "Choose a stop…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle einen Punkt…"
+          }
+        }
+      }
+    },
+    "Plan trip": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fahrt planen"
+          }
+        }
+      }
+    },
+    "Connections from %1$@ to %2$@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbindungen für %1$@ nach %2$@"
+          }
+        }
+      }
+    },
+    "Select stop": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haltestelle auswählen"
+          }
+        }
+      }
+    },
+    "Select departure": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abfahrt auswählen"
+          }
+        }
+      }
+    },
+    "Select destination": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ziel auswählen"
+          }
+        }
+      }
+    },
+    "Search connection": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbindung suchen"
+          }
+        }
+      }
+    },
+    "Trip Planner": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auskunft"
+          }
+        }
+      }
+    },
+    "Favorites": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Favoriten"
+          }
+        }
+      }
+    },
+    "All": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle"
+          }
+        }
+      }
+    },
+    "You cannot buy tickets through this app because there is no integration option.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du kannst keine Tickets über diese App kaufen, da es keine Möglichkeit der Integration gibt."
+          }
+        }
+      }
+    },
+    "Footpath": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fußweg"
+          }
+        }
+      }
+    }
+  }
+}

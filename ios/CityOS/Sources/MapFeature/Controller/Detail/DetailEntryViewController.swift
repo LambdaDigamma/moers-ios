@@ -87,6 +87,8 @@ class DetailEntryViewController: UIViewController {
         
         self.callButton.setTitle(String(localized: "Call", bundle: .module), for: .normal)
         self.websiteButton.setTitle(String(localized: "Website", bundle: .module), for: .normal)
+        self.editButton.setTitle(String(localized: "Edit information", bundle: .module), for: .normal)
+        self.historyButton.setTitle(String(localized: "Show history", bundle: .module), for: .normal)
         self.callButton.layer.cornerRadius = 8
         self.websiteButton.layer.cornerRadius = 8
         self.callButton.clipsToBounds = true
@@ -94,6 +96,9 @@ class DetailEntryViewController: UIViewController {
         self.callButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         self.websiteButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         self.addressHeaderLabel.text = String(localized: "Address", bundle: .module)
+        self.openingHoursHeaderLabel.text = String(localized: "Opening hours", bundle: .module)
+        self.tagLabel.text = String(localized: "Tags", bundle: .module)
+        self.infoLabel.text = String(localized: "All data is entered by citizens. No guarantee can be given for correctness and timeliness.", bundle: .module)
         self.callButton.addTarget(self, action: #selector(call), for: .touchUpInside)
         self.websiteButton.addTarget(self, action: #selector(openWebsite), for: .touchUpInside)
         self.editButton.addTarget(self, action: #selector(editEntry), for: .touchUpInside)
@@ -130,7 +135,7 @@ class DetailEntryViewController: UIViewController {
         
         self.streetLabel.text = entry.street + " " + (entry.houseNumber ?? "")
         self.placeLabel.text = entry.postcode + " " + entry.place
-        self.countryLabel.text = "Deutschland"
+        self.countryLabel.text = String(localized: "Germany", bundle: .module)
         
         self.tagsListView.removeAllTags()
         self.tagsListView.addTags(entry.tags)
@@ -146,7 +151,7 @@ class DetailEntryViewController: UIViewController {
         if let url = entry.url, url != "" {
             self.websiteLabel.text = url
         } else {
-            self.websiteLabel.text = "n/v"
+            self.websiteLabel.text = String(localized: "n/a", bundle: .module)
             self.websiteButton.isEnabled = false
             self.websiteButton.alpha = 0.25
         }
@@ -154,15 +159,15 @@ class DetailEntryViewController: UIViewController {
         if let phone = entry.phone, phone != "" {
             self.phoneLabel.text = phone
         } else {
-            self.phoneLabel.text = "n/v"
+            self.phoneLabel.text = String(localized: "n/a", bundle: .module)
             self.callButton.isEnabled = false
             self.callButton.alpha = 0.25
         }
         
         if let update = entry.updatedAt {
-            self.lastUpdateLabel.text = "Letzte Änderung: \(update.beautify(format: "dd.MM.yyyy HH:mm"))"
+            self.lastUpdateLabel.text = "\(String(localized: "Last updated:", bundle: .module)) \(update.beautify(format: "dd.MM.yyyy HH:mm"))"
         } else {
-            self.lastUpdateLabel.text = "Letzte Änderung: nicht bekannt"
+            self.lastUpdateLabel.text = "\(String(localized: "Last updated:", bundle: .module)) \(String(localized: "not known", bundle: .module))"
         }
         
 //        Analytics.logEvent("Open Entry Website", parameters:

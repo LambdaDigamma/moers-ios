@@ -8,12 +8,28 @@
 
 import UIKit
 import AppScaffold
+import MMEvents
 
 class UserScheduleCoordinator: SharedCoordinator {
+
+    private let userScheduleViewController: UserScheduleViewController
+    private let adaptiveSplitViewController: AdaptiveTabSplitViewController?
+
+    var rootViewController: UIViewController {
+        adaptiveSplitViewController ?? navigationController
+    }
 
     override init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController()
     ) {
+        self.userScheduleViewController = UserScheduleViewController()
+        self.adaptiveSplitViewController = UIDevice.current.userInterfaceIdiom == .pad
+            ? AdaptiveTabSplitViewController(
+                overviewNavigationController: navigationController,
+                emptyDetailFactory: Self.makeEmptyDetailViewController
+            )
+            : nil
+
         super.init(navigationController: navigationController)
         
         self.navigationController = navigationController
@@ -21,6 +37,8 @@ class UserScheduleCoordinator: SharedCoordinator {
         self.navigationController.navigationBar.prefersLargeTitles = true
         self.navigationController.coordinator = self
         self.navigationController.menuItem = makeMenuItem()
+        self.adaptiveSplitViewController?.tabBarItem = self.navigationController.tabBarItem
+        self.adaptiveSplitViewController?.title = self.navigationController.title
         
         let tabBarItem = UITabBarItem(
             title: self.navigationController.menuItem?.title,
@@ -28,14 +46,39 @@ class UserScheduleCoordinator: SharedCoordinator {
             selectedImage: nil
         )
         
-        let viewController = UserScheduleViewController()
+        userScheduleViewController.onShowEvent = { [weak self] eventID in
+            self?.showDetail(for: eventID)
+        }
+
+        userScheduleViewController.tabBarItem = tabBarItem
+        userScheduleViewController.title = AppStrings.UserSchedule.title
         
-//        viewController.coordinator = self
-        viewController.tabBarItem = tabBarItem
-        viewController.title = AppStrings.UserSchedule.title
+        self.navigationController.viewControllers = [userScheduleViewController]
         
-        self.navigationController.viewControllers = [viewController]
-        
+    }
+
+    override func pushEventDetail(eventID: Event.ID, animated: Bool = true) {
+        showDetail(for: eventID, animated: animated)
+    }
+
+    func showDetail(for eventID: Event.ID, animated: Bool = true) {
+        let detailFactory = { [unowned self] in
+            self.makeEventDetailViewController(eventID: eventID)
+        }
+
+        if let adaptiveSplitViewController {
+            adaptiveSplitViewController.setDetail(detailFactory, animated: animated)
+        } else if let rootViewController = navigationController.viewControllers.first {
+            navigationController.setViewControllers([rootViewController, detailFactory()], animated: false)
+        }
+    }
+
+    func showOverview(animated: Bool = false) {
+        if let adaptiveSplitViewController {
+            adaptiveSplitViewController.showEmptyDetail(animated: animated)
+        } else {
+            navigationController.popToRootViewController(animated: animated)
+        }
     }
     
     private func makeMenuItem() -> MenuItem {
@@ -46,6 +89,16 @@ class UserScheduleCoordinator: SharedCoordinator {
             accessibilityIdentifier: AccessibilityIdentifiers.Menu.userSchedule
         )
         
+    }
+
+    private func makeEventDetailViewController(eventID: Event.ID) -> UIViewController {
+        let detailController = ModernEventDetailViewController(eventID: eventID)
+        detailController.coordinator = self
+        return detailController
+    }
+
+    private static func makeEmptyDetailViewController() -> UIViewController {
+        SplitDetailPlaceholderViewController(message: String(localized: "Select an event to view its details."))
     }
     
 }

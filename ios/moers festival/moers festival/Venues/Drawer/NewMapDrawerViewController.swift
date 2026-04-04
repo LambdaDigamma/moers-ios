@@ -225,9 +225,9 @@ class NewMapDrawerViewController: UIViewController {
             
             switch section {
             case .main:
-                configuration.text = "Spielorte"
+                configuration.text = String(localized: "Venues")
             case .booths:
-                configuration.text = "Stände"
+                configuration.text = String(localized: "Booths")
             }
             
             headerView.contentConfiguration = configuration

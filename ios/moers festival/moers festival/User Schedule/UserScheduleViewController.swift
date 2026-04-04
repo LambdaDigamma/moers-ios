@@ -35,6 +35,8 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
     private var favoritesCancellable: AnyCancellable?
     private var filterCancellable: AnyCancellable?
     private var eventViewModelsByID: [UUID: EventListItemViewModel] = [:]
+
+    var onShowEvent: ((Event.ID) -> Void)?
     
     let dateComponentsFormatter = DateComponentsFormatter()
     
@@ -112,8 +114,10 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
     
     func setupUI() {
         
+        self.view.backgroundColor = .clear
         self.view.addSubview(mainStackView)
         self.collectionView.delegate = self
+        self.collectionView.backgroundColor = .clear
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: filter.isEmpty ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill"),
@@ -393,11 +397,15 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
         
         guard let eventID = eventViewModel.eventID else { return }
         
-        let detailController = ModernEventDetailViewController(
-            eventID: eventID
-        )
-        
-        self.navigationController?.pushViewController(detailController, animated: true)
+        if let onShowEvent {
+            onShowEvent(eventID)
+        } else {
+            let detailController = ModernEventDetailViewController(
+                eventID: eventID
+            )
+            
+            self.navigationController?.pushViewController(detailController, animated: true)
+        }
         
         collectionView.deselectItem(at: indexPath, animated: true)
         

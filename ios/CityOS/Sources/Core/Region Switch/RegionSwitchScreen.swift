@@ -46,7 +46,7 @@ struct RegionSwitchScreen: View {
             alignment: .topLeading
         )
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("Region erkannt")
+        .navigationTitle(String(localized: "Region detected", bundle: .module))
         
     }
     
@@ -55,12 +55,12 @@ struct RegionSwitchScreen: View {
         
         VStack(alignment: .leading, spacing: 8) {
             
-            Text("Es sieht so aus, als wärst Du in einer anderen Stadt angekommen, die ebenfalls von Transparencity unterstützt wird.")
+            Text(String(localized: "It looks like you have arrived in another city that is also supported by Transparencity.", bundle: .module))
                 .foregroundColor(.secondary)
             
-            Text("Durch die Änderung gehen keine Einstellungen aus Deinen anderen ")
+            Text(String(localized: "Changing the region will not affect any settings from your other regions.", bundle: .module))
             
-            Text("Du kannst diese auch später manuell ändern.")
+            Text(String(localized: "You can also change this manually later.", bundle: .module))
             
         }
         .foregroundColor(.secondary)
@@ -94,7 +94,7 @@ struct RegionSwitchScreen: View {
                 
                 HStack {
                     
-                    Text("Stadt")
+                    Text(String(localized: "City", bundle: .module))
                         .fontWeight(.medium)
                         .foregroundColor(.secondary)
                     
@@ -110,7 +110,7 @@ struct RegionSwitchScreen: View {
                 
                 HStack {
                     
-                    Text("Anbieter")
+                    Text(String(localized: "Provider", bundle: .module))
                         .fontWeight(.medium)
                         .foregroundColor(.secondary)
                     
@@ -142,7 +142,7 @@ struct RegionSwitchScreen: View {
         
         HStack(alignment: .top) {
             
-            Text("Features")
+            Text(String(localized: "Features", bundle: .module))
                 .fontWeight(.medium)
                 .foregroundColor(.secondary)
             
@@ -170,7 +170,7 @@ struct RegionSwitchScreen: View {
         VStack(spacing: 16) {
             
             Button(action: {}) {
-                Text("Region wechseln")
+                Text(String(localized: "Switch region", bundle: .module))
 //                    .fontWeight(.semibold)
 //                    .frame(maxWidth: .infinity, alignment: .center)
 //                    .padding()
@@ -181,7 +181,7 @@ struct RegionSwitchScreen: View {
             .buttonStyle(PrimaryButtonStyle())
             
             Button(action: {}) {
-                Text("Später")
+                Text(String(localized: "Later", bundle: .module))
                     .fontWeight(.medium)
                     .foregroundColor(.yellow)
             }

@@ -145,8 +145,7 @@ open class SidebarViewController: UIViewController, UICollectionViewDelegate {
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, SidebarItem> { (cell, _, item) in
             var content = cell.defaultContentConfiguration()
             content.text = item.title
-            content.image = item.image?.withTintColor(UIColor.systemYellow)
-            content.imageProperties.tintColor = UIColor.systemYellow
+            content.image = item.image
             cell.accessibilityIdentifier = item.accessibilityIdentifier
             cell.accessibilityTraits = [.button]
             cell.contentConfiguration = content

@@ -32,9 +32,9 @@ public struct FootPathView: View {
                     Image(systemName: "figure.walk")
                     
                     if let distance = distance {
-                        Text("\(durationInMinutes) Minuten (\(distance)m), Fußweg")
+                        Text("\(durationInMinutes) min (\(distance)m), \(String(localized: "Footpath", bundle: .module))")
                     } else {
-                        Text("\(durationInMinutes) Minuten, Fußweg")
+                        Text("\(durationInMinutes) min, \(String(localized: "Footpath", bundle: .module))")
                     }
                     
                 }

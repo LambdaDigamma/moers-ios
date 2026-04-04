@@ -16,28 +16,31 @@ class AuditTableViewCell: UITableViewCell {
         didSet {
             guard let audit = audit else { return }
             
-            self.dateLabel.text = "vor " + (audit.updatedAt?.timeAgo() ?? "n/v")
+            self.dateLabel.text = String(
+                format: String(localized: "%@ ago", bundle: .module),
+                audit.updatedAt?.timeAgo() ?? String(localized: "n/a", bundle: .module)
+            )
             
             switch audit.event {
                 
             case .created:
-                self.auditingTypeLabel.text = "Eintrag erstellt"
+                self.auditingTypeLabel.text = String(localized: "Entry created", bundle: .module)
 //                self.auditingTypeLabel.textColor = UIColor(hexString: "089C3B")
                 self.auditingTypeImageView.image = #imageLiteral(resourceName: "changeset_add")
                 
             case .updated:
-                self.auditingTypeLabel.text = "Eintrag aktualisiert"
+                self.auditingTypeLabel.text = String(localized: "Entry updated", bundle: .module)
 //                self.auditingTypeLabel.textColor = UIColor(hexString: "089C3B")
                 self.auditingTypeImageView.image = #imageLiteral(resourceName: "changeset_update")
                 
             case .deleted:
-                self.auditingTypeLabel.text = "Eintrag gelöscht"
+                self.auditingTypeLabel.text = String(localized: "Entry deleted", bundle: .module)
 //                self.auditingTypeLabel.textColor = UIColor(hexString: "FF0000")
                 self.auditingTypeImageView.image = nil
                 self.auditingTypeImageView.image = #imageLiteral(resourceName: "changeset_delete")
                 
             case .restored:
-                self.auditingTypeLabel.text = "Eintrag widerhergestellt"
+                self.auditingTypeLabel.text = String(localized: "Entry restored", bundle: .module)
 //                self.auditingTypeLabel.textColor = UIColor(hexString: "089C3B")
                 self.auditingTypeImageView.image = #imageLiteral(resourceName: "changeset_add")
             
@@ -65,7 +68,7 @@ class AuditTableViewCell: UITableViewCell {
         "place": String(localized: "Place", bundle: .module),
         "monday": String(localized: "Monday (Opening Hours)", bundle: .module),
         "tuesday": String(localized: "Tuesday (Opening Hours)", bundle: .module),
-        "wednesday": String(localized: "Mittwoch (Opening Hours)", bundle: .module),
+        "wednesday": String(localized: "Wednesday (Opening Hours)", bundle: .module),
         "thursday": String(localized: "Thursday (Opening Hours)", bundle: .module),
         "friday": String(localized: "Friday (Opening Hours)", bundle: .module),
         "saturday": String(localized: "Saturday (Opening Hours)", bundle: .module),
@@ -145,14 +148,14 @@ class AuditTableViewCell: UITableViewCell {
         
         if audit.event == .updated {
             
-            self.changeSetHeader.text = "Änderungsprotokoll:"
+            self.changeSetHeader.text = String(localized: "Change log:", bundle: .module)
             
             for change in audit.newValues.baseValues {
                 
                 let newGenericValue = change.value
                 let oldGenericValue = audit.oldValues.baseValues[change.key] ?? nil
                 
-                var newValueRepresentation = "n/v"
+                var newValueRepresentation = String(localized: "n/a", bundle: .module)
                 
                 if let newGenericValue = newGenericValue {
                     switch newGenericValue {
@@ -165,7 +168,7 @@ class AuditTableViewCell: UITableViewCell {
                     }
                 }
                 
-                var oldValueRepresentation = "n/v"
+                var oldValueRepresentation = String(localized: "n/a", bundle: .module)
                 
                 if let oldGenericValue = oldGenericValue {
                     switch oldGenericValue {
@@ -195,4 +198,3 @@ class AuditTableViewCell: UITableViewCell {
     }
     
 }
-

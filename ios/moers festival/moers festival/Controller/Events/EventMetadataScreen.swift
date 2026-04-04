@@ -134,12 +134,21 @@ public struct EventMetadataScreen: View {
     @ViewBuilder
     private func artistsRow() -> some View {
         
-        let artists = viewModel.event?.artists?.compactMap { $0 } ?? []
+        let artists: [String] = viewModel.event?.artists?
+            .compactMap { artist in
+                guard let artist, !artist.isEmptyOrWhitespace else { return nil }
+                return artist
+            } ?? []
         
         DetailEntry {
             Text(EventPackageStrings.artistsHeader)
         } content: {
-            Text(artists.joined(separator: "\n"))
+            if artists.isEmpty {
+                Text("Wird noch angekündigt")
+                    .foregroundColor(.secondary)
+            } else {
+                Text(artists.joined(separator: "\n"))
+            }
         }
         
     }

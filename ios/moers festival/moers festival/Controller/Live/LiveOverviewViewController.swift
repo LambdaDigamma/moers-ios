@@ -19,7 +19,7 @@ class LiveOverviewViewController: StateViewController<LivestreamState> {
     
     @LazyInjected(\.legacyEventService) var eventService
     
-    private lazy var loadingController =  { LoadingViewController(loadingHint: String.localized("LoadingLivestream")) }()
+    private lazy var loadingController =  { LoadingViewController(loadingHint: String.localized("Loading live stream...")) }()
     private lazy var activeStreamViewController = { ActiveStreamViewController() }()
     private lazy var inactiveStreamViewController = { InactiveStreamViewController() }()
     

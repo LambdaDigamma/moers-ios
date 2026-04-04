@@ -23,20 +23,33 @@ public class EventCoordinator: SharedCoordinator {
     private var events: [MMEvents.Event] = []
     
     private let timetable: TimetableViewController
+    private let adaptiveSplitViewController: AdaptiveTabSplitViewController?
+
+    public var rootViewController: UIViewController {
+        adaptiveSplitViewController ?? navigationController
+    }
     
     public override init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController()
     ) {
         
         self.timetable = TimetableViewController()
+        self.adaptiveSplitViewController = UIDevice.current.userInterfaceIdiom == .pad
+            ? AdaptiveTabSplitViewController(
+                overviewNavigationController: navigationController,
+                emptyDetailFactory: Self.makeEmptyDetailViewController
+            )
+            : nil
         
         super.init(navigationController: navigationController)
         
         self.navigationController.navigationBar.prefersLargeTitles = true
         self.navigationController.coordinator = self
         self.navigationController.menuItem = makeMenuItem()
+        self.adaptiveSplitViewController?.tabBarItem = self.navigationController.tabBarItem
+        self.adaptiveSplitViewController?.title = self.navigationController.title
         
-        self.timetable.title = String.localized("EventsTabItem")
+        self.timetable.title = String.localized("Schedule")
         
         self.timetable.onShowEvent = { (eventID: Event.ID) in
             self.showDetail(for: eventID)
@@ -46,26 +59,28 @@ public class EventCoordinator: SharedCoordinator {
         
     }
     
-    func showDetail(for eventID: Event.ID) {
-        
-//        guard let event = eventViewController.events
-//            .map({ $0.model })
-//            .filter({ $0.id == eventID })
-//            .first else { return }
-//
-        self.navigationController.popToRootViewController(animated: true)
-        
-        let detailController = ModernEventDetailViewController(
-            eventID: eventID
-        )
+    public override func pushEventDetail(eventID: Event.ID, animated: Bool = true) {
+        showDetail(for: eventID, animated: animated)
+    }
 
-        detailController.coordinator = self
+    func showDetail(for eventID: Event.ID, animated: Bool = true) {
+        let detailFactory = { [unowned self] in
+            self.makeEventDetailViewController(eventID: eventID)
+        }
 
-        self.navigationController.pushViewController(detailController, animated: true)
-        
-        
-//        self.showEventDetailViewController(with: event)
-        
+        if let adaptiveSplitViewController {
+            adaptiveSplitViewController.setDetail(detailFactory, animated: animated)
+        } else if let rootViewController = navigationController.viewControllers.first {
+            navigationController.setViewControllers([rootViewController, detailFactory()], animated: false)
+        }
+    }
+
+    func showOverview(animated: Bool = false) {
+        if let adaptiveSplitViewController {
+            adaptiveSplitViewController.showEmptyDetail(animated: animated)
+        } else {
+            navigationController.popToRootViewController(animated: animated)
+        }
     }
     
     func showEventDetailViewController(with event: MMEvents.Event) {
@@ -109,6 +124,16 @@ public class EventCoordinator: SharedCoordinator {
             accessibilityIdentifier: AccessibilityIdentifiers.Menu.events
         )
         
+    }
+
+    private func makeEventDetailViewController(eventID: Event.ID) -> UIViewController {
+        let detailController = ModernEventDetailViewController(eventID: eventID)
+        detailController.coordinator = self
+        return detailController
+    }
+
+    private static func makeEmptyDetailViewController() -> UIViewController {
+        SplitDetailPlaceholderViewController(message: String(localized: "Select an event to view its details."))
     }
     
 }

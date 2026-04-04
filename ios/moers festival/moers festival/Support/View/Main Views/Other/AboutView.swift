@@ -188,7 +188,7 @@ public struct About: View {
                         .font(.title2)
                         .fontWeight(.semibold)
                     
-                    Text("Software-Entwickler")
+                    Text("Software Developer")
                         .foregroundColor(.secondaryLabel)
                     
                 }
@@ -199,7 +199,7 @@ public struct About: View {
             HStack(spacing: 12) {
                 
                 socialLink(
-                    text: "Webseite",
+                    text: "Website",
                     image: Image(systemName: "link"),
                     action: { onOpenDeveloperLink(.website) }
                 )
@@ -215,7 +215,7 @@ public struct About: View {
                 )
                 
             }
-            .foregroundColor(colorScheme == .light ? .blue : .yellow)
+            .foregroundColor(Color(AppColors.navigationAccent))
             
         }
             .frame(maxWidth: .infinity, alignment: .leading)

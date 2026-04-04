@@ -67,7 +67,8 @@ struct PostDetailScreen: View {
                         
                         GenericMediaView(media: media, resizingMode: .aspectFill)
                             .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fill)
-                            .frame(maxWidth: .infinity)
+                            .frame(maxWidth: .infinity, maxHeight: 480)
+                            .clipped()
                         
                     }
                     
@@ -81,6 +82,7 @@ struct PostDetailScreen: View {
                     viewModel: pageViewModel,
                     actionTransmitter: actionTransmitter
                 )
+                .readableContentWidth()
                 
             }
             

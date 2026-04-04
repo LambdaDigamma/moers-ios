@@ -8,15 +8,25 @@
 
 import Foundation
 
+nonisolated struct OtherHeroContent: Hashable, Sendable {
+    let title: String
+    let subtitle: String
+    let symbolName: String
+    let iconStyle: RowIconStyle
+}
+
 struct OtherViewModel {
     
     // MARK: - Properties
     
     public var updateHandler: () -> Void = {}
+
+    let hero: OtherHeroContent
     
     var sections: [Section]
     
-    public init(sections: [Section]) {
+    public init(hero: OtherHeroContent, sections: [Section]) {
+        self.hero = hero
         self.sections = sections
     }
     
