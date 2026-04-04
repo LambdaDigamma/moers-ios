@@ -14,6 +14,11 @@ on:
           - patch
           - minor
           - major
+      update_screenshots:
+        type: boolean
+        required: false
+        description: Capture, process and upload screenshots to App Store Connect
+        default: false
 
 jobs:
   build-ios:
@@ -60,6 +65,63 @@ jobs:
           else
             echo "Skipping version name bump as 'build' was selected."
           fi
+
+      - name: Install Bun
+        if: github.event.inputs.update_screenshots == 'true'
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install ImageMagick
+        if: github.event.inputs.update_screenshots == 'true'
+        run: brew install imagemagick
+
+      - name: Install marketing dependencies
+        if: github.event.inputs.update_screenshots == 'true'
+        run: cd marketing && bun install
+
+      - name: Capture screenshots
+        if: github.event.inputs.update_screenshots == 'true'
+        run: |
+          cd "ios/moers festival"
+          bundle exec fastlane ios screenshots
+
+      - name: Fix symlinks and render processed screenshots
+        if: github.event.inputs.update_screenshots == 'true'
+        run: |
+          REPO_ROOT="$(pwd)"
+          FASTLANE_SCREENSHOTS="$REPO_ROOT/ios/moers festival/fastlane/screenshots"
+
+          # Recreate symlinks using absolute paths for this runner
+          ln -sfn "$FASTLANE_SCREENSHOTS/en-US" marketing/public/screenshots
+          ln -sfn "$FASTLANE_SCREENSHOTS" marketing/public/moers-festival
+
+          cd marketing
+          bun run src/scripts/export-stills.ts --locale de-DE
+          bun run src/scripts/export-stills.ts --locale en-US
+
+      - name: Replace fastlane screenshots with processed stills
+        if: github.event.inputs.update_screenshots == 'true'
+        run: |
+          REPO_ROOT="$(pwd)"
+          FASTLANE_SCREENSHOTS="$REPO_ROOT/ios/moers festival/fastlane/screenshots"
+          OUT="$REPO_ROOT/marketing/out/screenshots"
+
+          for locale in de-DE en-US; do
+            rm -f "$FASTLANE_SCREENSHOTS/$locale/"*.png
+            cp "$OUT/$locale/01-timetable.png"    "$FASTLANE_SCREENSHOTS/$locale/iPhone 17 Pro-0-events.png"
+            cp "$OUT/$locale/02-event-detail.png" "$FASTLANE_SCREENSHOTS/$locale/iPhone 17 Pro-1-event_detail.png"
+            cp "$OUT/$locale/03-info.png"         "$FASTLANE_SCREENSHOTS/$locale/iPhone 17 Pro-2-info.png"
+            cp "$OUT/$locale/04-map.png"          "$FASTLANE_SCREENSHOTS/$locale/iPhone 17 Pro-3-map.png"
+          done
+
+      - name: Upload screenshots to App Store Connect
+        if: github.event.inputs.update_screenshots == 'true'
+        run: |
+          cd "ios/moers festival"
+          bundle exec fastlane ios upload_screenshots
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY: ${{ secrets.ASC_KEY }}
 
       - name: Ship iOS App
         run: |
@@ -132,7 +194,7 @@ jobs:
         with:
           commit_message: "🚀 Bump Moers Festival iOS version to ${{ env.ios_version }} (${{ env.ios_build }})"
           tagging_message: "${{ env.tag_name }}"
-          file_pattern: "**/Info.plist"
+          file_pattern: "**/Info.plist **/screenshots/**/*.png"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

@@ -111,8 +111,8 @@ public class NewMapViewController: UIViewController {
     private func setupMap() {
         
         let center = CLLocationCoordinate2D(
-            latitude: 51.441712626435596,
-            longitude: 6.618580082309781
+            latitude: 51.44974,
+            longitude: 6.62472
         )
         
         let region = MKCoordinateRegion(
@@ -125,8 +125,8 @@ public class NewMapViewController: UIViewController {
         mapView.setCamera(
             MKMapCamera(
                 lookingAtCenter: CLLocationCoordinate2D(
-                    latitude: 51.44169186,
-                    longitude: 6.61880121
+                    latitude: 51.44974,
+                    longitude: 6.62472
                 ),
                 fromDistance: 1211,
                 pitch: 0,

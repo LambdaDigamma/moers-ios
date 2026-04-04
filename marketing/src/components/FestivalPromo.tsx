@@ -134,7 +134,7 @@ export const FestivalPromo: React.FC<FestivalPromoProps> = ({
           style={{
             width: screenshotSize.width * 0.85,
             left: "50%",
-            top: 480,
+            top: 460,
             transform: "translateX(-50%) rotate(2deg)",
             filter: "drop-shadow(0 30px 100px rgba(0,0,0,0.8))",
           }}
@@ -147,42 +147,16 @@ export const FestivalPromo: React.FC<FestivalPromoProps> = ({
         </div>
       </ScreenshotSlot>
 
-      {/* ── Slot 2: Info & Tickets — phone left, headline bottom-right ── */}
+      {/* ── Slot 2: Festival Map — dramatic top-entry, headline bottom ── */}
       <ScreenshotSlot index={2}>
-        <Background />
-        <div
-          className="absolute"
-          style={{
-            width: screenshotSize.width * 0.8,
-            left: -120,
-            top: 160,
-            transform: "rotate(-5deg)",
-            filter: "drop-shadow(0 30px 100px rgba(0,0,0,0.8))",
-          }}
-        >
-          <IPhone17ProFrame>
-            <Img src={staticFile(`${base}/iPhone 17 Pro-2-info.png`)} />
-          </IPhone17ProFrame>
-        </div>
-        <Headline
-          fontSize={100}
-          className="text-right px-12"
-          style={{ bottom: 240, left: 0, right: 0 }}
-        >
-          {t(l, "slot2_headline")}
-        </Headline>
-      </ScreenshotSlot>
-
-      {/* ── Slot 3: Festival Map — dramatic top-entry, headline bottom ── */}
-      <ScreenshotSlot index={3}>
         <Background />
         <div
           className="absolute"
           style={{
             width: screenshotSize.width * 0.88,
             left: "50%",
-            top: -150,
-            transform: "translateX(-50%) rotate(-6deg)",
+            top: -250,
+            transform: "translateX(-50%) rotate(-2deg)",
             filter: "drop-shadow(0 30px 100px rgba(0,0,0,0.8))",
           }}
         >
@@ -190,12 +164,67 @@ export const FestivalPromo: React.FC<FestivalPromoProps> = ({
             <Img src={staticFile(`${base}/iPhone 17 Pro-3-map.png`)} />
           </IPhone17ProFrame>
         </div>
+        
+        {/* Decorative Bird */}
+        {/*<Img */}
+        {/*  src={staticFile("assets/vogel_white.png")} */}
+        {/*  className="absolute opacity-20"*/}
+        {/*  style={{*/}
+        {/*    width: "40%",*/}
+        {/*    right: 40,*/}
+        {/*    top: 400,*/}
+        {/*    transform: "rotate(15deg) scaleX(-1)",*/}
+        {/*    filter: "blur(1px)",*/}
+        {/*  }}*/}
+        {/*/>*/}
+
         <Headline
           fontSize={100}
           className="text-center px-12"
           style={{ bottom: 240, left: 0, right: 0 }}
         >
           {t(l, "slot3_headline")}
+        </Headline>
+      </ScreenshotSlot>
+
+      {/* ── Slot 3: Info & Tickets — phone left, headline bottom-right ── */}
+      <ScreenshotSlot index={3}>
+        <Background />
+        
+        {/* Decorative Moon */}
+        <div 
+          className="absolute opacity-40 blur-sm"
+          style={{
+            top: 80,
+            right: -100,
+            width: "60%",
+          }}
+        >
+          <Img src={staticFile("assets/moon.png")} className="w-full h-auto" />
+        </div>
+
+        <div
+          className="absolute"
+          style={{
+            width: screenshotSize.width * 0.8,
+            left: 90,
+            top: 180,
+            transform: "rotate(-2deg)",
+            filter: "drop-shadow(0 30px 100px rgba(0,0,0,0.8))",
+          }}
+        >
+          <IPhone17ProFrame>
+            <Img src={staticFile(`${base}/iPhone 17 Pro-2-info.png`)} />
+          </IPhone17ProFrame>
+        </div>
+
+
+        <Headline
+          fontSize={100}
+          className="text-center px-[100px] leading-[1.05]"
+          style={{ bottom: 160, left: 0, right: 0 }}
+        >
+          {t(l, "slot2_headline")}
         </Headline>
       </ScreenshotSlot>
     </AbsoluteFill>

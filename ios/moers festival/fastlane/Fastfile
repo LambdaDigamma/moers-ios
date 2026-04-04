@@ -183,7 +183,7 @@ platform :ios do
       disable_package_automatic_updates: true,
       derived_data_path: path,
       override_status_bar: true,
-      override_status_bar_arguments: "--time 2007-01-09T09:41:00+01:00 --dataNetwork wifi --wifiMode active --wifiBars 3 --cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100",
+      override_status_bar_arguments: "--time 9:41 --dataNetwork wifi --wifiMode active --wifiBars 3 --cellularMode active --cellularBars 4 --batteryState discharging --batteryLevel 100",
       headless: false,
       test_without_building: true
     )
@@ -204,6 +204,7 @@ platform :ios do
 
   desc "Upload screenshots"
   lane :upload_screenshots do
+    load_asc_api_key()
     deliver(
       skip_metadata: true,
       skip_screenshots: false,
