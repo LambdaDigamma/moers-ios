@@ -84,6 +84,9 @@ export type IPhoneAirColor =
 // iPad Pro 13" M4 colors
 export type IPadPro13M4Color = "Space Gray" | "Silver";
 
+// iPad Pro 11" M4 colors
+export type IPadPro11M4Color = "Space Gray" | "Silver";
+
 // iPad Air 11" M2 colors
 export type IPadAir11M2Color =
   | "Space Gray"
@@ -276,6 +279,25 @@ const frameDefinitions: Record<string, FrameDefinition> = {
     },
   },
   "iPad Pro 13 - M4": {
+    folder: "iPad Pro 13 - M4",
+    screenArea: {
+      portrait: {
+        top: "4.1%",
+        left: "5.1%",
+        right: "5.1%",
+        bottom: "4.1%",
+        borderRadius: "2.3%",
+      },
+      landscape: {
+        top: "5.1%",
+        left: "4.1%",
+        right: "4.1%",
+        bottom: "5.1%",
+        borderRadius: "2.3%",
+      },
+    },
+  },
+  "iPad Pro 11 - M4": {
     folder: "iPad Pro 13 - M4",
     screenArea: {
       portrait: {
@@ -643,7 +665,32 @@ export const IPadPro13M4Frame: React.FC<IPadPro13M4FrameProps> = ({
   orientation = "portrait",
   color = "Space Gray",
 }) => (
-  <PhoneFrame device="iPad Pro 13 - M4" orientation={orientation} color={color}>
+  <PhoneFrame
+    device="iPad Pro 13 - M4"
+    orientation={orientation}
+    color={color}
+  >
+    {children}
+  </PhoneFrame>
+);
+
+// iPad Pro 11" M4
+type IPadPro11M4FrameProps = {
+  children: React.ReactNode;
+  orientation?: Orientation;
+  color?: IPadPro11M4Color;
+};
+
+export const IPadPro11M4Frame: React.FC<IPadPro11M4FrameProps> = ({
+  children,
+  orientation = "portrait",
+  color = "Space Gray",
+}) => (
+  <PhoneFrame
+    device="iPad Pro 11 - M4"
+    orientation={orientation}
+    color={color}
+  >
     {children}
   </PhoneFrame>
 );

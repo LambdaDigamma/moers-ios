@@ -1,9 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { IPadPro13M4Frame, Orientation, IPadPro13M4Color } from "../PhoneFrame";
+import {
+  IPadPro11M4Color,
+  IPadPro11M4Frame,
+  Orientation,
+} from "../PhoneFrame";
 
-const meta: Meta<typeof IPadPro13M4Frame> = {
-  title: "Device Frames/iPad Pro 13 M4",
-  component: IPadPro13M4Frame,
+const meta: Meta<typeof IPadPro11M4Frame> = {
+  title: "Device Frames/iPad Pro 11 M4",
+  component: IPadPro11M4Frame,
   parameters: { layout: "centered" },
   decorators: [
     (Story) => (
@@ -27,7 +31,7 @@ const meta: Meta<typeof IPadPro13M4Frame> = {
     },
     color: {
       control: "select",
-      options: ["Space Gray", "Silver"] as IPadPro13M4Color[],
+      options: ["Space Gray", "Silver"] as IPadPro11M4Color[],
     },
   },
 };
