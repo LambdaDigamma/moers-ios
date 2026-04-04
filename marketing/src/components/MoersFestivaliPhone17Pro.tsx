@@ -69,7 +69,7 @@ const Headline: React.FC<{
 }> = ({ children, style, className, fontSize = 96 }) => (
   <h1
     className={clsx(
-      "font-typewriter leading-[1.1] font-bold text-white absolute tracking-tight drop-shadow-2xl",
+      "font-typewriter leading-[1.1] font-bold text-white absolute tracking-tight drop-shadow-2xl whitespace-pre-line",
       className,
     )}
     style={{ fontSize, ...style }}
@@ -78,7 +78,7 @@ const Headline: React.FC<{
   </h1>
 );
 
-export const FestivalPromo: React.FC<FestivalPromoProps> = ({
+export const MoersFestivaliPhone17Pro: React.FC<FestivalPromoProps> = ({
   locale = "de-DE",
 }) => {
   const { screenshotSize } = useScreenshotContext();

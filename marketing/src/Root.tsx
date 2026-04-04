@@ -2,8 +2,12 @@ import "./index.css";
 import React from "react";
 import { Still } from "remotion";
 import type { ZodType } from "zod";
-import { FestivalPromo, FestivalPromoSchema } from "./components/FestivalPromo";
-import { iPhone17Pro, ScreenshotSize } from "./apple-screenshot-sizes";
+import { MoersFestivaliPhone17Pro, FestivalPromoSchema } from "./components/MoersFestivaliPhone17Pro";
+import {
+  iPhone17Pro,
+  iPhone17ProMax,
+  ScreenshotSize,
+} from "./apple-screenshot-sizes";
 import { setRemotionImageLoader } from "./components/PhoneFrame";
 import { ScreenshotProvider } from "./components/ScreenshotContext";
 
@@ -64,9 +68,17 @@ const INTER_SCREENSHOT_SPACING = 20;
 const screenshotCollections: ScreenshotCollection[] = [
   {
     name: "moers-festival-17-pro",
-    canvas: FestivalPromo as React.ComponentType<AnyProps>,
+    canvas: MoersFestivaliPhone17Pro as React.ComponentType<AnyProps>,
     numberOfScreens: 4,
     screenshotSize: iPhone17Pro.portrait,
+    schema: FestivalPromoSchema as ZodType<AnyProps>,
+    defaultProps: { locale: "de-DE" },
+  },
+  {
+    name: "moers-festival-17-pro-max",
+    canvas: MoersFestivaliPhone17Pro as React.ComponentType<AnyProps>,
+    numberOfScreens: 4,
+    screenshotSize: iPhone17ProMax.portrait,
     schema: FestivalPromoSchema as ZodType<AnyProps>,
     defaultProps: { locale: "de-DE" },
   },
