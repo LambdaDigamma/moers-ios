@@ -817,7 +817,7 @@
 				DFFD4962246034A40052830A /* XCRemoteSwiftPackageReference "Waxwing" */,
 				DFD086B4246DC90E00B15A96 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */,
 				DF562918257BB6E3005FC7BA /* XCRemoteSwiftPackageReference "BulletinBoard" */,
-					DF9B4E6227F668A200817DA3 /* XCRemoteSwiftPackageReference "INSPhotoGallery" */,
+				DF9B4E6227F668A200817DA3 /* XCRemoteSwiftPackageReference "INSPhotoGallery" */,
 				DF7FB53327F670D500F718F2 /* XCRemoteSwiftPackageReference "stateviewcontroller" */,
 				DF055B922D8B8FD7007E4393 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				DF5975BC2F01E08D00512386 /* XCLocalSwiftPackageReference "../CityOS" */,

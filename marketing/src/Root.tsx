@@ -63,9 +63,9 @@ function toStillComponent(
   };
 }
 
-const INTER_SCREENSHOT_SPACING = 20;
+export const INTER_SCREENSHOT_SPACING = 20;
 
-const screenshotCollections: ScreenshotCollection[] = [
+export const screenshotCollections: ScreenshotCollection[] = [
   {
     name: "moers-festival-17-pro",
     canvas: MoersFestivaliPhone17Pro as React.ComponentType<AnyProps>,

@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 /**
- * Renders the festival promo wide canvas and slices it into individual
+ * Renders all registered compositions and slices them into individual
  * App Store screenshots ready for upload.
  *
  * Usage:
@@ -10,21 +10,7 @@
 import { execSync } from "child_process";
 import path from "path";
 import fs from "fs";
-
-// ── Config ────────────────────────────────────────────────────────────────────
-
-const COMPOSITION_ID = "moers-festival-17-pro";
-const SLOT_WIDTH = 1206;
-const SLOT_HEIGHT = 2622;
-const SPACING = 20;
-const NUM_SLOTS = 4;
-
-const SLOT_NAMES = [
-  "01-timetable",
-  "02-event-detail",
-  "03-info",
-  "04-map",
-];
+import { screenshotCollections, INTER_SCREENSHOT_SPACING } from "../Root";
 
 // ── CLI args ──────────────────────────────────────────────────────────────────
 
@@ -40,40 +26,50 @@ for (let i = 0; i < args.length; i++) {
   }
 }
 
-// ── Paths ─────────────────────────────────────────────────────────────────────
+// ── Render all registered compositions ─────────────────────────────────────
 
 const localeOutDir = path.join(outDir, locale);
-const widePng = path.join(localeOutDir, "_wide.png");
 
 fs.mkdirSync(localeOutDir, { recursive: true });
 
-// ── Step 1: Render wide canvas ────────────────────────────────────────────────
+console.log(`\n🎨 Rendering ${screenshotCollections.length} compositions for [${locale}]...\n`);
 
-console.log(`\n🎨 Rendering wide canvas [${locale}]...`);
+let totalRendered = 0;
 
-execSync(
-  `npx remotion still ${COMPOSITION_ID} "${widePng}" --props '{"locale":"${locale}"}'`,
-  { stdio: "inherit" },
-);
+for (const collection of screenshotCollections) {
+  const SLOT_WIDTH = collection.screenshotSize.width;
+  const SLOT_HEIGHT = collection.screenshotSize.height;
+  const NUM_SLOTS = collection.numberOfScreens;
+  const SPACING = INTER_SCREENSHOT_SPACING;
 
-// ── Step 2: Slice into individual screenshots ─────────────────────────────────
+  const compositionDir = path.join(localeOutDir, collection.name);
+  fs.mkdirSync(compositionDir, { recursive: true });
 
-console.log(`\n✂️  Slicing into ${NUM_SLOTS} screenshots...`);
+  const widePng = path.join(compositionDir, "_wide.png");
 
-for (let i = 0; i < NUM_SLOTS; i++) {
-  const x = i * (SLOT_WIDTH + SPACING);
-  const outFile = path.join(localeOutDir, `${SLOT_NAMES[i]}.png`);
+  console.log(`📐 Rendering ${collection.name} (${SLOT_WIDTH}x${SLOT_HEIGHT}, ${NUM_SLOTS} screens)...`);
 
   execSync(
-    `magick "${widePng}" -crop ${SLOT_WIDTH}x${SLOT_HEIGHT}+${x}+0 +repage "${outFile}"`,
+    `npx remotion still "${collection.name}" "${widePng}" --props '{"locale":"${locale}"}'`,
     { stdio: "inherit" },
   );
 
-  console.log(`  ✅ ${path.basename(outFile)} (x=${x})`);
+  console.log(`✂️  Slicing into ${NUM_SLOTS} screenshots...`);
+
+  for (let i = 0; i < NUM_SLOTS; i++) {
+    const x = i * (SLOT_WIDTH + SPACING);
+    const outFile = path.join(compositionDir, `${String(i + 1).padStart(2, "0")}.png`);
+
+    execSync(
+      `magick "${widePng}" -crop ${SLOT_WIDTH}x${SLOT_HEIGHT}+${x}+0 +repage "${outFile}"`,
+      { stdio: "inherit" },
+    );
+
+    console.log(`  ✅ ${path.basename(outFile)} (x=${x})`);
+    totalRendered++;
+  }
+
+  fs.unlinkSync(widePng);
 }
 
-// ── Step 3: Clean up wide canvas ─────────────────────────────────────────────
-
-fs.unlinkSync(widePng);
-
-console.log(`\n🚀 Done! Screenshots saved to ${localeOutDir}\n`);
+console.log(`\n🚀 Done! Rendered ${totalRendered} screenshots to ${localeOutDir}\n`);
