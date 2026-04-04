@@ -1,3 +1,7 @@
+scheme("moers festival UITests")
+
+derived_data_path("~/Library/Developer/Xcode/DerivedData/moersfestival")
+
 # A list of devices you want to take the screenshots from
 devices([
   "iPhone 17 Pro",
@@ -5,14 +9,15 @@ devices([
 
 # A list of supported languages
 languages([
-    "en-US",  
-    "de-DE",
+  "en-US",
+  "de-DE",
 ])
 
 # Where should the resulting screenshots be stored?
 output_directory "./fastlane/screenshots"
 
 override_status_bar(true)
+override_status_bar_arguments("--time 9:41 --dataNetwork wifi --wifiMode active --wifiBars 3 --cellularMode active --cellularBars 4 --batteryState discharging --batteryLevel 100")
 localize_simulator(true)
 dark_mode(true)
 disable_slide_to_type(true)

@@ -78,61 +78,29 @@ jobs:
         if: github.event.inputs.update_screenshots == 'true'
         run: cd marketing && bun install
 
-      - name: Capture screenshots
-        if: github.event.inputs.update_screenshots == 'true'
-        run: |
-          cd "ios/moers festival"
-          bundle exec fastlane ios ensure_app_version
-          bundle exec fastlane ios capture
-        env:
-          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
-          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
-          ASC_KEY: ${{ secrets.ASC_KEY }}
-
-      - name: Fix symlinks and render processed screenshots
+      - name: Fix symlinks for Remotion
         if: github.event.inputs.update_screenshots == 'true'
         run: |
           REPO_ROOT="$(pwd)"
           FASTLANE_SCREENSHOTS="$REPO_ROOT/ios/moers festival/fastlane/screenshots"
-
-          # Recreate symlinks using absolute paths for this runner
           ln -sfn "$FASTLANE_SCREENSHOTS/en-US" marketing/public/screenshots
           ln -sfn "$FASTLANE_SCREENSHOTS" marketing/public/moers-festival
 
-          cd marketing
-          bun run src/scripts/export-stills.ts --locale de-DE
-          bun run src/scripts/export-stills.ts --locale en-US
-
-      - name: Replace fastlane screenshots with processed stills
-        if: github.event.inputs.update_screenshots == 'true'
-        run: |
-          REPO_ROOT="$(pwd)"
-          FASTLANE_SCREENSHOTS="$REPO_ROOT/ios/moers festival/fastlane/screenshots"
-          OUT="$REPO_ROOT/marketing/out/screenshots"
-
-          for locale in de-DE en-US; do
-            rm -f "$FASTLANE_SCREENSHOTS/$locale/"*.png
-            cp "$OUT/$locale/01-timetable.png"    "$FASTLANE_SCREENSHOTS/$locale/iPhone 17 Pro-0-events.png"
-            cp "$OUT/$locale/02-event-detail.png" "$FASTLANE_SCREENSHOTS/$locale/iPhone 17 Pro-1-event_detail.png"
-            cp "$OUT/$locale/03-info.png"         "$FASTLANE_SCREENSHOTS/$locale/iPhone 17 Pro-2-info.png"
-            cp "$OUT/$locale/04-map.png"          "$FASTLANE_SCREENSHOTS/$locale/iPhone 17 Pro-3-map.png"
-          done
-
-      - name: Upload screenshots to App Store Connect
+      - name: Capture, process and upload screenshots
         if: github.event.inputs.update_screenshots == 'true'
         run: |
           cd "ios/moers festival"
-          bundle exec fastlane ios upload_screenshots
+          bundle exec fastlane ios screenshots_pipeline
         env:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
           ASC_KEY: ${{ secrets.ASC_KEY }}
 
-      - name: Ship iOS App
+      - name: Resolve Swift packages
         run: |
           cd "ios/moers festival"
           mkdir -p SourcePackages
-          export GYM_CLONED_SOURCE_PACKAGES_PATH="$(pwd)/SourcePackages"
+          SPM_DIR="$(pwd)/SourcePackages"
 
           # Xcode 26.3 occasionally crashes in package graph updates. Try with
           # cached packages first; only wipe and retry on failure.
@@ -140,21 +108,20 @@ jobs:
           if ! xcodebuild -resolvePackageDependencies \
             -project "moers festival.xcodeproj" \
             -scheme "moers festival" \
-            -clonedSourcePackagesDirPath "$GYM_CLONED_SOURCE_PACKAGES_PATH"; then
+            -clonedSourcePackagesDirPath "$SPM_DIR"; then
 
             echo "Retrying package resolution with a clean SourcePackages directory..."
-            rm -rf SourcePackages
-            mkdir -p SourcePackages
+            rm -rf SourcePackages && mkdir -p SourcePackages
 
-            if ! xcodebuild -resolvePackageDependencies \
+            xcodebuild -resolvePackageDependencies \
               -project "moers festival.xcodeproj" \
               -scheme "moers festival" \
-              -clonedSourcePackagesDirPath "$GYM_CLONED_SOURCE_PACKAGES_PATH"; then
-              echo "Swift package resolution failed after retry."
-              exit 1
-            fi
+              -clonedSourcePackagesDirPath "$SPM_DIR" || exit 1
           fi
 
+      - name: Ship iOS App
+        run: |
+          cd "ios/moers festival"
           bundle exec fastlane ios upload --verbose
         env:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
@@ -162,8 +129,8 @@ jobs:
           ASC_KEY: ${{ secrets.ASC_KEY }}
           CI: true
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          BASIC_AUTH: lambdadigamma:${{ secrets.GITHUB_TOKEN }}
           MATCH_GITHUB_TOKEN: ${{ secrets.MATCH_GITHUB_TOKEN }}
+          GYM_CLONED_SOURCE_PACKAGES_PATH: ./SourcePackages
           FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 120
           FASTLANE_XCODEBUILD_SETTINGS_RETRIES: 5
           FASTLANE_DISABLE_COLORS: 1

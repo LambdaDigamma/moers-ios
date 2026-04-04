@@ -3,194 +3,163 @@ require 'base64'
 
 default_platform(:ios)
 
-# Configuration
+# ============ Constants ============
+
 APP_IDENTIFIERS = [
   "de.okfn.niederrhein.moers-festival",
   "de.okfn.niederrhein.moers-festival.Widgets",
   "de.okfn.niederrhein.moers-festival.watchkitapp"
 ].freeze
 
+DEVICES = {
+  "Lennarts iPhone 8"      => "e3f6fe313610d72f847e010d17af266b64781acf",
+  "Lennarts iPhone XS"     => "00008020-000C584C2690003A",
+  "Lennarts iPad Pro"      => "00008103-001C34490CF1001E",
+  "Lennarts iPhone 14 Pro" => "00008120-000E7C8C0E38C01E",
+  "Lennarts Apple Watch"   => "00008006-000915E42183002E"
+}.freeze
+
+INFO_PLIST_PATHS = [
+  "moers festival/Config/Info.plist",
+  "moers festival UITests/Info.plist",
+  "moers festival Tests/Info.plist"
+].freeze
+
+SCREENSHOT_SLOT_MAP = {
+  "01-timetable.png"    => "iPhone 17 Pro-0-events.png",
+  "02-event-detail.png" => "iPhone 17 Pro-1-event_detail.png",
+  "03-info.png"         => "iPhone 17 Pro-2-info.png",
+  "04-map.png"          => "iPhone 17 Pro-3-map.png"
+}.freeze
+
+# ============ Helpers ============
+
+def increment_build_number_for_plist(path)
+  current_build = get_info_plist_value(path: path, key: "CFBundleVersion").to_i
+  new_build = (current_build + 1).to_s
+  set_info_plist_value(path: path, key: "CFBundleVersion", value: new_build)
+  UI.message("Updated build number in #{path}: #{current_build} -> #{new_build}")
+end
+
+def match_git_auth
+  token = ENV['MATCH_GITHUB_TOKEN']
+  Base64.strict_encode64("LambdaDigamma:#{token}")
+end
+
 platform :ios do
 
-  # --- Utilies ---
+  # ============ Configuration ============
 
-  def increment_build_number_for_plist(path)
-    current_build = get_info_plist_value(path: path, key: "CFBundleVersion").to_i
-    new_build = (current_build + 1).to_s
-
-    set_info_plist_value(
-      path: path,
-      key: "CFBundleVersion",
-      value: new_build
+  desc "Load ASC API Key from base64 env var"
+  lane :load_asc_api_key do
+    app_store_connect_api_key(
+      key_id: ENV["ASC_KEY_ID"],
+      issuer_id: ENV["ASC_ISSUER_ID"],
+      key_content: ENV["ASC_KEY"],
+      is_key_content_base64: true,
+      in_house: false
     )
-
-    UI.message("Updated build number in #{path}: #{current_build} -> #{new_build}")
   end
 
-  desc "Sync signing"
-  lane :signing do
+  # ============ Signing ============
+
+  desc "Register development devices with Apple Developer Portal"
+  lane :register_dev_devices do
     register_devices(
       team_id: "77N8D7LGCZ",
-      devices: {
-        "Lennarts iPhone 8" => "e3f6fe313610d72f847e010d17af266b64781acf",
-        "Lennarts iPhone XS" => "00008020-000C584C2690003A",
-        "Lennarts iPad Pro" => "00008103-001C34490CF1001E",
-        "Lennarts iPhone 14 Pro" => "00008120-000E7C8C0E38C01E",
-        "Lennarts Apple Watch" => "00008006-000915E42183002E"
-      }
+      devices: DEVICES
     )
-
-    ["development", "appstore"].each do |type|
-      sync_code_signing(
-        type: type,
-        force_for_new_devices: type == "development",
-        app_identifier: APP_IDENTIFIERS
-      )
-    end
   end
 
-  desc "Increment version number (patch, minor, major)"
+  desc "Sync appstore certificates and provisioning profiles"
+  lane :match_appstore do
+    setup_ci if ENV['CI']
+    match(
+      type: 'appstore',
+      app_identifier: APP_IDENTIFIERS,
+      git_basic_authorization: match_git_auth
+    )
+  end
+
+  desc "Sync development certificates and provisioning profiles"
+  lane :match_development do
+    setup_ci if ENV['CI']
+    match(
+      type: 'development',
+      app_identifier: APP_IDENTIFIERS,
+      git_basic_authorization: match_git_auth,
+      force_for_new_devices: true
+    )
+  end
+
+  desc "Register devices and sync all certificates"
+  lane :signing do
+    register_dev_devices
+    match_development
+    match_appstore
+  end
+
+  # ============ Versioning ============
+
+  desc "Increment build number across all targets"
+  lane :increment_build do
+    INFO_PLIST_PATHS.each { |path| increment_build_number_for_plist(path) }
+  end
+
+  desc "Increment version number (type: patch, minor, or major)"
   lane :increment_version do |options|
     UI.user_error!("Specify version type: patch, minor, or major") unless options[:type]
 
-    # Read current version from Info.plist
     current_version = get_info_plist_value(
-      path: "moers festival/Config/Info.plist",
+      path: INFO_PLIST_PATHS.first,
       key: "CFBundleShortVersionString"
     )
 
-    # Parse version components
     major, minor, patch = current_version.split('.').map(&:to_i)
 
     case options[:type]
-    when "patch"
-      patch += 1
-    when "minor"
-      minor += 1
-      patch = 0
-    when "major"
-      major += 1
-      minor = 0
-      patch = 0
-    else
-      UI.user_error!("Invalid version type: #{options[:type]}")
+    when "patch" then patch += 1
+    when "minor" then minor += 1; patch = 0
+    when "major" then major += 1; minor = 0; patch = 0
+    else UI.user_error!("Invalid version type: #{options[:type]}")
     end
 
     new_version = "#{major}.#{minor}.#{patch}"
-
-    UI.message("Updating version to #{new_version}")
+    UI.message("Updating version: #{current_version} -> #{new_version}")
 
     set_info_plist_value(
-      path: "moers festival/Config/Info.plist",
+      path: INFO_PLIST_PATHS.first,
       key: "CFBundleShortVersionString",
       value: new_version
     )
   end
 
-  desc "Increment Build Number"
-  lane :increment_build do
-    [
-      "moers festival/Config/Info.plist",
-      "moers festival UITests/Info.plist",
-      "moers festival Tests/Info.plist"
-    ].each do |plist_path|
-      increment_build_number_for_plist(plist_path)
-    end
-  end
+  # ============ Building ============
 
-  # --- Distribution ---
-
-  desc "Upload to TestFlight / ASC"
-  lane :upload do |options|
-    load_asc_api_key()
-
-    require 'base64'
-
-    username = "LambdaDigamma"
-    token = ENV['MATCH_GITHUB_TOKEN']
-    encoded_credentials = Base64.strict_encode64("#{username}:#{token}")
-
-    setup_ci if ENV['CI']
-
-    match(
-      type: 'appstore',
-      app_identifier: APP_IDENTIFIERS,
-      git_basic_authorization: encoded_credentials
-    )
-    gym_options = {
-      scheme: "moers festival"
-    }
+  desc "Build the app for release"
+  lane :build_release do
+    gym_options = { scheme: "moers festival" }
 
     if ENV['CI']
-      gym_options[:cloned_source_packages_path] = "./SourcePackages"
+      spm_path = ENV.fetch("GYM_CLONED_SOURCE_PACKAGES_PATH", "./SourcePackages")
+      gym_options[:cloned_source_packages_path] = spm_path
       gym_options[:skip_package_dependencies_resolution] = true
       gym_options[:disable_package_automatic_updates] = true
     end
 
     gym(**gym_options)
+  end
+
+  # ============ Distribution ============
+
+  desc "Upload build to TestFlight"
+  lane :upload_testflight do
     pilot(skip_waiting_for_build_processing: true)
   end
 
-  desc "Load ASC API Key information"
-  lane :load_asc_api_key do
-    app_store_connect_api_key(
-      key_id: ENV["ASC_KEY_ID"],
-      issuer_id: ENV["ASC_ISSUER_ID"],
-      key_filepath: ENV["ASC_KEY_PATH"],
-      in_house: false
-    )
-  end
-
-  desc "Release a new version of moers festival"
-  lane :release do |options|
-
-    ensure_git_status_clean
-
-    ensure_git_branch(branch: 'master')
-
-    version = options[:version]
-
-    increment_build()
-    increment(version: version)
-
-    match(type: "appstore")
-    gym(scheme: "moers festival")
-    pilot(skip_waiting_for_build_processing: true)
-
-  end
-
-  desc "Take screenshots"
-  lane :capture do
-
-    path = "~/Library/Developer/Xcode/DerivedData/moersfestival"
-    scheme = "moers festival UITests"
-    devices = [
-      "iPhone 17 Pro",
-    ]
-
-    run_tests(
-      build_for_testing: true,
-      code_coverage: false,
-      derived_data_path: path,
-      devices: devices,
-      scheme: scheme
-    )
-
-    capture_screenshots(
-      devices: devices,
-      skip_package_dependencies_resolution: true,
-      disable_package_automatic_updates: true,
-      derived_data_path: path,
-      override_status_bar: true,
-      override_status_bar_arguments: "--time 9:41 --dataNetwork wifi --wifiMode active --wifiBars 3 --cellularMode active --cellularBars 4 --batteryState discharging --batteryLevel 100",
-      headless: false,
-      test_without_building: true
-    )
-  end
-
-  desc "Upload release notes to App Store Connect (skips binary and screenshots)"
+  desc "Upload release notes to App Store Connect"
   lane :upload_release_notes do
-    load_asc_api_key()
+    load_asc_api_key
     deliver(
       skip_binary_upload: true,
       skip_screenshots: true,
@@ -201,56 +170,13 @@ platform :ios do
     )
   end
 
-  desc "Capture and process screenshots only (without upload)"
-  lane :capture_process_screenshots do
-    fastlane_dir = __dir__
-    screenshots_dir = File.join(fastlane_dir, "screenshots")
-    marketing_dir   = File.expand_path("../../../marketing", fastlane_dir)
-    out_dir         = File.join(marketing_dir, "out", "screenshots")
-
-    slot_map = {
-      "01-timetable.png"    => "iPhone 17 Pro-0-events.png",
-      "02-event-detail.png" => "iPhone 17 Pro-1-event_detail.png",
-      "03-info.png"         => "iPhone 17 Pro-2-info.png",
-      "04-map.png"          => "iPhone 17 Pro-3-map.png"
-    }
-
-    # Step 1: Capture raw screenshots from simulator
-    capture()
-
-    # Step 2: Render processed stills via Remotion
-    sh("cd '#{marketing_dir}' && bun run src/scripts/export-stills.ts --locale de-DE && bun run src/scripts/export-stills.ts --locale en-US")
-
-    # Step 3: Replace fastlane screenshots with processed stills
-    ["de-DE", "en-US"].each do |locale|
-      dest = File.join(screenshots_dir, locale)
-
-      Dir.glob(File.join(dest, "*.png")).each { |f| File.delete(f) }
-
-      slot_map.each do |src_name, dest_name|
-        FileUtils.cp(File.join(out_dir, locale, src_name), File.join(dest, dest_name))
-      end
-
-      UI.success("Replaced screenshots for #{locale}")
-    end
-  end
-
-  desc "Full screenshot pipeline: capture, process via Remotion, replace and upload"
-  lane :screenshots_pipeline do
-    ensure_app_version()
-    capture_process_screenshots()
-    upload_screenshots()
-  end
-
   desc "Create a new App Store version if needed"
   lane :ensure_app_version do
-    load_asc_api_key()
-    
+    load_asc_api_key
     version_number = get_info_plist_value(
-      path: "moers festival/Config/Info.plist",
+      path: INFO_PLIST_PATHS.first,
       key: "CFBundleShortVersionString"
     )
-    
     deliver(
       skip_metadata: true,
       skip_screenshots: true,
@@ -263,10 +189,57 @@ platform :ios do
     )
   end
 
-  desc "Upload screenshots"
+  desc "Sign, build, and upload to TestFlight"
+  lane :upload do
+    load_asc_api_key
+    match_appstore
+    build_release
+    upload_testflight
+  end
+
+  desc "Bump version, build, and upload to TestFlight"
+  lane :release do |options|
+    ensure_git_status_clean
+    ensure_git_branch(branch: 'master')
+
+    increment_build
+    increment_version(type: options[:type]) if options[:type]
+
+    upload
+  end
+
+  # ============ Screenshots ============
+
+  desc "Capture raw screenshots from simulator (config from Snapfile)"
+  lane :capture do
+    capture_screenshots
+  end
+
+  desc "Render processed stills via Remotion"
+  lane :render_stills do
+    marketing_dir = File.expand_path("../../../marketing", __dir__)
+    sh("cd '#{marketing_dir}' && bun run src/scripts/export-stills.ts --locale de-DE")
+    sh("cd '#{marketing_dir}' && bun run src/scripts/export-stills.ts --locale en-US")
+  end
+
+  desc "Replace fastlane screenshots with Remotion-rendered stills"
+  lane :replace_screenshots do
+    screenshots_dir = File.join(__dir__, "screenshots")
+    out_dir = File.join(File.expand_path("../../../marketing", __dir__), "out", "screenshots")
+
+    ["de-DE", "en-US"].each do |locale|
+      dest = File.join(screenshots_dir, locale)
+      Dir.glob(File.join(dest, "*.png")).each { |f| File.delete(f) }
+      SCREENSHOT_SLOT_MAP.each do |src_name, dest_name|
+        FileUtils.cp(File.join(out_dir, locale, src_name), File.join(dest, dest_name))
+      end
+      UI.success("Replaced screenshots for #{locale}")
+    end
+  end
+
+  desc "Upload screenshots to App Store Connect"
   lane :upload_screenshots do
-    load_asc_api_key()
-    
+    load_asc_api_key
     deliver(
       skip_metadata: true,
       skip_screenshots: false,
@@ -280,62 +253,65 @@ platform :ios do
     )
   end
 
-  # --------- tvOS ----------
+  desc "Full screenshot pipeline: capture, render, replace, upload"
+  lane :screenshots_pipeline do
+    ensure_app_version
+    capture
+    render_stills
+    replace_screenshots
+    upload_screenshots
+  end
 
+  # ============ tvOS ============
 
-  # --- Utilities
-
-  desc "Increment Version tvOS"
+  desc "Increment tvOS version"
   lane :increment_tvos do |options|
-
-    version = options[:version]
-
-    # Set App plist version
+    UI.user_error!("Version parameter is required") unless options[:version]
     set_info_plist_value(
       path: "moers festival tvOS/Info.plist",
       key: "CFBundleShortVersionString",
-      value: version
+      value: options[:version]
     )
-
-    # Commit plists to git
     git_commit(
-      path: [
-        "moers festival tvOS/Info.plist",
-      ],
-      message: "moers festival tvOS Version #{version} 🚀"
+      path: ["moers festival tvOS/Info.plist"],
+      message: "moers festival tvOS Version #{options[:version]}"
     )
-
   end
 
-  desc "Increment Build Number"
+  desc "Increment tvOS build number"
   lane :increment_build_tvos do
     increment_build_number_for_plist("moers festival tvOS/Info.plist")
   end
 
-  # --- Distribution ---
-
-  desc "Release a new version of moers festival for tvOS"
-  lane :release_tvos do |options|
-
-    ensure_git_status_clean
-
-    ensure_git_branch(branch: 'master')
-
-    version = options[:version]
-
-    increment_build_tvos()
-    increment_tvos(version: version)
-
-    match(type: "appstore", platform: "tvos")
-    gym(scheme: "moers festival tvOS")
-    deliver(platform: "appletvos")
-    # pilot(skip_waiting_for_build_processing: true)
-
+  desc "Sync development certificates for tvOS"
+  lane :match_dev_tvos do
+    match(
+      type: "development",
+      platform: "tvos",
+      force_for_new_devices: true,
+      git_basic_authorization: match_git_auth
+    )
   end
 
-  desc "Match Development Certificate tvOS"
-  lane :match_dev_tvos do |options|
-    match(type: "development", platform: "tvos", force_for_new_devices: true)
+  desc "Release a new version for tvOS"
+  lane :release_tvos do |options|
+    UI.user_error!("Version parameter is required") unless options[:version]
+
+    ensure_git_status_clean
+    ensure_git_branch(branch: 'master')
+
+    increment_build_tvos
+    increment_tvos(version: options[:version])
+
+    match(type: "appstore", platform: "tvos", git_basic_authorization: match_git_auth)
+    gym(scheme: "moers festival tvOS")
+    deliver(platform: "appletvos")
+  end
+
+  # ============ Error Handling ============
+
+  error do |lane, exception|
+    UI.error("Lane '#{lane}' failed with error: #{exception.message}")
   end
 
 end
