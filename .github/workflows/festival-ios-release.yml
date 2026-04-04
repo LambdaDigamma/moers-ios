@@ -84,6 +84,10 @@ jobs:
           cd "ios/moers festival"
           bundle exec fastlane ios ensure_app_version
           bundle exec fastlane ios capture
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY: ${{ secrets.ASC_KEY }}
 
       - name: Fix symlinks and render processed screenshots
         if: github.event.inputs.update_screenshots == 'true'
