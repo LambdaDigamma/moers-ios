@@ -82,9 +82,9 @@ jobs:
         if: github.event.inputs.update_screenshots == 'true'
         run: |
           REPO_ROOT="$(pwd)"
-          FASTLANE_SCREENSHOTS="$REPO_ROOT/ios/moers festival/fastlane/screenshots"
-          ln -sfn "$FASTLANE_SCREENSHOTS/en-US" marketing/public/screenshots
-          ln -sfn "$FASTLANE_SCREENSHOTS" marketing/public/moers-festival
+          SCREENSHOTS="$REPO_ROOT/ios/moers festival/fastlane/screenshots"
+          ln -sfn "$SCREENSHOTS/en-US" marketing/public/screenshots
+          ln -sfn "$SCREENSHOTS" marketing/public/moers-festival
 
       - name: Capture, process and upload screenshots
         if: github.event.inputs.update_screenshots == 'true'
@@ -168,7 +168,7 @@ jobs:
         with:
           commit_message: "🚀 Bump Moers Festival iOS version to ${{ env.ios_version }} (${{ env.ios_build }})"
           tagging_message: "${{ env.tag_name }}"
-          file_pattern: "**/Info.plist **/screenshots/**/*.png"
+          file_pattern: "**/Info.plist **/screenshots/**/*.png **/snapshots/**/*.png"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

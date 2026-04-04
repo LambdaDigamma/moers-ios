@@ -213,18 +213,19 @@ platform :ios do
     sh("cd '#{marketing_dir}' && bun run src/scripts/export-stills.ts --locale en-US")
   end
 
-  desc "Replace fastlane screenshots with Remotion-rendered stills"
+  desc "Copy Remotion-rendered stills into the snapshots folder for upload"
   lane :replace_screenshots do
-    screenshots_dir = File.join(__dir__, "screenshots")
     out_dir = File.join(File.expand_path("../../../marketing", __dir__), "out", "screenshots")
+    dest_dir = File.join(__dir__, "snapshots")
 
     ["de-DE", "en-US"].each do |locale|
-      dest = File.join(screenshots_dir, locale)
+      dest = File.join(dest_dir, locale)
+      FileUtils.mkdir_p(dest)
       Dir.glob(File.join(dest, "*.png")).each { |f| File.delete(f) }
       SCREENSHOT_SLOT_MAP.each do |src_name, dest_name|
         FileUtils.cp(File.join(out_dir, locale, src_name), File.join(dest, dest_name))
       end
-      UI.success("Replaced screenshots for #{locale}")
+      UI.success("Populated snapshots/#{locale} with processed stills")
     end
   end
 
@@ -240,7 +241,8 @@ platform :ios do
       run_precheck_before_submit: false,
       skip_app_version_update: true,
       use_live_version: true,
-      automatic_release: false
+      automatic_release: false,
+      screenshots_path: File.join(__dir__, "snapshots")
     )
   end
 
