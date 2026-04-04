@@ -30,7 +30,7 @@ jobs:
         run: sudo xcode-select -s /Applications/Xcode_26.3.app
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: "true"
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -47,7 +47,7 @@ jobs:
           working-directory: "ios/moers festival"
 
       - name: Cache Swift Packages
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: "ios/moers festival/SourcePackages"
           key: ${{ runner.os }}-festival-spm-${{ hashFiles('ios/**/Package.resolved') }}
@@ -165,7 +165,7 @@ jobs:
 
       - name: Upload iOS build logs on failure
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: festival-ios-build-logs-${{ github.run_id }}
           if-no-files-found: warn
@@ -190,7 +190,7 @@ jobs:
           echo "tag_name=$TAG_NAME" >> $GITHUB_ENV
 
       - name: Commit version bump and tag
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "🚀 Bump Moers Festival iOS version to ${{ env.ios_version }} (${{ env.ios_build }})"
           tagging_message: "${{ env.tag_name }}"
@@ -207,7 +207,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -261,7 +261,7 @@ jobs:
 
       - name: Upload release notes as artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: festival-ios-release-notes
           path: "ios/moers festival/fastlane/metadata/en-US/release_notes.txt"

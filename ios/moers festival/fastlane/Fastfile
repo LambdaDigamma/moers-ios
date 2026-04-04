@@ -136,8 +136,7 @@ platform :ios do
     app_store_connect_api_key(
       key_id: ENV["ASC_KEY_ID"],
       issuer_id: ENV["ASC_ISSUER_ID"],
-      key_content: ENV["ASC_KEY"],
-      is_key_content_base64: true,
+      key_filepath: ENV["ASC_KEY_PATH"],
       in_house: false
     )
   end
@@ -202,13 +201,59 @@ platform :ios do
     )
   end
 
+  desc "Capture and process screenshots only (without upload)"
+  lane :capture_screenshots do
+    fastlane_dir = __dir__
+    screenshots_dir = File.join(fastlane_dir, "screenshots")
+    marketing_dir   = File.expand_path("../../../marketing", fastlane_dir)
+    out_dir         = File.join(marketing_dir, "out", "screenshots")
+
+    slot_map = {
+      "01-timetable.png"    => "iPhone 17 Pro-0-events.png",
+      "02-event-detail.png" => "iPhone 17 Pro-1-event_detail.png",
+      "03-info.png"         => "iPhone 17 Pro-2-info.png",
+      "04-map.png"          => "iPhone 17 Pro-3-map.png"
+    }
+
+    # Step 1: Capture raw screenshots from simulator
+    screenshots()
+
+    # Step 2: Render processed stills via Remotion
+    sh("cd '#{marketing_dir}' && bun run src/scripts/export-stills.ts --locale de-DE && bun run src/scripts/export-stills.ts --locale en-US")
+
+    # Step 3: Replace fastlane screenshots with processed stills
+    ["de-DE", "en-US"].each do |locale|
+      dest = File.join(screenshots_dir, locale)
+
+      Dir.glob(File.join(dest, "*.png")).each { |f| File.delete(f) }
+
+      slot_map.each do |src_name, dest_name|
+        FileUtils.cp(File.join(out_dir, locale, src_name), File.join(dest, dest_name))
+      end
+
+      UI.success("Replaced screenshots for #{locale}")
+    end
+  end
+
+  desc "Full screenshot pipeline: capture, process via Remotion, replace and upload"
+  lane :screenshots_pipeline do
+    capture_screenshots()
+    upload_screenshots()
+  end
+
   desc "Upload screenshots"
   lane :upload_screenshots do
     load_asc_api_key()
+    
     deliver(
       skip_metadata: true,
       skip_screenshots: false,
-      skip_binary_upload: true
+      skip_binary_upload: true,
+      overwrite_screenshots: true,
+      force: true,
+      run_precheck_before_submit: false,
+      skip_app_version_update: false,
+      automatic_release: false
     )
   end
 
