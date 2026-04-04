@@ -218,13 +218,38 @@ platform :ios do
     out_dir = File.join(File.expand_path("../../../marketing", __dir__), "out", "screenshots")
     dest_dir = File.join(__dir__, "snapshots")
 
+    # Map source filenames to destination filenames for each device
+    compositions = {
+      "moers-festival-17-pro" => "iPhone 17 Pro",
+      "moers-festival-17-pro-max" => "iPhone 17 Pro Max"
+    }
+
+    slot_names = {
+      "01" => "events",
+      "02" => "event_detail",
+      "03" => "info",
+      "04" => "map"
+    }
+
     ["de-DE", "en-US"].each do |locale|
       dest = File.join(dest_dir, locale)
       FileUtils.mkdir_p(dest)
       Dir.glob(File.join(dest, "*.png")).each { |f| File.delete(f) }
-      SCREENSHOT_SLOT_MAP.each do |src_name, dest_name|
-        FileUtils.cp(File.join(out_dir, locale, src_name), File.join(dest, dest_name))
+
+      compositions.each do |comp_name, device_name|
+        composition_dir = File.join(out_dir, locale, comp_name)
+        slot_names.each do |src_num, slot_name|
+          src = File.join(composition_dir, "#{src_num}.png")
+          dest_name = "#{device_name}-#{src_num.to_i - 1}-#{slot_name}.png"
+          if File.exist?(src)
+            FileUtils.cp(src, File.join(dest, dest_name))
+            UI.message("Copied #{comp_name}/#{src_num}.png -> #{dest_name}")
+          else
+            UI.warning("Missing: #{src}")
+          end
+        end
       end
+
       UI.success("Populated snapshots/#{locale} with processed stills")
     end
   end
@@ -240,9 +265,8 @@ platform :ios do
       force: true,
       run_precheck_before_submit: false,
       skip_app_version_update: true,
-      use_live_version: true,
       automatic_release: false,
-      screenshots_path: File.join(__dir__, "snapshots")
+      screenshots_path: File.expand_path("snapshots", FastlaneCore::FastlaneFolder.path)
     )
   end
 

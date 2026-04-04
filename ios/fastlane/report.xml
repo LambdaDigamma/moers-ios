@@ -5,22 +5,7 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000197">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="1: register_devices" time="3.036452">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="2: sync_code_signing" time="17.760713">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="3: sync_code_signing" time="5.757229">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000218">
         
       </testcase>
     
