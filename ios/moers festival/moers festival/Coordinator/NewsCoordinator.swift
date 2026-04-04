@@ -23,6 +23,8 @@ public class NewsCoordinator: Coordinator {
     @LazyInjected(\.pageRepository) private var repository
     
     public var navigationController: CoordinatedNavigationController
+    public var rootViewController: UIViewController { navigationController }
+    public var tabBarItem: UITabBarItem? { rootViewController.tabBarItem }
     private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Setup

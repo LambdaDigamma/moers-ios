@@ -16,6 +16,8 @@ import SwiftUI
 public class OtherCoordinator: Coordinator {
     
     public var navigationController: CoordinatedNavigationController
+    public var rootViewController: UIViewController { navigationController }
+    public var tabBarItem: UITabBarItem? { rootViewController.tabBarItem }
     
     public init(navigationController: CoordinatedNavigationController = CoordinatedNavigationController()) {
         

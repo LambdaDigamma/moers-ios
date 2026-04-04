@@ -40,6 +40,10 @@ public struct EventDetailInformationRow: View {
         self.artists = artists
         self.isOpenEnd = isOpenEnd
     }
+
+    private var sanitizedArtists: [String] {
+        artists.filter { !$0.isEmptyOrWhitespace }
+    }
     
     private var duration: String {
         
@@ -111,8 +115,11 @@ public struct EventDetailInformationRow: View {
             
             Label {
                 
-                if !artists.isEmpty {
-                    Text(ListFormatter.localizedString(byJoining: artists))
+                if sanitizedArtists.isEmpty {
+                    Text("Wird noch angekündigt")
+                        .foregroundColor(.secondary)
+                } else {
+                    Text(ListFormatter.localizedString(byJoining: sanitizedArtists))
                         .lineLimit(2)
                 }
                 

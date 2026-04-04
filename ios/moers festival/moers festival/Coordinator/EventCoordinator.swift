@@ -25,9 +25,11 @@ public class EventCoordinator: SharedCoordinator {
     private let timetable: TimetableViewController
     private let adaptiveSplitViewController: AdaptiveTabSplitViewController?
 
-    public var rootViewController: UIViewController {
+    public override var rootViewController: UIViewController {
         adaptiveSplitViewController ?? navigationController
     }
+    
+    public override var tabBarItem: UITabBarItem? { rootViewController.tabBarItem }
     
     public override init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController()

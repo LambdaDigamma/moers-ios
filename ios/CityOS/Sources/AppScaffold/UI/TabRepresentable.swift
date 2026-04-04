@@ -21,16 +21,6 @@ public protocol TabRepresentable: AnyObject {
 
 @MainActor
 @available(iOS 14.0, *)
-public extension TabRepresentable where Self: Coordinator {
-    
-    var tabBarItem: UITabBarItem? {
-        return navigationController.tabBarItem
-    }
-    
-}
-
-@MainActor
-@available(iOS 14.0, *)
 public final class ViewControllerTab: TabRepresentable {
     
     public let viewController: UIViewController

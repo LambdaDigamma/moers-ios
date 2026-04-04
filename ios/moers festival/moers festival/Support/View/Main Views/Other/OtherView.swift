@@ -31,10 +31,17 @@ class OtherView: UIView {
     // MARK: - UI
     
     lazy var collectionView: UICollectionView = {
-        var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-        configuration.headerMode = .supplementary
-        let layout = UICollectionViewCompositionalLayout.list(using: configuration)
-        layout.configuration.contentInsetsReference = .readableContent
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
+            var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+            configuration.headerMode = sectionIndex == 0 ? .none : .supplementary
+
+            let section = NSCollectionLayoutSection.list(
+                using: configuration,
+                layoutEnvironment: layoutEnvironment
+            )
+            section.contentInsetsReference = .readableContent
+            return section
+        }
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .systemBackground

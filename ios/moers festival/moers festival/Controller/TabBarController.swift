@@ -78,13 +78,13 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
         self.configureDisplayMode()
         
         self.viewControllers = [
-            news.navigationController,
+            news.rootViewController,
 //            live.navigationController,
             map.rootViewController,
             userSchedule.rootViewController,
 //            tour.navigationController,
             event.rootViewController,
-            other.navigationController
+            other.rootViewController
         ]
         
         MMUIConfig.markdownConverter = { text in
@@ -133,7 +133,7 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
             
         } else if shortcutItem.type == AppShortcuts.news {
             
-            selectedViewController = news.navigationController
+            selectedViewController = news.rootViewController
             
         } else {
             fatalError("Unknown shortcut item type: \(shortcutItem.type).")
@@ -184,6 +184,11 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
             showWebpage(url: webUrl)
         }
         
+    }
+
+    public func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        dismissMapPresentationIfNeeded(beforeSelecting: viewController)
+        return true
     }
     
     // MARK: - Private Methods -
@@ -377,6 +382,16 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
             self.other.navigationController.pushViewController(fallbackController, animated: true)
         }
         
+    }
+
+    private func dismissMapPresentationIfNeeded(beforeSelecting viewController: UIViewController) {
+        guard selectedViewController === map.rootViewController,
+              viewController !== map.rootViewController,
+              presentedViewController != nil else {
+            return
+        }
+
+        dismiss(animated: false)
     }
     
 }

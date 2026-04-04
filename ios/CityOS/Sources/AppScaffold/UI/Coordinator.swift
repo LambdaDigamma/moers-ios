@@ -14,15 +14,7 @@ import UIKit
 @available(iOS 14.0, *)
 public protocol Coordinator: AnyObject, TabRepresentable {
     
-    var navigationController: CoordinatedNavigationController { get set }
-    
-}
-
-public extension Coordinator {
-    
-    var rootViewController: UIViewController {
-        return navigationController
-    }
+    var rootViewController: UIViewController { get }
     
 }
 

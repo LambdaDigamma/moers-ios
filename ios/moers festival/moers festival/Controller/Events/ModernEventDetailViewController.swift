@@ -170,7 +170,7 @@ public class ModernEventDetailViewController: DefaultHostingController {
             
             let viewController = SFSafariViewController(url: url)
             
-            self.coordinator?.navigationController.present(viewController, animated: true)
+            self.coordinator?.rootViewController.present(viewController, animated: true)
             
         }
         .store(in: &cancellables)

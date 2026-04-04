@@ -333,18 +333,26 @@ extension Coordinator {
                 let navigationController = UINavigationController(rootViewController: fallbackController)
                 navigationController.modalPresentationStyle = .formSheet
 
-                var presenter: UIViewController = self.navigationController
+                var presenter: UIViewController = self.rootViewController
                 while let presented = presenter.presentedViewController {
                     presenter = presented
                 }
 
                 presenter.present(navigationController, animated: true)
             } else {
-                self.navigationController.pushViewController(fallbackController, animated: true)
+                self.resolvedNavigationController()?.pushViewController(fallbackController, animated: true)
             }
             
         }
         
+    }
+    
+    private func resolvedNavigationController() -> UINavigationController? {
+        if let navigationController = rootViewController as? UINavigationController {
+            return navigationController
+        }
+        
+        return rootViewController.navigationController
     }
     
 }

@@ -15,9 +15,11 @@ class UserScheduleCoordinator: SharedCoordinator {
     private let userScheduleViewController: UserScheduleViewController
     private let adaptiveSplitViewController: AdaptiveTabSplitViewController?
 
-    var rootViewController: UIViewController {
+    public override var rootViewController: UIViewController {
         adaptiveSplitViewController ?? navigationController
     }
+    
+    public override var tabBarItem: UITabBarItem? { rootViewController.tabBarItem }
 
     override init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController()

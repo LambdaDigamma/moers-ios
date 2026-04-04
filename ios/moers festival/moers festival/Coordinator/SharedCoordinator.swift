@@ -15,6 +15,10 @@ public class SharedCoordinator: Coordinator {
     
     public var navigationController: CoordinatedNavigationController
     
+    public var rootViewController: UIViewController { navigationController }
+    
+    public var tabBarItem: UITabBarItem? { rootViewController.tabBarItem }
+    
     public var currentModalNavigationController: UINavigationController?
     
     public init(navigationController: CoordinatedNavigationController = .init()) {

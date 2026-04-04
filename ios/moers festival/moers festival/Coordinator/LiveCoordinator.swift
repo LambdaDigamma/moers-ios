@@ -12,6 +12,8 @@ import AppScaffold
 public class LiveCoordinator: Coordinator {
     
     public var navigationController: CoordinatedNavigationController
+    public var rootViewController: UIViewController { navigationController }
+    public var tabBarItem: UITabBarItem? { rootViewController.tabBarItem }
     
     public init(navigationController: CoordinatedNavigationController = CoordinatedNavigationController()) {
     

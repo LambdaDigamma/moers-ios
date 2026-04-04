@@ -9,17 +9,44 @@
 import UIKit
 import SwiftUI
 
-class AboutController: UIHostingController<About> {
-    
+@MainActor
+class AboutController: UIViewController {
+
+    private let hostingView: _UIHostingView<About>
+
     init(coordinator: OtherCoordinator) {
-        super.init(rootView: About(
+        self.hostingView = _UIHostingView(rootView: About(
             onOpenReview: coordinator.openReview,
             onOpenDeveloperLink: coordinator.openDeveloperLink(of:)
         ))
+        super.init(nibName: nil, bundle: nil)
+        self.title = String(localized: "About")
+        self.navigationItem.largeTitleDisplayMode = .always
     }
-    
-    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
+
+    required dynamic init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.backgroundColor = .systemBackground
+
+        hostingView.translatesAutoresizingMaskIntoConstraints = false
+        hostingView.backgroundColor = .clear
+
+        view.addSubview(hostingView)
+
+        let readable = view.readableContentGuide
+        let safeArea = view.safeAreaLayoutGuide
+
+        NSLayoutConstraint.activate([
+            hostingView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            hostingView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            hostingView.leadingAnchor.constraint(equalTo: readable.leadingAnchor),
+            hostingView.trailingAnchor.constraint(equalTo: readable.trailingAnchor)
+        ])
+    }
+
 }

@@ -19,6 +19,10 @@ public class MapCoordintor: Coordinator {
     
     public var navigationController: CoordinatedNavigationController
     
+    public var rootViewController: UIViewController { navigationController }
+    
+    public var tabBarItem: UITabBarItem? { rootViewController.tabBarItem }
+    
     public var mainViewController: LegacyMainViewController?
     
     @MainActor
