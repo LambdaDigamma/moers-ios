@@ -69,7 +69,8 @@ public class SharedCoordinator: Coordinator {
         
         let usedNavigationController = currentModalNavigationController ?? navigationController
         
-        let viewController = VenueDetailController(placeID: placeID)
+        let presentationContext = VenueDetailPresentationContext.current(for: usedNavigationController.traitCollection)
+        let viewController = VenueDetailController(placeID: placeID, presentationContext: presentationContext)
         viewController.coordinator = self
         
         usedNavigationController.pushViewController(viewController, animated: true)
@@ -78,7 +79,8 @@ public class SharedCoordinator: Coordinator {
     
     public func showPlaceDetail(placeID: Place.ID, showCloseButton: Bool = true) {
         
-        let viewController = VenueDetailController(placeID: placeID)
+        let presentationContext = VenueDetailPresentationContext.current(for: navigationController.traitCollection)
+        let viewController = VenueDetailController(placeID: placeID, presentationContext: presentationContext)
         viewController.coordinator = self
         viewController.modalPresentationStyle = .formSheet
         viewController.showCloseButton = showCloseButton

@@ -38,8 +38,8 @@ class OtherViewController: UIViewController {
         
         self.viewModel = OtherViewModel(
             hero: OtherHeroContent(
-                title: "Infos für deinen Festivalbesuch",
-                subtitle: "Alles Wichtige zu Tickets, Festivaldorf, Volunteers und weiteren Angeboten rund um das Festival.",
+                title: String.localized("Info for your festival visit"),
+                subtitle: String.localized("Everything you need to know about tickets, the festival village, volunteers, and other festival-related services."),
                 symbolName: "info.circle.fill",
                 iconStyle: .indigo
             ),

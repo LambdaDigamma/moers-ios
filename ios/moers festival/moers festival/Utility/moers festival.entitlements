@@ -8,5 +8,9 @@
 	<array>
 		<string>applinks:moers-festival.de</string>
 	</array>
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.de.okfn.niederrhein.moers-festival</string>
+	</array>
 </dict>
 </plist>

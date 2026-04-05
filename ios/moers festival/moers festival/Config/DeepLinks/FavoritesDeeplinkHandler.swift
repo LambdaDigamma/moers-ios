@@ -19,7 +19,8 @@ final class FavoritesDeeplinkHandler: DeeplinkHandlerProtocol {
     // MARK: - DeeplinkHandlerProtocol
     
     func canOpenURL(_ url: URL) -> Bool {
-        return url.absoluteString.hasPrefix("moersfestival://favorites")
+        return url.scheme == "moersfestival"
+            && normalizedComponents(for: url).first == "favorites"
     }
     
     func openURL(_ url: URL) {
@@ -29,5 +30,17 @@ final class FavoritesDeeplinkHandler: DeeplinkHandlerProtocol {
         
         rootViewController?.openUserSchedule()
         
+    }
+    
+    private func normalizedComponents(for url: URL) -> [String] {
+        var components: [String] = []
+        
+        if let host = url.host, host.isNotEmptyOrWhitespace {
+            components.append(host)
+        }
+        
+        components.append(contentsOf: url.pathComponents.filter { $0 != "/" })
+        
+        return components
     }
 }

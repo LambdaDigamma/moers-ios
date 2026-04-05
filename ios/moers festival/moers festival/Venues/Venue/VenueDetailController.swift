@@ -16,6 +16,15 @@ import Combine
 import SafariServices
 import Factory
 
+public enum VenueDetailPresentationContext: Equatable {
+    case phoneFullScreen
+    case ipadDetail
+    
+    public static func current(for traitCollection: UITraitCollection) -> Self {
+        traitCollection.userInterfaceIdiom == .pad ? .ipadDetail : .phoneFullScreen
+    }
+}
+
 public class VenueDetailController: DefaultHostingController {
     
     @LazyInjected(\.locationEventService) var service
@@ -26,14 +35,19 @@ public class VenueDetailController: DefaultHostingController {
     
     private let viewModel: VenueDetailViewModel
     private let placeID: Place.ID
+    private let presentationContext: VenueDetailPresentationContext
     private var cancellables = Set<AnyCancellable>()
     
     private let actionTransmitter: ActionTransmitter = .init()
     
-    public init(placeID: Place.ID) {
+    public init(
+        placeID: Place.ID,
+        presentationContext: VenueDetailPresentationContext = .phoneFullScreen
+    ) {
         
         self.viewModel = VenueDetailViewModel(placeID: placeID)
         self.placeID = placeID
+        self.presentationContext = presentationContext
         super.init()
         
     }
@@ -45,6 +59,7 @@ public class VenueDetailController: DefaultHostingController {
     public override func hostView() -> AnyView {
         VenueDetailScreen(
             viewModel: viewModel,
+            presentationContext: presentationContext,
             actionTransmitter: actionTransmitter,
             onSelectEvent: onSelectEvent(eventID:)
         )
@@ -86,6 +101,12 @@ public class VenueDetailController: DefaultHostingController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if presentationContext == .ipadDetail {
+            view.backgroundColor = .clear
+            view.subviews.first?.backgroundColor = .clear
+        }
+        
         self.configureNavigationBar()
         self.setupListeners()
     }
@@ -115,6 +136,7 @@ public class VenueDetailController: DefaultHostingController {
 //                        EventListItemViewModel(eventID: $0.id, title: $0.name, startDate: $0.startDate, endDate: $0.endDate, location: nil)
 //                    }
                     self.viewModel.pageID = place.pageID
+                    self.viewModel.refreshMapKitEnrichment()
                 }
             } catch {
                 print(error)

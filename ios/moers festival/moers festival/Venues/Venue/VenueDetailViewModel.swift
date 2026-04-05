@@ -11,6 +11,8 @@ import SwiftUI
 import MMEvents
 import Factory
 import Combine
+import MapKit
+import CoreLocation
 
 public class VenueDetailViewModel: StandardViewModel {
     
@@ -25,6 +27,8 @@ public class VenueDetailViewModel: StandardViewModel {
     @Published var point: Point?
     
     @Published var pageID: Page.ID?
+    
+    @Published var mapItem: MKMapItem?
     
     @Published var events: [EventListItemViewModel] = [
         Event.stub(withID: 3)
@@ -52,6 +56,8 @@ public class VenueDetailViewModel: StandardViewModel {
     }
     
     private let eventRepository: EventRepository
+    private var enrichmentTask: Task<Void, Never>?
+    private var enrichmentSignature: String?
     
     public init(placeID: Place.ID) {
         self.placeID = placeID
@@ -60,6 +66,10 @@ public class VenueDetailViewModel: StandardViewModel {
         self.eventRepository = Container.shared.eventRepository()
         super.init()
         self.setupListener()
+    }
+    
+    deinit {
+        enrichmentTask?.cancel()
     }
     
     public func setupListener() {
@@ -91,4 +101,131 @@ public class VenueDetailViewModel: StandardViewModel {
         
     }
     
+    func refreshMapKitEnrichment() {
+        
+        guard let point, point.latitude != 0, point.longitude != 0 else {
+            mapItem = nil
+            enrichmentSignature = nil
+            enrichmentTask?.cancel()
+            return
+        }
+        
+        let venueName = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        let addressLine1 = addressLine1?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let addressLine2 = addressLine2?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let signature = [
+            venueName,
+            addressLine1 ?? "",
+            addressLine2 ?? "",
+            "\(point.latitude)",
+            "\(point.longitude)"
+        ].joined(separator: "|")
+        
+        guard signature != enrichmentSignature else { return }
+        
+        enrichmentSignature = signature
+        enrichmentTask?.cancel()
+        
+        let coordinate = point.toCoordinate()
+        
+        enrichmentTask = Task { [weak self] in
+            let mapItem = await Self.resolveMapItem(
+                venueName: venueName,
+                addressLine1: addressLine1,
+                addressLine2: addressLine2,
+                coordinate: coordinate
+            )
+            
+            guard !Task.isCancelled else { return }
+            
+            await MainActor.run {
+                guard let self else { return }
+                self.mapItem = mapItem
+            }
+        }
+        
+    }
+    
+    private static func resolveMapItem(
+        venueName: String,
+        addressLine1: String?,
+        addressLine2: String?,
+        coordinate: CLLocationCoordinate2D
+    ) async -> MKMapItem? {
+        
+        let query = [
+            venueName,
+            addressLine1,
+            addressLine2
+        ]
+        .compactMap { $0?.nilIfEmpty }
+        .joined(separator: ", ")
+        
+        guard !query.isEmpty else { return nil }
+        
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = query
+        request.region = MKCoordinateRegion(
+            center: coordinate,
+            latitudinalMeters: 600,
+            longitudinalMeters: 600
+        )
+        
+        do {
+            let response = try await MKLocalSearch(request: request).start()
+            return response.mapItems.max { lhs, rhs in
+                score(for: lhs, venueName: venueName, coordinate: coordinate) <
+                score(for: rhs, venueName: venueName, coordinate: coordinate)
+            }
+        } catch {
+            return nil
+        }
+        
+    }
+    
+    private static func score(
+        for mapItem: MKMapItem,
+        venueName: String,
+        coordinate: CLLocationCoordinate2D
+    ) -> Double {
+        
+        let normalizedVenueName = venueName.normalizedForVenueLookup
+        let normalizedCandidateName = (mapItem.name ?? "").normalizedForVenueLookup
+        
+        var score: Double = 0
+        
+        if normalizedCandidateName == normalizedVenueName {
+            score += 200
+        } else if normalizedCandidateName.contains(normalizedVenueName) || normalizedVenueName.contains(normalizedCandidateName) {
+            score += 120
+        }
+        
+        let venueLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let candidateLocation = CLLocation(
+            latitude: mapItem.placemark.coordinate.latitude,
+            longitude: mapItem.placemark.coordinate.longitude
+        )
+        
+        let distancePenalty = venueLocation.distance(from: candidateLocation) / 10
+        
+        return score - distancePenalty
+    }
+    
+}
+
+private extension Optional where Wrapped == String {
+    var nilIfEmpty: String? {
+        guard let value = self?.trimmingCharacters(in: .whitespacesAndNewlines), !value.isEmpty else {
+            return nil
+        }
+        
+        return value
+    }
+}
+
+private extension String {
+    var normalizedForVenueLookup: String {
+        folding(options: [.caseInsensitive, .diacriticInsensitive], locale: .current)
+            .replacingOccurrences(of: "[^a-z0-9]+", with: "", options: .regularExpression)
+    }
 }

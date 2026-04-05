@@ -39,6 +39,7 @@ class NewMapDrawerViewController: UIViewController {
     private var allPlaces: [Place] = []
     private var booths: [DorfFeature] = []
     private var filteredBooths: [DorfFeature] = []
+    private var isExpandedContentVisible = true
     
     // MARK: - UI Elements
     
@@ -82,11 +83,9 @@ class NewMapDrawerViewController: UIViewController {
         view.addSubview(searchBar)
         view.addSubview(collectionView)
         
-        if #available(iOS 26.0, *) {
-            
-        } else {
-            self.view.backgroundColor = UIColor.systemBackground
-        }
+        view.backgroundColor = .clear
+        collectionView.backgroundColor = .clear
+        collectionView.isOpaque = false
         
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tabBarController?.tabBar.bounds.height ?? 50, right: 0)
         
@@ -110,6 +109,31 @@ class NewMapDrawerViewController: UIViewController {
     
     func setCollectionViewScrollInteraction(isEnabled: Bool) {
         collectionView.isScrollEnabled = isEnabled
+    }
+    
+    func setExpandedContentVisible(isVisible: Bool, animated: Bool) {
+        isExpandedContentVisible = isVisible
+        
+        let updates = {
+            self.collectionView.alpha = isVisible ? 1 : 0
+        }
+        
+        if animated {
+            if isVisible {
+                collectionView.isHidden = false
+            }
+            
+            UIView.animate(withDuration: 0.2, animations: updates) { _ in
+                self.collectionView.isHidden = !isVisible
+            }
+        } else {
+            updates()
+            collectionView.isHidden = !isVisible
+        }
+    }
+    
+    func resignSearch() {
+        searchBar.resignFirstResponder()
     }
     
     // MARK: - Data
@@ -186,6 +210,7 @@ class NewMapDrawerViewController: UIViewController {
             
             var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
             configuration.headerMode = .supplementary
+            configuration.backgroundColor = .clear
             
             let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
             
@@ -207,12 +232,14 @@ class NewMapDrawerViewController: UIViewController {
     
     private func setupDataSource() {
         
-        let venueCellRegistration = UICollectionView.CellRegistration<UICollectionViewCell, FestivalPlaceRowUi> { cell, indexPath, item in
+        let venueCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, FestivalPlaceRowUi> { cell, indexPath, item in
             
             cell.contentConfiguration = UIHostingConfiguration {
                 FestivalPlaceRow(place: item)
             }
-            cell.backgroundConfiguration = .listPlainCell()
+            cell.backgroundColor = .clear
+            cell.contentView.backgroundColor = .clear
+            cell.backgroundConfiguration = .clear()
         }
         
         let headerRegistration = UICollectionView.SupplementaryRegistration<UICollectionViewListCell>(
@@ -231,9 +258,12 @@ class NewMapDrawerViewController: UIViewController {
             }
             
             headerView.contentConfiguration = configuration
+            headerView.backgroundColor = .clear
+            headerView.contentView.backgroundColor = .clear
+            headerView.backgroundConfiguration = .clear()
         }
         
-        let boothCellRegistration = UICollectionView.CellRegistration<UICollectionViewCell, DorfFeature> { cell, indexPath, item in
+        let boothCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, DorfFeature> { cell, indexPath, item in
             
             cell.contentConfiguration = UIHostingConfiguration {
                 BoothRow(booth: BoothRowUi(
@@ -242,7 +272,9 @@ class NewMapDrawerViewController: UIViewController {
                     isFood: item.properties.isFood
                 ))
             }
-            cell.backgroundConfiguration = .listPlainCell()
+            cell.backgroundColor = .clear
+            cell.contentView.backgroundColor = .clear
+            cell.backgroundConfiguration = .clear()
         }
         
         dataSource = UICollectionViewDiffableDataSource<DrawerFestivalMapSection, DrawerItem>(
@@ -269,6 +301,8 @@ class NewMapDrawerViewController: UIViewController {
             
             return nil
         }
+        
+        setExpandedContentVisible(isVisible: isExpandedContentVisible, animated: false)
     }
     
 }

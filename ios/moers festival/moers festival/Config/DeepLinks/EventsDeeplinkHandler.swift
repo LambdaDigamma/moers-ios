@@ -19,7 +19,8 @@ final class EventsDeeplinkHandler: DeeplinkHandlerProtocol {
     // MARK: - DeeplinkHandlerProtocol
     
     func canOpenURL(_ url: URL) -> Bool {
-        return url.absoluteString.hasPrefix("moersfestival://events")
+        return url.scheme == "moersfestival"
+            && normalizedComponents(for: url).first == "events"
     }
     
     func openURL(_ url: URL) {
@@ -27,10 +28,9 @@ final class EventsDeeplinkHandler: DeeplinkHandlerProtocol {
             return
         }
         
-        var pathComponents = url.pathComponents
-        pathComponents.removeFirst()
+        let pathComponents = normalizedComponents(for: url)
         
-        if let firstPath = pathComponents.first, firstPath.isNotEmptyOrWhitespace {
+        if let firstPath = pathComponents.dropFirst().first, firstPath.isNotEmptyOrWhitespace {
             
             let eventID = Int(firstPath)
             
@@ -43,5 +43,17 @@ final class EventsDeeplinkHandler: DeeplinkHandlerProtocol {
         
         rootViewController?.openEvents()
         
+    }
+    
+    private func normalizedComponents(for url: URL) -> [String] {
+        var components: [String] = []
+        
+        if let host = url.host, host.isNotEmptyOrWhitespace {
+            components.append(host)
+        }
+        
+        components.append(contentsOf: url.pathComponents.filter { $0 != "/" })
+        
+        return components
     }
 }
