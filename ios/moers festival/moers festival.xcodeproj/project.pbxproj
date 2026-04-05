@@ -26,12 +26,9 @@
 		DF5975C82F01E08D00512386 /* NewsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C72F01E08D00512386 /* NewsFeature */; };
 		DF62C61A2247B98E008425EC /* ContentDrawer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF62C6192247A349008425EC /* ContentDrawer.storyboard */; };
 		DF68FFF3282AEDD500C63690 /* FGD2022 in Resources */ = {isa = PBXBuildFile; fileRef = DF68FFF2282AEDD500C63690 /* FGD2022 */; };
-		DF7B18782F704D6C00D88E92 /* WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DFA90CB929E945D600FF8366 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DF7FB53527F672E300F718F2 /* StateViewController in Frameworks */ = {isa = PBXBuildFile; productRef = DF7FB53427F672E300F718F2 /* StateViewController */; };
 		DF82B76F2BED3750005F41F2 /* FGD2024 in Resources */ = {isa = PBXBuildFile; fileRef = DF82B76E2BED3750005F41F2 /* FGD2024 */; };
 		DF9B4E6427F668A200817DA3 /* INSPhotoGallery in Frameworks */ = {isa = PBXBuildFile; productRef = DF9B4E6327F668A200817DA3 /* INSPhotoGallery */; };
-		DFA90CBB29E945D600FF8366 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA90CBA29E945D600FF8366 /* WidgetKit.framework */; };
-		DFA90CBD29E945D600FF8366 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA90CBC29E945D600FF8366 /* SwiftUI.framework */; };
 		DFADF9562829915E00A15FE1 /* Moers.gpx in Resources */ = {isa = PBXBuildFile; fileRef = DFADF9552829915E00A15FE1 /* Moers.gpx */; };
 		DFADF9582829AB9000A15FE1 /* map.geojson in Resources */ = {isa = PBXBuildFile; fileRef = DFADF9572829AB9000A15FE1 /* map.geojson */; };
 		DFADF95C2829C13300A15FE1 /* intermediate.geojson in Resources */ = {isa = PBXBuildFile; fileRef = DFADF95B2829C13300A15FE1 /* intermediate.geojson */; };
@@ -44,13 +41,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DF7B18792F704D6C00D88E92 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DF35B37E201DC72900118FD1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DFA90CB829E945D600FF8366;
-			remoteInfo = WidgetsExtension;
-		};
 		DF87B2F7201DFB2700E1B97C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DF35B37E201DC72900118FD1 /* Project object */;
@@ -87,7 +77,6 @@
 			dstPath = "";
 			dstSubfolder = PlugIns;
 			files = (
-				DF7B18782F704D6C00D88E92 /* WidgetsExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 		};
@@ -137,7 +126,6 @@
 		DF87B2F2201DFB2700E1B97C /* moers festival UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moers festival UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF92FBFF257BF9CE00BE1DA5 /* FirebaseABTesting.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseABTesting.xcframework; path = Frameworks/FirebaseABTesting.xcframework; sourceTree = "<group>"; };
 		DF92FC00257BF9CE00BE1DA5 /* FirebaseRemoteConfig.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseRemoteConfig.xcframework; path = Frameworks/FirebaseRemoteConfig.xcframework; sourceTree = "<group>"; };
-		DFA90CB929E945D600FF8366 /* WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFA90CBA29E945D600FF8366 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		DFA90CBC29E945D600FF8366 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		DFADF9552829915E00A15FE1 /* Moers.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Moers.gpx; sourceTree = "<group>"; };
@@ -186,20 +174,6 @@
 				Info.plist,
 			);
 			target = DF40D6C2247E73D40054199C /* moers festival tvOS */;
-		};
-		DF5979932F0325C000512386 /* Exceptions for "Widgets" folder in "moers festival" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Widgets.intentdefinition,
-			);
-			target = DF35B385201DC72900118FD1 /* moers festival */;
-		};
-		DF5979942F0325C000512386 /* Exceptions for "Widgets" folder in "WidgetsExtension" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = DFA90CB829E945D600FF8366 /* WidgetsExtension */;
 		};
 		DF78E39C2F032EDD00E29277 /* Exceptions for "moers festival UITests" folder in "moers festival UITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -332,15 +306,6 @@
 			path = "moers festival Watch Watch AppUITests";
 			sourceTree = "<group>";
 		};
-		DF5979832F0325C000512386 /* Widgets */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				DF5979932F0325C000512386 /* Exceptions for "Widgets" folder in "moers festival" target */,
-				DF5979942F0325C000512386 /* Exceptions for "Widgets" folder in "WidgetsExtension" target */,
-			);
-			path = Widgets;
-			sourceTree = "<group>";
-		};
 		DF78E3942F032EDD00E29277 /* moers festival UITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -401,13 +366,6 @@
 			files = (
 			);
 		};
-		DFA90CB629E945D600FF8366 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			files = (
-				DFA90CBD29E945D600FF8366 /* SwiftUI.framework in Frameworks */,
-				DFA90CBB29E945D600FF8366 /* WidgetKit.framework in Frameworks */,
-			);
-		};
 		DFB15F0822AF082D00441FB5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
@@ -447,7 +405,6 @@
 				DF5979442F03257400512386 /* moers festival Watch App */,
 				DF59794B2F03257800512386 /* moers festival Watch Watch AppTests */,
 				DF59794F2F03257C00512386 /* moers festival Watch Watch AppUITests */,
-				DF5979832F0325C000512386 /* Widgets */,
 				DF35B387201DC72900118FD1 /* Products */,
 				DF9446D2201E870A00C85C64 /* Frameworks */,
 			);
@@ -463,7 +420,6 @@
 				DFD4561429E93A3A00F26F37 /* moers festival.app */,
 				DFD4562329E93A3B00F26F37 /* moers festival Watch Watch AppTests.xctest */,
 				DFD4562D29E93A3C00F26F37 /* moers festival Watch Watch AppUITests.xctest */,
-				DFA90CB929E945D600FF8366 /* WidgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -564,9 +520,6 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-				DF7B187A2F704D6C00D88E92 /* PBXTargetDependency */,
-			);
 			fileSystemSynchronizedGroups = (
 				DF1E14152DF0B49B007015DC /* FGD2025 */,
 				DF5975E92F01E4F400512386 /* Config */,
@@ -651,24 +604,6 @@
 			productName = "moers festival UITests";
 			productReference = DF87B2F2201DFB2700E1B97C /* moers festival UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		DFA90CB829E945D600FF8366 /* WidgetsExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DFA90CD529E945D700FF8366 /* Build configuration list for PBXNativeTarget "WidgetsExtension" */;
-			buildPhases = (
-				DFA90CB529E945D600FF8366 /* Sources */,
-				DFA90CB629E945D600FF8366 /* Frameworks */,
-				DFA90CB729E945D600FF8366 /* Resources */,
-			);
-			buildRules = (
-			);
-			fileSystemSynchronizedGroups = (
-				DF5979832F0325C000512386 /* Widgets */,
-			);
-			name = WidgetsExtension;
-			productName = WidgetsExtension;
-			productReference = DFA90CB929E945D600FF8366 /* WidgetsExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 		DFB15F0A22AF082D00441FB5 /* moers festival Tests */ = {
 			isa = PBXNativeTarget;
@@ -778,9 +713,6 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = DF35B385201DC72900118FD1;
 					};
-					DFA90CB829E945D600FF8366 = {
-						CreatedOnToolsVersion = 14.3;
-					};
 					DFB15F0A22AF082D00441FB5 = {
 						CreatedOnToolsVersion = 10.2.1;
 						ProvisioningStyle = Automatic;
@@ -831,7 +763,6 @@
 				DFD4561329E93A3A00F26F37 /* moers festival Watch App */,
 				DFD4562229E93A3B00F26F37 /* moers festival Watch Watch AppTests */,
 				DFD4562C29E93A3C00F26F37 /* moers festival Watch Watch AppUITests */,
-				DFA90CB829E945D600FF8366 /* WidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -860,11 +791,6 @@
 			);
 		};
 		DF87B2F0201DFB2700E1B97C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			files = (
-			);
-		};
-		DFA90CB729E945D600FF8366 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -910,11 +836,6 @@
 			files = (
 			);
 		};
-		DFA90CB529E945D600FF8366 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			files = (
-			);
-		};
 		DFB15F0722AF082D00441FB5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
@@ -938,11 +859,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DF7B187A2F704D6C00D88E92 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DFA90CB829E945D600FF8366 /* WidgetsExtension */;
-			targetProxy = DF7B18792F704D6C00D88E92 /* PBXContainerItemProxy */;
-		};
 		DF87B2F8201DFB2700E1B97C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DF35B385201DC72900118FD1 /* moers festival */;
@@ -1120,169 +1036,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 14.0;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		DFA90CD129E945D700FF8366 /* Debug configuration for PBXNativeTarget "WidgetsExtension" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_STYLE = Manual;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 77N8D7LGCZ;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Widgets/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Widgets;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Code for Niederrhein. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival.Widgets";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development de.okfn.niederrhein.moers-festival.Widgets";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		DFA90CD429E945D700FF8366 /* Release configuration for PBXNativeTarget "WidgetsExtension" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 77N8D7LGCZ;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Widgets/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Widgets;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Code for Niederrhein. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival.Widgets";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore de.okfn.niederrhein.moers-festival.Widgets";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2191,14 +1944,6 @@
 			buildConfigurations = (
 				DFB15EFB22AE625500441FB5 /* Debug configuration for PBXNativeTarget "moers festival UITests" */,
 				DFB15F0122AE62F300441FB5 /* Release configuration for PBXNativeTarget "moers festival UITests" */,
-			);
-			defaultConfigurationName = Release;
-		};
-		DFA90CD529E945D700FF8366 /* Build configuration list for PBXNativeTarget "WidgetsExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DFA90CD129E945D700FF8366 /* Debug configuration for PBXNativeTarget "WidgetsExtension" */,
-				DFA90CD429E945D700FF8366 /* Release configuration for PBXNativeTarget "WidgetsExtension" */,
 			);
 			defaultConfigurationName = Release;
 		};
