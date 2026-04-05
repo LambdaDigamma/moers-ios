@@ -36,7 +36,7 @@ struct FestivalWidgetSection<Content: View>: View {
 
                 Text(title)
                     .font(.caption.weight(.semibold))
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(WidgetColors.mutedText)
             }
 
             content

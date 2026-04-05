@@ -31,7 +31,7 @@ struct FavoritesWidget: Widget {
             .accessoryCircular
         ])
     }
-
+ 
 }
 
 #Preview("Favorites / Small / Baseline", as: .systemSmall) {

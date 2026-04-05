@@ -123,7 +123,7 @@ extension FestivalWidgetEntry {
         FestivalWidgetEntry(
             date: .now,
             kind: .favorites,
-            subtitle: "2 saved",
+            subtitle: "",
             subtitleSystemImage: nil,
             liveEvents: [],
             upcomingEvents: [
@@ -256,7 +256,7 @@ extension FestivalWidgetEntry {
         FestivalWidgetEntry(
             date: .now,
             kind: .favorites,
-            subtitle: "7 saved",
+            subtitle: "",
             subtitleSystemImage: nil,
             liveEvents: [],
             upcomingEvents: [
@@ -306,7 +306,7 @@ extension FestivalWidgetEntry {
         FestivalWidgetEntry(
             date: .now,
             kind: .favorites,
-            subtitle: "7 saved",
+            subtitle: "",
             subtitleSystemImage: nil,
             liveEvents: [],
             upcomingEvents: [],

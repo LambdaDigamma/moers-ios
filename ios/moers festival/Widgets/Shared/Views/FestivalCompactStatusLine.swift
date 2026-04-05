@@ -39,7 +39,7 @@ struct FestivalCompactStatusLine: View {
             Text(event.event.venueName)
                 .font(.caption2)
                 .lineLimit(1)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(WidgetColors.mutedText)
             
         }
         

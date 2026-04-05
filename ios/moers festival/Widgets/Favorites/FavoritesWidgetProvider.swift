@@ -40,7 +40,7 @@ struct FavoritesWidgetProvider: AppIntentTimelineProvider {
             return FestivalWidgetEntry(
                 date: .now,
                 kind: .favorites,
-                subtitle: String(localized: "Upcoming favorite events"),
+                subtitle: "",
                 subtitleSystemImage: nil,
                 liveEvents: [],
                 upcomingEvents: [],
@@ -59,7 +59,7 @@ struct FavoritesWidgetProvider: AppIntentTimelineProvider {
             return FestivalWidgetEntry(
                 date: .now,
                 kind: .favorites,
-                subtitle: String(localized: "\(favoriteEventIDs.count) saved"),
+                subtitle: "",
                 subtitleSystemImage: nil,
                 liveEvents: content.liveEvents,
                 upcomingEvents: content.upcomingEvents,
@@ -70,7 +70,7 @@ struct FavoritesWidgetProvider: AppIntentTimelineProvider {
             return fallbackToPlaceholder ? .previewFavorites : FestivalWidgetEntry(
                 date: .now,
                 kind: .favorites,
-                subtitle: String(localized: "\(favoriteEventIDs.count) saved"),
+                subtitle: "",
                 subtitleSystemImage: nil,
                 liveEvents: [],
                 upcomingEvents: [],

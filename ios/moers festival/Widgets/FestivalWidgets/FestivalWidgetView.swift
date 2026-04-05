@@ -16,13 +16,14 @@ struct FestivalWidgetView: View {
     let entry: FestivalWidgetEntry
 
     @Environment(\.widgetFamily) private var widgetFamily
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
         switch widgetFamily {
         case .systemSmall:
             smallWidgetCard
         case .systemMedium:
-            homeScreenCard(maxRows: 3, grouped: false, compactRows: true)
+            homeScreenCard(maxRows: mediumMaxRows, grouped: false, compactRows: true)
         case .systemLarge:
             homeScreenCard(maxRows: 6, grouped: true, compactRows: false)
         case .accessoryInline:
@@ -34,6 +35,10 @@ struct FestivalWidgetView: View {
         default:
             homeScreenCard(maxRows: 3, grouped: false, compactRows: true)
         }
+    }
+
+    private var mediumMaxRows: Int {
+        dynamicTypeSize >= .xxLarge ? 2 : 3
     }
 
     private var smallWidgetCard: some View {
@@ -61,6 +66,7 @@ struct FestivalWidgetView: View {
         .containerBackground(for: .widget) {
             FestivalWidgetBackground()
         }
+        .clipShape(ContainerRelativeShape())
         .widgetURL(entry.primaryURL)
         .preferredColorScheme(.dark)
     }
@@ -93,6 +99,7 @@ struct FestivalWidgetView: View {
         .containerBackground(for: .widget) {
             FestivalWidgetBackground()
         }
+        .clipShape(ContainerRelativeShape())
         .widgetURL(entry.primaryURL)
         .preferredColorScheme(.dark)
     }
@@ -195,9 +202,9 @@ struct FestivalWidgetView: View {
             if let firstEvent = entry.allEvents.first {
                 Link(destination: WidgetConstants.eventURL(for: firstEvent.event.id)) {
                     if firstEvent.status == .live {
-                        Text("LIVE \(firstEvent.event.name)")
+                        Text("Live now: \(firstEvent.event.name)")
                     } else if let startDate = firstEvent.event.startDate {
-                        Text("\(startDate, format: .dateTime.hour().minute()) \(firstEvent.event.name)")
+                        Text("Next \(startDate, format: .dateTime.hour().minute()) \(firstEvent.event.name)")
                     } else {
                         Text(firstEvent.event.name)
                     }
@@ -206,14 +213,13 @@ struct FestivalWidgetView: View {
                 Text(entry.kind == .upcoming ? "No upcoming events" : "No favorite events")
             }
         }
+        .containerBackground(for: .widget) {
+            Color.clear
+        }
     }
 
     private var accessoryRectangular: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(entry.kind.title)
-                .font(.caption2.weight(.semibold))
-                .foregroundStyle(.secondary)
-
             if let firstEvent = entry.allEvents.first {
                 Link(destination: WidgetConstants.eventURL(for: firstEvent.event.id)) {
                     VStack(alignment: .leading, spacing: 4) {
@@ -230,9 +236,12 @@ struct FestivalWidgetView: View {
             } else {
                 Text(entry.emptyMessage)
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(WidgetColors.mutedText)
                     .lineLimit(3)
             }
+        }
+        .containerBackground(for: .widget) {
+            Color.clear
         }
         .widgetURL(entry.primaryURL)
     }
@@ -249,23 +258,32 @@ struct FestivalWidgetView: View {
                         .frame(width: 10, height: 10)
                     Text("\(entry.allEvents.count)")
                         .font(.system(size: 11, weight: .semibold, design: .rounded))
-                        .foregroundStyle(.primary)
+                        .foregroundStyle(WidgetColors.primaryText)
                 } else if let startDate = firstEvent.event.startDate {
+                    Image(systemName: entry.kind == .favorites ? "heart.fill" : "calendar")
+                        .font(.system(size: 8, weight: .semibold))
+                        .foregroundStyle(WidgetColors.mutedText)
                     Text(startDate, format: .dateTime.hour())
                         .font(.system(size: 12, weight: .bold, design: .rounded))
+                        .foregroundStyle(WidgetColors.primaryText)
                     Text(startDate, format: .dateTime.minute())
                         .font(.system(size: 12, weight: .bold, design: .rounded))
+                        .foregroundStyle(WidgetColors.primaryText)
                     Text(String(firstEvent.event.venueName.prefix(1)))
                         .font(.system(size: 10, weight: .medium, design: .rounded))
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(WidgetColors.mutedText)
                 }
             } else {
                 Image(systemName: entry.kind == .favorites ? "heart" : "calendar")
                     .font(.system(size: 16, weight: .semibold))
+                    .foregroundStyle(WidgetColors.primaryText)
                 Text("0")
                     .font(.system(size: 11, weight: .bold, design: .rounded))
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(WidgetColors.mutedText)
             }
+        }
+        .containerBackground(for: .widget) {
+            Color.clear
         }
         .widgetURL(entry.primaryURL)
     }
