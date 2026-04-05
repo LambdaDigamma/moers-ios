@@ -26,9 +26,9 @@ struct FavoritesWidget: Widget {
             .systemSmall,
             .systemMedium,
             .systemLarge,
-            .accessoryInline,
-            .accessoryRectangular,
-            .accessoryCircular
+//            .accessoryInline,
+//            .accessoryRectangular,
+//            .accessoryCircular
         ])
     }
  

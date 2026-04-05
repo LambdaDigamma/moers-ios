@@ -157,9 +157,9 @@ struct UpcomingWidget: Widget {
             .systemSmall,
             .systemMedium,
             .systemLarge,
-            .accessoryInline,
-            .accessoryRectangular,
-            .accessoryCircular
+//            .accessoryInline,
+//            .accessoryRectangular,
+//            .accessoryCircular
         ])
     }
 

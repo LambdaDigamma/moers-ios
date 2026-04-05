@@ -18,7 +18,7 @@ struct SearchBar: View {
     var body: some View {
         HStack(spacing: 10) {
             
-            TextField("Orte suchen", text: $text)
+            TextField("Search venues...", text: $text)
                 .focused($isSearchFocused)
                 .padding(7)
                 .padding(.horizontal, 25)

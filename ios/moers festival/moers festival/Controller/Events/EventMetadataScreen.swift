@@ -144,7 +144,7 @@ public struct EventMetadataScreen: View {
             Text(EventPackageStrings.artistsHeader)
         } content: {
             if artists.isEmpty {
-                Text("Wird noch angekündigt")
+                Text("To be announced")
                     .foregroundColor(.secondary)
             } else {
                 Text(artists.joined(separator: "\n"))

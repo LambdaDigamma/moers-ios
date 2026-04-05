@@ -98,7 +98,7 @@ public struct VenueDetailScreen: View {
                                     .padding(.top, 12)
                             },
                             label: {
-                                Label("Mehr Informationen", systemImage: "text.alignleft")
+                                Label("More information", systemImage: "text.alignleft")
                                     .font(.headline)
                             }
                         )

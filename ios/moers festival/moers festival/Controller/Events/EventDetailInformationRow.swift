@@ -116,7 +116,7 @@ public struct EventDetailInformationRow: View {
             Label {
                 
                 if sanitizedArtists.isEmpty {
-                    Text("Wird noch angekündigt")
+                    Text("To be announced")
                         .foregroundColor(.secondary)
                 } else {
                     Text(ListFormatter.localizedString(byJoining: sanitizedArtists))

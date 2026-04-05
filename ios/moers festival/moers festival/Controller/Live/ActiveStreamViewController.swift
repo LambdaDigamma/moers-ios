@@ -176,16 +176,6 @@ public struct ActiveStreamScreen: View {
             }
             .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fit)
             
-            
-            VStack {
-                
-                Text("Moritz Simon Geist \"MR-808\" (DE)")
-                    .fontWeight(.semibold)
-                
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
-            
         }
         .frame(maxHeight: .infinity, alignment: .topLeading)
         
