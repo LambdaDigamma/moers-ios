@@ -36,6 +36,9 @@
 		DFB592F12586C4F800BAD901 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB592F02586C4F800BAD901 /* SceneDelegate.swift */; };
 		DFB593012586D5C200BAD901 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB593002586D5C200BAD901 /* ApplicationController.swift */; };
 		DFC9094B21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DFC9094A21E7B35300C84A8C /* InAppMessagingDisplayResources.bundle */; };
+		DFDF577C2F828DE600CD2E75 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA90CBA29E945D600FF8366 /* WidgetKit.framework */; };
+		DFDF577D2F828DE600CD2E75 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA90CBC29E945D600FF8366 /* SwiftUI.framework */; };
+		DFDF578E2F828DE700CD2E75 /* WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DFDF577B2F828DE600CD2E75 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DFE12B672073853F006764FC /* Licenses.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFE12B662073853F006764FC /* Licenses.plist */; };
 		DFF1C5D22F66E20F000A84D1 /* Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = DFF1C5D12F66E1F4000A84D1 /* Icon.icon */; };
 /* End PBXBuildFile section */
@@ -69,6 +72,13 @@
 			remoteGlobalIDString = DFD4561329E93A3A00F26F37;
 			remoteInfo = "moers festival Watch Watch App";
 		};
+		DFDF578C2F828DE700CD2E75 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF35B37E201DC72900118FD1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DFDF577A2F828DE600CD2E75;
+			remoteInfo = WidgetsExtension;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -77,6 +87,7 @@
 			dstPath = "";
 			dstSubfolder = PlugIns;
 			files = (
+				DFDF578E2F828DE700CD2E75 /* WidgetsExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 		};
@@ -139,6 +150,7 @@
 		DFD4561429E93A3A00F26F37 /* moers festival.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moers festival.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFD4562329E93A3B00F26F37 /* moers festival Watch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moers festival Watch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFD4562D29E93A3C00F26F37 /* moers festival Watch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moers festival Watch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFDF577B2F828DE600CD2E75 /* WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFE12B662073853F006764FC /* Licenses.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Licenses.plist; path = "moers festival/Licenses.plist"; sourceTree = SOURCE_ROOT; };
 		DFE90E7F29E3227A0054BCF1 /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 		DFEC02F8262ABD6200D46B28 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -181,6 +193,13 @@
 				Info.plist,
 			);
 			target = DF87B2F1201DFB2700E1B97C /* moers festival UITests */;
+		};
+		DFDF57922F828DE700CD2E75 /* Exceptions for "Widgets" folder in "WidgetsExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = DFDF577A2F828DE600CD2E75 /* WidgetsExtension */;
 		};
 		DFE8342A2F1BE88500A3DECD /* Exceptions for "Support" folder in "moers festival UITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -319,6 +338,14 @@
 			path = "moers festival Tests";
 			sourceTree = "<group>";
 		};
+		DFDF577E2F828DE600CD2E75 /* Widgets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DFDF57922F828DE700CD2E75 /* Exceptions for "Widgets" folder in "WidgetsExtension" target */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
 		DFE834252F1BE82F00A3DECD /* Database */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Database;
@@ -386,6 +413,13 @@
 			files = (
 			);
 		};
+		DFDF57782F828DE600CD2E75 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				DFDF577D2F828DE600CD2E75 /* SwiftUI.framework in Frameworks */,
+				DFDF577C2F828DE600CD2E75 /* WidgetKit.framework in Frameworks */,
+			);
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -405,6 +439,7 @@
 				DF5979442F03257400512386 /* moers festival Watch App */,
 				DF59794B2F03257800512386 /* moers festival Watch Watch AppTests */,
 				DF59794F2F03257C00512386 /* moers festival Watch Watch AppUITests */,
+				DFDF577E2F828DE600CD2E75 /* Widgets */,
 				DF35B387201DC72900118FD1 /* Products */,
 				DF9446D2201E870A00C85C64 /* Frameworks */,
 			);
@@ -420,6 +455,7 @@
 				DFD4561429E93A3A00F26F37 /* moers festival.app */,
 				DFD4562329E93A3B00F26F37 /* moers festival Watch Watch AppTests.xctest */,
 				DFD4562D29E93A3C00F26F37 /* moers festival Watch Watch AppUITests.xctest */,
+				DFDF577B2F828DE600CD2E75 /* WidgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -519,6 +555,9 @@
 				DFA90CCE29E945D700FF8366 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
+			);
+			dependencies = (
+				DFDF578D2F828DE700CD2E75 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				DF1E14152DF0B49B007015DC /* FGD2025 */,
@@ -683,6 +722,24 @@
 			productReference = DFD4562D29E93A3C00F26F37 /* moers festival Watch Watch AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		DFDF577A2F828DE600CD2E75 /* WidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFDF578F2F828DE700CD2E75 /* Build configuration list for PBXNativeTarget "WidgetsExtension" */;
+			buildPhases = (
+				DFDF57772F828DE600CD2E75 /* Sources */,
+				DFDF57782F828DE600CD2E75 /* Frameworks */,
+				DFDF57792F828DE600CD2E75 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				DFDF577E2F828DE600CD2E75 /* Widgets */,
+			);
+			name = WidgetsExtension;
+			productName = WidgetsExtension;
+			productReference = DFDF577B2F828DE600CD2E75 /* WidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -691,9 +748,9 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				DefaultBuildSystemTypeForWorkspace = Latest;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 2640;
 				LastUpgradeCheck = 2640;
-				ORGANIZATIONNAME = "Code for Niederrhein";
+				ORGANIZATIONNAME = "Lennart Fischer";
 				TargetAttributes = {
 					DF35B385201DC72900118FD1 = {
 						CreatedOnToolsVersion = 9.2;
@@ -729,6 +786,9 @@
 						CreatedOnToolsVersion = 14.3;
 						TestTargetID = DFD4561329E93A3A00F26F37;
 					};
+					DFDF577A2F828DE600CD2E75 = {
+						CreatedOnToolsVersion = 26.4;
+					};
 				};
 			};
 			buildConfigurationList = DF35B381201DC72900118FD1 /* Build configuration list for PBXProject "moers festival" */;
@@ -763,6 +823,7 @@
 				DFD4561329E93A3A00F26F37 /* moers festival Watch App */,
 				DFD4562229E93A3B00F26F37 /* moers festival Watch Watch AppTests */,
 				DFD4562C29E93A3C00F26F37 /* moers festival Watch Watch AppUITests */,
+				DFDF577A2F828DE600CD2E75 /* WidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -815,6 +876,11 @@
 			files = (
 			);
 		};
+		DFDF57792F828DE600CD2E75 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -856,6 +922,11 @@
 			files = (
 			);
 		};
+		DFDF57772F828DE600CD2E75 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -878,6 +949,11 @@
 			isa = PBXTargetDependency;
 			target = DFD4561329E93A3A00F26F37 /* moers festival Watch App */;
 			targetProxy = DFD4562E29E93A3C00F26F37 /* PBXContainerItemProxy */;
+		};
+		DFDF578D2F828DE700CD2E75 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DFDF577A2F828DE600CD2E75 /* WidgetsExtension */;
+			targetProxy = DFDF578C2F828DE700CD2E75 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1136,6 +1212,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/moers festival/Config/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Lennart Fischer. All rights reserved.\n";
 				INTENTS_CODEGEN_LANGUAGE = "Objective-C";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1276,6 +1353,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/moers festival/Config/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Lennart Fischer. All rights reserved.\n";
 				INTENTS_CODEGEN_LANGUAGE = "Objective-C";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1912,6 +1990,92 @@
 			};
 			name = Release;
 		};
+		DFDF57902F828DE700CD2E75 /* Debug configuration for PBXNativeTarget "WidgetsExtension" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = Widgets/WidgetsExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 77N8D7LGCZ;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Widgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Lennart Fischer. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival.Widgets";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development de.okfn.niederrhein.moers-festival.Widgets";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DFDF57912F828DE700CD2E75 /* Release configuration for PBXNativeTarget "WidgetsExtension" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = Widgets/WidgetsExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 77N8D7LGCZ;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Widgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Lennart Fischer. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival.Widgets";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore de.okfn.niederrhein.moers-festival.Widgets";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1976,6 +2140,14 @@
 			buildConfigurations = (
 				DFD4564729E93A3C00F26F37 /* Debug configuration for PBXNativeTarget "moers festival Watch Watch AppUITests" */,
 				DFD4564A29E93A3C00F26F37 /* Release configuration for PBXNativeTarget "moers festival Watch Watch AppUITests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		DFDF578F2F828DE700CD2E75 /* Build configuration list for PBXNativeTarget "WidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFDF57902F828DE700CD2E75 /* Debug configuration for PBXNativeTarget "WidgetsExtension" */,
+				DFDF57912F828DE700CD2E75 /* Release configuration for PBXNativeTarget "WidgetsExtension" */,
 			);
 			defaultConfigurationName = Release;
 		};
