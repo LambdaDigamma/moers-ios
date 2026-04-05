@@ -49,6 +49,7 @@ struct UpcomingWidgetProvider: AppIntentTimelineProvider {
                 date: .now,
                 kind: .upcoming,
                 subtitle: subtitle(for: selectedVenues),
+                subtitleSystemImage: subtitleSystemImage(for: selectedVenues),
                 liveEvents: content.liveEvents,
                 upcomingEvents: content.upcomingEvents,
                 emptyMessage: selectedVenueIDs.isEmpty
@@ -61,6 +62,7 @@ struct UpcomingWidgetProvider: AppIntentTimelineProvider {
                 date: .now,
                 kind: .upcoming,
                 subtitle: subtitle(for: configuration.venues ?? []),
+                subtitleSystemImage: subtitleSystemImage(for: configuration.venues ?? []),
                 liveEvents: [],
                 upcomingEvents: [],
                 emptyMessage: "Unable to load upcoming events right now.",
@@ -74,25 +76,65 @@ struct UpcomingWidgetProvider: AppIntentTimelineProvider {
         case 0:
             return "All venues"
         case 1:
-            return selectedVenues[0].name
-        case 2:
-            return "\(selectedVenues[0].name) +1"
+            return "1 Venue"
         default:
-            return "\(selectedVenues.count) venues"
+            return "\(selectedVenues.count) Venues"
         }
+    }
+
+    private func subtitleSystemImage(for selectedVenues: [VenueEntity]) -> String? {
+        selectedVenues.isEmpty ? nil : "line.3.horizontal.decrease.circle"
     }
 
 }
 
 @available(iOSApplicationExtension 17.0, *)
-#Preview(as: .systemSmall) {
+#Preview("Upcoming / Small / Baseline", as: .systemSmall) {
     UpcomingWidget()
 } timeline: {
     FestivalWidgetEntry.previewUpcoming
 }
 
 @available(iOSApplicationExtension 17.0, *)
-#Preview(as: .systemLarge) {
+#Preview("Upcoming / Small / Filtered Stress", as: .systemSmall) {
+    UpcomingWidget()
+} timeline: {
+    FestivalWidgetEntry.previewUpcomingFilteredChaos
+}
+
+@available(iOSApplicationExtension 17.0, *)
+#Preview("Upcoming / Medium / Dense", as: .systemMedium) {
+    UpcomingWidget()
+} timeline: {
+    FestivalWidgetEntry.previewUpcomingFilteredChaos
+    FestivalWidgetEntry.previewUpcoming
+}
+
+@available(iOSApplicationExtension 17.0, *)
+#Preview("Upcoming / Large / Dense Timeline", as: .systemLarge) {
+    UpcomingWidget()
+} timeline: {
+    FestivalWidgetEntry.previewUpcomingDenseLarge
+    FestivalWidgetEntry.previewUpcomingFilteredChaos
+    FestivalWidgetEntry.previewUpcomingEmpty
+}
+
+@available(iOSApplicationExtension 17.0, *)
+#Preview("Upcoming / Accessory Rectangular", as: .accessoryRectangular) {
+    UpcomingWidget()
+} timeline: {
+    FestivalWidgetEntry.previewUpcomingFilteredChaos
+}
+
+@available(iOSApplicationExtension 17.0, *)
+#Preview("Upcoming / Accessory Inline", as: .accessoryInline) {
+    UpcomingWidget()
+} timeline: {
+    FestivalWidgetEntry.previewUpcoming
+}
+
+@available(iOSApplicationExtension 17.0, *)
+#Preview("Upcoming / Accessory Circular", as: .accessoryCircular) {
     UpcomingWidget()
 } timeline: {
     FestivalWidgetEntry.previewUpcoming

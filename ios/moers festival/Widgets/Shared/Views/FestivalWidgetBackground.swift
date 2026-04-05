@@ -21,6 +21,7 @@ struct FestivalWidgetBackground: View {
                 .resizable()
                 .scaledToFill()
                 .clipped()
+                .blur(radius: 4)
 
             LinearGradient(
                 colors: [

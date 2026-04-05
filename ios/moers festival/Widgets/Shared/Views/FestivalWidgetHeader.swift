@@ -15,23 +15,32 @@ struct FestivalWidgetHeader: View {
 
     let title: String
     let subtitle: String
+    let subtitleSystemImage: String?
 
     var body: some View {
-        
-        VStack(alignment: .leading, spacing: 4) {
-            
+        HStack(alignment: .firstTextBaseline, spacing: 8) {
             Text(title)
-                .font(.system(.headline, design: .rounded))
+                .font(.system(.headline, design: .default))
                 .fontWeight(.bold)
                 .foregroundStyle(WidgetColors.primaryText)
-
-            Text(subtitle)
-                .font(.caption2.monospaced())
-                .foregroundStyle(WidgetColors.mutedText)
                 .lineLimit(1)
-            
+                .minimumScaleFactor(0.85)
+
+            Spacer(minLength: 8)
+
+            Group {
+                if let subtitleSystemImage {
+                    Label(subtitle, systemImage: subtitleSystemImage)
+                        .labelStyle(.titleAndIcon)
+                } else {
+                    Text(subtitle)
+                }
+            }
+            .font(.caption2.monospaced())
+            .foregroundStyle(WidgetColors.mutedText)
+            .lineLimit(1)
+            .minimumScaleFactor(0.85)
         }
-        
     }
-    
+
 }

@@ -30,13 +30,10 @@ struct EventStatusBadge: View {
                 
             } else if let startDate = event.event.startDate {
                 
-                VStack(alignment: .leading, spacing: 0) {
-                    Text(startDate, format: .dateTime.hour())
-                    Text(startDate, format: .dateTime.minute())
-                }
-                .font(.system(size: 11, weight: .bold, design: .monospaced))
-                .foregroundStyle(WidgetColors.upcoming)
-                .frame(width: 34, alignment: .leading)
+                Text(startDate, format: .dateTime.hour().minute())
+                    .font(.system(size: 11, weight: .bold, design: .monospaced))
+                    .foregroundStyle(WidgetColors.upcoming)
+                    .frame(width: 34, alignment: .leading)
                 
             }
             

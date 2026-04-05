@@ -23,8 +23,19 @@ enum FavoritesWidgetContentBuilder {
         }
 
         let filteredEvents = events
-            .filter(\.hasValidStartDate)
-            .filter { favoriteEventIDs.contains($0.id) }
+            .filter { event in
+                guard favoriteEventIDs.contains(event.id), let startDate = event.startDate else {
+                    return false
+                }
+
+                if event.showsTimeComponent {
+                    return true
+                }
+
+                // Keep future date-only preview entries visible in favorites,
+                // but never surface them as live once the event day starts.
+                return startDate > now
+            }
 
         return FestivalWidgetTimelineEngine.buildContent(from: filteredEvents, now: now)
     }

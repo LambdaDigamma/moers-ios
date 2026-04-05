@@ -15,7 +15,19 @@ enum UpcomingWidgetContentBuilder {
         now: Date = .now
     ) -> FestivalWidgetContent {
         let filteredEvents = events
-            .filter(\.hasValidStartDate)
+            .filter { event in
+                guard let startDate = event.startDate else {
+                    return false
+                }
+
+                if event.showsTimeComponent {
+                    return true
+                }
+
+                // Date-only preview entries should appear as upcoming before they start,
+                // but should never turn into "live" items once their day begins.
+                return startDate > now
+            }
             .filter { event in
                 guard !selectedVenueIDs.isEmpty else {
                     return true

@@ -19,7 +19,7 @@ struct EventsEmptyState: View {
             HStack(spacing: 6) {
                 Image(systemName: "calendar.badge.exclamationmark")
                     .font(.caption.weight(.bold))
-                    .foregroundStyle(WidgetColors.upcoming)
+                    .foregroundStyle(WidgetColors.primaryText)
 
                 Text(message)
                     .font(.caption.weight(.semibold))
@@ -32,6 +32,7 @@ struct EventsEmptyState: View {
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .preferredColorScheme(.dark)
         
     }
     

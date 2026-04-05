@@ -14,9 +14,9 @@ enum WidgetColors {
     static let backgroundTop = Color(uiColor: .secondarySystemBackground)
     static let backgroundBottom = Color(uiColor: .systemBackground)
     static let overlay = Color(uiColor: .tertiarySystemFill)
-    static let upcoming = Color.orange
+    static let upcoming = Color.white
     static let live = Color.red
-    static let primaryText = Color.primary
-    static let mutedText = Color.secondary
+    static let primaryText = Color.white
+    static let mutedText = Color.white.opacity(0.72)
 
 }

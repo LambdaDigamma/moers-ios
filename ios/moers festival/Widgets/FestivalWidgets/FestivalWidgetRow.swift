@@ -14,16 +14,19 @@ import WidgetKit
 struct FestivalWidgetRow: View {
 
     let event: FestivalWidgetDisplayEvent
+    let isCompact: Bool
 
     var body: some View {
         HStack(alignment: .top, spacing: 8) {
             EventStatusBadge(event: event)
 
-            VStack(alignment: .leading, spacing: 3) {
+            VStack(alignment: .leading, spacing: isCompact ? 2 : 3) {
                 Text(event.event.name)
-                    .font(.system(.caption, design: .rounded, weight: .semibold))
+                    .font(.system(.caption, design: .default, weight: .heavy))
+                    .fontWeight(.bold)
                     .foregroundStyle(WidgetColors.primaryText)
-                    .lineLimit(2)
+                    .lineLimit(isCompact ? 1 : 2)
+                    .minimumScaleFactor(isCompact ? 0.9 : 1)
                     .multilineTextAlignment(.leading)
 
                 HStack(spacing: 4) {
@@ -35,7 +38,7 @@ struct FestivalWidgetRow: View {
                         Text("until \(endDate, format: .dateTime.hour().minute())")
                     }
                 }
-                .font(.caption2.monospaced())
+                .font(.caption2)
                 .foregroundStyle(WidgetColors.mutedText)
             }
         }

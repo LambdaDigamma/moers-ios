@@ -130,28 +130,6 @@ public class PostsViewController: UIViewController {
             cell.accessibilityIdentifier = "NewsPostCell-\(post.id)"
         }
 
-        let headerRegistration = UICollectionView.SupplementaryRegistration<UICollectionReusableView>(
-            elementKind: UICollectionView.elementKindSectionHeader
-        ) { supplementaryView, _, _ in
-            supplementaryView.subviews.forEach { $0.removeFromSuperview() }
-
-            let titleLabel = UILabel()
-            titleLabel.translatesAutoresizingMaskIntoConstraints = false
-            titleLabel.font = .boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .largeTitle).pointSize)
-            titleLabel.adjustsFontForContentSizeCategory = true
-            titleLabel.textColor = .label
-            titleLabel.text = String(localized: "News", bundle: .main)
-
-            supplementaryView.addSubview(titleLabel)
-
-            NSLayoutConstraint.activate([
-                titleLabel.leadingAnchor.constraint(equalTo: supplementaryView.leadingAnchor),
-                titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: supplementaryView.trailingAnchor),
-                titleLabel.bottomAnchor.constraint(equalTo: supplementaryView.bottomAnchor, constant: -8),
-                titleLabel.topAnchor.constraint(equalTo: supplementaryView.topAnchor, constant: 8)
-            ])
-        }
-
         let dataSource = UICollectionViewDiffableDataSource<Section, Post.ID>(
             collectionView: collectionView
         ) { collectionView, indexPath, itemIdentifier in
@@ -159,14 +137,6 @@ public class PostsViewController: UIViewController {
                 using: cellRegistration,
                 for: indexPath,
                 item: itemIdentifier
-            )
-        }
-
-        dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
-            guard kind == UICollectionView.elementKindSectionHeader else { return nil }
-            return collectionView.dequeueConfiguredReusableSupplementary(
-                using: headerRegistration,
-                for: indexPath
             )
         }
 
@@ -186,7 +156,7 @@ public class PostsViewController: UIViewController {
         layout.minimumLineSpacing = 24
         layout.minimumInteritemSpacing = 24
         layout.sectionInset = UIEdgeInsets(top: 8, left: 24, bottom: 32, right: 24)
-        layout.headerReferenceSize = CGSize(width: 1, height: 72)
+        layout.headerReferenceSize = .zero
         layout.sectionHeadersPinToVisibleBounds = false
         layout.estimatedItemSize = CGSize(width: 320, height: 360)
         return layout
@@ -201,13 +171,11 @@ public class PostsViewController: UIViewController {
         let metrics = Self.layoutMetrics(for: boundsWidth)
         let sectionInset = UIEdgeInsets(top: 8, left: metrics.sideInset, bottom: 32, right: metrics.sideInset)
         let estimatedSize = CGSize(width: metrics.itemWidth, height: 360)
-        let headerSize = CGSize(width: metrics.readableWidth, height: 72)
 
         let needsUpdate =
             !didConfigureLayout ||
             abs(layout.sectionInset.left - sectionInset.left) > 0.5 ||
-            abs(layout.itemSize.width - estimatedSize.width) > 0.5 ||
-            abs(layout.headerReferenceSize.width - headerSize.width) > 0.5
+            abs(layout.itemSize.width - estimatedSize.width) > 0.5
 
         guard needsUpdate else { return }
 
@@ -215,7 +183,7 @@ public class PostsViewController: UIViewController {
         layout.sectionInset = sectionInset
         layout.minimumInteritemSpacing = metrics.interItemSpacing
         layout.minimumLineSpacing = 24
-        layout.headerReferenceSize = headerSize
+        layout.headerReferenceSize = .zero
         layout.estimatedItemSize = estimatedSize
         layout.itemSize = UICollectionViewFlowLayout.automaticSize
         layout.invalidateLayout()
