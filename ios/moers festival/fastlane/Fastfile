@@ -218,17 +218,33 @@ platform :ios do
     out_dir = File.join(File.expand_path("../../../marketing", __dir__), "out", "screenshots")
     dest_dir = File.join(__dir__, "snapshots")
 
-    # Map source filenames to destination filenames for each device
-    compositions = {
-      "moers-festival-17-pro" => "iPhone 17 Pro",
-      "moers-festival-17-pro-max" => "iPhone 17 Pro Max"
-    }
-
-    slot_names = {
-      "01" => "events",
-      "02" => "event_detail",
-      "03" => "info",
-      "04" => "map"
+    processed_sets = {
+      "moers-festival-17-pro" => {
+        device_name: "iPhone 17 Pro",
+        slot_names: {
+          "01" => "events",
+          "02" => "event_detail",
+          "03" => "info",
+          "04" => "map"
+        }
+      },
+      "moers-festival-17-pro-max" => {
+        device_name: "iPhone 17 Pro Max",
+        slot_names: {
+          "01" => "events",
+          "02" => "event_detail",
+          "03" => "info",
+          "04" => "map"
+        }
+      },
+      "moers-festival-ipad-pro-13-m4" => {
+        device_name: "iPad Pro 13-inch (M4)",
+        slot_names: {
+          "01" => "events",
+          "02" => "map",
+          "03" => "info"
+        }
+      }
     }
 
     ["de-DE", "en-US"].each do |locale|
@@ -236,11 +252,11 @@ platform :ios do
       FileUtils.mkdir_p(dest)
       Dir.glob(File.join(dest, "*.png")).each { |f| File.delete(f) }
 
-      compositions.each do |comp_name, device_name|
+      processed_sets.each do |comp_name, config|
         composition_dir = File.join(out_dir, locale, comp_name)
-        slot_names.each do |src_num, slot_name|
+        config[:slot_names].each do |src_num, slot_name|
           src = File.join(composition_dir, "#{src_num}.png")
-          dest_name = "#{device_name}-#{src_num.to_i - 1}-#{slot_name}.png"
+          dest_name = "#{config[:device_name]}-#{src_num.to_i - 1}-#{slot_name}.png"
           if File.exist?(src)
             FileUtils.cp(src, File.join(dest, dest_name))
             UI.message("Copied #{comp_name}/#{src_num}.png -> #{dest_name}")

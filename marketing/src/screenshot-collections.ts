@@ -1,4 +1,9 @@
-import { type ScreenshotSize, iPhone17Pro, iPhone17ProMax } from "./apple-screenshot-sizes";
+import {
+  type ScreenshotSize,
+  iPadPro13M4,
+  iPhone17Pro,
+  iPhone17ProMax,
+} from "./apple-screenshot-sizes";
 
 export const INTER_SCREENSHOT_SPACING = 20;
 
@@ -21,5 +26,11 @@ export const collectionConfigs: CollectionConfig[] = [
     slotSize: iPhone17ProMax.portrait,
     numberOfScreens: 4,
     slotNames: ["01-timetable", "02-event-detail", "03-info", "04-map"],
+  },
+  {
+    id: "moers-festival-ipad-pro-13-m4",
+    slotSize: iPadPro13M4.landscape,
+    numberOfScreens: 3,
+    slotNames: ["01-events", "02-map", "03-info"],
   },
 ];

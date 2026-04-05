@@ -14,7 +14,7 @@
     "@remotion/animation-utils": "4.0.443",
     "@remotion/bundler": "4.0.443",
     "@remotion/cli": "4.0.443",
-    "@remotion/fonts": "^4.0.443",
+    "@remotion/fonts": "4.0.443",
     "@remotion/google-fonts": "4.0.443",
     "@remotion/layout-utils": "4.0.443",
     "@remotion/motion-blur": "4.0.443",

@@ -38,6 +38,11 @@ class AutomaticSnapshots: XCTestCase {
 
         navigateToSecondDayIfNeeded(app)
 
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            captureIPadScreenshots(app)
+            return
+        }
+
         snapshot("0-events", timeWaitingForIdle: 2)
 
         tapFirstEvent(app)
@@ -57,6 +62,25 @@ class AutomaticSnapshots: XCTestCase {
         waitForMapToLoad(app)
 
         snapshot("3-map", timeWaitingForIdle: 2)
+    }
+
+    @MainActor
+    private func captureIPadScreenshots(_ app: XCUIApplication) {
+        tapFirstEvent(app)
+
+        waitForEventDetailToLoad(app)
+
+        snapshot("0-events", timeWaitingForIdle: 2)
+
+        switchToMapTab(app)
+
+        waitForMapToLoad(app)
+
+        snapshot("1-map", timeWaitingForIdle: 2)
+
+        switchToInfoTab(app)
+
+        snapshot("2-info", timeWaitingForIdle: 1)
     }
 
     // MARK: - Navigation Helpers
@@ -106,16 +130,51 @@ class AutomaticSnapshots: XCTestCase {
     }
 
     private func switchToInfoTab(_ app: XCUIApplication) {
-        let infoTab = app.tabBars.firstMatch.buttons[AccessibilityIdentifiers.Menu.other]
+        let infoTab = menuButton(app, identifier: AccessibilityIdentifiers.Menu.other)
         XCTAssert(infoTab.waitForExistence(timeout: 5), "Info tab should exist")
         infoTab.tap()
         sleep(1)
     }
 
     private func switchToMapTab(_ app: XCUIApplication) {
-        let mapTab = app.tabBars.firstMatch.buttons[AccessibilityIdentifiers.Menu.map]
+        let mapTab = menuButton(app, identifier: AccessibilityIdentifiers.Menu.map)
         XCTAssert(mapTab.waitForExistence(timeout: 5), "Map tab should exist")
         mapTab.tap()
+    }
+
+    private func menuButton(_ app: XCUIApplication, identifier: String) -> XCUIElement {
+        let identifierPredicate = NSPredicate(format: "identifier == %@", identifier)
+        let queries: [XCUIElementQuery]
+
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            queries = [
+                app.collectionViews.cells.matching(identifierPredicate),
+                app.descendants(matching: .cell).matching(identifierPredicate),
+                app.tabBars.firstMatch.buttons.matching(identifierPredicate),
+                app.buttons.matching(identifierPredicate),
+                app.descendants(matching: .button).matching(identifierPredicate)
+            ]
+        } else {
+            queries = [
+                app.tabBars.firstMatch.buttons.matching(identifierPredicate),
+                app.buttons.matching(identifierPredicate),
+                app.descendants(matching: .button).matching(identifierPredicate)
+            ]
+        }
+
+        for query in queries {
+            let candidates = query.allElementsBoundByIndex.filter(\.exists)
+
+            if let hittableCandidate = candidates.first(where: \.isHittable) {
+                return hittableCandidate
+            }
+
+            if let firstCandidate = candidates.first {
+                return firstCandidate
+            }
+        }
+
+        return app.descendants(matching: .button).matching(identifierPredicate).element(boundBy: 0)
     }
 
     private func waitForMapToLoad(_ app: XCUIApplication) {

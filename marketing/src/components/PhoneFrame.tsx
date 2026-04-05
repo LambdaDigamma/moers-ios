@@ -298,20 +298,20 @@ const frameDefinitions: Record<string, FrameDefinition> = {
     },
   },
   "iPad Pro 11 - M4": {
-    folder: "iPad Pro 13 - M4",
+    folder: "iPad Pro 11 - M4",
     screenArea: {
       portrait: {
         top: "4.1%",
-        left: "5.1%",
-        right: "5.1%",
+        left: "5.6%",
+        right: "5.6%",
         bottom: "4.1%",
         borderRadius: "2.3%",
       },
       landscape: {
-        top: "5.1%",
+        top: "5.5%",
         left: "4.1%",
         right: "4.1%",
-        bottom: "5.1%",
+        bottom: "5.6%",
         borderRadius: "2.3%",
       },
     },
@@ -385,7 +385,6 @@ function getFrameImagePath(
     throw new Error(`Unknown device: ${device}`);
   }
 
-  // Use the folder name to match actual file naming
   const deviceName = frameDef.folder;
 
   if (color) {

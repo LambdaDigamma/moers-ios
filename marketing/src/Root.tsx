@@ -3,7 +3,9 @@ import React from "react";
 import { Still } from "remotion";
 import type { ZodType } from "zod";
 import { MoersFestivaliPhone17Pro, FestivalPromoSchema } from "./components/MoersFestivaliPhone17Pro";
+import { MoersFestivaliPadPro13M4 } from "./components/MoersFestivaliPadPro13M4";
 import {
+  iPadPro13M4,
   iPhone17Pro,
   iPhone17ProMax,
   ScreenshotSize,
@@ -79,6 +81,14 @@ export const screenshotCollections: ScreenshotCollection[] = [
     canvas: MoersFestivaliPhone17Pro as React.ComponentType<AnyProps>,
     numberOfScreens: 4,
     screenshotSize: iPhone17ProMax.portrait,
+    schema: FestivalPromoSchema as ZodType<AnyProps>,
+    defaultProps: { locale: "de-DE" },
+  },
+  {
+    name: "moers-festival-ipad-pro-13-m4",
+    canvas: MoersFestivaliPadPro13M4 as React.ComponentType<AnyProps>,
+    numberOfScreens: 3,
+    screenshotSize: iPadPro13M4.landscape,
     schema: FestivalPromoSchema as ZodType<AnyProps>,
     defaultProps: { locale: "de-DE" },
   },
