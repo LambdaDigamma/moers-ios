@@ -12,8 +12,9 @@ import SwiftUI
 @main
 struct WidgetsBundle: WidgetBundle {
     var body: some Widget {
-        Widgets()
-        WidgetsControl()
-        WidgetsLiveActivity()
+        if #available(iOSApplicationExtension 17.0, *) {
+            UpcomingWidget()
+            FavoritesWidget()
+        }
     }
 }

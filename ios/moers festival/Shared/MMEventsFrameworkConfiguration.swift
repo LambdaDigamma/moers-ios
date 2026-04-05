@@ -27,6 +27,7 @@ class MMEventsFrameworkConfiguration: BootstrappingProcedureStep {
         Container.shared.favoriteEventsStore.scope(.singleton).register {
             FavoriteEventsStore(writer: dbWriter, reader: dbReader)
         }
+        Container.shared.widgetFavoritesSyncBridge().start()
         
     }
     
