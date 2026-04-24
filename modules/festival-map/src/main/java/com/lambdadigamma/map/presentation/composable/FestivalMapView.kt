@@ -1,9 +1,12 @@
 package com.lambdadigamma.map.presentation.composable
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.platform.LocalContext
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMapOptions
@@ -30,9 +33,15 @@ import com.lambdadigamma.map.presentation.MapUiState
 internal fun FestivalMapView(
     uiState: MapUiState,
     onIntent: (MapIntent) -> Unit,
+    hasLocationPermission: Boolean,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
+    val useDarkMapStyle = MaterialTheme.colorScheme.background.luminance() < 0.5f
+    val mapStyleResource = if (useDarkMapStyle) R.raw.map_style_dark else R.raw.map_style
+    val mapStyleOptions = remember(context, mapStyleResource) {
+        MapStyleOptions.loadRawResourceStyle(context, mapStyleResource)
+    }
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(MAP_CENTER, 16f)
     }
@@ -53,6 +62,20 @@ internal fun FestivalMapView(
         )
     }
 
+    LaunchedEffect(uiState.userLocationFocusToken) {
+        val point = uiState.userLocation ?: return@LaunchedEffect
+        if (uiState.userLocationFocusToken == 0L) {
+            return@LaunchedEffect
+        }
+
+        cameraPositionState.animate(
+            update = CameraUpdateFactory.newLatLngZoom(
+                LatLng(point.latitude, point.longitude),
+                17.5f,
+            ),
+        )
+    }
+
     GoogleMap(
         modifier = modifier,
         cameraPositionState = cameraPositionState,
@@ -69,7 +92,8 @@ internal fun FestivalMapView(
             GoogleMapOptions()
         },
         properties = MapProperties(
-            mapStyleOptions = MapStyleOptions.loadRawResourceStyle(context, R.raw.map_style),
+            mapStyleOptions = mapStyleOptions,
+            isMyLocationEnabled = hasLocationPermission,
         ),
     ) {
         selectedBooth?.let { selection ->
@@ -104,7 +128,7 @@ internal fun FestivalMapView(
         }
 
         uiState.layers.forEach { layer ->
-            val style = layer.type.style()
+            val style = layer.type.style(useDarkMapStyle)
 
             layer.features.forEach { feature ->
                 feature.geometry.asPolygons().forEach { polygon ->
@@ -173,7 +197,15 @@ private data class LayerStyle(
     }
 }
 
-private fun FestivalMapLayerType.style(): LayerStyle {
+private fun FestivalMapLayerType.style(darkTheme: Boolean): LayerStyle {
+    return if (darkTheme) {
+        darkStyle()
+    } else {
+        lightStyle()
+    }
+}
+
+private fun FestivalMapLayerType.lightStyle(): LayerStyle {
     return when (this) {
         FestivalMapLayerType.Surfaces -> LayerStyle(
             fillColor = Color.Transparent,
@@ -220,6 +252,58 @@ private fun FestivalMapLayerType.style(): LayerStyle {
         FestivalMapLayerType.Dorf -> LayerStyle(
             fillColor = Color(0x33111111),
             strokeColor = Color(0x66111111),
+            strokeWidth = 1.25f,
+        )
+    }
+}
+
+private fun FestivalMapLayerType.darkStyle(): LayerStyle {
+    return when (this) {
+        FestivalMapLayerType.Surfaces -> LayerStyle(
+            fillColor = Color.Transparent,
+            strokeColor = Color(0xD6B08A63),
+            strokeWidth = 2f,
+        )
+
+        FestivalMapLayerType.Camping -> LayerStyle(
+            fillColor = Color(0x4039C173),
+            strokeColor = Color(0xC039C173),
+            strokeWidth = 1.5f,
+        )
+
+        FestivalMapLayerType.Stages -> LayerStyle(
+            fillColor = Color(0x30E7EAF0),
+            strokeColor = Color(0xA6E7EAF0),
+            strokeWidth = 1.5f,
+        )
+
+        FestivalMapLayerType.Transportation -> LayerStyle(
+            fillColor = Color(0x52FFD166),
+            strokeColor = Color(0xCCFFD166),
+            strokeWidth = 1.5f,
+        )
+
+        FestivalMapLayerType.MedicalService -> LayerStyle(
+            fillColor = Color(0x4039C173),
+            strokeColor = Color(0xCC39C173),
+            strokeWidth = 1.5f,
+        )
+
+        FestivalMapLayerType.Tickets -> LayerStyle(
+            fillColor = Color(0x405DA8FF),
+            strokeColor = Color(0xCC5DA8FF),
+            strokeWidth = 1.5f,
+        )
+
+        FestivalMapLayerType.Toilets -> LayerStyle(
+            fillColor = Color(0x405D7CFF),
+            strokeColor = Color(0xCC5D7CFF),
+            strokeWidth = 1.5f,
+        )
+
+        FestivalMapLayerType.Dorf -> LayerStyle(
+            fillColor = Color(0x34E7EAF0),
+            strokeColor = Color(0xA6E7EAF0),
             strokeWidth = 1.25f,
         )
     }

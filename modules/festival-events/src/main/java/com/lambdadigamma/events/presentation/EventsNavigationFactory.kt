@@ -60,6 +60,12 @@ class EventsNavigationFactory @Inject constructor() : NavigationFactory {
                     }
                     navigationManager.navigate(command)
                 },
+                onShowTimetable = {
+                    val command = object : NavigationCommand {
+                        override val destination = NavigationDestination.Timetable.route
+                    }
+                    navigationManager.navigate(command)
+                },
             )
         }
         builder.composable(
@@ -78,10 +84,21 @@ class EventsNavigationFactory @Inject constructor() : NavigationFactory {
             deepLinks = listOf(
                 navDeepLink { uriPattern = "moersfestival://events/{eventId}" }
             )
-        ) {
-            EventDetailRoute(onBack = {
-                navigationManager.navigateBack()
-            })
+        ) { backStackEntry ->
+            val eventId = checkNotNull(backStackEntry.arguments?.getInt("eventId"))
+            EventDetailRoute(
+                eventId = eventId,
+                onBack = {
+                    navigationManager.navigateBack()
+                },
+                onShowVenue = { placeId ->
+                    val command = object : NavigationCommand {
+                        override val destination = NavigationDestination.VenueDetail.route
+                            .replace("{placeId}", placeId.toString())
+                    }
+                    navigationManager.navigate(command)
+                },
+            )
         }
         builder.composable(
             route = NavigationDestination.VenueDetail.route,
@@ -89,8 +106,10 @@ class EventsNavigationFactory @Inject constructor() : NavigationFactory {
             deepLinks = listOf(
                 navDeepLink { uriPattern = "moersfestival://venues/{placeId}" }
             )
-        ) {
+        ) { backStackEntry ->
+            val placeId = checkNotNull(backStackEntry.arguments?.getLong("placeId"))
             VenueDetailRoute(
+                placeId = placeId,
                 onBack = {
                     navigationManager.navigateBack()
                 },

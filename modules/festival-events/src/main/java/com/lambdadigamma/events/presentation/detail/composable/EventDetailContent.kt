@@ -21,6 +21,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.lambdadigamma.core.geo.Point
@@ -34,7 +35,10 @@ import com.lambdadigamma.pages.presentation.PageBlockRenderer
 import java.util.Date
 
 @Composable
-fun EventDetailContent(event: EventDetailDisplayable) {
+fun EventDetailContent(
+    event: EventDetailDisplayable,
+    onShowVenue: (Long) -> Unit,
+) {
 
     Surface(
         modifier = Modifier
@@ -43,8 +47,9 @@ fun EventDetailContent(event: EventDetailDisplayable) {
     ) {
 
         Column(
-            modifier = Modifier.fillMaxSize()
-
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 32.dp),
         ) {
 
             event.mediaCollections.getFirstMedia("header")?.let { media ->
@@ -59,15 +64,16 @@ fun EventDetailContent(event: EventDetailDisplayable) {
 
             EventDetailMetadata(
                 title = event.title,
-                location = event.place?.name,
+                place = event.place,
                 time = event.dateRange,
                 artists = event.artists,
                 startDate = event.startDate,
                 isOpenEnd = event.isOpenEnd,
-                scheduleDisplayMode = event.scheduleDisplayMode
+                scheduleDisplayMode = event.scheduleDisplayMode,
+                onShowVenue = onShowVenue,
             )
 
-            HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
+            EventDetailDivider()
 
             if (event.blocks.isNotEmpty()) {
 
@@ -78,7 +84,7 @@ fun EventDetailContent(event: EventDetailDisplayable) {
                 } else {
                     PageBlockRenderer(
                         blocks = event.blocks,
-//                        modifier = Modifier.padding(top = 16.dp, bottom = 16.dp)
+                        modifier = Modifier.padding(top = 24.dp, bottom = 24.dp)
                     )
                 }
 
@@ -90,11 +96,13 @@ fun EventDetailContent(event: EventDetailDisplayable) {
 
             if (event.place != null) {
 
-                HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
+                EventDetailDivider()
 
-                PlaceInformation(place = event.place, modifier = Modifier
-                    .padding(16.dp)
-                    .padding(bottom = 32.dp))
+                PlaceInformation(
+                    place = event.place,
+                    modifier = Modifier.padding(start = 16.dp, top = 24.dp, end = 16.dp, bottom = 24.dp),
+                    onClick = { onShowVenue(event.place.id) },
+                )
             }
 
         }
@@ -107,7 +115,7 @@ fun EventDetailContent(event: EventDetailDisplayable) {
 
 @Composable
 private fun NoFurtherInformation() {
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column(modifier = Modifier.padding(start = 16.dp, top = 24.dp, end = 16.dp, bottom = 24.dp)) {
         BasicText(
             text = stringResource(R.string.no_additional_information),
             style = MaterialTheme.typography.bodyLarge.copy(
@@ -119,10 +127,22 @@ private fun NoFurtherInformation() {
 }
 
 @Composable
-fun LabelWithIcon(label: String, icon: @Composable () -> Unit) {
+private fun EventDetailDivider() {
+    HorizontalDivider(
+        thickness = Dp.Hairline,
+        color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.45f),
+    )
+}
+
+@Composable
+fun LabelWithIcon(
+    label: String,
+    modifier: Modifier = Modifier,
+    icon: @Composable () -> Unit,
+) {
 
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth(),
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -146,7 +166,7 @@ private fun EventDetailContentPreview() {
 
     MoersFestivalTheme {
         EventDetailContent(
-            EventDetailDisplayable(
+            event = EventDetailDisplayable(
                 id = 1,
                 title = "Editrix (US)",
                 startDate = Date(1685112300000),
@@ -160,7 +180,8 @@ private fun EventDetailContentPreview() {
                     addressLine1 = "Festivalgelände",
                     addressLine2 = "47441 Moers",
                 ),
-            )
+            ),
+            onShowVenue = {},
         )
     }
 

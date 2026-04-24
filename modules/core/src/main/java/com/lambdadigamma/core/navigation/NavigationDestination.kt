@@ -27,5 +27,9 @@ sealed class NavigationDestination(
 
     data object AppInformation : NavigationDestination("app/information")
 
+    data object AppLicenses : NavigationDestination("app/licenses")
+
+    data object NotificationSettings : NavigationDestination("app/notifications")
+
     data object Back : NavigationDestination("navigationBack")
 }

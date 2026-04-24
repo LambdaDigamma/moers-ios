@@ -8,9 +8,14 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun PostDetailRoute(
-    viewModel: PostDetailViewModel = hiltViewModel(),
+    postId: Int,
     onBack: () -> Unit
 ) {
+    val viewModel: PostDetailViewModel = hiltViewModel<PostDetailViewModel, PostDetailViewModel.Factory>(
+        creationCallback = { factory ->
+            factory.create(postId)
+        },
+    )
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 

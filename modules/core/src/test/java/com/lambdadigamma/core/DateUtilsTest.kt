@@ -2,18 +2,19 @@ package com.lambdadigamma.core
 
 import com.lambdadigamma.core.notifications.milliInterval
 import com.lambdadigamma.core.notifications.overrideHoursAndMinutes
-import org.junit.Assert
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import java.util.*
+import kotlin.test.assertEquals
 
 class DateUtilsTest {
 
     @Test
     fun testOverrideHourAndMinute() {
         val date = Date().overrideHoursAndMinutes(hours = 20, minutes = 0)
+        val calendar = Calendar.getInstance().apply { time = date }
 
-        Assert.assertEquals(20, date.hours)
-        Assert.assertEquals(0, date.minutes)
+        assertEquals(20, calendar.get(Calendar.HOUR_OF_DAY))
+        assertEquals(0, calendar.get(Calendar.MINUTE))
 
     }
 
@@ -25,7 +26,7 @@ class DateUtilsTest {
 
         otherDate.time += 1000
 
-        Assert.assertEquals(1000, date.milliInterval(otherDate))
+        assertEquals(1000, date.milliInterval(otherDate))
 
     }
 

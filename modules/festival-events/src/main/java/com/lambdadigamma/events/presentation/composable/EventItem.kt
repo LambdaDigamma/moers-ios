@@ -8,11 +8,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material3.Divider
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
@@ -43,7 +43,11 @@ import java.util.Locale
 import java.util.TimeZone
 
 @Composable
-fun EventItem(event: EventDisplayable, onEventClick: (Int) -> Unit) {
+fun EventItem(
+    event: EventDisplayable,
+    onEventClick: (Int) -> Unit,
+    showDivider: Boolean = true,
+) {
 
     val timeDescription = if (!event.showsDateComponent) {
         null
@@ -121,7 +125,13 @@ fun EventItem(event: EventDisplayable, onEventClick: (Int) -> Unit) {
                 }
             },
         )
-        HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
+        if (showDivider) {
+            HorizontalDivider(
+                modifier = Modifier.padding(start = 72.dp),
+                thickness = 1.dp,
+                color = MaterialTheme.colorScheme.outlineVariant,
+            )
+        }
     }
 
     Date().time

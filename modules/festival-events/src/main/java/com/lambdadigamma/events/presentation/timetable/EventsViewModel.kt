@@ -34,6 +34,7 @@ class EventsViewModel @Inject constructor(
             is TimetableIntent.RefreshEvents -> refreshEvents()
             is TimetableIntent.EventClicked -> eventClicked(intent.id)
             is TimetableIntent.SelectedSection -> flow {}
+            else -> emptyFlow()
         }
 
     }

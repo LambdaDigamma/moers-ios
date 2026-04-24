@@ -6,6 +6,9 @@ sealed class DownloadEventsIntent {
 
     object RefreshEvents : DownloadEventsIntent()
 
-    object DownloadContent: DownloadEventsIntent()
+    data class DownloadContent(
+        val includeContent: Boolean,
+        val includeMedia: Boolean,
+    ) : DownloadEventsIntent()
 
 }

@@ -1,26 +1,37 @@
 package com.lambdadigamma.map.presentation
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material.icons.rounded.LocationOn
+import androidx.compose.material.icons.rounded.MyLocation
 import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SheetValue
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
@@ -29,12 +40,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.lambdadigamma.events.presentation.venue.composable.VenueDetailContent
+import com.lambdadigamma.events.presentation.venue.composable.VenueDetailStateProvider
 import com.lambdadigamma.map.R
+import com.lambdadigamma.map.data.model.FestivalMapPlace
 import com.lambdadigamma.map.presentation.composable.BoothDetailContent
 import com.lambdadigamma.map.presentation.composable.FestivalMapView
 import com.lambdadigamma.map.presentation.composable.MapDrawerContent
-import com.lambdadigamma.map.presentation.composable.PlaceDetailContent
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -42,14 +57,10 @@ internal fun MapScreen(
     uiState: MapUiState,
     onIntent: (MapIntent) -> Unit,
     onShowEvent: (Int) -> Unit,
+    hasLocationPermission: Boolean,
+    onLocateMe: () -> Unit,
 ) {
     val scaffoldState = rememberBottomSheetScaffoldState()
-
-    val sheetPeekHeight = when (uiState.selection) {
-        null -> 168.dp
-        is MapSelection.Feature -> 148.dp
-        is MapSelection.Place -> 210.dp
-    }
 
     LaunchedEffect(uiState.selection?.stableId) {
         when (uiState.selection) {
@@ -67,12 +78,33 @@ internal fun MapScreen(
     BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
         val sheetTopInset = maxHeight * 0.1f
         val drawerMinContentHeight = maxHeight - sheetTopInset
+        val drawerCollapsedPeekHeight = (maxHeight * 0.14f).coerceIn(
+            minimumValue = 112.dp,
+            maximumValue = 132.dp,
+        )
+        val sheetPeekHeight = when (uiState.selection) {
+            null -> drawerCollapsedPeekHeight
+            is MapSelection.Feature -> 148.dp
+            is MapSelection.Place -> 260.dp
+        }
 
         Box(modifier = Modifier.fillMaxSize()) {
             FestivalMapView(
                 uiState = uiState,
                 onIntent = onIntent,
+                hasLocationPermission = hasLocationPermission,
                 modifier = Modifier.fillMaxSize(),
+            )
+
+            MapControlButtons(
+                uiState = uiState,
+                onRefresh = { onIntent(MapIntent.Refresh) },
+                hasLocationPermission = hasLocationPermission,
+                onLocateMe = onLocateMe,
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .statusBarsPadding()
+                    .padding(top = 12.dp, end = 16.dp),
             )
 
             BottomSheetScaffold(
@@ -96,14 +128,25 @@ internal fun MapScreen(
                             onDismiss = { onIntent(MapIntent.ClearSelection) },
                         )
 
-                        is MapSelection.Place -> PlaceDetailContent(
-                            place = selection.value,
-                            events = uiState.placeEvents,
-                            isLoadingEvents = uiState.isLoadingEvents,
-                            onDismiss = { onIntent(MapIntent.ClearSelection) },
-                            onShowEvent = onShowEvent,
-                            minContentHeight = drawerMinContentHeight,
-                        )
+                        is MapSelection.Place -> VenueDetailStateProvider(
+                            placeId = selection.value.id,
+                        ) { venueUiState ->
+                            VenueDetailContent(
+                                uiState = venueUiState,
+                                onShowEvent = onShowEvent,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .heightIn(min = drawerMinContentHeight)
+                                    .padding(vertical = 4.dp),
+                                topContent = {
+                                    VenueDrawerHeader(
+                                        place = selection.value,
+                                        onDismiss = { onIntent(MapIntent.ClearSelection) },
+                                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 2.dp),
+                                    )
+                                },
+                            )
+                        }
                     }
                 },
             ) { _ ->
@@ -119,20 +162,6 @@ internal fun MapScreen(
                 if (uiState.isRefreshing) {
                     LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
                 }
-            }
-
-            FilledIconButton(
-                enabled = !uiState.isRefreshing,
-                onClick = { onIntent(MapIntent.Refresh) },
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .statusBarsPadding()
-                    .padding(top = 12.dp, end = 16.dp),
-            ) {
-                Icon(
-                    imageVector = Icons.Rounded.Refresh,
-                    contentDescription = stringResource(R.string.map_refresh),
-                )
             }
 
             uiState.refreshError?.localizedMessage
@@ -151,10 +180,136 @@ internal fun MapScreen(
                     }
                 }
 
+            uiState.locationError?.let {
+                ElevatedCard(
+                    modifier = Modifier
+                        .align(Alignment.TopCenter)
+                        .statusBarsPadding()
+                        .padding(top = 120.dp, start = 16.dp, end = 16.dp),
+                ) {
+                    Text(
+                        text = stringResource(R.string.map_location_error),
+                        modifier = Modifier.padding(16.dp),
+                    )
+                }
+            }
+
             if (uiState.isLoading && uiState.layers.isEmpty()) {
                 CircularProgressIndicator(
                     modifier = Modifier.align(Alignment.Center),
                     color = MaterialTheme.colorScheme.primary,
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun VenueDrawerHeader(
+    place: FestivalMapPlace,
+    onDismiss: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        Surface(
+            modifier = Modifier.size(40.dp),
+            shape = MaterialTheme.shapes.large,
+            color = MaterialTheme.colorScheme.primaryContainer,
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+        ) {
+            Box(contentAlignment = Alignment.Center) {
+                Icon(
+                    imageVector = Icons.Rounded.LocationOn,
+                    contentDescription = null,
+                    modifier = Modifier.size(22.dp),
+                )
+            }
+        }
+
+        Column(
+            modifier = Modifier.weight(1f),
+            verticalArrangement = Arrangement.spacedBy(2.dp),
+        ) {
+            Text(
+                text = place.name,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+            )
+
+            place.addressLine1.trim()
+                .takeIf { it.isNotBlank() }
+                ?.let { address ->
+                    Text(
+                        text = address,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                }
+        }
+
+        IconButton(
+            onClick = onDismiss,
+            modifier = Modifier.size(40.dp),
+        ) {
+            Icon(
+                imageVector = Icons.Rounded.Close,
+                contentDescription = null,
+                modifier = Modifier.size(20.dp),
+            )
+        }
+    }
+}
+
+@Composable
+private fun MapControlButtons(
+    uiState: MapUiState,
+    onRefresh: () -> Unit,
+    hasLocationPermission: Boolean,
+    onLocateMe: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+        horizontalAlignment = Alignment.End,
+    ) {
+        FilledIconButton(
+            enabled = !uiState.isRefreshing,
+            onClick = onRefresh,
+        ) {
+            Icon(
+                imageVector = Icons.Rounded.Refresh,
+                contentDescription = stringResource(R.string.map_refresh),
+            )
+        }
+
+        FilledTonalIconButton(
+            enabled = !uiState.isLocatingUser,
+            onClick = onLocateMe,
+        ) {
+            if (uiState.isLocatingUser) {
+                CircularProgressIndicator(
+                    modifier = Modifier.size(20.dp),
+                    strokeWidth = 2.dp,
+                )
+            } else {
+                Icon(
+                    imageVector = Icons.Rounded.MyLocation,
+                    contentDescription = stringResource(
+                        if (hasLocationPermission) {
+                            R.string.map_locate_me
+                        } else {
+                            R.string.map_enable_location
+                        },
+                    ),
                 )
             }
         }

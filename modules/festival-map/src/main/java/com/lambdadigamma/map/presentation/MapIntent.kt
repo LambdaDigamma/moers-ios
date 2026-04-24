@@ -8,6 +8,8 @@ internal sealed class MapIntent {
 
     data object Refresh : MapIntent()
 
+    data object CenterOnUserLocation : MapIntent()
+
     data class SelectFeature(val feature: FestivalMapFeature) : MapIntent()
 
     data class SelectPlace(val place: FestivalMapPlace) : MapIntent()

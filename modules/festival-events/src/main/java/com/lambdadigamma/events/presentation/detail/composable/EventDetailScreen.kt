@@ -32,6 +32,7 @@ fun EventDetailScreen(
     uiState: EventDetailUiState,
     onIntent: (EventDetailIntent) -> Unit,
     onToggleLike: () -> Unit,
+    onShowVenue: (Long) -> Unit,
     onBack: () -> Unit = {},
 ) {
 
@@ -81,7 +82,10 @@ fun EventDetailScreen(
                 }
 
             } else {
-                EventDetailContent(event = uiState.event)
+                EventDetailContent(
+                    event = uiState.event,
+                    onShowVenue = onShowVenue,
+                )
             }
 
         }
@@ -145,7 +149,8 @@ fun EventDetailScreenPreview() {
                 )
             )),
             onIntent = {},
-            onToggleLike = {}
+            onToggleLike = {},
+            onShowVenue = {},
         )
     }
 }
@@ -160,7 +165,8 @@ private fun EventDetailScreenPreview_Loading() {
                 isLoading = true,
             ),
             onIntent = {},
-            onToggleLike = {}
+            onToggleLike = {},
+            onShowVenue = {},
         )
     }
 }

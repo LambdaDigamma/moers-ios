@@ -32,6 +32,7 @@ class PageBlockMapperTest {
                     ))
                 ))
             ),
+            order = 0,
             createdAt = Date(1685112300000),
             updatedAt = Date(1685112300000),
             children = emptyList(),
