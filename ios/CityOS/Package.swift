@@ -24,6 +24,7 @@ let package = Package(
         .library(name: "NewsFeature", targets: ["NewsFeature"]),
         .library(name: "FuelFeature", targets: ["FuelFeature"]),
         .library(name: "MapFeature", targets: ["MapFeature"]),
+        .library(name: "AppUpdateFeature", targets: ["AppUpdateFeature"]),
         .library(name: "PlaybackKit", targets: ["PlaybackKit"]),
         .library(name: "MMEvents", targets: ["MMEvents"]),
         .library(name: "MMPages", targets: ["MMPages"]),
@@ -193,6 +194,19 @@ let package = Package(
         .testTarget(
             name: "MapFeatureTests",
             dependencies: ["MapFeature"],
+            swiftSettings: settings
+        ),
+        // ---------------- AppUpdateFeature ----------------
+        .target(
+            name: "AppUpdateFeature",
+            dependencies: [
+                .product(name: "ModernNetworking", package: "ModernNetworking")
+            ],
+            swiftSettings: settings
+        ),
+        .testTarget(
+            name: "AppUpdateFeatureTests",
+            dependencies: ["AppUpdateFeature"],
             swiftSettings: settings
         ),
         
