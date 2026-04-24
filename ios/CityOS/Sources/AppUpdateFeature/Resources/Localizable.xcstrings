@@ -1,0 +1,57 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "The App Store lookup response did not include app metadata.": {
+      "comment": "Error shown when the App Store lookup response is empty or missing metadata.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Antwort der App-Store-Abfrage enthält keine App-Metadaten."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The App Store lookup response did not include app metadata."
+          }
+        }
+      }
+    },
+    "The App Store lookup URL could not be built.": {
+      "comment": "Error shown when the app cannot construct the App Store lookup URL.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die URL für die App-Store-Abfrage konnte nicht erstellt werden."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The App Store lookup URL could not be built."
+          }
+        }
+      }
+    },
+    "The current app version could not be resolved.": {
+      "comment": "Error shown when the app cannot read its installed version.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die aktuelle App-Version konnte nicht ermittelt werden."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The current app version could not be resolved."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

@@ -202,6 +202,9 @@ let package = Package(
             dependencies: [
                 .product(name: "ModernNetworking", package: "ModernNetworking")
             ],
+            resources: [
+                .process("Resources")
+            ],
             swiftSettings: settings
         ),
         .testTarget(

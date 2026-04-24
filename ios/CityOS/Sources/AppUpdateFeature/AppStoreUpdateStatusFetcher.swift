@@ -18,11 +18,23 @@ public struct AppStoreUpdateStatusFetcher: AppStoreUpdateStatusFetching {
         public var errorDescription: String? {
             switch self {
                 case .missingCurrentVersion:
-                    return "The current app version could not be resolved."
+                    return String(
+                        localized: "The current app version could not be resolved.",
+                        bundle: .module,
+                        comment: "Error shown when the app cannot read its installed version."
+                    )
                 case .missingMetadata:
-                    return "The App Store lookup response did not include app metadata."
+                    return String(
+                        localized: "The App Store lookup response did not include app metadata.",
+                        bundle: .module,
+                        comment: "Error shown when the App Store lookup response is empty or missing metadata."
+                    )
                 case .invalidLookupURL:
-                    return "The App Store lookup URL could not be built."
+                    return String(
+                        localized: "The App Store lookup URL could not be built.",
+                        bundle: .module,
+                        comment: "Error shown when the app cannot construct the App Store lookup URL."
+                    )
             }
         }
     }
@@ -126,4 +138,3 @@ struct AppStoreMetadata: Decodable {
     let version: String
     let trackViewUrl: URL
 }
-
