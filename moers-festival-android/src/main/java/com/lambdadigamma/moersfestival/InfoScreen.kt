@@ -24,13 +24,10 @@ import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
@@ -85,10 +82,7 @@ fun InfoScreen(
     onOpenAppInformation: () -> Unit,
     onOpenLicenses: () -> Unit,
 ) {
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-
     Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             MediumTopAppBar(
                 title = {
@@ -97,7 +91,6 @@ fun InfoScreen(
                         maxLines = 1,
                     )
                 },
-                scrollBehavior = scrollBehavior,
             )
         }
     ) { paddingValues ->
@@ -109,14 +102,14 @@ fun InfoScreen(
                 bottom = paddingValues.calculateBottomPadding() + 24.dp,
             ),
         ) {
-            item {
+            item(key = "intro") {
                 InfoIntro()
             }
 
-            item {
+            item(key = "festival-header") {
                 InfoSectionHeader(title = stringResource(R.string.info_section_festival))
             }
-            item {
+            item(key = "festival-download") {
                 InfoRow(
                     title = stringResource(com.lambdadigamma.events.R.string.download_timetable),
                     leadingIcon = Icons.Rounded.DownloadForOffline,
@@ -125,42 +118,42 @@ fun InfoScreen(
                     onOpenDownload()
                 }
             }
-            item {
+            item(key = "festival-tickets") {
                 InfoRow(title = stringResource(R.string.info_row_tickets)) {
                     onOpenWeb("https://www.moers-festival.de/tickets/")
                 }
             }
-            item {
+            item(key = "festival-festivaldorf") {
                 InfoRow(title = stringResource(R.string.info_row_festivaldorf)) {
                     onOpenWeb("https://www.moers-festival.de/infos/festivaldorf/")
                 }
             }
-            item {
+            item(key = "festival-volunteers") {
                 InfoRow(title = stringResource(R.string.info_row_volunteers)) {
                     onOpenWeb("https://www.moers-festival.de/volunteers/")
                 }
             }
-            item {
+            item(key = "festival-moersland") {
                 InfoRow(title = stringResource(R.string.info_row_moersland)) {
                     onOpenWeb("https://www.moers-festival.de/moersland/")
                 }
             }
-            item {
+            item(key = "festival-lodging") {
                 InfoRow(title = stringResource(R.string.info_row_lodging)) {
                     onOpenWeb("https://www.moers-festival.de/infos/schlafen/")
                 }
             }
-            item {
+            item(key = "festival-accessibility") {
                 InfoRow(title = stringResource(R.string.info_row_accessibility)) {
                     onOpenWeb("https://www.moers-festival.de/infos/awareness-barrierefreiheit/")
                 }
             }
-            item {
+            item(key = "festival-moerschandise") {
                 InfoRow(title = stringResource(R.string.info_row_moerschandise)) {
                     onOpenWeb("https://www.moers-festival.de/moerschandise/")
                 }
             }
-            item {
+            item(key = "festival-sponsors") {
                 InfoRow(
                     title = stringResource(R.string.info_row_sponsors),
                     showDivider = false,
@@ -169,10 +162,10 @@ fun InfoScreen(
                 }
             }
 
-            item {
+            item(key = "settings-header") {
                 InfoSectionHeader(title = stringResource(R.string.info_section_settings))
             }
-            item {
+            item(key = "settings-notifications") {
                 InfoRow(
                     title = stringResource(R.string.info_row_notifications),
                     supportingText = stringResource(R.string.info_row_notifications_description),
@@ -184,10 +177,10 @@ fun InfoScreen(
                 }
             }
 
-            item {
+            item(key = "other-header") {
                 InfoSectionHeader(title = stringResource(R.string.info_section_other))
             }
-            item {
+            item(key = "other-app-information") {
                 InfoRow(
                     title = stringResource(com.lambdadigamma.moersfestival.R.string.about_this_app),
                     leadingIcon = Icons.Rounded.Info,
@@ -196,12 +189,12 @@ fun InfoScreen(
                     onOpenAppInformation()
                 }
             }
-            item {
+            item(key = "other-legal") {
                 InfoRow(title = stringResource(R.string.info_row_legal)) {
                     onOpenWeb(FESTIVAL_LEGAL_URL)
                 }
             }
-            item {
+            item(key = "other-licenses") {
                 InfoRow(
                     title = stringResource(R.string.info_row_licenses),
                     leadingIcon = Icons.Rounded.Info,

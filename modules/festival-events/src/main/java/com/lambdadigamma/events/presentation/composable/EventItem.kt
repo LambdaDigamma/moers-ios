@@ -17,10 +17,11 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -29,18 +30,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.lambdadigamma.core.geo.Point
 import com.lambdadigamma.core.ui.MoersFestivalTheme
-import com.lambdadigamma.core.ui.formatted
 import com.lambdadigamma.core.ui.formattedShort
-import com.lambdadigamma.events.data.local.model.ScheduleDisplayMode
 import com.lambdadigamma.events.R
 import com.lambdadigamma.events.presentation.EventDisplayable
 import com.lambdadigamma.events.presentation.detail.PlaceDisplayable
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 import java.util.Date
-import java.util.Formatter
-import java.util.Locale
-import java.util.TimeZone
 
 @Composable
 fun EventItem(
@@ -49,39 +43,55 @@ fun EventItem(
     showDivider: Boolean = true,
 ) {
 
-    val timeDescription = if (!event.showsDateComponent) {
-        null
-    } else if (!event.showsTimeComponent) {
-        if (event.startDate != null) {
-            DateUtils.formatDateTime(
-                LocalContext.current,
-                event.startDate.time,
-                DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_ABBREV_MONTH or DateUtils.FORMAT_SHOW_WEEKDAY
-            )
-        } else {
-            stringResource(R.string.date_tba)
-        }
-    } else if (event.isOpenEnd) {
-        if (event.startDate != null) {
-            DateUtils.formatDateTime(
-                LocalContext.current,
-                event.startDate.time,
-                DateUtils.FORMAT_SHOW_TIME
-            )
-        } else {
-            stringResource(R.string.date_tba)
-        }
-    } else {
-        event.dateRange?.formattedShort(LocalContext.current) ?: stringResource(R.string.date_tba)
-    }
+    val context = LocalContext.current
+    val configuration = LocalConfiguration.current
+    val dateTba = stringResource(R.string.date_tba)
+    val locationUnknown = stringResource(R.string.location_unknown)
+    val startTime = event.startDate?.time
+    val endTime = event.endDate?.time
+    val placeName = event.place?.name
 
-    val locationDescription = if (event.place != null) {
-        event.place.name
-    } else {
-        stringResource(R.string.location_unknown)
-    }
+    val supportingText = remember(
+        event.id,
+        startTime,
+        endTime,
+        event.isOpenEnd,
+        event.scheduleDisplayMode,
+        placeName,
+        configuration,
+        dateTba,
+        locationUnknown,
+    ) {
+        val timeDescription = if (!event.showsDateComponent) {
+            null
+        } else if (!event.showsTimeComponent) {
+            if (startTime != null) {
+                DateUtils.formatDateTime(
+                    context,
+                    startTime,
+                    DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_ABBREV_MONTH or DateUtils.FORMAT_SHOW_WEEKDAY
+                )
+            } else {
+                dateTba
+            }
+        } else if (event.isOpenEnd) {
+            if (startTime != null) {
+                DateUtils.formatDateTime(
+                    context,
+                    startTime,
+                    DateUtils.FORMAT_SHOW_TIME
+                )
+            } else {
+                dateTba
+            }
+        } else {
+            event.dateRange?.formattedShort(context) ?: dateTba
+        }
 
-    val supportingText = listOfNotNull(timeDescription, locationDescription).joinToString(" • ")
+        val locationDescription = placeName ?: locationUnknown
+
+        listOfNotNull(timeDescription, locationDescription).joinToString(" • ")
+    }
 
     Column {
         ListItem(
@@ -127,14 +137,12 @@ fun EventItem(
         )
         if (showDivider) {
             HorizontalDivider(
-                modifier = Modifier.padding(start = 72.dp),
+                modifier = Modifier.padding(start = 32.dp),
                 thickness = 1.dp,
                 color = MaterialTheme.colorScheme.outlineVariant,
             )
         }
     }
-
-    Date().time
 
 }
 
