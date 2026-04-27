@@ -58,10 +58,10 @@ fun DownloadEventRow(
                 downloadEventState = uiState.contentState
             )
 
-//            DownloadStateInline(
-//                text = "Bilder",
-//                downloadEventState = uiState.imageState
-//            )
+            DownloadStateInline(
+                text = stringResource(R.string.images),
+                downloadEventState = uiState.imageState
+            )
 
         }
 

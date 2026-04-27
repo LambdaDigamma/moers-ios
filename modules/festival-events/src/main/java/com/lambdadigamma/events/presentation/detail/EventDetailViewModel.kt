@@ -7,28 +7,26 @@ import com.lambdadigamma.events.domain.usecase.GetEventDetailUseCase
 import com.lambdadigamma.events.domain.usecase.ToggleFavoriteEventUseCase
 import com.lambdadigamma.events.presentation.mapper.toDetailPresentationModel
 import com.lambdadigamma.events.presentation.mapper.toPresentationModel
-import com.lambdadigamma.events.presentation.timetable.EventsUiState
-import com.lambdadigamma.events.presentation.timetable.TimetableIntent
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class EventDetailViewModel @Inject constructor(
+@HiltViewModel(assistedFactory = EventDetailViewModel.Factory::class)
+class EventDetailViewModel @AssistedInject constructor(
     private val getEventDetailUseCase: GetEventDetailUseCase,
     private val toggleFavoriteEvent: ToggleFavoriteEventUseCase,
     savedStateHandle: SavedStateHandle,
+    @param:Assisted private val eventId: Int,
     eventDetailInitialState: EventDetailUiState,
 ): BaseViewModel<EventDetailUiState, EventDetailUiState.PartialState, EventDetailEvents, EventDetailIntent>(
     savedStateHandle = savedStateHandle,
     initialState = eventDetailInitialState,
 ) {
-
-    private val eventId: Int = checkNotNull(savedStateHandle["eventId"])
 
     init {
         acceptIntent(EventDetailIntent.GetData)
@@ -93,6 +91,11 @@ class EventDetailViewModel @Inject constructor(
             toggleFavoriteEvent(eventId)
         }
 
+    }
+
+    @AssistedFactory
+    interface Factory {
+        fun create(eventId: Int): EventDetailViewModel
     }
 
 }

@@ -24,6 +24,7 @@
 		DF5975C42F01E08D00512386 /* MMPages in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C32F01E08D00512386 /* MMPages */; };
 		DF5975C62F01E08D00512386 /* MapFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C52F01E08D00512386 /* MapFeature */; };
 		DF5975C82F01E08D00512386 /* NewsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C72F01E08D00512386 /* NewsFeature */; };
+		DFEA10012F9A000000000001 /* AppUpdateFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DFEA10022F9A000000000002 /* AppUpdateFeature */; };
 		DF62C61A2247B98E008425EC /* ContentDrawer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF62C6192247A349008425EC /* ContentDrawer.storyboard */; };
 		DF68FFF3282AEDD500C63690 /* FGD2022 in Resources */ = {isa = PBXBuildFile; fileRef = DF68FFF2282AEDD500C63690 /* FGD2022 */; };
 		DF7FB53527F672E300F718F2 /* StateViewController in Frameworks */ = {isa = PBXBuildFile; productRef = DF7FB53427F672E300F718F2 /* StateViewController */; };
@@ -375,6 +376,7 @@
 				DF5975BE2F01E08D00512386 /* Core in Frameworks */,
 				DF055B962D8B8FD7007E4393 /* FirebaseCore in Frameworks */,
 				DF5975C02F01E08D00512386 /* MMEvents in Frameworks */,
+				DFEA10012F9A000000000001 /* AppUpdateFeature in Frameworks */,
 				DF56291A257BB6E3005FC7BA /* BLTNBoard in Frameworks */,
 				DF5975C22F01E08D00512386 /* MMFeeds in Frameworks */,
 				DF055B942D8B8FD7007E4393 /* FirebaseAnalytics in Frameworks */,
@@ -596,6 +598,7 @@
 				DF5975C32F01E08D00512386 /* MMPages */,
 				DF5975C52F01E08D00512386 /* MapFeature */,
 				DF5975C72F01E08D00512386 /* NewsFeature */,
+				DFEA10022F9A000000000002 /* AppUpdateFeature */,
 			);
 			productName = "moers festival";
 			productReference = DF35B386201DC72900118FD1 /* moers festival.app */;
@@ -2282,6 +2285,10 @@
 		DF5975C72F01E08D00512386 /* NewsFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NewsFeature;
+		};
+		DFEA10022F9A000000000002 /* AppUpdateFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppUpdateFeature;
 		};
 		DF7FB53427F672E300F718F2 /* StateViewController */ = {
 			isa = XCSwiftPackageProductDependency;

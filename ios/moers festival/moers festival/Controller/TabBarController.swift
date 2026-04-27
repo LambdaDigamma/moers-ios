@@ -22,8 +22,10 @@ import SafariServices
 import Combine
 import MMEvents
 import SwiftUI
+import AppUpdateFeature
+import Factory
 
-public class TabBarController: UITabBarController, UITabBarControllerDelegate {
+public class TabBarController: UITabBarController, UITabBarControllerDelegate, UIAdaptivePresentationControllerDelegate {
 
     let news: NewsCoordinator
     let live: LiveCoordinator
@@ -34,6 +36,10 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     private let isMapEnabled = true
     private var cancellalbes = Set<AnyCancellable>()
+    private let appUpdateController: AppUpdateController
+    private var appUpdateBannerController: UIHostingController<AppUpdateBannerView>?
+    private var appUpdateBannerHeightConstraint: NSLayoutConstraint?
+    private var appUpdateSheetController: UIHostingController<AppUpdateSheetView>?
     
     public var events: [Event] = []
     
@@ -54,6 +60,11 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
             eventCoordinator: event
         )
         self.other = OtherCoordinator()
+        self.appUpdateController = AppUpdateController(
+            statusFetcher: AppStoreUpdateStatusFetcher(lookup: .appID("1341448683")),
+            remoteConfigurationLoader: RemoteAppUpdateConfigurationService(loader: Container.shared.httpLoader.resolve()),
+            fallbackStoreURL: URL(string: "itms-apps://itunes.apple.com/app/id1341448683")!
+        )
         
         super.init(nibName: nil, bundle: nil)
         
@@ -104,6 +115,7 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
         }
         
         self.setupTheming()
+        self.setupAppUpdateHandling()
         self.removeAllPendingNotifications()
 //        self.testingNotifications()
         
@@ -293,6 +305,161 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate {
             }
             .store(in: &cancellalbes)
         
+    }
+
+    private func setupAppUpdateHandling() {
+        appUpdateController.$banner
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] presentation in
+                self?.updateAppUpdateBanner(presentation)
+            }
+            .store(in: &cancellalbes)
+
+        appUpdateController.$forcedSheet
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] presentation in
+                self?.updateForcedUpdateSheet(presentation)
+            }
+            .store(in: &cancellalbes)
+
+        NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)
+            .sink { [weak self] _ in
+                self?.refreshAppUpdateStatus()
+            }
+            .store(in: &cancellalbes)
+
+        refreshAppUpdateStatus()
+    }
+
+    private func refreshAppUpdateStatus() {
+        Task { [appUpdateController] in
+            await appUpdateController.refresh()
+        }
+    }
+
+    private func updateAppUpdateBanner(_ presentation: AppUpdatePresentation?) {
+        guard let presentation else {
+            removeAppUpdateBanner()
+            return
+        }
+
+        let rootView = AppUpdateBannerView(
+            presentation: presentation,
+            onUpdate: { [weak self] url in
+                self?.openAppStore(url)
+            },
+            onClose: { [weak self] in
+                self?.appUpdateController.dismissBanner()
+            }
+        )
+
+        if let appUpdateBannerController {
+            appUpdateBannerController.rootView = rootView
+            updateAppUpdateBannerHeight()
+            return
+        }
+
+        let hostingController = UIHostingController(rootView: rootView)
+        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        hostingController.view.backgroundColor = .systemBackground
+
+        addChild(hostingController)
+        view.addSubview(hostingController.view)
+
+        let heightConstraint = hostingController.view.heightAnchor.constraint(equalToConstant: 64)
+        NSLayoutConstraint.activate([
+            hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            hostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            hostingController.view.bottomAnchor.constraint(equalTo: tabBar.topAnchor),
+            heightConstraint
+        ])
+
+        hostingController.didMove(toParent: self)
+
+        appUpdateBannerController = hostingController
+        appUpdateBannerHeightConstraint = heightConstraint
+        updateAppUpdateBannerHeight()
+    }
+
+    private func removeAppUpdateBanner() {
+        guard let appUpdateBannerController else {
+            additionalSafeAreaInsets.bottom = 0
+            return
+        }
+
+        appUpdateBannerController.willMove(toParent: nil)
+        appUpdateBannerController.view.removeFromSuperview()
+        appUpdateBannerController.removeFromParent()
+
+        self.appUpdateBannerController = nil
+        appUpdateBannerHeightConstraint = nil
+        additionalSafeAreaInsets.bottom = 0
+    }
+
+    private func updateAppUpdateBannerHeight() {
+        guard let appUpdateBannerController, view.bounds.width > 0 else { return }
+
+        let size = appUpdateBannerController.sizeThatFits(
+            in: CGSize(width: view.bounds.width, height: UIView.layoutFittingCompressedSize.height)
+        )
+        let height = max(64, ceil(size.height))
+
+        appUpdateBannerHeightConstraint?.constant = height
+        additionalSafeAreaInsets.bottom = height
+    }
+
+    private func updateForcedUpdateSheet(_ presentation: AppUpdatePresentation?) {
+        guard let presentation else {
+            if let appUpdateSheetController {
+                appUpdateSheetController.dismiss(animated: true)
+                self.appUpdateSheetController = nil
+            }
+            return
+        }
+
+        let rootView = AppUpdateSheetView(
+            presentation: presentation,
+            onUpdate: { [weak self] url in
+                self?.openAppStore(url)
+            },
+            onClose: { [weak self] in
+                self?.appUpdateController.dismissForcedSheet()
+            }
+        )
+
+        if let appUpdateSheetController {
+            appUpdateSheetController.rootView = rootView
+            appUpdateSheetController.isModalInPresentation = !presentation.allowsDismissal
+            return
+        }
+
+        let hostingController = UIHostingController(rootView: rootView)
+        hostingController.modalPresentationStyle = .formSheet
+        hostingController.isModalInPresentation = !presentation.allowsDismissal
+
+        dismiss(animated: false) { [weak self] in
+            guard let self else { return }
+            self.appUpdateSheetController = hostingController
+            self.present(hostingController, animated: true) {
+                hostingController.presentationController?.delegate = self
+            }
+        }
+    }
+
+    private func openAppStore(_ url: URL) {
+        UIApplication.shared.open(url)
+    }
+
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateAppUpdateBannerHeight()
+    }
+
+    public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        guard presentationController.presentedViewController === appUpdateSheetController else { return }
+
+        appUpdateSheetController = nil
+        appUpdateController.dismissForcedSheet()
     }
     
     private func testingNotifications() {

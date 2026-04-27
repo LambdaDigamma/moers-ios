@@ -1,8 +1,12 @@
 package com.lambdadigamma.pages.data.mapper
 
 import com.google.gson.GsonBuilder
+import com.lambdadigamma.pages.data.remote.ExternalLinkBlock
 import com.lambdadigamma.pages.data.remote.ImageCollectionBlock
+import com.lambdadigamma.pages.data.remote.LinkListBlock
+import com.lambdadigamma.pages.data.remote.SoundcloudBlock
 import com.lambdadigamma.pages.data.remote.TextBlock
+import com.lambdadigamma.pages.data.remote.YoutubeVideoBlock
 import com.lambdadigamma.pages.data.remote.api.registerPageBlockTypeAdapter
 import com.lambdadigamma.pages.data.remote.model.BlockType
 import com.lambdadigamma.pages.data.remote.model.SomeBlockData
@@ -36,7 +40,11 @@ class BlockDataMapper {
             val gson = gson()
 
             return when (type) {
+                BlockType.YoutubeVideo -> gson.fromJson(data, YoutubeVideoBlock::class.java)
+                BlockType.Soundcloud -> gson.fromJson(data, SoundcloudBlock::class.java)
+                BlockType.ExternalLink -> gson.fromJson(data, ExternalLinkBlock::class.java)
                 BlockType.Text -> gson.fromJson(data, TextBlock::class.java)
+                BlockType.LinkList -> gson.fromJson(data, LinkListBlock::class.java)
                 BlockType.ImageCollection -> gson.fromJson(data, ImageCollectionBlock::class.java)
                 else -> throw IllegalArgumentException("Unknown block type: $type")
             }

@@ -49,6 +49,10 @@
             android:name=".MainActivity"
             android:exported="true"
         >
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -63,6 +67,19 @@
                 <data
                     android:scheme="moersfestival"
                 />
+            </intent-filter>
+
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="https"
+                    android:host="moers.app" />
+                <data
+                    android:scheme="https"
+                    android:host="www.moers.app" />
             </intent-filter>
 
         </activity>

@@ -10,9 +10,13 @@ import com.google.gson.JsonSerializationContext
 import com.google.gson.JsonSerializer
 import com.lambdadigamma.medialibrary.MediaCollectionsContainer
 import com.lambdadigamma.pages.data.mapper.BlockDataMapper
+import com.lambdadigamma.pages.data.remote.ExternalLinkBlock
 import com.lambdadigamma.pages.data.remote.ImageCollectionBlock
+import com.lambdadigamma.pages.data.remote.LinkListBlock
+import com.lambdadigamma.pages.data.remote.SoundcloudBlock
 import com.lambdadigamma.pages.data.remote.TextBlock
 import com.lambdadigamma.pages.data.remote.UnknownBlock
+import com.lambdadigamma.pages.data.remote.YoutubeVideoBlock
 import com.lambdadigamma.pages.data.remote.model.BlockType
 import com.lambdadigamma.pages.data.remote.model.PageBlock
 import java.lang.reflect.Type
@@ -47,9 +51,25 @@ class PageBlockDeserializer: JsonDeserializer<PageBlock>, JsonSerializer<PageBlo
             }
 
         val data = when (blockType) {
+            BlockType.YoutubeVideo -> context?.deserialize<YoutubeVideoBlock>(
+                jsonObject.get("data"),
+                YoutubeVideoBlock::class.java
+            )
+            BlockType.Soundcloud -> context?.deserialize<SoundcloudBlock>(
+                jsonObject.get("data"),
+                SoundcloudBlock::class.java
+            )
+            BlockType.ExternalLink -> context?.deserialize<ExternalLinkBlock>(
+                jsonObject.get("data"),
+                ExternalLinkBlock::class.java
+            )
             BlockType.Text -> context?.deserialize<TextBlock>(
                 jsonObject.get("data"),
                 TextBlock::class.java
+            )
+            BlockType.LinkList -> context?.deserialize<LinkListBlock>(
+                jsonObject.get("data"),
+                LinkListBlock::class.java
             )
             BlockType.ImageCollection -> context?.deserialize<ImageCollectionBlock>(
                 jsonObject.get("data"),

@@ -2,6 +2,10 @@ package com.lambdadigamma.events.data.di
 
 import android.content.Context
 import com.lambdadigamma.core.base.ServiceFactory
+import com.lambdadigamma.events.data.local.preferences.DefaultFavoriteEventsFilterRepository
+import com.lambdadigamma.events.data.local.preferences.DefaultTimetableFilterRepository
+import com.lambdadigamma.events.data.local.preferences.FavoriteEventsFilterRepository
+import com.lambdadigamma.events.data.local.preferences.TimetableFilterRepository
 import com.lambdadigamma.events.data.remote.api.EventService
 import com.lambdadigamma.events.data.repository.EventRepositoryImpl
 import com.lambdadigamma.events.domain.repository.EventRepository
@@ -153,5 +157,17 @@ internal object EventModule {
         @Binds
         @Singleton
         fun bindEventRepository(impl: EventRepositoryImpl): EventRepository
+
+        @Binds
+        @Singleton
+        fun bindFavoriteEventsFilterRepository(
+            impl: DefaultFavoriteEventsFilterRepository,
+        ): FavoriteEventsFilterRepository
+
+        @Binds
+        @Singleton
+        fun bindTimetableFilterRepository(
+            impl: DefaultTimetableFilterRepository,
+        ): TimetableFilterRepository
     }
 }

@@ -91,6 +91,7 @@ class TextBlockDeserializationTest {
                     )
                 )
             ),
+            order = 0,
             children = emptyList(),
             mediaCollections = null,
             createdAt = Date(1684452770139),
@@ -105,7 +106,7 @@ class TextBlockDeserializationTest {
         val json = gson.toJson(givenPageBlock)
 
         assertEquals("""
-            {"id":978,"page_id":405,"type":"tip-tap-text-with-media","blockType":"tip-tap-text-with-media","data":{"title":"Hallo","text":{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","text":"Hallo","marks":[]}]}]}},"children":[],"created_at":"May 19, 2023, 1:32:50 AM","updated_at":"May 19, 2023, 1:32:50 AM"}
+            {"id":978,"page_id":405,"type":"tip-tap-text-with-media","blockType":"tip-tap-text-with-media","data":{"title":"Hallo","text":{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","text":"Hallo","marks":[]}]}]}},"children":[],"created_at":"2023-05-18T23:32:50.000139Z","updated_at":"2023-05-18T23:32:50.000139Z"}
         """.trimIndent(), json)
 
     }

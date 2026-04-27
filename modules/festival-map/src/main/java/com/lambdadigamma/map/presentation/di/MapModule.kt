@@ -13,6 +13,8 @@ import com.lambdadigamma.map.data.source.FestivalMapAssetSource
 import com.lambdadigamma.map.data.source.FestivalMapCacheSource
 import com.lambdadigamma.map.data.source.FestivalMapRefreshTracker
 import com.lambdadigamma.map.data.source.FestivalMapRemoteSource
+import com.lambdadigamma.map.domain.usecase.RefreshFestivalMapUseCase
+import com.lambdadigamma.map.domain.usecase.refreshFestivalMap
 import com.lambdadigamma.map.presentation.MapNavigationFactory
 import dagger.Binds
 import dagger.Module
@@ -62,5 +64,14 @@ internal object MapServiceModule {
     @Singleton
     fun provideClock(): Clock {
         return Clock.systemDefaultZone()
+    }
+
+    @Provides
+    fun provideRefreshFestivalMapUseCase(
+        repository: FestivalMapRepository,
+    ): RefreshFestivalMapUseCase {
+        return RefreshFestivalMapUseCase { force ->
+            refreshFestivalMap(repository = repository, force = force)
+        }
     }
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="page_block_external_link">Externer Link</string>
+    <string name="page_block_open_link">Link öffnen</string>
+    <string name="page_block_links">Links</string>
+    <string name="page_block_youtube">YouTube-Video</string>
+    <string name="page_block_watch_video">Video ansehen</string>
+    <string name="page_block_soundcloud">SoundCloud-Audio</string>
+    <string name="page_block_soundcloud_description">Dieser Inhalt wird in SoundCloud geöffnet, damit Du ihn mit dem Original-Player hören kannst.</string>
+    <string name="page_block_open_soundcloud">SoundCloud öffnen</string>
+</resources>

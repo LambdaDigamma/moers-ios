@@ -3,44 +3,32 @@ package com.lambdadigamma.news.presentation.detail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.lambdadigamma.core.base.BaseViewModel
-import com.lambdadigamma.events.domain.usecase.GetEventDetailUseCase
-import com.lambdadigamma.events.domain.usecase.ToggleFavoriteEventUseCase
-import com.lambdadigamma.events.presentation.mapper.toDetailPresentationModel
-import com.lambdadigamma.events.presentation.mapper.toPresentationModel
-import com.lambdadigamma.events.presentation.timetable.EventsUiState
-import com.lambdadigamma.events.presentation.timetable.TimetableIntent
-import com.lambdadigamma.events.presentation.timetable.TimetableUiState
 import com.lambdadigamma.news.domain.usecase.GetPostDetailUseCase
 import com.lambdadigamma.news.domain.usecase.RefreshPostUseCase
-import com.lambdadigamma.news.domain.usecase.getPostDetail
-import com.lambdadigamma.news.presentation.PostDisplayable
 import com.lambdadigamma.news.presentation.mapper.toPresentationModel
 import com.lambdadigamma.pages.domain.usecase.GetPageUseCase
 import com.lambdadigamma.pages.domain.usecase.RefreshPageUseCase
-import com.lambdadigamma.pages.presentation.PageViewUiState
-import com.lambdadigamma.pages.presentation.mapper.toPresentationModel
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class PostDetailViewModel @Inject constructor(
+@HiltViewModel(assistedFactory = PostDetailViewModel.Factory::class)
+class PostDetailViewModel @AssistedInject constructor(
     private val getPostDetailUseCase: GetPostDetailUseCase,
     private val refreshPostUseCase: RefreshPostUseCase,
     private val getPageUseCase: GetPageUseCase,
     private val refreshPageUseCase: RefreshPageUseCase,
     savedStateHandle: SavedStateHandle,
+    @param:Assisted private val postId: Int,
     eventDetailInitialState: PostDetailUiState,
 ): BaseViewModel<PostDetailUiState, PostDetailUiState.PartialState, PostDetailEvents, PostDetailIntent>(
     savedStateHandle = savedStateHandle,
     initialState = eventDetailInitialState,
 ) {
-
-    private val postId: Int = checkNotNull(savedStateHandle["postId"])
 
     init {
         acceptIntent(PostDetailIntent.GetData)
@@ -111,5 +99,10 @@ class PostDetailViewModel @Inject constructor(
     }
 
     // MARK: - Page
+
+    @AssistedFactory
+    interface Factory {
+        fun create(postId: Int): PostDetailViewModel
+    }
 
 }
