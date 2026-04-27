@@ -10,7 +10,7 @@ import Core
 import SwiftUI
 import MMEvents
 import MMPages
-import MapKit
+@preconcurrency import MapKit
 
 public struct VenueDetailScreen: View {
     
