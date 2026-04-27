@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="news"
+        android:enabled="true"
+        android:icon="@drawable/baseline_newspaper_24"
+        android:shortcutShortLabel="@string/shortcut_news_short"
+        android:shortcutLongLabel="@string/shortcut_news_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.lambdadigamma.moersfestival"
+            android:targetClass="com.lambdadigamma.moersfestival.MainActivity"
+            android:data="moersfestival://posts" />
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="events"
+        android:enabled="true"
+        android:icon="@drawable/baseline_calendar_month_24"
+        android:shortcutShortLabel="@string/shortcut_events_short"
+        android:shortcutLongLabel="@string/shortcut_events_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.lambdadigamma.moersfestival"
+            android:targetClass="com.lambdadigamma.moersfestival.MainActivity"
+            android:data="moersfestival://events" />
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="favorites"
+        android:enabled="true"
+        android:icon="@drawable/baseline_favorite_24"
+        android:shortcutShortLabel="@string/shortcut_favorites_short"
+        android:shortcutLongLabel="@string/shortcut_favorites_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.lambdadigamma.moersfestival"
+            android:targetClass="com.lambdadigamma.moersfestival.MainActivity"
+            android:data="moersfestival://favorites" />
+    </shortcut>
+</shortcuts>

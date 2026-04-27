@@ -51,10 +51,11 @@ class NewsNavigationFactory @Inject constructor() : NavigationFactory {
             deepLinks = listOf(
                 navDeepLink { uriPattern = "moersfestival://posts/{postId}" }
             )
-        ) {
+        ) { backStackEntry ->
+            val postId = checkNotNull(backStackEntry.arguments?.getInt("postId"))
             PostDetailRoute(onBack = {
                 navigationManager.navigateBack()
-            })
+            }, postId = postId)
         }
     }
 }

@@ -3,6 +3,8 @@ package com.lambdadigamma.events.presentation.timetable
 import android.os.Parcelable
 import androidx.compose.runtime.Immutable
 import com.lambdadigamma.events.presentation.EventDisplayable
+import com.lambdadigamma.events.presentation.filter.EventFilter
+import com.lambdadigamma.events.presentation.filter.EventVenueFilterOption
 import kotlinx.parcelize.Parcelize
 import java.util.Date
 
@@ -10,6 +12,10 @@ import java.util.Date
 data class TimetableData(
     val sections: List<TimetableSection> = emptyList(),
     val currentIndex: Int,
+    val filter: EventFilter = EventFilter(),
+    val availableVenues: List<EventVenueFilterOption> = emptyList(),
+    val hasAnyEvents: Boolean = false,
+    val isFilterSheetVisible: Boolean = false,
 ): Parcelable
 
 @Parcelize
@@ -35,5 +41,7 @@ data class TimetableUiState(
         ) : PartialState()
 
         data class Error(val throwable: Throwable) : PartialState()
+
+        data class FilterSheetVisibilityChanged(val isVisible: Boolean) : PartialState()
     }
 }

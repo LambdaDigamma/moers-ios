@@ -8,9 +8,15 @@ import com.lambdadigamma.events.presentation.detail.EventDetailViewModel
 
 @Composable
 fun EventDetailRoute(
-    viewModel: EventDetailViewModel = hiltViewModel(),
-    onBack: () -> Unit
+    eventId: Int,
+    onBack: () -> Unit,
+    onShowVenue: (Long) -> Unit,
 ) {
+    val viewModel: EventDetailViewModel = hiltViewModel<EventDetailViewModel, EventDetailViewModel.Factory>(
+        creationCallback = { factory ->
+            factory.create(eventId)
+        },
+    )
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -18,8 +24,8 @@ fun EventDetailRoute(
         uiState = uiState,
         onBack = onBack,
         onToggleLike = { viewModel.toggleFavorite() },
-        onIntent = viewModel::acceptIntent
+        onIntent = viewModel::acceptIntent,
+        onShowVenue = onShowVenue,
     )
 
 }
-

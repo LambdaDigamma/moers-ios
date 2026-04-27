@@ -93,54 +93,60 @@ fun DownloadEventsScreen(
                         val checkedState = remember { mutableStateOf(true) }
                         val downloadImage = remember { mutableStateOf(false) }
 
-//                        Row(modifier = Modifier
-//                            .padding()
-//                            .fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
-//
-//                            BasicText(
-//                                text = "Inhalte herunterladen",
-//                                style = MaterialTheme.typography.bodyLarge.copy(
-//                                    color = MaterialTheme.colorScheme.onBackground
-//                                )
-//                            )
-//
-//                            Switch(
-//                                checked = checkedState.value,
-//                                onCheckedChange = { checkedState.value = it }
-//                            )
-//
-//                        }
+                        Row(modifier = Modifier
+                            .padding()
+                            .fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
 
-//                        HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
-//
-//                        Row(modifier = Modifier
-//                            .padding()
-//                            .fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
-//
-//                            BasicText(
-//                                text = "Bilder herunterladen",
-//                                style = MaterialTheme.typography.bodyLarge.copy(
-//                                    color = MaterialTheme.colorScheme.onBackground
-//                                )
-//                            )
-//
-//                            Switch(
-//                                checked = downloadImage.value,
-//                                onCheckedChange = { downloadImage.value = it }
-//                            )
-//
-//                        }
+                            BasicText(
+                                text = stringResource(com.lambdadigamma.events.R.string.download_timetable_content_option),
+                                style = MaterialTheme.typography.bodyLarge.copy(
+                                    color = MaterialTheme.colorScheme.onBackground
+                                )
+                            )
+
+                            Switch(
+                                checked = checkedState.value,
+                                onCheckedChange = { checkedState.value = it }
+                            )
+
+                        }
+
+                        HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
+
+                        Row(modifier = Modifier
+                            .padding()
+                            .fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
+
+                            BasicText(
+                                text = stringResource(com.lambdadigamma.events.R.string.download_timetable_media_option),
+                                style = MaterialTheme.typography.bodyLarge.copy(
+                                    color = MaterialTheme.colorScheme.onBackground
+                                )
+                            )
+
+                            Switch(
+                                checked = downloadImage.value,
+                                onCheckedChange = { downloadImage.value = it }
+                            )
+
+                        }
 
                         HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
 
                         Button(
-                            modifier = Modifier
-                                .padding(top = 20.dp)
-                                .fillMaxWidth(),
-                            onClick = {
-                                onIntent(DownloadEventsIntent.DownloadContent)
-                            }
-                        ) {
+	                            modifier = Modifier
+	                                .padding(top = 20.dp)
+	                                .fillMaxWidth(),
+                            enabled = checkedState.value || downloadImage.value,
+	                            onClick = {
+                                onIntent(
+                                    DownloadEventsIntent.DownloadContent(
+                                        includeContent = checkedState.value,
+                                        includeMedia = downloadImage.value,
+                                    )
+                                )
+	                            }
+	                        ) {
                             Text(text = stringResource(com.lambdadigamma.events.R.string.download_timetable_cta))
                         }
 
@@ -154,10 +160,11 @@ fun DownloadEventsScreen(
                     items = uiState.events,
                     key = { event -> event.id },
                 ) { item ->
-                    DownloadEventRow(uiState = DownloadEventRowState(
-                        name = item.name,
-                        contentState = if (item.hasPageDownloaded) DownloadEventState.DOWNLOADED else DownloadEventState.NOT_DOWNLOADED,
-                    ))
+	                    DownloadEventRow(uiState = DownloadEventRowState(
+	                        name = item.name,
+	                        contentState = if (item.hasPageDownloaded) DownloadEventState.DOWNLOADED else DownloadEventState.NOT_DOWNLOADED,
+                        imageState = if (item.hasMediaDownloaded) DownloadEventState.DOWNLOADED else DownloadEventState.NOT_DOWNLOADED,
+	                    ))
                     HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.padding(start = 16.dp))
                 }
 

@@ -6,13 +6,16 @@ import java.util.Properties
 
 plugins {
     id("com.android.application")
+    alias(libs.plugins.aboutLibraries)
     alias(libs.plugins.detekt)
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.google.services)
+    alias(libs.plugins.junit)
     id("dagger.hilt.android.plugin")
     id("org.jetbrains.kotlin.android")
     alias(libs.plugins.ksp)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlin.serialization)
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
@@ -93,6 +96,9 @@ dependencies {
 
     implementation(libs.hilt)
     implementation(libs.navigation) // needed for Room
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.lifecycle.viewmodel.navigation3)
     implementation(libs.room.ktx)
     implementation(libs.timber)
     implementation(libs.compose.ui.preview)
@@ -102,8 +108,12 @@ dependencies {
     implementation(libs.accompanist.systemuicontroller)
     implementation(libs.compose.webview)
     implementation(libs.core.ktx)
+    implementation(libs.datastore.preferences)
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.android)
+    implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.navigation.hilt)
+    implementation(libs.kotlin.serialization)
 
     implementation(libs.activity.ktx)
 
@@ -111,6 +121,8 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.messaging)
     implementation(libs.firebase.crashlytics)
+
+    testImplementation(libs.bundles.common.test)
 
     ksp(libs.hilt.compiler)
     ksp(libs.room.compiler)

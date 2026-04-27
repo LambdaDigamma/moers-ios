@@ -1,5 +1,7 @@
 package com.lambdadigamma.map.presentation
 
+import com.lambdadigamma.core.geo.LocationUpdatesUseCase
+import com.lambdadigamma.core.geo.Point
 import com.lambdadigamma.map.data.model.FestivalMapCoordinate
 import com.lambdadigamma.map.data.model.FestivalMapFeature
 import com.lambdadigamma.map.data.model.FestivalMapGeometry
@@ -8,10 +10,14 @@ import com.lambdadigamma.map.data.model.FestivalMapLayerType
 import com.lambdadigamma.map.data.model.FestivalMapPlace
 import com.lambdadigamma.map.data.repository.FestivalMapRepository
 import com.lambdadigamma.events.domain.usecase.RefreshEventsUseCase
+import io.mockk.every
+import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
@@ -43,7 +49,7 @@ class MapViewModelTest {
         val initialLayers = listOf(layer(name = "Initial"))
         val repository = FakeFestivalMapRepository(initialLayers = initialLayers)
 
-        val objectUnderTest = MapViewModel(repository, RefreshEventsUseCase { Result.success(Unit) })
+        val objectUnderTest = buildViewModel(repository)
         advanceUntilIdle()
 
         assertEquals(initialLayers, objectUnderTest.uiState.value.layers)
@@ -58,7 +64,7 @@ class MapViewModelTest {
             initialLayers = listOf(layer(name = "Initial")),
             refreshedLayers = listOf(layer(name = "Refreshed")),
         )
-        val objectUnderTest = MapViewModel(repository, RefreshEventsUseCase { Result.success(Unit) })
+        val objectUnderTest = buildViewModel(repository)
         advanceUntilIdle()
 
         objectUnderTest.acceptIntent(MapIntent.Refresh)
@@ -71,10 +77,32 @@ class MapViewModelTest {
     }
 
     @Test
+    fun `should refresh event places when map refresh is requested`() = runTest(dispatcher) {
+        val repository = FakeFestivalMapRepository(
+            initialLayers = listOf(layer(name = "Initial")),
+            initialPlaces = listOf(place()),
+        )
+        var refreshEventCalls = 0
+        val objectUnderTest = buildViewModel(
+            repository = repository,
+            refreshEventsUseCase = RefreshEventsUseCase {
+                refreshEventCalls += 1
+                Result.success(Unit)
+            },
+        )
+        advanceUntilIdle()
+
+        objectUnderTest.acceptIntent(MapIntent.Refresh)
+        advanceUntilIdle()
+
+        assertEquals(1, refreshEventCalls)
+    }
+
+    @Test
     fun `should update selected feature`() = runTest(dispatcher) {
         val selectedLayer = layer(name = "Selectable")
         val repository = FakeFestivalMapRepository(initialLayers = listOf(selectedLayer))
-        val objectUnderTest = MapViewModel(repository, RefreshEventsUseCase { Result.success(Unit) })
+        val objectUnderTest = buildViewModel(repository)
         advanceUntilIdle()
 
         val feature = selectedLayer.features.single()
@@ -99,7 +127,7 @@ class MapViewModelTest {
             initialPlaces = listOf(place),
         )
 
-        val objectUnderTest = MapViewModel(repository, RefreshEventsUseCase { Result.success(Unit) })
+        val objectUnderTest = buildViewModel(repository)
         advanceUntilIdle()
 
         assertEquals(listOf(place), objectUnderTest.uiState.value.places)
@@ -120,6 +148,7 @@ class MapViewModelTest {
                 refreshCalls += 1
                 Result.success(Unit)
             },
+            locationUpdatesUseCase = fakeLocationUpdatesUseCase(),
         )
         advanceUntilIdle()
 
@@ -127,6 +156,24 @@ class MapViewModelTest {
         advanceUntilIdle()
 
         assertEquals(1, refreshCalls)
+    }
+
+    @Test
+    fun `should center on user location`() = runTest(dispatcher) {
+        val repository = FakeFestivalMapRepository(initialLayers = listOf(layer(name = "Initial")))
+        val expectedLocation = Point(latitude = 51.4401, longitude = 6.6201)
+        val objectUnderTest = buildViewModel(
+            repository = repository,
+            locationUpdatesUseCase = fakeLocationUpdatesUseCase(expectedLocation),
+        )
+        advanceUntilIdle()
+
+        objectUnderTest.acceptIntent(MapIntent.CenterOnUserLocation)
+        advanceUntilIdle()
+
+        assertEquals(expectedLocation, objectUnderTest.uiState.value.userLocation)
+        assertEquals(false, objectUnderTest.uiState.value.isLocatingUser)
+        assertNull(objectUnderTest.uiState.value.locationError)
     }
 
     private fun layer(name: String): FestivalMapLayer {
@@ -154,6 +201,42 @@ class MapViewModelTest {
                 ),
             ),
         )
+    }
+
+    private fun place(): FestivalMapPlace {
+        return FestivalMapPlace(
+            id = 10L,
+            name = "Festival Hall",
+            point = FestivalMapCoordinate(latitude = 51.44, longitude = 6.62),
+            addressLine1 = "Street 1",
+            addressLine2 = "47441 Moers",
+        )
+    }
+
+    private fun buildViewModel(
+        repository: FestivalMapRepository,
+        refreshEventsUseCase: RefreshEventsUseCase = RefreshEventsUseCase { Result.success(Unit) },
+        locationUpdatesUseCase: LocationUpdatesUseCase = fakeLocationUpdatesUseCase(),
+    ): MapViewModel {
+        return MapViewModel(
+            repository = repository,
+            refreshEventsUseCase = refreshEventsUseCase,
+            locationUpdatesUseCase = locationUpdatesUseCase,
+        )
+    }
+
+    private fun fakeLocationUpdatesUseCase(
+        point: Point? = null,
+    ): LocationUpdatesUseCase {
+        val updates: Flow<Point> = if (point != null) {
+            flowOf(point)
+        } else {
+            emptyFlow()
+        }
+
+        return mockk {
+            every { fetchCurrentLocation() } returns updates
+        }
     }
 }
 

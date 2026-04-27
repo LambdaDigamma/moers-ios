@@ -1,6 +1,5 @@
 package com.lambdadigamma.events.presentation.venue
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lambdadigamma.events.domain.repository.EventRepository
@@ -9,6 +8,9 @@ import com.lambdadigamma.events.presentation.mapper.toPresentationModel
 import com.lambdadigamma.events.presentation.mapper.toPresentationModel as toPlacePresentationModel
 import com.lambdadigamma.pages.domain.usecase.GetPageUseCase
 import com.lambdadigamma.pages.domain.usecase.RefreshPageUseCase
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.catch
@@ -17,18 +19,16 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class VenueDetailViewModel @Inject constructor(
+@HiltViewModel(assistedFactory = VenueDetailViewModel.Factory::class)
+class VenueDetailViewModel @AssistedInject constructor(
     private val eventRepository: EventRepository,
     private val getPageUseCase: GetPageUseCase,
     private val refreshPageUseCase: RefreshPageUseCase,
     private val refreshEventsUseCase: RefreshEventsUseCase,
-    savedStateHandle: SavedStateHandle,
+    @param:Assisted private val placeId: Long,
 ) : ViewModel() {
 
-    private val placeId: Long = checkNotNull(savedStateHandle["placeId"])
     private var hasRequestedEventsRefresh = false
     private var hasRequestedPageRefresh = false
 
@@ -95,5 +95,10 @@ class VenueDetailViewModel @Inject constructor(
                     }
                 }
         }
+    }
+
+    @AssistedFactory
+    interface Factory {
+        fun create(placeId: Long): VenueDetailViewModel
     }
 }
