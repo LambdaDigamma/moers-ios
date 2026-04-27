@@ -32,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.lambdadigamma.map.R
@@ -73,13 +74,14 @@ internal fun MapDrawerContent(
     Column(
         modifier = modifier
             .heightIn(min = minContentHeight)
-            .padding(horizontal = 12.dp, vertical = 4.dp),
+            .padding(vertical = 4.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         TextField(
             value = query,
             onValueChange = { query = it },
             modifier = Modifier
+                .padding(horizontal = 12.dp)
                 .fillMaxWidth()
                 .height(52.dp),
             leadingIcon = {
@@ -216,7 +218,7 @@ private fun DrawerSectionTitle(title: String) {
         text = title,
         style = MaterialTheme.typography.titleSmall,
         color = MaterialTheme.colorScheme.primary,
-        modifier = Modifier.padding(top = 4.dp, bottom = 2.dp),
+        modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
     )
 }
 
@@ -225,28 +227,32 @@ private fun DrawerPlaceItem(
     place: FestivalMapPlace,
     onClick: () -> Unit,
 ) {
+    val supportingText = place.addressLine1
+        .takeIf { it.isNotBlank() }
+        ?: stringResource(R.string.map_place_no_description)
+
     ListItem(
         headlineContent = {
             Text(
                 text = place.name,
                 style = MaterialTheme.typography.bodyLarge,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
             )
         },
         supportingContent = {
-            place.addressLine1
-                .takeIf { it.isNotBlank() }
-                ?.let { addressLine ->
-                    Text(
-                        text = addressLine,
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
-                }
+            Text(
+                text = supportingText,
+                style = MaterialTheme.typography.bodyMedium,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
         },
         modifier = Modifier.clickable(onClick = onClick),
         colors = ListItemDefaults.colors(containerColor = Color.Transparent),
     )
 
-    HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
+    DrawerItemDivider()
 }
 
 @Composable
@@ -263,6 +269,8 @@ private fun DrawerFeatureItem(
                     ?: stringResource(R.string.map_drawer_unnamed_booth),
                 style = MaterialTheme.typography.bodyLarge,
                 color = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
             )
         },
         supportingContent = {
@@ -287,7 +295,15 @@ private fun DrawerFeatureItem(
         colors = ListItemDefaults.colors(containerColor = Color.Transparent),
     )
 
-    HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
+    DrawerItemDivider()
+}
+
+@Composable
+private fun DrawerItemDivider() {
+    HorizontalDivider(
+        modifier = Modifier.padding(start = 16.dp),
+        color = MaterialTheme.colorScheme.surfaceVariant,
+    )
 }
 
 private fun String.matches(vararg values: String?): Boolean {

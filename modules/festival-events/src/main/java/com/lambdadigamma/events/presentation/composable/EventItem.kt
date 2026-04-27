@@ -16,6 +16,7 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -41,6 +42,7 @@ fun EventItem(
     event: EventDisplayable,
     onEventClick: (Int) -> Unit,
     showDivider: Boolean = true,
+    containerColor: Color = MaterialTheme.colorScheme.surface,
 ) {
 
     val context = LocalContext.current
@@ -134,6 +136,9 @@ fun EventItem(
                     )
                 }
             },
+            colors = ListItemDefaults.colors(
+                containerColor = containerColor,
+            ),
         )
         if (showDivider) {
             HorizontalDivider(

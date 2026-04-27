@@ -55,6 +55,7 @@
     <string name="no_events_for_filter">No events match this filter.</string>
     <string name="no_events_for_filter_hint">Adjust the selected venues, show all events, or clear the filter.</string>
     <string name="venue_detail_events">Events at this venue</string>
+    <string name="venue_detail_close">Close venue details</string>
     <string name="venue_detail_no_events">No events are currently assigned to this venue.</string>
     <string name="venue_detail_not_found">Venue not found.</string>
 </resources>

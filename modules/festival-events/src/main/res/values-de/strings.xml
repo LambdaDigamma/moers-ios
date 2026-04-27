@@ -55,6 +55,7 @@
     <string name="no_events_for_filter">Keine Veranstaltungen passen zu diesem Filter.</string>
     <string name="no_events_for_filter_hint">Passe die ausgewählten Orte an, zeige alle Veranstaltungen oder lösche den Filter.</string>
     <string name="venue_detail_events">Veranstaltungen an diesem Ort</string>
+    <string name="venue_detail_close">Ortsdetails schließen</string>
     <string name="venue_detail_no_events">Diesem Ort sind derzeit keine Veranstaltungen zugeordnet.</string>
     <string name="venue_detail_not_found">Ort wurde nicht gefunden.</string>
 </resources>

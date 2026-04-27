@@ -1,5 +1,9 @@
 package com.lambdadigamma.map.presentation.composable
 
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Path
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -7,9 +11,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMapOptions
+import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
@@ -28,6 +35,7 @@ import com.lambdadigamma.map.data.model.FestivalMapLayerType
 import com.lambdadigamma.map.presentation.MapIntent
 import com.lambdadigamma.map.presentation.MapSelection
 import com.lambdadigamma.map.presentation.MapUiState
+import kotlin.math.roundToInt
 
 @Composable
 internal fun FestivalMapView(
@@ -96,10 +104,12 @@ internal fun FestivalMapView(
             isMyLocationEnabled = hasLocationPermission,
         ),
     ) {
+        val markerIcons = rememberMapMarkerIcons()
+
         selectedBooth?.let { selection ->
             Marker(
                 state = boothMarkerState ?: return@let,
-                icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE),
+                icon = markerIcons.selected,
                 zIndex = FestivalMapLayerType.Dorf.zIndex + 1f,
                 onClick = {
                     onIntent(MapIntent.SelectFeature(selection.value))
@@ -109,17 +119,14 @@ internal fun FestivalMapView(
         }
 
         uiState.places.forEach { place ->
+            val selected = (uiState.selection as? MapSelection.Place)?.value?.id == place.id
+
             Marker(
                 state = rememberUpdatedMarkerState(
                     position = LatLng(place.point.latitude, place.point.longitude),
                 ),
-                icon = BitmapDescriptorFactory.defaultMarker(
-                    if ((uiState.selection as? MapSelection.Place)?.value?.id == place.id) {
-                        BitmapDescriptorFactory.HUE_ORANGE
-                    } else {
-                        BitmapDescriptorFactory.HUE_AZURE
-                    },
-                ),
+                icon = if (selected) markerIcons.selected else markerIcons.place,
+                zIndex = if (selected) 2f else 1f,
                 onClick = {
                     onIntent(MapIntent.SelectPlace(place))
                     true
@@ -151,6 +158,88 @@ internal fun FestivalMapView(
         }
     }
 }
+
+private data class MapMarkerIcons(
+    val place: BitmapDescriptor,
+    val selected: BitmapDescriptor,
+)
+
+@Composable
+private fun rememberMapMarkerIcons(): MapMarkerIcons {
+    val colors = MaterialTheme.colorScheme
+    val density = LocalDensity.current
+
+    return remember(
+        colors.primary,
+        colors.onPrimary,
+        colors.primaryContainer,
+        colors.onPrimaryContainer,
+        density,
+    ) {
+        MapMarkerIcons(
+            place = createMapMarkerIcon(
+                containerColor = colors.primaryContainer,
+                contentColor = colors.onPrimaryContainer,
+                strokeColor = colors.primary.copy(alpha = 0.64f),
+                density = density.density,
+            ),
+            selected = createMapMarkerIcon(
+                containerColor = colors.primary,
+                contentColor = colors.onPrimary,
+                strokeColor = colors.primary,
+                density = density.density,
+            ),
+        )
+    }
+}
+
+private fun createMapMarkerIcon(
+    containerColor: Color,
+    contentColor: Color,
+    strokeColor: Color,
+    density: Float,
+): BitmapDescriptor {
+    val width = markerDp(36f, density).roundToInt()
+    val height = markerDp(44f, density).roundToInt()
+    val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+    val canvas = Canvas(bitmap)
+    val centerX = width / 2f
+    val top = markerDp(2f, density)
+    val scale = (height - top - markerDp(1f, density)) / 20f
+    val fillPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = containerColor.toArgb()
+        style = Paint.Style.FILL
+    }
+    val strokePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = strokeColor.toArgb()
+        style = Paint.Style.STROKE
+        strokeWidth = markerDp(1.4f, density)
+        strokeJoin = Paint.Join.ROUND
+        strokeCap = Paint.Cap.ROUND
+    }
+    val dotPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = contentColor.toArgb()
+        style = Paint.Style.FILL
+    }
+    fun pathX(value: Float) = centerX + (value - 12f) * scale
+    fun pathY(value: Float) = top + (value - 2f) * scale
+    val pinPath = Path().apply {
+        moveTo(pathX(12f), pathY(2f))
+        cubicTo(pathX(8.13f), pathY(2f), pathX(5f), pathY(5.13f), pathX(5f), pathY(9f))
+        cubicTo(pathX(5f), pathY(14.25f), pathX(12f), pathY(22f), pathX(12f), pathY(22f))
+        cubicTo(pathX(12f), pathY(22f), pathX(19f), pathY(14.25f), pathX(19f), pathY(9f))
+        cubicTo(pathX(19f), pathY(5.13f), pathX(15.87f), pathY(2f), pathX(12f), pathY(2f))
+        close()
+    }
+
+    canvas.drawPath(pinPath, fillPaint)
+    canvas.drawPath(pinPath, strokePaint)
+    canvas.drawCircle(pathX(12f), pathY(9f), 2.45f * scale, dotPaint)
+
+    return BitmapDescriptorFactory.fromBitmap(bitmap)
+}
+
+private fun markerDp(value: Float, density: Float): Float = value * density
 
 private data class PolygonRings(
     val outerRing: List<FestivalMapCoordinate>,

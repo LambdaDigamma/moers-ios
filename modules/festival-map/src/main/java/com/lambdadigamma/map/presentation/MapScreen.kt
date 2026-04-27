@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -16,8 +15,6 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material.icons.rounded.MyLocation
 import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.material3.BottomSheetScaffold
@@ -27,11 +24,9 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SheetValue
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
@@ -40,13 +35,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.lambdadigamma.events.presentation.venue.composable.VenueDetailContent
 import com.lambdadigamma.events.presentation.venue.composable.VenueDetailStateProvider
 import com.lambdadigamma.map.R
-import com.lambdadigamma.map.data.model.FestivalMapPlace
 import com.lambdadigamma.map.presentation.composable.BoothDetailContent
 import com.lambdadigamma.map.presentation.composable.FestivalMapView
 import com.lambdadigamma.map.presentation.composable.MapDrawerContent
@@ -134,17 +126,12 @@ internal fun MapScreen(
                             VenueDetailContent(
                                 uiState = venueUiState,
                                 onShowEvent = onShowEvent,
+                                onDismiss = { onIntent(MapIntent.ClearSelection) },
+                                useSectionContainers = false,
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .heightIn(min = drawerMinContentHeight)
                                     .padding(vertical = 4.dp),
-                                topContent = {
-                                    VenueDrawerHeader(
-                                        place = selection.value,
-                                        onDismiss = { onIntent(MapIntent.ClearSelection) },
-                                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 2.dp),
-                                    )
-                                },
                             )
                         }
                     }
@@ -200,70 +187,6 @@ internal fun MapScreen(
                     color = MaterialTheme.colorScheme.primary,
                 )
             }
-        }
-    }
-}
-
-@Composable
-private fun VenueDrawerHeader(
-    place: FestivalMapPlace,
-    onDismiss: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    Row(
-        modifier = modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        Surface(
-            modifier = Modifier.size(40.dp),
-            shape = MaterialTheme.shapes.large,
-            color = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-        ) {
-            Box(contentAlignment = Alignment.Center) {
-                Icon(
-                    imageVector = Icons.Rounded.LocationOn,
-                    contentDescription = null,
-                    modifier = Modifier.size(22.dp),
-                )
-            }
-        }
-
-        Column(
-            modifier = Modifier.weight(1f),
-            verticalArrangement = Arrangement.spacedBy(2.dp),
-        ) {
-            Text(
-                text = place.name,
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.SemiBold,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-            )
-
-            place.addressLine1.trim()
-                .takeIf { it.isNotBlank() }
-                ?.let { address ->
-                    Text(
-                        text = address,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                    )
-                }
-        }
-
-        IconButton(
-            onClick = onDismiss,
-            modifier = Modifier.size(40.dp),
-        ) {
-            Icon(
-                imageVector = Icons.Rounded.Close,
-                contentDescription = null,
-                modifier = Modifier.size(20.dp),
-            )
         }
     }
 }

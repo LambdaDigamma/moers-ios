@@ -17,6 +17,7 @@
     <string name="map_drawer_refreshing_places">Wird aktualisiert...</string>
     <string name="map_drawer_unnamed_booth">Unbenannter Stand</string>
     <string name="map_place_events">Veranstaltungen</string>
+    <string name="map_place_no_description">Keine Beschreibung</string>
     <string name="map_place_no_events">Keine Veranstaltungen geplant.</string>
     <string name="map_selected_layer">Ebene: %1$s</string>
     <string name="map_selected_booth">Stand: %1$d</string>

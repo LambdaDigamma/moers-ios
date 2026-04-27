@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.CalendarMonth
+import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
@@ -26,6 +27,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
@@ -34,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import com.lambdadigamma.core.R as CoreR
 import com.lambdadigamma.core.ui.ElevatedNavigationButton
 import com.lambdadigamma.events.R
+import com.lambdadigamma.events.presentation.EventDisplayable
 import com.lambdadigamma.events.presentation.composable.EventItem
 import com.lambdadigamma.events.presentation.detail.PlaceDisplayable
 import com.lambdadigamma.events.presentation.venue.VenueDetailUiState
@@ -78,6 +81,8 @@ fun VenueDetailContent(
     uiState: VenueDetailUiState,
     onShowEvent: (Int) -> Unit,
     modifier: Modifier = Modifier,
+    onDismiss: (() -> Unit)? = null,
+    useSectionContainers: Boolean = true,
     topContent: (@Composable () -> Unit)? = null,
 ) {
     LazyColumn(
@@ -125,6 +130,8 @@ fun VenueDetailContent(
                 item(key = "venue-info") {
                     VenueInfoPanel(
                         place = place,
+                        onDismiss = onDismiss,
+                        useContainer = useSectionContainers,
                         modifier = Modifier.padding(horizontal = 16.dp),
                     )
                 }
@@ -162,6 +169,7 @@ fun VenueDetailContent(
                 if (uiState.events.isEmpty()) {
                     item(key = "venue-events-empty") {
                         EmptyEventsPanel(
+                            useContainer = useSectionContainers,
                             modifier = Modifier
                                 .padding(horizontal = 16.dp)
                                 .padding(bottom = 24.dp),
@@ -169,24 +177,14 @@ fun VenueDetailContent(
                     }
                 } else {
                     item(key = "venue-events-list") {
-                        Surface(
+                        EventListPanel(
+                            events = uiState.events,
+                            onShowEvent = onShowEvent,
+                            useContainer = useSectionContainers,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(horizontal = 16.dp),
-                            shape = MaterialTheme.shapes.large,
-                            color = MaterialTheme.colorScheme.surface,
-                            tonalElevation = 1.dp,
-                        ) {
-                            Column {
-                                uiState.events.forEachIndexed { index, event ->
-                                    EventItem(
-                                        event = event,
-                                        onEventClick = onShowEvent,
-                                        showDivider = index < uiState.events.lastIndex,
-                                    )
-                                }
-                            }
-                        }
+                        )
                     }
 
                     item(key = "venue-events-bottom-spacing") {
@@ -201,16 +199,18 @@ fun VenueDetailContent(
 @Composable
 private fun VenueInfoPanel(
     place: PlaceDisplayable,
+    onDismiss: (() -> Unit)? = null,
+    useContainer: Boolean = true,
     modifier: Modifier = Modifier,
 ) {
-    Surface(
-        modifier = modifier.fillMaxWidth(),
-        shape = MaterialTheme.shapes.large,
-        color = MaterialTheme.colorScheme.surface,
-        tonalElevation = 1.dp,
-    ) {
+    val dismissAction = onDismiss
+    val content: @Composable () -> Unit = {
         Column(
-            modifier = Modifier.padding(16.dp),
+            modifier = if (useContainer) {
+                Modifier.padding(16.dp)
+            } else {
+                Modifier.padding(vertical = 8.dp)
+            },
             verticalArrangement = Arrangement.spacedBy(14.dp),
         ) {
             InfoRow(
@@ -241,6 +241,22 @@ private fun VenueInfoPanel(
                             }
                     }
                 },
+                trailingContent = if (dismissAction == null) {
+                    null
+                } else {
+                    {
+                        IconButton(
+                            onClick = dismissAction,
+                            modifier = Modifier.size(40.dp),
+                        ) {
+                            Icon(
+                                imageVector = Icons.Rounded.Close,
+                                contentDescription = stringResource(R.string.venue_detail_close),
+                                modifier = Modifier.size(20.dp),
+                            )
+                        }
+                    }
+                },
             )
 
             if (place.point.latitude != 0.0 && place.point.longitude != 0.0) {
@@ -249,6 +265,55 @@ private fun VenueInfoPanel(
                     modifier = Modifier.fillMaxWidth(),
                 )
             }
+        }
+    }
+
+    if (useContainer) {
+        Surface(
+            modifier = modifier.fillMaxWidth(),
+            shape = MaterialTheme.shapes.large,
+            color = MaterialTheme.colorScheme.surfaceContainerLow,
+        ) {
+            content()
+        }
+    } else {
+        Box(modifier = modifier.fillMaxWidth()) {
+            content()
+        }
+    }
+}
+
+@Composable
+private fun EventListPanel(
+    events: List<EventDisplayable>,
+    onShowEvent: (Int) -> Unit,
+    useContainer: Boolean,
+    modifier: Modifier = Modifier,
+) {
+    val content: @Composable () -> Unit = {
+        Column {
+            events.forEachIndexed { index, event ->
+                EventItem(
+                    event = event,
+                    onEventClick = onShowEvent,
+                    showDivider = index < events.lastIndex,
+                    containerColor = Color.Transparent,
+                )
+            }
+        }
+    }
+
+    if (useContainer) {
+        Surface(
+            modifier = modifier,
+            shape = MaterialTheme.shapes.large,
+            color = MaterialTheme.colorScheme.surfaceContainerLow,
+        ) {
+            content()
+        }
+    } else {
+        Box(modifier = modifier) {
+            content()
         }
     }
 }
@@ -289,15 +354,16 @@ private fun SectionHeader(
 
 @Composable
 private fun EmptyEventsPanel(
+    useContainer: Boolean = true,
     modifier: Modifier = Modifier,
 ) {
-    Surface(
-        modifier = modifier.fillMaxWidth(),
-        shape = MaterialTheme.shapes.large,
-        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.45f),
-    ) {
+    val content: @Composable () -> Unit = {
         Row(
-            modifier = Modifier.padding(16.dp),
+            modifier = if (useContainer) {
+                Modifier.padding(16.dp)
+            } else {
+                Modifier.padding(vertical = 8.dp)
+            },
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             verticalAlignment = Alignment.Top,
         ) {
@@ -314,6 +380,21 @@ private fun EmptyEventsPanel(
                 ),
             )
         }
+    }
+
+    if (!useContainer) {
+        Box(modifier = modifier.fillMaxWidth()) {
+            content()
+        }
+        return
+    }
+
+    Surface(
+        modifier = modifier.fillMaxWidth(),
+        shape = MaterialTheme.shapes.large,
+        color = MaterialTheme.colorScheme.surfaceContainerLow,
+    ) {
+        content()
     }
 }
 
@@ -335,6 +416,7 @@ private fun InfoRow(
     icon: @Composable () -> Unit,
     content: @Composable () -> Unit,
     modifier: Modifier = Modifier,
+    trailingContent: (@Composable () -> Unit)? = null,
     iconShape: Shape = MaterialTheme.shapes.medium,
 ) {
     Row(
@@ -364,5 +446,7 @@ private fun InfoRow(
         ) {
             content()
         }
+
+        trailingContent?.invoke()
     }
 }
