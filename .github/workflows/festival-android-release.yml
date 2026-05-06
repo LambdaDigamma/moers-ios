@@ -70,7 +70,12 @@ jobs:
 
       - name: Setup local.properties
         run: |
-          echo "$ANDROID_LOCAL_PROPERTIES" > local.properties
+          printf '%s' "$ANDROID_LOCAL_PROPERTIES" > local.properties
+          printf '%s' "$ANDROID_LOCAL_PROPERTIES" > moers-festival-android/local.properties
+          grep -Eq '^[[:space:]]*FESTIVAL_MAPS_API_KEY[[:space:]]*=[[:space:]]*[^[:space:]]+' moers-festival-android/local.properties || {
+            echo "::error::ANDROID_LOCAL_PROPERTIES must contain FESTIVAL_MAPS_API_KEY for the Festival Android release"
+            exit 1
+          }
         env:
           ANDROID_LOCAL_PROPERTIES: ${{ secrets.ANDROID_LOCAL_PROPERTIES }}
 
