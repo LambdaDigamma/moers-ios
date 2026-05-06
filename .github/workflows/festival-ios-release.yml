@@ -173,6 +173,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   generate-changelog:
+    # Temporarily disabled while generated release notes are paused.
+    if: ${{ false }}
     needs: build-ios
     runs-on: ubuntu-latest
     outputs:
