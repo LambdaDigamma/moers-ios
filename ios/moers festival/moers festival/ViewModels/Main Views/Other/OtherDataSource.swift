@@ -182,7 +182,7 @@ private final class FestivalInfoHeroContentView: UIView, UIContentView {
         directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0)
 
         cardView.translatesAutoresizingMaskIntoConstraints = false
-        cardView.backgroundColor = .secondarySystemBackground
+        cardView.backgroundColor = .systemBackground
         cardView.layer.cornerRadius = 22
         cardView.layer.cornerCurve = .continuous
 

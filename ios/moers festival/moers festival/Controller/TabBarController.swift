@@ -35,6 +35,7 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate, U
     let other: OtherCoordinator
     
     private let isMapEnabled = true
+    private let isAppUpdateChecksEnabled = false
     private var cancellalbes = Set<AnyCancellable>()
     private let appUpdateController: AppUpdateController
     private var appUpdateBannerController: UIHostingController<AppUpdateBannerView>?
@@ -115,7 +116,9 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate, U
         }
         
         self.setupTheming()
-        self.setupAppUpdateHandling()
+        if isAppUpdateChecksEnabled {
+            self.setupAppUpdateHandling()
+        }
         self.removeAllPendingNotifications()
 //        self.testingNotifications()
         

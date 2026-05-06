@@ -38,14 +38,11 @@ class AboutController: UIViewController {
 
         view.addSubview(hostingView)
 
-        let readable = view.readableContentGuide
-        let safeArea = view.safeAreaLayoutGuide
-
         NSLayoutConstraint.activate([
-            hostingView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            hostingView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-            hostingView.leadingAnchor.constraint(equalTo: readable.leadingAnchor),
-            hostingView.trailingAnchor.constraint(equalTo: readable.trailingAnchor)
+            hostingView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            hostingView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            hostingView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            hostingView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
         ])
     }
 

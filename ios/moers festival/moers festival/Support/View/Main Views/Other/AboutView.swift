@@ -73,6 +73,7 @@ public struct About: View {
                     .padding(.bottom, 80)
                 
             }
+            .frame(maxWidth: 600, alignment: .center)
             
         }
         .navigationTitle(Text("About"))
@@ -85,6 +86,9 @@ public struct About: View {
     @ViewBuilder
     private func socialLink(text: String, image: Image, action: @escaping () -> Void) -> some View {
         if #available(iOS 26.0, *) {
+            let foregroundColor = colorScheme == .light ? Color.primary : Color.white
+            let tintColor = colorScheme == .light ? Color(UIColor.systemBackground) : Color.white
+
             Button(action: action) {
                 VStack(spacing: 6) {
                     image
@@ -98,9 +102,8 @@ public struct About: View {
                 .frame(maxWidth: .infinity, alignment: .center)
             }
             .buttonStyle(.glass) // Liquid Glass button
-            .tint(.white)
-            .foregroundStyle(.white)
-//            .tint(colorScheme == .light ? .blue : .white)
+            .tint(tintColor)
+            .foregroundStyle(foregroundColor)
             .frame(maxWidth: .infinity)
             
         } else {

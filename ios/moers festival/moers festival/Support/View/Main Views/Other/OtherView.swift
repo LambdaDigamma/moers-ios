@@ -58,7 +58,7 @@ class OtherView: UIView {
     private func setupConstraints() {
         
         let constraints = [
-            collectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            collectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
