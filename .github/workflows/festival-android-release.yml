@@ -24,7 +24,7 @@ jobs:
       - name: Set up ruby env
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1'
+          ruby-version: '3.3'
           bundler-cache: true
           working-directory: moers-festival-android
 
@@ -96,7 +96,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
           git add moers-festival-android/version.properties
-          git commit -m "🚀 Bump Moers Festival Android version to $VERSION_NAME ($VERSION_CODE)"
+          git commit -m "chore(festival-android): bump version to $VERSION_NAME ($VERSION_CODE)"
           git tag $TAG_NAME
           git push origin HEAD
           git push origin $TAG_NAME
