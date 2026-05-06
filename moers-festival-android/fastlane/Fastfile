@@ -10,7 +10,9 @@ platform :android do
   desc "Increment version code (Build number)"
   lane :increment_version_code do
     gradle(
-      task: "incrementVersionCode"
+      project_dir: "..",
+      task: ":moers-festival-android:incrementVersionCode",
+      flags: "--no-configuration-cache"
     )
   end
 
@@ -22,7 +24,9 @@ platform :android do
       UI.message "Incrementing Version: #{mode}"
 
       gradle(
-        task: "incrementVersion",
+        project_dir: "..",
+        task: ":moers-festival-android:incrementVersion",
+        flags: "--no-configuration-cache",
         properties: {
           "mode" => mode
         }
@@ -34,19 +38,25 @@ platform :android do
 
   desc "Runs all the tests"
   lane :test do
-    gradle(task: "test")
+    gradle(
+      project_dir: "..",
+      task: ":moers-festival-android:test"
+    )
   end
 
   desc "Build a debug APK"
   lane :debug_build do
-    gradle(task: "clean assembleDebug")
+    gradle(
+      project_dir: "..",
+      tasks: ["clean", ":moers-festival-android:assembleDebug"]
+    )
   end
 
   desc "Build a signed release APK & deploy to slack"
   lane :slack_apk_build do
     gradle(
-      task: "assemble",
-      build_type: "Release",
+      project_dir: "..",
+      tasks: ["clean", ":moers-festival-android:assembleRelease"],
       print_command: false,
       properties: {
         "android.injected.signing.store.file" => ENV['KEYSTORE_PATH'],
@@ -75,8 +85,8 @@ platform :android do
   lane :deploy_internal do |options|
     
     gradle(
-      task: 'clean bundle',
-      build_type: 'Release',
+      project_dir: "..",
+      tasks: ["clean", ":moers-festival-android:bundleRelease"],
       properties: {
         "android.injected.signing.store.file" => ENV['KEYSTORE_PATH'],
         "android.injected.signing.store.password" => ENV['STORE_PASSWORD'],
@@ -98,8 +108,8 @@ platform :android do
   desc "Deploy a new version to production track"
   lane :deploy_production do |options|
     gradle(
-      task: "clean bundle",
-      build_type: "Release",
+      project_dir: "..",
+      tasks: ["clean", ":moers-festival-android:bundleRelease"],
       print_command: false,
       properties: {
         "android.injected.signing.store.file" => ENV['KEYSTORE_PATH'],
