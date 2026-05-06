@@ -1,7 +1,9 @@
+require "open3"
+require "tmpdir"
+
 default_platform(:android)
 
 platform :android do
-  
   # Runs before all tasks
   before_all do
     ENV["SLACK_URL"]
@@ -54,6 +56,8 @@ platform :android do
 
   desc "Build a signed release APK & deploy to slack"
   lane :slack_apk_build do
+    verify_upload_key()
+
     gradle(
       project_dir: "..",
       tasks: ["clean", ":moers-festival-android:assembleRelease"],
@@ -81,12 +85,54 @@ platform :android do
     slack(message: "Successful upload to Slack! :rocket:")
   end
 
+  desc "Verify the configured Festival Android upload key"
+  private_lane :verify_upload_key do
+    keystore_path = ENV["KEYSTORE_PATH"]
+    store_password = ENV["STORE_PASSWORD"]
+    key_alias = ENV["KEY_ALIAS"]
+    key_password = ENV["KEY_PASSWORD"]
+
+    UI.user_error!("KEYSTORE_PATH is not set") if keystore_path.to_s.empty?
+    UI.user_error!("STORE_PASSWORD is not set") if store_password.to_s.empty?
+    UI.user_error!("KEY_ALIAS is not set") if key_alias.to_s.empty?
+    UI.user_error!("KEY_PASSWORD is not set") if key_password.to_s.empty?
+    UI.user_error!("Keystore not found at #{keystore_path}") unless File.exist?(keystore_path)
+
+    _stdout, _stderr, status = Open3.capture3(
+      "keytool", "-list",
+      "-keystore", keystore_path,
+      "-storepass", store_password,
+      "-alias", key_alias
+    )
+    UI.user_error!("Could not read Festival Android signing certificate. Check KEYSTORE_PATH, STORE_PASSWORD and KEY_ALIAS.") unless status.success?
+
+    private_key_check_path = File.join(Dir.tmpdir, "festival-upload-key-#{Process.pid}.p12")
+    _stdout, _stderr, status = Open3.capture3(
+      "keytool", "-importkeystore",
+      "-srckeystore", keystore_path,
+      "-srcstorepass", store_password,
+      "-srcalias", key_alias,
+      "-srckeypass", key_password,
+      "-destkeystore", private_key_check_path,
+      "-deststoretype", "PKCS12",
+      "-deststorepass", "changeit",
+      "-destkeypass", "changeit",
+      "-noprompt"
+    )
+    File.delete(private_key_check_path) if File.exist?(private_key_check_path)
+    UI.user_error!("Could not read Festival Android private signing key. Check KEY_PASSWORD for the configured alias.") unless status.success?
+
+    UI.message("Festival Android signing key verified.")
+  end
+
   desc "Deploy a new version to internal track"
   lane :deploy_internal do |options|
+    verify_upload_key()
     
     gradle(
       project_dir: "..",
       tasks: ["clean", ":moers-festival-android:bundleRelease"],
+      print_command: false,
       properties: {
         "android.injected.signing.store.file" => ENV['KEYSTORE_PATH'],
         "android.injected.signing.store.password" => ENV['STORE_PASSWORD'],
@@ -107,6 +153,8 @@ platform :android do
 
   desc "Deploy a new version to production track"
   lane :deploy_production do |options|
+    verify_upload_key()
+
     gradle(
       project_dir: "..",
       tasks: ["clean", ":moers-festival-android:bundleRelease"],

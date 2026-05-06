@@ -26,18 +26,18 @@ jobs:
 
       - name: Validate release secrets
         run: |
-          test -n "$ANDROID_KEYSTORE_FILE" || { echo "::error::ANDROID_KEYSTORE_FILE secret is missing"; exit 1; }
-          test -n "$ANDROID_KEYSTORE_KEY_ALIAS" || { echo "::error::ANDROID_KEYSTORE_KEY_ALIAS secret is missing"; exit 1; }
-          test -n "$ANDROID_KEYSTORE_KEY_PASSWORD" || { echo "::error::ANDROID_KEYSTORE_KEY_PASSWORD secret is missing"; exit 1; }
-          test -n "$ANDROID_KEYSTORE_STORE_PASSWORD" || { echo "::error::ANDROID_KEYSTORE_STORE_PASSWORD secret is missing"; exit 1; }
+          test -n "$ANDROID_FESTIVAL_KEYSTORE_FILE" || { echo "::error::ANDROID_FESTIVAL_KEYSTORE_FILE secret is missing"; exit 1; }
+          test -n "$ANDROID_FESTIVAL_KEYSTORE_KEY_ALIAS" || { echo "::error::ANDROID_FESTIVAL_KEYSTORE_KEY_ALIAS secret is missing"; exit 1; }
+          test -n "$ANDROID_FESTIVAL_KEYSTORE_KEY_PASSWORD" || { echo "::error::ANDROID_FESTIVAL_KEYSTORE_KEY_PASSWORD secret is missing"; exit 1; }
+          test -n "$ANDROID_FESTIVAL_KEYSTORE_STORE_PASSWORD" || { echo "::error::ANDROID_FESTIVAL_KEYSTORE_STORE_PASSWORD secret is missing"; exit 1; }
           test -n "$ANDROID_LOCAL_PROPERTIES" || { echo "::error::ANDROID_LOCAL_PROPERTIES secret is missing"; exit 1; }
           test -n "$ANDROID_PLAY_CONFIG_JSON" || { echo "::error::ANDROID_PLAY_CONFIG_JSON secret is missing"; exit 1; }
           test -n "$ANDROID_MOERS_FESTIVAL_GOOGLE_SERVICES" || { echo "::error::ANDROID_MOERS_FESTIVAL_GOOGLE_SERVICES secret is missing"; exit 1; }
         env:
-          ANDROID_KEYSTORE_FILE: ${{ secrets.ANDROID_KEYSTORE_FILE }}
-          ANDROID_KEYSTORE_KEY_ALIAS: ${{ secrets.ANDROID_KEYSTORE_KEY_ALIAS }}
-          ANDROID_KEYSTORE_KEY_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_KEY_PASSWORD }}
-          ANDROID_KEYSTORE_STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_STORE_PASSWORD }}
+          ANDROID_FESTIVAL_KEYSTORE_FILE: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_FILE }}
+          ANDROID_FESTIVAL_KEYSTORE_KEY_ALIAS: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_KEY_ALIAS }}
+          ANDROID_FESTIVAL_KEYSTORE_KEY_PASSWORD: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_KEY_PASSWORD }}
+          ANDROID_FESTIVAL_KEYSTORE_STORE_PASSWORD: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_STORE_PASSWORD }}
           ANDROID_LOCAL_PROPERTIES: ${{ secrets.ANDROID_LOCAL_PROPERTIES }}
           ANDROID_PLAY_CONFIG_JSON: ${{ secrets.ANDROID_PLAY_CONFIG_JSON }}
           ANDROID_MOERS_FESTIVAL_GOOGLE_SERVICES: ${{ secrets.ANDROID_MOERS_FESTIVAL_GOOGLE_SERVICES }}
@@ -64,6 +64,34 @@ jobs:
           echo "keyPassword=$ANDROID_KEYSTORE_KEY_PASSWORD" >> keystore.properties
         env:
           ANDROID_KEYSTORE_FILE: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_FILE }}
+          ANDROID_KEYSTORE_KEY_ALIAS: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_KEY_ALIAS }}
+          ANDROID_KEYSTORE_KEY_PASSWORD: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_KEY_PASSWORD }}
+          ANDROID_KEYSTORE_STORE_PASSWORD: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_STORE_PASSWORD }}
+
+      - name: Verify signing key
+        run: |
+          keytool -list \
+            -keystore moers-festival-android/Keystore.jks \
+            -storepass "$ANDROID_KEYSTORE_STORE_PASSWORD" \
+            -alias "$ANDROID_KEYSTORE_KEY_ALIAS" >/dev/null || {
+            echo "::error::Could not read Festival Android signing certificate. Check ANDROID_FESTIVAL_KEYSTORE_STORE_PASSWORD and ANDROID_FESTIVAL_KEYSTORE_KEY_ALIAS."
+            exit 1
+          }
+          keytool -importkeystore \
+            -srckeystore moers-festival-android/Keystore.jks \
+            -srcstorepass "$ANDROID_KEYSTORE_STORE_PASSWORD" \
+            -srcalias "$ANDROID_KEYSTORE_KEY_ALIAS" \
+            -srckeypass "$ANDROID_KEYSTORE_KEY_PASSWORD" \
+            -destkeystore /tmp/festival-upload-key.p12 \
+            -deststoretype PKCS12 \
+            -deststorepass changeit \
+            -destkeypass changeit \
+            -noprompt >/dev/null || {
+              echo "::error::Could not read Festival Android private signing key. Check ANDROID_FESTIVAL_KEYSTORE_KEY_PASSWORD."
+              exit 1
+            }
+          rm -f /tmp/festival-upload-key.p12
+        env:
           ANDROID_KEYSTORE_KEY_ALIAS: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_KEY_ALIAS }}
           ANDROID_KEYSTORE_KEY_PASSWORD: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_KEY_PASSWORD }}
           ANDROID_KEYSTORE_STORE_PASSWORD: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_STORE_PASSWORD }}
@@ -109,10 +137,10 @@ jobs:
           cd moers-festival-android
           bundle exec fastlane android deploy_internal
         env:
-          KEYSTORE_PATH: "Keystore.jks"
-          STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_STORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.ANDROID_KEYSTORE_KEY_ALIAS }}
-          KEY_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_KEY_PASSWORD }}
+          KEYSTORE_PATH: ${{ github.workspace }}/moers-festival-android/Keystore.jks
+          STORE_PASSWORD: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_FESTIVAL_KEYSTORE_KEY_PASSWORD }}
 
       - name: Commit version bump and tag
         run: |
