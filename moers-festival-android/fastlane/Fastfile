@@ -141,7 +141,6 @@ platform :android do
       }
     )
     upload_to_play_store(track: 'internal')
-    slack(message: "Successful deployment to beta track! :rocket:")
   end
 
   desc "Deploy a new version to beta track"
@@ -168,7 +167,6 @@ platform :android do
     )
 
     upload_to_play_store()
-    slack(message: "Successful deployment to production track! :rocket:")
   end
 
 end
