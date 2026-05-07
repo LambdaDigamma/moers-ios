@@ -2,6 +2,8 @@ package com.lambdadigamma.events.presentation.detail.composable
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -18,6 +20,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.tooling.preview.Preview
 import com.lambdadigamma.core.geo.Point
 import com.lambdadigamma.core.ui.MoersFestivalTheme
@@ -62,10 +65,15 @@ fun EventDetailScreen(
                 }
             },
         )
-    }) {
+    }) { padding ->
+        val layoutDirection = LocalLayoutDirection.current
 
         Box(modifier = Modifier
-            .padding(it)
+            .padding(
+                top = padding.calculateTopPadding(),
+                start = padding.calculateStartPadding(layoutDirection),
+                end = padding.calculateEndPadding(layoutDirection),
+            )
             .fillMaxSize()) {
 
             if (uiState.event == null) {
