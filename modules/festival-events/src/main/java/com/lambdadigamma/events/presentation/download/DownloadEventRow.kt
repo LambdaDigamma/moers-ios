@@ -24,7 +24,7 @@ enum class DownloadEventState {
 data class DownloadEventRowState(
     val name: String,
     val contentState: DownloadEventState = DownloadEventState.DOWNLOADED,
-    val imageState: DownloadEventState = DownloadEventState.NOT_DOWNLOADED,
+    val imageState: DownloadEventState? = DownloadEventState.NOT_DOWNLOADED,
 )
 
 @Composable
@@ -58,10 +58,12 @@ fun DownloadEventRow(
                 downloadEventState = uiState.contentState
             )
 
-            DownloadStateInline(
-                text = stringResource(R.string.images),
-                downloadEventState = uiState.imageState
-            )
+            uiState.imageState?.let { imageState ->
+                DownloadStateInline(
+                    text = stringResource(R.string.images),
+                    downloadEventState = imageState
+                )
+            }
 
         }
 

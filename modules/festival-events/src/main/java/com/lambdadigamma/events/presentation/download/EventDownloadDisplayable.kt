@@ -8,5 +8,6 @@ data class EventDownloadDisplayable(
     val id: Int,
     val name: String,
     val hasPageDownloaded: Boolean,
+    val hasMediaAvailable: Boolean,
     val hasMediaDownloaded: Boolean
 ): Parcelable

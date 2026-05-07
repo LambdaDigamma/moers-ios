@@ -8,7 +8,6 @@ import com.lambdadigamma.events.domain.usecase.DownloadContentUseCase
 import com.lambdadigamma.events.domain.usecase.GetEventsUseCase
 import com.lambdadigamma.events.domain.usecase.RefreshEventsUseCase
 import com.lambdadigamma.medialibrary.prefetchToDisk
-import com.lambdadigamma.pages.data.remote.model.PageBlock
 import dagger.hilt.android.qualifiers.ApplicationContext
 import com.lambdadigamma.events.presentation.timetable.TimetableEvents
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -77,14 +76,7 @@ class DownloadEventsViewModel @Inject constructor(
                     .onSuccess { events ->
                         emit(
                             DownloadEventsUiState.PartialState.Fetched(
-                                events = events.map { event ->
-                                    EventDownloadDisplayable(
-                                        id = event.id,
-                                        name = event.name,
-                                        hasPageDownloaded = event.page != null,
-                                        hasMediaDownloaded = false
-                                    )
-                                }
+                                events = events.map { event -> event.toDownloadDisplayable() }
                             )
                         )
                     }
@@ -120,7 +112,7 @@ class DownloadEventsViewModel @Inject constructor(
                     val imageLoader = ImageLoader.Builder(context).build()
                     events
                         .filter { event ->
-                            event.mediaUrls().onEach { url ->
+                            event.downloadMediaUrls().onEach { url ->
                                 prefetchToDisk(
                                     image = url,
                                     context = context,
@@ -137,12 +129,7 @@ class DownloadEventsViewModel @Inject constructor(
                 emit(
                     DownloadEventsUiState.PartialState.Fetched(
                         events = events.map { event ->
-                            EventDownloadDisplayable(
-                                id = event.id,
-                                name = event.name,
-                                hasPageDownloaded = event.page != null,
-                                hasMediaDownloaded = event.id in mediaDownloadedEventIds,
-                            )
+                            event.toDownloadDisplayable(mediaDownloadedEventIds)
                         },
                     ),
                 )
@@ -152,22 +139,4 @@ class DownloadEventsViewModel @Inject constructor(
             }
     }
 
-}
-
-private fun com.lambdadigamma.events.data.remote.model.Event.mediaUrls(): List<String> {
-    return buildList {
-        addAll(mediaCollections.allMedia().mapNotNull { media -> media.fullUrl })
-
-        page?.let { page ->
-            addAll(page.mediaCollections.allMedia().mapNotNull { media -> media.fullUrl })
-            addAll(page.blocks.flatMap(PageBlock::mediaUrls))
-        }
-    }.distinct()
-}
-
-private fun PageBlock.mediaUrls(): List<String> {
-    return buildList {
-        addAll(mediaCollections?.allMedia().orEmpty().mapNotNull { media -> media.fullUrl })
-        addAll(children.flatMap(PageBlock::mediaUrls))
-    }
 }
