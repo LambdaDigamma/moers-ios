@@ -27,6 +27,7 @@ internal class FestivalMapGeoJsonParser @Inject constructor() {
                     element = element,
                 )
             }
+            ?.withUniqueIds()
             .orEmpty()
 
         return FestivalMapLayer(
@@ -146,6 +147,28 @@ internal class FestivalMapGeoJsonParser @Inject constructor() {
             }
 
             else -> null
+        }
+    }
+
+    private fun List<FestivalMapFeature>.withUniqueIds(): List<FestivalMapFeature> {
+        val usedIds = mutableSetOf<String>()
+        val nextDuplicateSuffixById = mutableMapOf<String, Int>()
+
+        return map { feature ->
+            if (usedIds.add(feature.id)) {
+                feature
+            } else {
+                var suffix = nextDuplicateSuffixById.getOrDefault(feature.id, 2)
+                var uniqueId = "${feature.id}-$suffix"
+
+                while (!usedIds.add(uniqueId)) {
+                    suffix += 1
+                    uniqueId = "${feature.id}-$suffix"
+                }
+
+                nextDuplicateSuffixById[feature.id] = suffix + 1
+                feature.copy(id = uniqueId)
+            }
         }
     }
 }

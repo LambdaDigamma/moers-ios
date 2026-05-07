@@ -99,4 +99,65 @@ class FestivalMapGeoJsonParserTest {
         assertEquals(1, geometry.polygons.first().size)
         assertEquals(4, geometry.polygons.first().first().size)
     }
+
+    @Test
+    fun `should make duplicate feature ids unique`() {
+        val result = objectUnderTest.parseLayer(
+            type = FestivalMapLayerType.Dorf,
+            rawJson = """
+                {
+                  "type": "FeatureCollection",
+                  "features": [
+                    {
+                      "type": "Feature",
+                      "properties": {
+                        "id": 110,
+                        "name": "Snaixidents",
+                        "booth_no": 110
+                      },
+                      "geometry": {
+                        "type": "Polygon",
+                        "coordinates": [
+                          [
+                            [6.618499, 51.439753],
+                            [6.618520, 51.439718],
+                            [6.618466, 51.439706],
+                            [6.618499, 51.439753]
+                          ]
+                        ]
+                      }
+                    },
+                    {
+                      "type": "Feature",
+                      "properties": {
+                        "id": 110,
+                        "name": "Nordstern",
+                        "booth_no": 110
+                      },
+                      "geometry": {
+                        "type": "Polygon",
+                        "coordinates": [
+                          [
+                            [6.618547, 51.439798],
+                            [6.618507, 51.439752],
+                            [6.618457, 51.439770],
+                            [6.618547, 51.439798]
+                          ]
+                        ]
+                      }
+                    }
+                  ]
+                }
+            """.trimIndent(),
+        )
+
+        assertEquals(
+            listOf("110", "110-2"),
+            result.features.map { it.id },
+        )
+        assertEquals(
+            listOf("Snaixidents", "Nordstern"),
+            result.features.map { it.name },
+        )
+    }
 }
