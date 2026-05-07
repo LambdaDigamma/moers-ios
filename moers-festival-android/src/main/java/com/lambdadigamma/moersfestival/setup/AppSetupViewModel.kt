@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lambdadigamma.moersfestival.notifications.FestivalNotificationManager
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -35,6 +36,7 @@ class AppSetupViewModel @Inject constructor(
 ) : ViewModel() {
 
     private var storedState = AppSetupState()
+    private var notificationSyncJob: Job? = null
 
     private val _uiState = MutableStateFlow(
         AppSetupUiState(
@@ -60,7 +62,7 @@ class AppSetupViewModel @Inject constructor(
                     )
                 }
 
-                maybeSyncNotificationTopic()
+                startNotificationTopicSyncIfNeeded()
             }
         }
     }
@@ -91,7 +93,7 @@ class AppSetupViewModel @Inject constructor(
                 )
             }
 
-            maybeSyncNotificationTopic()
+            startNotificationTopicSyncIfNeeded()
         }
     }
 
@@ -99,32 +101,46 @@ class AppSetupViewModel @Inject constructor(
         notificationManager.openSystemNotificationSettings()
     }
 
-    private suspend fun maybeSyncNotificationTopic() {
+    private fun startNotificationTopicSyncIfNeeded() {
         val permissionGranted = notificationManager.hasNotificationPermission()
 
         _uiState.update {
             it.copy(notificationPermissionGranted = permissionGranted)
         }
 
-        if (!permissionGranted || storedState.notificationTopicSubscribed || _uiState.value.isSyncingNotifications) {
+        if (!permissionGranted ||
+            storedState.notificationTopicSubscribed ||
+            notificationSyncJob?.isActive == true
+        ) {
             return
         }
 
+        notificationSyncJob = viewModelScope.launch {
+            syncNotificationTopic()
+        }
+    }
+
+    private suspend fun syncNotificationTopic() {
         _uiState.update { it.copy(isSyncingNotifications = true) }
 
-        notificationManager.subscribeToGeneralTopic()
-            .onSuccess {
-                repository.setNotificationTopicSubscribed()
-            }
-            .onFailure { throwable ->
-                Timber.w(throwable, "Failed to subscribe to festival notification topic.")
+        try {
+            runCatching { notificationManager.subscribeToGeneralTopic() }
+                .getOrElse { throwable -> Result.failure(throwable) }
+                .onSuccess {
+                    repository.setNotificationTopicSubscribed()
+                }
+                .onFailure { throwable ->
+                    Timber.w(throwable, "Failed to subscribe to festival notification topic.")
+                }
+        } finally {
+            _uiState.update {
+                it.copy(
+                    isSyncingNotifications = false,
+                    notificationPermissionGranted = notificationManager.hasNotificationPermission(),
+                )
             }
 
-        _uiState.update {
-            it.copy(
-                isSyncingNotifications = false,
-                notificationPermissionGranted = notificationManager.hasNotificationPermission(),
-            )
+            notificationSyncJob = null
         }
     }
 }

@@ -13,6 +13,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
@@ -44,6 +45,7 @@ fun App(
     val setupViewModel: AppSetupViewModel = hiltViewModel()
     val setupUiState by setupViewModel.uiState.collectAsStateWithLifecycle()
     var pendingStack by remember { mutableStateOf<List<FestivalNavKey>?>(null) }
+    var showFirstRunDownloadFinish by remember { mutableStateOf(false) }
     val firstRunDownloadStack = remember {
         listOf(FestivalNavKey.Timetable, FestivalNavKey.DownloadEvents)
     }
@@ -51,6 +53,7 @@ fun App(
     fun finishOnboarding() {
         if (pendingStack == null) {
             pendingStack = firstRunDownloadStack
+            showFirstRunDownloadFinish = true
         }
         setupViewModel.markDownloadPromptHandled()
         setupViewModel.completeOnboarding()
@@ -77,6 +80,7 @@ fun App(
         if (setupUiState.shouldShowDownloadPrompt) {
             if (pendingStack == null) {
                 pendingStack = firstRunDownloadStack
+                showFirstRunDownloadFinish = true
             }
             setupViewModel.markDownloadPromptHandled()
         }
@@ -111,8 +115,12 @@ fun App(
                     } else {
                         pendingStack
                     },
+                    showFirstRunDownloadFinish = showFirstRunDownloadFinish,
                     onPendingStackConsumed = {
                         pendingStack = null
+                    },
+                    onFirstRunDownloadFinished = {
+                        showFirstRunDownloadFinish = false
                     },
                 )
             }
@@ -123,7 +131,9 @@ fun App(
 @Composable
 private fun MainAppShell(
     pendingStack: List<FestivalNavKey>?,
+    showFirstRunDownloadFinish: Boolean,
     onPendingStackConsumed: () -> Unit,
+    onFirstRunDownloadFinished: () -> Unit,
 ) {
     val topLevelBackStack = rememberFestivalTopLevelBackStack()
     val navigator = remember(topLevelBackStack) { FestivalNavigator(topLevelBackStack) }
@@ -149,10 +159,21 @@ private fun MainAppShell(
             }
         },
     ) { padding ->
+        val bottomPadding = if (showBottomBar) {
+            padding.calculateBottomPadding()
+        } else {
+            0.dp
+        }
+
         NavDisplay(
-            modifier = Modifier.padding(bottom = padding.calculateBottomPadding()),
+            modifier = Modifier.padding(bottom = bottomPadding),
             backStack = topLevelBackStack.backStack,
-            onBack = { topLevelBackStack.removeLast() },
+            onBack = {
+                if (currentKey == FestivalNavKey.DownloadEvents && showFirstRunDownloadFinish) {
+                    onFirstRunDownloadFinished()
+                }
+                topLevelBackStack.removeLast()
+            },
             entryDecorators = listOf(
                 rememberSaveableStateHolderNavEntryDecorator(),
                 rememberViewModelStoreNavEntryDecorator(),
@@ -243,7 +264,22 @@ private fun MainAppShell(
                 }
 
                 entry<FestivalNavKey.DownloadEvents> {
-                    DownloadEventsRoute(onBack = navigator::navigateBack)
+                    DownloadEventsRoute(
+                        onBack = {
+                            if (showFirstRunDownloadFinish) {
+                                onFirstRunDownloadFinished()
+                            }
+                            navigator.navigateBack()
+                        },
+                        onFinish = if (showFirstRunDownloadFinish) {
+                            {
+                                onFirstRunDownloadFinished()
+                                navigator.replaceWithSyntheticStack(listOf(FestivalNavKey.Timetable))
+                            }
+                        } else {
+                            null
+                        },
+                    )
                 }
 
                 entry<FestivalNavKey.Web> { key ->

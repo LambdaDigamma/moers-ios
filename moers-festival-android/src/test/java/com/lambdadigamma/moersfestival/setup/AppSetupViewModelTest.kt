@@ -6,6 +6,8 @@ import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import java.io.IOException
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -119,5 +121,31 @@ class AppSetupViewModelTest {
         assertTrue(objectUnderTest.uiState.value.notificationTopicSubscribed)
         assertFalse(objectUnderTest.uiState.value.isSyncingNotifications)
         coVerify(exactly = 1) { notificationManager.subscribeToGeneralTopic() }
+    }
+
+    @Test
+    fun `should continue onboarding while notification topic sync is pending`() = runTest(dispatcher) {
+        val topicSubscription = CompletableDeferred<Result<Unit>>()
+        permissionGranted = true
+        coEvery { notificationManager.subscribeToGeneralTopic() } coAnswers {
+            topicSubscription.await()
+        }
+
+        val objectUnderTest = AppSetupViewModel(repository, notificationManager)
+        advanceUntilIdle()
+
+        assertTrue(objectUnderTest.uiState.value.shouldShowOnboarding)
+        assertTrue(objectUnderTest.uiState.value.isSyncingNotifications)
+
+        objectUnderTest.completeOnboarding()
+        advanceUntilIdle()
+
+        assertFalse(objectUnderTest.uiState.value.shouldShowOnboarding)
+        assertTrue(objectUnderTest.uiState.value.shouldShowDownloadPrompt)
+
+        topicSubscription.complete(Result.failure(IOException("FIS_AUTH_ERROR")))
+        advanceUntilIdle()
+
+        assertFalse(objectUnderTest.uiState.value.isSyncingNotifications)
     }
 }

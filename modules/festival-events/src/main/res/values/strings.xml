@@ -23,6 +23,7 @@
     <string name="download_timetable">Download timetable</string>
     <string name="download_timetable_description">You can download the whole timetable to use it even when you are offline. Use this functionality to keep the timetable up to date as well.</string>
     <string name="download_timetable_cta">Download</string>
+    <string name="download_timetable_finish">Finish</string>
     <string name="download_timetable_content_option">Download content</string>
     <string name="download_timetable_media_option">Download images</string>
     <string name="content">Content</string>

@@ -104,19 +104,14 @@ Relevant iOS references:
 - `ios/moers festival/moers festival/Controller/LaunchInterceptor.swift`
 - `ios/moers festival/moers festival/Model/BulletinBoard/BulletinDataSource.swift`
 
-#### Android gap
+#### Android status
 
-Android opens directly into the app and immediately asks for notification permission. There is no first-run explanation, no one-time download prompt, and no contextual setup flow.
+Android now has a first-run onboarding flow for the festival intro and notification setup, then opens the timetable download screen once. The first-run download screen includes a `Finish` action so users can complete setup without relying on back navigation.
 
-#### Required work
+#### Remaining work
 
-- Add a one-time first-launch coordinator or modal flow in `App.kt` / `MainActivity.kt`.
-- Include:
-  - a short festival intro;
-  - notification rationale;
-  - optional location rationale;
-  - a one-time prompt to open the download screen.
-- Persist completion in local storage, similar to iOS `showedDownload`.
+- Add an optional location rationale if it becomes part of the Android first-run setup.
+- Keep the one-time download prompt backed by local setup state, similar to iOS `showedDownload`.
 
 Relevant Android touchpoints:
 
@@ -127,6 +122,7 @@ Relevant Android touchpoints:
 #### Acceptance criteria
 
 - New users are guided through notification and content-download setup once.
+- The first-run download screen has an explicit finish action.
 - Returning users are not repeatedly prompted.
 
 ### 3. Bring the map up to iOS location parity

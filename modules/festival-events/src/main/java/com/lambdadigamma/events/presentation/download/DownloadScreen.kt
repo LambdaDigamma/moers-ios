@@ -18,6 +18,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -32,18 +33,22 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.lambdadigamma.core.R
 import com.lambdadigamma.core.ui.MoersFestivalTheme
-import com.lambdadigamma.events.presentation.composable.EventItem
-import com.lambdadigamma.events.presentation.timetable.TimetableIntent
 
 @Composable
 fun DownloadEventsRoute(
     viewModel: DownloadEventsViewModel = hiltViewModel(),
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    onFinish: (() -> Unit)? = null,
 ) {
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    DownloadEventsScreen(uiState = uiState, onIntent = viewModel::acceptIntent, onBack = onBack)
+    DownloadEventsScreen(
+        uiState = uiState,
+        onIntent = viewModel::acceptIntent,
+        onBack = onBack,
+        onFinish = onFinish,
+    )
 
 }
 
@@ -51,7 +56,8 @@ fun DownloadEventsRoute(
 fun DownloadEventsScreen(
     uiState: DownloadEventsUiState,
     onIntent: (DownloadEventsIntent) -> Unit,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    onFinish: (() -> Unit)? = null,
 ) {
 
     Scaffold(
@@ -66,6 +72,13 @@ fun DownloadEventsScreen(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = stringResource(R.string.navigation_back)
                         )
+                    }
+                },
+                actions = {
+                    onFinish?.let { finish ->
+                        TextButton(onClick = finish) {
+                            Text(text = stringResource(com.lambdadigamma.events.R.string.download_timetable_finish))
+                        }
                     }
                 }
             )
@@ -160,11 +173,7 @@ fun DownloadEventsScreen(
                     items = uiState.events,
                     key = { event -> event.id },
                 ) { item ->
-	                    DownloadEventRow(uiState = DownloadEventRowState(
-	                        name = item.name,
-	                        contentState = if (item.hasPageDownloaded) DownloadEventState.DOWNLOADED else DownloadEventState.NOT_DOWNLOADED,
-                        imageState = if (item.hasMediaDownloaded) DownloadEventState.DOWNLOADED else DownloadEventState.NOT_DOWNLOADED,
-	                    ))
+                    DownloadEventRow(uiState = item.toRowState())
                     HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.padding(start = 16.dp))
                 }
 
