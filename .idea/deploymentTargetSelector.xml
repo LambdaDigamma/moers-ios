@@ -8,6 +8,10 @@
       <SelectionState runConfigName="moers-app.Moers.moers-festival-android">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="moers-festival-android">
+        <option name="selectionMode" value="DROPDOWN" />
+        <DialogSelection />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>
