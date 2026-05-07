@@ -7,11 +7,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.LinkAnnotation
-import androidx.compose.ui.text.ParagraphStyle
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
@@ -35,53 +35,7 @@ fun AnnotatedString.Builder.appendMarkdownChildren(
         when (child) {
             is NodeParagraph -> appendMarkdownChildren(child, colors)
             is NodeText -> {
-                for (mark in child.marks) {
-                    when (mark) {
-                        is MarkType.Italic -> {
-                            pushStyle(style = SpanStyle(
-                                fontStyle = FontStyle.Italic
-                            ))
-                        }
-                        is MarkType.Bold -> {
-                            pushStyle(style = SpanStyle(
-                                fontWeight = FontWeight.SemiBold
-                            ))
-                        }
-                        is MarkType.Underline -> {
-                            pushStyle(style = SpanStyle(
-                                textDecoration = TextDecoration.Underline
-                            ))
-                        }
-                        is MarkType.Strike -> {
-                            pushStyle(style = SpanStyle(
-                                textDecoration = TextDecoration.LineThrough
-                            ))
-                        }
-                        is MarkType.Superscript -> {
-                            pushStyle(style = SpanStyle(
-                                baselineShift = BaselineShift.Superscript
-                            ))
-                        }
-                        is MarkType.Link -> {
-                            pushStyle(style = SpanStyle(
-                                color = colors.primary,
-                                textDecoration = TextDecoration.Underline,
-                                fontWeight = FontWeight.SemiBold
-                            ))
-                            pushLink(LinkAnnotation.Url(mark.attrs?.href.orEmpty()))
-                        }
-                    }
-                }
-                append(child.text)
-                for (mark in child.marks) {
-                    when (mark) {
-                        is MarkType.Link -> {
-                            pop()
-                            pop()
-                        }
-                        else -> pop()
-                    }
-                }
+                appendMarkedText(child, colors)
             }
             is NodeHardBreak -> {
                 appendLine()
@@ -102,6 +56,63 @@ fun AnnotatedString.Builder.appendMarkdownChildren(
         }
     }
 
+}
+
+private fun AnnotatedString.Builder.appendMarkedText(
+    child: NodeText,
+    colors: ColorScheme
+) {
+    val start = length
+    append(child.text)
+    val end = length
+
+    if (start == end) return
+
+    createSpanStyle(child.marks, colors)?.let { style ->
+        addStyle(style = style, start = start, end = end)
+    }
+
+    child.marks
+        .filterIsInstance<MarkType.Link>()
+        .firstNotNullOfOrNull { mark -> mark.attrs?.href?.takeIf(String::isNotBlank) }
+        ?.let { href ->
+            addLink(LinkAnnotation.Url(href), start = start, end = end)
+        }
+}
+
+private fun createSpanStyle(
+    marks: List<MarkType>,
+    colors: ColorScheme
+): SpanStyle? {
+    if (marks.isEmpty()) return null
+
+    val hasLink = marks.any { it is MarkType.Link }
+    val textDecorations = buildList {
+        if (marks.any { it is MarkType.Underline } || hasLink) {
+            add(TextDecoration.Underline)
+        }
+        if (marks.any { it is MarkType.Strike }) {
+            add(TextDecoration.LineThrough)
+        }
+    }
+
+    return SpanStyle(
+        color = if (hasLink) colors.primary else Color.Unspecified,
+        fontStyle = if (marks.any { it is MarkType.Italic }) FontStyle.Italic else null,
+        fontWeight = if (marks.any { it is MarkType.Bold } || hasLink) {
+            FontWeight.SemiBold
+        } else {
+            null
+        },
+        baselineShift = if (marks.any { it is MarkType.Superscript }) {
+            BaselineShift.Superscript
+        } else {
+            null
+        },
+        textDecoration = textDecorations
+            .takeIf { it.isNotEmpty() }
+            ?.let(TextDecoration::combine),
+    )
 }
 
 @Composable
