@@ -13,6 +13,7 @@
 
     <string name="info_section_festival">Festival</string>
     <string name="info_section_settings">Einstellungen</string>
+    <string name="info_section_debug">Debug</string>
     <string name="info_section_other">Sonstiges</string>
     <string name="info_row_tickets">Tickets</string>
     <string name="info_row_festivaldorf">Festivaldorf</string>
@@ -27,6 +28,17 @@
     <string name="navigation_map">Karte</string>
     <string name="info_row_notifications">Push-Mitteilungen</string>
     <string name="info_row_notifications_description">Aktiviere Festival-Updates, Wetterhinweise und kurzfristige Mitteilungen.</string>
+    <string name="info_notification_prompt_title">Möchtest Du Festival-Updates erhalten?</string>
+    <string name="info_notification_prompt_body">Aktiviere Push-Mitteilungen für Spielplanänderungen, Wetterhinweise und andere kurzfristige Infos.</string>
+    <string name="info_notification_prompt_action">Mitteilungen aktivieren</string>
+    <string name="info_debug_fcm_token_title">FCM-Token</string>
+    <string name="info_debug_fcm_token_loading">Token wird geladen…</string>
+    <string name="info_debug_fcm_token_empty">Kein FCM-Token verfügbar.</string>
+    <string name="info_debug_fcm_token_error">Token konnte nicht geladen werden: %1$s</string>
+    <string name="info_debug_fcm_token_error_unknown">Unbekannter Fehler</string>
+    <string name="info_debug_fcm_token_copy">Kopieren</string>
+    <string name="info_debug_fcm_token_refresh">Aktualisieren</string>
+    <string name="info_debug_fcm_token_clip_label">FCM-Token</string>
     <string name="about_body">Diese App wird seit 2018 von Lennart Fischer entwickelt und gepflegt. Anfangs noch ein reines Volunteer-Projekt, ist sie nun zu einem essentiellen Bestandteil des Festivals geworden. Falls Du Ideen für neue Funktionen hast, schreib gerne Feedback. Auch eine positive Bewertung im Play Store hilft.</string>
     <string name="about_version">Version %1$s (%2$d)</string>
     <string name="about_rate_app">App bewerten</string>
@@ -49,7 +61,7 @@
     <string name="onboarding_notifications_secondary">Nicht jetzt</string>
     <string name="onboarding_step_indicator">Schritt %1$d von %2$d</string>
     <string name="onboarding_download_badge">Offline-Download</string>
-    <string name="notification_settings_headline">Bleib während des Festivals aktuell</string>
+    <string name="notification_settings_headline">Immer gut informiert</string>
     <string name="notification_settings_copy">Push-Mitteilungen halten Dich über Spielplanänderungen, Wetter und andere kurzfristige Hinweise auf dem Laufenden. Stille Aktualisierungen halten die App zusätzlich im Hintergrund aktuell.</string>
     <string name="notification_settings_status_enabled">Mitteilungen sind aktiv</string>
     <string name="notification_settings_status_disabled">Mitteilungen sind deaktiviert</string>

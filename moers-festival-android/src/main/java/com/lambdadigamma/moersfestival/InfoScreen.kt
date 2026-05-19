@@ -1,19 +1,31 @@
 package com.lambdadigamma.moersfestival
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.automirrored.rounded.OpenInNew
+import androidx.compose.material.icons.rounded.ContentCopy
 import androidx.compose.material.icons.rounded.DownloadForOffline
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.Link
 import androidx.compose.material.icons.rounded.NotificationsActive
+import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -21,26 +33,41 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MediumTopAppBar
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.google.firebase.messaging.FirebaseMessaging
 import com.lambdadigamma.core.navigation.NavigationCommand
 import com.lambdadigamma.core.navigation.NavigationDestination
 import com.lambdadigamma.core.navigation.NavigationManager
+import com.lambdadigamma.moersfestival.setup.AppSetupViewModel
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InfoScreen(navigationManager: NavigationManager) {
+    val setupViewModel: AppSetupViewModel = hiltViewModel()
+    val setupUiState by setupViewModel.uiState.collectAsStateWithLifecycle()
     val navigateUrl = { url: String ->
         val encodedUrl = URLEncoder.encode(url, StandardCharsets.UTF_8.toString())
         navigationManager.navigate(object : NavigationCommand {
@@ -70,6 +97,7 @@ fun InfoScreen(navigationManager: NavigationManager) {
                 override val destination: String = NavigationDestination.AppLicenses.route
             })
         },
+        showNotificationOptInBanner = !setupUiState.notificationPermissionGranted,
     )
 }
 
@@ -81,6 +109,7 @@ fun InfoScreen(
     onOpenNotificationSettings: () -> Unit,
     onOpenAppInformation: () -> Unit,
     onOpenLicenses: () -> Unit,
+    showNotificationOptInBanner: Boolean = false,
 ) {
     Scaffold(
         topBar = {
@@ -104,6 +133,12 @@ fun InfoScreen(
         ) {
             item(key = "intro") {
                 InfoIntro()
+            }
+
+            if (showNotificationOptInBanner) {
+                item(key = "notification-opt-in-banner") {
+                    InfoNotificationOptInBanner(onClick = onOpenNotificationSettings)
+                }
             }
 
             item(key = "festival-header") {
@@ -177,6 +212,15 @@ fun InfoScreen(
                 }
             }
 
+            if (BuildConfig.DEBUG) {
+                item(key = "debug-header") {
+                    InfoSectionHeader(title = stringResource(R.string.info_section_debug))
+                }
+                item(key = "debug-fcm-token") {
+                    DebugFcmTokenSection()
+                }
+            }
+
             item(key = "other-header") {
                 InfoSectionHeader(title = stringResource(R.string.info_section_other))
             }
@@ -206,6 +250,173 @@ fun InfoScreen(
             }
         }
     }
+}
+
+@Composable
+private fun InfoNotificationOptInBanner(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val colors = MaterialTheme.colorScheme
+
+    Surface(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        shape = RoundedCornerShape(24.dp),
+        color = colors.primaryContainer,
+    ) {
+        Column(
+            modifier = Modifier.padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(14.dp),
+        ) {
+            Surface(
+                shape = CircleShape,
+                color = colors.onPrimaryContainer.copy(alpha = 0.12f),
+            ) {
+                Icon(
+                    imageVector = Icons.Rounded.NotificationsActive,
+                    contentDescription = null,
+                    tint = colors.onPrimaryContainer,
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .size(22.dp),
+                )
+            }
+
+            Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                Text(
+                    text = stringResource(R.string.info_notification_prompt_title),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    color = colors.onPrimaryContainer,
+                )
+                Text(
+                    text = stringResource(R.string.info_notification_prompt_body),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = colors.onPrimaryContainer.copy(alpha = 0.78f),
+                )
+            }
+
+            OutlinedButton(
+                onClick = onClick,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(text = stringResource(R.string.info_notification_prompt_action))
+            }
+        }
+    }
+}
+
+@Composable
+private fun DebugFcmTokenSection() {
+    val context = LocalContext.current
+    val clipboardManager = remember(context) {
+        context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    }
+    var refreshKey by remember { mutableIntStateOf(0) }
+    var isLoading by remember { mutableStateOf(true) }
+    var token by remember { mutableStateOf<String?>(null) }
+    var errorMessage by remember { mutableStateOf<String?>(null) }
+
+    DisposableEffect(refreshKey) {
+        var isActive = true
+
+        isLoading = true
+        token = null
+        errorMessage = null
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (!isActive) {
+                return@addOnCompleteListener
+            }
+
+            isLoading = false
+            if (task.isSuccessful) {
+                token = task.result
+            } else {
+                errorMessage = task.exception?.localizedMessage
+                    ?: context.getString(R.string.info_debug_fcm_token_error_unknown)
+            }
+        }
+
+        onDispose {
+            isActive = false
+        }
+    }
+
+    val statusText = when {
+        isLoading -> stringResource(R.string.info_debug_fcm_token_loading)
+        errorMessage != null -> stringResource(R.string.info_debug_fcm_token_error, errorMessage.orEmpty())
+        token.isNullOrBlank() -> stringResource(R.string.info_debug_fcm_token_empty)
+        else -> token.orEmpty()
+    }
+
+    ListItem(
+        headlineContent = {
+            Text(
+                text = stringResource(R.string.info_debug_fcm_token_title),
+                style = MaterialTheme.typography.bodyLarge,
+            )
+        },
+        supportingContent = {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                Text(
+                    text = statusText,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = if (errorMessage != null) {
+                        MaterialTheme.colorScheme.error
+                    } else {
+                        MaterialTheme.colorScheme.onSurfaceVariant
+                    },
+                )
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    TextButton(
+                        enabled = !token.isNullOrBlank(),
+                        onClick = {
+                            val clip = ClipData.newPlainText(
+                                context.getString(R.string.info_debug_fcm_token_clip_label),
+                                token.orEmpty(),
+                            )
+                            clipboardManager.setPrimaryClip(clip)
+                        },
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.ContentCopy,
+                            contentDescription = null,
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(text = stringResource(R.string.info_debug_fcm_token_copy))
+                    }
+                    TextButton(
+                        enabled = !isLoading,
+                        onClick = {
+                            refreshKey += 1
+                        },
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.Refresh,
+                            contentDescription = null,
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(text = stringResource(R.string.info_debug_fcm_token_refresh))
+                    }
+                }
+            }
+        },
+        leadingContent = {
+            Icon(
+                imageVector = Icons.Rounded.NotificationsActive,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        },
+        colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+    )
 }
 
 @Composable

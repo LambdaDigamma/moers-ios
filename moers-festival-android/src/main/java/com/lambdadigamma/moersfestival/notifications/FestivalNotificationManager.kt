@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.messaging.FirebaseMessaging
 import com.lambdadigamma.moers.utils.notifications.NotificationHelper
@@ -36,8 +37,10 @@ class FestivalNotificationManager @Inject constructor(
     }
 
     fun hasNotificationPermission(): Boolean {
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
+        val runtimePermissionGranted = Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
             ContextCompat.checkSelfPermission(context, POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
+
+        return runtimePermissionGranted && NotificationManagerCompat.from(context).areNotificationsEnabled()
     }
 
     suspend fun subscribeToGeneralTopic(): Result<Unit> {

@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -15,6 +16,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.entryProvider
@@ -44,6 +48,7 @@ fun App(
 ) {
     val setupViewModel: AppSetupViewModel = hiltViewModel()
     val setupUiState by setupViewModel.uiState.collectAsStateWithLifecycle()
+    val lifecycleOwner = LocalLifecycleOwner.current
     var pendingStack by remember { mutableStateOf<List<FestivalNavKey>?>(null) }
     var showFirstRunDownloadFinish by remember { mutableStateOf(false) }
     val firstRunDownloadStack = remember {
@@ -64,6 +69,19 @@ fun App(
     ) {
         setupViewModel.refreshNotificationState()
         finishOnboarding()
+    }
+
+    DisposableEffect(lifecycleOwner, setupViewModel) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME) {
+                setupViewModel.refreshNotificationState()
+            }
+        }
+
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
     }
 
     LaunchedEffect(incomingIntent) {
@@ -116,6 +134,7 @@ fun App(
                         pendingStack
                     },
                     showFirstRunDownloadFinish = showFirstRunDownloadFinish,
+                    showNotificationOptInBanner = !setupUiState.notificationPermissionGranted,
                     onPendingStackConsumed = {
                         pendingStack = null
                     },
@@ -132,6 +151,7 @@ fun App(
 private fun MainAppShell(
     pendingStack: List<FestivalNavKey>?,
     showFirstRunDownloadFinish: Boolean,
+    showNotificationOptInBanner: Boolean,
     onPendingStackConsumed: () -> Unit,
     onFirstRunDownloadFinished: () -> Unit,
 ) {
@@ -233,6 +253,7 @@ private fun MainAppShell(
                         onOpenLicenses = {
                             navigator.navigate(FestivalNavKey.Licenses)
                         },
+                        showNotificationOptInBanner = showNotificationOptInBanner,
                     )
                 }
 
