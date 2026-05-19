@@ -1,6 +1,6 @@
 //
 //  CompactDayEventsView.swift
-//  
+//
 //
 //  Created by Lennart Fischer on 12.04.23.
 //
@@ -8,27 +8,30 @@
 import SwiftUI
 
 public struct CompactDayEventsView: View {
-    
+
     private let day: TimetableDay
     private let isFilterActive: Bool
     private let onRefresh: () async -> Void
-    
+    private let now: Date
+
     @EnvironmentObject private var transmitter: TimetableTransmitter
-    
+
     public init(
         day: TimetableDay,
         isFilterActive: Bool,
-        onRefresh: @escaping () async -> Void
+        onRefresh: @escaping () async -> Void,
+        now: Date
     ) {
         self.day = day
         self.isFilterActive = isFilterActive
         self.onRefresh = onRefresh
+        self.now = now
     }
-    
+
     public var body: some View {
-        
+
         ZStack {
-            
+
             if day.events.isEmpty && isFilterActive {
                 VStack(spacing: 16) {
                     Image(systemName: "line.3.horizontal.decrease.circle")
@@ -40,32 +43,32 @@ public struct CompactDayEventsView: View {
                         .padding(.horizontal)
                 }
             } else {
-            
+
                 List {
-                    
+
                     ForEach(day.events) { event in
                         Button(action: {
                             if let eventID = event.eventID {
                                 transmitter.dispatchShowEvent(eventID)
                             }
                         }) {
-                            EventListItem(viewModel: event)
+                            EventListItem(viewModel: event, now: now)
                         }
                         .accessibilityIdentifier("Event-Row-\(event.eventID ?? 0)")
                     }
-                    
+
                 }
                 .listStyle(.plain)
                 .refreshable {
                     await onRefresh()
                 }
-                
+
             }
-            
+
         }
-        
+
     }
-    
+
 }
 
 //struct DayEventsView_Previews: PreviewProvider {

@@ -7,17 +7,20 @@
 //
 
 import UIKit
+import Core
 import MMEvents
 import AVKit
 import StateViewController
 import OSLog
 import Factory
+import Combine
 
 class LiveOverviewViewController: StateViewController<LivestreamState> {
     
     public var coordinator: LiveCoordinator?
     
     @LazyInjected(\.legacyEventService) var eventService
+    private let currentDateProvider: CurrentDateProviding = Container.shared.currentDateProvider()
     
     private lazy var loadingController =  { LoadingViewController(loadingHint: String.localized("Loading live stream...")) }()
     private lazy var activeStreamViewController = { ActiveStreamViewController() }()
@@ -27,8 +30,8 @@ class LiveOverviewViewController: StateViewController<LivestreamState> {
     
     private var updateInterval: TimeInterval = 60.0
     private var updateCheckTimer: Timer!
-    private var countdownTimer: Timer!
-    private var eventChangeTimer: Timer!
+    private var countdownCancellable: AnyCancellable?
+    private var eventChangeCancellable: AnyCancellable?
     
     private var livestreamData: LivestreamData?
     
@@ -46,8 +49,8 @@ class LiveOverviewViewController: StateViewController<LivestreamState> {
         super.viewWillDisappear(animated)
         
         self.updateCheckTimer?.invalidate()
-        self.countdownTimer?.invalidate()
-        self.eventChangeTimer?.invalidate()
+        self.countdownCancellable?.cancel()
+        self.eventChangeCancellable?.cancel()
         
     }
     
@@ -67,13 +70,16 @@ class LiveOverviewViewController: StateViewController<LivestreamState> {
     
     private func setupCountdownTimer(startDate: Date) {
         
-        self.countdownTimer = Timer(
-            fireAt: startDate, interval: 0,
-            target: self, selector: #selector(transitionToLiveStream),
-            userInfo: nil, repeats: false
-        )
-        
-        RunLoop.main.add(self.countdownTimer, forMode: .common)
+        countdownCancellable?.cancel()
+        countdownCancellable = currentDateProvider
+            .dateDidChange
+            .prepend(currentDateProvider.now)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] now in
+                guard now >= startDate else { return }
+                self?.countdownCancellable?.cancel()
+                self?.transitionToLiveStream()
+            }
         
     }
     
@@ -104,7 +110,7 @@ class LiveOverviewViewController: StateViewController<LivestreamState> {
         
         if let startDate = livestreamData.streamConfig.startDate {
 
-            if Date() < startDate {
+            if currentDateProvider.now < startDate {
                 self.setNeedsStateTransition(to: .countdown(startDate: startDate), animated: true)
                 self.setupCountdownTimer(startDate: startDate)
             } else {
@@ -127,16 +133,17 @@ class LiveOverviewViewController: StateViewController<LivestreamState> {
         
         logger.info("Event Change: \(date)")
         
-        self.eventChangeTimer = Timer(
-            fireAt: date.addingTimeInterval(2),
-            interval: 0,
-            target: self,
-            selector: #selector(changeToActiveEvent),
-            userInfo: nil,
-            repeats: false
-        )
-        
-        RunLoop.main.add(self.eventChangeTimer, forMode: .common)
+        eventChangeCancellable?.cancel()
+        let transitionDate = date.addingTimeInterval(2)
+        eventChangeCancellable = currentDateProvider
+            .dateDidChange
+            .prepend(currentDateProvider.now)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] now in
+                guard now >= transitionDate else { return }
+                self?.eventChangeCancellable?.cancel()
+                self?.changeToActiveEvent()
+            }
         
     }
     
@@ -169,7 +176,7 @@ class LiveOverviewViewController: StateViewController<LivestreamState> {
             if let nextEvent = livestreamData.events
                 .map({ $0.model })
                 .filter({ $0.startDate != nil })
-                .filter({ $0.startDate ?? Date(timeIntervalSinceNow: -3600) > Date() })
+                .filter({ $0.startDate ?? currentDateProvider.now.addingTimeInterval(-3600) > currentDateProvider.now })
                 .chronologically()
                 .first {
                 
@@ -179,11 +186,11 @@ class LiveOverviewViewController: StateViewController<LivestreamState> {
                     
                     self.setupEventViewTimer(at: startDate)
                 } else {
-                    self.setupEventViewTimer(at: Date().addingTimeInterval(60 * 5))
+                    self.setupEventViewTimer(at: currentDateProvider.now.addingTimeInterval(60 * 5))
                 }
                 
             } else {
-                self.setupEventViewTimer(at: Date().addingTimeInterval(60 * 5))
+                self.setupEventViewTimer(at: currentDateProvider.now.addingTimeInterval(60 * 5))
             }
             
         }
@@ -192,7 +199,7 @@ class LiveOverviewViewController: StateViewController<LivestreamState> {
     
     // MARK: - Timer Actions -
     
-    /// This method is being called by the `countdownTimer`
+    /// This method is called when the configured clock reaches the stream start date
     /// to transition the _activeStream_ state when countdown is over.
     @objc private func transitionToLiveStream() {
         
@@ -204,7 +211,7 @@ class LiveOverviewViewController: StateViewController<LivestreamState> {
         
     }
     
-    /// This method is being called by the `eventChangeTimer`
+    /// This method is called when the configured clock reaches the next event boundary
     /// to change the actively displayed event.
     @objc private func changeToActiveEvent() {
         
@@ -258,7 +265,10 @@ class LiveOverviewViewController: StateViewController<LivestreamState> {
             
         case .countdown(let startDate):
             return [
-                CountdownViewController(startDate: startDate)
+                CountdownViewController(
+                    startDate: startDate,
+                    currentDateProvider: currentDateProvider
+                )
             ]
             
         case .activeStream:

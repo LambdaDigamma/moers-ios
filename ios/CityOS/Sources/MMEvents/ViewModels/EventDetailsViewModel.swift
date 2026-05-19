@@ -10,6 +10,7 @@ import Core
 import Foundation
 import MapKit
 import Combine
+import Factory
 
 @MainActor
 public class EventDetailsViewModel: ObservableObject {
@@ -18,10 +19,16 @@ public class EventDetailsViewModel: ObservableObject {
     public private(set) var model: Event?
     public let observableConfig = CurrentValueSubject<EventDetailViewConfig?, Never>(nil)
     public let event = CurrentValueSubject<Event?, Never>(nil)
+    private let currentDateProvider: CurrentDateProviding
     
-    public init(model: Event?, config: EventDetailViewConfig? = EventDetailViewConfig()) {
+    public init(
+        model: Event?,
+        config: EventDetailViewConfig? = EventDetailViewConfig(),
+        currentDateProvider: CurrentDateProviding = Container.shared.currentDateProvider()
+    ) {
         self.config = config
         self.model = model
+        self.currentDateProvider = currentDateProvider
         self.observableConfig.send(config)
         self.event.send(model)
     }
@@ -45,14 +52,16 @@ public class EventDetailsViewModel: ObservableObject {
     }()
     
     public lazy var subtitle: AnyPublisher<String?, Never> = {
-        event.map { event in
-            if let event = event {
-                return EventViewModel(event: event).detailSubtitle
-            } else {
-                return nil
+        event
+            .combineLatest(currentDateProvider.dateDidChange.prepend(currentDateProvider.now))
+            .map { event, now in
+                if let event = event {
+                    return EventViewModel(event: event, now: now).detailSubtitle
+                } else {
+                    return nil
+                }
             }
-        }
-        .eraseToAnyPublisher()
+            .eraseToAnyPublisher()
     }()
     
     public lazy var description: AnyPublisher<String?, Never> = {

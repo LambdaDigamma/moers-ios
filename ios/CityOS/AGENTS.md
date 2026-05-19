@@ -14,6 +14,7 @@
 
 - Keep resources under each target's `Resources` directory and access package resources with `Bundle.module`.
 - Use Factory registration patterns already present in target code.
+- User-visible current-date/time logic should use `Container.shared.currentDateProvider` or explicit `now:` parameters, so debug clients can time-travel without changing production defaults.
 - Keep async service and repository APIs consistent with nearby code; do not mix callback and async styles unless the existing API requires it.
 - Preserve `@MainActor` on UI-facing view models and controllers.
 - When touching database-backed packages such as `MMEvents`, `MMPages`, or `MMFeeds`, add focused tests around records, stores, repositories, or mappers.

@@ -8,6 +8,7 @@
 
 import UIKit
 import Core
+import Factory
 
 class CountdownViewController: UIViewController {
     
@@ -21,11 +22,16 @@ class CountdownViewController: UIViewController {
     
     private var timer: Timer!
     private let calendar = Calendar.current
+    private let currentDateProvider: CurrentDateProviding
     
     private let startDate: Date
     
-    init(startDate: Date) {
+    init(
+        startDate: Date,
+        currentDateProvider: CurrentDateProviding = Container.shared.currentDateProvider()
+    ) {
         self.startDate = startDate
+        self.currentDateProvider = currentDateProvider
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -138,7 +144,11 @@ class CountdownViewController: UIViewController {
     
     @objc private func updateTimeLabel() {
         
-        let timeLeft = calendar.dateComponents([.day, .hour, .minute, .second], from: Date(), to: startDate)
+        let timeLeft = calendar.dateComponents(
+            [.day, .hour, .minute, .second],
+            from: currentDateProvider.now,
+            to: startDate
+        )
 
         guard let days = timeLeft.day, let hours = timeLeft.hour, let minutes = timeLeft.minute, let seconds = timeLeft.second else { return }
         

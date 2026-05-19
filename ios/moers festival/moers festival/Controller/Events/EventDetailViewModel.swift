@@ -17,41 +17,47 @@ import CoreLocation
 import Factory
 
 public struct EventDetailScreenData {
-    
+
     public var startDate: Date?
     public var endDate: Date?
     public var scheduleDisplayMode: EventScheduleDisplayMode
     public var timeMode: TimeDisplayMode
-    
+
 }
 
 public class EventDetailViewModel: StandardViewModel {
-    
+
     @LazyInjected(\.legacyEventService) var legacyEventService
     @LazyInjected(\.festivalEventService) var festivalEventService
-    
+
     private let logger: Logger = Logger(.coreAppLifecycle)
-    
+
     @Published public var eventID: Event.ID?
     @Published public var pageID: MMPages.Page.ID?
     @Published var page: MMPages.Page?
     @Published var event: Event?
     @Published var header: Media?
     @Published var location: Place?
-    
+
     @Published var screenData: EventDetailScreenData?
-    
+
     let repository: EventRepository
-    
-    public init(eventID: Event.ID?) {
+    private let currentDateProvider: CurrentDateProviding
+
+    public init(
+        eventID: Event.ID?,
+        currentDateProvider: CurrentDateProviding = Container.shared.currentDateProvider()
+    ) {
         self.eventID = eventID
+        self.currentDateProvider = currentDateProvider
         self.repository = Container.shared.eventRepository()
         super.init()
         self.setupListener()
+        self.setupCurrentDateListener()
     }
-    
+
     public func load() {
-        
+
         guard let eventID = eventID else {
             return
         }
@@ -71,16 +77,7 @@ public class EventDetailViewModel: StandardViewModel {
                     self.location = response.place
 
                     if let event = response.event {
-                        self.screenData = .init(
-                            startDate: event.startDate,
-                            endDate: event.endDate,
-                            scheduleDisplayMode: event.scheduleDisplayMode,
-                            timeMode: EventUtilities.timeDisplayMode(
-                                startDate: event.startDate,
-                                endDate: event.endDate,
-                                scheduleDisplayMode: event.scheduleDisplayMode
-                            )
-                        )
+                        self.updateScreenData(for: event)
                     }
                 }
             } catch {
@@ -88,11 +85,11 @@ public class EventDetailViewModel: StandardViewModel {
                 print(error)
             }
         }
-        
+
     }
-    
+
     public func setupListener() {
-        
+
         guard let eventID else { return }
 
         self.repository.eventDetail(id: eventID)
@@ -114,25 +111,16 @@ public class EventDetailViewModel: StandardViewModel {
                 self.location = event?.place
 
                 if let event {
-                    self.screenData = .init(
-                        startDate: event.startDate,
-                        endDate: event.endDate,
-                        scheduleDisplayMode: event.scheduleDisplayMode,
-                        timeMode: EventUtilities.timeDisplayMode(
-                            startDate: event.startDate,
-                            endDate: event.endDate,
-                            scheduleDisplayMode: event.scheduleDisplayMode
-                        )
-                    )
+                    self.updateScreenData(for: event)
                 }
 
             }
             .store(in: &cancellables)
-        
+
     }
-    
+
     public func reload() {
-        
+
 //        guard let eventID else {
 //            self.logger.warning("No event ID found while reloading.")
 //            return
@@ -145,11 +133,11 @@ public class EventDetailViewModel: StandardViewModel {
 //                self.logger.error("\(error.debugDescription)")
 //            }
 //        }
-        
+
     }
-    
+
     public func refresh() {
-        
+
 //        guard let eventID else {
 //            self.logger.warning("No event ID found while refreshing.")
 //            return
@@ -162,13 +150,38 @@ public class EventDetailViewModel: StandardViewModel {
 //                self.logger.error("\(error.debugDescription)")
 //            }
 //        }
-        
+
     }
-    
+
     public func cancel() {
-        
+
         self.cancellables.forEach { $0.cancel() }
-        
+
     }
-    
+
+    private func setupCurrentDateListener() {
+        currentDateProvider
+            .dateDidChange
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self, let event = self.event else { return }
+                self.updateScreenData(for: event)
+            }
+            .store(in: &cancellables)
+    }
+
+    private func updateScreenData(for event: Event) {
+        self.screenData = .init(
+            startDate: event.startDate,
+            endDate: event.endDate,
+            scheduleDisplayMode: event.scheduleDisplayMode,
+            timeMode: EventUtilities.timeDisplayMode(
+                startDate: event.startDate,
+                endDate: event.endDate,
+                scheduleDisplayMode: event.scheduleDisplayMode,
+                now: currentDateProvider.now
+            )
+        )
+    }
+
 }

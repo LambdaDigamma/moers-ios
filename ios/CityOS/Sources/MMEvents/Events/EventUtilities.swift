@@ -5,6 +5,8 @@
 //  Created by Lennart Fischer on 20.05.22.
 //
 
+import Core
+import Factory
 import Foundation
 
 public enum TimeDisplayMode {
@@ -39,15 +41,19 @@ public enum EventUtilities {
     /// Events between 0:00 and this hour belong to the previous day.
     public static let defaultDayOffset: TimeInterval = 60 * 60 * 6
     
-    public static func isActive(startDate: Date?, endDate: Date?) -> Bool {
+    public static func isActive(
+        startDate: Date?,
+        endDate: Date?,
+        now: Date = Container.shared.currentDateProvider().now
+    ) -> Bool {
         
         // TODO: Check this
         
         if let startDate = startDate, let endDate = endDate, startDate <= endDate {
-            return (startDate...endDate).contains(Date())
+            return (startDate...endDate).contains(now)
         } else if let startDate = startDate {
             let autocalculatedEndDate = startDate.addingTimeInterval(Self.defaultTimeInterval)
-            return (startDate...autocalculatedEndDate).contains(Date())
+            return (startDate...autocalculatedEndDate).contains(now)
         }
         
         return false
@@ -74,7 +80,8 @@ public enum EventUtilities {
     public static func timeDisplayMode(
         startDate: Date?,
         endDate: Date?,
-        scheduleDisplayMode: EventScheduleDisplayMode
+        scheduleDisplayMode: EventScheduleDisplayMode,
+        now: Date = Container.shared.currentDateProvider().now
     ) -> TimeDisplayMode {
 
         if !scheduleDisplayMode.showsDateComponent {
@@ -89,13 +96,13 @@ public enum EventUtilities {
             return .none
         }
         
-        let timeInterval = startDate.timeIntervalSince(Date())
+        let timeInterval = startDate.timeIntervalSince(now)
         
         if timeInterval > 60 * 60 {
             return .range
         } else if timeInterval < 60 * 60 && timeInterval > 0 {
             return .relative
-        } else if Self.isActive(startDate: startDate, endDate: endDate) {
+        } else if Self.isActive(startDate: startDate, endDate: endDate, now: now) {
             return .live
         } else {
             return .range

@@ -13,25 +13,26 @@ import Factory
 import Combine
 
 public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable, Equatable {
-    
-    public let id: UUID = .init()
-    
+
+    public let id: UUID
+
     public let eventID: Event.ID?
-    
+
     @Published public var title: String
     @Published public var startDate: Date?
     @Published public var endDate: Date?
     @Published public var location: String?
     @Published public var color: Color = .yellow
     @Published public var media: Media?
-    
+
     @Published public var isOpenEnd: Bool = false
     @Published public var scheduleDisplayMode: EventScheduleDisplayMode = .dateTime
-    
+
     @Published public var isLiked: Bool = false
-    
+
     private let favoriteEventsStore: FavoriteEventsStore?
-    
+    private let currentDateProvider: CurrentDateProviding
+
     public init(
         eventID: Event.ID? = nil,
         title: String,
@@ -41,9 +42,17 @@ public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable, 
         media: Media? = nil,
         isOpenEnd: Bool = false,
         isLiked: Bool = false,
-        scheduleDisplayMode: EventScheduleDisplayMode = .dateTime
+        scheduleDisplayMode: EventScheduleDisplayMode = .dateTime,
+        currentDateProvider: CurrentDateProviding = Container.shared.currentDateProvider()
     ) {
         self.eventID = eventID
+        self.id = Self.makeStableID(
+            eventID: eventID,
+            title: title,
+            startDate: startDate,
+            endDate: endDate,
+            location: location
+        )
         self.title = title
         self.startDate = startDate
         self.endDate = endDate
@@ -53,14 +62,20 @@ public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable, 
         self.isOpenEnd = isOpenEnd
         self.scheduleDisplayMode = scheduleDisplayMode
         self.favoriteEventsStore = Container.shared.favoriteEventsStore()
+        self.currentDateProvider = currentDateProvider
         super.init()
         self.setupListeners()
     }
-    
+
     public var isActive: Bool {
+        isActive(at: currentDateProvider.now)
+    }
+
+    public func isActive(at date: Date) -> Bool {
         return EventUtilities.isActive(
             startDate: startDate,
-            endDate: endDate
+            endDate: endDate,
+            now: date
         )
     }
 
@@ -71,7 +86,7 @@ public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable, 
     public var showsTimeComponent: Bool {
         return scheduleDisplayMode.showsTimeComponent
     }
-    
+
     public var dateRange: ClosedRange<Date>? {
         if showsTimeComponent && !isOpenEnd {
             return EventUtilities.dateRange(
@@ -81,19 +96,40 @@ public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable, 
         }
 
         return nil
-        
+
     }
-    
+
     public var timeDisplayMode: TimeDisplayMode {
+        timeDisplayMode(at: currentDateProvider.now)
+    }
+
+    public func timeDisplayMode(at date: Date) -> TimeDisplayMode {
         return EventUtilities.timeDisplayMode(
             startDate: startDate,
             endDate: endDate,
-            scheduleDisplayMode: scheduleDisplayMode
+            scheduleDisplayMode: scheduleDisplayMode,
+            now: date
         )
     }
-    
+
+    public var relativeStartText: String {
+        relativeStartText(relativeTo: currentDateProvider.now)
+    }
+
+    public func relativeStartText(relativeTo date: Date) -> String {
+        guard let startDate else { return "" }
+
+        let formatter = RelativeDateTimeFormatter()
+        formatter.dateTimeStyle = .numeric
+        formatter.unitsStyle = .short
+
+        return formatter.localizedString(
+            for: startDate,
+            relativeTo: date
+        )
+    }
+
     public func setupListeners() {
-        
         guard let favoriteEventsStore else { return }
         guard let eventID else { return }
 
@@ -106,11 +142,11 @@ public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable, 
 
             }
             .store(in: &cancellables)
-        
+
     }
-    
+
     public static func == (lhs: EventListItemViewModel, rhs: EventListItemViewModel) -> Bool {
-        
+
         return lhs.eventID == rhs.eventID &&
         lhs.title == rhs.title &&
         lhs.startDate == rhs.startDate &&
@@ -121,9 +157,9 @@ public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable, 
         lhs.isOpenEnd == rhs.isOpenEnd &&
         lhs.scheduleDisplayMode == rhs.scheduleDisplayMode &&
         lhs.isLiked == rhs.isLiked
-        
+
     }
-    
+
     public func hash(into hasher: inout Hasher) {
         hasher.combine(eventID)
         hasher.combine(title)
@@ -136,7 +172,45 @@ public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable, 
         hasher.combine(scheduleDisplayMode)
         hasher.combine(isLiked)
     }
-    
+
+    private static func makeStableID(
+        eventID: Event.ID?,
+        title: String,
+        startDate: Date?,
+        endDate: Date?,
+        location: String?
+    ) -> UUID {
+        if let eventID {
+            let value = UInt64(Int64(eventID))
+            let bytes: uuid_t = (
+                0x45,
+                0x56,
+                0x54,
+                0x00,
+                0x00,
+                0x00,
+                0x40,
+                0x00,
+                UInt8((value >> 56) & 0xff),
+                UInt8((value >> 48) & 0xff),
+                UInt8((value >> 40) & 0xff),
+                UInt8((value >> 32) & 0xff),
+                UInt8((value >> 24) & 0xff),
+                UInt8((value >> 16) & 0xff),
+                UInt8((value >> 8) & 0xff),
+                UInt8(value & 0xff)
+            )
+            return UUID(uuid: bytes)
+        }
+
+        return UUID(uuidString: [
+            title,
+            startDate.map { "\($0.timeIntervalSince1970)" } ?? "no-start",
+            endDate.map { "\($0.timeIntervalSince1970)" } ?? "no-end",
+            location ?? "no-location"
+        ].joined(separator: "|")) ?? UUID()
+    }
+
 }
 
 private struct ShowFavoriteIconKey: EnvironmentKey {
@@ -157,35 +231,37 @@ public extension View {
 }
 
 public struct EventListItem: View {
-    
+
     @Environment(\.showFavoriteIcon) var showFavoriteIcon
-    
+
     @ObservedObject private var viewModel: EventListItemViewModel
-    
-    public init(viewModel: EventListItemViewModel) {
+    private let now: Date?
+
+    public init(viewModel: EventListItemViewModel, now: Date? = nil) {
         self.viewModel = viewModel
+        self.now = now
     }
-    
+
     public var body: some View {
-        
+
         HStack(alignment: .center) {
-            
+
             VStack(alignment: .leading, spacing: 6) {
-                
+
                 HStack(alignment: .top) {
-                    
+
                     Text(viewModel.title)
                         .font(.headline)
                         .fontWeight(.semibold)
                         .lineLimit(1)
                         .foregroundColor(.primary)
-                    
+
                     Spacer()
-                    
+
                 }
-                
+
                 subtitle()
-                
+
             }
             .padding(.leading, 16)
             .background(
@@ -196,72 +272,72 @@ public struct EventListItem: View {
                         .cornerRadius(4)
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             )
-            
+
             if viewModel.isLiked && showFavoriteIcon {
                 Image(systemName: "heart.fill")
                     .imageScale(.small)
                     .foregroundColor(.red)
             }
-            
+
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        
+
     }
-    
+
     @ViewBuilder
     private func subtitle() -> some View {
-        
+
         HStack(alignment: .center, spacing: 0) {
-            
-            switch viewModel.timeDisplayMode {
-                    
+
+            switch timeDisplayMode {
+
                 case .live:
-                    
+
                     (viewModel.location != nil ? Text("\(viewModel.location ?? "")") : Text(""))
 //                        .padding(.leading, 8)
                         .lineLimit(1)
-                    
+
                     Spacer()
-                    
+
                     LiveBadge()
-                    
+
                 case .relative:
-                    if let startDate = viewModel.startDate {
-                        
+                    if viewModel.startDate != nil {
+
                         Group {
-                            
-                            Text(startDate, format: .relative(presentation: .numeric)) +
+
+                            Text(relativeStartText) +
                             (viewModel.location != nil ?
                              Text(" · \(viewModel.location ?? "")") :
                                 Text(""))
-                            
+
                         }.lineLimit(1)
-                        
+
                     }
-                    
+
                 case .range:
-                    
+
                     if let dateRange = viewModel.dateRange {
-                        
+
                         Group {
-                            
+
                             Text(dateRange) +
                             (viewModel.location != nil ? Text(" · \(viewModel.location ?? "")") : Text(""))
-                            
+
                         }
                         .lineLimit(1)
-                        
+
                     } else if let startDate = viewModel.startDate, viewModel.showsTimeComponent {
-                        
+
                         Group {
-                            
+
                             Text(startDate, style: .time) +
-                            
+
                             (viewModel.location != nil ? Text(" · \(viewModel.location ?? "")") : Text(""))
-                            
+
                         }
                         .lineLimit(1)
-                        
+
                     } else if let location = viewModel.location, !viewModel.showsDateComponent {
                         Text(location)
                             .lineLimit(1)
@@ -272,15 +348,15 @@ public struct EventListItem: View {
 
                 case .date:
                     if let startDate = viewModel.startDate {
-                        
+
                         Group {
-                            
+
                             Text(startDate, style: .date) +
                             (viewModel.location != nil ? Text(" · \(viewModel.location ?? "")") : Text(""))
-                            
+
                         }
                         .lineLimit(1)
-                        
+
                     } else if let location = viewModel.location {
                         Text(location)
                             .lineLimit(1)
@@ -288,7 +364,7 @@ public struct EventListItem: View {
                         Text("No time yet", bundle: .module)
                             .lineLimit(1)
                     }
-                    
+
                 case .none:
                     if let location = viewModel.location {
                         Text(location)
@@ -296,27 +372,43 @@ public struct EventListItem: View {
                     } else {
                         Text("No time yet", bundle: .module)
                     }
-                    
+
             }
-            
+
         }
         .foregroundColor(.secondary)
         .font(.callout)
-        
+
     }
-    
+
+    private var timeDisplayMode: TimeDisplayMode {
+        if let now {
+            return viewModel.timeDisplayMode(at: now)
+        }
+
+        return viewModel.timeDisplayMode
+    }
+
+    private var relativeStartText: String {
+        if let now {
+            return viewModel.relativeStartText(relativeTo: now)
+        }
+
+        return viewModel.relativeStartText
+    }
+
 }
 
 struct EventListItem_Previews: PreviewProvider {
     static var previews: some View {
-        
+
         let noTime = EventListItemViewModel(
             title: "Ghost Dogs (DE)",
             location: "Aula Gymnasium Filder Benden",
             isLiked: true,
             scheduleDisplayMode: .hidden
         )
-        
+
         let future = EventListItemViewModel(
             title: "Ghost Dogs (DE)",
             startDate: Date(timeIntervalSinceNow: 160 * 60),
@@ -324,7 +416,7 @@ struct EventListItem_Previews: PreviewProvider {
             location: "Aula Gymnasium Filder Benden",
             scheduleDisplayMode: .dateTime
         )
-        
+
         let upcoming = EventListItemViewModel(
             title: "Matthew Welch solo bagpipes: Matthew Welch plays Braxton, Glass, Welch & More! (US)",
             startDate: Date(timeIntervalSinceNow: 5 * 60),
@@ -332,9 +424,9 @@ struct EventListItem_Previews: PreviewProvider {
             location: "Aula Gymnasium Filder Benden",
             scheduleDisplayMode: .date
         )
-        
+
         upcoming.color = .blue
-        
+
         let activeViewModel = EventListItemViewModel(
             title: "Ghost Dogs (DE)",
             startDate: Date(timeIntervalSinceNow: -5 * 60),
@@ -342,19 +434,19 @@ struct EventListItem_Previews: PreviewProvider {
             location: "Aula Gymnasium Filder Benden",
             scheduleDisplayMode: .dateTime
         )
-        
+
         return Group {
-            
+
             EventListItem(viewModel: noTime)
                 .padding()
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)
-            
+
             EventListItem(viewModel: future)
                 .padding()
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)
-            
+
             EventListItem(viewModel: upcoming)
                 .padding()
                 .preferredColorScheme(.dark)
@@ -365,8 +457,8 @@ struct EventListItem_Previews: PreviewProvider {
                 .padding()
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)
-            
+
         }
-        
+
     }
 }

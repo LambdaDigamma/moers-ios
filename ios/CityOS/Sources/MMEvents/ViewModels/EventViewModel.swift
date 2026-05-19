@@ -1,84 +1,98 @@
 //
 //  EventViewModel.swift
-//  
+//
 //
 //  Created by Lennart Fischer on 06.01.21.
 //
 
 import Core
+import Combine
+import Factory
 import Foundation
 
 public class EventViewModel<Event: BaseEvent>: Equatable, Hashable {
-    
+
     open private(set) var model: Event
-    private let now: Date
-    
-    public init(event: Event, now: Date = Date()) {
-        self.model = event
-        self.now = now
+    private let currentDateProvider: CurrentDateProviding
+
+    private var now: Date {
+        currentDateProvider.now
     }
-    
+
+    public init(
+        event: Event,
+        now: Date? = nil,
+        currentDateProvider: CurrentDateProviding = Container.shared.currentDateProvider()
+    ) {
+        self.model = event
+        if let now {
+            self.currentDateProvider = FixedEventCurrentDateProvider(now: now)
+        } else {
+            self.currentDateProvider = currentDateProvider
+        }
+    }
+
     open var isActive: Bool {
-        
+
         if ApplicationServerConfiguration.isMoersFestivalModeEnabled {
-            
+
             if let start = model.startDate,
                let end = model.endDate {
-                
+
                 if now >= start && now <= end {
                     return true
                 } else {
                     return false
                 }
-                
+
             }
-            
+
             if let startDate = model.startDate {
-                
+
                 let threshold = EventPackageConfiguration
                     .eventActiveMinuteThreshold
                     .converted(to: .seconds)
                     .value
-                
+
                 let thresholdMinutesAgo = now.addingTimeInterval(-threshold)
-                
+
                 return (thresholdMinutesAgo...now).contains(startDate)
-                
+
             }
-            
+
             return false
-            
+
         } else {
-            
+
             if let start = model.startDate,
                let end = model.endDate {
-                
+
                 if now >= start && now <= end {
                     return true
                 } else {
-                    
-                    if start.isToday || end.isToday {
+
+                    if isSameDayAsCurrentDate(start) || isSameDayAsCurrentDate(end) {
                         return true
                     }
-                    
+
                     return false
-                    
+
                 }
-                
+
             }
-            
+
             if let start = model.startDate {
-                return start.isToday
+                return isSameDayAsCurrentDate(start)
             }
-            
+
             if let end = model.endDate {
-                return end.isToday
+                return isSameDayAsCurrentDate(end)
             }
-            
+
         }
-        
+
         return false
-        
+
 //        if ApplicationServerConfiguration.isMoersFestivalModeEnabled {
 //
 //            let current = Date()
@@ -137,48 +151,52 @@ public class EventViewModel<Event: BaseEvent>: Equatable, Hashable {
 //
 //        return false
     }
-    
+
+    private func isSameDayAsCurrentDate(_ date: Date) -> Bool {
+        Calendar.autoupdatingCurrent.isDate(date, inSameDayAs: now)
+    }
+
     open var isLongEvent: Bool {
         if let startDate = model.startDate, let endDate = model.endDate {
-            
+
             let calendar = Calendar.current
-            
+
             let date1 = calendar.startOfDay(for: startDate)
             let date2 = calendar.startOfDay(for: endDate)
-            
+
             let components = calendar.dateComponents([.day], from: date1, to: date2)
-            
+
             let days = components.day ?? 0
-            
+
             return days >= 3
-            
+
         } else {
             return false
         }
     }
-    
+
     open var subtitle: String {
-        
+
         if let startDate = model.startDate {
-            
+
             if self.isActive {
-                
+
                 if ApplicationServerConfiguration.isMoersFestivalModeEnabled {
                     return "\(locationRepresentation) · \(String(localized: "live now", bundle: .module))"
                 } else {
                     return "\(locationRepresentation) · \(String(localized: "live now", bundle: .module))"
                 }
-                
+
             } else if startDate.isInBeforeInterval(minutes: 59) {
                 return "\(locationRepresentation) · \(countdownString)"
             }
-            
+
         }
-        
+
         return "\(locationRepresentation) · \(timeString)"
-        
+
     }
-    
+
     open var detailSubtitle: String {
 
         var ticket = ""
@@ -202,7 +220,7 @@ public class EventViewModel<Event: BaseEvent>: Equatable, Hashable {
     open var isLiked: Bool {
         return EventDetailsViewModel.isLiked(id: model.id as! Int)
     }
-    
+
     /// This provides information based on the the extra information.
     /// You probably want to override this.
     open lazy var locationRepresentation: String = {
@@ -218,7 +236,7 @@ public class EventViewModel<Event: BaseEvent>: Equatable, Hashable {
         } else {
             return String(localized: "not yet announced", bundle: .module)
         }
-        
+
     }()
 
     open var timeString: String {
@@ -259,7 +277,7 @@ public class EventViewModel<Event: BaseEvent>: Equatable, Hashable {
         return "in \(startDate.minuteInterval())min"
 
     }
-    
+
     open var time: (day: String, date: String, startTime: String, endTime: String) {
 
         let day = String(model.startDate?.format(format: "EEEE")[...1] ?? "")
@@ -274,9 +292,23 @@ public class EventViewModel<Event: BaseEvent>: Equatable, Hashable {
     public static func == (lhs: EventViewModel<Event>, rhs: EventViewModel<Event>) -> Bool {
         return lhs.model == rhs.model
     }
-    
+
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.model)
     }
-    
+
+}
+
+private final class FixedEventCurrentDateProvider: CurrentDateProviding {
+
+    let now: Date
+
+    var dateDidChange: AnyPublisher<Date, Never> {
+        Just(now).eraseToAnyPublisher()
+    }
+
+    init(now: Date) {
+        self.now = now
+    }
+
 }

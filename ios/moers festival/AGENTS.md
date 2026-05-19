@@ -36,6 +36,7 @@ For UI/runtime changes:
 - Use existing coordinator/controller patterns for app navigation.
 - Use Factory container registrations where nearby code already does.
 - Keep widget data sync behavior consistent with shared widget support code.
+- Debug builds include a scene-wide time-travel control. Reveal it with a three-finger triple-tap. Launch arguments can seed it with `-debug-time <ISO8601 date>`, `-debug-time-speed <multiplier>`, and `-debug-time-reset`.
 - Festival screenshots are connected to the marketing Remotion project; do not update raw screenshots, processed stills, or App Store screenshot assets unless that is the requested task.
 
 ## Release And Screenshot References

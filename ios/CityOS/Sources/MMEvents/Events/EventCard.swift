@@ -1,6 +1,6 @@
 //
 //  EventCard.swift
-//  
+//
 //
 //  Created by Lennart Fischer on 11.04.23.
 //
@@ -9,19 +9,21 @@ import SwiftUI
 import MediaLibraryKit
 
 public struct EventCard: View {
-    
+
 //    public let data: Data
-    
+
     @ObservedObject private var viewModel: EventListItemViewModel
-    
-    public init(viewModel: EventListItemViewModel) {
+    private let now: Date?
+
+    public init(viewModel: EventListItemViewModel, now: Date? = nil) {
         self.viewModel = viewModel
+        self.now = now
     }
-    
+
     public var body: some View {
-        
+
         VStack() {
-            
+
             ZStack(alignment: .top) {
                 if let media = viewModel.media {
                     GenericMediaView(media: media, resizingMode: .aspectFill)
@@ -32,7 +34,7 @@ public struct EventCard: View {
             .aspectRatio(CGSize(width: 16, height: 10), contentMode: .fit)
             .clipped()
             .cornerRadius(16)
-            
+
 //            Rectangle()
 //                .fill(Color.tertiarySystemBackground)
 //                .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fit)
@@ -42,27 +44,27 @@ public struct EventCard: View {
 //                    }
 //                })
 //                .cornerRadius(16)
-            
+
             VStack(alignment: .leading, spacing: 8) {
-                
+
                 Text((viewModel.location ?? "").uppercased())
                     .font(.caption)
                     .fontWeight(.medium)
                     .foregroundColor(.secondary)
                     .lineLimit(1)
                     .multilineTextAlignment(.leading)
-                
+
                 Text(viewModel.title)
                     .foregroundColor(.primary)
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.leading)
-                
+
                 subtitle()
                     .multilineTextAlignment(.leading)
-                
+
 //                Text(viewModel.title)
 //                    .foregroundColor(.secondary)
-                
+
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 16)
@@ -71,55 +73,55 @@ public struct EventCard: View {
             .cornerRadius(8)
             .padding(.horizontal, 12)
             .padding(.top, -70)
-            
-            
+
+
         }
-        
+
     }
-    
+
     @ViewBuilder
     private func subtitle() -> some View {
-        
+
         HStack(alignment: .center, spacing: 0) {
-            
-            switch viewModel.timeDisplayMode {
-                    
+
+            switch timeDisplayMode {
+
                 case .live:
-                    
+
                     (viewModel.location != nil ? Text("\(viewModel.location ?? "")") : Text(""))
                     //                        .padding(.leading, 8)
                         .lineLimit(1)
-                    
+
                     Spacer()
-                    
+
                     LiveBadge()
-                    
+
                 case .relative:
-                    if let startDate = viewModel.startDate {
-                        
+                    if viewModel.startDate != nil {
+
                         Group {
-                            
-                            Text(startDate, format: .relative(presentation: .numeric)) +
+
+                            Text(relativeStartText) +
                             (viewModel.location != nil ?
                              Text(" · \(viewModel.location ?? "")") :
                                 Text(""))
-                            
+
                         }.lineLimit(1)
-                        
+
                     }
-                    
+
                 case .range:
-                    
+
                     if let dateRange = viewModel.dateRange {
-                        
+
                         Group {
-                            
+
                             Text(dateRange) +
                             (viewModel.location != nil ? Text(" · \(viewModel.location ?? "")") : Text(""))
-                            
+
                         }
                         .lineLimit(1)
-                        
+
                     }
 
                 case .date:
@@ -133,7 +135,7 @@ public struct EventCard: View {
                         Text(location)
                             .lineLimit(1)
                     }
-                    
+
                 case .none:
                     if let location = viewModel.location {
                         Text(location)
@@ -141,24 +143,40 @@ public struct EventCard: View {
                     } else {
                         Text("Keine Zeit")
                     }
-                    
+
             }
-            
+
         }
         .foregroundColor(.secondary)
         .font(.callout)
-        
+
     }
-    
+
+    private var timeDisplayMode: TimeDisplayMode {
+        if let now {
+            return viewModel.timeDisplayMode(at: now)
+        }
+
+        return viewModel.timeDisplayMode
+    }
+
+    private var relativeStartText: String {
+        if let now {
+            return viewModel.relativeStartText(relativeTo: now)
+        }
+
+        return viewModel.relativeStartText
+    }
+
     public struct Data {
-        
+
         public let title: String
         public let place: String?
         public let startDate: Date?
         public let endDate: Date?
-        
+
     }
-    
+
 }
 
 struct EventCard_Previews: PreviewProvider {

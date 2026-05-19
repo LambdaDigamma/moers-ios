@@ -14,10 +14,12 @@
 #if os(iOS)
 
 import UIKit
+import Core
 import Fuse
 import OSLog
 import Combine
 import MMPages
+import Factory
 
 /// Modern events list view controller for iOS 26+ using UICollectionView with list configuration.
 /// Uses the modern .insetGrouped appearance style for a cleaner, more contemporary look.
@@ -484,8 +486,9 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     
     public func buildOverview() -> DisplayMode {
         
+        let now = Container.shared.currentDateProvider().now
         let favourites: [EventViewModel<Event>] = events.filter {
-            $0.isLiked && ($0.model.startDate ?? Date(timeIntervalSinceNow: 60)) > Date()
+            $0.isLiked && ($0.model.startDate ?? now.addingTimeInterval(60)) > now
         }
         let active: [EventViewModel<Event>] = filterActive(events: events)
         let upcoming: [EventViewModel<Event>] = filterUpcoming(events: events)
