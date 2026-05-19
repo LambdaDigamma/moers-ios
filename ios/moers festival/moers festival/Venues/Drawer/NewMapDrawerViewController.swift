@@ -166,7 +166,13 @@ class NewMapDrawerViewController: UIViewController {
         
         var snapshot = NSDiffableDataSourceSnapshot<DrawerFestivalMapSection, DrawerItem>()
         
-        snapshot.appendSections([.main, .booths])
+        var sections: [DrawerFestivalMapSection] = [.main]
+        
+        if !filteredBooths.isEmpty {
+            sections.append(.booths)
+        }
+        
+        snapshot.appendSections(sections)
         
         snapshot.appendItems(places.map { place in
             .venue(FestivalPlaceRowUi(
@@ -177,7 +183,9 @@ class NewMapDrawerViewController: UIViewController {
             ))
         }, toSection: .main)
         
-        snapshot.appendItems(filteredBooths.map { .booth($0) }, toSection: .booths)
+        if !filteredBooths.isEmpty {
+            snapshot.appendItems(filteredBooths.map { .booth($0) }, toSection: .booths)
+        }
         
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
