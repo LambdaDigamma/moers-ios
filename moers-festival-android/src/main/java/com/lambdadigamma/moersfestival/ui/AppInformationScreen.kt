@@ -94,7 +94,7 @@ fun AppInformationScreen(onBack: () -> Unit) {
 
             item {
                 DeveloperCard(
-                    onOpenWebsite = { uriHandler.openUri("https://lambdadigamma.com") },
+                    onOpenWebsite = { uriHandler.openUri("https://lennartfischer.dev") },
                     onOpenTwitter = { uriHandler.openUri("https://twitter.com/lambdadigamma") },
                     onOpenInstagram = { uriHandler.openUri("https://instagram.com/lennartfischer") },
                 )

@@ -134,7 +134,7 @@ public class OtherCoordinator: Coordinator {
         
         switch type {
             case .website:
-                UIApplication.shared.open(URL(string: "https://lambdadigamma.com")!)
+                UIApplication.shared.open(URL(string: "https://lennartfischer.dev")!)
             case .twitter:
                 UIApplication.shared.open(URL(string: "https://twitter.com/lambdadigamma")!)
             case .instagram:

@@ -140,7 +140,7 @@ fun InfoScreen(
             }
             item(key = "festival-lodging") {
                 InfoRow(title = stringResource(R.string.info_row_lodging)) {
-                    onOpenWeb("https://www.moers-festival.de/infos/schlafen/")
+                    onOpenWeb("https://www.moers-festival.de/infos/schlafen-zelten-campen/")
                 }
             }
             item(key = "festival-accessibility") {

@@ -32,12 +32,12 @@ class AboutViewController: DefaultHostingController {
         
         switch link {
             case .website:
-                pushWebController(url: "https://lambdadigamma.com")
+                pushWebController(url: "https://lennartfischer.dev")
                 break
             case .twitter:
                 pushWebController(url: "https://twitter.com/lambdadigamma")
             case .instagram:
-                pushWebController(url: "https://lambdadigamma.com")
+                pushWebController(url: "https://instagram.com/lennartfischer")
         }
         
     }
@@ -126,7 +126,7 @@ class OldAboutViewController: UIViewController {
         
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.font = UIFont.boldSystemFont(ofSize: 14)
-        textView.text = "Twitter: twitter.com/lambdadigamma\nWebsite: lambdadigamma.com"
+        textView.text = "Twitter: twitter.com/lambdadigamma\nWebsite: lennartfischer.dev"
         textView.isEditable = false
         textView.isSelectable = true
         textView.dataDetectorTypes = .all
