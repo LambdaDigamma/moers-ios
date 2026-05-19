@@ -27,6 +27,7 @@ internal fun resolveFestivalStack(
 ): List<FestivalNavKey>? {
     return when {
         scheme.equals("moersfestival", ignoreCase = true) -> resolveCustomSchemeStack(
+            rawUrl = rawUrl,
             host = host,
             pathSegments = pathSegments,
         )
@@ -39,13 +40,14 @@ internal fun resolveFestivalStack(
 }
 
 private fun resolveCustomSchemeStack(
+    rawUrl: String,
     host: String?,
     pathSegments: List<String>,
 ): List<FestivalNavKey>? {
-    return resolveKnownStack(
-        components = routeComponents(host = host, pathSegments = pathSegments),
-        fallbackUrl = null,
-    )
+    if (!rawUrl.startsWith("moersfestival:///")) return null
+    if (!host.isNullOrBlank()) return null
+
+    return resolveCanonicalCustomStack(routeSegments(pathSegments))
 }
 
 private fun resolveHttpsStack(
@@ -53,25 +55,65 @@ private fun resolveHttpsStack(
     rawUrl: String,
 ): List<FestivalNavKey> {
     return resolveKnownStack(
-        components = routeComponents(host = null, pathSegments = pathSegments),
+        components = routeSegments(pathSegments),
         fallbackUrl = rawUrl,
     ) ?: listOf(FestivalNavKey.Info, FestivalNavKey.Web(rawUrl))
 }
 
-private fun routeComponents(
-    host: String?,
+private fun routeSegments(
     pathSegments: List<String>,
 ): List<String> {
-    return buildList {
-        host?.let(::add)
-        addAll(pathSegments)
+    return pathSegments.mapNotNull { segment ->
+        segment
+            .trim()
+            .takeIf(String::isNotEmpty)
+            ?.lowercase(Locale.ROOT)
     }
-        .mapNotNull { segment ->
-            segment
-                .trim()
-                .takeIf(String::isNotEmpty)
-                ?.lowercase(Locale.ROOT)
+}
+
+private fun resolveCanonicalCustomStack(
+    components: List<String>,
+): List<FestivalNavKey>? {
+    val first = components.firstOrNull() ?: return null
+    val second = components.getOrNull(1)
+
+    return when {
+        components.size == 1 && first == "posts" -> listOf(FestivalNavKey.News)
+        components.size == 2 && first == "posts" -> {
+            second?.toIntOrNull()?.let { postId ->
+                listOf(FestivalNavKey.News, FestivalNavKey.NewsDetail(postId))
+            } ?: listOf(FestivalNavKey.News)
         }
+
+        components.size == 1 && first == "events" -> listOf(FestivalNavKey.Timetable)
+        components.size == 2 && first == "events" -> {
+            second?.toIntOrNull()?.let { eventId ->
+                listOf(FestivalNavKey.Timetable, FestivalNavKey.EventDetail(eventId))
+            } ?: listOf(FestivalNavKey.Timetable)
+        }
+
+        components.size == 1 && first == "favorites" -> listOf(FestivalNavKey.Favorites)
+        components.size == 1 && first == "map" -> listOf(FestivalNavKey.Map)
+        components.size == 1 && first == "venues" -> listOf(FestivalNavKey.Map)
+        components.size == 2 && first == "venues" -> {
+            second?.toLongOrNull()?.let { placeId ->
+                listOf(FestivalNavKey.Map, FestivalNavKey.VenueDetail(placeId))
+            } ?: listOf(FestivalNavKey.Map)
+        }
+
+        components.size == 1 && first == "download-events" -> listOf(
+            FestivalNavKey.Timetable,
+            FestivalNavKey.DownloadEvents,
+        )
+
+        components.size == 1 && first == "info" -> listOf(FestivalNavKey.Info)
+        components.size == 1 && first == "legal" -> listOf(
+            FestivalNavKey.Info,
+            FestivalNavKey.Web(FESTIVAL_LEGAL_URL),
+        )
+
+        else -> null
+    }
 }
 
 private fun resolveKnownStack(

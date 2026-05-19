@@ -10,7 +10,7 @@
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.lambdadigamma.moersfestival"
             android:targetClass="com.lambdadigamma.moersfestival.MainActivity"
-            android:data="moersfestival://posts" />
+            android:data="moersfestival:///posts" />
     </shortcut>
 
     <shortcut
@@ -23,7 +23,7 @@
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.lambdadigamma.moersfestival"
             android:targetClass="com.lambdadigamma.moersfestival.MainActivity"
-            android:data="moersfestival://events" />
+            android:data="moersfestival:///events" />
     </shortcut>
 
     <shortcut
@@ -36,6 +36,6 @@
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.lambdadigamma.moersfestival"
             android:targetClass="com.lambdadigamma.moersfestival.MainActivity"
-            android:data="moersfestival://favorites" />
+            android:data="moersfestival:///favorites" />
     </shortcut>
 </shortcuts>

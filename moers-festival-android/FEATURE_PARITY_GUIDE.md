@@ -18,7 +18,7 @@ The Android app already covers the core festival navigation and most read-only c
 - `Timetable` tab with daily sections and event detail.
 - `Info` tab with festival links, download entry point, legal, and app information.
 - Manual timetable/content download flow.
-- FCM notification display and custom-scheme deep links such as `moersfestival://events/{id}`.
+- FCM notification display and canonical custom-scheme deep links such as `moersfestival:///events/{id}`.
 
 That means parity work should focus less on rebuilding the basic app shell and more on missing iOS behavior around onboarding, notifications, location, quick access, richer content rendering, and a few missing user flows.
 
@@ -207,9 +207,9 @@ Relevant Android files:
 
 ## Next Priority Work
 
-### 5. Add verified HTTP app links and launcher shortcuts
+### 5. Align canonical deep links across platforms
 
-Android already has custom-scheme deep links. iOS goes further with universal links and launcher quick actions.
+Android already has custom-scheme deep links, verified `https://moers.app/...` app links, and static launcher shortcuts. iOS also exposes universal links and launcher quick actions. The remaining parity work is keeping the supported route contract canonical and consistent across platforms.
 
 Relevant iOS references:
 
@@ -219,15 +219,25 @@ Relevant iOS references:
 
 #### Android gap
 
-- Only `moersfestival://...` links are declared.
-- No verified `https://moers.app/...` app-link handling.
-- No launcher shortcuts for `News`, `Events`, or `Favorites`.
+- Android declares canonical `moersfestival:///...` custom-scheme links.
+- Android declares verified `https://moers.app/...` and `https://www.moers.app/...` app links.
+- Static launcher shortcuts exist for `News`, `Events`, and `Favorites`.
+- Remaining gap: cross-platform canonicalization of route names, ID fallback behavior, and rejection of legacy custom-scheme aliases.
 
 #### Required work
 
-- Add Android App Links for relevant web URLs.
-- Route those URLs into the existing navigation graph.
-- Add dynamic or static launcher shortcuts for:
+- Keep Android and iOS route handling aligned for canonical custom-scheme paths:
+  - `moersfestival:///posts`
+  - `moersfestival:///posts/{postId}`
+  - `moersfestival:///events`
+  - `moersfestival:///events/{eventId}`
+  - `moersfestival:///favorites`
+  - `moersfestival:///map`
+  - `moersfestival:///venues/{venueId}`
+  - `moersfestival:///download-events`
+  - `moersfestival:///info`
+  - `moersfestival:///legal`
+- Keep launcher shortcuts aligned with canonical routes for:
   - News
   - Events
   - Favorites
@@ -241,6 +251,7 @@ Relevant Android touchpoints:
 
 - Tapping supported `https://moers.app/...` links can open the app directly.
 - Long-pressing the launcher icon exposes quick entry points comparable to iOS.
+- Legacy host-style custom-scheme links such as `moersfestival://events/34` and aliases such as `moersfestival:///spielplan/34` do not resolve.
 
 ### 6. Expand the Info & Tickets area
 
