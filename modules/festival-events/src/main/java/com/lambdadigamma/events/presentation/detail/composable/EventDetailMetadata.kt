@@ -64,7 +64,9 @@ fun EventDetailMetadata(
             DateUtils.formatDateTime(
                 LocalContext.current,
                 startDate.time,
-                DateUtils.FORMAT_SHOW_TIME or DateUtils.FORMAT_SHOW_DATE
+                DateUtils.FORMAT_SHOW_TIME or
+                    DateUtils.FORMAT_SHOW_DATE or
+                    DateUtils.FORMAT_SHOW_WEEKDAY
             )
         } else {
             stringResource(R.string.date_tba)

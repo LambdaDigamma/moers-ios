@@ -163,13 +163,13 @@ public struct EventMetadataScreen: View {
                     if event.showsTimeComponent {
                         Text(startDate, style: .time) +
                         Text(" (") +
-                        Text(startDate, style: .date) + Text(")")
+                        Text(startDate, format: .dateTime.weekday(.wide).day().month(.wide).year()) + Text(")")
                     } else if let endDate = event.endDate, !Calendar.current.isDate(startDate, inSameDayAs: endDate) {
-                        Text(startDate, style: .date) +
+                        Text(startDate, format: .dateTime.weekday(.wide).day().month(.wide).year()) +
                         Text(" - ") +
-                        Text(endDate, style: .date)
+                        Text(endDate, format: .dateTime.weekday(.wide).day().month(.wide).year())
                     } else {
-                        Text(startDate, style: .date)
+                        Text(startDate, format: .dateTime.weekday(.wide).day().month(.wide).year())
                     }
                 } else {
                     Text(EventPackageStrings.unknown)
@@ -186,7 +186,7 @@ public struct EventMetadataScreen: View {
                 } content: {
                     Text(endDate, style: .time) +
                     Text(" (") +
-                    Text(endDate, style: .date) + Text(")")
+                    Text(endDate, format: .dateTime.weekday(.wide).day().month(.wide).year()) + Text(")")
                 }
             }
         }

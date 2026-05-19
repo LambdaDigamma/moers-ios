@@ -51,7 +51,11 @@ fun ClosedRange<Date>.formatted(context: Context, timeZone: TimeZone = TimeZone.
         f,
         start.time,
         end.time,
-        DateUtils.FORMAT_SHOW_TIME or DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_YEAR or DateUtils.FORMAT_ABBREV_ALL,
+        DateUtils.FORMAT_SHOW_TIME or
+            DateUtils.FORMAT_SHOW_DATE or
+            DateUtils.FORMAT_SHOW_YEAR or
+            DateUtils.FORMAT_SHOW_WEEKDAY or
+            DateUtils.FORMAT_ABBREV_MONTH,
         timeZone.id
     ).toString()
 }
