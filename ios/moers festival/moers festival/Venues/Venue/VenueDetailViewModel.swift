@@ -7,7 +7,7 @@
 //
 
 import Core
-import SwiftUI
+import Foundation
 import MMEvents
 import Factory
 import Combine
@@ -102,6 +102,13 @@ public class VenueDetailViewModel: StandardViewModel {
     }
     
     func refreshMapKitEnrichment() {
+        
+        guard VenueLookAroundConfiguration.isEnabled else {
+            mapItem = nil
+            enrichmentSignature = nil
+            enrichmentTask?.cancel()
+            return
+        }
         
         guard let point, point.latitude != 0, point.longitude != 0 else {
             mapItem = nil

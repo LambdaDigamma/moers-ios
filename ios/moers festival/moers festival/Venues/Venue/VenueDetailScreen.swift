@@ -346,12 +346,7 @@ private struct VenueHeroPreviewContent: View {
             if let lookAroundScene {
                 VenueLookAroundPreview(scene: lookAroundScene)
             } else {
-                MapSnapshotView(
-                    location: point.toCoordinate(),
-                    span: 0.001,
-                    annotations: [SnapshotAnnotation(point: point)],
-                    poiFilter: .excludingAll
-                )
+                mapSnapshot()
             }
         }
         .task(id: taskID) {
@@ -365,6 +360,15 @@ private struct VenueHeroPreviewContent: View {
             "\(point.latitude)",
             "\(point.longitude)"
         ].joined(separator: "|")
+    }
+    
+    private func mapSnapshot() -> some View {
+        MapSnapshotView(
+            location: point.toCoordinate(),
+            span: 0.001,
+            annotations: [SnapshotAnnotation(point: point)],
+            poiFilter: .excludingAll
+        )
     }
     
     private func loadLookAroundScene() async {
@@ -390,7 +394,7 @@ private struct VenueHeroPreview: View {
     let point: Point
     
     var body: some View {
-        if #available(iOS 16.0, *) {
+        if VenueLookAroundConfiguration.isEnabled, #available(iOS 16.0, *) {
             VenueHeroPreviewContent(mapItem: mapItem, point: point)
         } else {
             MapSnapshotView(
@@ -411,7 +415,6 @@ private struct VenueLookAroundPreview: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> MKLookAroundViewController {
         let controller = MKLookAroundViewController(scene: scene)
         controller.isNavigationEnabled = false
-//        controller.isStreetNamesEnabled = true
         controller.badgePosition = .topTrailing
         return controller
     }
