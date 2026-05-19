@@ -103,7 +103,7 @@ final class AdaptiveTabSplitViewController: UISplitViewController, UINavigationC
         guard let rootViewController = overviewNavigationController.viewControllers.first else { return }
         
         if overviewNavigationController.viewControllers.count > 1 {
-            overviewNavigationController.setViewControllers([rootViewController, detailViewController], animated: false)
+            overviewNavigationController.setViewControllers([rootViewController, detailViewController], animated: animated)
         } else {
             overviewNavigationController.pushViewController(detailViewController, animated: animated)
         }
@@ -152,5 +152,4 @@ final class AdaptiveTabSplitViewController: UISplitViewController, UINavigationC
         return detailNavigationController
     }
 }
-
 

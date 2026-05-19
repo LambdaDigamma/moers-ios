@@ -73,7 +73,13 @@ public class EventCoordinator: SharedCoordinator {
         if let adaptiveSplitViewController {
             adaptiveSplitViewController.setDetail(detailFactory, animated: animated)
         } else if let rootViewController = navigationController.viewControllers.first {
-            navigationController.setViewControllers([rootViewController, detailFactory()], animated: false)
+            let detailViewController = detailFactory()
+
+            if navigationController.viewControllers.count > 1 {
+                navigationController.setViewControllers([rootViewController, detailViewController], animated: animated)
+            } else {
+                navigationController.pushViewController(detailViewController, animated: animated)
+            }
         }
     }
 

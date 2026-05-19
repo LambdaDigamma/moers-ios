@@ -24,7 +24,6 @@
 		DF5975C42F01E08D00512386 /* MMPages in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C32F01E08D00512386 /* MMPages */; };
 		DF5975C62F01E08D00512386 /* MapFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C52F01E08D00512386 /* MapFeature */; };
 		DF5975C82F01E08D00512386 /* NewsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF5975C72F01E08D00512386 /* NewsFeature */; };
-		DFEA10012F9A000000000001 /* AppUpdateFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DFEA10022F9A000000000002 /* AppUpdateFeature */; };
 		DF62C61A2247B98E008425EC /* ContentDrawer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF62C6192247A349008425EC /* ContentDrawer.storyboard */; };
 		DF68FFF3282AEDD500C63690 /* FGD2022 in Resources */ = {isa = PBXBuildFile; fileRef = DF68FFF2282AEDD500C63690 /* FGD2022 */; };
 		DF7FB53527F672E300F718F2 /* StateViewController in Frameworks */ = {isa = PBXBuildFile; productRef = DF7FB53427F672E300F718F2 /* StateViewController */; };
@@ -41,6 +40,7 @@
 		DFDF577D2F828DE600CD2E75 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA90CBC29E945D600FF8366 /* SwiftUI.framework */; };
 		DFDF578E2F828DE700CD2E75 /* WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DFDF577B2F828DE600CD2E75 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DFE12B672073853F006764FC /* Licenses.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFE12B662073853F006764FC /* Licenses.plist */; };
+		DFEA10012F9A000000000001 /* AppUpdateFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DFEA10022F9A000000000002 /* AppUpdateFeature */; };
 		DFF1C5D22F66E20F000A84D1 /* Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = DFF1C5D12F66E1F4000A84D1 /* Icon.icon */; };
 /* End PBXBuildFile section */
 
@@ -2286,10 +2286,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = NewsFeature;
 		};
-		DFEA10022F9A000000000002 /* AppUpdateFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppUpdateFeature;
-		};
 		DF7FB53427F672E300F718F2 /* StateViewController */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DF7FB53327F670D500F718F2 /* XCRemoteSwiftPackageReference "stateviewcontroller" */;
@@ -2299,6 +2295,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DF9B4E6227F668A200817DA3 /* XCRemoteSwiftPackageReference "INSPhotoGallery" */;
 			productName = INSPhotoGallery;
+		};
+		DFEA10022F9A000000000002 /* AppUpdateFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppUpdateFeature;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
