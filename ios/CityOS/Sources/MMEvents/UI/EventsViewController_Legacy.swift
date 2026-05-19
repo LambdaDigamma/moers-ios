@@ -54,7 +54,7 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
         }
     }
     
-    public var onShowEvent: ((Event.ID?, Page.ID?) -> Void)?
+    public var onShowEvent: ((Event.ID?, MMPages.Page.ID?) -> Void)?
     
     // MARK: - UIViewController Lifecycle
     

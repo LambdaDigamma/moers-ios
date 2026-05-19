@@ -86,7 +86,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
         }
     }
     
-    public var onShowEvent: ((Event.ID?, Page.ID?) -> Void)?
+    public var onShowEvent: ((Event.ID?, MMPages.Page.ID?) -> Void)?
     
     // MARK: - UIViewController Lifecycle
     
