@@ -46,7 +46,6 @@ class OtherDataSource: NSObject {
                 )
             )
             cell.accessories = []
-            cell.backgroundConfiguration = .clear()
             cell.separatorLayoutGuide.leadingAnchor.constraint(
                 equalTo: cell.contentView.leadingAnchor,
                 constant: cell.contentView.bounds.width
@@ -178,11 +177,10 @@ private final class FestivalInfoHeroContentView: UIView, UIContentView {
     }
 
     private func setupUI() {
-        backgroundColor = .clear
         directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0)
 
         cardView.translatesAutoresizingMaskIntoConstraints = false
-        cardView.backgroundColor = .systemBackground
+        cardView.backgroundColor = .clear
         cardView.layer.cornerRadius = 22
         cardView.layer.cornerCurve = .continuous
 
