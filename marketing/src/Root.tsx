@@ -2,8 +2,16 @@ import "./index.css";
 import React from "react";
 import { Still } from "remotion";
 import type { ZodType } from "zod";
-import { MoersFestivaliPhone17Pro, FestivalPromoSchema } from "./components/MoersFestivaliPhone17Pro";
+import {
+  MoersFestivaliPhone17Pro,
+  FestivalPromoSchema,
+} from "./components/MoersFestivaliPhone17Pro";
 import { MoersFestivaliPadPro13M4 } from "./components/MoersFestivaliPadPro13M4";
+import {
+  FestivalInstagramStoryDownload,
+  INSTAGRAM_STORY_HEIGHT,
+  INSTAGRAM_STORY_WIDTH,
+} from "./components/FestivalInstagramStoryDownload";
 import {
   iPadPro13M4,
   iPhone17Pro,
@@ -122,6 +130,12 @@ export const RemotionRoot: React.FC = () => {
           height={collection.screenshotSize.height}
         />
       ))}
+      <Still
+        id="moers-festival-instagram-story-download"
+        component={FestivalInstagramStoryDownload}
+        width={INSTAGRAM_STORY_WIDTH}
+        height={INSTAGRAM_STORY_HEIGHT}
+      />
     </>
   );
 };
