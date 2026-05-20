@@ -15,6 +15,7 @@ import com.lambdadigamma.events.domain.usecase.GetEventsUseCase
 import com.lambdadigamma.events.domain.usecase.GetFavoriteEventsUseCase
 import com.lambdadigamma.events.domain.usecase.GetTimetableUseCase
 import com.lambdadigamma.events.domain.usecase.RefreshEventsUseCase
+import com.lambdadigamma.events.domain.usecase.SearchEventsUseCase
 import com.lambdadigamma.events.domain.usecase.ToggleFavoriteEventUseCase
 import com.lambdadigamma.events.domain.usecase.downloadContent
 import com.lambdadigamma.events.domain.usecase.getEventDetail
@@ -22,6 +23,7 @@ import com.lambdadigamma.events.domain.usecase.getEvents
 import com.lambdadigamma.events.domain.usecase.getFavoriteEvents
 import com.lambdadigamma.events.domain.usecase.getTimetable
 import com.lambdadigamma.events.domain.usecase.refreshEvents
+import com.lambdadigamma.events.domain.usecase.searchEvents
 import com.lambdadigamma.events.domain.usecase.toggleFavoriteEvent
 import com.lambdadigamma.medialibrary.MediaCollectionsContainer
 import com.lambdadigamma.medialibrary.MediaCollectionsContainerDeserializer
@@ -99,6 +101,18 @@ internal object EventModule {
     ): GetTimetableUseCase {
         return GetTimetableUseCase {
             getTimetable(eventRepository)
+        }
+    }
+
+    @Provides
+    fun provideSearchEventsUseCase(
+        eventRepository: EventRepository,
+    ): SearchEventsUseCase {
+        return SearchEventsUseCase { query ->
+            searchEvents(
+                query = query,
+                eventRepository = eventRepository,
+            )
         }
     }
 

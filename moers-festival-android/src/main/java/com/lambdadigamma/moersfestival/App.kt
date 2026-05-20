@@ -29,6 +29,7 @@ import com.lambdadigamma.core.ui.MoersFestivalTheme
 import com.lambdadigamma.events.presentation.detail.composable.EventDetailRoute
 import com.lambdadigamma.events.presentation.download.DownloadEventsRoute
 import com.lambdadigamma.events.presentation.favorites.composable.FavoriteEventsRoute
+import com.lambdadigamma.events.presentation.search.EventSearchRoute
 import com.lambdadigamma.events.presentation.timetable.composable.TimetableRoute
 import com.lambdadigamma.events.presentation.venue.composable.VenueDetailRoute
 import com.lambdadigamma.map.presentation.composable.MapRoute
@@ -237,8 +238,20 @@ private fun MainAppShell(
                         onShowEvent = { eventId ->
                             navigator.navigate(FestivalNavKey.EventDetail(eventId))
                         },
+                        onShowSearch = {
+                            navigator.navigate(FestivalNavKey.EventSearch)
+                        },
                         onShowDownload = {
                             navigator.navigate(FestivalNavKey.DownloadEvents)
+                        },
+                    )
+                }
+
+                entry<FestivalNavKey.EventSearch> {
+                    EventSearchRoute(
+                        onBack = navigator::navigateBack,
+                        onShowEvent = { eventId ->
+                            navigator.navigate(FestivalNavKey.EventDetail(eventId))
                         },
                     )
                 }

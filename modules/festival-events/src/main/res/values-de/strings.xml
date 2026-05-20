@@ -21,6 +21,17 @@
     <string name="about_this_app">Informationen zur App</string>
     <string name="more">Mehr</string>
     <string name="download_timetable">Spielplan herunterladen</string>
+    <string name="search_timetable">Spielplan durchsuchen</string>
+    <string name="event_search_title">Veranstaltungen suchen</string>
+    <string name="event_search_placeholder">Events, Acts oder Orte finden</string>
+    <string name="event_search_back">Suche schließen</string>
+    <string name="event_search_clear">Suche löschen</string>
+    <string name="event_search_error">Suche fehlgeschlagen.</string>
+    <string name="event_search_retry">Erneut versuchen</string>
+    <string name="event_search_no_results">Keine Veranstaltungen gefunden.</string>
+    <string name="event_search_no_results_hint">Versuche es mit einem anderen Event, Act oder Ort.</string>
+    <string name="event_search_no_events">Noch keine Veranstaltungen heruntergeladen.</string>
+    <string name="event_search_no_events_hint">Lade oder aktualisiere zuerst den Spielplan.</string>
     <string name="download_timetable_description">Du kannst den ganzen Spielplan herunterladen, um ihn auch ohne Internetverbindung zu nutzen. Nutze diese Funktion auch, um den Spielplan aktuell zu halten.</string>
     <string name="download_timetable_cta">Herunterladen</string>
     <string name="download_timetable_finish">Fertig</string>

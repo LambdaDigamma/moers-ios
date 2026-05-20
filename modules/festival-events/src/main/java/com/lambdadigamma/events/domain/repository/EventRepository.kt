@@ -11,6 +11,8 @@ interface EventRepository {
 
     fun getEvents(): Flow<List<Event>>
 
+    fun searchEvents(query: String): Flow<List<Event>>
+
     fun getTimetable(): Flow<TimetableData>
 
     suspend fun refreshEvents()

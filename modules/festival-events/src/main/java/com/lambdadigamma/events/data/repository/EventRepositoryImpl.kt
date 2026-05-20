@@ -1,16 +1,20 @@
 package com.lambdadigamma.events.data.repository
 
-import android.icu.text.SimpleDateFormat
-import com.lambdadigamma.events.data.calculateDateRange
 import com.lambdadigamma.events.data.local.dao.EventDao
 import com.lambdadigamma.events.data.local.dao.PlaceDao
-import com.lambdadigamma.events.data.local.model.FavoriteEventCached
+import com.lambdadigamma.events.data.local.model.EventWithPlaceAndPageCached
+import com.lambdadigamma.events.data.local.model.EventWithPlaceCached
+import com.lambdadigamma.events.data.local.model.FavoriteEventInfoCached
 import com.lambdadigamma.events.data.local.model.LikedEventCached
 import com.lambdadigamma.events.data.mapper.toDomainModel
 import com.lambdadigamma.events.data.mapper.toEntity
 import com.lambdadigamma.events.data.mapper.toEntityModel
+import com.lambdadigamma.events.data.mapper.toSearchIndexCached
 import com.lambdadigamma.events.data.remote.api.EventService
 import com.lambdadigamma.events.data.remote.model.Event
+import com.lambdadigamma.events.data.search.EventSearchTextNormalizer
+import com.lambdadigamma.events.data.search.SqlLikeEscaper
+import com.lambdadigamma.events.domain.festivalday.FestivalDay
 import com.lambdadigamma.events.domain.models.EventDetailData
 import com.lambdadigamma.events.domain.repository.EventRepository
 import com.lambdadigamma.events.presentation.favorites.FavoriteEventsData
@@ -28,8 +32,6 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import timber.log.Timber
-import java.util.Date
-import java.util.Locale
 import javax.inject.Inject
 
 class EventRepositoryImpl @Inject constructor(
@@ -39,8 +41,6 @@ class EventRepositoryImpl @Inject constructor(
     private val placeDao: PlaceDao,
     private val pageDao: PageDao
 ) : EventRepository {
-
-    private val dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.US)
 
     override fun getEvents(): Flow<List<Event>> {
         return eventDao.getAllEventsWithPlace()
@@ -60,139 +60,31 @@ class EventRepositoryImpl @Inject constructor(
 //            }
     }
 
-//    override fun getTimetable(): Flow<TimetableData> = flow {
-//
-//        val dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.US)
-//
-//        val dateRanges = eventDao.loadUniqueDates()
-//            .map { dateFormatter.parse(it) ?: Date() }
-//            .map { date ->
-//                return@map calculateDateRange(
-//                    date = date,
-//                    offset = 4 * 60 * 60,
-//                )
-//           }
-//
-//        println("Timetable: dateRanges = $dateRanges")
-//
-//        var currentTimetableData = TimetableData(sections = dateRanges.map { range ->
-//            TimetableSection(
-//                range = range,
-//                events = emptyList()
-//            )
-//        })
-//
-//        println("Timetable: currentTimetableData = $currentTimetableData")
-//
-//        dateRanges.forEachIndexed() { index, dateRange ->
-//
-//            eventDao.getAllEventsWithPlace(dateRange.first.time, dateRange.second.time)
-//                .onEach {
-//
-//                    println("Timetable: Received events for dateRange = $dateRange")
-//                    println("Timetable: Received events = $it")
-//
-//                    currentTimetableData = currentTimetableData.copy(sections = currentTimetableData.sections.toMutableList().apply {
-//                        this[index] = TimetableSection(
-//                            range = dateRange,
-//                            events = it.map { eventWithPlaceCached ->
-//                                eventWithPlaceCached.event.toDomainModel().apply {
-//                                    place = eventWithPlaceCached.place?.toDomainModel()
-//                                    isFavorite = eventWithPlaceCached.favoriteEvent != null
-//                                }.toPresentationModel()
-//                            }
-//                        )
-//                    })
-//
-//                    emit(currentTimetableData)
-//
-//                }
-//                .catch {
-//                    throw it
-//                }
-//
-//
-//        }
-//
-//    }
+    override fun searchEvents(query: String): Flow<List<Event>> {
+        val normalizedQuery = EventSearchTextNormalizer.normalize(query)
 
-    private val dateRangesFlow = eventDao.getUniqueDates()
-        .map { dateStrings ->
-            dateStrings.map { dateFormatter.parse(it) ?: Date() }
-        }
-        .map { dates ->
-            return@map dates.map { date ->
-                val range = calculateDateRange(
-                    date = date,
-                    offset = 4 * 60 * 60,
-                )
-                range
-            }
-        }
-        .catch { error ->
-            println("DateRanges error")
-            println(error)
+        if (normalizedQuery.isEmpty()) {
+            return eventDao.getSearchableEvents()
+                .map(::mapEventSearchRows)
         }
 
+        val escapedQuery = SqlLikeEscaper.escape(normalizedQuery)
+
+        return eventDao.searchEvents(
+            exactPattern = escapedQuery,
+            prefixPattern = "$escapedQuery%",
+            containsPattern = "%$escapedQuery%",
+        ).map(::mapEventSearchRows)
+    }
 
     override fun getTimetable(): Flow<TimetableData> {
 
         return eventDao.getAllEventsWithPlace()
             .map { events ->
-
-                val ranges = events
-                    .mapNotNull { it.event.startDate }
-                    .map { dateFormatter.format(it) }
-                    .distinct()
-                    .map {
-                        calculateDateRange(
-                            date = dateFormatter.parse(it) ?: Date(),
-                            offset = 4 * 60 * 60,
-                        )
-                    }
-
-                val sections = ranges
-                    .map { range ->
-                        Pair(range, events.filter { item ->
-                            val startDate = item.event.startDate
-                            if (startDate != null) {
-                                return@filter startDate.time in range.first.time..range.second.time
-                            } else {
-                                return@filter false
-                            }
-                        })
-                    }
-                    .map { sections ->
-                        val sectionEvents = sections.second
-                            .map { item ->
-
-                                item.event.toDomainModel().apply {
-                                    place = item.place?.toDomainModel()
-                                    isFavorite = item.isLiked // item.favoriteEvent != null
-                                }.toPresentationModel()
-
-                            }
-                        TimetableSection(events = sectionEvents, range = sections.first)
-                    }
-                    .toMutableList()
-
-                val undatedEvents = events
-                    .filter { it.event.startDate == null }
-                    .map { item ->
-                        item.event.toDomainModel().apply {
-                            place = item.place?.toDomainModel()
-                            isFavorite = item.isLiked
-                        }.toPresentationModel()
-                    }
-
-                if (undatedEvents.isNotEmpty()) {
-                    sections += TimetableSection(
-                        events = undatedEvents,
-                        isUndated = true,
-                    )
-                }
-
-                TimetableData(sections = sections, currentIndex = 0)
+                TimetableData(
+                    sections = buildTimetableSections(events),
+                    currentIndex = 0,
+                )
             }
 
     }
@@ -282,8 +174,10 @@ class EventRepositoryImpl @Inject constructor(
 
     private suspend fun saveEventsToDao(events: List<Event>) {
 
-        eventDao.deleteAllEvents()
-        eventDao.saveEvents(events.map { it.toEntityModel() })
+        eventDao.replaceEventsAndSearchIndex(
+            events = events.map { it.toEntityModel() },
+            searchIndex = events.map { it.toSearchIndexCached() },
+        )
         placeDao.savePlaces(events.mapNotNull { it.place?.toEntity() })
 
         val pages = events
@@ -327,62 +221,62 @@ class EventRepositoryImpl @Inject constructor(
                     .sortedBy { it.event!!.event.startDate }
             }
             .map { events ->
-
-                val ranges = events
-                    .mapNotNull { it.event!!.event.startDate }
-                    .map { dateFormatter.format(it) }
-                    .distinct()
-                    .map {
-                        calculateDateRange(
-                            date = dateFormatter.parse(it) ?: Date(),
-                            offset = 4 * 60 * 60,
-                        )
-                    }
-
-                val sections = ranges
-                    .map { range ->
-                        Pair(range, events.filter { item ->
-                            val startDate = item.event!!.event.startDate
-                            if (startDate != null) {
-                                return@filter startDate.time in range.first.time..range.second.time
-                            } else {
-                                return@filter false
-                            }
-                        })
-                    }
-                    .map { sections ->
-                        val sectionEvents = sections.second
-                            .map { item ->
-
-                                item.event!!.event.toDomainModel().apply {
-                                    place = item.event.place?.toDomainModel()
-                                    isFavorite = true
-                                }.toPresentationModel()
-
-                            }
-                        FavoriteEventsSection(events = sectionEvents, range = sections.first)
-                    }
-                    .toMutableList()
-
-                val undatedEvents = events
-                    .filter { it.event!!.event.startDate == null }
-                    .map { item ->
-                        item.event!!.event.toDomainModel().apply {
-                            place = item.event.place?.toDomainModel()
-                            isFavorite = true
-                        }.toPresentationModel()
-                    }
-
-                if (undatedEvents.isNotEmpty()) {
-                    sections += FavoriteEventsSection(
-                        events = undatedEvents,
-                        isUndated = true,
-                    )
-                }
-
-                FavoriteEventsData(sections = sections, currentIndex = 0)
+                FavoriteEventsData(
+                    sections = buildFavoriteSections(events),
+                    currentIndex = 0,
+                )
             }
 
+    }
+
+    private fun buildTimetableSections(
+        events: List<EventWithPlaceAndPageCached>,
+    ): List<TimetableSection> {
+        return FestivalDay
+            .sectionsFor(events) { item -> item.event.startDate }
+            .map { section ->
+                TimetableSection(
+                    range = section.range,
+                    events = section.items.map { item ->
+                        item.event.toDomainModel().apply {
+                            place = item.place?.toDomainModel()
+                            isFavorite = item.isLiked
+                        }.toPresentationModel()
+                    },
+                    isUndated = section.isUndated,
+                )
+            }
+    }
+
+    private fun buildFavoriteSections(
+        events: List<FavoriteEventInfoCached>,
+    ): List<FavoriteEventsSection> {
+        return FestivalDay
+            .sectionsFor(events) { item -> item.event?.event?.startDate }
+            .map { section ->
+                FavoriteEventsSection(
+                    range = section.range,
+                    events = section.items.map { item ->
+                        val favoriteEvent = requireNotNull(item.event)
+                        favoriteEvent.event.toDomainModel().apply {
+                            place = favoriteEvent.place?.toDomainModel()
+                            isFavorite = true
+                        }.toPresentationModel()
+                    },
+                    isUndated = section.isUndated,
+                )
+            }
+    }
+
+    private fun mapEventSearchRows(
+        events: List<EventWithPlaceCached>,
+    ): List<Event> {
+        return events.map { item ->
+            item.event.toDomainModel().apply {
+                place = item.place?.toDomainModel()
+                isFavorite = item.isLiked == true
+            }
+        }
     }
 
 }

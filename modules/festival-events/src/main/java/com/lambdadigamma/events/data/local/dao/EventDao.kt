@@ -9,6 +9,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Upsert
 import com.lambdadigamma.events.data.local.model.EventCached
+import com.lambdadigamma.events.data.local.model.EventSearchIndexCached
 import com.lambdadigamma.events.data.local.model.EventWithPlaceAndPageCached
 import com.lambdadigamma.events.data.local.model.EventWithPlaceCached
 import com.lambdadigamma.events.data.local.model.FavoriteEventCached
@@ -60,6 +61,67 @@ interface EventDao {
 
     @Query("DELETE FROM events")
     suspend fun deleteAllEvents()
+
+    @Upsert
+    suspend fun saveEventSearchIndex(searchIndex: List<EventSearchIndexCached>)
+
+    @Transaction
+    suspend fun replaceEventsAndSearchIndex(
+        events: List<EventCached>,
+        searchIndex: List<EventSearchIndexCached>,
+    ) {
+        deleteAllEvents()
+        saveEvents(events)
+        saveEventSearchIndex(searchIndex)
+    }
+
+    @Transaction
+    @Query(
+        """
+        SELECT events.*, CASE WHEN liked_events.eventId IS NOT NULL THEN 1 ELSE 0 END AS isLiked
+        FROM events
+        LEFT JOIN liked_events ON events.id = liked_events.eventId
+        ORDER BY
+            events.startDate IS NULL ASC,
+            events.startDate ASC,
+            events.name COLLATE NOCASE ASC
+        """
+    )
+    fun getSearchableEvents(): Flow<List<EventWithPlaceCached>>
+
+    @Transaction
+    @Query(
+        """
+        SELECT events.*, CASE WHEN liked_events.eventId IS NOT NULL THEN 1 ELSE 0 END AS isLiked
+        FROM events
+        INNER JOIN event_search_index ON event_search_index.eventId = events.id
+        LEFT JOIN liked_events ON events.id = liked_events.eventId
+        WHERE event_search_index.normalizedName LIKE :containsPattern ESCAPE '\'
+            OR event_search_index.normalizedArtists LIKE :containsPattern ESCAPE '\'
+            OR event_search_index.normalizedPlaceName LIKE :containsPattern ESCAPE '\'
+        ORDER BY
+            CASE
+                WHEN event_search_index.normalizedName LIKE :exactPattern ESCAPE '\' THEN 0
+                WHEN event_search_index.normalizedName LIKE :prefixPattern ESCAPE '\' THEN 1
+                WHEN event_search_index.normalizedName LIKE :containsPattern ESCAPE '\' THEN 2
+                WHEN event_search_index.normalizedArtists LIKE :exactPattern ESCAPE '\' THEN 3
+                WHEN event_search_index.normalizedArtists LIKE :prefixPattern ESCAPE '\' THEN 4
+                WHEN event_search_index.normalizedArtists LIKE :containsPattern ESCAPE '\' THEN 5
+                WHEN event_search_index.normalizedPlaceName LIKE :exactPattern ESCAPE '\' THEN 6
+                WHEN event_search_index.normalizedPlaceName LIKE :prefixPattern ESCAPE '\' THEN 7
+                WHEN event_search_index.normalizedPlaceName LIKE :containsPattern ESCAPE '\' THEN 8
+                ELSE 9
+            END ASC,
+            events.startDate IS NULL ASC,
+            events.startDate ASC,
+            events.name COLLATE NOCASE ASC
+        """
+    )
+    fun searchEvents(
+        exactPattern: String,
+        prefixPattern: String,
+        containsPattern: String,
+    ): Flow<List<EventWithPlaceCached>>
 
     @Query("SELECT DISTINCT strftime('%Y-%m-%d', datetime(startDate / 1000, 'unixepoch')) AS date FROM events")
     fun getUniqueDates(): Flow<List<String>>

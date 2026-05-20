@@ -29,7 +29,7 @@ internal object DatabaseModule {
             AppDatabase::class.java,
             APP_DATABASE_NAME,
         )
-            .addMigrations(MIGRATION_1_2, MIGRATION_6_7, MIGRATION_7_8)
+            .addMigrations(MIGRATION_1_2, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9)
             .build()
     }
 

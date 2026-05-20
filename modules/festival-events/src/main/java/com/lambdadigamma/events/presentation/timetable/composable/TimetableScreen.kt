@@ -17,6 +17,7 @@ import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.FilterList
+import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.HorizontalDivider
@@ -57,6 +58,7 @@ import com.lambdadigamma.events.presentation.timetable.TimetableUiState
 fun TimetableScreen(
     uiState: TimetableUiState,
     onIntent: (TimetableIntent) -> Unit,
+    onShowSearch: () -> Unit = {},
     onShowDownload: () -> Unit = {},
     pagerState: PagerState,
     currentIndex: MutableState<Int>
@@ -79,6 +81,12 @@ fun TimetableScreen(
                     )
                 },
                 actions = {
+                    IconButton(onClick = onShowSearch) {
+                        Icon(
+                            imageVector = Icons.Rounded.Search,
+                            contentDescription = stringResource(R.string.search_timetable),
+                        )
+                    }
                     if (uiState.data.filter.isEmpty) {
                         IconButton(onClick = { onIntent(TimetableIntent.ShowFilters) }) {
                             Icon(
@@ -320,6 +328,7 @@ private fun TimetableScreenPreview() {
         TimetableScreen(
             uiState = TimetableUiState(),
             onIntent = {},
+            onShowSearch = {},
             pagerState = rememberPagerState(
                 initialPage = 0,
                 initialPageOffsetFraction = 0f,

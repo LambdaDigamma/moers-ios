@@ -18,6 +18,9 @@ sealed interface FestivalNavKey : NavKey {
     data object Timetable : FestivalNavKey
 
     @Serializable
+    data object EventSearch : FestivalNavKey
+
+    @Serializable
     data object Info : FestivalNavKey
 
     @Serializable
@@ -60,6 +63,7 @@ fun FestivalNavKey.topLevelKey(): FestivalNavKey {
         is FestivalNavKey.VenueDetail -> FestivalNavKey.Map
         FestivalNavKey.Favorites -> FestivalNavKey.Favorites
         FestivalNavKey.Timetable,
+        FestivalNavKey.EventSearch,
         is FestivalNavKey.EventDetail,
         FestivalNavKey.DownloadEvents -> FestivalNavKey.Timetable
         FestivalNavKey.Info,

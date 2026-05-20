@@ -21,6 +21,17 @@
     <string name="about_this_app">About this app</string>
     <string name="more">More</string>
     <string name="download_timetable">Download timetable</string>
+    <string name="search_timetable">Search timetable</string>
+    <string name="event_search_title">Search Events</string>
+    <string name="event_search_placeholder">Find events, artists, or venues</string>
+    <string name="event_search_back">Close search</string>
+    <string name="event_search_clear">Clear search</string>
+    <string name="event_search_error">Search failed.</string>
+    <string name="event_search_retry">Retry</string>
+    <string name="event_search_no_results">No events found.</string>
+    <string name="event_search_no_results_hint">Try another event, artist, or venue.</string>
+    <string name="event_search_no_events">No events downloaded yet.</string>
+    <string name="event_search_no_events_hint">Download or refresh the timetable first.</string>
     <string name="download_timetable_description">You can download the whole timetable to use it even when you are offline. Use this functionality to keep the timetable up to date as well.</string>
     <string name="download_timetable_cta">Download</string>
     <string name="download_timetable_finish">Finish</string>

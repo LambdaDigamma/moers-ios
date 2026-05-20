@@ -6,7 +6,7 @@ This guide compares the Android festival app in `moers-festival-android` plus it
 
 The goal is Android phone parity with the iOS phone app. Separate Apple-only targets like watchOS and tvOS are noted where useful, but they are not treated as parity blockers for the Android app.
 
-The comparison is based on the current repository state on 2026-04-05.
+The comparison is based on the current repository state on 2026-05-20.
 
 ## Current Android Baseline
 
@@ -15,7 +15,7 @@ The Android app already covers the core festival navigation and most read-only c
 - `News` tab with pull-to-refresh and post detail flow.
 - `Map` tab with festival layers, booth/place search, place detail, and event drill-in.
 - `Favorites` tab with persisted liked events.
-- `Timetable` tab with daily sections and event detail.
+- `Timetable` tab with daily sections, sectioned event search, and event detail.
 - `Info` tab with festival links, download entry point, legal, and app information.
 - Manual timetable/content download flow.
 - FCM notification display and canonical custom-scheme deep links such as `moersfestival:///events/{id}`.
@@ -28,7 +28,7 @@ That means parity work should focus less on rebuilding the basic app shell and m
 | --- | --- | --- | --- |
 | Top-level app structure | Implemented | Implemented | Near parity |
 | News list and post detail | Implemented | Implemented | Near parity |
-| Timetable and event detail | Implemented | Implemented | Near parity |
+| Timetable, search, and event detail | Implemented | Implemented | Near parity |
 | Favorites list | Implemented | Implemented | Missing filter controls |
 | Festival map | Implemented | Implemented | Missing location-aware behavior and some polish |
 | Info & Tickets | Partial | Richer iOS implementation | Missing secondary screens and utilities |

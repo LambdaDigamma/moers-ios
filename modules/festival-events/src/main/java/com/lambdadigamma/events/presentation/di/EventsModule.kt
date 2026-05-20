@@ -10,6 +10,7 @@ import com.lambdadigamma.events.presentation.EventsNavigationFactory
 import com.lambdadigamma.events.presentation.detail.EventDetailUiState
 import com.lambdadigamma.events.presentation.download.DownloadEventsUiState
 import com.lambdadigamma.events.presentation.favorites.FavoriteEventsUiState
+import com.lambdadigamma.events.presentation.search.EventSearchUiState
 import com.lambdadigamma.events.presentation.timetable.EventsUiState
 import com.lambdadigamma.events.presentation.timetable.TimetableUiState
 import dagger.Provides
@@ -34,6 +35,9 @@ internal object EventsViewModelModule {
 
     @Provides
     fun provideInitialEventDownloadUiState(): DownloadEventsUiState = DownloadEventsUiState(isLoading = true)
+
+    @Provides
+    fun provideInitialEventSearchUiState(): EventSearchUiState = EventSearchUiState(isLoading = true)
 }
 
 @Module

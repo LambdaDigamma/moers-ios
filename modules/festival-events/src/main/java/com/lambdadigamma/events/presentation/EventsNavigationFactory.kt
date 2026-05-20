@@ -39,6 +39,7 @@ class EventsNavigationFactory @Inject constructor() : NavigationFactory {
                     }
                     navigationManager.navigate(command)
                 },
+                onShowSearch = {},
                 onShowDownload = {
                     val command = object : NavigationCommand {
                         override val destination = NavigationDestination.EventDownload.route
