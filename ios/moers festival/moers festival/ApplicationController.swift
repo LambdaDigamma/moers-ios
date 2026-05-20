@@ -65,12 +65,15 @@ class ApplicationController: NSObject, ApplicationControlling {
     }
     
     func rootViewController() -> UIViewController {
+        let launchInterceptor = LaunchInterceptor(firstLaunch: firstLaunch)
         let tabBarController = TabBarController(
             eventService: eventService,
             entryManager: entryManager,
-            trackerManager: trackerManager
+            trackerManager: trackerManager,
+            launchInterceptor: launchInterceptor
         )
 
+        launchInterceptor.viewController = tabBarController
         self.rootTabBarController = tabBarController
 
         return tabBarController

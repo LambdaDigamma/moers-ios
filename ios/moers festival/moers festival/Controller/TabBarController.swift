@@ -41,13 +41,16 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate, U
     private var appUpdateBannerController: UIHostingController<AppUpdateBannerView>?
     private var appUpdateBannerHeightConstraint: NSLayoutConstraint?
     private var appUpdateSheetController: UIHostingController<AppUpdateSheetView>?
+    private let launchInterceptor: LaunchInterceptor?
+    private var didRunLaunchInterception = false
     
     public var events: [Event] = []
     
-    public init(
+    init(
         eventService: LegacyEventService,
         entryManager: EntryManagerProtocol,
-        trackerManager: TrackerManagerProtocol
+        trackerManager: TrackerManagerProtocol,
+        launchInterceptor: LaunchInterceptor? = nil
     ) {
         
         self.news = NewsCoordinator()
@@ -66,6 +69,7 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate, U
             remoteConfigurationLoader: RemoteAppUpdateConfigurationService(loader: Container.shared.httpLoader.resolve()),
             fallbackStoreURL: URL(string: "itms-apps://itunes.apple.com/app/id1341448683")!
         )
+        self.launchInterceptor = launchInterceptor
         
         super.init(nibName: nil, bundle: nil)
         
@@ -124,6 +128,15 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate, U
         
         self.selectedIndex = 3
         
+    }
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        guard !didRunLaunchInterception else { return }
+        didRunLaunchInterception = true
+
+        launchInterceptor?.onAppear()
     }
     
     // MARK: - Public Methods
