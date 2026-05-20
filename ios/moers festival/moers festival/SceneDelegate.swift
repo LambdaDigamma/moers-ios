@@ -19,11 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var applicationController: ApplicationController?
     
     lazy var deeplinkCoordinator: DeeplinkCoordinatorProtocol = {
-        return DeeplinkCoordinator(handlers: [
-            EventsDeeplinkHandler(rootViewController: self.applicationController),
-            FavoritesDeeplinkHandler(rootViewController: self.applicationController),
-            NewsDeeplinkHandler(rootViewController: self.applicationController)
-        ])
+        return DeeplinkCoordinator(router: self.applicationController)
     }()
     
     func scene(
@@ -67,6 +63,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             processNotificationResponse(response: response)
             
         }
+
+        handleURLContexts(connectionOptions.urlContexts)
         
     }
     
@@ -119,12 +117,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         
         logger.info("Received \(URLContexts.count) URLContexts")
-        
-        if let link = URLContexts.first?.url {
-            logger.info("Received url: \(link.absoluteString)")
-            
-            deeplinkCoordinator.handleURL(link)
-        }
+
+        handleURLContexts(URLContexts)
         
     }
     
@@ -148,6 +142,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             deeplinkCoordinator.handleURL(url)
         }
         
+    }
+
+    private func handleURLContexts(_ urlContexts: Set<UIOpenURLContext>) {
+        if let link = urlContexts.first?.url {
+            logger.info("Received url: \(link.absoluteString)")
+
+            deeplinkCoordinator.handleURL(link)
+        }
     }
     
 }
@@ -208,4 +210,3 @@ extension SceneDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
     }
     
 }
-
