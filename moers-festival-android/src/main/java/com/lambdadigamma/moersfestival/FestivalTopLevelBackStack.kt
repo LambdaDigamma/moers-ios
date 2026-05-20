@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
@@ -13,25 +13,50 @@ import androidx.compose.runtime.toMutableStateList
 fun rememberFestivalTopLevelBackStack(
     startKey: FestivalNavKey = FestivalNavKey.Timetable,
 ): FestivalTopLevelBackStack {
-    return remember(startKey) {
+    val topLevelKeys = FestivalTopLevelNavKeys.toSet()
+    return rememberSaveable(
+        startKey,
+        saver = festivalTopLevelBackStackSaver(
+            startKey = startKey,
+            topLevelKeys = topLevelKeys,
+        ),
+    ) {
         FestivalTopLevelBackStack(
             startKey = startKey,
-            topLevelKeys = FestivalTopLevelNavKeys.toSet(),
+            topLevelKeys = topLevelKeys,
         )
     }
 }
-class FestivalTopLevelBackStack(
+
+class FestivalTopLevelBackStack internal constructor(
     private val startKey: FestivalNavKey,
     private val topLevelKeys: Set<FestivalNavKey>,
+    restoredState: FestivalTopLevelBackStackState? = null,
 ) {
-    private val topLevelStacks = linkedMapOf(
-        startKey to mutableStateListOf(startKey),
-    )
+    private val restoredState = restoredState.takeIf {
+        it?.startKey == startKey && startKey in topLevelKeys
+    }
 
-    var topLevelKey by mutableStateOf(startKey)
+    private val topLevelStacks = this.restoredState
+        ?.toValidatedStacks()
+        ?: linkedMapOf(startKey to mutableStateListOf(startKey))
+
+    var topLevelKey by mutableStateOf(
+        this.restoredState
+            ?.topLevelKey
+            ?.takeIf { it in topLevelKeys && it in topLevelStacks }
+            ?: startKey,
+    )
         private set
 
-    val backStack: SnapshotStateList<FestivalNavKey> = mutableStateListOf(startKey)
+    val backStack: SnapshotStateList<FestivalNavKey> = mutableStateListOf()
+
+    init {
+        if (startKey !in topLevelStacks) {
+            topLevelStacks[startKey] = mutableStateListOf(startKey)
+        }
+        updateBackStack()
+    }
 
     fun navigate(key: FestivalNavKey) {
         if (key in topLevelKeys) {
@@ -88,6 +113,19 @@ class FestivalTopLevelBackStack(
         return false
     }
 
+    internal fun toSaveState(): FestivalTopLevelBackStackState {
+        return FestivalTopLevelBackStackState(
+            startKey = startKey,
+            topLevelKey = topLevelKey,
+            topLevelStacks = topLevelStacks.map { (key, stack) ->
+                FestivalTopLevelStackState(
+                    key = key,
+                    stack = stack.toList(),
+                )
+            },
+        )
+    }
+
     private fun updateBackStack() {
         val startStack = topLevelStacks[startKey] ?: mutableStateListOf(startKey)
         val currentStack = topLevelStacks[topLevelKey] ?: mutableStateListOf(topLevelKey)
@@ -98,6 +136,35 @@ class FestivalTopLevelBackStack(
         if (topLevelKey != startKey) {
             backStack.addAll(currentStack)
         }
+    }
+
+    private fun FestivalTopLevelBackStackState.toValidatedStacks():
+        LinkedHashMap<FestivalNavKey, SnapshotStateList<FestivalNavKey>> {
+        val restoredStacks = linkedMapOf<FestivalNavKey, SnapshotStateList<FestivalNavKey>>()
+
+        topLevelStacks.forEach { stackState ->
+            val key = stackState.key
+            if (key !in topLevelKeys) return@forEach
+
+            val stack = stackState.stack.validatedForTopLevelKey(key) ?: return@forEach
+            restoredStacks[key] = stack.toMutableStateList()
+        }
+
+        if (startKey !in restoredStacks) {
+            restoredStacks[startKey] = mutableStateListOf(startKey)
+        }
+
+        return restoredStacks
+    }
+
+    private fun List<FestivalNavKey>.validatedForTopLevelKey(
+        key: FestivalNavKey,
+    ): List<FestivalNavKey>? {
+        if (isEmpty()) return listOf(key)
+        if (first() != key) return null
+        if (drop(1).any { it in topLevelKeys }) return null
+
+        return this
     }
 }
 

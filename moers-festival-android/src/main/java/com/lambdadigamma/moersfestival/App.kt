@@ -12,6 +12,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -49,8 +50,10 @@ fun App(
     val setupViewModel: AppSetupViewModel = hiltViewModel()
     val setupUiState by setupViewModel.uiState.collectAsStateWithLifecycle()
     val lifecycleOwner = LocalLifecycleOwner.current
-    var pendingStack by remember { mutableStateOf<List<FestivalNavKey>?>(null) }
-    var showFirstRunDownloadFinish by remember { mutableStateOf(false) }
+    var pendingStack by rememberSaveable(stateSaver = FestivalNavKeyListSaver) {
+        mutableStateOf<List<FestivalNavKey>?>(null)
+    }
+    var showFirstRunDownloadFinish by rememberSaveable { mutableStateOf(false) }
     val firstRunDownloadStack = remember {
         listOf(FestivalNavKey.Timetable, FestivalNavKey.DownloadEvents)
     }

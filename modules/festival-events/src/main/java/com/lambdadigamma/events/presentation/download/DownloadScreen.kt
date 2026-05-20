@@ -23,7 +23,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -103,8 +103,8 @@ fun DownloadEventsScreen(
 
                     Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
 
-                        val checkedState = remember { mutableStateOf(true) }
-                        val downloadImage = remember { mutableStateOf(false) }
+                        val checkedState = rememberSaveable { mutableStateOf(true) }
+                        val downloadImage = rememberSaveable { mutableStateOf(false) }
 
                         Row(modifier = Modifier
                             .padding()

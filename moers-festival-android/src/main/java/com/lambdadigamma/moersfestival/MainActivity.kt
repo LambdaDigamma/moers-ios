@@ -17,6 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private var incomingIntent by mutableStateOf<Intent?>(null)
+    private var incomingIntentConsumed = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
@@ -24,21 +25,35 @@ class MainActivity : ComponentActivity() {
             window.isNavigationBarContrastEnforced = false
         }
         super.onCreate(savedInstanceState)
-        incomingIntent = intent
+        incomingIntentConsumed = savedInstanceState
+            ?.getBoolean(KEY_INCOMING_INTENT_CONSUMED)
+            ?: false
+        incomingIntent = if (incomingIntentConsumed) null else intent
 
         setContent {
             App(
                 incomingIntent = incomingIntent,
                 onIncomingIntentConsumed = {
+                    incomingIntentConsumed = true
                     incomingIntent = null
                 },
             )
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean(KEY_INCOMING_INTENT_CONSUMED, incomingIntentConsumed)
+        super.onSaveInstanceState(outState)
+    }
+
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setIntent(intent)
+        incomingIntentConsumed = false
         incomingIntent = intent
+    }
+
+    private companion object {
+        const val KEY_INCOMING_INTENT_CONSUMED = "incoming_intent_consumed"
     }
 }
