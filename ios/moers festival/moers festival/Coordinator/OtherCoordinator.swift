@@ -121,6 +121,14 @@ public class OtherCoordinator: Coordinator {
         self.navigationController.pushViewController(viewController, animated: true)
         
     }
+
+    public func showDebugFCMToken() {
+
+        let viewController = DebugFCMTokenViewController()
+
+        self.navigationController.pushViewController(viewController, animated: true)
+
+    }
     
     public func openReview() {
         

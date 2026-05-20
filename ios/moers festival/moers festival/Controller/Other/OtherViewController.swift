@@ -129,6 +129,22 @@ class OtherViewController: UIViewController {
             )
             
         }
+
+        if DebugFCMTokenVisibility.isVisible {
+            sections.append(
+                Section(
+                    title: "Debug",
+                    rows: [
+                        Row(
+                            title: "FCM Token",
+                            symbolName: "ladybug.fill",
+                            iconStyle: .purple,
+                            action: coordinator?.showDebugFCMToken
+                        )
+                    ]
+                )
+            )
+        }
         
         return sections
         
