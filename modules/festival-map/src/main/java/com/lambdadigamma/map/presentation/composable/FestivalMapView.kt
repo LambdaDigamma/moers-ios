@@ -398,4 +398,4 @@ private fun FestivalMapLayerType.darkStyle(): LayerStyle {
     }
 }
 
-private val MAP_CENTER = LatLng(51.441712626435596, 6.618580082309781)
+private val MAP_CENTER = LatLng(51.45020, 6.62546)
