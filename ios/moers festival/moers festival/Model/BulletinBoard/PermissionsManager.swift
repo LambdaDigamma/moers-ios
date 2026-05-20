@@ -8,7 +8,7 @@
 
 import UIKit
 import UserNotifications
-import FirebaseMessaging
+import OSLog
 
 class PermissionsManager {
     
@@ -19,9 +19,20 @@ class PermissionsManager {
         if #available(iOS 10.0, *) {
             
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: {_, _ in })
-            
-            Messaging.messaging().subscribe(toTopic: "all")
+            UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { granted, error in
+                if let error {
+                    Logger(.default).error("Notification authorization failed: \(error.localizedDescription)")
+                }
+
+                guard granted else {
+                    return
+                }
+
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                    FestivalNotificationTopicSynchronizer.shared.sync()
+                }
+            }
             
         } else {
             
@@ -29,11 +40,9 @@ class PermissionsManager {
                 UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
             
             UIApplication.shared.registerUserNotificationSettings(settings)
+            UIApplication.shared.registerForRemoteNotifications()
             
         }
-        
-        UIApplication.shared.registerForRemoteNotifications()
-        
     }
     
 }

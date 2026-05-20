@@ -17,7 +17,7 @@ import OSLog
 import Factory
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             MMPagesFrameworkConfiguration(),
             ServiceConfiguration(),
             TwitterFramework(),
-            FirebaseFrameworkConfiguration(),
+            FirebaseFrameworkConfiguration(messagingDelegate: self),
             ShortcutConfiguration(),
             MediaLibraryConfiguration()
         ]
@@ -73,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         
         ConfigManager.shared.fetchConfig()
+        FestivalNotificationTopicSynchronizer.shared.syncIfAuthorized()
         
     }
 
@@ -122,6 +123,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Error registering remote notifications with error: \(error)")
+    }
+
+    func messaging(
+        _ messaging: Messaging,
+        didReceiveRegistrationToken fcmToken: String?
+    ) {
+
+        guard let fcmToken = fcmToken else {
+            return
+        }
+
+        Logger(.default).info("Receive registration token \(fcmToken)")
+
+        let tokenDict = ["token": fcmToken]
+
+        NotificationCenter.default.post(
+            name: Notification.Name("FCMToken"),
+            object: nil,
+            userInfo: tokenDict
+        )
+
+        FestivalNotificationTopicSynchronizer.shared.syncIfAuthorized()
     }
     
     // MARK: - Refresh Content -

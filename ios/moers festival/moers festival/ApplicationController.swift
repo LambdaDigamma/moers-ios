@@ -262,6 +262,13 @@ class ApplicationController: NSObject, ApplicationControlling {
         activateTopLevelDestination(.maps)
         
     }
+
+    public func openVenueDetail(venueID: Place.ID, animated: Bool = false) {
+
+        activateTopLevelDestination(.maps)
+        currentMap.showPlaceDetail(placeID: venueID)
+
+    }
     
     public func openUserSchedule(animated: Bool = false) {
         
@@ -298,8 +305,30 @@ class ApplicationController: NSObject, ApplicationControlling {
         activateTopLevelDestination(.other)
         
     }
+
+    public func openDownloadEvents(animated: Bool = false) {
+
+        openOther(animated: animated)
+        currentOther.showDownload()
+
+    }
+
+    public func openInfo(animated: Bool = false) {
+
+        openOther(animated: animated)
+
+    }
+
+    public func openLegal(animated: Bool = false) {
+
+        openOther(animated: animated)
+        currentOther.showLegal()
+
+    }
     
 }
+
+extension ApplicationController: FestivalDeepLinkRouting {}
 
 private extension ApplicationController {
 

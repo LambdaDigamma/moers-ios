@@ -54,7 +54,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 logger.notice("State restoration of type \(stateRestorationActivity.activityType) received.")
             }
             
-            self.applicationController?.tabBarController?.handle(userActivity: userActivity)
+            handleConnectionUserActivity(userActivity)
             
         }
         
@@ -64,7 +64,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
         }
 
-        handleURLContexts(connectionOptions.urlContexts)
+        _ = handleURLContexts(connectionOptions.urlContexts)
         
     }
     
@@ -118,7 +118,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         logger.info("Received \(URLContexts.count) URLContexts")
 
-        handleURLContexts(URLContexts)
+        _ = handleURLContexts(URLContexts)
         
     }
     
@@ -144,12 +144,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
     }
 
-    private func handleURLContexts(_ urlContexts: Set<UIOpenURLContext>) {
-        if let link = urlContexts.first?.url {
-            logger.info("Received url: \(link.absoluteString)")
-
-            deeplinkCoordinator.handleURL(link)
+    private func handleConnectionUserActivity(_ userActivity: NSUserActivity) {
+        if shouldRouteConnectionUserActivityThroughApplicationController(userActivity) {
+            applicationController?.handle(userActivity: userActivity)
+        } else {
+            applicationController?.tabBarController?.handle(userActivity: userActivity)
         }
+    }
+
+    internal func shouldRouteConnectionUserActivityThroughApplicationController(_ userActivity: NSUserActivity) -> Bool {
+        userActivity.activityType == NSUserActivityTypeBrowsingWeb
+    }
+
+    @discardableResult
+    private func handleURLContexts(_ urlContexts: Set<UIOpenURLContext>) -> Bool {
+        handleURLs(urlContexts.map(\.url))
+    }
+
+    @discardableResult
+    internal func handleURLs(_ urls: [URL]) -> Bool {
+        for url in urls {
+            logger.info("Received url: \(url.absoluteString)")
+
+            if deeplinkCoordinator.handleURL(url) {
+                return true
+            }
+        }
+
+        return false
     }
     
 }

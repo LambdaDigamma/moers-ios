@@ -13,14 +13,22 @@ import FirebaseMessaging
 import UIKit
 
 class FirebaseFrameworkConfiguration: BootstrappingProcedureStep {
+
+    private weak var messagingDelegate: MessagingDelegate?
+
+    init(messagingDelegate: MessagingDelegate? = nil) {
+        self.messagingDelegate = messagingDelegate
+    }
     
     func execute(with application: UIApplication) {
         
         FirebaseApp.configure()
+        Messaging.messaging().delegate = messagingDelegate
         FirebaseConfiguration.shared.setLoggerLevel(.min)
         
         application.registerForRemoteNotifications()
         application.applicationIconBadgeNumber = 0
+        FestivalNotificationTopicSynchronizer.shared.syncIfAuthorized()
         
         ConfigManager.shared.fetchConfig()
         
