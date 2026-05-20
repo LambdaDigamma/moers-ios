@@ -22,6 +22,11 @@ public enum EventPackageStrings {
     public static let notYetScheduled = String(localized: "No time yet", bundle: .module)
     
     public static let timetable = String(localized: "Timetable", bundle: .module)
+    public static let searchEvents = String(localized: "Search Events", bundle: .module)
+    public static let searchingEvents = String(localized: "Searching events", bundle: .module)
+    public static let noSearchResults = String(localized: "No events found", bundle: .module)
+    public static let searchFailed = String(localized: "Search failed. Please try again.", bundle: .module)
+    public static let retrySearch = String(localized: "Try Again", bundle: .module)
     
     public static let filter = String(localized: "Filter", bundle: .module)
     public static let venues = String(localized: "Venues", bundle: .module)

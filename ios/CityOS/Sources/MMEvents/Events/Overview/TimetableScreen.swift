@@ -9,14 +9,14 @@ import SwiftUI
 
 public struct TimetableScreen: View {
     
-    @State private var search = ""
     @AppStorage("currentEventDisplayMode") private var displayMode: DailyEventsDisplayMode = .compact
     @State private var showingFilter = false
+    @EnvironmentObject private var transmitter: TimetableTransmitter
     
-    @StateObject private var viewModel = TimetableViewModel()
+    @StateObject private var viewModel: TimetableViewModel
     
-    public init() {
-        
+    public init(viewModel: TimetableViewModel = TimetableViewModel()) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
     
     public var body: some View {
@@ -44,7 +44,7 @@ public struct TimetableScreen: View {
             }
             
             ZStack {
-    
+
                 if viewModel.allEventsHideSchedule {
     
                     PreviewListEventsView()
@@ -83,7 +83,13 @@ public struct TimetableScreen: View {
 //                }
 //            }
 
-            ToolbarItem(placement: .primaryAction) {
+            ToolbarItemGroup(placement: .primaryAction) {
+                Button {
+                    transmitter.dispatchSearchRequested()
+                } label: {
+                    Label(EventPackageStrings.searchEvents, systemImage: "magnifyingglass")
+                }
+
                 Button {
                     showingFilter = true
                 } label: {
@@ -105,6 +111,7 @@ struct TimetableScreen_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             TimetableScreen()
+                .environmentObject(TimetableTransmitter())
                 .navigationBarTitleDisplayMode(.inline)
                 .preferredColorScheme(.dark)
         }

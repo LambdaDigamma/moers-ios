@@ -12,14 +12,19 @@ import SwiftUI
 public class TimetableViewController: UIHostingController<AnyView> {
     
     private let transmitter: TimetableTransmitter
+    private let viewModel: TimetableViewModel
     
     private var cancellables = Set<AnyCancellable>()
     
     public var onShowEvent: ((Event.ID) -> Void)?
+    public var searchDetailViewControllerFactory: ((Event.ID) -> UIViewController)?
     
     public init() {
-        self.transmitter = TimetableTransmitter()
-        super.init(rootView: TimetableScreen().environmentObject(transmitter).toAnyView())
+        let transmitter = TimetableTransmitter()
+        let viewModel = TimetableViewModel()
+        self.transmitter = transmitter
+        self.viewModel = viewModel
+        super.init(rootView: TimetableScreen(viewModel: viewModel).environmentObject(transmitter).toAnyView())
     }
     
     required init?(coder: NSCoder) {
@@ -45,11 +50,38 @@ public class TimetableViewController: UIHostingController<AnyView> {
     
     private func setupTransmitter() {
         
-        self.transmitter.showEvent.sink { (eventID: Event.ID) in
-            self.onShowEvent?(eventID)
+        self.transmitter.showEvent.sink { [weak self] (eventID: Event.ID) in
+            self?.onShowEvent?(eventID)
+        }
+        .store(in: &cancellables)
+
+        self.transmitter.searchRequested.sink { [weak self] in
+            self?.presentSearch()
         }
         .store(in: &cancellables)
         
+    }
+
+    private func presentSearch() {
+
+        guard presentedViewController == nil else {
+            return
+        }
+
+        guard let searchDetailViewControllerFactory else {
+            assertionFailure("searchDetailViewControllerFactory must be configured before presenting search.")
+            return
+        }
+
+        viewModel.beginSearch()
+
+        let searchViewController = TimetableSearchViewController(
+            viewModel: viewModel,
+            detailViewControllerFactory: searchDetailViewControllerFactory
+        )
+        let navigationController = UINavigationController(rootViewController: searchViewController)
+
+        present(navigationController, animated: true)
     }
     
 }

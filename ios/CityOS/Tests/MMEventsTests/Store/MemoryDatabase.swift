@@ -21,7 +21,11 @@ public class MemoryDatabase {
     
     public func create() -> DatabaseQueue {
         
-        guard let dbQueue = try? DatabaseQueue(path: ":memory:") else { fatalError() }
+        let configuration = EventSearchDatabaseFunctions.configuration()
+        guard let dbQueue = try? DatabaseQueue(
+            path: ":memory:",
+            configuration: configuration
+        ) else { fatalError() }
         
         var migrator = DatabaseMigrator()
         
@@ -33,6 +37,10 @@ public class MemoryDatabase {
                     definition.apply(to: tableDefinition)
                 })
                 
+            }
+
+            if try db.tableExists(EventTableDefinition.tableName) {
+                try EventSearchViewDefinition.createIfNeeded(in: db)
             }
             
         }

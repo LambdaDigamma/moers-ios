@@ -96,6 +96,7 @@ extension EventRecord: FetchableRecord, MutablePersistableRecord {
     public static let databaseTableName: String = EventTableDefinition.tableName
     
     public enum Columns {
+        static let id = Column(CodingKeys.id)
         static let name = Column(CodingKeys.name)
         static let description = Column(CodingKeys.description)
         static let startDate = Column(CodingKeys.startDate)

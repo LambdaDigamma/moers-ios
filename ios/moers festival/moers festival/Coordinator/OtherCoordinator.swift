@@ -59,7 +59,7 @@ public class OtherCoordinator: Coordinator {
     
     public func showLodging() {
         
-        showPage(url: URL(string: "https://www.moers-festival.de/infos/schlafen/")!)
+        showPage(url: URL(string: "https://www.moers-festival.de/infos/schlafen-zelten-campen/")!)
         
 //        let viewModel = TextViewModel(text: String.localized("LodgingInfoText"))
 //        let viewController = TextViewController(viewModel: viewModel)

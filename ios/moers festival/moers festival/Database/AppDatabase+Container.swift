@@ -9,6 +9,7 @@
 import Foundation
 import GRDB
 import Factory
+import MMEvents
 
 public extension Container {
     
@@ -35,7 +36,11 @@ public extension Container {
                 // Connect to a database on disk
                 // See https://swiftpackageindex.com/groue/grdb.swift/documentation/grdb/databaseconnections
                 let dbURL = folderURL.appendingPathComponent("db.sqlite")
-                let dbPool = try DatabasePool(path: dbURL.path)
+                let configuration = EventSearchDatabaseFunctions.configuration()
+                let dbPool = try DatabasePool(
+                    path: dbURL.path,
+                    configuration: configuration
+                )
                 
 #if DEBUG
                 print("Database configured at: \(dbURL.path)")
@@ -78,7 +83,8 @@ public extension AppDatabase {
     static func empty() -> AppDatabase {
         // Connect to an in-memory database
         // See https://swiftpackageindex.com/groue/grdb.swift/documentation/grdb/databaseconnections
-        let dbQueue = try! DatabaseQueue()
+        let configuration = EventSearchDatabaseFunctions.configuration()
+        let dbQueue = try! DatabaseQueue(configuration: configuration)
         return try! AppDatabase(dbQueue)
     }
     

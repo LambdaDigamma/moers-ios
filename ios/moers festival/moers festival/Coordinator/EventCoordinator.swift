@@ -52,6 +52,10 @@ public class EventCoordinator: SharedCoordinator {
         self.adaptiveSplitViewController?.title = self.navigationController.title
         
         self.timetable.title = String.localized("Schedule")
+        self.timetable.searchDetailViewControllerFactory = { [unowned self] eventID in
+            self.currentModalNavigationController = self.timetable.presentedViewController as? UINavigationController
+            return self.makeEventDetailViewController(eventID: eventID)
+        }
         
         self.timetable.onShowEvent = { (eventID: Event.ID) in
             self.showDetail(for: eventID)

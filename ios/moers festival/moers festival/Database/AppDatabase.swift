@@ -8,6 +8,7 @@
 
 import Foundation
 import GRDB
+import MMEvents
 
 /// AppDatabase lets the application access the database.
 ///
@@ -18,6 +19,9 @@ nonisolated public struct AppDatabase {
     /// Creates an `AppDatabase`, and make sure the database schema is ready.
     public init(_ dbWriter: any DatabaseWriter) throws {
         self.dbWriter = dbWriter
+        try dbWriter.write { db in
+            EventSearchDatabaseFunctions.register(in: db)
+        }
         try migrator.migrate(dbWriter)
     }
     

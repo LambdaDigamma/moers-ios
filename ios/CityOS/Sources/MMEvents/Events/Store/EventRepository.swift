@@ -16,7 +16,11 @@ extension Container {
     public var eventRepository: Factory<EventRepository> {
         Factory(self) {
 
-            guard let dbQueue = try? DatabaseQueue(path: ":memory:") else { fatalError() }
+            let configuration = EventSearchDatabaseFunctions.configuration()
+            guard let dbQueue = try? DatabaseQueue(
+                path: ":memory:",
+                configuration: configuration
+            ) else { fatalError() }
             
             return EventRepository(
                 store: EventStore(writer: dbQueue, reader: dbQueue),
@@ -60,6 +64,14 @@ public class EventRepository: @unchecked Sendable {
             .eraseToAnyPublisher()
         
     }
+
+    public func searchEvents(query: String) async throws -> [Event] {
+
+        try await store
+            .searchEvents(query: query)
+            .map { $0.event.toBase(with: $0.place?.toBase()) }
+
+    }
     
     public func eventDetail(id: Event.ID) -> AnyPublisher<Event?, Error> {
         
@@ -83,11 +95,7 @@ public class EventRepository: @unchecked Sendable {
         
         let resource = try await service.index(cacheMode: .revalidate, withPages: withPages)
         
-        Task(priority: .userInitiated) {
-            
-            try await updateStore(events: resource.data)
-            
-        }
+        try await updateStore(events: resource.data)
             
     }
     
@@ -101,9 +109,7 @@ public class EventRepository: @unchecked Sendable {
         
         let resource = try await service.index(cacheMode: .cached, withPages: false)
         
-        Task(priority: .userInitiated) {
-            try await updateStore(events: resource.data)
-        }
+        try await updateStore(events: resource.data)
         
     }
     
@@ -133,21 +139,19 @@ public class EventRepository: @unchecked Sendable {
 //        if events.isEmpty {
 //            return
 //        }
-        
-        try await store.deleteAllAndInsert(events.map { $0.toRecord() })
-        
+
         if let placeStore {
-            
-            for event in events {
-                
-                if let place = event.place?.toRecord() {
-                    try await placeStore.insert(place)
-                }
-                
+
+            let places = events.compactMap { $0.place?.toRecord() }
+
+            if !places.isEmpty {
+                try await placeStore.updateOrCreate(places)
             }
-            
+
         }
-        
+
+        try await store.deleteAllAndInsert(events.map { $0.toRecord() })
+
         if let pageStore {
             
             let pages = events.compactMap { $0.page }
@@ -161,16 +165,16 @@ public class EventRepository: @unchecked Sendable {
     }
     
     private func updateStore(event: Event) async throws {
-        
-        try await store.updateOrCreate([event.toRecord()])
-        
+
         if let placeStore {
             
             if let place = event.place?.toRecord() {
-                try await placeStore.insert(place)
+                try await placeStore.updateOrCreate([place])
             }
             
         }
+
+        try await store.updateOrCreate([event.toRecord()])
         
         if let pageStore, let page = event.page {
             

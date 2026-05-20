@@ -195,6 +195,13 @@
 			);
 			target = DF87B2F1201DFB2700E1B97C /* moers festival UITests */;
 		};
+		DF78E3A42F032EE200E29277 /* Exceptions for "moers festival Tests" folder in "moers festival Tests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = DFB15F0A22AF082D00441FB5 /* moers festival Tests */;
+		};
 		DFDF57922F828DE700CD2E75 /* Exceptions for "Widgets" folder in "WidgetsExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -336,6 +343,9 @@
 		};
 		DF78E39E2F032EE200E29277 /* moers festival Tests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF78E3A42F032EE200E29277 /* Exceptions for "moers festival Tests" folder in "moers festival Tests" target */,
+			);
 			path = "moers festival Tests";
 			sourceTree = "<group>";
 		};
@@ -659,6 +669,9 @@
 			);
 			dependencies = (
 				DFB15F1122AF082E00441FB5 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				DF78E39E2F032EE200E29277 /* moers festival Tests */,
 			);
 			name = "moers festival Tests";
 			productName = "moers festival Tests";
@@ -1464,7 +1477,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "moers festival Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1535,7 +1548,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "moers festival Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

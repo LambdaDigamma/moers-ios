@@ -15,6 +15,13 @@
   },
   "testTargets" : [
     {
+      "target" : {
+        "containerPath" : "container:moers festival.xcodeproj",
+        "identifier" : "DFB15F0A22AF082D00441FB5",
+        "name" : "moers festival Tests"
+      }
+    },
+    {
       "skippedTests" : [
         "AutomaticSnapshots",
         "AutomaticSnapshots\/testTakeScreenshots()"

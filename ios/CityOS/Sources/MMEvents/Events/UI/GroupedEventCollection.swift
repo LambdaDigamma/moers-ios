@@ -9,40 +9,6 @@
 import SwiftUI
 import Core
 
-@MainActor
-fileprivate func groupEvents(
-    _ events: [EventListItemViewModel]
-) -> [(String, [EventListItemViewModel])] {
-    
-    let uniqueDates = DateUtils.sortedUniqueDates(events.compactMap { $0.startDate })
-    
-    var sections = uniqueDates.map { (date: Date) in
-        
-        let range = DateUtils.calculateDateRange(for: date, offset: EventUtilities.defaultDayOffset)
-        
-        let filteredEvents = events
-            .filter { event in
-                if let startDate = event.startDate {
-                    return (range.startDate...range.endDate).contains(startDate)
-                } else {
-                    return false
-                }
-            }
-        
-        return (date.formatted(date: .complete, time: .omitted), filteredEvents)
-        
-    }
-    
-    let eventsWithoutDate = events.filter { $0.startDate == nil }
-    
-    if !eventsWithoutDate.isEmpty {
-        sections.append((EventPackageStrings.notYetScheduled, eventsWithoutDate))
-    }
-    
-    return sections
-    
-}
-
 public struct GroupedEventCollection: View {
     
     public let viewModels: [EventListItemViewModel]
@@ -59,19 +25,19 @@ public struct GroupedEventCollection: View {
         self.onSelectEvent = onSelectEvent
     }
     
-    private var groupedViewModels: [(String, [EventListItemViewModel])] {
-        return groupEvents(viewModels)
+    private var groupedViewModels: [EventListSection] {
+        return EventListSectionBuilder().sections(for: viewModels)
     }
     
     public var body: some View {
         
         LazyVStack(alignment: .leading, spacing: 16) {
             
-            ForEach(groupedViewModels, id: \.0.self) { (key, data) in
+            ForEach(groupedViewModels) { section in
                 
                 VStack(alignment: .leading, spacing: 8) {
                     
-                    Text(key)
+                    Text(section.title)
                         .fontWeight(.semibold)
 //                        .padding(.bottom, 4)
                     
@@ -81,7 +47,7 @@ public struct GroupedEventCollection: View {
                     
                     VStack(alignment: .leading, spacing: 12) {
                     
-                        ForEach(data) { event in
+                        ForEach(section.events) { event in
                             
                             Button(action: {
                                 guard let eventID = event.eventID else { return }

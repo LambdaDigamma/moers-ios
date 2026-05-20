@@ -19,7 +19,7 @@ public class SharedCoordinator: Coordinator {
     
     public var tabBarItem: UITabBarItem? { rootViewController.tabBarItem }
     
-    public var currentModalNavigationController: UINavigationController?
+    public weak var currentModalNavigationController: UINavigationController?
     
     public init(navigationController: CoordinatedNavigationController = .init()) {
         self.navigationController = navigationController
@@ -85,9 +85,10 @@ public class SharedCoordinator: Coordinator {
         viewController.modalPresentationStyle = .formSheet
         viewController.showCloseButton = showCloseButton
         
-        self.currentModalNavigationController = UINavigationController(rootViewController: viewController)
-        self.currentModalNavigationController?.modalPresentationStyle = .formSheet
-        self.navigationController.present(currentModalNavigationController!, animated: true)
+        let modalNavigationController = UINavigationController(rootViewController: viewController)
+        modalNavigationController.modalPresentationStyle = .formSheet
+        self.currentModalNavigationController = modalNavigationController
+        self.navigationController.present(modalNavigationController, animated: true)
         
     }
     

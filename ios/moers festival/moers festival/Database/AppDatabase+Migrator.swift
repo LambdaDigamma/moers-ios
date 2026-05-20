@@ -75,6 +75,22 @@ public extension AppDatabase {
             }
             
         }
+
+        migrator.registerMigration("events_search_like_indexes") { db in
+
+            try db.execute(sql: "CREATE INDEX IF NOT EXISTS events_name_nocase_idx ON events(name COLLATE NOCASE)")
+            try db.execute(sql: "CREATE INDEX IF NOT EXISTS events_artists_nocase_idx ON events(artists COLLATE NOCASE)")
+            try db.execute(sql: "CREATE INDEX IF NOT EXISTS events_place_id_idx ON events(place_id)")
+            try db.execute(sql: "CREATE INDEX IF NOT EXISTS events_start_date_idx ON events(start_date)")
+            try db.execute(sql: "CREATE INDEX IF NOT EXISTS places_name_nocase_idx ON places(name COLLATE NOCASE)")
+
+        }
+
+        migrator.registerMigration("events_normalized_search_view") { db in
+
+            try EventSearchViewDefinition.createIfNeeded(in: db)
+
+        }
         
         return migrator
     }
