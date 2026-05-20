@@ -113,7 +113,7 @@ class OtherViewController: UIViewController {
         
         if AdminManager.shared.isAdmin {
             
-            sections[2].rows.removeLast()
+            sections[1].rows.removeLast()
             sections.append(
                 Section(
                     title: String.localized("Staff"),
