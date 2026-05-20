@@ -13,6 +13,13 @@ import {
   INSTAGRAM_STORY_WIDTH,
 } from "./components/FestivalInstagramStoryDownload";
 import {
+  FestivalInstagramCarousel,
+  FestivalInstagramCarouselSchema,
+  INSTAGRAM_CAROUSEL_HEIGHT,
+  INSTAGRAM_CAROUSEL_SLIDE_NAMES,
+  INSTAGRAM_CAROUSEL_WIDTH,
+} from "./components/FestivalInstagramCarousel";
+import {
   iPadPro13M4,
   iPhone17Pro,
   iPhone17ProMax,
@@ -25,14 +32,18 @@ setRemotionImageLoader();
 
 type AnyProps = Record<string, unknown>;
 
-interface ScreenshotCollection {
+type ScreenshotCollection = {
   name: string;
   canvas: React.ComponentType<AnyProps>;
   screenshotSize: ScreenshotSize;
   numberOfScreens: number;
   schema: ZodType<AnyProps>;
   defaultProps: AnyProps;
-}
+};
+
+type InstagramCarouselCollection = ScreenshotCollection & {
+  slideNames: string[];
+};
 
 /** Wraps a canvas with a dead-zone overlay and returns a stable component for use with Remotion Still. */
 function toStillComponent(
@@ -102,8 +113,34 @@ export const screenshotCollections: ScreenshotCollection[] = [
   },
 ];
 
+export const instagramCarouselCollections: InstagramCarouselCollection[] = [
+  {
+    name: "moers-festival-instagram-carousel",
+    canvas: FestivalInstagramCarousel as React.ComponentType<AnyProps>,
+    numberOfScreens: INSTAGRAM_CAROUSEL_SLIDE_NAMES.length,
+    screenshotSize: {
+      width: INSTAGRAM_CAROUSEL_WIDTH,
+      height: INSTAGRAM_CAROUSEL_HEIGHT,
+      orientation: "portrait",
+    },
+    schema: FestivalInstagramCarouselSchema as ZodType<AnyProps>,
+    defaultProps: { locale: "de-DE" },
+    slideNames: [...INSTAGRAM_CAROUSEL_SLIDE_NAMES],
+  },
+];
+
 // Pre-build stable Still components outside of render so they are not recreated on every render.
 const collectionEntries = screenshotCollections.map((c) => ({
+  ...c,
+  StillComponent: toStillComponent(
+    c.canvas,
+    c.screenshotSize,
+    c.numberOfScreens,
+    INTER_SCREENSHOT_SPACING,
+  ),
+}));
+
+const instagramCarouselEntries = instagramCarouselCollections.map((c) => ({
   ...c,
   StillComponent: toStillComponent(
     c.canvas,
@@ -117,6 +154,20 @@ export const RemotionRoot: React.FC = () => {
   return (
     <>
       {collectionEntries.map((collection) => (
+        <Still
+          key={collection.name}
+          id={collection.name}
+          component={collection.StillComponent}
+          schema={collection.schema}
+          defaultProps={collection.defaultProps}
+          width={
+            collection.screenshotSize.width * collection.numberOfScreens +
+            INTER_SCREENSHOT_SPACING * (collection.numberOfScreens - 1)
+          }
+          height={collection.screenshotSize.height}
+        />
+      ))}
+      {instagramCarouselEntries.map((collection) => (
         <Still
           key={collection.name}
           id={collection.name}

@@ -23,6 +23,9 @@ This subtree contains the Remotion/React project used for App Store marketing an
 - Export German stills: `npm run export:de`
 - Export English stills: `npm run export:en`
 - Export all stills: `npm run export:all`
+- Export German Instagram carousel slides: `npm run export:instagram:de`
+- Export English Instagram carousel slides: `npm run export:instagram:en`
+- Export all Instagram carousel slides: `npm run export:instagram:all`
 - Start image server: `npm run server`
 
 Some scripts call `bun` internally. Use the package scripts instead of rewriting the script commands unless the task is specifically about script maintenance.
