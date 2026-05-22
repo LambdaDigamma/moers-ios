@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum TimeDisplayMode {
+public enum TimeDisplayMode: Equatable, Sendable {
     case none
     case date
     case range
@@ -39,32 +39,32 @@ public enum EventUtilities {
     /// Events between 0:00 and this hour belong to the previous day.
     public static let defaultDayOffset: TimeInterval = 60 * 60 * 6
     
-    public static func isActive(startDate: Date?, endDate: Date?) -> Bool {
-        
-        // TODO: Check this
-        
-        if let startDate = startDate, let endDate = endDate, startDate <= endDate {
-            return (startDate...endDate).contains(Date())
-        } else if let startDate = startDate {
-            let autocalculatedEndDate = startDate.addingTimeInterval(Self.defaultTimeInterval)
-            return (startDate...autocalculatedEndDate).contains(Date())
+    public static func isActive(
+        startDate: Date?,
+        endDate: Date?,
+        now: Date = Date()
+    ) -> Bool {
+
+        guard let startDate,
+              let effectiveEndDate = Self.effectiveEndDate(
+                  startDate: startDate,
+                  endDate: endDate
+              ) else {
+            return false
         }
-        
-        return false
-        
+
+        return startDate <= now && now < effectiveEndDate
+
     }
     
     public static func dateRange(startDate: Date?, endDate: Date?) -> ClosedRange<Date>? {
         
-        if let startDate = startDate {
-            
-            let endDate = endDate ?? startDate.addingTimeInterval(Self.defaultTimeInterval)
-            
-            if endDate <= startDate {
-                return startDate...startDate.addingTimeInterval(Self.defaultTimeInterval)
-            }
-            
-            return startDate...endDate
+        if let startDate,
+           let effectiveEndDate = Self.effectiveEndDate(
+               startDate: startDate,
+               endDate: endDate
+           ) {
+            return startDate...effectiveEndDate
         }
         
         return nil
@@ -74,7 +74,8 @@ public enum EventUtilities {
     public static func timeDisplayMode(
         startDate: Date?,
         endDate: Date?,
-        scheduleDisplayMode: EventScheduleDisplayMode
+        scheduleDisplayMode: EventScheduleDisplayMode,
+        now: Date = Date()
     ) -> TimeDisplayMode {
 
         if !scheduleDisplayMode.showsDateComponent {
@@ -89,18 +90,99 @@ public enum EventUtilities {
             return .none
         }
         
-        let timeInterval = startDate.timeIntervalSince(Date())
+        let timeInterval = startDate.timeIntervalSince(now)
         
         if timeInterval > 60 * 60 {
             return .range
-        } else if timeInterval < 60 * 60 && timeInterval > 0 {
+        } else if timeInterval <= 60 * 60 && timeInterval > 0 {
             return .relative
-        } else if Self.isActive(startDate: startDate, endDate: endDate) {
+        } else if Self.isActive(startDate: startDate, endDate: endDate, now: now) {
             return .live
         } else {
             return .range
         }
         
+    }
+
+    static func effectiveEndDate(startDate: Date?, endDate: Date?) -> Date? {
+        guard let startDate else {
+            return nil
+        }
+
+        if let endDate, endDate > startDate {
+            return endDate
+        }
+
+        return startDate.addingTimeInterval(Self.defaultTimeInterval)
+    }
+
+    static func nextTimeDisplayUpdateDate(
+        startDate: Date?,
+        endDate: Date?,
+        scheduleDisplayMode: EventScheduleDisplayMode,
+        after date: Date
+    ) -> Date? {
+        guard scheduleDisplayMode.showsDateComponent,
+              scheduleDisplayMode.showsTimeComponent,
+              let startDate else {
+            return nil
+        }
+
+        let relativeStartDate = startDate.addingTimeInterval(-60 * 60)
+
+        if date < relativeStartDate {
+            return relativeStartDate
+        }
+
+        if date < startDate {
+            return min(Self.nextMinute(after: date), startDate)
+        }
+
+        guard let effectiveEndDate = Self.effectiveEndDate(
+            startDate: startDate,
+            endDate: endDate
+        ) else {
+            return nil
+        }
+
+        if date < effectiveEndDate {
+            return effectiveEndDate
+        }
+
+        return nil
+    }
+
+    static func nextMinute(after date: Date) -> Date {
+        Date(
+            timeIntervalSince1970: floor(date.timeIntervalSince1970 / 60) * 60 + 60
+        )
+    }
+
+    static func relativeTimeText(startDate: Date, now: Date) -> String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .short
+        formatter.dateTimeStyle = .numeric
+
+        if let remainingMinutes = Self.remainingCountdownMinutes(
+            startDate: startDate,
+            now: now
+        ) {
+            let roundedStartDate = now.addingTimeInterval(TimeInterval(remainingMinutes * 60))
+
+            return formatter.localizedString(for: roundedStartDate, relativeTo: now)
+        }
+
+        return formatter.localizedString(for: startDate, relativeTo: now)
+    }
+
+    static func remainingCountdownMinutes(startDate: Date, now: Date) -> Int? {
+        let timeInterval = startDate.timeIntervalSince(now)
+
+        guard timeInterval > 0 else {
+            return nil
+        }
+
+        return max(1, Int(ceil(timeInterval / 60)))
     }
     
 }

@@ -16,7 +16,6 @@ public struct EventDetailInformationRow: View {
     private let startDate: Date?
     private let endDate: Date?
     private let scheduleDisplayMode: EventScheduleDisplayMode
-    private let timeDisplayMode: TimeDisplayMode
     private let location: String?
     private let artists: [String]
     private let isOpenEnd: Bool
@@ -26,7 +25,6 @@ public struct EventDetailInformationRow: View {
         startDate: Date?,
         endDate: Date?,
         scheduleDisplayMode: EventScheduleDisplayMode,
-        timeDisplayMode: TimeDisplayMode,
         location: String? = nil,
         artists: [String] = [],
         isOpenEnd: Bool = false
@@ -35,7 +33,6 @@ public struct EventDetailInformationRow: View {
         self.startDate = startDate
         self.endDate = endDate
         self.scheduleDisplayMode = scheduleDisplayMode
-        self.timeDisplayMode = timeDisplayMode
         self.location = location
         self.artists = artists
         self.isOpenEnd = isOpenEnd
@@ -44,21 +41,7 @@ public struct EventDetailInformationRow: View {
     private var sanitizedArtists: [String] {
         artists.filter { !$0.isEmptyOrWhitespace }
     }
-    
-    private var duration: String {
-        
-        if isOpenEnd {
-            return ""
-        }
-        
-        if let dateRange = EventUtilities.dateRange(startDate: startDate, endDate: endDate),
-           let duration = Self.durationFormatter.string(from: dateRange.lowerBound, to: dateRange.upperBound) {
-            return "(Dauer: \(duration))"
-        }
-        
-        return ""
-    }
-    
+
     public var body: some View {
         
         VStack(alignment: .leading, spacing: 8) {
@@ -80,31 +63,17 @@ public struct EventDetailInformationRow: View {
             
             if scheduleDisplayMode.showsDateComponent {
                 Label {
-                    
                     HStack {
-                        
-                        if timeDisplayMode == .date, let startDate {
-                            if let endDate, !Calendar.current.isDate(startDate, inSameDayAs: endDate) {
-                                Text(startDate, style: .date) +
-                                Text(" - ") +
-                                Text(endDate, style: .date)
-                            } else {
-                                Text(startDate, style: .date)
-                            }
-                        } else if timeDisplayMode == .none {
-                            Text(EventPackageStrings.notYetScheduled)
-                        } else if let startDate, isOpenEnd {
-                            Text(startDate, style: .time)
-                        } else if let dateRange = EventUtilities.dateRange(startDate: startDate, endDate: endDate) {
-                            Text(dateRange)
-                        } else {
-                            Text(EventPackageStrings.notYetScheduled)
-                        }
-                        
+                        EventSubtitleView(
+                            startDate: startDate,
+                            endDate: endDate,
+                            scheduleDisplayMode: scheduleDisplayMode,
+                            location: nil,
+                            isOpenEnd: isOpenEnd
+                        )
+
                         Spacer()
-                        
                     }
-                    
                 } icon: {
                     Image(systemName: "calendar.circle")
                         .frame(minWidth: 20)
@@ -129,44 +98,7 @@ public struct EventDetailInformationRow: View {
             }
             .accessibilityIdentifier("EventDetail.Artists")
             .frame(maxWidth: .infinity, alignment: .leading)
-            
-            
-            
-//            switch timeDisplayMode {
-//
-//                case .live:
-//
-//                    LiveBadge()
-//
-//                case .relative:
-//
-//                    VStack(alignment: .leading) {
-//
-//                        if let startDate = startDate {
-//
-//                            if #available(iOS 15.0, *) {
-//
-//                                Text(startDate, format: .relative(presentation: .numeric)) +
-//                                Text(" ") +
-//                                Text(duration)
-//
-//                            }
-//
-//                        }
-//
-//                    }
-//                    .frame(maxWidth: .infinity, alignment: .leading)
-//
-//                case .range:
-//                    if let dateRange = EventUtilities.dateRange(startDate: startDate, endDate: endDate) {
-//                        Text(dateRange)
-//                    }
-//
-//                case .none:
-//                    Text("Keine Zeit")
-//
-//            }
-            
+
         }
         .foregroundColor(.secondary)
         .font(.subheadline)
@@ -175,15 +107,7 @@ public struct EventDetailInformationRow: View {
         .padding()
         
     }
-    
-    internal static let durationFormatter: DateComponentsFormatter = {
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.minute, .hour]
-        formatter.formattingContext = .standalone
-        formatter.unitsStyle = .full
-        return formatter
-    }()
-    
+
 }
 
 struct EventDetailInformationRow_Previews: PreviewProvider {
@@ -192,10 +116,9 @@ struct EventDetailInformationRow_Previews: PreviewProvider {
         
         EventDetailInformationRow(
             title: "SEABROOK TRIO (US)",
-            startDate: Date(timeIntervalSinceNow: 60 * 5),
+            startDate: Date(timeIntervalSinceNow: -60 * 5),
             endDate: Date(timeIntervalSinceNow: 60 * 45),
             scheduleDisplayMode: .dateTime,
-            timeDisplayMode: .relative,
             location: nil,
             artists: ["Anna Webber (sax)","Max Johnson (bass)","Michael Sarin (drums)"]
         )
@@ -207,7 +130,6 @@ struct EventDetailInformationRow_Previews: PreviewProvider {
             startDate: Date(timeIntervalSinceNow: 60 * 5),
             endDate: Date(timeIntervalSinceNow: 60 * 45),
             scheduleDisplayMode: .dateTime,
-            timeDisplayMode: .live,
             location: nil,
             artists: ["Anna Webber (sax)","Max Johnson (bass)","Michael Sarin (drums)"]
         )

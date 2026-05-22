@@ -58,9 +58,14 @@ public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable, 
     }
     
     public var isActive: Bool {
+        isActive(at: Date())
+    }
+
+    public func isActive(at now: Date) -> Bool {
         return EventUtilities.isActive(
             startDate: startDate,
-            endDate: endDate
+            endDate: endDate,
+            now: now
         )
     }
 
@@ -85,10 +90,15 @@ public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable, 
     }
     
     public var timeDisplayMode: TimeDisplayMode {
+        timeDisplayMode(at: Date())
+    }
+
+    public func timeDisplayMode(at now: Date) -> TimeDisplayMode {
         return EventUtilities.timeDisplayMode(
             startDate: startDate,
             endDate: endDate,
-            scheduleDisplayMode: scheduleDisplayMode
+            scheduleDisplayMode: scheduleDisplayMode,
+            now: now
         )
     }
     
@@ -184,7 +194,7 @@ public struct EventListItem: View {
                     
                 }
                 
-                subtitle()
+                EventSubtitleView(viewModel: viewModel)
                 
             }
             .padding(.leading, 16)
@@ -205,103 +215,6 @@ public struct EventListItem: View {
             
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        
-    }
-    
-    @ViewBuilder
-    private func subtitle() -> some View {
-        
-        HStack(alignment: .center, spacing: 0) {
-            
-            switch viewModel.timeDisplayMode {
-                    
-                case .live:
-                    
-                    (viewModel.location != nil ? Text("\(viewModel.location ?? "")") : Text(""))
-//                        .padding(.leading, 8)
-                        .lineLimit(1)
-                    
-                    Spacer()
-                    
-                    LiveBadge()
-                    
-                case .relative:
-                    if let startDate = viewModel.startDate {
-                        
-                        Group {
-                            
-                            Text(startDate, format: .relative(presentation: .numeric)) +
-                            (viewModel.location != nil ?
-                             Text(" · \(viewModel.location ?? "")") :
-                                Text(""))
-                            
-                        }.lineLimit(1)
-                        
-                    }
-                    
-                case .range:
-                    
-                    if let dateRange = viewModel.dateRange {
-                        
-                        Group {
-                            
-                            Text(dateRange) +
-                            (viewModel.location != nil ? Text(" · \(viewModel.location ?? "")") : Text(""))
-                            
-                        }
-                        .lineLimit(1)
-                        
-                    } else if let startDate = viewModel.startDate, viewModel.showsTimeComponent {
-                        
-                        Group {
-                            
-                            Text(startDate, style: .time) +
-                            
-                            (viewModel.location != nil ? Text(" · \(viewModel.location ?? "")") : Text(""))
-                            
-                        }
-                        .lineLimit(1)
-                        
-                    } else if let location = viewModel.location, !viewModel.showsDateComponent {
-                        Text(location)
-                            .lineLimit(1)
-                    } else {
-                        Text("No time yet", bundle: .module)
-                            .lineLimit(1)
-                    }
-
-                case .date:
-                    if let startDate = viewModel.startDate {
-                        
-                        Group {
-                            
-                            Text(startDate, style: .date) +
-                            (viewModel.location != nil ? Text(" · \(viewModel.location ?? "")") : Text(""))
-                            
-                        }
-                        .lineLimit(1)
-                        
-                    } else if let location = viewModel.location {
-                        Text(location)
-                            .lineLimit(1)
-                    } else {
-                        Text("No time yet", bundle: .module)
-                            .lineLimit(1)
-                    }
-                    
-                case .none:
-                    if let location = viewModel.location {
-                        Text(location)
-                            .lineLimit(1)
-                    } else {
-                        Text("No time yet", bundle: .module)
-                    }
-                    
-            }
-            
-        }
-        .foregroundColor(.secondary)
-        .font(.callout)
         
     }
     

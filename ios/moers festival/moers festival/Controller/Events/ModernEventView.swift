@@ -87,30 +87,25 @@ public struct ModernEventView: View {
             
             VStack(alignment: .leading) {
                 
-                if let screenData = viewModel.screenData {
-                    
-                    Button(action: {
-                        showDetails()
-                    }) {
+                Button(action: {
+                    showDetails()
+                }) {
 
-                        EventDetailInformationRow(
-                            title: event.name,
-                            startDate: screenData.startDate,
-                            endDate: screenData.endDate,
-                            scheduleDisplayMode: screenData.scheduleDisplayMode,
-                            timeDisplayMode: screenData.timeMode,
-                            location: viewModel.location?.name,
-                            artists: event.artists?.compactMap { $0 } ?? [],
-                            isOpenEnd: event.isOpenEnd
-                        )
+                    EventDetailInformationRow(
+                        title: event.name,
+                        startDate: event.startDate,
+                        endDate: event.endDate,
+                        scheduleDisplayMode: event.scheduleDisplayMode,
+                        location: viewModel.location?.name,
+                        artists: event.artists?.compactMap { $0 } ?? [],
+                        isOpenEnd: event.isOpenEnd
+                    )
 
-                    }
-                    .accessibilityIdentifier("EventDetail.MetadataRow")
-                    
-                    Divider()
-                    
                 }
-                
+                .accessibilityIdentifier("EventDetail.MetadataRow")
+
+                Divider()
+
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             

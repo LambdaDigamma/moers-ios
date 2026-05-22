@@ -57,7 +57,7 @@ public struct EventCard: View {
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.leading)
                 
-                subtitle()
+                EventSubtitleView(viewModel: viewModel)
                     .multilineTextAlignment(.leading)
                 
 //                Text(viewModel.title)
@@ -74,79 +74,6 @@ public struct EventCard: View {
             
             
         }
-        
-    }
-    
-    @ViewBuilder
-    private func subtitle() -> some View {
-        
-        HStack(alignment: .center, spacing: 0) {
-            
-            switch viewModel.timeDisplayMode {
-                    
-                case .live:
-                    
-                    (viewModel.location != nil ? Text("\(viewModel.location ?? "")") : Text(""))
-                    //                        .padding(.leading, 8)
-                        .lineLimit(1)
-                    
-                    Spacer()
-                    
-                    LiveBadge()
-                    
-                case .relative:
-                    if let startDate = viewModel.startDate {
-                        
-                        Group {
-                            
-                            Text(startDate, format: .relative(presentation: .numeric)) +
-                            (viewModel.location != nil ?
-                             Text(" · \(viewModel.location ?? "")") :
-                                Text(""))
-                            
-                        }.lineLimit(1)
-                        
-                    }
-                    
-                case .range:
-                    
-                    if let dateRange = viewModel.dateRange {
-                        
-                        Group {
-                            
-                            Text(dateRange) +
-                            (viewModel.location != nil ? Text(" · \(viewModel.location ?? "")") : Text(""))
-                            
-                        }
-                        .lineLimit(1)
-                        
-                    }
-
-                case .date:
-                    if let startDate = viewModel.startDate {
-                        Group {
-                            Text(startDate, style: .date) +
-                            (viewModel.location != nil ? Text(" · \(viewModel.location ?? "")") : Text(""))
-                        }
-                        .lineLimit(1)
-                    } else if let location = viewModel.location {
-                        Text(location)
-                            .lineLimit(1)
-                    }
-                    
-                case .none:
-                    if let location = viewModel.location {
-                        Text(location)
-                            .lineLimit(1)
-                    } else {
-                        Text("Keine Zeit")
-                    }
-                    
-            }
-            
-        }
-        .foregroundColor(.secondary)
-        .font(.callout)
         
     }
     

@@ -16,15 +16,6 @@ import Foundation
 import CoreLocation
 import Factory
 
-public struct EventDetailScreenData {
-    
-    public var startDate: Date?
-    public var endDate: Date?
-    public var scheduleDisplayMode: EventScheduleDisplayMode
-    public var timeMode: TimeDisplayMode
-    
-}
-
 public class EventDetailViewModel: StandardViewModel {
     
     @LazyInjected(\.legacyEventService) var legacyEventService
@@ -38,8 +29,6 @@ public class EventDetailViewModel: StandardViewModel {
     @Published var event: Event?
     @Published var header: Media?
     @Published var location: Place?
-    
-    @Published var screenData: EventDetailScreenData?
     
     let repository: EventRepository
     
@@ -69,19 +58,6 @@ public class EventDetailViewModel: StandardViewModel {
                     self.eventID = response.event?.id
                     self.header = response.event?.headerMedia
                     self.location = response.place
-
-                    if let event = response.event {
-                        self.screenData = .init(
-                            startDate: event.startDate,
-                            endDate: event.endDate,
-                            scheduleDisplayMode: event.scheduleDisplayMode,
-                            timeMode: EventUtilities.timeDisplayMode(
-                                startDate: event.startDate,
-                                endDate: event.endDate,
-                                scheduleDisplayMode: event.scheduleDisplayMode
-                            )
-                        )
-                    }
                 }
             } catch {
                 self.logger.error("\(error.localizedDescription)")
@@ -112,19 +88,6 @@ public class EventDetailViewModel: StandardViewModel {
                 self.event = event
                 self.header = event?.headerMedia
                 self.location = event?.place
-
-                if let event {
-                    self.screenData = .init(
-                        startDate: event.startDate,
-                        endDate: event.endDate,
-                        scheduleDisplayMode: event.scheduleDisplayMode,
-                        timeMode: EventUtilities.timeDisplayMode(
-                            startDate: event.startDate,
-                            endDate: event.endDate,
-                            scheduleDisplayMode: event.scheduleDisplayMode
-                        )
-                    )
-                }
 
             }
             .store(in: &cancellables)
