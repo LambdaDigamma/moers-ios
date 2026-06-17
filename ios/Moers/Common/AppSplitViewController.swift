@@ -57,7 +57,7 @@ public class AppSplitViewController: SplitViewController {
         )
         
         let secondaryRootViewControllers = coordinators.map({ coordinator in
-            coordinator.navigationController
+            coordinator.rootViewController
         })
         
         super.init(

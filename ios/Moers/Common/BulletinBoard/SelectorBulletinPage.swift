@@ -66,12 +66,8 @@ class SelectorBulletinPage<
         
         let button = UIButton(type: .system)
         
-        button.setTitle(title, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         button.contentHorizontalAlignment = .center
         button.accessibilityLabel = title
-        button.layer.cornerRadius = 12
-        button.layer.borderWidth = 2
         button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         button.addTarget(self, action: #selector(selectedOption(_:)), for: .touchUpInside)
         button.addTarget(self, action: #selector(generateFeedback), for: .touchUpInside)
@@ -84,6 +80,74 @@ class SelectorBulletinPage<
         
     }
     
+    private func applyOptionAppearance(to button: UIButton, isSelected: Bool) {
+
+        if isSelected {
+            button.accessibilityTraits.insert(.selected)
+        } else {
+            button.accessibilityTraits.remove(.selected)
+        }
+
+        button.isSelected = false
+
+        if #available(iOS 26, *) {
+            applyClearGlassOptionAppearance(to: button, isSelected: isSelected)
+        } else {
+            applyBorderedOptionAppearance(to: button, isSelected: isSelected)
+        }
+
+    }
+
+    @available(iOS 26, *)
+    private func applyClearGlassOptionAppearance(to button: UIButton, isSelected: Bool) {
+
+        var configuration = UIButton.Configuration.clearGlass()
+        configuration.title = button.accessibilityLabel
+        configuration.buttonSize = .large
+        configuration.cornerStyle = .capsule
+        configuration.titleAlignment = .center
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
+        configuration.baseForegroundColor = isSelected ? appearance.actionButtonColor : .label
+        configuration.automaticallyUpdateForSelection = false
+
+        var background = configuration.background
+        background.strokeColor = isSelected ? appearance.actionButtonColor : .tertiaryLabel
+        background.strokeWidth = isSelected ? 2 : 1
+        configuration.background = background
+
+        let font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        configuration.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { container in
+            var updated = container
+            updated.font = font
+            return updated
+        }
+
+        UIView.transition(with: button, duration: 0.18, options: [.transitionCrossDissolve, .allowUserInteraction]) {
+            button.backgroundColor = .clear
+            button.layer.borderWidth = 0
+            button.configuration = configuration
+        }
+
+    }
+
+    private func applyBorderedOptionAppearance(to button: UIButton, isSelected: Bool) {
+
+        let color = isSelected ? appearance.actionButtonColor : UIColor.tertiaryLabel
+        let titleColor = isSelected ? appearance.actionButtonColor : UIColor.secondaryLabel
+
+        button.configuration = nil
+        button.setTitle(button.accessibilityLabel, for: .normal)
+        button.setTitleColor(titleColor, for: .normal)
+        button.setTitleColor(titleColor, for: .selected)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        button.backgroundColor = .clear
+        button.layer.cornerRadius = 27.5
+        button.layer.cornerCurve = .continuous
+        button.layer.borderColor = color.cgColor
+        button.layer.borderWidth = isSelected ? 2 : 1
+
+    }
+
     @objc private func selectedOption(_ button: UIButton) {
         
         let index = self.buttons.firstIndex(of: button) ?? 0
@@ -107,16 +171,14 @@ class SelectorBulletinPage<
     
     private func setButtonSelection(_ button: UIButton) {
         
-        button.layer.borderColor = UIColor.systemYellow.cgColor
-        button.setTitleColor(UIColor.systemYellow, for: .normal)
+        applyOptionAppearance(to: button, isSelected: true)
         
     }
     
     private func resetButtonSelections() {
         
         buttons.forEach { (button: UIButton) in
-            button.layer.borderColor = UIColor.secondaryLabel.cgColor
-            button.setTitleColor(UIColor.secondaryLabel, for: .normal)
+            applyOptionAppearance(to: button, isSelected: false)
         }
         
     }

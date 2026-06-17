@@ -17,6 +17,11 @@ class EventCoordinator: Coordinator {
     @LazyInjected(\.eventService) var eventService
     
     var navigationController: CoordinatedNavigationController
+
+    var rootViewController: UIViewController { navigationController }
+
+    var tabBarItem: UITabBarItem? { rootViewController.tabBarItem }
+
     var eventViewController: UIViewController?
     
     init(

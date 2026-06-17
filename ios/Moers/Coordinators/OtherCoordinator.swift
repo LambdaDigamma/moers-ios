@@ -20,6 +20,11 @@ public class OtherCoordinator: Coordinator {
     @LazyInjected(\.entryManager) var entryManager
     
     public var navigationController: CoordinatedNavigationController
+
+    public var rootViewController: UIViewController { navigationController }
+
+    public var tabBarItem: UITabBarItem? { rootViewController.tabBarItem }
+
     public var otherViewController: OtherViewController?
     public let transitService: DefaultTransitService
     

@@ -20,6 +20,10 @@ import CoreLocation
 public class DashboardCoordinator: Coordinator {
     
     public var navigationController: CoordinatedNavigationController
+
+    public var rootViewController: UIViewController { navigationController }
+
+    public var tabBarItem: UITabBarItem? { rootViewController.tabBarItem }
     
     let observer = DefaultLocationTransitStationObserver()
     

@@ -362,7 +362,14 @@ extension OnboardingManager {
         appearance.titleTextColor = UIColor.label
         appearance.descriptionTextColor = UIColor.label
         appearance.actionButtonColor = UIColor.systemYellow
-        appearance.actionButtonTitleColor = UIColor.systemBackground
+        appearance.actionButtonTitleColor = UIColor.init(dynamicProvider: { collection in
+            switch collection.userInterfaceStyle {
+                case .dark:
+                    return UIColor.black
+                default:
+                    return UIColor.black
+            }
+        })
         appearance.alternativeButtonTitleColor = UIColor.label
         
         return appearance

@@ -17,6 +17,10 @@ import SafariServices
 public class NewsCoordinator: NSObject, Coordinator, SFSafariViewControllerDelegate {
     
     public var navigationController: CoordinatedNavigationController
+
+    public var rootViewController: UIViewController { navigationController }
+
+    public var tabBarItem: UITabBarItem? { rootViewController.tabBarItem }
     
     public init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController()

@@ -1806,8 +1806,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/LambdaDigamma/BulletinBoard";
 			requirement = {
-				branch = develop;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
 			};
 		};
 		DFE59D3928D871B800BD0236 /* XCRemoteSwiftPackageReference "swift-license-ui" */ = {
