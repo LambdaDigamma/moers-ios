@@ -13,6 +13,10 @@ public final class StaticLocationService: LocationService {
 
     // MARK: - Streams
 
+    public var authorizationStatus: CLAuthorizationStatus {
+        currentAuthorizationStatus
+    }
+
     public let authorizationStatuses: AsyncStream<CLAuthorizationStatus>
     public let locations: AsyncThrowingStream<CLLocation, Error>
 

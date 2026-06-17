@@ -150,18 +150,12 @@ public class OnboardingManager {
             
             AnalyticsManager.shared.logEnabledLocation()
             
-            Task { @MainActor in
-                for await authorizationStatus in self.locationService.authorizationStatuses {
-                    if authorizationStatus == .notDetermined {
-                        self.locationService.requestWhenInUseAuthorization()
-                        item.manager?.displayNextItem()
-                    } else {
-                        item.manager?.displayNextItem()
-                    }
-                    break
-                }
+            if self.locationService.authorizationStatus == .notDetermined {
+                self.locationService.requestWhenInUseAuthorization()
             }
-            
+
+            item.manager?.displayNextItem()
+
         }
         
 //        page.alternativeHandler = { item in

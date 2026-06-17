@@ -40,6 +40,10 @@ public final class DefaultLocationService: NSObject, LocationService {
 
     // MARK: - Async Streams
 
+    public var authorizationStatus: CLAuthorizationStatus {
+        locationManager.authorizationStatus
+    }
+
     public let locations: AsyncThrowingStream<CLLocation, Error>
     public let authorizationStatuses: AsyncStream<CLAuthorizationStatus>
 

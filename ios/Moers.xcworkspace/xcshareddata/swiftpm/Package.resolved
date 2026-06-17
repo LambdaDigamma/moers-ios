@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LambdaDigamma/BulletinBoard",
       "state" : {
-        "revision" : "db25ac138ac9d7f4723b1f4bfc0b63fc26abc25d",
-        "version" : "6.0.1"
+        "branch" : "develop",
+        "revision" : "db25ac138ac9d7f4723b1f4bfc0b63fc26abc25d"
       }
     },
     {

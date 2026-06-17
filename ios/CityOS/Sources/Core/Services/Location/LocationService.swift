@@ -11,6 +11,9 @@ import Combine
 
 public protocol LocationService {
     
+    /// The current location authorization status.
+    var authorizationStatus: CLAuthorizationStatus { get }
+
     /// Emits the current authorization status
     /// and all future changes.
     var authorizationStatuses: AsyncStream<CLAuthorizationStatus> { get }
