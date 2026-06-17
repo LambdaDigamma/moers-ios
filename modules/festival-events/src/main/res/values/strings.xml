@@ -11,6 +11,7 @@
     <string name="event_organizer_headline">Organizer</string>
     <string name="event_organizer_unknown">Organizer unknown</string>
     <string name="timetable">Timetable</string>
+    <string name="timetable_retry">Retry</string>
     <string name="favorites">Your Favorites</string>
     <string name="lineup_tba">Lineup tba</string>
     <string name="location_unknown">Venue unknown</string>

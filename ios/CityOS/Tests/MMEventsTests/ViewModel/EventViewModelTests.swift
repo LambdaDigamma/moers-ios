@@ -277,6 +277,28 @@ final class EventViewModelTests: XCTestCase {
         //        XCTAssertEqual(viewModel.subtitle, "Moving Act · We, 03.04. 10:00 - 12:00")
         //
     }
+
+    func testLocationRepresentationPrefersLocationOverStreet() {
+        let extras = EventExtras(location: "Haus der Demokratiegeschichte", street: "Kastell 5")
+        let event = Event
+            .stub(withID: 1)
+            .setting(\Event.extras, to: extras)
+
+        let viewModel = EventViewModel(event: event)
+
+        XCTAssertEqual(viewModel.locationRepresentation, "Haus der Demokratiegeschichte")
+    }
+
+    func testLocationRepresentationFallsBackToStreet() {
+        let extras = EventExtras(location: nil, street: "Kastell 5")
+        let event = Event
+            .stub(withID: 1)
+            .setting(\Event.extras, to: extras)
+
+        let viewModel = EventViewModel(event: event)
+
+        XCTAssertEqual(viewModel.locationRepresentation, "Kastell 5")
+    }
         
     // TODO: Add Tests Subtitle with Site
     
@@ -296,6 +318,8 @@ final class EventViewModelTests: XCTestCase {
         ("testMFDetailSubtitleFestivalTicket", testMFDetailSubtitleFestivalTicket),
         ("testMFDetailSubtitleExtraTicket", testMFDetailSubtitleExtraTicket),
         ("testMFLocationMovingAct", testMFLocationMovingAct),
+        ("testLocationRepresentationPrefersLocationOverStreet", testLocationRepresentationPrefersLocationOverStreet),
+        ("testLocationRepresentationFallsBackToStreet", testLocationRepresentationFallsBackToStreet),
     ]
     
 }

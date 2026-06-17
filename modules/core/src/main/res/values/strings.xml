@@ -11,4 +11,10 @@
     <string name="badge_is_closed">Closed</string>
     <string name="start_navigation">Start navigation</string>
     <string name="opening_hours_unknown">Opening hours unknown</string>
+    <string name="refresh_failure_no_internet">You are not connected to the internet.</string>
+    <string name="refresh_failure_no_internet_with_last_update">You are not connected to the internet. Last updated: %1$s</string>
+    <string name="refresh_failure_timeout">The connection timed out.</string>
+    <string name="refresh_failure_timeout_with_last_update">The connection timed out. Last updated: %1$s</string>
+    <string name="refresh_failure_generic">Something went wrong. Please try again.</string>
+    <string name="refresh_failure_generic_with_last_update">Something went wrong. Last updated: %1$s</string>
 </resources>

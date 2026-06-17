@@ -2,8 +2,9 @@ package com.lambdadigamma.events.presentation.timetable
 
 import androidx.lifecycle.SavedStateHandle
 import com.lambdadigamma.core.base.BaseViewModel
+import com.lambdadigamma.core.refresh.RefreshMetadataKey
+import com.lambdadigamma.core.refresh.RefreshMetadataStore
 import com.lambdadigamma.events.data.local.preferences.TimetableFilterRepository
-import com.lambdadigamma.events.domain.usecase.GetEventsUseCase
 import com.lambdadigamma.events.domain.usecase.GetTimetableUseCase
 import com.lambdadigamma.events.domain.usecase.RefreshEventsUseCase
 import com.lambdadigamma.events.presentation.filter.EventFilter
@@ -15,15 +16,16 @@ import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
+import timber.log.Timber
 import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
 class TimetableViewModel @Inject constructor(
-    private val getEventsUseCase: GetEventsUseCase,
     private val getTimetableUseCase: GetTimetableUseCase,
     private val refreshEventsUseCase: RefreshEventsUseCase,
     private val filterRepository: TimetableFilterRepository,
+    private val refreshMetadataStore: RefreshMetadataStore,
     savedStateHandle: SavedStateHandle,
     eventsInitialState: TimetableUiState,
 ): BaseViewModel<TimetableUiState, TimetableUiState.PartialState, TimetableEvents, TimetableIntent>(
@@ -73,16 +75,27 @@ class TimetableViewModel @Inject constructor(
                     sections = partialState.data.sections,
                     isFilterSheetVisible = previousState.data.isFilterSheetVisible,
                 ),
-                isError = null,
+                isError = if (partialState.data.hasAnyEvents) {
+                    null
+                } else {
+                    previousState.isError
+                },
             )
             is TimetableUiState.PartialState.Error -> previousState.copy(
                 isLoading = false,
-                data = previousState.data.copy(
-                    sections = emptyList(),
-                    currentIndex = 0,
-                    hasAnyEvents = false,
-                ),
+                isRefreshing = false,
                 isError = partialState.throwable,
+            )
+            is TimetableUiState.PartialState.Refreshing -> previousState.copy(
+                isRefreshing = true,
+                isError = null,
+            )
+            is TimetableUiState.PartialState.RefreshFailed -> previousState.copy(
+                isRefreshing = false,
+            )
+            TimetableUiState.PartialState.RefreshFinished -> previousState.copy(
+                isRefreshing = false,
+                isError = null,
             )
             is TimetableUiState.PartialState.FilterSheetVisibilityChanged -> previousState.copy(
                 data = previousState.data.copy(isFilterSheetVisible = partialState.isVisible),
@@ -113,10 +126,29 @@ class TimetableViewModel @Inject constructor(
     }
 
     private fun refreshEvents(): Flow<TimetableUiState.PartialState> = flow {
+        emit(TimetableUiState.PartialState.Refreshing)
         refreshEventsUseCase()
-            .onFailure {
-                emit(TimetableUiState.PartialState.Error(it))
+            .onSuccess {
+                emit(TimetableUiState.PartialState.RefreshFinished)
             }
+            .onFailure { throwable ->
+                if (uiState.value.data.hasAnyEvents) {
+                    publishEvent(TimetableEvents.ShowRefreshError(
+                        throwable = throwable,
+                        lastSuccessfulRefresh = getLastSuccessfulRefresh(),
+                    ))
+                    emit(TimetableUiState.PartialState.RefreshFailed(throwable))
+                } else {
+                    emit(TimetableUiState.PartialState.Error(throwable))
+                }
+            }
+    }
+
+    private suspend fun getLastSuccessfulRefresh() = runCatching {
+        refreshMetadataStore.getLastSuccessfulRefresh(RefreshMetadataKey.TIMETABLE)
+    }.getOrElse { throwable ->
+        Timber.w(throwable, "Failed to read timetable refresh timestamp.")
+        null
     }
 
     private fun selectedSection(section: Int): Flow<TimetableUiState.PartialState> = flow {

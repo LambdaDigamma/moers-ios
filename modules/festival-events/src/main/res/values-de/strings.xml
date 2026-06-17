@@ -11,6 +11,7 @@
     <string name="event_organizer_headline">Veranstalter</string>
     <string name="event_organizer_unknown">Unbekannt</string>
     <string name="timetable">Spielplan</string>
+    <string name="timetable_retry">Erneut versuchen</string>
     <string name="favorites">Deine Favoriten</string>
     <string name="lineup_tba">Besetzung tba</string>
     <string name="location_unknown">Spielort tba</string>

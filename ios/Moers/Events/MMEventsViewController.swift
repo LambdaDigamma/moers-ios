@@ -40,37 +40,19 @@ class MMEventsViewController: EventsViewController {
         
         guard let eventService = coordinator?.eventService else { return }
         
-        Task {
+        Task { [weak self] in
+            do {
+                let response = try await eventService.index(cacheMode: .revalidate, withPages: false)
 
-            let response = try await eventService.index(cacheMode: .revalidate, withPages: true)
-
-            print(response)
-            
+                await MainActor.run { [weak self] in
+                    self?.events = response.data.map { EventViewModel<MMEvents.Event>(event: $0) }
+                    self?.rebuildData()
+                }
+            } catch {
+                self?.logger.error("Error while loading events: \(error.localizedDescription)")
+            }
         }
-//        
-//        let eventObserver = eventService.loadEvents()
-//
-//        eventObserver.sink { [weak self] completion in
-//
-//            switch completion {
-//                case .failure(let error):
-//
-//                    self?.logger.error("Error while loading: \(error.localizedDescription)")
-//
-//                default:
-//                    break
-//            }
-//
-//        } receiveValue: { events in
-//
-//            self.events = events.map({ event in
-//                return EventViewModel<MMEvents.Event>(event: event)
-//            })
-//
-//            self.rebuildData()
-//
-//        }.store(in: &cancellables)
-//        
+
     }
     
     override func filterActive(events: [EventViewModel<Event>]) -> [EventViewModel<Event>] {
@@ -138,38 +120,20 @@ class MMEventsViewController_Legacy: EventsViewController_Legacy {
     
     override func loadData() {
         
-//        guard let eventService = coordinator?.eventService else { return }
-        
-//        Task {
-//
-//            try await eventService.index(cacheMode: .revalidate, withPages: true)
-//
-//        }
-//
-//        eventService.
-//
-//        let eventObserver = eventService.loadEvents()
-//
-//        eventObserver.sink { [weak self] completion in
-//
-//            switch completion {
-//                case .failure(let error):
-//
-//                    self?.logger.error("Error while loading: \(error.localizedDescription)")
-//
-//                default:
-//                    break
-//            }
-//
-//        } receiveValue: { events in
-//
-//            self.events = events.map({ event in
-//                return EventViewModel<MMEvents.Event>(event: event)
-//            })
-//
-//            self.rebuildData()
-//
-//        }.store(in: &cancellables)
+        guard let eventService = coordinator?.eventService else { return }
+
+        Task { [weak self] in
+            do {
+                let response = try await eventService.index(cacheMode: .revalidate, withPages: false)
+
+                await MainActor.run { [weak self] in
+                    self?.events = response.data.map { EventViewModel<MMEvents.Event>(event: $0) }
+                    self?.rebuildData()
+                }
+            } catch {
+                self?.logger.error("Error while loading events: \(error.localizedDescription)")
+            }
+        }
         
     }
     

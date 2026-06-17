@@ -26,6 +26,7 @@ public class EventTableViewCell: UITableViewCell {
             
             self.titleLabel.text = event.model.name
             self.subtitleLabel.text = event.subtitle
+            self.accessibilityIdentifier = "Event-Row-\(event.model.id)"
             
             if event.isLiked {
                 self.heartImageView.image = Images.heartFill.withRenderingMode(.alwaysTemplate)
@@ -71,6 +72,8 @@ public class EventTableViewCell: UITableViewCell {
         super.prepareForReuse()
         
         self.heartImageView.image = nil
+        self.indicatorView.backgroundColor = EventPackageConfiguration.accentColor
+        self.accessibilityIdentifier = nil
         
     }
      

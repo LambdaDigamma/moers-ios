@@ -29,6 +29,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -61,7 +63,8 @@ fun TimetableScreen(
     onShowSearch: () -> Unit = {},
     onShowDownload: () -> Unit = {},
     pagerState: PagerState,
-    currentIndex: MutableState<Int>
+    currentIndex: MutableState<Int>,
+    snackbarHostState: SnackbarHostState,
 ) {
 
     LaunchedEffect(key1 = "refreshTimetable", block = {
@@ -111,7 +114,7 @@ fun TimetableScreen(
                 }
             )
         },
-//        snackbarHost = { SnackbarHost(snackbarHostState) },
+        snackbarHost = { SnackbarHost(snackbarHostState) },
     ) { it ->
 
         TimetableContent(
@@ -334,7 +337,8 @@ private fun TimetableScreenPreview() {
                 initialPageOffsetFraction = 0f,
                 pageCount = { 10 }
             ),
-            currentIndex = mutableStateOf(0)
+            currentIndex = mutableStateOf(0),
+            snackbarHostState = SnackbarHostState(),
         )
     }
 }

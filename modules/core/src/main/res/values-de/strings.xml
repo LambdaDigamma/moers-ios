@@ -11,4 +11,10 @@
     <string name="badge_is_closed">Geschlossen</string>
     <string name="start_navigation">Navigation starten</string>
     <string name="opening_hours_unknown">Öffnungszeiten unbekannt</string>
+    <string name="refresh_failure_no_internet">Du bist nicht mit dem Internet verbunden.</string>
+    <string name="refresh_failure_no_internet_with_last_update">Du bist nicht mit dem Internet verbunden. Letzter Stand: %1$s</string>
+    <string name="refresh_failure_timeout">Die Verbindung hat zu lange gedauert.</string>
+    <string name="refresh_failure_timeout_with_last_update">Die Verbindung hat zu lange gedauert. Letzter Stand: %1$s</string>
+    <string name="refresh_failure_generic">Etwas ist schiefgelaufen. Bitte versuche es erneut.</string>
+    <string name="refresh_failure_generic_with_last_update">Etwas ist schiefgelaufen. Letzter Stand: %1$s</string>
 </resources>

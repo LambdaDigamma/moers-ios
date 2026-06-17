@@ -361,7 +361,7 @@ public class TimetableViewModel: ObservableObject {
             title: event.name,
             startDate: event.startDate,
             endDate: event.endDate,
-            location: event.place?.name,
+            location: event.displayLocationName,
             media: event.headerMedia,
             isOpenEnd: event.extras?.openEnd ?? false,
             isLiked: favoriteEventIDs.contains(Int64(event.id)),
@@ -390,8 +390,8 @@ public class TimetableViewModel: ObservableObject {
             viewModel.endDate = event.endDate
         }
 
-        if viewModel.location != event.place?.name {
-            viewModel.location = event.place?.name
+        if viewModel.location != event.displayLocationName {
+            viewModel.location = event.displayLocationName
         }
 
         if viewModel.media != event.headerMedia {
