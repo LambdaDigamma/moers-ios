@@ -19,6 +19,7 @@ public class PostsViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     private var posts: [Post] = []
     private var didConfigureLayout = false
+    private var refreshTask: Task<Void, Never>?
 
     private enum Section: Int, CaseIterable {
         case posts
@@ -33,6 +34,13 @@ public class PostsViewController: UIViewController {
         return collectionView
     }()
 
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.accessibilityIdentifier = "NewsFeedRefreshControl"
+        refreshControl.addTarget(self, action: #selector(refreshPosts(_:)), for: .valueChanged)
+        return refreshControl
+    }()
+
     private lazy var activityIndicatorView: UIActivityIndicatorView = {
         let activityIndicatorView = UIActivityIndicatorView(style: .large)
         activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +53,7 @@ public class PostsViewController: UIViewController {
     public init(feedID: Feed.ID, onShowPost: @escaping ((Post.ID) -> Void)) {
         
         self.viewModel = FeedPostListViewModel(
-            feedID: 3,
+            feedID: feedID,
             postsPerLoad: 10,
             automaticallyLoadFirstPage: false
         )
@@ -55,6 +63,10 @@ public class PostsViewController: UIViewController {
         
         self.setupUI()
         
+    }
+
+    deinit {
+        refreshTask?.cancel()
     }
     
     required init?(coder: NSCoder) {
@@ -85,6 +97,7 @@ public class PostsViewController: UIViewController {
     private func setupUI() {
         
         view.backgroundColor = .systemBackground
+        collectionView.refreshControl = refreshControl
         view.addSubview(collectionView)
         view.addSubview(activityIndicatorView)
         
@@ -120,6 +133,22 @@ public class PostsViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
+    }
+
+    @objc private func refreshPosts(_ sender: UIRefreshControl) {
+        guard refreshTask == nil else {
+            return
+        }
+
+        let viewModel = viewModel
+        refreshTask = Task { [weak self, weak sender] in
+            await viewModel.refresh()
+
+            await MainActor.run {
+                sender?.endRefreshing()
+                self?.refreshTask = nil
+            }
+        }
     }
 
     private func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Post.ID> {
