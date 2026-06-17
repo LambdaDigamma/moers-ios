@@ -1,20 +1,7 @@
 package com.lambdadigamma.news.data.repository
 
-import android.icu.text.SimpleDateFormat
-import com.lambdadigamma.events.data.calculateDateRange
-import com.lambdadigamma.events.data.local.dao.PlaceDao
-import com.lambdadigamma.events.data.local.model.LikedEventCached
-import com.lambdadigamma.events.data.mapper.toDomainModel
-import com.lambdadigamma.events.data.mapper.toEntity
-import com.lambdadigamma.events.data.mapper.toEntityModel
-import com.lambdadigamma.events.data.remote.model.Event
-import com.lambdadigamma.events.domain.models.EventDetailData
-import com.lambdadigamma.events.domain.repository.EventRepository
-import com.lambdadigamma.events.presentation.favorites.FavoriteEventsData
-import com.lambdadigamma.events.presentation.favorites.FavoriteEventsSection
-import com.lambdadigamma.events.presentation.mapper.toPresentationModel
-import com.lambdadigamma.events.presentation.timetable.TimetableData
-import com.lambdadigamma.events.presentation.timetable.TimetableSection
+import com.lambdadigamma.core.refresh.RefreshMetadataKey
+import com.lambdadigamma.core.refresh.RefreshMetadataStore
 import com.lambdadigamma.news.data.local.dao.PostDao
 import com.lambdadigamma.news.data.mapper.toDomainModel
 import com.lambdadigamma.news.data.mapper.toEntityModel
@@ -31,20 +18,18 @@ import com.lambdadigamma.pages.data.mapper.toEntityModel
 import com.lambdadigamma.pages.domain.repository.PageRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import timber.log.Timber
-import java.util.Date
-import java.util.Locale
 import javax.inject.Inject
 
 class PostRepositoryImpl @Inject constructor(
     private val postApi: PostService,
     private val postDao: PostDao,
     private val pageRepository: PageRepository,
-    private val pageDao: PageDao
+    private val pageDao: PageDao,
+    private val refreshMetadataStore: RefreshMetadataStore,
 ) : PostRepository {
 
     companion object {
@@ -79,7 +64,7 @@ class PostRepositoryImpl @Inject constructor(
                     }
                     .catch { error ->
                         Timber.e(error)
-                        flowOf(data)
+                        emit(data)
                     }
 
             }
@@ -111,6 +96,7 @@ class PostRepositoryImpl @Inject constructor(
             }
             .also { posts ->
                 save(posts)
+                markNewsRefreshSucceeded()
             }
     }
 
@@ -121,6 +107,14 @@ class PostRepositoryImpl @Inject constructor(
             .also { post ->
                 save(listOf(post))
             }
+    }
+
+    private suspend fun markNewsRefreshSucceeded() {
+        runCatching {
+            refreshMetadataStore.markSuccessfulRefresh(RefreshMetadataKey.NEWS)
+        }.onFailure { throwable ->
+            Timber.w(throwable, "Failed to store news refresh timestamp.")
+        }
     }
 
     private suspend fun save(posts: List<Post>) {

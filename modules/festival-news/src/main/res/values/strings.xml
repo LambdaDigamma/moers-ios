@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="news_list_title">News</string>
+    <string name="news_retry">Retry</string>
+    <string name="news_load_error">News could not be loaded.</string>
+    <string name="news_empty">No news available yet.</string>
+    <string name="news_empty_hint">Refresh to check for new posts.</string>
+</resources>
