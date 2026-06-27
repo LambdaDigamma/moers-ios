@@ -7,11 +7,13 @@
 
 import Foundation
 import MapKit
+import Observation
 
+@Observable
 public class BaseMapViewModel: StandardViewModel {
     
-    @Published public var annotations: [GenericAnnotation]
-    @Published public var registeredAnnotationViews: [(MKAnnotationView.Type, String)] = []
+    public var annotations: [GenericAnnotation]
+    public var registeredAnnotationViews: [(MKAnnotationView.Type, String)] = []
     
     public var configureView: (_ mapView: MKMapView, _ annotation: MKAnnotation) -> MKAnnotationView?
     public var onAnnotationSelected: ((GenericAnnotation) -> Void)?

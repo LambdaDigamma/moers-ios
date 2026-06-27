@@ -15,7 +15,7 @@ public struct TripPartialRouteMap: UIViewRepresentable {
     
     public typealias UIViewType = MKMapView
     
-    @ObservedObject var viewModel: InTrainMapViewModel
+    var viewModel: InTrainMapViewModel
     
     public func makeUIView(
         context: UIViewRepresentableContext<TripPartialRouteMap>

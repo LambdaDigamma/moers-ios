@@ -9,7 +9,7 @@
 import Foundation
 import MediaPlayer
 
-public class DefaultNowPlayableBehavior: NowPlayable, @unchecked Sendable {
+public class DefaultNowPlayableBehavior: NowPlayable {
 
     public var defaultAllowsExternalPlayback: Bool { return true }
 
@@ -35,7 +35,7 @@ public class DefaultNowPlayableBehavior: NowPlayable, @unchecked Sendable {
     }
 
     /// The observer of audio session interruption notifications.
-    private var interruptionObserver: NSObjectProtocol!
+    private var interruptionObserver: NSObjectProtocol?
     
     /// The handler to be invoked when an interruption begins or ends.
     private var interruptionHandler: (NowPlayableInterruption) -> Void = { _ in }
@@ -58,14 +58,25 @@ public class DefaultNowPlayableBehavior: NowPlayable, @unchecked Sendable {
     public func handleNowPlayableSessionStart() throws {
         
         let audioSession = AVAudioSession.sharedInstance()
+        removeInterruptionObserver()
         
         // Observe interruptions to the audio session.
         interruptionObserver = NotificationCenter.default.addObserver(
             forName: AVAudioSession.interruptionNotification,
             object: audioSession,
             queue: .main
-        ) { [unowned self] notification in
-            self.handleAudioSessionInterruption(notification: notification)
+        ) { [weak self] notification in
+            let interruptionTypeUInt = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt
+            let optionsUInt = notification.userInfo?[AVAudioSessionInterruptionOptionKey] as? UInt
+
+            Task { @MainActor [weak self] in
+                guard let self else { return }
+
+                self.handleAudioSessionInterruption(
+                    interruptionTypeUInt: interruptionTypeUInt,
+                    optionsUInt: optionsUInt
+                )
+            }
         }
         
         // Make the audio session active.
@@ -76,7 +87,7 @@ public class DefaultNowPlayableBehavior: NowPlayable, @unchecked Sendable {
     public func handleNowPlayableSessionEnd() {
         
         // Stop observing interruptions to the audio session.
-        interruptionObserver = nil
+        removeInterruptionObserver()
         
         // Make the audio session inactive.
         do {
@@ -105,13 +116,22 @@ public class DefaultNowPlayableBehavior: NowPlayable, @unchecked Sendable {
         setNowPlayingPlaybackInfo(metadata)
         
     }
+
+    private func removeInterruptionObserver() {
+        if let interruptionObserver {
+            NotificationCenter.default.removeObserver(interruptionObserver)
+            self.interruptionObserver = nil
+        }
+    }
     
     /// Helper method to handle an audio session interruption notification.
-    private func handleAudioSessionInterruption(notification: Notification) {
+    private func handleAudioSessionInterruption(
+        interruptionTypeUInt: UInt?,
+        optionsUInt: UInt?
+    ) {
         
         // Retrieve the interruption type from the notification.
-        guard let userInfo = notification.userInfo,
-              let interruptionTypeUInt = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
+        guard let interruptionTypeUInt,
               let interruptionType = AVAudioSession.InterruptionType(rawValue: interruptionTypeUInt) else { return }
         
         // Begin or end an interruption.
@@ -133,7 +153,7 @@ public class DefaultNowPlayableBehavior: NowPlayable, @unchecked Sendable {
                     
                     var shouldResume = false
                     
-                    if let optionsUInt = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt,
+                    if let optionsUInt,
                        AVAudioSession.InterruptionOptions(rawValue: optionsUInt).contains(.shouldResume) {
                         shouldResume = true
                     }

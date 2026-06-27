@@ -8,10 +8,10 @@
 
 import Foundation
 import GRDB
-import Factory
+import FactoryKit
 import Combine
 
-public final class PlaceStore {
+nonisolated public final class PlaceStore {
     
     private let writer: DatabaseWriter
     private let reader: DatabaseReader

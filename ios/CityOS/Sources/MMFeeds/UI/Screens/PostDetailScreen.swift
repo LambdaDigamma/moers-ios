@@ -11,8 +11,8 @@ import MediaLibraryKit
 
 struct PostDetailScreen: View {
     
-    @ObservedObject var viewModel: PostViewModel
-    @EnvironmentObject var actionTransmitter: ActionTransmitter
+    var viewModel: PostViewModel
+    @Environment(ActionTransmitter.self) var actionTransmitter: ActionTransmitter
     
     var body: some View {
         
@@ -97,7 +97,7 @@ struct PostDetailScreen: View {
 
 //struct PostDetailPage: View {
 //
-//    @StateObject var
+//    @State var
 //
 //    init(pageID: Page.ID) {
 //

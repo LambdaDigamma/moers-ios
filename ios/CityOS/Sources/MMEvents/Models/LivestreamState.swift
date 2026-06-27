@@ -9,6 +9,7 @@ import Foundation
 
 public typealias ActiveStream = (streamURL: URL, activeEvent: Event?)
 
+@MainActor
 public enum LivestreamState: Equatable {
     case loading
     case countdown(startDate: Date)

@@ -6,23 +6,24 @@
 //
 
 import SwiftUI
-import Factory
 import Core
 
 public struct RubbishScheduleList: View {
     
     @State var showInfo: Bool = false
-    @ObservedObject var viewModel: RubbishScheduleViewModel
+    @State var viewModel: RubbishScheduleViewModel
     
     public init(
         rubbishService: RubbishService? = nil
     ) {
-        self.viewModel = RubbishScheduleViewModel()
+        self._viewModel = State(
+            initialValue: RubbishScheduleViewModel(rubbishService: rubbishService)
+        )
     }
     
     public var body: some View {
         
-        ZStack {
+        Group {
             
             viewModel.state.isLoading {
                 ProgressView()

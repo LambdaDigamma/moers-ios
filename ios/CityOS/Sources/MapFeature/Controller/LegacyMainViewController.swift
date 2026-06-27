@@ -10,7 +10,7 @@ import Core
 import UIKit
 import Pulley
 import CoreLocation
-import Factory
+import FactoryKit
 import FuelFeature
 
 public class LegacyMainViewController: PulleyViewController {

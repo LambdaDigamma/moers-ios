@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-public enum TransitStationType {
+nonisolated public enum TransitStationType {
     
     case trainStation
     case busStation
@@ -24,7 +24,7 @@ public enum TransitStationType {
     
 }
 
-public class TransitStationAnnotation: NSObject, MKAnnotation {
+nonisolated public class TransitStationAnnotation: NSObject, MKAnnotation {
     
     public var coordinate: CLLocationCoordinate2D
     public var title: String?

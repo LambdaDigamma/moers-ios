@@ -9,7 +9,7 @@
 import Core
 import UIKit
 import MessageUI
-import Factory
+import FactoryKit
 import SwiftUI
 import AppFeedback
 import RubbishFeature
@@ -40,106 +40,7 @@ public class OtherViewController: UIViewController {
         
     }()
     
-    private lazy var data: [TableViewSection] = {
-        
-        var normalData = [
-            
-            FeatureFlags.radioBuergerfunkEnabled ?
-                TableViewSection(
-                    title: "Radio",
-                    rows: [
-                        NavigationRow(
-                            title: "Bürgerfunk",
-                            action: coordinator?.showBuergerfunk ?? {}
-                        )
-                    ]
-                ) : nil,
-            
-            TableViewSection(
-                title: "ÖPNV",
-                rows: [
-                    NavigationRow(
-                        title: "Fahrt planen (Beta)",
-                        action: {
-                            self.coordinator?.showTransportationOverview(animated: true)
-                        }
-                    ),
-                ]
-            ),
-            
-            TableViewSection(
-                title: String(localized: "Data"),
-                rows: [
-                    NavigationRow(
-                        title: String(localized: "Add entry"),
-                        action: coordinator?.showAddEntry ?? {}
-                    )
-                ]
-            ),
-            TableViewSection(
-                title: String(localized: "Settings"),
-                rows: [
-                    NavigationRow(
-                        title: String(localized: "Settings"),
-                        action: coordinator?.showSettings ?? {}
-                    ),
-                    NavigationRow(
-                        title: "Siri Shortcuts",
-                        action: coordinator?.showSiriShortcuts ?? {}
-                    )
-                ]
-            ),
-            TableViewSection(
-                title: "Info",
-                rows: [
-                    NavigationRow(
-                        title: String(localized: "About"),
-                        action: coordinator?.showAbout ?? {}
-                    ),
-                    NavigationRow(
-                        title: String(localized: "Feedback"),
-                        action: coordinator?.showFeedback ?? {}
-                    ),
-                    NavigationRow(
-                        title: Bundle.main.versionString,
-                        action: nil
-                    )
-                ]
-            ),
-            TableViewSection(
-                title: String(localized: "Legal"),
-                rows: [
-                    NavigationRow(
-                        title: String(localized: "Terms and Conditions"),
-                        action: coordinator?.showTaC ?? {}
-                    ),
-                    NavigationRow(
-                        title: String(localized: "Privacy Policy"),
-                        action: coordinator?.showPrivacy ?? {}
-                    ),
-                    NavigationRow(
-                        title: String(localized: "Licences"),
-                        action: coordinator?.showLicences ?? {}
-                    )
-                ]
-            )
-        ].compactMap { $0 }
-        
-        #if DEBUG
-        normalData.append(TableViewSection(
-            title: "Debug",
-            rows: [
-                NavigationRow(
-                    title: "Notifications",
-                    action: coordinator?.showDebugNotifications ?? {}
-                )
-            ]
-        ))
-        #endif
-        
-        return normalData
-        
-    }()
+    private lazy var data: [TableViewSection] = makeData()
     
     public init() {
         
@@ -193,6 +94,94 @@ public class OtherViewController: UIViewController {
     private func applyTheming() {
 //        self.tableView.backgroundColor = UIColor.systemBackground
 //        self.tableView.separatorColor = UIColor.separator
+    }
+
+    private func makeData() -> [TableViewSection] {
+
+        var sections: [TableViewSection] = []
+
+        if FeatureFlags.radioBuergerfunkEnabled {
+            sections.append(TableViewSection(
+                title: "Radio",
+                rows: [
+                    NavigationRow(title: "Bürgerfunk") { [weak self] in
+                        self?.coordinator?.showBuergerfunk()
+                    }
+                ]
+            ))
+        }
+
+        sections.append(TableViewSection(
+            title: "ÖPNV",
+            rows: [
+                NavigationRow(title: "Fahrt planen (Beta)") { [weak self] in
+                    self?.coordinator?.showTransportationOverview(animated: true)
+                }
+            ]
+        ))
+
+        sections.append(TableViewSection(
+            title: String(localized: "Data"),
+            rows: [
+                NavigationRow(title: String(localized: "Add entry")) { [weak self] in
+                    self?.coordinator?.showAddEntry()
+                }
+            ]
+        ))
+
+        sections.append(TableViewSection(
+            title: String(localized: "Settings"),
+            rows: [
+                NavigationRow(title: String(localized: "Settings")) { [weak self] in
+                    self?.coordinator?.showSettings()
+                },
+                NavigationRow(title: "Siri Shortcuts") { [weak self] in
+                    self?.coordinator?.showSiriShortcuts()
+                }
+            ]
+        ))
+
+        sections.append(TableViewSection(
+            title: "Info",
+            rows: [
+                NavigationRow(title: String(localized: "About")) { [weak self] in
+                    self?.coordinator?.showAbout()
+                },
+                NavigationRow(title: String(localized: "Feedback")) { [weak self] in
+                    self?.coordinator?.showFeedback()
+                },
+                NavigationRow(title: Bundle.main.versionString, action: nil)
+            ]
+        ))
+
+        sections.append(TableViewSection(
+            title: String(localized: "Legal"),
+            rows: [
+                NavigationRow(title: String(localized: "Terms and Conditions")) { [weak self] in
+                    self?.coordinator?.showTaC()
+                },
+                NavigationRow(title: String(localized: "Privacy Policy")) { [weak self] in
+                    self?.coordinator?.showPrivacy()
+                },
+                NavigationRow(title: String(localized: "Licences")) { [weak self] in
+                    self?.coordinator?.showLicences()
+                }
+            ]
+        ))
+
+        #if DEBUG
+        sections.append(TableViewSection(
+            title: "Debug",
+            rows: [
+                NavigationRow(title: "Notifications") { [weak self] in
+                    self?.coordinator?.showDebugNotifications()
+                }
+            ]
+        ))
+        #endif
+
+        return sections
+
     }
     
 }

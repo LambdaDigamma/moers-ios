@@ -74,21 +74,21 @@ public struct EventSubtitleView: View {
                 refreshTask?.cancel()
                 refreshTask = nil
             }
-            .onChange(of: scenePhase) { newPhase in
+            .onChange(of: scenePhase) { _, newPhase in
                 if newPhase == .active {
                     refreshNowAndRestartTask()
                 }
             }
-            .onChange(of: startDate) { _ in
+            .onChange(of: startDate) {
                 refreshNowAndRestartTask()
             }
-            .onChange(of: endDate) { _ in
+            .onChange(of: endDate) {
                 refreshNowAndRestartTask()
             }
-            .onChange(of: scheduleDisplayMode) { _ in
+            .onChange(of: scheduleDisplayMode) {
                 refreshNowAndRestartTask()
             }
-            .onChange(of: isOpenEnd) { _ in
+            .onChange(of: isOpenEnd) {
                 refreshNowAndRestartTask()
             }
             .refreshOnAppLifecycle {

@@ -11,7 +11,7 @@ import GRDB
 import MMPages
 @preconcurrency import MediaLibraryKit
 
-public struct EventRecord: Equatable, Codable, Sendable {
+nonisolated public struct EventRecord: Equatable, Codable, Sendable {
     
     public var id: Int64?
     public var name: String
@@ -91,11 +91,11 @@ public struct EventRecord: Equatable, Codable, Sendable {
     
 }
 
-extension EventRecord: FetchableRecord, MutablePersistableRecord {
+nonisolated extension EventRecord: FetchableRecord, MutablePersistableRecord {
     
     public static let databaseTableName: String = EventTableDefinition.tableName
     
-    public enum Columns {
+    nonisolated public enum Columns {
         static let id = Column(CodingKeys.id)
         static let name = Column(CodingKeys.name)
         static let description = Column(CodingKeys.description)
@@ -120,7 +120,7 @@ extension EventRecord: FetchableRecord, MutablePersistableRecord {
     
 }
 
-extension Event {
+nonisolated extension Event {
     
     public func toRecord() -> EventRecord {
         

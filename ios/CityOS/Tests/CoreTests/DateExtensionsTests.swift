@@ -9,7 +9,7 @@ import Foundation
 import XCTest
 @testable import Core
 
-final class DateExtensionsTests: XCTestCase {
+nonisolated final class DateExtensionsTests: XCTestCase {
     
     func testDateStringParsing() {
         
@@ -116,18 +116,5 @@ final class DateExtensionsTests: XCTestCase {
     }
     
     // TODO: Add Tests for Today and Tomorrow
-    
-    static var allTests = [
-        ("testDateStringParsing", testDateStringParsing),
-        ("testFormatDate", testFormatDate),
-        ("testDefaultBeautifyDate", testDefaultBeautifyDate),
-        ("testTodayBeautifyDate", testTodayBeautifyDate),
-        ("testTomorrowBeautifyDate", testTomorrowBeautifyDate),
-        ("testIsInIntervalTrue", testIsInIntervalTrue),
-        ("testIsInIntervalFalse", testIsInIntervalFalse),
-        ("testMinuteIntervalFuture", testMinuteIntervalFuture),
-        ("testMinuteIntervalHistory", testMinuteIntervalHistory),
-        ("testMinuteIntervalNow", testMinuteIntervalNow),
-    ]
     
 }

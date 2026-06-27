@@ -9,7 +9,7 @@ import Foundation
 @preconcurrency import MediaLibraryKit
 import GRDB
 
-public struct PageRecord: Equatable, Sendable {
+nonisolated public struct PageRecord: Equatable, Sendable {
     
     public var id: Int64?
     
@@ -32,20 +32,20 @@ public struct PageRecord: Equatable, Sendable {
 
 extension PageRecord: Codable, FetchableRecord, MutablePersistableRecord {
     
-    public static let databaseTableName: String = PageTableDefinition.tableName
+    nonisolated public static let databaseTableName: String = PageTableDefinition.tableName
 
-    public static let databaseColumnDecodingStrategy: DatabaseColumnDecodingStrategy = .convertFromSnakeCase
-    public static let databaseColumnEncodingStrategy: DatabaseColumnEncodingStrategy = .convertToSnakeCase
+    nonisolated public static let databaseColumnDecodingStrategy: DatabaseColumnDecodingStrategy = .convertFromSnakeCase
+    nonisolated public static let databaseColumnEncodingStrategy: DatabaseColumnEncodingStrategy = .convertToSnakeCase
     
-    public enum Columns {
-        static let publishedAt = Column("published_at")
+    nonisolated public enum Columns {
+        nonisolated static let publishedAt = Column("published_at")
     }
     
 }
 
 extension Page {
     
-    public func toRecord() -> PageRecord {
+    nonisolated public func toRecord() -> PageRecord {
         
         return PageRecord(
             id: self.id.toInt64(),
@@ -69,7 +69,7 @@ extension Page {
 
 extension PageRecord {
     
-    public func toBase() -> Page {
+    nonisolated public func toBase() -> Page {
         
         return Page(
             id: self.id.toInt() ?? -1,

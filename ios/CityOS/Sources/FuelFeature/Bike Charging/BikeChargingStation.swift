@@ -11,7 +11,7 @@ import Foundation
 import MapKit
 import Fuse
 
-public final class BikeChargingStation: NSObject, Location, @unchecked Sendable {
+nonisolated public final class BikeChargingStation: NSObject, Location {
     
     @objc public dynamic var name: String
     public var location: CLLocation

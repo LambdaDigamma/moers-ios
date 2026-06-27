@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal enum PackageStrings {
+nonisolated internal enum PackageStrings {
     
     internal static let close = String(localized: "Close", bundle: .module)
     

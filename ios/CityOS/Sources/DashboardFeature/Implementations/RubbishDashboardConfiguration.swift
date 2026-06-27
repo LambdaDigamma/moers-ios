@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import RubbishFeature
 
-public struct RubbishDashboardConfiguration: DashboardItemConfigurable {
+nonisolated public struct RubbishDashboardConfiguration: DashboardItemConfigurable {
     
     public let id: UUID
     public var rubbishStreetID: RubbishCollectionStreet.ID?

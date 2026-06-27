@@ -24,9 +24,9 @@ public struct LiquidGlassButtonStyle: ButtonStyle {
     
     public func makeBody(configuration: Configuration) -> some View {
         Group {
-            if #available(iOS 26.0, *) {
+            if #available(iOS 26.0, tvOS 26.0, *) {
                 liquidGlass(configuration)
-            } else if #available(iOS 18.0, *) {
+            } else if #available(iOS 18.0, tvOS 18.0, *) {
                 modernFallback(configuration, enhancedContrast: true)
             } else {
                 modernFallback(configuration, enhancedContrast: false)
@@ -40,7 +40,7 @@ public struct LiquidGlassButtonStyle: ButtonStyle {
 
 // MARK: - iOS 26+ Liquid Glass
 
-@available(iOS 26.0, *)
+@available(iOS 26.0, tvOS 26.0, *)
 private extension LiquidGlassButtonStyle {
     
     func liquidGlass(_ configuration: Configuration) -> some View {
@@ -83,7 +83,11 @@ private extension LiquidGlassButtonStyle {
                 Color.yellow
             case .secondary:
                 ZStack {
+#if os(iOS)
                     Color(UIColor.secondarySystemBackground)
+#else
+                    Color.secondary.opacity(0.12)
+#endif
                     if enhancedContrast {
                         Color.black.opacity(0.08)
                     }

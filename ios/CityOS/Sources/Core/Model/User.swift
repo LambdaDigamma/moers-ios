@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct User {
+public struct User: Sendable {
     
     public init(type: User.UserType, id: Int? = nil, name: String? = nil, description: String? = nil) {
         self.type = type
@@ -21,7 +21,7 @@ public struct User {
     public var name: String?
     public var description: String?
     
-    public enum UserType: String, CaseIterable, CaseName {
+    public enum UserType: String, CaseIterable, CaseName, Sendable {
         
         case citizen = "citizen"
         case tourist = "tourist"

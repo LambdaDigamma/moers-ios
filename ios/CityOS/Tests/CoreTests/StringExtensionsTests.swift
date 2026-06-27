@@ -9,7 +9,7 @@ import Foundation
 import XCTest
 @testable import Core
 
-class StringExtensionsTests: XCTestCase {
+nonisolated class StringExtensionsTests: XCTestCase {
     
     func testEmptyOrWhitespace() {
         
@@ -74,13 +74,4 @@ class StringExtensionsTests: XCTestCase {
         
     }
     
-    static var allTests = [
-        ("testEmptyOrWhitespace", testEmptyOrWhitespace),
-        ("testNotEmptyOrWhitespace", testNotEmptyOrWhitespace),
-        ("testDoubleValueOfString", testDoubleValueOfString),
-        ("testRowToArray", testRowToArray),
-        ("testSubscript", testSubscript),
-    ]
-    
 }
-

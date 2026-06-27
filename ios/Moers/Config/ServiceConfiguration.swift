@@ -11,7 +11,7 @@ import AppScaffold
 import ModernNetworking
 import Core
 import OSLog
-import Factory
+import FactoryKit
 import EFAAPI
 
 #if canImport(RubbishFeature)
@@ -35,7 +35,7 @@ import MapFeature
 @MainActor
 public class ServiceConfiguration: BootstrappingProcedureStep {
     
-    @Injected(\.httpLoader) private var loader: HTTPLoader
+    @Injected(\.httpClient) private var client: any HTTPClient
     
     private let logger: Logger = Logger(.coreAppConfig)
     
@@ -59,8 +59,6 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
         
         self.logger.info("Setting up default services.")
         
-        CoreSettings.userDefaults = UserDefaults.appGroup
-        
         let locationService = DefaultLocationService()
         let geocodingService = DefaultGeocodingService()
         
@@ -70,7 +68,7 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
         let locationManager = LocationManager()
         Container.shared.locationManager.register { locationManager }
         
-        let entryManager = EntryManager(loader: loader)
+        let entryManager = EntryManager(client: client)
         Container.shared.entryManager.register { entryManager }
         
 //        let storageManager = StorageManager<Camera>()
@@ -78,7 +76,7 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
         Container.shared.cameraManager.register { cameraService }
         
 #if canImport(RubbishFeature)
-        let rubbishService = DefaultRubbishService(loader: loader, userDefaults: UserDefaults.appGroup)
+        let rubbishService = DefaultRubbishService(client: client, userDefaults: UserDefaults.appGroup)
         Container.shared.rubbishService.register { rubbishService }
 #endif
         
@@ -91,7 +89,7 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
 #endif
         
 #if canImport(ParkingFeature)
-        let parkingService = DefaultParkingService(loader: loader)
+        let parkingService = DefaultParkingService(client: client)
         Container.shared.parkingService.register { parkingService }
 #endif
         
@@ -102,7 +100,7 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
         
 #if canImport(MMEvents)
         
-        let eventService = DefaultEventService(loader)
+        let eventService = DefaultEventService(client: client)
 
         Container.shared.eventService.register { eventService }
 #endif
@@ -120,7 +118,6 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
     private func setupStatic() {
         self.logger.info("Setting up static services for testing/screenshotting.")
         
-        CoreSettings.userDefaults = UserDefaults.appGroup
         UserDefaults.appGroup.set(true, forKey: "UserDidCompleteSetup")
         
         let locationService = StaticLocationService()

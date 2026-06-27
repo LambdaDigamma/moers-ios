@@ -10,7 +10,7 @@ import Foundation
 import AVKit
 import MMEvents
 import Combine
-import Factory
+import FactoryKit
 
 class PlayerViewController: AVPlayerViewController {
     

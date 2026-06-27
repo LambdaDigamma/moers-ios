@@ -7,13 +7,14 @@
 
 import Core
 import SwiftUI
-import Factory
+import FactoryKit
 import OSLog
 import Combine
 
+@Observable
 class PreviewListEventsViewModel: StandardViewModel {
     
-    @Published var events: [EventListItemViewModel] = []
+    var events: [EventListItemViewModel] = []
     
     private let repository: EventRepository
     private let logger = Logger(.coreUi)
@@ -93,8 +94,8 @@ class PreviewListEventsViewModel: StandardViewModel {
 
 struct PreviewListEventsView: View {
     
-    @StateObject var viewModel = PreviewListEventsViewModel()
-    @EnvironmentObject var transmitter: TimetableTransmitter
+    @State var viewModel = PreviewListEventsViewModel()
+    @Environment(TimetableTransmitter.self) var transmitter: TimetableTransmitter
     
     public init() {
     }

@@ -10,7 +10,7 @@ import Core
 import UIKit
 
 import Core
-import Factory
+import FactoryKit
 
 public class EntryOnboardingLocationMenuViewController: UIViewController {
     

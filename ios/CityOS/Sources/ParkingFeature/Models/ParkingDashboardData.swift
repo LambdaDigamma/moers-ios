@@ -8,7 +8,7 @@
 import Foundation
 import ModernNetworking
 
-public struct ParkingDashboardData: Model {
+nonisolated public struct ParkingDashboardData: Model, Sendable {
     
 //    public let alertMessage: 
     public let parkingAreas: [ParkingArea]

@@ -6,14 +6,20 @@
 //
 
 import Foundation
+import Core
 import ModernNetworking
 
 public class DefaultEventService: EventService {
     
-    nonisolated(unsafe) private let loader: HTTPLoader
+    private let client: any HTTPClient
     
-    public init(_ loader: HTTPLoader = URLSessionLoader()) {
-        self.loader = loader
+    public init(client: any HTTPClient) {
+        self.client = client
+    }
+
+    @MainActor
+    public convenience init(_ loader: HTTPLoader = URLSessionLoader()) {
+        self.init(client: HTTPLoaderClient(loader: loader))
     }
     
     public func index(cacheMode: CacheMode, withPages: Bool = false) async throws -> ResourceCollection<Event> {
@@ -22,7 +28,7 @@ public class DefaultEventService: EventService {
         
         request.cachePolicy = cacheMode.policy
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         let events = try await result.decoding(ResourceCollection<Event>.self, using: Event.decoder)
         
@@ -36,7 +42,7 @@ public class DefaultEventService: EventService {
         
         request.cachePolicy = cacheMode.policy
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         let events = try await result.decoding(Resource<Event>.self, using: Event.decoder)
         
@@ -46,7 +52,7 @@ public class DefaultEventService: EventService {
     
 }
 
-extension DefaultEventService {
+nonisolated extension DefaultEventService {
     
     public enum Endpoint {
         case index

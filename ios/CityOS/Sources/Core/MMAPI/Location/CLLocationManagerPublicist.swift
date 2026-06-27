@@ -16,7 +16,7 @@ protocol CLLocationManagerCombineDelegate: CLLocationManagerDelegate {
     // func errorPublisher() -> AnyPublisher<Error?, Never>
 }
 
-class CLLocationManagerPublicist: NSObject, CLLocationManagerCombineDelegate {
+class CLLocationManagerPublicist: NSObject, @MainActor CLLocationManagerCombineDelegate {
     
     let authorizationSubject = PassthroughSubject<CLAuthorizationStatus, Never>()
     let locationSubject = PassthroughSubject<[CLLocation], Never>()

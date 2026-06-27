@@ -9,25 +9,29 @@ import Core
 import MMPages
 import Foundation
 import MediaLibraryKit
-@preconcurrency import ModernNetworking
-import Factory
+import ModernNetworking
+import FactoryKit
 
 public class DefaultFestivalEventService: FestivalEventService {
     
-    nonisolated(unsafe) private let loader: HTTPLoader
+    private let client: any HTTPClient
     
-    public init(loader: HTTPLoader) {
-        self.loader = loader
+    public init(client: any HTTPClient) {
+        self.client = client
+    }
+
+    @MainActor
+    public convenience init(loader: HTTPLoader) {
+        self.init(client: HTTPLoaderClient(loader: loader))
     }
     
-    @concurrent
-    public nonisolated func show(eventID: Event.ID, cacheMode: CacheMode) async throws -> FestivalEventPageResponse {
+    public func show(eventID: Event.ID, cacheMode: CacheMode) async throws -> FestivalEventPageResponse {
         
         var request = self.generateShowRequest(eventID: eventID)
         
         request.cachePolicy = cacheMode.policy
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         let response = try await result.decoding(Resource<FestivalEventPageResponse>.self, using: Event.decoder)
         
         return response.data

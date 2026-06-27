@@ -9,7 +9,7 @@ import Foundation
 import ModernNetworking
 import Core
 
-public struct ParkingAreaResponse: Model {
+nonisolated public struct ParkingAreaResponse: Model, Sendable {
     
     public let parkingAreas: [ParkingArea]
     
@@ -24,12 +24,17 @@ public struct ParkingAreaResponse: Model {
 
 public class DefaultParkingService: ParkingService {
 
-    nonisolated(unsafe) private let loader: HTTPLoader
+    private let client: any HTTPClient
     
     public init(
-        loader: HTTPLoader
+        client: any HTTPClient
     ) {
-        self.loader = loader
+        self.client = client
+    }
+
+    @MainActor
+    public convenience init(loader: HTTPLoader) {
+        self.init(client: HTTPLoaderClient(loader: loader))
     }
     
     public func loadParkingAreas() async throws -> [ParkingArea] {
@@ -38,7 +43,7 @@ public class DefaultParkingService: ParkingService {
             path: "parking-areas"
         )
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         guard let data = result.response?.body else {
             throw URLError(.cannotDecodeRawData)
@@ -54,7 +59,7 @@ public class DefaultParkingService: ParkingService {
             path: "parking/dashboard"
         )
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         guard let data = result.response?.body else {
             throw URLError(.cannotDecodeRawData)

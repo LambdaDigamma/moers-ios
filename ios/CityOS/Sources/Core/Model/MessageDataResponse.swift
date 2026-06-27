@@ -7,7 +7,9 @@
 
 import Foundation
 
-public struct MessageDataResponse<ResponseData: Codable>: Codable {
+nonisolated public struct MessageDataResponse<ResponseData: Codable>: Codable {
     public var message: String
     public var data: ResponseData
 }
+
+extension MessageDataResponse: Sendable where ResponseData: Sendable {}

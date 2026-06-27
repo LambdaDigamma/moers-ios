@@ -10,7 +10,7 @@ import Core
 
 #if canImport(UIKit)
 import UIKit
-import Factory
+import FactoryKit
 import SwiftUI
 
 /// Hosts the `RubbishScheduleList` in a UIViewController

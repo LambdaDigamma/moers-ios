@@ -7,18 +7,19 @@
 
 import SwiftUI
 
-public class DepartureViewModel: Identifiable, ObservableObject {
+@Observable
+public class DepartureViewModel: Identifiable{
     
     public let id: UUID = UUID()
     private let model: ITDDeparture
     
-    @Published public var description: String
-    @Published public var time: Date?
-    @Published public var actual: Date?
-    @Published public var transportType: TransportType
-    @Published public var platform: String?
-    @Published public var direction: String = ""
-    @Published public var symbol: String
+    public var description: String
+    public var time: Date?
+    public var actual: Date?
+    public var transportType: TransportType
+    public var platform: String?
+    public var direction: String = ""
+    public var symbol: String
     
     public init(departure: ITDDeparture) {
         self.model = departure

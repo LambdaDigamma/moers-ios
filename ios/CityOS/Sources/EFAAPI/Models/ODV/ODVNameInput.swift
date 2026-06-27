@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ODVNameInput: Codable, Sendable, DynamicNodeDecoding {
+nonisolated public struct ODVNameInput: Codable, Sendable, DynamicNodeDecoding {
     
     public var name: String
     

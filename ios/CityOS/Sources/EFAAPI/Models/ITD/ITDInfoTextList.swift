@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ITDInfoTextList: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
+nonisolated public struct ITDInfoTextList: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
     
     public let elements: [InfoTextListElement]
     
@@ -25,7 +25,7 @@ public struct ITDInfoTextList: Codable, Equatable, Hashable, Sendable, DynamicNo
     
 }
 
-public struct InfoTextListElement: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
+nonisolated public struct InfoTextListElement: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
     
     public let code: String?
     public let type: String

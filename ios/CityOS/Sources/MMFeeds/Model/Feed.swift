@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Feed: BaseFeed {
+nonisolated public struct Feed: BaseFeed {
      
     
     public typealias ID = Int

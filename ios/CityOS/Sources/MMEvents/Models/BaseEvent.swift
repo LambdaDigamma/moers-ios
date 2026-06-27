@@ -9,7 +9,7 @@ import Core
 import Foundation
 import ModernNetworking
 
-public protocol BaseEvent: Model, Stubbable, Equatable, Hashable {
+nonisolated public protocol BaseEvent: Model, Stubbable, Equatable, Hashable {
     
     associatedtype ID = Identifiable
     
@@ -36,7 +36,7 @@ public protocol BaseEvent: Model, Stubbable, Equatable, Hashable {
     
 }
 
-public extension BaseEvent {
+nonisolated public extension BaseEvent {
 
     static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.id == rhs.id && lhs.name == rhs.name && lhs.startDate == rhs.startDate && lhs.endDate == rhs.endDate
@@ -48,7 +48,7 @@ public extension BaseEvent {
 
 }
 
-extension Array {
+nonisolated extension Array {
 
     public func chronologically() -> [Self.Element] where Self.Element : BaseEvent {
 
@@ -60,4 +60,3 @@ extension Array {
     }
 
 }
-

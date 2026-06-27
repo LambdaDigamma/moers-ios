@@ -16,7 +16,7 @@ import AppScaffold
 import Combine
 import MMEvents
 import MMFeeds
-import Factory
+import FactoryKit
 
 class ApplicationController: NSObject, ApplicationControlling {
     
@@ -39,10 +39,10 @@ class ApplicationController: NSObject, ApplicationControlling {
     public init(
         locationManager: LocationManager = LocationManager(),
         eventService: LegacyEventService = DefaultLegacyEventService(
-            Container.shared.httpLoader(),
+            client: Container.shared.httpClient(),
             ApplicationController.eventCache()
         ),
-        entryManager: EntryManagerProtocol = EntryManager(loader: Container.shared.httpLoader()),
+        entryManager: EntryManagerProtocol = EntryManager(client: Container.shared.httpClient()),
         trackerManager: TrackerManagerProtocol = TrackerManager(storageManager: StorageManager())
     ) {
         
@@ -341,42 +341,38 @@ private extension ApplicationController {
 extension Coordinator {
     
     public func showPage(url: URL) {
-        
-        DispatchQueue.main.async {
-            
-            let fallbackController = FallbackWebViewController(url: url)
-            
-            fallbackController.navigationItem.largeTitleDisplayMode = .never
-            fallbackController.navigationCallback = { url in
 
-                let nextController = FallbackWebViewController(url: url)
-                nextController.navigationItem.largeTitleDisplayMode = .never
-                nextController.navigationCallback = fallbackController.navigationCallback
+        let fallbackController = FallbackWebViewController(url: url)
 
-                if UIDevice.current.userInterfaceIdiom == .pad,
-                   let navigationController = fallbackController.navigationController {
-                    navigationController.pushViewController(nextController, animated: true)
-                } else {
-                    self.showPage(url: url)
-                }
-            }
+        fallbackController.navigationItem.largeTitleDisplayMode = .never
+        fallbackController.navigationCallback = { url in
 
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                let navigationController = UINavigationController(rootViewController: fallbackController)
-                navigationController.modalPresentationStyle = .formSheet
+            let nextController = FallbackWebViewController(url: url)
+            nextController.navigationItem.largeTitleDisplayMode = .never
+            nextController.navigationCallback = fallbackController.navigationCallback
 
-                var presenter: UIViewController = self.rootViewController
-                while let presented = presenter.presentedViewController {
-                    presenter = presented
-                }
-
-                presenter.present(navigationController, animated: true)
+            if UIDevice.current.userInterfaceIdiom == .pad,
+               let navigationController = fallbackController.navigationController {
+                navigationController.pushViewController(nextController, animated: true)
             } else {
-                self.resolvedNavigationController()?.pushViewController(fallbackController, animated: true)
+                self.showPage(url: url)
             }
-            
         }
-        
+
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            let navigationController = UINavigationController(rootViewController: fallbackController)
+            navigationController.modalPresentationStyle = .formSheet
+
+            var presenter: UIViewController = self.rootViewController
+            while let presented = presenter.presentedViewController {
+                presenter = presented
+            }
+
+            presenter.present(navigationController, animated: true)
+        } else {
+            self.resolvedNavigationController()?.pushViewController(fallbackController, animated: true)
+        }
+
     }
     
     private func resolvedNavigationController() -> UINavigationController? {

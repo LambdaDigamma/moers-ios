@@ -8,10 +8,11 @@
 
 import UIKit
 import AppScaffold
-@preconcurrency import ModernNetworking
+import ModernNetworking
 import Cache
+import Core
 import MMFeeds
-import Factory
+import FactoryKit
 
 class MMFeedsFrameworkConfiguration: BootstrappingProcedureStep {
 
@@ -33,11 +34,11 @@ class MMFeedsFrameworkConfiguration: BootstrappingProcedureStep {
                 transformer: TransformerFactory.forCodable(ofType: Feed.self)
             )
 
-            return DefaultFeedService(Container.shared.httpLoader.resolve(), cache) as FeedService
+            return DefaultFeedService(client: Container.shared.httpClient.resolve(), cache) as FeedService
         }
 
         Container.shared.postRepository.scope(.cached).register {
-            let service = FestivalNewsPostService(Container.shared.httpLoader.resolve())
+            let service = FestivalNewsPostService(client: Container.shared.httpClient.resolve())
             let appDatabase = Container.shared.appDatabase.resolve()
             let store = PostStore(
                 writer: appDatabase.dbWriter,
@@ -49,7 +50,7 @@ class MMFeedsFrameworkConfiguration: BootstrappingProcedureStep {
 
     }
 
-    nonisolated private static func createMockedFeedService() -> MockFeedService {
+    private static func createMockedFeedService() -> MockFeedService {
 
         let mockedPosts = [
             Post.stub(withID: 1)
@@ -69,14 +70,18 @@ class MMFeedsFrameworkConfiguration: BootstrappingProcedureStep {
 
 }
 
-nonisolated private final class FestivalNewsPostService: PostService {
+private final class FestivalNewsPostService: PostService {
 
-    nonisolated(unsafe) private let loader: HTTPLoader
+    private let client: any HTTPClient
     private let defaultService: DefaultPostService
 
-    init(_ loader: HTTPLoader) {
-        self.loader = loader
-        self.defaultService = DefaultPostService(loader)
+    init(client: any HTTPClient) {
+        self.client = client
+        self.defaultService = DefaultPostService(client: client)
+    }
+
+    convenience init(_ loader: HTTPLoader) {
+        self.init(client: HTTPLoaderClient(loader: loader))
     }
 
     func index(for feedID: Feed.ID, page: Int, perPage: Int, cacheMode: CacheMode) async throws -> ResourceCollection<Post> {
@@ -85,7 +90,7 @@ nonisolated private final class FestivalNewsPostService: PostService {
 
         request.cachePolicy = cacheMode.policy
 
-        let result = await loader.load(request)
+        let result = await client.load(request)
         let resource = try await result.decoding(ResourceCollection<Post>.self)
 
         return ResourceCollection(

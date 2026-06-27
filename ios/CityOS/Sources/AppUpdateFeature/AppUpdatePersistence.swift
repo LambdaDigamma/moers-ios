@@ -1,6 +1,6 @@
 import Foundation
 
-public final class AppUpdatePersistence: @unchecked Sendable {
+public final class AppUpdatePersistence {
     private let userDefaults: UserDefaults
     private let keyPrefix: String
 
@@ -21,4 +21,3 @@ public final class AppUpdatePersistence: @unchecked Sendable {
         "\(keyPrefix).banner.dismissed.\(version)"
     }
 }
-

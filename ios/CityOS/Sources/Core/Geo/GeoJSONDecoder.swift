@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-public class GeoJSONDecoder {
+nonisolated public class GeoJSONDecoder {
     
     let decoder: MKGeoJSONDecoder
     

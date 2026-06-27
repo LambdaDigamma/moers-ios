@@ -8,11 +8,11 @@
 import SwiftUI
 import ModernNetworking
 import Cache
-import Factory
+import FactoryKit
 
 public struct FeedViewScreen: View {
     
-    @ObservedObject var viewModel: FeedPostListViewModel
+    var viewModel: FeedPostListViewModel
     
     @State var screenSize: CGSize = .zero
     

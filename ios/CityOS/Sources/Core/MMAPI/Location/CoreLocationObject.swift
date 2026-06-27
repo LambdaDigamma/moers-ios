@@ -9,15 +9,19 @@ import Combine
 import CoreLocation
 import SwiftUI
 
-public class CoreLocationObject: ObservableObject {
+@Observable
+public class CoreLocationObject {
     
-    @Published public var authorizationStatus = CLAuthorizationStatus.notDetermined
-    @Published public var location: CLLocation?
-    @Published public var heading: CLHeading?
+    public var authorizationStatus = CLAuthorizationStatus.notDetermined
+    public var location: CLLocation?
+    public var heading: CLHeading?
     
+    @ObservationIgnored
     let manager: CLLocationManager
+    @ObservationIgnored
     let publicist: CLLocationManagerCombineDelegate
     
+    @ObservationIgnored
     var cancellables = [AnyCancellable]()
     
     public init() {
@@ -30,7 +34,7 @@ public class CoreLocationObject: ObservableObject {
         self.publicist = publicist
         
         let authorizationPublisher = publicist.authorizationPublisher()
-        let locationPublisher = publicist.locationPublisher()
+        let locationPublisher = locationPublisher()
         let headingPublisher = publicist.headingPublisher()
         
         // trigger an update when authorization changes
@@ -38,70 +42,39 @@ public class CoreLocationObject: ObservableObject {
             .sink(receiveValue: beginUpdates)
             .store(in: &cancellables)
         
-        // set authorization status when authorization changes
-        if #available(iOS 14.0, *) {
-            authorizationPublisher
-                // since this is used in the UI,
-                //  it needs to be on the main DispatchQueue
-                .receive(on: DispatchQueue.main)
-                // store the value in the authorizationStatus property
-                .assign(to: &$authorizationStatus)
-        } else {
-            // Fallback on earlier versions
-            authorizationPublisher
-                // since this is used in the UI,
-                //  it needs to be on the main DispatchQueue
-                .receive(on: DispatchQueue.main)
-                // store the value in the authorizationStatus property
-                .sink(receiveValue: {
-                    self.authorizationStatus = $0
-                })
-                // store the cancellable so it be stopped on deinit
-                .store(in: &cancellables)
-        }
-        
-        if #available(iOS 14.0, *) {
-            locationPublisher
-                // convert the array of CLLocation into a Publisher itself
-                .flatMap(Publishers.Sequence.init(sequence:))
-                // in order to match the property map to Optional
-                .map { $0 as CLLocation? }
-                // since this is used in the UI,
-                //  it needs to be on the main DispatchQueue
-                .receive(on: DispatchQueue.main)
-                // store the value in the location property
-                .assign(to: &$location)
-            
-            headingPublisher
-                .receive(on: DispatchQueue.main)
-                .assign(to: &$heading)
-            
-        } else {
-            // Fallback on earlier versions
-            locationPublisher
-                // convert the array of CLLocation into a Publisher itself
-                .flatMap(Publishers.Sequence.init(sequence:))
-                // in order to match the property map to Optional
-                .map { $0 as CLLocation? }
-                // since this is used in the UI,
-                //  it needs to be on the main DispatchQueue
-                .receive(on: DispatchQueue.main)
-                // store the value in the location property
-                .assign(to: \.location, on: self)
-                // store the cancellable so it be stopped on deinit
-                .store(in: &cancellables)
-            
-            headingPublisher
-                .receive(on: DispatchQueue.main)
-                .assign(to: \.heading, on: self)
-                .store(in: &cancellables)
-        }
+        authorizationPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] authorizationStatus in
+                self?.authorizationStatus = authorizationStatus
+            }
+            .store(in: &cancellables)
+
+        locationPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] location in
+                self?.location = location
+            }
+            .store(in: &cancellables)
+
+        headingPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] heading in
+                self?.heading = heading
+            }
+            .store(in: &cancellables)
     }
     
     public func authorize() {
         if manager.authorizationStatus == .notDetermined {
             manager.requestWhenInUseAuthorization()
         }
+    }
+
+    public func locationPublisher() -> AnyPublisher<CLLocation?, Never> {
+        publicist.locationPublisher()
+            .flatMap(Publishers.Sequence.init(sequence:))
+            .map { $0 as CLLocation? }
+            .eraseToAnyPublisher()
     }
     
     public func beginUpdates(_ authorizationStatus: CLAuthorizationStatus) {

@@ -9,7 +9,7 @@
 import Core
 import Foundation
 import OSLog
-import Factory
+import FactoryKit
 import CoreLocation
 import Combine
 import UIKit

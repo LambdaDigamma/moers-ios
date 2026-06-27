@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol EventStoring {
+nonisolated public protocol EventStoring {
     
     func fetch() async throws -> [Event]
     

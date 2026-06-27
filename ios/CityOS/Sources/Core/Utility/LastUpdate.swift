@@ -9,13 +9,13 @@ import Foundation
 
 public extension TimeInterval {
     
-    static func minutes(_ value: Double) -> TimeInterval {
+    nonisolated static func minutes(_ value: Double) -> TimeInterval {
         return TimeInterval(60) * value
     }
     
 }
 
-public class LastUpdate {
+nonisolated public class LastUpdate {
     
     private let key: String
     private let defaults: UserDefaults
@@ -31,14 +31,14 @@ public class LastUpdate {
     
     public func get() -> Date? {
         if let dateString = defaults.string(forKey: defaultsKey) {
-            return Self.dateFormatter.date(from: dateString)
+            return Self.makeDateFormatter().date(from: dateString)
         }
         return nil
     }
     
     public func set(to value: Date?) {
         if let date = value {
-            let dateString = Self.dateFormatter.string(from: date)
+            let dateString = Self.makeDateFormatter().string(from: date)
             defaults.set(dateString, forKey: defaultsKey)
         } else {
             reset()
@@ -68,9 +68,8 @@ public class LastUpdate {
         defaults.set(nil, forKey: defaultsKey)
     }
     
-    nonisolated(unsafe) public static let dateFormatter: ISO8601DateFormatter = {
-        let dateFormatter = ISO8601DateFormatter()
-        return dateFormatter
-    }()
+    public static func makeDateFormatter() -> ISO8601DateFormatter {
+        ISO8601DateFormatter()
+    }
     
 }

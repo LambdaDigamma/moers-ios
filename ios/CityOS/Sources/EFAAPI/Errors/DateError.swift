@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum DateError: Int, Codable, LocalizedError {
+nonisolated public enum DateError: Int, Codable, LocalizedError {
     
     case invalidDate = -1
     case yearOutOfRange = -10

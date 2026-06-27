@@ -24,7 +24,7 @@ public class TimetableViewController: UIHostingController<AnyView> {
         let viewModel = TimetableViewModel()
         self.transmitter = transmitter
         self.viewModel = viewModel
-        super.init(rootView: TimetableScreen(viewModel: viewModel).environmentObject(transmitter).toAnyView())
+        super.init(rootView: TimetableScreen(viewModel: viewModel).environment(transmitter).toAnyView())
     }
     
     required init?(coder: NSCoder) {

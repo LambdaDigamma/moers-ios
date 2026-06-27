@@ -132,7 +132,7 @@ struct RegionSwitchScreen: View {
             .padding(.vertical)
             
         }
-        .background(Color(UIColor.secondarySystemBackground))
+        .background(Color(ApplicationTheme.current.cardBackgroundColor))
 //        .cornerRadius(12)
         
     }

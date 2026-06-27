@@ -12,8 +12,8 @@ import ModernNetworking
 
 public struct PageView: View {
     
-    @ObservedObject var viewModel: PageViewModel
-    @StateObject var webViewStateModel: WebViewStateModel = WebViewStateModel()
+    var viewModel: PageViewModel
+    @State var webViewStateModel: WebViewStateModel = WebViewStateModel()
     
     public var body: some View {
         

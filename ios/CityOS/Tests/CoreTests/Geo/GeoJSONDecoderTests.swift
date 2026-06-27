@@ -10,7 +10,7 @@ import XCTest
 @testable import Core
 import MapKit
 
-final class GeoJSONDecoderTests: XCTestCase {
+nonisolated final class GeoJSONDecoderTests: XCTestCase {
     
     func testDecodeBasicMultiPolygon() throws {
         

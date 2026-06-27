@@ -13,7 +13,7 @@ import EFAUI
 import EFAAPI
 import AppFeedback
 import MapFeature
-import Factory
+import FactoryKit
 
 public class OtherCoordinator: Coordinator {
     

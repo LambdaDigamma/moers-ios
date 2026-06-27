@@ -16,8 +16,9 @@ class EntryValidationViewController: UIViewController {
     public var coordinator: DashboardCoordinator?
     
     private var collectionView: UICollectionView!
-    private var dataSource: UICollectionViewDiffableDataSource<Section, Entry>!
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Int>!
     private var entries: [Entry] = []
+    private var entriesByID: [Int: Entry] = [:]
     private let entryManager: EntryManagerProtocol
     
     init(otherCoordinator: OtherCoordinator) {
@@ -47,7 +48,7 @@ class EntryValidationViewController: UIViewController {
     
     // MARK: - Private Methods
     
-    enum Section {
+    nonisolated enum Section: Hashable, Sendable {
         case main
     }
     
@@ -72,7 +73,13 @@ class EntryValidationViewController: UIViewController {
     }
     
     private func configureDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Entry> { cell, indexPath, entry in
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Int> { [weak self] cell, indexPath, entryID in
+            guard let entry = self?.entriesByID[entryID] else {
+                cell.contentConfiguration = UIListContentConfiguration.cell()
+                cell.accessories = []
+                return
+            }
+
             if #available(iOS 16.0, *) {
                 cell.contentConfiguration = UIHostingConfiguration {
                     EntryValidationCellView(
@@ -92,16 +99,18 @@ class EntryValidationViewController: UIViewController {
             cell.accessories = [.disclosureIndicator()]
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Section, Entry>(collectionView: collectionView) {
-            collectionView, indexPath, entry in
-            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: entry)
+        dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView) {
+            collectionView, indexPath, entryID in
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: entryID)
         }
     }
     
     private func updateSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Entry>()
+        entriesByID = Dictionary(uniqueKeysWithValues: entries.map { ($0.id, $0) })
+
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(entries)
+        snapshot.appendItems(entries.map(\.id))
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     

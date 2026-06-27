@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct TripConfiguration {
+nonisolated public struct TripConfiguration {
     
     
     /**

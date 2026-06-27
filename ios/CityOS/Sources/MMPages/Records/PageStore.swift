@@ -7,10 +7,10 @@
 
 import Foundation
 import GRDB
-import Factory
+import FactoryKit
 import Combine
 
-public class PageStore {
+nonisolated public class PageStore {
     
     private let writer: DatabaseWriter
     private let reader: DatabaseReader

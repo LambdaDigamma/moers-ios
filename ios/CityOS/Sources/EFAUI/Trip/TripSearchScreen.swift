@@ -12,7 +12,7 @@ import ModernNetworking
 
 public struct TripSearchScreen: View {
     
-    @ObservedObject var viewModel: TripSearchViewModel
+    var viewModel: TripSearchViewModel
     @State var showConfiguration: Bool = false
     
     public init(

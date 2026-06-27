@@ -8,7 +8,7 @@
 import Foundation
 import Core
 
-public protocol CacheableStation: Codable, Identifiable {
+nonisolated public protocol CacheableStation: Codable, Identifiable {
     
     var name: String { get set }
     

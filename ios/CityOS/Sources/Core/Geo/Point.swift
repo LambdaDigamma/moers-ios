@@ -14,7 +14,7 @@ import CoreLocation
 /// A Point represents a coordinate of latitude and
 /// longitude and optionally elevation in the coordinate
 /// system WGS 84 using the GeoJSON standard.
-public struct Point: Codable, Equatable, Hashable {
+nonisolated public struct Point: Codable, Equatable, Hashable, Sendable {
     
     public var latitude: Double
     public var longitude: Double
@@ -87,7 +87,7 @@ public struct Point: Codable, Equatable, Hashable {
 
 public extension CLLocationCoordinate2D {
     
-    func toPoint() -> Point {
+    nonisolated func toPoint() -> Point {
         return Point(
             from: self
         )

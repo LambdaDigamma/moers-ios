@@ -8,7 +8,7 @@
 
 import Foundation
 import GRDB
-import Factory
+import FactoryKit
 import MMEvents
 
 public extension Container {

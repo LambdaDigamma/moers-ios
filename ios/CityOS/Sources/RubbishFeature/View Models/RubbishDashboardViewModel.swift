@@ -8,13 +8,15 @@
 import Foundation
 import Core
 import ModernNetworking
-import Factory
+import FactoryKit
+import Observation
 
 @MainActor
+@Observable
 open class RubbishDashboardViewModel: StandardViewModel {
     
-    @Published var state: DataState<[RubbishPickupItem], RubbishLoadingError> = .loading
-    @LazyInjected(\.rubbishService) var rubbishService
+    var state: DataState<[RubbishPickupItem], RubbishLoadingError> = .loading
+    @ObservationIgnored @LazyInjected(\.rubbishService) var rubbishService
     
     public init(
         rubbishService: RubbishService? = nil,

@@ -9,18 +9,21 @@
 import Foundation
 import Combine
 import EFAAPI
-import Factory
+import FactoryKit
+import Observation
 
 @MainActor
-public class DashboardViewModel: ObservableObject {
+@Observable
+public class DashboardViewModel {
     
     private let loader: DashboardConfigLoader
+    @ObservationIgnored
     private var cancellables = Set<AnyCancellable>()
     
-    @Published var displayables: [DashboardItemConfigurable] = []
-    @Published var currentTrip: CachedEFATrip?
+    var displayables: [DashboardItemConfigurable] = []
+    var currentTrip: CachedEFATrip?
     
-    @Injected(\.tripService) var tripService
+    @ObservationIgnored @Injected(\.tripService) var tripService
     
     public init(loader: DashboardConfigLoader) {
         

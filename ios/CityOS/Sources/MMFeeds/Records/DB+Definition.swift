@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-public enum PostTableDefinition {
+nonisolated public enum PostTableDefinition {
     
     public static let tableName = "posts"
     

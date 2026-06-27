@@ -7,11 +7,12 @@
 
 import EFAAPI
 import SwiftUI
-import Factory
+import FactoryKit
 
-public class StopDepartureViewModel: ObservableObject {
+@Observable
+public class StopDepartureViewModel {
     
-    @Published var currentStop: TransitLocation? = nil
+    var currentStop: TransitLocation? = nil
     
     public init() {
         

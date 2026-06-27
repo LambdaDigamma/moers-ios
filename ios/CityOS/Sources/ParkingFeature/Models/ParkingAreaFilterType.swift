@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum ParkingAreaFilterType: Int, CaseIterable {
+nonisolated public enum ParkingAreaFilterType: Int, CaseIterable, Sendable {
     
     case all
     case onlyOpen

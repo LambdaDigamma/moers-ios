@@ -7,7 +7,7 @@
 
 import XCTest
 import Core
-import Factory
+import FactoryKit
 @testable import ParkingFeature
 import CoreLocation
 

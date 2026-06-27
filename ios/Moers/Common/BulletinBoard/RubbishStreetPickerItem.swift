@@ -11,14 +11,14 @@ import Core
 import BLTNBoard
 import CoreLocation
 import OSLog
-import Factory
+import FactoryKit
 import RubbishFeature
 
 class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataSource {
 
-    @LazyInjected(\.rubbishService) var rubbishService
-    @LazyInjected(\.geocodingService) var geocodingService
-    @LazyInjected(\.locationService) var locationService
+    @LazyInjected(\.rubbishService) private var rubbishService: RubbishService
+    @LazyInjected(\.geocodingService) private var geocodingService: GeocodingService
+    @LazyInjected(\.locationService) private var locationService: LocationService
     
     private var streets: [RubbishFeature.RubbishCollectionStreet] = []
     
@@ -31,7 +31,6 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     }
     
     override init(title: String) {
-        
         super.init(title: title)
         
         self.setupPicker()

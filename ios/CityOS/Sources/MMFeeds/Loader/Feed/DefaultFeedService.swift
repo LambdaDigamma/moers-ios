@@ -6,24 +6,30 @@
 //
 
 import Foundation
+import Core
 import ModernNetworking
 import Cache
 
 public class DefaultFeedService: FeedService {
     
-    nonisolated(unsafe) private let loader: HTTPLoader
+    private let client: any HTTPClient
     private let cache: Storage<String, Feed>
     
-    public init(_ loader: HTTPLoader = URLSessionLoader(), _ cache: Storage<String, Feed>) {
-        self.loader = loader
+    public init(client: any HTTPClient, _ cache: Storage<String, Feed>) {
+        self.client = client
         self.cache = cache
+    }
+
+    @MainActor
+    public convenience init(_ loader: HTTPLoader = URLSessionLoader(), _ cache: Storage<String, Feed>) {
+        self.init(client: HTTPLoaderClient(loader: loader), cache)
     }
     
     public func loadFeedFromNetwork(feedID: Feed.ID, perPage: Int = 10) async throws -> Feed {
         
         let request = HTTPRequest(path: Endpoint.show(feedID: feedID).path())
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         let resource = try await result.decoding(Resource<Feed>.self, using: Feed.decoder)
         
         return resource.data
@@ -39,7 +45,7 @@ public class DefaultFeedService: FeedService {
             URLQueryItem(name: "page[number]", value: String(page))
         ]
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         let posts = try await result.decoding(ResourceCollection<Post>.self, using: Feed.decoder)
         
@@ -53,7 +59,7 @@ public class DefaultFeedService: FeedService {
         
         request.queryItems = [URLQueryItem(name: "page", value: String(page))]
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         let resource = try await result.decoding(Resource<Feed>.self, using: Feed.decoder)
         

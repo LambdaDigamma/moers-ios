@@ -10,8 +10,8 @@ import SwiftUI
 // <TopContent: View, BottomContent: View>
 public struct NativePageView: View {
     
-    @ObservedObject var viewModel: NativePageViewModel
-    @ObservedObject var actionTransmitter: ActionTransmitter
+    var viewModel: NativePageViewModel
+    var actionTransmitter: ActionTransmitter
     
 //    var topContent: (DataState<Page, Error>) -> TopContent
 //    var bottomContent: (DataState<Page, Error>) -> BottomContent
@@ -49,7 +49,7 @@ public struct NativePageView: View {
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-        .environmentObject(actionTransmitter)
+        .environment(actionTransmitter)
         .task {
             await viewModel.reload()
         }

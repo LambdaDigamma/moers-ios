@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-public struct EventTableDefinition: ApplyTableDefinition {
+nonisolated public struct EventTableDefinition: ApplyTableDefinition {
     
     public static let tableName = "events"
     

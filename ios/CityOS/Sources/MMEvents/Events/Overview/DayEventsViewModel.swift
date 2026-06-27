@@ -6,26 +6,29 @@
 //
 
 import Foundation
-import Factory
+import FactoryKit
 import Combine
 import OSLog
 import Core
+import Observation
 
 @MainActor
-public class DayEventsViewModel: ObservableObject, Identifiable {
+@Observable
+public class DayEventsViewModel: Identifiable {
     
     internal let date: Date
     internal let startDate: Date
     internal let endDate: Date
     internal let filter: EventFilter
     
-    @Published var events: [EventListItemViewModel] = []
+    var events: [EventListItemViewModel] = []
     
-    @LazyInjected(\.favoriteEventsStore) var favoriteEventsStore: FavoriteEventsStore?
+    @ObservationIgnored @LazyInjected(\.favoriteEventsStore) var favoriteEventsStore: FavoriteEventsStore?
     
     private let repository: EventRepository
     private let logger = Logger(.coreUi)
     
+    @ObservationIgnored
     private var cancellables = Set<AnyCancellable>()
     
     public init(date: Date, filter: EventFilter = .init()) {

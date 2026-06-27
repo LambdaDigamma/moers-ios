@@ -8,23 +8,25 @@
 import Foundation
 import Core
 import MapKit
+import Observation
 
 @MainActor
+@Observable
 public class ParkingAreaListViewModel: StandardViewModel {
     
     private let parkingService: ParkingService
     private let locationService: LocationService?
     
-    @Published public var parkingAreas: [ParkingAreaViewModel] = []
-    @Published public var filter: ParkingAreaFilterType = .all
-    @Published public var userGrantedLocation: Bool = false
-    @Published public var region: MKCoordinateRegion = MKCoordinateRegion(
+    public var parkingAreas: [ParkingAreaViewModel] = []
+    public var filter: ParkingAreaFilterType = .all
+    public var userGrantedLocation: Bool = false
+    public var region: MKCoordinateRegion = MKCoordinateRegion(
         center: CoreSettings.regionCenter,
         span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
     )
-    @Published public var selectedParkingArea: ParkingAreaViewModel?
+    public var selectedParkingArea: ParkingAreaViewModel?
     
-    public var mapViewModel = BaseMapViewModel()
+    public var mapViewModel: BaseMapViewModel
     
     public init(
         parkingService: ParkingService,
@@ -33,12 +35,14 @@ public class ParkingAreaListViewModel: StandardViewModel {
         self.parkingService = parkingService
         self.locationService = locationService
         
-        self.mapViewModel.register(
+        let mapViewModel = BaseMapViewModel()
+        
+        mapViewModel.register(
             view: ParkingAreaAnnotationView.self,
             reuseIdentifier: ParkingAreaAnnotationView.reuseIdentifier
         )
         
-        self.mapViewModel.configureView = { (mapView: MKMapView, annotation: MKAnnotation) in
+        mapViewModel.configureView = { (mapView: MKMapView, annotation: MKAnnotation) in
             
             if let parkingArea = annotation as? ParkingAreaAnnotation {
                 return mapView.dequeueReusableAnnotationView(
@@ -49,6 +53,8 @@ public class ParkingAreaListViewModel: StandardViewModel {
             
             return nil
         }
+        
+        self.mapViewModel = mapViewModel
         
         super.init()
         

@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-public enum PageBlockTableDefinition {
+nonisolated public enum PageBlockTableDefinition {
     
     public static let tableName = "page_blocks"
     
@@ -40,7 +40,7 @@ public enum PageBlockTableDefinition {
     
 }
 
-public enum PageTableDefinition {
+nonisolated public enum PageTableDefinition {
     
     public static let tableName = "pages"
     

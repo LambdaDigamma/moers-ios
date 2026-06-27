@@ -10,7 +10,7 @@ import Core
 
 public struct ParkingDashboardView: View {
     
-    @ObservedObject var viewModel: ParkingDashboardViewModel
+    var viewModel: ParkingDashboardViewModel
     
     public init(viewModel: ParkingDashboardViewModel) {
         self.viewModel = viewModel

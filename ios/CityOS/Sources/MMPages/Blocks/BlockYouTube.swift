@@ -8,7 +8,7 @@
 import Foundation
 import ProseMirror
 
-public struct BlockYouTubeVideo: Blockable, Equatable, Hashable {
+nonisolated public struct BlockYouTubeVideo: Blockable, Equatable, Hashable {
 
     public static let type: BlockType = .youtubeVideo
 

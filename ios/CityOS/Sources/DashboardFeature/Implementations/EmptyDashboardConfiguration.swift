@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct EmptyDashboardConfiguration: DashboardItemConfigurable {
+nonisolated public struct EmptyDashboardConfiguration: DashboardItemConfigurable {
     
     public var id: UUID = UUID()
     

@@ -10,8 +10,10 @@ import Combine
 import SwiftUI
 
 @MainActor
-open class StandardViewModel: ObservableObject {
+@Observable
+open class StandardViewModel {
 
+    @ObservationIgnored
     open var cancellables = Set<AnyCancellable>()
 
     public init() {}

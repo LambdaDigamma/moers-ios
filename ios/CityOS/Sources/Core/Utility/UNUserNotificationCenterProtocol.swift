@@ -8,13 +8,16 @@
 import Foundation
 import UserNotifications
 
-public protocol UNUserNotificationCenterProtocol: AnyObject {
+@MainActor
+public protocol UNUserNotificationCenterProtocol: AnyObject, Sendable {
     
     func add(_ request: UNNotificationRequest) async throws
     
     func removeAllPendingNotificationRequests()
     
     func pendingNotificationRequests() async -> [UNNotificationRequest]
+
+    func getPendingNotificationRequests(completionHandler: @escaping @Sendable ([UNNotificationRequest]) -> Void)
     
     func removePendingNotificationRequests(withIdentifiers: [String])
     

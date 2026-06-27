@@ -7,7 +7,7 @@
 //
 
 import Core
-import Factory
+import FactoryKit
 import ParkingFeature
 import FuelFeature
 import CarPlay

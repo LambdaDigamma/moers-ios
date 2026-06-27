@@ -7,11 +7,11 @@
 
 import SwiftUI
 import Core
-import Factory
+import FactoryKit
 
 public struct FuelPriceDashboardView: View {
     
-    @ObservedObject var viewModel: FuelPriceDashboardViewModel
+    var viewModel: FuelPriceDashboardViewModel
     
     public init(viewModel: FuelPriceDashboardViewModel) {
         self.viewModel = viewModel

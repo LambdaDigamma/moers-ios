@@ -8,19 +8,33 @@
 import SwiftUI
 import Core
 import CoreLocation
-import Factory
+import FactoryKit
 
+@Observable
 public class ParkingTimerViewModel: StandardViewModel {
     
-    @LazyInjected(\.locationService) var locationService
+    @ObservationIgnored @LazyInjected(\.locationService) var locationService
     
-    @Published var endDate: Date = Date()
-    @Published var timerStarted: Bool = false
+    var endDate: Date = Date()
+    var timerStarted: Bool = false
     
-    @Published var time: TimeInterval = 30 * 60
-    @Published var enableNotifications: Bool = true
-    @Published var saveParkingLocation: Bool = true
-    @Published var carPosition: CLLocationCoordinate2D?
+    var time: TimeInterval = 30 * 60 {
+        didSet {
+            guard !timerStarted else { return }
+            endDate = Date(timeIntervalSinceNow: time)
+        }
+    }
+    var enableNotifications: Bool = true
+    var saveParkingLocation: Bool = true {
+        didSet {
+            guard saveParkingLocation, !timerStarted else { return }
+
+            Task {
+                await loadCurrentLocation()
+            }
+        }
+    }
+    var carPosition: CLLocationCoordinate2D?
     
     public var currentEstimatedEndDate: Date {
         return Date(timeIntervalSinceNow: time)
@@ -75,23 +89,6 @@ public class ParkingTimerViewModel: StandardViewModel {
     }
     
     private func setupObservers() {
-        
-        Task { @MainActor in
-            for await time in $time.values {
-                if !self.timerStarted {
-                    self.endDate = Date(timeIntervalSinceNow: time)
-                }
-            }
-        }
-        
-        Task { @MainActor in
-            for await saveParkingLocation in $saveParkingLocation.values {
-                if saveParkingLocation && !self.timerStarted {
-                    await self.loadCurrentLocation()
-                }
-            }
-        }
-        
         Task {
             do {
                 for try await location in locationService.locations {

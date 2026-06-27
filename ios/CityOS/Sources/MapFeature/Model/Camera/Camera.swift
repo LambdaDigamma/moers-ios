@@ -13,7 +13,7 @@ import Fuse
 
 public typealias PanoID = Int
 
-public final class Camera: NSObject, Location, Codable, Identifiable, @unchecked Sendable {
+nonisolated public final class Camera: NSObject, Location, Codable, Identifiable {
     
     public var id: PanoID
     @objc public dynamic var name: String
@@ -94,7 +94,7 @@ public final class Camera: NSObject, Location, Codable, Identifiable, @unchecked
 
 extension Camera: Stubbable {
     
-    public static func stub(withID id: Int) -> Camera {
+    nonisolated public static func stub(withID id: Int) -> Camera {
         
         return Camera(name: "Test Camera",
                       location: CLLocation(),

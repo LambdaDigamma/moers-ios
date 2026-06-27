@@ -12,7 +12,7 @@ import EFAAPI
 
 public struct TripDetailScreen: View {
     
-    @StateObject var viewModel: TripDetailViewModel
+    @State var viewModel: TripDetailViewModel
     
     private let onActivateRoute: () -> Void
     

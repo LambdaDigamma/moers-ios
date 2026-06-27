@@ -26,13 +26,21 @@ public struct CardPanelView<Content: View>: View {
             content
         }
         .frame(maxWidth: .infinity)
-        .background(Color(.secondarySystemGroupedBackground))
+        .background(backgroundColor)
         .cornerRadius(16)
         .overlay(
             RoundedRectangle(cornerRadius: 16)
                 .stroke(border?.color ?? .clear, lineWidth: border?.lineWidth ?? 0)
         )
         .shadowSM()
+    }
+
+    private var backgroundColor: Color {
+#if os(iOS)
+        Color(.secondarySystemGroupedBackground)
+#else
+        Color.secondary.opacity(colorScheme == .dark ? 0.2 : 0.08)
+#endif
     }
     
 }

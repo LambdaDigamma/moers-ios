@@ -4,7 +4,7 @@ public protocol AppStoreUpdateStatusFetching: Sendable {
     func fetchStatus() async throws -> AppStoreUpdateStatus
 }
 
-public struct AppStoreUpdateStatusFetcher: AppStoreUpdateStatusFetching {
+nonisolated public struct AppStoreUpdateStatusFetcher: AppStoreUpdateStatusFetching {
     public enum Lookup: Equatable, Sendable {
         case appID(String, countryCode: String? = nil)
         case bundleID(String, countryCode: String? = nil)
@@ -130,11 +130,11 @@ public struct AppStoreUpdateStatusFetcher: AppStoreUpdateStatusFetching {
     }
 }
 
-struct AppStoreLookupResponse: Decodable {
+nonisolated struct AppStoreLookupResponse: Decodable, Sendable {
     let results: [AppStoreMetadata]
 }
 
-struct AppStoreMetadata: Decodable {
+nonisolated struct AppStoreMetadata: Decodable, Sendable {
     let version: String
     let trackViewUrl: URL
 }

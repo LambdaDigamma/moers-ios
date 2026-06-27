@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public protocol DashboardItemConfigurable: Codable {
+nonisolated public protocol DashboardItemConfigurable: Codable, Sendable {
     
     var id: UUID { get }
     

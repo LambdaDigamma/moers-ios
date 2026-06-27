@@ -9,7 +9,7 @@
 import Core
 import UIKit
 import AppScaffold
-import Factory
+import FactoryKit
 
 public class MapCoordintor: Coordinator {
     

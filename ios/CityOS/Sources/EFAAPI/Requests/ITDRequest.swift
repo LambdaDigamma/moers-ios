@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public class ITDRequest: Codable, Equatable, DynamicNodeDecoding {
+nonisolated public class ITDRequest: Codable, Equatable, DynamicNodeDecoding {
     
     public let language: String
     public let sessionID: Int

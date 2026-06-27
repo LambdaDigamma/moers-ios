@@ -46,10 +46,15 @@ public protocol EntryManagerProtocol {
 
 public class EntryManager: EntryManagerProtocol {
     
-    nonisolated(unsafe) private let loader: HTTPLoader
+    private let client: any HTTPClient
     
-    public init(loader: HTTPLoader) {
-        self.loader = loader
+    public init(client: any HTTPClient) {
+        self.client = client
+    }
+
+    @MainActor
+    public convenience init(loader: HTTPLoader) {
+        self.init(client: HTTPLoaderClient(loader: loader))
     }
     
     private var session = URLSession.shared
@@ -58,7 +63,7 @@ public class EntryManager: EntryManagerProtocol {
         
         let request = HTTPRequest(path: "/api/v2/entries")
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         guard let response = result.response else {
             throw APIError.unknownResponse
@@ -83,7 +88,7 @@ public class EntryManager: EntryManagerProtocol {
         
         let request = HTTPRequest(method: .post, path: "/api/v2/entries", body: body)
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         let decoder = JSONDecoder()
         
@@ -108,7 +113,7 @@ public class EntryManager: EntryManagerProtocol {
         let payload = data(from: entry)
         let request = HTTPRequest(method: .put, path: "/api/v2/entries/\(entry.id)", body: DataBody(payload))
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         let decoder = JSONDecoder()
         
@@ -132,7 +137,7 @@ public class EntryManager: EntryManagerProtocol {
         
         let request = HTTPRequest(path: "/api/v2/entries/\(entry.id)/history")
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         let decoder = JSONDecoder()
         

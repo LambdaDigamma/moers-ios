@@ -8,26 +8,22 @@
 import Foundation
 import CoreLocation
 import MapKit
-import Contacts
-import Factory
+import FactoryKit
 
 public class CoreSettings {
     
-    public static let appName: String = "Mein Moers"
-    public static let regionName: String = "Moers"
+    nonisolated public static let appName: String = "Mein Moers"
+    nonisolated public static let regionName: String = "Moers"
     
-    public static let regionCenter: CLLocationCoordinate2D = .init(
+    nonisolated public static let regionCenter: CLLocationCoordinate2D = .init(
         latitude: 51.459167,
         longitude: 6.619722
     )
     
-    public static let regionLocation: CLLocation = .init(
+    nonisolated public static let regionLocation: CLLocation = .init(
         latitude: regionCenter.latitude,
         longitude: regionCenter.longitude
     )
-    
-    nonisolated(unsafe) public static var userDefaults = UserDefaults.standard
-    
 }
 
 public extension CoreSettings {
@@ -72,25 +68,15 @@ public extension CoreSettings {
         return MKMapView.CameraBoundary(mapRect: rect)!
     }
 
-    nonisolated(unsafe) static let cameraZoomRange = MKMapView.CameraZoomRange(
-        minCenterCoordinateDistance: 500,
-        maxCenterCoordinateDistance: 30_000
-    )
+    static var cameraZoomRange: MKMapView.CameraZoomRange {
+        MKMapView.CameraZoomRange(
+            minCenterCoordinateDistance: 500,
+            maxCenterCoordinateDistance: 30_000
+        )!
+    }
     
     static func defaultPlacemark() -> CLPlacemark {
-        
-        let address = CNMutablePostalAddress()
-        
-        address.city = CoreSettings.regionName
-        address.street = "Musterstraße"
-        address.isoCountryCode = "DE"
-        
-        return CLPlacemark(
-            location: CoreSettings.regionLocation,
-            name: regionName,
-            postalAddress: address
-        )
-        
+        return MKPlacemark(coordinate: CoreSettings.regionCenter)
     }
     
 }

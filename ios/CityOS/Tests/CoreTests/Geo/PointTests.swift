@@ -10,7 +10,7 @@ import XCTest
 import CoreLocation
 @testable import Core
 
-final class PointTests: XCTestCase {
+nonisolated final class PointTests: XCTestCase {
     
     public func test_init() {
         

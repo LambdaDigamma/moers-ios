@@ -7,6 +7,8 @@
 //
 
 import SwiftUI
+
+#if canImport(YouTubePlayerKit)
 import YouTubePlayerKit
 
 public struct BlockYouTubeVideoView: View {
@@ -58,3 +60,4 @@ public struct BlockYouTubeVideoView: View {
 //            .padding()
 //    }
 //}
+#endif

@@ -7,14 +7,14 @@
 
 import Foundation
 
-public typealias Handler<T> = (Result<T, Error>) -> Void
+public typealias Handler<T> = @Sendable (Result<T, Error>) -> Void
 
-public protocol ReadableStorage {
+nonisolated public protocol ReadableStorage {
     func fetchValue(for key: String) throws -> Data
     func fetchValue(for key: String, handler: @escaping Handler<Data>)
 }
 
-public protocol WritableStorage {
+nonisolated public protocol WritableStorage {
     func save(value: Data, for key: String) throws
     func save(value: Data, for key: String, handler: @escaping Handler<Data>)
 }

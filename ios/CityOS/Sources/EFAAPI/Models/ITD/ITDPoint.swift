@@ -9,7 +9,7 @@ import Foundation
 import XMLCoder
 import CoreLocation
 
-public struct ITDPoint: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
+nonisolated public struct ITDPoint: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
     
     public let stopID: Int
     public var usage: Usage = .none

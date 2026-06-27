@@ -6,7 +6,7 @@
 
 - Manifest: `ios/CityOS/Package.swift`
 - Swift tools version: 6.2
-- Platforms: iOS 16, macOS 12, watchOS 7, tvOS 14
+- Platforms: iOS 17, macOS 14, watchOS 10, tvOS 17
 - Core products include `Core`, `CoreCache`, `DashboardFeature`, `RubbishFeature`, `ParkingFeature`, `NewsFeature`, `FuelFeature`, `MapFeature`, `MMEvents`, `MMPages`, `MMFeeds`, `EFAAPI`, `EFAUI`, `PlaybackKit`, and `AppUpdateFeature`.
 - The package enables upcoming Swift features in shared `swiftSettings`; do not remove these settings without a targeted migration reason.
 

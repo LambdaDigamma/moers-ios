@@ -7,23 +7,27 @@
 
 import Foundation
 import MMPages
-import Factory
+import FactoryKit
 import Combine
 import SwiftUI
 
 @MainActor
-public class PostViewModel: ObservableObject {
+@Observable
+public class PostViewModel {
     
+    @ObservationIgnored
     var cancellables = Set<AnyCancellable>()
+    @ObservationIgnored
+    private var pageCancellable: AnyCancellable?
     
     private let postID: Post.ID
     private let repository: PostRepository
     
     public var pageViewModel: NativePageViewModel?
     
-    @Published var pageID: Page.ID?
-    @Published var state: DataState<Post, Error> = .loading
-    @Published var pageState: DataState<Page, Error> = .loading
+    var pageID: Page.ID?
+    var state: DataState<Post, Error> = .loading
+    var pageState: DataState<Page, Error> = .loading
     
     public init(postID: Post.ID) {
         self.postID = postID
@@ -70,14 +74,10 @@ public class PostViewModel: ObservableObject {
     }
     
     private func setupPageListener() {
-        
-        self.pageViewModel?.$state.assign(to: &self.$pageState)
-        
-        self.pageViewModel?.$state.sink { (state: DataState<Page, Error>) in
+        pageCancellable = pageViewModel?.statePublisher.sink { [weak self] (state: DataState<Page, Error>) in
             print("Received new page state", state)
+            self?.pageState = state
         }
-        .store(in: &self.cancellables)
-        
     }
     
     /// Call the reload method on UI events like `onAppear` in order to reload

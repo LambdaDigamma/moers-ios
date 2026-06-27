@@ -11,7 +11,7 @@ import CoreLocation
 
 public struct ParkingTimerConfigurationPartial: View {
     
-    @ObservedObject var viewModel: ParkingTimerViewModel
+    @Bindable var viewModel: ParkingTimerViewModel
     
     public init(viewModel: ParkingTimerViewModel) {
         self.viewModel = viewModel

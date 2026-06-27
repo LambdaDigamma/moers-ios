@@ -5,17 +5,19 @@
 //  Created by Lennart Fischer on 10.02.22.
 //
 
-import Factory
+import FactoryKit
 import Foundation
 import Core
 import FeedKit
+import Observation
 
 @MainActor
+@Observable
 public class NewsViewModel: StandardViewModel {
     
-    @LazyInjected(\.newsService) private var newsService
+    @ObservationIgnored @LazyInjected(\.newsService) private var newsService
     
-    @Published public private(set) var newsItems: [RSSFeedItem] = []
+    public private(set) var newsItems: [RSSFeedItem] = []
     
     public override init() {
         

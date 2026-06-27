@@ -101,7 +101,7 @@ public class PostsViewController: UIViewController {
     }
 
     private func setupObservers() {
-        viewModel.$items
+        viewModel.itemsPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] resource in
                 guard let self else { return }

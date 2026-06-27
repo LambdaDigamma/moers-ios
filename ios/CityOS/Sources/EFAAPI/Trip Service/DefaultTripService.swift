@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Session: Codable, Equatable, Hashable, Sendable {
+nonisolated public struct Session: Codable, Equatable, Hashable, Sendable {
     
     public let sessionID: String
     public let requestID: String
@@ -21,7 +21,7 @@ public struct Session: Codable, Equatable, Hashable, Sendable {
     
 }
 
-public struct Trip: Codable {
+nonisolated public struct Trip: Codable {
     
     public let session: Session
     
@@ -31,7 +31,7 @@ public struct Trip: Codable {
     
 }
 
-public class DefaultTripService {
+nonisolated public class DefaultTripService {
     
     private let path: URL
     private let disk: DiskStorage

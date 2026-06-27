@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum HourError: Int, Codable, LocalizedError {
+nonisolated public enum HourError: Int, Codable, LocalizedError {
     
     case invalidTime = -1
     case hourOutOfRange = -10

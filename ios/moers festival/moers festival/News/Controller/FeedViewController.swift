@@ -9,7 +9,7 @@
 import UIKit
 import Combine
 import MMFeeds
-import Factory
+import FactoryKit
 
 public class FeedViewController: UIViewController {
 

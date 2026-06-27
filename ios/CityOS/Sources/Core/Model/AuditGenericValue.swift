@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum AuditGenericValue: Codable, Hashable, Sendable {
+nonisolated public enum AuditGenericValue: Codable, Hashable, Sendable {
     
     case string(String), integer(Int), double(Double)
 

@@ -10,8 +10,9 @@ import XCTest
 import MapKit
 @testable import Core
 
-final class GeoFeatureTests: XCTestCase {
-    
+nonisolated final class GeoFeatureTests: XCTestCase {
+
+    @MainActor
     func testDecode() throws {
         
         guard let feature = try createJSONFeature().first else { return XCTFail("No feature found.") }
@@ -23,6 +24,7 @@ final class GeoFeatureTests: XCTestCase {
         
     }
     
+    @MainActor
     func createJSONFeature() throws -> [MKGeoJSONFeature] {
         
         let data = """

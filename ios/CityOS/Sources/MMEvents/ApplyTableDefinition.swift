@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-public protocol ApplyTableDefinition {
+nonisolated public protocol ApplyTableDefinition {
     
     var tableName: String { get }
     

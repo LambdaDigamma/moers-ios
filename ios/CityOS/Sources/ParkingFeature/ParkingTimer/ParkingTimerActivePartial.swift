@@ -11,7 +11,7 @@ import CoreLocation
 
 public struct ParkingTimerActivePartial: View {
     
-    @ObservedObject var viewModel: ParkingTimerViewModel
+    var viewModel: ParkingTimerViewModel
     
     private var onCancel: () -> Void
     

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum TransportTypeUi: String, Codable, CaseIterable, Hashable, Equatable {
+nonisolated public enum TransportTypeUi: String, Codable, CaseIterable, Hashable, Equatable {
     
     case footpath = "footpath"
     

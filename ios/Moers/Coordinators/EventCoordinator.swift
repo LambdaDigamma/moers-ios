@@ -10,7 +10,7 @@ import Core
 import UIKit
 import AppScaffold
 import MMEvents
-import Factory
+import FactoryKit
 
 class EventCoordinator: Coordinator {
     

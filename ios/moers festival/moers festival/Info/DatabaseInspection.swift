@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import Factory
+import FactoryKit
 import GRDB
 import MMEvents
 

@@ -7,11 +7,13 @@
 
 import Foundation
 import Core
+import Observation
 
 @MainActor
+@Observable
 public class FuelStationDetailViewModel: StandardViewModel {
     
-    @Published public var state: DataState<PetrolStation, Error> = .loading
+    public var state: DataState<PetrolStation, Error> = .loading
     
     private let loadDetails: () async throws -> PetrolStation
     

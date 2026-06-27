@@ -9,17 +9,17 @@
 import UIKit
 import BLTNBoard
 
-nonisolated class FeedbackPageBulletinItem: BLTNPageItem {
+class FeedbackPageBulletinItem: BLTNPageItem {
 
-    nonisolated override init(title: String) {
+    override init(title: String) {
         super.init(title: title)
     }
 
-    nonisolated override func actionButtonTapped(sender: UIButton) {
+    override func actionButtonTapped(sender: UIButton) {
         super.actionButtonTapped(sender: sender)
     }
 
-    nonisolated override func alternativeButtonTapped(sender: UIButton) {
+    override func alternativeButtonTapped(sender: UIButton) {
         super.alternativeButtonTapped(sender: sender)
     }
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum TripDateTimeType: String, CaseIterable {
+nonisolated public enum TripDateTimeType: String, CaseIterable {
     
     case departure = "dep"
     case arrival = "arr"

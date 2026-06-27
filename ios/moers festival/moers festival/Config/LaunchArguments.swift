@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Factory
+import FactoryKit
 
 public class LaunchArguments {
     

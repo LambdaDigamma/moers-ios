@@ -9,7 +9,7 @@ import Foundation
 import MMPages
 @preconcurrency import MediaLibraryKit
 
-public struct Event: BaseEvent, Equatable, Hashable, Sendable {
+nonisolated public struct Event: BaseEvent, Equatable, Hashable, Sendable {
     
     public typealias ID = Int
     
@@ -142,7 +142,7 @@ public struct Event: BaseEvent, Equatable, Hashable, Sendable {
     
 }
 
-extension Event {
+nonisolated extension Event {
     
     public static var decoder: JSONDecoder {
         let decoder = JSONDecoder()

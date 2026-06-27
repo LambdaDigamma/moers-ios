@@ -29,7 +29,7 @@ struct TextBlockView: View {
 
 struct TextBlockRenderer: View {
     
-    var document: Document
+    var document: ProseMirror.Document
     
     var body: some View {
         
@@ -42,7 +42,7 @@ struct TextBlockRenderer: View {
 
 public struct DetailText: View {
     
-    public var document: Document
+    public var document: ProseMirror.Document
     
     public var body: some View {
         

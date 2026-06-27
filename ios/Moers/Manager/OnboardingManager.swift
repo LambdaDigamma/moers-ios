@@ -12,7 +12,7 @@ import BLTNBoard
 import CoreLocation
 import RubbishFeature
 import FuelFeature
-import Factory
+import FactoryKit
 import UIKit
 
 // todo: Move Privacy Consent to Front of Onboarding

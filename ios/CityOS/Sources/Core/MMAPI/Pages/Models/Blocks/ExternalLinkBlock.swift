@@ -7,7 +7,7 @@
 
 import Foundation
 
-final public class ExternalLinkBlock: NSObject, Blockable {
+nonisolated final public class ExternalLinkBlock: NSObject, Blockable {
     
     public static let type: BlockType = .externalLink
     

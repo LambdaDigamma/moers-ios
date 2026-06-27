@@ -6,13 +6,13 @@
 //
 
 import SwiftUI
-import Factory
+import FactoryKit
 import Core
 import MapKit
 
 public struct FuelStationList: View {
     
-    @ObservedObject var viewModel: FuelPriceDashboardViewModel
+    var viewModel: FuelPriceDashboardViewModel
     
     public init(viewModel: FuelPriceDashboardViewModel) {
         self.viewModel = viewModel

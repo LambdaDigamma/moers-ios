@@ -11,7 +11,7 @@ import FeedKit
 // swiftlint:disable type_body_length
 // swiftlint:disable function_body_length
 // swiftlint:disable line_length
-public class StaticNewsService: NewsService {
+nonisolated public class StaticNewsService: NewsService {
     
     public init() {
         

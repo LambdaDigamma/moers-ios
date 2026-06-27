@@ -57,6 +57,8 @@
 	</dict>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
+	<key>GOOGLE_ADS_ON_DEVICE_CONVERSION_EVENT_DATA_ENABLED</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>twitter</string>

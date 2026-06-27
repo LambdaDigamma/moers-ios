@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct EventSearchTextNormalizer: Sendable {
+nonisolated public struct EventSearchTextNormalizer: Sendable {
 
     private static let replacementPairs: [(String, String)] = [
         ("Æ", "AE"),

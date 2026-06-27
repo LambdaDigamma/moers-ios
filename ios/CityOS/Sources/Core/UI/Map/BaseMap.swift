@@ -16,7 +16,7 @@ public struct BaseMap: UIViewRepresentable {
     private var region: Binding<MKCoordinateRegion>
     private var userTrackingMode: Binding<MKUserTrackingMode>?
     
-    @ObservedObject private var viewModel: BaseMapViewModel
+    private var viewModel: BaseMapViewModel
     
     public init(
         viewModel: BaseMapViewModel,
@@ -60,6 +60,7 @@ public struct BaseMap: UIViewRepresentable {
     
     public func updateUIView(_ uiView: MKMapView, context: Context) {
         
+        context.coordinator.parent = self
         uiView.mapType = context.environment.mapType
         uiView.showsUserLocation = context.environment.showsUserLocation
         
@@ -85,13 +86,60 @@ public struct BaseMap: UIViewRepresentable {
     public class Coordinator: NSObject, MKMapViewDelegate {
         
         var parent: BaseMap
+        private var pendingRegion: MKCoordinateRegion?
+        private var hasScheduledRegionUpdate = false
         
         init(_ map: BaseMap) {
             parent = map
         }
         
         public func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-            self.parent.region.wrappedValue = mapView.region
+            scheduleRegionUpdate(mapView.region)
+        }
+
+        private func scheduleRegionUpdate(_ region: MKCoordinateRegion) {
+            pendingRegion = region
+
+            guard !hasScheduledRegionUpdate else { return }
+
+            hasScheduledRegionUpdate = true
+
+            Task { @MainActor [weak self] in
+                guard let self = self else {
+                    return
+                }
+
+                defer {
+                    self.hasScheduledRegionUpdate = false
+                }
+
+                guard let pendingRegion = self.pendingRegion else {
+                    return
+                }
+
+                self.pendingRegion = nil
+
+                guard !self.isRegion(
+                    self.parent.region.wrappedValue,
+                    approximatelyEqualTo: pendingRegion
+                ) else {
+                    return
+                }
+
+                self.parent.region.wrappedValue = pendingRegion
+            }
+        }
+
+        private func isRegion(
+            _ lhs: MKCoordinateRegion,
+            approximatelyEqualTo rhs: MKCoordinateRegion
+        ) -> Bool {
+            let accuracy = 0.000_001
+
+            return abs(lhs.center.latitude - rhs.center.latitude) < accuracy
+                && abs(lhs.center.longitude - rhs.center.longitude) < accuracy
+                && abs(lhs.span.latitudeDelta - rhs.span.latitudeDelta) < accuracy
+                && abs(lhs.span.longitudeDelta - rhs.span.longitudeDelta) < accuracy
         }
         
         public func mapView(

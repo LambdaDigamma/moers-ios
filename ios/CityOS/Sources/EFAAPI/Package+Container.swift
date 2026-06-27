@@ -6,10 +6,11 @@
 //
 
 import Foundation
-import Factory
+import FactoryKit
 
 public extension Container {
     
+    @MainActor
     var transitService: Factory<TransitService> {
         self {
             let service = StaticTransitService()
@@ -37,4 +38,3 @@ public extension Container {
     }
     
 }
-

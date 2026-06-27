@@ -8,6 +8,7 @@
 import Core
 import Foundation
 
+@MainActor
 public class EventViewModel<Event: BaseEvent>: Equatable, Hashable {
     
     open private(set) var model: Event

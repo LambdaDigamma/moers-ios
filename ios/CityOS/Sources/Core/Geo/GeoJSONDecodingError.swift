@@ -7,6 +7,6 @@
 
 import Foundation
 
-public enum GeoJSONDecodingError: LocalizedError {
+nonisolated public enum GeoJSONDecodingError: LocalizedError {
     case pointInvalidNumberOfCoordinates
 }

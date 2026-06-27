@@ -8,8 +8,10 @@
 import Foundation
 import Combine
 import OSLog
+import Observation
 
-public class TimetableTransmitter: ObservableObject {
+@Observable
+public class TimetableTransmitter {
     
     public let showEvent: PassthroughSubject<Event.ID, Never>
     public let searchRequested: PassthroughSubject<Void, Never>

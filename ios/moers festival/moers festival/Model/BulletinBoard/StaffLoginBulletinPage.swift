@@ -6,20 +6,20 @@
 //  Copyright © 2018 CodeForNiederrhein. All rights reserved.
 //
 
-@preconcurrency import UIKit
+import UIKit
 import BLTNBoard
 
-nonisolated class StaffLoginBulletinPage: FeedbackPageBulletinItem {
+class StaffLoginBulletinPage: FeedbackPageBulletinItem {
 
     @objc public var textField: UITextField!
 
     @objc public var textInputHandler: ((BLTNActionItem, String?) -> Void)? = nil
 
-    nonisolated override init(title: String) {
+    override init(title: String) {
         super.init(title: title)
     }
 
-    nonisolated override func makeViewsUnderTitle(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
+    override func makeViewsUnderTitle(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         let accentColor = UIColor(dynamicProvider: { traitCollection in
             traitCollection.userInterfaceStyle == .dark ? .systemYellow : .black
         })
@@ -40,16 +40,16 @@ nonisolated class StaffLoginBulletinPage: FeedbackPageBulletinItem {
 
     }
 
-    nonisolated override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
+    override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         return nil
     }
 
-    nonisolated override func tearDown() {
+    override func tearDown() {
         super.tearDown()
         textField?.delegate = nil
     }
 
-    nonisolated override func actionButtonTapped(sender: UIButton) {
+    override func actionButtonTapped(sender: UIButton) {
         textField.resignFirstResponder()
         super.actionButtonTapped(sender: sender)
     }

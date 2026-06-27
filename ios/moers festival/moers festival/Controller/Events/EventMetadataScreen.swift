@@ -13,7 +13,7 @@ import MMEvents
 
 public struct EventMetadataScreen: View {
     
-    @ObservedObject var viewModel: EventDetailViewModel
+    var viewModel: EventDetailViewModel
     
     @Environment(\.presentationMode) var presentationMode
     

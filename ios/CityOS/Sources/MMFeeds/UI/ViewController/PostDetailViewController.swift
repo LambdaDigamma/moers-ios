@@ -40,7 +40,7 @@ public class PostDetailViewController: UIViewController {
         self.navigationItem.largeTitleDisplayMode = .never
         
         let screen = PostDetailScreen(viewModel: viewModel)
-            .environmentObject(actionTransmitter)
+            .environment(actionTransmitter)
         
         self.addSubSwiftUIView(screen, to: view)
         

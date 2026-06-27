@@ -10,7 +10,7 @@ import Core
 import MMPages
 import MMEvents
 import UIKit
-import Factory
+import FactoryKit
 
 public class EventViewController: DefaultHostingController {
     

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct RubbishSection: Hashable, Equatable {
+nonisolated public struct RubbishSection: Hashable, Equatable {
     
     public let header: String
     public let items: [RubbishPickupItem]

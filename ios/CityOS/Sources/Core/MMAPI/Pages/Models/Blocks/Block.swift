@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum BlockType: String, CaseIterable, Codable, Sendable, CaseIterableDefaultsLast {
+nonisolated public enum BlockType: String, CaseIterable, Codable, Sendable, CaseIterableDefaultsLast {
     
     case markdown = "markdown"
     case soundcloud = "soundcloud"
@@ -26,13 +26,13 @@ public enum BlockType: String, CaseIterable, Codable, Sendable, CaseIterableDefa
     
 }
 
-public protocol Blockable: Codable {
+nonisolated public protocol Blockable: Codable {
     
     static var type: BlockType { get }
     
 }
 
-public class AnyBlockable: Codable {
+nonisolated public class AnyBlockable: Codable {
     
     public var data: Blockable
     
@@ -65,11 +65,11 @@ public class AnyBlockable: Codable {
 }
 
 
-protocol CaseIterableDefaultsLast: Decodable & CaseIterable & RawRepresentable
+nonisolated protocol CaseIterableDefaultsLast: Decodable & CaseIterable & RawRepresentable
     where Self.RawValue: Decodable, Self.AllCases: BidirectionalCollection { }
 
 extension CaseIterableDefaultsLast {
-    public init(from decoder: Decoder) throws {
+    nonisolated public init(from decoder: Decoder) throws {
         self = try Self(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? Self.allCases.last!
     }
 }

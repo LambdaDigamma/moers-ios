@@ -13,7 +13,7 @@ import MMEvents
 import AppScaffold
 import Combine
 import SwiftUI
-import Factory
+import FactoryKit
 
 public class EventCoordinator: SharedCoordinator {
     

@@ -9,6 +9,7 @@ import Foundation
 import CoreLocation
 import Combine
 
+@MainActor
 public protocol LocationService {
     
     /// The current location authorization status.

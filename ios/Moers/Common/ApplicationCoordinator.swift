@@ -11,7 +11,7 @@ import UIKit
 import ModernNetworking
 import MMEvents
 import Cache
-import Factory
+import FactoryKit
 import OSLog
 import Core
 import EFAUI

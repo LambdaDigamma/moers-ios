@@ -6,14 +6,16 @@
 //
 
 import Foundation
-import Factory
+import FactoryKit
+import Core
 import MMPages
 
 public extension Container {
 
+    @MainActor
     var pageService: Factory<PageService> {
         self {
-            DefaultPageService(Container.shared.httpLoader())
+            DefaultPageService(client: Container.shared.httpClient())
         }
     }
 

@@ -9,26 +9,27 @@
 import Core
 import SwiftUI
 import MediaLibraryKit
-import Factory
+import FactoryKit
 import Combine
 
+@Observable
 public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable, Equatable {
     
     public let id: UUID = .init()
     
     public let eventID: Event.ID?
     
-    @Published public var title: String
-    @Published public var startDate: Date?
-    @Published public var endDate: Date?
-    @Published public var location: String?
-    @Published public var color: Color = .yellow
-    @Published public var media: Media?
+    public var title: String
+    public var startDate: Date?
+    public var endDate: Date?
+    public var location: String?
+    public var color: Color = .yellow
+    public var media: Media?
     
-    @Published public var isOpenEnd: Bool = false
-    @Published public var scheduleDisplayMode: EventScheduleDisplayMode = .dateTime
+    public var isOpenEnd: Bool = false
+    public var scheduleDisplayMode: EventScheduleDisplayMode = .dateTime
     
-    @Published public var isLiked: Bool = false
+    public var isLiked: Bool = false
     
     private let favoriteEventsStore: FavoriteEventsStore?
     
@@ -170,7 +171,7 @@ public struct EventListItem: View {
     
     @Environment(\.showFavoriteIcon) var showFavoriteIcon
     
-    @ObservedObject private var viewModel: EventListItemViewModel
+    private var viewModel: EventListItemViewModel
     
     public init(viewModel: EventListItemViewModel) {
         self.viewModel = viewModel

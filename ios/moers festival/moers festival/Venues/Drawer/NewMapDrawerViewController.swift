@@ -10,7 +10,7 @@ import UIKit
 import Core
 import MMEvents
 import SwiftUI
-import Factory
+import FactoryKit
 import Combine
 
 protocol NewMapDrawerDelegate: AnyObject {
@@ -151,7 +151,7 @@ class NewMapDrawerViewController: UIViewController {
         
         placeRepository.changeObserver()
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] completion in
+            .sink { _ in
                 
             } receiveValue: { [weak self] places in
                 guard let self = self else { return }

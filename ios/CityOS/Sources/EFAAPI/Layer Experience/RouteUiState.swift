@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct RouteUiState: Codable, Equatable, Hashable {
+nonisolated public struct RouteUiState: Codable, Equatable, Hashable {
     
     public let origin: String
     public let destination: String
@@ -35,7 +35,7 @@ public struct RouteUiState: Codable, Equatable, Hashable {
     
 }
 
-public protocol RouteDetailPresentable {
+nonisolated public protocol RouteDetailPresentable {
     
     func transformIntoUiState(origin: String, destination: String) -> RouteUiState
     

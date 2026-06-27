@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-public struct FavoriteEventsTableDefinition: ApplyTableDefinition {
+nonisolated public struct FavoriteEventsTableDefinition: ApplyTableDefinition {
     
     public static let tableName = "favorite_events"
     
@@ -32,4 +32,3 @@ public struct FavoriteEventsTableDefinition: ApplyTableDefinition {
     }
     
 }
-

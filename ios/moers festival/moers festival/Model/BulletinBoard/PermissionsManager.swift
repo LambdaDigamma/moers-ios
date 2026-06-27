@@ -28,7 +28,7 @@ class PermissionsManager {
                     return
                 }
 
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     UIApplication.shared.registerForRemoteNotifications()
                     FestivalNotificationTopicSynchronizer.shared.sync()
                 }

@@ -14,7 +14,7 @@ public struct NavigationDirectionsMapView: UIViewRepresentable {
     
     public typealias UIViewType = MKMapView
     
-    @ObservedObject public var viewModel: NavigationViewModel
+    public var viewModel: NavigationViewModel
     
     public init(viewModel: NavigationViewModel) {
         self.viewModel = viewModel

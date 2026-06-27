@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 public struct LivestreamData: Equatable {
     
     public static func == (lhs: LivestreamData, rhs: LivestreamData) -> Bool {

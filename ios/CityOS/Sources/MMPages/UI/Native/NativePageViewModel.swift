@@ -6,19 +6,32 @@
 //
 
 import Foundation
-import Factory
+import FactoryKit
 import Combine
-import Factory
+import Observation
 
 @MainActor
-public class NativePageViewModel: ObservableObject {
+@Observable
+public class NativePageViewModel {
     
+    @ObservationIgnored
     var cancellables = Set<AnyCancellable>()
     
     private let pageID: Page.ID
     private let repository: PageRepository
     
-    @Published public var state: DataState<Page, Error> = .loading
+    public var state: DataState<Page, Error> = .loading {
+        didSet {
+            stateSubject.send(state)
+        }
+    }
+
+    @ObservationIgnored
+    private let stateSubject = CurrentValueSubject<DataState<Page, Error>, Never>(.loading)
+
+    public var statePublisher: AnyPublisher<DataState<Page, Error>, Never> {
+        stateSubject.eraseToAnyPublisher()
+    }
     
     public init(pageID: Page.ID) {
         self.pageID = pageID

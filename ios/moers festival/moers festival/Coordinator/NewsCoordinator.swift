@@ -15,7 +15,7 @@ import MMPages
 import MMFeeds
 import SafariServices
 import Combine
-import Factory
+import FactoryKit
 
 public class NewsCoordinator: Coordinator {
     
@@ -74,12 +74,10 @@ public class NewsCoordinator: Coordinator {
     
     private func openLink(url: URL) {
 
-        DispatchQueue.main.async {
-            let externalViewController = ExternalWebViewController(url: url)
-            externalViewController.navigationItem.largeTitleDisplayMode = .never
+        let externalViewController = ExternalWebViewController(url: url)
+        externalViewController.navigationItem.largeTitleDisplayMode = .never
 
-            self.navigationController.pushViewController(externalViewController, animated: true)
-        }
+        self.navigationController.pushViewController(externalViewController, animated: true)
 
     }
     

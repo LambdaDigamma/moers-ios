@@ -6,14 +6,15 @@
 //
 
 import Foundation
-import Factory
+import FactoryKit
 import ModernNetworking
 
 public extension Container {
     
+    @MainActor
     var entryManager: Factory<EntryManagerProtocol> {
         self {
-            EntryManager(loader: self.httpLoader())
+            EntryManager(client: self.httpClient())
         }
         .singleton
     }

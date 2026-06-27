@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol Stubbable: Identifiable {
+nonisolated public protocol Stubbable: Identifiable {
     
     static func stub(withID id: ID) -> Self
     
@@ -15,8 +15,8 @@ public protocol Stubbable: Identifiable {
 
 public extension Stubbable {
     
-    func setting<T>(_ keyPath: WritableKeyPath<Self, T>,
-                    to value: T) -> Self {
+    nonisolated func setting<T>(_ keyPath: WritableKeyPath<Self, T>,
+                                to value: T) -> Self {
         var stub = self
         stub[keyPath: keyPath] = value
         return stub
@@ -25,7 +25,7 @@ public extension Stubbable {
 }
 
 public extension Array where Element: Stubbable, Element.ID == Int {
-    static func stub(withCount count: Int, startingAt: Int = 0) -> Array {
+    nonisolated static func stub(withCount count: Int, startingAt: Int = 0) -> Array {
         return (startingAt..<count+startingAt).map {
             .stub(withID: $0)
         }
@@ -33,7 +33,7 @@ public extension Array where Element: Stubbable, Element.ID == Int {
 }
 
 extension Array where Element: Stubbable, Element.ID == String {
-    static func stub(withCount count: Int, startingAt: Int = 0) -> Array {
+    nonisolated static func stub(withCount count: Int, startingAt: Int = 0) -> Array {
         return (startingAt..<count+startingAt).map {
             .stub(withID: "\($0)")
         }
@@ -42,8 +42,8 @@ extension Array where Element: Stubbable, Element.ID == String {
 
 public extension MutableCollection where Element: Stubbable {
     
-    func setting<T>(_ keyPath: WritableKeyPath<Element, T>,
-                    to value: T) -> Self {
+    nonisolated func setting<T>(_ keyPath: WritableKeyPath<Element, T>,
+                                to value: T) -> Self {
         
         var collection = self
         

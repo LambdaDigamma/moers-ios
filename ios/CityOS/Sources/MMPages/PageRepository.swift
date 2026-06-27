@@ -8,9 +8,10 @@
 import Foundation
 import GRDB
 import Combine
-import Factory
+import FactoryKit
 
 public extension Container {
+    @MainActor
     var pageRepository: Factory<PageRepository> {
         Factory(self) {
             

@@ -12,7 +12,7 @@ import NukeUI
 
 public struct BroadcastList: View {
     
-    @ObservedObject private var viewModel: BroadcastListViewModel
+    private var viewModel: BroadcastListViewModel
     
     public init(
         viewModel: BroadcastListViewModel
@@ -117,7 +117,7 @@ public struct BroadcastList: View {
             
         }
         .padding()
-        .background(Color(UIColor.secondarySystemBackground))
+        .background(Color(ApplicationTheme.current.cardBackgroundColor))
         
     }
     

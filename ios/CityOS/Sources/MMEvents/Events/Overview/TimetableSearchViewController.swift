@@ -126,9 +126,9 @@ public class TimetableSearchViewController: UIViewController {
 
     private func bindViewModel() {
         Publishers.CombineLatest3(
-            viewModel.$searchText,
-            viewModel.$searchSections,
-            viewModel.$searchState
+            viewModel.searchTextPublisher,
+            viewModel.searchSectionsPublisher,
+            viewModel.searchStatePublisher
         )
             .receive(on: DispatchQueue.main)
             .sink { [weak self] query, sections, state in

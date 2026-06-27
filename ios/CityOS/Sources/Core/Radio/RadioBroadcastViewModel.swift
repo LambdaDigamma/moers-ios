@@ -6,16 +6,18 @@
 //
 
 import Foundation
+import Observation
 
 @MainActor
-public class RadioBroadcastViewModel: Identifiable, ObservableObject {
+@Observable
+public class RadioBroadcastViewModel: Identifiable{
     
     public let id: Int
     public var title: String
     public var subtitle: String = ""
     public var imageURL: String?
     public var description: String?
-    @Published public var enabledReminder: Bool = false
+    public var enabledReminder: Bool = false
     
     public init(from broadcast: RadioBroadcast) {
         self.id = broadcast.id

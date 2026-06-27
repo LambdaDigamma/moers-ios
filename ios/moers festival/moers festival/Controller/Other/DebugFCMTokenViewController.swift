@@ -93,7 +93,7 @@ final class DebugFCMTokenViewController: UIViewController {
         Messaging.messaging().token { [weak self] token, error in
             let errorMessage = error?.localizedDescription
 
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 self?.applyTokenResult(token: token, errorMessage: errorMessage)
             }
         }

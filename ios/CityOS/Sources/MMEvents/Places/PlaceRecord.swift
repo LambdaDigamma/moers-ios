@@ -9,7 +9,7 @@
 import Foundation
 import GRDB
 
-public struct PlaceRecord: Equatable, Sendable {
+nonisolated public struct PlaceRecord: Equatable, Sendable {
     
     public var id: Int64?
     public var latitude: Double
@@ -31,14 +31,14 @@ public struct PlaceRecord: Equatable, Sendable {
     
 }
 
-extension PlaceRecord: Codable, FetchableRecord, MutablePersistableRecord {
+nonisolated extension PlaceRecord: Codable, FetchableRecord, MutablePersistableRecord {
     
     public static let databaseTableName: String = PlaceTableDefinition.tableName
     
     public static let databaseColumnDecodingStrategy: DatabaseColumnDecodingStrategy = .convertFromSnakeCase
     public static let databaseColumnEncodingStrategy: DatabaseColumnEncodingStrategy = .convertToSnakeCase
     
-    public enum Columns {
+    nonisolated public enum Columns {
         static let name = Column(CodingKeys.name)
     }
     
@@ -50,7 +50,7 @@ extension PlaceRecord: Codable, FetchableRecord, MutablePersistableRecord {
     
 }
 
-extension PlaceRecord {
+nonisolated extension PlaceRecord {
     
     public func toBase() -> Place {
         
@@ -80,7 +80,7 @@ extension PlaceRecord {
     
 }
 
-extension Place {
+nonisolated extension Place {
     
     public func toRecord() -> PlaceRecord {
         

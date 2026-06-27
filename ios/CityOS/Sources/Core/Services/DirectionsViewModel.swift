@@ -9,16 +9,17 @@ import Foundation
 import MapKit
 import OSLog
 import SwiftUI
-import Factory
+import FactoryKit
 
+@Observable
 public class DirectionsViewModel: StandardViewModel {
     
-    @Published public var eta: DataState<TimeInterval, Error> = .loading
-    @Published public var directionsMode: DirectionsMode = .driving
+    public var eta: DataState<TimeInterval, Error> = .loading
+    public var directionsMode: DirectionsMode = .driving
     
     private let logger = Logger(.default)
     
-    @LazyInjected(\.locationService) private var locationService: LocationService
+    @ObservationIgnored @LazyInjected(\.locationService) private var locationService: LocationService
     
     public init(
         directionsMode: DirectionsMode = .driving

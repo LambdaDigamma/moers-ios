@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import Core
 import MMEvents
-import Factory
+import FactoryKit
 import Combine
 import OSLog
 

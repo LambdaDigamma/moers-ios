@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-public struct PlaceTableDefinition: ApplyTableDefinition {
+nonisolated public struct PlaceTableDefinition: ApplyTableDefinition {
     
     public static let tableName = "places"
     

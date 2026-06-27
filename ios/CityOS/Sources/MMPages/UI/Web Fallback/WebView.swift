@@ -12,12 +12,13 @@ import Foundation
 @preconcurrency import WebKit
 import SwiftUI
 
-public class WebViewStateModel: ObservableObject {
+@Observable
+public class WebViewStateModel {
     
-    @Published var pageTitle: String = "Web View"
-    @Published var loading: Bool = false
-    @Published var canGoBack: Bool = false
-    @Published var goBack: Bool = false
+    var pageTitle: String = "Web View"
+    var loading: Bool = false
+    var canGoBack: Bool = false
+    var goBack: Bool = false
     
     public init(
         pageTitle: String = "Web View",
@@ -45,7 +46,7 @@ public struct WebView: View {
         case didFail(WKNavigation, Error)
     }
     
-    @ObservedObject var webViewStateModel: WebViewStateModel
+    var webViewStateModel: WebViewStateModel
     
     private var actionDelegate: ((_ navigationAction: WebView.NavigationAction) -> Void)?
     
@@ -94,7 +95,7 @@ public struct WebView: View {
 
 public struct WebViewWrapper : UIViewRepresentable {
     
-    @ObservedObject var webViewStateModel: WebViewStateModel
+    var webViewStateModel: WebViewStateModel
     let action: ((_ navigationAction: WebView.NavigationAction) -> Void)?
     
     let request: URLRequest
@@ -131,7 +132,7 @@ public struct WebViewWrapper : UIViewRepresentable {
     @MainActor
     public final class Coordinator: NSObject {
         
-        @ObservedObject var webViewStateModel: WebViewStateModel
+        var webViewStateModel: WebViewStateModel
         
         let action: ((_ navigationAction: WebView.NavigationAction) -> Void)?
         

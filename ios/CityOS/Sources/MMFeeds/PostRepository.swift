@@ -8,10 +8,10 @@
 import Foundation
 import Combine
 import GRDB
-import Factory
+import FactoryKit
 
 public extension Container {
-    var postRepository: Factory<PostRepository> {
+    @MainActor var postRepository: Factory<PostRepository> {
         Factory(self) {
             
             guard let dbQueue = try? DatabaseQueue(path: ":memory:") else { fatalError() }

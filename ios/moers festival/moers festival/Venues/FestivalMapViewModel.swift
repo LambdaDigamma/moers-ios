@@ -11,12 +11,13 @@ import Core
 import MMEvents
 import SwiftUI
 import Combine
-import Factory
+import FactoryKit
 
 @MainActor
+@Observable
 class FestivalMapViewModel: StandardViewModel {
     
-    @Published var places: [FestivalPlaceRowUi] = []
+    var places: [FestivalPlaceRowUi] = []
     
     private let placeRepository: PlaceRepository
     

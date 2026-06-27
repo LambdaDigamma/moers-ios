@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum TripDate: Codable {
+nonisolated public enum TripDate: Codable {
     
     case departure(Date)
     case arrival(Date)

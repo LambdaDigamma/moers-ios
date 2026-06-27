@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import Observation
 
-public class DepartureMonitorViewModel: ObservableObject {
+@Observable
+public class DepartureMonitorViewModel {
     
     public let stationName: String
     public let date: Date

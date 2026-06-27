@@ -65,7 +65,7 @@ public struct MapSnapshotView: View {
         
         ZStack {
             
-            Color(UIColor.secondarySystemBackground)
+            Color(ApplicationTheme.current.cardBackgroundColor)
             
             if let image = snapshotImage {
                 Image(uiImage: image)

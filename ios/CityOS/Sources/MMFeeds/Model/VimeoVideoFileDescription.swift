@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct VimeoVideoFileDescription: Codable, Equatable, Hashable, Sendable {
+nonisolated public struct VimeoVideoFileDescription: Codable, Equatable, Hashable, Sendable {
     
     public var fps: Double?
     public var md5: String?
@@ -35,7 +35,7 @@ public struct VimeoVideoFileDescription: Codable, Equatable, Hashable, Sendable 
     
 }
 
-public struct VimeoVideoThumbnailDescription: Codable, Equatable, Hashable, Sendable {
+nonisolated public struct VimeoVideoThumbnailDescription: Codable, Equatable, Hashable, Sendable {
     
     public var uri: String?
     public var type: String?
@@ -53,7 +53,7 @@ public struct VimeoVideoThumbnailDescription: Codable, Equatable, Hashable, Send
         case thumbnails = "sizes"
     }
     
-    public struct Thumbnail: Codable, Equatable, Hashable, Sendable {
+    nonisolated public struct Thumbnail: Codable, Equatable, Hashable, Sendable {
         public var link: URL?
         public var width: Int?
         public var height: Int?

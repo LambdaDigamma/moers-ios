@@ -9,7 +9,7 @@ import SwiftUI
 import CoreLocation
 import Combine
 import Core
-import Factory
+import FactoryKit
 import EFAAPI
 import ModernNetworking
 
@@ -21,14 +21,15 @@ public struct ActiveTripData {
     
 }
 
+@Observable
 public class ActiveTripViewModel: StandardViewModel {
     
-    @LazyInjected(\.tripService) var tripService
-    @LazyInjected(\.transitService) var transitService
+    @ObservationIgnored @LazyInjected(\.tripService) var tripService
+    @ObservationIgnored @LazyInjected(\.transitService) var transitService
     
     public var search = TripSearchViewModel()
     
-    @Published public var trip: DataState<ActiveTripData, Error> = .loading
+    public var trip: DataState<ActiveTripData, Error> = .loading
     
     public override init() {
         

@@ -10,7 +10,7 @@ import Core
 import ModernNetworking
 import MediaLibraryKit
 
-public protocol BasePost: Model, Stubbable, Equatable {
+nonisolated public protocol BasePost: Model, Stubbable, Equatable {
     
     associatedtype ID = Identifiable
     associatedtype FeedID = Identifiable

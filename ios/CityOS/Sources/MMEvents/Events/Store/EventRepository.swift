@@ -7,12 +7,13 @@
 
 import Foundation
 import Combine
-import Factory
+import FactoryKit
 import GRDB
 import MMPages
 
 extension Container {
     
+    @MainActor
     public var eventRepository: Factory<EventRepository> {
         Factory(self) {
 
@@ -33,7 +34,7 @@ extension Container {
     
 }
 
-public class EventRepository: @unchecked Sendable {
+public class EventRepository {
     
     public let store: EventStore
     public let service: EventService
@@ -145,7 +146,7 @@ public class EventRepository: @unchecked Sendable {
             let places = events.compactMap { $0.place?.toRecord() }
 
             if !places.isEmpty {
-                try await placeStore.updateOrCreate(places)
+                _ = try await placeStore.updateOrCreate(places)
             }
 
         }
@@ -169,7 +170,7 @@ public class EventRepository: @unchecked Sendable {
         if let placeStore {
             
             if let place = event.place?.toRecord() {
-                try await placeStore.updateOrCreate([place])
+                _ = try await placeStore.updateOrCreate([place])
             }
             
         }

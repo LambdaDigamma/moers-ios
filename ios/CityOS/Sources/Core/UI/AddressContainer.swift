@@ -46,22 +46,22 @@ public struct AddressContainer: View {
         
         DetailContainer(title: label ?? AppStrings.address) {
             
-            if #available(iOS 15.0, *) {
-                VStack(alignment: .leading, spacing: 4) {
-                    Group {
-                        Text(address.firstLine + "\n") +
-                        Text(address.secondLine)
-                    }.textSelection(.enabled)
-                }
-            } else {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(address.firstLine)
-                    Text(address.secondLine)
-                }
+            VStack(alignment: .leading, spacing: 4) {
+#if os(tvOS)
+                addressText
+#else
+                addressText
+                    .textSelection(.enabled)
+#endif
             }
             
         }
         
+    }
+
+    private var addressText: Text {
+        Text(address.firstLine + "\n") +
+        Text(address.secondLine)
     }
     
 }

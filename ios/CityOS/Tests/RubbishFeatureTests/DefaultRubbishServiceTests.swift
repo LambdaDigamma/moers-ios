@@ -168,7 +168,8 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     func testDisableReminder() {
 
-        mockNotificationCenter.removeAllExpectation = expectation(description: "All Notification Requests should've been removed")
+        mockNotificationCenter.getPendingRequestsExpectation = expectation(description: "Pending Notification Requests should be loaded")
+        mockNotificationCenter.removePendingExpectation = expectation(description: "Reminder Notification Requests should be removed")
 
         rubbishService.disableReminder()
 
@@ -176,6 +177,26 @@ final class DefaultRubbishServiceTests: XCTestCase {
         XCTAssertEqual(rubbishService.reminderHour, 20)
         XCTAssertEqual(rubbishService.reminderMinute, 0)
         waitForExpectations(timeout: 1)
+
+    }
+
+    func testInvalidateRubbishReminderNotificationsRemovesOnlyRubbishReminderRequests() {
+
+        let rubbishReminderIdentifier = "RubbishReminder-1-1-2026-paper"
+        let parkingReminderIdentifier = "ParkingReminder-1"
+
+        mockNotificationCenter.pendingNotifications = [
+            makeNotificationRequest(identifier: rubbishReminderIdentifier),
+            makeNotificationRequest(identifier: parkingReminderIdentifier)
+        ]
+        mockNotificationCenter.getPendingRequestsExpectation = expectation(description: "Pending Notification Requests should be loaded")
+        mockNotificationCenter.removePendingExpectation = expectation(description: "Reminder Notification Requests should be removed")
+
+        rubbishService.invalidateRubbishReminderNotifications()
+
+        waitForExpectations(timeout: 1)
+        XCTAssertEqual(mockNotificationCenter.removedIdentifiers, [rubbishReminderIdentifier])
+        XCTAssertEqual(mockNotificationCenter.pendingNotifications.map(\.identifier), [parkingReminderIdentifier])
 
     }
 
@@ -235,7 +256,7 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     }
 
-    static var allTests = [
+    static let allTests = [
         ("testStoreIsEnabled", testStoreIsEnabled),
         ("testStoreReminderHour", testStoreReminderHour),
         ("testStoreReminderMinute", testStoreReminderMinute),
@@ -252,9 +273,18 @@ final class DefaultRubbishServiceTests: XCTestCase {
         ("testStoreGreenWaste", testStoreGreenWaste),
         ("testStoreGreenWasteNil", testStoreGreenWasteNil),
         ("testDisableReminder", testDisableReminder),
+        ("testInvalidateRubbishReminderNotificationsRemovesOnlyRubbishReminderRequests", testInvalidateRubbishReminderNotificationsRemovesOnlyRubbishReminderRequests),
         ("testRegisterNotifications", testRegisterNotifications),
         ("testRegisterRubbishStreet", testRegisterRubbishStreet),
         ("testLoadStreet", testLoadStreet),
     ]
 
+}
+
+private func makeNotificationRequest(identifier: String) -> UNNotificationRequest {
+    UNNotificationRequest(
+        identifier: identifier,
+        content: UNMutableNotificationContent(),
+        trigger: nil
+    )
 }

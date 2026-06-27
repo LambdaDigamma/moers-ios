@@ -9,13 +9,13 @@
 import Foundation
 import FeedKit
 
-public protocol NewsItem: Hashable {
+nonisolated public protocol NewsItem: Hashable {
     
     var date: Date { get }
     
 }
 
-extension RSSFeedItem: NewsItem {
+nonisolated extension RSSFeedItem: NewsItem {
     
     public var date: Date {
         return self.pubDate ?? Date()

@@ -9,7 +9,7 @@
 import UIKit
 import AppScaffold
 import MMEvents
-import Factory
+import FactoryKit
 
 public class SharedCoordinator: Coordinator {
     
@@ -31,17 +31,13 @@ public class SharedCoordinator: Coordinator {
         
         let usedNavigationController = currentModalNavigationController ?? navigationController
         
-        let eventService: LegacyEventService = Container.shared.legacyEventService()
-        
         let detailController = ModernEventDetailViewController(
             eventID: eventID
         )
         
         detailController.coordinator = self
         
-        DispatchQueue.main.async {
-            usedNavigationController.pushViewController(detailController, animated: animated)
-        }
+        usedNavigationController.pushViewController(detailController, animated: animated)
         
     }
     

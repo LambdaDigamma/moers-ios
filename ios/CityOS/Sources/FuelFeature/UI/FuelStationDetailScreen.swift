@@ -7,11 +7,11 @@
 
 import SwiftUI
 import Core
-import Factory
+import FactoryKit
 
 public struct FuelStationDetailScreen: View {
     
-    @StateObject var viewModel: FuelStationDetailViewModel
+    @State var viewModel: FuelStationDetailViewModel
     
     public init(load: @escaping () async throws -> PetrolStation) {
         

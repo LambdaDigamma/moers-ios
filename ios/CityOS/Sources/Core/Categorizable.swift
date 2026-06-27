@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Categorizable {
+nonisolated public protocol Categorizable {
     
     var category: String { get }
     var localizedCategory: String { get }

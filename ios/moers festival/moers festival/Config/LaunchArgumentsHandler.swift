@@ -11,7 +11,7 @@ import AppScaffold
 import ModernNetworking
 import MMFeeds
 
-nonisolated public class LaunchArgumentsHandler: BaseLaunchArgumentsHandler {
+public class LaunchArgumentsHandler: BaseLaunchArgumentsHandler {
 
     public static let shouldUseMockedFeed = false
 

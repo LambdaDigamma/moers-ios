@@ -8,15 +8,17 @@
 import Foundation
 import SwiftUI
 
+#if canImport(WebKit)
+
 public struct IsolatedWebView: View {
     
-    @StateObject var viewModel: WebViewStateModel
+    @State var viewModel: WebViewStateModel
     
     private let url: URL
     
     public init(url: URL) {
         self.url = url
-        self._viewModel = StateObject(wrappedValue: WebViewStateModel())
+        self._viewModel = State(initialValue: WebViewStateModel())
     }
     
     public var body: some View {
@@ -26,3 +28,5 @@ public struct IsolatedWebView: View {
     }
     
 }
+
+#endif

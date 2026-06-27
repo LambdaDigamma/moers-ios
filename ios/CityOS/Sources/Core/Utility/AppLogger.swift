@@ -11,25 +11,25 @@ import OSLog
 extension OSLog {
     
     /// Use the Bundle ID as the subsystem
-    internal static let subsystem = Bundle.main.bundleIdentifier ?? "app.moers.core"
+    nonisolated internal static let subsystem = Bundle.main.bundleIdentifier ?? "app.moers.core"
     
     /// Application lifecycle
-    public static let coreAppLifecycle = OSLog(subsystem: subsystem, category: "appLifecycle")
+    nonisolated public static let coreAppLifecycle = OSLog(subsystem: subsystem, category: "appLifecycle")
     
     /// API interactions
-    public static let coreApi = OSLog(subsystem: subsystem, category: "api")
+    nonisolated public static let coreApi = OSLog(subsystem: subsystem, category: "api")
     
     /// UI
-    public static let coreUi = OSLog(subsystem: subsystem, category: "ui")
+    nonisolated public static let coreUi = OSLog(subsystem: subsystem, category: "ui")
     
     /// Local data & caches
-    public static let coreLocalData = OSLog(subsystem: subsystem, category: "localdata")
+    nonisolated public static let coreLocalData = OSLog(subsystem: subsystem, category: "localdata")
     
     /// App Config
-    public static let coreAppConfig = OSLog(subsystem: subsystem, category: "appconfig")
+    nonisolated public static let coreAppConfig = OSLog(subsystem: subsystem, category: "appconfig")
     
     /// Background - Stuff that happens in the background.
-    public static let coreBackground = OSLog(subsystem: subsystem, category: "background")
+    nonisolated public static let coreBackground = OSLog(subsystem: subsystem, category: "background")
     
 }
 

@@ -79,7 +79,7 @@ public class RadioService: RadioServiceProtocol {
         self.url = url
     }
     
-    public func load() -> AnyPublisher<[RadioBroadcast], Error> {
+    nonisolated public func load() -> AnyPublisher<[RadioBroadcast], Error> {
         
         let request = URLRequest(url: URL(string: "https://moers.app/api/v1/radio-broadcasts")!)
         let session = URLSession.shared

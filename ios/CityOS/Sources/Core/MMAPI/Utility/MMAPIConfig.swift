@@ -9,6 +9,7 @@
 import Foundation
 import ModernNetworking
 
+@MainActor
 public struct MMAPIConfig {
     
     public var baseURL: URL
@@ -17,9 +18,9 @@ public struct MMAPIConfig {
         self.baseURL = baseURL
     }
     
-    nonisolated(unsafe) public static var baseURL = ""
-    nonisolated(unsafe) public static var petrolAPIKey: String?
-    nonisolated(unsafe) public static var isMoersFestivalModeEnabled = true
+    public static var baseURL = ""
+    public static var petrolAPIKey: String?
+    public static var isMoersFestivalModeEnabled = true
     
     public static func registerBaseURL(_ url: String) {
         self.baseURL = url

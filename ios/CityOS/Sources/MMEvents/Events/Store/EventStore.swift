@@ -10,7 +10,7 @@ import Foundation
 import GRDB
 import Combine
 
-final public class EventStore {
+nonisolated final public class EventStore {
 
     private let writer: DatabaseWriter
     private let reader: DatabaseReader
@@ -215,7 +215,7 @@ final public class EventStore {
     
 }
 
-private extension EventStore {
+nonisolated private extension EventStore {
 
     static func hasSearchableQuery(_ query: String) -> Bool {
 

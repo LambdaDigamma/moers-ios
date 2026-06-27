@@ -40,12 +40,13 @@ class MMEventsViewController: EventsViewController {
         
         guard let eventService = coordinator?.eventService else { return }
         
-        Task {
-
-            let response = try await eventService.index(cacheMode: .revalidate, withPages: true)
-
-            print(response)
-            
+        Task { [logger] in
+            do {
+                let response = try await eventService.index(cacheMode: .revalidate, withPages: true)
+                print(response)
+            } catch {
+                logger.error("Error while loading: \(error.localizedDescription)")
+            }
         }
 //        
 //        let eventObserver = eventService.loadEvents()

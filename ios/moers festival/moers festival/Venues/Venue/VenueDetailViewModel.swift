@@ -9,28 +9,30 @@
 import Core
 import Foundation
 import MMEvents
-import Factory
+import FactoryKit
 import Combine
 import MapKit
 import CoreLocation
+import Observation
 
+@Observable
 public class VenueDetailViewModel: StandardViewModel {
     
     private let placeID: Place.ID
     
-    @Published var name: String
-    @Published var subtitle: String
+    var name: String
+    var subtitle: String
     
-    @Published var addressLine1: String?
-    @Published var addressLine2: String?
+    var addressLine1: String?
+    var addressLine2: String?
     
-    @Published var point: Point?
+    var point: Point?
     
-    @Published var pageID: Page.ID?
+    var pageID: Page.ID?
     
-    @Published var mapItem: MKMapItem?
+    var mapItem: MKMapItem?
     
-    @Published var events: [EventListItemViewModel] = [
+    var events: [EventListItemViewModel] = [
         Event.stub(withID: 3)
             .setting(\.name, to: "Gamo Singers + tba (ET, DE)")
             .setting(\.startDate, to: Date(timeIntervalSinceNow: -25 * 60))
@@ -68,7 +70,7 @@ public class VenueDetailViewModel: StandardViewModel {
         self.setupListener()
     }
     
-    deinit {
+    @MainActor deinit {
         enrichmentTask?.cancel()
     }
     

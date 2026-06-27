@@ -14,7 +14,7 @@ import MMPages
 
 public struct VenueDetailScreen: View {
     
-    @ObservedObject var viewModel: VenueDetailViewModel
+    var viewModel: VenueDetailViewModel
     @State private var isPageExpanded = false
     
     public let onSelectEvent: (Event.ID) -> Void
@@ -261,7 +261,7 @@ public struct VenueDetailScreen: View {
         if let pageID = viewModel.pageID {
             
             IsolatedNativePageView(pageID: pageID)
-                .environmentObject(actionTransmitter)
+                .environment(actionTransmitter)
                 .environment(\.openURL, OpenURLAction { url in
                     actionTransmitter.dispatchOpenURL(url)
                     return .handled

@@ -9,7 +9,7 @@ import SwiftUI
 import CoreLocation
 import Combine
 import Core
-import Factory
+import FactoryKit
 
 public struct ActiveTripScreen: View {
     
@@ -18,7 +18,7 @@ public struct ActiveTripScreen: View {
     public let accent: Color = .yellow
     public let onAccent: Color = .black
     
-    @StateObject var viewModel = ActiveTripViewModel()
+    @State var viewModel = ActiveTripViewModel()
     
     public var body: some View {
         

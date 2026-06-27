@@ -52,7 +52,7 @@ class EntryHistoryViewController: UIViewController {
     
     // MARK: - Private Methods
     
-    enum Section {
+    nonisolated enum Section: Hashable, Sendable {
         case main
     }
     

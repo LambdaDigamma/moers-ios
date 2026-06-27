@@ -7,7 +7,7 @@
 
 import Foundation
 import GRDB
-import Factory
+import FactoryKit
 import Combine
 
 public class PostStore {

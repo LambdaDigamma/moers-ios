@@ -9,7 +9,7 @@ import Foundation
 import ModernNetworking
 import XMLCoder
 
-internal protocol BaseModel: Model {
+nonisolated internal protocol BaseModel: Model {
 
 }
 

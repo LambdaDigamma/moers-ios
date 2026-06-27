@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import Factory
+import FactoryKit
 
-public enum PackageStrings {
+nonisolated public enum PackageStrings {
     
     public enum ObjectFilter {
         public static let noFilter = String(localized: "No filter", bundle: .module)

@@ -9,7 +9,7 @@
 import Core
 import UIKit
 import BLTNBoard
-import Factory
+import FactoryKit
 import RubbishFeature
 import FuelFeature
 

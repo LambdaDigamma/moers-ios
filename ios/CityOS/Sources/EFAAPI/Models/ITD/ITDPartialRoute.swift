@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ITDPartialRoute: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
+nonisolated public struct ITDPartialRoute: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
     
     public let type: String
     public let active: String

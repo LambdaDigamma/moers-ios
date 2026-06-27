@@ -9,20 +9,20 @@
 import Foundation
 import AppScaffold
 
-struct AppConfiguration: AppConfigurable {
+nonisolated struct AppConfiguration: AppConfigurable {
     
     var minVersion: String
     var structure: AppStructure?
     
 }
 
-struct AppStructure: Codable {
+nonisolated struct AppStructure: Codable {
     
     var initialView: AppView?
     
 }
 
-struct AppView: Codable {
+nonisolated struct AppView: Codable {
     var type: String
     var title: String?
     var imageName: String?

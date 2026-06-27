@@ -1,7 +1,7 @@
 import XCTest
 @testable import Core
 
-final class RadioManagerTests: XCTestCase {
+nonisolated final class RadioManagerTests: XCTestCase {
     
 //    func testLoad() {
 //

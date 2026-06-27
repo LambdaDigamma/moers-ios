@@ -8,26 +8,15 @@
 
 import UIKit
 import AppScaffold
-@preconcurrency import ModernNetworking
+import ModernNetworking
 import Core
-@preconcurrency import Factory
+@preconcurrency import FactoryKit
 
 extension ServerEnvironment {
     
     public static let local = ServerEnvironment(host: "moers-festival.localhost", pathPrefix: "/api/v1/festival")
     public static let staging = ServerEnvironment(host: "staging.moers.app", pathPrefix: "/api/v1/festival")
     public static let production = ServerEnvironment(host: "moers.app", pathPrefix: "/api/v1/festival")
-    
-}
-
-public extension Container {
-    
-    var httpLoader: Factory<HTTPLoader> {
-        Factory(self) {
-            HTTPLoader()
-        }
-            .singleton
-    }
     
 }
 
@@ -52,6 +41,10 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
                 fatalError("Networking stack could not be setup.")
             }
             return loader
+        }
+
+        Container.shared.httpClient.scope(.cached).register {
+            HTTPLoaderClient(loader: Container.shared.httpLoader.resolve())
         }
         
     }
@@ -105,7 +98,7 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
         
     }
     
-    private static nonisolated func setupLoaderChain(with environment: ServerEnvironment) -> HTTPLoader? {
+    private static func setupLoaderChain(with environment: ServerEnvironment) -> HTTPLoader? {
         
         let modifier = ModifyRequestLoader { request in
             

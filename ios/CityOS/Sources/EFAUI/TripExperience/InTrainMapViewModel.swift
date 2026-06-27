@@ -9,22 +9,24 @@ import SwiftUI
 import Combine
 import CoreLocation
 import Core
-import Factory
+import FactoryKit
 import EFAAPI
 import ModernNetworking
 import MapKit
 
+@Observable
 public class InTrainMapViewModel: StandardViewModel {
     
-    @Published public var currentSpeed: String?
-    @Published public var currentPlace: String?
+    public var currentSpeed: String?
+    public var currentPlace: String?
     
-    @Published public var polyline: DataState<[MKPolyline], Error> = .loading
-    @Published public var points: DataState<[RouteStationAnnotation], Error> = .loading
+    public var polyline: DataState<[MKPolyline], Error> = .loading
+    public var points: DataState<[RouteStationAnnotation], Error> = .loading
     
-    @Injected(\.geocodingService) var geocodingService
-    @Injected(\.transitService) var transitService
+    @ObservationIgnored @Injected(\.geocodingService) var geocodingService
+    @ObservationIgnored @Injected(\.transitService) var transitService
     
+    @ObservationIgnored
     private let locationObject = CoreLocationObject()
     
     public override init() {
@@ -71,7 +73,7 @@ public class InTrainMapViewModel: StandardViewModel {
     public func start() {
         
         locationObject
-            .$location
+            .locationPublisher()
             .receive(on: DispatchQueue.main)
             .sink { (location: CLLocation?) in
                 

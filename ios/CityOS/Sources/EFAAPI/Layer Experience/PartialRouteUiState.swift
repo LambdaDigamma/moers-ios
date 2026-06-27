@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct PartialRouteUiState: Codable, Equatable, Hashable, Identifiable {
+nonisolated public struct PartialRouteUiState: Codable, Equatable, Hashable, Identifiable {
     
     public var id = UUID()
     public let transportType: TransportTypeUi
@@ -44,7 +44,7 @@ public struct PartialRouteUiState: Codable, Equatable, Hashable, Identifiable {
         self.footPathAfter = footPathAfter
     }
     
-    public struct Point: Codable, Equatable, Hashable {
+    nonisolated public struct Point: Codable, Equatable, Hashable {
         public let stationName: String
         public let targetDate: Date
         public let realtimeDate: Date?

@@ -32,7 +32,7 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
     private let fuse = Fuse(threshold: 0.25, isCaseSensitive: false)
     
     private var updateInterval: TimeInterval = 60.0
-    nonisolated(unsafe) private var updateTimer: Timer!
+    private var updateTimer: Timer?
     
     private var isSearchEnabled = true
     
@@ -48,9 +48,7 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
     public var events: [EventViewModel<Event>] = []
     private var currentDisplayMode = DisplayMode.overview(favouriteEvents: [], activeEvents: [], upcomingEvents: []) {
         didSet {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            tableView.reloadData()
         }
     }
     
@@ -128,7 +126,6 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        updateTimer?.invalidate()
     }
     
     // MARK: - UI
@@ -202,27 +199,25 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
     }
     
     public func rebuildData() {
-        
-        DispatchQueue.main.async {
-            switch self.currentDisplayMode {
-                    
-                case .overview(_, _, _):
-                    self.currentDisplayMode = self.buildOverview()
-                    
-                case .list(_):
-                    self.currentDisplayMode = self.buildList()
-                    
-                case .search(_, _):
-                    self.currentDisplayMode = self.buildSearch()
-                    
-                case .favourites(_):
-                    self.currentDisplayMode = self.buildFavourites()
-                    
-                default:
-                    break
-            }
+
+        switch self.currentDisplayMode {
+
+            case .overview(_, _, _):
+                self.currentDisplayMode = self.buildOverview()
+
+            case .list(_):
+                self.currentDisplayMode = self.buildList()
+
+            case .search(_, _):
+                self.currentDisplayMode = self.buildSearch()
+
+            case .favourites(_):
+                self.currentDisplayMode = self.buildFavourites()
+
+            default:
+                break
         }
-        
+
     }
     
     open func loadData() {

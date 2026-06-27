@@ -7,7 +7,7 @@
 
 import Foundation
 import Combine
-import Factory
+import FactoryKit
 import MMEvents
 import WidgetKit
 

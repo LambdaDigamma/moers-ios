@@ -23,7 +23,7 @@ import Combine
 import MMEvents
 import SwiftUI
 import AppUpdateFeature
-import Factory
+import FactoryKit
 
 public class TabBarController: UITabBarController, UITabBarControllerDelegate, UIAdaptivePresentationControllerDelegate {
 
@@ -66,7 +66,7 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate, U
         self.other = OtherCoordinator()
         self.appUpdateController = AppUpdateController(
             statusFetcher: AppStoreUpdateStatusFetcher(lookup: .appID("1341448683")),
-            remoteConfigurationLoader: RemoteAppUpdateConfigurationService(loader: Container.shared.httpLoader.resolve()),
+            remoteConfigurationLoader: RemoteAppUpdateConfigurationService(client: Container.shared.httpClient.resolve()),
             fallbackStoreURL: URL(string: "itms-apps://itunes.apple.com/app/id1341448683")!
         )
         self.launchInterceptor = launchInterceptor
@@ -324,14 +324,14 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate, U
     }
 
     private func setupAppUpdateHandling() {
-        appUpdateController.$banner
+        appUpdateController.bannerPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] presentation in
                 self?.updateAppUpdateBanner(presentation)
             }
             .store(in: &cancellalbes)
 
-        appUpdateController.$forcedSheet
+        appUpdateController.forcedSheetPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] presentation in
                 self?.updateForcedUpdateSheet(presentation)

@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct MotDivaParams: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding, LineIdentifiable {
+nonisolated public struct MotDivaParams: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding, LineIdentifiable {
     
     public let line: String
     public let project: String

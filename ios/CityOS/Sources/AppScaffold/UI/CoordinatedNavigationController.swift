@@ -10,7 +10,7 @@
 import UIKit
 
 @available(iOS 14.0, *)
-open class CoordinatedNavigationController: UINavigationController {
+open class CoordinatedNavigationController: UINavigationController, UINavigationControllerDelegate {
     
     open weak var coordinator: Coordinator?
     
@@ -24,19 +24,72 @@ open class CoordinatedNavigationController: UINavigationController {
                 return
             }
             
-            tabBarItem = UITabBarItem(
-                title: menuItem.title,
-                image: menuItem.image,
-                selectedImage: nil
-            )
-            tabBarItem.accessibilityIdentifier = menuItem.accessibilityIdentifier
-            
+            restorePersistentTabBarItem()
             title = menuItem.title
             
         }
         
     }
     
+    public convenience init() {
+        self.init(nibName: nil, bundle: nil)
+    }
+
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        configureNavigationDelegate()
+    }
+
+    public override init(rootViewController: UIViewController) {
+        super.init(rootViewController: rootViewController)
+        configureNavigationDelegate()
+    }
+
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        configureNavigationDelegate()
+    }
+
+    open override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        super.pushViewController(viewController, animated: animated)
+        restorePersistentTabBarItem()
+    }
+
+    open override func setViewControllers(_ viewControllers: [UIViewController], animated: Bool) {
+        super.setViewControllers(viewControllers, animated: animated)
+        restorePersistentTabBarItem()
+    }
+
+    open override func show(_ vc: UIViewController, sender: Any?) {
+        super.show(vc, sender: sender)
+        restorePersistentTabBarItem()
+    }
+
+    public func navigationController(
+        _ navigationController: UINavigationController,
+        didShow viewController: UIViewController,
+        animated: Bool
+    ) {
+        restorePersistentTabBarItem()
+    }
+
+    private func configureNavigationDelegate() {
+        delegate = self
+    }
+
+    private func restorePersistentTabBarItem() {
+        guard let menuItem else { return }
+
+        let item = UITabBarItem(
+            title: menuItem.title,
+            image: menuItem.image,
+            selectedImage: nil
+        )
+        item.accessibilityIdentifier = menuItem.accessibilityIdentifier
+
+        tabBarItem = item
+    }
+
 }
 
 #endif

@@ -5,14 +5,14 @@
 //  Created by Lennart Fischer on 30.01.22.
 //
 
-import Factory
+import FactoryKit
 import SwiftUI
 import CoreLocation
 import MapKit
 
 public struct AutoCalculatingDirectionsButton: View {
     
-    @StateObject var viewModel: DirectionsViewModel
+    @State var viewModel: DirectionsViewModel
     
     private let coordinate: CLLocationCoordinate2D
     private let directionsMode: DirectionsMode

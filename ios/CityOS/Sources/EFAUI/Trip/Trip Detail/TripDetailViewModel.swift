@@ -7,22 +7,25 @@
 
 import Foundation
 import Combine
-import Factory
+import FactoryKit
 import EFAAPI
+import Observation
 
-public class TripDetailViewModel: ObservableObject {
+@Observable
+public class TripDetailViewModel {
     
+    @ObservationIgnored
     private var cancellables = Set<AnyCancellable>()
     
-    @Published var duration: String = ""
-    @Published var numberOfChanges: Int = 0
-    @Published var origin: String = ""
-    @Published var destination: String = ""
-    @Published var startDate: Date = Date()
+    var duration: String = ""
+    var numberOfChanges: Int = 0
+    var origin: String = ""
+    var destination: String = ""
+    var startDate: Date = Date()
     
-    @Injected(\.tripService) var tripService
+    @ObservationIgnored @Injected(\.tripService) var tripService
     
-    @Published var partialRoutes: [PartialRouteUiState] = []
+    var partialRoutes: [PartialRouteUiState] = []
     
     public init() {
         

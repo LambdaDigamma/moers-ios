@@ -12,7 +12,7 @@ public struct ExtendedDayEventsView: View {
     private let day: TimetableDay
     private let isFilterActive: Bool
     
-    @EnvironmentObject private var transmitter: TimetableTransmitter
+    @Environment(TimetableTransmitter.self) private var transmitter: TimetableTransmitter
     
     public init(
         day: TimetableDay,

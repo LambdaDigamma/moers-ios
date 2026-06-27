@@ -7,7 +7,7 @@
 
 import Foundation
 import XCTest
-import Factory
+import FactoryKit
 import Combine
 @testable import MMEvents
 
@@ -45,7 +45,7 @@ final class TimetableViewModelTests: XCTestCase {
         let secondUpdateApplied = expectation(description: "Second timetable update applied")
         var updateCount = 0
         let daysCancellable = viewModel
-            .$days
+            .daysPublisher
             .dropFirst()
             .sink { _ in
                 updateCount += 1
@@ -55,7 +55,7 @@ final class TimetableViewModelTests: XCTestCase {
             }
 
         let firstUpdateApplied = expectation(description: "First timetable update applied")
-        let firstUpdateCancellable = viewModel.$days
+        let firstUpdateCancellable = viewModel.daysPublisher
             .filter { $0.count == 2 }
             .first()
             .sink { _ in firstUpdateApplied.fulfill() }
@@ -112,7 +112,7 @@ final class TimetableViewModelTests: XCTestCase {
 
         let viewModel = TimetableViewModel()
         let updateApplied = expectation(description: "Timetable update applied")
-        let daysCancellable = viewModel.$days
+        let daysCancellable = viewModel.daysPublisher
             .filter { $0.count == 2 }
             .first()
             .sink { _ in updateApplied.fulfill() }
@@ -184,7 +184,7 @@ final class TimetableViewModelTests: XCTestCase {
         viewModel.filter = EventFilter(venueIDs: [selectedPlace.id])
 
         let updateApplied = expectation(description: "Filtered timetable update applied")
-        let daysCancellable = viewModel.$days
+        let daysCancellable = viewModel.daysPublisher
             .dropFirst()
             .filter { !$0.isEmpty }
             .first()
@@ -261,7 +261,7 @@ final class TimetableViewModelTests: XCTestCase {
         viewModel.filter = EventFilter(venueIDs: [selectedPlace.id])
 
         let updateApplied = expectation(description: "Search timetable update applied")
-        let daysCancellable = viewModel.$days
+        let daysCancellable = viewModel.daysPublisher
             .dropFirst()
             .filter { !$0.isEmpty }
             .first()
@@ -313,7 +313,7 @@ final class TimetableViewModelTests: XCTestCase {
         let secondDay = makeDate(year: 2030, month: 5, day: 18, hour: 12)
         let viewModel = TimetableViewModel()
         let updateApplied = expectation(description: "Empty search timetable update applied")
-        let daysCancellable = viewModel.$days
+        let daysCancellable = viewModel.daysPublisher
             .dropFirst()
             .filter { !$0.isEmpty }
             .first()
@@ -381,7 +381,7 @@ final class TimetableViewModelTests: XCTestCase {
         viewModel.filter = expectedFilter
 
         let updateApplied = expectation(description: "Cancelable search timetable update applied")
-        let daysCancellable = viewModel.$days
+        let daysCancellable = viewModel.daysPublisher
             .dropFirst()
             .filter { !$0.isEmpty }
             .first()
@@ -428,7 +428,7 @@ final class TimetableViewModelTests: XCTestCase {
         let firstDay = makeDate(year: 2030, month: 5, day: 17, hour: 12)
         let viewModel = TimetableViewModel()
         let updateApplied = expectation(description: "Stale search timetable update applied")
-        let daysCancellable = viewModel.$days
+        let daysCancellable = viewModel.daysPublisher
             .dropFirst()
             .filter { !$0.isEmpty }
             .first()
@@ -473,7 +473,7 @@ final class TimetableViewModelTests: XCTestCase {
         let firstDay = makeDate(year: 2030, month: 5, day: 17, hour: 12)
         let viewModel = TimetableViewModel()
         let updateApplied = expectation(description: "Loading search timetable update applied")
-        let daysCancellable = viewModel.$days
+        let daysCancellable = viewModel.daysPublisher
             .dropFirst()
             .filter { !$0.isEmpty }
             .first()
@@ -519,7 +519,7 @@ final class TimetableViewModelTests: XCTestCase {
             }
         )
         let updateApplied = expectation(description: "Failing search timetable update applied")
-        let daysCancellable = viewModel.$days
+        let daysCancellable = viewModel.daysPublisher
             .dropFirst()
             .filter { !$0.isEmpty }
             .first()
@@ -599,7 +599,7 @@ final class TimetableViewModelTests: XCTestCase {
         let firstDay = makeDate(year: 2030, month: 5, day: 17, hour: 12)
         let viewModel = TimetableViewModel()
         let updateApplied = expectation(description: "Stable row search timetable update applied")
-        let daysCancellable = viewModel.$days
+        let daysCancellable = viewModel.daysPublisher
             .dropFirst()
             .filter { !$0.isEmpty }
             .first()
@@ -643,7 +643,7 @@ final class TimetableViewModelTests: XCTestCase {
         let boundary = makeLocalDate(year: 2030, month: 5, day: 18, hour: 6)
         let viewModel = TimetableViewModel()
         let updateApplied = expectation(description: "Sectioned search timetable update applied")
-        let daysCancellable = viewModel.$days
+        let daysCancellable = viewModel.daysPublisher
             .dropFirst()
             .filter { $0.count == 2 }
             .first()
@@ -703,7 +703,7 @@ final class TimetableViewModelTests: XCTestCase {
         }
 
         let searchResultsUpdated = expectation(description: "Search results updated to \(eventIDs)")
-        let cancellable = viewModel.$searchResults
+        let cancellable = viewModel.searchResultsPublisher
             .map { $0.compactMap(\.eventID) }
             .filter { $0 == eventIDs }
             .first()
@@ -735,7 +735,7 @@ final class TimetableViewModelTests: XCTestCase {
         }
 
         let searchStateUpdated = expectation(description: "Search state updated to \(state)")
-        let cancellable = viewModel.$searchState
+        let cancellable = viewModel.searchStatePublisher
             .filter { $0 == state }
             .first()
             .sink { _ in
@@ -766,7 +766,7 @@ final class TimetableViewModelTests: XCTestCase {
         }
 
         let searchSectionsUpdated = expectation(description: "Search sections updated to \(eventIDSections)")
-        let cancellable = viewModel.$searchSections
+        let cancellable = viewModel.searchSectionsPublisher
             .map { sections in
                 sections.map { $0.events.compactMap(\.eventID) }
             }

@@ -22,7 +22,13 @@ public struct ApplicationTheme: Sendable {
     public var color: UIColor { UIColor.label }
     
     /// Primary background color
-    public var backgroundColor: UIColor { UIColor.systemBackground }
+    public var backgroundColor: UIColor {
+#if os(tvOS)
+        UIColor.black
+#else
+        UIColor.systemBackground
+#endif
+    }
     
     /// Accent color for interactive elements
     public var accentColor: UIColor {
@@ -42,13 +48,19 @@ public struct ApplicationTheme: Sendable {
     public var decentColor: UIColor { UIColor.secondaryLabel }
     
     /// Navigation bar background color
-    public var navigationBarColor: UIColor { UIColor.systemBackground }
+    public var navigationBarColor: UIColor { backgroundColor }
     
     /// Tab bar background color
-    public var tabBarColor: UIColor { UIColor.systemBackground }
+    public var tabBarColor: UIColor { backgroundColor }
     
     /// Card background color
-    public var cardBackgroundColor: UIColor { UIColor.secondarySystemBackground }
+    public var cardBackgroundColor: UIColor {
+#if os(tvOS)
+        UIColor.darkGray
+#else
+        UIColor.secondarySystemBackground
+#endif
+    }
     
     /// Separator line color
     public var separatorColor: UIColor { UIColor.separator }
@@ -57,6 +69,9 @@ public struct ApplicationTheme: Sendable {
     public var cardShadow: Bool { false }
     
     public var dashboardBackground: Color {
+#if os(tvOS)
+        Color(backgroundColor)
+#else
         Color(UIColor(dynamicProvider: { (traitCollection: UITraitCollection) in
             switch traitCollection.userInterfaceStyle {
                 case .light:
@@ -67,6 +82,7 @@ public struct ApplicationTheme: Sendable {
                     return UIColor.systemBackground
             }
         }))
+#endif
     }
     
     public init() {}

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct ObjectFilter: OptionSet, Hashable, CaseIterable, Sendable {
+nonisolated public struct ObjectFilter: OptionSet, Hashable, CaseIterable, Sendable {
     
     public typealias RawValue = Int
     public let rawValue: RawValue

@@ -99,7 +99,7 @@ final class TimetableSearchViewControllerTests: XCTestCase {
         }
 
         let searchResultsUpdated = expectation(description: "Search results updated to \(eventIDs)")
-        viewModel.$searchResults
+        viewModel.searchResultsPublisher
             .map { $0.compactMap(\.eventID) }
             .filter { $0 == eventIDs }
             .first()

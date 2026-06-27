@@ -8,10 +8,12 @@
 import Foundation
 import Combine
 import ModernNetworking
-import Factory
+import FactoryKit
+import Observation
 
 @MainActor
-public class FeedPostListViewModel: ObservableObject {
+@Observable
+public class FeedPostListViewModel {
     
     public var feedID: Feed.ID {
         didSet {
@@ -19,8 +21,19 @@ public class FeedPostListViewModel: ObservableObject {
         }
     }
     
-    @Published public var items: UIResource<[Post]> = .loading
+    public var items: UIResource<[Post]> = .loading {
+        didSet {
+            itemsSubject.send(items)
+        }
+    }
+    @ObservationIgnored
+    private let itemsSubject: CurrentValueSubject<UIResource<[Post]>, Never>
+
+    public var itemsPublisher: AnyPublisher<UIResource<[Post]>, Never> {
+        itemsSubject.eraseToAnyPublisher()
+    }
     
+    @ObservationIgnored
     private var cancellables = Set<AnyCancellable>()
     
     private let repository: PostRepository
@@ -38,7 +51,7 @@ public class FeedPostListViewModel: ObservableObject {
     
     private let dataLoadingEnabled: Bool
     
-    @Injected(\.feedService) private var feedService
+    @ObservationIgnored @Injected(\.feedService) private var feedService
     
     /// This initializes the view model with a `Feed.ID`.
     public init(
@@ -53,6 +66,7 @@ public class FeedPostListViewModel: ObservableObject {
         self.dataLoadingEnabled = true
         self.automaticallyLoadFirstPage = automaticallyLoadFirstPage
         self.currentPage = 1
+        self.itemsSubject = CurrentValueSubject<UIResource<[Post]>, Never>(.loading)
         
 //        if automaticallyLoadFirstPage {
 //            loadCurrentFeed()
@@ -66,7 +80,9 @@ public class FeedPostListViewModel: ObservableObject {
     /// loaded and ready to present post overviews.
     public init(feedID: Feed.ID, posts: [Post]) {
         self.repository = Container.shared.postRepository()
-        self.items = .success(posts)
+        let initialItems: UIResource<[Post]> = .success(posts)
+        self.items = initialItems
+        self.itemsSubject = CurrentValueSubject<UIResource<[Post]>, Never>(initialItems)
         self.feedID = feedID
         self.dataLoadingEnabled = false
         self.postsPerLoad = 10

@@ -10,7 +10,7 @@
 import UIKit
 
 @available(iOS 14.0, *)
-public struct SidebarItem: Hashable, Equatable, Sendable {
+nonisolated public struct SidebarItem: Hashable, Equatable, Sendable {
     
     public let title: String?
     public let image: UIImage?

@@ -7,7 +7,8 @@
 
 import Foundation
 import Core
-import Factory
+import FactoryKit
+import Observation
 
 public struct ParkingDashboardViewData {
     
@@ -34,11 +35,12 @@ public struct ParkingDashboardViewData {
 }
 
 @MainActor
+@Observable
 public class ParkingDashboardViewModel: StandardViewModel {
     
-    @LazyInjected(\.parkingService) var parkingService
+    @ObservationIgnored @LazyInjected(\.parkingService) var parkingService
     
-    @Published var parkingAreas: DataState<ParkingDashboardViewData, Error> = .loading
+    var parkingAreas: DataState<ParkingDashboardViewData, Error> = .loading
     
     public init(parkingService: ParkingService? = nil) {
         

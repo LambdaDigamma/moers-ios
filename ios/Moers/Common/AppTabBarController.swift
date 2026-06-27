@@ -13,7 +13,7 @@ import BLTNBoard
 import MMEvents
 import CoreLocation
 import Combine
-import Factory
+import FactoryKit
 import RubbishFeature
 import MapFeature
 import FuelFeature
@@ -32,6 +32,8 @@ public class AppTabBarController: AppScaffold.TabBarController {
     let map: MapCoordintor
     let events: EventCoordinator
     let other: OtherCoordinator
+    
+    private var userInterfaceStyleRegistration: UITraitChangeRegistration?
     
     public var internalTabs: [any AppScaffold.TabRepresentable] {
         [dashboard, news, map, events, other]
@@ -67,6 +69,7 @@ public class AppTabBarController: AppScaffold.TabBarController {
         self.tabBar.accessibilityIdentifier = AccessibilityIdentifiers.tabBar
         
         self.applyTheming()
+        self.registerForTraitChanges()
         
     }
     
@@ -74,15 +77,17 @@ public class AppTabBarController: AppScaffold.TabBarController {
         super.viewWillAppear(animated)
     }
     
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-            applyTheming()
+    // MARK: - UI -
+    
+    private func registerForTraitChanges() {
+        userInterfaceStyleRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
+            (controller: Self, previousTraitCollection: UITraitCollection) in
+            
+            if controller.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+                controller.applyTheming()
+            }
         }
     }
-    
-    // MARK: - UI -
     
     private func applyTheming() {
         let theme = ApplicationTheme.current
@@ -97,18 +102,6 @@ public class AppTabBarController: AppScaffold.TabBarController {
         
         self.tabBar.standardAppearance = UITabBarAppearance(barAppearance: barAppearance)
         self.tabBar.scrollEdgeAppearance = UITabBarAppearance(barAppearance: barAppearance)
-        
-        if let viewControllers = self.viewControllers {
-            
-            for navigationController in viewControllers {
-                
-                guard let nav = navigationController as? UINavigationController else { return }
-                
-//                Styling.applyStyling(navigationController: nav, statusBarStyle: .default)
-                
-            }
-            
-        }
         
 //        let appearance = UINavigationBarAppearance()
 //        

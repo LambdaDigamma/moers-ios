@@ -14,7 +14,7 @@ import MMEvents
 import MMPages
 import Combine
 import SafariServices
-import Factory
+import FactoryKit
 
 public enum VenueDetailPresentationContext: Equatable {
     case phoneFullScreen

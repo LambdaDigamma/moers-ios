@@ -7,7 +7,7 @@
 
 import Foundation
 
-final public class MarkdownBlock: NSObject, Blockable {
+nonisolated final public class MarkdownBlock: NSObject, Blockable {
     
     public static let type: BlockType = .markdown
     

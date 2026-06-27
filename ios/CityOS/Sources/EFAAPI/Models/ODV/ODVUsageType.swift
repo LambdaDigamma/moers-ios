@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public enum ODVUsageType: String, Sendable, Codable {
+nonisolated public enum ODVUsageType: String, Sendable, Codable {
     
     case origin = "origin"
     case destination = "destination"

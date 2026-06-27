@@ -11,7 +11,7 @@ import UIKit
 import MapKit
 
 import Pulley
-import Factory
+import FactoryKit
 import Core
 
 public class DetailViewController: UIViewController {

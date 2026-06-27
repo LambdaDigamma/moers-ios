@@ -6,12 +6,12 @@
 //  Copyright © 2018 CodeForNiederrhein. All rights reserved.
 //
 
-@preconcurrency import UIKit
+import UIKit
 import BLTNBoard
 
-nonisolated class NotificationBuilderBulletinPage: FeedbackPageBulletinItem {
+class NotificationBuilderBulletinPage: FeedbackPageBulletinItem {
 
-    nonisolated override init(title: String) {
+    override init(title: String) {
         super.init(title: title)
     }
 
@@ -20,7 +20,7 @@ nonisolated class NotificationBuilderBulletinPage: FeedbackPageBulletinItem {
 
     @objc public var textInputHandler: ((BLTNActionItem, String?) -> Void)? = nil
 
-    nonisolated override func makeViewsUnderTitle(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
+    override func makeViewsUnderTitle(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         let accentColor = UIColor(dynamicProvider: { traitCollection in
             traitCollection.userInterfaceStyle == .dark ? .systemYellow : .black
         })
@@ -61,13 +61,12 @@ nonisolated class NotificationBuilderBulletinPage: FeedbackPageBulletinItem {
 
     }
 
-    nonisolated override func tearDown() {
+    override func tearDown() {
         super.tearDown()
         titleTextField?.delegate = nil
     }
 
-    nonisolated override func actionButtonTapped(sender: UIButton) {
-
+    override func actionButtonTapped(sender: UIButton) {
         if titleTextField.text != "" {
             super.actionButtonTapped(sender: sender)
         }

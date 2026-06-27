@@ -6,16 +6,18 @@
 //
 
 import Foundation
-import Factory
+import FactoryKit
+import Core
 import MMEvents
 import Cache
 
 public extension Container {
 
+    @MainActor
     var legacyEventService: Factory<LegacyEventService> {
         self {
             DefaultLegacyEventService(
-                Container.shared.httpLoader(),
+                client: Container.shared.httpClient(),
                 try! Storage<String, [Event]>(
                     diskConfig: DiskConfig(name: "LegacyEventService"),
                     memoryConfig: MemoryConfig(),
@@ -26,9 +28,10 @@ public extension Container {
         }
     }
     
+    @MainActor
     var festivalEventService: Factory<FestivalEventService> {
         self {
-            DefaultFestivalEventService(loader: Container.shared.httpLoader())
+            DefaultFestivalEventService(client: Container.shared.httpClient())
         }
     }
 

@@ -11,7 +11,7 @@ import NukeUI
 
 public struct BroadcastDetail: View {
     
-    @ObservedObject private var viewModel: RadioBroadcastViewModel
+    private var viewModel: RadioBroadcastViewModel
     
     private let listenNowAction: () -> Void
     private let toggleReminderAction: () -> Void
@@ -169,7 +169,7 @@ public struct BroadcastDetail: View {
         .padding()
         .ignoresSafeArea(.container, edges: .bottom)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(UIColor.secondarySystemBackground))
+        .background(Color(ApplicationTheme.current.cardBackgroundColor))
         
     }
     

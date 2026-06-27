@@ -13,15 +13,20 @@ import OSLog
 
 public class DefaultLegacyEventService: LegacyEventService {
     
-    nonisolated(unsafe) private let loader: HTTPLoader
+    private let client: any HTTPClient
     private let cache: Storage<String, [Event]>
     private let logger: Logger = .init(.coreApi)
     
     private var lastUpdate: LastUpdate = .init(key: "all_events")
     
-    public init(_ loader: HTTPLoader = URLSessionLoader(), _ cache: Storage<String, [Event]>) {
-        self.loader = loader
+    public init(client: any HTTPClient, _ cache: Storage<String, [Event]>) {
+        self.client = client
         self.cache = cache
+    }
+
+    @MainActor
+    public convenience init(_ loader: HTTPLoader = URLSessionLoader(), _ cache: Storage<String, [Event]>) {
+        self.init(client: HTTPLoaderClient(loader: loader), cache)
     }
     
     public func loadEvents() async throws -> [Event] {
@@ -47,7 +52,7 @@ public class DefaultLegacyEventService: LegacyEventService {
         print("headers: ")
         print(request.headers)
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         let resource = try await result.decoding(ResourceCollection<Event>.self, using: Event.decoder)
         
@@ -82,7 +87,7 @@ public class DefaultLegacyEventService: LegacyEventService {
             path: "/api/v1/festival/events/\(eventID)"
         )
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         let resource = try await result.decoding(Resource<Event>.self, using: Event.decoder)
         
@@ -99,7 +104,7 @@ public class DefaultLegacyEventService: LegacyEventService {
         
         let request = HTTPRequest(path: Endpoint.stream.path())
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         return try await result.decoding(StreamConfig.self, using: StreamConfig.decoder)
         

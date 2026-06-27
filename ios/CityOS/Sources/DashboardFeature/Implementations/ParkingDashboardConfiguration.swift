@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct ParkingDashboardConfiguration: DashboardItemConfigurable {
+nonisolated public struct ParkingDashboardConfiguration: DashboardItemConfigurable {
     
     public var id: UUID
     

@@ -6,14 +6,16 @@
 //
 
 import Foundation
-import Factory
+import FactoryKit
+import Core
 import ModernNetworking
 
 public extension Container {
     
+    @MainActor
     var locationEventService: Factory<LocationEventService> {
         self {
-            DefaultLocationEventService(loader: self.httpLoader())
+            DefaultLocationEventService(client: self.httpClient())
         }
         .singleton
     }

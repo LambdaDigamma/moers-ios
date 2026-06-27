@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum PetrolSorting: String, Codable, Equatable {
+nonisolated public enum PetrolSorting: String, Codable, Equatable {
     case distance = "dist"
     case price = "price"
 }

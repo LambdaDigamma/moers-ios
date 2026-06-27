@@ -12,7 +12,7 @@ import Fuse
 import Core
 
 // swiftlint:disable identifier_name
-final public class PetrolStation: NSObject, Location, Codable, MKAnnotation, Swift.Identifiable, MKRepresentable, @unchecked Sendable {
+nonisolated final public class PetrolStation: NSObject, Location, Codable, MKAnnotation, Swift.Identifiable, MKRepresentable {
     
     public typealias ID = String
     
@@ -110,7 +110,7 @@ final public class PetrolStation: NSObject, Location, Codable, MKAnnotation, Swi
         var attributes: [String] = []
         
         if dist != nil {
-            attributes.append(Self.distanceFormatter.string(from: distance))
+            attributes.append(Self.makeDistanceFormatter().string(from: distance))
         }
         
         attributes.append("\(self.street) \(self.houseNumber ?? "")")
@@ -146,18 +146,18 @@ final public class PetrolStation: NSObject, Location, Codable, MKAnnotation, Swi
     
     #endif
     
-    nonisolated(unsafe) public static let distanceFormatter: MeasurementFormatter = {
+    public static func makeDistanceFormatter() -> MeasurementFormatter {
         let formatter = MeasurementFormatter()
         formatter.unitStyle = .short
         formatter.unitOptions = [.providedUnit]
         return formatter
-    }()
+    }
     
 }
 
 extension PetrolStation: Core.Stubbable {
     
-    public static func stub(withID id: ID) -> PetrolStation {
+    nonisolated public static func stub(withID id: ID) -> PetrolStation {
         return PetrolStation(
             id: id,
             name: "Petrol Station",

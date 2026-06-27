@@ -12,7 +12,7 @@ public struct EventCard: View {
     
 //    public let data: Data
     
-    @ObservedObject private var viewModel: EventListItemViewModel
+    private var viewModel: EventListItemViewModel
     
     public init(viewModel: EventListItemViewModel) {
         self.viewModel = viewModel

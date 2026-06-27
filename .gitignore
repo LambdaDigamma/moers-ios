@@ -95,6 +95,8 @@ keystore.properties
 *.dSYM.zip
 *.dSYM
 .env
+.codex/
+.idea/caches/
 .idea/workspace.xml
 ios/CityOS/Package.resolved
 ios/moers festival/fastlane/asc_key.p8

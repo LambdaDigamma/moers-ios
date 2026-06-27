@@ -81,7 +81,7 @@ public struct HeadingIndicator<Content: View>: View {
 
 public struct HeadingView: View {
     
-    @StateObject private var locationManager = CoreLocationObject()
+    @State private var locationManager = CoreLocationObject()
     
     public var body: some View {
         VStack {

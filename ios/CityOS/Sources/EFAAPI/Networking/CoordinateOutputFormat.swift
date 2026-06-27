@@ -8,6 +8,6 @@
 import Foundation
 
 /// The output format of coordinates of the points
-public enum CoordinateOutputFormat: String, Codable {
+nonisolated public enum CoordinateOutputFormat: String, Codable {
     case wgs84 = "WGS84[DD.DDDDD]"
 }

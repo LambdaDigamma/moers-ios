@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftUI
-import Factory
+import FactoryKit
 import MMEvents
 import Combine
 import OrderedCollections

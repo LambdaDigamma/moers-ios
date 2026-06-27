@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BuildingIndoorMapView: View {
     
-//    @StateObject var mapViewModel = BaseMapViewModel()
+//    @State var mapViewModel = BaseMapViewModel()
     
     public init() {
         

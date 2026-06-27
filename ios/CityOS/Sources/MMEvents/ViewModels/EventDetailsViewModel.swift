@@ -10,9 +10,11 @@ import Core
 import Foundation
 import MapKit
 import Combine
+import Observation
 
 @MainActor
-public class EventDetailsViewModel: ObservableObject {
+@Observable
+public class EventDetailsViewModel {
     
     public private(set) var config: EventDetailViewConfig?
     public private(set) var model: Event?
@@ -40,10 +42,12 @@ public class EventDetailsViewModel: ObservableObject {
         return URL(string: model?.url ?? "")
     }
     
+    @ObservationIgnored
     public lazy var title: AnyPublisher<String?, Never> = {
         return event.map { $0?.name }.eraseToAnyPublisher()
     }()
     
+    @ObservationIgnored
     public lazy var subtitle: AnyPublisher<String?, Never> = {
         event.map { event in
             if let event = event {
@@ -55,6 +59,7 @@ public class EventDetailsViewModel: ObservableObject {
         .eraseToAnyPublisher()
     }()
     
+    @ObservationIgnored
     public lazy var description: AnyPublisher<String?, Never> = {
         
         return event.map { $0?.description ?? "" }.eraseToAnyPublisher()
@@ -67,14 +72,17 @@ public class EventDetailsViewModel: ObservableObject {
         
     }()
     
+    @ObservationIgnored
     public lazy var imageURL: AnyPublisher<URL?, Never> = {
         return event.map { $0?.image }.eraseToAnyPublisher()
     }()
     
+    @ObservationIgnored
     public lazy var url: AnyPublisher<URL?, Never> = {
         return event.map { URL(string: $0?.url ?? "") }.eraseToAnyPublisher()
     }()
 
+    @ObservationIgnored
     public lazy var location: AnyPublisher<String?, Never> = {
         
         return event.map {
@@ -102,6 +110,7 @@ public class EventDetailsViewModel: ObservableObject {
         
     }()
     
+    @ObservationIgnored
     public lazy var locationIsSet: AnyPublisher<Bool, Never> = {
         
         return event.map {
@@ -118,6 +127,7 @@ public class EventDetailsViewModel: ObservableObject {
         
     }()
     
+    @ObservationIgnored
     public lazy var isWebsiteButtonEnabled: AnyPublisher<Bool, Never> = {
         
         return event.map {
@@ -132,20 +142,24 @@ public class EventDetailsViewModel: ObservableObject {
         
     }()
     
+    @ObservationIgnored
     public lazy var websiteUIAlpha: AnyPublisher<CGFloat, Never> = {
         return isWebsiteButtonEnabled.map { return $0 ? 1.0 : 0.5 }.eraseToAnyPublisher()
     }()
     
+    @ObservationIgnored
     public lazy var hideTicketText: AnyPublisher<Bool, Never> = {
         return event.map {
             return !($0?.extras?.visitWithExtraTicket ?? false)
         }.eraseToAnyPublisher()
     }()
     
+    @ObservationIgnored
     public lazy var showMovingAct: AnyPublisher<Bool, Never> = {
         return event.map { $0?.extras?.isMovingAct ?? false }.eraseToAnyPublisher()
     }()
     
+    @ObservationIgnored
     public lazy var subtitleAccessibiityLabel: AnyPublisher<String?, Never> = {
         return event.map {
             $0?.name
@@ -156,6 +170,7 @@ public class EventDetailsViewModel: ObservableObject {
 //        return event.map { $0?.page }
 //    }()
     
+    @ObservationIgnored
     public lazy var showVideo: AnyPublisher<Bool, Never> = {
         
         let hasVideoURL = observableConfig.map { $0?.videoURL != nil }
@@ -170,6 +185,7 @@ public class EventDetailsViewModel: ObservableObject {
         
     }()
     
+    @ObservationIgnored
     public lazy var showImage: AnyPublisher<Bool, Never> = {
         
         let hasImage = self.imageURL.map { $0 != nil }
@@ -184,22 +200,27 @@ public class EventDetailsViewModel: ObservableObject {
         
     }()
     
+    @ObservationIgnored
     public lazy var showTitleSubtitle: AnyPublisher<Bool, Never> = {
         return Just(true).eraseToAnyPublisher()
     }()
     
+    @ObservationIgnored
     public lazy var showPage: AnyPublisher<Bool, Never> = {
         return event.map { $0?.page != nil }.eraseToAnyPublisher()
     }()
     
+    @ObservationIgnored
     public lazy var showMore: AnyPublisher<Bool, Never> = {
         return Just(false).eraseToAnyPublisher()
     }()
     
+    @ObservationIgnored
     public lazy var showTicketInfo: AnyPublisher<Bool, Never> = {
         return Just(true).eraseToAnyPublisher()
     }()
     
+    @ObservationIgnored
     public lazy var showLocation: AnyPublisher<Bool, Never> = {
         
         let hasLocation = Just(true)
@@ -214,10 +235,12 @@ public class EventDetailsViewModel: ObservableObject {
         
     }()
     
+    @ObservationIgnored
     public lazy var streamURL: AnyPublisher<URL?, Never> = {
         return observableConfig.map { $0?.videoURL }.eraseToAnyPublisher()
     }()
     
+    @ObservationIgnored
     public lazy var showNoInformtation: AnyPublisher<Bool, Never> = {
         return Just(false).eraseToAnyPublisher()
     }()

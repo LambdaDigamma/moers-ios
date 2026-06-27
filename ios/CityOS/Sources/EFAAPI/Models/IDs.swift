@@ -7,6 +7,6 @@
 
 import Foundation
 
-public enum Stop {
+nonisolated public enum Stop {
     public typealias ID = Int
 }

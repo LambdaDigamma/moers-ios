@@ -7,12 +7,13 @@
 
 import SwiftUI
 import Core
-import Factory
+import FactoryKit
 import Combine
 import MMPages
 import Nuke
 import MediaLibraryKit
 
+@Observable
 class DownloadEventViewModel: StandardViewModel {
     
     private let repository: EventRepository
@@ -22,11 +23,11 @@ class DownloadEventViewModel: StandardViewModel {
     
     public let eventID: Event.ID
     
-    @Published var event: EventRecord
-    @Published var page: PageRecord?
+    var event: EventRecord
+    var page: PageRecord?
     
-    @Published var content: Core.DataState<Bool, Error> = .success(false)
-    @Published var media: Core.DataState<Bool, Error> = .success(false)
+    var content: Core.DataState<Bool, Error> = .success(false)
+    var media: Core.DataState<Bool, Error> = .success(false)
     
     public init(eventID: Event.ID, event: EventRecord) {
         self.eventID = eventID
@@ -199,7 +200,7 @@ class DownloadEventViewModel: StandardViewModel {
 
 struct DownloadEventRow: View {
     
-    @ObservedObject var viewModel: DownloadEventViewModel
+    var viewModel: DownloadEventViewModel
     
     public init(viewModel: DownloadEventViewModel) {
         self.viewModel = viewModel

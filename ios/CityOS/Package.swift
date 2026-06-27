@@ -3,6 +3,7 @@
 import PackageDescription
 
 let settings: [SwiftSetting] = [
+    .defaultIsolation(MainActor.self),
     .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
     .enableUpcomingFeature("InferIsolatedConformances")
 ]
@@ -11,10 +12,10 @@ let package = Package(
     name: "CityOS",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v16),
-        .macOS(.v12),
-        .watchOS(.v7),
-        .tvOS(.v14)
+        .iOS(.v17),
+        .macOS(.v14),
+        .watchOS(.v10),
+        .tvOS(.v17)
     ],
     products: [
         .library(name: "WeatherFeature", targets: ["WeatherFeature"]),
@@ -41,8 +42,8 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-algorithms", from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-collections.git", from: "1.1.0"),
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
-        .package(url: "https://github.com/hmlongco/Factory", .upToNextMajor(from: "2.0.0")),
-        .package(url: "https://github.com/LambdaDigamma/ModernNetworking", .upToNextMajor(from: "2.0.0")),
+        .package(url: "https://github.com/hmlongco/Factory", .upToNextMajor(from: "3.0.0")),
+        .package(url: "https://github.com/LambdaDigamma/ModernNetworking", .upToNextMajor(from: "2.0.1")),
         .package(url: "https://github.com/hyperoslo/Cache", .upToNextMajor(from: "7.4.0")),
         .package(url: "https://github.com/LambdaDigamma/fuse-swift", .upToNextMajor(from: "1.4.2")),
         .package(url: "https://github.com/LambdaDigamma/TagListView", from: "1.4.2"),
@@ -63,7 +64,7 @@ let package = Package(
                 .product(name: "MediaLibraryKit", package: "MediaLibraryKit"),
                 .product(name: "ModernNetworking", package: "ModernNetworking"),
                 .product(name: "Fuse", package: "fuse-swift"),
-                .product(name: "Factory", package: "Factory"),
+                .product(name: "FactoryKit", package: "Factory"),
                 .product(name: "Haneke", package: "HanekeSwift")
             ],
             resources: [.process("Resources")],
@@ -87,7 +88,7 @@ let package = Package(
         // ---------------- PlaybackKit ----------------
         .target(
             name: "PlaybackKit",
-            dependencies: ["Core", "Factory"],
+            dependencies: ["Core", .product(name: "FactoryKit", package: "Factory")],
             swiftSettings: settings
         ),
         .testTarget(
@@ -98,7 +99,7 @@ let package = Package(
         // ---------------- WeatherFeature ----------------
         .target(
             name: "WeatherFeature",
-            dependencies: ["Core", "Factory"],
+            dependencies: ["Core", .product(name: "FactoryKit", package: "Factory")],
             swiftSettings: settings
         ),
         .testTarget(
@@ -200,6 +201,7 @@ let package = Package(
         .target(
             name: "AppUpdateFeature",
             dependencies: [
+                "Core",
                 .product(name: "ModernNetworking", package: "ModernNetworking")
             ],
             resources: [
@@ -242,10 +244,14 @@ let package = Package(
                 "Core",
                 "ModernNetworking",
                 "MediaLibraryKit",
-                "YouTubePlayerKit",
+                .product(
+                    name: "YouTubePlayerKit",
+                    package: "YouTubePlayerKit",
+                    condition: .when(platforms: [.iOS])
+                ),
                 .product(name: "ProseMirror", package: "swift-prosemirror"),
                 .product(name: "GRDB", package: "GRDB.swift"),
-                .product(name: "Factory", package: "Factory")
+                .product(name: "FactoryKit", package: "Factory")
             ],
             swiftSettings: settings
         ),
@@ -274,6 +280,7 @@ let package = Package(
         .target(
             name: "MMFeeds",
             dependencies: [
+                .byName(name: "Core"),
                 .byName(name: "MMPages"),
                 .product(name: "ModernNetworking", package: "ModernNetworking"),
                 .product(name: "MediaLibraryKit", package: "MediaLibraryKit"),
@@ -297,7 +304,7 @@ let package = Package(
             dependencies: [
                 "XMLCoder",
                 "ModernNetworking",
-                "Factory",
+                .product(name: "FactoryKit", package: "Factory"),
                 "Core"
             ],
             resources: [.process("Resources")],
@@ -305,13 +312,13 @@ let package = Package(
         ),
         .target(
             name: "EFAUI",
-            dependencies: ["EFAAPI", "Factory", "Core"],
+            dependencies: ["EFAAPI", .product(name: "FactoryKit", package: "Factory"), "Core"],
             resources: [.process("Resources")],
             swiftSettings: settings
         ),
         .executableTarget(
             name: "EFACLI",
-            dependencies: ["EFAAPI", "Factory"],
+            dependencies: ["EFAAPI", .product(name: "FactoryKit", package: "Factory")],
             swiftSettings: settings
         ),
         .testTarget(

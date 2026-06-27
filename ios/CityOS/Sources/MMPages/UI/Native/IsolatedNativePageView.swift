@@ -10,11 +10,11 @@ import SwiftUI
 
 public struct IsolatedNativePageView: View {
     
-    @StateObject var viewModel: NativePageViewModel
-    @EnvironmentObject var actionTransmitter: ActionTransmitter
+    @State var viewModel: NativePageViewModel
+    @Environment(ActionTransmitter.self) var actionTransmitter: ActionTransmitter
     
     public init(pageID: Page.ID) {
-        self._viewModel = StateObject(wrappedValue: NativePageViewModel(pageID: pageID))
+        self._viewModel = State(initialValue: NativePageViewModel(pageID: pageID))
     }
     
     public var body: some View {

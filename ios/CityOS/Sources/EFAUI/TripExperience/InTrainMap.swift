@@ -9,14 +9,14 @@ import SwiftUI
 import Combine
 import CoreLocation
 import Core
-import Factory
+import FactoryKit
 
 struct InTrainMap: View {
     
     public let accent: Color = .yellow // .init(hex: "E16335")
     public let onAccent: Color = .black
     
-    @StateObject var viewModel: InTrainMapViewModel = .init()
+    @State var viewModel: InTrainMapViewModel = .init()
     
     var body: some View {
         

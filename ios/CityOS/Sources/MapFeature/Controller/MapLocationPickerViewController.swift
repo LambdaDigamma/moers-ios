@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import Core
-import Factory
+import FactoryKit
 
 protocol MapLocationPickerViewControllerDelegate: AnyObject {
     

@@ -72,21 +72,17 @@ public class NewsCoordinator: NSObject, Coordinator, SFSafariViewControllerDeleg
     
     /// Opens a safari view controller for an article
     public func open(url: URL) {
-        
-        DispatchQueue.main.async {
-            
-            let svc = SFSafariViewController(url: url)
-            svc.preferredBarTintColor = UIColor.systemBackground
-            svc.preferredControlTintColor = UIColor.label
-            svc.configuration.entersReaderIfAvailable = true
-            svc.delegate = self
-            
-            self.navigationController.present(svc, animated: true) {
-                self.navigationController.topViewController?.navigationItem.largeTitleDisplayMode = .never
-            }
-            
+
+        let svc = SFSafariViewController(url: url)
+        svc.preferredBarTintColor = UIColor.systemBackground
+        svc.preferredControlTintColor = UIColor.label
+        svc.configuration.entersReaderIfAvailable = true
+        svc.delegate = self
+
+        self.navigationController.present(svc, animated: true) {
+            self.navigationController.topViewController?.navigationItem.largeTitleDisplayMode = .never
         }
-        
+
     }
     
 }
