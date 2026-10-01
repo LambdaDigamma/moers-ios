@@ -45,7 +45,9 @@ struct RegionSwitchScreen: View {
             maxHeight: .infinity,
             alignment: .topLeading
         )
+        #if !os(tvOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .navigationTitle(String(localized: "Region detected", bundle: .module))
         
     }

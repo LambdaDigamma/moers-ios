@@ -995,6 +995,9 @@ private final class MapPanelContainerController: UIViewController {
             break
         }
     }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 private final class MapPanelPassthroughView: UIView {
@@ -1006,4 +1009,7 @@ private final class MapPanelPassthroughView: UIView {
         let convertedPoint = convert(point, to: trackedView)
         return trackedView.point(inside: convertedPoint, with: event)
     }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

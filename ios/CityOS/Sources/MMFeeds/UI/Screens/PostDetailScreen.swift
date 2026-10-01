@@ -51,6 +51,9 @@ struct PostDetailScreen: View {
         .task {
             await viewModel.reload()
         }
+        .onDisappear {
+            viewModel.cancel()
+        }
         
     }
     

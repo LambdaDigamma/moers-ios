@@ -296,5 +296,7 @@ public class AppSplitViewController: SplitViewController {
         }
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -74,5 +74,7 @@ class DrawerItemTableViewCell: UITableViewCell {
         self.subtitleLabel.textColor = UIColor.secondaryLabel
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

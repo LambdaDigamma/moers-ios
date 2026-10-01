@@ -71,5 +71,7 @@ public class ParkingDashboardViewModel: StandardViewModel {
             self.parkingAreas = .error(error)
         }
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

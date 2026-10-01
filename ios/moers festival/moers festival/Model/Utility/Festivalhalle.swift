@@ -75,5 +75,7 @@ class Festivalhalle {
         return CLLocationCoordinate2D()
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -63,5 +63,7 @@ public class RubbishScheduleViewModel: StandardViewModel {
     public func setLoading() {
         self.state = .loading
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

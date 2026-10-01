@@ -31,7 +31,9 @@ public class WebViewStateModel {
         self.canGoBack = canGoBack
         self.goBack = goBack
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 public struct WebView: View {
@@ -141,7 +143,9 @@ public struct WebViewWrapper : UIViewRepresentable {
             self.action = action
             self.webViewStateModel = webViewStateModel
         }
-        
+
+        // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+        nonisolated deinit {}
     }
 }
 

@@ -18,6 +18,9 @@ final class FilterBox: ObservableObject {
     init(filter: EventFilter) {
         self.filter = filter
     }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
@@ -430,5 +433,7 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
         }
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -66,7 +66,9 @@ class EventCoordinator: Coordinator {
         return eventsTabItem
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 // Protocol to make both versions compatible with the coordinator

@@ -87,5 +87,7 @@ public class SharedCoordinator: Coordinator {
         self.navigationController.present(modalNavigationController, animated: true)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

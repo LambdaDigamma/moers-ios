@@ -68,6 +68,8 @@ class MMFeedsFrameworkConfiguration: BootstrappingProcedureStep {
 
     }
 
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 private final class FestivalNewsPostService: PostService {
@@ -122,4 +124,6 @@ private final class FestivalNewsPostService: PostService {
 
     }
 
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

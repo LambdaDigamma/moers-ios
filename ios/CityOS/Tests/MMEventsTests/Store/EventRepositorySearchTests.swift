@@ -10,11 +10,12 @@ import GRDB
 import XCTest
 @testable import MMEvents
 
+@MainActor
 final class EventRepositorySearchTests: XCTestCase {
 
     func testSearchMatchesTitleArtistAndVenue() async throws {
 
-        let (repository, store, placeStore, _) = makeRepository()
+        let (repository, store, placeStore) = makeRepository()
 
         try await placeStore.updateOrCreate([
             makePlace(id: 1, name: "Main Hall").toRecord(),
@@ -27,14 +28,14 @@ final class EventRepositorySearchTests: XCTestCase {
             makeEvent(id: 3, name: "Solo Piece", artists: ["Gamma"], placeID: 2).toRecord()
         ])
 
-        XCTAssertEqual(try await repository.searchEvents(query: "quartet").map(\.id), [2])
-        XCTAssertEqual(try await repository.searchEvents(query: "alpha").map(\.id), [1])
-        XCTAssertEqual(try await repository.searchEvents(query: "open air").map(\.id), [3])
+        try await assertSearch(query: "quartet", in: repository, ids: [2])
+        try await assertSearch(query: "alpha", in: repository, ids: [1])
+        try await assertSearch(query: "open air", in: repository, ids: [3])
     }
 
     func testSearchMatchesNormalizedDiacriticsAndSpecialFolding() async throws {
 
-        let (repository, store, placeStore, _) = makeRepository()
+        let (repository, store, placeStore) = makeRepository()
 
         try await placeStore.updateOrCreate([
             makePlace(id: 1, name: "Straße Stage").toRecord(),
@@ -69,15 +70,15 @@ final class EventRepositorySearchTests: XCTestCase {
             ).toRecord()
         ])
 
-        XCTAssertEqual(try await repository.searchEvents(query: "gellert").map(\.id), [1])
-        XCTAssertEqual(try await repository.searchEvents(query: "strasse").map(\.id), [2, 3])
-        XCTAssertEqual(try await repository.searchEvents(query: "frosche").map(\.id), [4])
-        XCTAssertEqual(try await repository.searchEvents(query: "100%_\\").map(\.id), [1])
+        try await assertSearch(query: "gellert", in: repository, ids: [1])
+        try await assertSearch(query: "strasse", in: repository, ids: [2, 3])
+        try await assertSearch(query: "frosche", in: repository, ids: [4])
+        try await assertSearch(query: "100%_\\", in: repository, ids: [1])
     }
 
     func testSearchReflectsUpdatedEventTextFromBaseTables() async throws {
 
-        let (repository, store, placeStore, _) = makeRepository()
+        let (repository, store, placeStore) = makeRepository()
 
         try await placeStore.updateOrCreate([
             makePlace(id: 1, name: "Current Venue").toRecord()
@@ -91,8 +92,8 @@ final class EventRepositorySearchTests: XCTestCase {
             ).toRecord()
         ])
 
-        XCTAssertEqual(try await repository.searchEvents(query: "old device").map(\.id), [1])
-        XCTAssertEqual(try await repository.searchEvents(query: "old artist").map(\.id), [1])
+        try await assertSearch(query: "old device", in: repository, ids: [1])
+        try await assertSearch(query: "old artist", in: repository, ids: [1])
 
         try await store.updateOrCreate([
             makeEvent(
@@ -103,15 +104,15 @@ final class EventRepositorySearchTests: XCTestCase {
             ).toRecord()
         ])
 
-        XCTAssertEqual(try await repository.searchEvents(query: "real device").map(\.id), [1])
-        XCTAssertEqual(try await repository.searchEvents(query: "current artist").map(\.id), [1])
-        XCTAssertTrue(try await repository.searchEvents(query: "old device").isEmpty)
-        XCTAssertTrue(try await repository.searchEvents(query: "old artist").isEmpty)
+        try await assertSearch(query: "real device", in: repository, ids: [1])
+        try await assertSearch(query: "current artist", in: repository, ids: [1])
+        try await assertSearch(query: "old device", in: repository, ids: [])
+        try await assertSearch(query: "old artist", in: repository, ids: [])
     }
 
     func testPlaceUpdateIsReflectedInSearchView() async throws {
 
-        let (repository, store, placeStore, _) = makeRepository()
+        let (repository, store, placeStore) = makeRepository()
 
         try await placeStore.updateOrCreate([
             makePlace(id: 1, name: "Old Venue").toRecord()
@@ -125,19 +126,19 @@ final class EventRepositorySearchTests: XCTestCase {
             ).toRecord()
         ])
 
-        XCTAssertEqual(try await repository.searchEvents(query: "old venue").map(\.id), [1])
+        try await assertSearch(query: "old venue", in: repository, ids: [1])
 
         try await placeStore.updateOrCreate([
             makePlace(id: 1, name: "New Venue").toRecord()
         ])
 
-        XCTAssertEqual(try await repository.searchEvents(query: "new venue").map(\.id), [1])
-        XCTAssertTrue(try await repository.searchEvents(query: "old venue").isEmpty)
+        try await assertSearch(query: "new venue", in: repository, ids: [1])
+        try await assertSearch(query: "old venue", in: repository, ids: [])
     }
 
     func testPlaceInsertIsReflectedInSearchView() async throws {
 
-        let (repository, store, placeStore, _) = makeRepository()
+        let (repository, store, placeStore) = makeRepository()
 
         try await store.deleteAllAndInsert([
             makeEvent(
@@ -148,11 +149,11 @@ final class EventRepositorySearchTests: XCTestCase {
             ).toRecord()
         ])
 
-        XCTAssertTrue(try await repository.searchEvents(query: "late venue hall").isEmpty)
+        try await assertSearch(query: "late venue hall", in: repository, ids: [])
 
         try await placeStore.insert(makePlace(id: 1, name: "Late Venue Hall").toRecord())
 
-        XCTAssertEqual(try await repository.searchEvents(query: "late venue hall").map(\.id), [1])
+        try await assertSearch(query: "late venue hall", in: repository, ids: [1])
     }
 
     func testPlaceWriteDoesNotRequireEventSearchTables() async throws {
@@ -173,7 +174,7 @@ final class EventRepositorySearchTests: XCTestCase {
 
     func testSearchRanksExactPrefixContainsTitleBeforeArtistBeforeVenueThenDateAndTitle() async throws {
 
-        let (repository, store, placeStore, _) = makeRepository()
+        let (repository, store, placeStore) = makeRepository()
 
         try await placeStore.updateOrCreate([
             makePlace(id: 1, name: "Target Room").toRecord(),
@@ -232,7 +233,7 @@ final class EventRepositorySearchTests: XCTestCase {
 
     func testSearchEscapesLikeWildcards() async throws {
 
-        let (repository, store, _, _) = makeRepository()
+        let (repository, store, _) = makeRepository()
 
         try await store.deleteAllAndInsert([
             makeEvent(id: 1, name: "100% Real").toRecord(),
@@ -243,14 +244,14 @@ final class EventRepositorySearchTests: XCTestCase {
             makeEvent(id: 6, name: "BackXSlash").toRecord()
         ])
 
-        XCTAssertEqual(try await repository.searchEvents(query: "100%").map(\.id), [1])
-        XCTAssertEqual(try await repository.searchEvents(query: "Under_score").map(\.id), [3])
-        XCTAssertEqual(try await repository.searchEvents(query: "Back\\Slash").map(\.id), [5])
+        try await assertSearch(query: "100%", in: repository, ids: [1])
+        try await assertSearch(query: "Under_score", in: repository, ids: [3])
+        try await assertSearch(query: "Back\\Slash", in: repository, ids: [5])
     }
 
     func testBlankRepositorySearchReturnsEmpty() async throws {
 
-        let (repository, store, _, _) = makeRepository()
+        let (repository, store, _) = makeRepository()
 
         try await store.deleteAllAndInsert([
             makeEvent(
@@ -277,7 +278,7 @@ final class EventRepositorySearchTests: XCTestCase {
 
     func testSearchReturnsNoResults() async throws {
 
-        let (repository, store, _, _) = makeRepository()
+        let (repository, store, _) = makeRepository()
 
         try await store.deleteAllAndInsert([
             makeEvent(id: 1, name: "Morning Set").toRecord()
@@ -288,11 +289,21 @@ final class EventRepositorySearchTests: XCTestCase {
         XCTAssertTrue(results.isEmpty)
     }
 
+    private func assertSearch(
+        query: String,
+        in repository: EventRepository,
+        ids: [Event.ID],
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) async throws {
+        let events = try await repository.searchEvents(query: query)
+        XCTAssertEqual(events.map(\.id), ids, file: file, line: line)
+    }
+
     private func makeRepository() -> (
         repository: EventRepository,
         store: EventStore,
-        placeStore: PlaceStore,
-        database: DatabaseQueue
+        placeStore: PlaceStore
     ) {
 
         let database = MemoryDatabase.default()
@@ -305,7 +316,7 @@ final class EventRepositorySearchTests: XCTestCase {
             pageStore: nil
         )
 
-        return (repository, store, placeStore, database)
+        return (repository, store, placeStore)
     }
 
     private func makeEvent(

@@ -13,7 +13,7 @@ import FactoryKit
 public struct ParkingTimerScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @State var viewModel = ParkingTimerViewModel.loadCurrentOrNew()
+    @State private var viewModel = ParkingTimerViewModel.loadCurrentOrNew()
     
     public var body: some View {
         
@@ -29,6 +29,9 @@ public struct ParkingTimerScreen: View {
             
         }
         .navigationTitle(Text("Parking meter", bundle: .module))
+        .task(id: viewModel.saveParkingLocation && !viewModel.timerStarted) {
+            await viewModel.observeLocation()
+        }
         
     }
     

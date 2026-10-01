@@ -9,9 +9,9 @@ import Foundation
 import GRDB
 @testable import MMEvents
 
-public class MemoryDatabase {
+nonisolated public final class MemoryDatabase: Sendable {
     
-    private var definitions: [ApplyTableDefinition]
+    private let definitions: [ApplyTableDefinition]
     
     public init(definitions: [ApplyTableDefinition]) {
         
@@ -40,6 +40,9 @@ public class MemoryDatabase {
             }
 
             if try db.tableExists(EventTableDefinition.tableName) {
+                try db.alter(table: EventTableDefinition.tableName) { table in
+                    table.add(column: "extras", .text)
+                }
                 try EventSearchViewDefinition.createIfNeeded(in: db)
             }
             

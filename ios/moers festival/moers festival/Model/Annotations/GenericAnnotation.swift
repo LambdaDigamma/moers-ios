@@ -24,5 +24,7 @@ class GenericAnnotation: NSObject, MKAnnotation {
     
     var title: String? { return marker.title }
     var subtitle: String? { return marker.subtitle }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

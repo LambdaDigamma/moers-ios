@@ -58,7 +58,11 @@ public class DefaultLegacyEventService: LegacyEventService {
         
         let events = resource.data.chronologically()
         
-        self.cache.async.setObject(events, forKey: CachingKeys.events.rawValue) { (result) in }
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+            cache.async.setObject(events, forKey: CachingKeys.events.rawValue) { @Sendable result in
+                continuation.resume(with: result)
+            }
+        }
         self.lastUpdate.setNow()
         
         return events
@@ -68,7 +72,7 @@ public class DefaultLegacyEventService: LegacyEventService {
     public func loadEventsFromPersistence() async throws -> [Event] {
         
         return try await withCheckedThrowingContinuation { continuation in
-            self.cache.async.object(forKey: CachingKeys.events.rawValue) { (result: Result<[Event], Error>) in
+            self.cache.async.object(forKey: CachingKeys.events.rawValue) { @Sendable (result: Result<[Event], Error>) in
                 switch result {
                     case .success(let success):
                         continuation.resume(returning: success)
@@ -109,7 +113,9 @@ public class DefaultLegacyEventService: LegacyEventService {
         return try await result.decoding(StreamConfig.self, using: StreamConfig.decoder)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension DefaultLegacyEventService {

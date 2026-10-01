@@ -33,5 +33,7 @@ public class ParkingAreaAnnotationView: MKMarkerAnnotationView {
     }
     
     public static let reuseIdentifier = "parking_area_annotation_view"
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

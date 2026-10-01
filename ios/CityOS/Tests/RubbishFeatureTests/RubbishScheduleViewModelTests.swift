@@ -72,7 +72,7 @@ nonisolated final class RubbishScheduleViewModelTests: XCTestCase {
         XCTAssertEqual(sections.flatMap(\.items).count, 3)
     }
 
-    private static let street = RubbishCollectionStreet(
+    @MainActor private static let street = RubbishCollectionStreet(
         id: 1,
         street: "Musterstrasse",
         residualWaste: 0,

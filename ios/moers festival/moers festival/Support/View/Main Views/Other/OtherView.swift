@@ -85,5 +85,7 @@ class OtherView: UIView {
     public func rowAction(for indexPath: IndexPath) -> (() -> Void)? {
         dataSource.itemIdentifier(for: indexPath)?.action
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

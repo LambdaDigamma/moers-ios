@@ -10,7 +10,7 @@ import SwiftUI
 
 public struct IsolatedNativePageView: View {
     
-    @State var viewModel: NativePageViewModel
+    @State private var viewModel: NativePageViewModel
     @Environment(ActionTransmitter.self) var actionTransmitter: ActionTransmitter
     
     public init(pageID: Page.ID) {

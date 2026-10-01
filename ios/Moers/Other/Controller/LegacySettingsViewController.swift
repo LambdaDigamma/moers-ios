@@ -311,7 +311,9 @@ class LegacySettingsViewController: UIViewController {
         return manager
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension LegacySettingsViewController: UITableViewDataSource, UITableViewDelegate {

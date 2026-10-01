@@ -15,6 +15,9 @@ public class StaticEventService: EventService {
     public init(events: Result<[Event], Error>) {
         self.events = events
     }
+
+    // No actor cleanup is needed; keep ARC release compatible with older runtimes.
+    nonisolated deinit {}
     
     public func index(cacheMode: CacheMode, withPages: Bool) async throws -> ResourceCollection<Event> {
         

@@ -98,7 +98,9 @@ public class ToiletAnnotationView: MKAnnotationView {
         return result
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 struct ToiletAnnotationView_Previews: PreviewProvider {

@@ -10,9 +10,10 @@ import XCTest
 import Core
 @testable import ParkingFeature
 
+@MainActor
 final class ParkingAreaTests: XCTestCase {
     
-    func test_openingStateRawValues() {
+    func test_openingStateRawValues() async {
         
         XCTAssertEqual(ParkingAreaOpeningState.closed.rawValue, "closed")
         XCTAssertEqual(ParkingAreaOpeningState.open.rawValue, "open")
@@ -20,7 +21,7 @@ final class ParkingAreaTests: XCTestCase {
         
     }
     
-    func test_initAndFree() {
+    func test_initAndFree() async {
         
         let model = ParkingArea(
             id: 1,

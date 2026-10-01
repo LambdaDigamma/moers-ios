@@ -219,7 +219,9 @@ public class ModernEventDetailViewController: DefaultHostingController {
         self.present(hosting, animated: true)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 struct ModernEventDetailViewController_Previews: PreviewProvider {

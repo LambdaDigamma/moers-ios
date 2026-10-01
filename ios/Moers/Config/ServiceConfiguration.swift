@@ -183,5 +183,7 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
         }
         return value
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

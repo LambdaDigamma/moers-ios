@@ -10,11 +10,12 @@ import XCTest
 import Combine
 @testable import DashboardFeature
 
+@MainActor
 final class DashboardConfigDiskLoaderTest: XCTestCase {
     
     private var cancellables = Set<AnyCancellable>()
     
-    func test_load() throws {
+    func test_load() async throws {
         
         let expectation = expectation(description: "Load dashboard config")
         let loader = DashboardConfigDiskLoader()
@@ -26,11 +27,11 @@ final class DashboardConfigDiskLoaderTest: XCTestCase {
             })
             .store(in: &cancellables)
         
-        waitForExpectations(timeout: 5)
+        await fulfillment(of: [expectation], timeout: 5)
         
     }
     
-    func test_save() throws {
+    func test_save() async throws {
         
         let loader = DashboardConfigDiskLoader()
         let config = DashboardConfig(updatedAt: Date())
@@ -39,7 +40,7 @@ final class DashboardConfigDiskLoaderTest: XCTestCase {
         
     }
     
-    func test_configFileURLExists() {
+    func test_configFileURLExists() async {
         
         let loader = DashboardConfigDiskLoader()
         

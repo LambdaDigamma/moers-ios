@@ -3,6 +3,7 @@ import Foundation
 import Testing
 
 @Suite("AppUpdateFeature")
+@MainActor
 struct AppUpdateFeatureTests {
     @Test("Compares numeric app versions")
     func comparesNumericVersions() {
@@ -58,6 +59,7 @@ struct AppUpdateFeatureTests {
         #expect(envelope.data == RemoteAppUpdateConfiguration(forceUpdate: true, enableClosing: true))
     }
 
+    @MainActor
     @Test("Persists banner dismissal per version")
     func persistsBannerDismissalPerVersion() throws {
         let suiteName = "AppUpdateFeatureTests.\(UUID().uuidString)"

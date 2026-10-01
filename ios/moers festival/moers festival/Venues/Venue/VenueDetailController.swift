@@ -158,5 +158,7 @@ public class VenueDetailController: DefaultHostingController {
         self.dismiss(animated: true)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

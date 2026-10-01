@@ -29,5 +29,7 @@ class TrackerAnnotationView: MKMarkerAnnotationView {
             
         }
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -144,5 +144,7 @@ class EntryValidationViewController: UIViewController {
         self.entries = entries.filter { !$0.isValidated }
                 
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -58,5 +58,7 @@ public class FGDCollection {
         case transporation = "transportation"
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

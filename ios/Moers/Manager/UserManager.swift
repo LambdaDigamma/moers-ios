@@ -121,5 +121,7 @@ public class UserManager {
     }
     
     public static let rubbishScheduleActivityIdentifier = "de.okfn.niederrhein.Moers.nextRubbish"
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

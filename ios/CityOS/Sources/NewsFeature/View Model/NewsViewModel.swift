@@ -31,5 +31,7 @@ public class NewsViewModel: StandardViewModel {
             print("Failed to load news items: \(error)")
         }
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

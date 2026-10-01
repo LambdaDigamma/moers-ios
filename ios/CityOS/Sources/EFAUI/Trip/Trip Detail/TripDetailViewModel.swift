@@ -41,5 +41,7 @@ public class TripDetailViewModel {
         self.partialRoutes = route.partialRoutes
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

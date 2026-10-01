@@ -31,10 +31,10 @@ public class DayEventsViewModel: Identifiable {
     @ObservationIgnored
     private var cancellables = Set<AnyCancellable>()
     
-    public init(date: Date, filter: EventFilter = .init()) {
+    public init(date: Date, filter: EventFilter = .init(), repository: EventRepository = Container.shared.eventRepository()) {
         self.date = date
         self.filter = filter
-        self.repository = Container.shared.eventRepository()
+        self.repository = repository
         
         let range = DateUtils.calculateDateRange(for: date, offset: EventUtilities.defaultDayOffset)
         self.startDate = range.startDate
@@ -61,8 +61,8 @@ public class DayEventsViewModel: Identifiable {
             favoriteEventsPublisher
         )
             .receive(on: DispatchQueue.main)
-            .sink { (events, favoriteIDs) in
-                MainActor.assumeIsolated {
+            .sink { [weak self] (events, favoriteIDs) in
+                guard let self else { return }
                 self.events = events
                     .filter { event in
                         
@@ -96,7 +96,6 @@ public class DayEventsViewModel: Identifiable {
                             scheduleDisplayMode: event.scheduleDisplayMode
                         )
                     }
-                }
             }
             .store(in: &cancellables)
         
@@ -128,5 +127,7 @@ public class DayEventsViewModel: Identifiable {
     public var id: String {
         return "\(self.date.formatted(date: .numeric, time: .omitted))-\(self.filter.hashValue)"
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

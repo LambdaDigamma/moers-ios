@@ -112,7 +112,9 @@ struct TimetableScreen_Previews: PreviewProvider {
         NavigationView {
             TimetableScreen()
                 .environment(TimetableTransmitter())
+                #if !os(tvOS)
                 .navigationBarTitleDisplayMode(.inline)
+                #endif
                 .preferredColorScheme(.dark)
         }
         .accentColor(.yellow)

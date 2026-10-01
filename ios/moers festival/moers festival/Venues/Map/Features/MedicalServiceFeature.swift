@@ -17,7 +17,9 @@ public struct MedicalServiceProperties: Codable {
 public class MedicalServiceFeature: GeoFeature<MedicalServiceProperties>, FGDDecodableFeature {
     
     public typealias Properties = MedicalServiceProperties
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension MedicalServiceFeature: StylableFeature {

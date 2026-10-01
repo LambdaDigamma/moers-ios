@@ -80,7 +80,9 @@ class LoadingViewController: UIViewController {
         self.hintLabel.textColor = UIColor.secondaryLabel
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 //extension LoadingViewController: StateViewControllerTransitioning {

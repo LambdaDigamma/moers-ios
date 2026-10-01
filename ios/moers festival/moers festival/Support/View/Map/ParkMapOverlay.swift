@@ -18,5 +18,7 @@ class ParkMapOverlay: NSObject, MKOverlay {
         boundingMapRect = park.overlayBoundingMapRect
         coordinate = park.midCoordinate
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

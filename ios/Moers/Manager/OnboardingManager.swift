@@ -344,7 +344,9 @@ public class OnboardingManager {
             UserDefaults.appGroup.set(newValue, forKey: "UserDidCompleteSetup")
         }
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension OnboardingManager {

@@ -62,7 +62,9 @@ open class RubbishDashboardViewModel: StandardViewModel {
     private func setLoading() {
         self.state = .loading
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 public extension Date {

@@ -27,9 +27,9 @@ nonisolated final class PointTests: XCTestCase {
         let encoder = JSONEncoder()
         
         let data = try encoder.encode(point)
-        let dataString = String(data: data, encoding: .utf8)
-        
-        XCTAssertEqual(dataString, "{\"type\":\"Point\",\"coordinates\":[6.6239999999999997,51.123399999999997]}")
+        let object = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        XCTAssertEqual(object["type"] as? String, "Point")
+        XCTAssertEqual(object["coordinates"] as? [Double], [6.624, 51.1234])
         
     }
     

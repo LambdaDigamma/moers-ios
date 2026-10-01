@@ -195,7 +195,9 @@ class OtherViewController: UIViewController {
         manager.showBulletin(above: self)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension OtherViewController: UICollectionViewDelegate {

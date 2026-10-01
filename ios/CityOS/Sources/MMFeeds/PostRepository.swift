@@ -119,5 +119,7 @@ public class PostRepository {
         try await store.updateOrCreate(posts.map { $0.toRecord() })
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

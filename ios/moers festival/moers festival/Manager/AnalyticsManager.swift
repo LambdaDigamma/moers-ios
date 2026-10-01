@@ -235,5 +235,7 @@ class AnalyticsManager {
             Analytics.logEvent("Livestream_ActiveStream", parameters: nil)
         }
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

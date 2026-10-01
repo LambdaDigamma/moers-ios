@@ -144,5 +144,7 @@ class TextFieldFormView: UIView, FormView {
     func currentData() -> Codable {
         return textField.text ?? ""
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

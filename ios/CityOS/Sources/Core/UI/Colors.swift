@@ -8,7 +8,13 @@
 import Foundation
 import SwiftUI
 
-#if !os(tvOS)
+#if os(tvOS)
+public extension Color {
+    static var secondarySystemBackground: Color { Color.secondary.opacity(0.08) }
+    static var tertiarySystemBackground: Color { Color.secondary.opacity(0.12) }
+    static var tertiarySystemFill: Color { Color.secondary.opacity(0.15) }
+}
+#else
 
 public extension Color {
     

@@ -44,6 +44,9 @@ public final class RemoteAppUpdateConfigurationService: RemoteAppUpdateConfigura
 
         return envelope.data
     }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 nonisolated struct RemoteAppUpdateConfigurationEnvelope: Model, Sendable {

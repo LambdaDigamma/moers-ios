@@ -37,7 +37,9 @@ public class DashboardDepartureViewModel {
         }
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 public struct DepartureDashboardView: View {

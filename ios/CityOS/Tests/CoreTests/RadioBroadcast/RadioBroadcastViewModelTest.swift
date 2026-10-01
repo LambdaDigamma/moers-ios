@@ -12,7 +12,7 @@ import XCTest
 nonisolated final class RadioBroadcastViewModelTest: XCTestCase {
 
     @MainActor
-    func testInitPlain() {
+    func testInitPlain() async {
         
         let viewModel = RadioBroadcastViewModel(
             id: 1,
@@ -28,7 +28,7 @@ nonisolated final class RadioBroadcastViewModelTest: XCTestCase {
     }
     
     @MainActor
-    func testInitFromBroadcast() {
+    func testInitFromBroadcast() async {
         
         var broadcast = RadioBroadcast(id: 1, uid: .init(), title: "What's up?!")
         

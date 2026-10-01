@@ -12,7 +12,7 @@ import XCTest
 @MainActor
 final class EventListSectionBuilderTests: XCTestCase {
 
-    func testSectionsAssignRowsToEffectiveFestivalDayUsingSixHourBoundary() {
+    func testSectionsAssignRowsToEffectiveFestivalDayUsingSixHourBoundary() async {
 
         let calendar = makeCalendar()
         let builder = EventListSectionBuilder(calendar: calendar)
@@ -43,7 +43,7 @@ final class EventListSectionBuilderTests: XCTestCase {
         XCTAssertEqual(sections.map { $0.events.compactMap(\.eventID) }, [[1, 2], [3]])
     }
 
-    func testSectionsAppendUndatedRowsAsFinalSection() {
+    func testSectionsAppendUndatedRowsAsFinalSection() async {
 
         let calendar = makeCalendar()
         let builder = EventListSectionBuilder(calendar: calendar)
@@ -77,7 +77,7 @@ final class EventListSectionBuilderTests: XCTestCase {
         XCTAssertEqual(sections.map { $0.events.compactMap(\.eventID) }, [[4], [2], [1, 3]])
     }
 
-    func testSectionsPreserveIncomingRowOrderWithinDay() {
+    func testSectionsPreserveIncomingRowOrderWithinDay() async {
 
         let calendar = makeCalendar()
         let builder = EventListSectionBuilder(calendar: calendar)

@@ -26,5 +26,7 @@ public class TicketAnnotation: NSObject, MKAnnotation, DisplayCacheableAnnotatio
     public static let mapScaleThreshold: Double = 0.01
     
     public static let displayCacheKey = String(describing: TicketAnnotation.self)
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -23,7 +23,15 @@ struct BinaryValueTestingView<Content: View>: View {
             
             content(value)
             
+            #if os(tvOS)
+            HStack {
+                Button("Decrease") { value = max(0, value - 0.05) }
+                Text(value, format: .percent)
+                Button("Increase") { value = min(1, value + 0.05) }
+            }
+            #else
             Slider(value: $value, in: 0...1)
+            #endif
             
         }
         .padding()

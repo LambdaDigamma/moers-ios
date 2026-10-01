@@ -10,9 +10,23 @@ import XCTest
 @testable import MMEvents
 @testable import Core
 
+@MainActor
 final class DayEventsViewModelTests: XCTestCase {
     
-    func testRange() {
+    func testObservationDoesNotRetainModel() async {
+        let database = MemoryDatabase.default()
+        let repository = EventRepository(
+            store: EventStore(writer: database, reader: database),
+            service: StaticEventService(events: .success([])),
+            pageStore: nil
+        )
+        var model: DayEventsViewModel? = DayEventsViewModel(date: Date(), repository: repository)
+        weak let retainedModel = model
+        model = nil
+        XCTAssertNil(retainedModel)
+    }
+
+    func testRange() async {
         
         let date = Date(timeIntervalSince1970: 1681251959)
         

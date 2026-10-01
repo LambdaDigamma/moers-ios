@@ -24,5 +24,7 @@ public class StationMapViewController: UIViewController {
         self.addSubSwiftUIView(StationMapView(), to: view)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

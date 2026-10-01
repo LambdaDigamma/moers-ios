@@ -22,14 +22,10 @@ final class MockNotificationCenter: UNUserNotificationCenterProtocol {
     var pendingNotifications: [UNNotificationRequest] = []
     var removedIdentifiers: [String] = []
     
-    func add(
-        _ request: UNNotificationRequest,
-        withCompletionHandler completionHandler: ((Error?) -> Void)?
-    ) {
+    func add(_ request: UNNotificationRequest) async throws {
         
         addRequestExpectation?.fulfill()
         pendingNotifications.append(request)
-        completionHandler?(nil)
         
     }
     

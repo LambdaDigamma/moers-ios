@@ -90,6 +90,8 @@ open class CoordinatedNavigationController: UINavigationController, UINavigation
         tabBarItem = item
     }
 
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 #endif

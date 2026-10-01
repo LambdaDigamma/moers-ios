@@ -358,5 +358,7 @@ public class DefaultRubbishService: RubbishService {
     
     @UserDefaultsBacked(key: "RubbishReminderMinute")
     public var reminderMinute: Int?
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

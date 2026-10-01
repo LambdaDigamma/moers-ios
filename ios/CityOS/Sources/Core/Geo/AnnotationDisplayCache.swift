@@ -32,6 +32,8 @@ public class AnnotationDisplayCache {
     public func setShowingAnnotations(_ value: Bool, for key: String) {
         annotationStore[key] = value
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 

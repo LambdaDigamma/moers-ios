@@ -107,5 +107,7 @@ public class ActiveTripViewModel: StandardViewModel {
     public func terminate() {
         tripService.resetTrip()
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

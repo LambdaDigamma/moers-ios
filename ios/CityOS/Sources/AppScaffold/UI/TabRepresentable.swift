@@ -37,7 +37,9 @@ public final class ViewControllerTab: TabRepresentable {
         get { viewController.tabBarItem }
         set { viewController.tabBarItem = newValue }
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 #endif

@@ -99,7 +99,9 @@ public class BikeAnnotationView: MKAnnotationView {
         return result
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 struct BikeAnnotationView_Previews: PreviewProvider {

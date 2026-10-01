@@ -16,7 +16,7 @@ struct InTrainMap: View {
     public let accent: Color = .yellow // .init(hex: "E16335")
     public let onAccent: Color = .black
     
-    @State var viewModel: InTrainMapViewModel = .init()
+    @State private var viewModel: InTrainMapViewModel = .init()
     
     var body: some View {
         
@@ -100,7 +100,7 @@ struct InTrainMap: View {
         }
         .task {
 //            viewModel.start()
-            viewModel.load()
+            await viewModel.load()
         }
         .onDisappear {
             viewModel.stop()

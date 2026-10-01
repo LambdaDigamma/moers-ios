@@ -9,9 +9,10 @@ import Foundation
 import XCTest
 @testable import EFAAPI
 
+@MainActor
 final class HourErrorTest: XCTestCase {
     
-    func test_init() {
+    func test_init() async {
         
         XCTAssertEqual(HourError(rawValue: -1), .invalidTime)
         XCTAssertEqual(HourError(rawValue: -10), .hourOutOfRange)

@@ -89,4 +89,7 @@ public final class StaticLocationService: LocationService {
         currentLocation = location
         locationContinuations.values.forEach { $0.yield(location) }
     }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

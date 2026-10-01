@@ -103,5 +103,7 @@ class CountdownViewController: UIViewController {
         self.dismiss(animated: true, completion: fireCompletion)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

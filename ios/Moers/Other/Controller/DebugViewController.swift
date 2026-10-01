@@ -120,5 +120,7 @@ class DebugViewController: UIViewController {
         self.notificationItemsTextView.textColor = UIColor.label
         self.notificationItemsTextView.backgroundColor = UIColor.systemBackground
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

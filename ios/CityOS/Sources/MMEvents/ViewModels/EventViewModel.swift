@@ -279,5 +279,7 @@ public class EventViewModel<Event: BaseEvent>: Equatable, Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.model)
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

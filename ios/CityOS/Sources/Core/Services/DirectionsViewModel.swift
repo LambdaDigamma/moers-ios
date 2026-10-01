@@ -86,7 +86,9 @@ public class DirectionsViewModel: StandardViewModel {
         }
         return nil
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 public class ETACalculator {
@@ -110,7 +112,9 @@ public class ETACalculator {
         let response = try await directions.calculateETA()
         return response.expectedTravelTime
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 enum DirectionsError: Error {

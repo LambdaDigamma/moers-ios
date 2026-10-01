@@ -16,5 +16,7 @@ class DrawerViewModel: ObservableObject {
     init(trackers: [Tracker] = []) {
         self.trackers.insert(contentsOf: trackers, at: 0)
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -43,5 +43,7 @@ public class LocalFGDStore {
         return directory()?.appendingPathComponent("\(key).geojson")
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

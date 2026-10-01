@@ -108,5 +108,7 @@ public class ParkingAreaListViewModel: StandardViewModel {
             print("Failed to load parking areas: \(error)")
         }
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

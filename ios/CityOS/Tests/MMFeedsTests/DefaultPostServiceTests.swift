@@ -13,30 +13,15 @@ import Cache
 @testable import MMFeeds
 
 
+@MainActor
 final class DefaultPostServiceTests: XCTestCase {
     
     func testIndex() async throws {
         
-        let url = ResourcesFinder(file: #file).baseURL()?
-            .appendingPathComponent("Tests/MMFeedsTests/Resources/Fixtures/Post/Index.json")
+        let url = try XCTUnwrap(Bundle.module.url(forResource: "Index", withExtension: "json"))
         
-        let loader = FixtureFileLoader(
-            fixtureURL: url
-        )
-        
-        var request = DefaultPostService.indexRequest(
-            feedID: 1,
-            page: 1,
-            perPage: 10
-        )
-        
-        request.host = "archiv.moers-festival.de"
-        request.path = "/api/v1/" + request.path
-        
-        loader.fixtureRequest = request
-        
-        let service: PostService = DefaultPostService(loader)
-        
+        let service: PostService = DefaultPostService(client: try FixtureHTTPClient(url: url))
+
         let posts = try await service.index(for: 1, page: 1, perPage: 10, cacheMode: .cached)
         
         XCTAssertEqual(posts.data.count, 10)
@@ -47,23 +32,10 @@ final class DefaultPostServiceTests: XCTestCase {
     
     func testShow() async throws {
         
-        let url = ResourcesFinder(file: #file).baseURL()?
-            .appendingPathComponent("Tests/MMFeedsTests/Resources/Fixtures/Post/Show.json")
+        let url = try XCTUnwrap(Bundle.module.url(forResource: "Show", withExtension: "json"))
         
-        let loader = FixtureFileLoader(
-            fixtureURL: url
-        )
-        
-        var request = DefaultPostService.showRequest(postID: 1)
-        
-        request.scheme = TestingConfig.scheme
-        request.host = TestingConfig.host
-        request.path = "/api/v1/" + request.path
-        
-        loader.fixtureRequest = request
-        
-        let service: PostService = DefaultPostService(loader)
-        
+        let service: PostService = DefaultPostService(client: try FixtureHTTPClient(url: url))
+
         let post = try await service.show(for: 1, cacheMode: .reload)
         
         XCTAssertEqual(post.data.title, "Volunteers gesucht!")

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F481E41FD3941FDAB767D87 /* AppScaffold in Frameworks */ = {isa = PBXBuildFile; productRef = A70E529B835843D1945C83A7 /* AppScaffold */; };
 		DF055B942D8B8FD7007E4393 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = DF055B932D8B8FD7007E4393 /* FirebaseAnalytics */; };
 		DF055B962D8B8FD7007E4393 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = DF055B952D8B8FD7007E4393 /* FirebaseCore */; };
 		DF055B982D8B8FD7007E4393 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = DF055B972D8B8FD7007E4393 /* FirebaseMessaging */; };
@@ -383,6 +384,7 @@
 			isa = PBXFrameworksBuildPhase;
 			files = (
 				DF559F2E26493D140076516C /* MMEvents in Frameworks */,
+				2F481E41FD3941FDAB767D87 /* AppScaffold in Frameworks */,
 			);
 		};
 		DF87B2EF201DFB2700E1B97C /* Frameworks */ = {
@@ -601,6 +603,7 @@
 			name = "moers festival tvOS";
 			packageProductDependencies = (
 				DF559F2D26493D140076516C /* MMEvents */,
+				A70E529B835843D1945C83A7 /* AppScaffold */,
 			);
 			productName = "moers festival tvOS";
 			productReference = DF40D6C3247E73D40054199C /* moers festival tvOS.app */;
@@ -1025,8 +1028,11 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore de.okfn.niederrhein.moers-festival tvos";
 				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 17.0;
 			};
@@ -1093,9 +1099,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore de.okfn.niederrhein.moers-festival tvos";
 				SDKROOT = appletvos;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 17.0;
 				VALIDATE_PRODUCT = YES;
@@ -2206,6 +2215,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A70E529B835843D1945C83A7 /* AppScaffold */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppScaffold;
+		};
 		DF055B932D8B8FD7007E4393 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DF055B922D8B8FD7007E4393 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

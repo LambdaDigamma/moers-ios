@@ -2,11 +2,13 @@
 
 import PackageDescription
 
-let settings: [SwiftSetting] = [
-    .defaultIsolation(MainActor.self),
+let testSettings: [SwiftSetting] = [
     .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
     .enableUpcomingFeature("InferIsolatedConformances")
 ]
+
+// XCTest initializers are nonisolated. Test methods opt into MainActor explicitly.
+let settings: [SwiftSetting] = [.defaultIsolation(MainActor.self)] + testSettings
 
 let package = Package(
     name: "CityOS",
@@ -18,6 +20,7 @@ let package = Package(
         .tvOS(.v17)
     ],
     products: [
+        .library(name: "AppScaffold", targets: ["AppScaffold"]),
         .library(name: "WeatherFeature", targets: ["WeatherFeature"]),
         .library(name: "RubbishFeature", targets: ["RubbishFeature"]),
         .library(name: "ParkingFeature", targets: ["ParkingFeature"]),
@@ -78,7 +81,7 @@ let package = Package(
         .testTarget(
             name: "CoreTests",
             dependencies: ["Core", "CoreCache"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- PlaybackKit ----------------
         .target(
@@ -93,8 +96,8 @@ let package = Package(
         ),
         .testTarget(
             name: "PlaybackKitTests",
-            dependencies: ["WeatherFeature"],
-            swiftSettings: settings
+            dependencies: ["PlaybackKit"],
+            swiftSettings: testSettings
         ),
         // ---------------- WeatherFeature ----------------
         .target(
@@ -105,7 +108,7 @@ let package = Package(
         .testTarget(
             name: "WeatherFeatureTests",
             dependencies: ["WeatherFeature"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- RubbishFeature ----------------
         .target(
@@ -119,7 +122,7 @@ let package = Package(
         .testTarget(
             name: "RubbishFeatureTests",
             dependencies: ["RubbishFeature"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- ParkingFeature ----------------
         .target(
@@ -133,7 +136,7 @@ let package = Package(
         .testTarget(
             name: "ParkingFeatureTests",
             dependencies: ["ParkingFeature"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- DashboardFeature ----------------
         .target(
@@ -147,7 +150,7 @@ let package = Package(
         .testTarget(
             name: "DashboardFeatureTests",
             dependencies: ["DashboardFeature"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- NewsFeature ----------------
         .target(
@@ -158,7 +161,7 @@ let package = Package(
         .testTarget(
             name: "NewsFeatureTests",
             dependencies: ["NewsFeature"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- FuelFeature ----------------
         .target(
@@ -174,7 +177,7 @@ let package = Package(
         .testTarget(
             name: "FuelFeatureTests",
             dependencies: ["FuelFeature"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- MapFeature ----------------
         .target(
@@ -195,7 +198,7 @@ let package = Package(
         .testTarget(
             name: "MapFeatureTests",
             dependencies: ["MapFeature"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- AppUpdateFeature ----------------
         .target(
@@ -212,7 +215,7 @@ let package = Package(
         .testTarget(
             name: "AppUpdateFeatureTests",
             dependencies: ["AppUpdateFeature"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         
         // ---------------- MMEvents ----------------
@@ -235,7 +238,7 @@ let package = Package(
         .testTarget(
             name: "MMEventsTests",
             dependencies: ["MMEvents"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- MMPages ----------------
         .target(
@@ -261,7 +264,7 @@ let package = Package(
             resources: [
                 .process("Resources")
             ],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- MMTours ----------------
         .target(
@@ -274,7 +277,7 @@ let package = Package(
         .testTarget(
             name: "MMToursTests",
             dependencies: ["MMTours"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- MMFeeds ----------------
         .target(
@@ -295,7 +298,7 @@ let package = Package(
             resources: [
                 .process("Resources")
             ],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         
         // ---------------- EFAAPI ----------------
@@ -316,6 +319,11 @@ let package = Package(
             resources: [.process("Resources")],
             swiftSettings: settings
         ),
+        .testTarget(
+            name: "EFAUITests",
+            dependencies: ["EFAUI"],
+            swiftSettings: testSettings
+        ),
         .executableTarget(
             name: "EFACLI",
             dependencies: ["EFAAPI", .product(name: "FactoryKit", package: "Factory")],
@@ -327,7 +335,7 @@ let package = Package(
             resources: [
                 .copy("Data")
             ],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         .target(
             name: "Pulley",

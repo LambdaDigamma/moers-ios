@@ -24,11 +24,19 @@ This subtree contains the city iOS app, the festival iOS app, shared test plans,
 - Build city app:
   `xcodebuild -project ios/Moers.xcodeproj -scheme Moers -configuration "Debug (Production)" -destination 'platform=iOS Simulator,name=iPhone 17 Pro' build`
 - Test city app with the full test plan:
-  `xcodebuild -project ios/Moers.xcodeproj -scheme Moers -testPlan FullTestPlan -destination 'platform=iOS Simulator,name=iPhone 17 Pro' test`
-- Test CityOS package:
-  `swift test --package-path ios/CityOS`
+  `xcodebuild -workspace ios/Moers.xcworkspace -scheme Moers -configuration 'Debug (Production)' -testPlan FullTestPlan -destination 'platform=iOS Simulator,name=iPhone 17 Pro' test`
+- Test one CityOS suite on iOS:
+  `xcodebuild -workspace ios/Moers.xcworkspace -scheme Moers -configuration "Debug (Production)" -testPlan FullTestPlan -destination 'platform=iOS Simulator,name=iPhone 17 Pro' -only-testing:CoreTests/LocationServiceTests test`
 - Run fastlane from `ios` only when explicitly requested:
   `cd ios && bundle exec fastlane ios <lane>`
+
+Use an installed simulator from `xcrun simctl list devices available`. The workspace includes CityOS test bundles; a project-only test command does not discover them.
+
+The standard test configuration enables Thread Sanitizer. For a diagnostic run without it, add `-only-test-configuration 'Configuration (English, No Thread Sanitizer)'`. MainActor XCTest methods use async execution. Synchronous task-local release tests also cover UIKit cleanup outside a Swift task. The full plan passes on iOS 18.6 and iOS 27.1 with Xcode 27 RC / Swift 6.4. See `PAPERCUTS.md` for the older-runtime destructor fix.
+
+Before an older-iOS UI check, build for that exact installed runtime. Run `python3 ios/scripts/check-older-ios-runtime-libraries.py '<current build output>/Moers.app'` before installation. A bundle built for a newer runtime can omit compatibility libraries that the older runtime needs. Use the app path from the current build log; project and workspace builds have separate DerivedData paths. If you change runtime destinations, rebuild and check the bundle again. Do not install an old bundle from another DerivedData directory.
+
+Live API tests skip by default. To opt in, set `RUN_FUEL_INTEGRATION_TESTS=1` or `RUN_EFA_INTEGRATION_TESTS=1` in the test runner environment through the test plan or scheme. Test fixtures run without these flags.
 
 For UI/runtime changes:
 

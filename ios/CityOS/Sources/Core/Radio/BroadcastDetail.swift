@@ -56,10 +56,20 @@ public struct BroadcastDetail: View {
                 })
             }
         })
+        #if !os(tvOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         
     }
     
+    private var placeholderColor: Color {
+        #if os(tvOS)
+        Color.secondary.opacity(0.15)
+        #else
+        Color(UIColor.tertiarySystemFill)
+        #endif
+    }
+
     @ViewBuilder
     private func header() -> some View {
         
@@ -71,7 +81,7 @@ public struct BroadcastDetail: View {
                     .frame(maxWidth: 200, maxHeight: 200)
             } else {
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(Color(UIColor.tertiarySystemFill))
+                    .fill(placeholderColor)
                     .aspectRatio(1, contentMode: .fit)
                     .frame(maxWidth: 100, maxHeight: 100)
             }

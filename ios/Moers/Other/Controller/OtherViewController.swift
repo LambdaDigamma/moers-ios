@@ -183,7 +183,9 @@ public class OtherViewController: UIViewController {
         return sections
 
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension OtherViewController: UITableViewDataSource, UITableViewDelegate {
@@ -244,5 +246,7 @@ public class OtherTableViewCell: UITableViewCell {
     func applyTheming() {
         self.textLabel?.textColor = UIColor.label
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

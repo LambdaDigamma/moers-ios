@@ -26,12 +26,11 @@ public class BroadcastListViewModel: StandardViewModel {
     public func load() {
         
         self.service.load()
+            .receive(on: DispatchQueue.main)
             .sink { (completion: Subscribers.Completion<Error>) in
                 print(completion)
             } receiveValue: { [weak self] (broadcasts: [RadioBroadcast]) in
-                Task { @MainActor in
-                    self?.apply(broadcasts)
-                }
+                self?.apply(broadcasts)
             }
             .store(in: &cancellables)
         
@@ -42,5 +41,7 @@ public class BroadcastListViewModel: StandardViewModel {
         self.broadcasts = broadcasts
         self.viewModels = self.upcomingBroadcasts.map { $0.toViewModel() }
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

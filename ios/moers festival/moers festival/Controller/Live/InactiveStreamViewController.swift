@@ -78,5 +78,7 @@ class InactiveStreamViewController: UIViewController {
         self.descriptionLabel.textColor = UIColor.secondaryLabel
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

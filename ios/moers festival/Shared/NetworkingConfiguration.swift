@@ -53,7 +53,7 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
         
         var settingsEnvironment = "production"
         
-        #if DEBUG
+        #if DEBUG && !os(tvOS)
         settingsEnvironment = UserDefaults.standard.string(forKey: "environment") ?? "production"
         
         if LaunchArguments().useMockedData() {
@@ -129,7 +129,7 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
         let sessionLoader = URLSessionLoader(session)
 //        let printLoader = PrintLoader()
         
-        #if DEBUG
+        #if DEBUG && !os(tvOS)
         
         if LaunchArguments().useMockedData() {
             
@@ -160,5 +160,7 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
         
         return configuration
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2022 Lennart Fischer. All rights reserved.
 //
 
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(tvOS)
 
 import Foundation
 import UIKit

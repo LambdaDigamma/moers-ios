@@ -25,15 +25,7 @@ public class ParkingTimerViewModel: StandardViewModel {
         }
     }
     var enableNotifications: Bool = true
-    var saveParkingLocation: Bool = true {
-        didSet {
-            guard saveParkingLocation, !timerStarted else { return }
-
-            Task {
-                await loadCurrentLocation()
-            }
-        }
-    }
+    var saveParkingLocation: Bool = true
     var carPosition: CLLocationCoordinate2D?
     
     public var currentEstimatedEndDate: Date {
@@ -42,7 +34,6 @@ public class ParkingTimerViewModel: StandardViewModel {
     
     public override init() {
         super.init()
-        self.setupObservers()
     }
     
     public init(
@@ -88,32 +79,32 @@ public class ParkingTimerViewModel: StandardViewModel {
         return time == 12 * 60 * 60
     }
     
-    private func setupObservers() {
-        Task {
-            do {
-                for try await location in locationService.locations {
-                    if !self.timerStarted {
-                        await MainActor.run {
-                            self.carPosition = location.coordinate
-                        }
-                    }
-                }
-            } catch {
-                
+    /// Observe while the configuration screen is visible. The view owns cancellation.
+    func observeLocation() async {
+        guard saveParkingLocation, !timerStarted, !Task.isCancelled else { return }
+
+        let locations = locationService.locations
+        locationService.requestCurrentLocation()
+
+        do {
+            for try await location in locations {
+                guard saveParkingLocation, !timerStarted, !Task.isCancelled else { return }
+                carPosition = location.coordinate
             }
+        } catch {
+            // Location saving is optional; the timer can run without a position.
         }
-        
     }
     
     public func loadCurrentLocation() async {
-        
-        self.locationService.requestCurrentLocation()
+        guard saveParkingLocation, !timerStarted, !Task.isCancelled else { return }
+        let locations = locationService.locations
+        locationService.requestCurrentLocation()
         
         do {
-            for try await location in locationService.locations {
-                await MainActor.run {
-                    self.carPosition = location.coordinate
-                }
+            for try await location in locations {
+                guard saveParkingLocation, !timerStarted, !Task.isCancelled else { return }
+                carPosition = location.coordinate
                 break
             }
         } catch {
@@ -279,5 +270,7 @@ public class ParkingTimerViewModel: StandardViewModel {
         notificationCenter.add(request)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

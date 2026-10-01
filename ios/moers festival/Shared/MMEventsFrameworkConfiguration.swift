@@ -1,3 +1,4 @@
+#if !os(tvOS)
 //
 //  MMEventsFrameworkConfiguration.swift
 //  moers festival
@@ -87,5 +88,9 @@ class MMEventsFrameworkConfiguration: BootstrappingProcedureStep {
 //        }
 //
 //    }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
+
+#endif

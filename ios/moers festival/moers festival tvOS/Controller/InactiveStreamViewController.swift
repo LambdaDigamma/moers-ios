@@ -88,5 +88,7 @@ class InactiveStreamViewController: UIViewController {
         self.dismiss(animated: true, completion: reloadAction)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -15,5 +15,7 @@ class MMUIFrameworkConfiguration: BootstrappingProcedureStep {
     func execute(with application: UIApplication) {
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

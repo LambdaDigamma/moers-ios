@@ -22,13 +22,20 @@ nonisolated final class LocationServiceTests: XCTestCase {
         async let firstLocation = nextLocation(matching: expectedLocation, from: firstStream)
         async let secondLocation = nextLocation(matching: expectedLocation, from: secondStream)
 
-        try await Task.sleep(for: .milliseconds(10))
         service.locationManager(CLLocationManager(), didUpdateLocations: [expectedLocation])
 
         let receivedLocations = try await [firstLocation, secondLocation]
 
         XCTAssertEqual(receivedLocations.map(\.coordinate.latitude), Array(repeating: expectedLocation.coordinate.latitude, count: 2))
         XCTAssertEqual(receivedLocations.map(\.coordinate.longitude), Array(repeating: expectedLocation.coordinate.longitude, count: 2))
+    }
+
+    @MainActor
+    func testCoreLocationObjectSubscriptionsDoNotRetainTheirOwner() async {
+        var model: CoreLocationObject? = CoreLocationObject()
+        weak var retainedModel = model
+        model = nil
+        XCTAssertNil(retainedModel)
     }
 
 }

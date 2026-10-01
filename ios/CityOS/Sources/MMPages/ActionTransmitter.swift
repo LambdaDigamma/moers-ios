@@ -26,5 +26,7 @@ public class ActionTransmitter {
         logger.info("Dispatching open url: \(url.absoluteString, privacy: .public)")
         showURL.send(url)
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

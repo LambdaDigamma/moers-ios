@@ -113,7 +113,9 @@ class FallbackWebViewController: UIViewController {
     private func close() {
         navigationController?.dismiss(animated: true)
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension FallbackWebViewController: WKNavigationDelegate {

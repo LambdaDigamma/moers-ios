@@ -18,5 +18,7 @@ class GalleryViewModel: ObservableObject {
         self.title = title
         self.images = images
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

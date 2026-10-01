@@ -153,7 +153,9 @@ public class TripSearchViewModel {
         tripService.activate(trip: cachedTrip)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 public extension TransitLocation {

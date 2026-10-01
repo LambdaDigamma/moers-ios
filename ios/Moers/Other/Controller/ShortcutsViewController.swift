@@ -81,7 +81,9 @@ class ShortcutsViewController: UIViewController {
         return stackView
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension ShortcutsViewController: INUIAddVoiceShortcutButtonDelegate {

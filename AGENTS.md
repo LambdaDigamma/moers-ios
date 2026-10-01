@@ -33,7 +33,7 @@ Run commands from the repository root unless a nested `AGENTS.md` says otherwise
 - Build festival Android debug: `./gradlew :moers-festival-android:assembleDebug`
 - Test festival Android debug unit tests: `./gradlew :moers-festival-android:testDebugUnitTest`
 - Test an Android module: `./gradlew :modules:<module>:testDebugUnitTest`
-- Test CityOS Swift package: `swift test --package-path ios/CityOS`
+- Test CityOS Swift package: `xcodebuild -workspace ios/Moers.xcworkspace -scheme Moers -configuration "Debug (Production)" -testPlan FullTestPlan -destination 'platform=iOS Simulator,name=iPhone 17 Pro' test`
 - Build city iOS app: `xcodebuild -project ios/Moers.xcodeproj -scheme Moers -configuration "Debug (Production)" -destination 'platform=iOS Simulator,name=iPhone 17 Pro' build`
 - Build festival iOS app: `xcodebuild -project "ios/moers festival/moers festival.xcodeproj" -scheme "moers festival" -configuration Debug -destination 'platform=iOS Simulator,name=iPhone 17 Pro' build`
 - Marketing lint/typecheck: `cd marketing && npm run lint`

@@ -108,5 +108,7 @@ class UserScheduleCoordinator: SharedCoordinator {
     private static func makeEmptyDetailViewController() -> UIViewController {
         SplitDetailPlaceholderViewController(message: String(localized: "Select an event to view its details."))
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

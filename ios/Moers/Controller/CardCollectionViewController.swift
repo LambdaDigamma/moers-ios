@@ -107,7 +107,9 @@ class CardCollectionViewController: UIViewController, UICollectionViewDataSource
         collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension CardCollectionViewController: UICollectionViewDelegate {

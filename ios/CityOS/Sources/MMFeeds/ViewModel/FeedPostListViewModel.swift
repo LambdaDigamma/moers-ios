@@ -36,7 +36,7 @@ public class FeedPostListViewModel {
     @ObservationIgnored
     private var cancellables = Set<AnyCancellable>()
     
-    private let repository: PostRepository
+    private let repository: PostRepository?
     
     /// This is the current page the last load took place for.
     private var currentPage: Int
@@ -51,17 +51,16 @@ public class FeedPostListViewModel {
     
     private let dataLoadingEnabled: Bool
     
-    @ObservationIgnored @Injected(\.feedService) private var feedService
-    
     /// This initializes the view model with a `Feed.ID`.
     public init(
         feedID: Feed.ID,
         postsPerLoad: Int = 10,
-        automaticallyLoadFirstPage: Bool = true
+        automaticallyLoadFirstPage: Bool = true,
+        repository: PostRepository = Container.shared.postRepository()
     ) {
         
         self.feedID = feedID
-        self.repository = Container.shared.postRepository()
+        self.repository = repository
         self.postsPerLoad = postsPerLoad
         self.dataLoadingEnabled = true
         self.automaticallyLoadFirstPage = automaticallyLoadFirstPage
@@ -72,14 +71,12 @@ public class FeedPostListViewModel {
 //            loadCurrentFeed()
 //        }
         
-        self.setupObserver()
-        
     }
     
     /// This initializes the view model with some already
     /// loaded and ready to present post overviews.
     public init(feedID: Feed.ID, posts: [Post]) {
-        self.repository = Container.shared.postRepository()
+        self.repository = nil
         let initialItems: UIResource<[Post]> = .success(posts)
         self.items = initialItems
         self.itemsSubject = CurrentValueSubject<UIResource<[Post]>, Never>(initialItems)
@@ -108,6 +105,8 @@ public class FeedPostListViewModel {
     /// the data from network if the cached data is not up to date according
     /// to protocol cache information.
     public func reload() async {
+        guard let repository, !Task.isCancelled else { return }
+        setupObserver()
         do {
             try await repository.reloadFeed(for: feedID, perPage: 50)
         } catch {
@@ -116,6 +115,8 @@ public class FeedPostListViewModel {
     }
     
     public func refresh() async {
+        guard let repository, !Task.isCancelled else { return }
+        setupObserver()
         do {
             try await repository.refreshFeed(for: feedID, perPage: 50)
         } catch {
@@ -126,6 +127,7 @@ public class FeedPostListViewModel {
     // MARK: - Observer
     
     public func setupObserver() {
+        guard let repository, cancellables.isEmpty else { return }
         
         repository
             .postsPublisher(feedID: feedID)
@@ -137,9 +139,9 @@ public class FeedPostListViewModel {
             })
             .eraseToAnyPublisher()
             .receive(on: DispatchQueue.main)
-            .sink { (state: UIResource<[Post]>) in
+            .sink { [weak self] (state: UIResource<[Post]>) in
                 
-                self.items = state
+                self?.items = state
                 
             }
             .store(in: &cancellables)
@@ -199,10 +201,17 @@ public class FeedPostListViewModel {
 //
 //    }
 
+    public func cancel() {
+        cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
+    }
+
     public var lastPageReached: Bool {
         return currentPage == lastPage ?? 0
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 public enum PageLoadingOptions {

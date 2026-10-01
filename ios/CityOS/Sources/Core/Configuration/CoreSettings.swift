@@ -24,6 +24,9 @@ public class CoreSettings {
         latitude: regionCenter.latitude,
         longitude: regionCenter.longitude
     )
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 public extension CoreSettings {

@@ -173,5 +173,7 @@ public class LocationManager: NSObject, LocationManagerProtocol, CLLocationManag
     public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         self.authorizationStatus.send(status)
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

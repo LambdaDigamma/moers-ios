@@ -20,4 +20,7 @@ public final class AppUpdatePersistence {
     private func dismissalKey(for version: String) -> String {
         "\(keyPrefix).banner.dismissed.\(version)"
     }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -5,6 +5,8 @@
 //  Created by Lennart Fischer on 25.10.20.
 //
 
+#if !os(tvOS) && !os(macOS)
+
 import Combine
 import CoreLocation
 import SwiftUI
@@ -39,7 +41,9 @@ public class CoreLocationObject {
         
         // trigger an update when authorization changes
         authorizationPublisher
-            .sink(receiveValue: beginUpdates)
+            .sink { [weak self] status in
+                self?.beginUpdates(status)
+            }
             .store(in: &cancellables)
         
         authorizationPublisher
@@ -101,5 +105,9 @@ public class CoreLocationObject {
     public func endUpdatingHeading() {
         manager.stopUpdatingHeading()
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
+
+#endif

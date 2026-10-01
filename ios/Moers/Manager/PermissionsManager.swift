@@ -23,5 +23,7 @@ public class PermissionsManager {
         UIApplication.shared.registerForRemoteNotifications()
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

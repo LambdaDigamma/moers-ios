@@ -11,7 +11,7 @@ import AVKit
 import SwiftUI
 import AppScaffold
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
@@ -23,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let bootstrappingProcedure: BootstrappingProcedure = [
             NetworkingConfiguration(),
             MMAPIFrameworkConfiguration(),
-            MMEventsFrameworkConfiguration(),
 //            MMFeedsFrameworkConfiguration(),
 //            MMPagesFrameworkConfiguration(),
 //            TwitterFramework(),
@@ -66,6 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 

@@ -9,9 +9,10 @@ import Foundation
 import XCTest
 @testable import MMEvents
 
+@MainActor
 final class EventTimeDisplayRefreshSchedulerTests: XCTestCase {
 
-    func testReturnsNilForSchedulesThatDoNotNeedLiveRefreshes() {
+    func testReturnsNilForSchedulesThatDoNotNeedLiveRefreshes() async {
         let startDate = makeDate(hour: 12)
 
         XCTAssertNil(
@@ -40,7 +41,7 @@ final class EventTimeDisplayRefreshSchedulerTests: XCTestCase {
         )
     }
 
-    func testReturnsRelativeWindowStartWhenMoreThanOneHourBeforeStart() {
+    func testReturnsRelativeWindowStartWhenMoreThanOneHourBeforeStart() async {
         let startDate = makeDate(hour: 12)
 
         XCTAssertEqual(
@@ -54,7 +55,7 @@ final class EventTimeDisplayRefreshSchedulerTests: XCTestCase {
         )
     }
 
-    func testReturnsNextMinuteWithinRelativeWindow() {
+    func testReturnsNextMinuteWithinRelativeWindow() async {
         let startDate = makeDate(hour: 12)
         let now = makeDate(hour: 11, minute: 10).addingTimeInterval(20)
         let nextMinute = makeDate(hour: 11, minute: 11)
@@ -70,7 +71,7 @@ final class EventTimeDisplayRefreshSchedulerTests: XCTestCase {
         )
     }
 
-    func testReturnsNextMinuteAtRelativeWindowStart() {
+    func testReturnsNextMinuteAtRelativeWindowStart() async {
         let startDate = makeDate(hour: 12)
         let relativeStartDate = startDate.addingTimeInterval(-60 * 60)
 
@@ -85,7 +86,7 @@ final class EventTimeDisplayRefreshSchedulerTests: XCTestCase {
         )
     }
 
-    func testCapsRelativeRefreshAtStartDate() {
+    func testCapsRelativeRefreshAtStartDate() async {
         let startDate = makeDate(hour: 12)
         let now = makeDate(hour: 11, minute: 59).addingTimeInterval(30)
 
@@ -100,7 +101,7 @@ final class EventTimeDisplayRefreshSchedulerTests: XCTestCase {
         )
     }
 
-    func testReturnsExplicitEndDateDuringLiveInterval() {
+    func testReturnsExplicitEndDateDuringLiveInterval() async {
         let startDate = makeDate(hour: 12)
         let endDate = makeDate(hour: 13)
 
@@ -124,7 +125,7 @@ final class EventTimeDisplayRefreshSchedulerTests: XCTestCase {
         )
     }
 
-    func testUsesDefaultEndDateWhenEndDateIsNilEqualOrBeforeStart() {
+    func testUsesDefaultEndDateWhenEndDateIsNilEqualOrBeforeStart() async {
         let startDate = makeDate(hour: 12)
         let defaultEndDate = startDate.addingTimeInterval(EventUtilities.defaultTimeInterval)
 
@@ -157,7 +158,7 @@ final class EventTimeDisplayRefreshSchedulerTests: XCTestCase {
         )
     }
 
-    func testReturnsNilAtAndAfterEffectiveEndDate() {
+    func testReturnsNilAtAndAfterEffectiveEndDate() async {
         let startDate = makeDate(hour: 12)
         let endDate = makeDate(hour: 13)
 

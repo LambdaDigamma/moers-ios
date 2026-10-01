@@ -303,5 +303,7 @@ public class EntryManager: EntryManagerProtocol {
         get { return UserDefaults.standard.stringArray(forKey: "EntryTags") ?? [] }
         set { UserDefaults.standard.set(newValue, forKey: "EntryTags") }
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

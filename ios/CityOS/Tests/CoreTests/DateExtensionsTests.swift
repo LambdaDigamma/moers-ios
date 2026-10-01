@@ -40,8 +40,10 @@ nonisolated final class DateExtensionsTests: XCTestCase {
     func testDefaultBeautifyDate() {
         
         let date = Date.from("02.02.2018", withFormat: "dd.MM.yyyy") ?? Date()
+        let weekday = Calendar.autoupdatingCurrent.component(.weekday, from: date)
+        let weekdayName = DateFormatter().shortWeekdaySymbols[weekday - 1]
         
-        XCTAssertEqual(date.beautify(), "Fri 02.02.2018")
+        XCTAssertEqual(date.beautify(), "\(weekdayName) 02.02.2018")
         
     }
     

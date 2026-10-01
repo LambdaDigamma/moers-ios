@@ -126,6 +126,9 @@ public final class DefaultLocationService: NSObject, LocationService {
         locationContinuations.values.forEach { $0.finish() }
         locationContinuations.removeAll()
     }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 // MARK: - CLLocationManagerDelegate

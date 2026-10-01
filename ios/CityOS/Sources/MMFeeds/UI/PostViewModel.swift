@@ -29,13 +29,13 @@ public class PostViewModel {
     var state: DataState<Post, Error> = .loading
     var pageState: DataState<Page, Error> = .loading
     
-    public init(postID: Post.ID) {
+    public init(postID: Post.ID, repository: PostRepository = Container.shared.postRepository()) {
         self.postID = postID
-        self.repository = Container.shared.postRepository()
-        self.setupObserver()
+        self.repository = repository
     }
     
     public func setupObserver() {
+        guard cancellables.isEmpty else { return }
         
         repository
             .postPublisher(postID: postID)
@@ -54,15 +54,23 @@ public class PostViewModel {
             })
             .eraseToAnyPublisher()
             .receive(on: DispatchQueue.main)
-            .sink { (state: DataState<Post, Error>) in
+            .sink { [weak self] (state: DataState<Post, Error>) in
+                guard let self else { return }
                 
                 self.state = state
                 
                 if let pageID = state.value?.pageID {
-                    self.pageViewModel = NativePageViewModel(pageID: pageID)
+                    if self.pageID != pageID || self.pageViewModel == nil {
+                        self.pageViewModel?.cancel()
+                        self.pageViewModel = NativePageViewModel(pageID: pageID)
+                    }
                     self.setupPageListener()
                     self.pageID = pageID
                 } else {
+                    self.pageCancellable?.cancel()
+                    self.pageCancellable = nil
+                    self.pageViewModel?.cancel()
+                    self.pageViewModel = nil
                     self.pageID = nil
                 }
                 
@@ -84,6 +92,8 @@ public class PostViewModel {
     /// the data from network if the cached data is not up to date according
     /// to protocol cache information.
     public func reload() async {
+        guard !Task.isCancelled else { return }
+        setupObserver()
         do {
             try await repository.reloadPost(for: postID)
         } catch {
@@ -92,6 +102,8 @@ public class PostViewModel {
     }
     
     public func refresh() async {
+        guard !Task.isCancelled else { return }
+        setupObserver()
         do {
             try await repository.refreshPost(for: postID)
             if let pageViewModel = pageViewModel {
@@ -102,4 +114,14 @@ public class PostViewModel {
         }
     }
     
+    public func cancel() {
+        cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
+        pageCancellable?.cancel()
+        pageCancellable = nil
+        pageViewModel?.cancel()
+    }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -60,5 +60,7 @@ public class DefaultPlaceService: PlaceService {
         return try await result.decoding(Place.self)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

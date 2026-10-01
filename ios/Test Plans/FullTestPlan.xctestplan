@@ -14,6 +14,15 @@
       "options" : {
         "language" : "de"
       }
+    },
+    {
+      "enabled" : false,
+      "id" : "37DDA5F3-448E-45D9-B1C2-AE0F04F0A89E",
+      "name" : "Configuration (English, No Thread Sanitizer)",
+      "options" : {
+        "language" : "en",
+        "threadSanitizerEnabled" : false
+      }
     }
   ],
   "defaultOptions" : {
@@ -23,37 +32,114 @@
   "testTargets" : [
     {
       "target" : {
-        "containerPath" : "container:Core",
+        "containerPath" : "container:CityOS",
         "identifier" : "CoreTests",
         "name" : "CoreTests"
       }
     },
     {
       "target" : {
-        "containerPath" : "container:DashboardFeature",
+        "containerPath" : "container:CityOS",
         "identifier" : "DashboardFeatureTests",
         "name" : "DashboardFeatureTests"
       }
     },
     {
       "target" : {
-        "containerPath" : "container:FuelFeature",
+        "containerPath" : "container:CityOS",
         "identifier" : "FuelFeatureTests",
         "name" : "FuelFeatureTests"
       }
     },
     {
       "target" : {
-        "containerPath" : "container:RubbishFeature",
+        "containerPath" : "container:CityOS",
         "identifier" : "RubbishFeatureTests",
         "name" : "RubbishFeatureTests"
       }
     },
     {
       "target" : {
-        "containerPath" : "container:ParkingFeature",
+        "containerPath" : "container:CityOS",
         "identifier" : "ParkingFeatureTests",
         "name" : "ParkingFeatureTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:CityOS",
+        "identifier" : "MMEventsTests",
+        "name" : "MMEventsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:CityOS",
+        "identifier" : "MMPagesTests",
+        "name" : "MMPagesTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:CityOS",
+        "identifier" : "MMFeedsTests",
+        "name" : "MMFeedsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:CityOS",
+        "identifier" : "AppUpdateFeatureTests",
+        "name" : "AppUpdateFeatureTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:CityOS",
+        "identifier" : "EFAAPITests",
+        "name" : "EFAAPITests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:CityOS",
+        "identifier" : "MapFeatureTests",
+        "name" : "MapFeatureTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:CityOS",
+        "identifier" : "PlaybackKitTests",
+        "name" : "PlaybackKitTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:CityOS",
+        "identifier" : "WeatherFeatureTests",
+        "name" : "WeatherFeatureTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:CityOS",
+        "identifier" : "NewsFeatureTests",
+        "name" : "NewsFeatureTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:CityOS",
+        "identifier" : "MMToursTests",
+        "name" : "MMToursTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:CityOS",
+        "identifier" : "EFAUITests",
+        "name" : "EFAUITests"
       }
     }
   ],

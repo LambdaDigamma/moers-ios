@@ -172,7 +172,9 @@ public class DefaultNowPlayableBehavior: NowPlayable {
         }
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 #endif
@@ -242,7 +244,9 @@ public class DefaultNowPlayableBehavior: NowPlayable {
         MPNowPlayingInfoCenter.default().playbackState = isPlaying ? .playing : .paused
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 #endif

@@ -41,7 +41,9 @@ public struct BroadcastList: View {
             }
             
         }
+        #if !os(tvOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .task {
             viewModel.load()
         }

@@ -33,13 +33,13 @@ public class NativePageViewModel {
         stateSubject.eraseToAnyPublisher()
     }
     
-    public init(pageID: Page.ID) {
+    public init(pageID: Page.ID, repository: PageRepository = Container.shared.pageRepository()) {
         self.pageID = pageID
-        self.repository = Container.shared.pageRepository()
-        self.setupObserver()
+        self.repository = repository
     }
     
     public func setupObserver() {
+        guard cancellables.isEmpty else { return }
         
         repository
             .pagePublisher(pageID: pageID)
@@ -57,8 +57,8 @@ public class NativePageViewModel {
             })
             .eraseToAnyPublisher()
             .receive(on: DispatchQueue.main)
-            .sink { (state: DataState<Page, Error>) in
-                self.state = state
+            .sink { [weak self] (state: DataState<Page, Error>) in
+                self?.state = state
             }
             .store(in: &cancellables)
            
@@ -68,6 +68,8 @@ public class NativePageViewModel {
     /// the data from network if the cached data is not up to date according
     /// to protocol cache information.
     public func reload() async {
+        guard !Task.isCancelled else { return }
+        setupObserver()
         do {
             try await repository.reloadPage(for: pageID)
         } catch {
@@ -85,8 +87,11 @@ public class NativePageViewModel {
     
     public func cancel() {
         
-        self.cancellables.forEach { $0.cancel() }
+        cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -5,6 +5,8 @@
 //  Created by Lennart Fischer on 25.10.20.
 //
 
+#if !os(tvOS) && !os(macOS)
+
 import Combine
 import CoreLocation
 import SwiftUI
@@ -53,4 +55,9 @@ class CLLocationManagerPublicist: NSObject, @MainActor CLLocationManagerCombineD
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         headingSubject.send(newHeading)
     }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
+
+#endif

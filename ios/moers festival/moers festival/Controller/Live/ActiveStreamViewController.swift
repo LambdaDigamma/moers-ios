@@ -26,7 +26,9 @@ public class ActiveStreamViewModel: ObservableObject {
         
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 class ActiveStreamViewController: UIViewController {
@@ -145,7 +147,9 @@ class ActiveStreamViewController: UIViewController {
 //        }.dispose(in: bag)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 public struct ActiveStreamScreen: View {

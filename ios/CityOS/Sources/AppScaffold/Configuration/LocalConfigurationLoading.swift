@@ -34,6 +34,9 @@ public class AnyLocalConfigurationLoader<Configuration>: LocalConfigurationLoadi
     public func persist(_ configuration: Configuration) {
         _persist(configuration)
     }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 public class DefaultLocalConfigurationLoader<Configuration: AppConfigurable>: LocalConfigurationLoading {
@@ -120,5 +123,7 @@ public class DefaultLocalConfigurationLoader<Configuration: AppConfigurable>: Lo
         }
 
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -27,7 +27,9 @@ public class AnyRemoteConfigurationLoader<Configuration>: RemoteConfigurationLoa
     public func fetch() -> AnyPublisher<Configuration, Error> {
         return _fetch()
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 public class DefaultRemoteConfigurationLoader<Configuration: AppConfigurable>: RemoteConfigurationLoading {
@@ -44,5 +46,7 @@ public class DefaultRemoteConfigurationLoader<Configuration: AppConfigurable>: R
             .decode(type: Configuration.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

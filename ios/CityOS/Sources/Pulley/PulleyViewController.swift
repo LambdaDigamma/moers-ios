@@ -1435,6 +1435,9 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
             return rounded.remainder(dividingBy: 2) == 0 ? rounded : rounded + 1
         }
     #endif
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension PulleyViewController: PulleyPassthroughScrollViewDelegate {

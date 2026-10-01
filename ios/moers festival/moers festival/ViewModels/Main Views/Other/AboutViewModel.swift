@@ -29,5 +29,7 @@ class AboutViewModel {
     public var infoText: String {
         return String(localized: "This app is a project by the Code for Niederrhein group and was developed by Lennart Fischer.\n\n\nAll data is provided without guarantee.")
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

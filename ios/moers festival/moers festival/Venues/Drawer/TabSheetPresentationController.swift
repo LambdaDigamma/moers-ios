@@ -31,5 +31,7 @@ class TabSheetPresentationController: UISheetPresentationController {
         sourceViewController?.view.addSubview(containerView)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

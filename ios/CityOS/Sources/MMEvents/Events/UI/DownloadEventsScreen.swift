@@ -87,7 +87,9 @@ class DownloadEventsViewModel: StandardViewModel {
         try await repository.refreshEvents(withPages: true)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 public struct DownloadEventsScreen: View {
@@ -137,7 +139,9 @@ public struct DownloadEventsScreen: View {
             }
             
         }
+        #if !os(tvOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .task {
             viewModel.load()
         }

@@ -38,7 +38,9 @@ public struct SurfaceProperties: Codable {
 public class SurfaceFeature: GeoFeature<SurfaceProperties>, FGDDecodableFeature {
     
     public typealias Properties = SurfaceProperties
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension SurfaceFeature: StylableFeature {

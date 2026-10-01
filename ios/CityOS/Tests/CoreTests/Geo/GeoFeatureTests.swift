@@ -13,7 +13,7 @@ import MapKit
 nonisolated final class GeoFeatureTests: XCTestCase {
 
     @MainActor
-    func testDecode() throws {
+    func testDecode() async throws {
         
         guard let feature = try createJSONFeature().first else { return XCTFail("No feature found.") }
         

@@ -32,6 +32,9 @@ public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable, 
     public var isLiked: Bool = false
     
     private let favoriteEventsStore: FavoriteEventsStore?
+
+    // This type only releases references; actor hopping is not needed in deinit.
+    nonisolated deinit {}
     
     public init(
         eventID: Event.ID? = nil,
@@ -104,16 +107,18 @@ public class EventListItemViewModel: StandardViewModel, Identifiable, Hashable, 
     }
     
     public func setupListeners() {
+        guard cancellables.isEmpty else { return }
         
         guard let favoriteEventsStore else { return }
         guard let eventID else { return }
 
         favoriteEventsStore.isLiked(eventID: eventID)
+            .receive(on: DispatchQueue.main)
             .sink { (completion: Subscribers.Completion<Error>) in
 
-            } receiveValue: { (isLiked: Bool) in
+            } receiveValue: { [weak self] (isLiked: Bool) in
 
-                self.isLiked = isLiked
+                self?.isLiked = isLiked
 
             }
             .store(in: &cancellables)

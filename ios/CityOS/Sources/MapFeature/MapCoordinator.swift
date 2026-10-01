@@ -80,5 +80,7 @@ public class MapCoordintor: Coordinator {
         mainViewController?.contentViewController.searchDrawer.searchBar.becomeFirstResponder()
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

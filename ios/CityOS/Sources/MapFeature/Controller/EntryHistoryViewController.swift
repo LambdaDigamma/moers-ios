@@ -156,5 +156,7 @@ class EntryHistoryViewController: UIViewController {
         snapshot.appendItems(audits)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

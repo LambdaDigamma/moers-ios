@@ -137,4 +137,7 @@ final class FestivalNotificationTopicSynchronizer {
         userDefaults.set(languageTopic, forKey: Self.lastLanguageTopicKey)
         userDefaults.set(Self.syncVersion, forKey: Self.syncVersionKey)
     }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -96,5 +96,7 @@ internal class AppLogger {
 //    public func log(level: AppLogType = .default, message: OSLogMessage) {
 //        logger.log(level: level.toOSLogType(), message)
 //    }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

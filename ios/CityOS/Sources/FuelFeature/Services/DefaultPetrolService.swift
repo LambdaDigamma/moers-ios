@@ -185,5 +185,7 @@ public class DefaultPetrolService: PetrolService {
         
         throw APIError.noData
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

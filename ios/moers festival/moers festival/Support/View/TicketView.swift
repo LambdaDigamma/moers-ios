@@ -134,5 +134,7 @@ class TicketView: UIView {
         self.buyButton.setTitleColor(AppColors.onAccent, for: .normal)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

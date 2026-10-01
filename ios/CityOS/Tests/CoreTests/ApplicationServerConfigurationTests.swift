@@ -12,7 +12,7 @@ import XCTest
 nonisolated final class ApplicationServerConfigurationTests: XCTestCase {
 
     @MainActor
-    func testRegisterURL() {
+    func testRegisterURL() async {
         
         let baseURL = "https://meinmoers.lambdadigamma.com/api/v2/"
         
@@ -23,7 +23,7 @@ nonisolated final class ApplicationServerConfigurationTests: XCTestCase {
     }
     
     @MainActor
-    func testRegisterPetrolAPIKey() {
+    func testRegisterPetrolAPIKey() async {
         
         let testAPIKey = "abcde-fghij-klmno-pqrst-uvwxyz"
         

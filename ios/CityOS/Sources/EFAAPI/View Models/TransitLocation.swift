@@ -119,5 +119,7 @@ public class TransitLocation: Hashable, Equatable, CustomDebugStringConvertible,
         case description = "description"
         case coordinates = "coordinates"
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

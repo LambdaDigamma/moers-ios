@@ -153,5 +153,7 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
     public func loadFuelStation(id: PetrolStation.ID) async throws -> PetrolStation {
         return try await petrolService.getPetrolStation(id: id)
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

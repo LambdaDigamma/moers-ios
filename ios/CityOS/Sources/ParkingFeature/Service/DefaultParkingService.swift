@@ -68,5 +68,7 @@ public class DefaultParkingService: ParkingService {
         let response = try ParkingArea.decoder.decode(DataResponse<ParkingDashboardData>.self, from: data)
         return response.data
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

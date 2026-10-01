@@ -1,9 +1,10 @@
 import XCTest
 @testable import RubbishFeature
 
+@MainActor
 final class StaticRubbishServiceTests: XCTestCase {
     
-    func test_remindersEnabled() {
+    func test_remindersEnabled() async {
         
         let service = StaticRubbishService()
         

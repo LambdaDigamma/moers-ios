@@ -47,6 +47,9 @@ public class EventRepository {
         self.placeStore = placeStore
         self.pageStore = pageStore
     }
+
+    // No actor cleanup is needed; keep ARC release compatible with older runtimes.
+    nonisolated deinit {}
     
     // MARK: - Data Source
     

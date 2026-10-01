@@ -195,7 +195,9 @@ class DownloadEventViewModel: StandardViewModel {
         public let downloadContent: Bool
         public let downloadMedia: Bool
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 struct DownloadEventRow: View {

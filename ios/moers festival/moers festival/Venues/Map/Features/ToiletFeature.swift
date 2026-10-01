@@ -17,7 +17,9 @@ public struct ToiletProperties: Codable {
 public class ToiletFeature: GeoFeature<ToiletProperties>, FGDDecodableFeature {
     
     public typealias Properties = ToiletProperties
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension ToiletFeature: StylableFeature {

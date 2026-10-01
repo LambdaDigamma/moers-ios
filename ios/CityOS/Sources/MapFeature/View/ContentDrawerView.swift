@@ -122,4 +122,7 @@ public class ContentDrawerView: UIView {
         
         NSLayoutConstraint.activate(constraints.compactMap { $0 })
     }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

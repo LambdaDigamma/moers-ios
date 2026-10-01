@@ -66,5 +66,7 @@ class LicensesView: UIView {
         self.textView.textColor = UIColor.label
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

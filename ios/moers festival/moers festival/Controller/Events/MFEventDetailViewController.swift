@@ -29,7 +29,9 @@ class MFEventDetailViewController: EventDetailViewController {
         self.activateActivity()
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension MFEventDetailViewController {

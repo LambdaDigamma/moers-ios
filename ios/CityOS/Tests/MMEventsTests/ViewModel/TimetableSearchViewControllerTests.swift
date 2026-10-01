@@ -15,9 +15,9 @@ final class TimetableSearchViewControllerTests: XCTestCase {
 
     private var cancellables = Set<AnyCancellable>()
 
-    override func tearDown() {
+    override func tearDown() async throws {
         cancellables.removeAll()
-        super.tearDown()
+        try await super.tearDown()
     }
 
     func testSelectingSearchResultPushesDetailInsideModalAndPreservesSearchState() async throws {
@@ -61,7 +61,8 @@ final class TimetableSearchViewControllerTests: XCTestCase {
 
         navigationController.loadViewIfNeeded()
         searchViewController.loadViewIfNeeded()
-        searchViewController.viewDidAppear(false)
+        searchViewController.beginAppearanceTransition(true, animated: false)
+        searchViewController.endAppearanceTransition()
 
         searchViewController.selectEvent(1)
 
@@ -77,7 +78,8 @@ final class TimetableSearchViewControllerTests: XCTestCase {
         XCTAssertEqual(viewModel.searchState, .loaded)
 
         navigationController.popViewController(animated: false)
-        searchViewController.viewDidAppear(false)
+        searchViewController.beginAppearanceTransition(true, animated: false)
+        searchViewController.endAppearanceTransition()
 
         let resumedSearchController = UISearchController(searchResultsController: nil)
         resumedSearchController.searchBar.text = "renamed"

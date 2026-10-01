@@ -145,5 +145,7 @@ class CountdownViewController: UIViewController {
         countdownLabel.text = "\(days) \(String.localized("days")) \(hours) \(String.localized("hours")) \(minutes) \(String.localized("minutes")) \(seconds) \(String.localized("seconds"))"
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

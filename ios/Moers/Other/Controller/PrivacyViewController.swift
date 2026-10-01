@@ -119,5 +119,7 @@ class PrivacyViewController: UIViewController {
     Lennart Fischer
     info@lambdadigamma.com
     """
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

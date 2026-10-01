@@ -66,6 +66,8 @@ public class ToiletRenderer: MKMultiPolygonRenderer {
 
     }
 
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 struct ToiletRenderer_Previews: PreviewProvider {

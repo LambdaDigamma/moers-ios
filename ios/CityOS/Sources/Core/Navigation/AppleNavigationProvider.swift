@@ -52,7 +52,9 @@ public class AppleNavigationProvider: NavigationProvider {
         return URL(string: "https://maps.apple.com/?daddr=\(point.latitude),\(point.longitude)&dirflg=d")
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 #endif

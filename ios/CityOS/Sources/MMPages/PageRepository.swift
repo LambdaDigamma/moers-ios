@@ -101,5 +101,7 @@ public class PageRepository {
         try await store.updateOrCreate(page.blocks.map { $0.toRecord() })
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

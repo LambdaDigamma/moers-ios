@@ -170,13 +170,15 @@ public class TimetableViewModel {
     }
 
     public func setupObserver() {
+        guard cancellables.isEmpty else { return }
 
         Publishers.CombineLatest(
             repository.events().replaceError(with: []),
             favoriteEventsPublisher()
         )
             .receive(on: DispatchQueue.main)
-            .sink { combinedValue in
+            .sink { [weak self] combinedValue in
+                guard let self else { return }
                 let (events, favoriteEventIDs) = combinedValue
 
                 self.storedEvents = events

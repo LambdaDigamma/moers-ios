@@ -82,5 +82,7 @@ class TandCViewController: UIViewController {
 
     Ich kann unsere Allgemeinen Geschäftsbedingungen von Zeit zu Zeit aktualisieren. Wir empfehlen Ihnen daher, diese Seite regelmäßig auf Änderungen zu überprüfen. Ich werde Sie über alle Änderungen informieren, indem ich die neuen Allgemeinen Geschäftsbedingungen auf dieser Seite veröffentliche. Diese Änderungen werden sofort nach ihrer Veröffentlichung auf dieser Seite wirksam.
     """
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

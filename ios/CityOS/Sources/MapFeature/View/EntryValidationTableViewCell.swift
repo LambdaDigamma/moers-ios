@@ -68,5 +68,7 @@ public class EntryValidationTableViewCell: UITableViewCell {
         self.titleLabel.textColor = UIColor.label
         self.descriptionLabel.textColor = UIColor.secondaryLabel
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

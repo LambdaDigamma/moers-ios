@@ -31,5 +31,7 @@ public class FuelStationDetailViewModel: StandardViewModel {
             self.state = .error(error)
         }
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

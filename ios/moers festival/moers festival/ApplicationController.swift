@@ -325,7 +325,9 @@ class ApplicationController: NSObject, ApplicationControlling {
         currentOther.showLegal()
 
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension ApplicationController: FestivalDeepLinkRouting {}

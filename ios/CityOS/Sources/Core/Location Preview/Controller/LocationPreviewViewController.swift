@@ -77,5 +77,7 @@ class LocationPreviewViewController: UIViewController {
         .store(in: &cancellables)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

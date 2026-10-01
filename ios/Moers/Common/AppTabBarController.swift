@@ -144,5 +144,7 @@ public class AppTabBarController: AppScaffold.TabBarController {
     public override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

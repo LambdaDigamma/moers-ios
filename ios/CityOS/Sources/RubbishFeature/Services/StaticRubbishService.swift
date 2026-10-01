@@ -87,5 +87,7 @@ public class StaticRubbishService: RubbishService {
     public func disableStreet() {
         self.rubbishStreet = nil
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

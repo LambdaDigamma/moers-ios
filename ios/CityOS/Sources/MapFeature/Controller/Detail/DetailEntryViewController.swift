@@ -239,7 +239,9 @@ class DetailEntryViewController: UIViewController {
         return storyboard.instantiateViewController(withIdentifier: "DetailEntryViewController") as! DetailEntryViewController
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 // Helper function inserted by Swift 4.2 migrator.

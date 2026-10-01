@@ -110,7 +110,9 @@ class MMEventsViewController: EventsViewController {
         }
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 // Legacy version for iOS < 26
@@ -210,5 +212,7 @@ class MMEventsViewController_Legacy: EventsViewController_Legacy {
         }
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

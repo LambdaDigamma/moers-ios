@@ -18,4 +18,8 @@ open class StandardViewModel {
 
     public init() {}
 
+    // ARC releases subscriptions without actor state access. Avoid the inferred
+    // isolated destructor, which crashes in older Swift runtimes (swift#88036).
+    nonisolated deinit {}
+
 }

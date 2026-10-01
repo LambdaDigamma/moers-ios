@@ -12,5 +12,7 @@ import Combine
 public class BaseRepository {
     
     public var cancellables = Set<AnyCancellable>()
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

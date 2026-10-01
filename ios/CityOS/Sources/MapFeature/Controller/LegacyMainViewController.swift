@@ -206,5 +206,7 @@ public class LegacyMainViewController: PulleyViewController {
         self.contentViewController.addLocation(location)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
