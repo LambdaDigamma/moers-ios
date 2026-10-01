@@ -11,6 +11,7 @@ import MMEvents
 import XCTest
 @testable import moers_festival
 
+@MainActor
 final class EventRepositoryReloadEventsIntegrationTests: XCTestCase {
 
     func testReloadEventsStoresEventsPlaces() async throws {

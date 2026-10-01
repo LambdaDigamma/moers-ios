@@ -9,7 +9,17 @@
     }
   ],
   "defaultOptions" : {
-    "testTimeoutsEnabled" : true
+    "testTimeoutsEnabled" : true,
+    "commandLineArgumentEntries" : [
+      {
+        "argument" : "-UserDidCompleteSetup",
+        "enabled" : true
+      },
+      {
+        "argument" : "YES",
+        "enabled" : true
+      }
+    ]
   },
   "testTargets" : [
     {

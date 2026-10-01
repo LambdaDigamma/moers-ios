@@ -1,5 +1,25 @@
 # Papercuts
 
+## Resolved: Watch and XCTest targets did not share the concurrency defaults
+
+- Both Xcode projects now set Swift 6, Approachable Concurrency, MainActor default isolation, and complete strict concurrency at project level in Debug and Release. All seven app and extension targets use these settings, including watchOS and tvOS.
+- All six XCTest targets use Swift 6 and Approachable Concurrency with explicit nonisolated default isolation. UI fixtures and async test methods opt into MainActor. Legacy test setup and UI helpers now respect that isolation; immutable launch arguments conform to Sendable.
+- All 36 CityOS targets explicitly use Swift 6. The 20 production targets use MainActor default isolation; the 16 test targets explicitly use nonisolated default isolation. All targets share the two Approachable Concurrency features not enabled automatically by Swift 6.
+- Validation: Effective Xcode settings were checked for all 26 target configurations. The evaluated package manifest was checked for all 36 targets. All native targets and EFACLI compile. On iOS 18.6, 35 app unit tests and eight focused package tests pass. The package tests report no runtime or Thread Sanitizer warnings. Watch test targets were compiled; watch tests were not run.
+
+## Existing: BulletinBoard animation destruction crashes during older-iOS test startup
+
+- Impact: A city unit-test host that shows onboarding can abort on iOS 18.6 before its tests complete. The crash is in BulletinBoard 6.1.0's `AnimationPhase`, followed by `swift_task_deinitOnExecutorMainActorBackDeploy` and `TaskLocal::StopLookupScope`. This is a dependency class outside this repository, separate from the fixed CityOS destructors.
+- Reproduction: Remove the `UserDidCompleteSetup` launch arguments from `ios/Test Plans/WidgetsExtension.xctestplan`, then run the `WidgetsExtension` scheme and test plan on iOS 18.6 with Xcode 27 RC. A fresh onboarding launch reaches the UIKit animation cleanup path. Crash diagnostics from the failed run identify `AnimationPhase.__deallocating_deinit` in the app's linked dependency code.
+- Follow-up: Fix ARC-only destruction in the BulletinBoard source and publish a compatible package version. The configured 6.1.0 manifest uses Swift 6 and MainActor default isolation. Its source revision is `43ffa2655324c50cabd63f401ce20a1c1b3a7872`; no newer tagged release was found during this check. Cached dependency source was not edited.
+- The city unit-test plan now seeds a completed onboarding state. Its five form and storage tests pass on iOS 18.6. This isolates those tests; it does not fix the dependency's animation destruction.
+
+## Existing: City screenshot scheme assumes an unconfigured Release build path
+
+- Impact: `Screenshots` cannot build its UI test target when `${SYMROOT}/Release-iphonesimulator` is absent. Its pre-build script copies that directory to the selected configuration, although the city project uses `Release (Production)`.
+- Reproduction: Run `xcodebuild -workspace ios/Moers.xcworkspace -scheme Screenshots -configuration 'Debug (Production)' -testPlan Screenshots -destination '<available iOS simulator>' build-for-testing`. The pre-build copy fails before test compilation.
+- Follow-up: Remove the copy or configure it with the actual producer configuration. The UI test target was compiled directly for this concurrency check, with indexing disabled to avoid Xcode's empty index-path error in a direct target build.
+
 ## Resolved: CityOS test bundles were not discovered
 
 - `FullTestPlan` now refers to the `CityOS` package and includes all 16 test targets.

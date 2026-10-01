@@ -8,10 +8,11 @@
 
 import XCTest
 
+@MainActor
 class UILaunchTests: XCTestCase {
 
     @MainActor
-    func testShowsOnboardingWithFreshDefaults() {
+    func testShowsOnboardingWithFreshDefaults() async {
         let app = XCUIApplication()
         app.launchArguments = [
             "-wasLaunchedBefore", "NO",
@@ -23,7 +24,7 @@ class UILaunchTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Discover the moers festival"].waitForExistence(timeout: 5))
     }
 
-    func testLaunchPerformance() {
+    func testLaunchPerformance() async {
 //        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
 //            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
 //                XCUIApplication().launch()

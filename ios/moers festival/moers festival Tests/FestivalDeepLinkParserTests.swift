@@ -13,7 +13,7 @@ import XCTest
 final class FestivalDeepLinkParserTests: XCTestCase {
     private let parser = FestivalDeepLinkParser()
 
-    func testParsesCanonicalCollectionLinks() {
+    func testParsesCanonicalCollectionLinks() async {
         XCTAssertEqual(parser.parse(URL(string: "moersfestival:///posts")!), .posts)
         XCTAssertEqual(parser.parse(URL(string: "moersfestival:///events")!), .events)
         XCTAssertEqual(parser.parse(URL(string: "moersfestival:///favorites")!), .favorites)
@@ -23,36 +23,36 @@ final class FestivalDeepLinkParserTests: XCTestCase {
         XCTAssertEqual(parser.parse(URL(string: "moersfestival:///legal")!), .legal)
     }
 
-    func testParsesCanonicalDetailLinks() {
+    func testParsesCanonicalDetailLinks() async {
         XCTAssertEqual(parser.parse(URL(string: "moersfestival:///posts/42")!), .postDetail(postID: 42))
         XCTAssertEqual(parser.parse(URL(string: "moersfestival:///events/9001")!), .eventDetail(eventID: 9001))
         XCTAssertEqual(parser.parse(URL(string: "moersfestival:///venues/7")!), .venueDetail(venueID: 7))
     }
 
-    func testParsesCanonicalLinksCaseInsensitively() {
+    func testParsesCanonicalLinksCaseInsensitively() async {
         XCTAssertEqual(parser.parse(URL(string: "MOERSFESTIVAL:///Events/34")!), .eventDetail(eventID: 34))
         XCTAssertEqual(parser.parse(URL(string: "moersfestival:///FAVORITES")!), .favorites)
     }
 
-    func testRejectsHostStyleCustomSchemeLinks() {
+    func testRejectsHostStyleCustomSchemeLinks() async {
         XCTAssertNil(parser.parse(URL(string: "moersfestival://posts")!))
         XCTAssertNil(parser.parse(URL(string: "moersfestival://posts/42")!))
         XCTAssertNil(parser.parse(URL(string: "moersfestival://venues/7")!))
     }
 
-    func testRejectsSingleSlashCustomSchemeLinks() {
+    func testRejectsSingleSlashCustomSchemeLinks() async {
         XCTAssertNil(parser.parse(URL(string: "moersfestival:/events")!))
         XCTAssertNil(parser.parse(URL(string: "MOERSFESTIVAL:/Events/34")!))
     }
 
-    func testInvalidOrMissingIDsOpenOverviewWhereAvailable() {
+    func testInvalidOrMissingIDsOpenOverviewWhereAvailable() async {
         XCTAssertEqual(parser.parse(URL(string: "moersfestival:///posts/not-an-id")!), .posts)
         XCTAssertEqual(parser.parse(URL(string: "moersfestival:///events/not-an-id")!), .events)
         XCTAssertEqual(parser.parse(URL(string: "moersfestival:///venues")!), .map)
         XCTAssertEqual(parser.parse(URL(string: "moersfestival:///venues/not-an-id")!), .map)
     }
 
-    func testRejectsAliasesAndUnknownPaths() {
+    func testRejectsAliasesAndUnknownPaths() async {
         XCTAssertNil(parser.parse(URL(string: "moersfestival:///news")!))
         XCTAssertNil(parser.parse(URL(string: "moersfestival:///spielplan")!))
         XCTAssertNil(parser.parse(URL(string: "moersfestival:///veranstaltungen")!))

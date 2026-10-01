@@ -10,11 +10,13 @@ import Foundation
 import XCTest
 @testable import Core
 
+@MainActor
 class Snappshotting: XCTestCase {
     
     var app: XCUIApplication!
     
-    override func setUp() {
+    override func setUp() async throws {
+        try await super.setUp()
         
         // In UI Tests we usually want to stop immediately if an error occurs.
         continueAfterFailure = false
@@ -35,7 +37,7 @@ class Snappshotting: XCTestCase {
         
     }
     
-    func test_appStoreScreenshots() {
+    func test_appStoreScreenshots() async {
         
         let snapshotsActive = true
         

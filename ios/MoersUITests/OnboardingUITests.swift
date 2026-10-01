@@ -8,9 +8,11 @@
 
 import XCTest
 
+@MainActor
 class OnboardingUITests: XCTestCase {
 
-    override func setUp() {
+    override func setUp() async throws {
+        try await super.setUp()
         
         continueAfterFailure = false
 
@@ -18,7 +20,7 @@ class OnboardingUITests: XCTestCase {
         
     }
 
-    func testOnboardingCitizen() {
+    func testOnboardingCitizen() async {
         
         let app = XCUIApplication()
         setupSnapshot(app)

@@ -8,9 +8,11 @@
 
 import XCTest
 
+@MainActor
 class AutomaticSnapshots: XCTestCase {
 
-    override func setUp() {
+    override func setUp() async throws {
+        try await super.setUp()
         continueAfterFailure = false
         UIView.setAnimationsEnabled(false)
 
@@ -22,7 +24,7 @@ class AutomaticSnapshots: XCTestCase {
     }
 
     @MainActor
-    func testTakeScreenshots() {
+    func testTakeScreenshots() async {
         let app = XCUIApplication()
 
         app.launchArguments = [
@@ -163,9 +165,9 @@ class AutomaticSnapshots: XCTestCase {
         }
 
         for query in queries {
-            let candidates = query.allElementsBoundByIndex.filter(\.exists)
+            let candidates = query.allElementsBoundByIndex.filter { $0.exists }
 
-            if let hittableCandidate = candidates.first(where: \.isHittable) {
+            if let hittableCandidate = candidates.first(where: { $0.isHittable }) {
                 return hittableCandidate
             }
 
@@ -188,6 +190,6 @@ class AutomaticSnapshots: XCTestCase {
             }
         }
         
-        XCTAssert(exists || app.maps.count > 0, "Map view should load within timeout")
+        XCTAssert(exists || app.maps.firstMatch.exists, "Map view should load within timeout")
     }
 }

@@ -11,7 +11,7 @@ import XCTest
 
 @MainActor
 final class SceneDelegateURLHandlingTests: XCTestCase {
-    func testHandleURLsStopsAfterFirstHandledURL() {
+    func testHandleURLsStopsAfterFirstHandledURL() async {
         let unhandledURL = URL(string: "moersfestival:///unknown")!
         let handledURL = URL(string: "moersfestival:///events")!
         let skippedURL = URL(string: "moersfestival:///posts")!
@@ -25,7 +25,7 @@ final class SceneDelegateURLHandlingTests: XCTestCase {
         XCTAssertEqual(coordinator.handledURLs, [unhandledURL, handledURL])
     }
 
-    func testHandleURLsAttemptsAllURLsWhenNoneAreHandled() {
+    func testHandleURLsAttemptsAllURLsWhenNoneAreHandled() async {
         let firstURL = URL(string: "moersfestival:///unknown")!
         let secondURL = URL(string: "moersfestival:///news")!
         let coordinator = DeeplinkCoordinatorProtocolSpy()

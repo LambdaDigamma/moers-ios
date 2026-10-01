@@ -8,7 +8,7 @@
 - Swift tools version: 6.2
 - Platforms: iOS 17, macOS 14, watchOS 10, tvOS 17
 - Core products include `Core`, `CoreCache`, `DashboardFeature`, `RubbishFeature`, `ParkingFeature`, `NewsFeature`, `FuelFeature`, `MapFeature`, `MMEvents`, `MMPages`, `MMFeeds`, `EFAAPI`, `EFAUI`, `PlaybackKit`, and `AppUpdateFeature`.
-- Production targets use MainActor default isolation and the Approachable Concurrency feature flags. Test targets keep the feature flags and use explicit `@MainActor` on UI fixtures and methods. Keep XCTest initializers nonisolated.
+- The manifest explicitly selects Swift 6 language mode. All targets share the Approachable Concurrency feature flags; Swift 6 enables the remaining features by default. Production targets use MainActor default isolation. Test targets explicitly use nonisolated default isolation and `@MainActor` on UI fixtures and methods. Keep XCTest initializers nonisolated.
 
 ## Coding Patterns
 

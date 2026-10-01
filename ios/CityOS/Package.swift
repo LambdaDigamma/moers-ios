@@ -2,13 +2,15 @@
 
 import PackageDescription
 
-let testSettings: [SwiftSetting] = [
+// Swift 6 enables the other Approachable Concurrency features by default.
+let approachableConcurrencySettings: [SwiftSetting] = [
     .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
     .enableUpcomingFeature("InferIsolatedConformances")
 ]
 
 // XCTest initializers are nonisolated. Test methods opt into MainActor explicitly.
-let settings: [SwiftSetting] = [.defaultIsolation(MainActor.self)] + testSettings
+let testSettings: [SwiftSetting] = [.defaultIsolation(nil)] + approachableConcurrencySettings
+let settings: [SwiftSetting] = [.defaultIsolation(MainActor.self)] + approachableConcurrencySettings
 
 let package = Package(
     name: "CityOS",
@@ -341,5 +343,6 @@ let package = Package(
             name: "Pulley",
             swiftSettings: settings
         )
-    ]
+    ],
+    swiftLanguageModes: [.v6]
 )

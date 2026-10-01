@@ -11,12 +11,14 @@ import XCTest
 @testable import MapFeature
 @testable import Moers
 
+@MainActor
 class FormTests: XCTestCase {
 
     var form: Form!
     var errorBag: ErrorBag!
     
-    override func setUp() {
+    override func setUp() async throws {
+        try await super.setUp()
         self.form = Form()
         self.errorBag = ErrorBag(
             message: "There are errors.",
@@ -27,11 +29,11 @@ class FormTests: XCTestCase {
             ])
     }
 
-    override func tearDown() {
+    override func tearDown() async throws {
         self.form = nil
     }
     
-    public func testReceivingErrors() {
+    public func testReceivingErrors() async {
         
         form.receivedError(errorBag: errorBag)
 
@@ -39,7 +41,7 @@ class FormTests: XCTestCase {
         
     }
     
-    public func testDisplaymentOfErrorsAfterReceivingError() {
+    public func testDisplaymentOfErrorsAfterReceivingError() async {
         
         let formViewMock = FormViewMock()
         let formKey = "url"

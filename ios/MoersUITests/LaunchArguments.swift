@@ -10,7 +10,7 @@ import Foundation
 
 public let fastlaneSnapshotArgument = "FASTLANE_SNAPSHOT"
 
-public struct LaunchArgument {
+public struct LaunchArgument: Sendable {
     
     public let name: String
     

@@ -47,6 +47,10 @@ For UI/runtime changes:
 
 ## Style And Testing
 
+- Both Xcode projects set Swift 6, Approachable Concurrency, MainActor default isolation, and complete strict concurrency at project level for Debug and Release. App, extension, tvOS, and watchOS targets inherit these defaults.
+- XCTest targets override default isolation to `nonisolated`. Use explicit MainActor isolation for UI fixtures and async test methods; keep XCTest initialization nonisolated. Do not lower their Swift language mode or strict concurrency settings.
+- The city `WidgetsExtension` test plan sets `UserDidCompleteSetup` for its unit-test host. Form and storage tests require a stable launch state. Use the UI test target to check onboarding.
+- External packages use their own manifest settings. Do not apply global Swift compiler overrides to dependency targets; change their source manifest when a dependency migration is required.
 - Keep UIKit, SwiftUI, and package code in the style already used by nearby files.
 - Respect `@MainActor` boundaries in UI controllers and view models.
 - Prefer existing Factory container registration patterns for dependency injection.
