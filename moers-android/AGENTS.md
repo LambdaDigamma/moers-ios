@@ -19,6 +19,10 @@ This is the city Android application module.
 - Release signing expects `keystore.properties` and `Keystore.jks`.
 - Do not read or edit local secrets or signing files unless the user explicitly asks.
 
+## Ruby Toolchain
+
+The city Android Fastlane bundle uses Ruby 3.4 in GitHub Actions. Bundler 4 requires Ruby 3.2 or newer. Use Ruby 3.4 for local bundle checks, and preserve the versions in `Gemfile.lock`.
+
 ## Run And Verify
 
 - Build debug: `./gradlew :moers-android:assembleDebug`
