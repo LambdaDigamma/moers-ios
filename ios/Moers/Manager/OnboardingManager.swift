@@ -187,6 +187,8 @@ public class OnboardingManager {
         }
         
         page.actionHandler = { $0.manager?.displayNextItem() }
+        page.titleLabelAccessibilityIdentifier = "PrivacyTitleLabel"
+        page.actionButtonAccessibilityIdentifier = "PrivacyContinueButton"
         
         return page
         
@@ -209,15 +211,15 @@ public class OnboardingManager {
             AnalyticsManager.shared.logPetrolType(type)
         }
         
-        page.actionHandler = {
+        page.actionHandler = { item in
             
             if UserManager.shared.user.type == .citizen {
-                page.next = self.makeRubbishStreetPage()
+                item.next = self.makeRubbishStreetPage()
             } else {
-                page.next = self.makeCompletionPage()
+                item.next = self.makeCompletionPage()
             }
             
-            $0.manager?.displayNextItem()
+            item.manager?.displayNextItem()
             
         }
         
@@ -246,7 +248,7 @@ public class OnboardingManager {
             self?.rubbishService.register(item.selectedStreet)
             self?.rubbishService.isEnabled = true
             
-            page.next = self?.makeRubbishReminderPage()
+            item.next = self?.makeRubbishReminderPage()
             
             item.manager?.displayNextItem()
             
@@ -257,7 +259,7 @@ public class OnboardingManager {
             self?.rubbishService.remindersEnabled = false
             self?.rubbishService.disableReminder()
             
-            page.next = self?.makeCompletionPage()
+            item.next = self?.makeCompletionPage()
             item.manager?.displayNextItem()
             
         }
@@ -277,9 +279,10 @@ public class OnboardingManager {
         page.isDismissable = false
         
         page.actionHandler = { [weak self] item in
+            guard let item = item as? RubbishReminderBulletinItem else { return }
             
-            let hour = Calendar.current.component(.hour, from: page.picker.date)
-            let minutes = Calendar.current.component(.minute, from: page.picker.date)
+            let hour = Calendar.current.component(.hour, from: item.picker.date)
+            let minutes = Calendar.current.component(.minute, from: item.picker.date)
             
             if let rubbishService = self?.rubbishService {
                 rubbishService.registerNotifications(at: hour, minute: minutes)
@@ -287,13 +290,13 @@ public class OnboardingManager {
             
             AnalyticsManager.shared.logEnabledRubbishReminder(hour)
             
-            page.next = self?.makeCompletionPage()
+            item.next = self?.makeCompletionPage()
             item.manager?.displayNextItem()
             
         }
         
         page.alternativeHandler = { item in
-            page.next = self.makeCompletionPage()
+            item.next = self.makeCompletionPage()
             item.manager?.displayNextItem()
         }
         

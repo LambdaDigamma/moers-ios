@@ -1,5 +1,5 @@
 {
-  "originHash" : "c5d2dcfefc7b21d85c71b26f7806e93728ddeda41380fdb6f4dc08bf4e6262fa",
+  "originHash" : "27392cc608478b75f8cc01322cf3b64995275f90d143b73cf61cf29f12eb0941",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LambdaDigamma/BulletinBoard",
       "state" : {
-        "revision" : "43ffa2655324c50cabd63f401ce20a1c1b3a7872",
-        "version" : "6.1.0"
+        "revision" : "06b96b8dc849e4f163294bf12bb633dcf62c8c1e",
+        "version" : "6.1.1"
       }
     },
     {

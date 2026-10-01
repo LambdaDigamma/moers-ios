@@ -1826,7 +1826,7 @@
 			repositoryURL = "https://github.com/LambdaDigamma/BulletinBoard";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.1.0;
+				minimumVersion = 6.1.1;
 			};
 		};
 		DFE59D3928D871B800BD0236 /* XCRemoteSwiftPackageReference "swift-license-ui" */ = {
