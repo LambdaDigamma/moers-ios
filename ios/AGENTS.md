@@ -38,6 +38,13 @@ Before an older-iOS UI check, build for that exact installed runtime. Run `pytho
 
 Live API tests skip by default. To opt in, set `RUN_FUEL_INTEGRATION_TESTS=1` or `RUN_EFA_INTEGRATION_TESTS=1` in the test runner environment through the test plan or scheme. Test fixtures run without these flags.
 
+## Build Resources
+
+- The `Prepare Fuel Configuration` aggregate target owns the `Prepare Fuel API Key` phase. Both `Moers` and `WidgetsExtension` depend on it because they consume the same optional configuration file. Its declared output is the configuration file; it creates the sample fallback only when that output is absent and preserves an existing configuration.
+- `Settings Bundle Preparation` writes the app's Settings bundle in the build product directory. `MOERS_SETTINGS_BUNDLE_VARIANT` selects the Debug or Release template. Both configurations use the checked-in licences under `Moers/Resources/Debug/Settings.bundle`. The script uses the source app Info.plist for its version fields, so it does not depend on a processed plist from a previous build.
+- After adding or removing Settings resource files, refresh the dependency lists with `python3 ios/scripts/prepare-settings-bundle.py refresh-file-lists` from the repository root. Keep the input and output lists with the resource change.
+- Test these scripts with `PYTHONDONTWRITEBYTECODE=1 /usr/bin/python3 -m unittest discover -s ios/scripts/tests -v`. The fuel tests use synthetic files in a temporary directory.
+
 For UI/runtime changes:
 
 1. Build with Xcode tooling.

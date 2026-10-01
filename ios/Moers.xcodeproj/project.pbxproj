@@ -6,6 +6,20 @@
 	objectVersion = 90;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		0170452FD05F49069653F80C /* Prepare Fuel Configuration */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = BB1035744D634953B2B5D9FE /* Build configuration list for PBXAggregateTarget "Prepare Fuel Configuration" */;
+			buildPhases = (
+				DF782D8728D1DCA9000BDC89 /* Prepare Fuel API Key */,
+			);
+			dependencies = (
+			);
+			name = "Prepare Fuel Configuration";
+			productName = "Prepare Fuel Configuration";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		DF05E00F2792CA4C0063556E /* ParkingFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF05E00E2792CA4C0063556E /* ParkingFeature */; };
 		DF0EAC9C24C63FB0009BE489 /* ModernNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = DF0EAC9B24C63FB0009BE489 /* ModernNetworking */; };
@@ -91,6 +105,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = DF1A495E1F6AAB7000E9108B;
 			remoteInfo = Moers;
+		};
+		229F44D31E9F40BE8D56207D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF1A49571F6AAB7000E9108B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0170452FD05F49069653F80C;
+			remoteInfo = "Prepare Fuel Configuration";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -461,11 +482,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DF1A49711F6AAB7000E9108B /* Build configuration list for PBXNativeTarget "Moers" */;
 			buildPhases = (
-				DF782D8728D1DCA9000BDC89 /* Prepare Fuel API Key */,
 				DF1A495C1F6AAB7000E9108B /* Frameworks */,
 				DF1A495B1F6AAB7000E9108B /* Sources */,
-				DF6E060D28AE2C3F004FEBC9 /* Generate Package List */,
-				DF6E061A28AE3691004FEBC9 /* Generate Settings Bundle Licences */,
 				DF6E061928AE3659004FEBC9 /* Settings Bundle Preparation */,
 				DF1A495D1F6AAB7000E9108B /* Resources */,
 				DF94B14D23F0A7E8009C57ED /* Embed Watch Content */,
@@ -476,6 +494,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				F468D2A17086464593821756 /* PBXTargetDependency */,
 				DF5E1B5D26726AF7005FADA4 /* PBXTargetDependency */,
 				DF9F19DC2766660100B74E13 /* PBXTargetDependency */,
 			);
@@ -557,6 +576,9 @@
 				DF5E1B4C26726AF3005FADA4 /* Resources */,
 			);
 			buildRules = (
+			);
+			dependencies = (
+				41E6B726C32F416C960517A6 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				DF4AD3462CCD3BA600D620B3 /* Widgets */,
@@ -685,6 +707,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				0170452FD05F49069653F80C /* Prepare Fuel Configuration */,
 				DF1A495E1F6AAB7000E9108B /* Moers */,
 				DF284EFC23F4C17100EC999B /* MoersUITests */,
 				DFB161B2267651D6009D2754 /* Moers Unit Tests */,
@@ -729,65 +752,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		DF6E060D28AE2C3F004FEBC9 /* Generate Package List */ = {
-			isa = PBXShellScriptBuildPhase;
-			name = "Generate Package List";
-			shellPath = /bin/sh;
-			shellScript = (
-				"#if command -v swift-package-list &> /dev/null; then",
-				"#    OUTPUT_PATH=$SOURCE_ROOT/$TARGETNAME",
-				"#    swift-package-list \"$PROJECT_FILE_PATH\" --output-path \"$OUTPUT_PATH\" --requires-license",
-				"#else",
-				"#    echo \"warning: swift-package-list not installed\"",
-				"#fi",
-				"",
-			);
-		};
 		DF6E061928AE3659004FEBC9 /* Settings Bundle Preparation */ = {
 			isa = PBXShellScriptBuildPhase;
+			inputFileListPaths = (
+				"$(SRCROOT)/scripts/settings-bundle-inputs.xcfilelist",
+			);
 			name = "Settings Bundle Preparation";
-			shellPath = /bin/sh;
-			shellScript = (
-				"BUNDLE_DIR=\"$PROJECT_DIR/Moers\"",
-				"BUILD_APP_DIR=\"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"",
-				"",
-				"if [[ \"$CONFIGURATION\" == *\"Release\"* ]]; then",
-				"cp -rf \"$BUNDLE_DIR/Resources/Release/Settings.bundle\" \"$BUILD_APP_DIR\"",
-				"else",
-				"cp -rf \"$BUNDLE_DIR/Resources/Debug/Settings.bundle\" \"$BUILD_APP_DIR\"",
-				"fi",
-				"",
-				"cd $PROJECT_DIR",
-				"cd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"",
-				"",
-				"RELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)",
-				"BUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" Info.plist)",
-				"VERSION_STRING=\"$RELEASE_VERSION ($BUILD_NUMBER)\"",
-				"/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $VERSION_STRING\" \"$BUILD_APP_DIR/Settings.bundle/Root.plist\"",
-				"",
+			outputFileListPaths = (
+				"$(SRCROOT)/scripts/settings-bundle-outputs.xcfilelist",
 			);
-		};
-		DF6E061A28AE3691004FEBC9 /* Generate Settings Bundle Licences */ = {
-			isa = PBXShellScriptBuildPhase;
-			name = "Generate Settings Bundle Licences";
 			shellPath = /bin/sh;
-			shellScript = (
-				"if [[ \"$CONFIGURATION\" == *\"Debug\"* ]]; then",
-				"# /usr/local/bin/license-plist --output-path Moers/Resources/Debug/Settings.bundle --add-version-numbers --package-path Moers.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
-				"",
-				"cp -rf Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist Moers/Resources/Release/Settings.bundle/com.mono0926.LicensePlist",
-				"cp -rf Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist.latest_result.txt Moers/Resources/Release/Settings.bundle/com.mono0926.LicensePlist.latest_result.txt",
-				"cp -rf Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist.plist Moers/Resources/Release/Settings.bundle/com.mono0926.LicensePlist.plist",
-				"",
-				"echo \"Updated and copied license plists\"",
-				"",
-				"fi",
-				"",
-			);
+			shellScript = "set -eu\n/usr/bin/python3 \"$SRCROOT/scripts/prepare-settings-bundle.py\" prepare \\\n  --template \"$SRCROOT/Moers/Resources/$MOERS_SETTINGS_BUNDLE_VARIANT/Settings.bundle\" \\\n  --licenses \"$SRCROOT/Moers/Resources/Debug/Settings.bundle\" \\\n  --info-plist \"$INFOPLIST_FILE\" \\\n  --output \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/Settings.bundle\"\n";
 		};
 		DF782D8728D1DCA9000BDC89 /* Prepare Fuel API Key */ = {
 			isa = PBXShellScriptBuildPhase;
 			name = "Prepare Fuel API Key";
+			outputPaths = (
+				"$(SRCROOT)/Moers/Resources/Tankerkoenig-Info.plist",
+			);
 			shellPath = /bin/sh;
 			shellScript = (
 				"CONFIG_FILE_BASE_NAME=\"Tankerkoenig-Info\"",
@@ -873,6 +855,16 @@
 			isa = PBXTargetDependency;
 			target = DF1A495E1F6AAB7000E9108B /* Moers */;
 			targetProxy = DFB161B8267651D7009D2754 /* PBXContainerItemProxy */;
+		};
+		F468D2A17086464593821756 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0170452FD05F49069653F80C /* Prepare Fuel Configuration */;
+			targetProxy = 229F44D31E9F40BE8D56207D /* PBXContainerItemProxy */;
+		};
+		41E6B726C32F416C960517A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0170452FD05F49069653F80C /* Prepare Fuel Configuration */;
+			targetProxy = 229F44D31E9F40BE8D56207D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -979,6 +971,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MOERS_SETTINGS_BUNDLE_VARIANT = Debug;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
@@ -1098,6 +1091,7 @@
 					"@executable_path/Frameworks",
 				);
 				ONLY_ACTIVE_ARCH = YES;
+				MOERS_SETTINGS_BUNDLE_VARIANT = Release;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
@@ -1752,6 +1746,18 @@
 			};
 			name = "Release (Production)";
 		};
+		207BD3B9FA8F47168AE6F2E5 /* Debug (Production) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = "Debug (Production)";
+		};
+		769EC396309D4A5DB1578CEC /* Release (Production) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = "Release (Production)";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1801,6 +1807,15 @@
 				DFB161BD267651D7009D2754 /* Debug (Production) configuration for PBXNativeTarget "Moers Unit Tests" */,
 				DFB161C0267651D7009D2754 /* Release (Production) configuration for PBXNativeTarget "Moers Unit Tests" */,
 			);
+			defaultConfigurationName = "Release (Production)";
+		};
+		BB1035744D634953B2B5D9FE /* Build configuration list for PBXAggregateTarget "Prepare Fuel Configuration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				207BD3B9FA8F47168AE6F2E5 /* Debug (Production) */,
+				769EC396309D4A5DB1578CEC /* Release (Production) */,
+			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release (Production)";
 		};
 /* End XCConfigurationList section */
