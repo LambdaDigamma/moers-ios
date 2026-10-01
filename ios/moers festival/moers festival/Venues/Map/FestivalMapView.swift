@@ -101,6 +101,9 @@ final class FestivalMapView: MKMapView {
         appleLogoLabelView = view
         return view
     }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 private extension UIView {

@@ -7,7 +7,7 @@
 //
 
 import Core
-import Factory
+import FactoryKit
 import ParkingFeature
 import FuelFeature
 import CarPlay
@@ -220,7 +220,9 @@ public class CarPlaySceneDelegate: UIResponder {
         self.fuelStationsTemplate.updateSections([openSection])
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 // MARK: - CPTemplateApplicationSceneDelegate -

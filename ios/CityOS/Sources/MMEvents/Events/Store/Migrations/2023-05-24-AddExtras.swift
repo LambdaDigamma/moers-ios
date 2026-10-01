@@ -10,7 +10,7 @@ import Foundation
 import Foundation
 import GRDB
 
-public struct EventAddExtras: ApplyTableDefinition {
+nonisolated public struct EventAddExtras: ApplyTableDefinition {
     
     public static let tableName = "events"
     
@@ -27,4 +27,3 @@ public struct EventAddExtras: ApplyTableDefinition {
     }
     
 }
-

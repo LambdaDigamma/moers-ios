@@ -9,7 +9,7 @@ import Foundation
 import Core
 import ModernNetworking
 
-public protocol BaseFeed: Model, Stubbable, Equatable {
+nonisolated public protocol BaseFeed: Model, Stubbable, Equatable {
 
     associatedtype ID = Identifiable
     associatedtype Post = BasePost

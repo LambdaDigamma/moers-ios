@@ -48,5 +48,7 @@ class LegacyPostViewModel: Identifiable, ObservableObject, Hashable {
     static func == (lhs: LegacyPostViewModel, rhs: LegacyPostViewModel) -> Bool {
         return lhs.id == rhs.id
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

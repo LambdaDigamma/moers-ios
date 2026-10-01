@@ -58,5 +58,7 @@ class CameraViewController: UIViewController {
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .allButUpsideDown
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

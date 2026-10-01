@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal enum PackageStrings {
+nonisolated internal enum PackageStrings {
     
     internal enum Waste {
         internal static let dashboardTitle = String(localized: "Next collection dates", bundle: .module)

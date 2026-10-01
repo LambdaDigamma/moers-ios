@@ -1,6 +1,6 @@
 import Foundation
 
-public struct AppStoreUpdate: Equatable, Identifiable, Sendable {
+nonisolated public struct AppStoreUpdate: Equatable, Identifiable, Sendable {
     public let version: String
     public let storeURL: URL
 
@@ -12,9 +12,8 @@ public struct AppStoreUpdate: Equatable, Identifiable, Sendable {
     }
 }
 
-public enum AppStoreUpdateStatus: Equatable, Sendable {
+nonisolated public enum AppStoreUpdateStatus: Equatable, Sendable {
     case newerVersionInstalled
     case upToDate
     case updateAvailable(AppStoreUpdate)
 }
-

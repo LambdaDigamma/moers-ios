@@ -1,3 +1,4 @@
+#if canImport(WidgetKit)
 //
 //  WidgetFavoritesSyncBridge.swift
 //  moers festival
@@ -7,7 +8,7 @@
 
 import Foundation
 import Combine
-import Factory
+import FactoryKit
 import MMEvents
 import WidgetKit
 
@@ -70,4 +71,8 @@ final class WidgetFavoritesSyncBridge {
             .store(in: &cancellables)
     }
 
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
+
+#endif

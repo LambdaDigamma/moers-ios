@@ -12,13 +12,14 @@ import Cache
 @testable import MMEvents
 
 
+@MainActor
 final class EventServiceTests: XCTestCase {
     
     var eventService: LegacyEventService! = nil
     
     var cancellables = Set<AnyCancellable>()
     
-    override func setUp() {
+    override func setUp() async throws {
         
         let t = ResourceCollection(data: [
             Event.stub(withID: 1)
@@ -36,75 +37,28 @@ final class EventServiceTests: XCTestCase {
         
         let cache = try! Storage<String, [Event]>(diskConfig: DiskConfig(name: "EventService"),
                                  memoryConfig: MemoryConfig(),
+                                 fileManager: .default,
                                  transformer: TransformerFactory.forCodable(ofType: [Event].self))
         
         eventService = DefaultLegacyEventService(mockLoader, cache)
         
     }
     
-    override func tearDown() {
+    override func tearDown() async throws {
         eventService.invalidateCache()
         eventService = nil
     }
     
-    func testIndexNetworkRequest() {
-        
-        let promise = expectation(description: #function)
-        
-        eventService.loadEventsFromNetwork()
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                    case .failure(let error):
-                        if let error = error as? DecodingError {
-                            print(error)
-                        }
-                        print(error.localizedDescription)
-                    default: break
-                }
-            }, receiveValue: { events in
-                XCTAssertEqual(events.count, 3)
-                XCTAssertEqual(events[0].name, "Event 1")
-                promise.fulfill()
-            })
-            .store(in: &cancellables)
-        
-        wait(for: [promise], timeout: 1)
-        
+    func testIndexNetworkRequest() async throws {
+        let events = try await eventService.loadEventsFromNetwork()
+        XCTAssertEqual(events.count, 3)
+        XCTAssertEqual(events[0].name, "Event 1")
     }
-    
-    func testCachedResponseAfterNetworkRequest() {
-        
-        let promise = expectation(description: #function)
-        
-        eventService.loadEventsFromNetwork()
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                    case .failure:
-                        XCTFail("Failed while loading events")
-                    default: break
-                }
-            }, receiveValue: { events in
-                
-                self.eventService?.loadEventsFromPersistence()
-                    .replaceError(with: [])
-                    .sink { (events) in
-                        XCTAssertEqual(events.count, 3)
-                        XCTAssertEqual(events[0].name, "Event 1")
-                        XCTAssertEqual(events[1].name, "Event 2")
-                        XCTAssertEqual(events[2].name, "Event 3")
-                        promise.fulfill()
-                    }
-                    .store(in: &self.cancellables)
-                
-            })
-            .store(in: &cancellables)
-        
-        wait(for: [promise], timeout: 1)
-        
-        
+
+    func testCachedResponseAfterNetworkRequest() async throws {
+        _ = try await eventService.loadEventsFromNetwork()
+        let events = try await eventService.loadEventsFromPersistence()
+        XCTAssertEqual(events.count, 3)
+        XCTAssertEqual(events.map(\.name), ["Event 1", "Event 2", "Event 3"])
     }
-    
-    static var allTests = [
-        ("testIndexNetworkRequest", testIndexNetworkRequest),
-    ]
 }

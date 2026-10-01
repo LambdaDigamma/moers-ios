@@ -12,7 +12,7 @@ import BLTNBoard
 import CoreLocation
 import RubbishFeature
 import FuelFeature
-import Factory
+import FactoryKit
 import UIKit
 
 // todo: Move Privacy Consent to Front of Onboarding
@@ -150,18 +150,12 @@ public class OnboardingManager {
             
             AnalyticsManager.shared.logEnabledLocation()
             
-            Task { @MainActor in
-                for await authorizationStatus in self.locationService.authorizationStatuses {
-                    if authorizationStatus == .notDetermined {
-                        self.locationService.requestWhenInUseAuthorization()
-                        item.manager?.displayNextItem()
-                    } else {
-                        item.manager?.displayNextItem()
-                    }
-                    break
-                }
+            if self.locationService.authorizationStatus == .notDetermined {
+                self.locationService.requestWhenInUseAuthorization()
             }
-            
+
+            item.manager?.displayNextItem()
+
         }
         
 //        page.alternativeHandler = { item in
@@ -193,6 +187,8 @@ public class OnboardingManager {
         }
         
         page.actionHandler = { $0.manager?.displayNextItem() }
+        page.titleLabelAccessibilityIdentifier = "PrivacyTitleLabel"
+        page.actionButtonAccessibilityIdentifier = "PrivacyContinueButton"
         
         return page
         
@@ -215,15 +211,15 @@ public class OnboardingManager {
             AnalyticsManager.shared.logPetrolType(type)
         }
         
-        page.actionHandler = {
+        page.actionHandler = { item in
             
             if UserManager.shared.user.type == .citizen {
-                page.next = self.makeRubbishStreetPage()
+                item.next = self.makeRubbishStreetPage()
             } else {
-                page.next = self.makeCompletionPage()
+                item.next = self.makeCompletionPage()
             }
             
-            $0.manager?.displayNextItem()
+            item.manager?.displayNextItem()
             
         }
         
@@ -252,7 +248,7 @@ public class OnboardingManager {
             self?.rubbishService.register(item.selectedStreet)
             self?.rubbishService.isEnabled = true
             
-            page.next = self?.makeRubbishReminderPage()
+            item.next = self?.makeRubbishReminderPage()
             
             item.manager?.displayNextItem()
             
@@ -263,7 +259,7 @@ public class OnboardingManager {
             self?.rubbishService.remindersEnabled = false
             self?.rubbishService.disableReminder()
             
-            page.next = self?.makeCompletionPage()
+            item.next = self?.makeCompletionPage()
             item.manager?.displayNextItem()
             
         }
@@ -283,9 +279,10 @@ public class OnboardingManager {
         page.isDismissable = false
         
         page.actionHandler = { [weak self] item in
+            guard let item = item as? RubbishReminderBulletinItem else { return }
             
-            let hour = Calendar.current.component(.hour, from: page.picker.date)
-            let minutes = Calendar.current.component(.minute, from: page.picker.date)
+            let hour = Calendar.current.component(.hour, from: item.picker.date)
+            let minutes = Calendar.current.component(.minute, from: item.picker.date)
             
             if let rubbishService = self?.rubbishService {
                 rubbishService.registerNotifications(at: hour, minute: minutes)
@@ -293,13 +290,13 @@ public class OnboardingManager {
             
             AnalyticsManager.shared.logEnabledRubbishReminder(hour)
             
-            page.next = self?.makeCompletionPage()
+            item.next = self?.makeCompletionPage()
             item.manager?.displayNextItem()
             
         }
         
         page.alternativeHandler = { item in
-            page.next = self.makeCompletionPage()
+            item.next = self.makeCompletionPage()
             item.manager?.displayNextItem()
         }
         
@@ -350,7 +347,9 @@ public class OnboardingManager {
             UserDefaults.appGroup.set(newValue, forKey: "UserDidCompleteSetup")
         }
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension OnboardingManager {
@@ -362,7 +361,14 @@ extension OnboardingManager {
         appearance.titleTextColor = UIColor.label
         appearance.descriptionTextColor = UIColor.label
         appearance.actionButtonColor = UIColor.systemYellow
-        appearance.actionButtonTitleColor = UIColor.systemBackground
+        appearance.actionButtonTitleColor = UIColor.init(dynamicProvider: { collection in
+            switch collection.userInterfaceStyle {
+                case .dark:
+                    return UIColor.black
+                default:
+                    return UIColor.black
+            }
+        })
         appearance.alternativeButtonTitleColor = UIColor.label
         
         return appearance

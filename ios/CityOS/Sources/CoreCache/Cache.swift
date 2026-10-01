@@ -11,7 +11,7 @@ import Combine
 import OSLog
 import Core
 
-public protocol Cache {
+nonisolated public protocol Cache {
     
     associatedtype Data: Codable
     
@@ -22,7 +22,7 @@ public protocol Cache {
     
 }
 
-public class DefaultCache<CacheData: Codable>: Cache {
+nonisolated public class DefaultCache<CacheData: Codable>: Cache {
     
     public typealias Data = CacheData
     

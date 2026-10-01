@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class LocationViewModel: NSObject, ObservableObject {
+nonisolated public class LocationViewModel: NSObject {
     
     
     

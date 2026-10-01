@@ -11,7 +11,7 @@ import EFAAPI
 
 public struct TransitLocationMapView: View {
     
-    @State private var mapRegion = MKCoordinateRegion(
+    private let mapRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(
             latitude: 51.5,
             longitude: -0.12
@@ -40,12 +40,14 @@ public struct TransitLocationMapView: View {
 //    }
     
     public var body: some View {
-        Map(coordinateRegion: $mapRegion, annotationItems: locations) { location in
+        Map(initialPosition: .region(mapRegion)) {
             
-            MapAnnotation(coordinate: location.coordinate) {
-                Circle()
-                    .stroke(.red, lineWidth: 3)
-                    .frame(width: 44, height: 44)
+            ForEach(locations) { location in
+                Annotation(location.name, coordinate: location.coordinate) {
+                    Circle()
+                        .stroke(.red, lineWidth: 3)
+                        .frame(width: 44, height: 44)
+                }
             }
         }
     }

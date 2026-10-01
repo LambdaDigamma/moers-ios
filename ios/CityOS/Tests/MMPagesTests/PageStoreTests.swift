@@ -10,12 +10,13 @@ import XCTest
 import GRDB
 @testable import MMPages
 
+@MainActor
 public final class PageStoreTests: XCTestCase {
     
     public var writer: DatabaseWriter!
     public var store: PageStore!
     
-    public override func setUp() {
+    public override func setUp() async throws {
         
         guard let dbQueue = try? DatabaseQueue(path: ":memory:") else { fatalError() }
         

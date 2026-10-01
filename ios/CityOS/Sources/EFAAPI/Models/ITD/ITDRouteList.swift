@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ITDRouteList: Codable, Sendable, DynamicNodeDecoding {
+nonisolated public struct ITDRouteList: Codable, Sendable, DynamicNodeDecoding {
     
     public let routes: [ITDRoute]
     

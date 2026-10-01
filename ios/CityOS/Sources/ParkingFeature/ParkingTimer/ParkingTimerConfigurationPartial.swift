@@ -11,7 +11,7 @@ import CoreLocation
 
 public struct ParkingTimerConfigurationPartial: View {
     
-    @ObservedObject var viewModel: ParkingTimerViewModel
+    @Bindable var viewModel: ParkingTimerViewModel
     
     public init(viewModel: ParkingTimerViewModel) {
         self.viewModel = viewModel
@@ -129,6 +129,8 @@ public struct ParkingTimerConfigurationPartial: View {
                         location: coordinate,
                         span: 0.002
                     )
+                    // A new position needs a new snapshot, even when the view size is unchanged.
+                    .id([coordinate.latitude, coordinate.longitude])
                     .opacity(viewModel.saveParkingLocation ? 1 : 0.5)
                     
                 }

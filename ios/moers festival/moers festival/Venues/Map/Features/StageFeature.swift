@@ -17,7 +17,9 @@ public struct StageProperties: Codable {
 public class StageFeature: GeoFeature<StageProperties>, FGDDecodableFeature {
     
     public typealias Properties = StageProperties
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension StageFeature: StylableFeature {

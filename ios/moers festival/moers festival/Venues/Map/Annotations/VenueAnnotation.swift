@@ -31,7 +31,9 @@ public class VenueAnnotation: NSObject, MKAnnotation, DisplayCacheableAnnotation
     public static let mapScaleThreshold: Double = 0.01
     
     public static let displayCacheKey = String(describing: VenueAnnotation.self)
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 #endif

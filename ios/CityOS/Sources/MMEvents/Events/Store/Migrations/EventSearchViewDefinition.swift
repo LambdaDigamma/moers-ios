@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-public enum EventSearchViewDefinition {
+nonisolated public enum EventSearchViewDefinition {
 
     public static let viewName = "event_search_view"
 

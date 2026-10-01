@@ -11,7 +11,7 @@ import UIKit
 import ModernNetworking
 import MMEvents
 import Cache
-import Factory
+import FactoryKit
 import OSLog
 import Core
 import EFAUI
@@ -333,5 +333,7 @@ class ApplicationCoordinator: NSObject {
         }
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

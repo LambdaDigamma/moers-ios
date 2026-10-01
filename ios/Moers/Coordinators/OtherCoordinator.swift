@@ -13,13 +13,18 @@ import EFAUI
 import EFAAPI
 import AppFeedback
 import MapFeature
-import Factory
+import FactoryKit
 
 public class OtherCoordinator: Coordinator {
     
     @LazyInjected(\.entryManager) var entryManager
     
     public var navigationController: CoordinatedNavigationController
+
+    public var rootViewController: UIViewController { navigationController }
+
+    public var tabBarItem: UITabBarItem? { rootViewController.tabBarItem }
+
     public var otherViewController: OtherViewController?
     public let transitService: DefaultTransitService
     
@@ -249,5 +254,7 @@ public class OtherCoordinator: Coordinator {
         self.navigationController.pushViewController(viewController, animated: true)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

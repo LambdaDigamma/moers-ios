@@ -9,10 +9,10 @@
 import UIKit
 import Foundation
 import AppScaffold
-@preconcurrency import ModernNetworking
+import ModernNetworking
 import Core
 import MMEvents
- import Factory
+import FactoryKit
 
 class ServiceConfiguration: BootstrappingProcedureStep {
 
@@ -23,15 +23,17 @@ class ServiceConfiguration: BootstrappingProcedureStep {
         }
 
         Container.shared.festivalEventService.register {
-            let loader = Container.shared.httpLoader.resolve()
-            return DefaultFestivalEventService(loader: loader) as FestivalEventService
+            let client = Container.shared.httpClient.resolve()
+            return DefaultFestivalEventService(client: client) as FestivalEventService
         }
 
         Container.shared.locationEventService.register {
-            let loader = Container.shared.httpLoader.resolve()
-            return DefaultLocationEventService(loader: loader) as LocationEventService
+            let client = Container.shared.httpClient.resolve()
+            return DefaultLocationEventService(client: client) as LocationEventService
         }
 
     }
 
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -93,7 +93,7 @@ final class DebugFCMTokenViewController: UIViewController {
         Messaging.messaging().token { [weak self] token, error in
             let errorMessage = error?.localizedDescription
 
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 self?.applyTokenResult(token: token, errorMessage: errorMessage)
             }
         }
@@ -132,4 +132,6 @@ final class DebugFCMTokenViewController: UIViewController {
         copyButton.isEnabled = true
     }
 
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

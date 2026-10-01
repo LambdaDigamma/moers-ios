@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum BlockType: String, CaseIterable, Codable, CaseIterableDefaultsLast, Hashable, Equatable, Sendable {
+nonisolated public enum BlockType: String, CaseIterable, Codable, CaseIterableDefaultsLast, Hashable, Equatable, Sendable {
     
     case youtubeVideo = "youtube-video"
     case markdown = "markdown"
@@ -31,15 +31,15 @@ public enum BlockType: String, CaseIterable, Codable, CaseIterableDefaultsLast, 
     
 }
 
-public protocol Blockable: Codable {
+nonisolated public protocol Blockable: Codable, Sendable {
     
     static var type: BlockType { get }
     
 }
 
-public class AnyBlockable: Codable, @unchecked Sendable {
+nonisolated public final class AnyBlockable: Codable, Sendable {
     
-    public var base: any Blockable
+    public let base: any Blockable
     
     public init(_ base: any Blockable) {
         self.base = base
@@ -49,7 +49,7 @@ public class AnyBlockable: Codable, @unchecked Sendable {
         case type, base
     }
     
-    required public init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -70,11 +70,11 @@ public class AnyBlockable: Codable, @unchecked Sendable {
 }
 
 
-protocol CaseIterableDefaultsLast: Decodable & CaseIterable & RawRepresentable
+nonisolated protocol CaseIterableDefaultsLast: Decodable & CaseIterable & RawRepresentable
 where Self.RawValue: Decodable, Self.AllCases: BidirectionalCollection { }
 
 extension CaseIterableDefaultsLast {
-    public init(from decoder: Decoder) throws {
+    nonisolated public init(from decoder: Decoder) throws {
         self = try Self(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? Self.allCases.last!
     }
 }

@@ -8,13 +8,16 @@
 
 import Foundation
 import Combine
-import Factory
+import FactoryKit
 import ModernNetworking
 import MMAPI
 
 @available(iOS 13.0, *)
 class BaseOrganisationRepository {
     @Published var organisations = Resource<[Organisation]>.loading
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 @available(iOS 13.0, *)
@@ -78,5 +81,7 @@ class RemoteOrganisationRepository: BaseOrganisationRepository, OrganisationRepo
             }
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

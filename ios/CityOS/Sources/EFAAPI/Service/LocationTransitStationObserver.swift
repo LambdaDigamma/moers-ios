@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Factory
+import FactoryKit
 import CoreLocation
 import Combine
 import ModernNetworking
@@ -38,6 +38,8 @@ public class DefaultLocationTransitStationObserver {
         }
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 

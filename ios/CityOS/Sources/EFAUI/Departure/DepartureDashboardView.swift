@@ -7,7 +7,7 @@
 
 import SwiftUI
 import EFAAPI
-import Factory
+import FactoryKit
 import Combine
 
 public struct DepartureDashboardData {
@@ -17,11 +17,12 @@ public struct DepartureDashboardData {
     
 }
 
-public class DashboardDepartureViewModel: ObservableObject {
+@Observable
+public class DashboardDepartureViewModel {
     
-    @Published var data: DataState<DepartureDashboardData, Error> = .loading
+    var data: DataState<DepartureDashboardData, Error> = .loading
     
-    @Injected(\.transitService) private var transitService
+    @ObservationIgnored @Injected(\.transitService) private var transitService
     
     public func load() async {
         
@@ -36,12 +37,14 @@ public class DashboardDepartureViewModel: ObservableObject {
         }
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 public struct DepartureDashboardView: View {
     
-    @StateObject var viewModel: DashboardDepartureViewModel = .init()
+    @State var viewModel: DashboardDepartureViewModel = .init()
     
     public init() {
         

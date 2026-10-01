@@ -83,5 +83,7 @@ class SponsorViewModel {
                     url: URL(string: "http://www.lokalkompass.de/wochen-magazin-moers"))
         ]
     ]
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

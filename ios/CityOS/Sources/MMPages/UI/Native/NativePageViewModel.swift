@@ -6,27 +6,40 @@
 //
 
 import Foundation
-import Factory
+import FactoryKit
 import Combine
-import Factory
+import Observation
 
 @MainActor
-public class NativePageViewModel: ObservableObject {
+@Observable
+public class NativePageViewModel {
     
+    @ObservationIgnored
     var cancellables = Set<AnyCancellable>()
     
     private let pageID: Page.ID
     private let repository: PageRepository
     
-    @Published public var state: DataState<Page, Error> = .loading
+    public var state: DataState<Page, Error> = .loading {
+        didSet {
+            stateSubject.send(state)
+        }
+    }
+
+    @ObservationIgnored
+    private let stateSubject = CurrentValueSubject<DataState<Page, Error>, Never>(.loading)
+
+    public var statePublisher: AnyPublisher<DataState<Page, Error>, Never> {
+        stateSubject.eraseToAnyPublisher()
+    }
     
-    public init(pageID: Page.ID) {
+    public init(pageID: Page.ID, repository: PageRepository = Container.shared.pageRepository()) {
         self.pageID = pageID
-        self.repository = Container.shared.pageRepository()
-        self.setupObserver()
+        self.repository = repository
     }
     
     public func setupObserver() {
+        guard cancellables.isEmpty else { return }
         
         repository
             .pagePublisher(pageID: pageID)
@@ -44,8 +57,8 @@ public class NativePageViewModel: ObservableObject {
             })
             .eraseToAnyPublisher()
             .receive(on: DispatchQueue.main)
-            .sink { (state: DataState<Page, Error>) in
-                self.state = state
+            .sink { [weak self] (state: DataState<Page, Error>) in
+                self?.state = state
             }
             .store(in: &cancellables)
            
@@ -55,6 +68,8 @@ public class NativePageViewModel: ObservableObject {
     /// the data from network if the cached data is not up to date according
     /// to protocol cache information.
     public func reload() async {
+        guard !Task.isCancelled else { return }
+        setupObserver()
         do {
             try await repository.reloadPage(for: pageID)
         } catch {
@@ -72,8 +87,11 @@ public class NativePageViewModel: ObservableObject {
     
     public func cancel() {
         
-        self.cancellables.forEach { $0.cancel() }
+        cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

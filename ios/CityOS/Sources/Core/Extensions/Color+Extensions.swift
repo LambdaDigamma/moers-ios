@@ -83,15 +83,15 @@ public extension UIColor {
         self.init(red: red, green: green, blue:  blue, alpha: alpha)
     }
     
-    func lighter(by percentage: CGFloat = 30.0) -> UIColor? {
+    nonisolated func lighter(by percentage: CGFloat = 30.0) -> UIColor? {
         return self.adjust(by: abs(percentage))
     }
     
-    func darker(by percentage: CGFloat = 30.0) -> UIColor? {
+    nonisolated func darker(by percentage: CGFloat = 30.0) -> UIColor? {
         return self.adjust(by: -1 * abs(percentage))
     }
     
-    func adjust(by percentage: CGFloat = 30.0) -> UIColor? {
+    nonisolated func adjust(by percentage: CGFloat = 30.0) -> UIColor? {
         var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
         if self.getRed(&r, green: &g, blue: &b, alpha: &a) {
             return UIColor(

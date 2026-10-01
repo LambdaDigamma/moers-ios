@@ -11,7 +11,7 @@ import Foundation
 @preconcurrency import MediaLibraryKit
 import ModernNetworking
 
-public struct FestivalEventPageResponse: Model, Sendable {
+nonisolated public struct FestivalEventPageResponse: Model, Sendable {
     
     public let header: Media?
     public let event: Event?

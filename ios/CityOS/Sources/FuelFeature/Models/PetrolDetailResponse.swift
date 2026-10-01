@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct PetrolDetailResponse: Codable {
+nonisolated public struct PetrolDetailResponse: Codable {
     
     public var ok: Bool
     public var license: String

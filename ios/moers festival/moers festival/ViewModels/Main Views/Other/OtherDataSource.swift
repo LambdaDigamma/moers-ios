@@ -130,7 +130,9 @@ class OtherDataSource: NSObject {
         }
         return row
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 private struct FestivalInfoHeroContentConfiguration: UIContentConfiguration {
@@ -242,6 +244,9 @@ private final class FestivalInfoHeroContentView: UIView, UIContentView {
         iconContainerView.backgroundColor = configuration.icon.backgroundColor
         iconImageView.image = UIImage(systemName: configuration.icon.symbolName)
     }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 private extension RowIconStyle {

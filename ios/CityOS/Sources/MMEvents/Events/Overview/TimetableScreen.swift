@@ -11,12 +11,12 @@ public struct TimetableScreen: View {
     
     @AppStorage("currentEventDisplayMode") private var displayMode: DailyEventsDisplayMode = .compact
     @State private var showingFilter = false
-    @EnvironmentObject private var transmitter: TimetableTransmitter
+    @Environment(TimetableTransmitter.self) private var transmitter: TimetableTransmitter
     
-    @StateObject private var viewModel: TimetableViewModel
+    @State private var viewModel: TimetableViewModel
     
     public init(viewModel: TimetableViewModel = TimetableViewModel()) {
-        self._viewModel = StateObject(wrappedValue: viewModel)
+        self._viewModel = State(initialValue: viewModel)
     }
     
     public var body: some View {
@@ -111,8 +111,10 @@ struct TimetableScreen_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             TimetableScreen()
-                .environmentObject(TimetableTransmitter())
+                .environment(TimetableTransmitter())
+                #if !os(tvOS)
                 .navigationBarTitleDisplayMode(.inline)
+                #endif
                 .preferredColorScheme(.dark)
         }
         .accentColor(.yellow)

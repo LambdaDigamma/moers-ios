@@ -7,11 +7,13 @@
 
 import Foundation
 import Core
+import Observation
 
 @MainActor
+@Observable
 public class FuelStationDetailViewModel: StandardViewModel {
     
-    @Published public var state: DataState<PetrolStation, Error> = .loading
+    public var state: DataState<PetrolStation, Error> = .loading
     
     private let loadDetails: () async throws -> PetrolStation
     
@@ -29,5 +31,7 @@ public class FuelStationDetailViewModel: StandardViewModel {
             self.state = .error(error)
         }
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

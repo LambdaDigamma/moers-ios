@@ -9,7 +9,7 @@ import SwiftUI
 
 public struct BlockLinkListView: View {
     
-    @EnvironmentObject var actionTransmitter: ActionTransmitter
+    @Environment(ActionTransmitter.self) var actionTransmitter: ActionTransmitter
     
     private let wrapper: PageBlock
     private let block: BlockLinkList

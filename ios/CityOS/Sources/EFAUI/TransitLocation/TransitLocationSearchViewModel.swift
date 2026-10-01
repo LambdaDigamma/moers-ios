@@ -10,21 +10,32 @@ import Combine
 import EFAAPI
 import ModernNetworking
 import OSLog
+import Observation
 
 @MainActor
-public class TransitLocationSearchViewModel: ObservableObject {
+@Observable
+public class TransitLocationSearchViewModel {
     
     private let service: TransitService
+    @ObservationIgnored
     private var searchTask: Task<Void, Never>?
+    @ObservationIgnored
+    private var cancellables = Set<AnyCancellable>()
+    @ObservationIgnored
+    private let searchTermSubject = CurrentValueSubject<String, Never>("")
     
-    @Published public var searchTerm: String = ""
-    @Published public var transitLocations: [TransitLocation] = []
-    @Published public var recentSearches: [TransitLocation] = []
+    public var searchTerm: String = "" {
+        didSet {
+            searchTermSubject.send(searchTerm)
+        }
+    }
+    public var transitLocations: [TransitLocation] = []
+    public var recentSearches: [TransitLocation] = []
     
     public init(service: TransitService) {
         self.service = service
         
-        $searchTerm
+        searchTermSubject
             .debounce(for: .milliseconds(400), scheduler: RunLoop.main)
             .removeDuplicates()
             .map { search -> String? in
@@ -37,6 +48,7 @@ public class TransitLocationSearchViewModel: ObservableObject {
             .sink { [weak self] search in
                 self?.performSearch(searchText: search)
             }
+            .store(in: &cancellables)
     }
     
     public var searchActive: Bool {
@@ -145,5 +157,7 @@ public class TransitLocationSearchViewModel: ObservableObject {
         return try decoder.decode([TransitLocation].self, from: data)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

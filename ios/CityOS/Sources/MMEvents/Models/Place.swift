@@ -9,7 +9,7 @@ import Core
 import Foundation
 import ModernNetworking
 
-public struct Place: Model, Hashable, Stubbable, Sendable {
+nonisolated public struct Place: Model, Hashable, Stubbable, Sendable {
     
     public typealias ID = Int
     
@@ -168,7 +168,7 @@ public struct Place: Model, Hashable, Stubbable, Sendable {
     
 }
 
-extension Place {
+nonisolated extension Place {
     
     public static var decoder: JSONDecoder {
         let decoder = JSONDecoder()

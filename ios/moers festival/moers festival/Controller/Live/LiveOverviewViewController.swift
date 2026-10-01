@@ -11,7 +11,7 @@ import MMEvents
 import AVKit
 import StateViewController
 import OSLog
-import Factory
+import FactoryKit
 
 class LiveOverviewViewController: StateViewController<LivestreamState> {
     
@@ -308,5 +308,7 @@ class LiveOverviewViewController: StateViewController<LivestreamState> {
         
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

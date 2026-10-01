@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ITDFare: Codable, Sendable, DynamicNodeDecoding {
+nonisolated public struct ITDFare: Codable, Sendable, DynamicNodeDecoding {
     
     public let cFEPR: Int
     public let singleTicket: [ITDSingleTicket]

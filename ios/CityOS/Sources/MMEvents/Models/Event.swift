@@ -9,7 +9,7 @@ import Foundation
 import MMPages
 @preconcurrency import MediaLibraryKit
 
-public struct Event: BaseEvent, Equatable, Hashable, Sendable {
+nonisolated public struct Event: BaseEvent, Equatable, Hashable, Sendable {
     
     public typealias ID = Int
     
@@ -131,7 +131,8 @@ public struct Event: BaseEvent, Equatable, Hashable, Sendable {
         let dtoContainer = try decoder.container(keyedBy: DTOCodingKeys.self)
 
         self.id = try container.decode(ID.self, forKey: .id)
-        self.name = try Self.decodeLocalizedString(from: container, forKey: .name) ?? ""
+        self.name = try Self.decodeLocalizedString(from: container, forKey: .name)
+            ?? container.decode(String.self, forKey: .name)
         self.description = try Self.decodeLocalizedString(from: container, forKey: .description)
         self.url = try container.decodeIfPresent(String.self, forKey: .url)
         self.startDate = try container.decodeIfPresent(Date.self, forKey: .startDate)
@@ -204,7 +205,7 @@ public struct Event: BaseEvent, Equatable, Hashable, Sendable {
     
 }
 
-extension Event {
+nonisolated extension Event {
     
     public static var decoder: JSONDecoder {
         let decoder = JSONDecoder()
@@ -252,7 +253,7 @@ extension Event {
     
 }
 
-private extension Event {
+nonisolated private extension Event {
 
     static func decodeLocalizedString<Key: CodingKey>(
         from container: KeyedDecodingContainer<Key>,

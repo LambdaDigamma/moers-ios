@@ -9,20 +9,50 @@ import Foundation
 import CoreLocation
 import Combine
 
+@MainActor
 public final class StaticLocationService: LocationService {
 
     // MARK: - Streams
 
-    public let authorizationStatuses: AsyncStream<CLAuthorizationStatus>
-    public let locations: AsyncThrowingStream<CLLocation, Error>
+    public var authorizationStatus: CLAuthorizationStatus {
+        currentAuthorizationStatus
+    }
+
+    public var authorizationStatuses: AsyncStream<CLAuthorizationStatus> {
+        AsyncStream { continuation in
+            let id = UUID()
+            authorizationContinuations[id] = continuation
+            continuation.yield(currentAuthorizationStatus)
+
+            continuation.onTermination = { @Sendable [weak self] _ in
+                Task { @MainActor [weak self] in
+                    self?.authorizationContinuations[id] = nil
+                }
+            }
+        }
+    }
+
+    public var locations: AsyncThrowingStream<CLLocation, Error> {
+        AsyncThrowingStream { continuation in
+            let id = UUID()
+            locationContinuations[id] = continuation
+            continuation.yield(currentLocation)
+
+            continuation.onTermination = { @Sendable [weak self] _ in
+                Task { @MainActor [weak self] in
+                    self?.locationContinuations[id] = nil
+                }
+            }
+        }
+    }
 
     // MARK: - Internal State
 
     private var currentAuthorizationStatus: CLAuthorizationStatus
     private var currentLocation: CLLocation
 
-    private let authorizationContinuation: AsyncStream<CLAuthorizationStatus>.Continuation
-    private let locationContinuation: AsyncThrowingStream<CLLocation, Error>.Continuation
+    private var authorizationContinuations: [UUID: AsyncStream<CLAuthorizationStatus>.Continuation] = [:]
+    private var locationContinuations: [UUID: AsyncThrowingStream<CLLocation, Error>.Continuation] = [:]
 
     // MARK: - Init
 
@@ -32,24 +62,13 @@ public final class StaticLocationService: LocationService {
     ) {
         self.currentAuthorizationStatus = authorizationStatus
         self.currentLocation = initialLocation
-
-        let (authStream, authContinuation) = AsyncStream.makeStream(of: CLAuthorizationStatus.self)
-        self.authorizationStatuses = authStream
-        self.authorizationContinuation = authContinuation
-
-        let (locationStream, locationContinuation) = AsyncThrowingStream.makeStream(of: CLLocation.self)
-        self.locations = locationStream
-        self.locationContinuation = locationContinuation
-
-        authContinuation.yield(authorizationStatus)
-        locationContinuation.yield(initialLocation)
     }
     
     // MARK: - Public API
     
     public func requestWhenInUseAuthorization() {
         currentAuthorizationStatus = .authorizedWhenInUse
-        authorizationContinuation.yield(.authorizedWhenInUse)
+        authorizationContinuations.values.forEach { $0.yield(.authorizedWhenInUse) }
     }
     
     public func requestCurrentLocation() {
@@ -59,7 +78,7 @@ public final class StaticLocationService: LocationService {
         )
         
         currentLocation = location
-        locationContinuation.yield(location)
+        locationContinuations.values.forEach { $0.yield(location) }
     }
 
     public func stopMonitoring() {
@@ -68,6 +87,9 @@ public final class StaticLocationService: LocationService {
     
     public func configureLocation(_ location: CLLocation) {
         currentLocation = location
-        locationContinuation.yield(location)
+        locationContinuations.values.forEach { $0.yield(location) }
     }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

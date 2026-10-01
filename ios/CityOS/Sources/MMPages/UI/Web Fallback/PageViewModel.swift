@@ -14,14 +14,16 @@ import ModernNetworking
 import Combine
 import SwiftUI
 
-public class PageViewModel: ObservableObject {
+@Observable
+public class PageViewModel {
     
     private let pageService: PageService?
     private let pageID: Page.ID
+    @ObservationIgnored
     private var cancellables = Set<AnyCancellable>()
     
-    @Published var page: UIResource<Page> = .loading
-    @Published var urlRequest: UIResource<URLRequest> = .loading
+    var page: UIResource<Page> = .loading
+    var urlRequest: UIResource<URLRequest> = .loading
     
     public init(pageService: PageService?, pageID: Page.ID) {
         self.pageService = pageService
@@ -64,7 +66,9 @@ public class PageViewModel: ObservableObject {
         }
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 #endif

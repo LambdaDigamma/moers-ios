@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-public struct FavoriteEventRecord: Equatable, Codable, Sendable {
+nonisolated public struct FavoriteEventRecord: Equatable, Codable, Sendable {
     
     public var id: Int64?
     public var eventID: Int64
@@ -25,11 +25,11 @@ public struct FavoriteEventRecord: Equatable, Codable, Sendable {
     
 }
 
-extension FavoriteEventRecord: FetchableRecord, MutablePersistableRecord {
+nonisolated extension FavoriteEventRecord: FetchableRecord, MutablePersistableRecord {
     
     public static let databaseTableName: String = FavoriteEventsTableDefinition.tableName
     
-    public enum Columns {
+    nonisolated public enum Columns {
         static let eventID = Column(CodingKeys.eventID)
     }
     
@@ -49,7 +49,7 @@ extension FavoriteEventRecord: FetchableRecord, MutablePersistableRecord {
     
 }
 
-public extension Optional where Wrapped == Date {
+nonisolated public extension Optional where Wrapped == Date {
     
     /// Returns the date components (day, month, year) for the specified date.
     /// If the given date not exceeds the start of the date by the given interval, 

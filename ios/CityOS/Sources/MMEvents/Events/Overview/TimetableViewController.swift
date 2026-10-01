@@ -5,6 +5,8 @@
 //  Created by Lennart Fischer on 14.04.23.
 //
 
+#if !os(tvOS)
+
 import UIKit
 import Combine
 import SwiftUI
@@ -24,7 +26,7 @@ public class TimetableViewController: UIHostingController<AnyView> {
         let viewModel = TimetableViewModel()
         self.transmitter = transmitter
         self.viewModel = viewModel
-        super.init(rootView: TimetableScreen(viewModel: viewModel).environmentObject(transmitter).toAnyView())
+        super.init(rootView: TimetableScreen(viewModel: viewModel).environment(transmitter).toAnyView())
     }
     
     required init?(coder: NSCoder) {
@@ -83,7 +85,9 @@ public class TimetableViewController: UIHostingController<AnyView> {
 
         present(navigationController, animated: true)
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 //@available(iOS 26.0, *)
@@ -166,3 +170,5 @@ public class TimetableViewController: UIHostingController<AnyView> {
 //    }
 //    
 //}
+
+#endif

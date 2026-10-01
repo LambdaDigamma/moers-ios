@@ -6,28 +6,57 @@
 //
 
 import Foundation
-import Factory
+import FactoryKit
 import Combine
 import Core
 import OSLog
 import SwiftUI
 
 @MainActor
-public class TimetableViewModel: ObservableObject {
+@Observable
+public class TimetableViewModel {
 
-    @Published public private(set) var days: [TimetableDay] = []
-    @Published public private(set) var selectedDate: Date = Date().stripTimeComponent()
-    @Published public private(set) var searchText: String = ""
-    @Published public private(set) var isSearchActive: Bool = false
-    @Published public private(set) var searchResults: [EventListItemViewModel] = []
-    @Published public private(set) var searchSections: [EventListSection] = []
-    @Published public private(set) var searchState: TimetableSearchState = .inactive
-    @Published var allEventsHideSchedule: Bool = false
-
-    @PersistedFilter(key: "timetableFilter") public var filter: EventFilter {
+    public private(set) var days: [TimetableDay] = [] {
         didSet {
-            self.objectWillChange.send()
-            self.rebuildDays()
+            daysSubject.send(days)
+        }
+    }
+    public private(set) var selectedDate: Date = Date().stripTimeComponent()
+    public private(set) var searchText: String = "" {
+        didSet {
+            searchTextSubject.send(searchText)
+        }
+    }
+    public private(set) var isSearchActive: Bool = false
+    public private(set) var searchResults: [EventListItemViewModel] = [] {
+        didSet {
+            searchResultsSubject.send(searchResults)
+        }
+    }
+    public private(set) var searchSections: [EventListSection] = [] {
+        didSet {
+            searchSectionsSubject.send(searchSections)
+        }
+    }
+    public private(set) var searchState: TimetableSearchState = .inactive {
+        didSet {
+            searchStateSubject.send(searchState)
+        }
+    }
+    var allEventsHideSchedule: Bool = false
+
+    @ObservationIgnored @PersistedFilter(key: "timetableFilter") private var persistedFilter: EventFilter
+
+    public var filter: EventFilter {
+        get {
+            access(keyPath: \.filter)
+            return persistedFilter
+        }
+        set {
+            withMutation(keyPath: \.filter) {
+                persistedFilter = newValue
+                rebuildDays()
+            }
         }
     }
 
@@ -67,14 +96,19 @@ public class TimetableViewModel: ObservableObject {
         })?.events ?? []
     }
 
-    @LazyInjected(\.favoriteEventsStore) private var favoriteEventsStore
+    @ObservationIgnored @LazyInjected(\.favoriteEventsStore) private var favoriteEventsStore
 
     private let repository: EventRepository
-    private let searchEvents: @Sendable (String) async throws -> [Event]
+    private let searchEvents: (String) async throws -> [Event]
+    @ObservationIgnored
     private var storedEvents: [Event] = []
+    @ObservationIgnored
     private var favoriteEventIDs = Set<Int64>()
+    @ObservationIgnored
     private var searchTask: Task<Void, Never>?
+    @ObservationIgnored
     private var searchGeneration = 0
+    @ObservationIgnored
     private var eventListItemViewModelsByID: [Event.ID: EventListItemViewModel] = [:]
     private static let searchDebounceNanoseconds: UInt64 = 200_000_000
     nonisolated private static let searchLogger = Logger(
@@ -82,11 +116,42 @@ public class TimetableViewModel: ObservableObject {
         category: "TimetableSearch"
     )
 
+    @ObservationIgnored
     public var cancellables = Set<AnyCancellable>()
+    @ObservationIgnored
+    private let daysSubject = CurrentValueSubject<[TimetableDay], Never>([])
+    @ObservationIgnored
+    private let searchTextSubject = CurrentValueSubject<String, Never>("")
+    @ObservationIgnored
+    private let searchResultsSubject = CurrentValueSubject<[EventListItemViewModel], Never>([])
+    @ObservationIgnored
+    private let searchSectionsSubject = CurrentValueSubject<[EventListSection], Never>([])
+    @ObservationIgnored
+    private let searchStateSubject = CurrentValueSubject<TimetableSearchState, Never>(.inactive)
+
+    public var daysPublisher: AnyPublisher<[TimetableDay], Never> {
+        daysSubject.eraseToAnyPublisher()
+    }
+
+    public var searchTextPublisher: AnyPublisher<String, Never> {
+        searchTextSubject.eraseToAnyPublisher()
+    }
+
+    public var searchResultsPublisher: AnyPublisher<[EventListItemViewModel], Never> {
+        searchResultsSubject.eraseToAnyPublisher()
+    }
+
+    public var searchSectionsPublisher: AnyPublisher<[EventListSection], Never> {
+        searchSectionsSubject.eraseToAnyPublisher()
+    }
+
+    public var searchStatePublisher: AnyPublisher<TimetableSearchState, Never> {
+        searchStateSubject.eraseToAnyPublisher()
+    }
 
     public init(
         repository: EventRepository = Container.shared.eventRepository(),
-        searchEvents: @escaping @Sendable (EventRepository, String) async throws -> [Event] = { repository, query in
+        searchEvents: @escaping (EventRepository, String) async throws -> [Event] = { repository, query in
             try await repository.searchEvents(query: query)
         }
     ) {
@@ -105,13 +170,15 @@ public class TimetableViewModel: ObservableObject {
     }
 
     public func setupObserver() {
+        guard cancellables.isEmpty else { return }
 
         Publishers.CombineLatest(
             repository.events().replaceError(with: []),
             favoriteEventsPublisher()
         )
             .receive(on: DispatchQueue.main)
-            .sink { combinedValue in
+            .sink { [weak self] combinedValue in
+                guard let self else { return }
                 let (events, favoriteEventIDs) = combinedValue
 
                 self.storedEvents = events
@@ -288,7 +355,7 @@ public class TimetableViewModel: ObservableObject {
 
         searchState = .loading
 
-        searchTask = Task.detached(priority: .userInitiated) { [weak self, searchEvents] in
+        searchTask = Task(priority: .userInitiated) { [weak self] in
             do {
                 if debounce {
                     try await Task.sleep(nanoseconds: debounceNanoseconds)
@@ -296,19 +363,17 @@ public class TimetableViewModel: ObservableObject {
 
                 try Task.checkCancellation()
 
-                let events = try await searchEvents(query)
+                guard let self else { return }
+                let events = try await self.searchEvents(query)
 
                 try Task.checkCancellation()
 
-                await MainActor.run { [weak self] in
-                    guard let self else { return }
-                    guard self.isSearchActive, self.searchGeneration == generation else { return }
+                guard self.isSearchActive, self.searchGeneration == generation else { return }
 
-                    self.setSearchResults(events.map { event in
-                        self.makeEventListItemViewModel(for: event)
-                    })
-                    self.searchState = .loaded
-                }
+                self.setSearchResults(events.map { event in
+                    self.makeEventListItemViewModel(for: event)
+                })
+                self.searchState = .loaded
             } catch is CancellationError {
                 return
             } catch {
@@ -317,13 +382,11 @@ public class TimetableViewModel: ObservableObject {
                 let message = String(describing: error)
                 Self.searchLogger.error("Timetable search failed: \(message, privacy: .public)")
 
-                await MainActor.run { [weak self] in
-                    guard let self else { return }
-                    guard self.isSearchActive, self.searchGeneration == generation else { return }
+                guard let self else { return }
+                guard self.isSearchActive, self.searchGeneration == generation else { return }
 
-                    self.setSearchResults([])
-                    self.searchState = .failed
-                }
+                self.setSearchResults([])
+                self.searchState = .failed
             }
         }
 

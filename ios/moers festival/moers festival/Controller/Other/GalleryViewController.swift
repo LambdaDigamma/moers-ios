@@ -52,7 +52,9 @@ class GalleryViewController: UIViewController {
         self.galleryView.setCollectionViewDelegate(self)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public extension Event {
+nonisolated public extension Event {
 
     var displayLocationName: String? {
         if let locationName = extras?.displayLocationName {

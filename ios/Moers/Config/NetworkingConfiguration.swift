@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 import AppScaffold
 import ModernNetworking
-import Factory
+import Core
+import FactoryKit
 import OSLog
 
 public let subsystem = Bundle.main.bundleIdentifier ?? "de.okfn.niederrhein.Moers"
@@ -56,6 +57,7 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
         }
         
         Container.shared.httpLoader.register { loader }
+        Container.shared.httpClient.register { HTTPLoaderClient(loader: loader) }
         
         return loader
         
@@ -140,5 +142,7 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
         #endif
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

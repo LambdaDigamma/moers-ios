@@ -135,8 +135,13 @@ private struct ShadowPreviewContainer: View {
             
     }
     .background {
+#if os(iOS)
         Color(UIColor.secondarySystemBackground)
             .ignoresSafeArea()
+#else
+        Color.secondary.opacity(0.12)
+            .ignoresSafeArea()
+#endif
     }
     
 }

@@ -10,23 +10,26 @@ import EFAAPI
 import ModernNetworking
 import Combine
 import OSLog
-import Factory
+import FactoryKit
 import CoreLocation
+import Observation
 
-public class TripSearchViewModel: ObservableObject {
+@Observable
+public class TripSearchViewModel {
     
-    @Published public var originID: StatelessIdentifier?
-    @Published public var destinationID: StatelessIdentifier?
+    public var originID: StatelessIdentifier?
+    public var destinationID: StatelessIdentifier?
     
-    @Published public var origin: TransitLocation?
-    @Published public var destination: TransitLocation?
+    public var origin: TransitLocation?
+    public var destination: TransitLocation?
     
-    @Published var result: DataState<TripRequest, Error> = .empty
+    var result: DataState<TripRequest, Error> = .empty
     
     public var onSearchEvent: (() -> Void)?
     
     private let transitService: TransitService
     private let tripService: DefaultTripService = Container.shared.tripService()
+    @ObservationIgnored
     private var cancellables = Set<AnyCancellable>()
     private let logger: Logger = .init(.default)
     
@@ -150,7 +153,9 @@ public class TripSearchViewModel: ObservableObject {
         tripService.activate(trip: cachedTrip)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 public extension TransitLocation {

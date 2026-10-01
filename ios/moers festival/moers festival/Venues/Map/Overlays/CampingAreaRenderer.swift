@@ -45,6 +45,8 @@ public class CampingAreaRenderer: MKMultiPolygonRenderer {
         super.draw(mapRect, zoomScale: zoomScale, in: context)
     }
 
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 struct CampingAreaRenderer_Previews: PreviewProvider {

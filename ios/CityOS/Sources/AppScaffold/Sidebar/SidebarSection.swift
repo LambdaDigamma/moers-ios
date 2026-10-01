@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct SidebarSection: Hashable, Equatable, Sendable {
+nonisolated public struct SidebarSection: Hashable, Equatable, Sendable {
     
     public var title: String?
     public var isCollapsable: Bool = false

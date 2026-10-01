@@ -9,7 +9,7 @@ import Foundation
 import XMLCoder
 import ModernNetworking
 
-public struct GeoITDRequest: Model, DynamicNodeDecoding, Sendable {
+nonisolated public struct GeoITDRequest: Model, DynamicNodeDecoding, Sendable {
     
     public let language: String
     public let sessionID: Int

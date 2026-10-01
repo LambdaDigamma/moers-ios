@@ -17,7 +17,9 @@ public struct CampingProperties: Codable {
 public class CampingFeature: GeoFeature<CampingProperties>, FGDDecodableFeature {
     
     public typealias Properties = CampingProperties
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension CampingFeature: StylableFeature {

@@ -14,7 +14,7 @@ import FirebaseCore
 import MMEvents
 import Combine
 import OSLog
-import Factory
+import FactoryKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
@@ -171,5 +171,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         }
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

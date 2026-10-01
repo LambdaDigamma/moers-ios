@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct PetrolStationTimeEntry: Codable, Equatable {
+nonisolated public struct PetrolStationTimeEntry: Codable, Equatable {
     
     public var text: String
     public var start: String

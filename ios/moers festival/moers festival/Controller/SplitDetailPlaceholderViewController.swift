@@ -43,4 +43,7 @@ final class SplitDetailPlaceholderViewController: UIViewController {
             label.trailingAnchor.constraint(lessThanOrEqualTo: view.readableContentGuide.trailingAnchor)
         ])
     }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -11,7 +11,7 @@ import UIKit
 import MapKit
 
 import Pulley
-import Factory
+import FactoryKit
 import Core
 
 public class DetailViewController: UIViewController {
@@ -329,7 +329,9 @@ public class DetailViewController: UIViewController {
         viewController.didMove(toParent: self)
         
     }
-        
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension DetailViewController: PulleyDrawerViewControllerDelegate {

@@ -8,7 +8,7 @@
 import Foundation
 import ProseMirror
 
-public struct TextBlock: Blockable, Equatable {
+nonisolated public struct TextBlock: Blockable, Equatable {
     
     public static let type: BlockType = .text
     
@@ -28,4 +28,3 @@ public struct TextBlock: Blockable, Equatable {
     }
     
 }
-

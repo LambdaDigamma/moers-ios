@@ -25,11 +25,11 @@ class AccessibleBulletinPageItem: BLTNPageItem {
     private func setupPresentationHandler() {
         
         self.presentationHandler = { item in
-            let item = item as? AccessibleBulletinPageItem
+            guard let item = item as? AccessibleBulletinPageItem else { return }
             
-            item?.actionButton?.accessibilityIdentifier = self.actionButtonAccessibilityIdentifier
-            item?.alternativeButton?.accessibilityIdentifier = self.alternativeButtonAccessibilityIdentifier
-            item?.titleLabel?.label.accessibilityIdentifier = self.titleLabelAccessibilityIdentifier
+            item.actionButton?.accessibilityIdentifier = item.actionButtonAccessibilityIdentifier
+            item.alternativeButton?.accessibilityIdentifier = item.alternativeButtonAccessibilityIdentifier
+            item.titleLabel?.label.accessibilityIdentifier = item.titleLabelAccessibilityIdentifier
             
         }
         

@@ -72,7 +72,9 @@ public class CheckmarkView: UIView {
         bezierPath.stroke()
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 #endif

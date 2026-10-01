@@ -26,5 +26,7 @@ public class MedicalServiceAnnotation: NSObject, MKAnnotation, DisplayCacheableA
     public static let mapScaleThreshold: Double = 0.005
     
     public static let displayCacheKey = String(describing: MedicalServiceAnnotation.self)
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

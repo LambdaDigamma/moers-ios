@@ -38,10 +38,10 @@ public class FileLoader: MockLoader {
         self.init(statusCode: statusCode, resource: resource, fileExtension: fileExtension, bundle: Bundle.module)
     }
     
-    public override func load(_ request: HTTPRequest, completion: @escaping HTTPResultHandler) {
+    public override func load(_ request: HTTPRequest) async -> HTTPResult {
         
         let urlResponse = HTTPURLResponse(
-            url: request.url!,
+            url: request.url ?? URL(string: "https://fixtures.invalid")!,
             statusCode: statusCode.value,
             httpVersion: "1.1",
             headerFields: [:]
@@ -53,7 +53,7 @@ public class FileLoader: MockLoader {
             
             do {
                 
-                let content = try String(contentsOfFile: path)
+                let content = try String(contentsOfFile: path, encoding: .utf8)
                 data = content.data(using: .utf8) ?? Data()
                 
             } catch {
@@ -66,7 +66,7 @@ public class FileLoader: MockLoader {
         
         let response = HTTPResponse(request, urlResponse!, data)
         
-        completion(.success(response))
+        return .success(response)
         
     }
     

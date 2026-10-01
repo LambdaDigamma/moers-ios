@@ -8,24 +8,25 @@
 
 import UIKit
 import AppScaffold
-@preconcurrency import ModernNetworking
+import ModernNetworking
 import Cache
+import Core
 import MMPages
- import Factory
+import FactoryKit
 
 class MMPagesFrameworkConfiguration: BootstrappingProcedureStep {
 
     func execute(with application: UIApplication) {
 
         Container.shared.pageService.register {
-            let loader = Container.shared.httpLoader.resolve()
-            return DefaultPageService(loader) as PageService
+            let client = Container.shared.httpClient.resolve()
+            return DefaultPageService(client: client) as PageService
         }
 
         Container.shared.pageRepository.scope(.cached).register {
             let appDatabase = Container.shared.appDatabase.resolve()
-            let loader = Container.shared.httpLoader.resolve()
-            let service = DefaultPageService(loader)
+            let client = Container.shared.httpClient.resolve()
+            let service = DefaultPageService(client: client)
             let store = PageStore(
                 writer: appDatabase.dbWriter,
                 reader: appDatabase.reader
@@ -36,4 +37,6 @@ class MMPagesFrameworkConfiguration: BootstrappingProcedureStep {
 
     }
 
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

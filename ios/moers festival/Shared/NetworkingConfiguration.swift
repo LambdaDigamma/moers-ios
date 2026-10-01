@@ -8,26 +8,15 @@
 
 import UIKit
 import AppScaffold
-@preconcurrency import ModernNetworking
+import ModernNetworking
 import Core
-@preconcurrency import Factory
+@preconcurrency import FactoryKit
 
 extension ServerEnvironment {
     
     public static let local = ServerEnvironment(host: "moers-festival.localhost", pathPrefix: "/api/v1/festival")
     public static let staging = ServerEnvironment(host: "staging.moers.app", pathPrefix: "/api/v1/festival")
     public static let production = ServerEnvironment(host: "moers.app", pathPrefix: "/api/v1/festival")
-    
-}
-
-public extension Container {
-    
-    var httpLoader: Factory<HTTPLoader> {
-        Factory(self) {
-            HTTPLoader()
-        }
-            .singleton
-    }
     
 }
 
@@ -53,6 +42,10 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
             }
             return loader
         }
+
+        Container.shared.httpClient.scope(.cached).register {
+            HTTPLoaderClient(loader: Container.shared.httpLoader.resolve())
+        }
         
     }
     
@@ -60,7 +53,7 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
         
         var settingsEnvironment = "production"
         
-        #if DEBUG
+        #if DEBUG && !os(tvOS)
         settingsEnvironment = UserDefaults.standard.string(forKey: "environment") ?? "production"
         
         if LaunchArguments().useMockedData() {
@@ -105,7 +98,7 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
         
     }
     
-    private static nonisolated func setupLoaderChain(with environment: ServerEnvironment) -> HTTPLoader? {
+    private static func setupLoaderChain(with environment: ServerEnvironment) -> HTTPLoader? {
         
         let modifier = ModifyRequestLoader { request in
             
@@ -136,7 +129,7 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
         let sessionLoader = URLSessionLoader(session)
 //        let printLoader = PrintLoader()
         
-        #if DEBUG
+        #if DEBUG && !os(tvOS)
         
         if LaunchArguments().useMockedData() {
             
@@ -167,5 +160,7 @@ class NetworkingConfiguration: BootstrappingProcedureStep {
         
         return configuration
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -6,10 +6,11 @@
 //
 
 import Foundation
-import Factory
+import FactoryKit
 
 public extension Container {
     
+    @MainActor
     var eventService: Factory<EventService?> {
         self {
             nil // Will be configured at runtime

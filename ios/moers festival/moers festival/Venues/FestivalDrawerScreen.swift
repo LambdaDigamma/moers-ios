@@ -11,7 +11,7 @@ import MMEvents
 
 struct FestivalDrawerScreen: View {
     
-    @ObservedObject private var viewModel: FestivalMapViewModel
+    private var viewModel: FestivalMapViewModel
     
     private let onShowPlace: (Place.ID) -> Void
     

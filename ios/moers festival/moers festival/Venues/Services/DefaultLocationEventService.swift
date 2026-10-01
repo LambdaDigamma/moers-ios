@@ -12,12 +12,16 @@ import ModernNetworking
 import MMEvents
 import OSLog
 
-public final class DefaultLocationEventService: LocationEventService, @unchecked Sendable {
+public final class DefaultLocationEventService: LocationEventService {
 
-    nonisolated(unsafe) private let loader: HTTPLoader
+    private let client: any HTTPClient
 
-    public nonisolated init(loader: HTTPLoader) {
-        self.loader = loader
+    public init(client: any HTTPClient) {
+        self.client = client
+    }
+
+    public convenience init(loader: HTTPLoader) {
+        self.init(client: HTTPLoaderClient(loader: loader))
     }
 
     public func getLocations() async throws -> [Place] {
@@ -27,7 +31,7 @@ public final class DefaultLocationEventService: LocationEventService, @unchecked
             path: "/api/v1/festival/locations"
         )
 
-        let result = await loader.load(request)
+        let result = await client.load(request)
         if let error = result.error {
             throw error
         }
@@ -43,7 +47,7 @@ public final class DefaultLocationEventService: LocationEventService, @unchecked
             path: "/api/v1/festival/map/venues/\(id)"
         )
 
-        let result = await loader.load(request)
+        let result = await client.load(request)
         if let error = result.error {
             throw error
         }
@@ -104,7 +108,7 @@ public final class DefaultLocationEventService: LocationEventService, @unchecked
             return
         }
 
-        let result = await loader.load(request)
+        let result = await client.load(request)
 
         if let error = result.error {
             lastUpdate.reset()
@@ -119,4 +123,6 @@ public final class DefaultLocationEventService: LocationEventService, @unchecked
 
     }
 
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

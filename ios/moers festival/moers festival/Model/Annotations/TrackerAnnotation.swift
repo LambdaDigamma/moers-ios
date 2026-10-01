@@ -22,5 +22,7 @@ class TrackerAnnotation: NSObject, MKAnnotation {
     }
     
     var title: String? { return tracker.name }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

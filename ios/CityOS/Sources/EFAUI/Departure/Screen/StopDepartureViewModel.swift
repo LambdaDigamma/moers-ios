@@ -7,14 +7,17 @@
 
 import EFAAPI
 import SwiftUI
-import Factory
+import FactoryKit
 
-public class StopDepartureViewModel: ObservableObject {
+@Observable
+public class StopDepartureViewModel {
     
-    @Published var currentStop: TransitLocation? = nil
+    var currentStop: TransitLocation? = nil
     
     public init() {
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -66,6 +66,8 @@ public class TicketRenderer: MKMultiPolygonRenderer {
 
     }
 
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 struct TicketRenderer_Previews: PreviewProvider {

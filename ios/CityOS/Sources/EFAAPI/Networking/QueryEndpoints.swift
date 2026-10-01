@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal enum QueryEndpoints: String, Codable, CaseIterable {
+nonisolated internal enum QueryEndpoints: String, Codable, CaseIterable {
     
     /// StopFinder-Request
     case stopFinder = "XML_STOPFINDER_REQUEST"

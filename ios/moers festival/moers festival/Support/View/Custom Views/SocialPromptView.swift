@@ -55,5 +55,7 @@ class SocialPromptView: UIView {
         
     }
     
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

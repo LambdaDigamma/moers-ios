@@ -53,6 +53,9 @@ open class PickerView: UIView {
         }()
         
         var customView: UIView?
+
+        // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+        nonisolated deinit {}
     }
     
     /**
@@ -525,7 +528,9 @@ open class PickerView: UIView {
         shouldSelectNearbyToMiddleRow = true
         tableView.reloadData()
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension PickerView: UITableViewDataSource {

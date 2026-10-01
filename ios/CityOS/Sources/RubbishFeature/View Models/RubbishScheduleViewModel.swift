@@ -7,20 +7,27 @@
 
 import Foundation
 import Core
-import Factory
+import FactoryKit
+import Observation
 
 @MainActor
+@Observable
 public class RubbishScheduleViewModel: StandardViewModel {
     
-    @LazyInjected(\.rubbishService) var rubbishService
+    @ObservationIgnored @LazyInjected(\.rubbishService) var rubbishService
     
-    @Published var state: DataState<[RubbishSection], RubbishLoadingError> = .loading
+    var state: DataState<[RubbishSection], RubbishLoadingError> = .loading
     
     public init(
+        rubbishService: RubbishService? = nil,
         initialState: DataState<[RubbishSection], RubbishLoadingError> = .loading
     ) {
         self.state = initialState
         super.init()
+
+        if let rubbishService = rubbishService {
+            self.rubbishService = rubbishService
+        }
     }
     
     public func load() async {
@@ -56,5 +63,7 @@ public class RubbishScheduleViewModel: StandardViewModel {
     public func setLoading() {
         self.state = .loading
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

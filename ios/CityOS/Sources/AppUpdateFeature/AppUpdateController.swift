@@ -1,16 +1,38 @@
 import Combine
 import Foundation
+import Observation
 
 @MainActor
-public final class AppUpdateController: ObservableObject {
-    @Published public private(set) var banner: AppUpdatePresentation?
-    @Published public private(set) var forcedSheet: AppUpdatePresentation?
-    @Published public private(set) var isRefreshing = false
+@Observable
+public final class AppUpdateController {
+    public private(set) var banner: AppUpdatePresentation? {
+        didSet {
+            bannerSubject.send(banner)
+        }
+    }
+    public private(set) var forcedSheet: AppUpdatePresentation? {
+        didSet {
+            forcedSheetSubject.send(forcedSheet)
+        }
+    }
+    public private(set) var isRefreshing = false
 
+    @ObservationIgnored
+    private let bannerSubject = CurrentValueSubject<AppUpdatePresentation?, Never>(nil)
+    @ObservationIgnored
+    private let forcedSheetSubject = CurrentValueSubject<AppUpdatePresentation?, Never>(nil)
     private let statusFetcher: any AppStoreUpdateStatusFetching
     private let remoteConfigurationLoader: any RemoteAppUpdateConfigurationLoading
     private let persistence: AppUpdatePersistence
     private let fallbackStoreURL: URL
+
+    public var bannerPublisher: AnyPublisher<AppUpdatePresentation?, Never> {
+        bannerSubject.eraseToAnyPublisher()
+    }
+
+    public var forcedSheetPublisher: AnyPublisher<AppUpdatePresentation?, Never> {
+        forcedSheetSubject.eraseToAnyPublisher()
+    }
 
     public init(
         statusFetcher: any AppStoreUpdateStatusFetching,
@@ -92,5 +114,7 @@ public final class AppUpdateController: ObservableObject {
             forcedSheet = nil
         }
     }
-}
 
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
+}

@@ -21,9 +21,10 @@ extension Locale {
     
 }
 
+@MainActor
 final class EventViewModelTests: XCTestCase {
     
-    override func setUp() {
+    override func setUp() async throws {
         
         ApplicationServerConfiguration.isMoersFestivalModeEnabled = true
         
@@ -31,11 +32,11 @@ final class EventViewModelTests: XCTestCase {
         
     }
     
-    override func tearDown() {
+    override func tearDown() async throws {
         
     }
     
-    func testMFActiveOnlyStart() {
+    func testMFActiveOnlyStart() async {
         
         let event = Event
             .stub(withID: 1)
@@ -47,7 +48,7 @@ final class EventViewModelTests: XCTestCase {
         
     }
     
-    func testMFNotActiveOnlyStart() {
+    func testMFNotActiveOnlyStart() async {
         
         let event = Event
             .stub(withID: 1)
@@ -59,7 +60,7 @@ final class EventViewModelTests: XCTestCase {
         
     }
     
-    func testMFActiveStartEnd() {
+    func testMFActiveStartEnd() async {
         
         let event = Event
             .stub(withID: 1)
@@ -72,7 +73,7 @@ final class EventViewModelTests: XCTestCase {
         
     }
     
-    func testMFNotActiveStartEnd() {
+    func testMFNotActiveStartEnd() async {
         
         let event = Event
             .stub(withID: 1)
@@ -85,7 +86,7 @@ final class EventViewModelTests: XCTestCase {
         
     }
     
-    func testMFSubtitleStartAndEndSoon() throws {
+    func testMFSubtitleStartAndEndSoon() async throws {
         
         try XCTSkipIf(Locale.isNotEnglish(), "Skipping due to locale.")
         
@@ -101,7 +102,7 @@ final class EventViewModelTests: XCTestCase {
         
     }
     
-    func testMFSubtitleStartSoon() throws {
+    func testMFSubtitleStartSoon() async throws {
         
         try XCTSkipIf(Locale.isNotEnglish(), "Skipping due to locale.")
         
@@ -119,7 +120,7 @@ final class EventViewModelTests: XCTestCase {
         
     }
     
-    func testMFSubtitleStartAndEnd() throws {
+    func testMFSubtitleStartAndEnd() async throws {
         
         try XCTSkipIf(Locale.isNotEnglish(), "Skipping due to locale.")
         
@@ -134,7 +135,7 @@ final class EventViewModelTests: XCTestCase {
         
     }
     
-    func testMFSubtitleStart() throws {
+    func testMFSubtitleStart() async throws {
         
         try XCTSkipIf(Locale.isNotEnglish(), "Skipping due to locale.")
         
@@ -150,7 +151,7 @@ final class EventViewModelTests: XCTestCase {
         
     }
     
-    func testMFSubtitleStartTimeUnknown() throws {
+    func testMFSubtitleStartTimeUnknown() async throws {
         
         try XCTSkipIf(Locale.isNotEnglish(), "Skipping due to locale.")
         
@@ -164,7 +165,7 @@ final class EventViewModelTests: XCTestCase {
         
     }
     
-    func testMFSubtitleActiveStart() throws {
+    func testMFSubtitleActiveStart() async throws {
         
         try XCTSkipIf(Locale.isNotEnglish(), "Skipping due to locale.")
         
@@ -178,7 +179,7 @@ final class EventViewModelTests: XCTestCase {
         
     }
     
-    func testMFSubtitleActiveStartEnd() throws {
+    func testMFSubtitleActiveStartEnd() async throws {
         
         try XCTSkipIf(Locale.isNotEnglish(), "Skipping due to locale.")
         
@@ -193,7 +194,7 @@ final class EventViewModelTests: XCTestCase {
         
     }
     
-    func testMFDetailSubtitleFreeTicket() throws {
+    func testMFDetailSubtitleFreeTicket() async throws {
         
         try XCTSkipIf(Locale.isNotEnglish(), "Skipping due to locale.")
         
@@ -216,7 +217,7 @@ final class EventViewModelTests: XCTestCase {
         
     }
     
-    func testMFDetailSubtitleFestivalTicket() throws {
+    func testMFDetailSubtitleFestivalTicket() async throws {
         
         try XCTSkipIf(Locale.isNotEnglish(), "Skipping due to locale.")
         
@@ -238,7 +239,7 @@ final class EventViewModelTests: XCTestCase {
         
     }
     
-    func testMFDetailSubtitleExtraTicket() throws {
+    func testMFDetailSubtitleExtraTicket() async throws {
         
         try XCTSkipIf(Locale.isNotEnglish(), "Skipping due to locale.")
         
@@ -260,7 +261,7 @@ final class EventViewModelTests: XCTestCase {
         
     }
     
-    func testMFLocationMovingAct() {
+    func testMFLocationMovingAct() async {
         //
         //        let extras = EventExtras
         //            .stub(withID: 1)
@@ -278,7 +279,7 @@ final class EventViewModelTests: XCTestCase {
         //
     }
 
-    func testLocationRepresentationPrefersLocationOverStreet() {
+    func testLocationRepresentationPrefersLocationOverStreet() async {
         let extras = EventExtras(location: "Haus der Demokratiegeschichte", street: "Kastell 5")
         let event = Event
             .stub(withID: 1)
@@ -289,7 +290,7 @@ final class EventViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.locationRepresentation, "Haus der Demokratiegeschichte")
     }
 
-    func testLocationRepresentationFallsBackToStreet() {
+    func testLocationRepresentationFallsBackToStreet() async {
         let extras = EventExtras(location: nil, street: "Kastell 5")
         let event = Event
             .stub(withID: 1)
@@ -302,24 +303,5 @@ final class EventViewModelTests: XCTestCase {
         
     // TODO: Add Tests Subtitle with Site
     
-    static var allTests = [
-        ("testMFActiveOnlyStart", testMFActiveOnlyStart),
-        ("testMFNotActiveOnlyStart", testMFNotActiveOnlyStart),
-        ("testMFActiveStartEnd", testMFActiveStartEnd),
-        ("testMFNotActiveStartEnd", testMFNotActiveStartEnd),
-        ("testMFSubtitleStartAndEndSoon", testMFSubtitleStartAndEndSoon),
-        ("testMFSubtitleStartSoon", testMFSubtitleStartSoon),
-        ("testMFSubtitleStartAndEnd", testMFSubtitleStartAndEnd),
-        ("testMFSubtitleStart", testMFSubtitleStart),
-        ("testMFSubtitleStartTimeUnknown", testMFSubtitleStartTimeUnknown),
-        ("testMFSubtitleActiveStart", testMFSubtitleActiveStart),
-        ("testMFSubtitleActiveStartEnd", testMFSubtitleActiveStartEnd),
-        ("testMFDetailSubtitleFreeTicket", testMFDetailSubtitleFreeTicket),
-        ("testMFDetailSubtitleFestivalTicket", testMFDetailSubtitleFestivalTicket),
-        ("testMFDetailSubtitleExtraTicket", testMFDetailSubtitleExtraTicket),
-        ("testMFLocationMovingAct", testMFLocationMovingAct),
-        ("testLocationRepresentationPrefersLocationOverStreet", testLocationRepresentationPrefersLocationOverStreet),
-        ("testLocationRepresentationFallsBackToStreet", testLocationRepresentationFallsBackToStreet),
-    ]
     
 }

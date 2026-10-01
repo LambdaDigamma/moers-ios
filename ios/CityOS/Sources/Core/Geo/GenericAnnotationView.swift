@@ -9,5 +9,7 @@ import Foundation
 import MapKit
 
 public class GenericAnnotationView: MKMarkerAnnotationView {
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

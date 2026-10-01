@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ITDOperator: Codable, Equatable, Hashable, DynamicNodeDecoding, Sendable {
+nonisolated public struct ITDOperator: Codable, Equatable, Hashable, DynamicNodeDecoding, Sendable {
     
     public let code: String
     public let name: String

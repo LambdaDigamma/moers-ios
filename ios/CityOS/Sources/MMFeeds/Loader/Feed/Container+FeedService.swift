@@ -6,17 +6,17 @@
 //
 
 import Foundation
-import Factory
+import FactoryKit
 import ModernNetworking
 import Core
 import Cache
 
 public extension Container {
     
-    var feedService: Factory<FeedService> {
+    @MainActor var feedService: Factory<FeedService> {
         self {
             DefaultFeedService(
-                self.httpLoader(),
+                client: self.httpClient(),
                 try! Storage<String, Feed>(
                     diskConfig: DiskConfig(name: "FeedService"),
                     memoryConfig: MemoryConfig(),

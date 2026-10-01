@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct PetrolPriceResponse {
+nonisolated public struct PetrolPriceResponse {
     
     public var ok: Bool
     public var license: String

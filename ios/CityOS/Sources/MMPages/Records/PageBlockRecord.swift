@@ -9,7 +9,7 @@ import Foundation
 @preconcurrency import MediaLibraryKit
 import GRDB
 
-public struct PageBlockRecord: Equatable, Sendable {
+nonisolated public struct PageBlockRecord: Equatable, Sendable {
     
     public var id: Int64?
     
@@ -70,19 +70,19 @@ public struct PageBlockRecord: Equatable, Sendable {
 
 extension PageBlockRecord: Codable, FetchableRecord, MutablePersistableRecord {
     
-    public static let databaseTableName: String = PageBlockTableDefinition.tableName
+    nonisolated public static let databaseTableName: String = PageBlockTableDefinition.tableName
     
-    public enum Columns {
-        static let pageID = Column("page_id")
-        static let order = Column("order")
-        static let publishedAt = Column("published_at")
+    nonisolated public enum Columns {
+        nonisolated static let pageID = Column("page_id")
+        nonisolated static let order = Column("order")
+        nonisolated static let publishedAt = Column("published_at")
     }
     
 }
 
 extension PageBlock {
     
-    public func toRecord() -> PageBlockRecord {
+    nonisolated public func toRecord() -> PageBlockRecord {
         
         // Todo: Fix this
         
@@ -110,7 +110,7 @@ archivedAt: nil,
 
 extension PageBlockRecord {
     
-    public func toBase() -> PageBlock {
+    nonisolated public func toBase() -> PageBlock {
         
         return PageBlock(
             id: self.id.toInt() ?? -1,

@@ -7,15 +7,16 @@
 
 import XCTest
 import Core
-import Factory
+import FactoryKit
 @testable import ParkingFeature
 import CoreLocation
 
-class ParkingTimerViewModelTests: XCTestCase {
+@MainActor
+final class ParkingTimerViewModelTests: XCTestCase {
     
     private var persistanceURL: URL!
     
-    override func setUp() {
+    override func setUp() async throws {
         Container.shared.locationService.register { StaticLocationService() }
         persistanceURL = FileManager.default
             .urls(for: .documentDirectory, in: .userDomainMask)
@@ -24,7 +25,7 @@ class ParkingTimerViewModelTests: XCTestCase {
             .appendingPathExtension("json")
     }
     
-    func testInit() {
+    func testInit() async {
         
         let viewModel = ParkingTimerViewModel()
         
@@ -32,15 +33,15 @@ class ParkingTimerViewModelTests: XCTestCase {
         
     }
     
-    func testLoad() {
+    func testLoad() async {
         
         let viewModel = ParkingTimerViewModel()
         
-        viewModel.loadCurrentLocation()
+        await viewModel.loadCurrentLocation()
         XCTAssertNotNil(viewModel.carPosition)
     }
     
-    func testDecrement() {
+    func testDecrement() async {
         
         let viewModel = ParkingTimerViewModel()
         
@@ -52,7 +53,7 @@ class ParkingTimerViewModelTests: XCTestCase {
         
     }
     
-    func testIncrement() {
+    func testIncrement() async {
         
         let viewModel = ParkingTimerViewModel()
         
@@ -64,7 +65,7 @@ class ParkingTimerViewModelTests: XCTestCase {
         
     }
     
-    func testStartTimer() {
+    func testStartTimer() async {
         
         let viewModel = ParkingTimerViewModel()
         XCTAssertFalse(viewModel.timerStarted)
@@ -74,7 +75,7 @@ class ParkingTimerViewModelTests: XCTestCase {
         
     }
     
-    func testEncodeParkingTimerData() throws {
+    func testEncodeParkingTimerData() async throws {
         
         guard let date = ParkingTimerViewModel.dateFormatter.date(from: "2022-04-02T13:24:30.644Z") else {
             return XCTFail("Failed parsing")
@@ -105,7 +106,7 @@ class ParkingTimerViewModelTests: XCTestCase {
         
     }
     
-    func testDecodeParkingTimerData() throws {
+    func testDecodeParkingTimerData() async throws {
         
         let string = """
         {
@@ -128,7 +129,7 @@ class ParkingTimerViewModelTests: XCTestCase {
         
     }
     
-    func testPersistingViewModel() throws {
+    func testPersistingViewModel() async throws {
         
         try FileManager.default.removeItemIfExists(at: persistanceURL)
         
@@ -142,7 +143,7 @@ class ParkingTimerViewModelTests: XCTestCase {
         
     }
     
-    func testResetCurrentViewModel() {
+    func testResetCurrentViewModel() async {
         
         let viewModel = ParkingTimerViewModel()
         
@@ -156,7 +157,7 @@ class ParkingTimerViewModelTests: XCTestCase {
         
     }
     
-    func testLoadsRightModelIfOneExists() {
+    func testLoadsRightModelIfOneExists() async {
         
         let viewModel = ParkingTimerViewModel()
         viewModel.saveParkingLocation = false
@@ -174,7 +175,7 @@ class ParkingTimerViewModelTests: XCTestCase {
         
     }
     
-    func testStart() {
+    func testStart() async {
         
         let viewModel = ParkingTimerViewModel()
         

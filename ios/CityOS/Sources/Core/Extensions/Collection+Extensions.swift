@@ -9,7 +9,7 @@
 import Foundation
 
 public extension Array where Element: Stubbable, Element.ID == Int {
-    static func stub(withCount count: Int) -> Array {
+    nonisolated static func stub(withCount count: Int) -> Array {
         return (0..<count).map {
             .stub(withID: $0)
         }
@@ -17,7 +17,7 @@ public extension Array where Element: Stubbable, Element.ID == Int {
 }
 
 extension Array where Element: Stubbable, Element.ID == String {
-    static func stub(withCount count: Int) -> Array {
+    nonisolated static func stub(withCount count: Int) -> Array {
         return (0..<count).map {
             .stub(withID: "\($0)")
         }
@@ -26,7 +26,7 @@ extension Array where Element: Stubbable, Element.ID == String {
 
 extension Array {
     
-    public subscript(safeIndex index: Int) -> Element? {
+    nonisolated public subscript(safeIndex index: Int) -> Element? {
         guard index >= 0, index < endIndex else {
             return nil
         }
@@ -34,7 +34,7 @@ extension Array {
         return self[index]
     }
     
-    public func chunked(into size: Int) -> [[Element]] {
+    nonisolated public func chunked(into size: Int) -> [[Element]] {
         return stride(from: 0, to: count, by: size).map {
             Array(self[$0 ..< Swift.min($0 + size, count)])
         }

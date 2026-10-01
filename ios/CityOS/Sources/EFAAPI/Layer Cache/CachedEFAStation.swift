@@ -8,7 +8,7 @@
 import Foundation
 import Core
 
-public struct CachedEFAStation: CacheableStation {
+nonisolated public struct CachedEFAStation: CacheableStation {
     
     public var id: StatelessStopIdentifier
     

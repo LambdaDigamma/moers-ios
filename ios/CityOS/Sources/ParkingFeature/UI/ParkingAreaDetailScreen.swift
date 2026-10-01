@@ -10,18 +10,11 @@ import Core
 import MapKit
 //import Charts
 import CoreLocation
-import Factory
-
-public struct Marker: Identifiable {
-    
-    public let id: UUID = UUID()
-    public let coordinate: CLLocationCoordinate2D
-    
-}
+import FactoryKit
 
 public struct ParkingAreaDetailScreen: View {
     
-    @ObservedObject private var viewModel: ParkingAreaViewModel
+    @Bindable private var viewModel: ParkingAreaViewModel
     
     public init(viewModel: ParkingAreaViewModel) {
         self.viewModel = viewModel
@@ -64,12 +57,12 @@ public struct ParkingAreaDetailScreen: View {
             
             if let location = viewModel.location {
                 
-                let marker = Marker(coordinate: location.toCoordinate())
+                let coordinate = location.toCoordinate()
                 
-                Map(coordinateRegion: $viewModel.region, annotationItems: [marker]) { marker in
+                Map(initialPosition: .region(viewModel.region)) {
                     
-                    MapMarker(coordinate: marker.coordinate, tint: Color.blue)
-                    
+                    Marker(viewModel.title, coordinate: coordinate)
+                        .tint(Color.blue)
                 }
                     .frame(height: 200)
                 
@@ -217,8 +210,6 @@ public struct ParkingAreaDetailScreen: View {
         
         Divider()
             .padding(.horizontal)
-        
-        let locationService = Container.shared.locationService()
         
         if let coordinate = viewModel.location?.toCoordinate() {
             

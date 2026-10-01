@@ -6,14 +6,20 @@
 //
 
 import Foundation
+import Core
 import ModernNetworking
 
 public class DefaultPageService: PageService {
 
-    nonisolated(unsafe) private let loader: HTTPLoader
+    private let client: any HTTPClient
     
-    public init(_ loader: HTTPLoader = URLSessionLoader()) {
-        self.loader = loader
+    public init(client: any HTTPClient) {
+        self.client = client
+    }
+
+    @MainActor
+    public convenience init(_ loader: HTTPLoader = URLSessionLoader()) {
+        self.init(client: HTTPLoaderClient(loader: loader))
     }
     
     public func show(for pageID: Page.ID, cacheMode: CacheMode = .cached) async throws -> Resource<Page> {
@@ -22,7 +28,7 @@ public class DefaultPageService: PageService {
         
         request.cachePolicy = cacheMode.policy
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         let posts = try await result.decoding(Resource<Page>.self)
         
@@ -33,16 +39,18 @@ public class DefaultPageService: PageService {
     internal static func showRequest(pageID: Page.ID) -> HTTPRequest {
         HTTPRequest(path: Endpoint.show(pageID: pageID).path())
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension DefaultPageService {
     
-    public enum Endpoint {
+    nonisolated public enum Endpoint {
         
         case show(pageID: Page.ID)
         
-        func path() -> String {
+        nonisolated func path() -> String {
             switch self {
                 case .show(let id):
                     return "pages/\(id)"

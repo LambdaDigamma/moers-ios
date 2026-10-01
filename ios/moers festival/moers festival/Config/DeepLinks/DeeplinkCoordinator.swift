@@ -23,6 +23,9 @@ final class DeeplinkCoordinator {
         self.router = router
         self.parser = parser
     }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension DeeplinkCoordinator: DeeplinkCoordinatorProtocol {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F481E41FD3941FDAB767D87 /* AppScaffold in Frameworks */ = {isa = PBXBuildFile; productRef = A70E529B835843D1945C83A7 /* AppScaffold */; };
 		DF055B942D8B8FD7007E4393 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = DF055B932D8B8FD7007E4393 /* FirebaseAnalytics */; };
 		DF055B962D8B8FD7007E4393 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = DF055B952D8B8FD7007E4393 /* FirebaseCore */; };
 		DF055B982D8B8FD7007E4393 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = DF055B972D8B8FD7007E4393 /* FirebaseMessaging */; };
@@ -103,19 +104,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DF1C0B19257BD5DC00C956C1 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
-		DF1C0B1A257BD5DC00C956C1 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = Frameworks/GoogleAppMeasurement.framework; sourceTree = "<group>"; };
-		DF1C0B1B257BD5DC00C956C1 /* FirebaseInstanceID.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseInstanceID.xcframework; path = Frameworks/FirebaseInstanceID.xcframework; sourceTree = "<group>"; };
-		DF1C0B1C257BD5DC00C956C1 /* FirebaseCoreDiagnostics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseCoreDiagnostics.xcframework; path = Frameworks/FirebaseCoreDiagnostics.xcframework; sourceTree = "<group>"; };
-		DF1C0B1D257BD5DC00C956C1 /* nanopb.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = nanopb.xcframework; path = Frameworks/nanopb.xcframework; sourceTree = "<group>"; };
-		DF1C0B1E257BD5DD00C956C1 /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleUtilities.xcframework; path = Frameworks/GoogleUtilities.xcframework; sourceTree = "<group>"; };
-		DF1C0B1F257BD5DD00C956C1 /* FIRAnalyticsConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FIRAnalyticsConnector.framework; path = Frameworks/FIRAnalyticsConnector.framework; sourceTree = "<group>"; };
-		DF1C0B20257BD5DD00C956C1 /* GoogleDataTransport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleDataTransport.xcframework; path = Frameworks/GoogleDataTransport.xcframework; sourceTree = "<group>"; };
-		DF1C0B21257BD5DD00C956C1 /* FirebaseCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseCore.xcframework; path = Frameworks/FirebaseCore.xcframework; sourceTree = "<group>"; };
-		DF1C0B22257BD5DD00C956C1 /* PromisesObjC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = PromisesObjC.xcframework; path = Frameworks/PromisesObjC.xcframework; sourceTree = "<group>"; };
-		DF1C0B23257BD5DD00C956C1 /* Protobuf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Protobuf.xcframework; path = Frameworks/Protobuf.xcframework; sourceTree = "<group>"; };
-		DF1C0B24257BD5DD00C956C1 /* FirebaseMessaging.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseMessaging.xcframework; path = Frameworks/FirebaseMessaging.xcframework; sourceTree = "<group>"; };
-		DF1C0B25257BD5DD00C956C1 /* FirebaseInstallations.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseInstallations.xcframework; path = Frameworks/FirebaseInstallations.xcframework; sourceTree = "<group>"; };
 		DF1C1B6D29FA710E008FB9FA /* Screenshots.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Screenshots.xctestplan; sourceTree = "<group>"; };
 		DF35B386201DC72900118FD1 /* moers festival.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moers festival.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF35B389201DC72900118FD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,8 +124,6 @@
 		DF82B76C2BED3702005F41F2 /* transportation.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = transportation.geojson; sourceTree = "<group>"; };
 		DF82B76E2BED3750005F41F2 /* FGD2024 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FGD2024; sourceTree = "<group>"; };
 		DF87B2F2201DFB2700E1B97C /* moers festival UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moers festival UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF92FBFF257BF9CE00BE1DA5 /* FirebaseABTesting.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseABTesting.xcframework; path = Frameworks/FirebaseABTesting.xcframework; sourceTree = "<group>"; };
-		DF92FC00257BF9CE00BE1DA5 /* FirebaseRemoteConfig.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseRemoteConfig.xcframework; path = Frameworks/FirebaseRemoteConfig.xcframework; sourceTree = "<group>"; };
 		DFA90CBA29E945D600FF8366 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		DFA90CBC29E945D600FF8366 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		DFADF9552829915E00A15FE1 /* Moers.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Moers.gpx; sourceTree = "<group>"; };
@@ -398,6 +384,7 @@
 			isa = PBXFrameworksBuildPhase;
 			files = (
 				DF559F2E26493D140076516C /* MMEvents in Frameworks */,
+				2F481E41FD3941FDAB767D87 /* AppScaffold in Frameworks */,
 			);
 		};
 		DF87B2EF201DFB2700E1B97C /* Frameworks */ = {
@@ -532,21 +519,6 @@
 		DF9446D2201E870A00C85C64 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DF92FBFF257BF9CE00BE1DA5 /* FirebaseABTesting.xcframework */,
-				DF92FC00257BF9CE00BE1DA5 /* FirebaseRemoteConfig.xcframework */,
-				DF1C0B1F257BD5DD00C956C1 /* FIRAnalyticsConnector.framework */,
-				DF1C0B19257BD5DC00C956C1 /* FirebaseAnalytics.framework */,
-				DF1C0B21257BD5DD00C956C1 /* FirebaseCore.xcframework */,
-				DF1C0B1C257BD5DC00C956C1 /* FirebaseCoreDiagnostics.xcframework */,
-				DF1C0B25257BD5DD00C956C1 /* FirebaseInstallations.xcframework */,
-				DF1C0B1B257BD5DC00C956C1 /* FirebaseInstanceID.xcframework */,
-				DF1C0B24257BD5DD00C956C1 /* FirebaseMessaging.xcframework */,
-				DF1C0B1A257BD5DC00C956C1 /* GoogleAppMeasurement.framework */,
-				DF1C0B20257BD5DD00C956C1 /* GoogleDataTransport.xcframework */,
-				DF1C0B1E257BD5DD00C956C1 /* GoogleUtilities.xcframework */,
-				DF1C0B1D257BD5DC00C956C1 /* nanopb.xcframework */,
-				DF1C0B22257BD5DD00C956C1 /* PromisesObjC.xcframework */,
-				DF1C0B23257BD5DD00C956C1 /* Protobuf.xcframework */,
 				DFA90CBA29E945D600FF8366 /* WidgetKit.framework */,
 				DFA90CBC29E945D600FF8366 /* SwiftUI.framework */,
 			);
@@ -631,6 +603,7 @@
 			name = "moers festival tvOS";
 			packageProductDependencies = (
 				DF559F2D26493D140076516C /* MMEvents */,
+				A70E529B835843D1945C83A7 /* AppScaffold */,
 			);
 			productName = "moers festival tvOS";
 			productReference = DF40D6C3247E73D40054199C /* moers festival tvOS.app */;
@@ -765,7 +738,7 @@
 				BuildIndependentTargetsInParallel = YES;
 				DefaultBuildSystemTypeForWorkspace = Latest;
 				LastSwiftUpdateCheck = 2640;
-				LastUpgradeCheck = 2640;
+				LastUpgradeCheck = 2710;
 				ORGANIZATIONNAME = "Lennart Fischer";
 				TargetAttributes = {
 					DF35B385201DC72900118FD1 = {
@@ -1055,10 +1028,13 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore de.okfn.niederrhein.moers-festival tvos";
 				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 14.0;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
 			};
 			name = Debug;
 		};
@@ -1123,11 +1099,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore de.okfn.niederrhein.moers-festival tvos";
 				SDKROOT = appletvos;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 14.0;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1188,7 +1167,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1196,6 +1175,10 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -1223,14 +1206,13 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/moers\\ festival",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/moers festival/Config/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Lennart Fischer. All rights reserved.\n";
 				INTENTS_CODEGEN_LANGUAGE = "Objective-C";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1246,8 +1228,7 @@
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_OBJC_BRIDGING_HEADER = "moers festival/Utility/moers-festival-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_STRICT_CONCURRENCY = minimal;
-				SWIFT_UPCOMING_FEATURE_GLOBAL_CONCURRENCY = NO;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = (
@@ -1266,7 +1247,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = "moers festival UITests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1274,9 +1255,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival-UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "moers festival";
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 			};
 			name = Debug;
 		};
@@ -1330,7 +1312,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -1338,6 +1320,10 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
@@ -1364,14 +1350,13 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/moers\\ festival",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/moers festival/Config/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Lennart Fischer. All rights reserved.\n";
 				INTENTS_CODEGEN_LANGUAGE = "Objective-C";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1386,8 +1371,7 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_OBJC_BRIDGING_HEADER = "moers festival/Utility/moers-festival-Bridging-Header.h";
-				SWIFT_STRICT_CONCURRENCY = minimal;
-				SWIFT_UPCOMING_FEATURE_GLOBAL_CONCURRENCY = NO;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = (
@@ -1406,7 +1390,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				INFOPLIST_FILE = "moers festival UITests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1414,9 +1398,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.niederrhein.moers-festival-UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "moers festival";
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 			};
 			name = Release;
 		};
@@ -1477,7 +1462,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "moers festival Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1491,9 +1476,10 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/moers festival.app/moers festival";
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 			};
 			name = Debug;
 		};
@@ -1548,7 +1534,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "moers festival Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1561,10 +1547,11 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/moers festival.app/moers festival";
 				VALIDATE_PRODUCT = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 			};
 			name = Release;
 		};
@@ -1646,9 +1633,9 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				WATCHOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_WATCHOS_DEPLOYMENT_TARGET)";
 			};
 			name = Debug;
 		};
@@ -1724,10 +1711,10 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				WATCHOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_WATCHOS_DEPLOYMENT_TARGET)";
 			};
 			name = Release;
 		};
@@ -1796,10 +1783,11 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/moers festival Watch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/moers festival Watch Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				WATCHOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_WATCHOS_DEPLOYMENT_TARGET)";
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 			};
 			name = Debug;
 		};
@@ -1861,11 +1849,12 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/moers festival Watch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/moers festival Watch Watch App";
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				WATCHOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_WATCHOS_DEPLOYMENT_TARGET)";
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 			};
 			name = Release;
 		};
@@ -1933,10 +1922,11 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_TARGET_NAME = "moers festival Watch Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				WATCHOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_WATCHOS_DEPLOYMENT_TARGET)";
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 			};
 			name = Debug;
 		};
@@ -1998,11 +1988,12 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_TARGET_NAME = "moers festival Watch Watch App";
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				WATCHOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_WATCHOS_DEPLOYMENT_TARGET)";
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 			};
 			name = Release;
 		};
@@ -2043,9 +2034,11 @@
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2085,9 +2078,11 @@
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2182,7 +2177,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 11.0.0;
+				minimumVersion = 12.0.0;
 			};
 		};
 		DF562918257BB6E3005FC7BA /* XCRemoteSwiftPackageReference "BulletinBoard" */ = {
@@ -2190,7 +2185,7 @@
 			repositoryURL = "https://github.com/LambdaDigamma/BulletinBoard";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				minimumVersion = 6.1.1;
 			};
 		};
 		DF7FB53327F670D500F718F2 /* XCRemoteSwiftPackageReference "stateviewcontroller" */ = {
@@ -2236,6 +2231,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A70E529B835843D1945C83A7 /* AppScaffold */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppScaffold;
+		};
 		DF055B932D8B8FD7007E4393 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DF055B922D8B8FD7007E4393 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

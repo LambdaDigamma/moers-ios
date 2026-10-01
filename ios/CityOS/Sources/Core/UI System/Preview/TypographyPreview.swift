@@ -13,7 +13,7 @@ struct TypographyPreviewView: View {
         VStack(alignment: .leading, spacing: 16) {
             
             Group {
-                
+                EmptyView()
 //                Text("Title Extra Large")
 //                    .font(.style(.titleExtraLarge))
 //
@@ -38,7 +38,7 @@ struct TypographyPreviewView: View {
             }
             
             Group {
-                
+                EmptyView()
 //                Text("Headline Small")
 //                    .font(Font.style(.headlineSmall))
 //

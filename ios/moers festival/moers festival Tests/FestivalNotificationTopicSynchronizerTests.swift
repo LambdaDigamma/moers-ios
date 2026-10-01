@@ -17,8 +17,8 @@ final class FestivalNotificationTopicSynchronizerTests: XCTestCase {
     private var subscribedTopics: [String]!
     private var unsubscribedTopics: [String]!
 
-    override func setUp() {
-        super.setUp()
+    override func setUp() async throws {
+        try await super.setUp()
 
         suiteName = "FestivalNotificationTopicSynchronizerTests-\(UUID().uuidString)"
         userDefaults = UserDefaults(suiteName: suiteName)
@@ -26,7 +26,7 @@ final class FestivalNotificationTopicSynchronizerTests: XCTestCase {
         unsubscribedTopics = []
     }
 
-    override func tearDown() {
+    override func tearDown() async throws {
         if let suiteName {
             UserDefaults.standard.removePersistentDomain(forName: suiteName)
         }
@@ -36,10 +36,10 @@ final class FestivalNotificationTopicSynchronizerTests: XCTestCase {
         subscribedTopics = nil
         unsubscribedTopics = nil
 
-        super.tearDown()
+        try await super.tearDown()
     }
 
-    func testSyncSubscribesGeneralAndCurrentLanguageTopics() {
+    func testSyncSubscribesGeneralAndCurrentLanguageTopics() async {
         let synchronizer = makeSynchronizer(language: .german)
 
         synchronizer.sync()
@@ -56,7 +56,7 @@ final class FestivalNotificationTopicSynchronizerTests: XCTestCase {
         )
     }
 
-    func testSyncFallsBackToEnglishLanguageTopic() {
+    func testSyncFallsBackToEnglishLanguageTopic() async {
         let synchronizer = makeSynchronizer(language: .english)
 
         synchronizer.sync()
@@ -68,7 +68,7 @@ final class FestivalNotificationTopicSynchronizerTests: XCTestCase {
         )
     }
 
-    func testSyncUnsubscribesPreviousLanguageTopicAfterSubscribingNewTopic() {
+    func testSyncUnsubscribesPreviousLanguageTopicAfterSubscribingNewTopic() async {
         userDefaults.set("all_en", forKey: FestivalNotificationTopicSynchronizer.lastLanguageTopicKey)
         userDefaults.set(
             FestivalNotificationTopicSynchronizer.syncVersion,
@@ -87,7 +87,7 @@ final class FestivalNotificationTopicSynchronizerTests: XCTestCase {
         )
     }
 
-    func testSyncSkipsFirebaseOperationsWithoutToken() {
+    func testSyncSkipsFirebaseOperationsWithoutToken() async {
         let synchronizer = makeSynchronizer(language: .german, token: nil)
 
         synchronizer.sync()
@@ -97,7 +97,7 @@ final class FestivalNotificationTopicSynchronizerTests: XCTestCase {
         XCTAssertNil(userDefaults.string(forKey: FestivalNotificationTopicSynchronizer.lastLanguageTopicKey))
     }
 
-    func testSyncDoesNotPersistStateWhenLanguageSubscriptionFails() {
+    func testSyncDoesNotPersistStateWhenLanguageSubscriptionFails() async {
         let synchronizer = makeSynchronizer(
             language: .german,
             failingSubscribeTopic: "all_de"

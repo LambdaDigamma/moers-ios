@@ -66,5 +66,7 @@ open class VideoPlayerView: UIView {
     var playerLayer: AVPlayerLayer {
         return layer as! AVPlayerLayer
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

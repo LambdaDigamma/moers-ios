@@ -8,9 +8,10 @@
 import Foundation
 import GRDB
 import Combine
-import Factory
+import FactoryKit
 
 public extension Container {
+    @MainActor
     var pageRepository: Factory<PageRepository> {
         Factory(self) {
             
@@ -100,5 +101,7 @@ public class PageRepository {
         try await store.updateOrCreate(page.blocks.map { $0.toRecord() })
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

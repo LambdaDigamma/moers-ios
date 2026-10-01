@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct StandardRequestParameters: Codable {
+nonisolated public struct StandardRequestParameters: Codable {
     public var isStateless: Bool = true
     public var isLocationServerActive: Bool = true
     public var coordinateOutputFormat: CoordinateOutputFormat = .wgs84

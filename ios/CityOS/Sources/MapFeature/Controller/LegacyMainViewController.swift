@@ -10,7 +10,7 @@ import Core
 import UIKit
 import Pulley
 import CoreLocation
-import Factory
+import FactoryKit
 import FuelFeature
 
 public class LegacyMainViewController: PulleyViewController {
@@ -206,5 +206,7 @@ public class LegacyMainViewController: PulleyViewController {
         self.contentViewController.addLocation(location)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ITDDateRange: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
+nonisolated public struct ITDDateRange: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
     
     public var dates: [ITDDate]
     

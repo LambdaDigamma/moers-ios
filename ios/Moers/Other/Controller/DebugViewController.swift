@@ -10,7 +10,7 @@ import Core
 import UIKit
 import UserNotifications
 import Combine
-import Factory
+import FactoryKit
 import RubbishFeature
 
 class DebugViewController: UIViewController {
@@ -52,17 +52,17 @@ class DebugViewController: UIViewController {
         self.setupConstraints()
         self.applyTheming()
         
-        UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
-            
-            DispatchQueue.main.async {
-                
-                self.notificationItemsTextView.text = "Notifications: \(requests.count)\n\n"
-                self.notificationItemsTextView.text += requests.map {
+        UNUserNotificationCenter.current().getPendingNotificationRequests { [weak self] requests in
+
+            let notificationText = "Notifications: \(requests.count)\n\n"
+                + requests.map {
                     $0.identifier.replacingOccurrences(of: "RubbishReminder-", with: "")
                 }
                 .reversed()
                 .joined(separator: "\n")
-                
+
+            Task { @MainActor in
+                self?.notificationItemsTextView.text = notificationText
             }
             
         }
@@ -74,14 +74,12 @@ class DebugViewController: UIViewController {
         Task {
             do {
                 let pickupItems = try await rubbishService.loadRubbishPickupItems(for: street)
-                
-                await MainActor.run {
-                    self.rubbishItemsTextView.text = "Collections: \(pickupItems.count)\n\n"
-                    self.rubbishItemsTextView.text += pickupItems.map {
-                        $0.date.format(format: "dd.MM.yyyy") + " " + $0.type.title
-                    }
-                    .joined(separator: "\n")
+
+                self.rubbishItemsTextView.text = "Collections: \(pickupItems.count)\n\n"
+                self.rubbishItemsTextView.text += pickupItems.map {
+                    $0.date.format(format: "dd.MM.yyyy") + " " + $0.type.title
                 }
+                .joined(separator: "\n")
             } catch {
                 print("Error loading rubbish pickup items: \(error.localizedDescription)")
             }
@@ -122,5 +120,7 @@ class DebugViewController: UIViewController {
         self.notificationItemsTextView.textColor = UIColor.label
         self.notificationItemsTextView.backgroundColor = UIColor.systemBackground
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

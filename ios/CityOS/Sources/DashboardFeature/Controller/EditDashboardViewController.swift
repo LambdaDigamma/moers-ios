@@ -7,7 +7,7 @@
 
 import UIKit
 
-public struct DashboardConfigurationItem: Identifiable, Hashable, Sendable {
+nonisolated public struct DashboardConfigurationItem: Identifiable, Hashable, Sendable {
     
     public let id = UUID()
     
@@ -31,7 +31,7 @@ public class EditDashboardViewController: UIViewController {
         return view
     }()
     
-    enum Section: Int, CaseIterable, Hashable {
+    nonisolated enum Section: Int, CaseIterable, Hashable, Sendable {
         case enabled
     }
     
@@ -100,5 +100,7 @@ public class EditDashboardViewController: UIViewController {
             cell.contentConfiguration = configuration
         }
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

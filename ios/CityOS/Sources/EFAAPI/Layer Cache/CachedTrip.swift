@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CachedEFATrip: Codable {
+nonisolated public struct CachedEFATrip: Codable {
     
     public var request: CachedEfaTripRequest
     public var response: CachedEfaTripResponse
@@ -22,7 +22,7 @@ public struct CachedEFATrip: Codable {
     
 }
 
-public struct CachedEfaTripRequest: Codable {
+nonisolated public struct CachedEfaTripRequest: Codable {
     
     public var tripDate: CachedTripDate
     public var origin: CachedEFAStation
@@ -43,7 +43,7 @@ public struct CachedEfaTripRequest: Codable {
     
 }
 
-public struct CachedEfaTripResponse: Codable {
+nonisolated public struct CachedEfaTripResponse: Codable {
     
     public var lines: [CachedPartialLine] = []
     

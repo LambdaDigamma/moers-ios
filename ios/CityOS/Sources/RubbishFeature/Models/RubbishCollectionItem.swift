@@ -9,7 +9,7 @@
 import Foundation
 import Core
 
-public struct RubbishCollectionItem: Codable {
+nonisolated public struct RubbishCollectionItem: Codable {
     
     public let date: String
     public let type: RubbishWasteType

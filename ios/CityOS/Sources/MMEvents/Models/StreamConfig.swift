@@ -8,7 +8,7 @@
 import Foundation
 import ModernNetworking
 
-public struct StreamConfig: Model, Equatable {
+nonisolated public struct StreamConfig: Model, Equatable, Sendable {
     
     public var streamURL: String?
     public var startDate: Date?

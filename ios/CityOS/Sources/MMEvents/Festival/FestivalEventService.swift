@@ -10,7 +10,7 @@ import Core
 import MMPages
 import Foundation
 import MediaLibraryKit
-@preconcurrency import ModernNetworking
+import ModernNetworking
 
 public protocol FestivalEventService {
     

@@ -68,11 +68,12 @@ public enum UserActivities {
     ) -> NSUserActivity {
         
         activity.title = AppStrings.UserActivities.RubbishSchedule.title
-        activity.suggestedInvocationPhrase = AppStrings.UserActivities.RubbishSchedule.title
+#if !os(tvOS)
         activity.persistentIdentifier = IDs.rubbishSchedule
+        activity.isEligibleForPrediction = true
+#endif
         activity.keywords = AppStrings.UserActivities.RubbishSchedule.keywords
         activity.isEligibleForPublicIndexing = true
-        activity.isEligibleForPrediction = true
         activity.isEligibleForSearch = true
         
         return activity
@@ -85,11 +86,12 @@ public enum UserActivities {
     ) -> NSUserActivity {
         
         activity.title = AppStrings.UserActivities.ParkingAreaOverview.title
-        activity.suggestedInvocationPhrase = AppStrings.UserActivities.ParkingAreaOverview.invocationPhrase
+#if !os(tvOS)
         activity.persistentIdentifier = IDs.parkingAreasOverview
+        activity.isEligibleForPrediction = true
+#endif
         activity.keywords = AppStrings.UserActivities.ParkingAreaOverview.keywords
         activity.isEligibleForPublicIndexing = true
-        activity.isEligibleForPrediction = true
         activity.isEligibleForSearch = true
         
         return activity
@@ -102,11 +104,12 @@ public enum UserActivities {
     ) -> NSUserActivity {
         
         activity.title = AppStrings.UserActivities.ParkingAreaOverview.title
-        activity.suggestedInvocationPhrase = AppStrings.UserActivities.ParkingAreaOverview.invocationPhrase
+#if !os(tvOS)
         activity.persistentIdentifier = IDs.parkingAreaDetail
+        activity.isEligibleForPrediction = true
+#endif
         activity.keywords = AppStrings.UserActivities.ParkingAreaOverview.keywords
         activity.isEligibleForPublicIndexing = true
-        activity.isEligibleForPrediction = true
         activity.isEligibleForSearch = true
         
         return activity
@@ -119,11 +122,12 @@ public enum UserActivities {
     ) -> NSUserActivity {
         
         activity.title = AppStrings.UserActivities.FuelStations.title
-        activity.suggestedInvocationPhrase = AppStrings.UserActivities.FuelStations.invocationPhrase
+#if !os(tvOS)
         activity.persistentIdentifier = IDs.fuelStations
+        activity.isEligibleForPrediction = true
+#endif
         activity.keywords = AppStrings.UserActivities.FuelStations.keywords
         activity.isEligibleForPublicIndexing = true
-        activity.isEligibleForPrediction = true
         activity.isEligibleForSearch = true
         
         return activity

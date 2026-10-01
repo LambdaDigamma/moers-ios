@@ -9,9 +9,10 @@ import Foundation
 import XCTest
 import DashboardFeature
 
+@MainActor
 final class DashboardConfigMemoryLoaderTest: XCTestCase {
     
-    func test_load() throws {
+    func test_load() async throws {
         
         let loader = DashboardConfigMemoryLoader()
         let config: DashboardConfig = try loader.load()
@@ -20,7 +21,7 @@ final class DashboardConfigMemoryLoaderTest: XCTestCase {
         
     }
     
-    func test_save() throws {
+    func test_save() async throws {
         
         let loader = DashboardConfigMemoryLoader()
         let config = DashboardConfig(updatedAt: Date(timeIntervalSinceNow: -60 * 60))

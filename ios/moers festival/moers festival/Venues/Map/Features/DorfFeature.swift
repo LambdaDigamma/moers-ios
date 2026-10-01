@@ -44,7 +44,9 @@ public struct DorfProperties: Codable {
 public class DorfFeature: GeoFeature<DorfProperties>, FGDDecodableFeature {
     
     public typealias Properties = DorfProperties
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension DorfFeature: StylableFeature {

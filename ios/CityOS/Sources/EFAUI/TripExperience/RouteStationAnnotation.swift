@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-public class RouteStationAnnotation: MKPointAnnotation {
+nonisolated public class RouteStationAnnotation: MKPointAnnotation {
     
     public init(name: String, coordinate: CLLocationCoordinate2D) {
         super.init()

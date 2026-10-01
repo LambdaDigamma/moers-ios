@@ -9,7 +9,7 @@
 import Core
 import Foundation
 import OSLog
-import Factory
+import FactoryKit
 import CoreLocation
 import Combine
 import UIKit
@@ -57,7 +57,7 @@ public class AppSplitViewController: SplitViewController {
         )
         
         let secondaryRootViewControllers = coordinators.map({ coordinator in
-            coordinator.navigationController
+            coordinator.rootViewController
         })
         
         super.init(
@@ -296,5 +296,7 @@ public class AppSplitViewController: SplitViewController {
         }
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

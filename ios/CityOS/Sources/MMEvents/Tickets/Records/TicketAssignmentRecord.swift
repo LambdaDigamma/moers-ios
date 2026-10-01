@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-public struct TicketAssignmentRecord: Codable, Equatable {
+nonisolated public struct TicketAssignmentRecord: Codable, Equatable {
     
     public var id: Int64
     public var ticketID: Int64
@@ -27,11 +27,11 @@ public struct TicketAssignmentRecord: Codable, Equatable {
     
 }
 
-extension TicketAssignmentRecord: FetchableRecord, MutablePersistableRecord {
+nonisolated extension TicketAssignmentRecord: FetchableRecord, MutablePersistableRecord {
     
     public static let databaseTableName: String = TicketAssignmentTableDefinition.tableName
     
-    public enum Columns {
+    nonisolated public enum Columns {
         static let createdAt = Column(CodingKeys.createdAt.rawValue)
         static let updatedAt = Column(CodingKeys.updatedAt.rawValue)
     }

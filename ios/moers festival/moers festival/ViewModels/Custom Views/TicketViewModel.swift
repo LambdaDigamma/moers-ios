@@ -64,5 +64,7 @@ class TicketViewModel {
     public var buyEnabled: Bool {
         return ticket.buyURL == nil
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

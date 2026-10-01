@@ -13,7 +13,7 @@ import MMEvents
 import AppScaffold
 import Combine
 import SwiftUI
-import Factory
+import FactoryKit
 
 public class EventCoordinator: SharedCoordinator {
     
@@ -147,5 +147,7 @@ public class EventCoordinator: SharedCoordinator {
     private static func makeEmptyDetailViewController() -> UIViewController {
         SplitDetailPlaceholderViewController(message: String(localized: "Select an event to view its details."))
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

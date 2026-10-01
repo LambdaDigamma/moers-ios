@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ITDFootPathInfo: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
+nonisolated public struct ITDFootPathInfo: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
     
     public let position: String
     public let duration: Int
@@ -37,7 +37,7 @@ public struct ITDFootPathInfo: Codable, Equatable, Hashable, Sendable, DynamicNo
     
 }
 
-public struct ITDFootPathElem: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
+nonisolated public struct ITDFootPathElem: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
     
     public let description: String
     public let type: String
@@ -67,7 +67,7 @@ public struct ITDFootPathElem: Codable, Equatable, Hashable, Sendable, DynamicNo
     
 }
 
-public struct ITDFootPathPoint: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
+nonisolated public struct ITDFootPathPoint: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
     
     public let stopID: Int
     public let area: String

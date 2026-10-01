@@ -39,4 +39,7 @@ class PulleyPassthroughScrollView: UIScrollView {
         return super.hitTest(point, with: event)
         
     }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

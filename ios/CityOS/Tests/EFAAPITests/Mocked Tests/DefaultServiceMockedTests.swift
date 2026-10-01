@@ -1,91 +1,44 @@
 import XCTest
-import Combine
 import ModernNetworking
 @testable import EFAAPI
 
+@MainActor
 final class DefaultServiceMockedTests: XCTestCase {
     
-    private var cancellables = Set<AnyCancellable>()
     
-    func test_execute_stop_finder_request_list() {
-        
-        let expectation = XCTestExpectation()
-        
+    func test_has_17_query_endpoints() async {
+        XCTAssertEqual(QueryEndpoints.allCases.count, 17)
+    }
+
+    func test_execute_stop_finder_request_list() async throws {
         let loader = FileLoader(resource: "Data/StopFinder_List", fileExtension: "xml")
         let service = DefaultTransitService(loader: loader)
-        
-        service
-            .sendRawStopFinderRequest(searchText: "König")
-            .sink { (completion: Subscribers.Completion<HTTPError>) in
-                
-            } receiveValue: { (response: StopFinderResponse) in
-                
-                XCTAssertEqual(response.language.count, 2)
-                XCTAssertEqual(response.stopFinderRequest.odv.name?.elements?.count, 268)
-                
-                let expected = ITDDateTime(
-                    ttpFrom: "20211101",
-                    ttpTo: "20220430",
-                    date: ITDDate(
-                        weekday: 6,
-                        year: 2021,
-                        month: 12,
-                        day: 10
-                    ),
-                    time: ITDTime(
-                        hour: 0,
-                        minute: 31
-                    )
-                )
-                
-                XCTAssertEqual(response.stopFinderRequest.dateTime, expected)
-                XCTAssertEqual(response.stopFinderRequest.odv.usage, ODVUsageType.sf)
-                XCTAssertEqual(response.stopFinderRequest.odv.name?.input?.name, "König")
-                
-                expectation.fulfill()
-            }
-            .store(in: &cancellables)
-
-        
-        wait(for: [expectation], timeout: 10)
-        
+        let response = try await service.sendRawStopFinderRequest(searchText: "König")
+        XCTAssertEqual(response.language.count, 2)
+        XCTAssertEqual(response.stopFinderRequest.odv.name?.elements?.count, 268)
+        let expected = ITDDateTime(
+            ttpFrom: "20211101", ttpTo: "20220430",
+            date: ITDDate(weekday: 6, year: 2021, month: 12, day: 10),
+            time: ITDTime(hour: 0, minute: 31)
+        )
+        XCTAssertEqual(response.stopFinderRequest.dateTime, expected)
+        XCTAssertEqual(response.stopFinderRequest.odv.usage, ODVUsageType.sf)
+        XCTAssertEqual(response.stopFinderRequest.odv.name?.input?.name, "König")
     }
-    
-    func test_execute_stop_finder_request_list_objectfilter() {
 
-        let expectation = XCTestExpectation()
-
+    func test_execute_stop_finder_request_list_objectfilter() async throws {
         let loader = FileLoader(resource: "Data/StopFinder_List_ObjectFilter", fileExtension: "xml")
         let service = DefaultTransitService(loader: loader)
-
-        service
-            .sendRawStopFinderRequest(searchText: "Duisburg Hbf", objectFilter: [.stops])
-            .sink { (completion: Subscribers.Completion<HTTPError>) in
-
-                switch (completion) {
-                    case .failure(let error):
-                        print(error)
-                    default: break
-                }
-
-            } receiveValue: { (response: StopFinderResponse) in
-
-                XCTAssertEqual(response.language.count, 2)
-                XCTAssertEqual(response.stopFinderRequest.odv.objectFilter, [.stops])
-                XCTAssertEqual(response.stopFinderRequest.odv.name?.elements?.count, 3)
-
-                expectation.fulfill()
-            }
-            .store(in: &cancellables)
-
-        wait(for: [expectation], timeout: 10)
-
+        let response = try await service.sendRawStopFinderRequest(searchText: "Duisburg Hbf", objectFilter: [.stops])
+        XCTAssertEqual(response.language.count, 2)
+        XCTAssertEqual(response.stopFinderRequest.odv.objectFilter, [.stops])
+        XCTAssertEqual(response.stopFinderRequest.odv.name?.elements?.count, 3)
     }
-    
-    func test_decode_identified_trip_request() throws {
+
+    func test_decode_identified_trip_request() async throws {
         
         let data = loadData(resource: "Data/TripRequest", fileExtension: "xml")
-        let decoder = DefaultTransitService.defaultDecoder
+        let decoder = DefaultTransitService.defaultDecoder()
         
         let response = try decoder.decode(TripResponse.self, from: data)
         
@@ -98,10 +51,10 @@ final class DefaultServiceMockedTests: XCTestCase {
         
     }
     
-    func test_decode_unknown_via_odv() throws {
+    func test_decode_unknown_via_odv() async throws {
         
         let data = loadData(resource: "Data/TripODVs", fileExtension: "xml")
-        let decoder = DefaultTransitService.defaultDecoder
+        let decoder = DefaultTransitService.defaultDecoder()
         
         let response = try decoder.decode(ITDRouteList.self, from: data)
         
@@ -109,10 +62,10 @@ final class DefaultServiceMockedTests: XCTestCase {
         
     }
     
-    func test_decode_route_list() throws {
+    func test_decode_route_list() async throws {
 
         let data = loadData(resource: "Data/RouteList", fileExtension: "xml")
-        let decoder = DefaultTransitService.defaultDecoder
+        let decoder = DefaultTransitService.defaultDecoder()
 
         let response = try decoder.decode(TripResponse.self, from: data)
 
@@ -122,10 +75,10 @@ final class DefaultServiceMockedTests: XCTestCase {
 
     }
 
-    func test_decode_trip_request_1() throws {
+    func test_decode_trip_request_1() async throws {
 
         let data = loadData(resource: "Data/TripRequest1", fileExtension: "xml")
-        let decoder = DefaultTransitService.defaultDecoder
+        let decoder = DefaultTransitService.defaultDecoder()
 
         let response = try decoder.decode(TripResponse.self, from: data)
 
@@ -136,10 +89,10 @@ final class DefaultServiceMockedTests: XCTestCase {
 
     }
 
-//    func test_decode_trip_request_2() throws {
+//    func test_decode_trip_request_2() async throws {
 //
 //        let data = loadData(resource: "Data/TripRequest2", fileExtension: "xml")
-//        let decoder = DefaultTransitService.defaultDecoder
+//        let decoder = DefaultTransitService.defaultDecoder()
 //
 //        let response = try decoder.decode(TripResponse.self, from: data)
 //
@@ -150,10 +103,10 @@ final class DefaultServiceMockedTests: XCTestCase {
 //
 //    }
     
-//    func test_decode_trip_request_3() throws {
+//    func test_decode_trip_request_3() async throws {
 //
 //        let data = loadData(resource: "Data/TripRequest3", fileExtension: "xml")
-//        let decoder = DefaultTransitService.defaultDecoder
+//        let decoder = DefaultTransitService.defaultDecoder()
 //
 //        do {
 //
@@ -177,10 +130,10 @@ final class DefaultServiceMockedTests: XCTestCase {
 //
 //    }
     
-    func test_decode_trip_request_4() throws {
+    func test_decode_trip_request_4() async throws {
         
         let data = loadData(resource: "Data/TripRequest4", fileExtension: "xml")
-        let decoder = DefaultTransitService.defaultDecoder
+        let decoder = DefaultTransitService.defaultDecoder()
         
         let response = try decoder.decode(TripResponse.self, from: data)
         
@@ -191,10 +144,10 @@ final class DefaultServiceMockedTests: XCTestCase {
         
     }
     
-    func test_decode_trip_request_from_street() throws {
+    func test_decode_trip_request_from_street() async throws {
         
         let data = loadData(resource: "Data/TripRequestFromStreet", fileExtension: "xml")
-        let decoder = DefaultTransitService.defaultDecoder
+        let decoder = DefaultTransitService.defaultDecoder()
         
         let response = try decoder.decode(TripResponse.self, from: data)
         
@@ -226,8 +179,4 @@ final class DefaultServiceMockedTests: XCTestCase {
         
     }
     
-    static var allTests = [
-        ("test_execute_stop_finder_request_list", test_execute_stop_finder_request_list),
-        ("test_execute_stop_finder_request_list_objectfilter", test_execute_stop_finder_request_list_objectfilter)
-    ]
 }

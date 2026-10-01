@@ -6,6 +6,20 @@
 	objectVersion = 90;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		0170452FD05F49069653F80C /* Prepare Fuel Configuration */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = BB1035744D634953B2B5D9FE /* Build configuration list for PBXAggregateTarget "Prepare Fuel Configuration" */;
+			buildPhases = (
+				DF782D8728D1DCA9000BDC89 /* Prepare Fuel API Key */,
+			);
+			dependencies = (
+			);
+			name = "Prepare Fuel Configuration";
+			productName = "Prepare Fuel Configuration";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		DF05E00F2792CA4C0063556E /* ParkingFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DF05E00E2792CA4C0063556E /* ParkingFeature */; };
 		DF0EAC9C24C63FB0009BE489 /* ModernNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = DF0EAC9B24C63FB0009BE489 /* ModernNetworking */; };
@@ -29,7 +43,6 @@
 		DF97AD0F26EFEC5F009DFF71 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = DF97AD0E26EFEC5F009DFF71 /* Core */; };
 		DF9F19D62766660100B74E13 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF86ABA02174900400EFC7EA /* Intents.framework */; };
 		DF9F19DD2766660100B74E13 /* Intent Extensions.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DF9F19D52766660100B74E13 /* Intent Extensions.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		DFB07A2F277741030033101C /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = DFB07A2E277741030033101C /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		DFB07A31277741030033101C /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = DFB07A30277741030033101C /* FirebaseCrashlytics */; };
 		DFB07A33277741030033101C /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = DFB07A32277741030033101C /* FirebaseMessaging */; };
 		DFC53C562D466A2C009CA7EF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = DFC53C552D466A2C009CA7EF /* FirebaseAnalytics */; };
@@ -93,6 +106,13 @@
 			remoteGlobalIDString = DF1A495E1F6AAB7000E9108B;
 			remoteInfo = Moers;
 		};
+		229F44D31E9F40BE8D56207D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF1A49571F6AAB7000E9108B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0170452FD05F49069653F80C;
+			remoteInfo = "Prepare Fuel Configuration";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -143,8 +163,6 @@
 		DF9F19D52766660100B74E13 /* Intent Extensions.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Intent Extensions.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFAEF41120E8ECF7001B0756 /* Moers.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Moers.entitlements; sourceTree = "<group>"; };
 		DFB161B3267651D6009D2754 /* Moers Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Moers Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DFB64DC9203883D200173A80 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		DFB64DCA2038845300173A80 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
 		DFCAC4982852008100701BC1 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 		DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -328,7 +346,6 @@
 				DFD000632EFD58CE00B449FB /* PlaybackKit in Frameworks */,
 				DFB07A31277741030033101C /* FirebaseCrashlytics in Frameworks */,
 				DFD0004F2EFD58CE00B449FB /* CoreCache in Frameworks */,
-				DFB07A2F277741030033101C /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				DFD000512EFD58CE00B449FB /* DashboardFeature in Frameworks */,
 				DFD000592EFD58CE00B449FB /* MMEvents in Frameworks */,
 			);
@@ -377,11 +394,9 @@
 				DF6E061328AE34C1004FEBC9 /* Debug */,
 				DF6E061428AE34C8004FEBC9 /* Release */,
 				DF57D695218739C500E6A0A9 /* Moers-Bridging-Header.h */,
-				DFB64DCA2038845300173A80 /* Firebase.h */,
 				DFF5DDCA20094A910075A2F4 /* GoogleService-Info.plist */,
 				DF636F5028D1CE8B00B29A76 /* Tankerkoenig-Info.plist */,
 				DF782D8528D1D05D000BDC89 /* Tankerkoenig-Info-Sample.plist */,
-				DFB64DC9203883D200173A80 /* module.modulemap */,
 				DFAEF41120E8ECF7001B0756 /* Moers.entitlements */,
 			);
 			path = Resources;
@@ -467,11 +482,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DF1A49711F6AAB7000E9108B /* Build configuration list for PBXNativeTarget "Moers" */;
 			buildPhases = (
-				DF782D8728D1DCA9000BDC89 /* Prepare Fuel API Key */,
 				DF1A495C1F6AAB7000E9108B /* Frameworks */,
 				DF1A495B1F6AAB7000E9108B /* Sources */,
-				DF6E060D28AE2C3F004FEBC9 /* Generate Package List */,
-				DF6E061A28AE3691004FEBC9 /* Generate Settings Bundle Licences */,
 				DF6E061928AE3659004FEBC9 /* Settings Bundle Preparation */,
 				DF1A495D1F6AAB7000E9108B /* Resources */,
 				DF94B14D23F0A7E8009C57ED /* Embed Watch Content */,
@@ -482,6 +494,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				F468D2A17086464593821756 /* PBXTargetDependency */,
 				DF5E1B5D26726AF7005FADA4 /* PBXTargetDependency */,
 				DF9F19DC2766660100B74E13 /* PBXTargetDependency */,
 			);
@@ -502,7 +515,6 @@
 				DF97AD0E26EFEC5F009DFF71 /* Core */,
 				DFFA7EA02706638D00E27E7B /* AppFeedback */,
 				DF55F25E27709B410024300B /* RubbishFeature */,
-				DFB07A2E277741030033101C /* FirebaseAnalyticsWithoutAdIdSupport */,
 				DFB07A30277741030033101C /* FirebaseCrashlytics */,
 				DFB07A32277741030033101C /* FirebaseMessaging */,
 				DF05E00E2792CA4C0063556E /* ParkingFeature */,
@@ -564,6 +576,9 @@
 				DF5E1B4C26726AF3005FADA4 /* Resources */,
 			);
 			buildRules = (
+			);
+			dependencies = (
+				41E6B726C32F416C960517A6 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				DF4AD3462CCD3BA600D620B3 /* Widgets */,
@@ -692,6 +707,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				0170452FD05F49069653F80C /* Prepare Fuel Configuration */,
 				DF1A495E1F6AAB7000E9108B /* Moers */,
 				DF284EFC23F4C17100EC999B /* MoersUITests */,
 				DFB161B2267651D6009D2754 /* Moers Unit Tests */,
@@ -736,65 +752,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		DF6E060D28AE2C3F004FEBC9 /* Generate Package List */ = {
-			isa = PBXShellScriptBuildPhase;
-			name = "Generate Package List";
-			shellPath = /bin/sh;
-			shellScript = (
-				"#if command -v swift-package-list &> /dev/null; then",
-				"#    OUTPUT_PATH=$SOURCE_ROOT/$TARGETNAME",
-				"#    swift-package-list \"$PROJECT_FILE_PATH\" --output-path \"$OUTPUT_PATH\" --requires-license",
-				"#else",
-				"#    echo \"warning: swift-package-list not installed\"",
-				"#fi",
-				"",
-			);
-		};
 		DF6E061928AE3659004FEBC9 /* Settings Bundle Preparation */ = {
 			isa = PBXShellScriptBuildPhase;
+			inputFileListPaths = (
+				"$(SRCROOT)/scripts/settings-bundle-inputs.xcfilelist",
+			);
 			name = "Settings Bundle Preparation";
-			shellPath = /bin/sh;
-			shellScript = (
-				"BUNDLE_DIR=\"$PROJECT_DIR/Moers\"",
-				"BUILD_APP_DIR=\"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"",
-				"",
-				"if [[ \"$CONFIGURATION\" == *\"Release\"* ]]; then",
-				"cp -rf \"$BUNDLE_DIR/Resources/Release/Settings.bundle\" \"$BUILD_APP_DIR\"",
-				"else",
-				"cp -rf \"$BUNDLE_DIR/Resources/Debug/Settings.bundle\" \"$BUILD_APP_DIR\"",
-				"fi",
-				"",
-				"cd $PROJECT_DIR",
-				"cd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"",
-				"",
-				"RELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)",
-				"BUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" Info.plist)",
-				"VERSION_STRING=\"$RELEASE_VERSION ($BUILD_NUMBER)\"",
-				"/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $VERSION_STRING\" \"$BUILD_APP_DIR/Settings.bundle/Root.plist\"",
-				"",
+			outputFileListPaths = (
+				"$(SRCROOT)/scripts/settings-bundle-outputs.xcfilelist",
 			);
-		};
-		DF6E061A28AE3691004FEBC9 /* Generate Settings Bundle Licences */ = {
-			isa = PBXShellScriptBuildPhase;
-			name = "Generate Settings Bundle Licences";
 			shellPath = /bin/sh;
-			shellScript = (
-				"if [[ \"$CONFIGURATION\" == *\"Debug\"* ]]; then",
-				"# /usr/local/bin/license-plist --output-path Moers/Resources/Debug/Settings.bundle --add-version-numbers --package-path Moers.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
-				"",
-				"cp -rf Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist Moers/Resources/Release/Settings.bundle/com.mono0926.LicensePlist",
-				"cp -rf Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist.latest_result.txt Moers/Resources/Release/Settings.bundle/com.mono0926.LicensePlist.latest_result.txt",
-				"cp -rf Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist.plist Moers/Resources/Release/Settings.bundle/com.mono0926.LicensePlist.plist",
-				"",
-				"echo \"Updated and copied license plists\"",
-				"",
-				"fi",
-				"",
-			);
+			shellScript = "set -eu\n/usr/bin/python3 \"$SRCROOT/scripts/prepare-settings-bundle.py\" prepare \\\n  --template \"$SRCROOT/Moers/Resources/$MOERS_SETTINGS_BUNDLE_VARIANT/Settings.bundle\" \\\n  --licenses \"$SRCROOT/Moers/Resources/Debug/Settings.bundle\" \\\n  --info-plist \"$INFOPLIST_FILE\" \\\n  --output \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/Settings.bundle\"\n";
 		};
 		DF782D8728D1DCA9000BDC89 /* Prepare Fuel API Key */ = {
 			isa = PBXShellScriptBuildPhase;
 			name = "Prepare Fuel API Key";
+			outputPaths = (
+				"$(SRCROOT)/Moers/Resources/Tankerkoenig-Info.plist",
+			);
 			shellPath = /bin/sh;
 			shellScript = (
 				"CONFIG_FILE_BASE_NAME=\"Tankerkoenig-Info\"",
@@ -881,6 +856,16 @@
 			target = DF1A495E1F6AAB7000E9108B /* Moers */;
 			targetProxy = DFB161B8267651D7009D2754 /* PBXContainerItemProxy */;
 		};
+		F468D2A17086464593821756 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0170452FD05F49069653F80C /* Prepare Fuel Configuration */;
+			targetProxy = 229F44D31E9F40BE8D56207D /* PBXContainerItemProxy */;
+		};
+		41E6B726C32F416C960517A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0170452FD05F49069653F80C /* Prepare Fuel Configuration */;
+			targetProxy = 229F44D31E9F40BE8D56207D /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -941,7 +926,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -950,8 +935,11 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				VERSIONING_SYSTEM = "apple-generic";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_VERSION = 6.0;
 			};
 			name = "Debug (Production)";
 		};
@@ -978,21 +966,24 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MOERS_SETTINGS_BUNDLE_VARIANT = Debug;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development de.okfn.niederrhein.Moers";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Resources/Moers-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_STRICT_CONCURRENCY = targeted;
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}",
@@ -1053,7 +1044,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -1061,9 +1052,12 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_VERSION = 6.0;
 			};
 			name = "Release (Production)";
 		};
@@ -1091,21 +1085,24 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Moers/Config/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				ONLY_ACTIVE_ARCH = YES;
+				MOERS_SETTINGS_BUNDLE_VARIANT = Release;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = de.okfn.niederrhein.Moers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore de.okfn.niederrhein.Moers";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_OBJC_BRIDGING_HEADER = "Moers/Resources/Moers-Bridging-Header.h";
-				SWIFT_STRICT_CONCURRENCY = targeted;
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}",
@@ -1171,7 +1168,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1185,9 +1182,10 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Moers;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 			};
 			name = "Debug (Production)";
 		};
@@ -1241,7 +1239,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MoersUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1254,10 +1252,11 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Moers;
 				VALIDATE_PRODUCT = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 			};
 			name = "Release (Production)";
 		};
@@ -1322,7 +1321,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Widgets/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1339,8 +1338,11 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Debug (Production)";
@@ -1400,7 +1402,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Widgets/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1416,8 +1418,11 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1484,7 +1489,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Intent Extensions/Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Lennart Fischer. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1501,9 +1506,12 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Debug (Production)";
@@ -1563,7 +1571,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Intent Extensions/Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Lennart Fischer. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1579,9 +1587,12 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1643,7 +1654,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Moers Unit Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1657,9 +1668,10 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moers.app/Moers";
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 			};
 			name = "Debug (Production)";
 		};
@@ -1713,7 +1725,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Moers Unit Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1726,10 +1738,23 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moers.app/Moers";
 				VALIDATE_PRODUCT = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+			};
+			name = "Release (Production)";
+		};
+		207BD3B9FA8F47168AE6F2E5 /* Debug (Production) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = "Debug (Production)";
+		};
+		769EC396309D4A5DB1578CEC /* Release (Production) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
 			};
 			name = "Release (Production)";
 		};
@@ -1784,6 +1809,15 @@
 			);
 			defaultConfigurationName = "Release (Production)";
 		};
+		BB1035744D634953B2B5D9FE /* Build configuration list for PBXAggregateTarget "Prepare Fuel Configuration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				207BD3B9FA8F47168AE6F2E5 /* Debug (Production) */,
+				769EC396309D4A5DB1578CEC /* Release (Production) */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release (Production)";
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
@@ -1799,15 +1833,15 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 11.0.0;
+				minimumVersion = 12.0.0;
 			};
 		};
 		DFE1ED692538C24800FDD44A /* XCRemoteSwiftPackageReference "BulletinBoard" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/LambdaDigamma/BulletinBoard";
 			requirement = {
-				branch = develop;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.1;
 			};
 		};
 		DFE59D3928D871B800BD0236 /* XCRemoteSwiftPackageReference "swift-license-ui" */ = {
@@ -1864,11 +1898,6 @@
 		DF97AD0E26EFEC5F009DFF71 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Core;
-		};
-		DFB07A2E277741030033101C /* FirebaseAnalyticsWithoutAdIdSupport */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DFB07A2B277741030033101C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsWithoutAdIdSupport;
 		};
 		DFB07A30277741030033101C /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;

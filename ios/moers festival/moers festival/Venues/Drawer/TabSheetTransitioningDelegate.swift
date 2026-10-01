@@ -53,5 +53,7 @@ class TabSheetTransitioningDelegate: NSObject, UIViewControllerTransitioningDele
         
         return sheet
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

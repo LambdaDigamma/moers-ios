@@ -5,15 +5,17 @@
 //  Created by Codex on 17.06.26.
 //
 
+import Core
 import Foundation
 import ModernNetworking
 import XCTest
 @testable import MMEvents
 
+@MainActor
 final class DefaultEventServiceCityAPITests: XCTestCase {
 
     func testIndexDecodesCityEventsEnvelopeWithPaginationLinksArray() async throws {
-        let loader = DataLoader(json: """
+        let loader = CityEventHTTPClient(json: """
         {
           "data": [
             {
@@ -78,12 +80,13 @@ final class DefaultEventServiceCityAPITests: XCTestCase {
           }
         }
         """)
-        let service = DefaultEventService(loader)
+        let service = DefaultEventService(client: loader)
 
         let response = try await service.index(cacheMode: .cached, withPages: false)
         let event = try XCTUnwrap(response.data.first)
 
-        XCTAssertEqual(loader.requests.map(\.path), ["events"])
+        let requests = await loader.requests
+        XCTAssertEqual(requests.map(\.path), ["events"])
         XCTAssertEqual(response.meta.currentPage, 1)
         XCTAssertEqual(response.meta.lastPage, 124)
         XCTAssertEqual(event.id, 798)
@@ -100,7 +103,7 @@ final class DefaultEventServiceCityAPITests: XCTestCase {
     }
 
     func testShowDecodesDirectCityEventPayload() async throws {
-        let loader = DataLoader(json: """
+        let loader = CityEventHTTPClient(json: """
         {
           "id": 42,
           "name": "Direkter API Termin",
@@ -125,46 +128,18 @@ final class DefaultEventServiceCityAPITests: XCTestCase {
           "publishedAt": null
         }
         """)
-        let service = DefaultEventService(loader)
+        let service = DefaultEventService(client: loader)
 
         let response = try await service.show(event: 42, cacheMode: .cached)
 
-        XCTAssertEqual(loader.requests.map(\.path), ["events/42"])
+        let requests = await loader.requests
+        XCTAssertEqual(requests.map(\.path), ["events/42"])
         XCTAssertEqual(response.data.name, "Direkter API Termin")
         XCTAssertNil(response.data.extras?.location)
         XCTAssertEqual(response.data.extras?.street, "Rathausplatz 1")
         XCTAssertEqual(response.data.displayLocationName, "Rathausplatz 1")
         XCTAssertEqual(response.data.extras?.organizer, "Stadt Moers")
         XCTAssertEqual(response.data.extras?.scheduleDisplay, .date)
-    }
-
-}
-
-private final class DataLoader: HTTPLoader, @unchecked Sendable {
-
-    private let data: Data
-    private(set) var requests: [HTTPRequest] = []
-
-    init(json: String) {
-        guard let data = json.data(using: .utf8) else {
-            fatalError("Invalid test JSON")
-        }
-
-        self.data = data
-    }
-
-    override func load(_ request: HTTPRequest) async -> HTTPResult {
-        requests.append(request)
-
-        let url = URL(string: "https://moers.app/\(request.path)")!
-        let response = HTTPURLResponse(
-            url: url,
-            statusCode: 200,
-            httpVersion: nil,
-            headerFields: ["Content-Type": "application/json"]
-        )!
-
-        return .success(HTTPResponse(request, response, data))
     }
 
 }

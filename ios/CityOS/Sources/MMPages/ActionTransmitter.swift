@@ -8,9 +8,11 @@
 import Foundation
 import Combine
 import OSLog
+import Observation
 
 /// Transmits actions from page view blocks to the context
-public class ActionTransmitter: ObservableObject {
+@Observable
+public class ActionTransmitter {
     
     public let showURL: PassthroughSubject<URL, Never>
     private let logger: Logger
@@ -24,5 +26,7 @@ public class ActionTransmitter: ObservableObject {
         logger.info("Dispatching open url: \(url.absoluteString, privacy: .public)")
         showURL.send(url)
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

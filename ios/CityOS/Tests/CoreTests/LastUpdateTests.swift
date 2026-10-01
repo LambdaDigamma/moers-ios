@@ -10,7 +10,7 @@ import XCTest
 
 @testable import Core
 
-final class LastUpdateTests: XCTestCase {
+nonisolated final class LastUpdateTests: XCTestCase {
     
     func test_behaviour() {
         

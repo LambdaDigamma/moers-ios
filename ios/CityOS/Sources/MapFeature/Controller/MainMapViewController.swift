@@ -99,5 +99,7 @@ public class MainMapViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

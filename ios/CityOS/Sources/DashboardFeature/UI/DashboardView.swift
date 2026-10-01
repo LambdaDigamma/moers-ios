@@ -12,18 +12,18 @@ import FuelFeature
 import RubbishFeature
 import ParkingFeature
 import WeatherFeature
-import Factory
+import FactoryKit
 import EFAUI
 
 public struct DashboardView<Content: View>: View {
     
-    @StateObject var viewModel: DashboardViewModel = .init(
+    @State var viewModel: DashboardViewModel = .init(
         loader: DashboardConfigDiskLoader()
     )
     
-    @StateObject var fuelViewModel = FuelPriceDashboardViewModel()
-    @StateObject var rubbishViewModel = RubbishDashboardViewModel()
-    @StateObject var parkingViewModel = ParkingDashboardViewModel()
+    @State var fuelViewModel = FuelPriceDashboardViewModel()
+    @State var rubbishViewModel = RubbishDashboardViewModel()
+    @State var parkingViewModel = ParkingDashboardViewModel()
     
     var content: () -> Content
     var openCurrentTrip: () -> Void

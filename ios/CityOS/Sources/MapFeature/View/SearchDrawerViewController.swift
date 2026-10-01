@@ -14,7 +14,7 @@ import Pulley
 import TagListView
 import Fuse
 import Combine
-import Factory
+import FactoryKit
 //import NewsFeature
 
 public enum DisplayMode {
@@ -23,7 +23,7 @@ public enum DisplayMode {
     case filter(searchTerm: String?, selectedTags: [String], items: [Location])
 }
 
-enum SearchDrawerItem: Hashable, @unchecked Sendable {
+nonisolated enum SearchDrawerItem: Hashable {
     case tag(AttributedString, id: String)
     case location(Core.AnyLocation)
     
@@ -60,6 +60,7 @@ public class SearchDrawerViewController: UIViewController {
     private var displayMode = DisplayMode.list
     private var locations: [Location] = []
     private var datasource: [Location] = []
+    private var locationsByID: [Core.AnyLocation: Location] = [:]
     private var selectedTags: [String] = []
     private var tags: [String] = []
     
@@ -132,8 +133,12 @@ public class SearchDrawerViewController: UIViewController {
             cell.accessories = []
         }
         
-        locationCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Core.AnyLocation> { cell, indexPath, anyLoc in
-            let location = anyLoc.location
+        locationCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Core.AnyLocation> { [weak self] cell, indexPath, anyLoc in
+            guard let location = self?.locationsByID[anyLoc] else {
+                cell.contentConfiguration = UIListContentConfiguration.cell()
+                cell.accessories = []
+                return
+            }
             let showCheckmark: Bool
             if let entry = location as? Entry {
                 showCheckmark = entry.isValidated
@@ -189,6 +194,8 @@ public class SearchDrawerViewController: UIViewController {
     }
     
     private func updateSnapshot() {
+        locationsByID.removeAll(keepingCapacity: true)
+
         var snapshot = NSDiffableDataSourceSnapshot<Int, SearchDrawerItem>()
         snapshot.appendSections([0])
         
@@ -201,12 +208,12 @@ public class SearchDrawerViewController: UIViewController {
     private func itemsForCurrentDisplayMode() -> [SearchDrawerItem] {
         switch displayMode {
         case .list:
-            return datasource.map { .location(AnyLocation($0)) }
+            return datasource.map(locationItem)
             
         case .filter(_, let tagStrings, let items):
             searchDrawer.tagList.removeAllTags()
             searchDrawer.tagList.addTags(tagStrings)
-            return items.map { .location(AnyLocation($0)) }
+            return items.map(locationItem)
             
         case .search(_, let tagAttrs, let items):
             let numberOfTags = min(tagAttrs.count, 5)
@@ -217,10 +224,16 @@ public class SearchDrawerViewController: UIViewController {
                 result.append(.tag(tagAttrs[i], id: id))
             }
             
-            result.append(contentsOf: items.map { .location(AnyLocation($0)) })
+            result.append(contentsOf: items.map(locationItem))
             
             return result
         }
+    }
+
+    private func locationItem(for location: Location) -> SearchDrawerItem {
+        let id = AnyLocation(location)
+        locationsByID[id] = location
+        return .location(id)
     }
     
     // MARK: - Data Handling
@@ -328,7 +341,9 @@ public class SearchDrawerViewController: UIViewController {
         self.updateDatasource()
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension SearchDrawerViewController: PulleyDrawerViewControllerDelegate {
@@ -487,7 +502,8 @@ extension SearchDrawerViewController: UICollectionViewDelegate {
             self.updateSnapshot()
             
         case .location(let anyLocation):
-            selectLocaton(anyLocation.location)
+            guard let location = locationsByID[anyLocation] else { return }
+            selectLocaton(location)
         }
     }
     
@@ -539,4 +555,3 @@ extension SearchDrawerViewController {
     }
     
 }
-

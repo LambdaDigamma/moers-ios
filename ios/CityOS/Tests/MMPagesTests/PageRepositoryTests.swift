@@ -11,18 +11,14 @@ import GRDB
 import ModernNetworking
 @testable import MMPages
 
+@MainActor
 public final class PageRepositoryTests: XCTestCase {
     
     func testLoadNetworkNotPresentInDatabase() async throws {
         
-        let url = ResourcesFinder(file: #file).baseURL()?
-            .appendingPathComponent("Tests/MMPagesTests/Resources/Fixtures/Pages/Show.json")
+        let url = try XCTUnwrap(Bundle.module.url(forResource: "Show", withExtension: "json"))
         
-        let loader = FixtureFileLoader(
-            fixtureURL: url
-        )
-        
-        let service: PageService = DefaultPageService(loader)
+        let service: PageService = DefaultPageService(client: try FixtureHTTPClient(url: url))
         let store = PageStore.inMemory().store
         
         let repository = PageRepository(

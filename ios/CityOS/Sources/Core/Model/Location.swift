@@ -10,7 +10,7 @@ import Foundation
 import MapKit
 import Fuse
 
-public protocol Location: Categorizable, Fuseable, Sendable, MKAnnotation {
+nonisolated public protocol Location: Categorizable, Fuseable, MKAnnotation {
     
     var location: CLLocation { get }
     var name: String { get }

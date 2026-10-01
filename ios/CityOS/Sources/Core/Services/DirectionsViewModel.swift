@@ -9,16 +9,17 @@ import Foundation
 import MapKit
 import OSLog
 import SwiftUI
-import Factory
+import FactoryKit
 
+@Observable
 public class DirectionsViewModel: StandardViewModel {
     
-    @Published public var eta: DataState<TimeInterval, Error> = .loading
-    @Published public var directionsMode: DirectionsMode = .driving
+    public var eta: DataState<TimeInterval, Error> = .loading
+    public var directionsMode: DirectionsMode = .driving
     
     private let logger = Logger(.default)
     
-    @LazyInjected(\.locationService) private var locationService: LocationService
+    @ObservationIgnored @LazyInjected(\.locationService) private var locationService: LocationService
     
     public init(
         directionsMode: DirectionsMode = .driving
@@ -85,7 +86,9 @@ public class DirectionsViewModel: StandardViewModel {
         }
         return nil
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 public class ETACalculator {
@@ -109,7 +112,9 @@ public class ETACalculator {
         let response = try await directions.calculateETA()
         return response.expectedTravelTime
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 enum DirectionsError: Error {

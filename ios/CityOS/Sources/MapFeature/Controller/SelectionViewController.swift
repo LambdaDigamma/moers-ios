@@ -23,6 +23,7 @@ class SelectionViewController: UIViewController {
     lazy var closeButton: UIButton = { CoreViewFactory.button() }()
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, Core.AnyLocation>!
+    private var locationsByID: [Core.AnyLocation: Location] = [:]
     
     // swiftlint:disable:next force_cast
     lazy var drawer: LegacyMainViewController = { self.parent as! LegacyMainViewController }()
@@ -44,7 +45,7 @@ class SelectionViewController: UIViewController {
         }
     }
     
-    enum Section {
+    nonisolated enum Section: Hashable, Sendable {
         case main
     }
     
@@ -100,8 +101,12 @@ class SelectionViewController: UIViewController {
     }
     
     private func configureDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Core.AnyLocation> { cell, indexPath, anyLocation in
-            let location = anyLocation.location
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Core.AnyLocation> { [weak self] cell, indexPath, anyLocation in
+            guard let location = self?.locationsByID[anyLocation] else {
+                cell.contentConfiguration = UIListContentConfiguration.cell()
+                cell.accessories = []
+                return
+            }
             if #available(iOS 16.0, *) {
                 cell.contentConfiguration = UIHostingConfiguration {
                     SearchResultCellView(
@@ -132,9 +137,15 @@ class SelectionViewController: UIViewController {
     }
     
     private func updateSnapshot() {
+        locationsByID.removeAll(keepingCapacity: true)
+
         var snapshot = NSDiffableDataSourceSnapshot<Section, Core.AnyLocation>()
         snapshot.appendSections([.main])
-        let items = clusteredLocations.map { Core.AnyLocation($0) }
+        let items = clusteredLocations.map { location in
+            let id = Core.AnyLocation(location)
+            locationsByID[id] = location
+            return id
+        }
         snapshot.appendItems(items)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
@@ -190,7 +201,9 @@ class SelectionViewController: UIViewController {
         }
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension SelectionViewController: UICollectionViewDelegate {
@@ -261,4 +274,3 @@ extension SelectionViewController: PulleyDrawerViewControllerDelegate {
     }
     
 }
-

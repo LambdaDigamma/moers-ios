@@ -10,7 +10,7 @@ import Core
 import UIKit
 
 import Core
-import Factory
+import FactoryKit
 
 public class EntryOnboardingLocationMenuViewController: UIViewController {
     
@@ -120,6 +120,8 @@ public class EntryOnboardingLocationMenuViewController: UIViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 

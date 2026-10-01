@@ -118,5 +118,7 @@ public class StaticPetrolService: PetrolService {
     ) async throws -> PetrolStation {
         return loadPetrolStation(id)
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

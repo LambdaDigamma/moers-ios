@@ -16,7 +16,7 @@ import TagListView
 import Fuse
 import Combine
 import Core
-import Factory
+import FactoryKit
 
 // swiftlint:disable file_length
 
@@ -27,8 +27,8 @@ public struct CellIdentifier {
     
 }
 
-enum ContentDrawerItem: Hashable, @unchecked Sendable {
-    case tag(NSAttributedString, id: String)
+nonisolated enum ContentDrawerItem: Hashable {
+    case tag(AttributedString, id: String)
     case location(Core.AnyLocation)
     
     func hash(into hasher: inout Hasher) {
@@ -82,6 +82,7 @@ class ContentViewController: UIViewController {
     private var displayMode = DisplayMode.list
     private var locations: [Location] = []
     private var datasource: [Location] = []
+    private var locationsByID: [Core.AnyLocation: Location] = [:]
     private var selectedTags: [String] = []
     private var tags: [String] = []
     
@@ -143,16 +144,16 @@ class ContentViewController: UIViewController {
         ) { collectionView, indexPath, item in
             switch item {
             case .tag(let attributedString, _):
-                let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, NSAttributedString> { cell, indexPath, attrStr in
+                let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, AttributedString> { cell, indexPath, attrStr in
                     if #available(iOS 16.0, *) {
                         cell.contentConfiguration = UIHostingConfiguration {
-                            Text(AttributedString(attrStr))
+                            Text(attrStr)
                                 .font(.system(size: 17))
                         }
                         .margins(.all, 0)
                     } else {
                         var content = cell.defaultContentConfiguration()
-                        content.attributedText = attrStr
+                        content.attributedText = NSAttributedString(attrStr)
                         cell.contentConfiguration = content
                     }
                     cell.accessories = []
@@ -164,8 +165,12 @@ class ContentViewController: UIViewController {
                 )
                 
             case .location(let anyLocation):
-                    let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Core.AnyLocation> { cell, indexPath, anyLoc in
-                    let location = anyLoc.location
+                    let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Core.AnyLocation> { [weak self] cell, indexPath, anyLoc in
+                    guard let location = self?.locationsByID[anyLoc] else {
+                        cell.contentConfiguration = UIListContentConfiguration.cell()
+                        cell.accessories = []
+                        return
+                    }
                     let showCheckmark: Bool
                     if let entry = location as? Entry {
                         showCheckmark = entry.isValidated
@@ -204,6 +209,8 @@ class ContentViewController: UIViewController {
     }
     
     private func updateSnapshot() {
+        locationsByID.removeAll(keepingCapacity: true)
+
         var snapshot = NSDiffableDataSourceSnapshot<Int, ContentDrawerItem>()
         snapshot.appendSections([0])
         
@@ -216,27 +223,33 @@ class ContentViewController: UIViewController {
     private func itemsForCurrentDisplayMode() -> [ContentDrawerItem] {
         switch displayMode {
         case .list:
-            return datasource.map { .location(AnyLocation($0)) }
+            return datasource.map(locationItem)
             
         case .filter(_, let tagStrings, let items):
             contentDrawerView.tagListView.removeAllTags()
             contentDrawerView.tagListView.addTags(tagStrings)
-            return items.map { .location(AnyLocation($0)) }
+            return items.map(locationItem)
             
         case .search(_, let tagAttrs, let items):
             let numberOfTags = min(tagAttrs.count, 5)
             var result: [ContentDrawerItem] = []
             
             for i in 0..<numberOfTags {
-                let nsAttr = NSAttributedString(tagAttrs[i])
-                let id = "\(nsAttr.string)-\(i)"
-                result.append(.tag(nsAttr, id: id))
+                let tag = tagAttrs[i]
+                let id = "\(String(tag.characters))-\(i)"
+                result.append(.tag(tag, id: id))
             }
             
-            result.append(contentsOf: items.map { .location(AnyLocation($0)) })
+            result.append(contentsOf: items.map(locationItem))
             
             return result
         }
+    }
+
+    private func locationItem(for location: Location) -> ContentDrawerItem {
+        let id = AnyLocation(location)
+        locationsByID[id] = location
+        return .location(id)
     }
     
     private func setupTheming() {
@@ -349,7 +362,9 @@ class ContentViewController: UIViewController {
         self.updateDatasource()
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension ContentViewController: UISearchBarDelegate {
@@ -443,9 +458,10 @@ extension ContentViewController: UICollectionViewDelegate {
         
         switch item {
         case .tag(let attrString, _):
+            let tag = String(attrString.characters)
             // Handle tag selection
-            if !selectedTags.contains(attrString.string) {
-                self.selectedTags.append(attrString.string)
+            if !selectedTags.contains(tag) {
+                self.selectedTags.append(tag)
             }
             
             self.contentDrawerView.searchBar.text = ""
@@ -459,7 +475,8 @@ extension ContentViewController: UICollectionViewDelegate {
             self.updateSnapshot()
             
         case .location(let anyLocation):
-            selectLocaton(anyLocation.location)
+            guard let location = locationsByID[anyLocation] else { return }
+            selectLocaton(location)
         }
     }
     

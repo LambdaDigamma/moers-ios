@@ -8,7 +8,7 @@
 import Foundation
 @preconcurrency import MediaLibraryKit
 
-public struct Page: BasePage, Sendable {
+nonisolated public struct Page: BasePage {
     
     public typealias ID = Int
     public typealias UserID = Int

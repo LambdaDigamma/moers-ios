@@ -19,5 +19,7 @@ class TextViewModel {
     public var paragraph: String {
         return text
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

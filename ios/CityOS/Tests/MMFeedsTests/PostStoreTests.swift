@@ -11,12 +11,13 @@ import GRDB
 import MediaLibraryKit
 @testable import MMFeeds
 
+@MainActor
 public final class PostStoreTests: XCTestCase {
     
     public var writer: DatabaseWriter!
     public var store: PostStore!
     
-    public override func setUp() {
+    public override func setUp() async throws {
         
         guard let dbQueue = try? DatabaseQueue(path: ":memory:") else { fatalError() }
         

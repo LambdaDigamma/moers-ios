@@ -63,5 +63,7 @@ class ConfigManager {
     public var numberOfDisplayedUpcomingEvents: Int {
         return 15 // (remoteConfig["number_events_upcoming"].numberValue as? Int) ?? 15
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

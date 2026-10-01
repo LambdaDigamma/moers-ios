@@ -5,7 +5,7 @@
 //  Created by Lennart Fischer on 03.01.21.
 //
 
-#if canImport(UIKit) && os(iOS)
+#if canImport(UIKit) && (os(iOS) || os(tvOS))
 
 import UIKit
 

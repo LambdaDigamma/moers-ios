@@ -9,7 +9,7 @@ import Foundation
 import XCTest
 @testable import Core
 
-final class DateExtensionsTests: XCTestCase {
+nonisolated final class DateExtensionsTests: XCTestCase {
     
     func testDateStringParsing() {
         
@@ -40,8 +40,10 @@ final class DateExtensionsTests: XCTestCase {
     func testDefaultBeautifyDate() {
         
         let date = Date.from("02.02.2018", withFormat: "dd.MM.yyyy") ?? Date()
+        let weekday = Calendar.autoupdatingCurrent.component(.weekday, from: date)
+        let weekdayName = DateFormatter().shortWeekdaySymbols[weekday - 1]
         
-        XCTAssertEqual(date.beautify(), "Fri 02.02.2018")
+        XCTAssertEqual(date.beautify(), "\(weekdayName) 02.02.2018")
         
     }
     
@@ -116,18 +118,5 @@ final class DateExtensionsTests: XCTestCase {
     }
     
     // TODO: Add Tests for Today and Tomorrow
-    
-    static var allTests = [
-        ("testDateStringParsing", testDateStringParsing),
-        ("testFormatDate", testFormatDate),
-        ("testDefaultBeautifyDate", testDefaultBeautifyDate),
-        ("testTodayBeautifyDate", testTodayBeautifyDate),
-        ("testTomorrowBeautifyDate", testTomorrowBeautifyDate),
-        ("testIsInIntervalTrue", testIsInIntervalTrue),
-        ("testIsInIntervalFalse", testIsInIntervalFalse),
-        ("testMinuteIntervalFuture", testMinuteIntervalFuture),
-        ("testMinuteIntervalHistory", testMinuteIntervalHistory),
-        ("testMinuteIntervalNow", testMinuteIntervalNow),
-    ]
     
 }

@@ -7,14 +7,14 @@
 
 import SwiftUI
 import EFAAPI
-import Factory
+import FactoryKit
 
 public struct TripConfigurationScreen: View {
     
     @State var showSelectOrigin = false
     @State var showSelectDestination = false
     
-    @ObservedObject var viewModel: TripSearchViewModel
+    var viewModel: TripSearchViewModel
     
     private let onSearch: () -> ()
     

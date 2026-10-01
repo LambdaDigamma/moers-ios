@@ -6,13 +6,13 @@
 //
 import Foundation
 
-public protocol Stubbable: BaseStubbable, Identifiable {
+nonisolated public protocol Stubbable: BaseStubbable, Identifiable {
     
     static func stub(withID id: ID) -> Self
     
 }
 
-public protocol BaseStubbable {
+nonisolated public protocol BaseStubbable {
     
     static func stub() -> Self
     

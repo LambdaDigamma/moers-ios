@@ -10,7 +10,7 @@ import FeedKit
 import OSLog
 import Core
 
-public struct DefaultNewsService: NewsService, Sendable {
+nonisolated public struct DefaultNewsService: NewsService, Sendable {
     
     private let logger: Logger = Logger(.coreApi)
     
@@ -60,7 +60,7 @@ public struct DefaultNewsService: NewsService, Sendable {
 
 public extension Optional<[RSSFeedItem]> {
     
-    func clean(settingSource source: String) -> [RSSFeedItem] {
+    nonisolated func clean(settingSource source: String) -> [RSSFeedItem] {
         
         guard let items = self else {
             return []

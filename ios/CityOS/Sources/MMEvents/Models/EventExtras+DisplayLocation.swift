@@ -5,7 +5,7 @@
 
 import Foundation
 
-public extension EventExtras {
+nonisolated public extension EventExtras {
 
     var displayLocationName: String? {
         trimmedNonEmpty(location)
@@ -15,7 +15,7 @@ public extension EventExtras {
 
 }
 
-private extension EventExtras {
+nonisolated private extension EventExtras {
 
     func trimmedNonEmpty(_ value: String?) -> String? {
         guard let value else { return nil }

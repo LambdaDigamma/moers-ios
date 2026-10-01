@@ -9,14 +9,14 @@ import SwiftUI
 import Combine
 import CoreLocation
 import Core
-import Factory
+import FactoryKit
 
 struct InTrainMap: View {
     
     public let accent: Color = .yellow // .init(hex: "E16335")
     public let onAccent: Color = .black
     
-    @StateObject var viewModel: InTrainMapViewModel = .init()
+    @State private var viewModel: InTrainMapViewModel = .init()
     
     var body: some View {
         
@@ -100,7 +100,7 @@ struct InTrainMap: View {
         }
         .task {
 //            viewModel.start()
-            viewModel.load()
+            await viewModel.load()
         }
         .onDisappear {
             viewModel.stop()

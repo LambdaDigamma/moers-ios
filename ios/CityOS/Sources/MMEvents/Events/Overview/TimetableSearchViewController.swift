@@ -5,6 +5,8 @@
 //  Created by Lennart Fischer on 19.05.26.
 //
 
+#if !os(tvOS)
+
 import Combine
 import SwiftUI
 import UIKit
@@ -126,9 +128,9 @@ public class TimetableSearchViewController: UIViewController {
 
     private func bindViewModel() {
         Publishers.CombineLatest3(
-            viewModel.$searchText,
-            viewModel.$searchSections,
-            viewModel.$searchState
+            viewModel.searchTextPublisher,
+            viewModel.searchSectionsPublisher,
+            viewModel.searchStatePublisher
         )
             .receive(on: DispatchQueue.main)
             .sink { [weak self] query, sections, state in
@@ -225,6 +227,8 @@ public class TimetableSearchViewController: UIViewController {
         cancelAndDismiss()
     }
 
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension TimetableSearchViewController: UISearchResultsUpdating {
@@ -264,3 +268,5 @@ extension TimetableSearchViewController: UIAdaptivePresentationControllerDelegat
     }
 
 }
+
+#endif

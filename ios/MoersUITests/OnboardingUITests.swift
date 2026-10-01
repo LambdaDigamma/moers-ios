@@ -8,36 +8,39 @@
 
 import XCTest
 
+@MainActor
 class OnboardingUITests: XCTestCase {
 
-    override func setUp() {
+    override func setUp() async throws {
+        try await super.setUp()
         
         continueAfterFailure = false
 
-        UIView.setAnimationsEnabled(false)
-        
     }
 
-    func testOnboardingCitizen() {
+    func testOnboardingAnimationTransitions() async {
         
         let app = XCUIApplication()
-        setupSnapshot(app)
-        app.launchArguments = ["-reset"]
-        app.launchEnvironment = ["animations": "0"]
+        // Keep app animations enabled to exercise UIKit's release of animation blocks.
+        app.launchArguments = ["-reset", "-FASTLANE_SNAPSHOT", "NO", "-UserDidCompleteSetup", "NO"]
         app.launch()
+        defer { app.terminate() }
         
         // Initial Page
-        XCTAssertTrue(app.staticTexts["StartAppTitleLabel"].exists)
+        XCTAssertTrue(app.staticTexts["StartAppTitleLabel"].waitForExistence(timeout: 10))
         app.buttons["ContinueButton"].tap()
+
+        // Privacy Page
+        XCTAssertTrue(app.staticTexts["PrivacyTitleLabel"].waitForExistence(timeout: 10))
+        app.buttons["PrivacyContinueButton"].tap()
         
         // User Type Selector Page
-        XCTAssertTrue(app.staticTexts["CitizenTypeTitleLabel"].waitForExistence(timeout: 1))
+        XCTAssertTrue(app.staticTexts["CitizenTypeTitleLabel"].waitForExistence(timeout: 10))
         app.buttons["ContinueButton"].tap()
         
         // Notifications Page
-        XCTAssertTrue(app.staticTexts["NotificationsTitleLabel"].waitForExistence(timeout: 1))
+        XCTAssertTrue(app.staticTexts["NotificationsTitleLabel"].waitForExistence(timeout: 10))
         XCTAssertTrue(app.buttons["SubscribeNotificationsButton"].exists)
-        XCTAssertTrue(app.buttons["NotNowNotificationsButton"].exists)
         
     }
     

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Factory
+import FactoryKit
 
 public struct EventFilterSheet: View {
     
@@ -79,7 +79,9 @@ public struct EventFilterSheet: View {
                 }
             }
             .navigationTitle(EventPackageStrings.filter)
+            #if !os(tvOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(EventPackageStrings.done) {

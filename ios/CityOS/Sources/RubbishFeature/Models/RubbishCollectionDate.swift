@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct RubbishCollectionDate: Codable {
+nonisolated public struct RubbishCollectionDate: Codable {
     
     public let id: Int
     public let date: String

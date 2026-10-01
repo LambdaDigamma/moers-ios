@@ -10,7 +10,7 @@ import Core
 import MMPages
 import MMEvents
 import UIKit
-import Factory
+import FactoryKit
 
 public class EventViewController: DefaultHostingController {
     
@@ -69,5 +69,7 @@ public class EventViewController: DefaultHostingController {
             
     }
     
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

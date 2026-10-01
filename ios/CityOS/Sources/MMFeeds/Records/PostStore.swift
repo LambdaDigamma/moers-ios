@@ -7,7 +7,7 @@
 
 import Foundation
 import GRDB
-import Factory
+import FactoryKit
 import Combine
 
 public class PostStore {
@@ -129,5 +129,7 @@ public class PostStore {
         return observation.publisher(in: reader).eraseToAnyPublisher()
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

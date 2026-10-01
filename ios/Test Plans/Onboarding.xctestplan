@@ -1,0 +1,27 @@
+{
+  "configurations" : [
+    {
+      "id" : "0D4FF7DE-37CD-4EF7-9578-6CD55321D81B",
+      "name" : "Onboarding",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "selectedTests" : [
+        "OnboardingUITests"
+      ],
+      "target" : {
+        "containerPath" : "container:Moers.xcodeproj",
+        "identifier" : "DF284EFC23F4C17100EC999B",
+        "name" : "MoersUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

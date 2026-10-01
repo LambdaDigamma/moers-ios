@@ -12,5 +12,7 @@ import MMFeeds
 class PostVideoCollectionViewCell: BaseRoundedCardCell {
     
     var post: Post?
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

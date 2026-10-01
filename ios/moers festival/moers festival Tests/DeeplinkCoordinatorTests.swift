@@ -11,7 +11,7 @@ import XCTest
 
 @MainActor
 final class DeeplinkCoordinatorTests: XCTestCase {
-    func testDispatchesPostDetail() {
+    func testDispatchesPostDetail() async {
         let router = DeepLinkRouterSpy()
         let coordinator = DeeplinkCoordinator(router: router)
 
@@ -21,7 +21,7 @@ final class DeeplinkCoordinatorTests: XCTestCase {
         XCTAssertEqual(router.actions, [.postDetail(postID: 42)])
     }
 
-    func testDispatchesVenueDetail() {
+    func testDispatchesVenueDetail() async {
         let router = DeepLinkRouterSpy()
         let coordinator = DeeplinkCoordinator(router: router)
 
@@ -31,7 +31,7 @@ final class DeeplinkCoordinatorTests: XCTestCase {
         XCTAssertEqual(router.actions, [.venueDetail(venueID: 7)])
     }
 
-    func testDoesNotDispatchInvalidLinks() {
+    func testDoesNotDispatchInvalidLinks() async {
         let router = DeepLinkRouterSpy()
         let coordinator = DeeplinkCoordinator(router: router)
 

@@ -9,7 +9,9 @@
 
 import Foundation
 import MapKit
+#if canImport(Contacts)
 import Contacts
+#endif
 
 @MainActor
 public class AppleNavigationProvider: NavigationProvider {
@@ -18,6 +20,9 @@ public class AppleNavigationProvider: NavigationProvider {
     
     public func startNavigation(to point: Point, withName name: String) {
         
+#if os(tvOS)
+        return
+#else
         let latitude: CLLocationDegrees = point.latitude
         let longitude: CLLocationDegrees = point.longitude
         
@@ -27,14 +32,18 @@ public class AppleNavigationProvider: NavigationProvider {
             MKLaunchOptionsShowsTrafficKey: true
         ]
         
+#if canImport(Contacts)
         let address = CNMutablePostalAddress()
         address.street = name
-
         let placemark = MKPlacemark(coordinate: coordinates, postalAddress: address)
+#else
+        let placemark = MKPlacemark(coordinate: coordinates)
+#endif
         let mapItem = MKMapItem(placemark: placemark)
         mapItem.name = name
         
         mapItem.openInMaps(launchOptions: options)
+#endif
         
     }
     
@@ -43,7 +52,9 @@ public class AppleNavigationProvider: NavigationProvider {
         return URL(string: "https://maps.apple.com/?daddr=\(point.latitude),\(point.longitude)&dirflg=d")
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 #endif

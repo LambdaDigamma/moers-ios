@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Factory
+import FactoryKit
 
 public class LaunchArguments {
     
@@ -17,5 +17,7 @@ public class LaunchArguments {
         return CommandLine.arguments.contains("-mocked")
 //        return UserDefaults.standard.bool(forKey: keyUseMockedData)
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum RubbishLoadingError: LocalizedError {
+nonisolated public enum RubbishLoadingError: LocalizedError {
     
     case deactivated
     case noStreetConfigured

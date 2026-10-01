@@ -34,5 +34,7 @@ public class AppSidebarViewController: AppScaffold.SidebarViewController {
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -52,5 +52,7 @@ class ShortcutConfiguration: BootstrappingProcedureStep {
         application.shortcutItems = [itemFavorites, itemEvents, itemNews]
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

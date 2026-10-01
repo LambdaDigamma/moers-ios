@@ -9,19 +9,28 @@ import Foundation
 import XMLCoder
 import ModernNetworking
 import CoreLocation
+import Core
 
 public class DefaultTransitService: TransitService {
     
     private let languageCode: String
-    nonisolated(unsafe) private let loader: HTTPLoader
+    private let client: any HTTPClient
     private let standardCoordinateOutputFormat: CoordinateOutputFormat = .wgs84
     
     public init(
+        client: any HTTPClient,
+        languageCode: String = "de"
+    ) {
+        self.client = client
+        self.languageCode = languageCode
+    }
+
+    @MainActor
+    public convenience init(
         loader: HTTPLoader,
         languageCode: String = "de"
     ) {
-        self.loader = loader
-        self.languageCode = languageCode
+        self.init(client: HTTPLoaderClient(loader: loader), languageCode: languageCode)
     }
     
     // MARK: - Stop Finder
@@ -54,12 +63,12 @@ public class DefaultTransitService: TransitService {
             URLQueryItem(name: "UTFMacro", value: "1"),
         ]
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         return try await result.decodingXML(
             StopFinderResponse.self,
             request: request,
-            decoder: Self.defaultDecoder
+            decoder: Self.defaultDecoder()
         )
         
     }
@@ -101,12 +110,12 @@ public class DefaultTransitService: TransitService {
             URLQueryItem(name: "UTFMacro", value: "1"),
         ]
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         let response = try await result.decodingXML(
             StopFinderResponse.self,
             request: request,
-            decoder: Self.defaultDecoder
+            decoder: Self.defaultDecoder()
         )
         
         return response.stopFinderRequest
@@ -149,12 +158,12 @@ public class DefaultTransitService: TransitService {
             URLQueryItem(name: "UTFMacro", value: "1")
         ]
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         return try await result.decodingXML(
             DepartureMonitorResponse.self,
             request: request,
-            decoder: Self.defaultDecoder
+            decoder: Self.defaultDecoder()
         )
         
     }
@@ -229,12 +238,12 @@ public class DefaultTransitService: TransitService {
             URLQueryItem(name: "mode", value: "direct"),
         ]
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         return try await result.decodingXML(
             TripResponse.self,
             request: request,
-            decoder: Self.defaultDecoder
+            decoder: Self.defaultDecoder()
         )
         
     }
@@ -261,19 +270,19 @@ public class DefaultTransitService: TransitService {
             URLQueryItem(name: "coordOutputFormat", value: CoordinateOutputFormat.wgs84.rawValue)
         ] + lineQueryItems
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         return try await result.decodingXML(
             GeoITDRequest.self,
             request: request,
-            decoder: Self.defaultDecoder
+            decoder: Self.defaultDecoder()
         )
         
     }
     
     // MARK: - Helpers
     
-    nonisolated(unsafe) public static let defaultDecoder: XMLDecoder = {
+    public static func defaultDecoder() -> XMLDecoder {
         
         let decoder = XMLDecoder()
         let format = DateFormatter()
@@ -284,7 +293,7 @@ public class DefaultTransitService: TransitService {
         
         return decoder
         
-    }()
+    }
     
     public static func defaultLoader() -> HTTPLoader {
         
@@ -299,5 +308,7 @@ public class DefaultTransitService: TransitService {
         return (resetGuard --> applyEnvironment --> printLoader --> sessionLoader)!
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

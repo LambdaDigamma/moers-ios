@@ -7,20 +7,24 @@
 //
 
 import UIKit
+import Combine
 import Core
 import BLTNBoard
 import CoreLocation
 import OSLog
-import Factory
+import FactoryKit
 import RubbishFeature
 
 class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataSource {
 
-    @LazyInjected(\.rubbishService) var rubbishService
-    @LazyInjected(\.geocodingService) var geocodingService
-    @LazyInjected(\.locationService) var locationService
+    @LazyInjected(\.rubbishService) private var rubbishService: RubbishService
+    @LazyInjected(\.geocodingService) private var geocodingService: GeocodingService
+    @LazyInjected(\.locationService) private var locationService: LocationService
     
     private var streets: [RubbishFeature.RubbishCollectionStreet] = []
+    private var streetLoading: AnyCancellable?
+    private var authorizationObservation: AnyCancellable?
+    private var streetEstimation: AnyCancellable?
     
     private let logger = Logger(.coreUi)
     
@@ -31,12 +35,30 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     }
     
     override init(title: String) {
-        
         super.init(title: title)
         
         self.setupPicker()
-        self.loadStreets()
         
+    }
+
+    init(title: String, rubbishService: RubbishService, locationService: LocationService, geocodingService: GeocodingService) {
+        super.init(title: title)
+        self.rubbishService = rubbishService
+        self.locationService = locationService
+        self.geocodingService = geocodingService
+        self.setupPicker()
+    }
+
+    override func setUp() {
+        super.setUp()
+        loadStreets()
+    }
+
+    override func tearDown() {
+        streetLoading = nil
+        authorizationObservation = nil
+        streetEstimation = nil
+        super.tearDown()
     }
     
     private func setupPicker() {
@@ -49,63 +71,59 @@ class RubbishStreetPickerItem: BLTNPageItem, PickerViewDelegate, PickerViewDataS
     
     private func loadStreets() {
         
-        Task {
+        let task = Task { [weak self, rubbishService] in
+            guard !Task.isCancelled, self != nil else { return }
             do {
                 let streets = try await rubbishService.loadRubbishCollectionStreets()
-                
-                await MainActor.run {
-                    self.streets = streets
-                    self.picker.reloadPickerView()
-                    self.loadUserLocationForStreetEstimation()
-                }
+                guard !Task.isCancelled, let self else { return }
+                self.streets = streets
+                self.picker.reloadPickerView()
+                self.loadUserLocationForStreetEstimation()
             } catch {
-                self.logger.error("Loading rubbish collection streets failed: \(error.localizedDescription)")
+                guard !Task.isCancelled else { return }
+                self?.logger.error("Loading rubbish collection streets failed: \(error.localizedDescription)")
             }
         }
+        streetLoading = AnyCancellable { task.cancel() }
         
     }
     
     private func loadUserLocationForStreetEstimation() {
         
-        Task {
+        let task = Task { [weak self, locationService] in
+            guard !Task.isCancelled, self != nil else { return }
             for await authorizationStatus in locationService.authorizationStatuses {
+                guard !Task.isCancelled else { return }
                 if authorizationStatus == .authorizedWhenInUse {
-                    await estimateUserStreet()
+                    self?.estimateUserStreet()
                 }
             }
         }
+        authorizationObservation = AnyCancellable { task.cancel() }
         
     }
     
-    private func estimateUserStreet() async {
-        
-        locationService.requestCurrentLocation()
-        
-        do {
-            for try await location in locationService.locations {
-                await checkStreetExistance(for: location)
-                break
+    private func estimateUserStreet() {
+        let task = Task { [weak self, locationService, geocodingService] in
+            guard !Task.isCancelled, self != nil else { return }
+            locationService.requestCurrentLocation()
+            do {
+                for try await location in locationService.locations {
+                    guard !Task.isCancelled else { return }
+                    let placemark = try await geocodingService.placemark(from: location)
+                    guard !Task.isCancelled, let self else { return }
+                    if let index = self.streets.firstIndex(where: { $0.street.contains(placemark.street) }) {
+                        self.picker.selectRow(index, animated: true)
+                        self.picker.adjustCurrentSelectedAfterOrientationChanges()
+                    }
+                    break
+                }
+            } catch {
+                guard !Task.isCancelled else { return }
+                self?.logger.error("Failed to estimate street: \(error.localizedDescription, privacy: .private)")
             }
-        } catch {
-            
         }
-        
-    }
-    
-    @MainActor
-    private func checkStreetExistance(for location: CLLocation) async {
-        do {
-            let placemark = try await geocodingService.placemark(from: location)
-            
-            let userStreet = placemark.street
-            
-            if let rubbishStreet = self.streets.filter({ $0.street.contains(userStreet) }).first {
-                self.picker.selectRow(self.streets.firstIndex(of: rubbishStreet) ?? 0, animated: true)
-                self.picker.adjustCurrentSelectedAfterOrientationChanges()
-            }
-        } catch {
-            self.logger.error("Failed to get placemark for location: \(error.localizedDescription, privacy: .private)")
-        }
+        streetEstimation = AnyCancellable { task.cancel() }
     }
     
     // MARK: - BLNTPageItem

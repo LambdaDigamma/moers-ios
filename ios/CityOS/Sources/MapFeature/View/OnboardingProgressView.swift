@@ -85,5 +85,7 @@ public class OnboardingProgressView: UIView {
         NSLayoutConstraint.activate(constraints)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

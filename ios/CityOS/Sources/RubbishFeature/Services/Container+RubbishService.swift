@@ -6,10 +6,11 @@
 //
 
 import Foundation
-import Factory
+import FactoryKit
 
 public extension Container {
     
+    @MainActor
     var rubbishService: Factory<RubbishService> {
         self {
             StaticRubbishService()

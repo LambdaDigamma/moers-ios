@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-public protocol GeocodingService {
+nonisolated public protocol GeocodingService {
     
     func placemark(from location: CLLocation) async throws -> CLPlacemark
     

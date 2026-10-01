@@ -8,18 +8,18 @@
 import SwiftUI
 import FeedKit
 import Core
-import Factory
+import FactoryKit
 
 public struct NewsList: View {
     
-    @StateObject var viewModel: NewsViewModel
+    @State var viewModel: NewsViewModel
     
     public var onShowArticle: (RSSFeedItem) -> Void
     
     public init(
         onShowArticle: @escaping (RSSFeedItem) -> Void
     ) {
-        self._viewModel = StateObject(wrappedValue: NewsViewModel())
+        self._viewModel = State(initialValue: NewsViewModel())
         self.onShowArticle = onShowArticle
     }
     

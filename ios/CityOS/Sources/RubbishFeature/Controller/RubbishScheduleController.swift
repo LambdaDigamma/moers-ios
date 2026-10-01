@@ -10,7 +10,7 @@ import Core
 
 #if canImport(UIKit)
 import UIKit
-import Factory
+import FactoryKit
 import SwiftUI
 
 /// Hosts the `RubbishScheduleList` in a UIViewController
@@ -33,7 +33,9 @@ public class RubbishScheduleController: UIHostingController<RubbishScheduleList>
         UserActivity.current = UserActivities.configureRubbishScheduleActivity()
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 #endif

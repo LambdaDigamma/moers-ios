@@ -13,12 +13,12 @@ import Firebase
 import Haneke
 import SwiftUI
 import AppScaffold
-import Factory
+import FactoryKit
 import ModernNetworking
 import RubbishFeature
 import MMEvents
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
     var window: UIWindow?
@@ -65,7 +65,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.setup()
         
         application.registerForRemoteNotifications()
-        application.applicationIconBadgeNumber = 0
+        UNUserNotificationCenter.current().setBadgeCount(0) { error in
+            if let error {
+                print("Error resetting app badge count: \(error.localizedDescription)")
+            }
+        }
         
         return true
     }
@@ -189,7 +193,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 //        TWTRTwitter.sharedInstance().start(withConsumerKey: consumerKey, consumerSecret: consumerSecret)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension AppDelegate {

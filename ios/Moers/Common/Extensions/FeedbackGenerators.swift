@@ -25,7 +25,9 @@ class SelectionFeedbackGenerator {
         guard let feedbackGenerator = anyObject as? UISelectionFeedbackGenerator else { return }
         feedbackGenerator.selectionChanged()
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 class SuccessFeedbackGenerator {
@@ -45,5 +47,7 @@ class SuccessFeedbackGenerator {
         guard let feedbackGenerator = anyObject as? UINotificationFeedbackGenerator else { return }
         feedbackGenerator.notificationOccurred(.success)
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

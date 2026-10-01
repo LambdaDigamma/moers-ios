@@ -8,15 +8,17 @@
 import Foundation
 import MapKit
 import Core
+import Observation
 
 @MainActor
-public class NavigationViewModel: ObservableObject {
+@Observable
+public class NavigationViewModel {
     
-    @Published public var source: Point
-    @Published public var destination: Point
-    @Published public var directionsMode = DirectionsMode.walking
+    public var source: Point
+    public var destination: Point
+    public var directionsMode = DirectionsMode.walking
     
-    @Published public var directions: DataState<MKDirections.Response, Error> = .loading
+    public var directions: DataState<MKDirections.Response, Error> = .loading
     
     public init(
         source: Point,
@@ -57,5 +59,7 @@ public class NavigationViewModel: ObservableObject {
         }
 
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

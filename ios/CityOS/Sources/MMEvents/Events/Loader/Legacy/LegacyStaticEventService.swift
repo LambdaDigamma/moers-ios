@@ -34,5 +34,7 @@ public class LegacyStaticEventService: LegacyEventService {
     public func show(eventID: Event.ID) async throws -> Event {
         return Event.stub(withID: 1).setting(\.name, to: "Amaro Freitas (BR) + Introduction by DJ Tudo (BR)")
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

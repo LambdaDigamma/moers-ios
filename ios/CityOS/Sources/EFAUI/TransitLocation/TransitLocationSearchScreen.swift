@@ -7,7 +7,7 @@
 
 import SwiftUI
 import EFAAPI
-import Factory
+import FactoryKit
 
 public enum TransitLocationSearchMode: String, Hashable {
     
@@ -53,7 +53,7 @@ public enum TransitLocationSearchMode: String, Hashable {
 public struct TransitLocationSearchScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var viewModel: TransitLocationSearchViewModel
+    @State var viewModel: TransitLocationSearchViewModel
     
     private let transitLocationSearchMode: TransitLocationSearchMode
     private let onSelectTransitStation: (TransitLocation) -> Void

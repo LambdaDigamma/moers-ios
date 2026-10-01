@@ -48,7 +48,11 @@ public struct ResizableStatefulImage: View {
 //            Color(UIColor.secondarySystemFill)
             Color(UIColor.systemRed)
         } else {
+            #if os(tvOS)
+            Color.secondary.opacity(0.15)
+            #else
             Color(UIColor.secondarySystemFill)
+            #endif
         }
         
     }

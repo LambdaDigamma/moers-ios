@@ -15,6 +15,7 @@ public enum DirectionsMode {
     case transit
     case walking
     
+    #if !os(tvOS)
     public func toLaunchOption() -> String {
         switch self {
             case .default:
@@ -28,6 +29,8 @@ public enum DirectionsMode {
         }
     }
     
+    #endif
+
     public func toDirectionsTransportType() -> MKDirectionsTransportType {
         switch self {
             case .default:
@@ -46,12 +49,15 @@ public protocol MKRepresentable {
     
     func toMapItem() -> MKMapItem
     
+    #if !os(tvOS)
     func startNavigation(mode: DirectionsMode)
     
+    #endif
 }
 
+#if !os(tvOS)
 public extension MKRepresentable {
-    
+
     func startNavigation(mode: DirectionsMode) {
         
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: mode.toLaunchOption()]
@@ -61,3 +67,5 @@ public extension MKRepresentable {
     }
     
 }
+
+#endif

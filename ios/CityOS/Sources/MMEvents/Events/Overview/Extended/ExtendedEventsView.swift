@@ -9,11 +9,11 @@ import SwiftUI
 
 public struct ExtendedEventsView: View {
     
-    @ObservedObject private var viewModel: TimetableViewModel
+    private var viewModel: TimetableViewModel
     @State private var selectedPage = 0
     
     public init(viewModel: TimetableViewModel) {
-        self._viewModel = ObservedObject(wrappedValue: viewModel)
+        self.viewModel = viewModel
     }
     
     private var selectedDate: Date {
@@ -56,14 +56,14 @@ public struct ExtendedEventsView: View {
                 
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
-            .onChange(of: selectedPage) { newValue in
+            .onChange(of: selectedPage) { _, newValue in
                 guard viewModel.days.indices.contains(newValue) else { return }
                 viewModel.selectDate(viewModel.days[newValue].date)
             }
-            .onChange(of: viewModel.selectedDate) { _ in
+            .onChange(of: viewModel.selectedDate) {
                 syncSelectedPageFromModel()
             }
-            .onChange(of: viewModel.days.map(\.id)) { _ in
+            .onChange(of: viewModel.days.map(\.id)) {
                 syncSelectedPageFromModel()
             }
             

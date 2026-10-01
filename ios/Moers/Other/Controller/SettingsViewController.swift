@@ -9,7 +9,7 @@
 import Core
 import UIKit
 import BLTNBoard
-import Factory
+import FactoryKit
 import RubbishFeature
 import FuelFeature
 
@@ -377,7 +377,9 @@ class SettingsViewController: UIViewController {
             break
         }
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
  extension SettingsViewController: UICollectionViewDelegate {
@@ -405,12 +407,12 @@ class SettingsViewController: UIViewController {
      
  }
 
-enum Section: Hashable {
+nonisolated enum Section: Hashable {
     case user
     case petrol
     case rubbish
     
-    var title: String {
+    @MainActor var title: String {
         switch self {
         case .user:
             return String.localized("User")
@@ -422,7 +424,7 @@ enum Section: Hashable {
     }
 }
 
-enum Item: Hashable {
+nonisolated enum Item: Hashable {
     case navigation(NavigationItem)
     case `switch`(SwitchItem)
     
@@ -448,9 +450,9 @@ enum Item: Hashable {
     }
 }
 
-struct NavigationItem: Hashable {
+nonisolated struct NavigationItem: Hashable {
     let title: String
-    let action: (() -> Void)?
+    let action: (@MainActor () -> Void)?
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(title)
@@ -461,10 +463,10 @@ struct NavigationItem: Hashable {
     }
 }
 
-struct SwitchItem: Hashable {
+nonisolated struct SwitchItem: Hashable {
     let title: String
     let isOn: Bool
-    let action: ((Bool) -> Void)?
+    let action: (@MainActor (Bool) -> Void)?
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(title)

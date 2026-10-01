@@ -128,5 +128,7 @@ public class StorageManager<D: Codable>: AnyStoragable<D> {
     override public func reset(forKey key: String) {
         Shared.dataCache.remove(key: key)
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

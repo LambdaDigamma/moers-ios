@@ -8,11 +8,16 @@
 import Foundation
 import XCTest
 import ModernNetworking
-import Combine
 
+@MainActor
 class IntegrationTestCase: XCTestCase {
     
-    public var cancellables = Set<AnyCancellable>()
+    override func setUp() async throws {
+        try await super.setUp()
+        guard ProcessInfo.processInfo.environment["RUN_EFA_INTEGRATION_TESTS"] == "1" else {
+            throw XCTSkip("Set RUN_EFA_INTEGRATION_TESTS=1 to run live transit API tests.")
+        }
+    }
     
     func defaultLoader() -> HTTPLoader {
         

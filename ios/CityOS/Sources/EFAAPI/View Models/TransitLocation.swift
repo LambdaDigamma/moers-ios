@@ -40,7 +40,7 @@ extension CLLocationCoordinate2D: @retroactive Equatable, @retroactive Hashable,
     
 }
 
-public class TransitLocation: ObservableObject, Hashable, Equatable, CustomDebugStringConvertible, Codable {
+public class TransitLocation: Hashable, Equatable, CustomDebugStringConvertible, Codable {
     
     public var stationID: Station.ID?
     public var statelessIdentifier: StatelessIdentifier
@@ -119,5 +119,7 @@ public class TransitLocation: ObservableObject, Hashable, Equatable, CustomDebug
         case description = "description"
         case coordinates = "coordinates"
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

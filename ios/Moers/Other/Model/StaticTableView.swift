@@ -19,16 +19,16 @@ protocol Row {
 
 struct NavigationRow: Row {
     var title: String
-    var action: (() -> Void)?
+    var action: (@MainActor () -> Void)?
 }
 
 struct AccountRow: Row {
     var title: String
-    var action: (() -> Void)?
+    var action: (@MainActor () -> Void)?
 }
 
 struct SwitchRow: Row {
     var title: String
     var switchOn: Bool
-    var action: ((Bool) -> Void)?
+    var action: (@MainActor (Bool) -> Void)?
 }

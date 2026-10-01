@@ -7,16 +7,18 @@
 
 import Foundation
 import Combine
+import Observation
 
+@MainActor
+@Observable
 public class BroadcastListViewModel: StandardViewModel {
     
-    @Published public var upcomingBroadcasts: [RadioBroadcast] = []
-    @Published public var broadcasts: [RadioBroadcast] = []
-    @Published public var viewModels: [RadioBroadcastViewModel] = []
+    public var upcomingBroadcasts: [RadioBroadcast] = []
+    public var broadcasts: [RadioBroadcast] = []
+    public var viewModels: [RadioBroadcastViewModel] = []
     
     private let service: RadioServiceProtocol
     
-    @MainActor
     public init(service: RadioServiceProtocol) {
         self.service = service
     }
@@ -24,17 +26,22 @@ public class BroadcastListViewModel: StandardViewModel {
     public func load() {
         
         self.service.load()
+            .receive(on: DispatchQueue.main)
             .sink { (completion: Subscribers.Completion<Error>) in
                 print(completion)
-            } receiveValue: { (broadcasts: [RadioBroadcast]) in
-                MainActor.assumeIsolated {
-                    self.upcomingBroadcasts = Array(broadcasts.prefix(8))
-                    self.broadcasts = broadcasts
-                    self.viewModels = self.upcomingBroadcasts.map { $0.toViewModel() }
-                }
+            } receiveValue: { [weak self] (broadcasts: [RadioBroadcast]) in
+                self?.apply(broadcasts)
             }
             .store(in: &cancellables)
         
     }
-    
+
+    private func apply(_ broadcasts: [RadioBroadcast]) {
+        self.upcomingBroadcasts = Array(broadcasts.prefix(8))
+        self.broadcasts = broadcasts
+        self.viewModels = self.upcomingBroadcasts.map { $0.toViewModel() }
+    }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

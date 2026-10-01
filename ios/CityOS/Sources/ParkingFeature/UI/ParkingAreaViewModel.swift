@@ -8,8 +8,10 @@
 import Foundation
 import Core
 import MapKit
+import Observation
 
-public class ParkingAreaViewModel: ObservableObject, Identifiable, Hashable {
+@Observable
+public class ParkingAreaViewModel: Identifiable, Hashable {
     
     public let id: UUID = UUID()
     public let title: String
@@ -18,14 +20,14 @@ public class ParkingAreaViewModel: ObservableObject, Identifiable, Hashable {
     public let currentOpeningState: ParkingAreaOpeningState
     public let updatedAt: Date
     
-    @Published var location: Point?
-    @Published var region: MKCoordinateRegion = .init(
+    var location: Point?
+    var region: MKCoordinateRegion = .init(
         center: CoreSettings.regionCenter,
         latitudinalMeters: 1000,
         longitudinalMeters: 1000
     )
     
-    @Published var openingHours: DataState<[OpeningHourEntry], Error> = .loading
+    var openingHours: DataState<[OpeningHourEntry], Error> = .loading
     
     public static func == (lhs: ParkingAreaViewModel, rhs: ParkingAreaViewModel) -> Bool {
         return lhs.id == rhs.id
@@ -73,5 +75,7 @@ public class ParkingAreaViewModel: ObservableObject, Identifiable, Hashable {
         ])
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum TripRequestCommand {
+nonisolated public enum TripRequestCommand {
     
     case noOperation
     case changeRequest

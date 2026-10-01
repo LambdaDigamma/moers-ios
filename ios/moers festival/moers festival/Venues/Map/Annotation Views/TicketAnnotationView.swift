@@ -105,7 +105,9 @@ public class TicketAnnotationView: MKAnnotationView {
         
         return result
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 struct TicketAnnotationView_Previews: PreviewProvider {

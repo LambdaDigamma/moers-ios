@@ -9,7 +9,7 @@
 import Core
 import UIKit
 import BLTNBoard
-import Factory
+import FactoryKit
 import RubbishFeature
 import FuelFeature
 
@@ -311,7 +311,9 @@ class LegacySettingsViewController: UIViewController {
         return manager
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension LegacySettingsViewController: UITableViewDataSource, UITableViewDelegate {

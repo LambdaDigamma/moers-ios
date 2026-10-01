@@ -9,7 +9,7 @@
 import Foundation
 import ModernNetworking
 
-public struct RubbishCollectionStreet: Model, Codable, Equatable {
+nonisolated public struct RubbishCollectionStreet: Model, Codable, Equatable {
     
     public typealias ID = Int
     

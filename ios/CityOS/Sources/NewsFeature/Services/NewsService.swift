@@ -8,7 +8,7 @@
 import Foundation
 import FeedKit
 
-public protocol NewsService {
+nonisolated public protocol NewsService {
     
     func loadNewsItems() async throws -> [RSSFeedItem]
     

@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 import Combine
-import Factory
+import FactoryKit
 
 extension Container {
     
@@ -23,13 +23,13 @@ extension Container {
 }
 
 // Fetch all liked events along with their details
-public struct FavoriteEventInfo: Decodable, FetchableRecord, Equatable, Sendable {
+nonisolated public struct FavoriteEventInfo: Decodable, FetchableRecord, Equatable, Sendable {
     public var favorite: FavoriteEventRecord
     public var event: EventRecord
     public var place: PlaceRecord?
 }
 
-final public class FavoriteEventsStore {
+nonisolated final public class FavoriteEventsStore {
     
     private let writer: DatabaseWriter
     private let reader: DatabaseReader

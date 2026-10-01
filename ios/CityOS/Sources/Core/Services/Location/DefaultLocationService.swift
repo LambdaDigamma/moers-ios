@@ -24,8 +24,10 @@ extension CLAuthorizationStatus: CaseName {
                 return "authorizedAlways"
             case .authorizedWhenInUse:
                 return "authorizedWhenInUse"
+#if !os(tvOS)
             case .authorized:
                 return "authorized"
+#endif
             @unknown default:
                 return "unknown default"
         }
@@ -33,6 +35,7 @@ extension CLAuthorizationStatus: CaseName {
     
 }
 
+@MainActor
 public final class DefaultLocationService: NSObject, LocationService {
 
     private let locationManager: CLLocationManager
@@ -40,16 +43,47 @@ public final class DefaultLocationService: NSObject, LocationService {
 
     // MARK: - Async Streams
 
-    public let locations: AsyncThrowingStream<CLLocation, Error>
-    public let authorizationStatuses: AsyncStream<CLAuthorizationStatus>
+    public var authorizationStatus: CLAuthorizationStatus {
+        locationManager.authorizationStatus
+    }
+
+    public var locations: AsyncThrowingStream<CLLocation, Error> {
+        AsyncThrowingStream { continuation in
+            let id = UUID()
+            locationContinuations[id] = continuation
+
+            if let lastLocation {
+                continuation.yield(lastLocation)
+            }
+
+            continuation.onTermination = { @Sendable [weak self] _ in
+                Task { @MainActor [weak self] in
+                    self?.locationContinuations[id] = nil
+                }
+            }
+        }
+    }
+
+    public var authorizationStatuses: AsyncStream<CLAuthorizationStatus> {
+        AsyncStream { continuation in
+            let id = UUID()
+            authorizationContinuations[id] = continuation
+            continuation.yield(lastAuthorizationStatus)
+
+            continuation.onTermination = { @Sendable [weak self] _ in
+                Task { @MainActor [weak self] in
+                    self?.authorizationContinuations[id] = nil
+                }
+            }
+        }
+    }
 
     // MARK: - Internal State
 
-    private let locationContinuation: AsyncThrowingStream<CLLocation, Error>.Continuation
-    private let authorizationContinuation: AsyncStream<CLAuthorizationStatus>.Continuation
-
     private var lastLocation: CLLocation?
     private var lastAuthorizationStatus: CLAuthorizationStatus
+    private var locationContinuations: [UUID: AsyncThrowingStream<CLLocation, Error>.Continuation] = [:]
+    private var authorizationContinuations: [UUID: AsyncStream<CLAuthorizationStatus>.Continuation] = [:]
 
     // MARK: - Init
 
@@ -59,24 +93,10 @@ public final class DefaultLocationService: NSObject, LocationService {
         self.lastLocation = locationManager.location
         self.lastAuthorizationStatus = locationManager.authorizationStatus
 
-        let (locationStream, locationContinuation) = AsyncThrowingStream.makeStream(of: CLLocation.self)
-        self.locations = locationStream
-        self.locationContinuation = locationContinuation
-
-        let (authStream, authContinuation) = AsyncStream.makeStream(of: CLAuthorizationStatus.self)
-        self.authorizationStatuses = authStream
-        self.authorizationContinuation = authContinuation
-
         super.init()
 
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-
-        // Emit current authorization status immediately (CurrentValueSubject semantics)
-        authContinuation.yield(locationManager.authorizationStatus)
-        if let lastLocation {
-            locationContinuation.yield(lastLocation)
-        }
 
 #if os(watchOS)
         if #available(watchOS 4.0, *) {
@@ -103,8 +123,12 @@ public final class DefaultLocationService: NSObject, LocationService {
     
     public func stopMonitoring() {
         locationManager.stopUpdatingLocation()
-        locationContinuation.finish()
+        locationContinuations.values.forEach { $0.finish() }
+        locationContinuations.removeAll()
     }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 // MARK: - CLLocationManagerDelegate
@@ -119,7 +143,7 @@ extension DefaultLocationService: CLLocationManagerDelegate {
         
         for location in locations {
             lastLocation = location
-            locationContinuation.yield(location)
+            locationContinuations.values.forEach { $0.yield(location) }
         }
     }
     
@@ -129,7 +153,8 @@ extension DefaultLocationService: CLLocationManagerDelegate {
     ) {
         logger.error("CLLocationManager failed: \(error.localizedDescription, privacy: .public)")
         
-        locationContinuation.finish(throwing: error)
+        locationContinuations.values.forEach { $0.finish(throwing: error) }
+        locationContinuations.removeAll()
     }
     
     public func locationManager(
@@ -139,6 +164,6 @@ extension DefaultLocationService: CLLocationManagerDelegate {
         logger.info("Authorization changed to \(status.name)")
         
         lastAuthorizationStatus = status
-        authorizationContinuation.yield(status)
+        authorizationContinuations.values.forEach { $0.yield(status) }
     }
 }

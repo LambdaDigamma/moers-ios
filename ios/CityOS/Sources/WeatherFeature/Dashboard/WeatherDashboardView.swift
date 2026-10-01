@@ -11,7 +11,7 @@ import SwiftUI
 @available(iOS 16.0, *)
 public struct WeatherDashboardView: View {
     
-    @StateObject var viewModel = WeatherDashboardViewModel()
+    @State var viewModel = WeatherDashboardViewModel()
     
     public init() {
         

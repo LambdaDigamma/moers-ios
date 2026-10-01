@@ -20,6 +20,10 @@ import CoreLocation
 public class DashboardCoordinator: Coordinator {
     
     public var navigationController: CoordinatedNavigationController
+
+    public var rootViewController: UIViewController { navigationController }
+
+    public var tabBarItem: UITabBarItem? { rootViewController.tabBarItem }
     
     let observer = DefaultLocationTransitStationObserver()
     
@@ -30,8 +34,8 @@ public class DashboardCoordinator: Coordinator {
         self.navigationController = navigationController
         self.navigationController.coordinator = self
         
-        let controller = DashboardController(onOpenCurrentTrip: {
-            self.openTrip()
+        let controller = DashboardController(onOpenCurrentTrip: { [weak self] in
+            self?.openTrip()
         })
 //        let activity = UserActivities.configureDashboardActivity()
 //        controller.userActivity = activity
@@ -40,8 +44,8 @@ public class DashboardCoordinator: Coordinator {
 //        ]
 //        activity.becomeCurrent()
         
-        self.navigationController.viewControllers = [controller]
-        self.navigationController.tabBarItem = generateTabBarItem()
+        self.navigationController.setViewControllers([controller], animated: false)
+        self.navigationController.menuItem = generateMenuItem()
         
         Styling.applyStyling(navigationController: navigationController, statusBarStyle: .darkContent)
         
@@ -51,17 +55,13 @@ public class DashboardCoordinator: Coordinator {
         
     }
     
-    private func generateTabBarItem() -> UITabBarItem {
+    private func generateMenuItem() -> MenuItem {
         
-        let tabBarItem = UITabBarItem(
+        MenuItem(
             title: AppStrings.Menu.dashboard,
-            image: UIImage(systemName: "doc.text.image"), // "rectangle.grid.2x2"
-            selectedImage: UIImage(systemName: "doc.text.image") // "rectangle.grid.2x2.fill"
+            image: UIImage(systemName: "doc.text.image"),
+            accessibilityIdentifier: AccessibilityIdentifiers.Menu.dashboard
         )
-        
-        tabBarItem.accessibilityIdentifier = AccessibilityIdentifiers.Menu.dashboard
-        
-        return tabBarItem
         
     }
     
@@ -125,5 +125,7 @@ public class DashboardCoordinator: Coordinator {
         navigationController.present(navigation, animated: true)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

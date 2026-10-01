@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import Core
-import Factory
+import FactoryKit
 
 protocol MapLocationPickerViewControllerDelegate: AnyObject {
     
@@ -245,7 +245,9 @@ class MapLocationPickerViewController: UIViewController {
         }
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension MapLocationPickerViewController: MKMapViewDelegate {

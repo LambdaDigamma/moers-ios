@@ -36,6 +36,22 @@ public struct BroadcastRow: View {
         print(imageURL ?? "")
     }
     
+    private var placeholderColor: Color {
+        #if os(tvOS)
+        Color.secondary.opacity(0.15)
+        #else
+        Color(UIColor.secondarySystemFill)
+        #endif
+    }
+
+    private var tertiaryPlaceholderColor: Color {
+        #if os(tvOS)
+        Color.secondary.opacity(0.15)
+        #else
+        Color(UIColor.tertiarySystemFill)
+        #endif
+    }
+
     public var body: some View {
         
         HStack(alignment: .top, spacing: 12) {
@@ -50,9 +66,9 @@ public struct BroadcastRow: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                         } else if state.error != nil {
-                            Color(UIColor.secondarySystemFill)
+                            placeholderColor
                         } else {
-                            Color(UIColor.secondarySystemFill)
+                            placeholderColor
                         }
                     }
                     .processors([ImageProcessors.Resize(width: 44)])
@@ -60,7 +76,7 @@ public struct BroadcastRow: View {
                     
                 } else {
                     RoundedRectangle(cornerRadius: 8)
-                        .fill(Color(UIColor.tertiarySystemFill))
+                        .fill(tertiaryPlaceholderColor)
                         .aspectRatio(1, contentMode: .fit)
                         .frame(maxWidth: 44, maxHeight: 44)
                 }

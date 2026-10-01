@@ -12,31 +12,37 @@ import ModernNetworking
 
 @testable import RubbishFeature
 
+@MainActor
 final class DefaultRubbishServiceTests: XCTestCase {
 
+    private var defaultsSuiteName: String!
     var rubbishService: DefaultRubbishService!
     var mockNotificationCenter = MockNotificationCenter()
 
-    override func setUp() {
-        super.setUp()
+    override func setUp() async throws {
+        try await super.setUp()
         
+        defaultsSuiteName = UUID().uuidString
         let mockLoader = MockLoader()
         
         rubbishService = DefaultRubbishService(
             loader: mockLoader,
-            notificationCenter: mockNotificationCenter
+            notificationCenter: mockNotificationCenter,
+            userDefaults: UserDefaults(suiteName: defaultsSuiteName)!
         )
 
     }
 
-    override func tearDown() {
-        super.tearDown()
+    override func tearDown() async throws {
+        try await super.tearDown()
 
         rubbishService = nil
+        UserDefaults.standard.removePersistentDomain(forName: defaultsSuiteName)
+        defaultsSuiteName = nil
 
     }
 
-    func testStoreIsEnabled() {
+    func testStoreIsEnabled() async {
 
         let isEnabled = true
 
@@ -46,7 +52,7 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     }
 
-    func testStoreReminderHour() {
+    func testStoreReminderHour() async {
 
         let reminderHour = 16
 
@@ -56,7 +62,7 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     }
 
-    func testStoreReminderMinute() {
+    func testStoreReminderMinute() async {
 
         let reminderMinute = 15
 
@@ -66,7 +72,7 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     }
 
-    func testStoreReminderEnabled() {
+    func testStoreReminderEnabled() async {
 
         rubbishService.remindersEnabled = true
 
@@ -78,7 +84,7 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     }
 
-    func testStoreStreet() {
+    func testStoreStreet() async {
 
         rubbishService.street = "Musterstraße"
 
@@ -86,7 +92,7 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     }
 
-    func testStoreResidualWaste() {
+    func testStoreResidualWaste() async {
 
         rubbishService.residualWaste = 3
 
@@ -94,7 +100,7 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     }
 
-    func testStoreResidualWasteNil() {
+    func testStoreResidualWasteNil() async {
 
         rubbishService.residualWaste = nil
 
@@ -102,7 +108,7 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     }
 
-    func testStoreOrganicWaste() {
+    func testStoreOrganicWaste() async {
 
         rubbishService.organicWaste = 3
 
@@ -110,7 +116,7 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     }
 
-    func testStoreOrganicWasteNil() {
+    func testStoreOrganicWasteNil() async {
 
         rubbishService.organicWaste = nil
 
@@ -118,7 +124,7 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     }
 
-    func testStorePaperWaste() {
+    func testStorePaperWaste() async {
 
         rubbishService.paperWaste = 3
 
@@ -126,7 +132,7 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     }
 
-    func testStorePaperWasteNil() {
+    func testStorePaperWasteNil() async {
 
         rubbishService.paperWaste = nil
 
@@ -134,7 +140,7 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     }
 
-    func testStoreYellowWaste() {
+    func testStoreYellowWaste() async {
 
         rubbishService.yellowBag = 3
 
@@ -142,7 +148,7 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     }
 
-    func testStoreYellowWasteNil() {
+    func testStoreYellowWasteNil() async {
 
         rubbishService.yellowBag = nil
 
@@ -150,7 +156,7 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     }
 
-    func testStoreGreenWaste() {
+    func testStoreGreenWaste() async {
 
         rubbishService.greenWaste = 3
 
@@ -158,7 +164,7 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     }
 
-    func testStoreGreenWasteNil() {
+    func testStoreGreenWasteNil() async {
 
         rubbishService.greenWaste = nil
 
@@ -166,20 +172,49 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     }
 
-    func testDisableReminder() {
+    func testDisableReminder() async {
 
-        mockNotificationCenter.removeAllExpectation = expectation(description: "All Notification Requests should've been removed")
+        mockNotificationCenter.getPendingRequestsExpectation = expectation(description: "Pending Notification Requests should be loaded")
+        mockNotificationCenter.removePendingExpectation = expectation(description: "Reminder Notification Requests should be removed")
 
         rubbishService.disableReminder()
 
         XCTAssertEqual(rubbishService.remindersEnabled, false)
         XCTAssertEqual(rubbishService.reminderHour, 20)
         XCTAssertEqual(rubbishService.reminderMinute, 0)
-        waitForExpectations(timeout: 1)
+        let result = await XCTWaiter.fulfillment(of: [
+            mockNotificationCenter.getPendingRequestsExpectation!,
+            mockNotificationCenter.removePendingExpectation!
+        ], timeout: 2)
+        XCTAssertEqual(result, .completed)
 
     }
 
-    func testRegisterNotifications() {
+    func testInvalidateRubbishReminderNotificationsRemovesOnlyRubbishReminderRequests() async {
+
+        let rubbishReminderIdentifier = "RubbishReminder-1-1-2026-paper"
+        let parkingReminderIdentifier = "ParkingReminder-1"
+
+        mockNotificationCenter.pendingNotifications = [
+            makeNotificationRequest(identifier: rubbishReminderIdentifier),
+            makeNotificationRequest(identifier: parkingReminderIdentifier)
+        ]
+        mockNotificationCenter.getPendingRequestsExpectation = expectation(description: "Pending Notification Requests should be loaded")
+        mockNotificationCenter.removePendingExpectation = expectation(description: "Reminder Notification Requests should be removed")
+
+        rubbishService.invalidateRubbishReminderNotifications()
+
+        let result = await XCTWaiter.fulfillment(of: [
+            mockNotificationCenter.getPendingRequestsExpectation!,
+            mockNotificationCenter.removePendingExpectation!
+        ], timeout: 2)
+        XCTAssertEqual(result, .completed)
+        XCTAssertEqual(mockNotificationCenter.removedIdentifiers, [rubbishReminderIdentifier])
+        XCTAssertEqual(mockNotificationCenter.pendingNotifications.map(\.identifier), [parkingReminderIdentifier])
+
+    }
+
+    func testRegisterNotifications() async {
 
         rubbishService.registerNotifications(at: 10, minute: 15)
 
@@ -189,7 +224,7 @@ final class DefaultRubbishServiceTests: XCTestCase {
         
     }
 
-    func testRegisterRubbishStreet() {
+    func testRegisterRubbishStreet() async {
 
         let street = RubbishCollectionStreet(
             id: 1,
@@ -214,7 +249,7 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     }
 
-    func testLoadStreet() {
+    func testLoadStreet() async {
 
         let street = RubbishCollectionStreet(
             id: 1,
@@ -235,26 +270,13 @@ final class DefaultRubbishServiceTests: XCTestCase {
 
     }
 
-    static var allTests = [
-        ("testStoreIsEnabled", testStoreIsEnabled),
-        ("testStoreReminderHour", testStoreReminderHour),
-        ("testStoreReminderMinute", testStoreReminderMinute),
-        ("testStoreReminderEnabled", testStoreReminderEnabled),
-        ("testStoreStreet", testStoreStreet),
-        ("testStoreResidualWaste", testStoreResidualWaste),
-        ("testStoreResidualWasteNil", testStoreResidualWasteNil),
-        ("testStoreOrganicWaste", testStoreOrganicWaste),
-        ("testStoreOrganicWasteNil", testStoreOrganicWasteNil),
-        ("testStorePaperWaste", testStorePaperWaste),
-        ("testStorePaperWasteNil", testStorePaperWasteNil),
-        ("testStoreYellowWaste", testStoreYellowWaste),
-        ("testStoreYellowWasteNil", testStoreYellowWasteNil),
-        ("testStoreGreenWaste", testStoreGreenWaste),
-        ("testStoreGreenWasteNil", testStoreGreenWasteNil),
-        ("testDisableReminder", testDisableReminder),
-        ("testRegisterNotifications", testRegisterNotifications),
-        ("testRegisterRubbishStreet", testRegisterRubbishStreet),
-        ("testLoadStreet", testLoadStreet),
-    ]
 
+}
+
+private func makeNotificationRequest(identifier: String) -> UNNotificationRequest {
+    UNNotificationRequest(
+        identifier: identifier,
+        content: UNMutableNotificationContent(),
+        trigger: nil
+    )
 }

@@ -8,13 +8,13 @@
 import SwiftUI
 import ModernNetworking
 import Cache
-import Factory
+import FactoryKit
 
 public struct FeedViewScreen: View {
     
-    @ObservedObject var viewModel: FeedPostListViewModel
+    var viewModel: FeedPostListViewModel
     
-    @State var screenSize: CGSize = .zero
+    @State private var screenSize: CGSize = .zero
     
     public let showPost: ((Post.ID) -> Void)
     
@@ -40,6 +40,9 @@ public struct FeedViewScreen: View {
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .onDisappear {
+            viewModel.cancel()
+        }
         .task {
             await viewModel.reload()
 //            if viewModel.items.isEmpty {

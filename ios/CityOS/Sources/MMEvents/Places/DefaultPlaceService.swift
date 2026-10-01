@@ -7,18 +7,24 @@
 //
 
 import Foundation
-import Factory
+import Core
+import FactoryKit
 import ModernNetworking
 import OSLog
 
 public class DefaultPlaceService: PlaceService {
     
-    nonisolated(unsafe) private let loader: HTTPLoader
+    private let client: any HTTPClient
     private let logger: Logger
     
-    public init(loader: HTTPLoader) {
-        self.loader = loader
+    public init(client: any HTTPClient) {
+        self.client = client
         self.logger = Logger(.coreApi)
+    }
+
+    @MainActor
+    public convenience init(loader: HTTPLoader) {
+        self.init(client: HTTPLoaderClient(loader: loader))
     }
     
     public func getPlaces() async throws -> ResourceCollection<Place> {
@@ -28,7 +34,7 @@ public class DefaultPlaceService: PlaceService {
             path: "/api/v1/festival/locations"
         )
         
-        let result = await self.loader.load(request)
+        let result = await self.client.load(request)
         
         if let error = result.error {
             throw error
@@ -45,7 +51,7 @@ public class DefaultPlaceService: PlaceService {
             path: "/api/v1/festival/locations/\(placeID)"
         )
         
-        let result = await self.loader.load(request)
+        let result = await self.client.load(request)
         
         if let error = result.error {
             throw error
@@ -54,5 +60,7 @@ public class DefaultPlaceService: PlaceService {
         return try await result.decoding(Place.self)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

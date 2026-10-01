@@ -8,8 +8,9 @@
 import Foundation
 import Core
 import CoreLocation
-import Factory
+import FactoryKit
 import OSLog
+import Observation
 
 public struct PetrolPriceDashboardData {
     
@@ -19,21 +20,22 @@ public struct PetrolPriceDashboardData {
 }
 
 @MainActor
+@Observable
 public class FuelPriceDashboardViewModel: StandardViewModel {
     
-    @Published var petrolType: PetrolType = .diesel
-    @Published var data: DataState<PetrolPriceDashboardData, Error> = .loading
-    @Published var locationName: DataState<String, Error> = .loading
+    var petrolType: PetrolType = .diesel
+    var data: DataState<PetrolPriceDashboardData, Error> = .loading
+    var locationName: DataState<String, Error> = .loading
     
     public private(set) var fuelStations: DataState<[PetrolStation], Error> = .loading
     
-    @Published private var defaultSearchRadius = 10.0
+    private var defaultSearchRadius = 10.0
     
     private let logger: Logger = Logger(.coreUi)
     
-    @Injected(\.petrolService) private var petrolService
-    @Injected(\.locationService) private var locationService
-    @Injected(\.geocodingService) private var geocodingService
+    @ObservationIgnored @Injected(\.petrolService) private var petrolService
+    @ObservationIgnored @Injected(\.locationService) private var locationService
+    @ObservationIgnored @Injected(\.geocodingService) private var geocodingService
     
     public init(
         initialState: DataState<PetrolPriceDashboardData, Error> = .loading,
@@ -54,19 +56,16 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
         locationService.requestCurrentLocation()
         
         // todo: make this publisher react to the location updates via the stream on the location service
+
+        let location = await waitForValidLocation()
         
-        await loadLocationName()
-        await loadFuelStations()
+        await loadLocationName(for: location)
+        await loadFuelStations(for: location)
     }
     
-    private func loadLocationName() async {
+    private func loadLocationName(for location: CLLocation) async {
         
         do {
-            
-            guard let location = await waitForValidLocation() else {
-                locationName = .success("")
-                return
-            }
             
             logger.info("Loading placemark for the currently received location \(location.coordinate, privacy: .private)")
             
@@ -82,13 +81,9 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
         
     }
     
-    private func loadFuelStations() async {
+    private func loadFuelStations(for location: CLLocation) async {
         
         do {
-            
-            guard let location = await waitForValidLocation() else {
-                return
-            }
             
             logger.info("Loading fuel stations for location: \(location.coordinate, privacy: .private)")
             
@@ -110,7 +105,7 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
         
     }
     
-    private func waitForValidLocation() async -> CLLocation? {
+    private func waitForValidLocation() async -> CLLocation {
         do {
             for try await location in locationService.locations {
                 if location.coordinate.latitude != 0.0 && location.coordinate.longitude != 0.0 {
@@ -120,7 +115,7 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
         } catch {
             return CoreSettings.regionLocation
         }
-        return nil
+        return CoreSettings.regionLocation
     }
     
     /// Takes fuel stations and calculates the average of the open stations.
@@ -158,5 +153,7 @@ public class FuelPriceDashboardViewModel: StandardViewModel {
     public func loadFuelStation(id: PetrolStation.ID) async throws -> PetrolStation {
         return try await petrolService.getPetrolStation(id: id)
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

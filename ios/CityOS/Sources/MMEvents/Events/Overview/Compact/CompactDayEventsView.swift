@@ -13,7 +13,7 @@ public struct CompactDayEventsView: View {
     private let isFilterActive: Bool
     private let onRefresh: () async -> Void
     
-    @EnvironmentObject private var transmitter: TimetableTransmitter
+    @Environment(TimetableTransmitter.self) private var transmitter: TimetableTransmitter
     
     public init(
         day: TimetableDay,

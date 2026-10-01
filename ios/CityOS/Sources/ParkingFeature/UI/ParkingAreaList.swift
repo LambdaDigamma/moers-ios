@@ -11,7 +11,7 @@ import Core
 
 public struct ParkingAreaList: View {
     
-    @ObservedObject private var viewModel: ParkingAreaListViewModel
+    @State private var viewModel: ParkingAreaListViewModel
     @State var showParkingTimer: Bool = false
     @State var showParkingAreaDetail: Bool = false
     
@@ -22,10 +22,10 @@ public struct ParkingAreaList: View {
         locationService: LocationService? = nil
     ) {
         
-        self.viewModel = ParkingAreaListViewModel(
+        self._viewModel = State(initialValue: ParkingAreaListViewModel(
             parkingService: parkingService,
             locationService: locationService
-        )
+        ))
         
     }
     

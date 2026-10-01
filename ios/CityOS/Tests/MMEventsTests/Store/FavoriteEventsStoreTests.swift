@@ -9,6 +9,7 @@ import Foundation
 import XCTest
 @testable import MMEvents
 
+@MainActor
 final class FavoriteEventsStoreTests: XCTestCase {
     
     func testEventIsLiked() async throws {

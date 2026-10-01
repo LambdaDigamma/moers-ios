@@ -12,7 +12,7 @@ import EFAAPI
 import Combine
 
 extension String: @retroactive LocalizedError {
-    public var errorDescription: String? { return self }
+    nonisolated public var errorDescription: String? { return self }
 }
 
 //class IntentHandler: INExtension, SelectDepartureMonitorStopIntentHandling {

@@ -109,7 +109,7 @@ struct GroupedEventCollection_Previews: PreviewProvider {
     static var previews: some View {
         GroupedEventCollection(viewModels: events)
             .padding(.vertical)
-            .background(Color(UIColor.secondarySystemBackground))
+            .background(Color.secondarySystemBackground)
             .previewLayout(.sizeThatFits)
     }
     

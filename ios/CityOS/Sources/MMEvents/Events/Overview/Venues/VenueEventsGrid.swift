@@ -19,8 +19,8 @@ private enum GridConstants {
 
 struct VenueEventsGrid: View {
 
-    @ObservedObject var viewModel: TimetableViewModel
-    @EnvironmentObject private var transmitter: TimetableTransmitter
+    var viewModel: TimetableViewModel
+    @Environment(TimetableTransmitter.self) private var transmitter: TimetableTransmitter
 
     @State private var selectedPage = 0
 
@@ -49,10 +49,10 @@ struct VenueEventsGrid: View {
         .onAppear {
             syncSelectedPageFromModel()
         }
-        .onChange(of: viewModel.selectedDate) { _ in
+        .onChange(of: viewModel.selectedDate) {
             syncSelectedPageFromModel()
         }
-        .onChange(of: viewModel.days.map(\.id)) { _ in
+        .onChange(of: viewModel.days.map(\.id)) {
             syncSelectedPageFromModel()
         }
 

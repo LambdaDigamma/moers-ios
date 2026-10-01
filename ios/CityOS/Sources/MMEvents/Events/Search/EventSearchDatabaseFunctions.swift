@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-public enum EventSearchDatabaseFunctions {
+nonisolated public enum EventSearchDatabaseFunctions {
 
     private static let normalizer = EventSearchTextNormalizer()
 

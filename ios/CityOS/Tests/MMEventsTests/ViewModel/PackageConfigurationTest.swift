@@ -11,9 +11,10 @@ import Combine
 @testable import MMEvents
 
 
+@MainActor
 final class PackageConfigurationTest: XCTestCase {
     
-    func testEventActiveThresholdSaving() {
+    func testEventActiveThresholdSaving() async {
         
         XCTAssertEqual(EventPackageConfiguration.eventActiveMinuteThreshold,
                        Measurement<UnitDuration>(value: 30, unit: .minutes))
@@ -25,7 +26,4 @@ final class PackageConfigurationTest: XCTestCase {
         
     }
     
-    static var allTests = [
-        ("testEventActiveThresholdSaving", testEventActiveThresholdSaving),
-    ]
 }

@@ -12,27 +12,28 @@ import Combine
 import MMEvents
 @testable import Moers
 
+@MainActor
 final class StorageManagerTests: XCTestCase {
     
-    var storageManager: StorageManager<Event>!
+    var storageManager: Core.StorageManager<Event>!
 
     private var bag = Set<AnyCancellable>()
 
-    override func setUp() {
-        super.setUp()
+    override func setUp() async throws {
+        try await super.setUp()
 
-        self.storageManager = StorageManager<Event>()
+        self.storageManager = Core.StorageManager<Event>()
 
     }
 
-    override func tearDown() {
-        super.tearDown()
+    override func tearDown() async throws {
+        try await super.tearDown()
 
         self.storageManager = nil
 
     }
 
-    func testSetLastReload() {
+    func testSetLastReload() async {
 
         let lastReloadNow = Date()
         let storageKey = #function
@@ -46,7 +47,7 @@ final class StorageManagerTests: XCTestCase {
 
     }
 
-    func testResetLastReload() {
+    func testResetLastReload() async {
 
         let storageKey = #function
 
@@ -56,7 +57,7 @@ final class StorageManagerTests: XCTestCase {
 
     }
 
-    func testWriteAndRead() throws {
+    func testWriteAndRead() async throws {
 
         let expectation = self.expectation(description: #function)
 
@@ -83,14 +84,9 @@ final class StorageManagerTests: XCTestCase {
 
         }.store(in: &bag)
 
-        wait(for: [expectation], timeout: 10)
+        await fulfillment(of: [expectation], timeout: 10)
 
     }
 
-    static var allTests = [
-        ("testSetLastReload", testSetLastReload),
-        ("testResetLastReload", testResetLastReload),
-        ("testWriteAndRead", testWriteAndRead),
-    ]
     
 }

@@ -9,9 +9,10 @@ import Foundation
 import XCTest
 @testable import MMEvents
 
+@MainActor
 final class EventUtilitiesTests: XCTestCase {
 
-    func testIsActiveUsesHalfOpenExplicitEnd() {
+    func testIsActiveUsesHalfOpenExplicitEnd() async {
         let startDate = makeDate(hour: 12)
         let endDate = makeDate(hour: 13)
 
@@ -20,7 +21,7 @@ final class EventUtilitiesTests: XCTestCase {
         XCTAssertFalse(EventUtilities.isActive(startDate: startDate, endDate: endDate, now: endDate))
     }
 
-    func testIsActiveUsesDefaultThirtyMinuteEndWhenEndDateIsNil() {
+    func testIsActiveUsesDefaultThirtyMinuteEndWhenEndDateIsNil() async {
         let startDate = makeDate(hour: 12)
         let defaultEndDate = startDate.addingTimeInterval(EventUtilities.defaultTimeInterval)
 
@@ -29,7 +30,7 @@ final class EventUtilitiesTests: XCTestCase {
         XCTAssertFalse(EventUtilities.isActive(startDate: startDate, endDate: nil, now: defaultEndDate))
     }
 
-    func testIsActiveUsesDefaultThirtyMinuteEndWhenEndDateIsEqualOrBeforeStart() {
+    func testIsActiveUsesDefaultThirtyMinuteEndWhenEndDateIsEqualOrBeforeStart() async {
         let startDate = makeDate(hour: 12)
         let defaultEndDate = startDate.addingTimeInterval(EventUtilities.defaultTimeInterval)
 
@@ -39,7 +40,7 @@ final class EventUtilitiesTests: XCTestCase {
         XCTAssertFalse(EventUtilities.isActive(startDate: startDate, endDate: startDate.addingTimeInterval(-1), now: defaultEndDate))
     }
 
-    func testIsActiveReturnsFalseAfterExplicitEnd() {
+    func testIsActiveReturnsFalseAfterExplicitEnd() async {
         let startDate = makeDate(hour: 12)
         let endDate = makeDate(hour: 13)
 
@@ -52,7 +53,7 @@ final class EventUtilitiesTests: XCTestCase {
         )
     }
 
-    func testTimeDisplayModeReturnsRangeMoreThanOneHourBeforeStart() {
+    func testTimeDisplayModeReturnsRangeMoreThanOneHourBeforeStart() async {
         let startDate = makeDate(hour: 12)
 
         XCTAssertEqual(
@@ -66,7 +67,7 @@ final class EventUtilitiesTests: XCTestCase {
         )
     }
 
-    func testTimeDisplayModeReturnsRelativeWithinOneHourBeforeStart() {
+    func testTimeDisplayModeReturnsRelativeWithinOneHourBeforeStart() async {
         let startDate = makeDate(hour: 12)
 
         XCTAssertEqual(
@@ -89,7 +90,7 @@ final class EventUtilitiesTests: XCTestCase {
         )
     }
 
-    func testTimeDisplayModeReturnsLiveAtStartAndUntilBeforeEnd() {
+    func testTimeDisplayModeReturnsLiveAtStartAndUntilBeforeEnd() async {
         let startDate = makeDate(hour: 12)
         let endDate = makeDate(hour: 13)
 
@@ -122,7 +123,7 @@ final class EventUtilitiesTests: XCTestCase {
         )
     }
 
-    func testTimeDisplayModeUsesDefaultThirtyMinuteEndWhenEndDateIsNil() {
+    func testTimeDisplayModeUsesDefaultThirtyMinuteEndWhenEndDateIsNil() async {
         let startDate = makeDate(hour: 12)
         let defaultEndDate = startDate.addingTimeInterval(EventUtilities.defaultTimeInterval)
 
@@ -146,7 +147,7 @@ final class EventUtilitiesTests: XCTestCase {
         )
     }
 
-    func testTimeDisplayModeUsesDefaultThirtyMinuteEndWhenExplicitEndIsEqualOrBeforeStart() {
+    func testTimeDisplayModeUsesDefaultThirtyMinuteEndWhenExplicitEndIsEqualOrBeforeStart() async {
         let startDate = makeDate(hour: 12)
         let defaultEndDate = startDate.addingTimeInterval(EventUtilities.defaultTimeInterval)
 
@@ -170,7 +171,7 @@ final class EventUtilitiesTests: XCTestCase {
         )
     }
 
-    func testTimeDisplayModeReturnsRangeAfterEnd() {
+    func testTimeDisplayModeReturnsRangeAfterEnd() async {
         let startDate = makeDate(hour: 12)
         let endDate = makeDate(hour: 13)
 
@@ -185,7 +186,7 @@ final class EventUtilitiesTests: XCTestCase {
         )
     }
 
-    func testTimeDisplayModeReturnsDateForDateOnlySchedule() {
+    func testTimeDisplayModeReturnsDateForDateOnlySchedule() async {
         let startDate = makeDate(hour: 12)
 
         XCTAssertEqual(
@@ -199,7 +200,7 @@ final class EventUtilitiesTests: XCTestCase {
         )
     }
 
-    func testTimeDisplayModeKeepsDateOnlyScheduleStaticAcrossNow() {
+    func testTimeDisplayModeKeepsDateOnlyScheduleStaticAcrossNow() async {
         let startDate = makeDate(hour: 12)
 
         XCTAssertEqual(
@@ -231,7 +232,7 @@ final class EventUtilitiesTests: XCTestCase {
         )
     }
 
-    func testTimeDisplayModeReturnsNoneWhenStartDateIsMissing() {
+    func testTimeDisplayModeReturnsNoneWhenStartDateIsMissing() async {
         XCTAssertEqual(
             EventUtilities.timeDisplayMode(
                 startDate: nil,
@@ -252,7 +253,7 @@ final class EventUtilitiesTests: XCTestCase {
         )
     }
 
-    func testTimeDisplayModeReturnsNoneForHiddenSchedule() {
+    func testTimeDisplayModeReturnsNoneForHiddenSchedule() async {
         let startDate = makeDate(hour: 12)
 
         XCTAssertEqual(
@@ -266,7 +267,7 @@ final class EventUtilitiesTests: XCTestCase {
         )
     }
 
-    func testDateRangeUsesDefaultEndWhenEndIsNilOrBeforeStart() {
+    func testDateRangeUsesDefaultEndWhenEndIsNilOrBeforeStart() async {
         let startDate = makeDate(hour: 12)
         let defaultEndDate = startDate.addingTimeInterval(EventUtilities.defaultTimeInterval)
 
@@ -278,7 +279,7 @@ final class EventUtilitiesTests: XCTestCase {
         )
     }
 
-    func testRelativeTimeTextUsesProvidedNow() {
+    func testRelativeTimeTextUsesProvidedNow() async {
         let startDate = makeDate(hour: 12)
 
         let fifteenMinutesBefore = EventUtilities.relativeTimeText(
@@ -293,7 +294,7 @@ final class EventUtilitiesTests: XCTestCase {
         XCTAssertNotEqual(fifteenMinutesBefore, sevenMinutesBefore)
     }
 
-    func testRemainingCountdownMinutesRoundsUpToNextMinute() {
+    func testRemainingCountdownMinutesRoundsUpToNextMinute() async {
         let startDate = makeDate(hour: 15)
 
         XCTAssertEqual(
@@ -326,7 +327,7 @@ final class EventUtilitiesTests: XCTestCase {
         )
     }
 
-    func testRemainingCountdownMinutesReturnsNilAtOrAfterStart() {
+    func testRemainingCountdownMinutesReturnsNilAtOrAfterStart() async {
         let startDate = makeDate(hour: 15)
 
         XCTAssertNil(EventUtilities.remainingCountdownMinutes(startDate: startDate, now: startDate))

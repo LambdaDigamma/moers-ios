@@ -6,7 +6,7 @@
 //  Copyright © 2022 Lennart Fischer. All rights reserved.
 //
 
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(tvOS)
 
 import Foundation
 import UIKit
@@ -19,7 +19,7 @@ public enum Styling {
         statusBarStyle: UIStatusBarStyle = .darkContent
     ) {
         
-        navigationController.navigationBar.barTintColor = UIColor.systemBackground
+        navigationController.navigationBar.barTintColor = ApplicationTheme.current.backgroundColor
         navigationController.navigationBar.tintColor = UIColor.systemYellow
         navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
         navigationController.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]

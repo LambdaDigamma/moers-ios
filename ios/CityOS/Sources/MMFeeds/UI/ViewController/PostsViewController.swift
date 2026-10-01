@@ -9,6 +9,7 @@ import Core
 import UIKit
 import MMPages
 import Combine
+import FactoryKit
 import MediaLibraryKit
 import Nuke
 
@@ -20,6 +21,7 @@ public class PostsViewController: UIViewController {
     private var posts: [Post] = []
     private var didConfigureLayout = false
     private var refreshTask: Task<Void, Never>?
+    private var loadTask: Task<Void, Never>?
 
     private enum Section: Int, CaseIterable {
         case posts
@@ -50,12 +52,16 @@ public class PostsViewController: UIViewController {
 
     private lazy var dataSource = makeDataSource()
     
-    public init(feedID: Feed.ID, onShowPost: @escaping ((Post.ID) -> Void)) {
-        
+    public convenience init(feedID: Feed.ID, onShowPost: @escaping ((Post.ID) -> Void)) {
+        self.init(feedID: feedID, repository: Container.shared.postRepository(), onShowPost: onShowPost)
+    }
+
+    init(feedID: Feed.ID, repository: PostRepository, onShowPost: @escaping ((Post.ID) -> Void)) {
         self.viewModel = FeedPostListViewModel(
             feedID: feedID,
             postsPerLoad: 10,
-            automaticallyLoadFirstPage: false
+            automaticallyLoadFirstPage: false,
+            repository: repository
         )
         self.onShowPost = onShowPost
         
@@ -65,8 +71,9 @@ public class PostsViewController: UIViewController {
         
     }
 
-    deinit {
+    nonisolated deinit {
         refreshTask?.cancel()
+        loadTask?.cancel()
     }
     
     required init?(coder: NSCoder) {
@@ -83,7 +90,8 @@ public class PostsViewController: UIViewController {
         self.navigationItem.largeTitleDisplayMode = .never
 
         setupObservers()
-        Task {
+        let viewModel = viewModel
+        loadTask = Task {
             await viewModel.reload()
         }
         
@@ -114,7 +122,7 @@ public class PostsViewController: UIViewController {
     }
 
     private func setupObservers() {
-        viewModel.$items
+        viewModel.itemsPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] resource in
                 guard let self else { return }
@@ -144,10 +152,8 @@ public class PostsViewController: UIViewController {
         refreshTask = Task { [weak self, weak sender] in
             await viewModel.refresh()
 
-            await MainActor.run {
-                sender?.endRefreshing()
-                self?.refreshTask = nil
-            }
+            sender?.endRefreshing()
+            self?.refreshTask = nil
         }
     }
 
@@ -228,6 +234,7 @@ public class PostsViewController: UIViewController {
         let itemWidth = floor((readableWidth - totalSpacing) / CGFloat(columns))
         return (columns, readableWidth, sideInset, itemWidth, interItemSpacing)
     }
+
 }
 
 extension PostsViewController: UICollectionViewDelegate {
@@ -407,4 +414,7 @@ private final class NewsPostCollectionViewCell: UICollectionViewCell {
         constraint.isActive = true
         mediaAspectConstraint = constraint
     }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

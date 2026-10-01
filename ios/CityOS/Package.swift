@@ -2,21 +2,27 @@
 
 import PackageDescription
 
-let settings: [SwiftSetting] = [
+// Swift 6 enables the other Approachable Concurrency features by default.
+let approachableConcurrencySettings: [SwiftSetting] = [
     .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
     .enableUpcomingFeature("InferIsolatedConformances")
 ]
+
+// XCTest initializers are nonisolated. Test methods opt into MainActor explicitly.
+let testSettings: [SwiftSetting] = [.defaultIsolation(nil)] + approachableConcurrencySettings
+let settings: [SwiftSetting] = [.defaultIsolation(MainActor.self)] + approachableConcurrencySettings
 
 let package = Package(
     name: "CityOS",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v16),
-        .macOS(.v12),
-        .watchOS(.v7),
-        .tvOS(.v14)
+        .iOS(.v17),
+        .macOS(.v14),
+        .watchOS(.v10),
+        .tvOS(.v17)
     ],
     products: [
+        .library(name: "AppScaffold", targets: ["AppScaffold"]),
         .library(name: "WeatherFeature", targets: ["WeatherFeature"]),
         .library(name: "RubbishFeature", targets: ["RubbishFeature"]),
         .library(name: "ParkingFeature", targets: ["ParkingFeature"]),
@@ -41,8 +47,8 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-algorithms", from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-collections.git", from: "1.1.0"),
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
-        .package(url: "https://github.com/hmlongco/Factory", .upToNextMajor(from: "2.0.0")),
-        .package(url: "https://github.com/LambdaDigamma/ModernNetworking", .upToNextMajor(from: "2.0.0")),
+        .package(url: "https://github.com/hmlongco/Factory", .upToNextMajor(from: "3.0.0")),
+        .package(url: "https://github.com/LambdaDigamma/ModernNetworking", .upToNextMajor(from: "2.0.1")),
         .package(url: "https://github.com/hyperoslo/Cache", .upToNextMajor(from: "7.4.0")),
         .package(url: "https://github.com/LambdaDigamma/fuse-swift", .upToNextMajor(from: "1.4.2")),
         .package(url: "https://github.com/LambdaDigamma/TagListView", from: "1.4.2"),
@@ -63,7 +69,7 @@ let package = Package(
                 .product(name: "MediaLibraryKit", package: "MediaLibraryKit"),
                 .product(name: "ModernNetworking", package: "ModernNetworking"),
                 .product(name: "Fuse", package: "fuse-swift"),
-                .product(name: "Factory", package: "Factory"),
+                .product(name: "FactoryKit", package: "Factory"),
                 .product(name: "Haneke", package: "HanekeSwift")
             ],
             resources: [.process("Resources")],
@@ -77,7 +83,7 @@ let package = Package(
         .testTarget(
             name: "CoreTests",
             dependencies: ["Core", "CoreCache"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- PlaybackKit ----------------
         .target(
@@ -87,24 +93,24 @@ let package = Package(
         // ---------------- PlaybackKit ----------------
         .target(
             name: "PlaybackKit",
-            dependencies: ["Core", "Factory"],
+            dependencies: ["Core", .product(name: "FactoryKit", package: "Factory")],
             swiftSettings: settings
         ),
         .testTarget(
             name: "PlaybackKitTests",
-            dependencies: ["WeatherFeature"],
-            swiftSettings: settings
+            dependencies: ["PlaybackKit"],
+            swiftSettings: testSettings
         ),
         // ---------------- WeatherFeature ----------------
         .target(
             name: "WeatherFeature",
-            dependencies: ["Core", "Factory"],
+            dependencies: ["Core", .product(name: "FactoryKit", package: "Factory")],
             swiftSettings: settings
         ),
         .testTarget(
             name: "WeatherFeatureTests",
             dependencies: ["WeatherFeature"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- RubbishFeature ----------------
         .target(
@@ -118,7 +124,7 @@ let package = Package(
         .testTarget(
             name: "RubbishFeatureTests",
             dependencies: ["RubbishFeature"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- ParkingFeature ----------------
         .target(
@@ -132,7 +138,7 @@ let package = Package(
         .testTarget(
             name: "ParkingFeatureTests",
             dependencies: ["ParkingFeature"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- DashboardFeature ----------------
         .target(
@@ -146,7 +152,7 @@ let package = Package(
         .testTarget(
             name: "DashboardFeatureTests",
             dependencies: ["DashboardFeature"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- NewsFeature ----------------
         .target(
@@ -157,7 +163,7 @@ let package = Package(
         .testTarget(
             name: "NewsFeatureTests",
             dependencies: ["NewsFeature"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- FuelFeature ----------------
         .target(
@@ -173,7 +179,7 @@ let package = Package(
         .testTarget(
             name: "FuelFeatureTests",
             dependencies: ["FuelFeature"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- MapFeature ----------------
         .target(
@@ -194,12 +200,13 @@ let package = Package(
         .testTarget(
             name: "MapFeatureTests",
             dependencies: ["MapFeature"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- AppUpdateFeature ----------------
         .target(
             name: "AppUpdateFeature",
             dependencies: [
+                "Core",
                 .product(name: "ModernNetworking", package: "ModernNetworking")
             ],
             resources: [
@@ -210,7 +217,7 @@ let package = Package(
         .testTarget(
             name: "AppUpdateFeatureTests",
             dependencies: ["AppUpdateFeature"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         
         // ---------------- MMEvents ----------------
@@ -233,7 +240,7 @@ let package = Package(
         .testTarget(
             name: "MMEventsTests",
             dependencies: ["MMEvents"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- MMPages ----------------
         .target(
@@ -242,10 +249,14 @@ let package = Package(
                 "Core",
                 "ModernNetworking",
                 "MediaLibraryKit",
-                "YouTubePlayerKit",
+                .product(
+                    name: "YouTubePlayerKit",
+                    package: "YouTubePlayerKit",
+                    condition: .when(platforms: [.iOS])
+                ),
                 .product(name: "ProseMirror", package: "swift-prosemirror"),
                 .product(name: "GRDB", package: "GRDB.swift"),
-                .product(name: "Factory", package: "Factory")
+                .product(name: "FactoryKit", package: "Factory")
             ],
             swiftSettings: settings
         ),
@@ -255,7 +266,7 @@ let package = Package(
             resources: [
                 .process("Resources")
             ],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- MMTours ----------------
         .target(
@@ -268,12 +279,13 @@ let package = Package(
         .testTarget(
             name: "MMToursTests",
             dependencies: ["MMTours"],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         // ---------------- MMFeeds ----------------
         .target(
             name: "MMFeeds",
             dependencies: [
+                .byName(name: "Core"),
                 .byName(name: "MMPages"),
                 .product(name: "ModernNetworking", package: "ModernNetworking"),
                 .product(name: "MediaLibraryKit", package: "MediaLibraryKit"),
@@ -288,7 +300,7 @@ let package = Package(
             resources: [
                 .process("Resources")
             ],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         
         // ---------------- EFAAPI ----------------
@@ -297,7 +309,7 @@ let package = Package(
             dependencies: [
                 "XMLCoder",
                 "ModernNetworking",
-                "Factory",
+                .product(name: "FactoryKit", package: "Factory"),
                 "Core"
             ],
             resources: [.process("Resources")],
@@ -305,13 +317,18 @@ let package = Package(
         ),
         .target(
             name: "EFAUI",
-            dependencies: ["EFAAPI", "Factory", "Core"],
+            dependencies: ["EFAAPI", .product(name: "FactoryKit", package: "Factory"), "Core"],
             resources: [.process("Resources")],
             swiftSettings: settings
         ),
+        .testTarget(
+            name: "EFAUITests",
+            dependencies: ["EFAUI"],
+            swiftSettings: testSettings
+        ),
         .executableTarget(
             name: "EFACLI",
-            dependencies: ["EFAAPI", "Factory"],
+            dependencies: ["EFAAPI", .product(name: "FactoryKit", package: "Factory")],
             swiftSettings: settings
         ),
         .testTarget(
@@ -320,11 +337,12 @@ let package = Package(
             resources: [
                 .copy("Data")
             ],
-            swiftSettings: settings
+            swiftSettings: testSettings
         ),
         .target(
             name: "Pulley",
             swiftSettings: settings
         )
-    ]
+    ],
+    swiftLanguageModes: [.v6]
 )

@@ -14,7 +14,7 @@ public struct NavigationDirectionsMapView: UIViewRepresentable {
     
     public typealias UIViewType = MKMapView
     
-    @ObservedObject public var viewModel: NavigationViewModel
+    public var viewModel: NavigationViewModel
     
     public init(viewModel: NavigationViewModel) {
         self.viewModel = viewModel
@@ -117,7 +117,9 @@ public struct NavigationDirectionsMapView: UIViewRepresentable {
             
             return MKOverlayRenderer()
         }
-        
+
+        // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+        nonisolated deinit {}
     }
     
 }

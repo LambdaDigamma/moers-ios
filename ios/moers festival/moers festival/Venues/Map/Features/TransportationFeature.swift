@@ -17,7 +17,9 @@ public struct TransportationProperties: Codable {
 public class TransportationFeature: GeoFeature<TransportationProperties>, FGDDecodableFeature {
     
     public typealias Properties = TransportationProperties
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension TransportationFeature: StylableFeature {

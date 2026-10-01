@@ -14,5 +14,7 @@ final class LoRaManager: Sendable {
     
     private let session = URLSession.shared
     private let loRaServer = "http://m090web3.krzn.de:1880/"
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

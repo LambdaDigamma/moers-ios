@@ -9,78 +9,88 @@ import SwiftUI
 import Combine
 import CoreLocation
 import Core
-import Factory
+import FactoryKit
 import EFAAPI
 import ModernNetworking
 import MapKit
 
+@Observable
 public class InTrainMapViewModel: StandardViewModel {
     
-    @Published public var currentSpeed: String?
-    @Published public var currentPlace: String?
+    public var currentSpeed: String?
+    public var currentPlace: String?
     
-    @Published public var polyline: DataState<[MKPolyline], Error> = .loading
-    @Published public var points: DataState<[RouteStationAnnotation], Error> = .loading
+    public var polyline: DataState<[MKPolyline], Error> = .loading
+    public var points: DataState<[RouteStationAnnotation], Error> = .loading
     
-    @Injected(\.geocodingService) var geocodingService
-    @Injected(\.transitService) var transitService
+    @ObservationIgnored @LazyInjected(\.geocodingService) var geocodingService
+    @ObservationIgnored @LazyInjected(\.transitService) var transitService
     
-    private let locationObject = CoreLocationObject()
+    @ObservationIgnored
+    private let locationObject: CoreLocationObject
+    @ObservationIgnored
+    private var locationTask: Task<Void, Never>?
     
-    public override init() {
-        
+    public init(locationObject: CoreLocationObject = CoreLocationObject()) {
+        self.locationObject = locationObject
+        super.init()
+    }
+
+    nonisolated deinit {
+        locationTask?.cancel()
     }
     
-    public func load() {
-        
-        Task {
-            do {
-                let request = try await transitService.geoObject(lines: [
-                    "ddb:90E31: :R:j23",
-                    "ddb:90E33: :R:j23"
-                ])
-                
-                let polyline = request.geoObjectRequest.geoObject
-                    .geoObjectLineResponse
-                    .lineItemList
-                    .lineItems.map({ (lineItem: LineItem) in
-                        return lineItem.toPolyline()
-                    })
-                    .reduce([], +)
-                
-                let points = request.geoObjectRequest.geoObject
-                    .geoObjectLineResponse
-                    .lineItemList.lineItems.map { (lineItem: LineItem) in
-                        return lineItem.points.map { (point: ITDPoint) in
-                            RouteStationAnnotation(name: point.name, coordinate: point.coordinate)
-                        }
+    public func load() async {
+        guard !Task.isCancelled else { return }
+        do {
+            let request = try await transitService.geoObject(lines: [
+                "ddb:90E31: :R:j23",
+                "ddb:90E33: :R:j23"
+            ])
+
+            let polyline = request.geoObjectRequest.geoObject
+                .geoObjectLineResponse
+                .lineItemList
+                .lineItems.map({ (lineItem: LineItem) in
+                    return lineItem.toPolyline()
+                })
+                .reduce([], +)
+
+            let points = request.geoObjectRequest.geoObject
+                .geoObjectLineResponse
+                .lineItemList.lineItems.map { (lineItem: LineItem) in
+                    return lineItem.points.map { (point: ITDPoint) in
+                        RouteStationAnnotation(name: point.name, coordinate: point.coordinate)
                     }
-                    .reduce([], +)
-                
-                self.polyline = .success(polyline)
-                self.points = .success(points)
-                
-            } catch {
-                self.polyline = .error(error)
-                self.points = .error(error)
-            }
+                }
+                .reduce([], +)
+
+            guard !Task.isCancelled else { return }
+            self.polyline = .success(polyline)
+            self.points = .success(points)
+
+        } catch {
+            guard !Task.isCancelled else { return }
+            self.polyline = .error(error)
+            self.points = .error(error)
         }
-        
     }
-    
+
+
     public func start() {
+        guard locationTask == nil else { return }
         
         locationObject
-            .$location
+            .locationPublisher()
             .receive(on: DispatchQueue.main)
-            .sink { (location: CLLocation?) in
+            .sink { [weak self] (location: CLLocation?) in
                 
-                if let _ = location?.speedAccuracy, let speed = location?.speed, speed > 0 {
+                if location?.speedAccuracy != nil, let speed = location?.speed, speed > 0 {
                     
                     if #available(iOS 15.0, *) {
                         
                         let measurement = Measurement(value: speed, unit: UnitSpeed.metersPerSecond)
-                        self.currentSpeed = "\(measurement.converted(to: .kilometersPerHour).formatted())"
+                        self?.currentSpeed = "\(measurement.converted(to: .kilometersPerHour).formatted())"
                     }
                     
                 }
@@ -90,29 +100,31 @@ public class InTrainMapViewModel: StandardViewModel {
         
         locationObject.beginUpdates(.authorizedWhenInUse)
         
-        Task {
+        locationTask = Task { [weak self] in
             let timerStream = Timer.publish(every: 30, on: .main, in: .common)
                 .autoconnect()
                 .values
-            
+
             for await _ in timerStream {
+                guard !Task.isCancelled else { return }
+                guard let location = self?.locationObject.location,
+                      let geocodingService = self?.geocodingService else { continue }
                 do {
-                    if let location = locationObject.location {
-                        let placemark = try await geocodingService.placemark(from: location)
-                        await MainActor.run {
-                            self.currentPlace = placemark.locality
-                        }
-                    }
+                    let placemark = try await geocodingService.placemark(from: location)
+                    guard !Task.isCancelled else { return }
+                    self?.currentPlace = placemark.locality
                 } catch {
-                    
+                    guard !Task.isCancelled else { return }
                 }
             }
         }
-        
     }
-    
+
     public func stop() {
-        
+        locationTask?.cancel()
+        locationTask = nil
+        cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
         locationObject.endUpdates()
         
     }

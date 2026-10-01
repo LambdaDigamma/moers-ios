@@ -13,7 +13,7 @@ import UIKit
 
 struct DepartureView: View {
     
-    @ObservedObject var viewModel: DepartureViewModel
+    var viewModel: DepartureViewModel
     
     var body: some View {
         

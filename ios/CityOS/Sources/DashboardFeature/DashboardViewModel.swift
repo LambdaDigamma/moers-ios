@@ -9,18 +9,21 @@
 import Foundation
 import Combine
 import EFAAPI
-import Factory
+import FactoryKit
+import Observation
 
 @MainActor
-public class DashboardViewModel: ObservableObject {
+@Observable
+public class DashboardViewModel {
     
     private let loader: DashboardConfigLoader
+    @ObservationIgnored
     private var cancellables = Set<AnyCancellable>()
     
-    @Published var displayables: [DashboardItemConfigurable] = []
-    @Published var currentTrip: CachedEFATrip?
+    var displayables: [DashboardItemConfigurable] = []
+    var currentTrip: CachedEFATrip?
     
-    @Injected(\.tripService) var tripService
+    @ObservationIgnored @Injected(\.tripService) var tripService
     
     public init(loader: DashboardConfigLoader) {
         
@@ -28,26 +31,30 @@ public class DashboardViewModel: ObservableObject {
         self.reloadTripOnDashboard()
         
         NotificationCenter.default.publisher(for: .SetupDidComplete)
-            .sink { _ in
-                self.load()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.load()
             }
             .store(in: &cancellables)
         
         NotificationCenter.default.publisher(for: .updateDashboard)
-            .sink { _ in
-                self.load()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.load()
             }
             .store(in: &cancellables)
         
         NotificationCenter.default.publisher(for: .activatedTrip)
-            .sink { _ in
-                self.reloadTripOnDashboard()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.reloadTripOnDashboard()
             }
             .store(in: &cancellables)
         
         NotificationCenter.default.publisher(for: .deactivatedTrip)
-            .sink { _ in
-                self.reloadTripOnDashboard()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.reloadTripOnDashboard()
             }
             .store(in: &cancellables)
         
@@ -63,6 +70,7 @@ public class DashboardViewModel: ObservableObject {
         
         loader
             .load()
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] (config: DashboardConfig) in
                 
                 self?.displayables = config.items

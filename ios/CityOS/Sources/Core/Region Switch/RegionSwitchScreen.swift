@@ -45,7 +45,9 @@ struct RegionSwitchScreen: View {
             maxHeight: .infinity,
             alignment: .topLeading
         )
+        #if !os(tvOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .navigationTitle(String(localized: "Region detected", bundle: .module))
         
     }
@@ -132,7 +134,7 @@ struct RegionSwitchScreen: View {
             .padding(.vertical)
             
         }
-        .background(Color(UIColor.secondarySystemBackground))
+        .background(Color(ApplicationTheme.current.cardBackgroundColor))
 //        .cornerRadius(12)
         
     }

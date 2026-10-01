@@ -67,7 +67,9 @@ public class MapCoordinator: TabRepresentable {
         navController.modalPresentationStyle = .formSheet
         mainViewController.present(navController, animated: true)
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension MenuItem {

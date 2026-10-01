@@ -11,7 +11,7 @@ import Foundation
 import MapKit
 import Fuse
 
-final public class PetrolStationViewModel: LocationViewModel, Location, Codable, MKAnnotation, Identifiable, @unchecked Sendable {
+nonisolated final public class PetrolStationViewModel: LocationViewModel, Location, Codable, MKAnnotation, Identifiable {
     
     public var id: String
     @objc public dynamic var name: String
@@ -117,7 +117,7 @@ final public class PetrolStationViewModel: LocationViewModel, Location, Codable,
         ]
     }
     
-    public struct TimeEntry: Codable, Equatable {
+    nonisolated public struct TimeEntry: Codable, Equatable, Sendable {
         
         public var text: String
         public var start: String
@@ -136,7 +136,7 @@ final public class PetrolStationViewModel: LocationViewModel, Location, Codable,
 
 extension PetrolStationViewModel: Stubbable {
     
-    public static func stub(withID id: ID) -> PetrolStationViewModel {
+    nonisolated public static func stub(withID id: ID) -> PetrolStationViewModel {
         return PetrolStationViewModel(
             id: id,
             name: "Petrol Station",

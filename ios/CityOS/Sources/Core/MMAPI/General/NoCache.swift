@@ -48,5 +48,7 @@ public class NoCache<D: Codable>: AnyStoragable<D> {
     override public func reset(forKey key: String) {
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

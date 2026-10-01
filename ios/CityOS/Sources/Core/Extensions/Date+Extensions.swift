@@ -9,21 +9,21 @@ import Foundation
 
 public extension Date {
 
-    func format(format: String) -> String {
+    nonisolated func format(format: String) -> String {
         let formatter = DateFormatter()
         formatter.locale = Locale.autoupdatingCurrent
         formatter.dateFormat = format
         return formatter.string(from: self)
     }
 
-    static func from(_ dateString: String, withFormat format: String) -> Date? {
+    nonisolated static func from(_ dateString: String, withFormat format: String) -> Date? {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "DE_de") // TODO: Is this right?
         formatter.dateFormat = format
         return formatter.date(from: dateString)
     }
     
-    func beautify(format: String = "E dd.MM.yyyy") -> String {
+    nonisolated func beautify(format: String = "E dd.MM.yyyy") -> String {
         
         var beautifiedDate = self.format(format: format)
         
@@ -37,7 +37,7 @@ public extension Date {
         
     }
     
-    static func component(_ component: Calendar.Component, from date: Date) -> Int {
+    nonisolated static func component(_ component: Calendar.Component, from date: Date) -> Int {
         
         let calendar = Calendar.current
         let comp = calendar.component(component, from: date)
@@ -46,15 +46,15 @@ public extension Date {
         
     }
     
-    var isToday: Bool {
+    nonisolated var isToday: Bool {
         return Calendar.autoupdatingCurrent.isDateInToday(self)
     }
     
-    var isTomorrow: Bool {
+    nonisolated var isTomorrow: Bool {
         return Calendar.autoupdatingCurrent.isDateInTomorrow(self)
     }
     
-    static var yesterday: Date {
+    nonisolated static var yesterday: Date {
         
         let calendar = Calendar.autoupdatingCurrent
         let yesterday = calendar.date(byAdding: .day, value: -1, to: Date())
@@ -63,11 +63,11 @@ public extension Date {
         
     }
     
-    static var somedayInFuture: Date {
+    nonisolated static var somedayInFuture: Date {
         return Date(timeIntervalSinceNow: pow(10, 10))
     }
     
-    func isInBeforeInterval(minutes: Double) -> Bool {
+    nonisolated func isInBeforeInterval(minutes: Double) -> Bool {
         
         let timeInterval = Date().timeIntervalSince(self).rounded()
         
@@ -75,7 +75,7 @@ public extension Date {
         
     }
     
-    func minuteInterval() -> Int {
+    nonisolated func minuteInterval() -> Int {
         
         let timeInterval = abs(Date().timeIntervalSince(self).rounded() / 60)
         
@@ -83,7 +83,7 @@ public extension Date {
         
     }
     
-    func timeAgo() -> String {
+    nonisolated func timeAgo() -> String {
         
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .full
@@ -95,7 +95,7 @@ public extension Date {
         
     }
     
-    func accessibleString(dateStyle: DateFormatter.Style = .full, timeStyle: DateFormatter.Style = .none) -> String {
+    nonisolated func accessibleString(dateStyle: DateFormatter.Style = .full, timeStyle: DateFormatter.Style = .none) -> String {
         return DateFormatter.localizedString(from: self, dateStyle: dateStyle, timeStyle: timeStyle)
     }
     

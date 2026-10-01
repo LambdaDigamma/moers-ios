@@ -11,14 +11,14 @@ import XCTest
 
 @MainActor
 final class SceneDelegateConnectionUserActivityRoutingTests: XCTestCase {
-    func testConnectionWebActivityRoutesThroughApplicationController() {
+    func testConnectionWebActivityRoutesThroughApplicationController() async {
         let sceneDelegate = SceneDelegate()
         let userActivity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
 
         XCTAssertTrue(sceneDelegate.shouldRouteConnectionUserActivityThroughApplicationController(userActivity))
     }
 
-    func testConnectionNonWebActivityRoutesThroughTabBarController() {
+    func testConnectionNonWebActivityRoutesThroughTabBarController() async {
         let sceneDelegate = SceneDelegate()
         let userActivity = NSUserActivity(activityType: "de.okfn.niederrhein.moers-festival.openEvent")
 

@@ -11,7 +11,7 @@ import MapKit
 import Fuse
 import ModernNetworking
 
-public final class Entry: NSObject, Decodable, Location, Model, @unchecked Sendable {
+nonisolated public final class Entry: NSObject, Decodable, Location, Model {
     
     public var id: Int
     @objc dynamic public var name: String
@@ -165,7 +165,7 @@ public final class Entry: NSObject, Decodable, Location, Model, @unchecked Senda
 
 extension Entry {
     
-    public override var debugDescription: String {
+    nonisolated public override var debugDescription: String {
         return "Entry(id: \(id), name: \(name), tags: \(tags), street: \(street)"
     }
     

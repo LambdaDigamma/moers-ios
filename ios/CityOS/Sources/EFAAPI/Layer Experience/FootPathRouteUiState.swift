@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct FootPathRouteUiState: Codable, Equatable, Hashable {
+nonisolated public struct FootPathRouteUiState: Codable, Equatable, Hashable {
     
     public let text: String
     

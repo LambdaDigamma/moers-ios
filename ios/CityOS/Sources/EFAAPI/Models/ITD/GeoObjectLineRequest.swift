@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct GeoObjectLineRequest: Codable, DynamicNodeDecoding, Sendable {
+nonisolated public struct GeoObjectLineRequest: Codable, DynamicNodeDecoding, Sendable {
     
     public let servingLines: ITDServingLines
     

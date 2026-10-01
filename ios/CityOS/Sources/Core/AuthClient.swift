@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import Observation
 
-public class AuthClient: ObservableObject {
+@Observable
+public class AuthClient {
     
-    @Published public var authState = State.unknown
+    public var authState = State.unknown
     
-    @UserDefaultsBacked(key: "AuthToken", defaultValue: nil) public var authToken: String?
+    @ObservationIgnored @UserDefaultsBacked(key: "AuthToken", defaultValue: nil) public var authToken: String?
     
     public enum State {
         case unknown, signedOut, signinInProgress
@@ -32,5 +34,7 @@ public class AuthClient: ObservableObject {
         authState = .signedOut
         authToken = nil
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

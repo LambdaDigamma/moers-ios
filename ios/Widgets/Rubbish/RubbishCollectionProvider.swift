@@ -10,7 +10,7 @@ import Foundation
 import WidgetKit
 import RubbishFeature
 import UserNotifications
-import Factory
+import FactoryKit
 
 class RubbishCollectionProvider: TimelineProvider {
     

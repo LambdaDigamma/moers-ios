@@ -9,7 +9,7 @@
 import UIKit
 import Combine
 import MMFeeds
-import Factory
+import FactoryKit
 
 public class FeedViewController: UIViewController {
 
@@ -203,6 +203,8 @@ public class FeedViewController: UIViewController {
         }
     }
 
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension FeedViewController {

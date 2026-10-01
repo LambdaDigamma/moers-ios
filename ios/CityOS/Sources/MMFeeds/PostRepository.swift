@@ -8,10 +8,10 @@
 import Foundation
 import Combine
 import GRDB
-import Factory
+import FactoryKit
 
 public extension Container {
-    var postRepository: Factory<PostRepository> {
+    @MainActor var postRepository: Factory<PostRepository> {
         Factory(self) {
             
             guard let dbQueue = try? DatabaseQueue(path: ":memory:") else { fatalError() }
@@ -119,5 +119,7 @@ public class PostRepository {
         try await store.updateOrCreate(posts.map { $0.toRecord() })
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

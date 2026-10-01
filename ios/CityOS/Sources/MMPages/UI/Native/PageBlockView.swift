@@ -9,7 +9,7 @@ import SwiftUI
 
 public struct PageBlockView: View {
     
-    @EnvironmentObject private var actionTransmitter: ActionTransmitter
+    @Environment(ActionTransmitter.self) private var actionTransmitter: ActionTransmitter
     
     private let pageBlock: PageBlock
     private let containerFrame: CGSize

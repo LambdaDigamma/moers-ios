@@ -19,8 +19,8 @@ final class EventSearchMatcherTests: XCTestCase {
             extras: EventExtras(
                 location: "Haus der Demokratiegeschichte",
                 street: "Kastell 5",
-                postcode: "47441",
                 place: "Moers",
+                postcode: "47441",
                 organizer: "Grafschafter Museum"
             ),
             artists: ["Stefan Pelzer-Florack"]
@@ -34,6 +34,21 @@ final class EventSearchMatcherTests: XCTestCase {
         XCTAssertTrue(matcher.matches(event, query: "konzert"))
         XCTAssertTrue(matcher.matches(event, query: "kastell"))
         XCTAssertFalse(matcher.matches(event, query: "schlosstheater"))
+    }
+
+    func testUmlautSpellingsMatchInBothDirectionsWithoutChangingStoredNormalization() {
+        let matcher = EventSearchMatcher()
+        let withUmlauts = Event(id: 1, name: "Hüsch in Köln und Bären")
+        let expanded = Event(id: 2, name: "Huesch in Koeln und Baeren")
+        for query in ["huesch", "koeln", "baeren"] {
+            XCTAssertTrue(matcher.matches(withUmlauts, query: query))
+        }
+        for query in ["hüsch", "köln", "bären"] {
+            XCTAssertTrue(matcher.matches(expanded, query: query))
+        }
+        XCTAssertEqual(matcher.exactMatchIndexes(in: [withUmlauts, expanded], query: "hüsch"), Set([0, 1]))
+        XCTAssertEqual(EventSearchTextNormalizer().normalize("Hüsch"), "husch")
+        XCTAssertTrue(matcher.matches(withUmlauts, query: "  "))
     }
 
     func testExactMatchIndexesIncludeMetadataMatches() {

@@ -90,5 +90,7 @@ class TextView: UIView {
         self.detailsTextView.backgroundColor = UIColor.systemBackground
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

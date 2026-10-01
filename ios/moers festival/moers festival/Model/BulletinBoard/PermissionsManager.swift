@@ -28,7 +28,7 @@ class PermissionsManager {
                     return
                 }
 
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     UIApplication.shared.registerForRemoteNotifications()
                     FestivalNotificationTopicSynchronizer.shared.sync()
                 }
@@ -44,5 +44,7 @@ class PermissionsManager {
             
         }
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

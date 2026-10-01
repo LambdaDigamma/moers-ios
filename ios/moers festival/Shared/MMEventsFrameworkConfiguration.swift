@@ -1,3 +1,4 @@
+#if !os(tvOS)
 //
 //  MMEventsFrameworkConfiguration.swift
 //  moers festival
@@ -10,8 +11,9 @@ import UIKit
 import AppScaffold
 import ModernNetworking
 import Cache
+import Core
 @preconcurrency import MMEvents
-@preconcurrency import Factory
+@preconcurrency import FactoryKit
 
 class MMEventsFrameworkConfiguration: BootstrappingProcedureStep {
     
@@ -38,7 +40,7 @@ class MMEventsFrameworkConfiguration: BootstrappingProcedureStep {
             
             return PlaceRepository(
                 store: PlaceStore(writer: database.dbWriter, reader: database.reader),
-                service: DefaultPlaceService(loader: Container.shared.httpLoader())
+                service: DefaultPlaceService(client: Container.shared.httpClient())
             )
         }
         
@@ -55,17 +57,17 @@ class MMEventsFrameworkConfiguration: BootstrappingProcedureStep {
         
         Container.shared.legacyEventService.register {
             let cache = ApplicationController.eventCache()
-            let loader: HTTPLoader = Container.shared.httpLoader()
-            return DefaultLegacyEventService(loader, cache) as LegacyEventService
+            let client = Container.shared.httpClient()
+            return DefaultLegacyEventService(client: client, cache) as LegacyEventService
         }
         
         Container.shared.eventRepository.scope(.cached).register {
             let database = Container.shared.appDatabase.resolve()
-            let loader: HTTPLoader = Container.shared.httpLoader()
+            let client = Container.shared.httpClient()
             
             return EventRepository(
                 store: EventStore(writer: database.dbWriter, reader: database.reader),
-                service: DefaultEventService(loader),
+                service: DefaultEventService(client: client),
                 placeStore: Container.shared.placeRepository().store,
                 pageStore: Container.shared.pageRepository().store
             )
@@ -86,5 +88,9 @@ class MMEventsFrameworkConfiguration: BootstrappingProcedureStep {
 //        }
 //
 //    }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
+
+#endif

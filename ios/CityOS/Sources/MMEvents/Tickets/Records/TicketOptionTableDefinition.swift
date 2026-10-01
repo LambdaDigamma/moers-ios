@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-public enum TicketOptionTableDefinition {
+nonisolated public enum TicketOptionTableDefinition {
     
     public static let tableName = "ticket_options"
     

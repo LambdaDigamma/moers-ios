@@ -47,5 +47,7 @@ class TagTableViewCell: UITableViewCell {
         self.backgroundColor = UIColor.systemBackground
         self.titleLabel.textColor = UIColor.label
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

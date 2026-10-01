@@ -48,7 +48,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     private let searchMatcher = EventSearchMatcher()
     
     private var updateInterval: TimeInterval = 60.0
-    nonisolated(unsafe) private var updateTimer: Timer!
+    private var updateTimer: Timer?
     
     private var isSearchEnabled = true
     
@@ -63,16 +63,38 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     
     // MARK: - Data Source
     
-    private enum Section: Hashable {
+    nonisolated private enum Section: Hashable, Sendable {
         case favourites
         case active
         case upcoming
         case dated(String)
     }
     
-    private enum Item: Hashable, Equatable, @unchecked Sendable {
+    nonisolated private enum Item: Hashable, Equatable, Sendable {
         case event(EventViewModel<Event>)
         case hint(String)
+
+        static func == (lhs: Item, rhs: Item) -> Bool {
+            switch (lhs, rhs) {
+                case let (.event(lhsEvent), .event(rhsEvent)):
+                    return lhsEvent === rhsEvent
+                case let (.hint(lhsHint), .hint(rhsHint)):
+                    return lhsHint == rhsHint
+                default:
+                    return false
+            }
+        }
+
+        func hash(into hasher: inout Hasher) {
+            switch self {
+                case .event(let event):
+                    hasher.combine(0)
+                    hasher.combine(ObjectIdentifier(event))
+                case .hint(let hint):
+                    hasher.combine(1)
+                    hasher.combine(hint)
+            }
+        }
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
@@ -82,9 +104,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     public var events: [EventViewModel<Event>] = []
     private var currentDisplayMode = DisplayMode.overview(favouriteEvents: [], activeEvents: [], upcomingEvents: []) {
         didSet {
-            DispatchQueue.main.async {
-                self.applySnapshot()
-            }
+            applySnapshot()
         }
     }
     
@@ -99,7 +119,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
         self.setupConstraints()
         self.setupTheming()
         self.configureDataSource()
-        
+        self.applySnapshot()
     }
     
     override open func viewDidAppear(_ animated: Bool) {
@@ -161,7 +181,6 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        updateTimer?.invalidate()
     }
     
     // MARK: - UI
@@ -355,6 +374,8 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     }
     
     private func applySnapshot() {
+        guard let dataSource = self.dataSource else { return }
+
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         
         switch currentDisplayMode {
@@ -436,38 +457,36 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
                     snapshot.appendItems(events.map { .event($0) }, toSection: section)
                 }
             }
-            
+
         default:
             break
         }
-        
+
         dataSource.apply(snapshot, animatingDifferences: true)
     }
-    
+
     public func rebuildData() {
-        
-        DispatchQueue.main.async {
-            switch self.currentDisplayMode {
-                
-                case .overview(_, _, _):
-                    self.currentDisplayMode = self.buildOverview()
-                    
-                case .list(_):
-                    self.currentDisplayMode = self.buildList()
-                    
-                case .search(_, _):
-                    self.currentDisplayMode = self.buildSearch()
-                    
-                case .favourites(_):
-                    self.currentDisplayMode = self.buildFavourites()
-                    
-                default:
-                    break
-            }
+
+        switch self.currentDisplayMode {
+
+            case .overview(_, _, _):
+                self.currentDisplayMode = self.buildOverview()
+
+            case .list(_):
+                self.currentDisplayMode = self.buildList()
+
+            case .search(_, _):
+                self.currentDisplayMode = self.buildSearch()
+
+            case .favourites(_):
+                self.currentDisplayMode = self.buildFavourites()
+
+            default:
+                break
         }
-        
+
     }
-    
+
     open func loadData() {
         
         

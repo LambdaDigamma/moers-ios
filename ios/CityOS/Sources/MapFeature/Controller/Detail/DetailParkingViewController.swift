@@ -130,6 +130,8 @@ class DetailParkingViewController: UIViewController {
 //             "status": parkingLot.status.rawValue])
 //
 //    }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 

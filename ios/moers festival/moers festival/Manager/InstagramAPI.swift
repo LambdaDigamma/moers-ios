@@ -114,5 +114,7 @@ class InstagramAPI {
     public func getSocial() async throws -> [InstagramPost] {
         try await fetchPosts()
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

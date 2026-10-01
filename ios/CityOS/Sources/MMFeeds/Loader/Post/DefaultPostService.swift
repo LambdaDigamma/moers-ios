@@ -6,15 +6,21 @@
 //
 
 import Foundation
+import Core
 import ModernNetworking
 import Cache
 
 public class DefaultPostService: PostService {
     
-    nonisolated(unsafe) private let loader: HTTPLoader
+    private let client: any HTTPClient
     
-    public init(_ loader: HTTPLoader = URLSessionLoader()) {
-        self.loader = loader
+    public init(client: any HTTPClient) {
+        self.client = client
+    }
+
+    @MainActor
+    public convenience init(_ loader: HTTPLoader = URLSessionLoader()) {
+        self.init(client: HTTPLoaderClient(loader: loader))
     }
     
     public func index(for feedID: Feed.ID, page: Int = 1, perPage: Int = 10, cacheMode: CacheMode) async throws -> ResourceCollection<Post> {
@@ -28,7 +34,7 @@ public class DefaultPostService: PostService {
         
         request.cachePolicy = cacheMode.policy
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         let posts = try await result.decoding(ResourceCollection<Post>.self)
         
@@ -42,7 +48,7 @@ public class DefaultPostService: PostService {
         
         request.cachePolicy = cacheMode.policy
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         
         let post = try await result.decoding(Resource<Post>.self)
         
@@ -72,7 +78,9 @@ public class DefaultPostService: PostService {
         return request
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension DefaultPostService {

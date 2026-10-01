@@ -10,7 +10,7 @@ import XCTest
 import Combine
 @testable import CoreCache
 
-public final class DefaultCacheTests: XCTestCase {
+nonisolated public final class DefaultCacheTests: XCTestCase {
     
     private struct ExampleEntry: Codable {
         let value: Int

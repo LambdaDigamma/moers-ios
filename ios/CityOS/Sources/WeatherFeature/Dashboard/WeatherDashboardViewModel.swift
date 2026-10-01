@@ -7,14 +7,16 @@
 
 import Core
 import Foundation
+import Observation
 
 @available(iOS 16.0, *)
 @MainActor
+@Observable
 public class WeatherDashboardViewModel: StandardViewModel {
     
     private let weatherService: DefaultWeatherService
     
-    @Published var data: DataState<WeatherDashboardData, Error> = .loading
+    var data: DataState<WeatherDashboardData, Error> = .loading
     
     public override init() {
         self.weatherService = DefaultWeatherService()
@@ -28,5 +30,7 @@ public class WeatherDashboardViewModel: StandardViewModel {
             print(error)
         }
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

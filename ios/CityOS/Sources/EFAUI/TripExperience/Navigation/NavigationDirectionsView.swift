@@ -32,11 +32,11 @@ public struct NavigationStepData: Identifiable {
 
 public struct NavigationDirectionsView: View {
     
-    @StateObject public var viewModel: NavigationViewModel
+    @State public var viewModel: NavigationViewModel
     
     public init(data: NavigationDirectionsData) {
-        self._viewModel = StateObject(
-            wrappedValue: NavigationViewModel(
+        self._viewModel = State(
+            initialValue: NavigationViewModel(
                 source: data.source,
                 destination: data.destination
             )

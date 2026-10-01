@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum RouteType: String, Codable, CaseIterable, Identifiable {
+nonisolated public enum RouteType: String, Codable, CaseIterable, Identifiable {
     
     case leastTime = "LEASTTIME"
     case leastInterchange = "LEASTINTERCHANGE"
@@ -30,7 +30,7 @@ public enum RouteType: String, Codable, CaseIterable, Identifiable {
     
 }
 
-public enum ChangeSpeed: String, Codable, CaseIterable, Identifiable {
+nonisolated public enum ChangeSpeed: String, Codable, CaseIterable, Identifiable {
     
     case fast = "fast"
     case normal = "normal"
@@ -53,7 +53,7 @@ public enum ChangeSpeed: String, Codable, CaseIterable, Identifiable {
     
 }
 
-public enum LineRestriction: Int, Codable {
+nonisolated public enum LineRestriction: Int, Codable {
     
     /// All lines (`alle Linien`)
     case `default` = 400

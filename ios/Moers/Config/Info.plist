@@ -38,6 +38,8 @@
 			</dict>
 		</array>
 	</dict>
+	<key>GOOGLE_ADS_ON_DEVICE_CONVERSION_EVENT_DATA_ENABLED</key>
+	<false/>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSAppTransportSecurity</key>

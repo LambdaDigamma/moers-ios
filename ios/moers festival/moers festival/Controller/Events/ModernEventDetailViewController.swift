@@ -17,7 +17,7 @@ import NukeUI
 import MediaLibraryKit
 import OSLog
 import SafariServices
-import Factory
+import FactoryKit
 import ModernNetworking
 
 public class ModernEventDetailViewController: DefaultHostingController {
@@ -198,15 +198,11 @@ public class ModernEventDetailViewController: DefaultHostingController {
     }
     
     private func showIsLiked(isLiked: Bool) {
-        
-        DispatchQueue.main.async {
-            
-            let imageName = isLiked ? "heart.fill" : "heart"
-            
-            self.likeBarButtonItem?.image = UIImage(systemName: imageName)
-            
-        }
-        
+
+        let imageName = isLiked ? "heart.fill" : "heart"
+
+        self.likeBarButtonItem?.image = UIImage(systemName: imageName)
+
     }
     
     private func showMetadata() {
@@ -223,7 +219,9 @@ public class ModernEventDetailViewController: DefaultHostingController {
         self.present(hosting, animated: true)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 struct ModernEventDetailViewController_Previews: PreviewProvider {

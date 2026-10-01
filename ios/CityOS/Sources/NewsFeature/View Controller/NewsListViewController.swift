@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 import SwiftUI
 import FeedKit
-import Factory
+import FactoryKit
 import Core
 
 public class NewsListViewController: UIHostingController<NewsList> {
@@ -38,7 +38,9 @@ public class NewsListViewController: UIHostingController<NewsList> {
     @MainActor @objc required dynamic init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 #endif

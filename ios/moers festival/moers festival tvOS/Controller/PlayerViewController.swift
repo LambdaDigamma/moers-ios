@@ -10,7 +10,7 @@ import Foundation
 import AVKit
 import MMEvents
 import Combine
-import Factory
+import FactoryKit
 
 class PlayerViewController: AVPlayerViewController {
     
@@ -19,7 +19,7 @@ class PlayerViewController: AVPlayerViewController {
     private var livestreamData: MMEvents.LivestreamData!
     
     private var eventChangeTimer: Timer!
-    private var cancellables = Set<AnyCancellable>()
+    private var streamLoadTask: Task<Void, Never>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ class PlayerViewController: AVPlayerViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewDidAppear(animated)
         
         self.loadStreamConfig()
         
@@ -36,6 +36,8 @@ class PlayerViewController: AVPlayerViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        streamLoadTask?.cancel()
+        streamLoadTask = nil
         self.eventChangeTimer?.invalidate()
         
     }
@@ -44,45 +46,28 @@ class PlayerViewController: AVPlayerViewController {
     
     private func loadStreamConfig() {
         
-        let streamConfig = eventService.loadStream()
-            .map({ (config: MMEvents.StreamConfig) in
-                return MMEvents.LivestreamData(streamConfig: config, events: config.events)
-            })
-        //        .filter({ !$0.events.isEmpty })
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-        
-        streamConfig.sink { [weak self] completion in
-            
-            switch completion {
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    self?.showInactive()
-                    break
-                default: break
-            }
-            
-        } receiveValue: { (livestreamData: LivestreamData) in
-            
-            self.livestreamData = livestreamData
+        streamLoadTask?.cancel()
+        streamLoadTask = Task { [weak self, eventService] in
+            do {
+                let config = try await eventService.loadStream()
+                guard !Task.isCancelled, let self else { return }
+                let livestreamData = LivestreamData(streamConfig: config, events: config.events)
+                self.livestreamData = livestreamData
 
-            print(livestreamData)
-
-            if livestreamData.streamConfig.shouldShowCountdown {
-                self.showCountdown()
-            } else {
-
-                if livestreamData.streamConfig.streamURL != nil {
-                    self.showPlayback(livestreamData: livestreamData)
+                if config.shouldShowCountdown {
+                    showCountdown()
+                } else if config.streamURL != nil {
+                    showPlayback(livestreamData: livestreamData)
                 } else {
-                    self.showInactive()
+                    showInactive()
                 }
-
+            } catch {
+                guard !Task.isCancelled, let self else { return }
+                print(error.localizedDescription)
+                showInactive()
             }
-            
         }
-        .store(in: &cancellables)
-        
+
     }
     
     // MARK: - State Management
@@ -271,5 +256,7 @@ class PlayerViewController: AVPlayerViewController {
         }
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

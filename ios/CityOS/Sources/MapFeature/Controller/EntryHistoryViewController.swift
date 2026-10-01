@@ -52,7 +52,7 @@ class EntryHistoryViewController: UIViewController {
     
     // MARK: - Private Methods
     
-    enum Section {
+    nonisolated enum Section: Hashable, Sendable {
         case main
     }
     
@@ -156,5 +156,7 @@ class EntryHistoryViewController: UIViewController {
         snapshot.appendItems(audits)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

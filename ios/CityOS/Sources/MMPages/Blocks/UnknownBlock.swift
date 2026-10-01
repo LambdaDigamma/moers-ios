@@ -7,7 +7,7 @@
 
 import Foundation
 
-final public class UnknownBlock: NSObject, Blockable {
+nonisolated final public class UnknownBlock: NSObject, Blockable {
     
     public static let type: BlockType = .unknown
     

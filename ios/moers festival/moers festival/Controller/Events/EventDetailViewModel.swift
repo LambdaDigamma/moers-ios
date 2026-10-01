@@ -14,21 +14,23 @@ import MMPages
 import MediaLibraryKit
 import Foundation
 import CoreLocation
-import Factory
+import FactoryKit
+import Observation
 
+@Observable
 public class EventDetailViewModel: StandardViewModel {
     
-    @LazyInjected(\.legacyEventService) var legacyEventService
-    @LazyInjected(\.festivalEventService) var festivalEventService
+    @ObservationIgnored @LazyInjected(\.legacyEventService) var legacyEventService
+    @ObservationIgnored @LazyInjected(\.festivalEventService) var festivalEventService
     
     private let logger: Logger = Logger(.coreAppLifecycle)
     
-    @Published public var eventID: Event.ID?
-    @Published public var pageID: MMPages.Page.ID?
-    @Published var page: MMPages.Page?
-    @Published var event: Event?
-    @Published var header: Media?
-    @Published var location: Place?
+    public var eventID: Event.ID?
+    public var pageID: MMPages.Page.ID?
+    var page: MMPages.Page?
+    var event: Event?
+    var header: Media?
+    var location: Place?
     
     let repository: EventRepository
     
@@ -133,5 +135,7 @@ public class EventDetailViewModel: StandardViewModel {
         self.cancellables.forEach { $0.cancel() }
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

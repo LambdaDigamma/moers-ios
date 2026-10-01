@@ -17,7 +17,7 @@ extension StatelessIdentifier: LineIdentifiable {
     
 }
 
-public struct CachedPartialLine: Codable, Identifiable {
+nonisolated public struct CachedPartialLine: Codable, Identifiable {
     
     public let id: StatelessLineIdentifier
     

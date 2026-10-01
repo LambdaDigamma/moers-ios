@@ -12,7 +12,9 @@ import MapKit
 public class GenericMapObject: NSObject, MKGeoJSONObject {
     
     
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 public class MapObjectLoader {
@@ -63,5 +65,7 @@ public class MapObjectLoader {
         
     }
     
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

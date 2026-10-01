@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct EventSearchMatcher: Sendable {
+nonisolated public struct EventSearchMatcher: Sendable {
 
     private let normalizer: EventSearchTextNormalizer
 
@@ -20,29 +20,28 @@ public struct EventSearchMatcher: Sendable {
     }
 
     public func normalizedSearchText(for event: Event) -> String {
-        normalizer.normalize(searchComponents(for: event).joined(separator: " "))
+        normalizedVariants(searchComponents(for: event).joined(separator: " ")).joined(separator: " ")
     }
 
     public func matches(_ event: Event, query: String) -> Bool {
-        let query = normalizedQuery(query)
-
-        guard !query.isEmpty else {
-            return true
-        }
-
-        return normalizedSearchText(for: event).contains(query)
+        let queries = normalizedVariants(query)
+        guard !queries[0].isEmpty else { return true }
+        let searchText = normalizedSearchText(for: event)
+        return queries.contains { searchText.contains($0) }
     }
 
     public func exactMatchIndexes(in events: [Event], query: String) -> Set<Int> {
-        let query = normalizedQuery(query)
+        Set(events.indices.filter { matches(events[$0], query: query) })
+    }
 
-        guard !query.isEmpty else {
-            return Set(events.indices)
-        }
-
-        return Set(events.indices.filter { index in
-            normalizedSearchText(for: events[index]).contains(query)
-        })
+    private func normalizedVariants(_ text: String) -> [String] {
+        let normalized = normalizer.normalize(text)
+        let expanded = text.precomposedStringWithCanonicalMapping.lowercased()
+            .replacingOccurrences(of: "ä", with: "ae")
+            .replacingOccurrences(of: "ö", with: "oe")
+            .replacingOccurrences(of: "ü", with: "ue")
+        let normalizedExpansion = normalizer.normalize(expanded)
+        return normalized == normalizedExpansion ? [normalized] : [normalized, normalizedExpansion]
     }
 
     private func searchComponents(for event: Event) -> [String] {

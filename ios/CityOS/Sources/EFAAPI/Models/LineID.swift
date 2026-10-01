@@ -7,13 +7,13 @@
 
 import Foundation
 
-public protocol LineIdentifiable {
+nonisolated public protocol LineIdentifiable {
     
     var lineIdentifier: String { get }
     
 }
 
-public struct LineID: Codable, LineIdentifiable {
+nonisolated public struct LineID: Codable, LineIdentifiable {
     
     public let network: String
     public let divaLineNumber: String

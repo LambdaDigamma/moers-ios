@@ -10,13 +10,18 @@ import Core
 import UIKit
 import AppScaffold
 import MMEvents
-import Factory
+import FactoryKit
 
 class EventCoordinator: Coordinator {
     
     @LazyInjected(\.eventService) var eventService
     
     var navigationController: CoordinatedNavigationController
+
+    var rootViewController: UIViewController { navigationController }
+
+    var tabBarItem: UITabBarItem? { rootViewController.tabBarItem }
+
     var eventViewController: UIViewController?
     
     init(
@@ -61,7 +66,9 @@ class EventCoordinator: Coordinator {
         return eventsTabItem
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 // Protocol to make both versions compatible with the coordinator

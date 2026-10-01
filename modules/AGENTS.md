@@ -26,6 +26,7 @@ This subtree contains Android and Kotlin feature modules shared by the app modul
 
 - Use JUnit5 in modules that apply the JUnit5 plugin; existing tests often use `org.junit.jupiter.api.Test` plus `kotlin.test` assertions.
 - Prefer focused tests for pure mappers, filters, reducers, and use cases.
+- The core Android unit-test task uses JUnit Platform because its tests use JUnit Jupiter. Check the test report count; a successful task with zero tests does not validate the module.
 - For a touched module, run `./gradlew :modules:<module>:testDebugUnitTest`.
 - For compile-sensitive changes, also run `./gradlew :modules:<module>:assembleDebug`.
 - For `modules/core` KMP changes, consider `./gradlew :modules:core:allTests` or a targeted iOS simulator test only if the changed code affects non-Android source sets.

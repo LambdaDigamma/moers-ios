@@ -12,8 +12,8 @@ import MMPages
 
 public struct ModernEventView: View {
     
-    @ObservedObject var viewModel: EventDetailViewModel
-    @ObservedObject var actionTransmitter: ActionTransmitter
+    var viewModel: EventDetailViewModel
+    var actionTransmitter: ActionTransmitter
     
     private let showDetails: () -> Void
 
@@ -60,7 +60,7 @@ public struct ModernEventView: View {
 
                 if let pageID = viewModel.pageID {
                     IsolatedNativePageView(pageID: pageID)
-                        .environmentObject(actionTransmitter)
+                        .environment(actionTransmitter)
                         .environment(\.openURL, OpenURLAction { url in
                             actionTransmitter.dispatchOpenURL(url)
                             return .handled

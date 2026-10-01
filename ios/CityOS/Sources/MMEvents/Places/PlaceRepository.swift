@@ -9,10 +9,11 @@
 import Foundation
 import Combine
 import GRDB
-import Factory
+import FactoryKit
 
 extension Container {
     
+    @MainActor
     public var placeRepository: Factory<PlaceRepository> {
         Factory(self) {
             
@@ -28,7 +29,7 @@ extension Container {
     
 }
 
-public class PlaceRepository: @unchecked Sendable {
+public class PlaceRepository {
 
     public let store: PlaceStore
     public let service: PlaceService
@@ -64,13 +65,13 @@ public class PlaceRepository: @unchecked Sendable {
     
     public func refresh() {
         
-        Task(priority: .background) {
-            
-            let places: [Place] = try await service.getPlaces().data
-            
-            let _ = try await self.store
-                .updateOrCreate(places.map({ $0.toRecord() }))
-            
+        _ = Task(priority: .background) {
+            do {
+                let places: [Place] = try await service.getPlaces().data
+                _ = try await self.store.updateOrCreate(places.map { $0.toRecord() })
+            } catch {
+                // Keep the fire-and-forget refresh best-effort.
+            }
         }
         
     }
@@ -102,5 +103,7 @@ public class PlaceRepository: @unchecked Sendable {
         .eraseToAnyPublisher()
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

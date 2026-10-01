@@ -9,9 +9,10 @@ import Foundation
 import XCTest
 @testable import EFAAPI
 
+@MainActor
 final class DateErrorTest: XCTestCase {
     
-    func test_init() {
+    func test_init() async {
         
         XCTAssertEqual(DateError(rawValue: -1), .invalidDate)
         XCTAssertEqual(DateError(rawValue: -10), .yearOutOfRange)

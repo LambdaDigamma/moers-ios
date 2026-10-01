@@ -1,6 +1,6 @@
 import Foundation
 
-public final class AppUpdatePersistence: @unchecked Sendable {
+public final class AppUpdatePersistence {
     private let userDefaults: UserDefaults
     private let keyPrefix: String
 
@@ -20,5 +20,7 @@ public final class AppUpdatePersistence: @unchecked Sendable {
     private func dismissalKey(for version: String) -> String {
         "\(keyPrefix).banner.dismissed.\(version)"
     }
-}
 
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
+}

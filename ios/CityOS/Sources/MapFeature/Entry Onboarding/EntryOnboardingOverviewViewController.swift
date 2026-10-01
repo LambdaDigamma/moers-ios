@@ -827,7 +827,9 @@ class EntryOnboardingOverviewViewController: UIViewController {
         self.searchController.dismiss(animated: true)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 extension EntryOnboardingOverviewViewController: UITextFieldDelegate {

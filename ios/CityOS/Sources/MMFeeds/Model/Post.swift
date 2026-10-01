@@ -11,7 +11,7 @@ import AVFoundation
 
 public typealias VimeoID = String
 
-public struct Post: BasePost, Codable {
+nonisolated public struct Post: BasePost, Codable {
     
     public typealias ID = Int
     public typealias FeedID = Feed.ID

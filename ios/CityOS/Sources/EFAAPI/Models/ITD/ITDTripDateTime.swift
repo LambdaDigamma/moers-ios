@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-public struct ITDTripDateTime: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
+nonisolated public struct ITDTripDateTime: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
     
     public let depArrType: DepArrType
     public let dateTime: ITDDateTime

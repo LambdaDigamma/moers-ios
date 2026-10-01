@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct DashboardConfig: Codable {
+nonisolated public struct DashboardConfig: Codable, Sendable {
     
     public var items: [DashboardItemConfigurable] = []
     public var updatedAt: Date?
@@ -49,18 +49,18 @@ public struct DashboardConfig: Codable {
         
     }
     
-    public enum CodingKeys: String, CodingKey {
+    nonisolated public enum CodingKeys: String, CodingKey {
         case items = "items"
         case updatedAt = "updated_at"
     }
     
-    internal enum DashboardItemType: String, Codable {
+    nonisolated internal enum DashboardItemType: String, Codable, Sendable {
         case rubbish = "rubbish"
         case petrol = "petrol"
         case unknown = "unknown"
     }
     
-    internal struct DashboardItemConfigurableWrapper: Codable {
+    nonisolated internal struct DashboardItemConfigurableWrapper: Codable, Sendable {
         
         internal var itemType: DashboardItemType
         internal var base: DashboardItemConfigurable
@@ -108,7 +108,7 @@ public struct DashboardConfig: Codable {
             
         }
         
-        internal enum CodingKeys: String, CodingKey {
+        nonisolated internal enum CodingKeys: String, CodingKey {
             case itemType = "type"
             case base = "data"
         }

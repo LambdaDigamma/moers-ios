@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class CodableStorage {
+nonisolated public class CodableStorage {
     
     private let storage: DiskStorage
     private let decoder: JSONDecoder

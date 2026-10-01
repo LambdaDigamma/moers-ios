@@ -49,6 +49,8 @@ class MediaLibraryConfiguration: BootstrappingProcedureStep {
         ImagePipeline.shared = pipeline
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 

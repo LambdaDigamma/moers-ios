@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import Observation
 
-public class DepartureMonitorViewModel: ObservableObject {
+@Observable
+public class DepartureMonitorViewModel {
     
     public let stationName: String
     public let date: Date
@@ -22,5 +24,7 @@ public class DepartureMonitorViewModel: ObservableObject {
         self.departures = departures
         self.date = date
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

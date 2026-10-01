@@ -9,15 +9,15 @@ import Foundation
 
 public extension String {
     
-    var isEmptyOrWhitespace: Bool {
+    nonisolated var isEmptyOrWhitespace: Bool {
         return isEmpty ? true : trimmingCharacters(in: .whitespaces).isEmpty
     }
     
-    var isNotEmptyOrWhitespace: Bool {
+    nonisolated var isNotEmptyOrWhitespace: Bool {
         return !isEmptyOrWhitespace
     }
     
-    var doubleValue: Double {
+    nonisolated var doubleValue: Double {
         
         get {
             let s: NSString = self as NSString
@@ -26,7 +26,7 @@ public extension String {
         
     }
     
-    static func rowToArray(_ string: String?) -> [Int] {
+    nonisolated static func rowToArray(_ string: String?) -> [Int] {
         
         let row = string ?? ""
         
@@ -39,19 +39,19 @@ public extension String {
         
     }
     
-    subscript(value: PartialRangeUpTo<Int>) -> Substring {
+    nonisolated subscript(value: PartialRangeUpTo<Int>) -> Substring {
         get {
             return self[..<index(startIndex, offsetBy: value.upperBound)]
         }
     }
     
-    subscript(value: PartialRangeThrough<Int>) -> Substring {
+    nonisolated subscript(value: PartialRangeThrough<Int>) -> Substring {
         get {
             return self[...index(startIndex, offsetBy: value.upperBound)]
         }
     }
     
-    subscript(value: PartialRangeFrom<Int>) -> Substring {
+    nonisolated subscript(value: PartialRangeFrom<Int>) -> Substring {
         get {
             return self[index(startIndex, offsetBy: value.lowerBound)...]
         }

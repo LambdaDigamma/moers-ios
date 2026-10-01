@@ -7,17 +7,18 @@
 
 import SwiftUI
 import Core
-import Factory
+import FactoryKit
 import Combine
 
+@Observable
 class DownloadEventsViewModel: StandardViewModel {
     
     private let repository: EventRepository
     
-    @Published var events: [DownloadEventViewModel] = []
+    var events: [DownloadEventViewModel] = []
     
-    @Published var downloadContent: Bool = true
-    @Published var downloadMedia: Bool = false
+    var downloadContent: Bool = true
+    var downloadMedia: Bool = false
     
     public override init() {
         repository = Container.shared.eventRepository()
@@ -86,12 +87,14 @@ class DownloadEventsViewModel: StandardViewModel {
         try await repository.refreshEvents(withPages: true)
         
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 public struct DownloadEventsScreen: View {
     
-    @StateObject var viewModel = DownloadEventsViewModel()
+    @State var viewModel = DownloadEventsViewModel()
     
     public init() {
         
@@ -136,7 +139,9 @@ public struct DownloadEventsScreen: View {
             }
             
         }
+        #if !os(tvOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .task {
             viewModel.load()
         }

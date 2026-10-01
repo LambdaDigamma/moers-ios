@@ -65,7 +65,7 @@ public struct MapSnapshotView: View {
         
         ZStack {
             
-            Color(UIColor.secondarySystemBackground)
+            Color(ApplicationTheme.current.cardBackgroundColor)
             
             if let image = snapshotImage {
                 Image(uiImage: image)
@@ -206,7 +206,9 @@ public class SnapshotAnnotation: NSObject, MKAnnotation {
         case image(UIImage)
         case text(String)
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }
 
 struct MapSnapshotView_Previews: PreviewProvider {

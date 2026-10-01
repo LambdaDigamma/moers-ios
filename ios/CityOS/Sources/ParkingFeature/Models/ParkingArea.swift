@@ -10,7 +10,7 @@ import Core
 import ModernNetworking
 import SwiftUI
 
-public struct ParkingArea: Equatable, Identifiable, Codable, Stubbable, Model {
+nonisolated public struct ParkingArea: Equatable, Identifiable, Codable, Stubbable, Model, Sendable {
     
     public typealias ID = Int
     
@@ -76,7 +76,7 @@ public struct ParkingArea: Equatable, Identifiable, Codable, Stubbable, Model {
 }
 
 /// Represents the possible opening states of a parking area.
-public enum ParkingAreaOpeningState: String, Equatable, Codable, CaseIterable, Comparable, CaseName {
+nonisolated public enum ParkingAreaOpeningState: String, Equatable, Codable, CaseIterable, Comparable, CaseName, Sendable {
     
     case `open` = "open"
     case unknown = "unknown"

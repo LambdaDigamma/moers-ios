@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-public enum TicketAssignmentTableDefinition {
+nonisolated public enum TicketAssignmentTableDefinition {
     
     public static let tableName = "ticket_assignments"
     
@@ -30,4 +30,3 @@ public enum TicketAssignmentTableDefinition {
     }
     
 }
-

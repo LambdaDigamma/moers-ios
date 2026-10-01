@@ -67,5 +67,7 @@ class SwitchTableViewCell: UITableViewCell {
     @objc func switchChanged(switchControl: UISwitch) {
         action?(switchControl.isOn)
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

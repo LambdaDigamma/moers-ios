@@ -26,5 +26,7 @@ public class ToiletAnnotation: NSObject, MKAnnotation, DisplayCacheableAnnotatio
     public static let mapScaleThreshold: Double = 0.005
     
     public static let displayCacheKey = String(describing: ToiletAnnotation.self)
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

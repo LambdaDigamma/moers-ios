@@ -8,7 +8,8 @@
 
 import XCTest
 
-final class moers_festival_Watch_Watch_AppUITestsLaunchTests: XCTestCase {
+@MainActor
+final class MoersFestivalWatchAppLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
@@ -18,7 +19,7 @@ final class moers_festival_Watch_Watch_AppUITestsLaunchTests: XCTestCase {
         continueAfterFailure = false
     }
 
-    func testLaunch() throws {
+    func testLaunch() async throws {
         let app = XCUIApplication()
         app.launch()
 

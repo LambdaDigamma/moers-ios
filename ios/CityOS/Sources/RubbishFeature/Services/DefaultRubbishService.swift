@@ -17,11 +17,10 @@ import WidgetKit
 @MainActor
 public class DefaultRubbishService: RubbishService {
     
-    nonisolated(unsafe) private let loader: HTTPLoader
+    private let client: any HTTPClient
     private var notificationCenter: UNUserNotificationCenterProtocol
     private let decoder: JSONDecoder
     private let session = URLSession.shared
-    private let userDefaults: UserDefaults
 //    private let storagePickupItemsManager: AnyStoragable<RubbishPickupItem>
 //    private let storageStreetsManager: AnyStoragable<RubbishCollectionStreet>
     private let storageKeyStreets = "streets"
@@ -29,15 +28,14 @@ public class DefaultRubbishService: RubbishService {
     private var requests: [UNNotificationRequest] = []
     
     public init(
-        loader: HTTPLoader,
+        client: any HTTPClient,
         notificationCenter: UNUserNotificationCenterProtocol = UNUserNotificationCenter.current(),
         userDefaults: UserDefaults = .standard
 //        storagePickupItemsManager: AnyStoragable<RubbishPickupItem> = NoCache(),
 //        storageStreetsManager: AnyStoragable<RubbishCollectionStreet> = NoCache()
     ) {
         
-        self.loader = loader
-        self.userDefaults = userDefaults
+        self.client = client
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -48,7 +46,21 @@ public class DefaultRubbishService: RubbishService {
 //        self.storageStreetsManager = storageStreetsManager
 //        self.storagePickupItemsManager = storagePickupItemsManager
         self.notificationCenter = notificationCenter
+        self.configureUserDefaultsBackedStorage(userDefaults)
         
+    }
+
+    @MainActor
+    public convenience init(
+        loader: HTTPLoader,
+        notificationCenter: UNUserNotificationCenterProtocol = UNUserNotificationCenter.current(),
+        userDefaults: UserDefaults = .standard
+    ) {
+        self.init(
+            client: HTTPLoaderClient(loader: loader),
+            notificationCenter: notificationCenter,
+            userDefaults: userDefaults
+        )
     }
     
     public var rubbishStreet: RubbishCollectionStreet? {
@@ -106,7 +118,7 @@ public class DefaultRubbishService: RubbishService {
             queryItems: [URLQueryItem(name: "all", value: "1")]
         )
         
-        let result = await loader.load(request)
+        let result = await client.load(request)
         let items = try await result.decoding([RubbishCollectionStreet].self)
         
         let sorted = items.sorted { lhs, rhs in
@@ -125,7 +137,7 @@ public class DefaultRubbishService: RubbishService {
         )
         
         do {
-            let result = await loader.load(request)
+            let result = await client.load(request)
             let items = try await result.decoding([RubbishPickupItem].self)
             return items
         } catch {
@@ -213,14 +225,17 @@ public class DefaultRubbishService: RubbishService {
     }
     
     public func invalidateRubbishReminderNotifications() {
-        Task {
-            let requests = await notificationCenter.pendingNotificationRequests()
+        let notificationCenter = self.notificationCenter
+
+        notificationCenter.getPendingNotificationRequests { requests in
             
             let requestIdentifiers = requests
                 .filter { $0.identifier.contains("RubbishReminder") }
                 .map { $0.identifier }
             
-            notificationCenter.removePendingNotificationRequests(withIdentifiers: requestIdentifiers)
+            Task { @MainActor in
+                notificationCenter.removePendingNotificationRequests(withIdentifiers: requestIdentifiers)
+            }
         }
     }
     
@@ -278,55 +293,72 @@ public class DefaultRubbishService: RubbishService {
     }
     
     // MARK: - Saving of Settings
+
+    private func configureUserDefaultsBackedStorage(_ userDefaults: UserDefaults) {
+        _street.storage = userDefaults
+        _streetAddition.storage = userDefaults
+        _id.storage = userDefaults
+        _residualWaste.storage = userDefaults
+        _organicWaste.storage = userDefaults
+        _paperWaste.storage = userDefaults
+        _yellowBag.storage = userDefaults
+        _greenWaste.storage = userDefaults
+        _sweeperDay.storage = userDefaults
+        _year.storage = userDefaults
+        _isEnabled.storage = userDefaults
+        _remindersEnabled.storage = userDefaults
+        _reminderHour.storage = userDefaults
+        _reminderMinute.storage = userDefaults
+    }
     
-    @UserDefaultsBacked(key: "RubbishStreet", storage: CoreSettings.userDefaults)
+    @UserDefaultsBacked(key: "RubbishStreet")
     public var street: String?
     
-    @UserDefaultsBacked(key: "RubbishStreetAddition", storage: CoreSettings.userDefaults)
+    @UserDefaultsBacked(key: "RubbishStreetAddition")
     internal var streetAddition: String?
     
-    @UserDefaultsBacked(key: "RubbishStreetID", storage: CoreSettings.userDefaults)
+    @UserDefaultsBacked(key: "RubbishStreetID")
     internal var id: Int?
     
-    @UserDefaultsBacked(key: "RubbishResidualWaste", storage: CoreSettings.userDefaults)
+    @UserDefaultsBacked(key: "RubbishResidualWaste")
     internal var residualWaste: Int?
     
-    @UserDefaultsBacked(key: "RubbishOrganicWaste", storage: CoreSettings.userDefaults)
+    @UserDefaultsBacked(key: "RubbishOrganicWaste")
     internal var organicWaste: Int?
     
-    @UserDefaultsBacked(key: "RubbishPaperWaste", storage: CoreSettings.userDefaults)
+    @UserDefaultsBacked(key: "RubbishPaperWaste")
     internal var paperWaste: Int?
     
-    @UserDefaultsBacked(key: "RubbishYellowBag", storage: CoreSettings.userDefaults)
+    @UserDefaultsBacked(key: "RubbishYellowBag")
     internal var yellowBag: Int?
     
-    @UserDefaultsBacked(key: "RubbishGreenWaste", storage: CoreSettings.userDefaults)
+    @UserDefaultsBacked(key: "RubbishGreenWaste")
     internal var greenWaste: Int?
     
-    @UserDefaultsBacked(key: "RubbishSweeperDay", storage: CoreSettings.userDefaults)
+    @UserDefaultsBacked(key: "RubbishSweeperDay")
     internal var sweeperDay: String?
     
-    @UserDefaultsBacked(key: "RubbishStreetYear", storage: CoreSettings.userDefaults)
+    @UserDefaultsBacked(key: "RubbishStreetYear")
     internal var year: Int?
     
     @UserDefaultsBacked(
         key: "RubbishEnabled",
-        defaultValue: false,
-        storage: CoreSettings.userDefaults
+        defaultValue: false
     )
     public var isEnabled: Bool
     
     @UserDefaultsBacked(
         key: "RubbishRemindersEnabled",
-        defaultValue: false,
-        storage: CoreSettings.userDefaults
+        defaultValue: false
     )
     public var remindersEnabled: Bool
     
-    @UserDefaultsBacked(key: "RubbishReminderHour", storage: CoreSettings.userDefaults)
+    @UserDefaultsBacked(key: "RubbishReminderHour")
     public var reminderHour: Int?
     
-    @UserDefaultsBacked(key: "RubbishReminderMinute", storage: CoreSettings.userDefaults)
+    @UserDefaultsBacked(key: "RubbishReminderMinute")
     public var reminderMinute: Int?
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

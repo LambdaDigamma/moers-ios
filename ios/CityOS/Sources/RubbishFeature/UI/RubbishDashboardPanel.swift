@@ -12,7 +12,7 @@ import Core
 
 public struct RubbishDashboardPanel: View {
     
-    @ObservedObject private var viewModel: RubbishDashboardViewModel
+    private var viewModel: RubbishDashboardViewModel
     
     public init(viewModel: RubbishDashboardViewModel) {
         self.viewModel = viewModel

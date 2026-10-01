@@ -11,7 +11,7 @@ import Core
 
 public class UserManager {
     
-    static var shared = UserManager()
+    static let shared = UserManager()
     
     private let kUserType = "userType"
     private let kUserName = "userName"
@@ -73,38 +73,32 @@ public class UserManager {
         
         var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        DispatchQueue.global(qos: .background).async {
-            
-            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, _, error) in
-                
-                if let error = error {
-                    print(error.localizedDescription)
-                }
-                
-                guard let data = data else { return }
-                
-                do {
-                    
-                    guard let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else { return }
-                    
-                    let id = json["id"] as? Int
-                    var user = self.loadUser()
-                    
-                    user.id = id ?? -1
-                    
-                    UserManager.shared.register(user)
-                    
-                } catch {
-                    print(error.localizedDescription)
-                }
-                
-            })
-            
-            task.resume()
-            
+
+        Task {
+            await loadAndRegisterRemoteID(request: request)
         }
         
+    }
+
+    private func loadAndRegisterRemoteID(request: URLRequest) async {
+
+        do {
+
+            let (data, _) = try await URLSession.shared.data(for: request)
+
+            guard let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else { return }
+
+            let id = json["id"] as? Int
+            var user = loadUser()
+
+            user.id = id ?? -1
+
+            register(user)
+
+        } catch {
+            print(error.localizedDescription)
+        }
+
     }
     
     public func nextRubbishActivity() -> NSUserActivity {
@@ -127,5 +121,7 @@ public class UserManager {
     }
     
     public static let rubbishScheduleActivityIdentifier = "de.okfn.niederrhein.Moers.nextRubbish"
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

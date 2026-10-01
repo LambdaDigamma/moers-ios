@@ -9,7 +9,7 @@ import Foundation
 import XMLCoder
 import CoreLocation
 
-public struct ITDOdvAssignedStops: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
+nonisolated public struct ITDOdvAssignedStops: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
     
     public let stops: [ITDOdvAssignedStop]
     
@@ -23,7 +23,7 @@ public struct ITDOdvAssignedStops: Codable, Equatable, Hashable, Sendable, Dynam
     
 }
 
-public struct ITDOdvAssignedStop: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
+nonisolated public struct ITDOdvAssignedStop: Codable, Equatable, Hashable, Sendable, DynamicNodeDecoding {
     
     public let name: String
     public let stopID: Int

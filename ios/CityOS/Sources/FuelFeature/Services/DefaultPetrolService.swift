@@ -18,7 +18,6 @@ public class DefaultPetrolService: PetrolService {
     
     private let session: URLSession
     private let userDefaults: UserDefaults
-    private let decoder: JSONDecoder
     
     private let apiKey: String
     private let host: String = "creativecommons.tankerkoenig.de"
@@ -31,7 +30,6 @@ public class DefaultPetrolService: PetrolService {
         self.userDefaults = userDefaults
         self.session = session
         self.apiKey = apiKey
-        self.decoder = JSONDecoder()
     }
     
     // MARK: - API Interface
@@ -88,7 +86,7 @@ public class DefaultPetrolService: PetrolService {
         let urlRequest = URLRequest(url: url)
         let (data, _) = try await session.data(for: urlRequest)
         
-        let response = try decoder.decode(PetrolDetailResponse.self, from: data)
+        let response = try JSONDecoder().decode(PetrolDetailResponse.self, from: data)
         
         if response.isValid, let station = response.station {
             return station
@@ -170,7 +168,7 @@ public class DefaultPetrolService: PetrolService {
     }
     
     internal func decodePetrolStations(from data: Data) async throws -> [PetrolStation] {
-        let response = try decoder.decode(PetrolRequestResponse.self, from: data)
+        let response = try JSONDecoder().decode(PetrolRequestResponse.self, from: data)
         
         if response.isValid {
             if let stations = response.stations {
@@ -187,5 +185,7 @@ public class DefaultPetrolService: PetrolService {
         
         throw APIError.noData
     }
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

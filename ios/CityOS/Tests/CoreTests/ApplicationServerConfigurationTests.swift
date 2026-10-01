@@ -9,9 +9,10 @@ import Foundation
 import XCTest
 @testable import Core
 
-final class ApplicationServerConfigurationTests: XCTestCase {
-    
-    func testRegisterURL() {
+nonisolated final class ApplicationServerConfigurationTests: XCTestCase {
+
+    @MainActor
+    func testRegisterURL() async {
         
         let baseURL = "https://meinmoers.lambdadigamma.com/api/v2/"
         
@@ -21,7 +22,8 @@ final class ApplicationServerConfigurationTests: XCTestCase {
         
     }
     
-    func testRegisterPetrolAPIKey() {
+    @MainActor
+    func testRegisterPetrolAPIKey() async {
         
         let testAPIKey = "abcde-fghij-klmno-pqrst-uvwxyz"
         
@@ -30,10 +32,5 @@ final class ApplicationServerConfigurationTests: XCTestCase {
         XCTAssertEqual(ApplicationServerConfiguration.petrolAPIKey, testAPIKey)
         
     }
-    
-    static var allTests = [
-        ("testRegisterURL", testRegisterURL),
-        ("testRegisterPetrolAPIKey", testRegisterPetrolAPIKey),
-    ]
     
 }

@@ -26,5 +26,7 @@ public class DorfAnnotation: NSObject, MKAnnotation, DisplayCacheableAnnotation,
     public static let mapScaleThreshold: Double = 0.002
     
     public static let displayCacheKey = String(describing: DorfAnnotation.self)
-    
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
 }

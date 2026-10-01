@@ -7,11 +7,11 @@
 
 import EFAAPI
 import SwiftUI
-import Factory
+import FactoryKit
 
 public struct StopDepartureScreen: View {
     
-    @StateObject var viewModel = StopDepartureViewModel()
+    @State var viewModel = StopDepartureViewModel()
     @State var showStationSearch: Bool = false
     
     @Injected(\.transitService) private var transitService
