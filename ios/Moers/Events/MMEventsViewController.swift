@@ -17,6 +17,7 @@ import Core
 class MMEventsViewController: EventsViewController {
 
     private var cancellables = Set<AnyCancellable>()
+    private var loadTask: Task<Void, Never>?
     public var coordinator: EventCoordinator?
     private let logger = Logger(.coreUi)
     
@@ -38,40 +39,27 @@ class MMEventsViewController: EventsViewController {
     
     override func loadData() {
         
-        guard let eventService = coordinator?.eventService else { return }
+        loadTask?.cancel()
+        guard let eventService = coordinator?.eventService else {
+            loadTask = nil
+            return
+        }
         
-        Task { [logger] in
+        loadTask = Task { [weak self] in
             do {
-                let response = try await eventService.index(cacheMode: .revalidate, withPages: true)
-                print(response)
+                let response = try await eventService.index(cacheMode: .revalidate, withPages: false)
+
+                guard !Task.isCancelled else { return }
+                self?.events = response.data.map { EventViewModel<MMEvents.Event>(event: $0) }
+                self?.rebuildData()
+                self?.loadTask = nil
             } catch {
-                logger.error("Error while loading: \(error.localizedDescription)")
+                guard !Task.isCancelled else { return }
+                self?.logger.error("Error while loading events: \(error.localizedDescription)")
+                self?.loadTask = nil
             }
         }
-//        
-//        let eventObserver = eventService.loadEvents()
-//
-//        eventObserver.sink { [weak self] completion in
-//
-//            switch completion {
-//                case .failure(let error):
-//
-//                    self?.logger.error("Error while loading: \(error.localizedDescription)")
-//
-//                default:
-//                    break
-//            }
-//
-//        } receiveValue: { events in
-//
-//            self.events = events.map({ event in
-//                return EventViewModel<MMEvents.Event>(event: event)
-//            })
-//
-//            self.rebuildData()
-//
-//        }.store(in: &cancellables)
-//        
+
     }
     
     override func filterActive(events: [EventViewModel<Event>]) -> [EventViewModel<Event>] {
@@ -112,7 +100,9 @@ class MMEventsViewController: EventsViewController {
     }
 
     // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
-    nonisolated deinit {}
+    nonisolated deinit {
+        loadTask?.cancel()
+    }
 }
 
 // Legacy version for iOS < 26
@@ -120,6 +110,7 @@ class MMEventsViewController: EventsViewController {
 class MMEventsViewController_Legacy: EventsViewController_Legacy {
 
     private var cancellables = Set<AnyCancellable>()
+    private var loadTask: Task<Void, Never>?
     public var coordinator: EventCoordinator?
     private let logger = Logger(.coreUi)
     
@@ -141,38 +132,26 @@ class MMEventsViewController_Legacy: EventsViewController_Legacy {
     
     override func loadData() {
         
-//        guard let eventService = coordinator?.eventService else { return }
-        
-//        Task {
-//
-//            try await eventService.index(cacheMode: .revalidate, withPages: true)
-//
-//        }
-//
-//        eventService.
-//
-//        let eventObserver = eventService.loadEvents()
-//
-//        eventObserver.sink { [weak self] completion in
-//
-//            switch completion {
-//                case .failure(let error):
-//
-//                    self?.logger.error("Error while loading: \(error.localizedDescription)")
-//
-//                default:
-//                    break
-//            }
-//
-//        } receiveValue: { events in
-//
-//            self.events = events.map({ event in
-//                return EventViewModel<MMEvents.Event>(event: event)
-//            })
-//
-//            self.rebuildData()
-//
-//        }.store(in: &cancellables)
+        loadTask?.cancel()
+        guard let eventService = coordinator?.eventService else {
+            loadTask = nil
+            return
+        }
+
+        loadTask = Task { [weak self] in
+            do {
+                let response = try await eventService.index(cacheMode: .revalidate, withPages: false)
+
+                guard !Task.isCancelled else { return }
+                self?.events = response.data.map { EventViewModel<MMEvents.Event>(event: $0) }
+                self?.rebuildData()
+                self?.loadTask = nil
+            } catch {
+                guard !Task.isCancelled else { return }
+                self?.logger.error("Error while loading events: \(error.localizedDescription)")
+                self?.loadTask = nil
+            }
+        }
         
     }
     
@@ -214,5 +193,7 @@ class MMEventsViewController_Legacy: EventsViewController_Legacy {
     }
 
     // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
-    nonisolated deinit {}
+    nonisolated deinit {
+        loadTask?.cancel()
+    }
 }

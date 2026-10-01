@@ -140,3 +140,8 @@ dependencies {
     add("kspAndroid", libs.room.compiler)
     add("kspAndroid", libs.hilt.compiler)
 }
+
+// Core tests use JUnit Jupiter. The Android target otherwise selects the JUnit 4 runner.
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
+}

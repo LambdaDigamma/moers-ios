@@ -212,7 +212,7 @@ public class EventViewModel<Event: BaseEvent>: Equatable, Hashable {
             return "Moving Act"
         }
 
-        if let locationName = model.extras?.location {
+        if let locationName = model.extras?.displayLocationName {
             return locationName
         } else if let location = model.place {
             return location.name

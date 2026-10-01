@@ -30,7 +30,9 @@ public class DefaultEventService: EventService {
         
         let result = await client.load(request)
         
-        let events = try await result.decoding(ResourceCollection<Event>.self, using: Event.decoder)
+        let events = try await result
+            .decoding(EventResourceCollection.self, using: Event.decoder)
+            .resourceCollection
         
         return events
         
@@ -44,7 +46,9 @@ public class DefaultEventService: EventService {
         
         let result = await client.load(request)
         
-        let events = try await result.decoding(Resource<Event>.self, using: Event.decoder)
+        let events = try await result
+            .decoding(EventResource.self, using: Event.decoder)
+            .resource
         
         return events
         

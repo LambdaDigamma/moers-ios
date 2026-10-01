@@ -9,6 +9,7 @@ import Core
 import UIKit
 import MMPages
 import Combine
+import FactoryKit
 import MediaLibraryKit
 import Nuke
 
@@ -19,6 +20,8 @@ public class PostsViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     private var posts: [Post] = []
     private var didConfigureLayout = false
+    private var refreshTask: Task<Void, Never>?
+    private var loadTask: Task<Void, Never>?
 
     private enum Section: Int, CaseIterable {
         case posts
@@ -33,6 +36,13 @@ public class PostsViewController: UIViewController {
         return collectionView
     }()
 
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.accessibilityIdentifier = "NewsFeedRefreshControl"
+        refreshControl.addTarget(self, action: #selector(refreshPosts(_:)), for: .valueChanged)
+        return refreshControl
+    }()
+
     private lazy var activityIndicatorView: UIActivityIndicatorView = {
         let activityIndicatorView = UIActivityIndicatorView(style: .large)
         activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
@@ -42,12 +52,16 @@ public class PostsViewController: UIViewController {
 
     private lazy var dataSource = makeDataSource()
     
-    public init(feedID: Feed.ID, onShowPost: @escaping ((Post.ID) -> Void)) {
-        
+    public convenience init(feedID: Feed.ID, onShowPost: @escaping ((Post.ID) -> Void)) {
+        self.init(feedID: feedID, repository: Container.shared.postRepository(), onShowPost: onShowPost)
+    }
+
+    init(feedID: Feed.ID, repository: PostRepository, onShowPost: @escaping ((Post.ID) -> Void)) {
         self.viewModel = FeedPostListViewModel(
-            feedID: 3,
+            feedID: feedID,
             postsPerLoad: 10,
-            automaticallyLoadFirstPage: false
+            automaticallyLoadFirstPage: false,
+            repository: repository
         )
         self.onShowPost = onShowPost
         
@@ -55,6 +69,11 @@ public class PostsViewController: UIViewController {
         
         self.setupUI()
         
+    }
+
+    nonisolated deinit {
+        refreshTask?.cancel()
+        loadTask?.cancel()
     }
     
     required init?(coder: NSCoder) {
@@ -71,7 +90,8 @@ public class PostsViewController: UIViewController {
         self.navigationItem.largeTitleDisplayMode = .never
 
         setupObservers()
-        Task {
+        let viewModel = viewModel
+        loadTask = Task {
             await viewModel.reload()
         }
         
@@ -85,6 +105,7 @@ public class PostsViewController: UIViewController {
     private func setupUI() {
         
         view.backgroundColor = .systemBackground
+        collectionView.refreshControl = refreshControl
         view.addSubview(collectionView)
         view.addSubview(activityIndicatorView)
         
@@ -120,6 +141,20 @@ public class PostsViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
+    }
+
+    @objc private func refreshPosts(_ sender: UIRefreshControl) {
+        guard refreshTask == nil else {
+            return
+        }
+
+        let viewModel = viewModel
+        refreshTask = Task { [weak self, weak sender] in
+            await viewModel.refresh()
+
+            sender?.endRefreshing()
+            self?.refreshTask = nil
+        }
     }
 
     private func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Post.ID> {
@@ -200,8 +235,6 @@ public class PostsViewController: UIViewController {
         return (columns, readableWidth, sideInset, itemWidth, interItemSpacing)
     }
 
-    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
-    nonisolated deinit {}
 }
 
 extension PostsViewController: UICollectionViewDelegate {

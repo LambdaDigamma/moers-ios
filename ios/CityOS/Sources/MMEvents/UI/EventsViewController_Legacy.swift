@@ -24,12 +24,17 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
     
     // MARK: - UI Elements
     
-    public private(set) lazy var tableView = { ViewFactory.tableView(with: .grouped) }()
+    public private(set) lazy var tableView: UITableView = {
+        let tableView = ViewFactory.tableView(with: .grouped)
+        tableView.accessibilityIdentifier = "Events.Table"
+        return tableView
+    }()
     public private(set) lazy var searchController = { UISearchController(searchResultsController: nil) }()
     
     // MARK: - Config
     
     private let fuse = Fuse(threshold: 0.25, isCaseSensitive: false)
+    private let searchMatcher = EventSearchMatcher()
     
     private var updateInterval: TimeInterval = 60.0
     private var updateTimer: Timer?
@@ -265,8 +270,8 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
             favouritesCount = numberOfDisplayedUpcomingFavourites
         }
         
-        let upcomingReduced: [EventViewModel<Event>] = Array(upcoming.prefix(through: upcomingCount - 1))
-        let favouritesReduced: [EventViewModel<Event>] = Array(favourites.prefix(through: favouritesCount - 1))
+        let upcomingReduced: [EventViewModel<Event>] = Array(upcoming.prefix(upcomingCount))
+        let favouritesReduced: [EventViewModel<Event>] = Array(favourites.prefix(favouritesCount))
         
         return DisplayMode.overview(favouriteEvents: favouritesReduced, activeEvents: active, upcomingEvents: upcomingReduced)
         
@@ -288,16 +293,18 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
         
         if isFiltering() {
             
-            let names = events.map { $0.model }.map { $0.name }
-            let results = fuse.search(searchTerm, in: names)
-            
-            filteredEvents = results.compactMap { (index, score, matchedRanges) in
-                
-                let event = events[index]
-                
-                return event
-                
-            }
+            let normalizedSearchTerm = searchMatcher.normalizedQuery(searchTerm)
+            let searchTexts = events.map { searchMatcher.normalizedSearchText(for: $0.model) }
+            let exactMatchIndexes = searchMatcher.exactMatchIndexes(
+                in: events.map(\.model),
+                query: searchTerm
+            )
+            let exactIndexes = events.indices.filter { exactMatchIndexes.contains($0) }
+            let fuzzyIndexes = fuse.search(normalizedSearchTerm, in: searchTexts)
+                .map(\.index)
+                .filter { !exactMatchIndexes.contains($0) }
+
+            filteredEvents = (exactIndexes + fuzzyIndexes).map { events[$0] }
             
         } else {
             
@@ -459,6 +466,10 @@ extension EventsViewController_Legacy: UITableViewDataSource, UITableViewDelegat
                 return keyedEvents.count
                 
             case .search(_, let filteredEvents):
+                if filteredEvents.isEmpty {
+                    return 1
+                }
+
                 return filteredEvents.count
                 
             case .favourites(let keyedEvents):
@@ -508,6 +519,10 @@ extension EventsViewController_Legacy: UITableViewDataSource, UITableViewDelegat
                 return keyedEvents[section].events.count
                 
             case .search(_, let searchedEvents):
+                if searchedEvents.isEmpty {
+                    return 1
+                }
+
                 return searchedEvents[section].events.count
                 
             case .favourites(let keyedEvents):
@@ -565,6 +580,9 @@ extension EventsViewController_Legacy: UITableViewDataSource, UITableViewDelegat
                 return eventCell(for: event, at: indexPath)
                 
             case .search(_, let searchedEvents):
+                if searchedEvents.isEmpty {
+                    return hintCell(with: EventPackageStrings.noSearchResults, at: indexPath)
+                }
                 
                 let event = searchedEvents[indexPath.section].events[indexPath.row]
                 
@@ -647,7 +665,7 @@ extension EventsViewController_Legacy: UITableViewDataSource, UITableViewDelegat
             case .search(_, let searchedEvents):
                 
                 header.showMoreButton = false
-                header.title = searchedEvents[section].header
+                header.title = searchedEvents.isEmpty ? "" : searchedEvents[section].header
                 
             case .favourites(let keyedEvents):
                 

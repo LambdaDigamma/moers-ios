@@ -111,7 +111,7 @@ fun TimetableContent(
         }
 
         PullToRefreshBox(
-            isRefreshing = uiState.isLoading,
+            isRefreshing = uiState.isRefreshing,
             onRefresh = { onIntent(TimetableIntent.RefreshEvents) },
             modifier = Modifier
                 .fillMaxSize(),
@@ -161,10 +161,10 @@ fun TimetableContent(
 
             } else {
 
-                if (uiState.isLoading) {
+                if (uiState.isLoading || uiState.isRefreshing) {
                     TimetableLoading()
                 } else {
-                    if (uiState.isError != null) {
+                    if (uiState.isError != null && !uiState.data.hasAnyEvents) {
                         TimetableError(
                             modifier = Modifier.fillMaxSize(),
                             throwable = uiState.isError,

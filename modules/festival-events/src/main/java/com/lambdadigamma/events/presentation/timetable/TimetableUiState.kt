@@ -29,6 +29,7 @@ data class TimetableSection(
 @Parcelize
 data class TimetableUiState(
     val isLoading: Boolean = false,
+    val isRefreshing: Boolean = false,
     val data: TimetableData = TimetableData(currentIndex = 0),
     val isError: Throwable? = null,
 ) : Parcelable {
@@ -41,6 +42,12 @@ data class TimetableUiState(
         ) : PartialState()
 
         data class Error(val throwable: Throwable) : PartialState()
+
+        object Refreshing : PartialState()
+
+        data class RefreshFailed(val throwable: Throwable) : PartialState()
+
+        object RefreshFinished : PartialState()
 
         data class FilterSheetVisibilityChanged(val isVisible: Boolean) : PartialState()
     }

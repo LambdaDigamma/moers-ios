@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="news_list_title">News</string>
+    <string name="news_retry">Erneut versuchen</string>
+    <string name="news_load_error">News konnten nicht geladen werden.</string>
+    <string name="news_empty">Noch keine News verfügbar.</string>
+    <string name="news_empty_hint">Aktualisiere, um nach neuen Beiträgen zu suchen.</string>
+</resources>

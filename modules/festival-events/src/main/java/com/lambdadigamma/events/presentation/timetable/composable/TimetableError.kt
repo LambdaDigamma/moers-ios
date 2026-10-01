@@ -7,13 +7,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.lambdadigamma.core.refresh.RefreshFailureMessageFormatter
+import com.lambdadigamma.events.R
 
 @Composable
 fun TimetableError(
     modifier: Modifier = Modifier,
     throwable: Throwable,
-    onRefresh: () -> Unit
+    onRefresh: () -> Unit,
 ) {
+    val context = LocalContext.current
 
     Column(modifier = modifier.fillMaxSize()) {
 
@@ -22,10 +27,15 @@ fun TimetableError(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            Text(throwable.localizedMessage ?: throwable.message ?: "Unknown error")
+            Text(
+                text = RefreshFailureMessageFormatter.format(
+                    context = context,
+                    throwable = throwable,
+                ),
+            )
 
             Button(onClick = { onRefresh() }) {
-                Text("Refresh")
+                Text(stringResource(R.string.timetable_retry))
             }
 
         }

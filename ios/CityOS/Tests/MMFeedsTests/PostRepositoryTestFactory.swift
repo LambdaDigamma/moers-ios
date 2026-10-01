@@ -3,7 +3,7 @@ import GRDB
 
 @MainActor
 enum PostRepositoryTestFactory {
-    static func make() throws -> PostRepository {
+    static func make(service: (any PostService)? = nil) throws -> PostRepository {
         let database = try DatabaseQueue()
         try database.write { connection in
             try connection.create(table: PostTableDefinition.tableName) { table in
@@ -12,7 +12,7 @@ enum PostRepositoryTestFactory {
         }
         let post = Post.stub(withID: 42).setting(\.feedID, to: 1).setting(\.pageID, to: nil)
         return PostRepository(
-            service: MockPostService(result: .success(post), results: .success([post])),
+            service: service ?? MockPostService(result: .success(post), results: .success([post])),
             store: PostStore(writer: database, reader: database)
         )
     }

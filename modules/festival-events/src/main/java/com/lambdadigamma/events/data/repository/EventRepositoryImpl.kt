@@ -1,5 +1,7 @@
 package com.lambdadigamma.events.data.repository
 
+import com.lambdadigamma.core.refresh.RefreshMetadataKey
+import com.lambdadigamma.core.refresh.RefreshMetadataStore
 import com.lambdadigamma.events.data.local.dao.EventDao
 import com.lambdadigamma.events.data.local.dao.PlaceDao
 import com.lambdadigamma.events.data.local.model.EventWithPlaceAndPageCached
@@ -39,7 +41,8 @@ class EventRepositoryImpl @Inject constructor(
     private val eventDao: EventDao,
     private val pageRepository: PageRepository,
     private val placeDao: PlaceDao,
-    private val pageDao: PageDao
+    private val pageDao: PageDao,
+    private val refreshMetadataStore: RefreshMetadataStore,
 ) : EventRepository {
 
     override fun getEvents(): Flow<List<Event>> {
@@ -145,7 +148,7 @@ class EventRepositoryImpl @Inject constructor(
                     }
                     .catch { error ->
                         Timber.e(error)
-                        flowOf(data)
+                        emit(data)
                     }
 
             }
@@ -158,6 +161,7 @@ class EventRepositoryImpl @Inject constructor(
             .data
             .also { events ->
                 saveEventsToDao(events)
+                markTimetableRefreshSucceeded()
             }
     }
 
@@ -168,8 +172,17 @@ class EventRepositoryImpl @Inject constructor(
             .data
             .also { events ->
                 saveEventsToDao(events)
+                markTimetableRefreshSucceeded()
             }
 
+    }
+
+    private suspend fun markTimetableRefreshSucceeded() {
+        runCatching {
+            refreshMetadataStore.markSuccessfulRefresh(RefreshMetadataKey.TIMETABLE)
+        }.onFailure { throwable ->
+            Timber.w(throwable, "Failed to store timetable refresh timestamp.")
+        }
     }
 
     private suspend fun saveEventsToDao(events: List<Event>) {
