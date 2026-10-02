@@ -141,10 +141,10 @@ class ContentViewController: UIViewController {
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Int, ContentDrawerItem>(
             collectionView: contentDrawerView.collectionView
-        ) { collectionView, indexPath, item in
+        ) { [weak self] collectionView, indexPath, item in
             switch item {
             case .tag(let attributedString, _):
-                let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, AttributedString> { cell, indexPath, attrStr in
+                let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, AttributedString> { cell, _, attrStr in
                     if #available(iOS 16.0, *) {
                         cell.contentConfiguration = UIHostingConfiguration {
                             Text(attrStr)
@@ -165,7 +165,7 @@ class ContentViewController: UIViewController {
                 )
                 
             case .location(let anyLocation):
-                    let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Core.AnyLocation> { [weak self] cell, indexPath, anyLoc in
+                let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Core.AnyLocation> { [weak self] cell, _, anyLoc in
                     guard let location = self?.locationsByID[anyLoc] else {
                         cell.contentConfiguration = UIListContentConfiguration.cell()
                         cell.accessories = []

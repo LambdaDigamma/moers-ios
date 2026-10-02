@@ -56,9 +56,7 @@ public class AssetPlayer {
     private var rateObserver: NSKeyValueObservation!
     private var statusObserver: NSObjectProtocol!
 
-    // A shorter name for a very long property name.
-
-    private static let mediaSelectionKey = "availableMediaCharacteristicsWithMediaSelectionOptions"
+    private let mediaSelectionLoader = MediaSelectionLoader()
 
     /// Initialize a new `AssetPlayer` object.
     public init(
@@ -76,9 +74,6 @@ public class AssetPlayer {
 //        let playableAssets = ConfigModel.shared.assets.compactMap { $0.shouldPlay ? $0 : nil }
 //
 //        self.staticMetadatas = playableAssets.map { $0.metadata }
-//        self.playerItems = playableAssets.map {
-//            AVPlayerItem(asset: $0.urlAsset, automaticallyLoadedAssetKeys: [AssetPlayer.mediaSelectionKey])
-//        }
 //
 //        // Create a player, and configure it for external playback, if the
 //        // configuration requires.
@@ -139,6 +134,7 @@ public class AssetPlayer {
     /// Stop the playback session.
     public func optOut() {
 
+        mediaSelectionLoader.cancel()
         itemObserver = nil
         rateObserver = nil
         statusObserver = nil
@@ -187,31 +183,19 @@ public class AssetPlayer {
         // current values between player tracks) can be implemented by building
         // on the techniques shown here.
 
-        let asset = currentItem.asset
-
         var languageOptionGroups: [MPNowPlayingInfoLanguageOptionGroup] = []
         var currentLanguageOptions: [MPNowPlayingInfoLanguageOption] = []
-        
-        if asset.statusOfValue(forKey: AssetPlayer.mediaSelectionKey, error: nil) == .loaded {
 
-            // Examine each media selection group.
+        // Publish playback timing now, then refresh language options after loading.
+        mediaSelectionLoader.load(for: currentItem) { [weak self] in
+            self?.handlePlaybackChange()
+        }
 
-            for mediaCharacteristic in asset.availableMediaCharacteristicsWithMediaSelectionOptions {
-                guard mediaCharacteristic == .audible || mediaCharacteristic == .legible,
-                      let mediaSelectionGroup = asset.mediaSelectionGroup(forMediaCharacteristic: mediaCharacteristic) else { continue }
-
-                // Make a corresponding language option group.
-
-                let languageOptionGroup = mediaSelectionGroup.makeNowPlayingInfoLanguageOptionGroup()
-                languageOptionGroups.append(languageOptionGroup)
-
-                // If the media selection group has a current selection,
-                // create a corresponding language option.
-
-                if let selectedMediaOption = currentItem.currentMediaSelection.selectedMediaOption(in: mediaSelectionGroup),
-                   let currentLanguageOption = selectedMediaOption.makeNowPlayingInfoLanguageOption() {
-                    currentLanguageOptions.append(currentLanguageOption)
-                }
+        for mediaSelectionGroup in mediaSelectionLoader.groups {
+            languageOptionGroups.append(mediaSelectionGroup.makeNowPlayingInfoLanguageOptionGroup())
+            if let selectedMediaOption = currentItem.currentMediaSelection.selectedMediaOption(in: mediaSelectionGroup),
+               let currentLanguageOption = selectedMediaOption.makeNowPlayingInfoLanguageOption() {
+                currentLanguageOptions.append(currentLanguageOption)
             }
         }
 
