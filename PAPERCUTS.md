@@ -1,5 +1,11 @@
 # Papercuts
 
+## Recovered city Events controls need localization
+
+- Impact: The recovered Events tab has German search, date, and filter labels when the app uses English.
+- Reproduction: Launch the city app in English, open Events, then open Filter. The search placeholder is `Veranstaltungen suchen`; date rows include `Heute` and `Morgen`.
+- Next step: Move the event controller, filter, and formatter strings into the app's string catalog and add translations.
+
 ## About screen has no navigation title
 
 - Impact: The About screen has an empty navigation heading. Its SwiftUI `navigationTitle` does not reach the containing UIKit controller.

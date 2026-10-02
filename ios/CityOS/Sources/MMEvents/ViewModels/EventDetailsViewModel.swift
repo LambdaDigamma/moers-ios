@@ -50,11 +50,19 @@ public class EventDetailsViewModel {
     @ObservationIgnored
     public lazy var subtitle: AnyPublisher<String?, Never> = {
         event.map { event in
-            if let event = event {
-                return EventViewModel(event: event).detailSubtitle
-            } else {
+            guard let event else {
                 return nil
             }
+
+            if let subtitle = event.subtitle?.trimmingCharacters(in: .whitespacesAndNewlines), !subtitle.isEmpty {
+                return subtitle
+            }
+
+            if let teaser = event.teaser?.trimmingCharacters(in: .whitespacesAndNewlines), !teaser.isEmpty {
+                return teaser
+            }
+
+            return nil
         }
         .eraseToAnyPublisher()
     }()
@@ -212,7 +220,12 @@ public class EventDetailsViewModel {
     
     @ObservationIgnored
     public lazy var showMore: AnyPublisher<Bool, Never> = {
-        return Just(false).eraseToAnyPublisher()
+        return event
+            .map { event in
+                guard let url = event?.url else { return false }
+                return URL(string: url) != nil
+            }
+            .eraseToAnyPublisher()
     }()
     
     @ObservationIgnored

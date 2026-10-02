@@ -18,6 +18,11 @@ open class EventDetailViewController: UIViewController {
     
     public let viewModel: EventDetailsViewModel
     private let eventDetailView: EventDetailView
+    private var previousStandardAppearance: UINavigationBarAppearance?
+    private var previousScrollEdgeAppearance: UINavigationBarAppearance?
+    private var previousCompactAppearance: UINavigationBarAppearance?
+    private var previousTintColor: UIColor?
+    private var previousIsTranslucent: Bool?
     
     public init(viewModel: EventDetailsViewModel) {
         self.viewModel = viewModel
@@ -41,6 +46,18 @@ open class EventDetailViewController: UIViewController {
         self.setupUI()
         
     }
+
+    override open func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        configureTransparentNavigationBar()
+    }
+
+    override open func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        restoreNavigationBar()
+    }
     
     // MARK: - Private Methods
     
@@ -48,6 +65,8 @@ open class EventDetailViewController: UIViewController {
          
 //        self.title = String(localized: "Details", bundle: .module)
         
+        edgesForExtendedLayout = [.top, .bottom]
+        extendedLayoutIncludesOpaqueBars = true
         
 #if !os(tvOS)
         self.navigationItem.largeTitleDisplayMode = .never
@@ -66,6 +85,50 @@ open class EventDetailViewController: UIViewController {
             action: #selector(toggleHeart(barButtonItem:))
         )
         
+    }
+
+    private func configureTransparentNavigationBar() {
+        guard let navigationBar = navigationController?.navigationBar else { return }
+
+        previousStandardAppearance = navigationBar.standardAppearance.copy()
+        previousScrollEdgeAppearance = navigationBar.scrollEdgeAppearance?.copy()
+        previousCompactAppearance = navigationBar.compactAppearance?.copy()
+        previousTintColor = navigationBar.tintColor
+        previousIsTranslucent = navigationBar.isTranslucent
+
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundColor = .clear
+        appearance.shadowColor = .clear
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.label]
+
+        navigationBar.standardAppearance = appearance
+        navigationBar.scrollEdgeAppearance = appearance
+        navigationBar.compactAppearance = appearance
+        navigationBar.isTranslucent = true
+        navigationBar.tintColor = .label
+    }
+
+    private func restoreNavigationBar() {
+        guard let navigationBar = navigationController?.navigationBar else { return }
+
+        if let previousStandardAppearance {
+            navigationBar.standardAppearance = previousStandardAppearance
+        }
+
+        navigationBar.scrollEdgeAppearance = previousScrollEdgeAppearance
+
+        if let previousCompactAppearance {
+            navigationBar.compactAppearance = previousCompactAppearance
+        }
+
+        if let previousTintColor {
+            navigationBar.tintColor = previousTintColor
+        }
+
+        if let previousIsTranslucent {
+            navigationBar.isTranslucent = previousIsTranslucent
+        }
     }
     
     // MARK: - UI Actions

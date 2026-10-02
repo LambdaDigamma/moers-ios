@@ -67,16 +67,16 @@ final class DefaultEventServiceCityAPITests: XCTestCase {
           ],
           "links": [
             { "url": null, "label": "&laquo; Previous", "page": null, "active": false },
-            { "url": "https://moers.app/api/v1/events?page%5Bnumber%5D=2", "label": "Next &raquo;", "page": 2, "active": false }
+            { "url": null, "label": "Next &raquo;", "page": null, "active": false }
           ],
           "meta": {
             "current_page": 1,
             "from": 1,
-            "last_page": 124,
+            "last_page": 1,
             "path": "https://moers.app/api/v1/events",
-            "per_page": 1,
+            "per_page": 30,
             "to": 1,
-            "total": 124
+            "total": 1
           }
         }
         """)
@@ -88,7 +88,7 @@ final class DefaultEventServiceCityAPITests: XCTestCase {
         let requests = await loader.requests
         XCTAssertEqual(requests.map(\.path), ["events"])
         XCTAssertEqual(response.meta.currentPage, 1)
-        XCTAssertEqual(response.meta.lastPage, 124)
+        XCTAssertEqual(response.meta.lastPage, 1)
         XCTAssertEqual(event.id, 798)
         XCTAssertEqual(event.name, "Hüsch-Lieder zum Klingen")
         XCTAssertEqual(event.artists?.compactMap { $0 }, ["Stefan Pelzer-Florack"])

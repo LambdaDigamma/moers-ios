@@ -18,6 +18,12 @@ nonisolated struct EventResourceCollection: Model {
         ResourceCollection(data: data, links: links, meta: meta)
     }
 
+    init(data: [Event], links: ResourceLinks, meta: ResourceMeta) {
+        self.data = data
+        self.links = links
+        self.meta = meta
+    }
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 

@@ -199,8 +199,8 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
         
         let constraints = [collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
                            collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                           collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-                           collectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)]
+                           collectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
+                           collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)]
         
         NSLayoutConstraint.activate(constraints)
         
