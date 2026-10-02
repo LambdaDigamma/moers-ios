@@ -43,23 +43,19 @@ public class NewsCoordinator: NSObject, Coordinator, SFSafariViewControllerDeleg
 //        newsViewController.coordinator = self
         
         self.navigationController.viewControllers = [newsViewController]
-        self.navigationController.tabBarItem = generateTabBarItem()
+        self.navigationController.menuItem = generateMenuItem()
         
         Styling.applyStyling(navigationController: navigationController, statusBarStyle: .darkContent)
         
     }
     
-    private func generateTabBarItem() -> UITabBarItem {
-        
-        let tabBarItem = UITabBarItem(
+    private func generateMenuItem() -> MenuItem {
+
+        MenuItem(
             title: AppStrings.Menu.news,
             image: UIImage(systemName: "newspaper"),
-            selectedImage: UIImage(systemName: "newspaper")
+            accessibilityIdentifier: AccessibilityIdentifiers.Menu.news
         )
-        tabBarItem.accessibilityLabel = AppStrings.Menu.news
-        tabBarItem.accessibilityIdentifier = AccessibilityIdentifiers.Menu.news
-        
-        return tabBarItem
         
     }
     

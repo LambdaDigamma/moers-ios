@@ -1,5 +1,17 @@
 # Papercuts
 
+## About screen has no navigation title
+
+- Impact: The About screen has an empty navigation heading. Its SwiftUI `navigationTitle` does not reach the containing UIKit controller.
+- Reproduction: Open Other → About on iOS 27.2. The navigation heading is blank, although `AboutScreen` declares `navigationTitle(Text("About"))`.
+- Next step: Set the title on `AboutViewController` or forward the hosted view's navigation preferences to its parent.
+
+## UI test locale helper uses deprecated properties
+
+- Impact: Building the UI test target reports three deprecation warnings.
+- Reproduction: Run the city `Navigation` test plan. `MoersUITests/UITestHelpers.swift` uses `Locale.languageCode`, `scriptCode`, and `regionCode` in its `currentLanguage` helper.
+- Next step: Use the current `Locale.language` and `Locale.region` APIs in that helper.
+
 ## AssetPlayer does not populate static item metadata
 
 - Impact: Constructing `AssetPlayer` with a nonempty playlist can access an empty metadata array and crash before playback starts.

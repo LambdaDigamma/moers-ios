@@ -46,24 +46,20 @@ class EventCoordinator: Coordinator {
         
         self.navigationController.coordinator = self
         self.navigationController.viewControllers = [eventViewController]
-        self.navigationController.tabBarItem = generateTabBarItem()
+        self.navigationController.menuItem = generateMenuItem()
         self.eventViewController = eventViewController
         
 //        Styling.applyStyling(navigationController: navigationController, statusBarStyle: .darkContent)
         
     }
     
-    private func generateTabBarItem() -> UITabBarItem {
-        
-        let eventsTabItem = UITabBarItem(
+    private func generateMenuItem() -> MenuItem {
+
+        MenuItem(
             title: AppStrings.Menu.events,
             image: UIImage(systemName: "calendar"),
-            selectedImage: UIImage(systemName: "calendar")
+            accessibilityIdentifier: AccessibilityIdentifiers.Menu.events
         )
-        
-        eventsTabItem.accessibilityIdentifier = AccessibilityIdentifiers.Menu.events
-        
-        return eventsTabItem
         
     }
 

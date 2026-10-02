@@ -47,7 +47,7 @@ public class MapCoordintor: Coordinator {
         mainViewController.navigationItem.largeTitleDisplayMode = .never
         mainViewController.coordinator = self
         
-        self.navigationController.tabBarItem = generateTabBarItem()
+        self.navigationController.menuItem = generateMenuItem()
         
         self.navigationController.viewControllers = [mainViewController]
         self.mainViewController = mainViewController
@@ -58,18 +58,13 @@ public class MapCoordintor: Coordinator {
         
     }
     
-    @MainActor private func generateTabBarItem() -> UITabBarItem {
-        
-        let tabBarItem = UITabBarItem(
+    @MainActor private func generateMenuItem() -> MenuItem {
+
+        MenuItem(
             title: AppStrings.Menu.map,
             image: UIImage(systemName: "map"),
-            selectedImage: UIImage(systemName: "map")
+            accessibilityIdentifier: AccessibilityIdentifiers.Menu.map
         )
-        
-        tabBarItem.accessibilityLabel = AppStrings.Menu.map
-        tabBarItem.accessibilityIdentifier = AccessibilityIdentifiers.Menu.map
-        
-        return tabBarItem
         
     }
     

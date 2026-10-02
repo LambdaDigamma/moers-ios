@@ -80,14 +80,16 @@ open class CoordinatedNavigationController: UINavigationController, UINavigation
     private func restorePersistentTabBarItem() {
         guard let menuItem else { return }
 
-        let item = UITabBarItem(
-            title: menuItem.title,
-            image: menuItem.image,
-            selectedImage: nil
-        )
+        // UIKit keeps references to tab items. Preserve the item during navigation.
+        let item = tabBarItem ?? UITabBarItem()
+        item.title = menuItem.title
+        item.image = menuItem.image
+        item.accessibilityLabel = menuItem.title
         item.accessibilityIdentifier = menuItem.accessibilityIdentifier
 
-        tabBarItem = item
+        if tabBarItem !== item {
+            tabBarItem = item
+        }
     }
 
     // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.

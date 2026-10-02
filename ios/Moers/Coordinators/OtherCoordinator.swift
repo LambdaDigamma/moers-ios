@@ -41,24 +41,20 @@ public class OtherCoordinator: Coordinator {
         
         self.navigationController.coordinator = self
         self.navigationController.viewControllers = [otherViewController]
-        self.navigationController.tabBarItem = generateTabBarItem()
+        self.navigationController.menuItem = generateMenuItem()
         self.otherViewController = otherViewController
         
         Styling.applyStyling(navigationController: navigationController, statusBarStyle: .darkContent)
         
     }
     
-    private func generateTabBarItem() -> UITabBarItem {
-        
-        let tabBarItem = UITabBarItem(
+    private func generateMenuItem() -> MenuItem {
+
+        MenuItem(
             title: AppStrings.Menu.other,
             image: UIImage(systemName: "list.bullet"),
-            selectedImage: UIImage(systemName: "list.bullet")
+            accessibilityIdentifier: AccessibilityIdentifiers.Menu.other
         )
-        
-        tabBarItem.accessibilityIdentifier = AccessibilityIdentifiers.Menu.other
-        
-        return tabBarItem
         
     }
     

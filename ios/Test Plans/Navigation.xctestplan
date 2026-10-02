@@ -1,0 +1,27 @@
+{
+  "configurations" : [
+    {
+      "id" : "6AB440A0-BC25-4D83-955E-2D7B7132D6D1",
+      "name" : "Navigation",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "selectedTests" : [
+        "TabBarNavigationUITests"
+      ],
+      "target" : {
+        "containerPath" : "container:Moers.xcodeproj",
+        "identifier" : "DF284EFC23F4C17100EC999B",
+        "name" : "MoersUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
