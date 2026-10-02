@@ -2,8 +2,8 @@
   "organization": "Lennart Fischer",
   "default-configuration": "Release (Production)",
   "configurations": [
-    { "name": "Debug (Production)", "file": { "anchor": "Moers/Config", "relative-path": "Production.xcconfig" } },
-    { "name": "Release (Production)", "file": { "anchor": "Moers/Config", "relative-path": "Production.xcconfig" } },
+    { "name": "Debug (Production)", "file": { "anchor": "Moers", "relative-path": "Config/Production.xcconfig" } },
+    { "name": "Release (Production)", "file": { "anchor": "Moers", "relative-path": "Config/Production.xcconfig" } },
   ],
   "localizations": {
     "development": "en",
@@ -47,93 +47,68 @@
     { "path": "IDEAS.md", "encoding": "utf8", "target-membership": [ "Moers/resources" ] },
     { "path": ".swiftlint.yml" },
     {
-      "kind": "group",
+      "kind": "folder",
       "path": "Moers",
-      "children": [
-        { "path": "AppDelegate.swift", "target-membership": [ "Moers/compile-sources" ] },
-        { "path": "WeatherWidget.swift", "encoding": "utf8", "target-membership": [ "Moers/compile-sources" ] },
+      "target-membership": [
+        "Moers",
+      ],
+      "membership-exceptions": [
         {
-          "kind": "folder",
-          "path": "Config",
-          "target-membership": [
-            "Moers",
+          "target": "Moers",
+          "exclusions": [
+            "/Localized: Localizable.strings",
+            "Assets/AachenHbf.gpx",
+            "Assets/Moers.gpx",
+            "Config/Development.xcconfig",
+            "Config/Info.plist",
+            "Config/Production.xcconfig",
+            "Config/Staging.xcconfig",
+            "Controller/CardCollectionViewController.swift",
+            "Controller/Community/MapLocationPickerViewController.swift",
+            "Repositories/OrganisationRepository.swift",
+            "Resources/Debug/Settings.bundle",
+            "Resources/Debug/com.mono0926.LicensePlist.latest_result.txt",
+            "Resources/Debug/com.mono0926.LicensePlist.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/BulletinBoard.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/Cache.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/EventBus.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/FeedKit.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/Gestalt.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/Gifu.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/GoogleAppMeasurement.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/GoogleDataTransport.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/GoogleUtilities.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/HanekeSwift.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/MarkdownKit.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/Nuke.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/NukeUI.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/Pulley.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/Resolver.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/abseil-cpp-SwiftPM.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/boringssl-SwiftPM.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/firebase-ios-sdk.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/fuse-swift.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/grpc-ios.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/gtm-session-fetcher.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/leveldb.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/nanopb.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/promises.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/swift-app-feedback.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/swift-docc-plugin.plist",
+            "Resources/Debug/com.mono0926.LicensePlist/swift-prosemirror.plist",
+            "Resources/Release/Settings.bundle",
+            "package-list.json",
           ],
-          "membership-exceptions": [
-            {
-              "target": "Moers",
-              "exclusions": [
-                "Development.xcconfig",
-                "Info.plist",
-                "Production.xcconfig",
-                "Staging.xcconfig",
-              ],
-            }, {
-              "target": "WidgetsExtension",
-              "inclusions": [
-                "Constants.swift",
-                "LaunchArgumentsHandler.swift",
-                "NetworkingConfiguration.swift",
-                "ServiceConfiguration.swift",
-                "UserDefaultsMigrator.swift",
-              ],
-            },
-          ],
-        },
-        { "kind": "folder", "path": "Common", "target-membership": [ "Moers" ] },
-        { "kind": "folder", "path": "Coordinators", "target-membership": [ "Moers" ] },
-        { "kind": "folder", "path": "Events", "target-membership": [ "Moers" ] },
-        { "kind": "folder", "path": "Other", "target-membership": [ "Moers" ] },
-        { "kind": "folder", "path": "Manager", "target-membership": [ "Moers" ] },
-        {
-          "kind": "folder",
-          "path": "Assets",
-          "target-membership": [
-            "Moers",
-          ],
-          "membership-exceptions": [
-            {
-              "target": "Moers",
-              "exclusions": [
-                "AachenHbf.gpx",
-                "Moers.gpx",
-              ],
-            },
-          ],
-        },
-        { "kind": "folder", "path": "Car Play", "target-membership": [ "Moers" ] },
-        {
-          "kind": "group",
-          "path": "Resources",
-          "children": [
-            {
-              "kind": "group",
-              "path": "Debug",
-              "children": [
-                { "path": "Settings.bundle" },
-              ],
-            }, {
-              "kind": "group",
-              "path": "Release",
-              "children": [
-                { "path": "Settings.bundle" },
-              ],
-            },
-            { "path": "Moers-Bridging-Header.h" },
-            { "path": "GoogleService-Info.plist", "encoding": "utf8", "target-membership": [ "Moers/resources" ] },
-            {
-              "path": "Tankerkoenig-Info.plist",
-              "target-membership": [
-                "Moers/resources",
-                "WidgetsExtension/resources",
-              ],
-            }, {
-              "path": "Tankerkoenig-Info-Sample.plist",
-              "target-membership": [
-                "Moers/resources",
-                "WidgetsExtension/resources",
-              ],
-            },
-            { "path": "Moers.entitlements" },
+        }, {
+          "target": "WidgetsExtension",
+          "inclusions": [
+            "Config/Constants.swift",
+            "Config/LaunchArgumentsHandler.swift",
+            "Config/NetworkingConfiguration.swift",
+            "Config/ServiceConfiguration.swift",
+            "Config/UserDefaultsMigrator.swift",
+            "Resources/Tankerkoenig-Info-Sample.plist",
+            "Resources/Tankerkoenig-Info.plist",
           ],
         },
       ],
@@ -203,20 +178,6 @@
         { "path": "<PRODUCTS>/Moers Unit Tests.xctest", "id": "DFB161B3267651D6009D2754", "type": "wrapper.cfbundle", "index": false },
         { "path": "<PRODUCTS>/Intent Extensions.appex", "id": "DF9F19D52766660100B74E13", "type": "wrapper.app-extension", "index": false, "target-membership": [ { "build-phase": "Moers/copy/Embed Foundation Extensions", "header-preservation": "remove-on-copy" } ] },
       ],
-    }, {
-      "kind": "group",
-      "name": "Frameworks",
-      "children": [
-        {
-          "path": "<SDK>/System/Library/Frameworks/Intents.framework",
-          "target-membership": [
-            "Moers/frameworks",
-            "Intent Extensions/frameworks",
-          ],
-        },
-        { "path": "<SDK>/System/Library/Frameworks/WidgetKit.framework", "target-membership": [ "WidgetsExtension/frameworks" ] },
-        { "path": "<SDK>/System/Library/Frameworks/SwiftUI.framework", "target-membership": [ "WidgetsExtension/frameworks" ] },
-      ],
     },
   ],
   "targets": [
@@ -259,8 +220,8 @@
       "product-type": "application",
       "last-swift-migration": "10.2",
       "specialized-configurations": [
-        { "name": "Debug (Production)", "file": { "anchor": "Moers/Config", "relative-path": "Production.xcconfig" } },
-        { "name": "Release (Production)", "file": { "anchor": "Moers/Config", "relative-path": "Production.xcconfig" } },
+        { "name": "Debug (Production)", "file": { "anchor": "Moers", "relative-path": "Config/Production.xcconfig" } },
+        { "name": "Release (Production)", "file": { "anchor": "Moers", "relative-path": "Config/Production.xcconfig" } },
       ],
       "dependencies": [
         "Prepare Fuel Configuration",
@@ -472,8 +433,8 @@
       "product-type": "bundle.ui-testing",
       "test-host-target": "Moers",
       "specialized-configurations": [
-        { "name": "Debug (Production)", "file": { "anchor": "Moers/Config", "relative-path": "Production.xcconfig" } },
-        { "name": "Release (Production)", "file": { "anchor": "Moers/Config", "relative-path": "Production.xcconfig" } },
+        { "name": "Debug (Production)", "file": { "anchor": "Moers", "relative-path": "Config/Production.xcconfig" } },
+        { "name": "Release (Production)", "file": { "anchor": "Moers", "relative-path": "Config/Production.xcconfig" } },
       ],
       "dependencies": [
         "Moers",

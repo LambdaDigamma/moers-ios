@@ -43,6 +43,7 @@ Live API tests skip by default. To opt in, set `RUN_FUEL_INTEGRATION_TESTS=1` or
 - The `Prepare Fuel Configuration` aggregate target owns the `Prepare Fuel API Key` phase. Both `Moers` and `WidgetsExtension` depend on it because they consume the same optional configuration file. Its declared output is the configuration file; it creates the sample fallback only when that output is absent and preserves an existing configuration.
 - `Settings Bundle Preparation` writes the app's Settings bundle in the build product directory. `MOERS_SETTINGS_BUNDLE_VARIANT` selects the Debug or Release template. Both configurations use the checked-in licences under `Moers/Resources/Debug/Settings.bundle`. The script uses the source app Info.plist for its version fields, so it does not depend on a processed plist from a previous build.
 - After adding or removing Settings resource files, refresh the dependency lists with `python3 ios/scripts/prepare-settings-bundle.py refresh-file-lists` from the repository root. Keep the input and output lists with the resource change.
+- The Settings bundle input list tracks `$(PROJECT_FILE_PATH)/project.xcproj`, the city project's JSON configuration file.
 - Test these scripts with `PYTHONDONTWRITEBYTECODE=1 /usr/bin/python3 -m unittest discover -s ios/scripts/tests -v`. The fuel tests use synthetic files in a temporary directory.
 
 For UI/runtime changes:
@@ -54,6 +55,8 @@ For UI/runtime changes:
 
 ## Style And Testing
 
+- Prefer synchronized folders for file-system content in Xcode projects. Do not add duplicate group references to directories already covered by a synchronized folder. Keep `Products` last so Xcode can hide it, and preserve product and extension-embedding references. Omit explicit SDK framework references when automatic linking is sufficient.
+- Use `opaque-folders` for resource directories that must keep their directory names in the app bundle, such as the festival's `FGD2022`, `FGD2024`, and `FGD2025` map archives. Keep unused files out of target membership when converting groups to synchronized folders.
 - Both Xcode projects set Swift 6, Approachable Concurrency, MainActor default isolation, and complete strict concurrency at project level for Debug and Release. App, extension, tvOS, and watchOS targets inherit these defaults.
 - XCTest targets override default isolation to `nonisolated`. Use explicit MainActor isolation for UI fixtures and async test methods; keep XCTest initialization nonisolated. Do not lower their Swift language mode or strict concurrency settings.
 - The city `WidgetsExtension` test plan sets `UserDidCompleteSetup` for its unit-test host. Form and storage tests require a stable launch state. Use the UI test target to check onboarding.

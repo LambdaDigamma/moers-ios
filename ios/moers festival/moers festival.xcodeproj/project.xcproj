@@ -2,14 +2,15 @@
   "organization": "Lennart Fischer",
   "default-configuration": "Release",
   "configurations": [
-    { "name": "Debug", "file": { "anchor": "moers festival/Config", "relative-path": "Production.xcconfig" } },
-    { "name": "Release", "file": { "anchor": "moers festival/Config", "relative-path": "Production.xcconfig" } },
+    { "name": "Debug", "file": { "anchor": "moers festival", "relative-path": "Config/Production.xcconfig" } },
+    { "name": "Release", "file": { "anchor": "moers festival", "relative-path": "Config/Production.xcconfig" } },
   ],
   "localizations": {
     "development": "en",
     "supported": [
       "Base",
       "de",
+      "fr",
     ],
   },
   "packages": [
@@ -62,119 +63,41 @@
   ],
   "files": [
     { "path": "Icon.icon", "target-membership": [ "moers festival/resources" ] },
-    {
-      "kind": "group",
-      "path": "moers festival/FGD2024",
-      "children": [
-        { "path": "camping.geojson" },
-        { "path": "dorf_old.geojson" },
-        { "path": "dorf.geojson" },
-        { "path": "medical_service.geojson" },
-        { "path": "stages.geojson" },
-        { "path": "surfaces.geojson" },
-        { "path": "tickets.geojson" },
-        { "path": "toilets.geojson" },
-        { "path": "transportation.geojson" },
-      ],
-    },
     { "path": "README.md" },
     { "path": "TestPlan.xctestplan" },
     { "path": "Screenshots.xctestplan" },
     {
-      "kind": "group",
+      "kind": "folder",
       "path": "moers festival",
-      "children": [
-        { "path": "FGD2022", "target-membership": [ "moers festival/resources" ] },
-        { "path": "FGD2024", "target-membership": [ "moers festival/resources" ] },
-        { "path": "InAppMessagingDisplayResources.bundle", "target-membership": [ "moers festival/resources" ] },
-        { "path": "Settings.bundle", "target-membership": [ "moers festival/resources" ] },
-        { "path": "intermediate.geojson", "encoding": "utf8", "target-membership": [ "moers festival/resources" ] },
-        { "path": "map.geojson", "encoding": "utf8", "target-membership": [ "moers festival/resources" ] },
-        { "path": "Moers.gpx", "encoding": "utf8", "target-membership": [ "moers festival/resources" ] },
-        { "path": "Screenshot.gpx" },
-        { "path": "<PROJECT>/moers festival/Licenses.plist", "encoding": "utf8", "target-membership": [ "moers festival/resources" ] },
-        { "path": "ContentDrawer.storyboard", "target-membership": [ "moers festival/resources" ] },
-        { "path": "AppDelegate.swift", "target-membership": [ "moers festival/compile-sources" ] },
-        { "path": "ApplicationController.swift", "target-membership": [ "moers festival/compile-sources" ] },
-        { "path": "SceneDelegate.swift", "target-membership": [ "moers festival/compile-sources" ] },
-        { "path": "Map Icons.xcassets", "target-membership": [ "moers festival/resources" ] },
-        { "kind": "folder", "path": "Assets", "target-membership": [ "moers festival" ] },
+      "opaque-folders": [
+        "FGD2022",
+        "FGD2024",
+        "FGD2025",
+      ],
+      "target-membership": [
+        "moers festival",
+      ],
+      "membership-exceptions": [
         {
-          "kind": "folder",
-          "path": "Config",
-          "target-membership": [
-            "moers festival",
+          "target": "moers festival",
+          "exclusions": [
+            "/Localized: Localizable.strings",
+            "AuthorView.swift",
+            "Config/Development.xcconfig",
+            "Config/Info.plist",
+            "Config/Production.xcconfig",
+            "Config/Staging.xcconfig",
+            "Factories/ViewControllerFactory.swift",
+            "moersfestival.xcdatamodeld",
+            "PageView.swift",
+            "Screenshot.gpx",
           ],
-          "membership-exceptions": [
-            {
-              "target": "moers festival",
-              "exclusions": [
-                "Development.xcconfig",
-                "Info.plist",
-                "Production.xcconfig",
-                "Staging.xcconfig",
-              ],
-            },
+        }, {
+          "target": "moers festival UITests",
+          "inclusions": [
+            "Support/AccessibilityIdentifiers.swift",
           ],
         },
-        { "kind": "folder", "path": "Controller", "target-membership": [ "moers festival" ] },
-        { "kind": "folder", "path": "Coordinator", "target-membership": [ "moers festival" ] },
-        { "kind": "folder", "path": "Database", "target-membership": [ "moers festival" ] },
-        { "kind": "folder", "path": "Extensions", "target-membership": [ "moers festival" ] },
-        { "kind": "folder", "path": "FGD2025", "target-membership": [ "moers festival" ] },
-        { "kind": "folder", "path": "Info", "target-membership": [ "moers festival" ] },
-        {
-          "kind": "variant-group",
-          "name": "LaunchScreen.storyboard",
-          "target-membership": [
-            "moers festival/resources",
-          ],
-          "children": [
-            {
-              "path": "Base.lproj/LaunchScreen.storyboard",
-            }, {
-              "path": "mul.lproj/LaunchScreen.xcstrings",
-            },
-          ],
-        },
-        { "kind": "folder", "path": "Live", "target-membership": [ "moers festival" ] },
-        { "kind": "folder", "path": "Manager", "target-membership": [ "moers festival" ] },
-        { "kind": "folder", "path": "Model", "target-membership": [ "moers festival" ] },
-        { "kind": "folder", "path": "News", "target-membership": [ "moers festival" ] },
-        { "kind": "folder", "path": "Preview Content", "target-membership": [ "moers festival" ] },
-        {
-          "kind": "folder",
-          "path": "Support",
-          "target-membership": [
-            "moers festival",
-          ],
-          "membership-exceptions": [
-            {
-              "target": "moers festival UITests",
-              "inclusions": [
-                "AccessibilityIdentifiers.swift",
-              ],
-            },
-          ],
-        },
-        { "kind": "folder", "path": "User Schedule", "target-membership": [ "moers festival" ] },
-        {
-          "kind": "folder",
-          "path": "Utility",
-          "membership-exceptions": [
-            {
-              "target": "moers festival",
-              "inclusions": [
-                "GoogleService-Info.plist",
-                "Park/Dorf.plist",
-                "RemoteConfigDefaults.plist",
-                "config.json",
-              ],
-            },
-          ],
-        },
-        { "kind": "folder", "path": "Venues", "target-membership": [ "moers festival" ] },
-        { "kind": "folder", "path": "ViewModels", "target-membership": [ "moers festival" ] },
       ],
     }, {
       "kind": "folder",
@@ -251,13 +174,6 @@
         { "path": "<PRODUCTS>/moers festival Watch Watch AppUITests.xctest", "id": "DFD4562D29E93A3C00F26F37", "type": "wrapper.cfbundle", "index": false },
         { "path": "<PRODUCTS>/WidgetsExtension.appex", "id": "DFDF577B2F828DE600CD2E75", "type": "wrapper.app-extension", "index": false, "target-membership": [ { "build-phase": "moers festival/copy/Embed Foundation Extensions", "header-preservation": "remove-on-copy" } ] },
       ],
-    }, {
-      "kind": "group",
-      "name": "Frameworks",
-      "children": [
-        { "path": "<SDK>/System/Library/Frameworks/WidgetKit.framework", "target-membership": [ "WidgetsExtension/frameworks" ] },
-        { "path": "<SDK>/System/Library/Frameworks/SwiftUI.framework", "target-membership": [ "WidgetsExtension/frameworks" ] },
-      ],
     },
   ],
   "targets": [
@@ -268,8 +184,8 @@
       "product-type": "application",
       "last-swift-migration": "10.2",
       "specialized-configurations": [
-        { "name": "Debug", "file": { "anchor": "moers festival/Config", "relative-path": "Production.xcconfig" } },
-        { "name": "Release", "file": { "anchor": "moers festival/Config", "relative-path": "Production.xcconfig" } },
+        { "name": "Debug", "file": { "anchor": "moers festival", "relative-path": "Config/Production.xcconfig" } },
+        { "name": "Release", "file": { "anchor": "moers festival", "relative-path": "Config/Production.xcconfig" } },
       ],
       "dependencies": [
         "WidgetsExtension",
@@ -413,8 +329,8 @@
       "legacy-provisioning-style": "automatic",
       "test-host-target": "moers festival",
       "specialized-configurations": [
-        { "name": "Debug", "file": { "anchor": "moers festival/Config", "relative-path": "Production.xcconfig" } },
-        { "name": "Release", "file": { "anchor": "moers festival/Config", "relative-path": "Production.xcconfig" } },
+        { "name": "Debug", "file": { "anchor": "moers festival", "relative-path": "Config/Production.xcconfig" } },
+        { "name": "Release", "file": { "anchor": "moers festival", "relative-path": "Config/Production.xcconfig" } },
       ],
       "dependencies": [
         "moers festival",
@@ -449,8 +365,8 @@
       "legacy-provisioning-style": "automatic",
       "test-host-target": "moers festival",
       "specialized-configurations": [
-        { "name": "Debug", "file": { "anchor": "moers festival/Config", "relative-path": "Production.xcconfig" } },
-        { "name": "Release", "file": { "anchor": "moers festival/Config", "relative-path": "Production.xcconfig" } },
+        { "name": "Debug", "file": { "anchor": "moers festival", "relative-path": "Config/Production.xcconfig" } },
+        { "name": "Release", "file": { "anchor": "moers festival", "relative-path": "Config/Production.xcconfig" } },
       ],
       "dependencies": [
         "moers festival",
@@ -544,8 +460,8 @@
       "product": "Products/moers festival tvOS.app",
       "product-type": "application",
       "specialized-configurations": [
-        { "name": "Debug", "file": { "anchor": "moers festival/Config", "relative-path": "Production.xcconfig" } },
-        { "name": "Release", "file": { "anchor": "moers festival/Config", "relative-path": "Production.xcconfig" } },
+        { "name": "Debug", "file": { "anchor": "moers festival", "relative-path": "Config/Production.xcconfig" } },
+        { "name": "Release", "file": { "anchor": "moers festival", "relative-path": "Config/Production.xcconfig" } },
       ],
       "build-phases": [
         "compile-sources",

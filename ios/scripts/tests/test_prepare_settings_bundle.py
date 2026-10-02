@@ -18,8 +18,8 @@ class PrepareSettingsBundleTests(unittest.TestCase):
         self.temporary = tempfile.TemporaryDirectory(prefix="settings build tests ")
         self.addCleanup(self.temporary.cleanup)
         self.root = Path(self.temporary.name)
-        self.debug = self.root / "Debug/Settings.bundle"
-        self.release = self.root / "Release/Settings.bundle"
+        self.debug = self.root / "Moers/Resources/Debug/Settings.bundle"
+        self.release = self.root / "Moers/Resources/Release/Settings.bundle"
         self.output = self.root / "Built App.app/Settings.bundle"
         self.info = self.root / "Info.plist"
         self.write_plist(self.info, {"CFBundleShortVersionString": "3.3.3", "CFBundleVersion": "66"})
@@ -105,6 +105,27 @@ class PrepareSettingsBundleTests(unittest.TestCase):
             "--licenses", str(self.debug), "--info-plist", str(self.info), "--output", str(self.output),
         ], check=True)
         self.assertEqual(self.specifiers()[0]["DefaultValue"], "3.3.3 (66)")
+
+    def test_declared_inputs_exist_for_debug_and_release_with_json_project(self):
+        project = self.root / "Moers.xcodeproj"
+        project.mkdir()
+        (project / "project.xcproj").write_text("{}")
+        script = self.root / "scripts/prepare-settings-bundle.py"
+        script.parent.mkdir()
+        script.write_text("# Fixture script")
+        inputs, _ = BUILDER.file_lists(self.root)
+
+        for variant in ["Debug", "Release"]:
+            environment = {
+                "SRCROOT": str(self.root),
+                "INFOPLIST_FILE": str(self.info),
+                "PROJECT_FILE_PATH": str(project),
+                "MOERS_SETTINGS_BUNDLE_VARIANT": variant,
+            }
+            for entry in inputs.splitlines():
+                with self.subTest(variant=variant, entry=entry):
+                    path = Path(BUILDER.expand_version(entry, environment))
+                    self.assertTrue(path.exists(), f"Missing declared input: {path}")
 
 
 if __name__ == "__main__":

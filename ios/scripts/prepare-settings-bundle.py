@@ -84,7 +84,7 @@ def file_lists(project_directory):
     inputs = [
         "$(SRCROOT)/scripts/prepare-settings-bundle.py",
         "$(INFOPLIST_FILE)",
-        "$(PROJECT_FILE_PATH)/project.pbxproj",
+        "$(PROJECT_FILE_PATH)/project.xcproj",
         "$(SRCROOT)/Moers/Resources/$(MOERS_SETTINGS_BUNDLE_VARIANT)/Settings.bundle",
     ]
     inputs += [

@@ -1,6 +1,6 @@
 $(SRCROOT)/scripts/prepare-settings-bundle.py
 $(INFOPLIST_FILE)
-$(PROJECT_FILE_PATH)/project.pbxproj
+$(PROJECT_FILE_PATH)/project.xcproj
 $(SRCROOT)/Moers/Resources/$(MOERS_SETTINGS_BUNDLE_VARIANT)/Settings.bundle
 $(SRCROOT)/Moers/Resources/$(MOERS_SETTINGS_BUNDLE_VARIANT)/Settings.bundle/Root.plist
 $(SRCROOT)/Moers/Resources/$(MOERS_SETTINGS_BUNDLE_VARIANT)/Settings.bundle/de.lproj
