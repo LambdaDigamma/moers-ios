@@ -17,7 +17,7 @@ class CountdownViewController: UIViewController {
     private lazy var headerImageView: UIImageView = { ViewFactory.imageView() }()
     private lazy var descriptionLabel: UILabel = { ViewFactory.label() }()
     
-    private let horizontalSpacing: CGFloat = UIDevice.current.userInterfaceIdiom == .phone ? 16 : 0
+    private var horizontalMarginConstraints: [NSLayoutConstraint] = []
     
     private var timer: Timer!
     private let calendar = Calendar.current
@@ -39,7 +39,16 @@ class CountdownViewController: UIViewController {
         self.setupUI()
         self.setupConstraints()
         self.setupTheming()
+        updateHorizontalMargins()
+        registerForTraitChanges([UITraitHorizontalSizeClass.self]) { (self: CountdownViewController, _) in
+            self.updateHorizontalMargins()
+        }
         
+    }
+
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        updateHorizontalMargins()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,28 +75,8 @@ class CountdownViewController: UIViewController {
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(contentView)
         self.contentView.addArrangedSubview(headerImageView)
-        self.contentView.addArrangedSubview(
-            ContainerView(
-                contentView: countdownLabel,
-                edgeInsets: UIEdgeInsets(
-                    top: 0,
-                    left: horizontalSpacing,
-                    bottom: 0,
-                    right: horizontalSpacing
-                )
-            )
-        )
-        self.contentView.addArrangedSubview(
-            ContainerView(
-                contentView: descriptionLabel,
-                edgeInsets: UIEdgeInsets(
-                    top: 0,
-                    left: horizontalSpacing,
-                    bottom: 0,
-                    right: horizontalSpacing
-                )
-            )
-        )
+        self.contentView.addArrangedSubview(makeLabelContainer(countdownLabel))
+        self.contentView.addArrangedSubview(makeLabelContainer(descriptionLabel))
         self.scrollView.showsVerticalScrollIndicator = false
         self.contentView.axis = .vertical
         self.countdownLabel.font = .monospacedDigitSystemFont(ofSize: 40, weight: .semibold)
@@ -101,6 +90,26 @@ class CountdownViewController: UIViewController {
         self.descriptionLabel.text = String.localized("\nIs this noch a jazz fest?\n\nYou really want to give your children something?\nYou long for rush, loudness, extreme experiences?\nYou want to speak your language with other beings?\nYou want to finally camp out in the hippocampus?\nYou want to actually choose and decide for yourself?\n\nCome to Moers from June 03 to 06, 2022, come to moersland - come to Metamörsum! Because we want to celebrate with you and find out what the possible futures of the next 50 years of moers festival will be like.\n\nAfter our analogue online festival in 2020 and the first concerts ever with an audience at Whitsun 2021, after our exploration of the green screen in all its creative imperfection, after our pretending to be in the room just for you, there is the (unsurprising) realization that social events like the moers festival will have to react to unforeseeable influences in the future - political, climatic, pandemic...\n\nMoers remains true to itself and continues to improvise, showing attitude and possibilities. Definitely also at Whitsun 2022 - whether in the festival hall, on the Am Viehtheater, in moersland or on fleeing stages in the castle park; with light sense we venture again on a surreal trip through meadows, freedom, wild seas, semi-detached houses and moonscapes.\n")
         self.descriptionLabel.numberOfLines = 0
         
+    }
+
+    private func makeLabelContainer(_ label: UILabel) -> UIView {
+        let container = ViewFactory.blankView()
+        container.addSubview(label)
+        let leading = label.leadingAnchor.constraint(equalTo: container.leadingAnchor)
+        let trailing = container.trailingAnchor.constraint(equalTo: label.trailingAnchor)
+        horizontalMarginConstraints.append(contentsOf: [leading, trailing])
+        NSLayoutConstraint.activate([
+            leading,
+            trailing,
+            label.topAnchor.constraint(equalTo: container.topAnchor),
+            label.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+        ])
+        return container
+    }
+
+    private func updateHorizontalMargins() {
+        let spacing: CGFloat = traitCollection.horizontalSizeClass == .regular ? 0 : 16
+        horizontalMarginConstraints.forEach { $0.constant = spacing }
     }
     
     private func setupConstraints() {
