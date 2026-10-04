@@ -133,7 +133,7 @@ public class LFSearchViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
         self.view.backgroundColor = LFSearchViewDefaults.backgroundColor
@@ -159,20 +159,6 @@ public class LFSearchViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(LFSearchViewController.didTapBackground(sender:)))
         tap.delegate = self
         self.view.addGestureRecognizer(tap)
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(LFSearchViewController.keyboardWillShow(notification:)),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(LFSearchViewController.keyboardWillHide(notification:)),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
         
     }
     
@@ -203,28 +189,6 @@ public class LFSearchViewController: UIViewController {
     
     @objc func didTapBackground(sender: AnyObject?) {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        
-        guard let kbSizeValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        guard let kbDurationNumber = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber else { return }
-        animateToKeyboardHeight(kbHeight: kbSizeValue.cgRectValue.height, duration: kbDurationNumber.doubleValue)
-        
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        
-        guard let kbDurationNumber = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber else { return }
-        animateToKeyboardHeight(kbHeight: 0, duration: kbDurationNumber.doubleValue)
-        
-    }
-    
-    func animateToKeyboardHeight(kbHeight: CGFloat, duration: Double) {
-        
-        tableView.contentInset = UIEdgeInsets(top: tableView.contentInset.top, left: 0, bottom: kbHeight, right: 0)
-        tableView.scrollIndicatorInsets = UIEdgeInsets(top: tableView.contentInset.top, left: 0, bottom: kbHeight, right: 0)
-        
     }
     
 }

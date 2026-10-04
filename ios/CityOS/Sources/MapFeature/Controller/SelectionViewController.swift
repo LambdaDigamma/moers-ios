@@ -38,13 +38,6 @@ class SelectionViewController: UIViewController {
         }
     }
     
-    private var drawerBottomSafeArea: CGFloat = 0.0 {
-        didSet {
-            self.loadViewIfNeeded()
-            self.collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: drawerBottomSafeArea + 50, right: 0.0)
-        }
-    }
-    
     nonisolated enum Section: Hashable, Sendable {
         case main
     }
@@ -87,6 +80,7 @@ class SelectionViewController: UIViewController {
         // Setup collection view with list configuration
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.contentInset.bottom = 50
         self.view.addSubview(collectionView)
         
         // Setup data source
@@ -161,15 +155,15 @@ class SelectionViewController: UIViewController {
             gripperView.widthAnchor.constraint(equalToConstant: 36),
             gripperView.heightAnchor.constraint(equalToConstant: 5),
             gripperView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            titleLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             titleLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
             separatorView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             separatorView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
             separatorView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
             separatorView.heightAnchor.constraint(equalToConstant: 0.5),
             closeButton.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 16),
-            closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            closeButton.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             closeButton.heightAnchor.constraint(equalToConstant: 25),
             closeButton.widthAnchor.constraint(equalToConstant: 25),
             collectionView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
@@ -237,10 +231,8 @@ extension SelectionViewController: PulleyDrawerViewControllerDelegate {
     
     func partialRevealDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
         
-        let height = drawer.mapViewController.map.frame.height
-        
         if drawer.currentDisplayMode == .panel {
-            return height - 49.0 - 16.0 - 16.0 - 64.0 - 50.0 - 16.0
+            return drawer.heightOfOpenDrawer - 16.0 - 16.0 - 50.0 - 16.0
         }
         
         return 264.0 + bottomSafeArea
@@ -260,8 +252,6 @@ extension SelectionViewController: PulleyDrawerViewControllerDelegate {
     }
     
     func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
-        
-        drawerBottomSafeArea = bottomSafeArea
         
         collectionView.isScrollEnabled = drawer.drawerPosition == .open
         

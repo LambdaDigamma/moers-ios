@@ -25,7 +25,6 @@ public class ContentDrawerView: UIView {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.backgroundColor = .systemBackground
-        cv.contentInsetAdjustmentBehavior = .never
         return cv
     }()
     
@@ -95,13 +94,13 @@ public class ContentDrawerView: UIView {
             gripperView.widthAnchor.constraint(equalToConstant: 36),
             
             searchBar.topAnchor.constraint(equalTo: topAnchor, constant: 6),
-            searchBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            searchBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            searchBar.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            searchBar.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
             headerSectionHeightConstraint,
             
             tagListView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-            tagListView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            tagListView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            tagListView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            tagListView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             tagListView.heightAnchor.constraint(equalToConstant: 20),
             
             topSeparatorView.topAnchor.constraint(equalTo: tagListView.bottomAnchor, constant: 8),

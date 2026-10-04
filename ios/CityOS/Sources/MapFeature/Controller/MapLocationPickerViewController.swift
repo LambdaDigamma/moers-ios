@@ -143,13 +143,13 @@ class MapLocationPickerViewController: UIViewController {
             // , constant: 44
             pointer.widthAnchor.constraint(equalToConstant: 20),
             pointer.heightAnchor.constraint(equalTo: pointer.widthAnchor),
-            streetLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-            streetLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            streetLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            streetLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             streetLabel.bottomAnchor.constraint(equalTo: self.promptLabel.topAnchor, constant: -16),
             promptLabel.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: -40),
-            promptLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-            promptLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-            userLocationButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            promptLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            promptLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            userLocationButton.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             userLocationButton.bottomAnchor.constraint(equalTo: streetLabel.topAnchor, constant: -8),
             userLocationButton.widthAnchor.constraint(equalToConstant: 60),
             userLocationButton.heightAnchor.constraint(equalTo: userLocationButton.widthAnchor)

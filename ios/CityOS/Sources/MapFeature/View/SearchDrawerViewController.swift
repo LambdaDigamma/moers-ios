@@ -73,13 +73,6 @@ public class SearchDrawerViewController: UIViewController {
     private var normalColor = UIColor.clear
     private var highlightedColor = UIColor.clear
     
-    private var drawerBottomSafeArea: CGFloat = 0.0 {
-        didSet {
-            self.loadViewIfNeeded()
-            self.searchDrawer.collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: drawerBottomSafeArea, right: 0.0)
-        }
-    }
-    
     @LazyInjected(\.locationManager) private var locationManager
     
     public init() {
@@ -361,8 +354,6 @@ extension SearchDrawerViewController: PulleyDrawerViewControllerDelegate {
     }
     
     public func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
-        
-        drawerBottomSafeArea = bottomSafeArea
         
         searchDrawer.collectionView.isScrollEnabled = drawer.drawerPosition == .open || drawer.currentDisplayMode == .panel
         

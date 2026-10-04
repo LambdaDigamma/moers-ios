@@ -63,13 +63,6 @@ class ContentViewController: UIViewController {
     private let contentDrawerView = ContentDrawerView()
     private var dataSource: UICollectionViewDiffableDataSource<Int, ContentDrawerItem>!
     
-    private var drawerBottomSafeArea: CGFloat = 0.0 {
-        didSet {
-            self.loadViewIfNeeded()
-            self.contentDrawerView.collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: drawerBottomSafeArea, right: 0.0)
-        }
-    }
-    
     // swiftlint:disable:next force_cast
     private lazy var drawer = { self.parent as! LegacyMainViewController }()
     private var normalColor = UIColor.clear
@@ -550,10 +543,8 @@ extension ContentViewController: PulleyDrawerViewControllerDelegate {
     
     func partialRevealDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
         
-        let height = drawer.mapViewController.map.frame.height
-        
         if drawer.currentDisplayMode == .panel {
-            return height - 49.0 - 16.0 - 16.0 - 64.0 - 50.0 - 16.0
+            return drawer.heightOfOpenDrawer - 16.0 - 16.0 - 50.0 - 16.0
         }
         
         return 264.0 + bottomSafeArea
@@ -572,14 +563,6 @@ extension ContentViewController: PulleyDrawerViewControllerDelegate {
     }
     
     func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
-        
-        drawerBottomSafeArea = bottomSafeArea
-        
-        //        if drawer.drawerPosition == .collapsed {
-        //            headerSectionHeightConstraint.constant = 68.0 + drawerBottomSafeArea
-        //        } else {
-        //            headerSectionHeightConstraint.constant = 68.0
-        //        }
         
         contentDrawerView.collectionView.isScrollEnabled = drawer.drawerPosition == .open || drawer.currentDisplayMode == .panel
         

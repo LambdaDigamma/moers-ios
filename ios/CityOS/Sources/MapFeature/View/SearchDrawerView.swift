@@ -121,8 +121,8 @@ public class SearchDrawerView: UIView {
         
         let tagListConstraints = [
             tagList.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-            tagList.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            tagList.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            tagList.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            tagList.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             tagList.bottomAnchor.constraint(equalTo: searchWrapper.bottomAnchor, constant: -8)
         ]
         
@@ -134,8 +134,8 @@ public class SearchDrawerView: UIView {
             gripper.heightAnchor.constraint(equalToConstant: gripperHeight),
             gripper.widthAnchor.constraint(equalToConstant: gripperWidth),
             searchBar.topAnchor.constraint(equalTo: searchWrapper.topAnchor, constant: 6),
-            searchBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            searchBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            searchBar.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            searchBar.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
             searchWrapper.bottomAnchor.constraint(equalTo: tagList.bottomAnchor, constant: 8),
             topSeparator.bottomAnchor.constraint(equalTo: collectionView.topAnchor),
             topSeparator.heightAnchor.constraint(equalToConstant: 0.5),

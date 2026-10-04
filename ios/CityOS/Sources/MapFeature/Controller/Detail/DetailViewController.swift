@@ -108,11 +108,11 @@ public class DetailViewController: UIViewController {
             gripperView.heightAnchor.constraint(equalToConstant: 5),
             gripperView.widthAnchor.constraint(equalToConstant: 36),
             closeButton.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 16),
-            closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            closeButton.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             closeButton.heightAnchor.constraint(equalToConstant: 25),
             closeButton.widthAnchor.constraint(equalToConstant: 25),
             imageView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 16),
-            imageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            imageView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             imageView.widthAnchor.constraint(equalToConstant: 47),
             imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
             nameLabel.topAnchor.constraint(equalTo: imageView.topAnchor),
@@ -120,11 +120,11 @@ public class DetailViewController: UIViewController {
             nameLabel.trailingAnchor.constraint(equalTo: closeButton.leadingAnchor, constant: -8),
             subtitleLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
             subtitleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
-            subtitleLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            subtitleLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             subtitleLabel.heightAnchor.constraint(equalToConstant: 21),
             routeButton.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 32),
-            routeButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-            routeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            routeButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            routeButton.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             routeButton.heightAnchor.constraint(equalToConstant: 50)
         ]
         
@@ -337,17 +337,15 @@ public class DetailViewController: UIViewController {
 extension DetailViewController: PulleyDrawerViewControllerDelegate {
     
     public func collapsedDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
-        return 130.0 + (bottomSafeArea - 49)
+        return 130.0 + bottomSafeArea
     }
     
     public func partialRevealDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
         
         if let pulleyVC = self.parent as? LegacyMainViewController {
             
-            let height = pulleyVC.mapViewController.map.frame.height
-            
             if pulleyVC.currentDisplayMode == .panel {
-                return height - 49.0 - 16.0 - 16.0 - 64.0 - 50.0 - 16.0
+                return pulleyVC.heightOfOpenDrawer - 16.0 - 16.0 - 50.0 - 16.0
             }
             
         }

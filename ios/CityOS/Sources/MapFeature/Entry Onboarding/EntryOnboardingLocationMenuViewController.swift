@@ -87,19 +87,19 @@ public class EntryOnboardingLocationMenuViewController: UIViewController {
     private func setupConstraints() {
         
         let constraints = [progressView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 20),
-                           progressView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           progressView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+                           progressView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                           progressView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
                            locationButton.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20),
-                           locationButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           locationButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+                           locationButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                           locationButton.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
                            locationButton.heightAnchor.constraint(equalToConstant: 45),
                            addressButton.topAnchor.constraint(equalTo: self.locationButton.bottomAnchor, constant: 16),
-                           addressButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           addressButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+                           addressButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                           addressButton.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
                            addressButton.heightAnchor.constraint(equalToConstant: 45),
                            infoLabel.topAnchor.constraint(equalTo: addressButton.bottomAnchor, constant: 16),
-                           infoLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           infoLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)]
+                           infoLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                           infoLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16)]
         
         NSLayoutConstraint.activate(constraints)
         
