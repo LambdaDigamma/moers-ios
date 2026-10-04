@@ -60,23 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     
     // MARK: - UIApplication Lifecycle
     
-    func applicationWillResignActive(_ application: UIApplication) {
-        
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {}
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        
-        ConfigManager.shared.fetchConfig()
-        FestivalNotificationTopicSynchronizer.shared.syncIfAuthorized()
-        
-    }
-
     func applicationWillTerminate(_ application: UIApplication) {
         
     }
