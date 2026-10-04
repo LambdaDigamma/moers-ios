@@ -1173,7 +1173,7 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
                         )
 
                         // Fix the bouncy drawer bug on iPad and Mac
-                        if UIDevice.current.userInterfaceIdiom == .phone {
+                        if drawer.traitCollection.userInterfaceIdiom == .phone {
                             drawer.view.layoutIfNeeded()
                         }
                     }
