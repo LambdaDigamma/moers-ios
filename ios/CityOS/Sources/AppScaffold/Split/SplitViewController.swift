@@ -100,8 +100,7 @@ open class SplitViewController: UISplitViewController, UISplitViewControllerDele
         
         if let previousTraitCollection = previousTraitCollection {
             
-            if previousTraitCollection.horizontalSizeClass != traitCollection.horizontalSizeClass &&
-                traitCollection.userInterfaceIdiom == .pad {
+            if previousTraitCollection.horizontalSizeClass != traitCollection.horizontalSizeClass {
                 onChangeTraitCollection?(traitCollection)
             }
             
