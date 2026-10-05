@@ -32,7 +32,7 @@ public struct LiveBadge: View {
                     self.isAnimating = true
                 }
             
-            Text("Live")
+            Text("Live", bundle: .module)
                 .font(.caption.weight(.bold))
                 .foregroundColor(.white)
             

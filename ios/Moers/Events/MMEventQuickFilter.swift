@@ -20,21 +20,21 @@ nonisolated enum MMEventQuickFilter: CaseIterable, Hashable {
     var title: String {
         switch self {
         case .today:
-            return "Heute"
+            return String(localized: "Today")
         case .tomorrow:
-            return "Morgen"
+            return String(localized: "Tomorrow")
         case .nextSevenDays:
-            return "7 Tage"
+            return String(localized: "7 Days")
         case .weekend:
-            return "Wochenende"
+            return String(localized: "Weekend")
         case .withImages:
-            return "Mit Bildern"
+            return String(localized: "With Images")
         case .favorites:
-            return "Favoriten"
+            return String(localized: "Favorites")
         case .free:
-            return "Kostenlos"
+            return String(localized: "Free")
         case .online:
-            return "Online"
+            return String(localized: "Online")
         }
     }
 

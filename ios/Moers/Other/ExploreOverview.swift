@@ -79,7 +79,7 @@ struct ExploreOverview: View {
     
     @ViewBuilder
     func card(
-        title: String,
+        title: LocalizedStringResource,
         colors: [Color] = [],
         systemImage: String? = nil
     ) -> some View {

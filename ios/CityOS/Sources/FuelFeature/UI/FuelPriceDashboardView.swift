@@ -51,7 +51,7 @@ public struct FuelPriceDashboardView: View {
                             
                             let price = viewModel.data.value?.averagePrice ?? 1.45
                             
-                            Text(String(format: "%.2f€", price))
+                            Text(price, format: .currency(code: "EUR"))
                                 .redacted(reason: viewModel.data.loading ? .placeholder : [])
                                 .font(.title.weight(.bold))
                             

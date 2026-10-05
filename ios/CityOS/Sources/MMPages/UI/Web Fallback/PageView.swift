@@ -45,7 +45,7 @@ public struct PageView: View {
         
         viewModel.urlRequest.hasError { (error: Error) in
             
-            Text("An error occured")
+            Text("An error occurred", bundle: .module)
             
         }
         

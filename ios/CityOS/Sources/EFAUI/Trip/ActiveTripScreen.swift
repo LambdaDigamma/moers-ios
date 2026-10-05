@@ -25,7 +25,7 @@ public struct ActiveTripScreen: View {
         ZStack {
             
             viewModel.trip.isLoading {
-                DefaultProgressView(text: "Loading your trip…")
+                DefaultProgressView(text: String(localized: "Loading your trip…", bundle: .module))
             }
             
             viewModel.trip.hasResource { data in
@@ -47,7 +47,7 @@ public struct ActiveTripScreen: View {
                     Button(action: {
                         viewModel.terminate()
                     }) {
-                        Text("Beenden")
+                        Text("End trip", bundle: .module)
                     }
                 } label: {
                     Image(systemName: "ellipsis.circle")

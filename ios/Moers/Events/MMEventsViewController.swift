@@ -88,7 +88,7 @@ final class MMEventsViewController: UIViewController, TabBarItemProvider, Coordi
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.placeholder = "Veranstaltungen suchen"
+        searchController.searchBar.placeholder = String(localized: "Search Events")
         searchController.searchBar.searchTextField.clearButtonMode = .whileEditing
 
         navigationItem.searchController = searchController
@@ -347,21 +347,21 @@ final class MMEventsViewController: UIViewController, TabBarItemProvider, Coordi
     private func emptyItem() -> MMEventItem {
         if let errorMessage {
             return .empty(
-                title: "Veranstaltungen konnten nicht geladen werden",
+                title: String(localized: "Events could not be loaded"),
                 message: errorMessage
             )
         }
 
         if filter.isEmpty && searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             return .empty(
-                title: "Keine Veranstaltungen gefunden",
-                message: "Sobald neue Termine verfügbar sind, erscheinen sie hier."
+                title: String(localized: "No events found"),
+                message: String(localized: "New events will appear here when they become available.")
             )
         }
 
         return .empty(
-            title: "Keine Treffer",
-            message: "Passe Suche oder Filter an, um mehr Veranstaltungen zu sehen."
+            title: String(localized: "No results"),
+            message: String(localized: "Change your search or filters to see more events.")
         )
     }
 
@@ -424,8 +424,8 @@ final class MMEventsViewController: UIViewController, TabBarItemProvider, Coordi
             : "line.3.horizontal.decrease.circle.fill"
         navigationItem.rightBarButtonItem?.image = UIImage(systemName: imageName)
         navigationItem.rightBarButtonItem?.accessibilityLabel = filter.activeFilterCount == 0
-            ? "Filter"
-            : "Filter, \(filter.activeFilterCount) aktiv"
+            ? String(localized: "Filter")
+            : String(localized: "Filter, \(filter.activeFilterCount) active", comment: "Accessibility label. The number is the count of active event filters.")
     }
 
     private func toggleQuickFilter(_ quickFilter: MMEventQuickFilter) {

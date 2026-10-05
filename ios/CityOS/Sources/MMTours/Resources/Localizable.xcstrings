@@ -1,0 +1,148 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "%.0f/%lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$.0f/%2$lld"
+          }
+        }
+      }
+    },
+    "%lld %%": {},
+    "+1": {},
+    "53,6 MB": {},
+    "Ausstellung": {},
+    "Download": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laden"
+          }
+        }
+      }
+    },
+    "Download content": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inhalte herunterladen"
+          }
+        }
+      }
+    },
+    "Downloading…": {},
+    "Each exhibition venue has a QR code. Scan it to learn more about the exhibit.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An jedem Ausstellungsort findest Du einen QR Code. Scanne ihn, um weitere spannende Informationen zum Exponant zu erhalten."
+          }
+        }
+      }
+    },
+    "Exhibition": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ausstellung"
+          }
+        }
+      }
+    },
+    "Find each venue on the map and start navigation.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auf der Karte findest Du die einzelnen Orte und kannst schnell eine Navigation starten."
+          }
+        }
+      }
+    },
+    "Map of exhibition venues": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Karte der Ausstellungsorte "
+          }
+        }
+      }
+    },
+    "ProgressView": {},
+    "Scan QR code": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "QR Code scannen"
+          }
+        }
+      }
+    },
+    "Scan the QR code with the camera of your device. Simply move the marked square over the QR code on the floor.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scanne den QR Code mit der Kamera Deines Geräts. Bewege hierzu das markierte Quadrat über den QR Code auf dem Boden."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scan the QR code with the camera of your device. Simply move the marked square over the QR code on the floor."
+          }
+        }
+      }
+    },
+    "This is a test": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das ist ein Test"
+          }
+        }
+      }
+    },
+    "We recommend that you download all content now to avoid using mobile data during your visit.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wir empfehlen Dir, alle Inhalte schon jetzt herunterzuladen, damit vor Ort nicht Dein mobiles Datenvolumen verwendet wird."
+          }
+        }
+      }
+    },
+    "You have visited 5 exhibition venues. Continue your tour to find the remaining venues.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast schon 5 Ausstellungsorte besucht. Einige stehen noch aus. Setze Deine Tour fort und finde alle Ausstellungsorte!"
+          }
+        }
+      }
+    },
+    "Your progress": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Fortschritt "
+          }
+        }
+      }
+    }
+  },
+  "version": "1.1"
+}

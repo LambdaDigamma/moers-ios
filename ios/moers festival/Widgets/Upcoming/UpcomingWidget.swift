@@ -52,8 +52,8 @@ struct UpcomingWidgetProvider: AppIntentTimelineProvider {
                 liveEvents: content.liveEvents,
                 upcomingEvents: content.upcomingEvents,
                 emptyMessage: selectedVenueIDs.isEmpty
-                    ? "No upcoming events right now."
-                    : "No upcoming events for the selected venues.",
+                    ? String(localized: "No upcoming events right now.")
+                    : String(localized: "No upcoming events for the selected venues."),
                 nextRefreshDate: content.nextRefreshDate
             )
         } catch {
@@ -64,7 +64,7 @@ struct UpcomingWidgetProvider: AppIntentTimelineProvider {
                 subtitleSystemImage: subtitleSystemImage(for: configuration.venues ?? []),
                 liveEvents: [],
                 upcomingEvents: [],
-                emptyMessage: "Unable to load upcoming events right now.",
+                emptyMessage: String(localized: "Unable to load upcoming events right now."),
                 nextRefreshDate: .now.addingTimeInterval(FestivalWidgetTimelineEngine.maximumRefreshInterval)
             )
         }
@@ -73,11 +73,11 @@ struct UpcomingWidgetProvider: AppIntentTimelineProvider {
     private func subtitle(for selectedVenues: [VenueEntity]) -> String {
         switch selectedVenues.count {
         case 0:
-            return "All venues"
+            return String(localized: "All venues")
         case 1:
-            return "1 Venue"
+            return String(localized: "1 Venue")
         default:
-            return "\(selectedVenues.count) Venues"
+            return String(localized: "\(selectedVenues.count) Venues")
         }
     }
 

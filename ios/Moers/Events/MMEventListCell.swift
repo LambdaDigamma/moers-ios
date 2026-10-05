@@ -53,7 +53,7 @@ final class MMEventListCell: UICollectionViewCell {
         let metadata = [
             event.category,
             event.attendanceMode.flatMap { MMEventAttendanceMode(rawValue: $0)?.title },
-            event.extras?.isFree == true ? "Kostenlos" : nil,
+            event.extras?.isFree == true ? String(localized: "Free") : nil,
         ].compactMap { $0 }.joined(separator: " · ")
         metadataLabel.text = metadata
         metadataLabel.isHidden = metadata.isEmpty

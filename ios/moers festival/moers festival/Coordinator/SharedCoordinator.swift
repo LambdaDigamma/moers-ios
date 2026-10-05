@@ -20,6 +20,10 @@ public class SharedCoordinator: Coordinator {
     public var tabBarItem: UITabBarItem? { rootViewController.tabBarItem }
     
     public weak var currentModalNavigationController: UINavigationController?
+
+    public var activeNavigationController: UINavigationController {
+        currentModalNavigationController ?? navigationController
+    }
     
     public init(navigationController: CoordinatedNavigationController = .init()) {
         self.navigationController = navigationController
@@ -29,7 +33,7 @@ public class SharedCoordinator: Coordinator {
     
     public func pushEventDetail(eventID: Event.ID, animated: Bool = true) {
         
-        let usedNavigationController = currentModalNavigationController ?? navigationController
+        let usedNavigationController = activeNavigationController
         
         let detailController = ModernEventDetailViewController(
             eventID: eventID
@@ -53,7 +57,7 @@ public class SharedCoordinator: Coordinator {
         let modalNavController = UINavigationController(rootViewController: detailController)
         modalNavController.modalPresentationStyle = .formSheet
 
-        var presenter: UIViewController = self.navigationController
+        var presenter: UIViewController = activeNavigationController
         while let presented = presenter.presentedViewController {
             presenter = presented
         }
@@ -63,10 +67,9 @@ public class SharedCoordinator: Coordinator {
     
     public func pushPlaceDetail(placeID: Place.ID) {
         
-        let usedNavigationController = currentModalNavigationController ?? navigationController
+        let usedNavigationController = activeNavigationController
         
-        let presentationContext = VenueDetailPresentationContext.current(for: usedNavigationController.traitCollection)
-        let viewController = VenueDetailController(placeID: placeID, presentationContext: presentationContext)
+        let viewController = VenueDetailController(placeID: placeID)
         viewController.coordinator = self
         
         usedNavigationController.pushViewController(viewController, animated: true)
@@ -75,16 +78,16 @@ public class SharedCoordinator: Coordinator {
     
     public func showPlaceDetail(placeID: Place.ID, showCloseButton: Bool = true) {
         
-        let presentationContext = VenueDetailPresentationContext.current(for: navigationController.traitCollection)
-        let viewController = VenueDetailController(placeID: placeID, presentationContext: presentationContext)
+        let viewController = VenueDetailController(placeID: placeID)
         viewController.coordinator = self
         viewController.modalPresentationStyle = .formSheet
         viewController.showCloseButton = showCloseButton
         
         let modalNavigationController = UINavigationController(rootViewController: viewController)
         modalNavigationController.modalPresentationStyle = .formSheet
+        let presenter = activeNavigationController
         self.currentModalNavigationController = modalNavigationController
-        self.navigationController.present(modalNavigationController, animated: true)
+        presenter.present(modalNavigationController, animated: true)
         
     }
 

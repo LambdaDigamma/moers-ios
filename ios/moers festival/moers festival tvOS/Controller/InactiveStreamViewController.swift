@@ -22,6 +22,8 @@ class InactiveStreamViewController: UIViewController {
     
     private var continuePlaybackTimer: Timer!
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var reloadButton: UIButton!
     @IBOutlet weak var errorImageView: UIImageView!
     
@@ -29,6 +31,9 @@ class InactiveStreamViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleLabel.text = String(localized: "The livestream is not active.")
+        descriptionLabel.text = String(localized: "The livestream will reload automatically when it resumes. If it does not, you can reload it manually.")
+        reloadButton.setTitle(String(localized: "Reload"), for: .normal)
         
         
         

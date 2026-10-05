@@ -271,8 +271,8 @@ public class DefaultRubbishService: RubbishService {
         
 #if canImport(UserNotifications)
 #if !os(tvOS)
-        notificationContent.title = "Abfuhrkalender"
-        notificationContent.subtitle = "Morgen wird abgeholt: \(item.type.title)"
+        notificationContent.title = String(localized: "Waste schedule", bundle: .module)
+        notificationContent.subtitle = String(localized: "Tomorrow’s collection: \(item.type.title)", bundle: .module)
 #endif
 #endif
         

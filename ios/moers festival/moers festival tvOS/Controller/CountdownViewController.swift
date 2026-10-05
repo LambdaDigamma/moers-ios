@@ -90,10 +90,10 @@ class CountdownViewController: UIViewController {
 
             guard let days = timeLeft.day, let hours = timeLeft.hour, let minutes = timeLeft.minute, let seconds = timeLeft.second else { return }
             
-            countdownLabel.text = "\(days) \(String.localized("CountdownDays")) \(hours) \(String.localized("CountdownHours")) \(minutes) \(String.localized("CountdownMinutes")) \(seconds) \(String.localized("CountdownSeconds"))"
+            countdownLabel.text = String(localized: "\(days) days \(hours) hours \(minutes) minutes \(seconds) seconds")
             
         } else {
-            countdownLabel.text = "Start unbekannt"
+            countdownLabel.text = String(localized: "Start unknown")
         }
         
     }

@@ -69,7 +69,7 @@ public struct TripDetailScreen: View {
             
             Divider()
             
-            Text("Dauer: \(viewModel.duration) | \(viewModel.numberOfChanges) Umst.")
+            Text("Duration: \(viewModel.duration) | \(viewModel.numberOfChanges) transfers", bundle: .module)
                 .font(.callout)
             
         }
@@ -87,11 +87,11 @@ public struct TripDetailScreen: View {
             Button(action: {
                 onActivateRoute()
             }) {
-                Text("Verbindung aktivieren (bald)")
+                Text("Activate connection (coming soon)", bundle: .module)
             }
             .buttonStyle(EfaPrimaryButtonStyle())
             
-            Text("Dauer: \(viewModel.duration) | \(viewModel.numberOfChanges) Umst.")
+            Text("Duration: \(viewModel.duration) | \(viewModel.numberOfChanges) transfers", bundle: .module)
                 .font(.callout.weight(.medium))
                 .foregroundColor(.secondary)
             

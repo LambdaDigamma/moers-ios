@@ -35,7 +35,7 @@ public struct TripSearchScreen: View {
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .navigationTitle(Text("Verbindungen"))
+        .navigationTitle(Text("Connections", bundle: .module))
         .navigationBarTitleDisplayMode(.inline)
         .task {
             await viewModel.search()
@@ -61,7 +61,7 @@ public struct TripSearchScreen: View {
                 
                 HStack {
                     
-                    Text("Von:")
+                    Text("From:", bundle: .module)
                         .foregroundColor(.secondary)
                         .frame(width: widthInset, alignment: .leading)
                     
@@ -75,7 +75,7 @@ public struct TripSearchScreen: View {
                 
                 HStack {
                     
-                    Text("Nach:")
+                    Text("To:", bundle: .module)
                         .foregroundColor(.secondary)
                         .frame(width: widthInset, alignment: .leading)
                     
@@ -97,7 +97,7 @@ public struct TripSearchScreen: View {
             
 //            HStack {
 //
-//                Text("Von:")
+//                Text("From:", bundle: .module)
 //                    .frame(width: 50, alignment: .leading)
 //
 //                Spacer()
@@ -110,7 +110,7 @@ public struct TripSearchScreen: View {
 //
 //            HStack {
 //
-//                Text("Nach:")
+//                Text("To:", bundle: .module)
 //                    .frame(width: 50, alignment: .leading)
 //
 //                Spacer()
@@ -281,7 +281,7 @@ public struct TripRouteOverview: View {
                 
                 Spacer()
                 
-                Text("Umst. \(route.numberOfChanges)")
+                Text("\(route.numberOfChanges) transfers", bundle: .module)
                 
             }
             .font(.caption)
@@ -377,7 +377,7 @@ public struct TripRouteOverview: View {
                         
                         Spacer()
                         
-                        Text("\(route.publicDuration)h")
+                        Text("\(route.publicDuration)h", bundle: .module)
                             .fontWeight(.semibold)
                             .foregroundColor(.primary)
                             .padding(.horizontal, 8)
@@ -396,7 +396,7 @@ public struct TripRouteOverview: View {
                             .frame(height: 2)
                     })
                     
-                    Text("\(route.numberOfChanges) Umstiege")
+                    Text("\(route.numberOfChanges) transfers", bundle: .module)
                         .foregroundColor(.secondary)
                         .font(.caption.weight(.medium))
                     

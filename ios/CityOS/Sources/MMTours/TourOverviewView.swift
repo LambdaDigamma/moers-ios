@@ -33,10 +33,10 @@ public struct TourOverviewView: View {
                         showMap()
                     }
                 
-                Button("QR Code scannen") {
-                    
+                Button {
                     showQRCodeScanner()
-                    
+                } label: {
+                    Text("Scan QR code", bundle: .module)
                 }.buttonStyle(ScanQRCodeButtonStyle())
                 
 //                ScanQRCodeButton()
@@ -58,7 +58,7 @@ struct TourOverviewView_Previews: PreviewProvider {
                              showMap: {},
                              showQRCodeScanner: {})
                 .background(Color.systemBackground)
-                .navigationTitle("Exhibition")
+                .navigationTitle(Text("Exhibition", bundle: .module))
         }.environment(\.colorScheme, .dark)
     }
 }

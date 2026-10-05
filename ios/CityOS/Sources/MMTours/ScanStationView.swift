@@ -51,7 +51,7 @@ struct ScanStationView: View {
 //                        .stroke(Color.secondary, lineWidth: 2)
 //                )
                 
-                Text(LocalizedStringKey("ScanStationPrompt"))
+                Text("Scan the QR code with the camera of your device. Simply move the marked square over the QR code on the floor.", bundle: .module)
                     .multilineTextAlignment(.leading)
                 
                 

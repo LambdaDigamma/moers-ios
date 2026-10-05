@@ -94,6 +94,7 @@ let package = Package(
         .target(
             name: "PlaybackKit",
             dependencies: ["Core", .product(name: "FactoryKit", package: "Factory")],
+            resources: [.process("Resources")],
             swiftSettings: settings
         ),
         .testTarget(
@@ -147,6 +148,7 @@ let package = Package(
                 "Core", "FuelFeature", "RubbishFeature", "ParkingFeature", "WeatherFeature",
                 "EFAAPI", "EFAUI"
             ],
+            resources: [.process("Resources")],
             swiftSettings: settings
         ),
         .testTarget(
@@ -258,6 +260,7 @@ let package = Package(
                 .product(name: "GRDB", package: "GRDB.swift"),
                 .product(name: "FactoryKit", package: "Factory")
             ],
+            resources: [.process("Resources")],
             swiftSettings: settings
         ),
         .testTarget(
@@ -274,6 +277,7 @@ let package = Package(
             dependencies: [
                 .byName(name: "Core")
             ],
+            resources: [.process("Resources")],
             swiftSettings: settings
         ),
         .testTarget(
@@ -292,6 +296,7 @@ let package = Package(
                 .product(name: "GRDB", package: "GRDB.swift"),
                 .product(name: "Cache", package: "Cache")
             ],
+            resources: [.process("Resources")],
             swiftSettings: settings
         ),
         .testTarget(

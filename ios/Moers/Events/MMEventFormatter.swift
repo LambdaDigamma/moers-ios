@@ -75,7 +75,8 @@ nonisolated enum MMEventFormatter {
         }
 
         if calendar.isDateInTomorrow(startDate) {
-            return DateFormatter.mmEventString(from: startDate, dateFormat: "'Morgen' HH:mm")
+            let time = DateFormatter.mmEventString(from: startDate, dateFormat: "HH:mm")
+            return String(localized: "Tomorrow \(time)")
         }
 
         return DateFormatter.mmEventString(from: startDate, dateFormat: "dd.MM. HH:mm")
@@ -139,7 +140,7 @@ private extension DateFormatter {
     nonisolated static func mmEventString(from date: Date, dateFormat: String) -> String {
         let formatter = DateFormatter()
         formatter.locale = .autoupdatingCurrent
-        formatter.dateFormat = dateFormat
+        formatter.setLocalizedDateFormatFromTemplate(dateFormat)
 
         return formatter.string(from: date)
     }

@@ -106,13 +106,13 @@ public class UserManager {
         let activity = NSUserActivity(activityType: Self.rubbishScheduleActivityIdentifier)
         
         activity.isEligibleForPrediction = true
-        activity.suggestedInvocationPhrase = "Nächste Abholtermine"
+        activity.suggestedInvocationPhrase = String(localized: "Next pick-up dates")
         activity.persistentIdentifier = "de.okfn.niederrhein.Moers.nextRubbish"
         
         activity.isEligibleForPublicIndexing = true
         activity.isEligibleForSearch = true
         activity.keywords = ["Müll", "Moers"]
-        activity.title = "Nächste Abholtermine"
+        activity.title = String(localized: "Next pick-up dates")
         
         return activity
         

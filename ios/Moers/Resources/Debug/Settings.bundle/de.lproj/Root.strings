@@ -1,3 +1,11 @@
-"Environment" = "Umgebung";
+/* Settings app captions. Keys match Root.plist. */
+"Version" = "Version";
 "Licenses" = "Lizenzen";
-
+"Server" = "Server";
+"Don't forget to choose the \"Custom URL\" option if you want to specify an URL above." = "Wähle „Benutzerdefiniert“, wenn du eine eigene URL verwenden möchtest.";
+"Environment" = "Umgebung";
+"Production" = "Produktion";
+"Staging" = "Staging";
+"Local" = "Lokal";
+"Custom" = "Benutzerdefiniert";
+"Custom URL" = "Benutzerdefinierte URL";

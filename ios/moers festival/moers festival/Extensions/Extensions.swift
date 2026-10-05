@@ -13,32 +13,6 @@ func isSnapshotting() -> Bool {
     return UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT")
 }
 
-extension String {
-    
-    static func localized(_ key: String) -> String {
-        
-        return NSLocalizedString(key, comment: "")
-        
-    }
-    
-    var localized: String {
-        return NSLocalizedString(self,
-                                 tableName: "Localizable",
-                                 bundle: Bundle.main,
-                                 value: "Not found",
-                                 comment: "")
-    }
-    
-    func localized(in tableName: String = "Localizable") -> String {
-        return NSLocalizedString(self,
-                                 tableName: tableName,
-                                 bundle: Bundle.main,
-                                 value: "Not found",
-                                 comment: "")
-    }
-    
-}
-
 extension UIViewController {
     
     public var safeTopAnchor: NSLayoutYAxisAnchor {

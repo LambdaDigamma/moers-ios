@@ -932,7 +932,7 @@
     "MTL_ENABLE_DEBUG_INFO[config=Release (Production)]": "NO",
     "ONLY_ACTIVE_ARCH[config=Debug (Production)]": "YES",
     "SDKROOT": "iphoneos",
-    "STRING_CATALOG_GENERATE_SYMBOLS": "YES",
+    "STRING_CATALOG_GENERATE_SYMBOLS": "NO",
     "SWIFT_ACTIVE_COMPILATION_CONDITIONS[config=Debug (Production)]": "DEBUG",
     "SWIFT_APPROACHABLE_CONCURRENCY": "YES",
     "SWIFT_COMPILATION_MODE[config=Release (Production)]": "wholemodule",

@@ -41,7 +41,7 @@ public class FestivalLiveController: DefaultHostingController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Live"
+        self.title = String(localized: "Live")
         
     }
     

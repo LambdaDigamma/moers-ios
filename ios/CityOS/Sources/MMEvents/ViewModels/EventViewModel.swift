@@ -209,7 +209,7 @@ public class EventViewModel<Event: BaseEvent>: Equatable, Hashable {
     open lazy var locationRepresentation: String = {
 
         if let isMovingAct = model.extras?.isMovingAct, isMovingAct {
-            return "Moving Act"
+            return String(localized: "Moving Act", bundle: .module)
         }
 
         if let locationName = model.extras?.displayLocationName {
@@ -257,7 +257,7 @@ public class EventViewModel<Event: BaseEvent>: Equatable, Hashable {
 
         guard let startDate = model.startDate else { return "" }
 
-        return "in \(startDate.minuteInterval())min"
+        return String(localized: "in \(startDate.minuteInterval()) min", bundle: .module)
 
     }
     

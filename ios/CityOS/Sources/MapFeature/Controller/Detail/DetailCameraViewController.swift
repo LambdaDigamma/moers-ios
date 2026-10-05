@@ -37,7 +37,7 @@ class DetailCameraViewController: UIViewController {
         
         self.topSeperator.alpha = 0.5
         
-        self.showButton.setTitle("Anschauen", for: .normal)
+        self.showButton.setTitle(String(localized: "View", bundle: .module), for: .normal)
         self.showButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.semibold)
         self.showButton.addTarget(self, action: #selector(showCamera), for: .touchUpInside)
         self.showButton.layer.cornerRadius = 8

@@ -12,37 +12,36 @@ struct DayItem: View {
     var date: Date
     var isActive: Bool = false
     
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) private var colorScheme
+    @ScaledMetric(relativeTo: .callout) private var circleDiameter: CGFloat = 44
     
     var body: some View {
         
         VStack(alignment: .center, spacing: 4) {
             
-            Text(
-                date.formatted(
-                    .dateTime
-                        .day()
-                )
-            )
+            Text(date, format: .dateTime.day())
             .font(.callout)
             .fontWeight(.bold)
+            .monospacedDigit()
             .foregroundColor(.primary)
-            .padding(12)
+            .lineLimit(1)
+            .fixedSize()
+            .frame(width: max(44, circleDiameter), height: max(44, circleDiameter))
             .background(alignment: .center) {
                 Circle()
                     .fill(isActive ? activeColor : Color.tertiarySystemFill)
             }
             
-            Text(
-                date.formatted(
-                    .dateTime.weekday(.abbreviated)
-                )
-            )
+            Text(date, format: .dateTime.weekday(.abbreviated))
             .font(.caption)
             .fontWeight(.semibold)
             .foregroundColor(.primary)
+            .lineLimit(1)
+            .fixedSize()
             
         }
+        .frame(minWidth: max(44, circleDiameter))
+        .fixedSize()
         
     }
     

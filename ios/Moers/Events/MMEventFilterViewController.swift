@@ -30,9 +30,9 @@ final class MMEventFilterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Filter"
+        title = String(localized: "Filter")
         navigationItem.leftBarButtonItem = UIBarButtonItem(
-            title: "Zurücksetzen",
+            title: String(localized: "Reset"),
             style: .plain,
             target: self,
             action: #selector(resetFilters)

@@ -15,7 +15,7 @@ class AboutViewModel {
     }
     
     public var cfnText: String {
-        return "Twitter: twitter.com/codefornrn\nWebsite: codeforniederrhein.de"
+        return String(localized: "Twitter: twitter.com/codefornrn\nWebsite: codeforniederrhein.de")
     }
     
     public var name: String {
@@ -23,7 +23,7 @@ class AboutViewModel {
     }
     
     public var meText: String {
-        return "Twitter: twitter.com/lambdadigamma"
+        return String(localized: "Twitter: twitter.com/lambdadigamma")
     }
     
     public var infoText: String {

@@ -171,7 +171,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     public init() {
         super.init(nibName: nil, bundle: nil)
         
-        self.title = String(localized: "Events")
+        self.title = String(localized: "Events", bundle: .module)
         
     }
     
@@ -220,7 +220,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
             
             self.searchController.searchResultsUpdater = self
             self.searchController.obscuresBackgroundDuringPresentation = false
-            self.searchController.searchBar.placeholder = String(localized: "Search…")
+            self.searchController.searchBar.placeholder = String(localized: "Search…", bundle: .module)
             self.searchController.hidesNavigationBarDuringPresentation = true
             
             self.definesPresentationContext = true
@@ -667,7 +667,7 @@ open class EventsViewController: UIViewController, UISearchResultsUpdating {
     open func showNext() -> EventsViewController {
         
         let viewController = EventsViewController()
-        viewController.title = String(localized: "Events")
+        viewController.title = String(localized: "Events", bundle: .module)
         
         self.navigationController?.pushViewController(viewController, animated: true)
         

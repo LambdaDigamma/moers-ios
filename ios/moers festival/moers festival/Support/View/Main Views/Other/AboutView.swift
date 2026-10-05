@@ -202,17 +202,17 @@ public struct About: View {
             HStack(spacing: 12) {
                 
                 socialLink(
-                    text: "Website",
+                    text: String(localized: "Website"),
                     image: Image(systemName: "link"),
                     action: { onOpenDeveloperLink(.website) }
                 )
                 socialLink(
-                    text: "Twitter",
+                    text: String(localized: "Twitter"),
                     image: Image("twitter-fill"),
                     action: { onOpenDeveloperLink(.twitter) }
                 )
                 socialLink(
-                    text: "Instagram",
+                    text: String(localized: "Instagram"),
                     image: Image("instagram-fill"),
                     action: { onOpenDeveloperLink(.instagram) }
                 )

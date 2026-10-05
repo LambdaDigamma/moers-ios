@@ -31,7 +31,7 @@ final class MMEventLoadingCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 16
         contentView.layer.cornerCurve = .continuous
 
-        titleLabel.text = "Veranstaltungen werden geladen"
+        titleLabel.text = String(localized: "Loading events")
         titleLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.textColor = .secondaryLabel

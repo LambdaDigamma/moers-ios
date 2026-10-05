@@ -44,7 +44,7 @@ class LicensesViewController: UIViewController {
     
     private func setupUI() {
         
-        self.title = String.localized("Licenses")
+        self.title = String(localized: "Licenses")
         
     }
 

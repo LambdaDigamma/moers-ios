@@ -43,7 +43,7 @@ public class LFSearchViewController: UIViewController {
         }
     }
     
-    open var searchBarPlaceHolder: String = "Search" {
+    open var searchBarPlaceHolder: String = String(localized: "Search", bundle: .module) {
         didSet {
             if self.searchBar != nil {
                 self.searchBar.placeholder = searchBarPlaceHolder

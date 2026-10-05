@@ -15,11 +15,11 @@ nonisolated enum MMEventAttendanceMode: String, CaseIterable, Hashable {
     var title: String {
         switch self {
         case .offline:
-            return "Vor Ort"
+            return String(localized: "In Person")
         case .online:
-            return "Online"
+            return String(localized: "Online")
         case .mixed:
-            return "Hybrid"
+            return String(localized: "Hybrid")
         }
     }
 }

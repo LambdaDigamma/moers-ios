@@ -16,15 +16,6 @@ import Combine
 import SafariServices
 import FactoryKit
 
-public enum VenueDetailPresentationContext: Equatable {
-    case phoneFullScreen
-    case ipadDetail
-    
-    public static func current(for traitCollection: UITraitCollection) -> Self {
-        traitCollection.userInterfaceIdiom == .pad ? .ipadDetail : .phoneFullScreen
-    }
-}
-
 public class VenueDetailController: DefaultHostingController {
     
     @LazyInjected(\.locationEventService) var service
@@ -32,22 +23,28 @@ public class VenueDetailController: DefaultHostingController {
     public weak var coordinator: SharedCoordinator?
     
     public var showCloseButton: Bool = false
+    public var onClose: (() -> Void)?
+    public var onDidAppear: (() -> Void)?
     
     private let viewModel: VenueDetailViewModel
-    private let placeID: Place.ID
-    private let presentationContext: VenueDetailPresentationContext
+    let placeID: Place.ID
+    private let layoutState: VenueDetailLayoutState
+    public var presentationContext: VenueDetailPresentationContext {
+        get { layoutState.presentationContext }
+        set { layoutState.presentationContext = newValue }
+    }
     private var cancellables = Set<AnyCancellable>()
     
     private let actionTransmitter: ActionTransmitter = .init()
     
     public init(
         placeID: Place.ID,
-        presentationContext: VenueDetailPresentationContext = .phoneFullScreen
+        presentationContext: VenueDetailPresentationContext = .automatic
     ) {
         
         self.viewModel = VenueDetailViewModel(placeID: placeID)
         self.placeID = placeID
-        self.presentationContext = presentationContext
+        self.layoutState = VenueDetailLayoutState(presentationContext: presentationContext)
         super.init()
         
     }
@@ -59,7 +56,7 @@ public class VenueDetailController: DefaultHostingController {
     public override func hostView() -> AnyView {
         VenueDetailScreen(
             viewModel: viewModel,
-            presentationContext: presentationContext,
+            layoutState: layoutState,
             actionTransmitter: actionTransmitter,
             onSelectEvent: onSelectEvent(eventID:)
         )
@@ -74,6 +71,8 @@ public class VenueDetailController: DefaultHostingController {
             self.navigationItem.leftBarButtonItems = [
                 closeItem
             ]
+        } else {
+            navigationItem.leftBarButtonItems = nil
         }
                 
     }
@@ -83,8 +82,10 @@ public class VenueDetailController: DefaultHostingController {
         actionTransmitter.showURL.sink { (url: URL) in
             
             let viewController = SFSafariViewController(url: url)
-            
-            self.present(viewController, animated: true)
+            viewController.delegate = self
+            self.present(viewController, animated: true) {
+                viewController.presentationController?.delegate = self
+            }
             
         }.store(in: &cancellables)
         
@@ -98,14 +99,17 @@ public class VenueDetailController: DefaultHostingController {
         
         self.loadData()
     }
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        onDidAppear?()
+    }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        if presentationContext == .ipadDetail {
-            view.backgroundColor = .clear
-            view.subviews.first?.backgroundColor = .clear
-        }
+        view.backgroundColor = .clear
+        view.subviews.first?.backgroundColor = .clear
         
         self.configureNavigationBar()
         self.setupListeners()
@@ -154,11 +158,23 @@ public class VenueDetailController: DefaultHostingController {
     }
     
     @objc private func close() {
-        
-        self.dismiss(animated: true)
-        
+        if let onClose {
+            onClose()
+        } else {
+            dismiss(animated: true)
+        }
     }
 
     // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
     nonisolated deinit {}
+}
+
+extension VenueDetailController: SFSafariViewControllerDelegate, UIAdaptivePresentationControllerDelegate {
+    public func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true) { [weak self] in self?.onDidAppear?() }
+    }
+
+    public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        onDidAppear?()
+    }
 }

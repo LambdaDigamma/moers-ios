@@ -73,10 +73,8 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if #available(iOS 11.0, *) {
-            self.navigationItem.largeTitleDisplayMode = .always
-            self.navigationController?.navigationBar.prefersLargeTitles = true
-        }
+        self.navigationItem.largeTitleDisplayMode = .always
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         
         self.setupInvalidators()
         self.loadData()
@@ -146,9 +144,7 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
         self.tableView.cellLayoutMarginsFollowReadableWidth = true
         self.tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
         
-        if #available(iOS 11.0, *) {
-            self.tableView.contentInsetAdjustmentBehavior = .automatic
-        }
+        self.tableView.contentInsetAdjustmentBehavior = .automatic
         
         self.registerDefaultCells()
         
@@ -185,11 +181,7 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
             
             self.definesPresentationContext = true
             
-            if #available(iOS 11.0, *) {
-                self.navigationItem.searchController = searchController
-            } else {
-                self.tableView.tableHeaderView = searchController.searchBar
-            }
+            self.navigationItem.searchController = searchController
             
         }
         
@@ -438,11 +430,7 @@ open class EventsViewController_Legacy: UIViewController, UISearchResultsUpdatin
     
     private func logStatement(_ output: String) {
         
-        if #available(iOS 12.0, *) {
-            os_log(.info, "EventsViewController: %@", output)
-        } else {
-            print("EventsViewController: \(output)")
-        }
+        os_log(.info, "EventsViewController: %@", output)
         
     }
     

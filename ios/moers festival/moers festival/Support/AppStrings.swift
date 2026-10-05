@@ -11,28 +11,28 @@ import Foundation
 enum AppStrings {
     
     public enum News {
-        public static let title = String.localized("News")
+        public static let title = String(localized: "News")
     }
     
     public enum Map {
-        public static let title = String.localized("Map")
+        public static let title = String(localized: "Map")
     }
     
     public enum Live {
-        public static let title = "Live"
+        public static let title = String(localized: "Live")
     }
     
     public enum Events {
-        public static let title = String.localized("Schedule")
+        public static let title = String(localized: "Schedule")
     }
     
     public enum UserSchedule {
-        public static let title = String.localized("Favorites")
+        public static let title = String(localized: "Favorites")
     }
     
     public enum Info {
-        public static let shortTitle = "Info"
-        public static let title = String.localized("Info & Tickets")
+        public static let shortTitle = String(localized: "Info")
+        public static let title = String(localized: "Info & Tickets")
     }
     
 }

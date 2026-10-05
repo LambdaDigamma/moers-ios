@@ -31,23 +31,23 @@ public struct AppUpdateCopy: Equatable, Sendable {
     public let sheetRequiredFooter: String
 
     public init(
-        bannerTitle: String = "Update available",
-        bannerMessage: String = "A newer version is available in the App Store.",
-        updateButtonTitle: String = "Update",
-        closeButtonTitle: String = "Close",
-        sheetTitle: String = "Update recommended",
-        sheetSubtitle: String = "Please install the latest version from the App Store.",
-        sheetBody: String = "This version may no longer support all current app features.",
-        sheetRequiredFooter: String = "The app can be used again after the update is installed."
+        bannerTitle: String? = nil,
+        bannerMessage: String? = nil,
+        updateButtonTitle: String? = nil,
+        closeButtonTitle: String? = nil,
+        sheetTitle: String? = nil,
+        sheetSubtitle: String? = nil,
+        sheetBody: String? = nil,
+        sheetRequiredFooter: String? = nil
     ) {
-        self.bannerTitle = bannerTitle
-        self.bannerMessage = bannerMessage
-        self.updateButtonTitle = updateButtonTitle
-        self.closeButtonTitle = closeButtonTitle
-        self.sheetTitle = sheetTitle
-        self.sheetSubtitle = sheetSubtitle
-        self.sheetBody = sheetBody
-        self.sheetRequiredFooter = sheetRequiredFooter
+        self.bannerTitle = bannerTitle ?? String(localized: "Update available", bundle: .module)
+        self.bannerMessage = bannerMessage ?? String(localized: "A newer version is available in the App Store.", bundle: .module)
+        self.updateButtonTitle = updateButtonTitle ?? String(localized: "Update", bundle: .module)
+        self.closeButtonTitle = closeButtonTitle ?? String(localized: "Close", bundle: .module)
+        self.sheetTitle = sheetTitle ?? String(localized: "Update recommended", bundle: .module)
+        self.sheetSubtitle = sheetSubtitle ?? String(localized: "Please install the latest version from the App Store.", bundle: .module)
+        self.sheetBody = sheetBody ?? String(localized: "This version may no longer support all current app features.", bundle: .module)
+        self.sheetRequiredFooter = sheetRequiredFooter ?? String(localized: "The app can be used again after the update is installed.", bundle: .module)
     }
 }
 

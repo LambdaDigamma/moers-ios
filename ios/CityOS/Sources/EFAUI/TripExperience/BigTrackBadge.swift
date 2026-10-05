@@ -27,7 +27,7 @@ public struct BigTrackBadge: View {
         
         VStack {
             
-            Text("Gleis".uppercased())
+            Text("PLATFORM", bundle: .module)
                 .font(.caption)
                 .fontWeight(.semibold)
             

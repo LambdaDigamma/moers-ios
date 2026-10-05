@@ -54,7 +54,7 @@ class EntryValidationViewController: UIViewController {
     
     private func setupUI() {
         
-        self.title = "Einträge validieren"
+        self.title = String(localized: "Validate Entries")
         
         // Setup collection view with list configuration
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())

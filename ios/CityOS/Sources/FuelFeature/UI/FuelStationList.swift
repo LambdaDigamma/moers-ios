@@ -112,7 +112,7 @@ public struct FuelStationList: View {
                     
                     if let price = fuelStation.price {
                         
-                        Text(String(format: "%.2f€", price))
+                        Text(price, format: .currency(code: "EUR"))
                             .fontWeight(.bold)
                             .padding(.horizontal, 8)
                             .padding(.vertical, 4)

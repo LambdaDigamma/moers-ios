@@ -14,37 +14,60 @@ import MMPages
 
 public struct VenueDetailScreen: View {
     
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     var viewModel: VenueDetailViewModel
     @State private var isPageExpanded = false
     
     public let onSelectEvent: (Event.ID) -> Void
     private let presentationContext: VenueDetailPresentationContext
+    private let layoutState: VenueDetailLayoutState?
     private let actionTransmitter: ActionTransmitter
     
     public init(
         viewModel: VenueDetailViewModel,
-        presentationContext: VenueDetailPresentationContext = .phoneFullScreen,
+        presentationContext: VenueDetailPresentationContext = .automatic,
         actionTransmitter: ActionTransmitter,
         onSelectEvent: @escaping (Event.ID) -> Void
     ) {
         self.viewModel = viewModel
         self.presentationContext = presentationContext
+        self.layoutState = nil
+        self.actionTransmitter = actionTransmitter
+        self.onSelectEvent = onSelectEvent
+    }
+
+    init(
+        viewModel: VenueDetailViewModel,
+        layoutState: VenueDetailLayoutState,
+        actionTransmitter: ActionTransmitter,
+        onSelectEvent: @escaping (Event.ID) -> Void
+    ) {
+        self.viewModel = viewModel
+        self.presentationContext = .automatic
+        self.layoutState = layoutState
         self.actionTransmitter = actionTransmitter
         self.onSelectEvent = onSelectEvent
     }
     
     public var body: some View {
         Group {
-            switch presentationContext {
-                case .phoneFullScreen:
+            switch resolvedPresentationContext {
+                case .automatic, .phoneFullScreen:
                     phoneLayout()
                 case .ipadDetail:
                     ipadLayout()
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-        .background(presentationContext == .ipadDetail ? Color.clear : Color(UIColor.systemBackground))
+        .background(resolvedPresentationContext == .ipadDetail ? Color.clear : Color(UIColor.systemBackground))
         
+    }
+
+    private var resolvedPresentationContext: VenueDetailPresentationContext {
+        let context = layoutState?.presentationContext ?? presentationContext
+        return context == .automatic
+            ? (horizontalSizeClass == .regular ? .ipadDetail : .phoneFullScreen)
+            : context
     }
     
     private func phoneLayout() -> some View {
@@ -80,7 +103,7 @@ public struct VenueDetailScreen: View {
                 if !viewModel.events.isEmpty {
                     sectionCard {
                         VStack(alignment: .leading, spacing: 16) {
-                            Text("Programm")
+                            Text("Program")
                                 .font(.headline)
                             
                             events(topPadding: 0, sectionBackground: .clear)
@@ -138,7 +161,7 @@ public struct VenueDetailScreen: View {
     
     @ViewBuilder
     private func heroOverlay() -> some View {
-        if presentationContext == .ipadDetail {
+        if resolvedPresentationContext == .ipadDetail {
             VStack(alignment: .leading, spacing: 4) {
                 Text(viewModel.name)
                     .font(.headline)
@@ -283,7 +306,7 @@ public struct VenueDetailScreen: View {
                     AppleNavigationProvider().startNavigation(to: point, withName: viewModel.name)
                 }
             )
-            .padding(.horizontal, presentationContext == .ipadDetail ? 0 : 16)
+            .padding(.horizontal, resolvedPresentationContext == .ipadDetail ? 0 : 16)
             
         }
         

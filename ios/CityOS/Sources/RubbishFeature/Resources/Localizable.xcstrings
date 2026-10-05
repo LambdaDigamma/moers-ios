@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "\nThe waste calendar is provided by waste management company ENNI for the app.\nThere is no guarantee that the data listed here is correct.\nIf you have any problems, you should therefore rather contact ENNI itself.\n" : {
-      "extractionState" : "manual",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -69,7 +69,7 @@
       }
     },
     "Loading the waste calendar could not be completed." : {
-      "extractionState" : "manual",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -230,12 +230,22 @@
         }
       }
     },
+    "Tomorrow’s collection: %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Morgen wird abgeholt: %@"
+          }
+        }
+      }
+    },
     "Waste schedule" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abfallkalender"
+            "value" : "Abfuhrkalender"
           }
         }
       }

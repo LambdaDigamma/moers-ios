@@ -53,6 +53,7 @@ class DetailPetrolStationViewController: UIViewController {
     }
     
     private func setupUI() {
+        self.countryLabel.text = String(localized: "Germany", bundle: .module)
         
         self.priceHeaderLabel.text = String(localized: "Price", bundle: .module)
         self.addressHeaderLabel.text = String(localized: "Address", bundle: .module)
@@ -73,7 +74,7 @@ class DetailPetrolStationViewController: UIViewController {
         self.streetLabel.text = petrolStation.street + " " + (petrolStation.houseNumber ?? "")
         self.placeLabel.text = "\(petrolStation.postCode ?? 0) \(petrolStation.place)"
         self.typeLabel.text = petrolManager.petrolType.name
-        self.priceLabel.text = String(format: "%.2f€", petrolStation.price ?? 0)
+        self.priceLabel.text = (petrolStation.price ?? 0).formatted(.currency(code: "EUR"))
         
     }
     

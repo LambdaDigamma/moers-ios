@@ -33,7 +33,7 @@ public struct WeatherDashboardView: View {
             
             viewModel.data.hasResource { (data: WeatherDashboardData) in
                 VStack {
-                    Text("23°C")
+                    Text(verbatim: "23°C")
                         .font(.largeTitle.weight(.semibold))
                 }
                 .padding()

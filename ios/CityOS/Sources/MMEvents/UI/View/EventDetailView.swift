@@ -66,8 +66,10 @@ open class EventDetailView: UIView, MKMapViewDelegate, UIScrollViewDelegate {
     private var imageContentTopAnchor: NSLayoutConstraint!
     private var noHeaderTopSpacerHeightAnchor: NSLayoutConstraint!
     private var backgroundExtensionContentTopAnchor: NSLayoutConstraint?
+    private var layoutStackTopAnchor: NSLayoutConstraint!
+    private var contentWidthConstraints: [NSLayoutConstraint] = []
     private let contentHorizontalInset: CGFloat = 16
-    private let bottomOverlayInset: CGFloat = 132
+    private let contentBottomSpacing: CGFloat = 16
     private let fallbackHeaderImageAspectRatio: CGFloat = 0.78
     private let noHeaderNavigationSpacing: CGFloat = 16
     private static let detailDateFormatter = makeDateFormatter(dateFormat: "E, dd.MM.")
@@ -99,6 +101,7 @@ open class EventDetailView: UIView, MKMapViewDelegate, UIScrollViewDelegate {
     private var hasStretchyHeader = false
     private var headerImageAspectRatio: CGFloat?
     private var lastHeaderSizingWidth: CGFloat = 0
+    private var lastHeaderSizingHeight: CGFloat = 0
     private var lastHeaderTopExtensionHeight: CGFloat = 0
     private var imageHeaderUsesBackgroundExtension = false
 
@@ -137,17 +140,17 @@ open class EventDetailView: UIView, MKMapViewDelegate, UIScrollViewDelegate {
     private lazy var organizerValueLabel = UILabel()
     private lazy var scheduleInfoView = makeInfoRow(
         systemImageName: "calendar",
-        title: "Termin",
+        title: String(localized: "Date", bundle: .module),
         valueLabel: scheduleValueLabel
     )
     private lazy var locationInfoView = makeInfoRow(
         systemImageName: "mappin.and.ellipse",
-        title: "Ort",
+        title: String(localized: "Venue", bundle: .module),
         valueLabel: locationValueLabel
     )
     private lazy var organizerInfoView = makeInfoRow(
         systemImageName: "person.crop.circle",
-        title: "Veranstalter",
+        title: String(localized: "Organizer", bundle: .module),
         valueLabel: organizerValueLabel
     )
     private lazy var metadataContainerView = makeInsetContainer(metadataStackView)
@@ -203,6 +206,7 @@ open class EventDetailView: UIView, MKMapViewDelegate, UIScrollViewDelegate {
     }
 
     private func setupConstraints() {
+        layoutStackTopAnchor = layoutStack.topAnchor.constraint(equalTo: containerView.topAnchor)
         let contentConstraints: [NSLayoutConstraint] = [
             scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             scrollView.topAnchor.constraint(equalTo: self.topAnchor),
@@ -213,7 +217,7 @@ open class EventDetailView: UIView, MKMapViewDelegate, UIScrollViewDelegate {
             containerView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
             containerView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
-            layoutStack.topAnchor.constraint(equalTo: containerView.topAnchor),
+            layoutStackTopAnchor,
             layoutStack.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             layoutStack.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
             layoutStack.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
@@ -227,7 +231,7 @@ open class EventDetailView: UIView, MKMapViewDelegate, UIScrollViewDelegate {
             rightSeparator.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ]
 
-        NSLayoutConstraint.activate(contentConstraints)
+        NSLayoutConstraint.activate(contentConstraints + contentWidthConstraints)
 
     }
 
@@ -236,6 +240,15 @@ open class EventDetailView: UIView, MKMapViewDelegate, UIScrollViewDelegate {
 
         updateHeaderHeight()
         updateNoHeaderTopSpacerHeight()
+        updateContentSafeAreaInsets()
+        // Cancel only the automatic top gap so the image still reaches behind the bar.
+        layoutStackTopAnchor.constant = -scrollView.adjustedContentInset.top
+    }
+
+    override open func safeAreaInsetsDidChange() {
+        super.safeAreaInsetsDidChange()
+
+        setNeedsLayout()
     }
 
     private func addSubviews() {
@@ -251,9 +264,9 @@ open class EventDetailView: UIView, MKMapViewDelegate, UIScrollViewDelegate {
     private func setupScrollView() {
         scrollView.delegate = self
         scrollView.alwaysBounceVertical = true
-        scrollView.contentInsetAdjustmentBehavior = .never
-        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: bottomOverlayInset, right: 0)
-        scrollView.scrollIndicatorInsets = scrollView.contentInset
+        scrollView.contentInsetAdjustmentBehavior = .automatic
+        scrollView.contentInset.bottom = contentBottomSpacing
+        scrollView.verticalScrollIndicatorInsets.bottom = contentBottomSpacing
     }
 
     private func setupEvent() {
@@ -563,6 +576,28 @@ open class EventDetailView: UIView, MKMapViewDelegate, UIScrollViewDelegate {
 
 private extension EventDetailView {
 
+    func updateContentSafeAreaInsets() {
+        for label in [titleLabel, subtitleLabel, noInformationLabel] {
+            let safeFrame = label.convert(safeAreaLayoutGuide.layoutFrame, from: self)
+            var insets = label.textInsets
+            insets.left = max(safeFrame.minX - label.bounds.minX, 0) + contentHorizontalInset
+            insets.right = max(label.bounds.maxX - safeFrame.maxX, 0) + contentHorizontalInset
+            if label.textInsets != insets {
+                label.textInsets = insets
+            }
+        }
+
+        for textView in [detailsTextView, ticketInfoTextView] {
+            let safeFrame = textView.convert(safeAreaLayoutGuide.layoutFrame, from: self)
+            var insets = textView.textContainerInset
+            insets.left = max(safeFrame.minX - textView.bounds.minX, 0) + contentHorizontalInset
+            insets.right = max(textView.bounds.maxX - safeFrame.maxX, 0) + contentHorizontalInset
+            if textView.textContainerInset != insets {
+                textView.textContainerInset = insets
+            }
+        }
+    }
+
     func setupImageHeaderView() {
 #if !os(watchOS)
         if #available(iOS 26.0, tvOS 26.0, visionOS 26.0, *) {
@@ -614,12 +649,14 @@ private extension EventDetailView {
         let topExtensionHeight = headerTopExtensionHeight
         updateHeaderContentPlacement(topExtensionHeight: topExtensionHeight)
 
-        guard availableWidth > 0 else { return }
+        guard availableWidth > 0, bounds.height > 0 else { return }
         guard force
             || abs(availableWidth - lastHeaderSizingWidth) > 0.5
+            || abs(bounds.height - lastHeaderSizingHeight) > 0.5
             || abs(topExtensionHeight - lastHeaderTopExtensionHeight) > 0.5 else { return }
 
         lastHeaderSizingWidth = availableWidth
+        lastHeaderSizingHeight = bounds.height
         lastHeaderTopExtensionHeight = topExtensionHeight
         imageHeightAnchor.constant = preferredHeaderHeight(for: availableWidth)
     }
@@ -628,7 +665,7 @@ private extension EventDetailView {
         let imageAspectRatio = headerImageAspectRatio ?? fallbackHeaderImageAspectRatio
         let rawHeight = width * imageAspectRatio
         let minimumHeight = min(max(width * 0.72, 260), 320)
-        let viewportHeight = bounds.height > 0 ? bounds.height : UIScreen.main.bounds.height
+        let viewportHeight = bounds.height
         let maximumHeight = max(minimumHeight, min(width * 1.18, viewportHeight * 0.6))
 
         return min(max(rawHeight, minimumHeight), maximumHeight) + headerTopExtensionHeight
@@ -656,12 +693,11 @@ private extension EventDetailView {
     func updateNoHeaderTopSpacerHeight() {
         guard noHeaderTopSpacerHeightAnchor != nil else { return }
 
-        let navigationBarHeight: CGFloat = 44
         let desiredHeight: CGFloat
         if noHeaderTopSpacerView.isHidden {
             desiredHeight = 0
         } else {
-            desiredHeight = safeAreaInsets.top + navigationBarHeight + noHeaderNavigationSpacing
+            desiredHeight = safeAreaInsets.top + noHeaderNavigationSpacing
         }
 
         guard abs(noHeaderTopSpacerHeightAnchor.constant - desiredHeight) > 0.5 else { return }
@@ -725,10 +761,13 @@ private extension EventDetailView {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(containedView)
 
+        // Activate viewport anchors after this container joins the scroll hierarchy.
+        contentWidthConstraints.append(contentsOf: [
+            containedView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: contentHorizontalInset),
+            containedView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -contentHorizontalInset),
+        ])
         NSLayoutConstraint.activate([
-            containedView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: contentHorizontalInset),
             containedView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            containedView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -contentHorizontalInset),
             containedView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
         ])
 
@@ -849,6 +888,7 @@ private extension EventDetailView {
     }
 
     func updateStretchyHeader(for offsetY: CGFloat) {
+        let offsetY = offsetY + scrollView.adjustedContentInset.top
         guard !imageHeaderUsesBackgroundExtension else {
             resetStretchyHeader()
             return
@@ -880,6 +920,10 @@ private extension EventDetailView {
 }
 
 extension EventDetailView {
+
+    public func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
+        setNeedsLayout()
+    }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateStretchyHeader(for: scrollView.contentOffset.y)

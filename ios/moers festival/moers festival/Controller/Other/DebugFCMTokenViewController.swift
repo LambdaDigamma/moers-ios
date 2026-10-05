@@ -26,7 +26,7 @@ final class DebugFCMTokenViewController: UIViewController {
     }
 
     private func setupUI() {
-        title = "FCM Token"
+        title = String(localized: "FCM Token")
         view.backgroundColor = .systemGroupedBackground
 
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -46,11 +46,11 @@ final class DebugFCMTokenViewController: UIViewController {
         tokenTextView.textContainerInset = UIEdgeInsets(top: 12, left: 10, bottom: 12, right: 10)
         tokenTextView.accessibilityIdentifier = "DebugFCMTokenTextView"
 
-        copyButton.setTitle("Copy", for: .normal)
+        copyButton.setTitle(String(localized: "Copy"), for: .normal)
         copyButton.addTarget(self, action: #selector(copyToken), for: .touchUpInside)
         copyButton.accessibilityIdentifier = "DebugFCMTokenCopyButton"
 
-        refreshButton.setTitle("Refresh", for: .normal)
+        refreshButton.setTitle(String(localized: "Refresh"), for: .normal)
         refreshButton.addTarget(self, action: #selector(refreshToken), for: .touchUpInside)
         refreshButton.accessibilityIdentifier = "DebugFCMTokenRefreshButton"
 
@@ -84,7 +84,7 @@ final class DebugFCMTokenViewController: UIViewController {
         guard let currentToken else { return }
 
         UIPasteboard.general.string = currentToken
-        statusLabel.text = "Token copied."
+        statusLabel.text = String(localized: "Token copied.")
     }
 
     @objc private func refreshToken() {
@@ -101,7 +101,7 @@ final class DebugFCMTokenViewController: UIViewController {
 
     private func applyLoadingState() {
         currentToken = nil
-        statusLabel.text = "Loading FCM token..."
+        statusLabel.text = String(localized: "Loading FCM token...")
         tokenTextView.text = ""
         copyButton.isEnabled = false
         refreshButton.isEnabled = false
@@ -112,7 +112,7 @@ final class DebugFCMTokenViewController: UIViewController {
 
         if let errorMessage {
             currentToken = nil
-            statusLabel.text = "Could not load FCM token: \(errorMessage)"
+            statusLabel.text = String(localized: "Could not load FCM token: \(errorMessage)")
             tokenTextView.text = ""
             copyButton.isEnabled = false
             return
@@ -120,14 +120,14 @@ final class DebugFCMTokenViewController: UIViewController {
 
         guard let token, token.isEmpty == false else {
             currentToken = nil
-            statusLabel.text = "No FCM token is currently available."
+            statusLabel.text = String(localized: "No FCM token is currently available.")
             tokenTextView.text = ""
             copyButton.isEnabled = false
             return
         }
 
         currentToken = token
-        statusLabel.text = "Current FCM token:"
+        statusLabel.text = String(localized: "Current FCM token:")
         tokenTextView.text = token
         copyButton.isEnabled = true
     }

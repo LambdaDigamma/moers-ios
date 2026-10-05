@@ -48,9 +48,9 @@ public struct MapTourCardView: View {
             
             HStack(alignment: .top, spacing: 12) {
                 VStack(alignment: .leading, spacing: 16) {
-                    (Text("Karte der Ausstellungsorte ") + Text(Image(systemName: "chevron.right").resizable()))
+                    (Text("Map of exhibition venues", bundle: .module) + Text(Image(systemName: "chevron.right").resizable()))
                         .font(.title)
-                    Text("Auf der Karte findest Du die einzelnen Orte und kannst schnell eine Navigation starten.")
+                    Text("Find each venue on the map and start navigation.", bundle: .module)
                         .font(.footnote)
                         .foregroundColor(Color(.secondaryLabel))
                 }

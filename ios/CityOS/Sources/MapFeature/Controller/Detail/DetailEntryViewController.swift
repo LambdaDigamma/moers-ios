@@ -84,6 +84,17 @@ class DetailEntryViewController: UIViewController {
     // MARK: - Private Methods
     
     private func setupUI() {
+        self.phoneHeaderLabel.text = String(localized: "Phone", bundle: .module)
+        self.websiteHeaderLabel.text = String(localized: "Website", bundle: .module)
+        self.mondayHeaderLabel.text = String(localized: "Monday", bundle: .module)
+        self.tuesdayHeaderLabel.text = String(localized: "Tuesday", bundle: .module)
+        self.wednesdayHeaderLabel.text = String(localized: "Wednesday", bundle: .module)
+        self.thursdayHeaderLabel.text = String(localized: "Thursday", bundle: .module)
+        self.fridayHeaderLabel.text = String(localized: "Friday", bundle: .module)
+        self.saturdayHeaderLabel.text = String(localized: "Saturday", bundle: .module)
+        self.otherHeaderLabel.text = String(localized: "Sunday and Holidays", bundle: .module)
+        self.countryLabel.text = String(localized: "Germany", bundle: .module)
+
         
         self.callButton.setTitle(String(localized: "Call", bundle: .module), for: .normal)
         self.websiteButton.setTitle(String(localized: "Website", bundle: .module), for: .normal)
@@ -165,9 +176,9 @@ class DetailEntryViewController: UIViewController {
         }
         
         if let update = entry.updatedAt {
-            self.lastUpdateLabel.text = "\(String(localized: "Last updated:", bundle: .module)) \(update.beautify(format: "dd.MM.yyyy HH:mm"))"
+            self.lastUpdateLabel.text = String(localized: "Last updated: \(update.formatted(date: .numeric, time: .shortened))", bundle: .module)
         } else {
-            self.lastUpdateLabel.text = "\(String(localized: "Last updated:", bundle: .module)) \(String(localized: "not known", bundle: .module))"
+            self.lastUpdateLabel.text = String(localized: "Last updated: not known", bundle: .module)
         }
         
 //        Analytics.logEvent("Open Entry Website", parameters:

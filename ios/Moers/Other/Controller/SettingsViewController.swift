@@ -166,7 +166,7 @@ class SettingsViewController: UIViewController {
         
         let reminderPage = onboardingManager.makeRubbishReminderPage()
         
-        reminderPage.alternativeButtonTitle = "Deaktivieren"
+        reminderPage.alternativeButtonTitle = String(localized: "Disable")
         reminderPage.actionHandler = { [weak self] item in
             
             guard let page = item as? RubbishReminderBulletinItem else { return }
@@ -260,10 +260,10 @@ class SettingsViewController: UIViewController {
                 minuteString += "\(minute)"
             }
             
-            rubbishReminder = String(localized: "Reminder") + ": \(hourString):\(minuteString)"
+            rubbishReminder = String(localized: "Reminder: \(hourString):\(minuteString)")
             
         } else {
-            rubbishReminder = String(localized: "Reminder") + ": " + String(localized: "not activated")
+            rubbishReminder = String(localized: "Reminder: not activated")
         }
         
         let userType = UserManager.shared.user.type
@@ -276,7 +276,7 @@ class SettingsViewController: UIViewController {
             [
                 .navigation(
                     NavigationItem(
-                        title: String(localized: "Type") + ": " + userType.name,
+                        title: String(localized: "Type: \(userType.name)"),
                         action: showUserType
                     )
                 )
@@ -313,7 +313,7 @@ class SettingsViewController: UIViewController {
                 ),
                 .navigation(
                     NavigationItem(
-                        title: String(localized: "Street") + ": \(rubbishService.rubbishStreet?.displayName ?? String(localized: "NotSelected"))",
+                        title: String(localized: "Street: \(rubbishService.rubbishStreet?.displayName ?? String(localized: "Not selected"))"),
                         action: showRubbishStreet
                     )
                 ),
@@ -360,11 +360,8 @@ class SettingsViewController: UIViewController {
         
         let manager = BLTNItemManager(rootItem: item)
         
-        manager.backgroundColor = UIColor.systemBackground
-        manager.backgroundViewStyle = .dimmed
         manager.statusBarAppearance = .hidden
         manager.hidesHomeIndicator = false
-        manager.edgeSpacing = .compact
         
         return manager
         
@@ -419,11 +416,11 @@ nonisolated enum Section: Hashable {
     @MainActor var title: String {
         switch self {
         case .user:
-            return String.localized("User")
+            return String(localized: "User")
         case .petrol:
-            return String.localized("Petrol")
+            return String(localized: "Petrol")
         case .rubbish:
-            return String.localized("SettingsRubbishCollectionTitle")
+            return String(localized: "Pick-up Schedule")
         }
     }
 }

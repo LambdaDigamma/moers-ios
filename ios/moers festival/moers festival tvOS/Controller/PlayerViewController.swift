@@ -23,6 +23,8 @@ class PlayerViewController: AVPlayerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = String(localized: "Live")
+        tabBarItem.title = String(localized: "Live")
         
     }
     
@@ -141,7 +143,7 @@ class PlayerViewController: AVPlayerViewController {
 //        }
         
         // Build description item
-        let descItem = makeMetadataItem(.commonIdentifierDescription, value: event.description ?? "No description available.")
+        let descItem = makeMetadataItem(.commonIdentifierDescription, value: event.description ?? String(localized: "No description available."))
         metadata.append(descItem)
         
         // Build genre item

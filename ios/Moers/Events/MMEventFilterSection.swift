@@ -18,17 +18,17 @@ nonisolated enum MMEventFilterSection: Int, CaseIterable {
     var title: String {
         switch self {
         case .date:
-            return "Zeitraum"
+            return String(localized: "Date Range")
         case .flags:
-            return "Ansicht"
+            return String(localized: "Display")
         case .attendance:
-            return "Teilnahme"
+            return String(localized: "Attendance")
         case .categories:
-            return "Kategorien"
+            return String(localized: "Categories")
         case .venues:
-            return "Orte"
+            return String(localized: "Venues")
         case .organizers:
-            return "Veranstalter"
+            return String(localized: "Organizers")
         }
     }
 }

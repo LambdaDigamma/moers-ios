@@ -25,14 +25,14 @@ class NotificationBuilderBulletinPage: FeedbackPageBulletinItem {
             traitCollection.userInterfaceStyle == .dark ? .systemYellow : .black
         })
 
-        titleTextField = interfaceBuilder.makeTextField(placeholder: "Titel", returnKey: .next, delegate: self)
+        titleTextField = interfaceBuilder.makeTextField(placeholder: String(localized: "Title"), returnKey: .next, delegate: self)
         titleTextField.keyboardAppearance = .dark
         titleTextField.translatesAutoresizingMaskIntoConstraints = false
         titleTextField.heightAnchor.constraint(equalToConstant: 55).isActive = true
         titleTextField.layer.cornerRadius = 12
         titleTextField.layer.borderWidth = 2
 
-        bodyTextField = interfaceBuilder.makeTextField(placeholder: "Text", returnKey: .done, delegate: self)
+        bodyTextField = interfaceBuilder.makeTextField(placeholder: String(localized: "Text"), returnKey: .done, delegate: self)
         bodyTextField.keyboardAppearance = .dark
         bodyTextField.translatesAutoresizingMaskIntoConstraints = false
         bodyTextField.heightAnchor.constraint(equalToConstant: 55).isActive = true
@@ -44,7 +44,7 @@ class NotificationBuilderBulletinPage: FeedbackPageBulletinItem {
         self.titleTextField.tintColor = accentColor
         self.titleTextField.textColor = UIColor.label
         self.titleTextField.attributedPlaceholder = NSAttributedString(
-            string: "Titel",
+            string: String(localized: "Title"),
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText]
         )
 
@@ -53,7 +53,7 @@ class NotificationBuilderBulletinPage: FeedbackPageBulletinItem {
         self.bodyTextField.tintColor = accentColor
         self.bodyTextField.textColor = UIColor.label
         self.bodyTextField.attributedPlaceholder = NSAttributedString(
-            string: "Text",
+            string: String(localized: "Text"),
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText]
         )
 

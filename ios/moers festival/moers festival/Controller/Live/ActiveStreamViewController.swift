@@ -175,7 +175,7 @@ public struct ActiveStreamScreen: View {
                     case .ready:
                         EmptyView()
                     case .error(_):
-                        Text(verbatim: "YouTube player couldn't be loaded")
+                        Text("YouTube player couldn't be loaded")
                 }
             }
             .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fit)

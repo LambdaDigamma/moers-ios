@@ -123,7 +123,7 @@ class MapLocationPickerViewController: UIViewController {
         userLocationButton.clipsToBounds = true
         userLocationButton.addTarget(self, action: #selector(focusOnUserLocation), for: .touchUpInside)
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Weiter", style: .plain, target: self, action: #selector(continueOnboarding))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Continue", bundle: .module), style: .plain, target: self, action: #selector(continueOnboarding))
         
         Task {
             await executeReverseGeocode()

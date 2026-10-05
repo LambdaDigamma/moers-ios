@@ -41,23 +41,33 @@ public class NewMapViewController: UIViewController {
     private var drawerViewController: NewMapDrawerViewController?
     private var overlayPanelController: MapPanelContainerController?
     private var sheetTransitioningDelegate: TabSheetTransitioningDelegate?
+    private var venueDetailNavigationController: UINavigationController?
+    private var pendingVenueID: Place.ID?
+    private var drawerDetent: UISheetPresentationController.Detent.Identifier = .small
+    private var drawerTransitionIsInProgress = false
+    private var wantsDrawerVisible = false
+    private var wasHiddenByTabSelection = false
+    private var suspensionCompletions: [() -> Void] = []
     private var currentFeatures: [StylableFeature] = []
     private var festivalGeoData: FGDCollection?
     
     private var usesOverlayPanels: Bool {
-        traitCollection.userInterfaceIdiom == .pad
+        traitCollection.horizontalSizeClass == .regular
     }
     
     // MARK: - Lifecycle
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
+        definesPresentationContext = true
+
         setupUI()
         setupConstraints()
         setupMap()
         setupListeners()
-        configureMapDrawerIfNeeded()
+        registerForTraitChanges([UITraitHorizontalSizeClass.self]) { (self: NewMapViewController, _) in
+            self.updateDrawerPresentation()
+        }
 
         loadTask = Task { [weak self] in
             guard let self else { return }
@@ -70,10 +80,9 @@ public class NewMapViewController: UIViewController {
     public override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
 
-        if usesOverlayPanels {
-            configureMapDrawerIfNeeded()
-        } else {
-            presentDrawer()
+        if wasHiddenByTabSelection || !drawerTransitionIsInProgress {
+            wasHiddenByTabSelection = false
+            resumeDrawerPresentation()
         }
 
         NotificationCenter.default.addObserver(
@@ -84,9 +93,18 @@ public class NewMapViewController: UIViewController {
         )
     }
 
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateDrawerPresentation()
+    }
+
     public override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
+        if let tabBarController, tabBarController.selectedViewController !== self {
+            wasHiddenByTabSelection = true
+            suspendDrawerPresentation()
+        }
         NotificationCenter.default.removeObserver(self, name: .updateFestivalGeoData, object: nil)
     }
 
@@ -97,6 +115,7 @@ public class NewMapViewController: UIViewController {
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         overlayPanelController?.invalidatePanelLayout(animated: false)
+        updateDrawerPresentation()
     }
 
     @objc private func receiveUpdateGeoData() {
@@ -176,64 +195,6 @@ public class NewMapViewController: UIViewController {
             .store(in: &cancellables)
     }
     
-    private func configureMapDrawerIfNeeded() {
-        
-        guard usesOverlayPanels else { return }
-        guard overlayPanelController == nil else { return }
-        
-        let drawer = NewMapDrawerViewController()
-        drawer.delegate = self
-        drawer.setExpandedContentVisible(isVisible: false, animated: false)
-        drawer.setCollectionViewScrollInteraction(isEnabled: false)
-        drawerViewController = drawer
-        
-        let overlayController = MapPanelContainerController()
-        overlayController.topBoundaryProvider = { [weak self] in
-            self?.panelTopBoundary() ?? 16
-        }
-        overlayController.onBaseStateChange = { [weak self] state in
-            guard let self else { return }
-            let isExpanded = state == .expanded
-            self.drawerViewController?.setExpandedContentVisible(isVisible: isExpanded, animated: true)
-            self.drawerViewController?.setCollectionViewScrollInteraction(isEnabled: isExpanded)
-            if !isExpanded {
-                self.drawerViewController?.resignSearch()
-            }
-        }
-        
-        addChild(overlayController)
-        overlayController.view.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(overlayController.view)
-        NSLayoutConstraint.activate([
-            overlayController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            overlayController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            overlayController.view.topAnchor.constraint(equalTo: view.topAnchor),
-            overlayController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ])
-        overlayController.didMove(toParent: self)
-        overlayController.installBasePanel(with: drawer, initialState: .peek)
-        overlayController.invalidatePanelLayout(animated: false)
-        
-        if let dorf = festivalGeoData?.dorf {
-            drawer.updateBooths(dorf)
-        }
-        
-        overlayPanelController = overlayController
-    }
-    
-    private func panelTopBoundary() -> CGFloat {
-        
-        var topBoundary = view.safeAreaInsets.top
-        
-        if let tabBar = tabBarController?.tabBar,
-           let tabBarSuperview = tabBar.superview {
-            let tabBarFrame = view.convert(tabBar.frame, from: tabBarSuperview)
-            topBoundary = max(topBoundary, tabBarFrame.maxY)
-        }
-        
-        return topBoundary + 16
-    }
-
     // MARK: - Data Loading
 
     @MainActor
@@ -353,66 +314,6 @@ public class NewMapViewController: UIViewController {
         }
     }
     
-    // MARK: - Sheet Presentation
-    
-    private func presentDrawer() {
-        
-        guard !usesOverlayPanels else {
-            configureMapDrawerIfNeeded()
-            return
-        }
-        
-        if let drawerViewController, presentedViewController === drawerViewController {
-            return
-        }
-        
-        let drawer = NewMapDrawerViewController()
-        drawer.delegate = self
-        
-        self.drawerViewController = drawer
-        
-        let transitionDelegate = TabSheetTransitioningDelegate()
-        transitionDelegate.sheetDelegate = self
-        self.sheetTransitioningDelegate = transitionDelegate
-        
-        drawer.isModalInPresentation = true
-        drawer.modalPresentationStyle = .custom
-        drawer.transitioningDelegate = transitionDelegate
-        
-        self.present(drawer, animated: false)
-
-    }
-    
-    // MARK: - Public Methods
-    
-    private func showPlaceDetail(placeID: Place.ID) {
-        
-        if usesOverlayPanels {
-            configureMapDrawerIfNeeded()
-            drawerViewController?.resignSearch()
-            
-            let viewController = VenueDetailController(placeID: placeID, presentationContext: .ipadDetail)
-            viewController.coordinator = coordinator
-            
-            overlayPanelController?.showDetailPanel(with: viewController, animated: true)
-            return
-        }
-        
-        let viewController = VenueDetailController(placeID: placeID, presentationContext: .phoneFullScreen)
-        viewController.coordinator = coordinator
-        viewController.modalPresentationStyle = .formSheet
-        viewController.showCloseButton = true
-        
-        let navController = UINavigationController(rootViewController: viewController)
-        navController.modalPresentationStyle = .formSheet
-        
-        if let presenter = (presentedViewController as? NewMapDrawerViewController) ?? drawerViewController {
-            presenter.present(navController, animated: true)
-        } else {
-            present(navController, animated: true)
-        }
-    }
-    
     func focusOnFeature(_ feature: DorfFeature) {
         
         let camera = MKMapCamera(
@@ -452,6 +353,257 @@ public class NewMapViewController: UIViewController {
         }
     }
     
+}
+
+extension NewMapViewController {
+
+    private func ensureDrawer() -> NewMapDrawerViewController {
+        if let drawerViewController { return drawerViewController }
+        let drawer = NewMapDrawerViewController()
+        drawer.delegate = self
+        drawer.onDidAppear = { [weak self] in self?.updateDrawerPresentation() }
+        if let dorf = festivalGeoData?.dorf {
+            drawer.updateBooths(dorf)
+        }
+        drawerViewController = drawer
+        return drawer
+    }
+
+    private func installOverlayPanels(with drawer: NewMapDrawerViewController) {
+        let overlay = MapPanelContainerController()
+        overlay.topBoundaryProvider = { [weak self] in
+            (self?.view.safeAreaInsets.top ?? 0) + 16
+        }
+        overlay.onBaseStateChange = { [weak self] state in
+            guard let self else { return }
+            let previousState: MapPanelState = self.drawerDetent == .small ? .peek : .expanded
+            if state != previousState {
+                self.drawerDetent = state == .peek ? .small : .nearFull
+            }
+            let isExpanded = state == .expanded
+            drawer.setExpandedContentVisible(isVisible: isExpanded, animated: false)
+            drawer.setCollectionViewScrollInteraction(isEnabled: isExpanded)
+            if !isExpanded { drawer.resignSearch() }
+        }
+        overlay.onDetailClose = { [weak self] in self?.venueDetailNavigationController = nil }
+        overlayPanelController = overlay
+        addChild(overlay)
+        overlay.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(overlay.view)
+        NSLayoutConstraint.activate([
+            overlay.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            overlay.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            overlay.view.topAnchor.constraint(equalTo: view.topAnchor),
+            overlay.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+        overlay.didMove(toParent: self)
+        overlay.installBasePanel(with: drawer, initialState: drawerDetent == .small ? .peek : .expanded)
+        if let detail = venueDetailNavigationController {
+            configureVenueNavigation(forOverlay: true)
+            overlay.showDetailPanel(with: detail, animated: false)
+        }
+        overlay.invalidatePanelLayout(animated: false)
+    }
+
+    private func removeOverlayPanels() {
+        guard let overlay = overlayPanelController else { return }
+        overlay.releasePanels()
+        overlay.willMove(toParent: nil)
+        overlay.view.removeFromSuperview()
+        overlay.removeFromParent()
+        overlayPanelController = nil
+    }
+
+    // MARK: - Sheet Presentation
+
+    func resumeDrawerPresentation() {
+        guard suspensionCompletions.isEmpty else { return }
+        wantsDrawerVisible = true
+        updateDrawerPresentation()
+    }
+
+    func suspendDrawerPresentation(completion: (() -> Void)? = nil) {
+        wantsDrawerVisible = false
+        saveDrawerDetent()
+        if let completion { suspensionCompletions.append(completion) }
+        guard !drawerTransitionIsInProgress else { return }
+        if let detail = venueDetailNavigationController, detail.presentingViewController != nil {
+            drawerTransitionIsInProgress = true
+            detail.dismiss(animated: false) { [weak self] in self?.finishDrawerTransition() }
+            return
+        }
+        guard let drawer = drawerViewController, drawer.presentingViewController != nil else {
+            let completions = suspensionCompletions
+            suspensionCompletions.removeAll()
+            completions.forEach { $0() }
+            return
+        }
+        drawerTransitionIsInProgress = true
+        drawer.dismiss(animated: false) { [weak self] in
+            guard let self else { return }
+            self.finishDrawerTransition()
+        }
+    }
+
+    private func finishDrawerTransition() {
+        drawerTransitionIsInProgress = false
+        if let pendingVenueID {
+            self.pendingVenueID = nil
+            showPlaceDetail(placeID: pendingVenueID)
+        }
+        if !wantsDrawerVisible { suspendDrawerPresentation() }
+        updateDrawerPresentation()
+    }
+
+    private func saveDrawerDetent() {
+        if let sheet = drawerViewController?.presentationController as? UISheetPresentationController,
+           let detent = sheet.selectedDetentIdentifier {
+            drawerDetent = detent
+        }
+    }
+
+    private func updateDrawerPresentation() {
+        guard wantsDrawerVisible, isViewLoaded, view.window != nil,
+              !drawerTransitionIsInProgress else { return }
+        if let tabBarController, tabBarController.selectedViewController !== self { return }
+        let drawer = ensureDrawer()
+        let detail = venueDetailNavigationController
+
+        guard !hasUnrelatedPresentation(drawer: drawer, detail: detail),
+              !waitForPresentationTransition(drawer: drawer, detail: detail) else { return }
+
+        if usesOverlayPanels {
+            if let detail, detail.presentingViewController != nil {
+                drawerTransitionIsInProgress = true
+                detail.dismiss(animated: false) { [weak self] in self?.finishDrawerTransition() }
+            } else if drawer.presentingViewController != nil {
+                saveDrawerDetent()
+                drawerTransitionIsInProgress = true
+                drawer.dismiss(animated: false) { [weak self] in
+                    guard let self else { return }
+                    self.finishDrawerTransition()
+                }
+            } else if overlayPanelController == nil {
+                installOverlayPanels(with: drawer)
+            }
+            return
+        }
+
+        presentCompactDrawerIfNeeded(drawer, detail: detail)
+    }
+
+    private func hasUnrelatedPresentation(drawer: UIViewController, detail: UINavigationController?) -> Bool {
+        var ancestor: UIViewController? = self
+        while let controller = ancestor {
+            if let presented = controller.presentedViewController,
+               presented !== drawer, presented !== detail { return true }
+            ancestor = controller.parent
+        }
+        if detail?.presentedViewController != nil || detail?.topViewController?.presentedViewController != nil { return true }
+        if let presented = drawer.presentedViewController, presented !== detail { return true }
+        return false
+    }
+
+    private func waitForPresentationTransition(drawer: UIViewController, detail: UIViewController?) -> Bool {
+        guard let transition = detail?.transitionCoordinator ?? drawer.transitionCoordinator,
+              drawer.isBeingPresented || drawer.isBeingDismissed
+                || detail?.isBeingPresented == true || detail?.isBeingDismissed == true else { return false }
+        drawerTransitionIsInProgress = true
+        transition.animate(alongsideTransition: nil) { [weak self] _ in
+            self?.finishDrawerTransition()
+        }
+        return true
+    }
+
+    private func presentCompactDrawerIfNeeded(_ drawer: NewMapDrawerViewController, detail: UINavigationController?) {
+        removeOverlayPanels()
+        if drawer.presentingViewController == nil {
+            guard presentedViewController == nil else { return }
+            drawer.view.isHidden = false
+            drawer.setExpandedContentVisible(isVisible: true, animated: false)
+            drawer.setCollectionViewScrollInteraction(isEnabled: drawerDetent == .nearFull)
+            let transitionDelegate = TabSheetTransitioningDelegate()
+            transitionDelegate.sheetDelegate = self
+            transitionDelegate.selectedDetentIdentifier = drawerDetent
+            sheetTransitioningDelegate = transitionDelegate
+            drawer.isModalInPresentation = true
+            drawer.modalPresentationStyle = .custom
+            drawer.transitioningDelegate = transitionDelegate
+            drawerTransitionIsInProgress = true
+            present(drawer, animated: false) { [weak self] in
+                guard let self else { return }
+                self.finishDrawerTransition()
+            }
+        } else if let detail, detail.presentingViewController == nil, drawer.presentedViewController == nil {
+            configureVenueNavigation(forOverlay: false)
+            drawerTransitionIsInProgress = true
+            drawer.present(detail, animated: false) { [weak self] in
+                guard let self else { return }
+                detail.presentationController?.delegate = self
+                self.finishDrawerTransition()
+            }
+        }
+    }
+
+    private func configureVenueNavigation(forOverlay: Bool) {
+        guard let navigationController = venueDetailNavigationController else { return }
+        navigationController.setNavigationBarHidden(forOverlay, animated: false)
+        if let venue = navigationController.viewControllers.first as? VenueDetailController {
+            venue.presentationContext = forOverlay ? .ipadDetail : .automatic
+            venue.showCloseButton = !forOverlay
+            venue.configureNavigationBar()
+        }
+    }
+
+    // MARK: - Public Methods
+
+    private func showPlaceDetail(placeID: Place.ID) {
+        guard !drawerTransitionIsInProgress else {
+            pendingVenueID = placeID
+            return
+        }
+        drawerViewController?.resignSearch()
+        let venue = VenueDetailController(placeID: placeID)
+        venue.coordinator = coordinator
+        venue.onClose = { [weak self] in self?.closePlaceDetail() }
+        venue.onDidAppear = { [weak self] in self?.updateDrawerPresentation() }
+        let detail = UINavigationController(rootViewController: venue)
+        detail.modalPresentationStyle = .formSheet
+        let existing = venueDetailNavigationController
+        venueDetailNavigationController = detail
+        if let existing, existing.presentingViewController != nil {
+            drawerTransitionIsInProgress = true
+            existing.dismiss(animated: false) { [weak self] in
+                guard let self else { return }
+                self.finishDrawerTransition()
+            }
+            return
+        }
+        if let overlay = overlayPanelController {
+            configureVenueNavigation(forOverlay: true)
+            overlay.showDetailPanel(with: detail, animated: true)
+        } else {
+            updateDrawerPresentation()
+        }
+    }
+
+    private func closePlaceDetail() {
+        guard let detail = venueDetailNavigationController else { return }
+        if let overlay = overlayPanelController {
+            venueDetailNavigationController = nil
+            overlay.dismissDetailPanel()
+        } else {
+            drawerTransitionIsInProgress = true
+            detail.dismiss(animated: true) { [weak self] in
+                guard let self else { return }
+                if self.venueDetailNavigationController === detail {
+                    self.venueDetailNavigationController = nil
+                }
+                self.finishDrawerTransition()
+            }
+        }
+    }
+
 }
 
 // MARK: - MKMapViewDelegate
@@ -582,11 +734,22 @@ extension NewMapViewController: MKMapViewDelegate {
 // MARK: - UISheetPresentationControllerDelegate
 
 extension NewMapViewController: UISheetPresentationControllerDelegate {
+
+    public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        if presentationController.presentedViewController === venueDetailNavigationController {
+            venueDetailNavigationController = nil
+        }
+        updateDrawerPresentation()
+    }
     
     public func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController) {
         
-        guard !usesOverlayPanels else { return }
-        
+        guard !usesOverlayPanels,
+              sheetPresentationController.presentedViewController === drawerViewController else { return }
+        if let detent = sheetPresentationController.selectedDetentIdentifier {
+            drawerDetent = detent
+        }
+
         if sheetPresentationController.selectedDetentIdentifier == .nearFull {
             drawerViewController?.setCollectionViewScrollInteraction(isEnabled: true)
         } else {
@@ -612,7 +775,7 @@ extension NewMapViewController: NewMapDrawerDelegate {
             return
         }
 
-        if let sheet = drawerViewController?.sheetPresentationController {
+        if let sheet = (drawerViewController?.presentationController as? UISheetPresentationController) {
             sheet.animateChanges {
                 sheet.selectedDetentIdentifier = .small
             }
@@ -629,7 +792,7 @@ extension NewMapViewController: NewMapDrawerDelegate {
             return
         }
 
-        if let sheet = drawerViewController?.sheetPresentationController {
+        if let sheet = (drawerViewController?.presentationController as? UISheetPresentationController) {
             sheet.animateChanges {
                 sheet.selectedDetentIdentifier = .small
             }
@@ -645,371 +808,10 @@ extension NewMapViewController: NewMapDrawerDelegate {
             return
         }
         
-        if let sheet = drawerViewController?.sheetPresentationController {
+        if let sheet = (drawerViewController?.presentationController as? UISheetPresentationController) {
             sheet.animateChanges {
                 sheet.selectedDetentIdentifier = .nearFull
             }
         }
     }
-}
-
-private enum MapPanelState {
-    case peek
-    case expanded
-}
-
-private final class MapPanelContainerController: UIViewController {
-    
-    var topBoundaryProvider: (() -> CGFloat)?
-    var onBaseStateChange: ((MapPanelState) -> Void)?
-    
-    private let panelInset: CGFloat = 16
-    private let preferredPanelWidth: CGFloat = 380
-    private let peekHeight: CGFloat = 96
-    private let baseChromeHeight: CGFloat = 24
-    private let detailChromeHeight: CGFloat = 56
-    
-    private let panelView = UIView()
-    private let materialView = UIVisualEffectView()
-    private let tintView = UIView()
-    private let chromeView = UIView()
-    private let grabberView = UIView()
-    private let closeButton = UIButton(type: .system)
-    private let contentContainerView = UIView()
-    
-    private var panelWidthConstraint: NSLayoutConstraint!
-    private var panelHeightConstraint: NSLayoutConstraint!
-    private var chromeHeightConstraint: NSLayoutConstraint!
-    
-    private var baseController: UIViewController?
-    private var detailController: UIViewController?
-    private(set) var baseState: MapPanelState = .peek
-    private var storedBaseState: MapPanelState = .peek
-    private var panStartingHeight: CGFloat = 0
-    
-    private lazy var panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanelPan(_:)))
-    
-    override func loadView() {
-        view = MapPanelPassthroughView()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
-        setupConstraints()
-        applyBaseChrome()
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        guard traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else { return }
-        updatePanelAppearance()
-    }
-    
-    func installBasePanel(with controller: UIViewController, initialState: MapPanelState) {
-        
-        guard baseController == nil else { return }
-        
-        baseController = controller
-        embed(controller, in: contentContainerView)
-        controller.view.backgroundColor = .clear
-        storedBaseState = initialState
-        setBasePanelState(initialState, animated: false)
-    }
-    
-    func setBasePanelState(_ state: MapPanelState, animated: Bool) {
-        
-        baseState = state
-        storedBaseState = state
-        onBaseStateChange?(state)
-        
-        guard detailController == nil else { return }
-        
-        applyBaseChrome()
-        invalidatePanelLayout(animated: animated)
-    }
-    
-    func showDetailPanel(with controller: UIViewController, animated: Bool) {
-        
-        if let existingDetail = detailController {
-            remove(existingDetail)
-        }
-        
-        if detailController == nil {
-            storedBaseState = baseState
-        }
-        
-        detailController = controller
-        controller.view.backgroundColor = .clear
-        baseController?.view.isHidden = true
-        embed(controller, in: contentContainerView)
-        applyDetailChrome()
-        invalidatePanelLayout(animated: animated)
-        
-        guard animated else { return }
-        
-        controller.view.alpha = 0
-        controller.view.transform = CGAffineTransform(translationX: 0, y: 32)
-        
-        UIView.animate(withDuration: 0.24, delay: 0, options: [.curveEaseOut]) {
-            controller.view.alpha = 1
-            controller.view.transform = .identity
-        }
-    }
-    
-    func invalidatePanelLayout(animated: Bool) {
-        
-        let availableWidth = view.bounds.width - view.safeAreaInsets.left - view.safeAreaInsets.right - (panelInset * 2)
-        panelWidthConstraint.constant = min(preferredPanelWidth, max(280, availableWidth))
-        
-        if detailController != nil {
-            panelHeightConstraint.constant = expandedHeight()
-            chromeHeightConstraint.constant = detailChromeHeight
-        } else {
-            panelHeightConstraint.constant = baseState == .peek ? peekHeight : expandedHeight()
-            chromeHeightConstraint.constant = baseChromeHeight
-        }
-        
-        let animations = {
-            self.view.layoutIfNeeded()
-        }
-        
-        if animated {
-            UIView.animate(withDuration: 0.28, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.2, options: [.curveEaseInOut], animations: animations)
-        } else {
-            animations()
-        }
-    }
-    
-    private func setupUI() {
-        
-        view.backgroundColor = .clear
-        
-        panelView.translatesAutoresizingMaskIntoConstraints = false
-        panelView.layer.cornerRadius = 28
-        panelView.layer.cornerCurve = .continuous
-        panelView.layer.borderWidth = 1 / UIScreen.main.scale
-        panelView.layer.shadowRadius = 24
-        panelView.layer.shadowOffset = CGSize(width: 0, height: 12)
-        panelView.clipsToBounds = true
-        
-        materialView.translatesAutoresizingMaskIntoConstraints = false
-        
-        tintView.translatesAutoresizingMaskIntoConstraints = false
-        
-        chromeView.translatesAutoresizingMaskIntoConstraints = false
-        chromeView.backgroundColor = .clear
-        chromeView.addGestureRecognizer(panGestureRecognizer)
-        
-        grabberView.translatesAutoresizingMaskIntoConstraints = false
-        grabberView.layer.cornerRadius = 2.5
-        
-        closeButton.translatesAutoresizingMaskIntoConstraints = false
-        closeButton.layer.cornerRadius = 20
-        closeButton.layer.cornerCurve = .continuous
-        closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
-        closeButton.addTarget(self, action: #selector(closeDetailPanel), for: .touchUpInside)
-        
-        contentContainerView.translatesAutoresizingMaskIntoConstraints = false
-        contentContainerView.backgroundColor = .clear
-        
-        view.addSubview(panelView)
-        panelView.addSubview(materialView)
-        panelView.addSubview(tintView)
-        panelView.addSubview(chromeView)
-        panelView.addSubview(contentContainerView)
-        chromeView.addSubview(grabberView)
-        chromeView.addSubview(closeButton)
-        
-        (view as? MapPanelPassthroughView)?.trackedView = panelView
-        
-        updatePanelAppearance()
-    }
-    
-    private func setupConstraints() {
-        
-        panelWidthConstraint = panelView.widthAnchor.constraint(equalToConstant: preferredPanelWidth)
-        panelHeightConstraint = panelView.heightAnchor.constraint(equalToConstant: peekHeight)
-        chromeHeightConstraint = chromeView.heightAnchor.constraint(equalToConstant: baseChromeHeight)
-        
-        NSLayoutConstraint.activate([
-            panelView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: panelInset),
-            panelView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -panelInset),
-            panelWidthConstraint,
-            panelHeightConstraint,
-            
-            materialView.leadingAnchor.constraint(equalTo: panelView.leadingAnchor),
-            materialView.trailingAnchor.constraint(equalTo: panelView.trailingAnchor),
-            materialView.topAnchor.constraint(equalTo: panelView.topAnchor),
-            materialView.bottomAnchor.constraint(equalTo: panelView.bottomAnchor),
-            
-            tintView.leadingAnchor.constraint(equalTo: panelView.leadingAnchor),
-            tintView.trailingAnchor.constraint(equalTo: panelView.trailingAnchor),
-            tintView.topAnchor.constraint(equalTo: panelView.topAnchor),
-            tintView.bottomAnchor.constraint(equalTo: panelView.bottomAnchor),
-            
-            chromeView.leadingAnchor.constraint(equalTo: panelView.leadingAnchor),
-            chromeView.trailingAnchor.constraint(equalTo: panelView.trailingAnchor),
-            chromeView.topAnchor.constraint(equalTo: panelView.topAnchor),
-            chromeHeightConstraint,
-            
-            contentContainerView.leadingAnchor.constraint(equalTo: panelView.leadingAnchor),
-            contentContainerView.trailingAnchor.constraint(equalTo: panelView.trailingAnchor),
-            contentContainerView.topAnchor.constraint(equalTo: chromeView.bottomAnchor),
-            contentContainerView.bottomAnchor.constraint(equalTo: panelView.bottomAnchor),
-            
-            grabberView.centerXAnchor.constraint(equalTo: chromeView.centerXAnchor),
-            grabberView.topAnchor.constraint(equalTo: chromeView.topAnchor, constant: 8),
-            grabberView.widthAnchor.constraint(equalToConstant: 48),
-            grabberView.heightAnchor.constraint(equalToConstant: 5),
-            
-            closeButton.trailingAnchor.constraint(equalTo: chromeView.trailingAnchor, constant: -12),
-            closeButton.topAnchor.constraint(equalTo: chromeView.topAnchor, constant: 12),
-            closeButton.widthAnchor.constraint(equalToConstant: 40),
-            closeButton.heightAnchor.constraint(equalToConstant: 40),
-        ])
-    }
-    
-    private func applyBaseChrome() {
-        grabberView.isHidden = false
-        closeButton.isHidden = true
-        panGestureRecognizer.isEnabled = true
-    }
-    
-    private func applyDetailChrome() {
-        grabberView.isHidden = true
-        closeButton.isHidden = false
-        panGestureRecognizer.isEnabled = false
-    }
-    
-    private func updatePanelAppearance() {
-        
-        let isDarkMode = traitCollection.userInterfaceStyle == .dark
-        
-        materialView.effect = UIBlurEffect(style: isDarkMode ? .systemThinMaterialDark : .systemChromeMaterialLight)
-        
-        panelView.layer.borderColor = (isDarkMode
-            ? UIColor.white.withAlphaComponent(0.14)
-            : UIColor.black.withAlphaComponent(0.08)
-        ).cgColor
-        
-        panelView.layer.shadowColor = UIColor.black.cgColor
-        panelView.layer.shadowOpacity = isDarkMode ? 0.22 : 0.10
-        
-        tintView.backgroundColor = isDarkMode
-            ? UIColor.secondarySystemBackground.withAlphaComponent(0.14)
-            : UIColor.white.withAlphaComponent(0.05)
-        
-        grabberView.backgroundColor = isDarkMode
-            ? UIColor.white.withAlphaComponent(0.35)
-            : UIColor.secondaryLabel.withAlphaComponent(0.28)
-        
-        closeButton.tintColor = isDarkMode ? .white : .label
-        closeButton.backgroundColor = isDarkMode
-            ? UIColor.black.withAlphaComponent(0.22)
-            : UIColor.systemBackground.withAlphaComponent(0.72)
-    }
-    
-    private func expandedHeight() -> CGFloat {
-        
-        let topBoundary = max(topBoundaryProvider?() ?? 16, view.safeAreaInsets.top + 16)
-        let safeAreaBottom = view.safeAreaInsets.bottom
-        let availableHeight = view.bounds.height - safeAreaBottom - panelInset - topBoundary
-        
-        return max(peekHeight, availableHeight)
-    }
-    
-    private func embed(_ child: UIViewController, in containerView: UIView) {
-        
-        addChild(child)
-        child.view.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(child.view)
-        NSLayoutConstraint.activate([
-            child.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            child.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            child.view.topAnchor.constraint(equalTo: containerView.topAnchor),
-            child.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-        ])
-        child.didMove(toParent: self)
-    }
-    
-    private func remove(_ child: UIViewController) {
-        child.willMove(toParent: nil)
-        child.view.removeFromSuperview()
-        child.removeFromParent()
-    }
-    
-    @objc
-    private func closeDetailPanel() {
-        
-        guard let detailController else { return }
-        
-        self.detailController = nil
-        baseState = storedBaseState
-        onBaseStateChange?(storedBaseState)
-        baseController?.view.isHidden = false
-        applyBaseChrome()
-        invalidatePanelLayout(animated: true)
-        
-        UIView.animate(withDuration: 0.18, delay: 0, options: [.curveEaseIn]) {
-            detailController.view.alpha = 0
-            detailController.view.transform = CGAffineTransform(translationX: 0, y: 32)
-        } completion: { _ in
-            detailController.view.transform = .identity
-            self.remove(detailController)
-        }
-    }
-    
-    @objc
-    private func handlePanelPan(_ gestureRecognizer: UIPanGestureRecognizer) {
-        
-        guard detailController == nil else { return }
-        
-        let maxHeight = expandedHeight()
-        
-        switch gestureRecognizer.state {
-        case .began:
-            panStartingHeight = panelHeightConstraint.constant
-            
-        case .changed:
-            let translation = gestureRecognizer.translation(in: view).y
-            let nextHeight = panStartingHeight - translation
-            panelHeightConstraint.constant = min(max(nextHeight, peekHeight), maxHeight)
-            view.layoutIfNeeded()
-            
-        case .ended, .cancelled:
-            let velocity = gestureRecognizer.velocity(in: view).y
-            let midpoint = (peekHeight + maxHeight) / 2
-            let nextState: MapPanelState
-            
-            if abs(velocity) > 300 {
-                nextState = velocity < 0 ? .expanded : .peek
-            } else {
-                nextState = panelHeightConstraint.constant > midpoint ? .expanded : .peek
-            }
-            
-            setBasePanelState(nextState, animated: true)
-            
-        default:
-            break
-        }
-    }
-
-    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
-    nonisolated deinit {}
-}
-
-private final class MapPanelPassthroughView: UIView {
-    
-    weak var trackedView: UIView?
-    
-    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        guard let trackedView else { return false }
-        let convertedPoint = convert(point, to: trackedView)
-        return trackedView.point(inside: convertedPoint, with: event)
-    }
-
-    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
-    nonisolated deinit {}
 }

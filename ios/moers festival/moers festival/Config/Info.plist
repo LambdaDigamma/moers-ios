@@ -36,7 +36,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>79</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>CLIENT_ID</key>
 	<string>$(CLIENT_ID)</string>
 	<key>CLIENT_SECRET</key>
@@ -74,9 +74,9 @@
 		<dict/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>AR Navigation</string>
+	<string>Moers Festival uses your camera for augmented reality navigation.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Moers Festival nutzt den Standort, um Dir detailiertere Informationen zu den Spielorten und mobilen Bühnen zu geben.</string>
+	<string>Moers Festival uses your location to provide more information about venues and mobile stages.</string>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>de.okfn.niederrhein.moers-festival.openNextEvents</string>

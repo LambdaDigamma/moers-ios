@@ -22,7 +22,7 @@ struct ScanQRCodeButtonStyle: ButtonStyle {
                 configuration.label
                     .font(.title)
                     .foregroundColor(.label)
-                Text("An jedem Ausstellungsort findest Du einen QR Code. Scanne ihn, um weitere spannende Informationen zum Exponant zu erhalten.")
+                Text("Each exhibition venue has a QR code. Scan it to learn more about the exhibit.", bundle: .module)
                     .font(.headline)
                     .foregroundColor(Color(.secondaryLabel))
             }

@@ -26,9 +26,9 @@ public struct ProgressTourCardView: View {
             
             
             VStack(alignment: .leading, spacing: 16) {
-                (Text("Dein Fortschritt ") + Text(Image(systemName: "chevron.right").resizable()))
+                (Text("Your progress", bundle: .module) + Text(Image(systemName: "chevron.right").resizable()))
                     .font(.title)
-                Text("Du hast schon 5 Ausstellungsorte besucht. Einige stehen noch aus. Setze Deine Tour fort und finde alle Ausstellungsorte!")
+                Text("You have visited 5 exhibition venues. Continue your tour to find the remaining venues.", bundle: .module)
                     .font(.footnote)
                     .foregroundColor(Color(.secondaryLabel))
             }

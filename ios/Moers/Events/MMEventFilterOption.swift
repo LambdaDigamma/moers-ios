@@ -22,11 +22,11 @@ nonisolated enum MMEventFilterOption: Hashable {
         case .date(let scope):
             return scope.title
         case .favorites:
-            return "Favoriten"
+            return String(localized: "Favorites")
         case .withImages:
-            return "Mit Bildern"
+            return String(localized: "With Images")
         case .free:
-            return "Kostenlos"
+            return String(localized: "Free")
         case .attendanceMode(let mode):
             return MMEventAttendanceMode(rawValue: mode)?.title ?? mode
         case .category(let category):

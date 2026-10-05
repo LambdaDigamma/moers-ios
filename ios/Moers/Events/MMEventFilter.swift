@@ -46,15 +46,15 @@ nonisolated struct MMEventFilter: Equatable, Hashable {
         }
 
         if onlyFavorites {
-            titles.append("Favoriten")
+            titles.append(String(localized: "Favorites"))
         }
 
         if onlyWithImages {
-            titles.append("Mit Bildern")
+            titles.append(String(localized: "With Images"))
         }
 
         if onlyFree {
-            titles.append("Kostenlos")
+            titles.append(String(localized: "Free"))
         }
 
         titles.append(contentsOf: categories.sorted())

@@ -22,15 +22,15 @@ nonisolated enum MMEventSection: Hashable {
         case .loading, .quickFilters, .empty:
             return nil
         case .spotlights:
-            return "Im Fokus"
+            return String(localized: "Spotlight")
         case .today:
-            return "Heute"
+            return String(localized: "Today")
         case .tomorrow:
-            return "Morgen"
+            return String(localized: "Tomorrow")
         case .nextDays:
-            return "In den nächsten Tagen"
+            return String(localized: "Upcoming")
         case .future:
-            return "Später"
+            return String(localized: "Later")
         }
     }
 }

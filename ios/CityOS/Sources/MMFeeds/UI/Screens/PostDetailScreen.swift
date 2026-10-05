@@ -31,7 +31,7 @@ struct PostDetailScreen: View {
                     if let href = post.externalHref, let url = URL(string: href) {
                         IsolatedWebView(url: url)
                     } else {
-                        Text("404. Not found.")
+                        Text("404. Not found.", bundle: .module)
                             .foregroundColor(.secondary)
                             .padding()
                     }

@@ -22,7 +22,7 @@ public struct StationListCardView: View {
             ForEach(0..<10) { d in
                 
                 Toggle(isOn: $airplaneMode) {
-                    Text("Das ist ein Test")
+                    Text("This is a test", bundle: .module)
                 }
                 .toggleStyle(CheckboxStyle())
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -30,7 +30,7 @@ public struct StationListCardView: View {
                 
 //                HStack {
 ////                    CheckboxView()
-////                    Text("Das ist ein Test")
+////                    Text("This is a test", bundle: .module)
 //                }
 //                .frame(maxWidth: .infinity, alignment: .leading)
 //                .padding()
@@ -43,8 +43,8 @@ public struct StationListCardView: View {
         .cornerRadius(12)
         
 //        List {
-//            Text("Das ist ein Test")
-//            Text("Das ist ein Test")
+//            Text("This is a test", bundle: .module)
+//            Text("This is a test", bundle: .module)
 //        }
 //        .listStyle(InsetGroupedListStyle())
     }

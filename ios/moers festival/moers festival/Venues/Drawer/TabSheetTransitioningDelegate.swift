@@ -18,6 +18,7 @@ extension UISheetPresentationController.Detent.Identifier {
 class TabSheetTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
     
     weak var sheetDelegate: UISheetPresentationControllerDelegate?
+    var selectedDetentIdentifier: UISheetPresentationController.Detent.Identifier = .small
     
     func presentationController(
         forPresented presented: UIViewController,
@@ -27,8 +28,7 @@ class TabSheetTransitioningDelegate: NSObject, UIViewControllerTransitioningDele
         
         let sheet = TabSheetPresentationController(
             presentedViewController: presented,
-            presenting: presenting,
-            source: source
+            presenting: presenting
         )
         
         sheet.detents = [
@@ -42,7 +42,7 @@ class TabSheetTransitioningDelegate: NSObject, UIViewControllerTransitioningDele
             })
         ]
         
-        sheet.selectedDetentIdentifier = .small
+        sheet.selectedDetentIdentifier = selectedDetentIdentifier
         sheet.largestUndimmedDetentIdentifier = .nearFull
         sheet.prefersGrabberVisible = true
         sheet.prefersScrollingExpandsWhenScrolledToEdge = false

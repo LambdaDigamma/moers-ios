@@ -1,687 +1,722 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "Address": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Adresse"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Address" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adresse"
           }
         }
       }
     },
-    "Change search options": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Suchoptionen ändern"
+    "Arrival" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ankunft"
+          }
+        }
+      }
+    },
+    "Arrival time" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ankunftszeit"
+          }
+        }
+      }
+    },
+    "Cable Car" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seil-/Zahnradbahn"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Change search options"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cable Car"
           }
         }
       }
     },
-    "Crossing": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kreuzung"
-          }
-        }
-      }
-    },
-    "Current changeover time: %@": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aktuelle Umsteigszeit: %@"
-          }
-        }
-      }
-    },
-    "Departure time": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Abfahrtszeit"
+    "Change search options" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suchoptionen ändern"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Departure time"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change search options"
           }
         }
       }
     },
-    "Footpath": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fußweg"
+    "City Bus" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stadtbus"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Footpath"
-          }
-        }
-      },
-      "extractionState": "manual"
-    },
-    "Last updated: ": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zuletzt aktualisiert: "
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "City Bus"
           }
         }
       }
     },
-    "No filter": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kein Filter"
-          }
-        }
-      }
-    },
-    "Place": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ort"
-          }
-        }
-      }
-    },
-    "Point of interest": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Interessanter Ort"
-          }
-        }
-      }
-    },
-    "Postcode": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Postleitzahl"
-          }
-        }
-      }
-    },
-    "Route type": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Routentyp"
+    "Community Bus" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bürgerbus"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Route type"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Community Bus"
           }
         }
       }
     },
-    "Start your search": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Starte Deine Suche"
+    "Crossing" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kreuzung"
+          }
+        }
+      }
+    },
+    "Current changeover time: %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktuelle Umsteigszeit: %@"
+          }
+        }
+      }
+    },
+    "Departure" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abfahrt"
+          }
+        }
+      }
+    },
+    "Departure time" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abfahrtszeit"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Start your search"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Departure time"
           }
         }
       }
     },
-    "Stop": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Haltestelle"
-          }
-        }
-      }
-    },
-    "Street": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Straße"
-          }
-        }
-      }
-    },
-    "Time point": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zeitpunkt"
+    "Fast" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schnell"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Time point"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fast"
           }
         }
       }
     },
-    "Track change": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gleiswechsel"
-          }
-        }
-      }
-    },
-    "Transfer time": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Umsteigezeit"
+    "Fastest route" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "schnellste Verbindung"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Transfer time"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fastest route"
           }
         }
       }
     },
-    "Transport": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verkehrsmittel"
+    "Fewest transfers" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "wenigste Umstiege"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Transport"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fewest transfers"
           }
         }
       }
     },
-    "Unknown": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unbekannt"
-          }
-        }
-      }
-    },
-    "Train": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Train"
+    "Footpath" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fußweg"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zug"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Footpath"
           }
         }
       }
     },
-    "Suburban Railway": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Suburban Railway"
+    "High-speed Train" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hochgeschwindigkeitszug"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "S-Bahn"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "High-speed Train"
           }
         }
       }
     },
-    "Subway": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Subway"
+    "International Train" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Internationaler Zug"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "U-Bahn"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "International Train"
           }
         }
       }
     },
-    "Metro": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Metro"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Stadtbahn"
+    "Last updated: " : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zuletzt aktualisiert: "
           }
         }
       }
     },
-    "Tram": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tram"
+    "Metro" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stadtbahn"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Straßenbahn"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metro"
           }
         }
       }
     },
-    "City Bus": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "City Bus"
+    "National Train" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nationaler Zug"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Stadtbus"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "National Train"
           }
         }
       }
     },
-    "Regional Bus": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Regional Bus"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Regionalbus"
+    "No filter" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Filter"
           }
         }
       }
     },
-    "Rapid Bus": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rapid Bus"
+    "Normal" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normal"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schnellbus"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normal"
           }
         }
       }
     },
-    "Cable Car": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cable Car"
+    "On-call Bus" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AST/Rufbus"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Seil-/Zahnradbahn"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On-call Bus"
           }
         }
       }
     },
-    "On-call Bus": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "On-call Bus"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "AST/Rufbus"
+    "Place" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ort"
           }
         }
       }
     },
-    "Suspension Railway": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Suspension Railway"
+    "Plane" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flugzeug"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schwebebahn"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plane"
           }
         }
       }
     },
-    "Plane": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Plane"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Flugzeug"
+    "Point of interest" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Interessanter Ort"
           }
         }
       }
     },
-    "Regional Train": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Regional Train"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Regionalzug"
+    "Postcode" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Postleitzahl"
           }
         }
       }
     },
-    "National Train": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "National Train"
+    "Rail Replacement Service" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schienenersatzverkehr"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nationaler Zug"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rail Replacement Service"
           }
         }
       }
     },
-    "International Train": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "International Train"
+    "Rapid Bus" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schnellbus"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Internationaler Zug"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rapid Bus"
           }
         }
       }
     },
-    "High-speed Train": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "High-speed Train"
+    "Regional Bus" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regionalbus"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hochgeschwindigkeitszug"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regional Bus"
           }
         }
       }
     },
-    "Rail Replacement Service": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rail Replacement Service"
+    "Regional Train" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regionalzug"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schienenersatzverkehr"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regional Train"
           }
         }
       }
     },
-    "Shuttle Train": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Shuttle Train"
+    "Route type" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Routentyp"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Shuttlezug"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Route type"
           }
         }
       }
     },
-    "Community Bus": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Community Bus"
+    "Shortest walking distance" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kürzeste Fußwege"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bürgerbus"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shortest walking distance"
           }
         }
       }
     },
-    "Fastest route": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fastest route"
+    "Shuttle Train" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shuttlezug"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "schnellste Verbindung"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shuttle Train"
           }
         }
       }
     },
-    "Fewest transfers": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fewest transfers"
+    "Slow" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langsam"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "wenigste Umstiege"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slow"
           }
         }
       }
     },
-    "Shortest walking distance": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Shortest walking distance"
+    "Start your search" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starte Deine Suche"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "kürzeste Fußwege"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start your search"
           }
         }
       }
     },
-    "Fast": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fast"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schnell"
+    "Stop" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haltestelle"
           }
         }
       }
     },
-    "Normal": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Normal"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Normal"
+    "Street" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Straße"
           }
         }
       }
     },
-    "Slow": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Slow"
+    "Suburban Railway" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S-Bahn"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Langsam"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suburban Railway"
+          }
+        }
+      }
+    },
+    "Subway" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "U-Bahn"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subway"
+          }
+        }
+      }
+    },
+    "Suspension Railway" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schwebebahn"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suspension Railway"
+          }
+        }
+      }
+    },
+    "The provided date is invalid." : {
+      "comment" : "Error description for an invalid date.",
+      "isCommentAutoGenerated" : true
+    },
+    "The provided date is out of the schedule period." : {
+      "comment" : "Error message displayed when a date is out of the schedule period.",
+      "isCommentAutoGenerated" : true
+    },
+    "The provided day is out of range." : {
+      "comment" : "Error description for a date error when the day is out of range.",
+      "isCommentAutoGenerated" : true
+    },
+    "The provided hour is out of range." : {
+      "comment" : "Error description for an hour that is out of range.",
+      "isCommentAutoGenerated" : true
+    },
+    "The provided minute is out of range." : {
+      "comment" : "Error description for a minute that is out of range.",
+      "isCommentAutoGenerated" : true
+    },
+    "The provided month is out of range." : {
+      "comment" : "Error description for a date error when the month provided is out of range.",
+      "isCommentAutoGenerated" : true
+    },
+    "The provided time is invalid." : {
+      "comment" : "Error description for an invalid time.",
+      "isCommentAutoGenerated" : true
+    },
+    "The provided year is out of range." : {
+      "comment" : "Error description for a date error when the provided year is out of range.",
+      "isCommentAutoGenerated" : true
+    },
+    "Time point" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeitpunkt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time point"
+          }
+        }
+      }
+    },
+    "Track change" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gleiswechsel"
+          }
+        }
+      }
+    },
+    "Train" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zug"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Train"
+          }
+        }
+      }
+    },
+    "Tram" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Straßenbahn"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tram"
+          }
+        }
+      }
+    },
+    "Transfer time" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Umsteigezeit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transfer time"
+          }
+        }
+      }
+    },
+    "Transport" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verkehrsmittel"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transport"
+          }
+        }
+      }
+    },
+    "Unknown" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unbekannt"
           }
         }
       }
     }
   },
-  "version": "1.1"
+  "version" : "1.1"
 }

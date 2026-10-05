@@ -38,7 +38,7 @@ public struct TripConfigurationSheet: View {
                         .foregroundColor(.white)
                         .pickerStyle(.segmented)
                         
-                        DatePicker("Date of Departure", selection: $searchDate)
+                        DatePicker(selection: $searchDate) { Text("Date of departure", bundle: .module) }
                             .labelsHidden()
                         
                     }

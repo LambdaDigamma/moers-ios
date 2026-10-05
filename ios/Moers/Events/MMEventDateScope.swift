@@ -17,15 +17,15 @@ nonisolated enum MMEventDateScope: String, CaseIterable, Hashable {
     var title: String {
         switch self {
         case .all:
-            return "Alle"
+            return String(localized: "All")
         case .today:
-            return "Heute"
+            return String(localized: "Today")
         case .tomorrow:
-            return "Morgen"
+            return String(localized: "Tomorrow")
         case .nextSevenDays:
-            return "7 Tage"
+            return String(localized: "7 Days")
         case .weekend:
-            return "Wochenende"
+            return String(localized: "Weekend")
         }
     }
 

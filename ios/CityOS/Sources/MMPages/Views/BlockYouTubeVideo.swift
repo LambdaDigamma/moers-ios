@@ -41,7 +41,7 @@ public struct BlockYouTubeVideoView: View {
                     case .ready:
                         EmptyView()
                     case .error(_):
-                        Text(verbatim: "YouTube player couldn't be loaded")
+                        Text("The YouTube player could not be loaded", bundle: .module)
                 }
             }
             

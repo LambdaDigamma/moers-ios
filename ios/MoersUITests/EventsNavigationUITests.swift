@@ -27,16 +27,16 @@ final class EventsNavigationUITests: XCTestCase {
         XCTAssertTrue(filterButton.waitForExistence(timeout: 10))
         filterButton.tap()
         XCTAssertTrue(app.navigationBars["Filter"].waitForExistence(timeout: 10))
-        app.cells.containing(.staticText, identifier: "Heute").firstMatch.tap()
+        app.cells.containing(.staticText, identifier: "Today").firstMatch.tap()
         app.navigationBars["Filter"].buttons["Done"].tap()
 
         let activeFilterButton = app.navigationBars["Events"].buttons.matching(
-            NSPredicate(format: "label ==[cd] %@", "Filter, 1 aktiv")
+            NSPredicate(format: "label ==[cd] %@", "Filter, 1 active")
         ).firstMatch
         XCTAssertTrue(activeFilterButton.waitForExistence(timeout: 10))
         XCTAssertEqual(eventsTab.label, "Events")
         activeFilterButton.tap()
-        app.navigationBars["Filter"].buttons["Zurücksetzen"].tap()
+        app.navigationBars["Filter"].buttons["Reset"].tap()
         app.navigationBars["Filter"].buttons["Done"].tap()
 
         XCTAssertTrue(filterButton.waitForExistence(timeout: 10))
@@ -61,8 +61,34 @@ final class EventsNavigationUITests: XCTestCase {
         XCTAssertTrue(filterButton.waitForExistence(timeout: 10))
     }
 
+    func testGermanEventFilterLabels() async {
+        continueAfterFailure = false
+
+        let app = XCUIApplication()
+        app.launchArguments = ["-FASTLANE_SNAPSHOT", "NO", "-UserDidCompleteSetup", "YES"]
+        app.setLanguageTag(.de)
+        app.launch()
+        defer { app.terminate() }
+
+        let eventsTab = app.buttons[AccessibilityIdentifiers.Menu.events].firstMatch
+        XCTAssertTrue(eventsTab.waitForExistence(timeout: 10))
+        XCTAssertEqual(eventsTab.label, "Veranstaltungen")
+        eventsTab.tap()
+
+        let filterButton = app.navigationBars["Veranstaltungen"].buttons.matching(
+            NSPredicate(format: "label BEGINSWITH[cd] %@", "Filter")
+        ).firstMatch
+        XCTAssertTrue(filterButton.waitForExistence(timeout: 10))
+        filterButton.tap()
+
+        XCTAssertTrue(app.navigationBars["Filter"].buttons["Zurücksetzen"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.cells.containing(.staticText, identifier: "Heute").firstMatch.exists)
+        XCTAssertTrue(app.cells.containing(.staticText, identifier: "Wochenende").firstMatch.exists)
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label ==[cd] %@", "Zeitraum")).firstMatch.exists)
+    }
+
     private func searchEvents(in app: XCUIApplication, query: String) {
-        let searchField = app.searchFields["Veranstaltungen suchen"]
+        let searchField = app.searchFields["Search Events"]
         if !searchField.exists {
             let searchButton = app.navigationBars["Events"].buttons["Search"].firstMatch
             XCTAssertTrue(searchButton.waitForExistence(timeout: 10))

@@ -33,7 +33,7 @@ public struct BroadcastList: View {
                 
 //                pastBroadcasts()
                 
-                Text("The information is supplied by Bürgerfunk Moers. There is no guarantee for correctness or completeness.")
+                Text("The information is supplied by Bürgerfunk Moers. There is no guarantee for correctness or completeness.", bundle: .module)
                     .font(.caption)
                     .foregroundColor(.secondary)
                     .padding()
@@ -55,15 +55,15 @@ public struct BroadcastList: View {
         
         VStack(alignment: .leading, spacing: 12) {
             
-            Text("Community radio")
+            Text("Community radio", bundle: .module)
                 .font(.title2.weight(.semibold))
             
-            Text("Every day between 8 p.m. and 9 p.m. on Radio K.W. (Sundays and holidays from 7:04 p.m.), there is a slightly different kind of radio - community radio. People from the county of Wesel spend many hours of their free time in production studios to send an hour of radio programming over the airwaves every day.")
+            Text("Every day between 8 p.m. and 9 p.m. on Radio K.W. (Sundays and holidays from 7:04 p.m.), there is a slightly different kind of radio - community radio. People from the county of Wesel spend many hours of their free time in production studios to send an hour of radio programming over the airwaves every day.", bundle: .module)
                 .font(.callout)
                 .foregroundColor(.secondary)
             
             Button(action: {}) {
-                Label("Contact", systemImage: "envelope.circle.fill")
+                Label { Text("Contact", bundle: .module) } icon: { Image(systemName: "envelope.circle.fill") }
             }
             .buttonStyle(SecondaryButtonStyle())
             .padding(.top)
@@ -81,7 +81,7 @@ public struct BroadcastList: View {
             
             HStack(alignment: .firstTextBaseline) {
                 
-                Text("Next broadcasts")
+                Text("Next broadcasts", bundle: .module)
                     .font(.title3)
                     .fontWeight(.semibold)
                 
@@ -132,7 +132,7 @@ public struct BroadcastList: View {
                 
             } label: {
                 HStack {
-                    Text("Listen to recent broadcasts")
+                    Text("Listen to recent broadcasts", bundle: .module)
                     Image(systemName: "chevron.forward")
                 }
                 .padding(.horizontal)

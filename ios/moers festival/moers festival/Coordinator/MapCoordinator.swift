@@ -50,15 +50,13 @@ public class MapCoordinator: TabRepresentable {
     }
     
     public func pushPlaceDetail(placeID: Place.ID) {
-        let presentationContext = VenueDetailPresentationContext.current(for: mainViewController.traitCollection)
-        let viewController = VenueDetailController(placeID: placeID, presentationContext: presentationContext)
+        let viewController = VenueDetailController(placeID: placeID)
         viewController.coordinator = mainViewController.coordinator
         mainViewController.navigationController?.pushViewController(viewController, animated: true)
     }
 
     public func showPlaceDetail(placeID: Place.ID, showCloseButton: Bool = true) {
-        let presentationContext = VenueDetailPresentationContext.current(for: mainViewController.traitCollection)
-        let viewController = VenueDetailController(placeID: placeID, presentationContext: presentationContext)
+        let viewController = VenueDetailController(placeID: placeID)
         viewController.coordinator = mainViewController.coordinator
         viewController.modalPresentationStyle = .formSheet
         viewController.showCloseButton = showCloseButton

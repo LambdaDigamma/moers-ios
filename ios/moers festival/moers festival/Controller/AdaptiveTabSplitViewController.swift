@@ -1,20 +1,24 @@
-//
-//  AdaptiveTabSplitViewController.swift
-//  moers festival
-//
-//  Created by Codex on 04.04.26.
-//
-
 import UIKit
 
 final class AdaptiveTabSplitViewController: UISplitViewController, UINavigationControllerDelegate, UISplitViewControllerDelegate {
-    
     private let overviewNavigationController: UINavigationController
     private let detailNavigationController = UINavigationController()
     private let emptyDetailFactory: () -> UIViewController
-    
-    private var currentDetailFactory: (() -> UIViewController)?
-    
+    private var currentDetailViewController: UIViewController?
+    private var detailIsInCompactStack = false
+    private var transitioningDetailStack: [UIViewController]?
+    private var isTransferringDetail = false
+
+    var onDetailPresentationChange: (() -> Void)?
+    var onColumnsWillChange: (() -> Void)?
+    var selectedDetailViewController: UIViewController? { currentDetailViewController }
+    // UIKit can notify collapse before its isCollapsed property changes.
+    var showsDetailColumn: Bool { !detailIsInCompactStack }
+
+    var activeNavigationController: UINavigationController {
+        isCollapsed ? overviewNavigationController : detailNavigationController
+    }
+
     init(
         overviewNavigationController: UINavigationController,
         emptyDetailFactory: @escaping () -> UIViewController
@@ -22,22 +26,19 @@ final class AdaptiveTabSplitViewController: UISplitViewController, UINavigationC
         self.overviewNavigationController = overviewNavigationController
         self.emptyDetailFactory = emptyDetailFactory
         super.init(style: .doubleColumn)
-        
-        self.tabBarItem = overviewNavigationController.tabBarItem
-        self.title = overviewNavigationController.title
-        self.overviewNavigationController.delegate = self
-        self.delegate = self
+        tabBarItem = overviewNavigationController.tabBarItem
+        title = overviewNavigationController.title
+        overviewNavigationController.delegate = self
+        delegate = self
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .systemBackground
-        
         preferredDisplayMode = .oneBesideSecondary
         preferredSplitBehavior = .tile
         presentsWithGesture = false
@@ -45,114 +46,158 @@ final class AdaptiveTabSplitViewController: UISplitViewController, UINavigationC
         minimumPrimaryColumnWidth = 340
         maximumPrimaryColumnWidth = 420
         preferredPrimaryColumnWidthFraction = 0.32
-        
         detailNavigationController.navigationBar.prefersLargeTitles = true
-        
+        detailNavigationController.setViewControllers(
+            [currentDetailViewController ?? emptyDetailFactory()], animated: false
+        )
         setViewController(overviewNavigationController, for: .primary)
         setViewController(detailNavigationController, for: .secondary)
-        detailNavigationController.setViewControllers([makeRegularDetailRootViewController()], animated: false)
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        guard isCollapsed else { return }
-        guard let currentDetailFactory else { return }
-        guard overviewNavigationController.viewControllers.count == 1 else { return }
-        
-        showDetailInCompactLayout(currentDetailFactory(), animated: false)
-    }
-    
-    func setDetail(_ detailFactory: @escaping () -> UIViewController, animated: Bool = true) {
-        currentDetailFactory = detailFactory
-        guard isViewLoaded else { return }
-        
-        if isCollapsed {
-            showDetailInCompactLayout(detailFactory(), animated: animated)
+
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        if transitioningDetailStack != nil {
+            return
+        } else if isCollapsed {
+            moveDetailToCompactStack()
         } else {
-            detailNavigationController.setViewControllers([detailFactory()], animated: animated)
+            moveDetailToRegularColumn()
+        }
+        onDetailPresentationChange?()
+    }
+
+    func setDetail(_ detailFactory: () -> UIViewController, animated: Bool = true) {
+        defer { onDetailPresentationChange?() }
+        let detail = detailFactory()
+        currentDetailViewController = detail
+        if transitioningDetailStack != nil {
+            transitioningDetailStack = [detail]
+            return
+        }
+        guard isViewLoaded else { return }
+        isTransferringDetail = true
+        defer { isTransferringDetail = false }
+        if isCollapsed {
+            guard let overview = overviewNavigationController.viewControllers.first else { return }
+            detailIsInCompactStack = true
+            detailNavigationController.setViewControllers([emptyDetailFactory()], animated: false)
+            overviewNavigationController.setViewControllers([overview, detail], animated: animated)
+        } else {
+            detailNavigationController.setViewControllers([detail], animated: animated)
         }
     }
-    
+
     func showEmptyDetail(animated: Bool = false) {
-        currentDetailFactory = nil
+        defer { onDetailPresentationChange?() }
+        currentDetailViewController = nil
+        if transitioningDetailStack != nil {
+            transitioningDetailStack = []
+            return
+        }
         guard isViewLoaded else { return }
-        
+        detailNavigationController.setViewControllers([emptyDetailFactory()], animated: false)
         if isCollapsed {
             overviewNavigationController.popToRootViewController(animated: animated)
-        } else {
-            detailNavigationController.setViewControllers([emptyDetailFactory()], animated: animated)
         }
     }
-    
+
+    func pushDetail(_ detailFactory: () -> UIViewController, from source: UIViewController, animated: Bool = true) {
+        if var stack = transitioningDetailStack {
+            guard stack.contains(where: { $0 === source }) else { return }
+            stack.append(detailFactory())
+            transitioningDetailStack = stack
+            return
+        }
+        guard let navigationController = source.navigationController,
+              navigationController === overviewNavigationController || navigationController === detailNavigationController,
+              navigationController.viewControllers.contains(where: { $0 === source }) else { return }
+        navigationController.pushViewController(detailFactory(), animated: animated)
+    }
+
     func navigationController(
         _ navigationController: UINavigationController,
         didShow viewController: UIViewController,
         animated: Bool
     ) {
-        guard navigationController === overviewNavigationController else { return }
-        guard isCollapsed else { return }
-        guard let rootViewController = overviewNavigationController.viewControllers.first else { return }
-        
-        if viewController === rootViewController {
-            currentDetailFactory = nil
-        }
+        guard navigationController === overviewNavigationController,
+              transitioningDetailStack == nil,
+              !isTransferringDetail,
+              detailIsInCompactStack,
+              navigationController.viewControllers.count == 1,
+              viewController === navigationController.viewControllers.first else { return }
+        currentDetailViewController = nil
+        onDetailPresentationChange?()
     }
-    
-    private func showDetailInCompactLayout(_ detailViewController: UIViewController, animated: Bool) {
-        guard let rootViewController = overviewNavigationController.viewControllers.first else { return }
-        
-        if overviewNavigationController.viewControllers.count > 1 {
-            overviewNavigationController.setViewControllers([rootViewController, detailViewController], animated: animated)
-        } else {
-            overviewNavigationController.pushViewController(detailViewController, animated: animated)
-        }
-    }
-    
-    private func makeRegularDetailRootViewController() -> UIViewController {
-        currentDetailFactory?() ?? emptyDetailFactory()
-    }
-    
+
     func splitViewController(
         _ splitViewController: UISplitViewController,
-        collapseSecondary secondaryViewController: UIViewController,
-        onto primaryViewController: UIViewController
-    ) -> Bool {
-        guard let primaryNavigationController = primaryViewController as? UINavigationController,
-              let rootViewController = primaryNavigationController.viewControllers.first else {
-            return false
-        }
-        
-        guard let currentDetailFactory else {
-            primaryNavigationController.setViewControllers([rootViewController], animated: false)
-            return true
-        }
-        
-        primaryNavigationController.setViewControllers([rootViewController, currentDetailFactory()], animated: false)
-        return true
+        topColumnForCollapsingToProposedTopColumn proposedTopColumn: UISplitViewController.Column
+    ) -> UISplitViewController.Column {
+        retainDetailForColumnChange()
+        return .primary
     }
-    
+
     func splitViewController(
         _ splitViewController: UISplitViewController,
-        separateSecondaryViewControllerFrom primaryViewController: UIViewController
-    ) -> UIViewController? {
-        guard let primaryNavigationController = primaryViewController as? UINavigationController,
-              let rootViewController = primaryNavigationController.viewControllers.first else {
-            return nil
-        }
-        
-        primaryNavigationController.setViewControllers([rootViewController], animated: false)
-        
-        if let currentDetailFactory {
-            detailNavigationController.setViewControllers([currentDetailFactory()], animated: false)
-        } else {
-            detailNavigationController.setViewControllers([emptyDetailFactory()], animated: false)
-        }
-        
-        return detailNavigationController
+        displayModeForExpandingToProposedDisplayMode proposedDisplayMode: UISplitViewController.DisplayMode
+    ) -> UISplitViewController.DisplayMode {
+        retainDetailForColumnChange()
+        return proposedDisplayMode
+    }
+
+    func splitViewControllerDidCollapse(_ splitViewController: UISplitViewController) {
+        moveDetailToCompactStack()
+        onDetailPresentationChange?()
+    }
+
+    func splitViewControllerDidExpand(_ splitViewController: UISplitViewController) {
+        moveDetailToRegularColumn()
+        onDetailPresentationChange?()
+    }
+
+    private func moveDetailToCompactStack() {
+        guard !detailIsInCompactStack || transitioningDetailStack != nil,
+              let overview = overviewNavigationController.viewControllers.first else { return }
+        let detailStack = transitioningDetailStack ?? selectedStack(in: detailNavigationController)
+        isTransferringDetail = true
+        // Remove the stack from its old parent before installing the same instances.
+        detailNavigationController.setViewControllers([emptyDetailFactory()], animated: false)
+        overviewNavigationController.setViewControllers([overview] + detailStack, animated: false)
+        currentDetailViewController = detailStack.first
+        detailIsInCompactStack = true
+        transitioningDetailStack = nil
+        isTransferringDetail = false
+    }
+
+    private func moveDetailToRegularColumn() {
+        guard detailIsInCompactStack || transitioningDetailStack != nil,
+              let overview = overviewNavigationController.viewControllers.first else { return }
+        let detailStack = transitioningDetailStack ?? selectedStack(in: overviewNavigationController)
+        isTransferringDetail = true
+        overviewNavigationController.setViewControllers([overview], animated: false)
+        currentDetailViewController = detailStack.first
+        detailNavigationController.setViewControllers(
+            detailStack.isEmpty ? [emptyDetailFactory()] : detailStack, animated: false
+        )
+        detailIsInCompactStack = false
+        transitioningDetailStack = nil
+        isTransferringDetail = false
+    }
+
+    private func retainDetailForColumnChange() {
+        guard transitioningDetailStack == nil else { return }
+        onColumnsWillChange?()
+        let source = detailIsInCompactStack ? overviewNavigationController : detailNavigationController
+        transitioningDetailStack = selectedStack(in: source)
+    }
+
+    private func selectedStack(in navigationController: UINavigationController) -> [UIViewController] {
+        guard let currentDetailViewController,
+              let index = navigationController.viewControllers.firstIndex(where: { $0 === currentDetailViewController })
+        else { return [] }
+        return Array(navigationController.viewControllers[index...])
     }
 
     // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
     nonisolated deinit {}
 }
-

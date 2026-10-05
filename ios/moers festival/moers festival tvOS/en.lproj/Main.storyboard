@@ -132,6 +132,8 @@ Do you want to know where to put your picnic blanket without ruffle or excitemen
                     <navigationItem key="navigationItem" id="AJ9-mZ-L0p"/>
                     <connections>
                         <outlet property="errorImageView" destination="88L-ea-VBv" id="NTa-de-FkH"/>
+                        <outlet property="titleLabel" destination="vmh-wa-E2O" id="loc-title-outlet"/>
+                        <outlet property="descriptionLabel" destination="dKf-j6-f5L" id="loc-description-outlet"/>
                         <outlet property="reloadButton" destination="r06-Rj-ghU" id="WzU-Ul-xXe"/>
                     </connections>
                 </viewController>

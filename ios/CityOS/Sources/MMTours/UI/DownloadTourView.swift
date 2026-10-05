@@ -13,9 +13,9 @@ struct DownloadTourView: View {
         
         HStack(alignment: .top, spacing: 12) {
             VStack(alignment: .leading, spacing: 16) {
-                Text("Inhalte herunterladen")
+                Text("Download content", bundle: .module)
                     .font(.title)
-                Text("Wir empfehlen Dir, alle Inhalte schon jetzt herunterzuladen, damit vor Ort nicht Dein mobiles Datenvolumen verwendet wird.")
+                Text("We recommend that you download all content now to avoid using mobile data during your visit.", bundle: .module)
                     .font(.footnote)
                     .foregroundColor(Color(.secondaryLabel))
             }
@@ -23,7 +23,7 @@ struct DownloadTourView: View {
             VStack(spacing: 8) {
                 
                 Button(action: {}, label: {
-                    Text("Laden")
+                    Text("Download", bundle: .module)
                         .textCase(.uppercase)
                         .font(.system(size: 12, weight: .bold, design: .default))
                         .foregroundColor(Color.primary)
