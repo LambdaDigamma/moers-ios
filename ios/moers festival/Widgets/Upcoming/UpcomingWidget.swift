@@ -9,7 +9,6 @@ import SwiftUI
 import WidgetKit
 import AppIntents
 
-@available(iOSApplicationExtension 17.0, *)
 struct UpcomingWidgetProvider: AppIntentTimelineProvider {
 
     typealias Intent = UpcomingWidgetIntent
@@ -88,21 +87,18 @@ struct UpcomingWidgetProvider: AppIntentTimelineProvider {
 
 }
 
-@available(iOSApplicationExtension 17.0, *)
 #Preview("Upcoming / Small / Baseline", as: .systemSmall) {
     UpcomingWidget()
 } timeline: {
     FestivalWidgetEntry.previewUpcoming
 }
 
-@available(iOSApplicationExtension 17.0, *)
 #Preview("Upcoming / Small / Filtered Stress", as: .systemSmall) {
     UpcomingWidget()
 } timeline: {
     FestivalWidgetEntry.previewUpcomingFilteredChaos
 }
 
-@available(iOSApplicationExtension 17.0, *)
 #Preview("Upcoming / Medium / Dense", as: .systemMedium) {
     UpcomingWidget()
 } timeline: {
@@ -110,7 +106,6 @@ struct UpcomingWidgetProvider: AppIntentTimelineProvider {
     FestivalWidgetEntry.previewUpcoming
 }
 
-@available(iOSApplicationExtension 17.0, *)
 #Preview("Upcoming / Large / Dense Timeline", as: .systemLarge) {
     UpcomingWidget()
 } timeline: {
@@ -119,28 +114,24 @@ struct UpcomingWidgetProvider: AppIntentTimelineProvider {
     FestivalWidgetEntry.previewUpcomingEmpty
 }
 
-@available(iOSApplicationExtension 17.0, *)
 #Preview("Upcoming / Accessory Rectangular", as: .accessoryRectangular) {
     UpcomingWidget()
 } timeline: {
     FestivalWidgetEntry.previewUpcomingFilteredChaos
 }
 
-@available(iOSApplicationExtension 17.0, *)
 #Preview("Upcoming / Accessory Inline", as: .accessoryInline) {
     UpcomingWidget()
 } timeline: {
     FestivalWidgetEntry.previewUpcoming
 }
 
-@available(iOSApplicationExtension 17.0, *)
 #Preview("Upcoming / Accessory Circular", as: .accessoryCircular) {
     UpcomingWidget()
 } timeline: {
     FestivalWidgetEntry.previewUpcoming
 }
 
-@available(iOSApplicationExtension 17.0, *)
 struct UpcomingWidget: Widget {
 
     var body: some WidgetConfiguration {

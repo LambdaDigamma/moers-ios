@@ -2613,6 +2613,18 @@
         }
       }
     },
+    "Select a topic to view its details." : {
+      "comment" : "Prompt in the empty Info & Tickets detail column.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle ein Thema, um Details zu sehen."
+          }
+        }
+      }
+    },
     "Send" : {
       "extractionState" : "manual",
       "localizations" : {

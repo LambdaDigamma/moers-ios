@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-@available(iOS 13.0, *)
 struct TemperatureView: View {
     var body: some View {
         Text("Test")
@@ -22,7 +21,6 @@ struct TemperatureView: View {
     }
 }
 
-@available(iOS 13.0, *)
 struct TemperatureView_Previews: PreviewProvider {
     static var previews: some View {
         TemperatureView()

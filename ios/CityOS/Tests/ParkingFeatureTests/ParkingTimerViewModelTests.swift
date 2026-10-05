@@ -169,9 +169,7 @@ final class ParkingTimerViewModelTests: XCTestCase {
 //        XCTAssertEqual(viewModel.saveParkingLocation, retrieveViewModel.saveParkingLocation)
         XCTAssertEqual(viewModel.enableNotifications, retrieveViewModel.enableNotifications)
         
-        if #available(iOS 15.0, *) {
-            XCTAssertEqual(viewModel.endDate.formatted(.iso8601), retrieveViewModel.endDate.formatted(.iso8601))
-        }
+        XCTAssertEqual(viewModel.endDate.formatted(.iso8601), retrieveViewModel.endDate.formatted(.iso8601))
         
     }
     

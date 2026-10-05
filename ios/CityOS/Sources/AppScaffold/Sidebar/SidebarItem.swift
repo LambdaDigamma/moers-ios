@@ -9,7 +9,6 @@
 
 import UIKit
 
-@available(iOS 14.0, *)
 nonisolated public struct SidebarItem: Hashable, Equatable, Sendable {
     
     public let title: String?

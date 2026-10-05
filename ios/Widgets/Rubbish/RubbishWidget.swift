@@ -16,16 +16,12 @@ struct RubbishWidget: Widget {
     let kind: String = WidgetKinds.rubbish.rawValue
     
     private let supportedFamilies:[WidgetFamily] = {
-        if #available(iOSApplicationExtension 16.0, *) {
-            return [
-                .systemSmall,
-                .systemMedium,
+        return [
+            .systemSmall,
+            .systemMedium,
 //                .accessoryRectangular,
 //                .accessoryInline
-            ]
-        } else {
-            return [.systemSmall, .systemMedium]
-        }
+        ]
     }()
     
 //    @available(iOSApplicationExtension 16.0, *)

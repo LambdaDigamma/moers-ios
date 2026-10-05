@@ -42,9 +42,7 @@ public class LocationManager: NSObject, LocationManagerProtocol, CLLocationManag
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
         #if os(watchOS)
-        if #available(watchOS 4.0, *) {
-            self.locationService.activityType = .other
-        }
+        self.locationService.activityType = .other
         #endif
         
         self.authorizationStatus.send(locationManager.authorizationStatus)

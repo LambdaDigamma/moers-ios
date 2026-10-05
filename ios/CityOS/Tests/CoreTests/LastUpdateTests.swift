@@ -21,9 +21,7 @@ nonisolated final class LastUpdateTests: XCTestCase {
         
         let loadedDate = lastUpdate.get()
         
-        if #available(iOS 15.0, *) {
-            XCTAssertEqual(date.formatted(), loadedDate?.formatted())
-        }
+        XCTAssertEqual(date.formatted(), loadedDate?.formatted())
         
     }
     

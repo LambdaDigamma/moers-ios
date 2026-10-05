@@ -333,7 +333,6 @@ struct VenueDetailScreen_Previews: PreviewProvider {
     
 }
 
-@available(iOS 16.0, *)
 private struct VenueHeroPreviewContent: View {
     
     let mapItem: MKMapItem?
@@ -394,7 +393,7 @@ private struct VenueHeroPreview: View {
     let point: Point
     
     var body: some View {
-        if VenueLookAroundConfiguration.isEnabled, #available(iOS 16.0, *) {
+        if VenueLookAroundConfiguration.isEnabled {
             VenueHeroPreviewContent(mapItem: mapItem, point: point)
         } else {
             MapSnapshotView(
@@ -407,7 +406,6 @@ private struct VenueHeroPreview: View {
     }
 }
 
-@available(iOS 16.0, *)
 private struct VenueLookAroundPreview: UIViewControllerRepresentable {
     
     let scene: MKLookAroundScene

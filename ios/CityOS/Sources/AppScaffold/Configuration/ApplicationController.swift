@@ -9,7 +9,6 @@
 
 import UIKit
 
-@available(iOS 14.0, *)
 public protocol ApplicationControlling {
     
     var firstLaunch: FirstLaunch { get set }
@@ -19,7 +18,6 @@ public protocol ApplicationControlling {
     
 }
 
-@available(iOS 14.0, *)
 extension ApplicationControlling {
     
     @MainActor func rootViewController() -> UIViewController {

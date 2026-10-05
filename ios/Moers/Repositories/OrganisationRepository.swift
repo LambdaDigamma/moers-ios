@@ -12,7 +12,6 @@ import FactoryKit
 import ModernNetworking
 import MMAPI
 
-@available(iOS 13.0, *)
 class BaseOrganisationRepository {
     @Published var organisations = Resource<[Organisation]>.loading
 
@@ -20,7 +19,6 @@ class BaseOrganisationRepository {
     nonisolated deinit {}
 }
 
-@available(iOS 13.0, *)
 protocol OrganisationRepository: BaseOrganisationRepository {
     
 }
@@ -43,7 +41,6 @@ extension Organisation: Model {
     
 }
 
-@available(iOS 13.0, *)
 class RemoteOrganisationRepository: BaseOrganisationRepository, OrganisationRepository, ObservableObject {
     
     private let api: API

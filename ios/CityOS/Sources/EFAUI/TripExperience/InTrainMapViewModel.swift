@@ -87,11 +87,8 @@ public class InTrainMapViewModel: StandardViewModel {
                 
                 if location?.speedAccuracy != nil, let speed = location?.speed, speed > 0 {
                     
-                    if #available(iOS 15.0, *) {
-                        
-                        let measurement = Measurement(value: speed, unit: UnitSpeed.metersPerSecond)
-                        self?.currentSpeed = "\(measurement.converted(to: .kilometersPerHour).formatted())"
-                    }
+                    let measurement = Measurement(value: speed, unit: UnitSpeed.metersPerSecond)
+                    self?.currentSpeed = "\(measurement.converted(to: .kilometersPerHour).formatted())"
                     
                 }
                 

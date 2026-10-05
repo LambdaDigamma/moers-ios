@@ -15,11 +15,7 @@ extension View {
 #if os(tvOS)
         self
 #else
-        if #available(iOS 17.0, *) {
-            self.toolbarTitleDisplayMode(.inlineLarge)
-        } else {
-            self.navigationBarTitleDisplayMode(.large)
-        }
+        self.toolbarTitleDisplayMode(.inlineLarge)
 #endif
     }
     

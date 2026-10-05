@@ -80,22 +80,14 @@ class EntryValidationViewController: UIViewController {
                 return
             }
 
-            if #available(iOS 16.0, *) {
-                cell.contentConfiguration = UIHostingConfiguration {
-                    EntryValidationCellView(
-                        image: nil,
-                        title: entry.name,
-                        description: entry.createdAt?.format(format: "dd.MM.yyyy HH:mm") ?? ""
-                    )
-                }
-                .margins(.all, 0)
-            } else {
-                // Fallback for iOS 15
-                var content = cell.defaultContentConfiguration()
-                content.text = entry.name
-                content.secondaryText = entry.createdAt?.format(format: "dd.MM.yyyy HH:mm")
-                cell.contentConfiguration = content
+            cell.contentConfiguration = UIHostingConfiguration {
+                EntryValidationCellView(
+                    image: nil,
+                    title: entry.name,
+                    description: entry.createdAt?.format(format: "dd.MM.yyyy HH:mm") ?? ""
+                )
             }
+            .margins(.all, 0)
             cell.accessories = [.disclosureIndicator()]
         }
         

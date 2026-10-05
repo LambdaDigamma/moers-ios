@@ -257,9 +257,7 @@ public class ParkingTimerViewModel: StandardViewModel {
         content.title = String(localized: "Your parking timer is about to expire!", bundle: .module)
         content.body = String(localized: "Your parking time will end in 10 minutes.", bundle: .module)
         
-        if #available(iOS 15.0, *) {
-            content.interruptionLevel = .timeSensitive
-        }
+        content.interruptionLevel = .timeSensitive
         
         let request = UNNotificationRequest(
             identifier: identifier,

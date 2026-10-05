@@ -11,7 +11,6 @@ import Foundation
 
 import UIKit
 
-@available(iOS 14.0, *)
 public protocol Coordinator: AnyObject, TabRepresentable {
     
     var rootViewController: UIViewController { get }

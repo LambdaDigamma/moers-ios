@@ -105,11 +105,9 @@ public class UserManager {
         
         let activity = NSUserActivity(activityType: Self.rubbishScheduleActivityIdentifier)
         
-        if #available(iOS 12.0, *) {
-            activity.isEligibleForPrediction = true
-            activity.suggestedInvocationPhrase = "Nächste Abholtermine"
-            activity.persistentIdentifier = "de.okfn.niederrhein.Moers.nextRubbish"
-        }
+        activity.isEligibleForPrediction = true
+        activity.suggestedInvocationPhrase = "Nächste Abholtermine"
+        activity.persistentIdentifier = "de.okfn.niederrhein.Moers.nextRubbish"
         
         activity.isEligibleForPublicIndexing = true
         activity.isEligibleForSearch = true

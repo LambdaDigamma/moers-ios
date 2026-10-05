@@ -15,7 +15,6 @@ public extension Notification.Name {
     
 }
 
-@available(iOS 14.0, *)
 public protocol SidebarViewControllerDelegate: AnyObject {
     
     func sidebar(_ sidebarViewController: SidebarViewController, didSelectTabItem item: SidebarItem)
@@ -24,7 +23,6 @@ public protocol SidebarViewControllerDelegate: AnyObject {
 
 public typealias SectionItemProducer = (SidebarSection) -> [SidebarItem]
 
-@available(iOS 14.0, *)
 open class SidebarViewController: UIViewController, UICollectionViewDelegate {
     
     public weak var delegate: SidebarViewControllerDelegate?

@@ -101,24 +101,15 @@ class SelectionViewController: UIViewController {
                 cell.accessories = []
                 return
             }
-            if #available(iOS 16.0, *) {
-                cell.contentConfiguration = UIHostingConfiguration {
-                    SearchResultCellView(
-                        image: UIProperties.detailImage(for: location),
-                        title: (location.title ?? "") ?? "",
-                        subtitle: UIProperties.detailSubtitle(for: location),
-                        showCheckmark: false
-                    )
-                }
-                .margins(.all, 0)
-            } else {
-                // Fallback for iOS 15
-                var content = cell.defaultContentConfiguration()
-                content.text = location.title ?? ""
-                content.secondaryText = UIProperties.detailSubtitle(for: location)
-                content.image = UIProperties.detailImage(for: location)
-                cell.contentConfiguration = content
+            cell.contentConfiguration = UIHostingConfiguration {
+                SearchResultCellView(
+                    image: UIProperties.detailImage(for: location),
+                    title: (location.title ?? "") ?? "",
+                    subtitle: UIProperties.detailSubtitle(for: location),
+                    showCheckmark: false
+                )
             }
+            .margins(.all, 0)
             cell.accessories = [.disclosureIndicator()]
         }
         

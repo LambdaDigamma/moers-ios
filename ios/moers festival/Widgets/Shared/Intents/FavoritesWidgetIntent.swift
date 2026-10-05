@@ -8,7 +8,6 @@
 import AppIntents
 
 
-@available(iOSApplicationExtension 17.0, *)
 struct FavoritesWidgetIntent: WidgetConfigurationIntent {
 
     static let title: LocalizedStringResource = "Favorite Events"

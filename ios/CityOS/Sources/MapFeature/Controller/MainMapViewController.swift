@@ -52,25 +52,21 @@ public class MainMapViewController: UIViewController {
 //        let nav = UINavigationController(rootViewController: vc)
         vc.modalPresentationStyle = .pageSheet
         if let sheet = vc.sheetPresentationController {
-            if #available(iOS 16.0, *) {
-                sheet.detents = [
-                    UISheetPresentationController.Detent.large(),
-                    UISheetPresentationController.Detent.medium(),
-                    UISheetPresentationController.Detent.custom { _ in
-                        
-                        return vc.tabBarHeight
-                        
+            sheet.detents = [
+                UISheetPresentationController.Detent.large(),
+                UISheetPresentationController.Detent.medium(),
+                UISheetPresentationController.Detent.custom { _ in
+
+                    return vc.tabBarHeight
+
 //                        if let viewController = viewController as? SheetContentViewController {
 //                            return viewController.tabBarHeight
 //                        }
-                        
-                    }
-                ]
-                sheet.largestUndimmedDetentIdentifier = .medium
-                sheet.prefersGrabberVisible = true
-            } else {
-                sheet.detents = [.medium(), .large()]
-            }
+
+                }
+            ]
+            sheet.largestUndimmedDetentIdentifier = .medium
+            sheet.prefersGrabberVisible = true
         }
         self.present(vc, animated: true)
         

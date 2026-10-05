@@ -16,32 +16,20 @@ class PermissionsManager {
     
     func requestRemoteNotifications() {
         
-        if #available(iOS 10.0, *) {
-            
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { granted, error in
-                if let error {
-                    Logger(.default).error("Notification authorization failed: \(error.localizedDescription)")
-                }
-
-                guard granted else {
-                    return
-                }
-
-                Task { @MainActor in
-                    UIApplication.shared.registerForRemoteNotifications()
-                    FestivalNotificationTopicSynchronizer.shared.sync()
-                }
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { granted, error in
+            if let error {
+                Logger(.default).error("Notification authorization failed: \(error.localizedDescription)")
             }
-            
-        } else {
-            
-            let settings: UIUserNotificationSettings =
-                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            
-            UIApplication.shared.registerUserNotificationSettings(settings)
-            UIApplication.shared.registerForRemoteNotifications()
-            
+
+            guard granted else {
+                return
+            }
+
+            Task { @MainActor in
+                UIApplication.shared.registerForRemoteNotifications()
+                FestivalNotificationTopicSynchronizer.shared.sync()
+            }
         }
     }
 

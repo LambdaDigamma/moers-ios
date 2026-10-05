@@ -112,17 +112,11 @@ public class SearchDrawerViewController: UIViewController {
     
     private func setupCellRegistrations() {
         tagCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, AttributedString> { cell, indexPath, attrStr in
-            if #available(iOS 16.0, *) {
-                cell.contentConfiguration = UIHostingConfiguration {
-                    Text(attrStr)
-                        .font(.system(size: 17))
-                }
-                .margins(.all, 0)
-            } else {
-                var content = cell.defaultContentConfiguration()
-                content.attributedText = NSAttributedString(attrStr)
-                cell.contentConfiguration = content
+            cell.contentConfiguration = UIHostingConfiguration {
+                Text(attrStr)
+                    .font(.system(size: 17))
             }
+            .margins(.all, 0)
             cell.accessories = []
         }
         
@@ -139,23 +133,15 @@ public class SearchDrawerViewController: UIViewController {
                 showCheckmark = true
             }
             
-            if #available(iOS 16.0, *) {
-                cell.contentConfiguration = UIHostingConfiguration {
-                    SearchResultCellView(
-                        image: UIProperties.detailImage(for: location),
-                        title: (location.title ?? "") ?? "",
-                        subtitle: UIProperties.detailSubtitle(for: location),
-                        showCheckmark: showCheckmark
-                    )
-                }
-                .margins(.all, 0)
-            } else {
-                var content = cell.defaultContentConfiguration()
-                content.text = location.title ?? ""
-                content.secondaryText = UIProperties.detailSubtitle(for: location)
-                content.image = UIProperties.detailImage(for: location)
-                cell.contentConfiguration = content
+            cell.contentConfiguration = UIHostingConfiguration {
+                SearchResultCellView(
+                    image: UIProperties.detailImage(for: location),
+                    title: (location.title ?? "") ?? "",
+                    subtitle: UIProperties.detailSubtitle(for: location),
+                    showCheckmark: showCheckmark
+                )
             }
+            .margins(.all, 0)
             cell.accessories = [.disclosureIndicator()]
         }
     }

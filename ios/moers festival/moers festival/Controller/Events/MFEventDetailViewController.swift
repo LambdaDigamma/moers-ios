@@ -66,10 +66,8 @@ extension MFEventDetailViewController {
                                  event.extras?.location ?? "Ort",
                                  event.name]
             
-            if #available(iOS 12.0, *) {
-                activity.isEligibleForPrediction = true
-                activity.persistentIdentifier = "event-\(event.id)"
-            }
+            activity.isEligibleForPrediction = true
+            activity.persistentIdentifier = "event-\(event.id)"
             
             userActivity = activity
             userActivity!.becomeCurrent()

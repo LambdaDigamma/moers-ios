@@ -9,7 +9,6 @@
 import UIKit
 import Combine
 
-@available(iOS 14.0, *)
 open class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     public var cancellables = Set<AnyCancellable>()

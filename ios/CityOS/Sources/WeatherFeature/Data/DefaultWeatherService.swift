@@ -7,7 +7,6 @@
 
 import CoreLocation
 
-@available(iOS 16.0, *)
 public class DefaultWeatherService: AppWeatherService {
     
     public init() {

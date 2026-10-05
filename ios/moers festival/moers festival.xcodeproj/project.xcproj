@@ -36,7 +36,7 @@
       "kind": "remote",
       "repository": "https://github.com/LambdaDigamma/BulletinBoard",
       "version": {
-        "up-to-next-major-version": "6.1.1",
+        "up-to-next-major-version": "6.2.0",
       },
     }, {
       "kind": "remote",
@@ -88,9 +88,9 @@
             "Config/Production.xcconfig",
             "Config/Staging.xcconfig",
             "Factories/ViewControllerFactory.swift",
-            "moersfestival.xcdatamodeld",
             "PageView.swift",
             "Screenshot.gpx",
+            "moersfestival.xcdatamodeld",
           ],
         }, {
           "target": "moers festival UITests",

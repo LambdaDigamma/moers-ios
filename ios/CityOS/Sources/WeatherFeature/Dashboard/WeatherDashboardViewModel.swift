@@ -9,7 +9,6 @@ import Core
 import Foundation
 import Observation
 
-@available(iOS 16.0, *)
 @MainActor
 @Observable
 public class WeatherDashboardViewModel: StandardViewModel {

@@ -21,11 +21,7 @@ nonisolated final public class MarkdownBlock: NSObject, Blockable {
         
         // todo: markdown
         
-        if #available(iOS 15, *) {
-            return (try? NSAttributedString(markdown: text)) ?? NSAttributedString(string: text)
-        } else {
-            return NSAttributedString(string: text)
-        }
+        return (try? NSAttributedString(markdown: text)) ?? NSAttributedString(string: text)
         
 //        let parser = MarkdownParser()
 //        let html = parser.html(from: text)

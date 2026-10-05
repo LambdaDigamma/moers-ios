@@ -78,40 +78,16 @@ class EntryHistoryViewController: UIViewController {
     
     private func configureDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Audit> { cell, indexPath, audit in
-            if #available(iOS 16.0, *) {
-                cell.contentConfiguration = UIHostingConfiguration {
-                    AuditCellView(audit: audit)
-                }
-                .margins(.all, 0)
-            } else {
-                // Fallback for iOS 15
-                var content = cell.defaultContentConfiguration()
-                content.text = self.auditEventText(for: audit.event)
-                content.secondaryText = String(
-                    format: String(localized: "%@ ago", bundle: .module),
-                    audit.updatedAt?.timeAgo() ?? String(localized: "n/a", bundle: .module)
-                )
-                cell.contentConfiguration = content
+            cell.contentConfiguration = UIHostingConfiguration {
+                AuditCellView(audit: audit)
             }
+            .margins(.all, 0)
             cell.accessories = []
         }
         
         dataSource = UICollectionViewDiffableDataSource<Section, Audit>(collectionView: collectionView) {
             collectionView, indexPath, audit in
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: audit)
-        }
-    }
-    
-    private func auditEventText(for event: Audit.EventType) -> String {
-        switch event {
-        case .created:
-            return String(localized: "Entry created", bundle: .module)
-        case .updated:
-            return String(localized: "Entry updated", bundle: .module)
-        case .deleted:
-            return String(localized: "Entry deleted", bundle: .module)
-        case .restored:
-            return String(localized: "Entry restored", bundle: .module)
         }
     }
     
