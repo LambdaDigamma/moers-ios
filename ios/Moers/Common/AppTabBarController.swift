@@ -26,6 +26,10 @@ public class AppTabBarController: AppScaffold.TabBarController {
     @LazyInjected(\.locationManager) var locationManager
     
     var firstLaunch: FirstLaunch
+
+    private var isSnapshotting: Bool {
+        LaunchArgumentsHandler.isSnapshotting()
+    }
     
     let dashboard: DashboardCoordinator
     let news: NewsCoordinator
@@ -50,6 +54,14 @@ public class AppTabBarController: AppScaffold.TabBarController {
         self.other = OtherCoordinator()
         
         super.init(nibName: nil, bundle: nil)
+
+        if #available(iOS 18.0, *) {
+            mode = .tabBar
+        }
+
+        if isSnapshotting {
+            setupMocked()
+        }
         
     }
     
@@ -75,6 +87,23 @@ public class AppTabBarController: AppScaffold.TabBarController {
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        applyTheming()
+        loadRubbishData()
+    }
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        self.firstLaunch = FirstLaunch(
+            userDefaults: .appGroup,
+            key: Constants.firstLaunch
+        )
+
+        if (firstLaunch.isFirstLaunch || !onboardingManager.userDidCompleteSetup) && !isSnapshotting {
+            showBulletin()
+        }
+
     }
     
     // MARK: - UI -
@@ -93,6 +122,12 @@ public class AppTabBarController: AppScaffold.TabBarController {
         let theme = ApplicationTheme.current
         
         self.view.backgroundColor = theme.backgroundColor
+        self.bulletinManager.backgroundColor = theme.backgroundColor
+        self.bulletinManager.hidesHomeIndicator = false
+        self.bulletinManager.edgeSpacing = .compact
+        self.rubbishMigrationManager.backgroundColor = theme.backgroundColor
+        self.rubbishMigrationManager.hidesHomeIndicator = false
+        self.rubbishMigrationManager.edgeSpacing = .compact
         self.tabBar.tintColor = theme.accentColor
         self.tabBar.barTintColor = UIColor.systemBackground
         
@@ -119,19 +154,155 @@ public class AppTabBarController: AppScaffold.TabBarController {
         
     }
     
+    // MARK: - Onboarding -
+
+    lazy var onboardingManager: OnboardingManager = {
+        return OnboardingManager()
+    }()
+
+    lazy var bulletinManager: BLTNItemManager = {
+        let onboarding = onboardingManager.makeOnboarding()
+        return BLTNItemManager(rootItem: onboarding)
+    }()
+
+    lazy var rubbishMigrationManager: BLTNItemManager = {
+        let page = makeRubbishMigrationPage()
+        return BLTNItemManager(rootItem: page)
+    }()
+
+    // MARK: - Actions -
+
+    public func updateDashboard() {
+        dashboard.updateUI()
+    }
+
+    @objc func setupDidComplete() {
+
+        AnalyticsManager.shared.logCompletedOnboarding()
+
+        self.onboardingManager.userDidCompleteSetup = true
+        self.updateDashboard()
+
+    }
+
+    private func showBulletin() {
+
+        NotificationCenter.default.addObserver(self, selector: #selector(setupDidComplete), name: .SetupDidComplete, object: nil)
+
+        bulletinManager.backgroundViewStyle = .dimmed
+        bulletinManager.statusBarAppearance = .hidden
+        bulletinManager.showBulletin(above: self)
+
+    }
+
+    private func makeRubbishMigrationPage() -> BLTNPageItem {
+
+        let page = onboardingManager.makeRubbishStreetPage()
+        page.descriptionText = "Wähle Deine Straße erneut aus, um die aktuellen Abfuhrtermine der Müllabfuhr angezeigt zu bekommen."
+
+        page.actionHandler = { [weak self] item in
+
+            guard let item = item as? RubbishStreetPickerItem else { return }
+
+            if var rubbishService = self?.rubbishService {
+
+                rubbishService.register(item.selectedStreet)
+                rubbishService.isEnabled = true
+
+                if rubbishService.remindersEnabled {
+                    rubbishService.registerNotifications(
+                        at: rubbishService.reminderHour ?? 20,
+                        minute: rubbishService.reminderHour ?? 00
+                    )
+                }
+
+            }
+
+            item.manager?.dismissBulletin(animated: true)
+
+            self?.updateDashboard()
+
+        }
+
+        page.alternativeHandler = { [weak self] item in
+
+            self?.rubbishService.isEnabled = false
+            self?.rubbishService.remindersEnabled = false
+            self?.rubbishService.disableReminder()
+
+            item.manager?.dismissBulletin(animated: true)
+
+            self?.updateDashboard()
+
+        }
+
+        return page
+
+    }
+
     // MARK: - Data Handling -
     
     private func loadCurrentLocation() {
         
-        locationManager.authorizationStatus.sink { (authorizationStatus: CLAuthorizationStatus) in
+        locationManager.authorizationStatus.sink { [weak self] (authorizationStatus: CLAuthorizationStatus) in
             if authorizationStatus == .authorizedWhenInUse {
-                self.locationManager.requestCurrentLocation()
+                self?.locationManager.requestCurrentLocation()
             }
         }
         .store(in: &cancellables)
         
     }
     
+    private func loadRubbishData() {
+
+        let rubbishService = Container.shared.rubbishService()
+
+        if rubbishService.isEnabled &&
+            !firstLaunch.isFirstLaunch &&
+            onboardingManager.userDidCompleteSetup &&
+            rubbishService.rubbishStreet != nil {
+
+            Task {
+                do {
+                    let streets = try await rubbishService.loadRubbishCollectionStreets()
+
+                    await MainActor.run {
+                        let currentStreetName = rubbishService.rubbishStreet?.street ?? ""
+                        let currentStreetAddition = rubbishService.rubbishStreet?.streetAddition
+
+                        if let filteredStreet = streets.filter({
+                            $0.street == currentStreetName &&
+                            $0.streetAddition == currentStreetAddition
+                        }).first {
+
+                            rubbishService.register(filteredStreet)
+
+                            if rubbishService.remindersEnabled {
+                                rubbishService.registerNotifications(
+                                    at: rubbishService.reminderHour ?? 20,
+                                    minute: rubbishService.reminderMinute ?? 00
+                                )
+                            }
+
+                        } else {
+
+                            rubbishService.disableStreet()
+
+                            self.rubbishMigrationManager.backgroundViewStyle = .dimmed
+                            self.rubbishMigrationManager.statusBarAppearance = .hidden
+                            self.rubbishMigrationManager.showBulletin(above: self)
+
+                        }
+                    }
+                } catch {
+                    print("Error loading rubbish collection streets: \(error.localizedDescription)")
+                }
+            }
+
+        }
+
+    }
+
     // MARK: - Helper -
     
     private func setupMocked() {

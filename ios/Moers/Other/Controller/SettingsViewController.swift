@@ -65,6 +65,10 @@ class SettingsViewController: UIViewController {
         view.addSubview(collectionView)
         collectionView.delegate = self
         
+        if #available(iOS 26.0, *) {
+            collectionView.topEdgeEffect.style = .soft
+        }
+        
         let switchRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, SwitchItem> { [weak self] cell, indexPath, item in
             guard let self = self else { return }
             var content = cell.defaultContentConfiguration()
@@ -114,7 +118,7 @@ class SettingsViewController: UIViewController {
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         
         NSLayoutConstraint.activate(constraints)
@@ -332,9 +336,9 @@ class SettingsViewController: UIViewController {
         
         self.reloadRows()
         
-        guard let splitViewController = self.splitViewController as? AppSplitViewController else { return }
+        guard let tabBarController = self.tabBarController as? AppTabBarController else { return }
         
-        splitViewController.updateDashboard()
+        tabBarController.updateDashboard()
         
     }
     

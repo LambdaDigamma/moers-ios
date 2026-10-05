@@ -72,8 +72,6 @@ public struct AboutScreen: View {
                 
                 developer()
                 
-                wallOfFame()
-                
             }
             
         }

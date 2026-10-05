@@ -87,10 +87,12 @@ final class MMEventsViewController: UIViewController, TabBarItemProvider, Coordi
     private func configureSearch() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "Veranstaltungen suchen"
         searchController.searchBar.searchTextField.clearButtonMode = .whileEditing
 
         navigationItem.searchController = searchController
+        navigationItem.preferredSearchBarPlacement = .stacked
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
     }

@@ -54,7 +54,7 @@ public class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
     
     private func setupUI() {
         
-        self.view.backgroundColor = UIColor.black
+        self.view.backgroundColor = UIColor.systemBackground
         self.view.addSubview(map)
         
         self.map.layer.cornerCurve = .continuous

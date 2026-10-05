@@ -278,9 +278,9 @@ class LegacySettingsViewController: UIViewController {
         
         self.reloadRows()
         
-        guard let splitViewController = self.splitViewController as? AppSplitViewController else { return }
+        guard let tabBarController = self.tabBarController as? AppTabBarController else { return }
         
-        splitViewController.updateDashboard()
+        tabBarController.updateDashboard()
         
     }
     

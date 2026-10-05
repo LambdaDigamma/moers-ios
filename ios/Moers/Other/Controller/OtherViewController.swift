@@ -94,6 +94,11 @@ public class OtherViewController: UIViewController {
     private func applyTheming() {
 //        self.tableView.backgroundColor = UIColor.systemBackground
 //        self.tableView.separatorColor = UIColor.separator
+        
+        if #available(iOS 26.0, *) {
+            self.tableView.topEdgeEffect.style = .soft
+        }
+        
     }
 
     private func makeData() -> [TableViewSection] {

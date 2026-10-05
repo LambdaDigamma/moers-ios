@@ -15,7 +15,12 @@ extension View {
 #if os(tvOS)
         self
 #else
-        self.toolbarTitleDisplayMode(.inlineLarge)
+        if #available(iOS 26.0, *) {
+            self.toolbarTitleDisplayMode(.inlineLarge)
+                .scrollEdgeEffectStyle(.soft, for: .all)
+        } else {
+            self.toolbarTitleDisplayMode(.inlineLarge)
+        }
 #endif
     }
     

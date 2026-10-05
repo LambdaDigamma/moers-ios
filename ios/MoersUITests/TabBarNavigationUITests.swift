@@ -1,4 +1,5 @@
 import Core
+import UIKit
 import XCTest
 
 @MainActor
@@ -13,7 +14,7 @@ final class TabBarNavigationUITests: XCTestCase {
         app.launch()
         defer { app.terminate() }
 
-        let otherTab = app.buttons[AccessibilityIdentifiers.Menu.other]
+        let otherTab = app.buttons[AccessibilityIdentifiers.Menu.other].firstMatch
         XCTAssertTrue(otherTab.waitForExistence(timeout: 10))
         otherTab.tap()
         assertTabLabels(in: app)
@@ -50,7 +51,7 @@ final class TabBarNavigationUITests: XCTestCase {
             AccessibilityIdentifiers.Menu.map,
             AccessibilityIdentifiers.Menu.events
         ] {
-            app.buttons[identifier].tap()
+            app.buttons[identifier].firstMatch.tap()
             otherTab.tap()
             assertTabLabels(in: app)
         }
@@ -59,6 +60,75 @@ final class TabBarNavigationUITests: XCTestCase {
         screenshot.name = "Tab labels after navigation"
         screenshot.lifetime = .keepAlways
         add(screenshot)
+    }
+
+    func testRotationRetainsSettingsDetailAndSelectedMapTab() async throws {
+        continueAfterFailure = false
+        XCUIDevice.shared.orientation = .portrait
+        defer { XCUIDevice.shared.orientation = .portrait }
+
+        let app = XCUIApplication()
+        app.launchArguments = ["-FASTLANE_SNAPSHOT", "NO", "-UserDidCompleteSetup", "YES"]
+        app.setLanguageTag(.en)
+        app.launch()
+        defer { app.terminate() }
+
+        let otherTab = app.buttons[AccessibilityIdentifiers.Menu.other].firstMatch
+        XCTAssertTrue(otherTab.waitForExistence(timeout: 10))
+        otherTab.tap()
+        app.cells.containing(.staticText, identifier: "Settings").firstMatch.tap()
+        let settings = app.navigationBars["Settings"]
+        XCTAssertTrue(settings.waitForExistence(timeout: 10))
+        let initialWindow = app.windows.firstMatch.frame
+        let compactWindowWithBottomTabs = initialWindow.width < 600 && otherTab.frame.midY > initialWindow.midY
+
+        for orientation in [UIDeviceOrientation.landscapeLeft, .portrait] {
+            XCUIDevice.shared.orientation = orientation
+            let rotationObserved = waitForWindowOrientation(orientation, in: app)
+            if orientation == .landscapeLeft && !rotationObserved && compactWindowWithBottomTabs {
+                throw XCTSkip("Rotation is unavailable in the current compact window. Resize retention is covered by unit tests.")
+            }
+            XCTAssertTrue(rotationObserved, "The window did not reach the requested orientation.")
+            XCTAssertTrue(settings.exists)
+            XCTAssertTrue(otherTab.isSelected)
+            assertTabLabels(in: app)
+            assertSidebarToggleIsAbsent(in: app)
+        }
+
+        let mapTab = app.buttons[AccessibilityIdentifiers.Menu.map].firstMatch
+        mapTab.tap()
+        for orientation in [UIDeviceOrientation.landscapeLeft, .portrait] {
+            XCUIDevice.shared.orientation = orientation
+            XCTAssertTrue(waitForWindowOrientation(orientation, in: app), "The window did not reach the requested orientation.")
+            XCTAssertTrue(mapTab.isSelected)
+            assertTabLabels(in: app)
+            assertSidebarToggleIsAbsent(in: app)
+        }
+
+        otherTab.tap()
+        XCTAssertTrue(settings.exists)
+    }
+
+    private func waitForWindowOrientation(
+        _ orientation: UIDeviceOrientation,
+        in app: XCUIApplication
+    ) -> Bool {
+        let landscape = orientation == .landscapeLeft || orientation == .landscapeRight
+        let predicate = NSPredicate { _, _ in
+            let frame = app.windows.firstMatch.frame
+            return landscape ? frame.width > frame.height : frame.height > frame.width
+        }
+        let expectation = XCTNSPredicateExpectation(predicate: predicate, object: nil)
+        return XCTWaiter.wait(for: [expectation], timeout: 10) == .completed
+    }
+
+    private func assertSidebarToggleIsAbsent(
+        in app: XCUIApplication,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        let sidebarButtons = app.buttons.matching(NSPredicate(format: "label CONTAINS[cd] %@", "sidebar"))
+        XCTAssertEqual(sidebarButtons.count, 0, file: file, line: line)
     }
 
     private func assertTabLabels(in app: XCUIApplication, file: StaticString = #filePath, line: UInt = #line) {
@@ -71,7 +141,7 @@ final class TabBarNavigationUITests: XCTestCase {
         ]
 
         for (identifier, label) in labels {
-            XCTAssertEqual(app.buttons[identifier].label, label, file: file, line: line)
+            XCTAssertEqual(app.buttons[identifier].firstMatch.label, label, file: file, line: line)
         }
     }
 }
