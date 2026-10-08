@@ -10,7 +10,7 @@ import Core
 import AppScaffold
 import UIKit
 import BLTNBoard
-import MMEvents
+import Events
 import CoreLocation
 import Combine
 import FactoryKit
@@ -195,28 +195,27 @@ public class AppTabBarController: AppScaffold.TabBarController {
 
     }
 
+    func registerRubbishMigrationStreet(_ street: RubbishCollectionStreet) {
+        rubbishService.register(street)
+        rubbishService.isEnabled = true
+        if rubbishService.remindersEnabled {
+            rubbishService.registerNotifications(
+                at: rubbishService.reminderHour ?? 20,
+                minute: rubbishService.reminderMinute ?? 0
+            )
+        }
+    }
+
     private func makeRubbishMigrationPage() -> BLTNPageItem {
 
         let page = onboardingManager.makeRubbishStreetPage()
-        page.descriptionText = "Wähle Deine Straße erneut aus, um die aktuellen Abfuhrtermine der Müllabfuhr angezeigt zu bekommen."
+        page.descriptionText = String(localized: "Select your street again to see the current waste collection dates.")
 
         page.actionHandler = { [weak self] item in
 
             guard let item = item as? RubbishStreetPickerItem else { return }
 
-            if var rubbishService = self?.rubbishService {
-
-                rubbishService.register(item.selectedStreet)
-                rubbishService.isEnabled = true
-
-                if rubbishService.remindersEnabled {
-                    rubbishService.registerNotifications(
-                        at: rubbishService.reminderHour ?? 20,
-                        minute: rubbishService.reminderHour ?? 00
-                    )
-                }
-
-            }
+            self?.registerRubbishMigrationStreet(item.selectedStreet)
 
             item.manager?.dismissBulletin(animated: true)
 

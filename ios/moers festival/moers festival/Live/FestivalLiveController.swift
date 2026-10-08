@@ -9,7 +9,7 @@
 import Foundation
 import Core
 import SwiftUI
-import MMPages
+import Pages
 import WebKit
 
 public class FestivalLiveController: DefaultHostingController {

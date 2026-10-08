@@ -10,8 +10,8 @@ import Core
 import Foundation
 import UIKit
 import SwiftUI
-import MMEvents
-import MMPages
+import Events
+import Pages
 import Combine
 import SafariServices
 import FactoryKit

@@ -256,7 +256,7 @@ class LegacySettingsViewController: UIViewController {
                         action: triggerRubbishCollection
                     ),
                     NavigationRow(
-                        title: String(localized: "Street: \(rubbishService.rubbishStreet?.displayName ?? String(localized: "Not selected"))"),
+                        title: rubbishService.rubbishStreet.map { String(localized: "Street: \($0.displayName)") } ?? String(localized: "Street: Not selected"),
                         action: showRubbishStreet
                     ),
                     NavigationRow(

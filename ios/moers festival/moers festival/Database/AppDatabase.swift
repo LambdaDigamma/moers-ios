@@ -8,7 +8,7 @@
 
 import Foundation
 import GRDB
-import MMEvents
+import Events
 
 /// AppDatabase lets the application access the database.
 ///

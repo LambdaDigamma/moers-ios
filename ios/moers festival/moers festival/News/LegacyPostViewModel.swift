@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import MMFeeds
+import Feeds
 import AVKit
 
 class LegacyPostViewModel: Identifiable, ObservableObject, Hashable {

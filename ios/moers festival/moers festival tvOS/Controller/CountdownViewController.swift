@@ -8,11 +8,11 @@
 
 import UIKit
 import TVUIKit
-import MMEvents
+import Events
 
 class CountdownViewController: UIViewController {
     
-    public var livestreamData: MMEvents.LivestreamData? {
+    public var livestreamData: Events.LivestreamData? {
         didSet {
             self.setupCountdownTimer()
         }

@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 import FactoryKit
-import MMEvents
+import Events
 import WidgetKit
 
 enum FestivalWidgetSharedConstants {

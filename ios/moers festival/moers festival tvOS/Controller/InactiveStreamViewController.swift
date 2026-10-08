@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import MMEvents
+import Events
 
 class InactiveStreamViewController: UIViewController {
     
     public var reloadAction: (() -> Void)?
-    public var livestreamData: MMEvents.LivestreamData? {
+    public var livestreamData: Events.LivestreamData? {
         didSet {
             if let livestreamData = livestreamData {
                 self.setupContinuePlaybackTimer(livestreamData: livestreamData)
@@ -69,7 +69,7 @@ class InactiveStreamViewController: UIViewController {
     
     // MARK: - Timer Handling
     
-    private func setupContinuePlaybackTimer(livestreamData: MMEvents.LivestreamData) {
+    private func setupContinuePlaybackTimer(livestreamData: Events.LivestreamData) {
         
         if let nextStartDate = livestreamData.events
             .map({ $0.model })

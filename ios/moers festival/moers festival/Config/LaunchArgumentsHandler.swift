@@ -9,7 +9,7 @@
 import UIKit
 import AppScaffold
 import ModernNetworking
-import MMFeeds
+import Feeds
 
 public class LaunchArgumentsHandler: BaseLaunchArgumentsHandler {
 

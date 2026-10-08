@@ -8,9 +8,9 @@
 
 import Foundation
 import GRDB
-import MMFeeds
-import MMPages
-import MMEvents
+import Feeds
+import Pages
+import Events
 
 public extension AppDatabase {
     

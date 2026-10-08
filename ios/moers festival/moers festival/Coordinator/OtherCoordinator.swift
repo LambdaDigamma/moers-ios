@@ -10,7 +10,7 @@ import Foundation
 import SafariServices
 import INSPhotoGallery
 import AppScaffold
-import MMEvents
+import Events
 import SwiftUI
 
 public class OtherCoordinator: Coordinator {

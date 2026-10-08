@@ -8,7 +8,7 @@
 
 import UIKit
 import Core
-import MMEvents
+import Events
 import SwiftUI
 import Combine
 import FactoryKit

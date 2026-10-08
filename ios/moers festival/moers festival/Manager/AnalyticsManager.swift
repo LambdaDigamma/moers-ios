@@ -7,7 +7,7 @@
 //
 
 import StoreKit
-import MMEvents
+import Events
 import FirebaseAnalytics
 
 class AnalyticsManager {

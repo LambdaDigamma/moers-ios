@@ -11,7 +11,7 @@ import Foundation
 import AppScaffold
 import ModernNetworking
 import Core
-import MMEvents
+import Events
 import FactoryKit
 
 class ServiceConfiguration: BootstrappingProcedureStep {

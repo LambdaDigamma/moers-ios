@@ -8,7 +8,7 @@
 
 import UIKit
 import AppScaffold
-import MMEvents
+import Events
 
 class UserScheduleCoordinator: SharedCoordinator {
 

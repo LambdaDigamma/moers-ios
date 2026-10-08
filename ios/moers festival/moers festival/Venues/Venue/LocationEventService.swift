@@ -9,7 +9,7 @@
 import Core
 import Foundation
 import ModernNetworking
-import MMEvents
+import Events
 import OSLog
 
 public protocol LocationEventService {

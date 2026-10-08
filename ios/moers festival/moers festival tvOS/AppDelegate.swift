@@ -22,9 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let bootstrappingProcedure: BootstrappingProcedure = [
             NetworkingConfiguration(),
-            MMAPIFrameworkConfiguration(),
-//            MMFeedsFrameworkConfiguration(),
-//            MMPagesFrameworkConfiguration(),
+            APIFrameworkConfiguration(),
+//            FeedsFrameworkConfiguration(),
+//            PagesFrameworkConfiguration(),
 //            TwitterFramework(),
 //            FirebaseFrameworkConfiguration(),
 //            ShortcutConfiguration()

@@ -15,7 +15,9 @@ class AboutViewModel {
     }
     
     public var cfnText: String {
-        return String(localized: "Twitter: twitter.com/codefornrn\nWebsite: codeforniederrhein.de")
+        let twitterURL = "twitter.com/codefornrn"
+        let websiteURL = "codeforniederrhein.de"
+        return String(localized: "Twitter: \(twitterURL)\nWebsite: \(websiteURL)", comment: "About contact details. The placeholders are the Twitter and website addresses.")
     }
     
     public var name: String {
@@ -23,7 +25,8 @@ class AboutViewModel {
     }
     
     public var meText: String {
-        return String(localized: "Twitter: twitter.com/lambdadigamma")
+        let twitterURL = "twitter.com/lambdadigamma"
+        return String(localized: "Twitter: \(twitterURL)", comment: "Developer contact. The placeholder is a Twitter address.")
     }
     
     public var infoText: String {

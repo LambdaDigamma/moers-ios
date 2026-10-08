@@ -1,6 +1,6 @@
 //
 //  RubbishPickupItem.swift
-//  MMRubbish
+//  Rubbish
 //
 //  Created by Lennart Fischer on 26.12.19.
 //

@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import MMCommon
+import Core
 
 struct AuthorView: View {
     var body: some View {

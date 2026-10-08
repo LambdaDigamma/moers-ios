@@ -1,10 +1,16 @@
 # Papercuts
 
-## Recovered city Events controls need localization
+## Festival bulletin setup uses ignored appearance settings
 
-- Impact: The recovered Events tab has German search, date, and filter labels when the app uses English.
-- Reproduction: Launch the city app in English, open Events, then open Filter. The search placeholder is `Veranstaltungen suchen`; date rows include `Heute` and `Morgen`.
-- Next step: Move the event controller, filter, and formatter strings into the app's string catalog and add translations.
+- Impact: The festival app build reports deprecation warnings for bulletin appearance settings. UIKit controls the sheet appearance and ignores these settings.
+- Reproduction: Build the `moers festival` scheme. `OtherViewController.swift` and `LaunchInterceptor.swift` assign `backgroundColor`, `backgroundViewStyle`, or `edgeSpacing` on bulletin managers.
+- Next step: Remove the ignored assignments in a scoped festival bulletin cleanup.
+
+## Recovered city Events localization
+
+- Status: The current Events controls use English keys with German translations. The review fix also changes the shared website action to `Open Website` and uses one locale-aware date formatter for list and detail.
+- Original impact: Earlier recovered controls showed German search, date, and filter labels in English.
+- Original reproduction: Launch City in English and open Events → Filter. The old labels included `Veranstaltungen suchen`, `Heute`, and `Morgen`.
 
 ## About screen has no navigation title
 
@@ -32,7 +38,7 @@
 ## Existing SwiftLint errors outside the concurrency changes
 
 - Impact: Linting the larger set of source files touched by explicit destructors exposes seven existing errors. The same seven errors are present in the branch's committed source before these edits.
-- Reproduction: Run `swiftlint lint --config ios/.swiftlint.yml` for `Core/Entry/EntryManager.swift`, `MMEvents/ViewModels/EventViewModel.swift`, `MMFeeds/UI/ViewController/PostsViewController.swift`, and `Pulley/PulleyViewController.swift` under `ios/CityOS/Sources`.
+- Reproduction: Run `swiftlint lint --config ios/.swiftlint.yml` for `Core/Entry/EntryManager.swift`, `Events/ViewModels/EventViewModel.swift`, `Feeds/UI/ViewController/PostsViewController.swift`, and `Pulley/PulleyViewController.swift` under `ios/CityOS/Sources`.
 - Errors: One legacy API variable name, two large tuples, one count comparison, and Pulley file, function, and class length limits. Refactor these separately; they do not affect the older-iOS runtime checks.
 
 ## Existing marketing lint errors block the standard check
@@ -41,3 +47,142 @@
 - Reproduction: With Node 22.14, run `cd marketing && npm ci && npm run lint`.
 - Errors: `DeviceCarousel.tsx` has eight explicit `any` errors. `DeviceStill.tsx` has seven. `PhoneFrame.tsx` has two explicit `any` errors, one forbidden `require()` import, and one native image element error.
 - Next step: Fix these component errors separately. Run `npm exec -- tsc --noEmit` to check TypeScript while the standard lint command is blocked. This check and the Storybook build pass with the proposed dependency updates.
+
+## Festival view observers still use process lifecycle events
+
+- Impact: Update refresh and event timers observe application events. These observers cannot distinguish the owning scene if multiple app windows are enabled later. The festival currently permits one app window.
+- City impact: The city app already enables multiple scenes. Shared event timer and subtitle observers still use application events. The shared event-list controllers are separate from the current city Events tab, but remain available to package callers.
+- Reproduction: Inspect the application notification observers in festival `Controller/TabBarController.swift`, and shared `Events/UI/EventsViewController.swift`, `EventsViewController_Legacy.swift`, and `EventSubtitleView.swift`. With multiple scenes enabled in a separate change, deactivate one scene while another stays active, then check update refresh and event timers in each window.
+- Next step: Use the owning scene's lifecycle or SwiftUI scene phase. Do not replace the application notifications with unfiltered scene notifications. This is outside the AppDelegate migration in the resizability skill.
+
+## City-only map layouts retain manual system and keyboard insets
+
+- Status: The local city resizability changes remove fixed bar deductions, parent-drawer inset copies, and keyboard frame observers from the affected map flows. Forms use the keyboard layout guide. See `ios/RESIZABILITY.md` for validation and limits.
+- Original reproduction: In the city app, open a map detail or an entry form, display the keyboard, and resize the window. The old `MapFeature` controllers could use stale geometry. Festival source uses its own map controllers and does not instantiate these surfaces.
+- Remaining check: Verify a software keyboard while resizing on an iPad. Synthetic notifications from another window are covered by the focused tests; hardware keyboard input on the simulator cannot prove software keyboard clearance.
+
+## Xcode device capture retains old geometry after a Duo fold change
+
+- Update 2026-10-05: The CLI captures both displays when a display is selected explicitly. Use `simctl io <current-device> enumerate` to find the displays, then `screenshot --display=<id> <path>`. In this check, Screen 1 captured Closed and Screen 3 captured Open. The default display produced a black image. Both explicit captures were inspected. Discover IDs each session. Xcode DeviceInteraction session lookup and the native Screenshot action still failed.
+
+- Impact: DeviceInteraction screenshots and hierarchy hit points can retain the closed display geometry after the app window becomes wider. This blocks screenshot-based validation through that tool.
+- Reproduction: With Xcode 27.1 beta and an iOS 27.1 iPhone Duo simulator, capture the closed 466-by-678-point app window, select Open in DeviceHub, and capture again. The live app window becomes 951 by 669 points, but the tool produces a black image with the earlier geometry. Restarting the interaction session did not repair it in this check.
+- Next step: Fix display selection in the Xcode interaction tool. Use the observed native DeviceHub UI as evidence until the tool can capture the current display.
+
+## City resize loses navigation and Events filter state
+
+- Update 2026-10-05: The City root now has one tab controller and one coordinator per section. The sidebar and size-trait activity replay are removed. This removes the source of resize-time navigation and filter transfer. Focused validation is in `ios/RESIZABILITY.md`. The process-wide activity fallback during scene restoration remains a separate issue; test two scenes when that fallback is changed.
+
+- Impact: Changing between compact tabs and the regular sidebar can reset an Events filter or select a page that the person did not select.
+- Reproduction: On iPhone Duo iOS 27.1, close the device, open Events, and apply the Today filter. Open the device: the filter is no longer active. Select Map in the regular sidebar, then close the device: Events becomes selected. The app process remains the same.
+- iPad reproduction: On iPad Pro 11-inch (M5) iOS 27.2, open an event detail in the 1210-by-834-point landscape scene. Resize to a 375-by-651-point window: compact tabs appear, but the event detail is replaced by the Events list. The app process remains the same.
+- Original source before 2026-10-05: `Moers/Common/ApplicationCoordinator.swift` restored from process-wide `UserActivity.current` on a size-class change. Its `currentEvents` selects separate compact and regular coordinators. `Moers/Config/SceneDelegate.swift` also uses the global activity as a restoration fallback. The global activity can belong to another window.
+- Remaining next step: Move activity writers and the scene-restoration fallback to the owning scene, then test two windows. The tab root now keeps navigation and filter state during narrow/wide changes without a transfer between presentations.
+
+## City Events horizontal sections enter the Duo system area
+
+- Impact: Quick-filter chips can appear under the clock and Wi-Fi area. Im Fokus cards can appear under the floating Filter control.
+- Reproduction: On the closed iPhone Duo iOS 27.1 simulator, open Events. The horizontal quick-filter row and featured-card section extend across the right inset. Regular event rows respect this area. The same defect is visible with the device open.
+- Next step: Review the Events compositional sections and their orthogonal scroll clipping. Use each section's current available width and safe area. Keep the floating system controls clear at both Duo sizes.
+
+## City cold widget URL is not handled on scene connection
+
+- Impact: A news-widget link can be lost when it starts a new app scene.
+- Reproduction: Source check: `Moers/Config/SceneDelegate.swift` handles `connectionOptions.userActivities` in `willConnectTo`, but does not handle `connectionOptions.urlContexts`. The warm `openURLContexts` callback opens a news article.
+- Next step: Handle the initial URL contexts through the same coordinator route after window setup. Test a cold launch and an existing scene separately.
+
+## City map address form has a negative street-field width
+
+- Impact: Auto Layout cannot give the street field a valid width. The street and house-number controls can be misplaced.
+- Reproduction: Open the city map entry Address step. In `MapFeature/Entry Onboarding/EntryOnboardingAddressViewController.swift`, the street field's trailing anchor is constrained to its own leading anchor minus 16 points. This constraint was present before the resizability changes.
+- Next step: Constrain the street field to the house-number field and the form's safe area. Validate both layout directions with the keyboard visible.
+
+## Festival programme day button wraps in the wide primary column
+
+- Status: Fixed in the local 4 October 2026 date-strip change. Equal circles and single-line labels replace text compression. The row scrolls when the dates need more room. Five focused tests pass on iOS 18.6. The current Duo build shows all five dates on one line in the 340-point primary column; tapping `22` selects Friday and changes its events. See `ios/moers festival/RESIZABILITY.md` for the full check.
+- Original impact: A two-digit day could use two lines in the programme date selector.
+- Original reproduction: On iPhone Duo iOS 27.1, open the device and show Programme. In the 340-point primary column, day `22` wraps onto two lines. The device check observed this in the installed build before the Info & Tickets follow-up.
+- Original next step: Check the date selector's available width and text compression in the primary column. Keep each day number on one line and verify all five date buttons at narrow and wide widths.
+
+## Festival Info list reset after device snapshot operations needs isolation
+
+- Impact: A later Info overview moved to the top while About and the Info tab remained selected. The immediate fold check had retained the same list position. The cause is not established.
+- Reproduction observed on 3 October 2026: On Duo iOS 27.1, scroll the wide Info list, select About, and fold Closed/Open. The immediate before/after hierarchy placed Volunteers at y=74.7 points. After device snapshot/session operations and native window reselection, the list was at the top. The app process remained PID 3565; no agent Info scroll occurred between those observations.
+- Validation limit: The comparison with native controls only could not start. Device Hub selected another device window on two recovery attempts; guards stopped before input. Live nested web input was also blocked by a failed hierarchy tap and `windowNotFoundAtPosition` from the coordinate fallback.
+- Next step: Repeat the fold and window-focus round trip with Duo as the only active Device Hub window, without snapshot sessions between inputs. If the native-only run resets the list, trace overview reconstruction, scroll-to-top/drag callbacks, and scroll-range clamping. Do not attribute the reset to the app or the tools without that comparison.
+
+## Xcode workspace device session expires during install and run
+
+- Impact: The workspace interaction tool cannot confirm installation and launch after a successful build.
+- Reproduction on 4 October 2026: Create a festival workspace session for the booted Duo iOS 27.1, then call InstallAndRun with its returned key. Two bounded attempts reported that the session key no longer existed. Xcode's current build log showed success with no errors and no build still running.
+- Workaround: Install the exact simulator app from the current build log and launch it through simulator tooling, then use a standalone device session for capture. This launched the current festival app as PID 31620 without an app-data reset.
+- Next step: Check the Xcode interaction service's session lifetime across the build/install operation.
+
+## Shared location manager uses an invalid property on watchOS
+
+- Impact: `Core.LocationManager` cannot compile for watchOS. Its watchOS initialization branch uses `self.locationService`, but the class stores a `CLLocationManager` in `self.locationManager`. This reference was present before the availability cleanup.
+- Reproduction: Build the CityOS `Core` target for a watchOS simulator. The branch in `ios/CityOS/Sources/Core/LocationManager.swift` references a member that the class does not define.
+- Next step: Use the stored location manager and run a focused watchOS build. Keep this correction separate from the availability cleanup.
+
+## Package lockfiles do not match their BulletinBoard requirements
+
+- Status: The review fix pins BulletinBoard `6.2.0` in the City workspace and both app project lockfiles. Other dependency versions match the baseline. The focused City checks pass with automatic resolution disabled; the Festival check is recorded in `ios/EVENTS.md`.
+
+- Impact: A festival build that disables automatic package resolution fails before compilation. Both app projects require BulletinBoard `6.2.0..<7.0.0`, but the festival project lockfile and the city workspace lockfile pin `6.1.1`.
+- Reproduction: Build the festival project with `-disableAutomaticPackageResolution -onlyUsePackageVersionsFromResolvedFile`. Xcode reports an out-of-date resolved file. Adding `-skipPackageUpdates` without those flags also fails when the local cache lacks the published `6.2.0` tag.
+- Validation: Package resolution used `6.2.0` for the city tests and festival simulator build. Both passed. The original lockfiles were restored because dependency changes are outside the availability cleanup.
+- Restoration limit: A background process regenerated the city workspace lockfile after restoration while two Xcode versions were open. The writer was not identified. Do not stop unrelated Xcode work to prevent this write.
+- Next step: Update the city workspace and festival project lockfiles to the version already required by their projects in a separate dependency change.
+
+
+## City rubbish migration uses the hour as the minute
+
+- Status: The review fix passes `reminderMinute` to the minute argument. Focused validation is recorded in `ios/EVENTS.md`.
+
+- Impact: After a person selects a replacement rubbish street in the migration bulletin, a reminder set to 20:30 can be scheduled for 20:20.
+- Reproduction: Enable rubbish reminders with hour 20 and minute 30. Use a saved street that is absent from the loaded street list. Select a replacement street in the migration bulletin. Inspect the scheduled notification time.
+- Source: `Moers/Common/AppTabBarController.swift`, `makeRubbishMigrationPage()`, passes `reminderHour` to both notification time arguments. The same call was present in the removed `AppSplitViewController`.
+- Original next step: Pass `reminderMinute` to the minute argument and add a focused migration reminder test.
+
+
+## City Settings shows an untranslated rubbish heading
+
+- Status: Fixed in the local localization change. Both Settings controllers use `Pick-up Schedule`, with the German translation retained in the City catalog.
+- Impact: English Settings shows `SettingsRubbishCollectionTitle` as the section heading.
+- Reproduction: Launch City in English, open Other, then Settings. Inspect the rubbish section heading. This was observed on the Duo simulator during the tab navigation check.
+- Source: Both City Settings controllers request `String.localized("SettingsRubbishCollectionTitle")`.
+- Next step: Add or repair that key in the City localization resources, then check both Settings controllers. The navigation change does not modify localization resources.
+
+## Fuel configuration tests require the old Xcode project format
+
+- Impact: Two fuel configuration script tests fail before checking the script. They expect `project.pbxproj`, but the projects now use `project.xcproj`.
+- Reproduction: Run `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s ios/scripts/tests -p test_prepare_fuel_api_key.py -v`. The two project-wiring tests fail with `FileNotFoundError`.
+- Next step: Read the current Xcode project format in these tests. Keep this test repair separate from localization.
+
+## Festival venue navigation returns to the event detail during capture
+
+- Impact: The localization check could not verify the venue programme heading through the event-location route.
+- Reproduction observed on 5 October 2026: In the English app on iPhone 18 Pro, iOS 27.2, open Schedule, open a WDR Big Band event, tap its metadata row, then tap Location. Venue events appeared in the transition hierarchy, but the next capture showed the event detail again. One retry gave the same result. The app remained running.
+- Validation limit: This check used the Xcode device interaction tool. It does not establish whether app navigation or capture timing caused the return.
+- Next step: Repeat the route with native interaction, then inspect the event and venue coordinator transitions if the return persists.
+
+## Shared event detail uses iOS-only colours in the tvOS build
+
+- Impact: The festival tvOS target cannot compile its shared event-detail dependency. This blocks full tvOS app validation and compiler extraction from the app target. Its localization catalog compiles separately.
+- Reproduction: Build workspace `ios/Moers.xcworkspace`, scheme `moers festival tvOS`, configuration Debug, with destination `generic/platform=tvOS Simulator`. `Events/UI/View/EventDetailView.swift` uses `systemBackground`, `systemGray6`, `secondarySystemFill`, `secondarySystemBackground`, and `tertiarySystemFill`, which are unavailable on tvOS.
+- Baseline: These colour calls were present before the localization change.
+- Next step: Use colours available on the owning platform, then build the tvOS target and run the localization extraction check for its compiler output.
+
+## City course description joins adjacent labels
+
+- Impact: Some course details are difficult to read because adjacent labels have no separating space or line break.
+- Reproduction: On iPhone 18 Pro, iOS 27.2, launch City in English, search Events for `Stadtarchiv`, open the 6 October 2026 result, and scroll to its course details. The text includes `Kurs-Nr.: I10108Teilnahmegebühr: 2 EuroDozentin: Alena Saam`.
+- Scope: The review fixes do not change the description publisher or its text-view assignment. The device check does not establish whether the API text or rendering removes the boundaries.
+- Next step: Compare the event's API description with the displayed text, then preserve paragraph and line-break boundaries in the owning layer.
+
+## City event controller tests require English labels
+
+- Impact: Four controller tests fail with five text assertions when the app test host uses German. These failures do not show an app defect.
+- Reproduction: On a simulator that uses German, run the `WidgetsExtension` scheme and test plan with `-only-testing:'Moers Unit Tests/EventsViewControllerTests'`. The assertions expect `Today`, `Tomorrow`, `No events found`, and `Events could not be loaded`, but the app uses translated text. The test plan has no language setting.
+- Evidence: All six controller tests and five event filter tests pass when the test-plan configuration sets `options.language` to `en`. The temporary language setting was removed after validation.
+- Next step: Set an explicit language in the app test plan, or compare the labels with localized expected text.

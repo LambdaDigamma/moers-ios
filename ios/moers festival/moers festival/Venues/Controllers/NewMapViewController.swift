@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 import Core
-import MMEvents
+import Events
 import FactoryKit
 import Combine
 import OSLog

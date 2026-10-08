@@ -32,7 +32,7 @@ The Xcode editor updates catalogs from compiler output. Command-line builds emit
 
 The city `EventsNavigationUITests` checks English search, filters, and active-filter accessibility text. It also checks German event-filter labels. Use the Navigation test plan and select this test class.
 
-The localization change was checked with both iOS app builds, English and German simulator screens, the two Events UI tests, and focused script tests. The `MMTours` and festival watchOS simulator builds also pass. All catalogs compile with `xcstringstool`. The festival tvOS build is blocked by existing iOS-only colours in the shared event-detail view; see `PAPERCUTS.md`. Run its extraction check again after that dependency compiles.
+The localization change was checked with both iOS app builds, English and German simulator screens, the two Events UI tests, and focused script tests. The `Tours` and festival watchOS simulator builds also pass. All catalogs compile with `xcstringstool`. The festival tvOS build is blocked by existing iOS-only colours in the shared event-detail view; see `PAPERCUTS.md`. Run its extraction check again after that dependency compiles.
 
 ## System resource tables
 

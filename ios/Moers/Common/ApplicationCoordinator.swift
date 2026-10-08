@@ -9,7 +9,7 @@
 import AppScaffold
 import UIKit
 import ModernNetworking
-import MMEvents
+import Events
 import Cache
 import FactoryKit
 import OSLog
@@ -50,7 +50,7 @@ class ApplicationCoordinator: NSObject {
         
         super.init()
         
-//        MMUIConfig.markdownConverter = { text in
+//        UIConfig.markdownConverter = { text in
 //
 //            let markdown = SwiftyMarkdown(string: text)
 //

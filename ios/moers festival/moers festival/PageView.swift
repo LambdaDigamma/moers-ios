@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import MMCommon
+import Core
 
 struct PageView: View {
     var body: some View {

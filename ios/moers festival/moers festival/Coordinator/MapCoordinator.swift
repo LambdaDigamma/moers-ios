@@ -8,7 +8,7 @@
 
 import Core
 import UIKit
-import MMEvents
+import Events
 import AppScaffold
 import Pulley
 

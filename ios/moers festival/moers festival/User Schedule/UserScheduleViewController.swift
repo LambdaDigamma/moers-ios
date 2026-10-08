@@ -9,7 +9,7 @@
 import UIKit
 import SwiftUI
 import FactoryKit
-import MMEvents
+import Events
 import Combine
 import OrderedCollections
 
@@ -136,8 +136,8 @@ class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
     func setupConstraints() {
         
         let constraints = [
-            mainStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            mainStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            mainStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            mainStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
             mainStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             mainStackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
         ]

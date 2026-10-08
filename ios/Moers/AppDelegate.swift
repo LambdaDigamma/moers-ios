@@ -16,7 +16,7 @@ import AppScaffold
 import FactoryKit
 import ModernNetworking
 import RubbishFeature
-import MMEvents
+import Events
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -49,9 +49,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Core.UIPackageConfiguration.accentColor = UIColor.systemYellow
         Core.UIPackageConfiguration.onAccentColor = UIColor.black
         
-        MMAPIConfig.registerBaseURL(AppEnvironment.rootURL)
-        MMAPIConfig.registerPetrolAPIKey("0dfdfad3-7385-ef47-2ff6-ec0477872677")
-        MMAPIConfig.isMoersFestivalModeEnabled = false
+        APIConfig.registerBaseURL(AppEnvironment.rootURL)
+        APIConfig.registerPetrolAPIKey("0dfdfad3-7385-ef47-2ff6-ec0477872677")
+        APIConfig.isMoersFestivalModeEnabled = false
         
         let configuration = NetworkingConfiguration()
         _ = configuration.setupEnvironmentAndLoader()

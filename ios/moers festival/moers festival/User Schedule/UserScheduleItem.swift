@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import MMEvents
+import Events
 
 nonisolated enum UserScheduleSection: Hashable, Sendable {
     case main(DateComponents?)

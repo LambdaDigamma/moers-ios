@@ -20,7 +20,7 @@ import AppScaffold
 import WebKit
 import SafariServices
 import Combine
-import MMEvents
+import Events
 import SwiftUI
 import AppUpdateFeature
 import FactoryKit
@@ -107,7 +107,7 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate, U
             other.rootViewController
         ]
         
-        MMUIConfig.markdownConverter = { text in
+        UIConfig.markdownConverter = { text in
             
             let markdown = SwiftyMarkdown(string: text)
 

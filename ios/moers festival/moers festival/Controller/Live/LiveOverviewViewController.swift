@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MMEvents
+import Events
 import AVKit
 import StateViewController
 import OSLog
@@ -84,7 +84,7 @@ class LiveOverviewViewController: StateViewController<LivestreamState> {
             
             do {
                 let config = try await self.eventService.loadStream()
-                let data = MMEvents.LivestreamData(streamConfig: config, events: config.events)
+                let data = Events.LivestreamData(streamConfig: config, events: config.events)
                 
                 await MainActor.run {
                     self.livestreamData = data
@@ -214,7 +214,7 @@ class LiveOverviewViewController: StateViewController<LivestreamState> {
             
             if let url = URL(string: livestreamData.streamConfig.streamURL ?? "") {
                 
-                let stream = MMEvents.ActiveStream(streamURL: url, activeEvent: livestreamData.activeEvent?.model)
+                let stream = Events.ActiveStream(streamURL: url, activeEvent: livestreamData.activeEvent?.model)
                 self.updateActiveStream(livestreamData, stream: stream)
                 
             } else {

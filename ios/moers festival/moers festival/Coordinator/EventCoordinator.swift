@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import MMEvents
-import MMPages
-import MMEvents
+import Events
+import Pages
+import Events
 import AppScaffold
 import Combine
 import SwiftUI
@@ -20,7 +20,7 @@ public class EventCoordinator: SharedCoordinator {
     @LazyInjected(\.pageService) var pageService
     @LazyInjected(\.legacyEventService) var eventService
     
-    private var events: [MMEvents.Event] = []
+    private var events: [Events.Event] = []
     
     private let timetable: TimetableViewController
     private let adaptiveSplitViewController: AdaptiveTabSplitViewController
@@ -83,7 +83,7 @@ public class EventCoordinator: SharedCoordinator {
         adaptiveSplitViewController.showEmptyDetail(animated: animated)
     }
     
-    func showEventDetailViewController(with event: MMEvents.Event) {
+    func showEventDetailViewController(with event: Events.Event) {
         
 //        let detailController = ModernEventDetailViewController(
 //            eventID: event.id,

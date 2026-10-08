@@ -1,6 +1,6 @@
 import UIKit
 import XCTest
-@testable import MMEvents
+@testable import Events
 @testable import moers_festival
 
 @MainActor
@@ -113,7 +113,7 @@ final class FestivalResizabilityTests: XCTestCase {
                 } else {
                     let title = try XCTUnwrap(descendants(of: detailView).first {
                         $0.accessibilityIdentifier == "EventDetail.Title"
-                    } as? MMEvents.PaddingLabel)
+                    } as? Events.PaddingLabel)
                     let textFrame = title.convert(title.bounds.inset(by: title.textInsets), to: detailView)
                     XCTAssertEqual(textFrame.minY, detailView.safeAreaLayoutGuide.layoutFrame.minY + 16, accuracy: 1)
                     XCTAssertGreaterThanOrEqual(textFrame.minX, detailView.safeAreaLayoutGuide.layoutFrame.minX)

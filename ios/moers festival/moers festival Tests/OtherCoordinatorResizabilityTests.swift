@@ -1,6 +1,6 @@
 import Core
 import FactoryKit
-import MMEvents
+import Events
 import SwiftUI
 import UIKit
 import XCTest

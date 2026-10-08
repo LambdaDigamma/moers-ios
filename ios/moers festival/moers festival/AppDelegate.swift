@@ -11,7 +11,7 @@ import UserNotifications
 import AppScaffold
 import FirebaseMessaging
 import FirebaseCore
-import MMEvents
+import Events
 import Combine
 import OSLog
 import FactoryKit
@@ -24,10 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         let bootstrappingProcedure: BootstrappingProcedure = [
             LaunchArgumentsHandler(),
             NetworkingConfiguration(),
-            MMAPIFrameworkConfiguration(),
-            MMEventsFrameworkConfiguration(),
-            MMFeedsFrameworkConfiguration(),
-            MMPagesFrameworkConfiguration(),
+            APIFrameworkConfiguration(),
+            EventsFrameworkConfiguration(),
+            FeedsFrameworkConfiguration(),
+            PagesFrameworkConfiguration(),
             ServiceConfiguration(),
             TwitterFramework(),
             FirebaseFrameworkConfiguration(messagingDelegate: self),

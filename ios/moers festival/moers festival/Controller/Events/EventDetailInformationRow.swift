@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftUI
-import MMEvents
+import Events
 
 public struct EventDetailInformationRow: View {
     

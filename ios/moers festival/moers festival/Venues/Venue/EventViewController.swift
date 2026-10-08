@@ -7,8 +7,8 @@
 //
 
 import Core
-import MMPages
-import MMEvents
+import Pages
+import Events
 import UIKit
 import FactoryKit
 

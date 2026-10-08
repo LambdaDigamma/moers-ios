@@ -9,7 +9,7 @@
 import Core
 import UIKit
 import AppScaffold
-import MMEvents
+import Events
 import FactoryKit
 
 class EventCoordinator: Coordinator {
@@ -29,7 +29,7 @@ class EventCoordinator: Coordinator {
     ) {
         
         self.navigationController = navigationController
-        let eventViewController = MMEventsViewController()
+        let eventViewController = EventsViewController()
         eventViewController.coordinator = self
         
         self.navigationController.coordinator = self

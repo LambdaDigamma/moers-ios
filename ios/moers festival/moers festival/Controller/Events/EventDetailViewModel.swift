@@ -9,8 +9,8 @@
 import Core
 import OSLog
 import Combine
-import MMEvents
-import MMPages
+import Events
+import Pages
 import MediaLibraryKit
 import Foundation
 import CoreLocation
@@ -26,8 +26,8 @@ public class EventDetailViewModel: StandardViewModel {
     private let logger: Logger = Logger(.coreAppLifecycle)
     
     public var eventID: Event.ID?
-    public var pageID: MMPages.Page.ID?
-    var page: MMPages.Page?
+    public var pageID: Pages.Page.ID?
+    var page: Pages.Page?
     var event: Event?
     var header: Media?
     var location: Place?

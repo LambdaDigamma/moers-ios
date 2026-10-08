@@ -10,7 +10,7 @@ import Foundation
 import Combine
 import FactoryKit
 import ModernNetworking
-import MMAPI
+import Core
 
 class BaseOrganisationRepository {
     @Published var organisations = Resource<[Organisation]>.loading

@@ -214,13 +214,13 @@
           "product-name": "Core",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "MMEvents",
+          "product-name": "Events",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "MMFeeds",
+          "product-name": "Feeds",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "MMPages",
+          "product-name": "Pages",
           "build-phase": { "build-phase": "frameworks" },
         }, {
           "product-name": "MapFeature",
@@ -473,7 +473,7 @@
           "product-name": "AppScaffold",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "MMEvents",
+          "product-name": "Events",
           "build-phase": { "build-phase": "frameworks" },
         },
       ],
@@ -892,7 +892,6 @@
     },
   ],
   "build-settings": {
-    "CURRENT_PROJECT_VERSION": "79",
     "ALWAYS_SEARCH_USER_PATHS": "NO",
     "ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS": "YES",
     "CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED": "YES",
@@ -926,6 +925,7 @@
     "CLANG_WARN__DUPLICATE_METHOD_MATCH": "YES",
     "CODE_SIGN_IDENTITY": "iPhone Developer",
     "COPY_PHASE_STRIP": "NO",
+    "CURRENT_PROJECT_VERSION": "79",
     "DEBUG_INFORMATION_FORMAT[config=Debug]": "dwarf",
     "DEBUG_INFORMATION_FORMAT[config=Release]": "dwarf-with-dsym",
     "ENABLE_NS_ASSERTIONS[config=Release]": "NO",

@@ -8,7 +8,7 @@
 
 import UIKit
 import MapKit
-import MMEvents
+import Events
 import Combine
 
 class MFEventDetailViewController: EventDetailViewController {

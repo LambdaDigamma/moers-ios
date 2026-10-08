@@ -1,0 +1,339 @@
+//
+//  EventDetailsViewModel.swift
+//  UI
+//
+//  Created by Lennart Fischer on 13.06.19.
+//  Copyright © 2019 LambdaDigamma. All rights reserved.
+//
+
+import Core
+import Foundation
+import MapKit
+import Combine
+import Observation
+
+@MainActor
+@Observable
+public class EventDetailsViewModel {
+    
+    public private(set) var config: EventDetailViewConfig?
+    public private(set) var model: Event?
+    public let observableConfig = CurrentValueSubject<EventDetailViewConfig?, Never>(nil)
+    public let event = CurrentValueSubject<Event?, Never>(nil)
+    
+    public init(model: Event?, config: EventDetailViewConfig? = EventDetailViewConfig()) {
+        self.config = config
+        self.model = model
+        self.observableConfig.send(config)
+        self.event.send(model)
+    }
+    
+    public func setNewEvent(_ event: Event?) {
+        self.model = event
+        self.event.send(event)
+    }
+    
+    public func setNewConfig(_ config: EventDetailViewConfig) {
+        self.config = config
+        self.observableConfig.send(config)
+    }
+    
+    public var webURL: URL? {
+        guard let rawURL = model?.url, let url = URL(string: rawURL),
+              ["https", "http"].contains(url.scheme?.lowercased() ?? ""), url.host != nil else { return nil }
+        return url
+    }
+    
+    @ObservationIgnored
+    public lazy var title: AnyPublisher<String?, Never> = {
+        return event.map { $0?.name }.eraseToAnyPublisher()
+    }()
+    
+    @ObservationIgnored
+    public lazy var subtitle: AnyPublisher<String?, Never> = {
+        event.combineLatest(observableConfig).map { event, config in
+            guard let event else {
+                return nil
+            }
+
+            if config?.showsFestivalSubtitle == true {
+                return EventViewModel(event: event).detailSubtitle
+            }
+            return EventPresentation.editorialSubtitle(for: event)
+        }
+        .eraseToAnyPublisher()
+    }()
+    
+    @ObservationIgnored
+    public lazy var description: AnyPublisher<String?, Never> = {
+        
+        return event.map { $0?.description ?? "" }.eraseToAnyPublisher()
+        
+//        if let locale = Locale.preferredLanguages.first, locale.lowercased().contains("de") {
+//            return event.map { $0?.description ?? "" }
+//        }
+//
+//        return event.map { $0?.extras?.descriptionEN ?? $0?.description ?? "" }
+        
+    }()
+    
+    @ObservationIgnored
+    public lazy var imageURL: AnyPublisher<URL?, Never> = {
+        return event.map { $0?.image }.eraseToAnyPublisher()
+    }()
+    
+    @ObservationIgnored
+    public lazy var url: AnyPublisher<URL?, Never> = {
+        return event.map { URL(string: $0?.url ?? "") }.eraseToAnyPublisher()
+    }()
+
+    @ObservationIgnored
+    public lazy var location: AnyPublisher<String?, Never> = {
+        
+        return event.map {
+            
+            if let location = $0?.place {
+                
+                return location.name
+                
+//                let text =
+//                """
+//                \(location.name)
+//                \(location.street) \(location.houseNumber)
+//                \(location.place) \(location.postcode)
+//                """
+//
+//                return text
+                
+            } else if let locationName = $0?.extras?.location {
+                return locationName
+        } else {
+            return String(localized: "Venue to be announced", bundle: .module)
+        }
+            
+        }.eraseToAnyPublisher()
+        
+    }()
+    
+    @ObservationIgnored
+    public lazy var locationIsSet: AnyPublisher<Bool, Never> = {
+        
+        return event.map {
+            
+            if $0?.place != nil {
+                return true
+            } else if $0?.extras?.location != nil {
+                return true
+            } else {
+                return false
+            }
+            
+        }.eraseToAnyPublisher()
+        
+    }()
+    
+    @ObservationIgnored
+    public lazy var isWebsiteButtonEnabled: AnyPublisher<Bool, Never> = {
+        
+        return event.map {
+            
+            if URL(string: $0?.url ?? "") != nil {
+                return true
+            } else {
+                return false
+            }
+            
+        }.eraseToAnyPublisher()
+        
+    }()
+    
+    @ObservationIgnored
+    public lazy var websiteUIAlpha: AnyPublisher<CGFloat, Never> = {
+        return isWebsiteButtonEnabled.map { return $0 ? 1.0 : 0.5 }.eraseToAnyPublisher()
+    }()
+    
+    @ObservationIgnored
+    public lazy var hideTicketText: AnyPublisher<Bool, Never> = {
+        return event.map {
+            return !($0?.extras?.visitWithExtraTicket ?? false)
+        }.eraseToAnyPublisher()
+    }()
+    
+    @ObservationIgnored
+    public lazy var showMovingAct: AnyPublisher<Bool, Never> = {
+        return event.map { $0?.extras?.isMovingAct ?? false }.eraseToAnyPublisher()
+    }()
+    
+    @ObservationIgnored
+    public lazy var subtitleAccessibiityLabel: AnyPublisher<String?, Never> = {
+        return event.map {
+            $0?.name
+        }.eraseToAnyPublisher()
+    }()
+    
+//    public lazy var page: SafeSignal<Page?> = {
+//        return event.map { $0?.page }
+//    }()
+    
+    @ObservationIgnored
+    public lazy var showVideo: AnyPublisher<Bool, Never> = {
+        
+        let hasVideoURL = observableConfig.map { $0?.videoURL != nil }
+        let shouldShowVideo = observableConfig.map { $0?.showVideo ?? false }
+        
+        return Publishers
+            .CombineLatest(hasVideoURL, shouldShowVideo)
+            .map { (hasVideoURL, shouldShowVideo) -> Bool in
+                return hasVideoURL && shouldShowVideo
+            }
+            .eraseToAnyPublisher()
+        
+    }()
+    
+    @ObservationIgnored
+    public lazy var showImage: AnyPublisher<Bool, Never> = {
+        
+        let hasImage = self.imageURL.map { $0 != nil }
+        let shouldShowImage = observableConfig.map { $0?.showImage ?? false }
+        
+        return Publishers
+            .CombineLatest(hasImage, shouldShowImage)
+            .map { (hasImage, shouldShowImage) -> Bool in
+                return hasImage && shouldShowImage
+            }
+            .eraseToAnyPublisher()
+        
+    }()
+    
+    @ObservationIgnored
+    public lazy var showTitleSubtitle: AnyPublisher<Bool, Never> = {
+        return Just(true).eraseToAnyPublisher()
+    }()
+    
+    @ObservationIgnored
+    public lazy var showPage: AnyPublisher<Bool, Never> = {
+        return event.map { $0?.page != nil }.eraseToAnyPublisher()
+    }()
+    
+    @ObservationIgnored
+    public lazy var showMore: AnyPublisher<Bool, Never> = {
+        event.map { event in
+            guard let rawURL = event?.url, let url = URL(string: rawURL) else { return false }
+            return ["https", "http"].contains(url.scheme?.lowercased() ?? "") && url.host != nil
+        }.eraseToAnyPublisher()
+    }()
+    
+    @ObservationIgnored
+    public lazy var showTicketInfo: AnyPublisher<Bool, Never> = {
+        return Just(true).eraseToAnyPublisher()
+    }()
+    
+    @ObservationIgnored
+    public lazy var showLocation: AnyPublisher<Bool, Never> = {
+        
+        let hasLocation = Just(true)
+        let shouldShowLocation = observableConfig.map { $0?.showLocation ?? false }
+        
+        return Publishers
+            .CombineLatest(hasLocation, shouldShowLocation)
+            .map { (hasLocation, shouldShowLocation) -> Bool in
+                return hasLocation && shouldShowLocation
+            }
+            .eraseToAnyPublisher()
+        
+    }()
+    
+    @ObservationIgnored
+    public lazy var streamURL: AnyPublisher<URL?, Never> = {
+        return observableConfig.map { $0?.videoURL }.eraseToAnyPublisher()
+    }()
+    
+    @ObservationIgnored
+    public lazy var showNoInformtation: AnyPublisher<Bool, Never> = {
+        return Just(false).eraseToAnyPublisher()
+    }()
+    
+    // MARK: - Like Handling -
+    
+    public var isLiked: Bool {
+        set {
+            guard let id = model?.id else { return }
+            Self.setLikeStatus(likeStatus: newValue, for: id)
+        }
+        get {
+            guard let id = model?.id else { return false }
+            return Self.isLiked(id: id)
+        }
+    }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
+}
+
+
+
+public extension EventDetailsViewModel {
+    
+    nonisolated static let keyLikes = "LikeIDs"
+    
+    nonisolated static func getLikedIDs() -> [Int] {
+        
+        let likeIDs = UserDefaults.standard.array(forKey: keyLikes) as? [Int]
+        
+        return likeIDs ?? []
+        
+    }
+    
+    nonisolated static func toggleLike(for id: Int) -> Bool {
+        
+        var likedIDs = getLikedIDs()
+        var isLiked = false
+        
+        if let likedIndex = likedIDs.firstIndex(of: id) {
+            
+            likedIDs.remove(at: likedIndex)
+            isLiked = false
+            
+        } else {
+            
+            likedIDs.append(id)
+            isLiked = true
+            
+        }
+        
+        UserDefaults.standard.set(likedIDs.sorted(), forKey: keyLikes)
+        
+        return isLiked
+        
+    }
+    
+    nonisolated static func setLikeStatus(likeStatus: Bool, for id: Int) {
+        
+        var likedIDs = getLikedIDs()
+        
+        if likeStatus {
+            likedIDs.append(id)
+        } else {
+            likedIDs.removeAll(where: { $0 == id })
+        }
+        
+        let set = Set(likedIDs)
+        
+        let array = Array(set)
+        
+        UserDefaults.standard.set(array.sorted(), forKey: Self.keyLikes)
+        
+    }
+    
+    nonisolated static func isLiked(id: Int) -> Bool {
+        
+        return getLikedIDs().first(where: { $0 == id }) != nil
+        
+    }
+    
+    func toggleLike() -> Bool {
+        guard let id = self.event.value?.id else { return false }
+        return Self.toggleLike(for: id)
+    }
+    
+}

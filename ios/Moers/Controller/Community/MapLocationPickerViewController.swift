@@ -9,8 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
-import MMAPI
-import MMUI
+import Core
 import Combine
 import Core
 // import Resolver - removed (migrated to Factory)

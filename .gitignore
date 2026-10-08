@@ -24,6 +24,7 @@ Carthage/Checkouts
 # https://docs.fastlane.tools/best-practices/source-control/#source-control
 fastlane/Preview.html
 fastlane/report.xml
+**/fastlane/report.xml
 fastlane/screenshots/**/*.png
 fastlane/test_output
 

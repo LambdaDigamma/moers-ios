@@ -14,8 +14,8 @@ import ModernNetworking
 import BLTNBoard
 import AppScaffold
 import Combine
-import MMEvents
-import MMFeeds
+import Events
+import Feeds
 import FactoryKit
 
 class ApplicationController: NSObject, ApplicationControlling {

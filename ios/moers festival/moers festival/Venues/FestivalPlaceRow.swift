@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import MMEvents
+import Events
 
 nonisolated struct FestivalPlaceRowUi: Identifiable, Hashable, Sendable {
     

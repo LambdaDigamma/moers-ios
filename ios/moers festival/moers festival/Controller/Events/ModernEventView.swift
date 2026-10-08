@@ -8,7 +8,7 @@
 
 import SwiftUI
 import MediaLibraryKit
-import MMPages
+import Pages
 
 public struct ModernEventView: View {
     

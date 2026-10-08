@@ -123,6 +123,11 @@ public class CarPlaySceneDelegate: UIResponder {
         
     }
     
+    private func formattedFuelPrice(_ price: Double?) -> String {
+        guard let price, price.isFinite else { return String(localized: "Not available") }
+        return price.formatted(.currency(code: "EUR").precision(.fractionLength(3)))
+    }
+
     private func showFuelStation(fuelStation: PetrolStation, completion: @escaping () -> Void) {
         
         let information = CPInformationTemplate(
@@ -130,7 +135,7 @@ public class CarPlaySceneDelegate: UIResponder {
             layout: .leading,
             items: [
                 CPInformationItem(title: String(localized: "Name"), detail: fuelStation.name),
-                CPInformationItem(title: String(localized: "Price"), detail: "\(fuelStation.price ?? 0)€"),
+                CPInformationItem(title: String(localized: "Price"), detail: formattedFuelPrice(fuelStation.price)),
                 CPInformationItem(title: String(localized: "Street"), detail: "\(fuelStation.street) \(fuelStation.houseNumber ?? "")"),
                 CPInformationItem(title: String(localized: "Place"), detail: "\(fuelStation.postCode ?? 0) \(fuelStation.place)"),
 //                CPInformationItem(title: String(localized: "Total Capacity"), detail: parkingArea.capacity != nil ? "\(parkingArea.capacity ?? 0)" : String(localized: "Not available")),
@@ -201,7 +206,7 @@ public class CarPlaySceneDelegate: UIResponder {
             
             let listItem = CPListItem(
                 text: "\(item.name)",
-                detailText: "\(item.price != nil ? "\(item.price ?? 0.0)" : "?")€ · \(item.distance)",
+                detailText: "\(formattedFuelPrice(item.price)) · \(item.distance)",
                 image: nil,
                 accessoryImage: nil,
                 accessoryType: .disclosureIndicator

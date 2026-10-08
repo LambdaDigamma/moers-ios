@@ -8,8 +8,8 @@
 
 import Core
 import SwiftUI
-import MMEvents
-import MMPages
+import Events
+import Pages
 @preconcurrency import MapKit
 
 public struct VenueDetailScreen: View {

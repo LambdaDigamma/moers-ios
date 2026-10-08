@@ -9,7 +9,7 @@
 import UIKit
 import BLTNBoard
 import INSPhotoGallery
-import MMEvents
+import Events
 
 class OtherViewController: UIViewController {
 
