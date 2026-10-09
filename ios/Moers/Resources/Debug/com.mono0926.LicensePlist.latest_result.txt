@@ -48,7 +48,6 @@ name: NukeUI, nameSpecified: NukeUI, owner: kean, version: 0.8.3
 
 name: promises, nameSpecified: Promises, owner: google, version: 2.1.1
 
-name: Pulley, nameSpecified: Pulley, owner: 52inc, version: 2.9.1
 
 name: Resolver, nameSpecified: Resolver, owner: LambdaDigamma, version: 1.5.1
 

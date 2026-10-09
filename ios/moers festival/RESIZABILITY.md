@@ -8,7 +8,7 @@ Scope: the festival iOS app and the first-party CityOS code that it links. The m
 - All four iPad orientations are declared.
 - Full screen is not required.
 - Scene configuration and a scene delegate exist. Multiple app windows are disabled.
-- Configuration keys are unchanged.
+- Launch, orientation, and scene keys are unchanged. The app, widget, and embedded watch app now use the same project build number. This prevents an embedded-bundle version mismatch.
 
 ## Implemented changes
 
@@ -41,18 +41,18 @@ All detected festival targets are implemented or explicitly excluded below. Addi
 - [x] `ios/moers festival/moers festival/ApplicationController.swift`: local size class for browser presentation.
 - [x] `ios/moers festival/moers festival/Controller/TabBarController.swift`: local browser presentation and coordinated Map suspension/resumption. Finish suspension before selecting the latest requested tab. Coalesce pending forced update requests. Keep the local iPad system-tab mode policy.
 - [x] `ios/moers festival/moers festival/Coordinator/OtherCoordinator.swift`: adaptive Info & Tickets columns and local web navigation.
-- [x] `ios/moers festival/moers festival/Extensions/Extensions.swift`: replace legacy layout guides; keep availability branches.
-- [x] `ios/CityOS/Sources/Core/Extensions/ViewController+Extensions.swift`: replace legacy layout guides; keep availability branches.
+- [x] `ios/moers festival/moers festival/Extensions/Extensions.swift`: replace legacy layout guides. Checks for versions below the supported deployment target were removed in the later availability cleanup.
+- [x] `ios/CityOS/Sources/Core/Extensions/ViewController+Extensions.swift`: replace legacy layout guides. Checks for versions below the supported deployment target were removed in the later availability cleanup.
 - [x] `ios/moers festival/moers festival/Venues/Controllers/NewMapViewController.swift`: dynamic containment, retained state, local safe area, and serialized presentation.
 - [x] `ios/moers festival/moers festival/Venues/Controllers/MapPanelContainerController.swift`: child transfer, panel safe areas, and reactive border display scale.
 - [x] `ios/moers festival/moers festival/Venues/Controllers/MapPanelState.swift`: separate panel-state type.
 - [x] `ios/moers festival/moers festival/Venues/Controllers/MapPanelPassthroughView.swift`: separate panel hit-test type.
 - [x] `ios/moers festival/moers festival/Venues/Drawer/TabSheetPresentationController.swift`: supported local-context presentation; UIKit owns container layout.
 - [x] `ios/moers festival/moers festival/Venues/Drawer/TabSheetTransitioningDelegate.swift`: restore the saved detent.
-- [x] `ios/CityOS/Sources/Pulley/PulleyViewController.swift`: use local idiom for the existing bounce workaround. Keep Catalyst workarounds.
+- [x] The shared city map uses persistent UIKit sheets and a split view for wide windows. The custom drawer framework and its rendering workarounds were removed.
 - [x] `ios/moers festival/moers festival/Venues/Drawer/NewMapDrawerViewController.swift`: remove cached tab-bar inset; retain search and collection state and notify after appearance.
 - [x] `ios/moers festival/moers festival/User Schedule/UserScheduleViewController.swift`: both horizontal safe-area edges.
-- [x] `ios/CityOS/Sources/MMEvents/UI/View/EventDetailView.swift`: local width/height header invalidation, automatic insets, header origin, and separate horizontal safe areas.
+- [x] `ios/CityOS/Sources/Events/UI/View/EventDetailView.swift`: local width/height header invalidation, automatic insets, header origin, and separate horizontal safe areas.
 - [x] `ios/CityOS/Sources/Core/UI/ReadableContentWidth.swift`: preserve the public modifier and use the mounted measurement bridge.
 - [x] `ios/CityOS/Sources/Core/UI/ReadableContentWidthMeasurement.swift`: local SwiftUI container and Dynamic Type bridge.
 - [x] `ios/CityOS/Sources/Core/UI/ReadableContentWidthMeasurementController.swift`: local guide measurement, trait invalidation, coalesced reporting, and removal cleanup.
@@ -69,7 +69,7 @@ All detected festival targets are implemented or explicitly excluded below. Addi
 - [x] `ios/moers festival/moers festival/AppDelegate.swift`: remove the four obsolete lifecycle callbacks together.
 - [x] `ios/moers festival/moers festival/SceneDelegate.swift`: run both activation calls in the owning scene callback.
 
-The focused validation files are `FestivalResizabilityTests.swift`, `AdaptiveTabSplitResizabilityTests.swift`, `MapDrawerResizabilityTests.swift`, and `ForcedUpdateResizabilityTests.swift` in the festival test target, plus `CoreTests/ReadableContentWidthTests.swift` and `MMEventsTests/ViewModel/EventDetailLayoutTests.swift` in CityOS. The latter two files contained local work before this implementation; their checks are extended or adapted to the approved behavior.
+The focused validation files are `FestivalResizabilityTests.swift`, `AdaptiveTabSplitResizabilityTests.swift`, `MapDrawerResizabilityTests.swift`, and `ForcedUpdateResizabilityTests.swift` in the festival test target, plus `CoreTests/ReadableContentWidthTests.swift` and `EventsTests/ViewModel/EventDetailLayoutTests.swift` in CityOS. The latter two files contained local work before this implementation; their checks are extended or adapted to the approved behavior.
 
 ```mermaid
 stateDiagram-v2
@@ -153,9 +153,9 @@ Scope: correct the wrapped `22` in the 340-point programme column. The same shar
 
 File queue:
 
-- [x] `ios/CityOS/Sources/MMEvents/Events/Overview/DayItem.swift`: equal circles, single-line date text, and Dynamic Type.
-- [x] `ios/CityOS/Sources/MMEvents/Events/Overview/DaySelector.swift`: equal cells, fitting row or horizontal scroll, selected-date visibility, and isolated previews.
-- [x] `ios/CityOS/Tests/MMEventsTests/ViewModel/DaySelectorLayoutTests.swift`: focused width, text-size, and scroll regression checks.
+- [x] `ios/CityOS/Sources/Events/Events/Overview/DayItem.swift`: equal circles, single-line date text, and Dynamic Type.
+- [x] `ios/CityOS/Sources/Events/Events/Overview/DaySelector.swift`: equal cells, fitting row or horizontal scroll, selected-date visibility, and isolated previews.
+- [x] `ios/CityOS/Tests/EventsTests/ViewModel/DaySelectorLayoutTests.swift`: focused width, text-size, and scroll regression checks.
 - [x] `PAPERCUTS.md`: record the result for the reported date-strip issue.
 - [x] This report: record source, test, and device evidence.
 
@@ -200,11 +200,11 @@ Test result: `/var/folders/c3/nhvb43vd6458kcrgjf45v56w0000gn/T/ActionArtifacts/d
 
 These files were detected in linked products. Festival source does not instantiate these city-only controllers, so this festival check does not change them. Their separate local edits are preserved:
 
-- `ios/CityOS/Sources/AppScaffold/Split/SplitViewController.swift`: the existing city split controller has an iPad-only trait callback. Festival uses its own adaptive split controller.
+- `ios/CityOS/Sources/AppScaffold/Split/SplitViewController.swift`: City no longer instantiates this shared split controller. Festival uses its own adaptive split controller.
 - `ios/CityOS/Sources/MapFeature/Controller/CameraViewController.swift`: preserve the orientation mask. The festival map does not use this camera controller.
-- `ios/CityOS/Sources/MapFeature/View/ContentDrawerView.swift`
+- The unused shared `ContentDrawerView` was removed with the drawer framework.
 - `ios/CityOS/Sources/MapFeature/View/SearchDrawerViewController.swift`
-- `ios/CityOS/Sources/MapFeature/Controller/ContentViewController.swift`
+- `ios/CityOS/Sources/MapFeature/Controller/MapContainerViewController.swift`
 - `ios/CityOS/Sources/MapFeature/Controller/SelectionViewController.swift`
 - `ios/CityOS/Sources/MapFeature/Controller/Detail/DetailViewController.swift`
 - `ios/CityOS/Sources/MapFeature/SeachController/LFSearchViewController.swift`
@@ -215,7 +215,7 @@ These files were detected in linked products. Festival source does not instantia
 
 The initial audit found manual scroll, bar-height, and keyboard-inset handling in MapFeature. Separate local work now changes these city-only files. This festival implementation preserves that work.
 
-`ios/CityOS/Sources/Core/UI/PageView/PageView.swift` has only a commented idiom expression. It has no executable effect. Pulley's seven Catalyst conditional sites are platform rendering workarounds; keep them. Local idiom use for the festival's UIKit tab-bar mode is an explicit system policy; keep it.
+`ios/CityOS/Sources/Core/UI/PageView/PageView.swift` has only a commented idiom expression. It has no executable effect. Local idiom use for the festival's UIKit tab-bar mode is an explicit system policy; keep it.
 
 ## Event image margins — 5 October 2026
 

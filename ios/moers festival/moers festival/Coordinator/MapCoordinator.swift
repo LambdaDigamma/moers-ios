@@ -10,7 +10,6 @@ import Core
 import UIKit
 import Events
 import AppScaffold
-import Pulley
 
 public class MapCoordinator: TabRepresentable {
     

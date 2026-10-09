@@ -8,28 +8,17 @@
 
 import Core
 import UIKit
+import SwiftUI
 import MapKit
-import Pulley
 
-struct AnnotationIdentifier {
-    
-    static let cluster = "cluster"
-    static let parkingLot = "parkingLot"
-    static let camera = "camera"
-    static let bikeChargingStation = "bikeCharger"
-    static let petrolStation = "petrolStation"
-    static let entry = "entry"
-    
-}
-
-public class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryContentControllerDelegate {
+public class MapViewController: UIViewController, MKMapViewDelegate {
 
     lazy var map = { return CoreViewFactory.map() }()
     
-    // swiftlint:disable:next force_cast
-    lazy var drawer = { return self.parent as! LegacyMainViewController }()
-    
+    weak var container: MapContainerViewController?
+
     private var locations: [Location] = []
+    private var isSelectingLocation = false
     
     public init() {
         super.init(nibName: nil, bundle: nil)
@@ -57,16 +46,12 @@ public class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
         self.view.backgroundColor = UIColor.systemBackground
         self.view.addSubview(map)
         
-        self.map.layer.cornerCurve = .continuous
-        self.map.layer.cornerRadius = 20
-        self.map.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        
     }
     
     private func setupConstraints() {
         
         let constraints: [NSLayoutConstraint] = [
-            map.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            map.topAnchor.constraint(equalTo: self.view.topAnchor),
             map.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             map.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             map.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
@@ -75,14 +60,6 @@ public class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
         NSLayoutConstraint.activate(constraints)
         
     }
-    
-    private func setDrawerController(_ controller: UIViewController, position: PulleyPosition = .collapsed) {
-        
-        drawer.setDrawerContentViewController(controller: controller, animated: true)
-        drawer.setDrawerPosition(position: position, animated: true)
-        
-    }
-    
     
     // MARK: - Map View -
     
@@ -105,7 +82,6 @@ public class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
     
     // MARK: - MKMapViewDelegate
     
-    // swiftlint:disable:next cyclomatic_complexity
     public func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         if annotation is MKUserLocation {
@@ -163,43 +139,28 @@ public class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrima
     
     public func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
-        guard let coordinate = view.annotation?.coordinate else { return }
+        guard !isSelectingLocation, let annotation = view.annotation,
+              mapView.selectedAnnotations.contains(where: { $0 === annotation }) else { return }
+        let coordinate = annotation.coordinate
         
         self.map.setCenter(coordinate, animated: true)
         
-        if !(view.annotation is MKClusterAnnotation) && !(view.annotation is MKUserLocation) {
-            
-            self.setDrawerController(drawer.detailViewController, position: .partiallyRevealed)
-            self.drawer.detailViewController.selectedLocation = view.annotation as? Location
-            
-            guard let _ = view.annotation as? Location else { return }
-            
-//            AnalyticsManager.shared.logSelectedItem(location)
-            
-        } else if view.annotation is MKClusterAnnotation {
-            
-            guard let annotation = view.annotation as? MKClusterAnnotation else { return }
-            guard let clusteredLocations = annotation.memberAnnotations as? [Location] else { return }
-            
-            let selectionController = SelectionViewController()
-            
-            selectionController.clusteredLocations = clusteredLocations
-            selectionController.annotation = annotation
-            
-            self.setDrawerController(selectionController, position: .partiallyRevealed)
-            
-//            AnalyticsManager.shared.logSelectedCluster(with: annotation.memberAnnotations.count)
-            
+        if let location = view.annotation as? Location {
+            if container?.selectedLocation === location { return }
+            container?.showLocation(location)
+        } else if let cluster = view.annotation as? MKClusterAnnotation,
+                  let locations = cluster.memberAnnotations as? [Location] {
+            container?.showCluster(locations)
         }
-        
     }
-    
-    public func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        
-        setDrawerController(drawer.contentViewController)
-        
+
+    func selectLocation(_ location: Location, animated: Bool) {
+        isSelectingLocation = true
+        defer { isSelectingLocation = false }
+        map.selectAnnotation(location, animated: animated)
+        map.setCenter(location.coordinate, animated: animated)
     }
-    
+
     // MARK: - Public Methods
     
     public func addLocation(_ location: Location) {
@@ -251,4 +212,8 @@ extension MapViewController: EntryDatasource, CameraDatasource, PetrolDatasource
         
     }
     
+}
+
+#Preview {
+    MapViewController()
 }

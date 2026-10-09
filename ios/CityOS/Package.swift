@@ -40,8 +40,7 @@ let package = Package(
         .library(name: "EFAUI", targets: ["EFAUI"]),
         .executable(name: "EFACLI", targets: ["EFACLI"]),
         .library(name: "Core", targets: ["Core"]),
-        .library(name: "CoreCache", targets: ["CoreCache"]),
-        .library(name: "Pulley", targets: ["Pulley"])
+        .library(name: "CoreCache", targets: ["CoreCache"])
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-algorithms", from: "1.0.0"),
@@ -190,8 +189,7 @@ let package = Package(
                 .byName(name: "AppScaffold"),
                 .byName(name: "Core"),
                 .byName(name: "TagListView"),
-                .byName(name: "Pulley"),
-.byName(name: "TextFieldEffects"),
+                .byName(name: "TextFieldEffects"),
                 .byName(name: "FuelFeature"),
             ],
             resources: [
@@ -343,10 +341,6 @@ let package = Package(
                 .copy("Data")
             ],
             swiftSettings: testSettings
-        ),
-        .target(
-            name: "Pulley",
-            swiftSettings: settings
         )
     ],
     swiftLanguageModes: [.v6]

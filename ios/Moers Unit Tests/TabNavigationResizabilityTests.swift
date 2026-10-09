@@ -96,7 +96,8 @@ final class TabNavigationResizabilityTests: XCTestCase {
         tabs.loadViewIfNeeded()
         let other = coordinator.currentOther.navigationController
         let otherOverview = other.viewControllers.first
-        let map = coordinator.currentMap.navigationController
+        let map = coordinator.currentMap.rootViewController
+        let mapNavigation = coordinator.currentMap.navigationController
 
         for sizeClass in [UIUserInterfaceSizeClass.regular, .compact] {
             tabs.traitOverrides.horizontalSizeClass = sizeClass
@@ -113,8 +114,8 @@ final class TabNavigationResizabilityTests: XCTestCase {
 
             XCTAssertEqual(tabs.selectedIndex, TabIndices.maps.rawValue)
             XCTAssertTrue(tabs.selectedViewController === map)
-            XCTAssertTrue(coordinator.currentMap.navigationController === map)
-            XCTAssertEqual(map.viewControllers.count, 1)
+            XCTAssertTrue(coordinator.currentMap.navigationController === mapNavigation)
+            XCTAssertEqual(mapNavigation.viewControllers.count, 1)
             XCTAssertEqual(other.viewControllers.count, 2)
         }
     }

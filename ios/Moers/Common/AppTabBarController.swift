@@ -38,6 +38,8 @@ public class AppTabBarController: AppScaffold.TabBarController {
     let other: OtherCoordinator
     
     private var userInterfaceStyleRegistration: UITraitChangeRegistration?
+    private var isSuspendingMapForTabSelection = false
+    private weak var pendingTabSelection: UIViewController?
     
     public var internalTabs: [any AppScaffold.TabRepresentable] {
         [dashboard, news, map, events, other]
@@ -77,6 +79,7 @@ public class AppTabBarController: AppScaffold.TabBarController {
         self.loadCurrentLocation()
         
         self.viewControllers = internalTabs.map(\.rootViewController)
+        delegate = self
         
         self.tabBar.accessibilityIdentifier = AccessibilityIdentifiers.tabBar
         
@@ -107,6 +110,35 @@ public class AppTabBarController: AppScaffold.TabBarController {
     }
     
     // MARK: - UI -
+
+    public func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if isSuspendingMapForTabSelection {
+            pendingTabSelection = viewController
+            return false
+        }
+        guard selectedViewController === map.rootViewController,
+              viewController !== map.rootViewController else { return true }
+        let mapController = map.mainViewController
+        pendingTabSelection = viewController
+        isSuspendingMapForTabSelection = true
+        mapController.suspendPanelPresentation { [weak self] in
+            guard let self else { return }
+            let selection = pendingTabSelection
+            pendingTabSelection = nil
+            isSuspendingMapForTabSelection = false
+            if let selection {
+                selectedViewController = selection
+                if selection === map.rootViewController { mapController.resumePanelPresentation() }
+            }
+        }
+        return false
+    }
+
+    public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        if viewController === map.rootViewController {
+            map.mainViewController.resumePanelPresentation()
+        }
+    }
     
     private func registerForTraitChanges() {
         userInterfaceStyleRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {

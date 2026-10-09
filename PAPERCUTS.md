@@ -37,9 +37,9 @@
 
 ## Existing SwiftLint errors outside the concurrency changes
 
-- Impact: Linting the larger set of source files touched by explicit destructors exposes seven existing errors. The same seven errors are present in the branch's committed source before these edits.
-- Reproduction: Run `swiftlint lint --config ios/.swiftlint.yml` for `Core/Entry/EntryManager.swift`, `Events/ViewModels/EventViewModel.swift`, `Feeds/UI/ViewController/PostsViewController.swift`, and `Pulley/PulleyViewController.swift` under `ios/CityOS/Sources`.
-- Errors: One legacy API variable name, two large tuples, one count comparison, and Pulley file, function, and class length limits. Refactor these separately; they do not affect the older-iOS runtime checks.
+- Impact: Linting the larger set of source files touched by explicit destructors exposes four existing errors. The same four errors are present in the branch's committed source before these edits.
+- Reproduction: Run `swiftlint lint --config ios/.swiftlint.yml` for `Core/Entry/EntryManager.swift`, `Events/ViewModels/EventViewModel.swift`, `Feeds/UI/ViewController/PostsViewController.swift` under `ios/CityOS/Sources`.
+- Errors: One legacy API variable name, two large tuples, and one count comparison. Refactor these separately; they do not affect the older-iOS runtime checks.
 
 ## Existing marketing lint errors block the standard check
 
@@ -186,3 +186,9 @@
 - Reproduction: On a simulator that uses German, run the `WidgetsExtension` scheme and test plan with `-only-testing:'Moers Unit Tests/EventsViewControllerTests'`. The assertions expect `Today`, `Tomorrow`, `No events found`, and `Events could not be loaded`, but the app uses translated text. The test plan has no language setting.
 - Evidence: All six controller tests and five event filter tests pass when the test-plan configuration sets `options.language` to `en`. The temporary language setting was removed after validation.
 - Next step: Set an explicit language in the app test plan, or compare the labels with localized expected text.
+
+## MapKit simulator worker can stop hosted map tests
+
+- Impact: One focused test run stopped in a VectorKit worker and the Xcode test process did not finish. The isolated tab resize test passed on retry.
+- Reproduction observed on 9 October 2026: With Xcode 27.1 RC and the iOS 27.0 iPad Pro simulator, run `MapSheetPresentationTests` followed by `TabNavigationResizabilityTests` through the `WidgetsExtension` test plan. The 16 sheet tests passed. During the tab resize test, the app stopped with `EXC_BAD_ACCESS` at `gdc::LayerDataSource::updateLayerData`; the crash stack contained no app frames. This occurred once and is not a confirmed app defect.
+- Next step: Repeat with a stable Xcode release. If the failure repeats, isolate MapKit view teardown in a small app and report the worker crash to Apple.

@@ -1,160 +1,50 @@
-//
-//  SearchDrawerView.swift
-//  Moers
-//
-//  Created by Lennart Fischer on 18.10.19.
-//  Copyright © 2019 Lennart Fischer. All rights reserved.
-//
-
 import UIKit
-import SwiftUI
 
-import TagListView
-import Core
+public final class SearchDrawerView: UIView {
+    let searchBar = UISearchBar()
+    let collectionView: UICollectionView
 
-public class SearchDrawerView: UIView {
-    
-    lazy var searchWrapper = { CoreViewFactory.blankView() }()
-    lazy var gripper = { CoreViewFactory.blankView() }()
-    lazy var searchBar = { CoreViewFactory.searchBar() }()
-    lazy var tagList = { CoreViewFactory.tagListView() }()
-    lazy var topSeparator = { CoreViewFactory.blankView() }()
-    lazy var collectionView: UICollectionView = {
-        var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-        config.showsSeparators = true
-        let layout = UICollectionViewCompositionalLayout.list(using: config)
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.translatesAutoresizingMaskIntoConstraints = false
-        return cv
-    }()
-    
     init() {
+        
+        var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+        configuration.headerMode = .supplementary
+        collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: UICollectionViewCompositionalLayout.list(using: configuration)
+        )
+        
         super.init(frame: .zero)
         
-        self.setupUI()
-        self.setupConstraints()
+        backgroundColor = .systemGroupedBackground
+        searchBar.searchBarStyle = .minimal
+        searchBar.placeholder = String(localized: "Where do you want to go?", bundle: .module)
+        searchBar.accessibilityIdentifier = "SearchBar"
+        searchBar.searchTextField.adjustsFontForContentSizeCategory = true
+        searchBar.searchTextField.allowsDeletingTokens = true
+        searchBar.searchTextField.allowsCopyingTokens = false
+        collectionView.backgroundColor = .clear
+        collectionView.keyboardDismissMode = .interactive
         
+        for subview in [searchBar, collectionView] {
+            subview.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(subview)
+        }
+        
+        NSLayoutConstraint.activate([
+            searchBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8),
+            searchBar.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            searchBar.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            searchBar.heightAnchor.constraint(greaterThanOrEqualToConstant: 56),
+            collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 8),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: keyboardLayoutGuide.topAnchor)
+        ])
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    public var searchWrapperHeight: NSLayoutConstraint!
-    
-    private let gripperHeight: CGFloat = 5
-    private let gripperWidth: CGFloat = 36
-    
-    private func setupUI() {
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = .clear
-        self.collectionView.backgroundColor = .clear
-        
-        self.setupSearchWrapper()
-        self.setupSearchBar()
-        self.setupTagList()
-        self.setupCollectionView()
-        self.setupTopSeparator()
-        self.setupGripper()
-        
-    }
-    
-    private func setupSearchWrapper() {
-        self.addSubview(searchWrapper)
-        self.searchWrapper.accessibilityIdentifier = "SearchWrapper"
-    }
-    
-    private func setupGripper() {
-        self.addSubview(gripper)
-        self.gripper.layer.cornerRadius = gripperHeight / 2
-        self.gripper.accessibilityIdentifier = "Gripper"
-    }
-    
-    private func setupSearchBar() {
-        self.addSubview(searchBar)
-        self.searchBar.searchBarStyle = .minimal
-        self.searchBar.accessibilityIdentifier = "SearchBar"
-        self.searchBar.backgroundColor = UIColor.clear
-        self.searchBar.placeholder = String(localized: "Where do you want to go?", bundle: .module)
-    }
-    
-    private func setupTagList() {
-        self.addSubview(tagList)
-        self.tagList.enableRemoveButton = true
-        self.tagList.paddingX = 12
-        self.tagList.paddingY = 7
-        self.tagList.marginX = 10
-        self.tagList.marginY = 7
-        self.tagList.removeIconLineWidth = 2
-        self.tagList.removeButtonIconSize = 7
-        self.tagList.textFont = UIFont.boldSystemFont(ofSize: 10)
-        self.tagList.cornerRadius = 10
-        self.tagList.backgroundColor = UIColor.clear
-        self.tagList.accessibilityIdentifier = "TagList"
-    }
-    
-    private func setupCollectionView() {
-        self.addSubview(collectionView)
-    }
-    
-    private func setupTopSeparator() {
-        self.addSubview(topSeparator)
-        self.topSeparator.alpha = 0.5
-        self.topSeparator.accessibilityIdentifier = "TopSeparator"
-    }
-    
-    private func setupConstraints() {
-        
-        self.searchWrapperHeight = searchWrapper.heightAnchor.constraint(equalToConstant: 68)
-        self.searchWrapperHeight.priority = .init(rawValue: 250)
-        
-        searchWrapperHeight.isActive = true
-        
-        let searchWrapperConstraints = [
-            searchWrapper.topAnchor.constraint(equalTo: topAnchor),
-            searchWrapper.leadingAnchor.constraint(equalTo: leadingAnchor),
-            searchWrapper.trailingAnchor.constraint(equalTo: trailingAnchor),
-        ]
-        
-        searchWrapperConstraints.forEach { $0.priority = .defaultLow }
-        
-        let tagListConstraints = [
-            tagList.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-            tagList.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            tagList.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            tagList.bottomAnchor.constraint(equalTo: searchWrapper.bottomAnchor, constant: -8)
-        ]
-        
-        tagListConstraints.forEach { $0.priority = .init(rawValue: 500) }
-        
-        let constraints = [
-            gripper.topAnchor.constraint(equalTo: searchWrapper.topAnchor, constant: 6),
-            gripper.centerXAnchor.constraint(equalTo: centerXAnchor),
-            gripper.heightAnchor.constraint(equalToConstant: gripperHeight),
-            gripper.widthAnchor.constraint(equalToConstant: gripperWidth),
-            searchBar.topAnchor.constraint(equalTo: searchWrapper.topAnchor, constant: 6),
-            searchBar.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
-            searchBar.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
-            searchWrapper.bottomAnchor.constraint(equalTo: tagList.bottomAnchor, constant: 8),
-            topSeparator.bottomAnchor.constraint(equalTo: collectionView.topAnchor),
-            topSeparator.heightAnchor.constraint(equalToConstant: 0.5),
-            topSeparator.leadingAnchor.constraint(equalTo: leadingAnchor),
-            topSeparator.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: searchWrapper.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
-        ]
-        
-        constraints.forEach { $0.priority = .defaultLow }
-        
-        NSLayoutConstraint.activate(tagListConstraints)
-        NSLayoutConstraint.activate(searchWrapperConstraints)
-        NSLayoutConstraint.activate(constraints)
-        
-    }
 
-    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
     nonisolated deinit {}
 }

@@ -220,7 +220,7 @@ class ApplicationCoordinator: NSObject {
         
         tabBarController.selectedIndex = TabIndices.maps.rawValue
         
-        currentMap.navigationController.popToRootViewController(animated: animated)
+        currentMap.mainViewController.resumePanelPresentation()
         
     }
     

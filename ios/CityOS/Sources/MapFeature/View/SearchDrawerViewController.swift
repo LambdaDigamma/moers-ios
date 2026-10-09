@@ -1,456 +1,163 @@
-//
-//  SearchDrawerViewController.swift
-//  Moers
-//
-//  Created by Lennart Fischer on 18.10.19.
-//  Copyright © 2019 Lennart Fischer. All rights reserved.
-//
-
-import Core
-import UIKit
-import SwiftUI
-
-import Pulley
-import TagListView
-import Fuse
 import Combine
+import Core
 import FactoryKit
-//import NewsFeature
+import Fuse
+import SwiftUI
+import UIKit
 
-public enum DisplayMode {
-    case list
-    case search(searchTerm: String, tags: [AttributedString], items: [Location])
-    case filter(searchTerm: String?, selectedTags: [String], items: [Location])
-}
-
-nonisolated enum SearchDrawerItem: Hashable {
-    case tag(AttributedString, id: String)
-    case location(Core.AnyLocation)
-    
-    func hash(into hasher: inout Hasher) {
-        switch self {
-        case .tag(_, let id):
-            hasher.combine("tag")
-            hasher.combine(id)
-        case .location(let anyLocation):
-            hasher.combine("location")
-            hasher.combine(anyLocation)
-        }
-    }
-    
-    static func == (lhs: SearchDrawerItem, rhs: SearchDrawerItem) -> Bool {
-        switch (lhs, rhs) {
-        case (.tag(_, let id1), .tag(_, let id2)):
-            return id1 == id2
-        case (.location(let loc1), .location(let loc2)):
-            return loc1 == loc2
-        default:
-            return false
-        }
-    }
-}
-
-// swiftlint:disable file_length
-public class SearchDrawerViewController: UIViewController {
-    
-    public let searchDrawer: SearchDrawerView
-    
-    private let fuse = Fuse(location: 0, distance: 100, threshold: 0.45, maxPatternLength: 32, isCaseSensitive: false)
-    
-    private var displayMode = DisplayMode.list
-    private var locations: [Location] = []
-    private var datasource: [Location] = []
-    private var locationsByID: [Core.AnyLocation: Location] = [:]
-    private var selectedTags: [String] = []
-    private var tags: [String] = []
-    
-    private var dataSource: UICollectionViewDiffableDataSource<Int, SearchDrawerItem>!
-    
-    private var tagCellRegistration: UICollectionView.CellRegistration<UICollectionViewListCell, AttributedString>!
-    private var locationCellRegistration: UICollectionView.CellRegistration<UICollectionViewListCell, Core.AnyLocation>!
-    
-    private var cancellables = Set<AnyCancellable>()
-    private var normalColor = UIColor.clear
-    private var highlightedColor = UIColor.clear
+public final class SearchDrawerViewController: UIViewController {
     
     @LazyInjected(\.locationManager) private var locationManager
     
-    public init() {
-        self.searchDrawer = SearchDrawerView()
-        super.init(nibName: nil, bundle: nil)
-        self.searchDrawer.searchBar.delegate = self
-        self.searchDrawer.tagList.delegate = self
-        self.configureDataSource()
-    }
+    weak var container: MapContainerViewController?
     
+    public let searchDrawer = SearchDrawerView()
+    
+    private let fuse = Fuse(location: 0, distance: 100, threshold: 0.45, maxPatternLength: 32, isCaseSensitive: false)
+    private var locations: [Location] = []
+    private var locationsByID: [Core.AnyLocation: Location] = [:]
+    private var dataSource: UICollectionViewDiffableDataSource<MapSearchSection, SearchDrawerItem>!
+    private var distanceUpdates: AnyCancellable?
+    
+    public init() {
+        super.init(nibName: nil, bundle: nil)
+        searchDrawer.searchBar.delegate = self
+        searchDrawer.searchBar.searchTextField.addTarget(self, action: #selector(searchCriteriaChanged), for: .editingChanged)
+        searchDrawer.collectionView.delegate = self
+        configureDataSource()
+    }
+
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    public override func loadView() {
-        view = searchDrawer
-    }
-    
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let feedbackGenerator = UISelectionFeedbackGenerator()
-        self.pulleyViewController?.feedbackGenerator = feedbackGenerator
-        
-    }
-    
+
+    public override func loadView() { view = searchDrawer }
+
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
-        pulleyViewController?.delegate = self
-        pulleyViewController?.setDrawerPosition(position: .open, animated: false)
-        
-        setupCellRegistrations()
-    }
-    
-    // MARK: - Collection View
-    
-    private func setupCellRegistrations() {
-        tagCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, AttributedString> { cell, indexPath, attrStr in
-            cell.contentConfiguration = UIHostingConfiguration {
-                Text(attrStr)
-                    .font(.system(size: 17))
-            }
-            .margins(.all, 0)
-            cell.accessories = []
-        }
-        
-        locationCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Core.AnyLocation> { [weak self] cell, indexPath, anyLoc in
-            guard let location = self?.locationsByID[anyLoc] else {
-                cell.contentConfiguration = UIListContentConfiguration.cell()
-                cell.accessories = []
-                return
-            }
-            let showCheckmark: Bool
-            if let entry = location as? Entry {
-                showCheckmark = entry.isValidated
-            } else {
-                showCheckmark = true
-            }
-            
-            cell.contentConfiguration = UIHostingConfiguration {
-                SearchResultCellView(
-                    image: UIProperties.detailImage(for: location),
-                    title: (location.title ?? "") ?? "",
-                    subtitle: UIProperties.detailSubtitle(for: location),
-                    showCheckmark: showCheckmark
-                )
-            }
-            .margins(.all, 0)
-            cell.accessories = [.disclosureIndicator()]
+        title = String(localized: "Search", bundle: .module)
+        registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (controller: SearchDrawerViewController, _) in
+            controller.dataSource.applySnapshotUsingReloadData(controller.dataSource.snapshot())
         }
     }
-    
+
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let sheet = navigationController?.presentationController as? UISheetPresentationController
+        let isCompact = navigationController?.presentingViewController != nil
+            && sheet?.selectedDetentIdentifier == MapSheetPresentationController.compactDetent
+        searchDrawer.collectionView.isHidden = isCompact
+        searchDrawer.collectionView.isScrollEnabled = !isCompact
+    }
+
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Int, SearchDrawerItem>(
-            collectionView: searchDrawer.collectionView
-        ) { [weak self] collectionView, indexPath, item in
-            guard let self = self else { return UICollectionViewListCell() }
-            
+        let registration = UICollectionView.CellRegistration<UICollectionViewListCell, SearchDrawerItem> {
+            [weak self] cell, _, item in
+            guard let self else { return }
+            var content = UIListContentConfiguration.subtitleCell()
             switch item {
-            case .tag(let attributedString, _):
-                return collectionView.dequeueConfiguredReusableCell(
-                    using: tagCellRegistration,
-                    for: indexPath,
-                    item: attributedString
-                )
-                
-            case .location(let anyLocation):
-                return collectionView.dequeueConfiguredReusableCell(
-                    using: locationCellRegistration,
-                    for: indexPath,
-                    item: anyLocation
-                )
+            case .category(let category):
+                content.text = category
+                content.image = UIImage(systemName: "magnifyingglass")
+                content.imageProperties.tintColor = .tintColor
+                content.textProperties.color = .label
+                cell.accessories = []
+            case .location(let identifier):
+                guard let location = locationsByID[identifier] else { return }
+                content = UIProperties.listContent(for: location)
+                cell.accessories = [.disclosureIndicator()]
             }
+            cell.contentConfiguration = content
         }
-        
-        searchDrawer.collectionView.delegate = self
+        dataSource = UICollectionViewDiffableDataSource(collectionView: searchDrawer.collectionView) {
+            collection, indexPath, item in
+            collection.dequeueConfiguredReusableCell(using: registration, for: indexPath, item: item)
+        }
+        let header = UICollectionView.SupplementaryRegistration<UICollectionViewListCell>(
+            elementKind: UICollectionView.elementKindSectionHeader
+        ) { [weak self] view, _, indexPath in
+            guard let section = self?.dataSource.snapshot().sectionIdentifiers[indexPath.section] else { return }
+            var content = UIListContentConfiguration.groupedHeader()
+            content.text = section == .categories
+                ? String(localized: "Categories", bundle: .module)
+                : String(localized: "Places", bundle: .module)
+            content.textProperties.color = .secondaryLabel
+            view.contentConfiguration = content
+        }
+        dataSource.supplementaryViewProvider = { collection, _, indexPath in
+            collection.dequeueConfiguredReusableSupplementary(using: header, for: indexPath)
+        }
     }
-    
-    private func updateSnapshot() {
+
+    @objc private func searchCriteriaChanged() { updateResults() }
+
+    private func updateResults() {
+        let query = (searchDrawer.searchBar.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        let selectedCategories = searchDrawer.searchBar.searchTextField.tokens.compactMap { $0.representedObject as? String }
+        let categories = Array(Set(locations.flatMap(\.tags))).sorted()
+            .filter { !selectedCategories.contains($0) }
+        let suggestions = query.isEmpty ? Array(categories.prefix(4)) : fuse.search(query, in: categories)
+            .sorted { $0.score < $1.score }.prefix(5).map { categories[$0.index] }
+        let matches: [Location] = query.isEmpty ? locations : fuse.search(query, in: locations.map(\.name))
+            .sorted { $0.score < $1.score }.map { locations[$0.index] }
+        let results = matches.filter { location in selectedCategories.allSatisfy { location.tags.contains($0) } }
         locationsByID.removeAll(keepingCapacity: true)
-
-        var snapshot = NSDiffableDataSourceSnapshot<Int, SearchDrawerItem>()
-        snapshot.appendSections([0])
-        
-        let items = itemsForCurrentDisplayMode()
-        snapshot.appendItems(items)
-        
+        var snapshot = NSDiffableDataSourceSnapshot<MapSearchSection, SearchDrawerItem>()
+        if !suggestions.isEmpty {
+            snapshot.appendSections([.categories])
+            snapshot.appendItems(suggestions.map(SearchDrawerItem.category), toSection: .categories)
+        }
+        snapshot.appendSections([.places])
+        var seen = Set<Core.AnyLocation>()
+        snapshot.appendItems(results.compactMap { location in
+            let identifier = Core.AnyLocation(location)
+            guard seen.insert(identifier).inserted else { return nil }
+            locationsByID[identifier] = location
+            return .location(identifier)
+        }, toSection: .places)
+        let previousItems = Set(dataSource.snapshot().itemIdentifiers)
+        snapshot.reconfigureItems(snapshot.itemIdentifiers.filter { previousItems.contains($0) })
         dataSource.apply(snapshot, animatingDifferences: false)
-    }
-    
-    private func itemsForCurrentDisplayMode() -> [SearchDrawerItem] {
-        switch displayMode {
-        case .list:
-            return datasource.map(locationItem)
-            
-        case .filter(_, let tagStrings, let items):
-            searchDrawer.tagList.removeAllTags()
-            searchDrawer.tagList.addTags(tagStrings)
-            return items.map(locationItem)
-            
-        case .search(_, let tagAttrs, let items):
-            let numberOfTags = min(tagAttrs.count, 5)
-            var result: [SearchDrawerItem] = []
-            
-            for i in 0..<numberOfTags {
-                let id = "\(tagAttrs[i])-\(i)"
-                result.append(.tag(tagAttrs[i], id: id))
-            }
-            
-            result.append(contentsOf: items.map(locationItem))
-            
-            return result
+        if results.isEmpty, suggestions.isEmpty, !query.isEmpty || !selectedCategories.isEmpty {
+            var empty = UIContentUnavailableConfiguration.search()
+            empty.text = String(localized: "No Results", bundle: .module)
+            searchDrawer.collectionView.backgroundView = UIContentUnavailableView(configuration: empty)
+        } else {
+            searchDrawer.collectionView.backgroundView = nil
         }
     }
 
-    private func locationItem(for location: Location) -> SearchDrawerItem {
-        let id = AnyLocation(location)
-        locationsByID[id] = location
-        return .location(id)
-    }
-    
-    // MARK: - Data Handling
-    
-    private func updateDatasource() {
-        
-        self.tags = Array(Set(locations.map { $0.tags }.reduce([], +)))
-        
-        let updatedLocations = self.locationManager.updateDistances(locations: locations)
-        
-        updatedLocations
+    private func updateLocations() {
+        updateResults()
+        distanceUpdates = locationManager.updateDistances(locations: locations)
             .receive(on: DispatchQueue.main)
-            .sink { (_: Subscribers.Completion<Error>) in
-                
-             } receiveValue: { (locations: [Location]) in
-                
-                self.locations = locations.sorted(by: { (location1, location2) -> Bool in
-                    location1.distance < location2.distance
-                })
-                
-                self.datasource = self.locations
-                
-                DispatchQueue.main.async {
-                    self.updateSnapshot()
-                }
-                
+            .sink { _ in } receiveValue: { [weak self] locations in
+                self?.locations = locations.sorted { $0.distance < $1.distance }
+                self?.updateResults()
             }
-            .store(in: &cancellables)
-        
     }
-    
-    private func searchTags(with searchTerm: String) -> [AttributedString] {
-    
-        let results = fuse.search(searchTerm, in: tags)
-        
-        var filteredTags: [AttributedString] = []
-        
-        for result in results.sorted(by: { $0.score < $1.score }) {
-            let tag = tags[result.index]
-            var attributedString = AttributedString(tag)
-            
-            for range in result.ranges {
-                let nsRange = NSRange(location: range.lowerBound, length: range.upperBound - range.lowerBound + 1)
-                if let attrRange = Range(nsRange, in: attributedString) {
-                    attributedString[attrRange].font = .boldSystemFont(ofSize: 17)
-                }
-            }
-            
-            filteredTags.append(attributedString)
-        }
-        
-        return filteredTags
-        
-    }
-    
-    private func searchLocations(with searchTerm: String) -> [Location] {
-        
-        let results = fuse.search(searchTerm, in: locations)
-                          .sorted(by: { $0.score < $1.score })
-                          .map { locations[$0.index] }
-        
-        return results
-        
-    }
-    
-    private func filterLocations(with searchTerm: String) -> [Location] {
-        
-        if searchTerm.isNotEmptyOrWhitespace {
-            
-            let locations = searchLocations(with: searchTerm)
-            
-            let isEmpty = selectedTags.isEmpty
-            
-            let filterLocations = datasource.filter { !isEmpty && arrayContainsSubset(array: $0.tags, subset: selectedTags) }
-            
-            return (locations + filterLocations).sorted(by: { $0.distance < $1.distance }) // todo
-            
-        } else {
-            
-            let filterLocations = datasource.filter { !$0.tags.isEmpty && arrayContainsSubset(array: $0.tags, subset: selectedTags) }.sorted(by: { $0.distance < $1.distance })
-            
-            return filterLocations
-            
-        }
-        
-    }
-    
-    private func selectLocaton(_ location: Location) {
-        
-        if let mapController = pulleyViewController?.primaryContentViewController as? MapViewController {
-            
-//            AnalyticsManager.shared.logSelectedItemContent(location)
-            
-            mapController.map.selectAnnotation(location, animated: true)
-            mapController.map.camera.altitude = 1000
-            
-        }
-        
-    }
-    
+
     public func addLocation(_ location: Location) {
-        
-        self.locations.append(location)
-        
-        self.updateDatasource()
-        
+        locations.append(location)
+        updateLocations()
     }
 
-    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
     nonisolated deinit {}
-}
-
-extension SearchDrawerViewController: PulleyDrawerViewControllerDelegate {
-    
-    public func collapsedDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
-        return 68.0 + (pulleyViewController?.currentDisplayMode == .drawer ? bottomSafeArea : 0.0)
-    }
-    
-    public func partialRevealDrawerHeight(bottomSafeArea: CGFloat) -> CGFloat {
-        return 264.0 + (pulleyViewController?.currentDisplayMode == .drawer ? bottomSafeArea : 0.0)
-    }
-    
-    public func supportedDrawerPositions() -> [PulleyPosition] {
-        return PulleyPosition.all
-    }
-    
-    public func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
-        
-        searchDrawer.collectionView.isScrollEnabled = drawer.drawerPosition == .open || drawer.currentDisplayMode == .panel
-        
-        if drawer.drawerPosition != .open {
-            searchDrawer.searchBar.resignFirstResponder()
-        }
-        
-    }
-    
-}
-
-extension SearchDrawerViewController: TagListViewDelegate {
-    
-    public func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
-        
-        self.selectedTags.removeAll(where: { $0 == title })
-        
-        sender.removeTagView(tagView)
-        
-        if sender.tagViews.isEmpty {
-            self.searchDrawer.searchWrapperHeight.constant = 68.0
-            self.displayMode = .list
-            self.updateSnapshot()
-        } else {
-            let searchText = searchDrawer.searchBar.text ?? ""
-            self.displayMode = .filter(searchTerm: searchText,
-                                       selectedTags: selectedTags,
-                                       items: filterLocations(with: searchText))
-            self.updateSnapshot()
-        }
-        
-    }
-    
 }
 
 extension SearchDrawerViewController: UISearchBarDelegate {
     
     public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        
-        if let drawer = self.parent as? LegacyMainViewController {
-            drawer.setDrawerPosition(position: .open, animated: true)
+        if let sheet = navigationController?.presentationController as? UISheetPresentationController {
+            sheet.animateChanges { sheet.selectedDetentIdentifier = .large }
         }
-        
-        let searchTerm = searchBar.text ?? ""
-        
-        if !searchTerm.isEmpty {
-            
-//            let tags = searchTags(with: searchTerm)
-//            let items = searchLocations(with: searchTerm)
-//
-//            displayMode = .search(searchTerm: searchTerm, tags: tags, items: items)
-            
-            updateSnapshot()
-            
-        }
-        
     }
-    
-    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        let tagsNotEmpty = !tags.isEmpty
-        let locationsNotEmpty = !locations.isEmpty
-        let cellAtIndex0Exists = searchDrawer.collectionView.cellForItem(
-            at: IndexPath(row: 0, section: 0)
-        ) != nil
-        
-        if tagsNotEmpty && locationsNotEmpty && cellAtIndex0Exists {
-            
-            self.searchDrawer.collectionView.scrollToItem(
-                at: IndexPath(row: 0, section: 0),
-                at: UICollectionView.ScrollPosition.top,
-                animated: false
-            )
-            
-        }
-        
-        if searchText.isNotEmptyOrWhitespace {
-            
-            let tags = searchTags(with: searchText)
-            let items = searchLocations(with: searchText)
-            
-            displayMode = .search(searchTerm: searchText, tags: tags, items: items)
-            
-        } else {
-            
-            if selectedTags.isEmpty {
-                displayMode = .list
-            } else {
-                displayMode = .filter(searchTerm: nil, selectedTags: selectedTags, items: filterLocations(with: ""))
-            }
-            
-        }
-        
-        self.updateSnapshot()
-        
-    }
-    
+
+    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) { updateResults() }
+
     public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
-        let searchText = searchBar.text ?? ""
-        
-        let newSearchTerm: String? = searchText.isNotEmptyOrWhitespace ? searchText : nil
-        
-        self.displayMode = .filter(searchTerm: newSearchTerm,
-                                   selectedTags: selectedTags,
-                                   items: filterLocations(with: searchText))
-        
+        updateResults()
         searchBar.resignFirstResponder()
-        
-        self.updateSnapshot()
-        
     }
     
 }
@@ -458,77 +165,52 @@ extension SearchDrawerViewController: UISearchBarDelegate {
 extension SearchDrawerViewController: UICollectionViewDelegate {
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         collectionView.deselectItem(at: indexPath, animated: true)
         
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
         
         switch item {
-        case .tag(let attrString, _):
-            let tagString = NSAttributedString(attrString).string
-            if !selectedTags.contains(tagString) {
-                self.selectedTags.append(tagString)
-            }
-            
-            self.searchDrawer.searchBar.text = ""
-            self.searchDrawer.searchWrapperHeight.constant = 98
-            
-            let filteredItems = filterLocations(with: "")
-            
-            self.displayMode = .filter(searchTerm: "", selectedTags: selectedTags, items: filteredItems)
-            
-            self.updateSnapshot()
-            
-        case .location(let anyLocation):
-            guard let location = locationsByID[anyLocation] else { return }
-            selectLocaton(location)
+        case .category(let category):
+            let field = searchDrawer.searchBar.searchTextField
+            let token = UISearchToken(icon: UIImage(systemName: "tag"), text: category)
+            token.representedObject = category
+            field.insertToken(token, at: field.tokens.count)
+            searchDrawer.searchBar.text = ""
+            updateResults()
+        case .location(let identifier):
+            guard let location = locationsByID[identifier] else { return }
+            searchDrawer.searchBar.resignFirstResponder()
+            container?.showLocation(location, fromList: true)
         }
-    }
-    
-    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        
-        self.searchDrawer.searchBar.resignFirstResponder()
         
     }
-    
 }
 
 extension SearchDrawerViewController: EntryDatasource, CameraDatasource, PetrolDatasource {
     
     func didReceiveEntries(_ entries: [Entry]) {
-        
-        self.locations = self.locations.filter { !($0 is Entry) }
-        self.locations.append(contentsOf: entries as [Entry])
-        
-        self.updateDatasource()
-        
+        locations.removeAll { $0 is Entry }
+        locations.append(contentsOf: entries)
+        updateLocations()
     }
-    
+
     func didReceiveCameras(_ cameras: [Camera]) {
-        
-        self.locations = self.locations.filter { !($0 is Camera) }
-        self.locations.append(contentsOf: cameras as [Location])
-        
-        self.updateDatasource()
-        
+        locations.removeAll { $0 is Camera }
+        locations.append(contentsOf: cameras)
+        updateLocations()
     }
-    
-    func didReceivePetrolStations(_ petrolStations: [PetrolStationViewModel]) {
-        
-        self.locations = self.locations.filter { !($0 is PetrolStationViewModel) }
-        self.locations.append(contentsOf: petrolStations as [PetrolStationViewModel])
-        
-        self.updateDatasource()
-        
+
+    func didReceivePetrolStations(_ stations: [PetrolStationViewModel]) {
+        locations.removeAll { $0 is PetrolStationViewModel }
+        locations.append(contentsOf: stations)
+        updateLocations()
     }
     
 }
 
-extension SearchDrawerViewController {
-    
-    private func arrayContainsSubset<T : Equatable>(array: [T], subset: [T]) -> Bool {
-        return subset.allSatisfy { (item) in
-            return array.contains(item)
-        }
-    }
-    
+#Preview {
+    let controller = SearchDrawerViewController()
+    controller.addLocation(Camera.stub(withID: 1))
+    return UINavigationController(rootViewController: controller)
 }
