@@ -27,8 +27,9 @@ public class TripConfigurationViewController: UIHostingController<TripConfigurat
             viewModel: viewModel
         ))
         
-        self.viewModel.onSearchEvent = {
-            
+        self.viewModel.onSearchEvent = { [weak self] in
+            guard let self else { return }
+
             let viewController = TripSearchViewController(viewModel: self.viewModel)
             
             self.navigationController?.pushViewController(viewController, animated: true)
