@@ -24,7 +24,7 @@ public class ModernEventDetailViewController: DefaultHostingController {
     
     @LazyInjected(\.legacyEventService) private var eventService
     
-    public var coordinator: SharedCoordinator?
+    public weak var coordinator: SharedCoordinator?
 
     public var showCloseButton: Bool = false
 
@@ -81,7 +81,7 @@ public class ModernEventDetailViewController: DefaultHostingController {
         ModernEventView(
             viewModel: viewModel,
             actionTransmitter: actionTransmitter,
-            showDetails: { self.showMetadata() }
+            showDetails: { [weak self] in self?.showMetadata() }
         )
         .toAnyView()
     }
@@ -166,11 +166,11 @@ public class ModernEventDetailViewController: DefaultHostingController {
     
     public func setupListeners() {
         
-        actionTransmitter.showURL.sink { (url: URL) in
+        actionTransmitter.showURL.sink { [weak self] (url: URL) in
             
             let viewController = SFSafariViewController(url: url)
             
-            self.coordinator?.rootViewController.present(viewController, animated: true)
+            self?.coordinator?.rootViewController.present(viewController, animated: true)
             
         }
         .store(in: &cancellables)
@@ -180,15 +180,15 @@ public class ModernEventDetailViewController: DefaultHostingController {
             favoriteEventsStore
                 .isLiked(eventID: eventID)
                 .receive(on: DispatchQueue.main)
-                .sink { (completion: Subscribers.Completion<Error>) in
+                .sink { [weak self] (completion: Subscribers.Completion<Error>) in
                     
                     if case .failure(let error) = completion {
-                        self.logger.error("\(error.localizedDescription)")
+                        self?.logger.error("\(error.localizedDescription)")
                     }
                     
-                } receiveValue: { (isLiked: Bool) in
+                } receiveValue: { [weak self] (isLiked: Bool) in
                     
-                    self.internalLikeState = isLiked
+                    self?.internalLikeState = isLiked
                     
                 }
                 .store(in: &cancellables)
@@ -208,8 +208,8 @@ public class ModernEventDetailViewController: DefaultHostingController {
     private func showMetadata() {
         
         let metadata = EventMetadataScreen(
-            viewModel: viewModel) { (placeID: Place.ID) in
-                self.coordinator?.pushPlaceDetail(placeID: placeID)
+            viewModel: viewModel) { [weak self] (placeID: Place.ID) in
+                self?.coordinator?.pushPlaceDetail(placeID: placeID)
             }
         
         let hosting = UIHostingController(rootView: metadata)
