@@ -26,6 +26,10 @@ public class TransitLocationSearchViewModel {
     
     public var searchTerm: String = "" {
         didSet {
+            guard searchTerm != oldValue else { return }
+            searchTask?.cancel()
+            searchTask = nil
+            transitLocations = []
             searchTermSubject.send(searchTerm)
         }
     }
@@ -37,7 +41,6 @@ public class TransitLocationSearchViewModel {
         
         searchTermSubject
             .debounce(for: .milliseconds(400), scheduler: RunLoop.main)
-            .removeDuplicates()
             .map { search -> String? in
                 if search.isEmpty {
                     return nil
@@ -58,12 +61,15 @@ public class TransitLocationSearchViewModel {
     // MARK: - Loading -
     
     private func performSearch(searchText: String) {
+        guard searchText == searchTerm, !searchText.isEmpty else { return }
         searchTask?.cancel()
-        
-        searchTask = Task {
+
+        let service = service
+        searchTask = Task { [weak self] in
+            guard !Task.isCancelled else { return }
             do {
-                let transitLocations = try await self.service.findTransitLocation(for: searchText, filtering: [])
-                guard !Task.isCancelled else { return }
+                let transitLocations = try await service.findTransitLocation(for: searchText, filtering: [])
+                guard !Task.isCancelled, let self, self.searchTerm == searchText else { return }
                 self.transitLocations = transitLocations
             } catch {
                 guard !Task.isCancelled else { return }
@@ -158,6 +164,8 @@ public class TransitLocationSearchViewModel {
         
     }
 
-    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
-    nonisolated deinit {}
+    // Cancel the task without a hop to the main actor.
+    nonisolated deinit {
+        searchTask?.cancel()
+    }
 }
