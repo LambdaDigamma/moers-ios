@@ -4,18 +4,19 @@ import ModernNetworking
 
 @MainActor
 final class ControlledPostService: PostService {
+    var posts: [Post] = []
     var loadedFeedIDs: [Feed.ID] = []
     var refreshedFeedIDs: [Feed.ID] = []
     var onLoad: (() -> Void)?
     var onRefresh: (() -> Void)?
     var onCancellation: (() -> Void)?
-    private var pendingRefresh: CheckedContinuation<ResourceCollection<Post>, Error>?
+    private var pendingRefresh: CheckedContinuation<Void, Error>?
 
     func index(for feedID: Feed.ID, page: Int, perPage: Int, cacheMode: CacheMode) async throws -> ResourceCollection<Post> {
         switch cacheMode {
         case .revalidate:
             refreshedFeedIDs.append(feedID)
-            return try await withTaskCancellationHandler {
+            try await withTaskCancellationHandler {
                 try await withCheckedThrowingContinuation { continuation in
                     pendingRefresh = continuation
                     onRefresh?()
@@ -26,10 +27,11 @@ final class ControlledPostService: PostService {
                     self?.onCancellation?()
                 }
             }
+            return ResourceCollection(data: posts, links: .init(), meta: .init())
         default:
             loadedFeedIDs.append(feedID)
             onLoad?()
-            return ResourceCollection(data: [], links: .init(), meta: .init())
+            return ResourceCollection(data: posts, links: .init(), meta: .init())
         }
     }
 
@@ -37,13 +39,14 @@ final class ControlledPostService: PostService {
         Resource(data: Post.stub(withID: postID))
     }
 
-    func completeRefresh(error: Error? = nil) {
+    func completeRefresh(posts: [Post] = [], error: Error? = nil) {
         guard let continuation = pendingRefresh else { return }
         pendingRefresh = nil
         if let error {
             continuation.resume(throwing: error)
         } else {
-            continuation.resume(returning: ResourceCollection(data: [], links: .init(), meta: .init()))
+            self.posts = posts
+            continuation.resume()
         }
     }
 
