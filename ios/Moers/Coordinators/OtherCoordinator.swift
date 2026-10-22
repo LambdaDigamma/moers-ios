@@ -161,9 +161,7 @@ public class OtherCoordinator: Coordinator {
                 )
             )
             
-            self.navigationController
-                .presentedViewController?
-                .present(alert, animated: true, completion: nil)
+            self.navigationController.present(alert, animated: true, completion: nil)
             
         } else {
             
