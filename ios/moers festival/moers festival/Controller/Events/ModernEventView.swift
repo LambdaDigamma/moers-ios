@@ -74,9 +74,6 @@ public struct ModernEventView: View {
         .task {
             self.viewModel.reload()
         }
-        .onDisappear {
-            self.viewModel.cancel()
-        }
         
     }
     
