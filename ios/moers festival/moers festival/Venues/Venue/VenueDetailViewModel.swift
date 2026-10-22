@@ -58,7 +58,7 @@ public class VenueDetailViewModel: StandardViewModel {
     }
     
     private let eventRepository: EventRepository
-    private var enrichmentTask: Task<Void, Never>?
+    @ObservationIgnored private var enrichmentTask: Task<Void, Never>?
     private var enrichmentSignature: String?
     
     public init(placeID: Place.ID) {
@@ -70,7 +70,7 @@ public class VenueDetailViewModel: StandardViewModel {
         self.setupListener()
     }
     
-    @MainActor deinit {
+    nonisolated deinit {
         enrichmentTask?.cancel()
     }
     
@@ -81,7 +81,8 @@ public class VenueDetailViewModel: StandardViewModel {
             .receive(on: DispatchQueue.main)
             .sink { (completion: Subscribers.Completion<Error>) in
                 
-            } receiveValue: { (events: [EventRecord]) in
+            } receiveValue: { [weak self] (events: [EventRecord]) in
+                guard let self else { return }
                 
                 self.events = events
                     .map { $0.toBase() }
