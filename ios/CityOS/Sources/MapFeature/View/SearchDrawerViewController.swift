@@ -12,17 +12,21 @@ public final class SearchDrawerViewController: UIViewController {
     weak var container: MapContainerViewController?
     
     public let searchDrawer = SearchDrawerView()
+    public let searchController = UISearchController(searchResultsController: nil)
     
     private let fuse = Fuse(location: 0, distance: 100, threshold: 0.45, maxPatternLength: 32, isCaseSensitive: false)
     private var locations: [Location] = []
     private var locationsByID: [Core.AnyLocation: Location] = [:]
     private var dataSource: UICollectionViewDiffableDataSource<MapSearchSection, SearchDrawerItem>!
     private var distanceUpdates: AnyCancellable?
+    private(set) var isDismissingSearch = false
+    private var retainedSearchText: String?
+    private var retainedSearchTokens: [UISearchToken] = []
+    private var searchDismissalCompletions: [() -> Void] = []
     
     public init() {
         super.init(nibName: nil, bundle: nil)
-        searchDrawer.searchBar.delegate = self
-        searchDrawer.searchBar.searchTextField.addTarget(self, action: #selector(searchCriteriaChanged), for: .editingChanged)
+        configureSearch()
         searchDrawer.collectionView.delegate = self
         configureDataSource()
     }
@@ -31,14 +35,54 @@ public final class SearchDrawerViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public override func loadView() { view = searchDrawer }
+    public override func loadView() {
+        view = searchDrawer
+    }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        title = String(localized: "Search", bundle: .module)
         registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (controller: SearchDrawerViewController, _) in
             controller.dataSource.applySnapshotUsingReloadData(controller.dataSource.snapshot())
         }
+    }
+
+    private func configureSearch() {
+        
+        definesPresentationContext = true
+        searchController.searchResultsUpdater = self
+        searchController.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        
+        let bar = searchController.searchBar
+        bar.delegate = self
+        bar.placeholder = String(localized: "Where do you want to go?", bundle: .module)
+        bar.accessibilityIdentifier = "SearchBar"
+        bar.searchTextField.adjustsFontForContentSizeCategory = true
+        bar.searchTextField.allowsDeletingTokens = true
+        bar.searchTextField.allowsCopyingTokens = false
+        bar.searchTextField.addTarget(self, action: #selector(searchCriteriaChanged), for: .editingChanged)
+        navigationItem.titleView = bar
+        navigationItem.backButtonTitle = String(localized: "Search", bundle: .module)
+    }
+
+    func focusSearch() {
+        searchController.isActive = true
+        searchController.searchBar.searchTextField.becomeFirstResponder()
+    }
+
+    func endSearch(completion: (() -> Void)? = nil) {
+        guard searchController.isActive || isDismissingSearch else {
+            searchController.searchBar.resignFirstResponder()
+            completion?()
+            return
+        }
+        if let completion { searchDismissalCompletions.append(completion) }
+        if retainedSearchText == nil {
+            retainedSearchText = searchController.searchBar.text ?? ""
+            retainedSearchTokens = searchController.searchBar.searchTextField.tokens
+        }
+        searchController.isActive = false
     }
 
     public override func viewDidLayoutSubviews() {
@@ -67,6 +111,9 @@ public final class SearchDrawerViewController: UIViewController {
                 content = UIProperties.listContent(for: location)
                 cell.accessories = [.disclosureIndicator()]
             }
+            // Use the page's appearance while UIKit moves existing cells into active search.
+            content.textProperties.color = UIColor.label.resolvedColor(with: traitCollection)
+            content.secondaryTextProperties.color = UIColor.secondaryLabel.resolvedColor(with: traitCollection)
             cell.contentConfiguration = content
         }
         dataSource = UICollectionViewDiffableDataSource(collectionView: searchDrawer.collectionView) {
@@ -76,12 +123,13 @@ public final class SearchDrawerViewController: UIViewController {
         let header = UICollectionView.SupplementaryRegistration<UICollectionViewListCell>(
             elementKind: UICollectionView.elementKindSectionHeader
         ) { [weak self] view, _, indexPath in
-            guard let section = self?.dataSource.snapshot().sectionIdentifiers[indexPath.section] else { return }
+            guard let self else { return }
+            let section = dataSource.snapshot().sectionIdentifiers[indexPath.section]
             var content = UIListContentConfiguration.groupedHeader()
             content.text = section == .categories
                 ? String(localized: "Categories", bundle: .module)
                 : String(localized: "Places", bundle: .module)
-            content.textProperties.color = .secondaryLabel
+            content.textProperties.color = UIColor.secondaryLabel.resolvedColor(with: traitCollection)
             view.contentConfiguration = content
         }
         dataSource.supplementaryViewProvider = { collection, _, indexPath in
@@ -92,8 +140,8 @@ public final class SearchDrawerViewController: UIViewController {
     @objc private func searchCriteriaChanged() { updateResults() }
 
     private func updateResults() {
-        let query = (searchDrawer.searchBar.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
-        let selectedCategories = searchDrawer.searchBar.searchTextField.tokens.compactMap { $0.representedObject as? String }
+        let query = (searchController.searchBar.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        let selectedCategories = searchController.searchBar.searchTextField.tokens.compactMap { $0.representedObject as? String }
         let categories = Array(Set(locations.flatMap(\.tags))).sorted()
             .filter { !selectedCategories.contains($0) }
         let suggestions = query.isEmpty ? Array(categories.prefix(4)) : fuse.search(query, in: categories)
@@ -145,6 +193,39 @@ public final class SearchDrawerViewController: UIViewController {
     nonisolated deinit {}
 }
 
+extension SearchDrawerViewController: UISearchResultsUpdating, UISearchControllerDelegate {
+    public func updateSearchResults(for searchController: UISearchController) {
+        guard retainedSearchText == nil else { return }
+        updateResults()
+    }
+
+    public func didPresentSearchController(_ searchController: UISearchController) {
+        // UIKit completes placement of the search field after this callback.
+        DispatchQueue.main.async { [weak self] in
+            guard let self, self.searchController.isActive else { return }
+            self.searchController.searchBar.searchTextField.becomeFirstResponder()
+        }
+    }
+
+    public func willDismissSearchController(_ searchController: UISearchController) {
+        isDismissingSearch = true
+    }
+
+    public func didDismissSearchController(_ searchController: UISearchController) {
+        isDismissingSearch = false
+        if let retainedSearchText {
+            searchController.searchBar.text = retainedSearchText
+            searchController.searchBar.searchTextField.tokens = retainedSearchTokens
+        }
+        retainedSearchText = nil
+        retainedSearchTokens = []
+        updateResults()
+        let completions = searchDismissalCompletions
+        searchDismissalCompletions.removeAll()
+        completions.forEach { $0() }
+    }
+}
+
 extension SearchDrawerViewController: UISearchBarDelegate {
     
     public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -153,7 +234,11 @@ extension SearchDrawerViewController: UISearchBarDelegate {
         }
     }
 
-    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) { updateResults() }
+    public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.searchTextField.tokens = []
+        updateResults()
+    }
 
     public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         updateResults()
@@ -172,15 +257,14 @@ extension SearchDrawerViewController: UICollectionViewDelegate {
         
         switch item {
         case .category(let category):
-            let field = searchDrawer.searchBar.searchTextField
+            let field = searchController.searchBar.searchTextField
             let token = UISearchToken(icon: UIImage(systemName: "tag"), text: category)
             token.representedObject = category
             field.insertToken(token, at: field.tokens.count)
-            searchDrawer.searchBar.text = ""
+            searchController.searchBar.text = ""
             updateResults()
         case .location(let identifier):
             guard let location = locationsByID[identifier] else { return }
-            searchDrawer.searchBar.resignFirstResponder()
             container?.showLocation(location, fromList: true)
         }
         

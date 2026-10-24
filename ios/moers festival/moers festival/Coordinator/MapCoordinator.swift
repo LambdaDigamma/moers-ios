@@ -17,7 +17,7 @@ public class MapCoordinator: TabRepresentable {
     public let entryManager: EntryManagerProtocol
     public let trackerManager: TrackerManagerProtocol
     
-    public let mainViewController: NewMapViewController
+    public let mainViewController: FestivalMapViewController
     
     public var rootViewController: UIViewController { mainViewController }
     
@@ -33,7 +33,7 @@ public class MapCoordinator: TabRepresentable {
         self.entryManager = entryManager
         self.trackerManager = trackerManager
         
-        self.mainViewController = NewMapViewController()
+        self.mainViewController = FestivalMapViewController()
         self.mainViewController.tabBarItem = makeMenuItem().toBarItem()
         self.mainViewController.coordinator = eventCoordinator
     }

@@ -51,8 +51,8 @@ All detected files were processed. Correct patterns were retained. No change was
 | `CityOS/Sources/MapFeature/Entry Onboarding/EntryOnboarding{Address,General,OpeningHours,Overview}ViewController.swift` | Keyboard guide and safe-area side constraints. |
 | `CityOS/Sources/MapFeature/Entry Onboarding/EntryOnboarding{Tags,LocationMenu}ViewController.swift` | Safe-area side constraints. |
 | `CityOS/Sources/MapFeature/Controller/SelectionViewController.swift` | Cluster results use a standard list inside a sheet navigation controller. The unused content drawer was removed. |
-| `CityOS/Sources/MapFeature/View/SearchDrawerViewController.swift` | Removed copied drawer insets; scroll and search callbacks remain. |
-| `CityOS/Sources/MapFeature/View/SearchDrawerView.swift` | Safe-area guides protect the native search bar and its category tokens. The keyboard layout guide protects search results. |
+| `CityOS/Sources/MapFeature/View/SearchDrawerViewController.swift` | The UISearchController uses the existing navigation row and keeps its field visible during search and after dismissal. Search ends before panel transfers and keeps text and category tokens. |
+| `CityOS/Sources/MapFeature/View/SearchDrawerView.swift` | The list fills the panel with automatic scroll insets. The keyboard layout guide protects the bottom edge only while the keyboard is visible. |
 | `CityOS/Sources/MapFeature/Controller/Detail/DetailViewController.swift` | System sheet navigation and safe-area content constraints. |
 | `CityOS/Sources/MapFeature/Controller/Detail/MapPlaceHeaderView.swift` | Native action buttons use a vertical layout at accessibility text sizes and in narrow columns. The old detail child controllers and storyboard were removed. |
 | Both city and package `Controller/Community/MapLocationPickerViewController.swift` / `MapFeature/Controller/MapLocationPickerViewController.swift` | Safe-area guides protect labels and location control; map remains full width. |

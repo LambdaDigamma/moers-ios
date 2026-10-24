@@ -20,6 +20,15 @@ final class MapSheetPresentationTests: XCTestCase {
         XCTAssertEqual(sheet.selectedDetentIdentifier, MapSheetPresentationController.compactDetent)
         XCTAssertEqual(sheet.detents.count, 3)
         XCTAssertEqual(sheet.largestUndimmedDetentIdentifier, .large)
+        let search = controller.searchViewController.searchController
+        await waitForCondition { window.layoutIfNeeded(); return search.searchBar.searchTextField.bounds.width > 0 }
+        XCTAssertFalse(panel.isNavigationBarHidden)
+        let fieldFrame = search.searchBar.searchTextField.convert(search.searchBar.searchTextField.bounds, to: window)
+        let tabBar = try XCTUnwrap(controller.tabBarController?.tabBar)
+        let tabFrame = tabBar.convert(tabBar.bounds, to: window)
+        XCTAssertGreaterThan(fieldFrame.height, 0)
+        XCTAssertGreaterThanOrEqual(fieldFrame.width, panel.view.safeAreaLayoutGuide.layoutFrame.width - 48)
+        XCTAssertLessThanOrEqual(fieldFrame.maxY, tabFrame.minY)
         controller.suspendPanelPresentation()
     }
 
@@ -28,10 +37,11 @@ final class MapSheetPresentationTests: XCTestCase {
         let window = makeWindow(controller)
         defer { window.isHidden = true }
         controller.showSearch(focusSearch: true, animated: false)
-        await waitForCondition { controller.searchViewController.searchDrawer.searchBar.searchTextField.isFirstResponder }
+        await waitForCondition { controller.searchViewController.searchController.searchBar.searchTextField.isFirstResponder }
         let sheet = try XCTUnwrap(controller.panelNavigationController.presentationController as? UISheetPresentationController)
         XCTAssertEqual(sheet.selectedDetentIdentifier, .large)
-        XCTAssertTrue(controller.searchViewController.searchDrawer.searchBar.searchTextField.isFirstResponder)
+        XCTAssertTrue(controller.searchViewController.searchController.searchBar.searchTextField.isFirstResponder)
+        XCTAssertTrue(controller.searchViewController.searchController.isActive)
         controller.searchViewController.view.layoutIfNeeded()
         XCTAssertFalse(controller.searchViewController.searchDrawer.collectionView.isHidden)
         controller.suspendPanelPresentation()
@@ -61,12 +71,16 @@ final class MapSheetPresentationTests: XCTestCase {
         let controller = MapContainerTestController()
         let window = makeWindow(controller)
         defer { window.isHidden = true }
-        await waitForCondition { controller.panelNavigationController.presentingViewController != nil }
+        await waitForCondition {
+            controller.panelNavigationController.presentingViewController != nil
+                && !controller.panelNavigationController.isBeingPresented
+                && controller.panelNavigationController.transitionCoordinator == nil
+        }
         let sheet = try XCTUnwrap(controller.panelNavigationController.presentationController as? UISheetPresentationController)
         sheet.selectedDetentIdentifier = .medium
-        controller.searchViewController.searchDrawer.searchBar.becomeFirstResponder()
-        try? await Task.sleep(for: .milliseconds(350))
-        XCTAssertTrue(controller.searchViewController.searchDrawer.searchBar.searchTextField.isFirstResponder)
+        controller.searchViewController.focusSearch()
+        await waitForCondition { controller.searchViewController.searchController.searchBar.searchTextField.isFirstResponder }
+        XCTAssertTrue(controller.searchViewController.searchController.searchBar.searchTextField.isFirstResponder)
         XCTAssertEqual(sheet.selectedDetentIdentifier, .large)
         controller.suspendPanelPresentation()
     }
@@ -128,13 +142,21 @@ final class MapSheetPresentationTests: XCTestCase {
         let window = makeWindow(controller)
         defer { window.isHidden = true }
         let panel = controller.panelNavigationController
-        controller.searchViewController.searchDrawer.searchBar.text = "Moers"
         await waitForCondition { panel.presentingViewController != nil }
+        controller.showSearch(focusSearch: true, animated: false)
+        let search = controller.searchViewController.searchController
+        await waitForCondition { search.searchBar.searchTextField.isFirstResponder }
+        search.searchBar.text = "Moers"
+        let token = UISearchToken(icon: nil, text: "Cafe")
+        token.representedObject = "Cafe"
+        search.searchBar.searchTextField.tokens = [token]
         controller.suspendPanelPresentation()
         controller.resumePanelPresentation()
-        await waitForCondition { panel.presentingViewController != nil }
+        await waitForCondition { panel.presentingViewController != nil && !controller.searchViewController.isDismissingSearch }
         XCTAssertTrue(controller.panelNavigationController === panel)
-        XCTAssertEqual(controller.searchViewController.searchDrawer.searchBar.text, "Moers")
+        XCTAssertFalse(search.isActive)
+        XCTAssertEqual(search.searchBar.text, "Moers")
+        XCTAssertEqual(search.searchBar.searchTextField.tokens.first?.representedObject as? String, "Cafe")
         XCTAssertTrue(panel.topViewController === controller.searchViewController)
         controller.suspendPanelPresentation()
     }
@@ -143,7 +165,7 @@ final class MapSheetPresentationTests: XCTestCase {
         let controller = MapContainerTestController()
         let window = makeWindow(controller, size: CGSize(width: 1000, height: 700))
         defer { window.isHidden = true }
-        controller.searchViewController.searchDrawer.searchBar.text = "Moers"
+        controller.searchViewController.searchController.searchBar.text = "Moers"
         let camera = Camera.stub(withID: 1)
         controller.mapViewController.map.addAnnotation(camera)
         controller.showLocation(camera, fromList: true, animated: false)
@@ -167,7 +189,7 @@ final class MapSheetPresentationTests: XCTestCase {
         XCTAssertNil(controller.sidebarController)
         XCTAssertTrue((controller.viewController(for: .compact) as? UINavigationController)?.topViewController === controller.mapViewController)
         XCTAssertEqual(controller.panelNavigationController.viewControllers.count, 2)
-        XCTAssertEqual(controller.searchViewController.searchDrawer.searchBar.text, "Moers")
+        XCTAssertEqual(controller.searchViewController.searchController.searchBar.text, "Moers")
         controller.suspendPanelPresentation()
     }
 
@@ -299,19 +321,125 @@ final class MapSheetPresentationTests: XCTestCase {
 }
 
 extension MapSheetPresentationTests {
-    func testSearchListFitsSmallWindowAndAsymmetricSafeArea() async {
-        let controller = SearchDrawerViewController()
-        let window = makeWindow(controller, size: CGSize(width: 600, height: 320))
+    func testSearchResultNavigationRetainsCriteriaAndRestoresNativeBar() async throws {
+        let controller = MapContainerTestController()
+        controller.overrideUserInterfaceStyle = .light
+        let window = makeWindow(controller)
         defer { window.isHidden = true }
-        controller.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 70, bottom: 0, right: 10)
+        controller.showSearch(focusSearch: true, animated: false)
+        let search = controller.searchViewController.searchController
+        await waitForCondition { search.searchBar.searchTextField.isFirstResponder }
+        let entry = Entry(id: 1, name: "Cafe One", street: "Street", houseNumber: "1", postcode: "47441", place: "Moers", lat: 51.45, lng: 6.63)
+        entry.tags = ["Cafe"]
+        controller.addLocation(entry)
+        let token = UISearchToken(icon: nil, text: "Cafe")
+        token.representedObject = "Cafe"
+        search.searchBar.searchTextField.tokens = [token]
+        search.searchBar.text = "Cafe"
+        controller.searchViewController.updateSearchResults(for: search)
+        let list = controller.searchViewController.searchDrawer.collectionView
+        controller.searchViewController.collectionView(list, didSelectItemAt: IndexPath(item: 0, section: list.numberOfSections - 1))
+        let panel = controller.panelNavigationController
+        await waitForCondition { panel.topViewController is DetailViewController && panel.transitionCoordinator == nil }
+        XCTAssertFalse(search.isActive)
+        XCTAssertFalse(search.searchBar.searchTextField.isFirstResponder)
+        XCTAssertTrue((panel.topViewController as? DetailViewController)?.selectedLocation === entry)
+        panel.popViewController(animated: false)
+        await waitForCondition { panel.topViewController === controller.searchViewController }
+        window.layoutIfNeeded()
+        XCTAssertTrue(panel.topViewController === controller.searchViewController)
+        XCTAssertFalse(panel.isNavigationBarHidden)
+        XCTAssertEqual(search.searchBar.text, "Cafe")
+        XCTAssertEqual(search.searchBar.searchTextField.tokens.first?.representedObject as? String, "Cafe")
+        XCTAssertEqual(list.numberOfItems(inSection: list.numberOfSections - 1), 1)
+        controller.searchViewController.focusSearch()
+        await waitForCondition { search.searchBar.searchTextField.isFirstResponder }
+        window.layoutIfNeeded()
+        let label = try XCTUnwrap(allSubviews(list).compactMap { $0 as? UILabel }.first { $0.text == entry.name })
+        XCTAssertEqual(label.textColor.resolvedColor(with: label.traitCollection),
+                       UIColor.label.resolvedColor(with: controller.searchViewController.traitCollection))
+        controller.overrideUserInterfaceStyle = .dark
+        await waitForCondition {
+            window.layoutIfNeeded()
+            let label = self.allSubviews(list).compactMap { $0 as? UILabel }.first { $0.text == entry.name }
+            return label?.textColor.resolvedColor(with: label?.traitCollection ?? controller.traitCollection)
+                == UIColor.label.resolvedColor(with: controller.searchViewController.traitCollection)
+        }
+        controller.suspendPanelPresentation()
+    }
+
+    func testCancelSearchClearsTextAndCategoryFilters() async {
+        let controller = MapContainerTestController()
+        let window = makeWindow(controller)
+        defer { window.isHidden = true }
+        controller.showSearch(focusSearch: true, animated: false)
+        let search = controller.searchViewController.searchController
+        await waitForCondition { search.searchBar.searchTextField.isFirstResponder }
+        controller.searchViewController.didReceiveCameras([Camera.stub(withID: 1)])
+        search.searchBar.text = "Missing"
+        let token = UISearchToken(icon: nil, text: "Cafe")
+        token.representedObject = "Cafe"
+        search.searchBar.searchTextField.tokens = [token]
+        controller.searchViewController.updateSearchResults(for: search)
+        controller.searchViewController.searchBarCancelButtonClicked(search.searchBar)
+        search.isActive = false
+        await waitForCondition { !controller.searchViewController.isDismissingSearch }
+        XCTAssertEqual(search.searchBar.text, "")
+        XCTAssertTrue(search.searchBar.searchTextField.tokens.isEmpty)
+        let list = controller.searchViewController.searchDrawer.collectionView
+        XCTAssertEqual(list.numberOfItems(inSection: list.numberOfSections - 1), 1)
+        XCTAssertNil(list.backgroundView)
+        controller.suspendPanelPresentation()
+    }
+
+    func testActiveSearchCanMoveBetweenSheetAndSidebar() async {
+        let controller = MapContainerTestController()
+        let window = makeWindow(controller, size: CGSize(width: 1000, height: 700))
+        defer { window.isHidden = true }
+        controller.showSearch(focusSearch: true, animated: false)
+        let search = controller.searchViewController.searchController
+        await waitForCondition { search.searchBar.searchTextField.isFirstResponder }
+        search.searchBar.text = "Moers"
+        controller.traitOverrides.horizontalSizeClass = .regular
         controller.view.setNeedsLayout()
         controller.view.layoutIfNeeded()
-        let search = controller.searchDrawer.searchBar
+        await waitForCondition { controller.sidebarController != nil }
+        XCTAssertFalse(search.isActive)
+        XCTAssertEqual(search.searchBar.text, "Moers")
+        await waitForCondition {
+            window.layoutIfNeeded()
+            return search.searchBar.searchTextField.window === window
+                && search.searchBar.searchTextField.bounds.width > 0
+        }
+        XCTAssertFalse(controller.panelNavigationController.isNavigationBarHidden)
+        controller.traitOverrides.horizontalSizeClass = .compact
+        controller.view.setNeedsLayout()
+        controller.view.layoutIfNeeded()
+        await waitForCondition { controller.panelNavigationController.presentingViewController != nil }
+        XCTAssertEqual(search.searchBar.text, "Moers")
+        controller.suspendPanelPresentation()
+    }
+
+    func testSearchListFitsSmallWindowAndAsymmetricSafeArea() async {
+        let controller = SearchDrawerViewController()
+        let navigation = UINavigationController(rootViewController: controller)
+        let window = makeWindow(navigation, size: CGSize(width: 600, height: 320))
+        defer { window.isHidden = true }
+        navigation.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 70, bottom: 0, right: 10)
+        controller.view.setNeedsLayout()
+        controller.view.layoutIfNeeded()
+        let search = controller.searchController.searchBar
+        await waitForCondition { window.layoutIfNeeded(); return search.bounds.width > 0 }
+        let fieldFrame = search.searchTextField.convert(search.searchTextField.bounds, to: navigation.view)
+        let navigationSafeFrame = navigation.view.safeAreaLayoutGuide.layoutFrame
+        XCTAssertGreaterThanOrEqual(fieldFrame.minX, navigationSafeFrame.minX)
+        XCTAssertLessThanOrEqual(fieldFrame.maxX, navigationSafeFrame.maxX)
         let safeFrame = controller.view.safeAreaLayoutGuide.layoutFrame
-        XCTAssertGreaterThanOrEqual(search.frame.minX, safeFrame.minX)
-        XCTAssertLessThanOrEqual(search.frame.maxX, safeFrame.maxX)
+        let list = controller.searchDrawer.collectionView
+        XCTAssertGreaterThanOrEqual(list.frame.minY + list.adjustedContentInset.top, safeFrame.minY)
         XCTAssertGreaterThan(controller.searchDrawer.collectionView.bounds.height, 0)
-        XCTAssertLessThanOrEqual(controller.searchDrawer.collectionView.frame.maxY, safeFrame.maxY + 1)
+        XCTAssertEqual(list.frame.maxY, controller.view.bounds.maxY, accuracy: 1)
+        XCTAssertGreaterThanOrEqual(list.adjustedContentInset.bottom, controller.view.safeAreaInsets.bottom)
     }
 
     func testSearchShowsLoadedLocationsBeforeDistanceUpdates() async {
@@ -330,7 +458,7 @@ extension MapSheetPresentationTests {
         let second = Entry(id: 2, name: "Cafe Two", street: "Street", houseNumber: "2", postcode: "47441", place: "Moers", lat: 51.45, lng: 6.63)
         second.tags = ["Bakery"]
         controller.didReceiveEntries([first, second])
-        let bar = controller.searchDrawer.searchBar
+        let bar = controller.searchController.searchBar
         let token = UISearchToken(icon: nil, text: "Cafe")
         token.representedObject = "Cafe"
         bar.searchTextField.tokens = [token]
@@ -342,38 +470,8 @@ extension MapSheetPresentationTests {
         bar.searchTextField.sendActions(for: .editingChanged)
         XCTAssertEqual(list.numberOfItems(inSection: list.numberOfSections - 1), 2)
         bar.text = "zzzzzz"
-        controller.searchBar(bar, textDidChange: "zzzzzz")
+        controller.updateSearchResults(for: controller.searchController)
         XCTAssertEqual(list.numberOfItems(inSection: list.numberOfSections - 1), 0)
         XCTAssertNotNil(list.backgroundView as? UIContentUnavailableView)
-    }
-
-    private func allSubviews(_ view: UIView) -> [UIView] {
-        [view] + view.subviews.flatMap(allSubviews)
-    }
-
-    private func waitForCondition(_ condition: () -> Bool) async {
-        for _ in 0..<60 {
-            // Layout must run while UIKit finishes a presentation or a trait change.
-            if condition() { return }
-            try? await Task.sleep(for: .milliseconds(50))
-        }
-        XCTFail("The UIKit presentation did not reach the expected state.")
-    }
-
-    private func makeWindow(
-        _ controller: UIViewController,
-        size: CGSize = CGSize(width: 402, height: 874),
-        horizontalSizeClass: UIUserInterfaceSizeClass = .compact
-    ) -> UIWindow {
-        let window = UIWindow(frame: CGRect(origin: .zero, size: size))
-        controller.traitOverrides.horizontalSizeClass = horizontalSizeClass
-        let tabs = UITabBarController()
-        if #available(iOS 18.0, *) { tabs.mode = .tabBar }
-        tabs.viewControllers = [controller]
-        window.rootViewController = tabs
-        window.makeKeyAndVisible()
-        controller.loadViewIfNeeded()
-        window.layoutIfNeeded()
-        return window
     }
 }

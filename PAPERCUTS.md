@@ -192,3 +192,16 @@
 - Impact: One focused test run stopped in a VectorKit worker and the Xcode test process did not finish. The isolated tab resize test passed on retry.
 - Reproduction observed on 9 October 2026: With Xcode 27.1 RC and the iOS 27.0 iPad Pro simulator, run `MapSheetPresentationTests` followed by `TabNavigationResizabilityTests` through the `WidgetsExtension` test plan. The 16 sheet tests passed. During the tab resize test, the app stopped with `EXC_BAD_ACCESS` at `gdc::LayerDataSource::updateLayerData`; the crash stack contained no app frames. This occurred once and is not a confirmed app defect.
 - Next step: Repeat with a stable Xcode release. If the failure repeats, isolate MapKit view teardown in a small app and report the worker crash to Apple.
+
+## Today dashboard shows data load errors
+
+- Impact: The Today dashboard cannot show one data card and its free parking data. It displays raw `Core.APIError error 1` and `NSURLErrorDomain error -1015` messages.
+- Reproduction observed on 9 October 2026: On iPhone 18 Pro, iOS 27.2, open Map, search for Shell with a Diesel category token, open a result, go Back, then select Today. The fuel card loads, but the other two cards show these errors. The app remains running and Map search still works.
+- Validation limit: This was observed during native search verification. The check does not establish whether the service response or the app's response handling caused the errors.
+- Next step: Check the failed Today data requests and their response formats, then show a useful retry state in the owning cards.
+
+## Xcode can stall after reporting a failed iOS 18 test
+
+- Impact: A focused test command can keep automation waiting after it prints the test result.
+- Reproduction observed on 9 October 2026: With Xcode 27.1 RC and the iOS 18.6 iPhone 16 Pro simulator, run the compact-search tests through the `WidgetsExtension` test plan. After a failed native-control width assertion, both tests finished, but `xcodebuild` did not exit for more than three minutes. The last log entries reported `IDESchemeActionSDKRecord` with `invalidDigitCount(94232)`. This does not establish the cause of the stall. Interrupt did not stop the command; the exact test process was then terminated.
+- Next step: Check result completion with a stable Xcode release. If the stall repeats, collect Xcode's result-processing logs and report the issue to Apple.

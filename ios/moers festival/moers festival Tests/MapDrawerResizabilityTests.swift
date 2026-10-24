@@ -8,7 +8,7 @@ import XCTest
 @MainActor
 final class MapDrawerResizabilityTests: XCTestCase {
     func testDrawerAndVenueSurviveCompactRegularRoundTrip() async throws {
-        let map = NewMapViewController()
+        let map = FestivalMapViewController()
         let tabs = UITabBarController()
         tabs.viewControllers = [map, UIViewController()]
         tabs.selectedViewController = map
@@ -62,7 +62,7 @@ final class MapDrawerResizabilityTests: XCTestCase {
     }
 
     func testLeavingMapDuringTransferDoesNotReopenItsSheet() async throws {
-        let map = NewMapViewController()
+        let map = FestivalMapViewController()
         let other = UIViewController()
         let tabs = UITabBarController()
         tabs.viewControllers = [map, other]
@@ -125,7 +125,7 @@ final class MapDrawerResizabilityTests: XCTestCase {
     }
 
     func testLatestVenueSelectionWaitsForActivePresentation() async throws {
-        let map = NewMapViewController()
+        let map = FestivalMapViewController()
         let tabs = UITabBarController()
         tabs.viewControllers = [map]
         let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 1_000, height: 800))
@@ -151,7 +151,7 @@ final class MapDrawerResizabilityTests: XCTestCase {
 
     private func closeVenueAndReturnToRegular(
         _ venue: VenueDetailController,
-        map: NewMapViewController,
+        map: FestivalMapViewController,
         tabs: UITabBarController,
         drawer: NewMapDrawerViewController
     ) async throws {
