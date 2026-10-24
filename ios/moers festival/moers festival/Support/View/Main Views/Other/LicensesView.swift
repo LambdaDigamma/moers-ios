@@ -50,8 +50,8 @@ class LicensesView: UIView {
         
         let constraints = [
             textView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 8),
-            textView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
-            textView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
+            textView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            textView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8),
             textView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -8)
         ]
         

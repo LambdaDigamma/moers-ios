@@ -51,3 +51,21 @@ class LicensesViewController: UIViewController {
     // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
     nonisolated deinit {}
 }
+
+#if DEBUG
+#Preview("Licenses, wide", traits: .fixedLayout(width: 951, height: 669)) {
+    let coordinator = OtherCoordinator()
+    let controller = coordinator.rootViewController
+    controller.traitOverrides.horizontalSizeClass = .regular
+    coordinator.showLicense()
+    return controller
+}
+
+#Preview("Licenses, narrow", traits: .fixedLayout(width: 466, height: 678)) {
+    let coordinator = OtherCoordinator()
+    let controller = coordinator.rootViewController
+    controller.traitOverrides.horizontalSizeClass = .compact
+    coordinator.showLicense()
+    return controller
+}
+#endif

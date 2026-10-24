@@ -36,7 +36,6 @@ public class MapCoordintor: Coordinator {
         self.navigationController.coordinator = self
         let mainViewController = self.mainViewController
 
-        mainViewController.navigationItem.largeTitleDisplayMode = .never
         mainViewController.coordinator = self
         
         let menu = generateMenuItem()
@@ -45,10 +44,6 @@ public class MapCoordintor: Coordinator {
         mainViewController.tabBarItem = UITabBarItem(title: menu.title, image: menu.image, tag: 0)
         mainViewController.tabBarItem.accessibilityLabel = menu.title
         mainViewController.tabBarItem.accessibilityIdentifier = menu.accessibilityIdentifier
-        
-        self.navigationController.navigationBar.prefersLargeTitles = false
-        
-        self.navigationController.isNavigationBarHidden = true
         
     }
     
