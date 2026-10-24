@@ -74,3 +74,20 @@ Local evidence: [active search](/Users/lennart/.codex/visualizations/2026/10/05/
 The Festival Favorites empty state also passes the portrait and landscape check. In landscape, its content starts at x = 62 and has width 750 within an 874-point screen, so it clears both horizontal safe areas. No favorites existed; populated rows were not exercised. The asymmetric-inset unit test checks the content stack independently. [Landscape evidence](/Users/lennart/.codex/visualizations/2026/10/05/01a10de0-1afa-7843-bacf-770f6a56b8fd/events-review-festival-saved-landscape.png).
 
 A separate course-description spacing issue found during the device check is recorded in `../PAPERCUTS.md`. The description publisher and text-view assignment are unchanged by these fixes. The full test suite, older runtimes, and release workflows were not run for this review fix.
+
+## Integration validation, 24 October 2026
+
+The Events branch now includes the reviewed master fixes, native map search, and the Festival license layout correction. Checks use Xcode 27.2 RC, frozen package resolution, and signing-disabled simulator builds.
+
+| Check | Result |
+| --- | --- |
+| City filters, loading, presentation, adaptive layout, fonts, map sheet, draft state, and settings | 47 tests pass. |
+| English and German navigation, tab labels, and rotation | 4 UI tests pass. |
+| Shared Events endpoints, decoding, mapping, pagination, recovery, Feeds, Map, and EFA | 49 tests pass. |
+| Shared event dates, view models, and favorites | 28 tests pass; 10 existing subtitle tests skip because their locale guard misreads an English locale identifier. |
+| Festival event detail, fallback URLs, licenses, map drawer, and venue callbacks | 17 tests pass. |
+| City and Festival iOS simulator builds; Festival tvOS simulator build | Pass. |
+
+The city and navigation tests pass on the iPhone 17 runtime that exposed the missing inclusive Date operator. Phone and wide iPad checks confirm Events search, filters, detail navigation, accessibility text, map search and Back, and state retention across tabs. A fresh launch at the largest accessibility text size has the correct layout.
+
+Changing system text size while Events is open can leave the native search bar at its previous height. This issue and the locale-test skips have reproduction details in `../PAPERCUTS.md`. Targeted lint still reports the existing four-member tuple in `EventViewModel.time`; that declaration is unchanged. The integration commits pass the source whitespace check. The full test suite and release workflows were not run.

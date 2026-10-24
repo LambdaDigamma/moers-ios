@@ -251,4 +251,13 @@ Eight independent fixes are covered by the UIKit review PRs: Info URL parameters
 - Impact: On one installed pre-release iOS 27.2 runtime, opening Events crashed during the first page callback. Navigation automation then reported missing search/filter controls because the app had exited.
 - Evidence: The main-thread crash reaches Date.>= from EventsViewController.visibleEvents(). Disassembly shows the SDK back-deployment thunk taking its iOS 27.2 path and calling a weak operator symbol that resolves to null on that runtime.
 - Fix: Inclusive Date comparisons in the city and shared Events code now compare timeIntervalSinceReferenceDate values. Inclusive boundaries, stable strict comparisons, nil handling, and sorting remain the same.
-- Validation: All 47 focused city tests pass on the same iPhone 17 simulator that exposed the crash. The navigation plan and shared date suites are checked separately.
+- Validation: All 47 focused city tests and all four navigation UI tests pass on the same iPhone 17 simulator that exposed the crash. The shared date/favorites run has 28 passing tests and 10 existing locale-dependent skips.
+
+
+## Event subtitle tests skip under the English test plan
+
+- Observed: 24 October 2026, FullTestPlan, Configuration (English, No Thread Sanitizer).
+- Impact: Ten legacy event-view-model subtitle assertions do not run, so that run does not prove their formatting behavior.
+- Reproduction: Run EventsTests/EventViewModelTests. Locale.isNotEnglish() checks whether Locale.current.identifier contains "en-". An English identifier using an underscore, such as en_US, is treated as non-English and triggers XCTSkip.
+- Source: ios/CityOS/Tests/EventsTests/ViewModel/EventViewModelTests.swift.
+- Next step: Check the locale's language code, then run the subtitle tests with an explicit locale. Keep this correction separate from the date-operator compatibility fix.
