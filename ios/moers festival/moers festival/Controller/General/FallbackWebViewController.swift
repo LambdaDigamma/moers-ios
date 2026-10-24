@@ -66,7 +66,10 @@ class FallbackWebViewController: UIViewController {
             
             let queryStandalone = URLQueryItem(name: "standalone", value: "true")
             
-            components.queryItems = [queryStandalone]
+            var queryItems = components.percentEncodedQueryItems ?? []
+            queryItems.removeAll { $0.name.removingPercentEncoding == "standalone" }
+            queryItems.append(queryStandalone)
+            components.percentEncodedQueryItems = queryItems
             
             webviewURL = components.url ?? url
             
