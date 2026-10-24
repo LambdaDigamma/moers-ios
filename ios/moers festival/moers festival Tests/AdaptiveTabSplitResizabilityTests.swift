@@ -4,6 +4,69 @@ import XCTest
 
 @MainActor
 final class AdaptiveTabSplitResizabilityTests: XCTestCase {
+    func testSidebarSelectionReplacesSecondaryColumnAndItsBackStack() async throws {
+        let overview = UIViewController()
+        let primary = UINavigationController(rootViewController: overview)
+        let split = AdaptiveTabSplitViewController(overviewNavigationController: primary) { UIViewController() }
+        let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 1_000, height: 800))
+        window.rootViewController = split
+        split.traitOverrides.horizontalSizeClass = .regular
+        window.isHidden = false
+        defer { window.isHidden = true }
+        await settle(split.view)
+
+        let first = UIViewController()
+        split.setDetail({ first })
+        await settle(split.view)
+        let previousColumn = try XCTUnwrap(split.viewController(for: .secondary) as? UINavigationController)
+        split.pushDetail({ UIViewController() }, from: first, animated: false)
+        XCTAssertEqual(previousColumn.viewControllers.count, 2)
+
+        let replacement = UIViewController()
+        split.setDetail({ replacement })
+        await settle(split.view)
+        let currentColumn = try XCTUnwrap(split.viewController(for: .secondary) as? UINavigationController)
+        XCTAssertFalse(currentColumn === previousColumn)
+        XCTAssertNil(previousColumn.parent)
+        XCTAssertEqual(currentColumn.viewControllers.count, 1)
+        XCTAssertTrue(currentColumn.topViewController === replacement)
+        XCTAssertNil(currentColumn.transitionCoordinator)
+        XCTAssertTrue(split.selectedDetailViewController === replacement)
+        XCTAssertEqual(primary.viewControllers.count, 1)
+        XCTAssertTrue(primary.topViewController === overview)
+    }
+
+    func testColumnWidthsFollowNativeSplitSizingAfterWindowResize() async {
+        let primary = UINavigationController(rootViewController: UIViewController())
+        let split = AdaptiveTabSplitViewController(overviewNavigationController: primary) { UIViewController() }
+        split.loadViewIfNeeded()
+        let nativeSplit = UISplitViewController(style: .doubleColumn)
+        nativeSplit.preferredDisplayMode = split.preferredDisplayMode
+        nativeSplit.preferredSplitBehavior = split.preferredSplitBehavior
+        nativeSplit.presentsWithGesture = split.presentsWithGesture
+        nativeSplit.primaryBackgroundStyle = split.primaryBackgroundStyle
+        nativeSplit.setViewController(UINavigationController(rootViewController: UIViewController()), for: .primary)
+        nativeSplit.setViewController(UINavigationController(rootViewController: UIViewController()), for: .secondary)
+        split.traitOverrides.horizontalSizeClass = .regular
+        nativeSplit.traitOverrides.horizontalSizeClass = .regular
+        let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 951, height: 669))
+        defer { window.isHidden = true }
+
+        for size in [CGSize(width: 951, height: 669), CGSize(width: 1_194, height: 834), CGSize(width: 669, height: 951)] {
+            window.frame.size = size
+            window.rootViewController = split
+            window.isHidden = false
+            await settle(split.view)
+            let primaryWidth = split.primaryColumnWidth
+            XCTAssertFalse(split.isCollapsed)
+            window.rootViewController = nativeSplit
+            await settle(nativeSplit.view)
+            XCTAssertFalse(nativeSplit.isCollapsed)
+            XCTAssertGreaterThan(nativeSplit.primaryColumnWidth, 0)
+            XCTAssertEqual(primaryWidth, nativeSplit.primaryColumnWidth, accuracy: 0.5, "Window size: \(size)")
+        }
+    }
+
     func testResizeRetainsDetailStackAndScrollPosition() async throws {
         let overview = UIViewController()
         let primary = UINavigationController(rootViewController: overview)

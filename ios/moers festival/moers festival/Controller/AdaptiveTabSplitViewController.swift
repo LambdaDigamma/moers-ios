@@ -2,7 +2,7 @@ import UIKit
 
 final class AdaptiveTabSplitViewController: UISplitViewController, UINavigationControllerDelegate, UISplitViewControllerDelegate {
     private let overviewNavigationController: UINavigationController
-    private let detailNavigationController = UINavigationController()
+    private var detailNavigationController = UINavigationController()
     private let emptyDetailFactory: () -> UIViewController
     private var currentDetailViewController: UIViewController?
     private var detailIsInCompactStack = false
@@ -42,10 +42,8 @@ final class AdaptiveTabSplitViewController: UISplitViewController, UINavigationC
         preferredDisplayMode = .oneBesideSecondary
         preferredSplitBehavior = .tile
         presentsWithGesture = false
-        primaryBackgroundStyle = .sidebar
-        minimumPrimaryColumnWidth = 340
-        maximumPrimaryColumnWidth = 420
-        preferredPrimaryColumnWidthFraction = 0.32
+        primaryBackgroundStyle = .none
+        overviewNavigationController.view.backgroundColor = .systemBackground
         detailNavigationController.navigationBar.prefersLargeTitles = true
         detailNavigationController.setViewControllers(
             [currentDetailViewController ?? emptyDetailFactory()], animated: false
@@ -83,7 +81,10 @@ final class AdaptiveTabSplitViewController: UISplitViewController, UINavigationC
             detailNavigationController.setViewControllers([emptyDetailFactory()], animated: false)
             overviewNavigationController.setViewControllers([overview, detail], animated: animated)
         } else {
-            detailNavigationController.setViewControllers([detail], animated: animated)
+            detailNavigationController = UINavigationController(rootViewController: detail)
+            detailNavigationController.navigationBar.prefersLargeTitles = true
+            setViewController(detailNavigationController, for: .secondary)
+            show(.secondary)
         }
     }
 

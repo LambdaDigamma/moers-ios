@@ -105,11 +105,27 @@ Follow-up scope on 3 October 2026: use the existing adaptive split for Info & Ti
 
 The Info list retains its first visible row and that row's position in the visible area before the column change or overview departure. It restores this position after the stack transfer and overview layout. Intermediate column changes cannot replace the saved position. A user drag or scroll-to-top releases it. Automatic safe-area insets and the readable-content list layout stay in use. Long Info row titles can wrap in the narrow primary column.
 
+Follow-up on 25 October 2026: the shared split controller uses UIKit's automatic primary-column sizing. The 340-point minimum, 420-point maximum, and 32% width request are removed. This also applies to Programme and Favorites. The tiled list/detail presentation and navigation-state transfer remain in use. UIKit can select column widths for the current window and fold without an app-defined width limit.
+
+Validation on Duo with iOS 27.2: the fifteen existing split, Info coordinator, and license layout checks passed. The new sizing check passed in a separate run. It compares the rendered primary-column width with a plain UIKit split in the same window at 951-by-669, 1194-by-834, and 669-by-951 points. The comparison uses regular traits and checks width policy; it does not prove adaptation to an actual fold.
+
+The updated app also passed a device check in the 466-by-678-point outer-display window: Info shows one usable column, and About opens with readable content and a native back control. The Open → Partially Folded → Closed → Open check remains blocked because Device Hub's fold controls time out.
+
+Sidebar selection in an expanded split now replaces the secondary column through `setViewController(_:for:)`, then shows that column. This follows [Apple's column-style split view guidance](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/setviewcontroller%28_%3Afor%3A%29). Each selected topic or event starts with a new navigation controller containing only that content. The previous animated navigation-stack reset could look like a push between unrelated sidebar items. Nested links still push within the selected content's navigation controller, and compact selection keeps normal list-to-detail navigation.
+
+The navigation follow-up passes all seventeen focused split, Info coordinator, and license layout checks on Duo with iOS 27.2. The added sidebar check verifies that selection replaces the secondary navigation controller, removes the previous column, starts with one content controller, and does not start a navigation push transition. Existing checks retain nested links, compact Back, selection, and scroll position across column changes.
+
+The primary column uses `.systemBackground`, matching the main content and following the current light or dark appearance. Its `primaryBackgroundStyle` is `.none` so the sidebar effect does not change that background. The Info list also sets its native list configuration's `backgroundColor` to `.systemBackground`; setting only the collection view or navigation view background leaves the grouped-list background visible.
+
+The wide iPad check passed at 1210-by-834 points on iOS 27.2: About → Licenses → About replaces the main content, keeps the sidebar visible, and adds no Back path through previous topics. The final background build also passed visual checks in light and dark appearance: both column surfaces match white or black, while native row cards keep their system appearance. The simulator's original light appearance was restored.
+
 ```mermaid
 flowchart LR
     R[Info row] --> S[Set selected detail]
     S --> A[Adaptive split controller]
-    A -->|Wide window| D[Secondary navigation stack]
+    E[Window and fold environment] --> W[UIKit selects native column widths]
+    W --> A
+    A -->|Wide window: replace column| D[New secondary navigation stack]
     A -->|Narrow window| P[Primary navigation stack]
     L[Nested web link] --> N[Pending stack or source controller's current stack]
     A -->|Column proposal| I[Retain the same controller instances]

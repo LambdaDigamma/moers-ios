@@ -33,6 +33,7 @@ class OtherView: UIView {
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
             var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+            configuration.backgroundColor = .systemBackground
             configuration.headerMode = sectionIndex == 0 ? .none : .supplementary
 
             let section = NSCollectionLayoutSection.list(
