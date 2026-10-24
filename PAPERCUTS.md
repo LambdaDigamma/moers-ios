@@ -243,3 +243,12 @@ Eight independent fixes are covered by the UIKit review PRs: Info URL parameters
 - Reproduction: Open Events at the standard text size, then change the simulator content size to accessibility-extra-extra-extra-large. The stacked search field grows to 124 points while the navigation bar retains its earlier 108-point height. The first filter starts at y=174 under the field ending at y=240. Pulling to the top does not correct it.
 - Validation limit: A fresh launch at the same accessibility size has a 188-point navigation bar and puts the first filter at y=254. Weighted Event labels and newly created filter cells now scale correctly. This observation does not identify an app or UIKit cause.
 - Next step: Compare an isolated standard UISearchController on the same runtime and a stable Xcode/runtime pair before adding a navigation-bar workaround.
+
+
+## Events loading calls an unavailable inclusive Date operator
+
+- Fixed on 24 October 2026 during Events integration.
+- Impact: On one installed pre-release iOS 27.2 runtime, opening Events crashed during the first page callback. Navigation automation then reported missing search/filter controls because the app had exited.
+- Evidence: The main-thread crash reaches Date.>= from EventsViewController.visibleEvents(). Disassembly shows the SDK back-deployment thunk taking its iOS 27.2 path and calling a weak operator symbol that resolves to null on that runtime.
+- Fix: Inclusive Date comparisons in the city and shared Events code now compare timeIntervalSinceReferenceDate values. Inclusive boundaries, stable strict comparisons, nil handling, and sorting remain the same.
+- Validation: All 47 focused city tests pass on the same iPhone 17 simulator that exposed the crash. The navigation plan and shared date suites are checked separately.

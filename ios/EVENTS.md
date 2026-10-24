@@ -37,7 +37,7 @@ List and detail use one locale-aware date and address formatter. It does not app
 
 The Events collection view stays inside the current horizontal safe area. Quick filters and spotlight cards use content-driven heights. Standard text sizes keep horizontal scrolling. Accessibility text sizes use full-width vertical rows; spotlight cards hide the image and let all text wrap. Card width follows the current layout environment. Weighted labels use the native preferred font once, including cells created after the text size changes.
 
-Shared event detail uses platform-appropriate background colours on tvOS. The iOS colours stay the same.
+Shared event detail uses platform-appropriate background colours on tvOS. The iOS colours stay the same. Inclusive date checks compare reference-date intervals, preserving the same boundaries while avoiding missing weak operator symbols on pre-release iOS 27.2 runtimes.
 
 ## Other review corrections
 

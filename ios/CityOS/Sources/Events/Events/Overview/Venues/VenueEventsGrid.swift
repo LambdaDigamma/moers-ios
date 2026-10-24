@@ -280,7 +280,7 @@ struct VenueEventsGrid: View {
     private func generateTimeSlots(from start: Date, to end: Date) -> [Date] {
         var slots: [Date] = []
         var current = start
-        while current <= end {
+        while current.timeIntervalSinceReferenceDate <= end.timeIntervalSinceReferenceDate {
             slots.append(current)
             current = current.addingTimeInterval(GridConstants.slotInterval)
         }

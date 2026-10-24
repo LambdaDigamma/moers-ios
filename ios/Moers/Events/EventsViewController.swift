@@ -547,7 +547,8 @@ private extension EventsViewController {
 
         return allEvents.filter { event in
             guard let start = event.startDate,
-                  start >= calendar.startOfDay(for: referenceDate) || (event.endDate ?? start) > calendar.startOfDay(for: referenceDate),
+                  start.timeIntervalSinceReferenceDate >= calendar.startOfDay(for: referenceDate).timeIntervalSinceReferenceDate
+                    || (event.endDate ?? start) > calendar.startOfDay(for: referenceDate),
                   filter.matches(event, calendar: calendar, now: referenceDate) else { return false }
 
             if query.isEmpty {

@@ -121,7 +121,7 @@ nonisolated final public class FavoriteEventsStore {
                     ($1.event.startDate ?? Date.distantFuture)
                 }.filter {
                     if let startDate = $0.event.startDate {
-                        return startDate >= startOfYear
+                        return startDate.timeIntervalSinceReferenceDate >= startOfYear.timeIntervalSinceReferenceDate
                     } else {
                         return true
                     }

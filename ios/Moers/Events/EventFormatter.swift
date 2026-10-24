@@ -69,7 +69,8 @@ nonisolated enum EventFormatter {
               let startDate = event.startDate else { return false }
 
         let endDate = event.endDate ?? startDate
-        return startDate < targetEnd && (endDate > targetStart || startDate >= targetStart)
+        return startDate < targetEnd && (endDate > targetStart
+            || startDate.timeIntervalSinceReferenceDate >= targetStart.timeIntervalSinceReferenceDate)
     }
 
     static func isNextDaysEvent(_ event: Event, calendar: Calendar = .autoupdatingCurrent, now: Date = Date()) -> Bool {
@@ -78,14 +79,15 @@ nonisolated enum EventFormatter {
               let twoDaysOut = calendar.date(byAdding: .day, value: 2, to: today),
               let sevenDaysOut = calendar.date(byAdding: .day, value: 7, to: today) else { return false }
 
-        return startDate >= twoDaysOut && startDate < sevenDaysOut
+        return startDate.timeIntervalSinceReferenceDate >= twoDaysOut.timeIntervalSinceReferenceDate
+            && startDate < sevenDaysOut
     }
 
     static func isFutureEvent(_ event: Event, calendar: Calendar = .autoupdatingCurrent, now: Date = Date()) -> Bool {
         guard let startDate = event.startDate,
               let sevenDaysOut = calendar.date(byAdding: .day, value: 7, to: calendar.startOfDay(for: now)) else { return false }
 
-        return startDate >= sevenDaysOut
+        return startDate.timeIntervalSinceReferenceDate >= sevenDaysOut.timeIntervalSinceReferenceDate
     }
 
     static func isWeekendEvent(_ event: Event, calendar: Calendar = .autoupdatingCurrent) -> Bool {

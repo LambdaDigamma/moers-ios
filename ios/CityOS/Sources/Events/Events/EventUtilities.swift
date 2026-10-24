@@ -53,7 +53,9 @@ public enum EventUtilities {
             return false
         }
 
-        return startDate <= now && now < effectiveEndDate
+        // Some pre-release iOS 27.2 runtimes lack the SDK's inclusive Date operators.
+        return startDate.timeIntervalSinceReferenceDate <= now.timeIntervalSinceReferenceDate
+            && now < effectiveEndDate
 
     }
     

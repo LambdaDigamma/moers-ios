@@ -26,7 +26,8 @@ public class EventViewModel<Event: BaseEvent>: Equatable, Hashable {
             if let start = model.startDate,
                let end = model.endDate {
                 
-                if now >= start && now <= end {
+                if now.timeIntervalSinceReferenceDate >= start.timeIntervalSinceReferenceDate
+                    && now.timeIntervalSinceReferenceDate <= end.timeIntervalSinceReferenceDate {
                     return true
                 } else {
                     return false
@@ -54,7 +55,8 @@ public class EventViewModel<Event: BaseEvent>: Equatable, Hashable {
             if let start = model.startDate,
                let end = model.endDate {
                 
-                if now >= start && now <= end {
+                if now.timeIntervalSinceReferenceDate >= start.timeIntervalSinceReferenceDate
+                    && now.timeIntervalSinceReferenceDate <= end.timeIntervalSinceReferenceDate {
                     return true
                 } else {
                     
