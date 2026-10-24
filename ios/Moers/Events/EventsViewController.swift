@@ -165,8 +165,8 @@ final class EventsViewController: UIViewController, TabBarItemProvider, Coordina
         view.addSubview(collectionView)
 
         NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
@@ -649,7 +649,7 @@ private extension EventsViewController {
     }
 
     func makeLayout() -> UICollectionViewLayout {
-        UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
+        UICollectionViewCompositionalLayout { [weak self] sectionIndex, environment in
             guard let self, let section = self.section(at: sectionIndex) else {
                 return Self.listSectionLayout(hasHeader: false)
             }
@@ -658,43 +658,48 @@ private extension EventsViewController {
             case .loading, .empty:
                 return Self.cardSectionLayout(height: 220)
             case .quickFilters:
-                return Self.quickFilterSectionLayout()
+                return Self.quickFilterSectionLayout(environment: environment)
             case .spotlights:
-                return Self.spotlightSectionLayout()
+                return Self.spotlightSectionLayout(environment: environment)
             case .today, .tomorrow, .nextDays, .future:
                 return Self.listSectionLayout(hasHeader: true)
             }
         }
     }
 
-    static func quickFilterSectionLayout() -> NSCollectionLayoutSection {
+    static func quickFilterSectionLayout(environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
+        let usesVerticalRows = environment.traitCollection.preferredContentSizeCategory.isAccessibilityCategory
         let itemSize = NSCollectionLayoutSize(
-            widthDimension: .estimated(104),
-            heightDimension: .absolute(34)
+            widthDimension: usesVerticalRows ? .fractionalWidth(1) : .estimated(104),
+            heightDimension: .estimated(34)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuous
+        section.orthogonalScrollingBehavior = usesVerticalRows ? .none : .continuous
         section.interGroupSpacing = 8
         section.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 20, bottom: 12, trailing: 20)
 
         return section
     }
 
-    static func spotlightSectionLayout() -> NSCollectionLayoutSection {
+    static func spotlightSectionLayout(environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
+        let usesVerticalRows = environment.traitCollection.preferredContentSizeCategory.isAccessibilityCategory
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalHeight(1)
+            heightDimension: .estimated(138)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(0.88),
-            heightDimension: .absolute(138)
+            widthDimension: usesVerticalRows ? .fractionalWidth(1) : .absolute(
+                max(1, min(environment.container.effectiveContentSize.width * 0.88,
+                           environment.container.effectiveContentSize.width - 40))
+            ),
+            heightDimension: .estimated(138)
         )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        section.orthogonalScrollingBehavior = usesVerticalRows ? .none : .continuousGroupLeadingBoundary
         section.interGroupSpacing = 12
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 18, trailing: 20)
         section.boundarySupplementaryItems = [sectionHeader()]

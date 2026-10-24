@@ -33,6 +33,12 @@ Structured `isOnline` data takes precedence over a conflicting `offline` string.
 
 List and detail use one locale-aware date and address formatter. It does not append the city when the address already ends with that city. An explicit editorial subtitle remains visible; a teaser that repeats the description opening is hidden. Festival's legacy stream detail opts into its venue, date, and ticket subtitle and supplies a website action.
 
+## Text size and safe areas
+
+The Events collection view stays inside the current horizontal safe area. Quick filters and spotlight cards use content-driven heights. Standard text sizes keep horizontal scrolling. Accessibility text sizes use full-width vertical rows; spotlight cards hide the image and let all text wrap. Card width follows the current layout environment. Weighted labels use the native preferred font once, including cells created after the text size changes.
+
+Shared event detail uses platform-appropriate background colours on tvOS. The iOS colours stay the same.
+
 ## Other review corrections
 
 - Optional coordinates accept numeric strings and ignore invalid values. An unknown optional schedule mode does not reject an event. Required identifiers and names remain strict.

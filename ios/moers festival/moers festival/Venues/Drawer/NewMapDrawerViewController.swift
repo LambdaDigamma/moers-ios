@@ -13,7 +13,7 @@ import SwiftUI
 import FactoryKit
 import Combine
 
-protocol NewMapDrawerDelegate: AnyObject {
+protocol FestivalMapDrawerDelegate: AnyObject {
     
     func drawerDidSelectBooth(_ booth: DorfFeature)
     
@@ -27,7 +27,7 @@ class NewMapDrawerViewController: UIViewController {
     
     // MARK: - Properties
     
-    weak var delegate: NewMapDrawerDelegate?
+    weak var delegate: FestivalMapDrawerDelegate?
     
     @LazyInjected(\.placeRepository) var placeRepository
     

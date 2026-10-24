@@ -62,7 +62,6 @@ public class MapContainerViewController: UISplitViewController {
         searchViewController.container = self
         self.panelNavigationController.setViewControllers([searchViewController], animated: false)
         self.panelNavigationController.delegate = self
-        self.panelNavigationController.navigationBar.prefersLargeTitles = false
         self.panelNavigationController.isModalInPresentation = true
         self.panelNavigationController.modalPresentationStyle = .custom
         self.panelNavigationController.transitioningDelegate = sheetTransitioningDelegate
@@ -75,11 +74,8 @@ public class MapContainerViewController: UISplitViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = AppStrings.Menu.map
-        navigationItem.largeTitleDisplayMode = .never
         definesPresentationContext = true
         view.backgroundColor = .systemBackground
-        panelNavigationController.setNavigationBarHidden(true, animated: false)
         registerForTraitChanges([UITraitHorizontalSizeClass.self]) { (controller: MapContainerViewController, _) in
             controller.updatePanelPresentation()
         }
@@ -88,8 +84,6 @@ public class MapContainerViewController: UISplitViewController {
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = false
-        navigationController?.setNavigationBarHidden(true, animated: animated)
         resumePanelPresentation()
     }
 
@@ -100,9 +94,7 @@ public class MapContainerViewController: UISplitViewController {
 
     public override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        let hasLeftNavigation = navigationController.map { $0.topViewController !== self } ?? false
-        let hasLeftTab = tabBarController.map { $0.selectedViewController !== (navigationController ?? self) } ?? false
-        if hasLeftNavigation || hasLeftTab {
+        if let tabBarController, tabBarController.selectedViewController !== self {
             suspendPanelPresentation()
         }
     }
@@ -114,7 +106,7 @@ public class MapContainerViewController: UISplitViewController {
 
     public func showSearch(focusSearch: Bool = false, animated: Bool = true) {
         pendingSearchFocus = focusSearch
-        if !focusSearch { searchViewController.searchDrawer.searchBar.resignFirstResponder() }
+        if !focusSearch { searchViewController.searchController.searchBar.resignFirstResponder() }
         clearMapSelection()
         showPanel(searchViewController, detent: focusSearch ? .large : MapSheetPresentationController.compactDetent,
                   animated: animated)
@@ -193,7 +185,7 @@ public class MapContainerViewController: UISplitViewController {
             return
         }
         guard !isPresentingPanel, !isDismissingPanel else { return }
-        let isSelectedTab = tabBarController.map { $0.selectedViewController === (navigationController ?? self) } ?? true
+        let isSelectedTab = tabBarController.map { $0.selectedViewController === self } ?? true
         guard wantsPanelVisible, isSelectedTab else {
             if panelNavigationController.presentingViewController != nil {
                 dismissPresentedPanel()
@@ -202,8 +194,7 @@ public class MapContainerViewController: UISplitViewController {
             }
             return
         }
-        let needsSidebar = traitCollection.horizontalSizeClass == .regular
-        if needsSidebar {
+        if traitCollection.horizontalSizeClass == .regular {
             if panelNavigationController.presentingViewController != nil {
                 dismissPresentedPanel()
             } else if sidebarController == nil {
@@ -216,12 +207,9 @@ public class MapContainerViewController: UISplitViewController {
     }
 
     private func presentSheetIfNeeded() {
-        updateSheetBottomInset()
+        updateCompactSheetHeight()
         guard view.window != nil, panelNavigationController.presentingViewController == nil,
               presentedViewController == nil else { return }
-        let isCompact = sheetTransitioningDelegate.selectedDetentIdentifier == MapSheetPresentationController.compactDetent
-        searchViewController.searchDrawer.collectionView.isHidden = isCompact
-        searchViewController.searchDrawer.collectionView.isScrollEnabled = !isCompact
         isPresentingPanel = true
         present(panelNavigationController, animated: false) { [weak self] in
             guard let self else { return }
@@ -231,7 +219,7 @@ public class MapContainerViewController: UISplitViewController {
         }
     }
 
-    private func updateSheetBottomInset() {
+    private func updateCompactSheetHeight() {
         var inset: CGFloat = 0
         if let tabBar = tabBarController?.tabBar, let window = view.window,
            tabBar.window === window, !tabBar.isHidden {
@@ -240,8 +228,7 @@ public class MapContainerViewController: UISplitViewController {
                 inset = max(0, view.bounds.maxY - barFrame.minY - window.safeAreaInsets.bottom)
             }
         }
-        guard abs(panelNavigationController.additionalSafeAreaInsets.bottom - inset) > 0.5 else { return }
-        panelNavigationController.additionalSafeAreaInsets.bottom = inset
+        guard abs(sheetTransitioningDelegate.compactHeightAdjustment - inset) > 0.5 else { return }
         sheetTransitioningDelegate.compactHeightAdjustment = inset
         (panelNavigationController.presentationController as? UISheetPresentationController)?.invalidateDetents()
     }
@@ -268,13 +255,10 @@ public class MapContainerViewController: UISplitViewController {
 
     private func attachSidebar() {
         showsSidebar = true
-        panelNavigationController.additionalSafeAreaInsets.bottom = 0
         sheetTransitioningDelegate.compactHeightAdjustment = 0
         compactMapNavigationController.setViewControllers([], animated: false)
         sidebarMapNavigationController.setViewControllers([mapViewController], animated: false)
         setViewController(panelNavigationController, for: .primary)
-        searchViewController.searchDrawer.collectionView.isScrollEnabled = true
-        searchViewController.searchDrawer.collectionView.isHidden = false
         focusSearchIfNeeded()
     }
 
@@ -288,9 +272,8 @@ public class MapContainerViewController: UISplitViewController {
     private func focusSearchIfNeeded() {
         guard pendingSearchFocus, !isPresentingPanel, !isDismissingPanel,
               panelNavigationController.viewIfLoaded?.window != nil else { return }
-        if searchViewController.searchDrawer.searchBar.becomeFirstResponder() {
-            pendingSearchFocus = false
-        }
+        pendingSearchFocus = false
+        searchViewController.focusSearch()
     }
 
     private func clearMapSelection() {
@@ -309,7 +292,6 @@ public class MapContainerViewController: UISplitViewController {
         Task {
             
             await self.loadEntries()
-            self.loadParkingLots()
             self.loadPetrolStations()
             await self.loadCameras()
             
@@ -348,30 +330,6 @@ private extension MapContainerViewController {
         } catch {
             print(error.localizedDescription)
         }
-        
-    }
-    
-    func loadParkingLots() {
-        
-//        parkingLotManager.get { (result) in
-//
-//            switch result {
-//
-//            case .success(let parkingLots):
-//
-//                self.eventBus.notify(ParkingLotDatasource.self) { subscriber in
-//                    subscriber.didReceiveParkingLots(parkingLots)
-//                }
-//
-//                self.locations = self.locations.filter { !($0 is ParkingLot) }
-//                self.locations.append(contentsOf: parkingLots)
-//
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//
-//            }
-//
-//        }
         
     }
     
@@ -455,27 +413,13 @@ private extension MapContainerViewController {
 extension MapContainerViewController: UISheetPresentationControllerDelegate {
     public func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheet: UISheetPresentationController) {
         sheetTransitioningDelegate.selectedDetentIdentifier = sheet.selectedDetentIdentifier ?? .medium
-        let isCompact = sheet.selectedDetentIdentifier == MapSheetPresentationController.compactDetent
-        searchViewController.searchDrawer.collectionView.isHidden = isCompact
-        searchViewController.searchDrawer.collectionView.isScrollEnabled = !isCompact
-    }
-
-    public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        isPresentingPanel = false
-        isDismissingPanel = false
-        updatePanelPresentation()
+        if sheet.selectedDetentIdentifier == MapSheetPresentationController.compactDetent {
+            searchViewController.searchController.searchBar.resignFirstResponder()
+        }
     }
 }
 
 extension MapContainerViewController: UINavigationControllerDelegate {
-    public func navigationController(
-        _ navigationController: UINavigationController,
-        willShow viewController: UIViewController,
-        animated: Bool
-    ) {
-        navigationController.setNavigationBarHidden(viewController === searchViewController, animated: animated)
-    }
-
     public func navigationController(
         _ navigationController: UINavigationController,
         didShow viewController: UIViewController,

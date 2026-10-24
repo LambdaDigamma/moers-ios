@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 import Events
 
 final class EventSpotlightCell: UICollectionViewCell {
@@ -19,6 +20,9 @@ final class EventSpotlightCell: UICollectionViewCell {
     private let favoriteImageView = UIImageView()
     private let dateLabel = UILabel()
     private let textStack = UIStackView()
+    private let eyebrowStack = UIStackView()
+    private var textLeadingConstraint: NSLayoutConstraint!
+    private var accessibleTextLeadingConstraint: NSLayoutConstraint!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,6 +42,25 @@ final class EventSpotlightCell: UICollectionViewCell {
         subtitleLabel.text = nil
         dateLabel.text = nil
         favoriteImageView.isHidden = true
+    }
+
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)
+        let width = layoutAttributes.size.width
+        contentView.bounds.size.width = width
+        contentView.setNeedsLayout()
+        contentView.layoutIfNeeded()
+        // The nested stacks otherwise keep a one-line intrinsic height at narrow widths.
+        for label in [categoryLabel, dateLabel, titleLabel, subtitleLabel] where label.numberOfLines != 1 {
+            label.preferredMaxLayoutWidth = label.bounds.width
+        }
+        let size = contentView.systemLayoutSizeFitting(
+            CGSize(width: width, height: UIView.layoutFittingCompressedSize.height),
+            withHorizontalFittingPriority: .required,
+            verticalFittingPriority: .fittingSizeLevel
+        )
+        attributes.size.height = ceil(size.height)
+        return attributes
     }
 
     func configure(with event: Event) {
@@ -101,11 +124,12 @@ final class EventSpotlightCell: UICollectionViewCell {
         textStack.spacing = 5
         textStack.translatesAutoresizingMaskIntoConstraints = false
 
-        let eyebrowStack = UIStackView(arrangedSubviews: [categoryLabel, dateLabel])
         eyebrowStack.axis = .horizontal
         eyebrowStack.alignment = .firstBaseline
         eyebrowStack.spacing = 8
         eyebrowStack.distribution = .fill
+        eyebrowStack.addArrangedSubview(categoryLabel)
+        eyebrowStack.addArrangedSubview(dateLabel)
 
         textStack.addArrangedSubview(eyebrowStack)
         textStack.addArrangedSubview(titleLabel)
@@ -117,10 +141,18 @@ final class EventSpotlightCell: UICollectionViewCell {
         contentView.addSubview(favoriteImageView)
         favoriteImageView.translatesAutoresizingMaskIntoConstraints = false
 
+        textLeadingConstraint = textStack.leadingAnchor.constraint(equalTo: imageContainerView.trailingAnchor, constant: 12)
+        accessibleTextLeadingConstraint = textStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12)
+        let preferredImageWidth = imageContainerView.widthAnchor.constraint(equalToConstant: 118)
+        preferredImageWidth.priority = .defaultHigh
+
         NSLayoutConstraint.activate([
+            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 138),
             imageContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             imageContainerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            imageContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            imageContainerView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -10),
+            preferredImageWidth,
+            imageContainerView.widthAnchor.constraint(lessThanOrEqualTo: contentView.widthAnchor, multiplier: 0.35),
             imageContainerView.widthAnchor.constraint(equalTo: imageContainerView.heightAnchor),
 
             imageView.leadingAnchor.constraint(equalTo: imageContainerView.leadingAnchor),
@@ -128,7 +160,7 @@ final class EventSpotlightCell: UICollectionViewCell {
             imageView.topAnchor.constraint(equalTo: imageContainerView.topAnchor),
             imageView.bottomAnchor.constraint(equalTo: imageContainerView.bottomAnchor),
 
-            textStack.leadingAnchor.constraint(equalTo: imageContainerView.trailingAnchor, constant: 12),
+            textLeadingConstraint,
             textStack.trailingAnchor.constraint(equalTo: favoriteImageView.leadingAnchor, constant: -10),
             textStack.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             textStack.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 12),
@@ -144,8 +176,48 @@ final class EventSpotlightCell: UICollectionViewCell {
         categoryLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         dateLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         dateLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+        updateTextLayout()
+        registerForTraitChanges([UITraitPreferredContentSizeCategory.self]) { (cell: EventSpotlightCell, _) in
+            cell.updateTextLayout()
+        }
+    }
+
+    private func updateTextLayout() {
+        let usesVerticalText = traitCollection.preferredContentSizeCategory.isAccessibilityCategory
+        imageContainerView.isHidden = usesVerticalText
+        textLeadingConstraint.isActive = !usesVerticalText
+        accessibleTextLeadingConstraint.isActive = usesVerticalText
+        eyebrowStack.axis = usesVerticalText ? .vertical : .horizontal
+        eyebrowStack.alignment = usesVerticalText ? .fill : .firstBaseline
+        categoryLabel.numberOfLines = usesVerticalText ? 0 : 1
+        dateLabel.numberOfLines = usesVerticalText ? 0 : 1
+        titleLabel.numberOfLines = usesVerticalText ? 0 : 2
+        subtitleLabel.numberOfLines = usesVerticalText ? 0 : 2
     }
     // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
     nonisolated deinit {}
 
+}
+
+#Preview("Event spotlight", traits: .fixedLayout(width: 350, height: 170)) {
+    let cell = EventSpotlightCell()
+    cell.configure(with: Event(
+        id: 1,
+        name: "Museum tour: art and local history",
+        startDate: Date(),
+        category: "Exhibition"
+    ))
+    return cell
+}
+
+#Preview("Event spotlight · Accessibility", traits: .fixedLayout(width: 350, height: 650)) {
+    let cell = EventSpotlightCell()
+    cell.traitOverrides.preferredContentSizeCategory = .accessibilityExtraExtraExtraLarge
+    cell.configure(with: Event(
+        id: 1,
+        name: "Museum tour: art and local history",
+        startDate: Date(),
+        category: "Exhibition"
+    ))
+    return cell
 }

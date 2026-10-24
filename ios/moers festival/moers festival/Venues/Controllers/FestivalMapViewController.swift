@@ -1,5 +1,5 @@
 //
-//  NewMapViewController.swift
+//  FestivalMapViewController.swift
 //  moers festival
 //
 //  Created by Lennart Fischer on 20.03.26.
@@ -14,7 +14,7 @@ import FactoryKit
 import Combine
 import OSLog
 
-public class NewMapViewController: UIViewController {
+public class FestivalMapViewController: UIViewController {
     
     // MARK: - Properties
     
@@ -25,7 +25,7 @@ public class NewMapViewController: UIViewController {
     
     private var cancellables = Set<AnyCancellable>()
     private var loadTask: Task<Void, Never>?
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "moers-festival", category: "NewMapViewController")
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "moers-festival", category: "FestivalMapViewController")
     
     private lazy var mapView: FestivalMapView = {
         let map = FestivalMapView()
@@ -65,7 +65,7 @@ public class NewMapViewController: UIViewController {
         setupConstraints()
         setupMap()
         setupListeners()
-        registerForTraitChanges([UITraitHorizontalSizeClass.self]) { (self: NewMapViewController, _) in
+        registerForTraitChanges([UITraitHorizontalSizeClass.self]) { (self: FestivalMapViewController, _) in
             self.updateDrawerPresentation()
         }
 
@@ -355,7 +355,7 @@ public class NewMapViewController: UIViewController {
     
 }
 
-extension NewMapViewController {
+extension FestivalMapViewController {
 
     private func ensureDrawer() -> NewMapDrawerViewController {
         if let drawerViewController { return drawerViewController }
@@ -608,7 +608,7 @@ extension NewMapViewController {
 
 // MARK: - MKMapViewDelegate
 
-extension NewMapViewController: MKMapViewDelegate {
+extension FestivalMapViewController: MKMapViewDelegate {
     
     public func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         
@@ -733,7 +733,7 @@ extension NewMapViewController: MKMapViewDelegate {
 
 // MARK: - UISheetPresentationControllerDelegate
 
-extension NewMapViewController: UISheetPresentationControllerDelegate {
+extension FestivalMapViewController: UISheetPresentationControllerDelegate {
 
     public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         if presentationController.presentedViewController === venueDetailNavigationController {
@@ -762,9 +762,9 @@ extension NewMapViewController: UISheetPresentationControllerDelegate {
     
 }
 
-// MARK: - NewMapDrawerDelegate
+// MARK: - FestivalMapDrawerDelegate
 
-extension NewMapViewController: NewMapDrawerDelegate {
+extension FestivalMapViewController: FestivalMapDrawerDelegate {
     
     func drawerDidSelectBooth(_ booth: DorfFeature) {
         

@@ -29,7 +29,7 @@ final class TabBarNavigationUITests: XCTestCase {
         app.navigationBars.buttons.firstMatch.tap()
         assertTabLabels(in: app)
 
-        app.cells.containing(.staticText, identifier: "Bürgerfunk").firstMatch.tap()
+        app.cells.containing(.staticText, identifier: "Community radio").firstMatch.tap()
         XCTAssertTrue(app.staticTexts["Community radio"].waitForExistence(timeout: 10))
         app.navigationBars.buttons.firstMatch.tap()
         assertTabLabels(in: app)
@@ -40,7 +40,7 @@ final class TabBarNavigationUITests: XCTestCase {
         app.navigationBars.buttons.firstMatch.tap()
         assertTabLabels(in: app)
 
-        app.cells.containing(.staticText, identifier: "Fahrt planen (Beta)").firstMatch.tap()
+        app.cells.containing(.staticText, identifier: "Plan a Trip (Beta)").firstMatch.tap()
         XCTAssertTrue(app.navigationBars["Trip Planner"].waitForExistence(timeout: 10))
         app.navigationBars.buttons.firstMatch.tap()
         assertTabLabels(in: app)

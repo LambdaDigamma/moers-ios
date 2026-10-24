@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 final class EventQuickFilterCell: UICollectionViewCell {
     static let reuseIdentifier = "EventQuickFilterCell"
@@ -51,6 +52,7 @@ final class EventQuickFilterCell: UICollectionViewCell {
 
         titleLabel.font = UIFont.mmEventPreferredFont(forTextStyle: .footnote, weight: .semibold)
         titleLabel.adjustsFontForContentSizeCategory = true
+        titleLabel.numberOfLines = 0
         titleLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
 
         stackView.axis = .horizontal
@@ -81,4 +83,17 @@ final class EventQuickFilterCell: UICollectionViewCell {
     // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
     nonisolated deinit {}
 
+}
+
+#Preview("Event filter", traits: .fixedLayout(width: 180, height: 44)) {
+    let cell = EventQuickFilterCell()
+    cell.configure(with: .withImages, isSelected: true)
+    return cell
+}
+
+#Preview("Event filter · Accessibility", traits: .fixedLayout(width: 320, height: 120)) {
+    let cell = EventQuickFilterCell()
+    cell.traitOverrides.preferredContentSizeCategory = .accessibilityExtraExtraExtraLarge
+    cell.configure(with: .withImages, isSelected: true)
+    return cell
 }

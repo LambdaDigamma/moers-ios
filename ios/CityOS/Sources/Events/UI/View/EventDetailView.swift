@@ -452,7 +452,7 @@ open class EventDetailView: UIView, MKMapViewDelegate, UIScrollViewDelegate {
         self.detailsTextView.backgroundColor = .clear
         self.detailsTextView.tintColor = EventPackageConfiguration.accentColor
         self.websiteButton.backgroundColor = UIColor.label
-        self.websiteButton.setTitleColor(UIColor.systemBackground, for: .normal)
+        self.websiteButton.setTitleColor(ApplicationTheme.current.backgroundColor, for: .normal)
         self.websiteButton.layer.cornerRadius = 14
         self.websiteButton.layer.cornerCurve = .continuous
         self.reminderButton.backgroundColor = EventPackageConfiguration.accentColor
@@ -719,7 +719,11 @@ private extension EventDetailView {
 
     func makeInfoRow(systemImageName: String, title: String, valueLabel: UILabel) -> UIView {
         let rowView = UIView()
+        #if os(tvOS)
+        rowView.backgroundColor = ApplicationTheme.current.cardBackgroundColor
+        #else
         rowView.backgroundColor = .systemGray6
+        #endif
         rowView.layer.cornerRadius = 14
         rowView.layer.cornerCurve = .continuous
         rowView.layer.borderWidth = 1
@@ -818,8 +822,13 @@ private extension EventDetailView {
         imageTask?.cancel()
         imageView.image = nil
         backgroundExtensionImageView.image = nil
-        imageView.backgroundColor = .secondarySystemFill
-        backgroundExtensionImageView.backgroundColor = .secondarySystemFill
+        #if os(tvOS)
+        let placeholderColor = ApplicationTheme.current.cardBackgroundColor
+        #else
+        let placeholderColor = UIColor.secondarySystemFill
+        #endif
+        imageView.backgroundColor = placeholderColor
+        backgroundExtensionImageView.backgroundColor = placeholderColor
         headerImageAspectRatio = nil
         updateHeaderHeight(force: true)
 
@@ -838,16 +847,21 @@ private extension EventDetailView {
                 case .success(let response):
                     self.imageView.image = response.image
                     self.backgroundExtensionImageView.image = response.image
-                    self.imageView.backgroundColor = .secondarySystemBackground
-                    self.backgroundExtensionImageView.backgroundColor = .secondarySystemBackground
+                    self.imageView.backgroundColor = ApplicationTheme.current.cardBackgroundColor
+                    self.backgroundExtensionImageView.backgroundColor = ApplicationTheme.current.cardBackgroundColor
                     self.headerImageAspectRatio = self.headerAspectRatio(for: response.image)
                     self.updateHeaderHeight(force: true)
                     self.updateStretchyHeader(for: self.scrollView.contentOffset.y)
                 case .failure:
                     self.imageView.image = nil
                     self.backgroundExtensionImageView.image = nil
-                    self.imageView.backgroundColor = .tertiarySystemFill
-                    self.backgroundExtensionImageView.backgroundColor = .tertiarySystemFill
+                    #if os(tvOS)
+                    let failureColor = ApplicationTheme.current.cardBackgroundColor
+                    #else
+                    let failureColor = UIColor.tertiarySystemFill
+                    #endif
+                    self.imageView.backgroundColor = failureColor
+                    self.backgroundExtensionImageView.backgroundColor = failureColor
                     self.headerImageAspectRatio = nil
                     self.updateHeaderHeight(force: true)
                 }

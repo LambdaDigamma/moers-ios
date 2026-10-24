@@ -1,7 +1,7 @@
 import FactoryKit
 import GRDB
-import MMEvents
-import MMPages
+import Events
+import Pages
 import SwiftUI
 import UIKit
 import XCTest
