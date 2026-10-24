@@ -10,9 +10,10 @@
 import UIKit
 
 /// A horizontally scrolling strip of capsule buttons, one per programme day.
-final class TimetableDayBubbleView: UIView {
+public final class TimetableDayBubbleView: UIView {
 
-    var onSelectDate: ((Date) -> Void)?
+    public var onSelectDate: ((Date) -> Void)?
+    public var onSelectUnscheduled: (() -> Void)?
 
     private(set) var dates: [Date] = []
     private(set) var selectedDate: Date?
@@ -20,23 +21,25 @@ final class TimetableDayBubbleView: UIView {
     private let scrollView = UIScrollView()
     private let stackView = UIStackView()
     private var buttons: [UIButton] = []
+    private var includesUnscheduled = false
+    private var unscheduledButton: UIButton?
     private var lastViewportSize: CGSize = .zero
     private var lastContentSize: CGSize = .zero
 
     nonisolated deinit {}
 
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setupScrollView()
         setupStackView()
         accessibilityIdentifier = "DaySelector"
     }
 
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         scrollView.layoutIfNeeded()
 
@@ -47,21 +50,23 @@ final class TimetableDayBubbleView: UIView {
         }
     }
 
-    func setDates(_ dates: [Date], selectedDate: Date?) {
-        if dates != self.dates {
+    public func setDates(_ dates: [Date], selectedDate: Date?, includesUnscheduled: Bool = false) {
+        if dates != self.dates || includesUnscheduled != self.includesUnscheduled {
             self.dates = dates
+            self.includesUnscheduled = includesUnscheduled
             rebuildButtons()
         }
 
         setSelectedDate(selectedDate, animated: false)
     }
 
-    func setSelectedDate(_ date: Date?, animated: Bool) {
+    public func setSelectedDate(_ date: Date?, animated: Bool) {
         selectedDate = date
 
         for (button, buttonDate) in zip(buttons, dates) {
             button.isSelected = date.map { Self.isSameDay($0, buttonDate) } ?? false
         }
+        unscheduledButton?.isSelected = date == nil
 
         layoutIfNeeded()
         scrollView.layoutIfNeeded()
@@ -107,51 +112,71 @@ final class TimetableDayBubbleView: UIView {
     }
 
     private func rebuildButtons() {
-        buttons.forEach { $0.removeFromSuperview() }
+        stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        unscheduledButton = nil
 
         buttons = dates.enumerated().map { index, date in
             let button = makeButton(for: date, tag: index)
             stackView.addArrangedSubview(button)
             return button
         }
+        if includesUnscheduled {
+            let button = makeButton(
+                title: EventPackageStrings.notYetScheduled,
+                identifier: "DayItem-Unscheduled",
+                action: { [weak self] in self?.onSelectUnscheduled?() }
+            )
+            stackView.addArrangedSubview(button)
+            unscheduledButton = button
+        }
     }
 
     private func makeButton(for date: Date, tag: Int) -> UIButton {
         let title = date.formatted(.dateTime.weekday(.abbreviated).day())
 
-        let button = UIButton(configuration: Self.configuration(isSelected: false, title: title))
+        let button = makeButton(
+            title: title,
+            identifier: EventDayAccessibilityIdentifier.day(date),
+            action: { [weak self] in self?.onSelectDate?(date) }
+        )
         button.tag = tag
+        button.accessibilityLabel = date.formatted(.dateTime.weekday(.wide).day().month())
+        return button
+    }
+
+    private func makeButton(title: String, identifier: String, action: @escaping () -> Void) -> UIButton {
+        let button = UIButton(configuration: Self.configuration(isSelected: false, title: title))
+        button.titleLabel?.adjustsFontForContentSizeCategory = true
         button.changesSelectionAsPrimaryAction = false
         button.configurationUpdateHandler = { button in
             button.configuration = Self.configuration(isSelected: button.isSelected, title: title)
         }
-        button.addAction(UIAction { [weak self] _ in
-            self?.onSelectDate?(date)
-        }, for: .touchUpInside)
+        button.addAction(UIAction { _ in action() }, for: .touchUpInside)
 
         button.setContentCompressionResistancePriority(.required, for: .horizontal)
         button.heightAnchor.constraint(greaterThanOrEqualToConstant: 44).isActive = true
         button.widthAnchor.constraint(greaterThanOrEqualToConstant: 44).isActive = true
-        button.accessibilityIdentifier = "DayItem-\(date.formatted(.dateTime.year().month().day()))"
-        button.accessibilityLabel = date.formatted(.dateTime.weekday(.wide).day().month())
+        button.accessibilityIdentifier = identifier
 
         return button
     }
 
     private func scrollToSelectedButton(animated: Bool) {
-        guard
-            let selectedDate,
-            let index = dates.firstIndex(where: { Self.isSameDay($0, selectedDate) }),
-            buttons.indices.contains(index)
-        else {
-            return
+        let selectedButton: UIButton?
+        if let selectedDate, let index = dates.firstIndex(where: { Self.isSameDay($0, selectedDate) }),
+           buttons.indices.contains(index) {
+            selectedButton = buttons[index]
+        } else if selectedDate == nil {
+            selectedButton = unscheduledButton
+        } else {
+            selectedButton = nil
         }
+        guard let button = selectedButton else { return }
 
         let visibleWidth = scrollView.bounds.width
         let contentWidth = scrollView.contentSize.width
         guard visibleWidth > 0, contentWidth > visibleWidth + 1 else { return }
 
-        let button = buttons[index]
         let centeredX = button.frame.midX - visibleWidth / 2
         let clampedX = min(max(centeredX, 0), contentWidth - visibleWidth)
 
@@ -195,5 +220,15 @@ final class TimetableDayBubbleView: UIView {
     }
 
 }
+
+#if DEBUG
+#Preview("Day bubbles", traits: .fixedLayout(width: 360, height: 80)) {
+    let strip = TimetableDayBubbleView()
+    let today = Calendar.current.startOfDay(for: .now)
+    let dates = (0..<5).compactMap { Calendar.current.date(byAdding: .day, value: $0, to: today) }
+    strip.setDates(dates, selectedDate: dates[1], includesUnscheduled: true)
+    return strip
+}
+#endif
 
 #endif

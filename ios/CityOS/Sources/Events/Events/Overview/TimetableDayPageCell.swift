@@ -11,13 +11,14 @@ import SwiftUI
 import UIKit
 
 /// One page of the timetable: the events of a single day in a vertical list.
-final class TimetableDayPageCell: UICollectionViewCell, UICollectionViewDelegate {
+public final class TimetableDayPageCell: UICollectionViewCell, UICollectionViewDelegate {
 
-    private(set) var listView: UICollectionView!
+    public private(set) var listView: UICollectionView!
 
     private var dataSource: UICollectionViewDiffableDataSource<Int, UUID>!
     private var eventsByID: [UUID: EventListItemViewModel] = [:]
     private var displayMode: DailyEventsDisplayMode = .compact
+    private var showsFavoriteIcon = true
     private var onSelectEvent: ((Event.ID) -> Void)?
     private var onRefresh: (() async -> Void)?
 
@@ -25,13 +26,13 @@ final class TimetableDayPageCell: UICollectionViewCell, UICollectionViewDelegate
 
     nonisolated deinit {}
 
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setupListView()
         setupDataSource()
     }
 
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -42,12 +43,34 @@ final class TimetableDayPageCell: UICollectionViewCell, UICollectionViewDelegate
         onRefresh: @escaping () async -> Void,
         onSelectEvent: @escaping (Event.ID) -> Void
     ) {
-        let modeChanged = self.displayMode != displayMode
+        configure(
+            events: day?.events ?? [],
+            isFilterActive: isFilterActive,
+            displayMode: displayMode,
+            onRefresh: onRefresh,
+            onSelectEvent: onSelectEvent
+        )
+    }
+
+    public func configure(
+        events: [EventListItemViewModel],
+        isFilterActive: Bool,
+        displayMode: DailyEventsDisplayMode,
+        showsFavoriteIcon: Bool = true,
+        onRefresh: (() async -> Void)? = nil,
+        onSelectEvent: @escaping (Event.ID) -> Void
+    ) {
+        let modeChanged = self.displayMode != displayMode || self.showsFavoriteIcon != showsFavoriteIcon
         self.displayMode = displayMode
+        self.showsFavoriteIcon = showsFavoriteIcon
         self.onRefresh = onRefresh
         self.onSelectEvent = onSelectEvent
 
-        let events = day?.events ?? []
+        if onRefresh == nil {
+            listView.refreshControl = nil
+        } else if listView.refreshControl == nil {
+            listView.refreshControl = makeRefreshControl()
+        }
         eventsByID = Dictionary(events.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
 
         var snapshot = NSDiffableDataSourceSnapshot<Int, UUID>()
@@ -77,15 +100,17 @@ final class TimetableDayPageCell: UICollectionViewCell, UICollectionViewDelegate
         listView.backgroundColor = .systemBackground
         listView.delegate = self
         listView.alwaysBounceVertical = true
-        listView.refreshControl = UIRefreshControl(frame: .zero, primaryAction: UIAction { [weak self] action in
+        contentView.addSubview(listView)
+    }
+
+    private func makeRefreshControl() -> UIRefreshControl {
+        UIRefreshControl(frame: .zero, primaryAction: UIAction { [weak self] action in
             guard let refreshControl = action.sender as? UIRefreshControl else { return }
             Task { @MainActor in
                 await self?.onRefresh?()
                 refreshControl.endRefreshing()
             }
         })
-
-        contentView.addSubview(listView)
     }
 
     private func setupDataSource() {
@@ -98,6 +123,7 @@ final class TimetableDayPageCell: UICollectionViewCell, UICollectionViewDelegate
                     EventCard(viewModel: viewModel)
                 } else {
                     EventListItem(viewModel: viewModel)
+                        .showFavoriteIcon(self?.showsFavoriteIcon ?? true)
                 }
             }
             .margins(.horizontal, isImages ? 16 : 20)
@@ -145,7 +171,7 @@ final class TimetableDayPageCell: UICollectionViewCell, UICollectionViewDelegate
 
     // MARK: - UICollectionViewDelegate
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
 
         guard let id = dataSource.itemIdentifier(for: indexPath), let eventID = eventsByID[id]?.eventID else { return }
@@ -153,5 +179,18 @@ final class TimetableDayPageCell: UICollectionViewCell, UICollectionViewDelegate
     }
 
 }
+
+#if DEBUG
+#Preview("Day event list", traits: .fixedLayout(width: 360, height: 500)) {
+    let cell = TimetableDayPageCell(frame: CGRect(x: 0, y: 0, width: 360, height: 500))
+    cell.configure(
+        events: [EventListItemViewModel(title: "Preview event", startDate: .now, location: "Festival stage")],
+        isFilterActive: false,
+        displayMode: .compact,
+        onSelectEvent: { _ in }
+    )
+    return cell
+}
+#endif
 
 #endif

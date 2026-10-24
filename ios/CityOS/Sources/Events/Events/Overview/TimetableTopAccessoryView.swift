@@ -10,27 +10,27 @@
 import UIKit
 
 /// Hosted in the navigation bar's palette: an optional "filter active" banner above the day bubbles.
-final class TimetableTopAccessoryView: UIView {
+public final class TimetableTopAccessoryView: UIView {
 
-    let bubbleView = TimetableDayBubbleView()
-    var onClearFilter: (() -> Void)?
+    public let bubbleView = TimetableDayBubbleView()
+    public var onClearFilter: (() -> Void)?
 
     private let stackView = UIStackView()
     private let filterBanner = UIStackView()
 
     nonisolated deinit {}
 
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setupFilterBanner()
         setupStackView()
     }
 
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setFilterActive(_ isActive: Bool) {
+    public func setFilterActive(_ isActive: Bool) {
         filterBanner.isHidden = !isActive
     }
 
@@ -60,6 +60,8 @@ final class TimetableTopAccessoryView: UIView {
         let clearButton = UIButton(configuration: configuration, primaryAction: UIAction { [weak self] _ in
             self?.onClearFilter?()
         })
+        clearButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        clearButton.heightAnchor.constraint(greaterThanOrEqualToConstant: 44).isActive = true
         clearButton.setContentHuggingPriority(.required, for: .horizontal)
         clearButton.setContentCompressionResistancePriority(.required, for: .horizontal)
 
@@ -91,5 +93,15 @@ final class TimetableTopAccessoryView: UIView {
     }
 
 }
+
+#if DEBUG
+#Preview("Day filter bar", traits: .fixedLayout(width: 360, height: 130)) {
+    let accessory = TimetableTopAccessoryView()
+    let today = Calendar.current.startOfDay(for: .now)
+    accessory.bubbleView.setDates([today], selectedDate: today, includesUnscheduled: true)
+    accessory.setFilterActive(true)
+    return accessory
+}
+#endif
 
 #endif

@@ -92,18 +92,17 @@ class AutomaticSnapshots: XCTestCase {
         let exists = eventList.waitForExistence(timeout: 15)
         XCTAssert(exists, "Event list should load within timeout")
         
-        let hasEvents = eventList.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'Event-Row-'")).firstMatch.waitForExistence(timeout: 5)
+        let hasEvents = eventList.cells.matching(NSPredicate(format: "identifier BEGINSWITH 'Event-Row-'")).firstMatch.waitForExistence(timeout: 5)
         XCTAssert(hasEvents, "At least one event should be present")
     }
 
     private func navigateToSecondDayIfNeeded(_ app: XCUIApplication) {
-        let daySelector = app.buttons["DaySelector"]
-        guard daySelector.exists else { return }
-
         let dayButtons = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'DayItem-'"))
-        guard dayButtons.count > 1 else { return }
+        let identifiers = Array(Set(dayButtons.allElementsBoundByAccessibilityElement.map(\.identifier))).sorted()
+        guard identifiers.count > 1 else { return }
 
-        let secondDayButton = dayButtons.element(boundBy: 1)
+        let secondDayIdentifier = identifiers[1]
+        let secondDayButton = app.buttons[secondDayIdentifier]
         if secondDayButton.waitForExistence(timeout: 3) {
             secondDayButton.tap()
             sleep(1)
@@ -111,8 +110,8 @@ class AutomaticSnapshots: XCTestCase {
     }
 
     private func tapFirstEvent(_ app: XCUIApplication) {
-        let eventButtons = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'Event-Row-'"))
-        let firstEvent = eventButtons.firstMatch
+        let eventCells = app.cells.matching(NSPredicate(format: "identifier BEGINSWITH 'Event-Row-'"))
+        let firstEvent = eventCells.firstMatch
 
         XCTAssert(firstEvent.waitForExistence(timeout: 5), "First event button should exist")
         firstEvent.tap()

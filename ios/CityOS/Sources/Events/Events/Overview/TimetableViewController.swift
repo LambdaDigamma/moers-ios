@@ -86,6 +86,7 @@ public class TimetableViewController: UIViewController {
         if pagesView.bounds.size != lastPagesSize {
             lastPagesSize = pagesView.bounds.size
             pagesView.collectionViewLayout.invalidateLayout()
+            pagesView.layoutIfNeeded()
             scrollToSelectedPage(animated: false)
         }
     }
@@ -340,7 +341,8 @@ public class TimetableViewController: UIViewController {
             return
         }
 
-        guard currentPageIndex != index else { return }
+        let selectedOffset = CGFloat(index) * pagesView.bounds.width
+        guard abs(pagesView.contentOffset.x - selectedOffset) > 0.5 else { return }
 
         pagesView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: animated)
 
@@ -352,6 +354,11 @@ public class TimetableViewController: UIViewController {
 
     /// Lets the navigation bar follow the list of the page that is currently visible.
     private func updateContentScrollView() {
+
+        guard hostedContentKind == .pages else {
+            setContentScrollView(nil)
+            return
+        }
 
         guard
             let index = currentPageIndex,

@@ -32,6 +32,25 @@ final class TimetableDayBubbleLayoutTests: XCTestCase {
         }
     }
 
+    func testUnscheduledBubbleKeepsSelectionAndCallsItsAction() async throws {
+        let strip = TimetableDayBubbleView()
+        var selectedUnscheduled = false
+        strip.onSelectUnscheduled = { selectedUnscheduled = true }
+        strip.setDates(dates, selectedDate: nil, includesUnscheduled: true)
+        let window = mount(strip)
+        defer { window.isHidden = true }
+        await layout(strip, width: 240)
+        let button = try XCTUnwrap(descendants(of: strip).compactMap { $0 as? UIButton }.first {
+            $0.accessibilityIdentifier == "DayItem-Unscheduled"
+        })
+        XCTAssertTrue(button.isSelected)
+        try assertSelectionVisible(in: strip)
+        button.sendActions(for: .touchUpInside)
+        XCTAssertTrue(selectedUnscheduled)
+        strip.setSelectedDate(dates[0], animated: false)
+        XCTAssertFalse(button.isSelected)
+    }
+
     func testPaletteReleasesItsContent() async throws {
         weak var releasedContent: UIView?
         try autoreleasepool {

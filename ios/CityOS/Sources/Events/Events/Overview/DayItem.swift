@@ -21,7 +21,7 @@ struct DayItem: View {
             .controlSize(.large)
             .tint(.primary)
             .frame(minWidth: 44, minHeight: 44)
-            .accessibilityIdentifier("DayItem-\(date.formatted(.dateTime.year().month().day()))")
+            .accessibilityIdentifier(EventDayAccessibilityIdentifier.day(date))
             .accessibilityLabel(Text(date, format: .dateTime.weekday(.wide).day().month()))
             .accessibilityAddTraits(isActive ? .isSelected : [])
     }

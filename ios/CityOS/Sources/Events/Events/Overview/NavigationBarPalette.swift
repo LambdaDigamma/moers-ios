@@ -14,9 +14,9 @@ import UIKit
 ///
 /// This uses private UIKit API. Names are obfuscated with `#Obfuscate` and every call is guarded,
 /// so a missing symbol degrades to "no palette" instead of crashing.
-enum NavigationBarPalette {
+public enum NavigationBarPalette {
 
-    static func make(contentView: UIView, preferredHeight: CGFloat) -> UIView? {
+    public static func make(contentView: UIView, preferredHeight: CGFloat) -> UIView? {
         let paletteClass = NSClassFromString(#Obfuscate("_UINavigationBarPalette")) as? UIView.Type
         let initSelector = NSSelectorFromString(#Obfuscate("initWithContentView:"))
 
@@ -33,7 +33,7 @@ enum NavigationBarPalette {
         return palette
     }
 
-    static func setPreferredHeight(_ height: CGFloat, of palette: UIView) {
+    public static func setPreferredHeight(_ height: CGFloat, of palette: UIView) {
         let selector = NSSelectorFromString(#Obfuscate("setPreferredHeight:"))
         guard palette.responds(to: selector) else { return }
 
@@ -47,7 +47,7 @@ enum NavigationBarPalette {
 
 extension UINavigationItem {
 
-    var timetableBottomPalette: UIView? {
+    public var timetableBottomPalette: UIView? {
         get {
             let key = #Obfuscate("_bottomPalette")
             guard responds(to: NSSelectorFromString(key)) else { return nil }

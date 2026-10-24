@@ -31,13 +31,14 @@ final class TimetableDayNavigationTests: XCTestCase {
 
         let days = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'DayItem-'"))
         XCTAssertTrue(days.firstMatch.waitForExistence(timeout: 20), "The timetable must load its days.")
-        guard days.count >= 2 else {
+        let identifiers = Array(Set(days.allElementsBoundByAccessibilityElement.map(\.identifier))).sorted()
+        guard identifiers.count >= 2 else {
             XCTFail("Day navigation needs at least two programme dates.")
             return
         }
 
-        let firstIdentifier = days.element(boundBy: 0).identifier
-        let secondIdentifier = days.element(boundBy: 1).identifier
+        let firstIdentifier = identifiers[0]
+        let secondIdentifier = identifiers[1]
         let firstDay = app.buttons[firstIdentifier]
         let secondDay = app.buttons[secondIdentifier]
         XCTAssertGreaterThanOrEqual(firstDay.frame.height, 44)
@@ -64,6 +65,10 @@ final class TimetableDayNavigationTests: XCTestCase {
         let headerPosition = secondDay.frame.minY
         app.swipeUp()
         XCTAssertEqual(secondDay.frame.minY, headerPosition, accuracy: 1, "The day row must stay pinned.")
+        let screenshot = XCTAttachment(screenshot: app.screenshot())
+        screenshot.name = "Timetable-\(displayMode)-day-bubbles"
+        screenshot.lifetime = .keepAlways
+        add(screenshot)
 
         let eventRow = app.cells.matching(NSPredicate(format: "identifier BEGINSWITH 'Event-Row-'")).firstMatch
         XCTAssertTrue(eventRow.waitForExistence(timeout: 5))
