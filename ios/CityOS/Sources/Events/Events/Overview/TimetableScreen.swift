@@ -65,6 +65,11 @@ public struct TimetableScreen: View {
             }
             
         }
+        .modifier(TimetableDaySelectorModifier(
+            selectedDate: viewModel.selectedDate,
+            dates: viewModel.allEventsHideSchedule ? [] : viewModel.dates,
+            onSelectDate: viewModel.selectDate
+        ))
         .task {
             await viewModel.load()
         }

@@ -22,71 +22,9 @@ struct VenueEventsGrid: View {
     var viewModel: TimetableViewModel
     @Environment(TimetableTransmitter.self) private var transmitter: TimetableTransmitter
 
-    @State private var selectedPage = 0
-
     var body: some View {
-
-        VStack(spacing: 0) {
-
-            VStack(spacing: 0) {
-
-                DaySelector(
-                    selectedDate: selectedDate,
-                    dates: viewModel.dates,
-                    onSelectDate: selectPage(for:)
-                )
-                .padding(.horizontal)
-                .padding(.vertical, 8)
-
-                Divider()
-
-            }
-
-            gridContent()
-
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .onAppear {
-            syncSelectedPageFromModel()
-        }
-        .onChange(of: viewModel.selectedDate) {
-            syncSelectedPageFromModel()
-        }
-        .onChange(of: viewModel.days.map(\.id)) {
-            syncSelectedPageFromModel()
-        }
-
-    }
-
-    // MARK: - Day selection (same pattern as CompactEventsView)
-
-    private var selectedDate: Date {
-        guard viewModel.days.indices.contains(selectedPage) else {
-            return viewModel.selectedDate
-        }
-        return viewModel.days[selectedPage].date
-    }
-
-    private func selectPage(for date: Date) {
-        guard let index = viewModel.days.firstIndex(where: {
-            Calendar.autoupdatingCurrent.isDate($0.date, inSameDayAs: date)
-        }) else { return }
-        guard selectedPage != index else { return }
-        withAnimation(.default) {
-            selectedPage = index
-        }
-        viewModel.selectDate(date)
-    }
-
-    private func syncSelectedPageFromModel() {
-        guard let index = viewModel.days.firstIndex(where: {
-            Calendar.autoupdatingCurrent.isDate($0.date, inSameDayAs: viewModel.selectedDate)
-        }) else {
-            selectedPage = 0
-            return
-        }
-        guard selectedPage != index else { return }
-        selectedPage = index
+        gridContent()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     // MARK: - Grid content

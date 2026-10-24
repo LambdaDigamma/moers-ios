@@ -1,6 +1,7 @@
 // swift-tools-version: 6.2
 
 import PackageDescription
+import CompilerPluginSupport
 
 // Swift 6 enables the other Approachable Concurrency features by default.
 let approachableConcurrencySettings: [SwiftSetting] = [
@@ -46,6 +47,7 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-algorithms", from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-collections.git", from: "1.1.0"),
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
+        .package(url: "https://github.com/swiftlang/swift-syntax", "601.0.0"..<"603.0.0"),
         .package(url: "https://github.com/hmlongco/Factory", .upToNextMajor(from: "3.0.0")),
         .package(url: "https://github.com/LambdaDigamma/ModernNetworking", .upToNextMajor(from: "2.0.1")),
         .package(url: "https://github.com/hyperoslo/Cache", .upToNextMajor(from: "7.4.0")),
@@ -220,11 +222,25 @@ let package = Package(
             swiftSettings: testSettings
         ),
         
+        // ---------------- Obfuscation ----------------
+        .macro(
+            name: "ObfuscationMacros",
+            dependencies: [
+                .product(name: "SwiftSyntax", package: "swift-syntax"),
+                .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
+                .product(name: "SwiftCompilerPlugin", package: "swift-syntax")
+            ]
+        ),
+        .target(
+            name: "Obfuscation",
+            dependencies: ["ObfuscationMacros"]
+        ),
         // ---------------- Events ----------------
         .target(
             name: "Events",
             dependencies: [
                 "Core",
+                "Obfuscation",
                 "Pages",
                 "ModernNetworking",
                 "Cache",

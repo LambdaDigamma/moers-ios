@@ -26,6 +26,8 @@ This subtree contains the festival iOS, widget, watchOS, and tvOS project.
 
 For UI/runtime changes:
 
+The focused `TimetableDayNavigationTests` check day taps and page swipes in the compact and image layouts. They use the live programme and skip by default. Run them with `TEST_RUNNER_RUN_FESTIVAL_UI_INTEGRATION_TESTS=1 xcodebuild -workspace ios/Moers.xcworkspace -scheme "moers festival" -testPlan TestPlan -destination '<available iOS simulator>' -only-testing:'moers festival UITests/TimetableDayNavigationTests' -parallel-testing-enabled NO test` from the repository root. Check both iOS 26 or later and an installed older runtime when changing the day selector.
+
 1. Build with Xcode tooling.
 2. Use Mobile MCP to list devices dynamically.
 3. Launch `de.okfn.niederrhein.moers-festival`.
@@ -35,6 +37,7 @@ For UI/runtime changes:
 
 - The project mixes UIKit, SwiftUI, WidgetKit, and the local `CityOS` package.
 - Use existing coordinator/controller patterns for app navigation.
+- The timetable uses UIKit day pages and a guarded private navigation-bar palette. Day buttons use glass on iOS 26 or later and filled capsules on older iOS versions. Keep date selection in `TimetableViewModel`; the native pager and the SwiftUI timetable read the same selection.
 - Use Factory container registrations where nearby code already does.
 - Keep widget data sync behavior consistent with shared widget support code.
 - Festival screenshots are connected to the marketing Remotion project; do not update raw screenshots, processed stills, or App Store screenshot assets unless that is the requested task.
