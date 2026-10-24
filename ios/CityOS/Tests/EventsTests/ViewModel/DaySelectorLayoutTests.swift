@@ -12,7 +12,7 @@ final class DaySelectorLayoutTests: XCTestCase {
         }
     }
 
-    func testTwoDigitDaysKeepTheirHeightWhenWidthIsRestricted() async {
+    func testDayBubblesKeepTheirHeightAndMinimumTargetWhenWidthIsRestricted() async {
         for textSize in [DynamicTypeSize.large, .accessibility3] {
             for date in dates {
                 let host = UIHostingController(rootView: DayItem(date: date).dynamicTypeSize(textSize))
@@ -20,11 +20,12 @@ final class DaySelectorLayoutTests: XCTestCase {
                 let narrowSize = host.sizeThatFits(in: CGSize(width: 24, height: 400))
                 XCTAssertEqual(narrowSize.height, naturalSize.height, accuracy: 1)
                 XCTAssertGreaterThanOrEqual(narrowSize.width, 44)
+                XCTAssertGreaterThanOrEqual(narrowSize.height, 44)
             }
         }
     }
 
-    func testFiveDaysFitProgrammeColumnWithoutIncreasingHeaderHeight() async {
+    func testDayBubblesScrollWithinProgrammeColumnWithoutIncreasingHeaderHeight() async {
         for locale in ["en", "de"] {
             let host = UIHostingController(rootView: selector(selectedDate: dates[1], locale: locale))
             let naturalHeight = host.sizeThatFits(in: CGSize(width: 800, height: 400)).height
@@ -77,7 +78,7 @@ final class DaySelectorLayoutTests: XCTestCase {
         XCTAssertEqual(scroll.contentOffset.x, 0, accuracy: 1)
     }
 
-    func testCompactTimetableLeavesSpaceForEventsAtLargeTextSize() async throws {
+    func testTimetableDayBarLeavesSpaceForEventsAtLargeTextSize() async throws {
         let previousFilter = UserDefaults.standard.object(forKey: "timetableFilter")
         defer { UserDefaults.standard.set(previousFilter, forKey: "timetableFilter") }
         let database = MemoryDatabase.default()
@@ -93,6 +94,11 @@ final class DaySelectorLayoutTests: XCTestCase {
         })
         await fulfillment(of: [loaded], timeout: 2)
         let host = UIHostingController(rootView: CompactEventsView(viewModel: model)
+            .modifier(TimetableDaySelectorModifier(
+                selectedDate: model.selectedDate,
+                dates: model.dates,
+                onSelectDate: model.selectDate
+            ))
             .environment(TimetableTransmitter())
             .dynamicTypeSize(.accessibility3))
         let window = mount(host)
@@ -127,7 +133,9 @@ final class DaySelectorLayoutTests: XCTestCase {
 
     private func horizontalScrollView(in view: UIView) -> UIScrollView? {
         descendants(of: view).compactMap { $0 as? UIScrollView }.first {
-            $0.bounds.width > 0 && $0.contentSize.width > $0.bounds.width + 1 && $0.contentSize.height <= $0.bounds.height + 1
+            !$0.isPagingEnabled && $0.bounds.width > 0
+                && $0.contentSize.width > $0.bounds.width + 1
+                && $0.contentSize.height <= $0.bounds.height + 1
         }
     }
 

@@ -12,41 +12,40 @@ struct DaySelector: View {
     let selectedDate: Date
     let dates: [Date]
     let onSelectDate: (Date) -> Void
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     
     var body: some View {
 
-        ViewThatFits(in: .horizontal) {
-            dayButtons
-
-            ScrollViewReader { proxy in
-                ScrollView(.horizontal) {
-                    dayButtons
-                        .fixedSize(horizontal: true, vertical: false)
-                        .background {
-                            GeometryReader { geometry in
-                                Color.clear.onChange(of: geometry.size) { _, _ in
-                                    scrollToSelectedDay(using: proxy)
-                                }
+        ScrollViewReader { proxy in
+            ScrollView(.horizontal) {
+                dayButtons
+                    .fixedSize(horizontal: true, vertical: false)
+                    .background {
+                        GeometryReader { geometry in
+                            Color.clear.onChange(of: geometry.size) { _, _ in
+                                scrollToSelectedDay(using: proxy)
                             }
                         }
-                }
-                .scrollIndicators(.hidden)
-                .background {
-                    GeometryReader { geometry in
-                        Color.clear.onChange(of: geometry.size) { _, _ in
-                            scrollToSelectedDay(using: proxy)
-                        }
+                    }
+            }
+            .scrollIndicators(.hidden)
+            .scrollBounceBehavior(.basedOnSize, axes: .horizontal)
+            .background {
+                GeometryReader { geometry in
+                    Color.clear.onChange(of: geometry.size) { _, _ in
+                        scrollToSelectedDay(using: proxy)
                     }
                 }
-                .onAppear {
-                    scrollToSelectedDay(using: proxy)
-                }
-                .onChange(of: selectedDay) { _, _ in
-                    scrollToSelectedDay(using: proxy)
-                }
-                .onChange(of: dates) { _, _ in
-                    scrollToSelectedDay(using: proxy)
-                }
+            }
+            .onAppear {
+                scrollToSelectedDay(using: proxy)
+            }
+            .onChange(of: selectedDay) { _, _ in
+                scrollToSelectedDay(using: proxy)
+            }
+            .onChange(of: dates) { _, _ in
+                scrollToSelectedDay(using: proxy)
             }
         }
         .fixedSize(horizontal: false, vertical: true)
@@ -65,25 +64,20 @@ struct DaySelector: View {
     }
 
     private var dayButtons: some View {
-        HStack(spacing: 8) {
+        HStack(spacing: 10) {
 
             ForEach(dates, id: \.self) { date in
-                Button(action: {
-                    onSelectDate(date)
-                }) {
-                    DayItem(date: date, isActive: isSameDay(lhs: date, rhs: selectedDate))
-                        .frame(maxWidth: .infinity)
-                        .contentShape(Rectangle())
+                DayItem(date: date, isActive: isSameDay(lhs: date, rhs: selectedDate)) {
+                    withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.25)) {
+                        onSelectDate(date)
+                    }
                 }
-                .buttonStyle(.plain)
-                .contentShape(Rectangle())
-                .accessibilityIdentifier("DayItem-\(date.formatted(.dateTime.year().month().day()))")
-                .accessibilityLabel(Text(date, format: .dateTime.weekday(.wide).day().month()))
-                .accessibilityAddTraits(isSameDay(lhs: date, rhs: selectedDate) ? .isSelected : [])
                 .id(date)
             }
 
         }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 8)
     }
 
     private func isSameDay(lhs: Date, rhs: Date) -> Bool {
@@ -117,8 +111,6 @@ struct DaySelector_Previews: PreviewProvider {
 
     private static func preview(width: CGFloat, textSize: DynamicTypeSize) -> some View {
         DaySelector(selectedDate: dates[1], dates: dates, onSelectDate: { _ in })
-            .padding(.horizontal)
-            .padding(.vertical, 8)
             .frame(width: width)
             .dynamicTypeSize(textSize)
             .previewLayout(.sizeThatFits)

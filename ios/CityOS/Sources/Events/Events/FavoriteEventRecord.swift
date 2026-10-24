@@ -63,9 +63,7 @@ nonisolated public extension Optional where Wrapped == Date {
         let calendar = Calendar.autoupdatingCurrent
         let startOfDay = calendar.startOfDay(for: date)
         
-        guard let offsetDate = calendar.date(byAdding: .second, value: acceptedOffset, to: startOfDay) else { return nil }
-        
-        if (startOfDay...offsetDate).contains(date) {
+        if date.timeIntervalSince(startOfDay) <= TimeInterval(acceptedOffset) {
             date = calendar.date(byAdding: .day, value: -1, to: date) ?? date
         }
         

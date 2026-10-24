@@ -107,6 +107,7 @@ public class ModernEventDetailViewController: DefaultHostingController {
             target: self,
             action: #selector(toggleLike)
         )
+        likeBarButtonItem?.accessibilityIdentifier = "EventDetail.Favorite"
         
         rightBarButtonsItems.append(likeBarButtonItem!)
 
@@ -202,6 +203,11 @@ public class ModernEventDetailViewController: DefaultHostingController {
         let imageName = isLiked ? "heart.fill" : "heart"
 
         self.likeBarButtonItem?.image = UIImage(systemName: imageName)
+        if isLiked {
+            self.likeBarButtonItem?.accessibilityTraits.insert(.selected)
+        } else {
+            self.likeBarButtonItem?.accessibilityTraits.remove(.selected)
+        }
 
     }
     

@@ -1,5 +1,5 @@
 //
-//  DaySelector.swift
+//  DayItem.swift
 //  
 //
 //  Created by Lennart Fischer on 11.04.23.
@@ -8,56 +8,62 @@
 import SwiftUI
 
 struct DayItem: View {
-    
-    var date: Date
-    var isActive: Bool = false
-    
+
+    let date: Date
+    var isActive = false
+    var onSelect: () -> Void = {}
+
     @Environment(\.colorScheme) private var colorScheme
-    @ScaledMetric(relativeTo: .callout) private var circleDiameter: CGFloat = 44
-    
+
     var body: some View {
-        
-        VStack(alignment: .center, spacing: 4) {
-            
-            Text(date, format: .dateTime.day())
-            .font(.callout)
-            .fontWeight(.bold)
-            .monospacedDigit()
-            .foregroundColor(.primary)
-            .lineLimit(1)
-            .fixedSize()
-            .frame(width: max(44, circleDiameter), height: max(44, circleDiameter))
-            .background(alignment: .center) {
-                Circle()
-                    .fill(isActive ? activeColor : Color.tertiarySystemFill)
+        styledButton
+            .buttonBorderShape(.capsule)
+            .controlSize(.large)
+            .tint(.primary)
+            .frame(minWidth: 44, minHeight: 44)
+            .accessibilityIdentifier(EventDayAccessibilityIdentifier.day(date))
+            .accessibilityLabel(Text(date, format: .dateTime.weekday(.wide).day().month()))
+            .accessibilityAddTraits(isActive ? .isSelected : [])
+    }
+
+    @ViewBuilder
+    private var styledButton: some View {
+        if #available(iOS 26.0, macOS 26.0, tvOS 26.0, watchOS 26.0, *) {
+            if isActive {
+                button
+                    .buttonStyle(.glassProminent)
+                    .foregroundStyle(selectedForeground)
+            } else {
+                button
+                    .buttonStyle(.glass)
+                    .foregroundStyle(.primary)
             }
-            
-            Text(date, format: .dateTime.weekday(.abbreviated))
-            .font(.caption)
-            .fontWeight(.semibold)
-            .foregroundColor(.primary)
-            .lineLimit(1)
-            .fixedSize()
-            
+        } else if isActive {
+            button
+                .buttonStyle(.borderedProminent)
+                .foregroundStyle(selectedForeground)
+        } else {
+            button
+                .buttonStyle(.bordered)
+                .foregroundStyle(.primary)
         }
-        .frame(minWidth: max(44, circleDiameter))
-        .fixedSize()
-        
     }
-    
-    var activeColor: Color {
-        
-        switch colorScheme {
-            case .light:
-                return Color.yellow.opacity(0.2)
-            case .dark:
-                return Color.yellow.opacity(0.3)
-            @unknown default:
-                return Color.yellow.opacity(0.2)
+
+    private var button: some View {
+        Button(action: onSelect) {
+            Text(date, format: .dateTime.weekday(.abbreviated).day())
+                .font(.body.weight(.semibold))
+                .monospacedDigit()
+                .lineLimit(1)
+                .fixedSize()
+                .frame(minHeight: 28)
         }
-        
     }
-    
+
+    private var selectedForeground: Color {
+        colorScheme == .dark ? .black : .white
+    }
+
 }
 
 struct DayItem_Previews: PreviewProvider {

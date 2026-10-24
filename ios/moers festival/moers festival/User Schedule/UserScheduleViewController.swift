@@ -1,439 +1,273 @@
-//
-//  UserScheduleViewController.swift
-//  moers festival
-//
-//  Created by Lennart Fischer on 22.04.24.
-//  Copyright © 2024 Code for Niederrhein. All rights reserved.
-//
-
 import UIKit
 import SwiftUI
 import FactoryKit
 import Events
 import Combine
-import OrderedCollections
 
-final class FilterBox: ObservableObject {
-    @Published var filter: EventFilter
-    init(filter: EventFilter) {
-        self.filter = filter
-    }
+final class UserScheduleViewController: UIViewController, UICollectionViewDelegateFlowLayout {
+    @LazyInjected(\.favoriteEventsStore) private var favoriteEventsStore
 
-    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
-    nonisolated deinit {}
-}
-
-class UserScheduleViewController: UIViewController, UICollectionViewDelegate {
-
-    @LazyInjected(\.favoriteEventsStore) var favoriteEventsStore
-    
     @PersistedFilter(key: "favoritesFilter") var filter: EventFilter {
-        didSet {
-            self.reload()
-        }
+        didSet { reload() }
     }
-    
-    var dataSource: UICollectionViewDiffableDataSource<UserScheduleSection, UserScheduleItem>?
-    var cancellables = Set<AnyCancellable>()
-    private var favoritesCancellable: AnyCancellable?
-    private var filterCancellable: AnyCancellable?
-    private var eventViewModelsByID: [UUID: EventListItemViewModel] = [:]
 
     var onShowEvent: ((Event.ID) -> Void)?
-    
-    let dateComponentsFormatter = DateComponentsFormatter()
-    
-    lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: setupCollectionViewLayout())
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        return collectionView
+    private(set) var days: [UserScheduleDay] = []
+    private(set) var selectedDay: UserScheduleDay?
+
+    private var favorites: [FavoriteEventInfo] = []
+    private var modelsByEventID: [Event.ID: EventListItemViewModel] = [:]
+    private var eventsByDay: [UserScheduleDay: [EventListItemViewModel]] = [:]
+    private var favoritesCancellable: AnyCancellable?
+    private var filterCancellable: AnyCancellable?
+    private var dataSource: UICollectionViewDiffableDataSource<Int, UserScheduleDay>!
+    private let topAccessory = TimetableTopAccessoryView()
+    private var palette: UIView?
+    private var paletteHeight: CGFloat = 0
+    private var lastPageSize: CGSize = .zero
+
+    private(set) lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.isPagingEnabled = true
+        collection.showsHorizontalScrollIndicator = false
+        collection.contentInsetAdjustmentBehavior = .never
+        collection.backgroundColor = .systemBackground
+        collection.delegate = self
+        return collection
     }()
-    
+
     private lazy var mainStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [filterBar, collectionView])
+        let stack = UIStackView(arrangedSubviews: [collectionView])
         stack.axis = .vertical
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
-    private lazy var filterBar: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .clear
-        view.isHidden = true
-        
-        let icon = UIImageView(image: UIImage(systemName: "line.3.horizontal.decrease.circle.fill"))
-        icon.tintColor = AppColors.navigationAccent
-        icon.contentMode = .scaleAspectFit
-        icon.translatesAutoresizingMaskIntoConstraints = false
-        
-        let label = UILabel()
-        label.text = EventPackageStrings.filterActive
-        label.font = .preferredFont(forTextStyle: .subheadline)
-        label.textColor = .secondaryLabel
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        let button = UIButton(type: .system)
-        button.setTitle(EventPackageStrings.clearFilter, for: .normal)
-        button.titleLabel?.font = .preferredFont(forTextStyle: .subheadline).bold()
-        button.addTarget(self, action: #selector(clearFilter), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        let stack = UIStackView(arrangedSubviews: [icon, label, UIView(), button])
-        stack.axis = .horizontal
-        stack.spacing = 8
-        stack.alignment = .center
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(stack)
-        
-        NSLayoutConstraint.activate([
-            stack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            stack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            stack.topAnchor.constraint(equalTo: view.topAnchor, constant: 8),
-            stack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8),
-            
-            icon.widthAnchor.constraint(equalToConstant: 20),
-            icon.heightAnchor.constraint(equalToConstant: 20)
-        ])
-        
-        return view
-    }()
-    
-    // MARK: - UIViewController Lifecycle -
-    
+
+    nonisolated deinit {}
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.edgesForExtendedLayout = [.bottom]
-        self.extendedLayoutIncludesOpaqueBars = true
-        
-        self.setupUI()
-        self.setupConstraints()
-        self.setupCollectionViewDataSource()
-        self.setupLoadListeners()
-        
-    }
-    
-    func setupUI() {
-        
-        self.view.backgroundColor = .clear
-        self.view.addSubview(mainStackView)
-        self.collectionView.delegate = self
-        self.collectionView.backgroundColor = .clear
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: filter.isEmpty ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill"),
-            style: .plain,
-            target: self,
-            action: #selector(showFilter)
-        )
-        
-        self.updateFilterBar()
-        
-    }
-    
-    func setupConstraints() {
-        
-        let constraints = [
-            mainStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            mainStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
-            mainStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            mainStackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
-        
-    }
-    
-    @objc func clearFilter() {
-        self.filter = .empty
-    }
-    
-    @objc func showFilter() {
-        
-        let box = FilterBox(filter: self.filter)
-        
-        filterCancellable = box.$filter
-            .removeDuplicates()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] newFilter in
-                // We update our local filter when the box changes.
-                // This triggers the PersistedFilter setter.
-                self?.filter = newFilter
-            }
-        
-        let filterView = EventFilterSheetWrapper(box: box, isFavoritesFilterEnabled: false)
-        
-        let hostingController = UIHostingController(rootView: filterView)
-        self.present(hostingController, animated: true)
-        
-    }
-    
-    func reload() {
-        
-        self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: filter.isEmpty ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
-        
-        self.updateFilterBar()
-        self.setupLoadListeners()
-        
-    }
-    
-    private func updateFilterBar() {
-        self.filterBar.isHidden = filter.isEmpty
-    }
-    
-    func setupLoadListeners() {
-        
-        favoritesCancellable?.cancel()
-        
+        extendedLayoutIncludesOpaqueBars = true
+        view.backgroundColor = .systemBackground
+        view.addSubview(mainStackView)
+        NSLayoutConstraint.activate([
+            mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            mainStackView.topAnchor.constraint(equalTo: view.topAnchor),
+            mainStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        setupDataSource()
+        setupActions()
+        reload()
         favoritesCancellable = favoriteEventsStore?.observeFavoriteEvents()
-            .sink(receiveCompletion: { (completion: Subscribers.Completion<any Error>) in
-                
-            }, receiveValue: { (events: [FavoriteEventInfo]) in
-                
-                let filteredEvents = events.filter { info in
-                    if self.filter.venueIDs.isEmpty {
-                        return true
-                    }
-                    guard let placeID = info.place?.id else {
-                        return false
-                    }
-                    return self.filter.venueIDs.contains(Int(placeID))
-                }
-                
-                if filteredEvents.isEmpty {
-                    self.eventViewModelsByID = [:]
-                    
-                    var snapshot = NSDiffableDataSourceSnapshot<UserScheduleSection, UserScheduleItem>()
-                    snapshot.appendSections([.empty])
-                    snapshot.appendItems([.placeholder])
-                    self.dataSource?.apply(snapshot)
-                    
-                } else {
-                
-                    var eventViewModelsByID: [UUID: EventListItemViewModel] = [:]
-                    let groupedDictionary = OrderedDictionary(grouping: filteredEvents) { element in
-                        element.event.startDate.getDateForGroup(acceptedOffset: 3 * 60 * 60)
-                    }
-                        .mapValues {
-                            $0.map {
-                                let viewModel = EventListItemViewModel(
-                                    eventID: $0.event.toBase().id,
-                                    title: $0.event.toBase().name,
-                                    startDate: $0.event.toBase().startDate,
-                                    endDate: $0.event.toBase().endDate,
-                                    location: $0.place?.name,
-                                    media: nil,
-                                    isOpenEnd: $0.event.toBase().extras?.openEnd ?? false,
-                                    isLiked: true,
-                                    scheduleDisplayMode: $0.event.toBase().scheduleDisplayMode
-                                )
-                                eventViewModelsByID[viewModel.id] = viewModel
-                                return UserScheduleItem.event(viewModel.id)
-                            }
-                        }
-                    self.eventViewModelsByID = eventViewModelsByID
-                    
-                    var snapshot = NSDiffableDataSourceSnapshot<UserScheduleSection, UserScheduleItem>()
-                    
-                    for (key, value) in groupedDictionary {
-                        
-                        snapshot.appendSections([.main(key)])
-                        snapshot.appendItems(value)
-                        
-                    }
-                    
-                    self.dataSource?.apply(snapshot)
-                    
-                }
-                
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] events in
+                self?.favorites = events
+                self?.reload()
             })
-        
     }
-    
-    // MARK: - List -
-    
-    func setupCollectionViewLayout() -> UICollectionViewCompositionalLayout {
-        let layout = UICollectionViewCompositionalLayout { _, environment -> NSCollectionLayoutSection? in
-            
-            var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
-            configuration.headerMode = .supplementary
-            
-            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
-            
-            let headerElement = NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: headerSize,
-                elementKind: UICollectionView.elementKindSectionHeader,
-                alignment: .top
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updatePaletteHeight()
+        if collectionView.bounds.size != lastPageSize {
+            lastPageSize = collectionView.bounds.size
+            collectionView.collectionViewLayout.invalidateLayout()
+            collectionView.layoutIfNeeded()
+            scrollToSelection(animated: false)
+        }
+    }
+
+    private func setupDataSource() {
+        let registration = UICollectionView.CellRegistration<TimetableDayPageCell, UserScheduleDay> { [weak self] cell, _, day in
+            guard let self else { return }
+            cell.configure(
+                events: self.eventsByDay[day] ?? [],
+                isFilterActive: !self.filter.isEmpty,
+                displayMode: .compact,
+                showsFavoriteIcon: false,
+                onSelectEvent: { [weak self] eventID in self?.showEvent(eventID) }
             )
-            
-            headerElement.pinToVisibleBounds = true
-            headerElement.extendsBoundary = true
-            headerElement.zIndex = 100000
-            
-            let section = NSCollectionLayoutSection.list(
-                using: configuration,
-                layoutEnvironment: environment
-            )
-            section.boundarySupplementaryItems = [headerElement]
-            
-            let separatorConfiguration = UIListSeparatorConfiguration(listAppearance: .plain)
-            
-            configuration.separatorConfiguration = separatorConfiguration
-            
-            return section
-            
         }
-        return layout
+        dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { collection, indexPath, day in
+            collection.dequeueConfiguredReusableCell(using: registration, for: indexPath, item: day)
+        }
     }
-    
-    func setupCollectionViewDataSource() {
-        
-        dateComponentsFormatter.allowedUnits = [.day, .month, .year]
-        dateComponentsFormatter.unitsStyle = .full
-        
-        let eventCellRegistration = UICollectionView.CellRegistration<UICollectionViewCell, EventListItemViewModel> { cell, indexPath, item in
-            cell.contentConfiguration = UIHostingConfiguration {
-                
-                EventListItem(viewModel: item)
-                    .showFavoriteIcon(false)
-                
-            }
-            cell.backgroundConfiguration = .listPlainCell()
-            
-        }
-        
-        let placeholderCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, String> { cell, indexPath, hint in
-            var content = UIListContentConfiguration.cell()
-            content.text = hint
-            content.textProperties.color = .secondaryLabel
-            content.textProperties.alignment = .center
-            content.image = UIImage(systemName: "heart.slash")
-            content.imageProperties.tintColor = .secondaryLabel
-            content.imageToTextPadding = 12
-            cell.contentConfiguration = content
-        }
-        
-        let headerRegistration = UICollectionView.SupplementaryRegistration<UICollectionViewListCell>(
-            elementKind: UICollectionView.elementKindSectionHeader
-        ) { [unowned self] (headerView, elementKind, indexPath) in
-            
-            // Obtain header item using index path
-            let headerItem = self.dataSource!.snapshot().sectionIdentifiers[indexPath.section]
-            
-            // Configure header view content based on headerItem
-            var configuration = headerView.defaultContentConfiguration()
-            
-            switch headerItem {
-                case .main(let dateComponents):
-                    if let dateComponents {
-                        configuration.text = self.format(dateComponents: dateComponents)
-                    } else {
-                        configuration.text = EventPackageStrings.notYetScheduled
-                    }
-                case .empty:
-                    break
-                
-            }
-            
-            // Apply the configuration to header view
-            headerView.contentConfiguration = configuration
-            
-        }
-        
-        /// Create a datasource and connect it to  collection view `collectionView`
-        dataSource = UICollectionViewDiffableDataSource<UserScheduleSection, UserScheduleItem>(
-            collectionView: collectionView
-        ) { (collectionView: UICollectionView, indexPath: IndexPath, item: UserScheduleItem) -> UICollectionViewCell? in
-            
-            switch item {
-            case .event(let eventViewModelID):
-                guard let eventViewModel = self.eventViewModelsByID[eventViewModelID] else {
-                    return nil
-                }
-                let cell = collectionView.dequeueConfiguredReusableCell(
-                    using: eventCellRegistration,
-                    for: indexPath,
-                    item: eventViewModel
-                )
-                return cell
-            case .placeholder:
-                let message = self.filter.isEmpty ? String(localized: "No event has been marked as a favorite yet.") : EventPackageStrings.noFavoriteEventsForFilter
-                let cell = collectionView.dequeueConfiguredReusableCell(
-                    using: placeholderCellRegistration,
-                    for: indexPath,
-                    item: message
-                )
-                return cell
-            }
-            
-        }
-        
-        dataSource!.supplementaryViewProvider = { [unowned self]
-            (collectionView, elementKind, indexPath) -> UICollectionReusableView? in
-            
-            if elementKind == UICollectionView.elementKindSectionHeader {
-                
-                // Dequeue header view
-                return self.collectionView.dequeueConfiguredReusableSupplementary(
-                    using: headerRegistration, 
-                    for: indexPath
-                )
-                
-            }
-            
-            return nil
-            
-        }
-        
+
+    private func setupActions() {
+        let filterButton = UIBarButtonItem(
+            image: UIImage(systemName: "line.3.horizontal.decrease.circle"),
+            primaryAction: UIAction { [weak self] _ in self?.showFilter() }
+        )
+        filterButton.accessibilityLabel = EventPackageStrings.filter
+        navigationItem.rightBarButtonItem = filterButton
+        topAccessory.onClearFilter = { [weak self] in self?.filter = .empty }
+        topAccessory.bubbleView.onSelectDate = { [weak self] date in self?.selectDay(.scheduled(date)) }
+        topAccessory.bubbleView.onSelectUnscheduled = { [weak self] in self?.selectDay(.unscheduled) }
     }
-    
-    // MARK: - UICollectionViewDelegate -
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let item = dataSource?.itemIdentifier(for: indexPath)
-        
-        guard case .event(let eventViewModelID) = item else { return }
-        guard let eventViewModel = eventViewModelsByID[eventViewModelID] else { return }
-        
-        guard let eventID = eventViewModel.eventID else { return }
-        
+
+    func reload() {
+        guard isViewLoaded else { return }
+        let visibleFavorites = favorites.filter { info in
+            if filter.venueIDs.isEmpty { return true }
+            guard let placeID = info.place?.id else { return false }
+            return filter.venueIDs.contains(Int(placeID))
+        }
+        var grouped: [UserScheduleDay: [EventListItemViewModel]] = [:]
+        var currentModels: [Event.ID: EventListItemViewModel] = [:]
+        for info in visibleFavorites {
+            let event = info.event.toBase()
+            let model = modelsByEventID[event.id] ?? EventListItemViewModel(eventID: event.id, title: event.name)
+            model.title = event.name
+            model.startDate = event.startDate
+            model.endDate = event.endDate
+            model.location = info.place?.name
+            model.isOpenEnd = event.extras?.openEnd ?? false
+            model.scheduleDisplayMode = event.scheduleDisplayMode
+            model.isLiked = true
+            currentModels[event.id] = model
+            grouped[UserScheduleDay(startDate: event.startDate), default: []].append(model)
+        }
+        modelsByEventID = currentModels
+        eventsByDay = grouped
+        days = grouped.keys.sorted { ($0.date ?? .distantFuture) < ($1.date ?? .distantFuture) }
+        if selectedDay.map({ !days.contains($0) }) ?? true {
+            selectedDay = days.first
+        }
+        updateAccessory()
+        updateEmptyState()
+        var snapshot = NSDiffableDataSourceSnapshot<Int, UserScheduleDay>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(days)
+        snapshot.reconfigureItems(days)
+        dataSource.apply(snapshot, animatingDifferences: false) { [weak self] in
+            self?.scrollToSelection(animated: false)
+            self?.updateContentScrollView()
+        }
+    }
+
+    func selectDay(_ day: UserScheduleDay) {
+        guard days.contains(day) else { return }
+        selectedDay = day
+        topAccessory.bubbleView.setSelectedDate(day.date, animated: !UIAccessibility.isReduceMotionEnabled)
+        scrollToSelection(animated: !UIAccessibility.isReduceMotionEnabled)
+    }
+
+    private func updateAccessory() {
+        let isFilterActive = !filter.isEmpty
+        navigationItem.rightBarButtonItem?.image = UIImage(systemName: isFilterActive
+            ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease.circle")
+        topAccessory.setFilterActive(isFilterActive)
+        topAccessory.bubbleView.isHidden = days.isEmpty
+        topAccessory.bubbleView.setDates(
+            days.compactMap(\.date),
+            selectedDate: selectedDay?.date,
+            includesUnscheduled: days.contains(.unscheduled)
+        )
+        if !days.isEmpty || isFilterActive {
+            if palette == nil {
+                palette = NavigationBarPalette.make(contentView: topAccessory, preferredHeight: accessoryHeight())
+                navigationItem.timetableBottomPalette = palette
+            }
+        } else {
+            navigationItem.timetableBottomPalette = nil
+            palette = nil
+            paletteHeight = 0
+        }
+        updatePaletteHeight()
+    }
+
+    private func accessoryHeight() -> CGFloat {
+        topAccessory.systemLayoutSizeFitting(
+            CGSize(width: view.bounds.width, height: UIView.layoutFittingCompressedSize.height),
+            withHorizontalFittingPriority: .required,
+            verticalFittingPriority: .fittingSizeLevel
+        ).height
+    }
+
+    private func updatePaletteHeight() {
+        guard let palette else { return }
+        let height = accessoryHeight()
+        guard abs(height - paletteHeight) > 0.5 else { return }
+        paletteHeight = height
+        NavigationBarPalette.setPreferredHeight(height, of: palette)
+    }
+
+    private func updateEmptyState() {
+        guard days.isEmpty else {
+            collectionView.backgroundView = nil
+            return
+        }
+        var configuration = UIContentUnavailableConfiguration.empty()
+        configuration.image = UIImage(systemName: "heart.slash")
+        configuration.text = filter.isEmpty
+            ? String(localized: "No event has been marked as a favorite yet.")
+            : EventPackageStrings.noFavoriteEventsForFilter
+        collectionView.backgroundView = UIContentUnavailableView(configuration: configuration)
+    }
+
+    private var currentPageIndex: Int? {
+        collectionView.indexPathForItem(at: CGPoint(x: collectionView.bounds.midX, y: collectionView.bounds.midY))?.item
+    }
+
+    private func scrollToSelection(animated: Bool) {
+        guard !collectionView.isDragging, !collectionView.isDecelerating,
+              collectionView.bounds.width > 0, let selectedDay,
+              let index = dataSource.snapshot().itemIdentifiers.firstIndex(of: selectedDay) else { return }
+        let selectedOffset = CGFloat(index) * collectionView.bounds.width
+        if abs(collectionView.contentOffset.x - selectedOffset) > 0.5 {
+            collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: animated)
+        }
+        if !animated { updateContentScrollView() }
+    }
+
+    private func updateContentScrollView() {
+        guard let index = currentPageIndex,
+              let cell = collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? TimetableDayPageCell else { return }
+        setContentScrollView(cell.listView)
+    }
+
+    private func showEvent(_ eventID: Event.ID) {
         if let onShowEvent {
             onShowEvent(eventID)
         } else {
-            let detailController = ModernEventDetailViewController(
-                eventID: eventID
-            )
-            
-            self.navigationController?.pushViewController(detailController, animated: true)
+            navigationController?.pushViewController(ModernEventDetailViewController(eventID: eventID), animated: true)
         }
-        
-        collectionView.deselectItem(at: indexPath, animated: true)
-        
-    }
-    
-    // MARK: - Helpers -
-    
-    private func format(dateComponents: DateComponents) -> String {
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .none
-        
-        dateFormatter.locale = Locale.autoupdatingCurrent
-        
-        // Format the date components into a localized string
-        if let date = Calendar.autoupdatingCurrent.date(from: dateComponents) {
-            return date.formatted(.dateTime.day().month().year().weekday(.wide))
-        } else {
-            return ""
-        }
-        
     }
 
-    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
-    nonisolated deinit {}
+    private func showFilter() {
+        let box = FilterBox(filter: filter)
+        filterCancellable = box.$filter.removeDuplicates().receive(on: DispatchQueue.main).sink { [weak self] value in
+            self?.filter = value
+        }
+        present(UIHostingController(rootView: EventFilterSheetWrapper(box: box, isFavoritesFilterEnabled: false)), animated: true)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        collectionView.bounds.size
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView === collectionView, scrollView.isDragging || scrollView.isDecelerating,
+              let index = currentPageIndex, days.indices.contains(index) else { return }
+        selectedDay = days[index]
+        topAccessory.bubbleView.setSelectedDate(selectedDay?.date, animated: false)
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        updateContentScrollView()
+    }
+
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        updateContentScrollView()
+    }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        updateContentScrollView()
+    }
 }
