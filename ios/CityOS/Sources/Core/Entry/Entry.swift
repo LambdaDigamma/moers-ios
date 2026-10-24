@@ -1,6 +1,6 @@
 //
 //  Entry.swift
-//  MMAPI
+//  API
 //
 //  Created by Lennart Fischer on 05.04.19.
 //  Copyright © 2019 LambdaDigamma. All rights reserved.
@@ -139,7 +139,7 @@ nonisolated public final class Entry: NSObject, Decodable, Location, Model {
     // MARK: - Categorizable
     
     public var category: String { return "Entry" }
-    public var localizedCategory: String { return "Eintrag" } // TODO: Localize this
+    public var localizedCategory: String { return String(localized: "Entry", bundle: .module) } // TODO: Localize this
     
     // MARK: - Fuse
     

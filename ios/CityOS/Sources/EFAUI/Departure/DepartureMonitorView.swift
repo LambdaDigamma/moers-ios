@@ -61,8 +61,7 @@ public struct DepartureMonitorView: View {
             HStack {
                 
                 HStack {
-                    Text("zuletzt aktualisiert: ") +
-                    Text(viewModel.date, style: .relative)
+                    Text("Last updated: \(Text(viewModel.date, style: .relative))", bundle: .module)
                 }
                 .layoutPriority(100)
                 

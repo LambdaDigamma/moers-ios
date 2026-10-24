@@ -10,26 +10,46 @@ import Foundation
 import SafariServices
 import INSPhotoGallery
 import AppScaffold
-import MMEvents
+import Events
 import SwiftUI
 
 public class OtherCoordinator: Coordinator {
     
     public var navigationController: CoordinatedNavigationController
-    public var rootViewController: UIViewController { navigationController }
+    private let adaptiveSplitViewController: AdaptiveTabSplitViewController
+    public var rootViewController: UIViewController { adaptiveSplitViewController }
     public var tabBarItem: UITabBarItem? { rootViewController.tabBarItem }
+
+    public var activeNavigationController: UINavigationController {
+        adaptiveSplitViewController.activeNavigationController
+    }
+
+    var selectedDetailViewController: UIViewController? { adaptiveSplitViewController.selectedDetailViewController }
+    var showsDetailColumn: Bool { adaptiveSplitViewController.showsDetailColumn }
     
     public init(navigationController: CoordinatedNavigationController = CoordinatedNavigationController()) {
         
         self.navigationController = navigationController
-        
+        navigationController.menuItem = Self.makeMenuItem()
+        self.adaptiveSplitViewController = AdaptiveTabSplitViewController(
+            overviewNavigationController: navigationController,
+            emptyDetailFactory: {
+                SplitDetailPlaceholderViewController(message: String(localized: "Select a topic to view its details."))
+            }
+        )
         self.navigationController.navigationBar.prefersLargeTitles = true
         self.navigationController.coordinator = self
-        self.navigationController.menuItem = makeMenuItem()
         
         let otherViewController = OtherViewController()
         
         otherViewController.coordinator = self
+        adaptiveSplitViewController.onDetailPresentationChange = { [weak otherViewController] in
+            otherViewController?.updateSelection()
+            otherViewController?.restoreScrollPosition()
+        }
+        adaptiveSplitViewController.onColumnsWillChange = { [weak otherViewController] in
+            otherViewController?.retainScrollPosition()
+        }
         
         self.navigationController.viewControllers = [otherViewController]
         
@@ -101,13 +121,13 @@ public class OtherCoordinator: Coordinator {
         
         let viewController = AboutController(coordinator: self)
         
-        self.navigationController.pushViewController(viewController, animated: true)
+        adaptiveSplitViewController.setDetail({ viewController })
         
     }
     
     public func showLegal() {
         
-        self.showBrowser(with: URL(string: "https://www.moers-festival.de/start/impressum/")!)
+        showPage(url: URL(string: "https://www.moers-festival.de/start/impressum/")!)
         
     }
     
@@ -118,7 +138,7 @@ public class OtherCoordinator: Coordinator {
         
         viewController.coordinator = self
         
-        self.navigationController.pushViewController(viewController, animated: true)
+        adaptiveSplitViewController.setDetail({ viewController })
         
     }
 
@@ -126,7 +146,7 @@ public class OtherCoordinator: Coordinator {
 
         let viewController = DebugFCMTokenViewController()
 
-        self.navigationController.pushViewController(viewController, animated: true)
+        adaptiveSplitViewController.setDetail({ viewController })
 
     }
     
@@ -158,7 +178,7 @@ public class OtherCoordinator: Coordinator {
         
         viewController.navigationItem.largeTitleDisplayMode = .never
         
-        self.navigationController.pushViewController(viewController, animated: true)
+        adaptiveSplitViewController.setDetail({ viewController })
         
     }
     
@@ -171,28 +191,30 @@ public class OtherCoordinator: Coordinator {
     }
     
     // MARK: - Utility
+
+    public func showOverview(animated: Bool = false) {
+        rootViewController.dismiss(animated: false)
+        adaptiveSplitViewController.showEmptyDetail(animated: animated)
+    }
+
+    public func showPage(url: URL) {
+        adaptiveSplitViewController.setDetail({ makeWebViewController(url: url) })
+    }
+
+    private func makeWebViewController(url: URL) -> FallbackWebViewController {
+        let controller = FallbackWebViewController(url: url)
+        controller.navigationItem.largeTitleDisplayMode = .never
+        controller.navigationCallback = { [weak self, weak controller] nextURL in
+            guard let self, let controller else { return }
+            self.adaptiveSplitViewController.pushDetail({ self.makeWebViewController(url: nextURL) }, from: controller)
+        }
+        return controller
+    }
     
     private func push(viewController: UIViewController.Type) {
         
         let vc = viewController.init()
         self.navigationController.pushViewController(vc, animated: true)
-        
-    }
-    
-    private func showBrowser(with url: URL) {
-        
-        let config = SFSafariViewController.Configuration()
-        
-        config.barCollapsingEnabled = true
-        
-        let vc = SFSafariViewController(url: url, configuration: config)
-        vc.preferredBarTintColor = UIColor.systemBackground
-        vc.preferredControlTintColor = AppColors.navigationAccent
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            vc.modalPresentationStyle = .formSheet
-        }
-        
-        navigationController.present(vc, animated: true)
         
     }
     
@@ -212,7 +234,7 @@ public class OtherCoordinator: Coordinator {
         
     }
     
-    private func makeMenuItem() -> MenuItem {
+    private static func makeMenuItem() -> MenuItem {
         
         return MenuItem(
             title: AppStrings.Info.shortTitle,
@@ -225,3 +247,17 @@ public class OtherCoordinator: Coordinator {
     // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
     nonisolated deinit {}
 }
+
+#if DEBUG
+#Preview("Info & Tickets, wide", traits: .fixedLayout(width: 951, height: 669)) {
+    let controller = OtherCoordinator().rootViewController
+    controller.traitOverrides.horizontalSizeClass = .regular
+    return controller
+}
+
+#Preview("Info & Tickets, narrow", traits: .fixedLayout(width: 466, height: 678)) {
+    let controller = OtherCoordinator().rootViewController
+    controller.traitOverrides.horizontalSizeClass = .compact
+    return controller
+}
+#endif

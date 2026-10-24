@@ -8,7 +8,7 @@
 import Foundation
 import FactoryKit
 import Core
-import MMPages
+import Pages
 
 public extension Container {
 

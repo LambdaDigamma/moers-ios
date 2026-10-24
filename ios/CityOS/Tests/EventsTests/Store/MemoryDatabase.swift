@@ -1,0 +1,67 @@
+//
+//  MemoryDatabase.swift
+//  
+//
+//  Created by Lennart Fischer on 29.04.23.
+//
+
+import Foundation
+import GRDB
+@testable import Events
+
+nonisolated public final class MemoryDatabase: Sendable {
+    
+    private let definitions: [ApplyTableDefinition]
+    
+    public init(definitions: [ApplyTableDefinition]) {
+        
+        self.definitions = definitions
+        
+    }
+    
+    public func create() -> DatabaseQueue {
+        
+        let configuration = EventSearchDatabaseFunctions.configuration()
+        guard let dbQueue = try? DatabaseQueue(
+            path: ":memory:",
+            configuration: configuration
+        ) else { fatalError() }
+        
+        var migrator = DatabaseMigrator()
+        
+        migrator.registerMigration("migrate") { db in
+            
+            for definition in self.definitions {
+                
+                try db.create(table: definition.tableName, body: { tableDefinition in
+                    definition.apply(to: tableDefinition)
+                })
+                
+            }
+
+            if try db.tableExists(EventTableDefinition.tableName) {
+                try db.alter(table: EventTableDefinition.tableName) { table in
+                    table.add(column: "extras", .text)
+                }
+                try EventSearchViewDefinition.createIfNeeded(in: db)
+            }
+            
+        }
+        
+        try? migrator.migrate(dbQueue)
+        
+        return dbQueue
+        
+    }
+    
+    public static func `default`() -> DatabaseQueue {
+        
+        return MemoryDatabase(definitions: [
+            PlaceTableDefinition(),
+            EventTableDefinition(),
+            FavoriteEventsTableDefinition()
+        ]).create()
+        
+    }
+    
+}

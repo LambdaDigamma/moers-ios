@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MMUI
+import Core
 
 class CardCollectionViewController: UIViewController, UICollectionViewDataSource {
 

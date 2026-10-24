@@ -10,7 +10,6 @@
 import UIKit
 import SwiftUI
 
-@available(iOS 14.0, *)
 extension UIViewController {
     
     /// Add a SwiftUI `View` as a child of the input `UIView`.

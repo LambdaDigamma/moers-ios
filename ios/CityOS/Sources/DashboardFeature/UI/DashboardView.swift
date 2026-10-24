@@ -62,9 +62,7 @@ public struct DashboardView<Content: View>: View {
                         dashboardItem(for: item)
                     }
                     
-                    if #available(iOS 16.0, *) {
 //                        WeatherDashboardView()
-                    }
                     
                     content()
                     

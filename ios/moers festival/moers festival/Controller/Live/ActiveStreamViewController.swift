@@ -8,10 +8,11 @@
 
 import UIKit
 import AVKit
-import MMEvents
+import Events
 import SwiftUI
 import Combine
 import YouTubePlayerKit
+import SafariServices
 
 public class ActiveStreamViewModel: ObservableObject {
     
@@ -33,13 +34,13 @@ public class ActiveStreamViewModel: ObservableObject {
 
 class ActiveStreamViewController: UIViewController {
     
-    private let eventDetailView: MMEvents.EventDetailView
-    private let viewModel: MMEvents.EventDetailsViewModel
+    private let eventDetailView: Events.EventDetailView
+    private let viewModel: Events.EventDetailsViewModel
     
     init() {
         
-        self.viewModel = MMEvents.EventDetailsViewModel(model: nil, config: nil)
-        self.eventDetailView = MMEvents.EventDetailView(viewModel: viewModel)
+        self.viewModel = Events.EventDetailsViewModel(model: nil, config: nil)
+        self.eventDetailView = Events.EventDetailView(viewModel: viewModel)
         
         super.init(nibName: nil, bundle: nil)
         
@@ -47,17 +48,18 @@ class ActiveStreamViewController: UIViewController {
         
     }
     
-    init(stream: MMEvents.ActiveStream) {
+    init(stream: Events.ActiveStream) {
         
-        let config = MMEvents.EventDetailViewConfig(
+        let config = Events.EventDetailViewConfig(
             showImage: false,
             showLocation: false,
             showVideo: true,
-            videoURL: stream.streamURL
+            videoURL: stream.streamURL,
+            showsFestivalSubtitle: true
         )
         
-        self.viewModel = MMEvents.EventDetailsViewModel(model: stream.activeEvent, config: config)
-        self.eventDetailView = MMEvents.EventDetailView(viewModel: viewModel)
+        self.viewModel = Events.EventDetailsViewModel(model: stream.activeEvent, config: config)
+        self.eventDetailView = Events.EventDetailView(viewModel: viewModel)
         
         super.init(nibName: nil, bundle: nil)
         
@@ -73,16 +75,17 @@ class ActiveStreamViewController: UIViewController {
         view = eventDetailView
     }
     
-    public func updateActiveStream(_ stream: MMEvents.ActiveStream) {
+    public func updateActiveStream(_ stream: Events.ActiveStream) {
         
         viewModel.setNewEvent(stream.activeEvent)
         
-        if stream.streamURL != viewModel.config?.videoURL {
-            let config = MMEvents.EventDetailViewConfig(
+        if stream.streamURL != viewModel.config?.videoURL || viewModel.config?.showsFestivalSubtitle != true {
+            let config = Events.EventDetailViewConfig(
                 showImage: false,
                 showLocation: false,
                 showVideo: true,
-                videoURL: stream.streamURL
+                videoURL: stream.streamURL,
+                showsFestivalSubtitle: true
             )
             viewModel.setNewConfig(config)
         }
@@ -114,7 +117,11 @@ class ActiveStreamViewController: UIViewController {
     // MARK: - UI
     
     private func setupUI() {
-        
+        eventDetailView.websiteAction = { [weak self] in
+            guard let self, let url = viewModel.webURL,
+                  ["https", "http"].contains(url.scheme?.lowercased() ?? "") else { return }
+            present(SFSafariViewController(url: url), animated: true)
+        }
     }
     
     private func setupTheming() {
@@ -175,7 +182,7 @@ public struct ActiveStreamScreen: View {
                     case .ready:
                         EmptyView()
                     case .error(_):
-                        Text(verbatim: "YouTube player couldn't be loaded")
+                        Text("YouTube player couldn't be loaded")
                 }
             }
             .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fit)

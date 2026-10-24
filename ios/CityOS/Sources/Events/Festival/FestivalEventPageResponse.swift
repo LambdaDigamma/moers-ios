@@ -1,0 +1,28 @@
+//
+//  FestivalEventPageResponse.swift
+//  
+//
+//  Created by Lennart Fischer on 11.04.23.
+//
+
+import Core
+import Pages
+import Foundation
+@preconcurrency import MediaLibraryKit
+import ModernNetworking
+
+nonisolated public struct FestivalEventPageResponse: Model, Sendable {
+    
+    public let header: Media?
+    public let event: Event?
+    public let page: Pages.Page?
+    public let place: Place?
+    
+    public enum CodingKeys: String, CodingKey {
+        case header = "header"
+        case event = "event"
+        case page = "page"
+        case place = "place"
+    }
+    
+}

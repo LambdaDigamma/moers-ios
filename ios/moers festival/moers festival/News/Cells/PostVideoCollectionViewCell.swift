@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import MMFeeds
+import Feeds
 
 class PostVideoCollectionViewCell: BaseRoundedCardCell {
     

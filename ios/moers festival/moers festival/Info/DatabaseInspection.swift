@@ -9,7 +9,7 @@
 import SwiftUI
 import FactoryKit
 import GRDB
-import MMEvents
+import Events
 
 class DatabaseInspectionViewModel: ObservableObject {
     

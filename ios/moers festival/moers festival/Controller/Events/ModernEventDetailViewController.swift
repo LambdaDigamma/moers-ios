@@ -9,8 +9,8 @@
 import Core
 import UIKit
 import MapKit
-import MMEvents
-import MMPages
+import Events
+import Pages
 import Combine
 import SwiftUI
 import NukeUI

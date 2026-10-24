@@ -8,12 +8,12 @@
 
 import UIKit
 import Core
-import MMEvents
+import Events
 import SwiftUI
 import FactoryKit
 import Combine
 
-protocol NewMapDrawerDelegate: AnyObject {
+protocol FestivalMapDrawerDelegate: AnyObject {
     
     func drawerDidSelectBooth(_ booth: DorfFeature)
     
@@ -27,7 +27,7 @@ class NewMapDrawerViewController: UIViewController {
     
     // MARK: - Properties
     
-    weak var delegate: NewMapDrawerDelegate?
+    weak var delegate: FestivalMapDrawerDelegate?
     
     @LazyInjected(\.placeRepository) var placeRepository
     
@@ -40,6 +40,7 @@ class NewMapDrawerViewController: UIViewController {
     private var booths: [DorfFeature] = []
     private var filteredBooths: [DorfFeature] = []
     private var isExpandedContentVisible = true
+    var onDidAppear: (() -> Void)?
     
     // MARK: - UI Elements
     
@@ -75,6 +76,11 @@ class NewMapDrawerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        onDidAppear?()
+    }
     
     // MARK: - Setup
     
@@ -87,7 +93,6 @@ class NewMapDrawerViewController: UIViewController {
         collectionView.backgroundColor = .clear
         collectionView.isOpaque = false
         
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tabBarController?.tabBar.bounds.height ?? 50, right: 0)
         
     }
     

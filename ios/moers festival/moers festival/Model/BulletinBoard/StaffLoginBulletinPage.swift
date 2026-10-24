@@ -83,7 +83,7 @@ extension StaffLoginBulletinPage: UITextFieldDelegate {
             textInputHandler?(self, textField.text)
         } else {
             descriptionLabel!.textColor = .red
-            descriptionLabel!.text = "You must enter some text to continue."
+            descriptionLabel!.text = String(localized: "You must enter some text to continue.")
             textField.backgroundColor = UIColor.red.withAlphaComponent(0.3)
         }
 

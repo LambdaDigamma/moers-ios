@@ -57,6 +57,7 @@ public struct NewsList: View {
             .background(ApplicationTheme.current.dashboardBackground)
             
         }
+        .inlineLargeNavigation()
         .task {
             await viewModel.load()
         }

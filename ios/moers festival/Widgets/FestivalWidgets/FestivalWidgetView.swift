@@ -174,13 +174,13 @@ struct FestivalWidgetView: View {
 
         return VStack(alignment: .leading, spacing: compactRows ? 8 : 10) {
             if !live.isEmpty {
-                FestivalWidgetSection(title: "Live", accent: .live) {
+                FestivalWidgetSection(title: String(localized: "Live"), accent: .live) {
                     listContent(entryRows: live, compactRows: compactRows)
                 }
             }
 
             if !upcoming.isEmpty {
-                FestivalWidgetSection(title: "Next", accent: .upcoming) {
+                FestivalWidgetSection(title: String(localized: "Next"), accent: .upcoming) {
                     listContent(entryRows: upcoming, compactRows: compactRows)
                 }
             }
@@ -210,7 +210,7 @@ struct FestivalWidgetView: View {
                     }
                 }
             } else {
-                Text(entry.kind == .upcoming ? "No upcoming events" : "No favorite events")
+                Text(entry.kind == .upcoming ? String(localized: "No upcoming events") : String(localized: "No favorite events"))
             }
         }
         .containerBackground(for: .widget) {

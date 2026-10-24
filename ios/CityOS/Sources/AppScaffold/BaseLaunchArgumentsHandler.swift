@@ -10,7 +10,6 @@
 
 import UIKit
 
-@available(iOS 14.0, *)
 open class BaseLaunchArgumentsHandler: @MainActor BootstrappingProcedureStep {
     
     /// Determine whether to remove all user defaults of

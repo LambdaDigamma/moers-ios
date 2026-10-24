@@ -11,7 +11,7 @@ import WhatsNewKit
 import BLTNBoard
 import AppScaffold
 import SwiftUI
-import MMEvents
+import Events
 import Combine
 
 class LaunchInterceptor {

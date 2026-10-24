@@ -30,9 +30,9 @@ nonisolated public struct ITDTripDateTime: Codable, Equatable, Hashable, Sendabl
         public var localized: String {
             switch self {
                 case .arrival:
-                    return "Ankunft"
+                    return String(localized: "Arrival", bundle: .module)
                 case .departure:
-                    return "Abfahrt"
+                    return String(localized: "Departure", bundle: .module)
             }
         }
     }

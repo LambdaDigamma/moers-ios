@@ -10,7 +10,7 @@
 
 import MapKit
 import CoreLocation
-import MMEvents
+import Events
 
 public class VenueAnnotation: NSObject, MKAnnotation, DisplayCacheableAnnotation {
     

@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import MMEvents
-import MMPages
-import MMEvents
+import Events
+import Pages
+import Events
 import AppScaffold
 import Combine
 import SwiftUI
@@ -20,38 +20,40 @@ public class EventCoordinator: SharedCoordinator {
     @LazyInjected(\.pageService) var pageService
     @LazyInjected(\.legacyEventService) var eventService
     
-    private var events: [MMEvents.Event] = []
+    private var events: [Events.Event] = []
     
     private let timetable: TimetableViewController
-    private let adaptiveSplitViewController: AdaptiveTabSplitViewController?
+    private let adaptiveSplitViewController: AdaptiveTabSplitViewController
 
     public override var rootViewController: UIViewController {
-        adaptiveSplitViewController ?? navigationController
+        adaptiveSplitViewController
     }
     
     public override var tabBarItem: UITabBarItem? { rootViewController.tabBarItem }
+
+    public override var activeNavigationController: UINavigationController {
+        currentModalNavigationController ?? adaptiveSplitViewController.activeNavigationController
+    }
     
     public override init(
         navigationController: CoordinatedNavigationController = CoordinatedNavigationController()
     ) {
         
         self.timetable = TimetableViewController()
-        self.adaptiveSplitViewController = UIDevice.current.userInterfaceIdiom == .pad
-            ? AdaptiveTabSplitViewController(
-                overviewNavigationController: navigationController,
-                emptyDetailFactory: Self.makeEmptyDetailViewController
-            )
-            : nil
+        self.adaptiveSplitViewController = AdaptiveTabSplitViewController(
+            overviewNavigationController: navigationController,
+            emptyDetailFactory: Self.makeEmptyDetailViewController
+        )
         
         super.init(navigationController: navigationController)
         
         self.navigationController.navigationBar.prefersLargeTitles = true
         self.navigationController.coordinator = self
         self.navigationController.menuItem = makeMenuItem()
-        self.adaptiveSplitViewController?.tabBarItem = self.navigationController.tabBarItem
-        self.adaptiveSplitViewController?.title = self.navigationController.title
+        self.adaptiveSplitViewController.tabBarItem = self.navigationController.tabBarItem
+        self.adaptiveSplitViewController.title = self.navigationController.title
         
-        self.timetable.title = String.localized("Schedule")
+        self.timetable.title = String(localized: "Schedule")
         self.timetable.searchDetailViewControllerFactory = { [unowned self] eventID in
             self.currentModalNavigationController = self.timetable.presentedViewController as? UINavigationController
             return self.makeEventDetailViewController(eventID: eventID)
@@ -74,28 +76,14 @@ public class EventCoordinator: SharedCoordinator {
             self.makeEventDetailViewController(eventID: eventID)
         }
 
-        if let adaptiveSplitViewController {
-            adaptiveSplitViewController.setDetail(detailFactory, animated: animated)
-        } else if let rootViewController = navigationController.viewControllers.first {
-            let detailViewController = detailFactory()
-
-            if navigationController.viewControllers.count > 1 {
-                navigationController.setViewControllers([rootViewController, detailViewController], animated: animated)
-            } else {
-                navigationController.pushViewController(detailViewController, animated: animated)
-            }
-        }
+        adaptiveSplitViewController.setDetail(detailFactory, animated: animated)
     }
 
     func showOverview(animated: Bool = false) {
-        if let adaptiveSplitViewController {
-            adaptiveSplitViewController.showEmptyDetail(animated: animated)
-        } else {
-            navigationController.popToRootViewController(animated: animated)
-        }
+        adaptiveSplitViewController.showEmptyDetail(animated: animated)
     }
     
-    func showEventDetailViewController(with event: MMEvents.Event) {
+    func showEventDetailViewController(with event: Events.Event) {
         
 //        let detailController = ModernEventDetailViewController(
 //            eventID: event.id,

@@ -1,6 +1,6 @@
 //
 //  PetrolStationTimeEntry.swift
-//  MMAPI
+//  API
 //
 //  Created by Lennart Fischer on 05.04.19.
 //  Copyright © 2019 LambdaDigamma. All rights reserved.

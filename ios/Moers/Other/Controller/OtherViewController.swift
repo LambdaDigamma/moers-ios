@@ -94,6 +94,11 @@ public class OtherViewController: UIViewController {
     private func applyTheming() {
 //        self.tableView.backgroundColor = UIColor.systemBackground
 //        self.tableView.separatorColor = UIColor.separator
+        
+        if #available(iOS 26.0, *) {
+            self.tableView.topEdgeEffect.style = .soft
+        }
+        
     }
 
     private func makeData() -> [TableViewSection] {
@@ -102,9 +107,9 @@ public class OtherViewController: UIViewController {
 
         if FeatureFlags.radioBuergerfunkEnabled {
             sections.append(TableViewSection(
-                title: "Radio",
+                title: String(localized: "Radio"),
                 rows: [
-                    NavigationRow(title: "Bürgerfunk") { [weak self] in
+                    NavigationRow(title: String(localized: "Community radio")) { [weak self] in
                         self?.coordinator?.showBuergerfunk()
                     }
                 ]
@@ -112,9 +117,9 @@ public class OtherViewController: UIViewController {
         }
 
         sections.append(TableViewSection(
-            title: "ÖPNV",
+            title: String(localized: "Public Transport"),
             rows: [
-                NavigationRow(title: "Fahrt planen (Beta)") { [weak self] in
+                NavigationRow(title: String(localized: "Plan a Trip (Beta)")) { [weak self] in
                     self?.coordinator?.showTransportationOverview(animated: true)
                 }
             ]
@@ -135,14 +140,14 @@ public class OtherViewController: UIViewController {
                 NavigationRow(title: String(localized: "Settings")) { [weak self] in
                     self?.coordinator?.showSettings()
                 },
-                NavigationRow(title: "Siri Shortcuts") { [weak self] in
+                NavigationRow(title: String(localized: "Siri Shortcuts")) { [weak self] in
                     self?.coordinator?.showSiriShortcuts()
                 }
             ]
         ))
 
         sections.append(TableViewSection(
-            title: "Info",
+            title: String(localized: "Info"),
             rows: [
                 NavigationRow(title: String(localized: "About")) { [weak self] in
                     self?.coordinator?.showAbout()

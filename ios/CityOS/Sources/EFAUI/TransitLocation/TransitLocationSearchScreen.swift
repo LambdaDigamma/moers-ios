@@ -24,7 +24,7 @@ public enum TransitLocationSearchMode: String, Hashable {
             case .arrival:
                 return String(localized: "To", bundle: .module)
             case .via:
-                return "Via"
+                return String(localized: "Via", bundle: .module)
             case .general:
                 return ""
         }

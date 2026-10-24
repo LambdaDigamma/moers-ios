@@ -32,16 +32,15 @@ let package = Package(
         .library(name: "MapFeature", targets: ["MapFeature"]),
         .library(name: "AppUpdateFeature", targets: ["AppUpdateFeature"]),
         .library(name: "PlaybackKit", targets: ["PlaybackKit"]),
-        .library(name: "MMEvents", targets: ["MMEvents"]),
-        .library(name: "MMPages", targets: ["MMPages"]),
-        .library(name: "MMTours", targets: ["MMTours"]),
-        .library(name: "MMFeeds", targets: ["MMFeeds"]),
+        .library(name: "Events", targets: ["Events"]),
+        .library(name: "Pages", targets: ["Pages"]),
+        .library(name: "Tours", targets: ["Tours"]),
+        .library(name: "Feeds", targets: ["Feeds"]),
         .library(name: "EFAAPI", targets: ["EFAAPI"]),
         .library(name: "EFAUI", targets: ["EFAUI"]),
         .executable(name: "EFACLI", targets: ["EFACLI"]),
         .library(name: "Core", targets: ["Core"]),
-        .library(name: "CoreCache", targets: ["CoreCache"]),
-        .library(name: "Pulley", targets: ["Pulley"])
+        .library(name: "CoreCache", targets: ["CoreCache"])
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-algorithms", from: "1.0.0"),
@@ -94,6 +93,7 @@ let package = Package(
         .target(
             name: "PlaybackKit",
             dependencies: ["Core", .product(name: "FactoryKit", package: "Factory")],
+            resources: [.process("Resources")],
             swiftSettings: settings
         ),
         .testTarget(
@@ -147,6 +147,7 @@ let package = Package(
                 "Core", "FuelFeature", "RubbishFeature", "ParkingFeature", "WeatherFeature",
                 "EFAAPI", "EFAUI"
             ],
+            resources: [.process("Resources")],
             swiftSettings: settings
         ),
         .testTarget(
@@ -188,8 +189,7 @@ let package = Package(
                 .byName(name: "AppScaffold"),
                 .byName(name: "Core"),
                 .byName(name: "TagListView"),
-                .byName(name: "Pulley"),
-.byName(name: "TextFieldEffects"),
+                .byName(name: "TextFieldEffects"),
                 .byName(name: "FuelFeature"),
             ],
             resources: [
@@ -220,12 +220,12 @@ let package = Package(
             swiftSettings: testSettings
         ),
         
-        // ---------------- MMEvents ----------------
+        // ---------------- Events ----------------
         .target(
-            name: "MMEvents",
+            name: "Events",
             dependencies: [
                 "Core",
-                "MMPages",
+                "Pages",
                 "ModernNetworking",
                 "Cache",
                 .product(name: "GRDB", package: "GRDB.swift"),
@@ -238,13 +238,13 @@ let package = Package(
             swiftSettings: settings
         ),
         .testTarget(
-            name: "MMEventsTests",
-            dependencies: ["MMEvents"],
+            name: "EventsTests",
+            dependencies: ["Events"],
             swiftSettings: testSettings
         ),
-        // ---------------- MMPages ----------------
+        // ---------------- Pages ----------------
         .target(
-            name: "MMPages",
+            name: "Pages",
             dependencies: [
                 "Core",
                 "ModernNetworking",
@@ -258,45 +258,48 @@ let package = Package(
                 .product(name: "GRDB", package: "GRDB.swift"),
                 .product(name: "FactoryKit", package: "Factory")
             ],
+            resources: [.process("Resources")],
             swiftSettings: settings
         ),
         .testTarget(
-            name: "MMPagesTests",
-            dependencies: ["MMPages"],
+            name: "PagesTests",
+            dependencies: ["Pages"],
             resources: [
                 .process("Resources")
             ],
             swiftSettings: testSettings
         ),
-        // ---------------- MMTours ----------------
+        // ---------------- Tours ----------------
         .target(
-            name: "MMTours",
+            name: "Tours",
             dependencies: [
                 .byName(name: "Core")
             ],
+            resources: [.process("Resources")],
             swiftSettings: settings
         ),
         .testTarget(
-            name: "MMToursTests",
-            dependencies: ["MMTours"],
+            name: "ToursTests",
+            dependencies: ["Tours"],
             swiftSettings: testSettings
         ),
-        // ---------------- MMFeeds ----------------
+        // ---------------- Feeds ----------------
         .target(
-            name: "MMFeeds",
+            name: "Feeds",
             dependencies: [
                 .byName(name: "Core"),
-                .byName(name: "MMPages"),
+                .byName(name: "Pages"),
                 .product(name: "ModernNetworking", package: "ModernNetworking"),
                 .product(name: "MediaLibraryKit", package: "MediaLibraryKit"),
                 .product(name: "GRDB", package: "GRDB.swift"),
                 .product(name: "Cache", package: "Cache")
             ],
+            resources: [.process("Resources")],
             swiftSettings: settings
         ),
         .testTarget(
-            name: "MMFeedsTests",
-            dependencies: ["MMFeeds"],
+            name: "FeedsTests",
+            dependencies: ["Feeds"],
             resources: [
                 .process("Resources")
             ],
@@ -338,10 +341,6 @@ let package = Package(
                 .copy("Data")
             ],
             swiftSettings: testSettings
-        ),
-        .target(
-            name: "Pulley",
-            swiftSettings: settings
         )
     ],
     swiftLanguageModes: [.v6]

@@ -27,7 +27,7 @@ struct EditDashboardView: View {
             
             Section {
                 Button(action: {}) {
-                    Text("Add")
+                    Text("Add", bundle: .module)
                 }
             }
             

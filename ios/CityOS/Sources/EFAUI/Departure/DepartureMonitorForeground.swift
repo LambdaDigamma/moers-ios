@@ -59,8 +59,7 @@ public struct DepartureMonitorForeground: View {
 //                        .layoutPriority(50)
                 
                 HStack {
-                    Text("Last updated: ", bundle: .module) +
-                    Text(lastUpdatedAt, style: .relative)
+                    Text("Last updated: \(Text(lastUpdatedAt, style: .relative))", bundle: .module)
                 }
 //                .layoutPriority(100)
                 

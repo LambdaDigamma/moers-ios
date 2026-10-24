@@ -160,7 +160,7 @@ public struct TripConfigurationScreen: View {
                 Spacer()
                 
                 Button(action: {}) {
-                    Text("\(String(localized: "All", bundle: .module)) \(Image(systemName: "chevron.right"))")
+                    Text("All \(Image(systemName: "chevron.right"))", bundle: .module)
                         .fontWeight(.semibold)
                 }
                 .foregroundColor(.yellow)
@@ -168,7 +168,7 @@ public struct TripConfigurationScreen: View {
             }.padding(.horizontal)
             
             favoriteRow(
-                title: "Zur Arbeit",
+                title: String(localized: "To work", bundle: .module),
                 origin: "Moers",
                 destination: "Aachen",
                 accentColor: .red,
@@ -176,7 +176,7 @@ public struct TripConfigurationScreen: View {
             )
             
             favoriteRow(
-                title: "Nach Hause",
+                title: String(localized: "To home", bundle: .module),
                 origin: "Aachen",
                 destination: "Moers"
             )

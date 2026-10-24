@@ -11,54 +11,39 @@ import UIKit
 
 public struct UIProperties {
     
-    public static func detailHeight(for location: Location) -> CGFloat {
-    
-        if location is Camera {
-            return 80.0
-        } /*else if location is ParkingLot {
-            return 220.0
-        } */
-        /*else if location is BikeChargingStation {
-            return 520.0
-        } */else if location is Entry {
-            return 720.0
-        } else if location is PetrolStationViewModel {
-            return 250.0
-        } else {
-            return 100.0
-        }
-        
+    public static func symbolName(for location: Location) -> String {
+        if location is Camera { return "camera.fill" }
+        if location is PetrolStationViewModel { return "fuelpump.fill" }
+        return "mappin.circle.fill"
     }
-    
+
+    @MainActor
+    static func listContent(for location: Location) -> UIListContentConfiguration {
+        var content = UIListContentConfiguration.subtitleCell()
+        content.text = location.name
+        content.secondaryText = detailSubtitle(for: location)
+        content.textProperties.numberOfLines = 0
+        content.secondaryTextProperties.numberOfLines = 0
+        content.textProperties.color = .label
+        content.secondaryTextProperties.color = .secondaryLabel
+        content.image = UIImage(systemName: symbolName(for: location))
+        content.imageProperties.tintColor = .tintColor
+        content.imageProperties.preferredSymbolConfiguration = .init(textStyle: .title2)
+        return content
+    }
+
     public static func detailImage(for location: Location) -> UIImage {
         
         if location is Camera {
-            return #imageLiteral(resourceName: "camera")
+            return UIImage(named: "camera") ?? UIImage(systemName: "camera.fill") ?? UIImage()
         }/* else if location is BikeChargingStation {
             return #imageLiteral(resourceName: "ebike")
         }*/ else if location is Entry {
-            return #imageLiteral(resourceName: "entry")
+            return UIImage(named: "entry") ?? UIImage(systemName: "mappin.circle.fill") ?? UIImage()
         } else if location is PetrolStationViewModel {
-            return #imageLiteral(resourceName: "petrol")
+            return UIImage(named: "petrol") ?? UIImage(systemName: "fuelpump.fill") ?? UIImage()
         } else {
             return UIImage()
-        }
-        
-    }
-    
-    @MainActor
-    public static func detailViewController(for location: Location) -> UIViewController {
-        
-        if location is Camera {
-            return DetailCameraViewController()
-        }/* else if location is BikeChargingStation {
-            return UIViewController()
-        }*/ else if location is Entry {
-            return DetailEntryViewController.fromStoryboard()
-        } else if location is PetrolStationViewModel {
-            return UIViewController()
-        } else {
-            return UIViewController()
         }
         
     }

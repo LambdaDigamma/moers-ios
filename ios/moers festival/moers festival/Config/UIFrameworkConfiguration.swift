@@ -1,0 +1,21 @@
+//
+//  UIFrameworkConfiguration.swift
+//  moers festival
+//
+//  Created by Lennart Fischer on 03.01.21.
+//  Copyright © 2021 CodeForNiederrhein. All rights reserved.
+//
+
+import UIKit
+import AppScaffold
+import Core
+
+class UIFrameworkConfiguration: BootstrappingProcedureStep {
+    
+    func execute(with application: UIApplication) {
+        
+    }
+
+    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
+    nonisolated deinit {}
+}

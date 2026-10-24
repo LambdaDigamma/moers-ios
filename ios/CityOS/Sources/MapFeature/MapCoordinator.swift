@@ -19,11 +19,11 @@ public class MapCoordintor: Coordinator {
     
     public var navigationController: CoordinatedNavigationController
     
-    public var rootViewController: UIViewController { navigationController }
+    public var rootViewController: UIViewController { mainViewController }
     
     public var tabBarItem: UITabBarItem? { rootViewController.tabBarItem }
     
-    public var mainViewController: LegacyMainViewController?
+    public let mainViewController: MapContainerViewController
     
     @MainActor
     public init(
@@ -32,29 +32,18 @@ public class MapCoordintor: Coordinator {
     
         self.navigationController = navigationController
         
+        self.mainViewController = MapContainerViewController(panelNavigationController: navigationController)
         self.navigationController.coordinator = self
-        
-        let mapViewController = MapViewController()
-        let contentViewController = SearchDrawerViewController()
-        
-        let mainViewController = LegacyMainViewController(
-            contentViewController: mapViewController,
-            drawerViewController: contentViewController
-        )
-        
-//        let mainViewController = MainMapViewController()
-        
-        mainViewController.navigationItem.largeTitleDisplayMode = .never
+        let mainViewController = self.mainViewController
+
         mainViewController.coordinator = self
         
-        self.navigationController.menuItem = generateMenuItem()
-        
-        self.navigationController.viewControllers = [mainViewController]
-        self.mainViewController = mainViewController
-        
-        Styling.applyStyling(navigationController: navigationController, statusBarStyle: .darkContent)
-        
-        self.navigationController.isNavigationBarHidden = true
+        let menu = generateMenuItem()
+        self.navigationController.menuItem = menu
+        mainViewController.title = menu.title
+        mainViewController.tabBarItem = UITabBarItem(title: menu.title, image: menu.image, tag: 0)
+        mainViewController.tabBarItem.accessibilityLabel = menu.title
+        mainViewController.tabBarItem.accessibilityIdentifier = menu.accessibilityIdentifier
         
     }
     
@@ -71,9 +60,8 @@ public class MapCoordintor: Coordinator {
     @MainActor
     public func showSearch() {
         
-        mainViewController?.setDrawerPosition(position: .open, animated: true)
-        mainViewController?.contentViewController.searchDrawer.searchBar.becomeFirstResponder()
-        
+        mainViewController.showSearch(focusSearch: true)
+
     }
 
     // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.

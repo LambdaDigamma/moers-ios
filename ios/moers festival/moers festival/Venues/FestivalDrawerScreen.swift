@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import MMEvents
+import Events
 
 struct FestivalDrawerScreen: View {
     

@@ -49,7 +49,7 @@ public class EditDashboardViewController: UIViewController {
     
     private func setupUI() {
         
-        self.title = "Edit dashboard"
+        self.title = String(localized: "Edit dashboard", bundle: .module)
         
         self.view.addSubview(collectionView)
         

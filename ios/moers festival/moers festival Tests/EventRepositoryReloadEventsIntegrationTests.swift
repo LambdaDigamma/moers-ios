@@ -7,7 +7,7 @@
 //
 
 import GRDB
-import MMEvents
+import Events
 import XCTest
 @testable import moers_festival
 

@@ -45,7 +45,7 @@ public struct AppUpdateSheetView: View {
                     }
 
                     if let version = presentation.version {
-                        Text("Version \(version)")
+                        Text("Version \(version)", bundle: .module)
                             .font(.footnote.weight(.semibold))
                             .foregroundColor(.secondary)
                             .padding(.horizontal, 10)

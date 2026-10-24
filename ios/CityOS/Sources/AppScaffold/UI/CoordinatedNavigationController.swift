@@ -9,7 +9,6 @@
 
 import UIKit
 
-@available(iOS 14.0, *)
 open class CoordinatedNavigationController: UINavigationController, UINavigationControllerDelegate {
     
     open weak var coordinator: Coordinator?

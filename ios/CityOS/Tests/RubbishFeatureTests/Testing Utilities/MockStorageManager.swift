@@ -1,6 +1,6 @@
 //
 //  MockStorageManager.swift
-//  MMRubbish
+//  Rubbish
 //
 //  Created by Lennart Fischer on 22.07.19.
 //  Copyright © 2019 LambdaDigamma. All rights reserved.

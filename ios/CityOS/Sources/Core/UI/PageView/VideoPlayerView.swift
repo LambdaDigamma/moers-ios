@@ -1,6 +1,6 @@
 //
 //  VideoPlayerView.swift
-//  MMUI
+//  UI
 //
 //  Created by Lennart Fischer on 14.05.20.
 //

@@ -10,7 +10,6 @@
 import UIKit
 
 @MainActor
-@available(iOS 14.0, *)
 public protocol TabRepresentable: AnyObject {
     
     var rootViewController: UIViewController { get }
@@ -20,7 +19,6 @@ public protocol TabRepresentable: AnyObject {
 }
 
 @MainActor
-@available(iOS 14.0, *)
 public final class ViewControllerTab: TabRepresentable {
     
     public let viewController: UIViewController

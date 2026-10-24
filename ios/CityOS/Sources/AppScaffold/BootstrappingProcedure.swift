@@ -9,7 +9,6 @@
 
 import UIKit
 
-@available(iOS 14.0, *)
 public protocol BootstrappingProcedureStep {
     
     func execute(with application: UIApplication)
@@ -18,7 +17,6 @@ public protocol BootstrappingProcedureStep {
 
 public typealias BootstrappingProcedure = [BootstrappingProcedureStep]
 
-@available(iOS 14.0, *)
 public extension Collection where Element == BootstrappingProcedureStep {
     
     func execute(with application: UIApplication) {

@@ -14,7 +14,8 @@
   "testTargets" : [
     {
       "selectedTests" : [
-        "TabBarNavigationUITests"
+        "TabBarNavigationUITests",
+        "EventsNavigationUITests"
       ],
       "target" : {
         "containerPath" : "container:Moers.xcodeproj",

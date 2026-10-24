@@ -9,35 +9,24 @@ import SwiftUI
 import UIKit
 
 struct ReadableContentWidth: ViewModifier {
-    private let measureViewController = UIViewController()
-    
-    #if !os(tvOS)
-    @State private var orientation: UIDeviceOrientation = UIDevice.current.orientation
-    #endif
+    @State private var maximumWidth: CGFloat?
     
     func body(content: Content) -> some View {
-        #if os(tvOS)
-        content.frame(maxWidth: readableWidth())
-        #else
         content
-            .frame(maxWidth: readableWidth(for: orientation))
-            .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-                orientation = UIDevice.current.orientation
+            .frame(maxWidth: maximumWidth)
+            .frame(maxWidth: .infinity)
+            .background {
+                GeometryReader { geometry in
+                    ReadableContentWidthMeasurement { width in
+                        maximumWidth = width
+                    }
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .allowsHitTesting(false)
+                    .accessibilityHidden(true)
+                }
             }
-        #endif
     }
     
-    #if !os(tvOS)
-    private func readableWidth(for _: UIDeviceOrientation) -> CGFloat {
-        readableWidth()
-    }
-    #endif
-
-    private func readableWidth() -> CGFloat {
-        measureViewController.view.frame = UIScreen.main.bounds
-        let readableContentSize = measureViewController.view.readableContentGuide.layoutFrame.size
-        return readableContentSize.width
-    }
 }
 
 public extension View {

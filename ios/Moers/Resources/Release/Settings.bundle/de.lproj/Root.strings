@@ -1,2 +1,3 @@
-"Environment" = "Umgebung";
+/* Settings app captions. Keys match Root.plist. */
+"Version" = "Version";
 "Licenses" = "Lizenzen";

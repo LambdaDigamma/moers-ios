@@ -14,8 +14,8 @@ import ModernNetworking
 import BLTNBoard
 import AppScaffold
 import Combine
-import MMEvents
-import MMFeeds
+import Events
+import Feeds
 import FactoryKit
 
 class ApplicationController: NSObject, ApplicationControlling {
@@ -299,8 +299,7 @@ class ApplicationController: NSObject, ApplicationControlling {
     
     public func openOther(animated: Bool = false) {
         
-        currentOther.navigationController.popToRootViewController(animated: false)
-        currentOther.navigationController.dismiss(animated: false)
+        currentOther.showOverview(animated: animated)
         
         activateTopLevelDestination(.other)
         
@@ -353,7 +352,7 @@ extension Coordinator {
             nextController.navigationItem.largeTitleDisplayMode = .never
             nextController.navigationCallback = fallbackController.navigationCallback
 
-            if UIDevice.current.userInterfaceIdiom == .pad,
+            if fallbackController.traitCollection.horizontalSizeClass == .regular,
                let navigationController = fallbackController.navigationController {
                 navigationController.pushViewController(nextController, animated: true)
             } else {
@@ -361,7 +360,7 @@ extension Coordinator {
             }
         }
 
-        if UIDevice.current.userInterfaceIdiom == .pad {
+        if rootViewController.traitCollection.horizontalSizeClass == .regular {
             let navigationController = UINavigationController(rootViewController: fallbackController)
             navigationController.modalPresentationStyle = .formSheet
 

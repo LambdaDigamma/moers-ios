@@ -20,7 +20,6 @@ $(SRCROOT)/Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist/Googl
 $(SRCROOT)/Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist/HanekeSwift.plist
 $(SRCROOT)/Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist/Nuke.plist
 $(SRCROOT)/Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist/NukeUI.plist
-$(SRCROOT)/Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist/Pulley.plist
 $(SRCROOT)/Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist/Resolver.plist
 $(SRCROOT)/Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist/TagListView.plist
 $(SRCROOT)/Moers/Resources/Debug/Settings.bundle/com.mono0926.LicensePlist/TextFieldEffects.plist

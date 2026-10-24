@@ -8,9 +8,8 @@
 
 import Core
 import UIKit
-import MMEvents
+import Events
 import AppScaffold
-import Pulley
 
 public class MapCoordinator: TabRepresentable {
     
@@ -18,7 +17,7 @@ public class MapCoordinator: TabRepresentable {
     public let entryManager: EntryManagerProtocol
     public let trackerManager: TrackerManagerProtocol
     
-    public let mainViewController: NewMapViewController
+    public let mainViewController: FestivalMapViewController
     
     public var rootViewController: UIViewController { mainViewController }
     
@@ -34,7 +33,7 @@ public class MapCoordinator: TabRepresentable {
         self.entryManager = entryManager
         self.trackerManager = trackerManager
         
-        self.mainViewController = NewMapViewController()
+        self.mainViewController = FestivalMapViewController()
         self.mainViewController.tabBarItem = makeMenuItem().toBarItem()
         self.mainViewController.coordinator = eventCoordinator
     }
@@ -50,15 +49,13 @@ public class MapCoordinator: TabRepresentable {
     }
     
     public func pushPlaceDetail(placeID: Place.ID) {
-        let presentationContext = VenueDetailPresentationContext.current(for: mainViewController.traitCollection)
-        let viewController = VenueDetailController(placeID: placeID, presentationContext: presentationContext)
+        let viewController = VenueDetailController(placeID: placeID)
         viewController.coordinator = mainViewController.coordinator
         mainViewController.navigationController?.pushViewController(viewController, animated: true)
     }
 
     public func showPlaceDetail(placeID: Place.ID, showCloseButton: Bool = true) {
-        let presentationContext = VenueDetailPresentationContext.current(for: mainViewController.traitCollection)
-        let viewController = VenueDetailController(placeID: placeID, presentationContext: presentationContext)
+        let viewController = VenueDetailController(placeID: placeID)
         viewController.coordinator = mainViewController.coordinator
         viewController.modalPresentationStyle = .formSheet
         viewController.showCloseButton = showCloseButton

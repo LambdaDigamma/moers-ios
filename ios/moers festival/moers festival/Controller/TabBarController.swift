@@ -20,7 +20,7 @@ import AppScaffold
 import WebKit
 import SafariServices
 import Combine
-import MMEvents
+import Events
 import SwiftUI
 import AppUpdateFeature
 import FactoryKit
@@ -41,6 +41,10 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate, U
     private var appUpdateBannerController: UIHostingController<AppUpdateBannerView>?
     private var appUpdateBannerHeightConstraint: NSLayoutConstraint?
     private var appUpdateSheetController: UIHostingController<AppUpdateSheetView>?
+    private var desiredForcedUpdatePresentation: AppUpdatePresentation?
+    private var forcedUpdateTransitionIsInProgress = false
+    private var pendingTabSelection: UIViewController?
+    private var isSuspendingMapForTabSelection = false
     private let launchInterceptor: LaunchInterceptor?
     private var didRunLaunchInterception = false
     
@@ -103,7 +107,7 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate, U
             other.rootViewController
         ]
         
-        MMUIConfig.markdownConverter = { text in
+        UIConfig.markdownConverter = { text in
             
             let markdown = SwiftyMarkdown(string: text)
 
@@ -215,8 +219,35 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate, U
     }
 
     public func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        dismissMapPresentationIfNeeded(beforeSelecting: viewController)
+        if isSuspendingMapForTabSelection {
+            pendingTabSelection = viewController
+            return false
+        }
+        if selectedViewController === map.rootViewController, viewController !== map.rootViewController {
+            pendingTabSelection = viewController
+            isSuspendingMapForTabSelection = true
+            map.mainViewController.suspendDrawerPresentation { [weak self] in
+                guard let self else { return }
+                let selection = self.pendingTabSelection
+                self.pendingTabSelection = nil
+                self.isSuspendingMapForTabSelection = false
+                if let selection {
+                    self.selectedViewController = selection
+                    self.tabBarController(self, didSelect: selection)
+                }
+            }
+            return false
+        }
+        if viewController === map.rootViewController {
+            resumeMapDrawerIfSelected()
+        }
         return true
+    }
+
+    public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        if viewController === map.rootViewController {
+            resumeMapDrawerIfSelected()
+        }
     }
     
     // MARK: - Private Methods -
@@ -292,9 +323,7 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate, U
             
             self.tabBar.standardAppearance = UITabBarAppearance(barAppearance: barAppearance)
             
-            if #available(iOS 15.0, *) {
-                self.tabBar.scrollEdgeAppearance = UITabBarAppearance(barAppearance: barAppearance)
-            }
+            self.tabBar.scrollEdgeAppearance = UITabBarAppearance(barAppearance: barAppearance)
             
         }
         
@@ -424,44 +453,6 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate, U
         additionalSafeAreaInsets.bottom = height
     }
 
-    private func updateForcedUpdateSheet(_ presentation: AppUpdatePresentation?) {
-        guard let presentation else {
-            if let appUpdateSheetController {
-                appUpdateSheetController.dismiss(animated: true)
-                self.appUpdateSheetController = nil
-            }
-            return
-        }
-
-        let rootView = AppUpdateSheetView(
-            presentation: presentation,
-            onUpdate: { [weak self] url in
-                self?.openAppStore(url)
-            },
-            onClose: { [weak self] in
-                self?.appUpdateController.dismissForcedSheet()
-            }
-        )
-
-        if let appUpdateSheetController {
-            appUpdateSheetController.rootView = rootView
-            appUpdateSheetController.isModalInPresentation = !presentation.allowsDismissal
-            return
-        }
-
-        let hostingController = UIHostingController(rootView: rootView)
-        hostingController.modalPresentationStyle = .formSheet
-        hostingController.isModalInPresentation = !presentation.allowsDismissal
-
-        dismiss(animated: false) { [weak self] in
-            guard let self else { return }
-            self.appUpdateSheetController = hostingController
-            self.present(hostingController, animated: true) {
-                hostingController.presentationController?.delegate = self
-            }
-        }
-    }
-
     private func openAppStore(_ url: URL) {
         UIApplication.shared.open(url)
     }
@@ -476,6 +467,17 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate, U
 
         appUpdateSheetController = nil
         appUpdateController.dismissForcedSheet()
+        desiredForcedUpdatePresentation = nil
+        resumeMapDrawerIfSelected()
+    }
+
+    private func resumeMapDrawerIfSelected() {
+        guard desiredForcedUpdatePresentation == nil,
+              !forcedUpdateTransitionIsInProgress,
+              !isSuspendingMapForTabSelection else { return }
+        if selectedViewController === map.rootViewController {
+            map.mainViewController.resumeDrawerPresentation()
+        }
     }
     
     private func testingNotifications() {
@@ -494,14 +496,14 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate, U
         
         let contentEntry = UNMutableNotificationContent()
         contentEntry.badge = nil
-        contentEntry.title = String.localized("Welcome to the festival village!")
-        contentEntry.body = String.localized("The moers festival app helps you to easily find your way around the program. You can also put together your own program in the app and get lots of other important information.")
-        contentEntry.subtitle = String.localized("Nice to see you!")
+        contentEntry.title = String(localized: "Welcome to the festival village!")
+        contentEntry.body = String(localized: "The moers festival app helps you to easily find your way around the program. You can also put together your own program in the app and get lots of other important information.")
+        contentEntry.subtitle = String(localized: "Nice to see you!")
         
         let contentExit = UNMutableNotificationContent()
         contentExit.badge = nil
-        contentExit.body = String.localized("Thanks for coming. We hope you had fun!")
-        contentExit.title = String.localized("See you later!")
+        contentExit.body = String(localized: "Thanks for coming. We hope you had fun!")
+        contentExit.title = String(localized: "See you later!")
         
         let exitRequest = UNNotificationRequest(identifier: "festival-village-exit", content: contentExit, trigger: triggerExit)
         let entryRequest = UNNotificationRequest(identifier: "festival-village-entry", content: contentEntry, trigger: triggerEntry)
@@ -539,42 +541,77 @@ public class TabBarController: UITabBarController, UITabBarControllerDelegate, U
     }
     
     internal func showWebpage(url: URL) {
-        
-        let fallbackController = FallbackWebViewController(url: url)
-        
-        fallbackController.navigationItem.largeTitleDisplayMode = .never
-        fallbackController.navigationCallback = { url in
-
-            let nextController = FallbackWebViewController(url: url)
-            nextController.navigationItem.largeTitleDisplayMode = .never
-            nextController.navigationCallback = fallbackController.navigationCallback
-
-            if UIDevice.current.userInterfaceIdiom == .pad,
-               let navigationController = fallbackController.navigationController {
-                navigationController.pushViewController(nextController, animated: true)
-            } else {
-                self.showWebpage(url: url)
-            }
-        }
-
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            let navigationController = UINavigationController(rootViewController: fallbackController)
-            navigationController.modalPresentationStyle = .formSheet
-            other.navigationController.present(navigationController, animated: true)
-        } else {
-            self.other.navigationController.pushViewController(fallbackController, animated: true)
-        }
-        
+        other.showPage(url: url)
     }
 
-    private func dismissMapPresentationIfNeeded(beforeSelecting viewController: UIViewController) {
-        guard selectedViewController === map.rootViewController,
-              viewController !== map.rootViewController,
-              presentedViewController != nil else {
+}
+
+extension TabBarController {
+
+    func updateForcedUpdateSheet(_ presentation: AppUpdatePresentation?) {
+        desiredForcedUpdatePresentation = presentation
+        reconcileForcedUpdateSheet()
+    }
+
+    private func reconcileForcedUpdateSheet() {
+        guard !forcedUpdateTransitionIsInProgress else { return }
+        if let hostingController = appUpdateSheetController {
+            if let presentation = desiredForcedUpdatePresentation {
+                hostingController.rootView = forcedUpdateView(for: presentation)
+                hostingController.isModalInPresentation = !presentation.allowsDismissal
+            } else {
+                forcedUpdateTransitionIsInProgress = true
+                hostingController.dismiss(animated: true) { [weak self] in
+                    guard let self else { return }
+                    self.appUpdateSheetController = nil
+                    self.forcedUpdateTransitionIsInProgress = false
+                    self.reconcileForcedUpdateSheet()
+                }
+            }
             return
         }
-
-        dismiss(animated: false)
+        guard desiredForcedUpdatePresentation != nil else {
+            resumeMapDrawerIfSelected()
+            return
+        }
+        forcedUpdateTransitionIsInProgress = true
+        map.mainViewController.suspendDrawerPresentation { [weak self] in
+            guard let self else { return }
+            guard self.desiredForcedUpdatePresentation != nil else {
+                self.forcedUpdateTransitionIsInProgress = false
+                self.resumeMapDrawerIfSelected()
+                return
+            }
+            self.dismiss(animated: false) { [weak self] in
+                self?.presentLatestForcedUpdateSheet()
+            }
+        }
     }
-    
+
+    private func presentLatestForcedUpdateSheet() {
+        guard let presentation = desiredForcedUpdatePresentation else {
+            forcedUpdateTransitionIsInProgress = false
+            resumeMapDrawerIfSelected()
+            return
+        }
+        let hostingController = UIHostingController(rootView: forcedUpdateView(for: presentation))
+        hostingController.modalPresentationStyle = .formSheet
+        hostingController.isModalInPresentation = !presentation.allowsDismissal
+        appUpdateSheetController = hostingController
+        present(hostingController, animated: true) { [weak self] in
+            guard let self else { return }
+            hostingController.presentationController?.delegate = self
+            self.forcedUpdateTransitionIsInProgress = false
+            self.reconcileForcedUpdateSheet()
+        }
+    }
+
+    private func forcedUpdateView(for presentation: AppUpdatePresentation) -> AppUpdateSheetView {
+        AppUpdateSheetView(
+            presentation: presentation,
+            onUpdate: { [weak self] url in self?.openAppStore(url) },
+            onClose: { [weak self] in self?.appUpdateController.dismissForcedSheet() }
+        )
+    }
+
 }

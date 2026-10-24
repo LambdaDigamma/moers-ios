@@ -1,6 +1,6 @@
 import FactoryKit
 import GRDB
-import MMEvents
+import Events
 import UIKit
 import XCTest
 @testable import moers_festival

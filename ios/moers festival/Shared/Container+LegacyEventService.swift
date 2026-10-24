@@ -8,7 +8,7 @@
 import Foundation
 import FactoryKit
 import Core
-import MMEvents
+import Events
 import Cache
 
 public extension Container {

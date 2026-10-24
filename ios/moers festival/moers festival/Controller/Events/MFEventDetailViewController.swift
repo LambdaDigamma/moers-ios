@@ -8,7 +8,7 @@
 
 import UIKit
 import MapKit
-import MMEvents
+import Events
 import Combine
 
 class MFEventDetailViewController: EventDetailViewController {
@@ -55,21 +55,19 @@ extension MFEventDetailViewController {
         
         if let event = viewModel.model {
             
-            let title = "\(String.localized("Show the event")) \"\(title)\""
+            let title = String(localized: "Show the event \"\(title)\"")
             
             activity.title = title
             activity.isEligibleForSearch = true
             activity.expirationDate = event.endDate
             activity.userInfo = ["id": event.id]
-            activity.keywords = [String.localized("Events"),
-                                 String.localized("moers festival"),
+            activity.keywords = [String(localized: "Events"),
+                                 String(localized: "moers festival"),
                                  event.extras?.location ?? "Ort",
                                  event.name]
             
-            if #available(iOS 12.0, *) {
-                activity.isEligibleForPrediction = true
-                activity.persistentIdentifier = "event-\(event.id)"
-            }
+            activity.isEligibleForPrediction = true
+            activity.persistentIdentifier = "event-\(event.id)"
             
             userActivity = activity
             userActivity!.becomeCurrent()

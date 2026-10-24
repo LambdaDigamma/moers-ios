@@ -22,7 +22,6 @@ extension OSLog {
 import UIKit
 import Combine
 
-@available(iOS 14.0, *)
 open class SplitViewController: UISplitViewController, UISplitViewControllerDelegate, SidebarViewControllerDelegate {
     
     open var firstLaunch: FirstLaunch
@@ -78,9 +77,7 @@ open class SplitViewController: UISplitViewController, UISplitViewControllerDele
         self.showsSecondaryOnlyButton = true
         self.presentsWithGesture = true
         
-        if #available(iOS 14.5, *) {
-            self.displayModeButtonVisibility = .always
-        }
+        self.displayModeButtonVisibility = .always
         
         if let compactController = compactController {
             self.setViewController(compactController, for: .compact)
@@ -100,8 +97,7 @@ open class SplitViewController: UISplitViewController, UISplitViewControllerDele
         
         if let previousTraitCollection = previousTraitCollection {
             
-            if previousTraitCollection.horizontalSizeClass != traitCollection.horizontalSizeClass &&
-                traitCollection.userInterfaceIdiom == .pad {
+            if previousTraitCollection.horizontalSizeClass != traitCollection.horizontalSizeClass {
                 onChangeTraitCollection?(traitCollection)
             }
             

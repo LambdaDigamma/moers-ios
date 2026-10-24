@@ -1,6 +1,6 @@
 //
 //  PaddingLabel.swift
-//  MMUI
+//  UI
 //
 //  Created by Lennart Fischer on 18.06.19.
 //  Copyright © 2019 LambdaDigamma. All rights reserved.

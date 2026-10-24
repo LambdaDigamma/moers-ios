@@ -40,24 +40,14 @@ struct InTrainMap: View {
                 
                 if let speed = viewModel.currentSpeed {
                     
-                    if #available(iOS 15.0, *) {
-                        Pill(
-                            text: Text("\(Image(systemName: "speedometer")) \(speed)"),
-                            background: accent
-                        )
-                        .monospacedDigit()
-                        .font(.footnote.weight(.semibold))
-                        .foregroundColor(onAccent)
-                        .offset(x: 0, y: 6)
-                    } else {
-                        Pill(
-                            text: Text("\(Image(systemName: "speedometer")) \(speed)"),
-                            background: accent
-                        )
-                        .font(.footnote.weight(.semibold))
-                        .foregroundColor(onAccent)
-                        .offset(x: 0, y: 6)
-                    }
+                    Pill(
+                        text: Text("\(Image(systemName: "speedometer")) \(speed)"),
+                        background: accent
+                    )
+                    .monospacedDigit()
+                    .font(.footnote.weight(.semibold))
+                    .foregroundColor(onAccent)
+                    .offset(x: 0, y: 6)
                     
                 }
                 

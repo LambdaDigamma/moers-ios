@@ -19,15 +19,15 @@ nonisolated public enum DateError: Int, Codable, LocalizedError {
         
         switch self {
             case .invalidDate:
-                return "The provided date is invalid."
+                return String(localized: "The provided date is invalid.", bundle: .module)
             case .yearOutOfRange:
-                return "Thr provided year is out of range."
+                return String(localized: "The provided year is out of range.", bundle: .module)
             case .monthOutOfRange:
-                return "The provided month is out of range."
+                return String(localized: "The provided month is out of range.", bundle: .module)
             case .dayOutOfRange:
-                return "The provided day is out of range."
+                return String(localized: "The provided day is out of range.", bundle: .module)
             case .dateOutsideOfSchedulePeriod:
-                return "The provided date is out of the schedule period."
+                return String(localized: "The provided date is out of the schedule period.", bundle: .module)
         }
         
     }

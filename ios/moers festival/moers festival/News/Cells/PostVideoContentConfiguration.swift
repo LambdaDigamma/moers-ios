@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MMFeeds
+import Feeds
 import AVKit
 
 struct PostVideoContentConfiguration: UIContentConfiguration, Hashable {

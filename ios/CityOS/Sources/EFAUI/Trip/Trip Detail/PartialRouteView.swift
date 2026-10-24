@@ -88,7 +88,7 @@ public struct PartialRouteView: View {
             Spacer()
             
             if !point.platform.isEmpty {
-                Text("Gl. \(point.platform)")
+                Text("Platform \(point.platform)", bundle: .module)
                     .fontWeight(.medium)
             }
             

@@ -40,7 +40,7 @@ struct TripPartialRoutesPager: View {
     ) -> some View {
         
         VStack(alignment: .leading) {
-            Text("\(Image(systemName: "shuffle")) Gleiswechsel")
+            Text("\(Image(systemName: "shuffle")) Change platform", bundle: .module)
                 .fontWeight(.semibold)
                 .foregroundColor(.yellow)
             
@@ -60,7 +60,7 @@ struct TripPartialRoutesPager: View {
 //            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             
             VStack(alignment: .center) {
-                Text("aktuelle Umsteigszeit: \(10) min")
+                Text("Current transfer time: \(10) min", bundle: .module)
                     .foregroundColor(.secondary)
             }
             .frame(maxWidth: .infinity)

@@ -8,7 +8,7 @@
 
 import Core
 import Foundation
-import MMEvents
+import Events
 import FactoryKit
 import Combine
 import MapKit

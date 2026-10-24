@@ -8,7 +8,7 @@
 
 import SwiftUI
 import MediaLibraryKit
-import MMPages
+import Pages
 
 public struct ModernEventView: View {
     
@@ -50,13 +50,16 @@ public struct ModernEventView: View {
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .background(Color(UIColor.systemBackground))
+                            .readableContentWidth()
 
                         Divider()
+                            .readableContentWidth()
                     }
 
                 }
 
                 metadata()
+                    .readableContentWidth()
 
                 if let pageID = viewModel.pageID {
                     IsolatedNativePageView(pageID: pageID)
@@ -65,10 +68,10 @@ public struct ModernEventView: View {
                             actionTransmitter.dispatchOpenURL(url)
                             return .handled
                         })
+                        .readableContentWidth()
                 }
 
             }
-            .readableContentWidth()
 
         }
         .task {

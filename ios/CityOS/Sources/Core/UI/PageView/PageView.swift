@@ -91,7 +91,7 @@ public class PageView: UIStackView {
     private func addMarkdownBlock(_ block: MarkdownBlock) {
         
         let label = PaddingLabel()
-        let styledText = MMUIConfig.markdownConverter(block.text)
+        let styledText = UIConfig.markdownConverter(block.text)
         
         label.textInsets = UIEdgeInsets(top: 0, left: eventDetailMargin, bottom: 0, right: eventDetailMargin)
         

@@ -20,7 +20,7 @@ public enum AppStrings {
     }
     
     public enum Common {
-        public static let okay = "Okay"
+        public static let okay = String(localized: "Okay", bundle: .module)
         public static let close = String(localized: "Close", bundle: .module)
     }
     
@@ -70,17 +70,17 @@ public enum AppStrings {
         public enum RubbishSchedule {
             public static let title = String(localized: "Next pick up dates", bundle: .module)
             public static let invocationPhrase = title
-            public static let keywords = AppStrings.buildKeywords("Garbage, collection, date, garbage collection")
+            public static let keywords = AppStrings.buildKeywords(String(localized: "Garbage, collection, date, garbage collection", bundle: .module))
         }
         public enum ParkingAreaOverview {
             public static let title = String(localized: "Show free sites", bundle: .module)
             public static let invocationPhrase = title
-            public static let keywords = AppStrings.buildKeywords("Parking, Car, Driving, City")
+            public static let keywords = AppStrings.buildKeywords(String(localized: "Parking, Car, Driving, City", bundle: .module))
         }
         public enum FuelStations {
             public static let title = String(localized: "Fuel stations near you", bundle: .module)
             public static let invocationPhrase = title
-            public static let keywords = AppStrings.buildKeywords("Gas stations, prices, proximity, car, Fuel")
+            public static let keywords = AppStrings.buildKeywords(String(localized: "Gas stations, prices, proximity, car, Fuel", bundle: .module))
         }
         public enum News {
             public static let title = String(localized: "Check latest news", bundle: .module)
@@ -101,9 +101,9 @@ public enum AppStrings {
         
     }
     
-    public static func buildKeywords(_ key: String) -> Set<String> {
+    public static func buildKeywords(_ localizedKeywords: String) -> Set<String> {
         return Set(
-            String(localized: String.LocalizationValue(stringLiteral: key), bundle: .module)
+            localizedKeywords
                 .split(separator: ",")
                 .map { $0.trimmingCharacters(in: .whitespacesAndNewlines)}
         )

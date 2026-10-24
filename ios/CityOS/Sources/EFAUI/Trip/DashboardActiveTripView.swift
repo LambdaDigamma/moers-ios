@@ -14,7 +14,7 @@ public struct DashboardActiveTripView: View {
     }
     
     public var body: some View {
-        Text("Trip is configured")
+        Text("Trip is configured", bundle: .module)
             .foregroundColor(.black)
             .frame(maxWidth: .infinity)
             .padding()

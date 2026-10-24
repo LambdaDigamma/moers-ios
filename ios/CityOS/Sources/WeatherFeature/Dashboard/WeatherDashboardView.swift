@@ -8,7 +8,6 @@
 import Core
 import SwiftUI
 
-@available(iOS 16.0, *)
 public struct WeatherDashboardView: View {
     
     @State var viewModel = WeatherDashboardViewModel()
@@ -34,7 +33,7 @@ public struct WeatherDashboardView: View {
             
             viewModel.data.hasResource { (data: WeatherDashboardData) in
                 VStack {
-                    Text("23°C")
+                    Text(verbatim: "23°C")
                         .font(.largeTitle.weight(.semibold))
                 }
                 .padding()
@@ -49,7 +48,6 @@ public struct WeatherDashboardView: View {
     
 }
 
-@available(iOS 16.0, *)
 struct WeatherDashboardView_Previews: PreviewProvider {
     static var previews: some View {
         WeatherDashboardView()

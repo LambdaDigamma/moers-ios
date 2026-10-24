@@ -8,7 +8,7 @@
 
 import Foundation
 import AVKit
-import MMEvents
+import Events
 import Combine
 import FactoryKit
 
@@ -16,13 +16,15 @@ class PlayerViewController: AVPlayerViewController {
     
     @LazyInjected(\.legacyEventService) var eventService
     
-    private var livestreamData: MMEvents.LivestreamData!
+    private var livestreamData: Events.LivestreamData!
     
     private var eventChangeTimer: Timer!
     private var streamLoadTask: Task<Void, Never>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = String(localized: "Live")
+        tabBarItem.title = String(localized: "Live")
         
     }
     
@@ -78,7 +80,7 @@ class PlayerViewController: AVPlayerViewController {
         
     }
     
-    public func showPlayback(livestreamData: MMEvents.LivestreamData) {
+    public func showPlayback(livestreamData: Events.LivestreamData) {
         
         self.updateActiveStream(livestreamData)
         self.setupPlayback(livestreamData: livestreamData)
@@ -93,7 +95,7 @@ class PlayerViewController: AVPlayerViewController {
     
     // MARK: - Playback
     
-    func setupPlayback(livestreamData: MMEvents.LivestreamData) {
+    func setupPlayback(livestreamData: Events.LivestreamData) {
         
         if let streamURL = livestreamData.streamConfig.processedStreamURL {
             
@@ -115,7 +117,7 @@ class PlayerViewController: AVPlayerViewController {
         
     }
     
-    func makeExternalMetadata(event: MMEvents.Event) -> [AVMetadataItem] {
+    func makeExternalMetadata(event: Events.Event) -> [AVMetadataItem] {
         
         var metadata = [AVMetadataItem]()
         
@@ -141,7 +143,7 @@ class PlayerViewController: AVPlayerViewController {
 //        }
         
         // Build description item
-        let descItem = makeMetadataItem(.commonIdentifierDescription, value: event.description ?? "No description available.")
+        let descItem = makeMetadataItem(.commonIdentifierDescription, value: event.description ?? String(localized: "No description available."))
         metadata.append(descItem)
         
         // Build genre item
@@ -176,7 +178,7 @@ class PlayerViewController: AVPlayerViewController {
         
     }
     
-    private func updateActiveStream(_ livestreamData: MMEvents.LivestreamData) {
+    private func updateActiveStream(_ livestreamData: Events.LivestreamData) {
         
         if let activeEvent = livestreamData.activeEvent {
             self.player?.currentItem?.externalMetadata = makeExternalMetadata(event: activeEvent.model)

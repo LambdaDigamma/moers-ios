@@ -99,9 +99,7 @@ public final class DefaultLocationService: NSObject, LocationService {
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
 
 #if os(watchOS)
-        if #available(watchOS 4.0, *) {
-            self.locationManager.activityType = .other
-        }
+        self.locationManager.activityType = .other
 #endif
     }
     

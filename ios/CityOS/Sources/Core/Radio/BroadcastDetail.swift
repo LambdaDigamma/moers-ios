@@ -136,9 +136,9 @@ public struct BroadcastDetail: View {
             }) {
                 
                 if !viewModel.enabledReminder {
-                    Label("Remind me", systemImage: "bell.circle.fill")
+                    Label { Text("Remind me", bundle: .module) } icon: { Image(systemName: "bell.circle.fill") }
                 } else {
-                    Label("Reminder active", systemImage: "bell.slash.circle.fill")
+                    Label { Text("Reminder active", bundle: .module) } icon: { Image(systemName: "bell.slash.circle.fill") }
                 }
                 
             }
@@ -146,7 +146,7 @@ public struct BroadcastDetail: View {
             
             if viewModel.enabledReminder {
                 
-                Text("Tap again to remove the reminder.")
+                Text("Tap again to remove the reminder.", bundle: .module)
                     .font(.footnote)
                     .foregroundColor(Color(UIColor.tertiaryLabel))
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -162,7 +162,7 @@ public struct BroadcastDetail: View {
         
         VStack(alignment: .leading) {
             
-            Text("More broadcasts")
+            Text("More broadcasts", bundle: .module)
                 .fontWeight(.bold)
                 .padding(.bottom)
             

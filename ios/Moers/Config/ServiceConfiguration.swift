@@ -26,10 +26,10 @@ import FuelFeature
 import ParkingFeature
 import NewsFeature
 import Cache
-//import MMEvents
+//import Events
 #endif
 
-import MMEvents
+import Events
 import MapFeature
 
 @MainActor
@@ -98,7 +98,7 @@ public class ServiceConfiguration: BootstrappingProcedureStep {
         Container.shared.newsService.register { newsService }
 #endif
         
-#if canImport(MMEvents)
+#if canImport(Events)
         
         let eventService = DefaultEventService(client: client)
 

@@ -120,10 +120,6 @@ class EntryOnboardingAddressViewController: UIViewController {
         self.mapView.alpha = 0.5
         self.mapView.region = region
         
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        
     }
     
     private func setupTheming() {
@@ -135,42 +131,42 @@ class EntryOnboardingAddressViewController: UIViewController {
         let constraints = [scrollView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 0),
                            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
                            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-                           scrollView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: 0),
+                           scrollView.bottomAnchor.constraint(equalTo: self.view.keyboardLayoutGuide.topAnchor, constant: 0),
                            contentView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
                            contentView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
                            contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
                            contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
                            contentView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
                            progressView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 20),
-                           progressView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           progressView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+                           progressView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                           progressView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
                            addressHeaderLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20),
-                           addressHeaderLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           addressHeaderLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+                           addressHeaderLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                           addressHeaderLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
                            streetTextField.topAnchor.constraint(equalTo: self.addressHeaderLabel.bottomAnchor, constant: 0),
-                           streetTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                           streetTextField.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
                            streetTextField.trailingAnchor.constraint(equalTo: self.streetTextField.leadingAnchor, constant: -16),
                            streetTextField.heightAnchor.constraint(equalToConstant: 55),
                            houseNrTextField.topAnchor.constraint(equalTo: self.streetTextField.topAnchor),
                            houseNrTextField.leadingAnchor.constraint(equalTo: self.streetTextField.trailingAnchor, constant: 8),
-                           houseNrTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+                           houseNrTextField.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
                            houseNrTextField.heightAnchor.constraint(equalToConstant: 55),
                            houseNrTextField.widthAnchor.constraint(equalToConstant: 55),
                            postcodeTextField.topAnchor.constraint(equalTo: self.houseNrTextField.bottomAnchor, constant: 8),
-                           postcodeTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                           postcodeTextField.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
                            postcodeTextField.trailingAnchor.constraint(equalTo: self.placeTextField.leadingAnchor, constant: -8),
                            postcodeTextField.heightAnchor.constraint(equalToConstant: 55),
                            postcodeTextField.widthAnchor.constraint(equalToConstant: 80),
                            placeTextField.topAnchor.constraint(equalTo: self.houseNrTextField.bottomAnchor, constant: 8),
-                           placeTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+                           placeTextField.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
                            placeTextField.heightAnchor.constraint(equalToConstant: 55),
                            mapView.topAnchor.constraint(equalTo: self.placeTextField.bottomAnchor, constant: 20),
-                           mapView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           mapView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+                           mapView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                           mapView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
                            mapView.heightAnchor.constraint(equalToConstant: 180),
                            infoLabel.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 16),
-                           infoLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           infoLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+                           infoLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                           infoLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
                            infoLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -50)]
 
         NSLayoutConstraint.activate(constraints)
@@ -178,23 +174,6 @@ class EntryOnboardingAddressViewController: UIViewController {
     }
     
     // MARK: - Helper
-    
-    @objc private func adjustForKeyboard(notification: Notification) {
-        
-        guard let userInfo = notification.userInfo else { return }
-        guard let keyboardScreenEndFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        
-        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-        
-        if notification.name == UIResponder.keyboardWillHideNotification {
-            scrollView.contentInset = UIEdgeInsets.zero
-        } else {
-            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
-        }
-        
-        scrollView.scrollIndicatorInsets = scrollView.contentInset
-        
-    }
     
     @objc private func continueOnboarding() {
         

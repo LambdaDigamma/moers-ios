@@ -10,31 +10,23 @@ import UIKit
 
 class SelectionFeedbackGenerator {
     
-    private let anyObject: AnyObject?
+    private let feedbackGenerator: UISelectionFeedbackGenerator
     
     init() {
         
-        if #available(iOS 10, *) {
-            anyObject = UISelectionFeedbackGenerator()
-        } else {
-            anyObject = nil
-        }
+        feedbackGenerator = UISelectionFeedbackGenerator()
         
     }
     
     func prepare() {
         
-        if #available(iOS 10, *) {
-            (anyObject as! UISelectionFeedbackGenerator).prepare()
-        }
+        feedbackGenerator.prepare()
         
     }
     
     func selectionChanged() {
         
-        if #available(iOS 10, *) {
-            (anyObject as! UISelectionFeedbackGenerator).selectionChanged()
-        }
+        feedbackGenerator.selectionChanged()
         
     }
 
@@ -44,31 +36,23 @@ class SelectionFeedbackGenerator {
 
 class SuccessFeedbackGenerator {
     
-    private let anyObject: AnyObject?
+    private let feedbackGenerator: UINotificationFeedbackGenerator
     
     init() {
         
-        if #available(iOS 10, *) {
-            anyObject = UINotificationFeedbackGenerator()
-        } else {
-            anyObject = nil
-        }
+        feedbackGenerator = UINotificationFeedbackGenerator()
         
     }
     
     func prepare() {
         
-        if #available(iOS 10, *) {
-            (anyObject as! UINotificationFeedbackGenerator).prepare()
-        }
+        feedbackGenerator.prepare()
         
     }
     
     func success() {
         
-        if #available(iOS 10, *) {
-            (anyObject as! UINotificationFeedbackGenerator).notificationOccurred(.success)
-        }
+        feedbackGenerator.notificationOccurred(.success)
         
     }
 

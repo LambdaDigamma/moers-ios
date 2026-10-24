@@ -1,0 +1,57 @@
+//
+//  StationListCardView.swift
+//  
+//
+//  Created by Lennart Fischer on 01.01.21.
+//
+
+import SwiftUI
+
+public struct StationListCardView: View {
+    
+    public init() {
+        
+    }
+    
+    @State var airplaneMode = true
+    
+    public var body: some View {
+        
+        LazyVStack(spacing: 0) {
+            
+            ForEach(0..<10) { d in
+                
+                Toggle(isOn: $airplaneMode) {
+                    Text("This is a test", bundle: .module)
+                }
+                .toggleStyle(CheckboxStyle())
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
+                
+//                HStack {
+////                    CheckboxView()
+////                    Text("This is a test", bundle: .module)
+//                }
+//                .frame(maxWidth: .infinity, alignment: .leading)
+//                .padding()
+                
+                Divider()
+            }
+            
+        }
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(12)
+        
+//        List {
+//            Text("This is a test", bundle: .module)
+//            Text("This is a test", bundle: .module)
+//        }
+//        .listStyle(InsetGroupedListStyle())
+    }
+}
+
+struct StationListCardView_Previews: PreviewProvider {
+    static var previews: some View {
+        StationListCardView()
+    }
+}

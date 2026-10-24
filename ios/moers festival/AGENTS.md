@@ -11,6 +11,7 @@ This subtree contains the festival iOS, widget, watchOS, and tvOS project.
 - Build configurations are `Debug` and `Release`.
 - Main app source lives under `ios/moers festival/moers festival`.
 - Widgets live under `ios/moers festival/Widgets`.
+- The iOS app, widgets, and embedded watch app use the project-level `CURRENT_PROJECT_VERSION`. Keep their build numbers equal; do not add target overrides or literal `CFBundleVersion` values.
 
 ## Commands
 

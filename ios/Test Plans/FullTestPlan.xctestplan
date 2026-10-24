@@ -68,22 +68,22 @@
     {
       "target" : {
         "containerPath" : "container:CityOS",
-        "identifier" : "MMEventsTests",
-        "name" : "MMEventsTests"
+        "identifier" : "EventsTests",
+        "name" : "EventsTests"
       }
     },
     {
       "target" : {
         "containerPath" : "container:CityOS",
-        "identifier" : "MMPagesTests",
-        "name" : "MMPagesTests"
+        "identifier" : "PagesTests",
+        "name" : "PagesTests"
       }
     },
     {
       "target" : {
         "containerPath" : "container:CityOS",
-        "identifier" : "MMFeedsTests",
-        "name" : "MMFeedsTests"
+        "identifier" : "FeedsTests",
+        "name" : "FeedsTests"
       }
     },
     {
@@ -131,8 +131,8 @@
     {
       "target" : {
         "containerPath" : "container:CityOS",
-        "identifier" : "MMToursTests",
-        "name" : "MMToursTests"
+        "identifier" : "ToursTests",
+        "name" : "ToursTests"
       }
     },
     {

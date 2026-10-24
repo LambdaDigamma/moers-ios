@@ -81,7 +81,7 @@ extension FestivalWidgetEntry {
         FestivalWidgetEntry(
             date: .now,
             kind: .upcoming,
-            subtitle: "All venues",
+            subtitle: String(localized: "All venues"),
             subtitleSystemImage: nil,
             liveEvents: [
                 previewDisplayEvent(
@@ -114,7 +114,7 @@ extension FestivalWidgetEntry {
                     status: .upcoming
                 )
             ],
-            emptyMessage: "No upcoming events.",
+            emptyMessage: String(localized: "No upcoming events."),
             nextRefreshDate: .now.addingTimeInterval(FestivalWidgetTimelineEngine.minimumRefreshInterval)
         )
     }
@@ -146,7 +146,7 @@ extension FestivalWidgetEntry {
                     status: .upcoming
                 )
             ],
-            emptyMessage: "No upcoming favorite events yet.",
+            emptyMessage: String(localized: "No upcoming favorite events yet."),
             nextRefreshDate: .now.addingTimeInterval(FestivalWidgetTimelineEngine.minimumRefreshInterval)
         )
     }
@@ -155,7 +155,7 @@ extension FestivalWidgetEntry {
         FestivalWidgetEntry(
             date: .now,
             kind: .upcoming,
-            subtitle: "3 Venues",
+            subtitle: String(localized: "3 Venues"),
             subtitleSystemImage: "line.3.horizontal.decrease.circle",
             liveEvents: [],
             upcomingEvents: [
@@ -196,7 +196,7 @@ extension FestivalWidgetEntry {
                     status: .upcoming
                 )
             ],
-            emptyMessage: "No upcoming events for the selected venues.",
+            emptyMessage: String(localized: "No upcoming events for the selected venues."),
             nextRefreshDate: .now.addingTimeInterval(FestivalWidgetTimelineEngine.minimumRefreshInterval)
         )
     }
@@ -205,7 +205,7 @@ extension FestivalWidgetEntry {
         FestivalWidgetEntry(
             date: .now,
             kind: .upcoming,
-            subtitle: "All venues",
+            subtitle: String(localized: "All venues"),
             subtitleSystemImage: nil,
             liveEvents: [
                 previewDisplayEvent(
@@ -234,7 +234,7 @@ extension FestivalWidgetEntry {
                 previewDisplayEvent(id: 110, name: "Late Night Procession", startOffset: 110 * 60, endOffset: 160 * 60, placeID: 22, venueName: "Rodelberg", status: .upcoming),
                 previewDisplayEvent(id: 111, name: "Sunrise Brass", startOffset: 130 * 60, endOffset: 185 * 60, placeID: 23, venueName: "Schlosspark", status: .upcoming)
             ],
-            emptyMessage: "No upcoming events.",
+            emptyMessage: String(localized: "No upcoming events."),
             nextRefreshDate: .now.addingTimeInterval(FestivalWidgetTimelineEngine.minimumRefreshInterval)
         )
     }
@@ -243,11 +243,11 @@ extension FestivalWidgetEntry {
         FestivalWidgetEntry(
             date: .now,
             kind: .upcoming,
-            subtitle: "2 Venues",
+            subtitle: String(localized: "2 Venues"),
             subtitleSystemImage: "line.3.horizontal.decrease.circle",
             liveEvents: [],
             upcomingEvents: [],
-            emptyMessage: "No upcoming events for the selected venues.",
+            emptyMessage: String(localized: "No upcoming events for the selected venues."),
             nextRefreshDate: .now.addingTimeInterval(FestivalWidgetTimelineEngine.maximumRefreshInterval)
         )
     }
@@ -297,7 +297,7 @@ extension FestivalWidgetEntry {
                     status: .upcoming
                 )
             ],
-            emptyMessage: "No upcoming favorite events yet.",
+            emptyMessage: String(localized: "No upcoming favorite events yet."),
             nextRefreshDate: .now.addingTimeInterval(FestivalWidgetTimelineEngine.minimumRefreshInterval)
         )
     }
@@ -310,7 +310,7 @@ extension FestivalWidgetEntry {
             subtitleSystemImage: nil,
             liveEvents: [],
             upcomingEvents: [],
-            emptyMessage: "No upcoming favorite events yet.",
+            emptyMessage: String(localized: "No upcoming favorite events yet."),
             nextRefreshDate: .now.addingTimeInterval(FestivalWidgetTimelineEngine.maximumRefreshInterval)
         )
     }

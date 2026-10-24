@@ -19,7 +19,7 @@ class ShortcutsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Siri Shortcuts"
+        self.title = String(localized: "Siri Shortcuts")
         
         self.applyTheming()
         self.setupUI()

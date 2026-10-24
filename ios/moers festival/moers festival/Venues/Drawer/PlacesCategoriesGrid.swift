@@ -23,31 +23,31 @@ struct PlacesCategoriesGrid: View {
     var categories: [PlaceCategory] = [
         .init(
             id: 1,
-            text: "Venues",
+            text: String(localized: "Venues"),
             color: .black,
             image: Image(systemName: "music.mic")
         ),
         .init(
             id: 2,
-            text: "Toilets",
+            text: String(localized: "Toilets"),
             color: .blue,
             image: Image(systemName: "figure.dress.line.vertical.figure")
         ),
         .init(
             id: 3,
-            text: "Booths",
+            text: String(localized: "Booths"),
             color: .gray,
             image: Image(systemName: "bag.fill")
         ),
         .init(
             id: 4,
-            text: "First Aid",
+            text: String(localized: "First Aid"),
             color: .green,
             image: Image(systemName: "cross.fill")
         ),
         .init(
             id: 5,
-            text: "Bicycles",
+            text: String(localized: "Bicycles"),
             color: .orange,
             image: Image(systemName: "bicycle")
         )

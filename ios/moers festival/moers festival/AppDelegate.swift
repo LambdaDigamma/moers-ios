@@ -11,7 +11,7 @@ import UserNotifications
 import AppScaffold
 import FirebaseMessaging
 import FirebaseCore
-import MMEvents
+import Events
 import Combine
 import OSLog
 import FactoryKit
@@ -24,10 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         let bootstrappingProcedure: BootstrappingProcedure = [
             LaunchArgumentsHandler(),
             NetworkingConfiguration(),
-            MMAPIFrameworkConfiguration(),
-            MMEventsFrameworkConfiguration(),
-            MMFeedsFrameworkConfiguration(),
-            MMPagesFrameworkConfiguration(),
+            APIFrameworkConfiguration(),
+            EventsFrameworkConfiguration(),
+            FeedsFrameworkConfiguration(),
+            PagesFrameworkConfiguration(),
             ServiceConfiguration(),
             TwitterFramework(),
             FirebaseFrameworkConfiguration(messagingDelegate: self),
@@ -60,23 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     
     // MARK: - UIApplication Lifecycle
     
-    func applicationWillResignActive(_ application: UIApplication) {
-        
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {}
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        
-        ConfigManager.shared.fetchConfig()
-        FestivalNotificationTopicSynchronizer.shared.syncIfAuthorized()
-        
-    }
-
     func applicationWillTerminate(_ application: UIApplication) {
         
     }

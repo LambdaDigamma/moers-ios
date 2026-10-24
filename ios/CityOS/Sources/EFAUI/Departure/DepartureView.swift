@@ -61,7 +61,7 @@ struct DepartureView: View {
                     .cornerRadius(6)
                 
                 if let platform = viewModel.platform {
-                    Text("Steig \(platform)")
+                    Text("Platform \(platform)", bundle: .module)
                         .font(.callout)
                         .padding(4)
                         .padding(.horizontal, 4)

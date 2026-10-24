@@ -60,47 +60,28 @@ struct LineMeter: View {
     
     var body: some View {
         
-        if #available(iOS 15.0, *) {
-            
-            LinearGradient(
-                colors: colors,
-                startPoint: .leading,
-                endPoint: .trailing
-            )
-            .mask {
-                HStack(spacing: 6) {
-                    
-                    ForEach(0..<numberOfLines, id: \.self) { num in
-                        
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(
-                                num < numberOfFilled ? .blue
-                                    : .secondary.opacity(disabledOpacity)
-                            )
-                        
-                    }
-                    
-                }
-            }
-            .frame(height: height)
-            .accessibilityValue("\(value) percent")
-            
-        } else {
-            
-            HStack(spacing: 8) {
-                
+        LinearGradient(
+            colors: colors,
+            startPoint: .leading,
+            endPoint: .trailing
+        )
+        .mask {
+            HStack(spacing: 6) {
+
                 ForEach(0..<numberOfLines, id: \.self) { num in
-                    
+
                     RoundedRectangle(cornerRadius: 4)
-                        .fill(num < numberOfFilled ? .blue : .secondary.opacity(0.2))
-                    
+                        .fill(
+                            num < numberOfFilled ? .blue
+                                : .secondary.opacity(disabledOpacity)
+                        )
+
                 }
-                
+
             }
-            .frame(height: height)
-            .accessibilityValue("\(value) percent")
-            
         }
+        .frame(height: height)
+        .accessibilityValue("\(value) percent")
         
     }
     

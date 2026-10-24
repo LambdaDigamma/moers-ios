@@ -9,23 +9,13 @@
 import AppScaffold
 import UIKit
 import ModernNetworking
-import MMEvents
+import Events
 import Cache
 import FactoryKit
 import OSLog
 import Core
 import EFAUI
 import MapFeature
-
-public enum TabIndices: Int {
-    
-    case dashboard = 0
-    case news = 1
-    case maps = 2
-    case events = 3
-    case other = 4
-    
-}
 
 @MainActor
 class ApplicationCoordinator: NSObject {
@@ -39,7 +29,7 @@ class ApplicationCoordinator: NSObject {
     let locationManager: LocationManagerProtocol
     let cameraManager: CameraManagerProtocol
     
-    private var splitViewController: AppSplitViewController!
+    private lazy var tabBarController = AppTabBarController(firstLaunch: firstLaunch)
     
     convenience override init() {
         @Injected(\.httpLoader) var loader: HTTPLoader
@@ -60,7 +50,7 @@ class ApplicationCoordinator: NSObject {
         
         super.init()
         
-//        MMUIConfig.markdownConverter = { text in
+//        UIConfig.markdownConverter = { text in
 //
 //            let markdown = SwiftyMarkdown(string: text)
 //
@@ -82,17 +72,7 @@ class ApplicationCoordinator: NSObject {
     
     internal func rootViewController() -> UIViewController {
         
-        self.splitViewController = AppSplitViewController(firstLaunch: firstLaunch)
-        
-        // Restoring the user interface based on the current user activity
-        splitViewController.onChangeTraitCollection = { _ in
-            if let activity = UserActivity.current {
-                self.logger.info("Changing trait collection and restoring \(activity.activityType)")
-                self.handle(userActivity: activity)
-            }
-        }
-        
-        return splitViewController
+        return tabBarController
         
     }
     
@@ -178,44 +158,30 @@ class ApplicationCoordinator: NSObject {
     }
     
     internal var currentDashboard: DashboardCoordinator {
-        return splitViewController.displayCompact
-            ? splitViewController.tabController.dashboard
-            : splitViewController.dashboard
+        return tabBarController.dashboard
     }
     
     internal var currentNews: NewsCoordinator {
-        return splitViewController.displayCompact
-            ? splitViewController.tabController.news
-            : splitViewController.news
+        return tabBarController.news
     }
     
     internal var currentMap: MapCoordintor {
-        return splitViewController.displayCompact
-            ? splitViewController.tabController.map
-            : splitViewController.map
+        return tabBarController.map
     }
     
     internal var currentEvents: EventCoordinator {
-        return splitViewController.displayCompact
-            ? splitViewController.tabController.events
-            : splitViewController.events
+        return tabBarController.events
     }
     
     internal var currentOther: OtherCoordinator {
-        return splitViewController.displayCompact
-            ? splitViewController.tabController.other
-            : splitViewController.other
+        return tabBarController.other
     }
     
     // MARK: - Actions -
     
     public func openDashboard(animated: Bool = false) {
         
-        if splitViewController.displayCompact {
-            splitViewController.tabController.selectedIndex = TabIndices.dashboard.rawValue
-        } else {
-            splitViewController.selectSidebarItem(.dashboard)
-        }
+        tabBarController.selectedIndex = TabIndices.dashboard.rawValue
 
         currentDashboard.navigationController.popToRootViewController(animated: false)
         
@@ -237,11 +203,7 @@ class ApplicationCoordinator: NSObject {
     
     public func openNewsOverview(animated: Bool = false) {
         
-        if splitViewController.displayCompact {
-            splitViewController.tabController.selectedIndex = TabIndices.news.rawValue
-        } else {
-            splitViewController.selectSidebarItem(.news)
-        }
+        tabBarController.selectedIndex = TabIndices.news.rawValue
         
         currentNews.navigationController.popToRootViewController(animated: animated)
         
@@ -256,23 +218,15 @@ class ApplicationCoordinator: NSObject {
     
     public func openMap(animated: Bool = false) {
         
-        if splitViewController.displayCompact {
-            splitViewController.tabController.selectedIndex = TabIndices.maps.rawValue
-        } else {
-            splitViewController.selectSidebarItem(.map)
-        }
+        tabBarController.selectedIndex = TabIndices.maps.rawValue
         
-        currentMap.navigationController.popToRootViewController(animated: animated)
+        currentMap.mainViewController.resumePanelPresentation()
         
     }
     
     public func openEventsOverview(animated: Bool = false) {
         
-        if splitViewController.displayCompact {
-            splitViewController.tabController.selectedIndex = TabIndices.events.rawValue
-        } else {
-            splitViewController.selectSidebarItem(.events)
-        }
+        tabBarController.selectedIndex = TabIndices.events.rawValue
         
         currentEvents.navigationController.popToRootViewController(animated: animated)
         
@@ -280,11 +234,7 @@ class ApplicationCoordinator: NSObject {
     
     private func openOther(animated: Bool = false) {
         
-        if splitViewController.displayCompact {
-            splitViewController.tabController.selectedIndex = TabIndices.other.rawValue
-        } else {
-            splitViewController.selectSidebarItem(.other)
-        }
+        tabBarController.selectedIndex = TabIndices.other.rawValue
         
         currentOther.navigationController.popToRootViewController(animated: animated)
         

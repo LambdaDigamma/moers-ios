@@ -62,10 +62,12 @@ class OtherDataSource: NSObject {
                 }
             }
 
-            cell.contentConfiguration = SettingsRowContentConfiguration(
+            var content = SettingsRowContentConfiguration(
                 title: row.title,
                 icon: icon
             )
+            content.titleNumberOfLines = 0
+            cell.contentConfiguration = content
             cell.accessories = row.style == .hero ? [] : [.disclosureIndicator()]
             cell.accessibilityIdentifier = "InfoCell-\(row.title.replacingOccurrences(of: " ", with: "_"))"
             let separatorInset: CGFloat = row.symbolName == nil ? 16 : 58

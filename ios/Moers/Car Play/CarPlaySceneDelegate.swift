@@ -18,8 +18,8 @@ public class CarPlaySceneDelegate: UIResponder {
     
     public var interfaceController: CPInterfaceController?
     
-    public let parkingAreasTemplate: CPListTemplate = CPListTemplate(title: "Parkplätze", sections: [])
-    public let fuelStationsTemplate: CPListTemplate = CPListTemplate(title: "Tankstellen", sections: [])
+    public let parkingAreasTemplate: CPListTemplate = CPListTemplate(title: String(localized: "Parking Lots"), sections: [])
+    public let fuelStationsTemplate: CPListTemplate = CPListTemplate(title: String(localized: "Petrol Stations"), sections: [])
     
     // MARK: - Parking Areas -
     
@@ -54,7 +54,7 @@ public class CarPlaySceneDelegate: UIResponder {
         let openItems = openParkingAreas.map({ (parkingArea: ParkingArea) -> CPListItem in
             let listItem = CPListItem(
                 text: parkingArea.name,
-                detailText: "\(parkingArea.freeSites)/\(parkingArea.capacity ?? 0) frei · \(parkingArea.currentOpeningState.name)",
+                detailText: String(localized: "\(parkingArea.freeSites) of \(parkingArea.capacity ?? 0) free · \(parkingArea.currentOpeningState.name)", comment: "Parking availability: free spaces, total capacity, and opening status."),
                 image: nil,
                 accessoryImage: nil,
                 accessoryType: .disclosureIndicator
@@ -71,7 +71,7 @@ public class CarPlaySceneDelegate: UIResponder {
         let closedItems = closedParkingAreas.map({ (parkingArea: ParkingArea) -> CPListItem in
             let listItem = CPListItem(
                 text: parkingArea.name,
-                detailText: "\(parkingArea.freeSites)/\(parkingArea.capacity ?? 0) frei · \(parkingArea.currentOpeningState.name)",
+                detailText: String(localized: "\(parkingArea.freeSites) of \(parkingArea.capacity ?? 0) free · \(parkingArea.currentOpeningState.name)", comment: "Parking availability: free spaces, total capacity, and opening status."),
                 image: nil,
                 accessoryImage: nil,
                 accessoryType: .disclosureIndicator
@@ -86,8 +86,8 @@ public class CarPlaySceneDelegate: UIResponder {
         })
         
         
-        let openSection = CPListSection(items: openItems, header: "Geöffnet", sectionIndexTitle: nil)
-        let closedSection = CPListSection(items: closedItems, header: "Geschlossen / unbekannt", sectionIndexTitle: nil)
+        let openSection = CPListSection(items: openItems, header: String(localized: "Open"), sectionIndexTitle: nil)
+        let closedSection = CPListSection(items: closedItems, header: String(localized: "Closed / Unknown"), sectionIndexTitle: nil)
         
         self.parkingAreasTemplate.updateSections([openSection, closedSection])
         
@@ -99,13 +99,13 @@ public class CarPlaySceneDelegate: UIResponder {
             title: parkingArea.name,
             layout: .leading,
             items: [
-                CPInformationItem(title: "Name", detail: parkingArea.name),
-                CPInformationItem(title: "Freie Parkplätze", detail: "\(parkingArea.freeSites)"),
-                CPInformationItem(title: "Kapazität (gesamt)", detail: parkingArea.capacity != nil ? "\(parkingArea.capacity ?? 0)" : "n/v"),
-                CPInformationItem(title: "Status", detail: parkingArea.currentOpeningState.name)
+                CPInformationItem(title: String(localized: "Name"), detail: parkingArea.name),
+                CPInformationItem(title: String(localized: "Free Parking Spaces"), detail: "\(parkingArea.freeSites)"),
+                CPInformationItem(title: String(localized: "Total Capacity"), detail: parkingArea.capacity != nil ? "\(parkingArea.capacity ?? 0)" : String(localized: "Not available")),
+                CPInformationItem(title: String(localized: "Status"), detail: parkingArea.currentOpeningState.name)
             ],
             actions: [
-                CPTextButton(title: "Navigation starten", textStyle: .confirm, handler: { [weak self] (_: CPTextButton) in
+                CPTextButton(title: String(localized: "Start Navigation"), textStyle: .confirm, handler: { [weak self] (_: CPTextButton) in
                     
                     guard let strongSelf = self else { return }
                     guard let point = parkingArea.location else { return }
@@ -123,21 +123,26 @@ public class CarPlaySceneDelegate: UIResponder {
         
     }
     
+    private func formattedFuelPrice(_ price: Double?) -> String {
+        guard let price, price.isFinite else { return String(localized: "Not available") }
+        return price.formatted(.currency(code: "EUR").precision(.fractionLength(3)))
+    }
+
     private func showFuelStation(fuelStation: PetrolStation, completion: @escaping () -> Void) {
         
         let information = CPInformationTemplate(
             title: fuelStation.name,
             layout: .leading,
             items: [
-                CPInformationItem(title: "Name", detail: fuelStation.name),
-                CPInformationItem(title: "Preis", detail: "\(fuelStation.price ?? 0)€"),
-                CPInformationItem(title: "Straße", detail: "\(fuelStation.street) \(fuelStation.houseNumber ?? "")"),
-                CPInformationItem(title: "Ort", detail: "\(fuelStation.postCode ?? 0) \(fuelStation.place)"),
-//                CPInformationItem(title: "Kapazität (gesamt)", detail: parkingArea.capacity != nil ? "\(parkingArea.capacity ?? 0)" : "n/v"),
-//                CPInformationItem(title: "Status", detail: parkingArea.currentOpeningState.name)
+                CPInformationItem(title: String(localized: "Name"), detail: fuelStation.name),
+                CPInformationItem(title: String(localized: "Price"), detail: formattedFuelPrice(fuelStation.price)),
+                CPInformationItem(title: String(localized: "Street"), detail: "\(fuelStation.street) \(fuelStation.houseNumber ?? "")"),
+                CPInformationItem(title: String(localized: "Place"), detail: "\(fuelStation.postCode ?? 0) \(fuelStation.place)"),
+//                CPInformationItem(title: String(localized: "Total Capacity"), detail: parkingArea.capacity != nil ? "\(parkingArea.capacity ?? 0)" : String(localized: "Not available")),
+//                CPInformationItem(title: String(localized: "Status"), detail: parkingArea.currentOpeningState.name)
             ],
             actions: [
-                CPTextButton(title: "Navigation starten", textStyle: .confirm, handler: { [weak self] (_: CPTextButton) in
+                CPTextButton(title: String(localized: "Start Navigation"), textStyle: .confirm, handler: { [weak self] (_: CPTextButton) in
                     
                     guard let strongSelf = self else { return }
                     let point = fuelStation.coordinate.toPoint()
@@ -201,7 +206,7 @@ public class CarPlaySceneDelegate: UIResponder {
             
             let listItem = CPListItem(
                 text: "\(item.name)",
-                detailText: "\(item.price != nil ? "\(item.price ?? 0.0)" : "?")€ · \(item.distance)",
+                detailText: "\(formattedFuelPrice(item.price)) · \(item.distance)",
                 image: nil,
                 accessoryImage: nil,
                 accessoryType: .disclosureIndicator
@@ -215,7 +220,7 @@ public class CarPlaySceneDelegate: UIResponder {
             return listItem
         })
         
-        let openSection = CPListSection(items: openItems, header: "Tankstellen in Deiner Nähe", sectionIndexTitle: nil)
+        let openSection = CPListSection(items: openItems, header: String(localized: "Petrol Stations Near You"), sectionIndexTitle: nil)
         
         self.fuelStationsTemplate.updateSections([openSection])
         

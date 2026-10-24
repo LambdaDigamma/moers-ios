@@ -55,19 +55,14 @@ public struct AppLogType: Equatable, RawRepresentable, Sendable {
 
 extension AppLogType {
     
-    @available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *)
     public static let `default`: AppLogType = AppLogType(1)
     
-    @available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *)
     public static let info: AppLogType = AppLogType(2)
     
-    @available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *)
     public static let debug: AppLogType = AppLogType(3)
     
-    @available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *)
     public static let error: AppLogType = AppLogType(4)
     
-    @available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *)
     public static let fault: AppLogType = AppLogType(5)
     
     public func toOSLogType() -> OSLogType {

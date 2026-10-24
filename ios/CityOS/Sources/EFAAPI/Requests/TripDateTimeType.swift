@@ -15,9 +15,9 @@ nonisolated public enum TripDateTimeType: String, CaseIterable {
     public var name: String {
         switch self {
             case .departure:
-                return "Abfahrtszeit"
+                return String(localized: "Departure time", bundle: .module)
             case .arrival:
-                return "Ankunftszeit"
+                return String(localized: "Arrival time", bundle: .module)
         }
     }
     

@@ -16,7 +16,7 @@ public class MedicalServiceAnnotation: NSObject, MKAnnotation, DisplayCacheableA
     public var coordinate: CLLocationCoordinate2D
     
     public init(
-        title: String? = "Medical Service",
+        title: String? = String(localized: "Medical Service"),
         coordinate: CLLocationCoordinate2D
     ) {
         self.title = title

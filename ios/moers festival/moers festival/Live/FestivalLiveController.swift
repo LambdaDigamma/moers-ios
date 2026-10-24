@@ -9,7 +9,7 @@
 import Foundation
 import Core
 import SwiftUI
-import MMPages
+import Pages
 import WebKit
 
 public class FestivalLiveController: DefaultHostingController {
@@ -41,7 +41,7 @@ public class FestivalLiveController: DefaultHostingController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Live"
+        self.title = String(localized: "Live")
         
     }
     

@@ -65,6 +65,10 @@ class SettingsViewController: UIViewController {
         view.addSubview(collectionView)
         collectionView.delegate = self
         
+        if #available(iOS 26.0, *) {
+            collectionView.topEdgeEffect.style = .soft
+        }
+        
         let switchRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, SwitchItem> { [weak self] cell, indexPath, item in
             guard let self = self else { return }
             var content = cell.defaultContentConfiguration()
@@ -114,7 +118,7 @@ class SettingsViewController: UIViewController {
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         
         NSLayoutConstraint.activate(constraints)
@@ -162,7 +166,7 @@ class SettingsViewController: UIViewController {
         
         let reminderPage = onboardingManager.makeRubbishReminderPage()
         
-        reminderPage.alternativeButtonTitle = "Deaktivieren"
+        reminderPage.alternativeButtonTitle = String(localized: "Disable")
         reminderPage.actionHandler = { [weak self] item in
             
             guard let page = item as? RubbishReminderBulletinItem else { return }
@@ -256,10 +260,10 @@ class SettingsViewController: UIViewController {
                 minuteString += "\(minute)"
             }
             
-            rubbishReminder = String(localized: "Reminder") + ": \(hourString):\(minuteString)"
+            rubbishReminder = String(localized: "Reminder: \(hourString):\(minuteString)")
             
         } else {
-            rubbishReminder = String(localized: "Reminder") + ": " + String(localized: "not activated")
+            rubbishReminder = String(localized: "Reminder: not activated")
         }
         
         let userType = UserManager.shared.user.type
@@ -272,7 +276,7 @@ class SettingsViewController: UIViewController {
             [
                 .navigation(
                     NavigationItem(
-                        title: String(localized: "Type") + ": " + userType.name,
+                        title: String(localized: "Type: \(userType.name)"),
                         action: { [weak self] in self?.showUserType() }
                     )
                 )
@@ -309,7 +313,7 @@ class SettingsViewController: UIViewController {
                 ),
                 .navigation(
                     NavigationItem(
-                        title: String(localized: "Street") + ": \(rubbishService.rubbishStreet?.displayName ?? String(localized: "NotSelected"))",
+                        title: rubbishService.rubbishStreet.map { String(localized: "Street: \($0.displayName)") } ?? String(localized: "Street: Not selected"),
                         action: { [weak self] in self?.showRubbishStreet() }
                     )
                 ),
@@ -332,9 +336,9 @@ class SettingsViewController: UIViewController {
         
         self.reloadRows()
         
-        guard let splitViewController = self.splitViewController as? AppSplitViewController else { return }
+        guard let tabBarController = self.tabBarController as? AppTabBarController else { return }
         
-        splitViewController.updateDashboard()
+        tabBarController.updateDashboard()
         
     }
     
@@ -356,11 +360,8 @@ class SettingsViewController: UIViewController {
         
         let manager = BLTNItemManager(rootItem: item)
         
-        manager.backgroundColor = UIColor.systemBackground
-        manager.backgroundViewStyle = .dimmed
         manager.statusBarAppearance = .hidden
         manager.hidesHomeIndicator = false
-        manager.edgeSpacing = .compact
         
         return manager
         
@@ -415,11 +416,11 @@ nonisolated enum Section: Hashable {
     @MainActor var title: String {
         switch self {
         case .user:
-            return String.localized("User")
+            return String(localized: "User")
         case .petrol:
-            return String.localized("Petrol")
+            return String(localized: "Petrol")
         case .rubbish:
-            return String.localized("SettingsRubbishCollectionTitle")
+            return String(localized: "Pick-up Schedule")
         }
     }
 }

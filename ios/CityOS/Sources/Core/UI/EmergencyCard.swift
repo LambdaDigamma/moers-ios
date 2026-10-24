@@ -25,7 +25,7 @@ public struct EmergencyCard: View {
         
         VStack(alignment: .leading, spacing: 8) {
             
-            Text("Achtung!")
+            Text("Warning!", bundle: .module)
                 .font(.title3)
                 .fontWeight(.bold)
                 .foregroundColor(foregroundColor)

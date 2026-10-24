@@ -16,11 +16,11 @@ nonisolated public enum HourError: Int, Codable, LocalizedError {
     public var errorDescription: String? {
         switch self {
             case .invalidTime:
-                return "The provided time is invalid."
+                return String(localized: "The provided time is invalid.", bundle: .module)
             case .hourOutOfRange:
-                return "The provided hour is out of range."
+                return String(localized: "The provided hour is out of range.", bundle: .module)
             case .minuteOutOfRange:
-                return "The provided minute is out of range."
+                return String(localized: "The provided minute is out of range.", bundle: .module)
         }
     }
     

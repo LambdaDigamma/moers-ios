@@ -11,8 +11,8 @@ import SwiftUI
 import AppScaffold
 import ModernNetworking
 import Cache
-import MMPages
-import MMFeeds
+import Pages
+import Feeds
 import SafariServices
 import Combine
 import FactoryKit

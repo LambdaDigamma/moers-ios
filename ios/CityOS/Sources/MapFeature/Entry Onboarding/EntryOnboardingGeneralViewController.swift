@@ -95,10 +95,6 @@ class EntryOnboardingGeneralViewController: UIViewController {
         self.websiteTextField.keyboardType = .URL
         self.phoneTextField.keyboardType = .phonePad
         
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        
     }
     
     private func setupConstraints() {
@@ -106,32 +102,32 @@ class EntryOnboardingGeneralViewController: UIViewController {
         let constraints = [scrollView.topAnchor.constraint(equalTo: self.safeTopAnchor, constant: 0),
                            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
                            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-                           scrollView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: 0),
+                           scrollView.bottomAnchor.constraint(equalTo: self.view.keyboardLayoutGuide.topAnchor, constant: 0),
                            contentView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
                            contentView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
                            contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
                            contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
                            contentView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
                            progressView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 20),
-                           progressView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           progressView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+                           progressView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                           progressView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
                            generalHeaderLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20),
-                           generalHeaderLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           generalHeaderLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+                           generalHeaderLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                           generalHeaderLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
                            nameTextField.topAnchor.constraint(equalTo: generalHeaderLabel.bottomAnchor, constant: 0),
-                           nameTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           nameTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+                           nameTextField.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                           nameTextField.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
                            nameTextField.heightAnchor.constraint(equalToConstant: 55),
                            contactHeaderLabel.topAnchor.constraint(equalTo: self.nameTextField.bottomAnchor, constant: 24),
-                           contactHeaderLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           contactHeaderLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+                           contactHeaderLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                           contactHeaderLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
                            websiteTextField.topAnchor.constraint(equalTo: contactHeaderLabel.bottomAnchor, constant: 0),
-                           websiteTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           websiteTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+                           websiteTextField.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                           websiteTextField.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
                            websiteTextField.heightAnchor.constraint(equalToConstant: 55),
                            phoneTextField.topAnchor.constraint(equalTo: websiteTextField.bottomAnchor, constant: 4),
-                           phoneTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-                           phoneTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+                           phoneTextField.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                           phoneTextField.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
                            phoneTextField.heightAnchor.constraint(equalToConstant: 55),
                            phoneTextField.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -50)]
         
@@ -144,24 +140,6 @@ class EntryOnboardingGeneralViewController: UIViewController {
     }
     
     // MARK: - Helper
-    
-    @objc private func adjustForKeyboard(notification: Notification) {
-        
-        guard let userInfo = notification.userInfo else { return }
-        guard let value = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        
-        let keyboardScreenEndFrame = value.cgRectValue
-        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-        
-        if notification.name == UIResponder.keyboardWillHideNotification {
-            scrollView.contentInset = UIEdgeInsets.zero
-        } else {
-            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
-        }
-        
-        scrollView.scrollIndicatorInsets = scrollView.contentInset
-        
-    }
     
     @objc private func textChanged(_ textField: UITextField) {
         

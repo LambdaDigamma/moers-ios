@@ -1,5 +1,5 @@
 {
-  "originHash" : "27392cc608478b75f8cc01322cf3b64995275f90d143b73cf61cf29f12eb0941",
+  "originHash" : "b5804aee8d64ba33e59f7ccfbcedc751791f2b9955723a8b06c1973ddff28912",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LambdaDigamma/BulletinBoard",
       "state" : {
-        "revision" : "06b96b8dc849e4f163294bf12bb633dcf62c8c1e",
-        "version" : "6.1.1"
+        "revision" : "ef40ff7e40216287ce3d11100ceaec67fa7ce27c",
+        "version" : "6.2.1"
       }
     },
     {
@@ -310,7 +310,7 @@
     {
       "identity" : "swift-prosemirror",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/lambdadigamma/swift-prosemirror",
+      "location" : "https://github.com/LambdaDigamma/swift-prosemirror",
       "state" : {
         "revision" : "30b8594dc002f31c4e1e42a20b11eea74a020510",
         "version" : "0.0.9"

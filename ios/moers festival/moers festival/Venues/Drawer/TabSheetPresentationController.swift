@@ -1,36 +1,9 @@
-//
-//  TabSheetPresentationController.swift
-//  moers festival
-//
-//  Created by Lennart Fischer on 20.03.26.
-//  Copyright © 2026 Code for Niederrhein. All rights reserved.
-//
-
 import UIKit
 
 class TabSheetPresentationController: UISheetPresentationController {
-    
-    private weak var sourceViewController: UIViewController?
-    
-    init(
-        presentedViewController: UIViewController,
-        presenting: UIViewController?,
-        source: UIViewController
-    ) {
-        self.sourceViewController = source
-        super.init(presentedViewController: presentedViewController, presenting: presenting)
-    }
-    
-    override func presentationTransitionWillBegin() {
-        super.presentationTransitionWillBegin()
-        
-        guard let containerView = containerView else { return }
-        
-        containerView.removeFromSuperview()
-        
-        sourceViewController?.view.addSubview(containerView)
-        
-    }
+    // UIKit keeps the sheet in the map's presentation context and owns its container.
+    override var shouldPresentInFullscreen: Bool { false }
+    override var shouldRemovePresentersView: Bool { false }
 
     // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
     nonisolated deinit {}

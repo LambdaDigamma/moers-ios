@@ -1,6 +1,6 @@
 
 import SwiftUI
-import MMEvents
+import Events
 
 struct EventFilterSheetWrapper: View {
     @ObservedObject var box: FilterBox

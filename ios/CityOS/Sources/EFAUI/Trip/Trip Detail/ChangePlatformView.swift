@@ -11,7 +11,7 @@ public struct ChangePlatformView: View {
     
     public var body: some View {
         
-        Text("\(Image(systemName: "point.topleft.down.curvedto.point.bottomright.up")) Gleis wechseln")
+        Text("\(Image(systemName: "point.topleft.down.curvedto.point.bottomright.up")) Change platform", bundle: .module)
             .foregroundColor(.secondary)
             .font(.footnote)
             .frame(maxWidth: .infinity, alignment: .center)

@@ -153,7 +153,7 @@ public struct ParkingAreaDetailScreen: View {
 //
 //                Text("22:00")
 //                Spacer()
-//                Text("Jetzt")
+//                Text("Jetzt", bundle: .module)
 //
 //            }
 //            .font(.caption2)
@@ -197,7 +197,7 @@ public struct ParkingAreaDetailScreen: View {
             .padding(.horizontal)
         
         DetailContainer(title: PackageStrings.ParkingAreaDetailScreen.pricesTitle) {
-            Text("No pricing information")
+            Text("No pricing information", bundle: .module)
                 .foregroundColor(.secondary)
         }
         .padding()

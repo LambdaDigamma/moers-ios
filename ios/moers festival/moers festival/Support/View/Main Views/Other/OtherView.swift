@@ -72,6 +72,10 @@ class OtherView: UIView {
         
         self.collectionView.backgroundColor = UIColor.systemBackground
         
+        if #available(iOS 26.0, *) {
+            self.collectionView.topEdgeEffect.style = .soft
+        }
+        
     }
     
     public func setCollectionViewDelegate(_ delegate: UICollectionViewDelegate) {

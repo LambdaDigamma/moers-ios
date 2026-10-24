@@ -51,7 +51,7 @@ public struct ParkingTimerConfigurationPartial: View {
         
         VStack {
             
-            sectionHeader(text: "Overview")
+            sectionHeader(text: Text("Overview", bundle: .module))
             
             HStack {
                 
@@ -147,7 +147,7 @@ public struct ParkingTimerConfigurationPartial: View {
     @ViewBuilder
     private func options() -> some View {
         
-        sectionHeader(text: "Settings")
+        sectionHeader(text: Text("Settings", bundle: .module))
         
         VStack(spacing: 8) {
             
@@ -167,9 +167,9 @@ public struct ParkingTimerConfigurationPartial: View {
     }
     
     @ViewBuilder
-    private func sectionHeader(text: LocalizedStringKey) -> some View {
+    private func sectionHeader(text: Text) -> some View {
         
-        Text(text, bundle: .module)
+        text
             .fontWeight(.semibold)
             .frame(maxWidth: .infinity, alignment: .leading)
         

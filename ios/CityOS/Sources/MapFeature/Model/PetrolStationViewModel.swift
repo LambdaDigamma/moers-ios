@@ -1,6 +1,6 @@
 //
 //  PetrolStationViewModel.swift
-//  MMAPI
+//  API
 //
 //  Created by Lennart Fischer on 05.04.19.
 //  Copyright © 2019 LambdaDigamma. All rights reserved.
@@ -82,7 +82,7 @@ nonisolated final public class PetrolStationViewModel: LocationViewModel, Locati
     public var location: CLLocation { return CLLocation(latitude: self.lat, longitude: self.lng) }
     
     public var tags: [String] {
-        return [localizedCategory, "Tanken", "Diesel", "E5", "E10"]
+        return [localizedCategory, String(localized: "Refueling", bundle: .module), String(localized: "Diesel", bundle: .module), "E5", "E10"]
     }
     
     public var distance: Measurement<UnitLength> {

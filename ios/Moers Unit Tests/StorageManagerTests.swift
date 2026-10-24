@@ -1,6 +1,6 @@
 //
 //  StorageManagerTests.swift
-//  MMAPITests
+//  APITests
 //
 //  Created by Lennart Fischer on 22.07.19.
 //  Copyright © 2019 LambdaDigamma. All rights reserved.
@@ -9,7 +9,7 @@
 import XCTest
 import Core
 import Combine
-import MMEvents
+import Events
 @testable import Moers
 
 @MainActor

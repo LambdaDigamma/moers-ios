@@ -26,6 +26,7 @@ public struct SettingsRowContentConfiguration: UIContentConfiguration, Hashable 
     public var title: String
     public var subtitle: String?
     public var icon: Icon?
+    public var titleNumberOfLines = 1
 
     public init(title: String, subtitle: String? = nil, icon: Icon? = nil) {
         self.title = title
@@ -129,6 +130,7 @@ private final class SettingsRowContentView: UIView, UIContentView {
         appliedConfiguration = configuration
 
         titleLabel.text = configuration.title
+        titleLabel.numberOfLines = configuration.titleNumberOfLines
 
         if let subtitle = configuration.subtitle, !subtitle.isEmpty {
             subtitleLabel.text = subtitle

@@ -1,6 +1,6 @@
 //
 //  PetrolType.swift
-//  MMAPI
+//  API
 //
 //  Created by Lennart Fischer on 05.04.19.
 //  Copyright © 2019 LambdaDigamma. All rights reserved.
@@ -19,7 +19,7 @@ nonisolated public enum PetrolType: String, Codable, CaseIterable, Equatable, Ca
     public var name: String {
         switch self {
             case .diesel:
-                return "Diesel"
+                return String(localized: "Diesel", bundle: .module)
             case .e5:
                 return "E5"
             case .e10:

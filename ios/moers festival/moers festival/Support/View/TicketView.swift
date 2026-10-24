@@ -68,7 +68,7 @@ class TicketView: UIView {
         self.priceStackView.spacing = 4.0
         self.buyButton.layer.cornerRadius = 12
         self.buyButton.clipsToBounds = true
-        self.buyButton.setTitle(String.localized("Buy"), for: .normal)
+        self.buyButton.setTitle(String(localized: "Buy"), for: .normal)
         self.buyButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         
         self.buyButton.addTarget(self, action: #selector(tappedBuyButton), for: .touchUpInside)

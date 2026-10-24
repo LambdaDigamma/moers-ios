@@ -8,7 +8,6 @@
 
 import AppIntents
 
-@available(iOSApplicationExtension 17.0, *)
 struct FestivalVenueEntityQuery: EnumerableEntityQuery, Sendable {
 
     func allEntities() async throws -> [VenueEntity] {

@@ -152,8 +152,7 @@ public struct FuelStationDetailContent: View {
                 
                 Group {
                     
-                    Text(String(format: "%.2f€", price)) +
-                    Text(" / L")
+                    Text("\(price, format: .currency(code: "EUR")) / L", bundle: .module)
                         .foregroundColor(.secondary)
                         .font(.caption.weight(.semibold))
                     

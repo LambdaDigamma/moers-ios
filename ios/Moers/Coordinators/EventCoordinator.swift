@@ -9,7 +9,7 @@
 import Core
 import UIKit
 import AppScaffold
-import MMEvents
+import Events
 import FactoryKit
 
 class EventCoordinator: Coordinator {
@@ -29,20 +29,8 @@ class EventCoordinator: Coordinator {
     ) {
         
         self.navigationController = navigationController
-        
-        
-        
-        // Use the appropriate version based on iOS availability
-        let eventViewController: UIViewController & TabBarItemProvider & CoordinatorAssignable
-        if #available(iOS 26.0, *) {
-            let vc = MMEventsViewController()
-            vc.coordinator = self
-            eventViewController = vc
-        } else {
-            let vc = MMEventsViewController_Legacy()
-            vc.coordinator = self
-            eventViewController = vc
-        }
+        let eventViewController = EventsViewController()
+        eventViewController.coordinator = self
         
         self.navigationController.coordinator = self
         self.navigationController.viewControllers = [eventViewController]
@@ -75,8 +63,3 @@ protocol TabBarItemProvider {
 protocol CoordinatorAssignable {
     var coordinator: EventCoordinator? { get set }
 }
-
-extension MMEventsViewController_Legacy: TabBarItemProvider, CoordinatorAssignable {}
-
-@available(iOS 26.0, *)
-extension MMEventsViewController: TabBarItemProvider, CoordinatorAssignable {}

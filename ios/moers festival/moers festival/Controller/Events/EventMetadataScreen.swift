@@ -9,7 +9,7 @@
 import Core
 import SwiftUI
 import CoreLocation
-import MMEvents
+import Events
 
 public struct EventMetadataScreen: View {
     
