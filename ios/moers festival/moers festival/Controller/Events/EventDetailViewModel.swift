@@ -75,16 +75,17 @@ public class EventDetailViewModel: StandardViewModel {
 
         self.repository.eventDetail(id: eventID)
             .receive(on: DispatchQueue.main)
-            .sink { (completion: Subscribers.Completion<Error>) in
+            .sink { [weak self] (completion: Subscribers.Completion<Error>) in
 
                 switch completion {
                     case .failure(let error):
-                        self.logger.error("\(error.localizedDescription)")
+                        self?.logger.error("\(error.localizedDescription)")
                         print(error)
                     default: break
                 }
 
-            } receiveValue: { (event: Event?) in
+            } receiveValue: { [weak self] (event: Event?) in
+                guard let self else { return }
 
                 self.pageID = event?.pageID
                 self.event = event

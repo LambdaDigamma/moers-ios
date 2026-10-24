@@ -58,7 +58,7 @@ public class VenueDetailController: DefaultHostingController {
             viewModel: viewModel,
             layoutState: layoutState,
             actionTransmitter: actionTransmitter,
-            onSelectEvent: onSelectEvent(eventID:)
+            onSelectEvent: { [weak self] eventID in self?.onSelectEvent(eventID: eventID) }
         )
             .toAnyView()
     }
@@ -79,11 +79,11 @@ public class VenueDetailController: DefaultHostingController {
     
     public func setupListeners() {
         
-        actionTransmitter.showURL.sink { (url: URL) in
+        actionTransmitter.showURL.sink { [weak self] (url: URL) in
             
             let viewController = SFSafariViewController(url: url)
             viewController.delegate = self
-            self.present(viewController, animated: true) {
+            self?.present(viewController, animated: true) { [weak self] in
                 viewController.presentationController?.delegate = self
             }
             

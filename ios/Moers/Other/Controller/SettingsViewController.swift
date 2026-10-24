@@ -277,7 +277,7 @@ class SettingsViewController: UIViewController {
                 .navigation(
                     NavigationItem(
                         title: String(localized: "Type: \(userType.name)"),
-                        action: showUserType
+                        action: { [weak self] in self?.showUserType() }
                     )
                 )
             ],
@@ -291,7 +291,7 @@ class SettingsViewController: UIViewController {
                 .navigation(
                     NavigationItem(
                         title: String(localized: "Type") + ": " + petrolService.petrolType.name,
-                        action: showPetrolType
+                        action: { [weak self] in self?.showPetrolType() }
                     )
                 )
             ],
@@ -308,19 +308,19 @@ class SettingsViewController: UIViewController {
                     SwitchItem(
                         title: String(localized: "Activated"),
                         isOn: rubbishService.isEnabled,
-                        action: triggerRubbishCollection
+                        action: { [weak self] isEnabled in self?.triggerRubbishCollection(isEnabled: isEnabled) }
                     )
                 ),
                 .navigation(
                     NavigationItem(
                         title: rubbishService.rubbishStreet.map { String(localized: "Street: \($0.displayName)") } ?? String(localized: "Street: Not selected"),
-                        action: showRubbishStreet
+                        action: { [weak self] in self?.showRubbishStreet() }
                     )
                 ),
                 .navigation(
                     NavigationItem(
                         title: rubbishReminder,
-                        action: showRubbishReminder
+                        action: { [weak self] in self?.showRubbishReminder() }
                     )
                 )
             ]
