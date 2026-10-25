@@ -10,6 +10,8 @@ final class ReadableContentWidthMeasurementController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .clear
         view.isUserInteractionEnabled = false
+        // This invisible view measures the width; padded content can opt out of system minimum margins.
+        view.directionalLayoutMargins = .zero
         registerForTraitChanges([
             UITraitHorizontalSizeClass.self,
             UITraitVerticalSizeClass.self,

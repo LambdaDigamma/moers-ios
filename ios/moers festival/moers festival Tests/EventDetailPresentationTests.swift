@@ -137,41 +137,19 @@ final class EventDetailPresentationTests: XCTestCase {
         }
         hosted.view.autoresizingMask = []
         hosted.view.frame = CGRect(x: 0, y: 0, width: 320, height: 600)
-        hosted.additionalSafeAreaInsets.right = 50
-        await settle(window)
-        let scroll = try XCTUnwrap(descendants(of: hosted.view).compactMap { $0 as? UIScrollView }.first)
-        XCTAssertTrue(scroll.alwaysBounceVertical, "Short event pages must still support a pull.")
-        let column = Int(hosted.view.safeAreaLayoutGuide.layoutFrame.midX)
-        var before = snapshot(window, name: "Artwork before pull")
-        for _ in 0..<10 {
-            let color = try rgba(before, x: column, y: 100)
-            if Int(color[2]) - Int(color[0]) > 40 { break }
+        for trailingInset in [true, false] {
+            hosted.additionalSafeAreaInsets = UIEdgeInsets(
+                top: 0, left: trailingInset ? 0 : 50, bottom: 0, right: trailingInset ? 50 : 0
+            )
             await settle(window)
-            before = snapshot(window, name: "Artwork loaded")
+            let scroll = try XCTUnwrap(descendants(of: hosted.view).compactMap { $0 as? UIScrollView }.first)
+            scroll.showsVerticalScrollIndicator = false
+            XCTAssertTrue(scroll.alwaysBounceVertical, "Short event pages must still support a pull.")
+            try await assertArtworkPulls(
+                in: window, scroll: scroll,
+                safeFrame: hosted.view.safeAreaLayoutGuide.layoutFrame, trailingInset: trailingInset
+            )
         }
-        let originalMarker = try XCTUnwrap(firstRedRow(before, x: column))
-        let originalContentSize = scroll.contentSize
-        let originalOffset = scroll.contentOffset
-        let headerHeight = hosted.view.safeAreaLayoutGuide.layoutFrame.width * 9 / 16
-
-        scroll.setContentOffset(CGPoint(x: 0, y: originalOffset.y - 120), animated: false)
-        await settle(window)
-        let pulled = snapshot(window, name: "Artwork during pull")
-        let pull = originalOffset.y - scroll.contentOffset.y
-        XCTAssertEqual(pull, 120, accuracy: 0.5)
-        XCTAssertEqual(scroll.contentSize, originalContentSize)
-        let pulledMarker = try XCTUnwrap(firstRedRow(pulled, x: column))
-        XCTAssertEqual(CGFloat(pulledMarker), CGFloat(originalMarker) * (1 + pull / headerHeight), accuracy: 3)
-        for x in [column, 310] {
-            let color = try rgba(pulled, x: x, y: 100)
-            XCTAssertGreaterThan(Int(color[2]) - Int(color[0]), 40, "Artwork must fill the pulled top and side region.")
-        }
-
-        scroll.setContentOffset(originalOffset, animated: false)
-        await settle(window)
-        let returned = snapshot(window, name: "Artwork after release")
-        XCTAssertEqual(try firstRedRow(returned, x: column), originalMarker)
-        XCTAssertEqual(scroll.contentSize, originalContentSize)
     }
 
     func testArtworkHeightRespondsToViewportWithoutChangingScrollPosition() async throws {
@@ -219,6 +197,53 @@ final class EventDetailPresentationTests: XCTestCase {
         } else {
             XCTAssertGreaterThan(scroll.adjustedContentInset.top, 0)
         }
+    }
+
+    private func assertArtworkPulls(
+        in window: UIWindow, scroll: UIScrollView, safeFrame: CGRect, trailingInset: Bool
+    ) async throws {
+        let column = Int(safeFrame.midX)
+        var before = snapshot(window, name: "Artwork before pull")
+        for _ in 0..<10 {
+            let color = try rgba(before, x: column, y: 100)
+            if Int(color[2]) - Int(color[0]) > 40 { break }
+            await settle(window)
+            before = snapshot(window, name: "Artwork loaded")
+        }
+        let originalMarker = try XCTUnwrap(firstRedRow(before, x: column))
+        let originalContentSize = scroll.contentSize
+        let originalOffset = scroll.contentOffset
+        let headerHeight = safeFrame.width * 9 / 16
+
+        for distance in [30.0, 120.0, 240.0] {
+            scroll.setContentOffset(CGPoint(x: 0, y: originalOffset.y - distance), animated: false)
+            await settle(window)
+            let pulled = snapshot(window, name: "Artwork pull \(Int(distance)), trailing inset \(trailingInset)")
+            let pull = originalOffset.y - scroll.contentOffset.y
+            XCTAssertEqual(pull, distance, accuracy: 0.5)
+            XCTAssertEqual(scroll.contentSize, originalContentSize)
+            let pulledMarker = try XCTUnwrap(firstRedRow(pulled, x: column))
+            XCTAssertEqual(CGFloat(pulledMarker), CGFloat(originalMarker) * (1 + pull / headerHeight), accuracy: 3)
+            let row = Int((headerHeight + pull) * 0.6)
+            for x in [column, trailingInset ? 310 : 10] {
+                if #unavailable(iOS 26), x != column { continue }
+                let color = try rgba(pulled, x: x, y: row)
+                XCTAssertGreaterThan(Int(color[2]) - Int(color[0]), 40, "Artwork must fill the pulled top and side region.")
+            }
+            if #available(iOS 26, *) {
+                let colors = try (0..<Int(scroll.bounds.width)).map { try rgba(pulled, x: $0, y: row) }
+                for (previous, current) in zip(colors, colors.dropFirst()) {
+                    let delta = zip(previous, current).prefix(3).map { abs(Int($0.0) - Int($0.1)) }.max() ?? 0
+                    XCTAssertLessThan(delta, 48, "The uniform image row must have no sharp seam, including displaced seams.")
+                }
+            }
+        }
+
+        scroll.setContentOffset(originalOffset, animated: false)
+        await settle(window)
+        let returned = snapshot(window, name: "Artwork after release")
+        XCTAssertEqual(try firstRedRow(returned, x: column), originalMarker)
+        XCTAssertEqual(scroll.contentSize, originalContentSize)
     }
 
     private func makeMedia() -> Media {

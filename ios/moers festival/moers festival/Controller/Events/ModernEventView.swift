@@ -17,7 +17,8 @@ public struct ModernEventView: View {
     
     private let showDetails: () -> Void
     private let updateNavigationTitle: (String?) -> Void
-    @State private var viewportSize: CGSize = .zero
+    @State private var contentWidth: CGFloat = 0
+    @State private var viewportHeight: CGFloat = 0
     @State private var hasScrolledPastHeader = false
 
     public init(
@@ -40,7 +41,7 @@ public struct ModernEventView: View {
 
                 if let header = viewModel.header {
 
-                    EventDetailHeroView(media: header, viewportSize: viewportSize)
+                    EventDetailHeroView(media: header, contentWidth: contentWidth, viewportHeight: viewportHeight)
                         .onGeometryChange(for: Bool.self) { geometry in
                             geometry.frame(in: .named("EventDetail.Scroll")).maxY <= 0
                         } action: { hasPassed in
@@ -56,13 +57,13 @@ public struct ModernEventView: View {
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .background(Color(UIColor.systemBackground))
-                            .readableContentWidth()
+                            .readableContentWidth(includeLayoutMargins: false)
                     }
 
                 }
 
                 metadata()
-                    .readableContentWidth()
+                    .readableContentWidth(includeLayoutMargins: false)
 
                 if let pageID = viewModel.pageID {
                     IsolatedNativePageView(pageID: pageID)
@@ -71,19 +72,25 @@ public struct ModernEventView: View {
                             actionTransmitter.dispatchOpenURL(url)
                             return .handled
                         })
-                        .readableContentWidth()
+                        .readableContentWidth(includeLayoutMargins: false)
                 }
 
+            }
+            .frame(maxWidth: .infinity)
+            .onGeometryChange(for: CGFloat.self) { geometry in
+                geometry.size.width
+            } action: { width in
+                contentWidth = width
             }
 
         }
         .coordinateSpace(name: "EventDetail.Scroll")
         .scrollBounceBehavior(viewModel.header == nil ? .automatic : .always, axes: .vertical)
         .modifier(EventDetailScrollEdgeEffectModifier())
-        .onGeometryChange(for: CGSize.self) { geometry in
-            geometry.size
-        } action: { size in
-            viewportSize = size
+        .onGeometryChange(for: CGFloat.self) { geometry in
+            geometry.size.height
+        } action: { height in
+            viewportHeight = height
         }
         .ignoresSafeArea(.container, edges: artworkSafeAreaEdges)
         .background(Color(uiColor: .systemBackground))

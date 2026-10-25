@@ -307,22 +307,73 @@ The original image-edge layout was checked on iOS 27.2 at 1210 by 834 points on 
 
 ## Stretchy artwork
 
-`EventDetailHeroView` implements pull-to-stretch with Apple's native [`visualEffect`](https://developer.apple.com/documentation/swiftui/visualeffect) and visual-effect scaling, available from iOS 17. The native scroll view keeps its bounce and scrolling behavior. Event pages with artwork enable vertical bounce even when the page is shorter than the viewport. Pages without artwork keep the automatic bounce policy.
+`EventDetailHeroView` uses layout resizing for pull-to-stretch, following the mechanism in Apple's [Landmarks sample](https://developer.apple.com/documentation/swiftui/landmarks-building-an-app-with-liquid-glass). The artwork receives its current expanded height before the system generates the mirrored background extension. The native scroll view keeps its bounce and scrolling behavior. Event pages with artwork enable vertical bounce even when the page is shorter than the viewport. Pages without artwork keep the automatic bounce policy.
 
-For a pull distance `d` below the top and a normal image height `h`, the artwork scales uniformly by `1 + d / h`, anchored at its bottom. Its top stays at the viewport edge while its bottom follows the pulled content. The effect reads the positive image offset from the existing scroll coordinate space. It does not write pixel offsets into `@State` or change the header's layout height on each frame. Credits and body text keep their size and use the native scroll movement. The conditional navigation title and soft top effect remain in use.
+For a pull distance `d` and normal image height `h`, the image receives height `h + d` and moves upward by `d` inside a fixed-height `GeometryReader`. The reader measures its own unmoved frame in the scroll coordinate space. Its child cannot change that measurement or the reported header height. This gives the same size compensation as the sample's negative bottom padding without per-frame offset state. Credits and body text follow native scroll movement; the content size and title threshold stay fixed.
 
-The visual scale is applied after the artwork's clipping and background-extension effect. This keeps the extension modifier from clipping off the stretched image. The shared UIKit `EventDetailView.updateStretchyHeader` still disables its older transform when background extension is active; the festival implementation does not use that view.
+The image accepts the current width and height proposal, clips its aspect-fill content, and adds the fade within those bounds. On iOS 26 or later, `backgroundExtensionEffect()` generates the extension from this resized artwork. Earlier systems use the same image layout without that effect. The fixed-height reader stays unclipped so the enlarged image can fill the exposed top. Only translation is applied after background extension; there is no scale transform on the generated extension.
+
+The previous implementation used a uniform `visualEffect` scale after background extension. A similar [standalone stretchy-header example](https://nilcoalescing.com/blog/StretchyHeaderInSwiftUI/) works on an image alone. It does not combine that transform with the extension's separate mirrored, blurred, and clipped regions. Apple [documents this clipping](https://developer.apple.com/documentation/swiftui/view/backgroundextensioneffect()). Resizing the source layout keeps these regions on the same current bounds and avoids scaling the completed extension.
+
+```mermaid
+flowchart TD
+    P[Native downward bounce] --> D[Unmoved reader measures pull distance]
+    D --> H[Artwork layout height becomes base height plus pull]
+    H --> C[Image and fade use current bounds]
+    C --> E[System generates matching background extension]
+    E --> U[Translate artwork upward by pull distance]
+    F[Reader keeps fixed base height] --> S[Stable scroll content size and title threshold]
+    U --> V[Image fills the exposed top]
+    R[Release returns to zero pull] --> O[Original image layout]
+```
+
+The header retains an offline interactive preview. Rendered tests hold 30-, 120-, and 240-point pulls with both leading and trailing side insets. They check image zoom through a red marker, fill across the top and side regions, color continuity across the full uniform image row, unchanged scroll content size, and restoration after release. Scanning the full row also catches a seam displaced from the original safe-area boundary. Extension checks apply on iOS 26 or later; earlier systems check the source image. Screenshots are retained for each state.
+
+The festival build and all six focused event-detail tests pass on Duo with iOS 27.2. A second focused run of the full-row seam check also passes. The title-transition, height-only resize, and horizontal overflow checks remain in place. Focused SwiftLint and the source diff check pass.
+
+The final native check confirms normal scrolling, Closed → Open resizing, and the 16-point text margin. A live open-display pull remains unverified: both the native drag and device-touch retry left the artwork unchanged. Their recordings are labelled `no-pull` and do not supply seam evidence. The held rendered pull states supply the extension-boundary checks; they do not replace live animation acceptance. This input limit remains recorded in `PAPERCUTS.md`.
+
+## Event scroll width during resizing — 25 October 2026
+
+The event artwork could keep its previous width when the detail column became narrower. Its aspect-fill image then made the scroll view wider than its host. In the scene-based regression check, a 326.2-point host contained a 354.3-point scroll view. This also moved the native scroll indicator and changed text placement. The event screen sets no manual scroll-indicator insets.
+
+`ModernEventView` now measures the content stack's width inside the scroll view. It measures only viewport height outside the scroll view. `EventDetailHeroView` accepts the proposed width with a flexible frame whose minimum width is zero, before applying its height and clipping. The image can therefore crop to a smaller width without making the parent wider. The image aspect ratio and viewport height limit still control its height. Background extension and pull-to-stretch remain on the artwork.
+
+The scroll view fills its host. SwiftUI and UIKit apply the current safe area to content and indicators. There are no copied safe-area values, manual indicator offsets, or device-specific widths. Credits, metadata, and page content keep their readable-width layout within the current content proposal. A system side inset can still place a scroll indicator inside the window edge; the app must not cancel that inset.
+
+```mermaid
+flowchart TD
+    H[Current detail host] --> S[Scroll frame fills host]
+    S --> A[System applies current safe area]
+    A --> C[Content stack width]
+    C --> W[Artwork accepts proposed width and clips excess image]
+    C --> T[Readable credits, metadata, and page text]
+    S --> V[Current viewport height]
+    V --> L[Artwork height limit]
+    C --> L
+    A --> I[Native scroll indicator placement]
+```
+
+`EventDetailContentLayoutTests` uses a real window scene and a local image and article. It changes the host width from wide to narrow and back, switches the leading and trailing insets without changing the width, and returns to the first layout. It checks the scroll frame, content width, horizontal offset, and automatic indicator adjustment, and retains screenshots and native scroll geometry. `EventDetailPresentationTests` continues to check title transitions, viewport height changes, full-host scrolling, and rendered pull-to-stretch behavior.
+
+The festival build and six focused tests pass on Duo with iOS 27.2. The layout test, including the full-host frame assertions, also passes on iPad Air 11-inch (M4) with iOS 27.2. Retained screenshots show readable metadata and article text with either side inset. The narrow Duo fixture now has a 326.3-point scroll frame in a 326.2-point host, within pixel rounding, and a 236.3-point content width that matches its safe area. The iPad fixture keeps a 574-point scroll frame and 484-point content width when the trailing inset is 90 points. Focused SwiftLint and the source diff check pass.
+
+The live Duo check opens an event and scrolls its body. At 466 by 678 points, the scroll frame fills the host, the text clears the trailing controls, and the native indicator is at x = 460 with width = 3 points. Opening Duo keeps the same event in a 951-by-669-point split view. The 321-point schedule column leaves a 630-point detail host; metadata and body text stay clear of the divider and system controls.
+
+The live divider-drag check remains unverified because DeviceHub returned `noWindowsAvailable`; its accessibility value update did not move the divider. This tool limit is recorded in `PAPERCUTS.md`. The automated scene tests cover changing content widths and side insets. The live check restored the original closed portrait posture and changed no app settings or favorites.
+
+## Event text margins — 25 October 2026
+
+Event credits, metadata, and article blocks already supply 16 points of horizontal padding. The readable-width measurement also applied UIKit's minimum layout margins. The combined margin was 32 points in compact layouts and 36 points in the checked wide split view.
+
+These three sections now use `readableContentWidth(includeLayoutMargins: false)`. Its invisible measurement view has zero base margins and does not enforce system minimum margins for this option. The existing content padding supplies the single 16-point text margin inside the safe content region. UIKit's readable guide still limits line width in large windows and follows Dynamic Type. The default option remains enabled for other callers. The shared page blocks keep their existing padding.
 
 ```mermaid
 flowchart LR
-    P[Native downward bounce] --> D[Positive header offset]
-    D --> Z[Uniform visual zoom anchored at bottom]
-    A[Clipped artwork with background extension] --> Z
-    Z --> I[Image fills the pulled area]
-    L[Fixed layout height] --> T[Stable text layout and title threshold]
-    R[Native bounce returns to top] --> O[Original artwork scale]
+    S[Current safe content region] --> R[Native readable width limit]
+    R --> P[One 16-point text padding]
+    P --> T[Credits, metadata, and article]
+    D[Dynamic Type] --> R
 ```
 
-The final build and all five `EventDetailPresentationTests` pass on Duo with iOS 27.2. The rendered test mounts the real event view in a scene with a 320-by-600-point host and a 50-point trailing safe area. It uses a local image with a red marker. A programmatic 120-point pull moves that marker by the expected zoom amount and fills both the exposed top and trailing regions. The scroll content size stays unchanged. Returning to the initial offset restores the original marker position. Before, pulled, and returned images are retained in the test result. The other checks cover title reveal and both scroll directions, missing artwork, height-only resizing, and asymmetric safe areas. Focused SwiftLint has no warnings or errors in the changed files.
-
-The image header also has an offline interactive preview with native vertical bounce. The latest build is installed and running on Duo. A normal event top-state capture shows no regression in artwork edges, the fade, Back, or Favorite. Live finger-gesture verification remains blocked by the DeviceHub input issue recorded in `PAPERCUTS.md`; the rendered pull check supplies the stretch evidence for this change.
+The festival build and all four `ReadableContentWidthTests` pass on iPad Air 11-inch (M4) with iOS 27.2. The tests cover default behavior, one content padding inside asymmetric safe areas, option changes, and comparison with the native readable guide at small and accessibility text sizes. The live Duo check confirms title and article x = 16 in the closed layout and x = 337 for a detail column that starts at x = 321 in the open layout. Each has one 16-point leading margin. Focused SwiftLint and the source diff check pass.

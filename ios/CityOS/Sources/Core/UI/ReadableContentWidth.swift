@@ -9,6 +9,7 @@ import SwiftUI
 import UIKit
 
 struct ReadableContentWidth: ViewModifier {
+    let includeLayoutMargins: Bool
     @State private var maximumWidth: CGFloat?
     
     func body(content: Content) -> some View {
@@ -17,7 +18,7 @@ struct ReadableContentWidth: ViewModifier {
             .frame(maxWidth: .infinity)
             .background {
                 GeometryReader { geometry in
-                    ReadableContentWidthMeasurement { width in
+                    ReadableContentWidthMeasurement(includeLayoutMargins: includeLayoutMargins) { width in
                         maximumWidth = width
                     }
                     .frame(width: geometry.size.width, height: geometry.size.height)
@@ -30,7 +31,8 @@ struct ReadableContentWidth: ViewModifier {
 }
 
 public extension View {
-    func readableContentWidth() -> some View {
-        modifier(ReadableContentWidth())
+    /// Disable layout margins when the content already supplies its own padding.
+    func readableContentWidth(includeLayoutMargins: Bool = true) -> some View {
+        modifier(ReadableContentWidth(includeLayoutMargins: includeLayoutMargins))
     }
 }

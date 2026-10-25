@@ -5,34 +5,38 @@ import UIKit
 /// Extends only the artwork. Credits, text, and controls stay in the safe area.
 struct EventDetailHeroView: View {
     let media: Media
-    let viewportSize: CGSize
+    let contentWidth: CGFloat
+    let viewportHeight: CGFloat
 
     private var height: CGFloat {
         let width = CGFloat(max(media.responsiveWidth ?? 16, 1))
         let height = CGFloat(max(media.responsiveHeight ?? 9, 1))
-        return min(viewportSize.width * height / width, viewportSize.height * 0.65, 520)
+        return min(contentWidth * height / width, viewportHeight * 0.65, 520)
     }
 
     var body: some View {
-        extendedArtwork
-            .visualEffect { content, geometry in
-                let pull = max(geometry.frame(in: .named("EventDetail.Scroll")).minY, 0)
-                let scale = 1 + pull / max(geometry.size.height, 1)
-                return content.scaleEffect(scale, anchor: .bottom)
-            }
+        GeometryReader { geometry in
+            let pull = max(geometry.frame(in: .named("EventDetail.Scroll")).minY, 0)
+            let artworkHeight = geometry.size.height + pull
+
+            extendedArtwork(height: artworkHeight)
+                .frame(height: artworkHeight)
+                .offset(y: -pull)
+        }
+        .frame(height: height)
     }
 
-    @ViewBuilder private var extendedArtwork: some View {
+    @ViewBuilder private func extendedArtwork(height: CGFloat) -> some View {
         if #available(iOS 26, tvOS 26, *) {
-            artwork.backgroundExtensionEffect()
+            artwork(height: height).backgroundExtensionEffect()
         } else {
-            artwork
+            artwork(height: height)
         }
     }
 
-    private var artwork: some View {
+    private func artwork(height: CGFloat) -> some View {
         GenericMediaView(media: media, resizingMode: .aspectFill)
-            .frame(width: viewportSize.width, height: height, alignment: .top)
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
             .clipped()
             .overlay(alignment: .bottom) {
                 LinearGradient(
@@ -66,7 +70,8 @@ struct EventDetailHeroView: View {
                     name: "Preview", fileName: "preview.png",
                     size: 0, alt: "Event artwork", caption: nil, credits: nil
                 ),
-                viewportSize: geometry.size
+                contentWidth: geometry.size.width,
+                viewportHeight: geometry.size.height
             )
         }
         .coordinateSpace(name: "EventDetail.Scroll")
