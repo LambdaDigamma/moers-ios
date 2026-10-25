@@ -29,7 +29,7 @@ public class TimetableViewController: UIViewController {
 
     private let transmitter: TimetableTransmitter
     private let viewModel: TimetableViewModel
-
+    
     private let topAccessory = TimetableTopAccessoryView()
     private var palette: UIView?
     private var paletteHeight: CGFloat = 0
@@ -325,6 +325,7 @@ public class TimetableViewController: UIViewController {
     private func updateBarButtonItems() {
 
         let search = UIBarButtonItem(
+            title: String(localized: "Search"),
             image: UIImage(systemName: "magnifyingglass"),
             primaryAction: UIAction { [weak self] _ in self?.presentSearch() }
         )
@@ -332,6 +333,7 @@ public class TimetableViewController: UIViewController {
 
         let isFilterActive = !viewModel.filter.isEmpty
         let filter = UIBarButtonItem(
+            title: String(localized: "Filter"),
             image: UIImage(systemName: isFilterActive ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease.circle"),
             primaryAction: UIAction { [weak self] _ in self?.presentFilter() }
         )
