@@ -81,7 +81,8 @@ public class ModernEventDetailViewController: DefaultHostingController {
         ModernEventView(
             viewModel: viewModel,
             actionTransmitter: actionTransmitter,
-            showDetails: { [weak self] in self?.showMetadata() }
+            showDetails: { [weak self] in self?.showMetadata() },
+            updateNavigationTitle: { [weak self] in self?.navigationItem.title = $0 }
         )
         .toAnyView()
     }
@@ -114,6 +115,9 @@ public class ModernEventDetailViewController: DefaultHostingController {
 #if !os(tvOS)
         navigationItem.largeTitleDisplayMode = .never
 #endif
+        if #available(iOS 27, tvOS 27, *) {
+            navigationItem.navigationBarMinimization.minimizationBehavior = .never
+        }
         navigationItem.rightBarButtonItems = rightBarButtonsItems
 
         if showCloseButton {

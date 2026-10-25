@@ -16,30 +16,36 @@ public struct ModernEventView: View {
     var actionTransmitter: ActionTransmitter
     
     private let showDetails: () -> Void
+    private let updateNavigationTitle: (String?) -> Void
+    @State private var viewportSize: CGSize = .zero
+    @State private var hasScrolledPastHeader = false
 
     public init(
         viewModel: EventDetailViewModel,
         actionTransmitter: ActionTransmitter,
-        showDetails: @escaping () -> Void = {}
+        showDetails: @escaping () -> Void = {},
+        updateNavigationTitle: @escaping (String?) -> Void = { _ in }
     ) {
         self.viewModel = viewModel
         self.actionTransmitter = actionTransmitter
         self.showDetails = showDetails
+        self.updateNavigationTitle = updateNavigationTitle
     }
     
     public var body: some View {
         
         ScrollView {
 
-            LazyVStack(spacing: 0) {
+            VStack(spacing: 0) {
 
                 if let header = viewModel.header {
 
-                    GenericMediaView(media: viewModel.header, resizingMode: .aspectFill)
-                        .aspectRatio(CGSize(width: header.responsiveWidth ?? 16, height: header.responsiveHeight ?? 9), contentMode: .fill)
-                        .frame(maxWidth: .infinity, maxHeight: 520)
-                        .clipped()
-                        .accessibilityIdentifier("EventDetail.HeaderImage")
+                    EventDetailHeroView(media: header, viewportSize: viewportSize)
+                        .onGeometryChange(for: Bool.self) { geometry in
+                            geometry.frame(in: .named("EventDetail.Scroll")).maxY <= 0
+                        } action: { hasPassed in
+                            hasScrolledPastHeader = hasPassed
+                        }
 
                     if let credits = header.credits, !credits.isEmptyOrWhitespace {
                         Text("© \(credits)")
@@ -50,9 +56,6 @@ public struct ModernEventView: View {
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .background(Color(UIColor.systemBackground))
-                            .readableContentWidth()
-
-                        Divider()
                             .readableContentWidth()
                     }
 
@@ -74,12 +77,40 @@ public struct ModernEventView: View {
             }
 
         }
+        .coordinateSpace(name: "EventDetail.Scroll")
+        .scrollBounceBehavior(viewModel.header == nil ? .automatic : .always, axes: .vertical)
+        .modifier(EventDetailScrollEdgeEffectModifier())
+        .onGeometryChange(for: CGSize.self) { geometry in
+            geometry.size
+        } action: { size in
+            viewportSize = size
+        }
+        .ignoresSafeArea(.container, edges: artworkSafeAreaEdges)
+        .background(Color(uiColor: .systemBackground))
+        .onChange(of: navigationTitle, initial: true) { _, title in
+            updateNavigationTitle(title)
+        }
         .task {
             self.viewModel.reload()
         }
         
     }
-    
+
+    private var showsNavigationTitle: Bool {
+        viewModel.header == nil || hasScrolledPastHeader
+    }
+
+    private var navigationTitle: String? {
+        showsNavigationTitle ? viewModel.event?.name : nil
+    }
+
+    private var artworkSafeAreaEdges: Edge.Set {
+        if #available(iOS 26, tvOS 26, *), viewModel.header != nil {
+            return .top
+        }
+        return []
+    }
+
     @ViewBuilder
     private func metadata() -> some View {
         

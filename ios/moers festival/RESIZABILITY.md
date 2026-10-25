@@ -270,3 +270,59 @@ flowchart TD
 ```
 
 Files: `Controller/Events/ModernEventView.swift` and this report. The festival build and all five selected `FestivalResizabilityTests` pass on iPhone 18 Pro with iOS 27.2. Focused SwiftLint and the source diff check pass. These tests cover the existing UIKit resize and safe-area behavior. The updated app also built, installed, and ran through the device tools. The modern event detail screenshot and hierarchy show a 402-point phone window and a header at x = 0 with width = 402 points. The metadata row stays at x = 16 with width = 370 points; its complete title wraps within x = 32 and width = 338 points. This proves portrait edge alignment. Wide-window image alignment was not separately captured.
+
+## Immersive event artwork — 25 October 2026
+
+The Duo baseline showed a 382-point image in a 466-point window. The image stopped at the trailing safe area, leaving an 84-point white strip behind the system controls.
+
+The festival detail keeps its SwiftUI scroll view and native UIKit navigation bar. `EventDetailHeroView` applies `backgroundExtensionEffect()` to the artwork on iOS 26 or later. The system mirrors and blurs the image outside the safe area. Credits, metadata, page text, and controls remain separate from the effect. Earlier systems show the same artwork and bottom fade without the extension effect. The fade uses the system background color for light and dark appearance.
+
+On iOS 26 or later, when artwork is present, the scroll view ignores only the top container safe area so the image starts behind the top bars, as in Apple's TV example. It keeps the horizontal safe areas for text and controls. Geometry observation measures the local viewport size without a surrounding layout wrapper or a second safe-area subtraction. Events without artwork and older systems retain the top safe area. The older app theme uses a solid navigation-bar background, so placing artwork under that bar would hide its top edge.
+
+The image height follows its aspect ratio, with limits of 520 points and 65 percent of the current viewport height. A height-only resize therefore leaves space for the event content. The artwork is aligned to the top to preserve poster headings. The top scroll-edge effect uses `.soft` on iOS 26 or later. While the image remains in the scroll viewport, the native navigation title is hidden. Once the image has scrolled out, the existing `UINavigationItem` shows the event title. Returning to the image hides that title again. Back and Favorite stay available throughout. On iOS 27 or later, the event navigation item sets its minimization behavior to `.never`, so continuing to scroll down does not minimize the title bar. Events without artwork keep the native title. Only a Boolean header-visibility change updates state; the navigation bar is not manually hidden or moved.
+
+This follows Apple's [SwiftUI example](https://developer.apple.com/videos/play/wwdc2025/323/) and the [UIKit guidance](https://developer.apple.com/videos/play/wwdc2025/284/). A separate `UIBackgroundExtensionView` or a UIKit rewrite is not needed for this screen. The extension effect supplies background content; it does not pin a header.
+
+```mermaid
+flowchart TD
+    V[Current viewport size] --> H[Artwork size]
+    H --> E[System background extension on iOS 26 or later]
+    H --> F[Fade into system background]
+    E --> B[Artwork behind side bars]
+    S[Native scroll view] --> X[Image starts behind top bars]
+    S --> A[Artwork scrolls away]
+    A --> G{Header has left the viewport?}
+    G -->|Yes| N[Native title remains in both scroll directions]
+    G -->|No| P[Clear artwork with native controls]
+    S --> U[Soft top scroll-edge effect]
+    S --> T[Credits and page text stay within safe area]
+```
+
+The festival build and nine focused tests pass on Duo with iOS 27.2. Four presentation checks cover title reveal after the artwork, continued downward and upward scrolling, return to the artwork, missing artwork and event updates, height-only resizing, and a scroll view that fills its host with asymmetric safe areas. The scroll fixture loads a long article through an in-memory page repository so its offsets stay within the real content range. Five lifetime checks cover observation after navigation and controller, coordinator, and view-model release. Focused SwiftLint has no new warnings or errors.
+
+The iOS 18.6 test runner did not start. That run was stopped and does not supply older-runtime execution evidence.
+
+The original image-edge layout was checked on iOS 27.2 at 1210 by 834 points on iPad and 466 by 678 points on Duo. Artwork reached the top and trailing screen edges; text stayed clear of controls. The current soft-effect build was installed and launched on Duo. Its top state was checked through native DeviceHub controls: no event title covers the image, and Back and Favorite remain available. The live body-scroll check is incomplete. Xcode interaction sessions expired immediately, and native DeviceHub scroll/drag input failed or did not move the content. The scene-based tests cover the title transitions in both directions. No favorites, app settings, or fold posture were changed.
+
+
+## Stretchy artwork
+
+`EventDetailHeroView` implements pull-to-stretch with Apple's native [`visualEffect`](https://developer.apple.com/documentation/swiftui/visualeffect) and visual-effect scaling, available from iOS 17. The native scroll view keeps its bounce and scrolling behavior. Event pages with artwork enable vertical bounce even when the page is shorter than the viewport. Pages without artwork keep the automatic bounce policy.
+
+For a pull distance `d` below the top and a normal image height `h`, the artwork scales uniformly by `1 + d / h`, anchored at its bottom. Its top stays at the viewport edge while its bottom follows the pulled content. The effect reads the positive image offset from the existing scroll coordinate space. It does not write pixel offsets into `@State` or change the header's layout height on each frame. Credits and body text keep their size and use the native scroll movement. The conditional navigation title and soft top effect remain in use.
+
+The visual scale is applied after the artwork's clipping and background-extension effect. This keeps the extension modifier from clipping off the stretched image. The shared UIKit `EventDetailView.updateStretchyHeader` still disables its older transform when background extension is active; the festival implementation does not use that view.
+
+```mermaid
+flowchart LR
+    P[Native downward bounce] --> D[Positive header offset]
+    D --> Z[Uniform visual zoom anchored at bottom]
+    A[Clipped artwork with background extension] --> Z
+    Z --> I[Image fills the pulled area]
+    L[Fixed layout height] --> T[Stable text layout and title threshold]
+    R[Native bounce returns to top] --> O[Original artwork scale]
+```
+
+The final build and all five `EventDetailPresentationTests` pass on Duo with iOS 27.2. The rendered test mounts the real event view in a scene with a 320-by-600-point host and a 50-point trailing safe area. It uses a local image with a red marker. A programmatic 120-point pull moves that marker by the expected zoom amount and fills both the exposed top and trailing regions. The scroll content size stays unchanged. Returning to the initial offset restores the original marker position. Before, pulled, and returned images are retained in the test result. The other checks cover title reveal and both scroll directions, missing artwork, height-only resizing, and asymmetric safe areas. Focused SwiftLint has no warnings or errors in the changed files.
+
+The image header also has an offline interactive preview with native vertical bounce. The latest build is installed and running on Duo. A normal event top-state capture shows no regression in artwork edges, the fade, Back, or Favorite. Live finger-gesture verification remains blocked by the DeviceHub input issue recorded in `PAPERCUTS.md`; the rendered pull check supplies the stretch evidence for this change.

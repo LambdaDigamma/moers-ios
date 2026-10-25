@@ -1,5 +1,12 @@
 # Papercuts
 
+## Existing Festival SwiftLint errors
+
+- Impact: Strict lint fails in two legacy files touched by the Observation cleanup. The same violations exist in the committed source before this cleanup.
+- Reproduction: Run `swiftlint lint --strict --config ios/.swiftlint.yml` on `ios/moers festival/moers festival/Controller/Live/ActiveStreamViewController.swift` and `ios/moers festival/moers festival/News/LegacyPostViewModel.swift`.
+- Errors: An unused enum payload pattern, an obsolete TODO, extra blank lines, and an explicit `nil` initializer for an optional property.
+- Next step: Fix these style issues in a separate legacy news and stream cleanup.
+
 ## Festival bulletin setup uses ignored appearance settings
 
 - Impact: The festival app build reports deprecation warnings for bulletin appearance settings. UIKit controls the sheet appearance and ignores these settings.
@@ -261,3 +268,26 @@ Eight independent fixes are covered by the UIKit review PRs: Info URL parameters
 - Reproduction: Run EventsTests/EventViewModelTests. Locale.isNotEnglish() checks whether Locale.current.identifier contains "en-". An English identifier using an underscore, such as en_US, is treated as non-English and triggers XCTSkip.
 - Source: ios/CityOS/Tests/EventsTests/ViewModel/EventViewModelTests.swift.
 - Next step: Check the locale's language code, then run the subtitle tests with an explicit locale. Keep this correction separate from the date-operator compatibility fix.
+
+## Festival widget version warning
+
+- Observed: 25 October 2026 while building the event-detail change for an iOS simulator.
+- Reproduction: Build the `moers festival` scheme in Debug. Xcode reports that the embedded extension's `CFBundleShortVersionString` is `1.0`, while the parent app uses `2.4.4`.
+- Impact: The build succeeds but reports inconsistent app and extension version metadata. Distribution validation was not run.
+- Next step: Align the extension's short version with the parent app in a separate configuration change.
+
+## Festival image cards without artwork overlap adjacent rows
+
+- Observed: 25 October 2026 on iPhone 17, iOS 27.2, during day-navigation checks.
+- Reproduction: Launch the Festival app with `-currentEventDisplayMode 1`, then select May 22. Rows without artwork, including `Event-Row-590`, have a 52-point cell height while their metadata extends above the cell. Its venue label starts at y=672.3, above the cell's y=716.3 origin.
+- Impact: Event titles and venue labels overlap adjacent rows. Day taps and page swipes still work.
+- Source area: `ios/CityOS/Sources/Events/Events/EventCard.swift` and `ios/CityOS/Sources/Events/Events/Overview/TimetableDayPageCell.swift`. These files were unchanged by the haptic work. The card uses an optional image and negative top padding for its metadata.
+- Next step: Check card sizing without artwork and the hosted cell's measured height. Add an empty-artwork preview and a focused sizing check when fixing this layout.
+
+
+## DeviceHub input blocks the event-header gesture check
+
+- Observed: 25 October 2026, Xcode 27.2 and Duo iOS 27.2, after installing the soft-edge event-detail build.
+- Reproduction: A newly created Xcode interaction session can immediately return `Session not found` on capture. Native DeviceHub hierarchy reads, event-row clicks, and direct simulator screenshots work, but scroll and drag input in the expanded window returns `noWindowsAvailable`. In the compact window, a drag showed a temporary scroll indicator without moving the event content.
+- Impact: The artwork's top state can be inspected, but this tool run cannot prove title-bar behavior during live finger scrolling. The mounted-scene test with a long article passes for downward scroll, continued scrolling in both directions, and return to the image.
+- Next step: Repair the DeviceHub input route or repeat the gesture check with a working native UI driver. Do not attribute this input failure to the app without that check.

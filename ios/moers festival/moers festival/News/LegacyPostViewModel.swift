@@ -10,7 +10,7 @@ import Foundation
 import Feeds
 import AVKit
 
-class LegacyPostViewModel: Identifiable, ObservableObject, Hashable {
+class LegacyPostViewModel: Identifiable, Hashable {
     
     let id = UUID()
     let model: Post

@@ -14,6 +14,10 @@ class OtherView: UIView {
     
     private let viewModel: OtherViewModel
     private let dataSource: OtherDataSource
+    private static let listBackgroundColor = UIColor { traits in
+        let color: UIColor = traits.userInterfaceStyle == .dark ? .systemBackground : .systemGroupedBackground
+        return color.resolvedColor(with: traits)
+    }
     
     public init(viewModel: OtherViewModel) {
         self.viewModel = viewModel
@@ -33,7 +37,7 @@ class OtherView: UIView {
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
             var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-            configuration.backgroundColor = .systemBackground
+            configuration.backgroundColor = Self.listBackgroundColor
             configuration.headerMode = sectionIndex == 0 ? .none : .supplementary
 
             let section = NSCollectionLayoutSection.list(
@@ -45,7 +49,7 @@ class OtherView: UIView {
         }
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .systemBackground
+        collectionView.backgroundColor = Self.listBackgroundColor
         collectionView.accessibilityIdentifier = "InfoCollectionView"
         return collectionView
     }()
@@ -71,7 +75,8 @@ class OtherView: UIView {
     
     private func setupTheming() {
         
-        self.collectionView.backgroundColor = UIColor.systemBackground
+        self.backgroundColor = Self.listBackgroundColor
+        self.collectionView.backgroundColor = Self.listBackgroundColor
         
         if #available(iOS 26.0, *) {
             self.collectionView.topEdgeEffect.style = .soft

@@ -1,15 +1,21 @@
-
 import SwiftUI
 import Events
 
 struct EventFilterSheetWrapper: View {
-    @ObservedObject var box: FilterBox
+    @Bindable var model: UserScheduleFilter
     let isFavoritesFilterEnabled: Bool
     
     var body: some View {
         EventFilterSheet(
-            filter: $box.filter,
+            filter: $model.value,
             isFavoritesFilterEnabled: isFavoritesFilterEnabled
         )
     }
+}
+
+#Preview {
+    EventFilterSheetWrapper(
+        model: UserScheduleFilter(),
+        isFavoritesFilterEnabled: false
+    )
 }

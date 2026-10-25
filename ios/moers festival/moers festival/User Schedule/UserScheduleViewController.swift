@@ -3,12 +3,16 @@ import SwiftUI
 import FactoryKit
 import Events
 import Combine
+import Observation
 
 final class UserScheduleViewController: UIViewController, UICollectionViewDelegateFlowLayout {
     @LazyInjected(\.favoriteEventsStore) private var favoriteEventsStore
 
-    @PersistedFilter(key: "favoritesFilter") var filter: EventFilter {
-        didSet { reload() }
+    private let filterModel = UserScheduleFilter()
+
+    var filter: EventFilter {
+        get { filterModel.value }
+        set { filterModel.value = newValue }
     }
 
     var onShowEvent: ((Event.ID) -> Void)?
@@ -27,7 +31,6 @@ final class UserScheduleViewController: UIViewController, UICollectionViewDelega
     private var modelsByEventID: [Event.ID: EventListItemViewModel] = [:]
     private var eventsByDay: [UserScheduleDay: [EventListItemViewModel]] = [:]
     private var favoritesCancellable: AnyCancellable?
-    private var filterCancellable: AnyCancellable?
     private var dataSource: UICollectionViewDiffableDataSource<Int, UserScheduleDay>!
     private let topAccessory = TimetableTopAccessoryView()
     private var palette: UIView?
@@ -64,20 +67,31 @@ final class UserScheduleViewController: UIViewController, UICollectionViewDelega
         view.backgroundColor = .systemBackground
         view.addSubview(mainStackView)
         NSLayoutConstraint.activate([
-            mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mainStackView.topAnchor.constraint(equalTo: view.topAnchor),
             mainStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         setupDataSource()
         setupActions()
-        reload()
+        observeFilter()
         favoritesCancellable = favoriteEventsStore?.observeFavoriteEvents()
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] events in
                 self?.favorites = events
                 self?.reload()
             })
+    }
+
+    private func observeFilter() {
+        withObservationTracking {
+            _ = filterModel.value
+        } onChange: { [weak self] in
+            Task { @MainActor [weak self] in
+                self?.observeFilter()
+            }
+        }
+        reload()
     }
 
     override func viewDidLayoutSubviews() {
@@ -116,8 +130,12 @@ final class UserScheduleViewController: UIViewController, UICollectionViewDelega
         filterButton.accessibilityLabel = EventPackageStrings.filter
         navigationItem.rightBarButtonItem = filterButton
         topAccessory.onClearFilter = { [weak self] in self?.filter = .empty }
-        topAccessory.bubbleView.onSelectDate = { [weak self] date in self?.selectDay(.scheduled(date)) }
-        topAccessory.bubbleView.onSelectUnscheduled = { [weak self] in self?.selectDay(.unscheduled) }
+        topAccessory.bubbleView.onSelectDate = { [weak self] date in
+            self?.selectDay(.scheduled(date), isUserInitiated: true)
+        }
+        topAccessory.bubbleView.onSelectUnscheduled = { [weak self] in
+            self?.selectDay(.unscheduled, isUserInitiated: true)
+        }
     }
 
     func reload() {
@@ -160,10 +178,14 @@ final class UserScheduleViewController: UIViewController, UICollectionViewDelega
         }
     }
 
-    func selectDay(_ day: UserScheduleDay) {
+    func selectDay(_ day: UserScheduleDay, isUserInitiated: Bool = false) {
         guard days.contains(day) else { return }
         selectedDay = day
-        topAccessory.bubbleView.setSelectedDate(day.date, animated: !UIAccessibility.isReduceMotionEnabled)
+        topAccessory.bubbleView.setSelectedDate(
+            day.date,
+            animated: !UIAccessibility.isReduceMotionEnabled,
+            isUserInitiated: isUserInitiated
+        )
         scrollToSelection(animated: !UIAccessibility.isReduceMotionEnabled)
     }
 
@@ -249,23 +271,25 @@ final class UserScheduleViewController: UIViewController, UICollectionViewDelega
         }
     }
 
-    private func showFilter() {
-        let box = FilterBox(filter: filter)
-        filterCancellable = box.$filter.removeDuplicates().receive(on: DispatchQueue.main).sink { [weak self] value in
-            self?.filter = value
-        }
-        present(UIHostingController(rootView: EventFilterSheetWrapper(box: box, isFavoritesFilterEnabled: false)), animated: true)
+    func showFilter() {
+        let sheet = EventFilterSheetWrapper(model: filterModel, isFavoritesFilterEnabled: false)
+        present(UIHostingController(rootView: sheet), animated: true)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         collectionView.bounds.size
     }
 
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        guard scrollView === collectionView else { return }
+        topAccessory.bubbleView.prepareSelectionFeedback()
+    }
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard scrollView === collectionView, scrollView.isDragging || scrollView.isDecelerating,
               let index = currentPageIndex, days.indices.contains(index) else { return }
         selectedDay = days[index]
-        topAccessory.bubbleView.setSelectedDate(selectedDay?.date, animated: false)
+        topAccessory.bubbleView.setSelectedDate(selectedDay?.date, animated: false, isUserInitiated: true)
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

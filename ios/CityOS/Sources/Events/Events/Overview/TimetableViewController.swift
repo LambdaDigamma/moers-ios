@@ -112,7 +112,13 @@ public class TimetableViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
 
         topAccessory.bubbleView.onSelectDate = { [weak self] date in
-            self?.viewModel.selectDate(date)
+            guard let self else { return }
+            self.viewModel.selectDate(date)
+            self.topAccessory.bubbleView.setSelectedDate(
+                self.viewModel.selectedDate,
+                animated: !UIAccessibility.isReduceMotionEnabled,
+                isUserInitiated: true
+            )
         }
         topAccessory.onClearFilter = { [weak self] in
             self?.viewModel.filter = .empty
@@ -388,6 +394,7 @@ public class TimetableViewController: UIViewController {
         guard let index = currentPageIndex, let dates = pagesState?.dates, dates.indices.contains(index) else { return }
         guard !Calendar.autoupdatingCurrent.isDate(dates[index], inSameDayAs: viewModel.selectedDate) else { return }
 
+        topAccessory.bubbleView.setSelectedDate(dates[index], animated: false, isUserInitiated: true)
         viewModel.selectDate(dates[index])
 
     }
@@ -433,6 +440,11 @@ public class TimetableViewController: UIViewController {
 }
 
 extension TimetableViewController: UICollectionViewDelegateFlowLayout {
+
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        guard scrollView === pagesView else { return }
+        topAccessory.bubbleView.prepareSelectionFeedback()
+    }
 
     public func collectionView(
         _ collectionView: UICollectionView,

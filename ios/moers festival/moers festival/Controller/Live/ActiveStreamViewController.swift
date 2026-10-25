@@ -10,27 +10,8 @@ import UIKit
 import AVKit
 import Events
 import SwiftUI
-import Combine
 import YouTubePlayerKit
 import SafariServices
-
-public class ActiveStreamViewModel: ObservableObject {
-    
-    private var cancellables = Set<AnyCancellable>()
-    
-    public init() {
-        
-    }
-    
-    public func load() {
-        
-        
-        
-    }
-
-    // ARC-only cleanup avoids isolated-deinit back-deployment on older runtimes.
-    nonisolated deinit {}
-}
 
 class ActiveStreamViewController: UIViewController {
     

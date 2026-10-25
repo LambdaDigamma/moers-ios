@@ -1,6 +1,7 @@
 import FactoryKit
 import GRDB
 import Events
+import SwiftUI
 import UIKit
 import XCTest
 @testable import moers_festival
@@ -61,11 +62,13 @@ final class UserScheduleDayNavigationTests: XCTestCase {
         let (controller, _) = try await makeController(events: [event(id: 1, startDate: date(day: 21, hour: 12))])
         await waitUntil { !controller.days.isEmpty }
         controller.filter = EventFilter(venueIDs: [999])
+        await waitUntil { controller.days.isEmpty }
         XCTAssertTrue(controller.days.isEmpty)
         XCTAssertNil(controller.selectedDay)
         XCTAssertNotNil(controller.collectionView.backgroundView)
         XCTAssertNotNil(controller.navigationItem.timetableBottomPalette)
         controller.filter = .empty
+        await waitUntil { !controller.days.isEmpty }
         XCTAssertEqual(controller.days, [.scheduled(date(day: 21))])
     }
 
@@ -74,6 +77,64 @@ final class UserScheduleDayNavigationTests: XCTestCase {
         weak let released = controller
         controller = nil
         for _ in 0..<10 where released != nil { await Task.yield() }
+        XCTAssertNil(released)
+    }
+
+    func testFilterSheetEditsUpdateFavoritesPersistAndSurviveReopening() async throws {
+        let (controller, _) = try await makeController(events: [event(id: 1, startDate: date(day: 21, hour: 12))])
+        await waitUntil { !controller.days.isEmpty }
+        let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 390, height: 844))
+        window.rootViewController = controller
+        window.isHidden = false
+        defer { window.isHidden = true }
+
+        controller.showFilter()
+        let sheet = try XCTUnwrap(controller.presentedViewController as? UIHostingController<EventFilterSheetWrapper>)
+        await waitUntil { !sheet.isBeingPresented }
+        let selectedFilter = EventFilter(venueIDs: [999])
+        sheet.rootView.model.value = selectedFilter
+        await waitUntil { controller.days.isEmpty }
+
+        XCTAssertEqual(controller.filter, selectedFilter)
+        XCTAssertTrue(controller.days.isEmpty)
+        XCTAssertNotNil(controller.collectionView.backgroundView)
+        let persisted = try XCTUnwrap(UserDefaults.standard.data(forKey: "favoritesFilter"))
+        XCTAssertEqual(try JSONDecoder().decode(EventFilter.self, from: persisted), selectedFilter)
+
+        controller.dismiss(animated: false)
+        controller.showFilter()
+        let reopened = try XCTUnwrap(controller.presentedViewController as? UIHostingController<EventFilterSheetWrapper>)
+        await waitUntil { !reopened.isBeingPresented }
+        XCTAssertEqual(reopened.rootView.model.value, selectedFilter)
+        reopened.rootView.model.value = .empty
+        await waitUntil { !controller.days.isEmpty }
+        XCTAssertEqual(controller.filter, .empty)
+        XCTAssertEqual(controller.days, [.scheduled(date(day: 21))])
+        controller.dismiss(animated: false)
+    }
+
+    func testFilterModelDoesNotRetainControllerAfterSheetDismissal() async throws {
+        var controller: UserScheduleViewController? = try await makeController(events: []).0
+        weak let released = controller
+        let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 390, height: 844))
+        window.rootViewController = controller
+        window.isHidden = false
+        defer { window.isHidden = true }
+
+        controller?.showFilter()
+        var sheet: UIHostingController<EventFilterSheetWrapper>? = try XCTUnwrap(
+            controller?.presentedViewController as? UIHostingController<EventFilterSheetWrapper>
+        )
+        await waitUntil { sheet?.isBeingPresented == false }
+        let model = try XCTUnwrap(sheet?.rootView.model)
+        controller?.dismiss(animated: false)
+        sheet = nil
+        window.rootViewController = nil
+        controller = nil
+        await waitUntil { released == nil }
+
+        XCTAssertNil(released)
+        model.value = EventFilter(venueIDs: [999])
         XCTAssertNil(released)
     }
 

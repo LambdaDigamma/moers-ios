@@ -25,6 +25,12 @@ public final class TimetableDayBubbleView: UIView {
     private var unscheduledButton: UIButton?
     private var lastViewportSize: CGSize = .zero
     private var lastContentSize: CGSize = .zero
+    private lazy var feedbackGenerator: UISelectionFeedbackGenerator = {
+        if #available(iOS 17.5, *) {
+            return UISelectionFeedbackGenerator(view: self)
+        }
+        return UISelectionFeedbackGenerator()
+    }()
 
     nonisolated deinit {}
 
@@ -37,6 +43,11 @@ public final class TimetableDayBubbleView: UIView {
 
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    convenience init(feedbackGenerator: UISelectionFeedbackGenerator) {
+        self.init(frame: .zero)
+        self.feedbackGenerator = feedbackGenerator
     }
 
     public override func layoutSubviews() {
@@ -60,7 +71,14 @@ public final class TimetableDayBubbleView: UIView {
         setSelectedDate(selectedDate, animated: false)
     }
 
-    public func setSelectedDate(_ date: Date?, animated: Bool) {
+    /// User changes produce one selection tick. Reloads and repeated selections stay silent.
+    public func setSelectedDate(_ date: Date?, animated: Bool, isUserInitiated: Bool = false) {
+        let selectionChanged: Bool
+        if let selectedDate, let date {
+            selectionChanged = !Self.isSameDay(selectedDate, date)
+        } else {
+            selectionChanged = selectedDate != date
+        }
         selectedDate = date
 
         for (button, buttonDate) in zip(buttons, dates) {
@@ -71,6 +89,22 @@ public final class TimetableDayBubbleView: UIView {
         layoutIfNeeded()
         scrollView.layoutIfNeeded()
         scrollToSelectedButton(animated: animated)
+
+        if isUserInitiated, selectionChanged {
+            if #available(iOS 17.5, *) {
+                let button = (buttons + [unscheduledButton].compactMap { $0 }).first { $0.isSelected }
+                let location = button.map { $0.convert(CGPoint(x: $0.bounds.midX, y: $0.bounds.midY), to: self) }
+                    ?? CGPoint(x: bounds.midX, y: bounds.midY)
+                feedbackGenerator.selectionChanged(at: location)
+            } else {
+                feedbackGenerator.selectionChanged()
+            }
+            feedbackGenerator.prepare()
+        }
+    }
+
+    public func prepareSelectionFeedback() {
+        feedbackGenerator.prepare()
     }
 
     // MARK: - Setup
@@ -152,6 +186,7 @@ public final class TimetableDayBubbleView: UIView {
             button.configuration = Self.configuration(isSelected: button.isSelected, title: title)
         }
         button.addAction(UIAction { _ in action() }, for: .touchUpInside)
+        button.addAction(UIAction { [weak self] _ in self?.prepareSelectionFeedback() }, for: .touchDown)
 
         button.setContentCompressionResistancePriority(.required, for: .horizontal)
         button.heightAnchor.constraint(greaterThanOrEqualToConstant: 44).isActive = true

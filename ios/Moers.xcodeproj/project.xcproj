@@ -65,7 +65,6 @@
             "Config/Staging.xcconfig",
             "Controller/CardCollectionViewController.swift",
             "Controller/Community/MapLocationPickerViewController.swift",
-            "Repositories/OrganisationRepository.swift",
             "Resources/Debug/Settings.bundle",
             "Resources/Debug/com.mono0926.LicensePlist.latest_result.txt",
             "Resources/Debug/com.mono0926.LicensePlist.plist",

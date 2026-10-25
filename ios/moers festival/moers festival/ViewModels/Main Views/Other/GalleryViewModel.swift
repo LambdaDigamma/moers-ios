@@ -9,10 +9,10 @@
 import Foundation
 import INSPhotoGallery
 
-class GalleryViewModel: ObservableObject {
+class GalleryViewModel {
     
-    @Published public var title: String
-    @Published public var images: [INSPhotoViewable]
+    public var title: String
+    public var images: [INSPhotoViewable]
     
     init(title: String, images: [INSPhotoViewable]) {
         self.title = title
