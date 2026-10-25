@@ -12,6 +12,14 @@ final class UserScheduleViewController: UIViewController, UICollectionViewDelega
     }
 
     var onShowEvent: ((Event.ID) -> Void)?
+    var selectedEventID: Event.ID? {
+        didSet {
+            guard isViewLoaded else { return }
+            for case let cell as TimetableDayPageCell in collectionView.visibleCells {
+                cell.selectedEventID = selectedEventID
+            }
+        }
+    }
     private(set) var days: [UserScheduleDay] = []
     private(set) var selectedDay: UserScheduleDay?
 
@@ -93,6 +101,7 @@ final class UserScheduleViewController: UIViewController, UICollectionViewDelega
                 showsFavoriteIcon: false,
                 onSelectEvent: { [weak self] eventID in self?.showEvent(eventID) }
             )
+            cell.selectedEventID = self.selectedEventID
         }
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { collection, indexPath, day in
             collection.dequeueConfiguredReusableCell(using: registration, for: indexPath, item: day)

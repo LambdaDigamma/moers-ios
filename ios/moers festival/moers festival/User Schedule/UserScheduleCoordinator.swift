@@ -58,6 +58,13 @@ class UserScheduleCoordinator: SharedCoordinator {
         userScheduleViewController.title = AppStrings.UserSchedule.title
         
         self.navigationController.viewControllers = [userScheduleViewController]
+
+        adaptiveSplitViewController.onDetailPresentationChange = { [weak self] in
+            guard let self else { return }
+            let split = self.adaptiveSplitViewController
+            self.userScheduleViewController.selectedEventID = split.showsDetailColumn
+                ? (split.selectedDetailViewController as? ModernEventDetailViewController)?.eventID : nil
+        }
         
     }
 

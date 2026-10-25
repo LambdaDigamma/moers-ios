@@ -59,11 +59,18 @@ public class EventCoordinator: SharedCoordinator {
             return self.makeEventDetailViewController(eventID: eventID)
         }
         
-        self.timetable.onShowEvent = { (eventID: Event.ID) in
-            self.showDetail(for: eventID)
+        self.timetable.onShowEvent = { [weak self] eventID in
+            self?.showDetail(for: eventID)
         }
         
         self.navigationController.viewControllers = [timetable]
+
+        adaptiveSplitViewController.onDetailPresentationChange = { [weak self] in
+            guard let self else { return }
+            let split = self.adaptiveSplitViewController
+            self.timetable.selectedEventID = split.showsDetailColumn
+                ? (split.selectedDetailViewController as? ModernEventDetailViewController)?.eventID : nil
+        }
         
     }
     

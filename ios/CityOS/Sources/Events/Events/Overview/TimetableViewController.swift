@@ -47,6 +47,17 @@ public class TimetableViewController: UIViewController {
     public var onShowEvent: ((Event.ID) -> Void)?
     public var searchDetailViewControllerFactory: ((Event.ID) -> UIViewController)?
 
+    public var selectedEventID: Event.ID? {
+        get { transmitter.selectedEventID }
+        set {
+            guard transmitter.selectedEventID != newValue else { return }
+            transmitter.selectedEventID = newValue
+            for case let cell as TimetableDayPageCell in pagesView?.visibleCells ?? [] {
+                cell.selectedEventID = newValue
+            }
+        }
+    }
+
     private var displayMode: DailyEventsDisplayMode {
         DailyEventsDisplayMode(rawValue: UserDefaults.standard.integer(forKey: "currentEventDisplayMode")) ?? .compact
     }
@@ -137,6 +148,7 @@ public class TimetableViewController: UIViewController {
                 onRefresh: { [viewModel = self.viewModel] in await viewModel.refresh() },
                 onSelectEvent: { [weak self] eventID in self?.onShowEvent?(eventID) }
             )
+            cell.selectedEventID = self.selectedEventID
         }
 
         pagesDataSource = UICollectionViewDiffableDataSource(collectionView: pagesView) { collectionView, indexPath, date in

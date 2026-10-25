@@ -19,17 +19,22 @@ struct PreviewListEventsView: View {
         
         ZStack {
             
-            List {
+            List(selection: Binding<Event.ID?>(
+                get: { transmitter.selectedEventID },
+                set: { eventID in
+                    if let eventID { transmitter.dispatchShowEvent(eventID) }
+                }
+            )) {
                 
                 ForEach(viewModel.events) { event in
-                    Button(action: {
-                        if let eventID = event.eventID {
-                            transmitter.dispatchShowEvent(eventID)
-                        }
-                    }) {
+                    if let eventID = event.eventID {
                         EventListItem(viewModel: event)
+                            .tag(eventID)
+                            .accessibilityIdentifier("Event-Row-\(eventID)")
+                    } else {
+                        EventListItem(viewModel: event)
+                            .accessibilityIdentifier("Event-Row-0")
                     }
-                    .accessibilityIdentifier("Event-Row-\(event.eventID ?? 0)")
                 }
                 
             }

@@ -15,6 +15,10 @@ public final class TimetableDayPageCell: UICollectionViewCell, UICollectionViewD
 
     public private(set) var listView: UICollectionView!
 
+    public var selectedEventID: Event.ID? {
+        didSet { updateSelection() }
+    }
+
     private var dataSource: UICollectionViewDiffableDataSource<Int, UUID>!
     private var eventsByID: [UUID: EventListItemViewModel] = [:]
     private var displayMode: DailyEventsDisplayMode = .compact
@@ -80,7 +84,9 @@ public final class TimetableDayPageCell: UICollectionViewCell, UICollectionViewD
             snapshot.reconfigureItems(events.map(\.id))
             listView.collectionViewLayout.invalidateLayout()
         }
-        dataSource.apply(snapshot, animatingDifferences: false)
+        dataSource.apply(snapshot, animatingDifferences: false) { [weak self] in
+            self?.updateSelection()
+        }
 
         listView.backgroundView = events.isEmpty && isFilterActive ? emptyView : nil
     }
@@ -129,7 +135,11 @@ public final class TimetableDayPageCell: UICollectionViewCell, UICollectionViewD
             .margins(.horizontal, isImages ? 16 : 20)
             .margins(.vertical, isImages ? 8 : 12)
 
-            cell.backgroundConfiguration = isImages ? .clear() : .listPlainCell()
+            if #available(iOS 18.0, *) {
+                cell.backgroundConfiguration = .listCell()
+            } else {
+                cell.backgroundConfiguration = .listPlainCell()
+            }
             cell.accessibilityIdentifier = "Event-Row-\(viewModel.eventID ?? 0)"
         }
 
@@ -171,8 +181,21 @@ public final class TimetableDayPageCell: UICollectionViewCell, UICollectionViewD
 
     // MARK: - UICollectionViewDelegate
 
+    private func updateSelection() {
+        let selectedItem = dataSource.snapshot().itemIdentifiers.first {
+            selectedEventID != nil && eventsByID[$0]?.eventID == selectedEventID
+        }
+        let selectedIndexPath = selectedItem.flatMap { dataSource.indexPath(for: $0) }
+        listView.indexPathsForSelectedItems?.filter { $0 != selectedIndexPath }.forEach {
+            listView.deselectItem(at: $0, animated: false)
+        }
+        if let selectedIndexPath {
+            listView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: [])
+        }
+    }
+
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
+        defer { updateSelection() }
 
         guard let id = dataSource.itemIdentifier(for: indexPath), let eventID = eventsByID[id]?.eventID else { return }
         onSelectEvent?(eventID)

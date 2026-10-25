@@ -32,7 +32,7 @@ public class ModernEventDetailViewController: DefaultHostingController {
     
     private let favoriteEventsStore: FavoriteEventsStore?
     
-    private let eventID: Event.ID
+    let eventID: Event.ID
     private var likeBarButtonItem: UIBarButtonItem?
     private var actionTransmitter = ActionTransmitter()
     private var cancellables = Set<AnyCancellable>()

@@ -161,6 +161,8 @@ struct VenueEventsGrid: View {
     @ViewBuilder
     private func eventBlock(event: EventListItemViewModel, height: CGFloat) -> some View {
 
+        let isSelected = event.eventID != nil && transmitter.selectedEventID == event.eventID
+
         Button {
             if let eventID = event.eventID {
                 transmitter.dispatchShowEvent(eventID)
@@ -189,10 +191,14 @@ struct VenueEventsGrid: View {
             .clipShape(RoundedRectangle(cornerRadius: 4))
             .overlay(
                 RoundedRectangle(cornerRadius: 4)
-                    .strokeBorder(event.color, lineWidth: 1)
+                    .strokeBorder(
+                        isSelected ? Color.accentColor : event.color,
+                        lineWidth: isSelected ? 3 : 1
+                    )
             )
         }
         .buttonStyle(.plain)
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
 
     }
 

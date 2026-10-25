@@ -163,6 +163,29 @@ The final build installed and ran on Duo with iOS 27.1. Native About passed an i
 
 Two device checks remain incomplete. A later overview returned to the top after snapshot/session operations and native window reselection, while About and Info remained selected. The cause is unverified. The comparison without snapshot sessions could not start because two guarded Device Hub recovery attempts selected other device windows. No input was sent to those devices. Live nested web Back also remains unverified: the hierarchy tap had no effect and the native-coordinate fallback failed with `windowNotFoundAtPosition`. The focused tests cover nested web Back. The original Programme/Map/rotation smoke checks did not start during this follow-up.
 
+## Event row selection
+
+Programme and Favorites derive the active event ID from the event detail in the shared split controller. The row remains selected while the detail column is visible. Compact navigation clears the row mark; expanding restores it from the retained detail. Returning to the overview clears selection. Nested detail navigation keeps the parent event selected.
+
+The shared day-page cell uses native collection-view selection and list backgrounds for compact and image rows. It resolves the event ID in the current diffable snapshot after refresh, filtering, or page reuse. A filtered or removed event has no selected row, and its mark returns if the event reappears while its detail is still open. Selection does not scroll the list or change the selected day. The programme preview list uses native SwiftUI list selection; the venue grid marks the same event and exposes its selected accessibility trait.
+
+Twenty focused checks pass on Duo with iOS 27.2: six event-selection checks, six split-navigation checks, and eight Favorites day-navigation checks. The selection fixtures use an in-memory database. They cover detail replacement, compact Back, expansion, refreshed row identities, filtering, favorite removal and reinsertion, image rows, native preview-list selection, and selection updates without scrolling or navigation callbacks.
+
+The iPad device check also passed on iOS 27.2 at 1210-by-834 points. In Programme and Favorites, selecting a second event moves the native row highlight and accessibility `Selected` state to the event shown in the content column. The two temporary favorites used for this check were removed, restoring the original empty Favorites state. The display preference was unchanged.
+
+```mermaid
+flowchart LR
+    S[Split detail and column state] --> C[Programme or Favorites coordinator]
+    C -->|Visible event detail| I[Active event ID]
+    C -->|Compact or overview| N[No row selection]
+    I --> O[Overview selection]
+    N --> O
+    O --> R[Resolve event ID in current snapshot]
+    F[Refresh, filter, or page reuse] --> R
+    R --> U[Native collection-view selection]
+    O --> H[Preview-list selection or grid mark]
+```
+
 ## Programme date strip follow-up (4 October 2026)
 
 Scope: correct the wrapped `22` in the 340-point programme column. The same shared selector serves compact, image, and venue-grid modes. Each circle uses the same size, day text stays on one line, and the row scrolls when its content cannot fit. Selection stays in the caller's timetable model.

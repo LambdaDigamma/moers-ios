@@ -15,6 +15,7 @@ public class TimetableTransmitter {
     
     public let showEvent: PassthroughSubject<Event.ID, Never>
     public let searchRequested: PassthroughSubject<Void, Never>
+    public var selectedEventID: Event.ID?
     private let logger: Logger
 
     public init() {
