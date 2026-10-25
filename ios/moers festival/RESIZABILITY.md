@@ -377,3 +377,28 @@ flowchart LR
 ```
 
 The festival build and all four `ReadableContentWidthTests` pass on iPad Air 11-inch (M4) with iOS 27.2. The tests cover default behavior, one content padding inside asymmetric safe areas, option changes, and comparison with the native readable guide at small and accessibility text sizes. The live Duo check confirms title and article x = 16 in the closed layout and x = 337 for a detail column that starts at x = 321 in the open layout. Each has one 16-point leading margin. Focused SwiftLint and the source diff check pass.
+
+## Progressive image transition — 25 October 2026
+
+The short linear fade could show a distinct band at the bottom of dark artwork. The transition now covers the lower 45 percent of the current image height, with a maximum of 180 points. Blur increases smoothly from zero to a 12-point sampling radius, followed by a curved fade into the system background color. The last four percent of the transition is fully opaque, so the image meets the page background without an exposed edge.
+
+The one sec reference combines a gradient with a variable UIKit backdrop blur. Its private selector is guarded and obfuscated. This header already owns a SwiftUI image, so it uses the public [`layerEffect`](https://developer.apple.com/documentation/swiftui/view/layereffect(_:maxsampleoffset:isenabled:)) API instead. Two short Gaussian passes filter the source image. The shader returns upper pixels unchanged, normalizes its sample weights, and clamps each sample to the image bounds. It adds no private API calls or package dependencies.
+
+`EventDetailArtworkView` retains the existing Nuke request and loading/error presentation. Only a loaded SwiftUI image enables the shader. This avoids filtering a potentially UIKit-backed progress view. The blur and color fade are applied before background extension, so the system copies the processed artwork. The fixed header layout and scroll compensation remain in use.
+
+```mermaid
+flowchart TD
+    H[Current artwork size] --> R[Progressive blur radius]
+    I[Loaded SwiftUI image] --> X[Horizontal filter]
+    R --> X
+    X --> Y[Vertical filter]
+    R --> Y
+    Y --> F[Curved system background fade]
+    P[Loading or error view] -->|Blur disabled| F
+    F --> E[System background extension]
+    E --> S[Existing stretch and scroll layout]
+```
+
+The Xcode build passes and includes the compiled Metal library. All six existing event-detail checks pass with the new transition, including resizing, title changes, and rendered pulls at both side insets. The new transition test passes in light and dark appearance. It compares blur with the same fade alone, confirms upper detail is unchanged, checks that blur spreads a lower image edge, and checks the final background color. Focused SwiftLint and the source diff check pass.
+
+The live Duo check confirms a continuous transition on the WDR event in closed and open layouts, with clear upper artwork and no visible banding or image loss. Normal body scrolling passes and text retains its 16-point safe-area margin. The current app process logs contain no shader, layer-effect, or Metal warning or error. The check restored the original closed posture and sensor orientation, closed its device session, and changed no app settings or favorites. The earlier live pull-input limit remains; rendered tests supply the pull-state evidence.

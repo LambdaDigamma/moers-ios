@@ -35,19 +35,7 @@ struct EventDetailHeroView: View {
     }
 
     private func artwork(height: CGFloat) -> some View {
-        GenericMediaView(media: media, resizingMode: .aspectFill)
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
-            .clipped()
-            .overlay(alignment: .bottom) {
-                LinearGradient(
-                    colors: [.clear, Color(uiColor: .systemBackground)],
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-                .frame(height: min(height * 0.3, 100))
-                .allowsHitTesting(false)
-                .accessibilityHidden(true)
-            }
+        EventDetailArtworkView(media: media, height: height)
             .accessibilityIdentifier("EventDetail.HeaderImage")
     }
 }
