@@ -6,12 +6,12 @@ This subtree contains Android and Kotlin feature modules shared by the app modul
 
 - Festival-era modules usually use `data`, `domain`, and `presentation` packages.
 - Older city modules may use feature-specific packages such as `dashboard`, `detail`, `list`, `source`, or `ui`.
-- `modules/core` is Kotlin Multiplatform and also defines shared Android UI, navigation, networking, geo, storage, and base ViewModel utilities.
+- `modules/core` is an Android library that defines shared Android UI, navigation, networking, geo, storage, and base ViewModel utilities.
 - `modules/pages`, `modules/prosemirror`, and `modules/medialibrary` support CMS and rich-content rendering used by festival features.
 
 ## Kotlin And Android Patterns
 
-- Check the touched module's `build.gradle.kts` before choosing Java/Kotlin targets. Some modules are Java 11, while newer festival modules are Java 17.
+- All Android modules target Java 17 and use AGP built-in Kotlin. Do not re-add the `org.jetbrains.kotlin.android` plugin or `kotlinOptions`.
 - Prefer existing Hilt patterns with `@Module`, `@InstallIn`, `@Provides`, and `@Binds`.
 - Keep Room schema and KSP setup consistent with existing module configuration. Do not move schema directories.
 - ViewModels that use `BaseViewModel` should keep the existing intent/partial-state/event pattern:
@@ -29,7 +29,6 @@ This subtree contains Android and Kotlin feature modules shared by the app modul
 - The core Android unit-test task uses JUnit Platform because its tests use JUnit Jupiter. Check the test report count; a successful task with zero tests does not validate the module.
 - For a touched module, run `./gradlew :modules:<module>:testDebugUnitTest`.
 - For compile-sensitive changes, also run `./gradlew :modules:<module>:assembleDebug`.
-- For `modules/core` KMP changes, consider `./gradlew :modules:core:allTests` or a targeted iOS simulator test only if the changed code affects non-Android source sets.
 - For UI/runtime changes in modules consumed by app shells, also build the relevant app and smoke test it with Mobile MCP.
 
 ## Do Not

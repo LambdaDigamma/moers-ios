@@ -1,10 +1,7 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     id("com.android.library")
     alias(libs.plugins.detekt)
     alias(libs.plugins.junit)
-    id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.parcelize")
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.composeCompiler)
@@ -12,12 +9,11 @@ plugins {
 }
 
 android {
-    compileSdk = 36
+    compileSdk = 37
     namespace = "com.lambdadigamma.medialibrary"
 
     with (defaultConfig) {
         minSdk = 24
-        targetSdk = 35
     }
 
     defaultConfig {
@@ -42,10 +38,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-
 }
 
 kotlin {
@@ -54,7 +46,6 @@ kotlin {
             "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
             "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
         )
-        jvmTarget.set(JvmTarget.JVM_17)
     }
 }
 
@@ -72,6 +63,7 @@ dependencies {
     implementation(libs.ktor.client.android)
 
     testImplementation(libs.bundles.common.test)
+    testRuntimeOnly(libs.test.junit.platform.launcher)
     androidTestImplementation(libs.bundles.common.android.test)
 
 }

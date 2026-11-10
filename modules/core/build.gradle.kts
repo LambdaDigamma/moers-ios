@@ -1,10 +1,6 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    id("org.jetbrains.kotlin.plugin.parcelize")
+    alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.ksp)
     alias(libs.plugins.composeCompiler)
 }
@@ -12,99 +8,11 @@ plugins {
 /**
  * Accessing the defined global versions using a type safe delegate.
  */
-val sdkVersion: Int by rootProject.extra
-val minSdkVersion: Int by rootProject.extra
-
-kotlin {
-
-    androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
-        }
-    }
-
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
-
-    sourceSets {
-        androidMain.dependencies {
-            implementation(libs.androidx.core.ktx)
-            implementation(libs.androidx.appcompat)
-            implementation(libs.material)
-
-            implementation(libs.kotlinx.coroutines.android)
-            implementation(libs.lifecycle.runtime.compose)
-            implementation(libs.lifecycle.viewmodel.ktx)
-
-            // Google Play Services
-            implementation(libs.play.services.location)
-            implementation(libs.androidx.work.runtime.ktx)
-
-            // Room Database
-            implementation(libs.room.runtime)
-            implementation(libs.room.ktx)
-            implementation(libs.androidx.room.paging)
-
-            // Hilt
-            implementation(libs.hilt.android)
-            implementation(libs.androidx.hilt.navigation.compose)
-
-            // Retrofit
-            implementation(libs.gson)
-            implementation(libs.retrofit)
-            implementation(libs.converter.simplexml)
-            implementation(libs.converter.gson)
-            implementation(libs.kotlin.serialization)
-            implementation(libs.kotlin.serialization.converter)
-            implementation(libs.retrofit.mock)
-            implementation(libs.okhttp.logging.interceptor)
-
-            // Datastore
-            implementation(libs.androidx.datastore)
-            implementation(libs.androidx.datastore.preferences)
-
-            // Compose
-            implementation(project.dependencies.platform(libs.androidx.compose.bom))
-            implementation(libs.androidx.compose.ui)
-            implementation(libs.androidx.material3)
-            implementation(libs.androidx.material.icons.core)
-            implementation(libs.androidx.material.icons.extended)
-            implementation(libs.androidx.compose.ui.tooling.preview)
-            implementation(libs.androidx.compose.runtime.livedata)
-            implementation(libs.androidx.navigation.compose)
-
-            // Google Maps
-            implementation(libs.maps.compose)
-            implementation(libs.play.services.maps)
-
-            implementation(libs.accompanist.swiperefresh)
-            implementation(libs.accompanist.systemuicontroller)
-            implementation(libs.timber)
-        }
-        androidUnitTest.dependencies {
-            implementation(libs.junit)
-            implementation(libs.room.testing)
-            implementation(libs.test.junit)
-            implementation(libs.test.kotlin)
-            implementation(libs.test.kotlin.coroutines)
-            implementation(libs.test.turbine)
-        }
-        androidInstrumentedTest.dependencies {
-            implementation(libs.androidx.core)
-            implementation(libs.androidx.runner)
-            implementation(libs.androidx.rules)
-            implementation(libs.androidx.junit)
-            implementation(libs.androidx.truth)
-            implementation(libs.androidx.espresso.core)
-            implementation(libs.kotlinx.coroutines.test)
-            implementation(libs.test.android.hilt)
-        }
-    }
-}
+val sdkVersion = rootProject.extra["sdkVersion"] as Int
+val minSdkVersion = rootProject.extra["minSdkVersion"] as Int
 
 android {
+    namespace = "com.lambdadigamma.core"
     compileSdk = sdkVersion
 
     defaultConfig {
@@ -123,25 +31,94 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     buildFeatures {
         compose = true
         buildConfig = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.15"
+    lint {
+        // The Lifecycle lint check crashes with a NullPointerException on LiveDataCallAdapter.kt.
+        disable += "NullSafeMutableLiveData"
     }
-    namespace = "com.lambdadigamma.core"
 }
 
 dependencies {
-    add("kspAndroid", libs.room.compiler)
-    add("kspAndroid", libs.hilt.compiler)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.lifecycle.viewmodel.ktx)
+
+    // Google Play Services
+    implementation(libs.play.services.location)
+    implementation(libs.androidx.work.runtime.ktx)
+
+    // Room Database
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    implementation(libs.androidx.room.paging)
+    ksp(libs.room.compiler)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
+    ksp(libs.hilt.compiler)
+
+    // Retrofit
+    implementation(libs.gson)
+    implementation(libs.retrofit)
+    implementation(libs.converter.simplexml)
+    implementation(libs.converter.gson)
+    implementation(libs.kotlin.serialization)
+    implementation(libs.kotlin.serialization.converter)
+    implementation(libs.retrofit.mock)
+    implementation(libs.okhttp.logging.interceptor)
+
+    // Datastore
+    implementation(libs.androidx.datastore)
+    implementation(libs.androidx.datastore.preferences)
+
+    // Compose
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.material.icons.core)
+    implementation(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.compose.runtime.livedata)
+    implementation(libs.androidx.navigation.compose)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+
+    // Google Maps
+    implementation(libs.maps.compose)
+    implementation(libs.play.services.maps)
+
+    implementation(libs.accompanist.systemuicontroller)
+    implementation(libs.timber)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.room.testing)
+    testImplementation(libs.test.junit)
+    testImplementation(libs.test.kotlin)
+    testImplementation(libs.test.kotlin.coroutines)
+    testImplementation(libs.test.turbine)
+    testRuntimeOnly(libs.test.junit.platform.launcher)
+
+    androidTestImplementation(libs.androidx.core)
+    androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.androidx.rules)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.truth)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
+    androidTestImplementation(libs.test.android.hilt)
 }
 
-// Core tests use JUnit Jupiter. The Android target otherwise selects the JUnit 4 runner.
+// Core tests use JUnit Jupiter. The Android unit test task otherwise selects the JUnit 4 runner.
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
 }

@@ -1,22 +1,18 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     id("com.android.library")
     alias(libs.plugins.detekt)
     alias(libs.plugins.junit)
-    id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.parcelize")
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.composeCompiler)
 }
 
 android {
-    compileSdk = 36
+    compileSdk = 37
     namespace = "com.lambdadigamma.pages"
 
     with (defaultConfig) {
         minSdk = 24
-        targetSdk = 35
     }
 
     defaultConfig {
@@ -41,16 +37,12 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-
     sourceSets {
         getByName("androidTest") {
-            java.srcDir(project(":modules:core").file("src/androidTest/java"))
+            kotlin.directories += project(":modules:core").file("src/androidTest/java").path
         }
         getByName("test") {
-            java.srcDir(project(":modules:core").file("src/test/java"))
+            kotlin.directories += project(":modules:core").file("src/test/java").path
         }
     }
 
@@ -62,7 +54,6 @@ kotlin {
             "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
             "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
         )
-        jvmTarget.set(JvmTarget.JVM_17)
     }
 }
 
@@ -98,6 +89,7 @@ dependencies {
 //    implementation("androidx.core:core-ktx:1.10.1")
 
     testImplementation(libs.bundles.common.test)
+    testRuntimeOnly(libs.test.junit.platform.launcher)
     androidTestImplementation(libs.bundles.common.android.test)
     debugImplementation(libs.debug.compose.manifest)
 

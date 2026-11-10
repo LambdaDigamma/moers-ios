@@ -1,10 +1,7 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     id("com.android.library")
     alias(libs.plugins.detekt)
     alias(libs.plugins.junit)
-    id("org.jetbrains.kotlin.android")
     alias(libs.plugins.ksp)
     id("org.jetbrains.kotlin.plugin.parcelize")
     alias(libs.plugins.kotlin.serialization)
@@ -14,11 +11,10 @@ plugins {
 
 android {
     namespace = "com.lambdadigamma.news"
-    compileSdk = 36
+    compileSdk = 37
 
     with (defaultConfig) {
         minSdk = 24
-        targetSdk = 35
     }
 
     defaultConfig {
@@ -43,16 +39,12 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-
     sourceSets {
         getByName("androidTest") {
-            java.srcDir(project(":modules:core").file("src/androidTest/java"))
+            kotlin.directories += project(":modules:core").file("src/androidTest/java").path
         }
         getByName("test") {
-            java.srcDir(project(":modules:core").file("src/test/java"))
+            kotlin.directories += project(":modules:core").file("src/test/java").path
         }
     }
 }
@@ -63,7 +55,6 @@ kotlin {
             "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
             "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
         )
-        jvmTarget.set(JvmTarget.JVM_17)
     }
 }
 
@@ -108,6 +99,7 @@ dependencies {
     implementation(libs.ktor.client.android)
     implementation(project(":modules:festival-events"))
     testImplementation(libs.bundles.common.test)
+    testRuntimeOnly(libs.test.junit.platform.launcher)
     androidTestImplementation(libs.bundles.common.android.test)
     debugImplementation(libs.debug.compose.manifest)
 

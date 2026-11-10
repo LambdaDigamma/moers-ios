@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.androidLibrary)
-    id("org.jetbrains.kotlin.android")
     alias(libs.plugins.ksp)
     alias(libs.plugins.composeCompiler)
 }
@@ -8,12 +7,12 @@ plugins {
 /**
  * Accessing the defined global versions using a type safe delegate.
  */
-val minSdkVersion: Int by rootProject.extra
-val sdkVersion: Int by rootProject.extra
+val sdkVersion = rootProject.extra["sdkVersion"] as Int
+val minSdkVersion = rootProject.extra["minSdkVersion"] as Int
 
 android {
-    compileSdk = sdkVersion
     namespace = "com.lambdadigamma.news"
+    compileSdk = sdkVersion
 
     defaultConfig {
         minSdk = minSdkVersion
@@ -23,32 +22,41 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.15"
-    }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
 dependencies {
     implementation(projects.modules.core)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.lifecycle.runtime.compose)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
+    ksp(libs.hilt.compiler)
 
     // Compose
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material.icons.core)
@@ -57,30 +65,27 @@ dependencies {
     implementation(libs.androidx.compose.runtime.livedata)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
-    // Coil
-    implementation(libs.coil.core)
-    implementation(libs.coil.compose)
-
-    // Hilt
-    implementation(libs.hilt.android)
-    implementation(libs.androidx.hilt.navigation.compose)
-    ksp(libs.hilt.compiler)
-
-    // Room
-    ksp(libs.room.compiler)
-    implementation(libs.room.ktx)
-    implementation(libs.room.runtime)
-
-    // Retrofit
+    // Networking
+    implementation(libs.gson)
     implementation(libs.retrofit)
-    implementation(libs.converter.simplexml)
     implementation(libs.converter.gson)
     implementation(libs.retrofit.mock)
 
+    // Room Database
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+
+    // Images
+    implementation(libs.coil)
+    implementation(libs.coil.network.okhttp)
+
+    implementation(libs.converter.simplexml)
+    implementation(libs.accompanist.webview)
+
     testImplementation(libs.junit)
+    testImplementation(libs.room.testing)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-    // Accompanist
-    implementation(libs.accompanist.webview)
 }
+

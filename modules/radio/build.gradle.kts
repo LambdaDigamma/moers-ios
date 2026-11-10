@@ -1,12 +1,14 @@
 plugins {
     alias(libs.plugins.androidLibrary)
-    id("org.jetbrains.kotlin.android")
     alias(libs.plugins.ksp)
     alias(libs.plugins.composeCompiler)
 }
 
-val sdkVersion: Int by rootProject.extra
-val minSdkVersion: Int by rootProject.extra
+/**
+ * Accessing the defined global versions using a type safe delegate.
+ */
+val sdkVersion = rootProject.extra["sdkVersion"] as Int
+val minSdkVersion = rootProject.extra["minSdkVersion"] as Int
 
 android {
     namespace = "com.lambdadigamma.radio"
@@ -28,40 +30,33 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+    buildFeatures {
+        compose = true
     }
-    kotlinOptions {
-        jvmTarget = "11"
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
 dependencies {
-
     implementation(projects.modules.core)
-
-    implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.androidx.lifecycle.livedata.ktx)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.lifecycle.runtime.compose)
 
     // Hilt
     implementation(libs.hilt.android)
-    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
     ksp(libs.hilt.compiler)
 
-    // Coil
-    implementation(libs.coil.core)
-    implementation(libs.coil.compose)
-
     // Compose
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material.icons.core)
@@ -70,31 +65,32 @@ dependencies {
     implementation(libs.androidx.compose.runtime.livedata)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
-    // Gson
+    // Networking
     implementation(libs.gson)
-
-    // Retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.retrofit.mock)
 
-    // Protobuf
-    implementation(libs.protobuf.javalite)
-
-    // Datastore
-    implementation(libs.androidx.datastore)
-    implementation(libs.androidx.datastore.preferences)
-
     // Room Database
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
-    implementation(libs.androidx.room.paging)
     ksp(libs.room.compiler)
-    testImplementation(libs.room.testing)
 
+    // Images
+    implementation(libs.coil)
+    implementation(libs.coil.network.okhttp)
+
+    // Storage
+    implementation(libs.protobuf.javalite)
+    implementation(libs.androidx.datastore)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.room.paging)
     implementation(libs.google.accompanist.placeholder.material)
-
-    // Work
     implementation(libs.androidx.work.runtime.ktx)
 
+    testImplementation(libs.junit)
+    testImplementation(libs.room.testing)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
+
