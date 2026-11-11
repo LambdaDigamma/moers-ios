@@ -24,6 +24,7 @@ object Destinations {
 
     const val graph = "main"
     const val rubbishList = "rubbish"
+    const val rubbishStreet = "rubbish/street"
 
     const val fuelList = "fuel"
     const val fuelStationDetail = "fuel-stations/{id}"

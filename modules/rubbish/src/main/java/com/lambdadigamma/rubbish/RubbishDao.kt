@@ -1,30 +1,40 @@
 package com.lambdadigamma.rubbish
 
-import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Transaction
+import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface RubbishDao {
+abstract class RubbishDao {
+
+    @Query("SELECT * FROM rubbish_streets ORDER BY name")
+    abstract fun observeStreets(): Flow<List<RubbishCollectionStreet>>
+
+    @Query("SELECT COUNT(*) FROM rubbish_streets")
+    abstract suspend fun countStreets(): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertRubbishStreets(streets: List<RubbishCollectionStreet>): List<Long>
+    abstract suspend fun insertStreets(streets: List<RubbishCollectionStreet>)
 
-    @Query("SELECT * FROM rubbish_streets")
-    fun getRubbishStreets(): LiveData<List<RubbishCollectionStreet>>
+    @Query("SELECT * FROM rubbish_collection_items ORDER BY date")
+    abstract fun observeCollectionItems(): Flow<List<RubbishCollectionItem>>
 
-    @Query("SELECT * FROM rubbish_streets WHERE name LIKE '%' || :streetName || '%'")
-    fun getRubbishStreet(streetName: String): LiveData<List<RubbishCollectionStreet>>
-
-    @Query("SELECT * FROM rubbish_collection_items")
-    fun loadAllRubbishCollectionItems(): LiveData<List<RubbishCollectionItem>>
+    @Query("SELECT * FROM rubbish_collection_items ORDER BY date")
+    abstract suspend fun collectionItems(): List<RubbishCollectionItem>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertRubbishCollectionItems(items: List<RubbishCollectionItem>)
-
-    @Delete
-    fun deleteRubbishCollectionItems(vararg items: RubbishCollectionItem)
+    abstract suspend fun insertCollectionItems(items: List<RubbishCollectionItem>)
 
     @Query("DELETE FROM rubbish_collection_items")
-    fun deleteAllRubbishCollectionItems()
+    abstract suspend fun deleteAllCollectionItems()
+
+    @Transaction
+    open suspend fun replaceCollectionItems(items: List<RubbishCollectionItem>) {
+        deleteAllCollectionItems()
+        insertCollectionItems(items)
+    }
 
 }

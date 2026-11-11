@@ -1,342 +1,158 @@
 package com.lambdadigamma.rubbish
 
-import android.app.NotificationManager
 import android.content.Context
-import android.util.Log
-import androidx.datastore.core.DataStore
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
+import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import com.lambdadigamma.core.AppExecutors
-import com.lambdadigamma.core.NetworkBoundResource
-import com.lambdadigamma.core.Resource
-import com.lambdadigamma.core.notifications.milliInterval
-import com.lambdadigamma.core.toResource
+import com.lambdadigamma.core.extensions.resultOf
 import com.lambdadigamma.core.utils.LastUpdate
-import com.lambdadigamma.core.utils.minuteInterval
 import com.lambdadigamma.rubbish.notifications.RubbishScheduleNotificationWorker
 import com.lambdadigamma.rubbish.settings.RubbishSettings
 import com.lambdadigamma.rubbish.source.RubbishApi
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.withContext
-import java.util.*
+import java.time.Duration
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.util.Date
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class RubbishRepository @Inject constructor(
-    @ApplicationContext private val context: Context,
-//    private val locationService: LocationService,
-//    private val remoteDataSource: RubbishRemoteDataSource,
-    val remoteDataSource: RubbishApi,
+    @param:ApplicationContext private val context: Context,
+    private val api: RubbishApi,
     private val rubbishDao: RubbishDao,
-    private val appExecutors: AppExecutors // = AppExecutors()
 ) {
 
-    private val notificationManager =
-        context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    private val dataStore = context.rubbishSettingsDataStore
+    private val lastStreetsUpdate = LastUpdate(key = "rubbishStreets", context = context)
 
-    private val dataStore: DataStore<RubbishSettings> = context.rubbishSettingsDataStore
+    // --- Streets
 
-    private val lastUpdate = LastUpdate(key = "rubbishStreets", context = context)
-    private val lastUpdateCollectionItems =
-        LastUpdate(key = "rubbishCollectionItems", context = context)
+    val streets: Flow<List<RubbishCollectionStreet>> = rubbishDao.observeStreets()
 
-    fun getRubbishStreets(streetName: String? = null): LiveData<Resource<List<RubbishCollectionStreet>?>> {
-        return object :
-            NetworkBoundResource<List<RubbishCollectionStreet>, List<RubbishCollectionStreet>>(
-                appExecutors
-            ) {
-
-            override fun saveCallResult(item: List<RubbishCollectionStreet>) {
-                rubbishDao.insertRubbishStreets(item)
-                lastUpdate.set(lastUpdate = Date())
-            }
-
-            override fun shouldFetch(data: List<RubbishCollectionStreet>?): Boolean {
-
-                if (data == null || data.orEmpty().isEmpty()) {
-                    Log.d("RubbishRepository", "Should fetch: data is null or empty")
-
-                    return true
-                }
-
-                val shouldLoad = (lastUpdate.get()?.minuteInterval() ?: 120) > 60
-
-                Log.d(
-                    "RubbishRepository",
-                    "Checking last update interval for rubbish streets. Should reload: $shouldLoad"
-                )
-                return shouldLoad
-            }
-
-            override fun loadFromDb(): LiveData<List<RubbishCollectionStreet>> {
-
-                streetName?.let {
-                    return rubbishDao.getRubbishStreet(streetName = it)
-                }
-
-                return rubbishDao.getRubbishStreets()
-            }
-
-            override fun createCall(): LiveData<Resource<List<RubbishCollectionStreet>>> {
-
-                Log.d("API", "Fetching streets")
-
-                val fetchedStreets = remoteDataSource.fetchStreets(streetName = streetName)
-
-                return fetchedStreets.map { data ->
-                    return@map data.transform { it.data }
-                }
-            }
-
-        }.asLiveData()
+    /** The selected street, or `null` when the user has not chosen one yet. */
+    val currentStreet: Flow<RubbishSettings.RubbishCollectionStreet?> = dataStore.data.map { settings ->
+        settings.rubbishCollectionStreet.takeIf { settings.hasRubbishCollectionStreet() && it.id > 0 }
     }
 
-    suspend fun loadRubbishCollectionItemsSuspended(): Flow<Resource<List<RubbishCollectionItem>>> {
-
-        return flow {
-            emit(Resource.loading())
-
-            dataStore.data.map { it.rubbishCollectionStreet.id }
-                .first()
-                .let { streetId ->
-                    val fetchedItems =
-                        remoteDataSource.getPickupItems(streetId = streetId)
-                            .toResource()
-                            .transform { response ->
-                                response.data
-                            }
-
-                    updateLocalStore(fetchedItems)
-
-                    emit(fetchedItems)
-                }
-
-        }
-
-    }
-
-//    fun loadRubbishCollectionItems(): LiveData<Resource<List<RubbishCollectionItem>?>> {
-//
-//        return object :
-//            NetworkBoundResource<List<RubbishCollectionItem>, List<RubbishCollectionItem>>(
-//                appExecutors
-//            ) {
-//
-//            override fun saveCallResult(item: List<RubbishCollectionItem>) {
-//                rubbishDao.deleteAllRubbishCollectionItems()
-//                rubbishDao.insertRubbishCollectionItems(item)
-//                removeAllRubbishNotifications()
-//
-//                appExecutors.diskIO().execute(Runnable {
-//                    runBlocking {
-//                        val time = reminderTime.first()
-//                        scheduleNotifications(
-//                            collectionItems = item,
-//                            hours = time?.hours ?: 20,
-//                            minutes = time?.minutes ?: 0,
-//                        )
-//                    }
-//                })
-//
-//                lastUpdateCollectionItems.set(lastUpdate = Date())
-//            }
-//
-//            override fun shouldFetch(data: List<RubbishCollectionItem>?): Boolean {
-//                if (data == null || data.orEmpty().isEmpty()) {
-//                    return true
-//                }
-//
-//                return (lastUpdateCollectionItems.get()?.minuteInterval() ?: 120) > 60
-//            }
-//
-//            override fun loadFromDb(): LiveData<List<RubbishCollectionItem>> {
-//                Log.d("Api", "Loading items from db")
-//                return rubbishDao.loadAllRubbishCollectionItems()
-//            }
-//
-//            override fun createCall(): LiveData<Resource<List<RubbishCollectionItem>>> {
-//
-//                return Transformations.switchMap(dataStore.data.asLiveData()) {
-//                    Log.d("Api", it.rubbishCollectionStreet.id.toString())
-//                    Transformations.map(remoteDataSource.getPickupItems(it.rubbishCollectionStreet.id)) { resource ->
-//                        Log.d("Api", resource.toString())
-//                        Resource.success(resource.data?.data.orEmpty())
-//                    }
-//                }
-//            }
-//        }.asLiveData()
-//
-//    }
-
-    private suspend fun updateLocalStore(resource: Resource<List<RubbishCollectionItem>>) {
-
-        if (!resource.isSuccessful()) {
-            return
-        }
-
-        val items = resource.data.orEmpty()
-
-        withContext(Dispatchers.IO) {
-            rubbishDao.deleteAllRubbishCollectionItems()
-            rubbishDao.insertRubbishCollectionItems(items)
-            removeAllRubbishNotifications()
-        }
-
-        withContext(Dispatchers.IO) {
-            val time = reminderTime.first()
-            scheduleNotifications(
-                collectionItems = items,
-                hours = time?.hours ?: 20,
-                minutes = time?.minutes ?: 0,
-            )
-        }
-
-//        appExecutors.diskIO().execute(Runnable {
-//            runBlocking {
-//                val time = reminderTime.first()
-//                scheduleNotifications(
-//                    collectionItems = item,
-//                    hours = time?.hours ?: 20,
-//                    minutes = time?.minutes ?: 0,
-//                )
-//            }
-//        })
-
-        lastUpdateCollectionItems.set(lastUpdate = Date())
-
-    }
-
-    // --- Reminder
-
-    val reminderEnabled: Flow<Boolean> = dataStore.data
-        .map { settings ->
-            settings.remindersEnabled
-        }
-
-    val reminderTime: Flow<RubbishSettings.RubbishReminderTime?> = dataStore.data
-        .map { settings ->
-            if (settings.hasReminderTime()) {
-                return@map settings.reminderTime
-            } else {
-                return@map null
-            }
-        }
-
-    suspend fun enableReminders(hours: Int = 20, minutes: Int = 0) {
-        context.rubbishSettingsDataStore.updateData { settings ->
-            settings.toBuilder()
-                .setRemindersEnabled(true)
-                .setReminderTime(
-                    RubbishSettings.RubbishReminderTime
-                        .newBuilder()
-                        .setHours(hours)
-                        .setMinutes(minutes)
-                )
-                .build()
-        }
-    }
-
-    suspend fun disableReminders() {
-        context.rubbishSettingsDataStore.updateData { settings ->
-            settings.toBuilder()
-                .setRemindersEnabled(false)
-                .build()
+    /** Loads all streets once a day. The list is used to search streets offline. */
+    suspend fun refreshStreets(force: Boolean = false): Result<Unit> = resultOf {
+        val lastUpdate = lastStreetsUpdate.get()
+        val isFresh = lastUpdate != null &&
+            Date().time - lastUpdate.time < TimeUnit.DAYS.toMillis(1) &&
+            rubbishDao.countStreets() > 0
+        if (force || !isFresh) {
+            rubbishDao.insertStreets(api.streets().data)
+            lastStreetsUpdate.set(Date())
         }
     }
 
     suspend fun setStreet(id: Int, name: String) {
-        val rubbishSettingsStreet = RubbishSettings.RubbishCollectionStreet
-            .newBuilder()
+        val street = RubbishSettings.RubbishCollectionStreet.newBuilder()
             .setId(id.toLong())
             .setName(name)
             .build()
-
-        dataStore.updateData { settings ->
-            settings.toBuilder()
-                .setRubbishCollectionStreet(rubbishSettingsStreet)
-                .build()
-        }
+        dataStore.updateData { it.toBuilder().setRubbishCollectionStreet(street).build() }
+        rubbishDao.deleteAllCollectionItems()
+        refreshPickups()
     }
 
-    val currentStreet: Flow<RubbishSettings.RubbishCollectionStreet> = dataStore.data
-        .map { settings ->
-            settings.rubbishCollectionStreet
-        }
+    // --- Pickups
 
-    suspend fun changeReminderTime(hours: Int, minutes: Int) {
-//        context.rubbishSettingsDataStore
+    /** Pickups from today on, ordered by date. */
+    val upcomingPickups: Flow<List<RubbishCollectionItem>> = rubbishDao.observeCollectionItems().map { items ->
+        val today = LocalDate.now()
+        items.filter { item -> item.localDate?.isBefore(today) == false }
     }
 
-    // --- Notifications ---
-
-    fun scheduleNotifications(
-        collectionItems: List<RubbishCollectionItem>,
-        hours: Int,
-        minutes: Int
-    ) {
-
-        val workManager: WorkManager = WorkManager.getInstance(context)
-
-        for (item in collectionItems.filter { it.parsedDate > Date() }) {
-
-            val reminderDate = getDateOfPreviousDayAtHourMinute(
-                date = item.parsedDate,
-                hour = hours,
-                minutes = minutes
-            )
-
-            val delay = Date().milliInterval(reminderDate)
-
-            val work =
-                OneTimeWorkRequestBuilder<RubbishScheduleNotificationWorker>()
-                    .setInitialDelay(delay, TimeUnit.MILLISECONDS)
-                    .setInputData(RubbishScheduleNotificationWorker.inputData(item.type))
-                    .addTag(RubbishScheduleNotificationWorker.TAG)
-                    .build()
-
-            workManager.enqueue(work)
-
-        }
-
+    /** Loads the pickups of the selected street and updates the reminders. */
+    suspend fun refreshPickups(): Result<Unit> = resultOf {
+        val street = currentStreet.first()
+        val items = if (street == null) emptyList() else api.pickups(street.id).data
+        rubbishDao.replaceCollectionItems(items.map { it.copy(id = 0) })
+        rescheduleReminders()
     }
 
-    private fun scheduleTestNotification() {
+    // --- Reminders
 
-        val workManager: WorkManager = WorkManager.getInstance(context)
+    val reminderEnabled: Flow<Boolean> = dataStore.data.map { it.remindersEnabled }
 
-        val work =
-            OneTimeWorkRequestBuilder<RubbishScheduleNotificationWorker>()
-                .setInitialDelay(10, TimeUnit.SECONDS)
-                .setInputData(RubbishScheduleNotificationWorker.inputData(RubbishWasteType.ORGANIC))
+    val reminderTime: Flow<RubbishSettings.RubbishReminderTime?> = dataStore.data.map { settings ->
+        settings.reminderTime.takeIf { settings.hasReminderTime() }
+    }
+
+    suspend fun setRemindersEnabled(enabled: Boolean) {
+        dataStore.updateData { it.toBuilder().setRemindersEnabled(enabled).build() }
+        rescheduleReminders()
+    }
+
+    suspend fun setReminderTime(hours: Int, minutes: Int) {
+        val time = RubbishSettings.RubbishReminderTime.newBuilder()
+            .setHours(hours)
+            .setMinutes(minutes)
+            .build()
+        dataStore.updateData { it.toBuilder().setReminderTime(time).build() }
+        rescheduleReminders()
+    }
+
+    /**
+     * Schedules one notification on the evening before each upcoming pickup day.
+     * Only the reminder work of this feature is replaced; other WorkManager jobs are kept.
+     */
+    suspend fun rescheduleReminders() {
+        val workManager = WorkManager.getInstance(context)
+        workManager.cancelAllWorkByTag(RubbishScheduleNotificationWorker.TAG)
+
+        val settings = dataStore.data.first()
+        if (!settings.remindersEnabled || currentStreet.first() == null) return
+
+        val time = settings.reminderTime.takeIf { settings.hasReminderTime() }
+        val reminders = reminderSchedule(
+            items = rubbishDao.collectionItems(),
+            reminderTime = LocalTime.of(time?.hours ?: DEFAULT_REMINDER_HOUR, time?.minutes ?: 0),
+            now = ZonedDateTime.now(),
+        )
+
+        for (reminder in reminders) {
+            val request = OneTimeWorkRequestBuilder<RubbishScheduleNotificationWorker>()
+                .setInitialDelay(reminder.delay.toMillis(), TimeUnit.MILLISECONDS)
+                .setInputData(RubbishScheduleNotificationWorker.inputData(reminder.types))
                 .addTag(RubbishScheduleNotificationWorker.TAG)
                 .build()
-
-        workManager.enqueue(work)
-
+            workManager.enqueueUniqueWork(
+                "${RubbishScheduleNotificationWorker.TAG}-${reminder.pickupDay}",
+                ExistingWorkPolicy.REPLACE,
+                request,
+            )
+        }
     }
 
-    private fun getDateOfPreviousDayAtHourMinute(date: Date, hour: Int, minutes: Int): Date {
-        val calendar = Calendar.getInstance()
-        calendar.time = date
-        calendar.set(Calendar.HOUR_OF_DAY, hour)
-        calendar.set(Calendar.MINUTE, minutes)
-        calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.MILLISECOND, 0)
-        calendar.add(Calendar.DATE, -1)
-        return calendar.time
-    }
+    data class Reminder(val pickupDay: LocalDate, val types: List<RubbishWasteType>, val delay: Duration)
 
-    fun removeAllRubbishNotifications() {
-        val workManager: WorkManager = WorkManager.getInstance(context)
-        workManager.cancelAllWork()
-        workManager.cancelAllWorkByTag("rubbish_schedule_notification")
-    }
+    companion object {
+        const val DEFAULT_REMINDER_HOUR = 20
 
+        /** One reminder per pickup day at [reminderTime] on the day before, if that is still ahead. */
+        fun reminderSchedule(
+            items: List<RubbishCollectionItem>,
+            reminderTime: LocalTime,
+            now: ZonedDateTime,
+            zone: ZoneId = now.zone,
+        ): List<Reminder> = items
+            .mapNotNull { item -> item.localDate?.let { it to item.type } }
+            .groupBy({ it.first }, { it.second })
+            .toSortedMap()
+            .mapNotNull { (day, types) ->
+                val remindAt = day.minusDays(1).atTime(reminderTime).atZone(zone)
+                val delay = Duration.between(now, remindAt)
+                if (delay.isNegative) null else Reminder(day, types.distinct(), delay)
+            }
+    }
 }

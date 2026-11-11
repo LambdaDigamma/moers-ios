@@ -41,7 +41,7 @@ class SettingsViewModel @Inject constructor(
         SettingsUiState(
             userType = userType,
             fuelType = fuelType,
-            rubbishStreetName = street.name.takeIf { street.id > 0 && it.isNotBlank() },
+            rubbishStreetName = street?.name,
             remindersEnabled = remindersEnabled,
             reminderHours = reminderTime?.hours ?: 20,
             reminderMinutes = reminderTime?.minutes ?: 0,
@@ -54,6 +54,14 @@ class SettingsViewModel @Inject constructor(
 
     fun updateFuelType(fuelType: FuelType) {
         viewModelScope.launch { fuelRepository.updateFuelType(fuelType) }
+    }
+
+    fun setRemindersEnabled(enabled: Boolean) {
+        viewModelScope.launch { rubbishRepository.setRemindersEnabled(enabled) }
+    }
+
+    fun setReminderTime(hours: Int, minutes: Int) {
+        viewModelScope.launch { rubbishRepository.setReminderTime(hours, minutes) }
     }
 
 }

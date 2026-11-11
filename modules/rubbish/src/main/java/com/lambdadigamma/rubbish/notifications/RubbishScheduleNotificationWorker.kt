@@ -1,81 +1,78 @@
 package com.lambdadigamma.rubbish.notifications
 
+import android.Manifest
+import android.app.PendingIntent
 import android.content.Context
-import androidx.appcompat.content.res.AppCompatResources
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.graphics.drawable.toBitmap
+import androidx.core.content.ContextCompat
 import androidx.work.Data
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.lambdadigamma.rubbish.R
 import com.lambdadigamma.rubbish.RubbishWasteType
-import com.lambdadigamma.rubbish.icon
-import com.lambdadigamma.rubbish.localizedName
-import kotlin.random.Random
+import com.lambdadigamma.rubbish.labelRes
 
 /**
- * A worker which sends a rubbish notification based on input data to the user.
+ * Posts the reminder for the waste types that are collected on the next day.
  */
 class RubbishScheduleNotificationWorker(
-    val context: Context,
+    context: Context,
     workerParams: WorkerParameters
 ) : Worker(context, workerParams) {
 
     override fun doWork(): Result {
+        val types = inputData.getStringArray(WORKER_DATA_RUBBISH_TYPES_KEY).orEmpty()
+            .mapNotNull { RubbishWasteType.fromString(it) }
+        if (types.isEmpty()) return Result.failure()
+        if (!canPostNotifications(applicationContext)) return Result.success()
 
-        return try {
-
-            val rubbishTypeValue = inputData.getString(WORKER_DATA_RUBBISH_TYPE_KEY)
-            if (rubbishTypeValue == null) {
-                Result.failure()
+        val names = types.joinToString(", ") { applicationContext.getString(it.labelRes()) }
+        val openApp = applicationContext.packageManager
+            .getLaunchIntentForPackage(applicationContext.packageName)
+            ?.let { intent ->
+                PendingIntent.getActivity(
+                    applicationContext,
+                    0,
+                    intent,
+                    PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+                )
             }
 
-            rubbishTypeValue?.let { value ->
-                val rubbishWasteType = RubbishWasteType.fromString(value)
+        val notification = NotificationCompat.Builder(applicationContext, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_baseline_recycling_24)
+            .setContentTitle(applicationContext.getString(R.string.rubbish_notification_title))
+            .setContentText(applicationContext.getString(R.string.notification_rubbish_content, names))
+            .setCategory(NotificationCompat.CATEGORY_REMINDER)
+            .setContentIntent(openApp)
+            .setAutoCancel(true)
+            .build()
 
-                val builder = NotificationCompat.Builder(context, CHANNEL_ID).apply {
-                    setContentTitle(context.getString(R.string.rubbish_notification_title))
-                    setContentText(
-                        String.format(
-                            context.getString(R.string.notification_rubbish_content),
-                            rubbishWasteType.localizedName()
-                        )
-                    )
-                    setGroup(GROUP_ID)
-                    setAutoCancel(true)
-
-                    AppCompatResources.getDrawable(context, rubbishWasteType.icon())?.let {
-                        setSmallIcon(rubbishWasteType.icon())
-                        setLargeIcon(it.toBitmap())
-                    }
-
-                }
-
-                with(NotificationManagerCompat.from(context)) {
-                    notify(Random.nextInt(), builder.build())
-                }
-            }
-
-            Result.success()
-        } catch (e: Exception) {
-            Result.failure()
+        try {
+            NotificationManagerCompat.from(applicationContext).notify(NOTIFICATION_ID, notification)
+        } catch (_: SecurityException) {
+            // The permission was revoked after the check.
         }
+        return Result.success()
     }
 
     companion object {
 
-        fun inputData(rubbishType: RubbishWasteType): Data {
-            return Data.Builder()
-                .putString(WORKER_DATA_RUBBISH_TYPE_KEY, rubbishType.value)
-                .build()
-        }
+        fun inputData(types: List<RubbishWasteType>): Data = Data.Builder()
+            .putStringArray(WORKER_DATA_RUBBISH_TYPES_KEY, types.map { it.value }.toTypedArray())
+            .build()
+
+        fun canPostNotifications(context: Context): Boolean =
+            Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
+                ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) ==
+                PackageManager.PERMISSION_GRANTED
 
         const val TAG = "rubbish_schedule_notification"
         const val CHANNEL_ID = "rubbish-schedule"
-        const val GROUP_ID = "rubbish-schedule"
-
-        const val WORKER_DATA_RUBBISH_TYPE_KEY = "rubbishType"
+        private const val NOTIFICATION_ID = 4_721
+        private const val WORKER_DATA_RUBBISH_TYPES_KEY = "rubbishTypes"
 
     }
 

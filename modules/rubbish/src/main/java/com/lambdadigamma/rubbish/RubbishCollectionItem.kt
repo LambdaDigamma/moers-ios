@@ -3,26 +3,22 @@ package com.lambdadigamma.rubbish
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.text.SimpleDateFormat
-import java.util.*
-
-fun parseDate(date: String, format: String): Date? {
-
-    val dateFormat = SimpleDateFormat(format, Locale.getDefault())
-    return dateFormat.parse(date)
-
-}
+import java.time.LocalDate
+import java.time.format.DateTimeParseException
 
 @Entity(tableName = "rubbish_collection_items")
 data class RubbishCollectionItem(
-    @PrimaryKey(autoGenerate = true) val id: Long,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    /** Pickup day in ISO format, for example `2026-11-12`. */
     @ColumnInfo(name = "date") val date: String,
     @ColumnInfo(name = "type") val type: RubbishWasteType
 ) {
 
-    val parsedDate: Date
-        get() {
-            return parseDate(date, "yyyy-MM-dd") ?: Date()
+    val localDate: LocalDate?
+        get() = try {
+            LocalDate.parse(date)
+        } catch (_: DateTimeParseException) {
+            null
         }
 
 }

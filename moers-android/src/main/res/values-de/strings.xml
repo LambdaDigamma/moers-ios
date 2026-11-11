@@ -5,7 +5,6 @@
     <string name="explore_radio_title">Bürgerfunk</string>
     <string name="navigation_map">Karte</string>
     <string name="navigation_events">Events</string>
-    <string name="navigation_search">Suchen</string>
     <string name="navigation_other">Sonstiges</string>
     <string name="settings">Einstellungen</string>
     <string name="dashboard_more_options">Weitere Optionen</string>
@@ -59,11 +58,9 @@
     <string name="onboarding_done_cta">Los geht\'s</string>
     <string name="onboarding_done_headline">Geschafft!</string>
     <string name="onboarding_done_text">Du hast die Einrichtung nun abgeschlossen.\nNun kannst Du die App erkunden.</string>
-    <string name="onboarding_rubbish_street_placeholder">Straße</string>
     <string name="onboarding_rubbish_street_selection_title">Wähle Deine Straße aus</string>
     <string name="onboarding_rubbish_street_selection_body">Die App kann Dir den Abfallkalender für Deine Straße anzeigen. Suche dazu Deine Straße aus und fahre fort.</string>
     <string name="onboarding_rubbish_street_skip_action">Später einrichten</string>
-    <string name="onboarding_rubbish_street_use_location">Aktuellen Standort verwenden</string>
     <string name="onboarding_fuel_title">Wähle einen Kraftstofftyp</string>
     <string name="onboarding_fuel_body">Die App kann Dir einen Überblick über die aktuellen Kraftstoffpreise geben. Wähle dazu Deinen bevorzugten Kraftstofftyp aus und fahre fort.</string>
     <string name="about_navigation">Über die App</string>
@@ -75,11 +72,11 @@
     <string name="settings_fuel_header">Tanken</string>
     <string name="settings_user_type_citizen">Bürger</string>
     <string name="settings_user_type_guest">Besucher</string>
-    <string name="settings_rubbish_schedule_active">Aktiviert</string>
+    <string name="settings_rubbish_schedule_active">Erinnerungen</string>
     <string name="settings_rubbish_street">Straße</string>
     <string name="settings_rubbish_reminder_time">Erinnerung</string>
     <string name="settings_rubbish_reminder_time_summary">%1$s am Vortag</string>
-    <string name="settings_rubbish_reminder_off">Aus</string>
+    <string name="settings_rubbish_reminders_text">Benachrichtigung am Vorabend jeder Abfuhr</string>
     <string name="settings_rubbish_street_unset">Nicht ausgewählt</string>
     <string name="settings_version">Version %1$s</string>
     <string name="onboarding_location_granted_title">Berechtigung erteilt</string>
@@ -98,5 +95,4 @@
     <string name="feedback_card_line3">Ich freue mich über konstruktive Kritik, Fehlerberichte und Vorschläge.</string>
     <string name="feedback_disclaimer_line1">Falls Du eine Bewertung abgegeben hast oder diese weg geklickt hast, kann es sein, dass der Knopf nicht mehr funktioniert.</string>
     <string name="feedback_disclaimer_line2">Gehe bitte in den Play Store, um die App zu bewerten.</string>
-    <string name="onboarding_soon_disclaimer">(Bald)</string>
 </resources>

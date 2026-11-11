@@ -1,46 +1,70 @@
 package com.lambdadigamma.rubbish.dashboard
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.lambdadigamma.core.theme.MeinMoersTheme
+import com.lambdadigamma.core.ui.placeholder
 import com.lambdadigamma.rubbish.R
-import com.lambdadigamma.rubbish.RubbishCollectionItem
+import com.lambdadigamma.rubbish.RubbishPickupDay
+import com.lambdadigamma.rubbish.RubbishScheduleUiState
+import com.lambdadigamma.rubbish.RubbishScheduleViewModel
 import com.lambdadigamma.rubbish.RubbishWasteType
-import com.lambdadigamma.rubbish.ui.RubbishRow
+import com.lambdadigamma.rubbish.icon
+import com.lambdadigamma.rubbish.labelRes
+import com.lambdadigamma.rubbish.ui.pickupDayLabel
+import java.time.LocalDate
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DashboardRubbishComponent(modifier: Modifier = Modifier, onClick: () -> Unit) {
+fun DashboardRubbishComponent(
+    modifier: Modifier = Modifier,
+    onChooseStreet: () -> Unit = {},
+    onClick: () -> Unit,
+) {
+    val viewModel: RubbishScheduleViewModel = hiltViewModel()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    val viewModel: DashboardRubbishViewModel = hiltViewModel()
-    val items by viewModel.rubbishCollectionItems.observeAsState()
-
-    LaunchedEffect(key1 = "dashboard_load_rubbish", block = {
-        viewModel.list()
-    })
-
-    ElevatedCard(
+    DashboardRubbishCard(
+        uiState = uiState,
         onClick = onClick,
-        modifier = modifier
-            .fillMaxWidth()
-            .defaultMinSize(minHeight = 140.dp)
-    ) {
+        onChooseStreet = onChooseStreet,
+        modifier = modifier,
+    )
+}
 
+@Composable
+fun DashboardRubbishCard(
+    uiState: RubbishScheduleUiState,
+    onClick: () -> Unit,
+    onChooseStreet: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    ElevatedCard(onClick = onClick, modifier = modifier.fillMaxWidth()) {
         Row(
             modifier = Modifier.padding(12.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -65,35 +89,80 @@ fun DashboardRubbishComponent(modifier: Modifier = Modifier, onClick: () -> Unit
                 style = MaterialTheme.typography.titleMedium
             )
         }
-        HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
+        HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
 
-        DashboardRubbishContent(items = items?.data.orEmpty(), modifier = Modifier.padding(12.dp))
+        Column(
+            modifier = Modifier.padding(12.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            when {
+                !uiState.hasStreet -> {
+                    Text(
+                        text = stringResource(R.string.rubbish_no_street_text),
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
+                    FilledTonalButton(onClick = onChooseStreet) {
+                        Text(stringResource(R.string.rubbish_choose_street))
+                    }
+                }
+                uiState.isLoading -> repeat(3) {
+                    Text(
+                        text = "",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .placeholder(visible = true),
+                    )
+                }
+                uiState.days.isEmpty() -> Text(
+                    text = stringResource(R.string.rubbish_no_pickups),
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+                else -> uiState.days.take(3).forEach { day -> PickupDayRow(day) }
+            }
+        }
     }
 }
 
 @Composable
-fun DashboardRubbishContent(items: List<RubbishCollectionItem>, modifier: Modifier = Modifier) {
-
-    Column(modifier = modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        for (item in items.take(3)) {
-            RubbishRow(item = item)
+private fun PickupDayRow(day: RubbishPickupDay) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Text(
+            text = pickupDayLabel(day.date, short = true),
+            style = MaterialTheme.typography.labelLarge,
+            modifier = Modifier.width(132.dp),
+        )
+        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            day.types.forEach { type ->
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    Image(painterResource(type.icon()), contentDescription = null, modifier = Modifier.size(20.dp))
+                    Text(stringResource(type.labelRes()), style = MaterialTheme.typography.bodyMedium)
+                }
+            }
         }
     }
-
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun DashboardRubbishComponentPreview() {
+private fun DashboardRubbishCardPreview() {
+    val today = LocalDate.now()
     MeinMoersTheme {
-        DashboardRubbishContent(
-            items = listOf(
-                RubbishCollectionItem(
-                    id = 1,
-                    date = "2022-11-14",
-                    type = RubbishWasteType.ORGANIC,
-                )
-            )
+        DashboardRubbishCard(
+            uiState = RubbishScheduleUiState(
+                streetName = "Adlerstraße",
+                days = listOf(
+                    RubbishPickupDay(today, listOf(RubbishWasteType.RESIDUAL, RubbishWasteType.PAPER)),
+                    RubbishPickupDay(today.plusDays(1), listOf(RubbishWasteType.PLASTIC)),
+                    RubbishPickupDay(today.plusDays(13), listOf(RubbishWasteType.ORGANIC)),
+                ),
+                isLoading = false,
+            ),
+            onClick = {},
+            onChooseStreet = {},
+            modifier = Modifier.padding(16.dp),
         )
     }
 }

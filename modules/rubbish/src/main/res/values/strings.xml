@@ -6,4 +6,26 @@
     <string name="rubbish_notification_title">Waste calendar</string>
     <string name="dashboard_rubbish_headline">Next collection dates</string>
     <string name="rubbish_collection_title">Waste calendar</string>
+
+    <string name="rubbish_type_residual">Residual waste</string>
+    <string name="rubbish_type_organic">Organic waste</string>
+    <string name="rubbish_type_paper">Paper</string>
+    <string name="rubbish_type_plastic">Yellow bag</string>
+    <string name="rubbish_type_cuttings">Green waste</string>
+
+    <string name="rubbish_today">Today</string>
+    <string name="rubbish_tomorrow">Tomorrow</string>
+    <string name="rubbish_no_street_title">Choose your street</string>
+    <string name="rubbish_no_street_text">Select your street to see its waste collection dates.</string>
+    <string name="rubbish_choose_street">Choose street</string>
+    <string name="rubbish_no_pickups">There are no upcoming collection dates for your street.</string>
+    <string name="rubbish_reminders_prompt_title">Get reminded</string>
+    <string name="rubbish_reminders_prompt_text">Receive a notification on the evening before each collection.</string>
+    <string name="rubbish_reminders_enable">Turn on</string>
+    <string name="rubbish_notifications_denied">Allow notifications for Mein Moers in the system settings to receive reminders.</string>
+    <string name="rubbish_open_settings">Settings</string>
+    <string name="rubbish_street_search_title">Choose your street</string>
+    <string name="rubbish_street_search_placeholder">Search for your street</string>
+    <string name="rubbish_street_search_use_location">Use current location</string>
+    <string name="rubbish_street_search_empty">No street found</string>
 </resources>
