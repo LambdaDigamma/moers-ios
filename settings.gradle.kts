@@ -12,7 +12,6 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
-        maven("https://jitpack.io")
     }
     plugins {
         kotlin("jvm") version "2.4.21"
@@ -28,7 +27,6 @@ dependencyResolutionManagement {
             }
         }
         mavenCentral()
-        maven("https://jitpack.io")
     }
 }
 

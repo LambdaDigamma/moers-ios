@@ -2,11 +2,13 @@
     <string name="app_name">Mein Moers</string>
     <string name="navigation_dashboard">Today</string>
     <string name="navigation_explore">Explore</string>
+    <string name="explore_radio_title">Bürgerfunk</string>
     <string name="navigation_map">Map</string>
     <string name="navigation_events">Events</string>
     <string name="navigation_search">Search</string>
     <string name="navigation_other">Other</string>
     <string name="settings">Settings</string>
+    <string name="dashboard_more_options">More options</string>
     <string name="onboarding_start_button">Start configuration</string>
     <string name="onboarding_welcome_text">Search for stores, events and parking spaces with live data and move through the city with interactive 360° panoramas! Find the cheapest gas station or get reminders for garbage can emptying dates.</string>
     <string name="onboarding_privacy_continue_button">Continue</string>
@@ -17,6 +19,9 @@
     <string name="onboarding_about_title">About this app</string>
     <string name="onboarding_about_cta">Contribute</string>
     <string name="onboarding_about_contribute_title">How to contribute</string>
+    <string name="onboarding_about_contribute_text">Lennart Fischer designs and develops the app. All of its source code is available on GitHub. Everyone is invited to help with development or to share ideas. You can find everyone else who helped in the app.</string>
+    <string name="onboarding_about_contribute_question">Would you like to help?</string>
+    <string name="onboarding_about_contribute_answer">Great! You can contribute your ideas or your knowledge. You can find more information on GitHub.</string>
     <string name="onboarding_about_terms_title">Annoying but necessary</string>
     <string name="onboarding_about_open_data_title">Open data?</string>
     <string name="onboarding_about_open_data_intro">This app would not be possible without open data.</string>
@@ -58,6 +63,9 @@
     <string name="onboarding_rubbish_street_selection_title">Choose your street</string>
     <string name="onboarding_rubbish_street_selection_body">The app can show you the waste calendar for your street. Select your street and continue.</string>
     <string name="onboarding_rubbish_street_skip_action">Setup later</string>
+    <string name="onboarding_rubbish_street_use_location">Use current location</string>
+    <string name="onboarding_fuel_title">Choose a fuel type</string>
+    <string name="onboarding_fuel_body">The app can give you an overview of current fuel prices. Choose your preferred fuel type and continue.</string>
     <string name="about_navigation">About this app</string>
     <string name="feedback_navigation">Send feedback</string>
     <string name="settings_fuel_type_label">Preferred fuel</string>
@@ -70,6 +78,10 @@
     <string name="settings_rubbish_schedule_active">Active</string>
     <string name="settings_rubbish_street">Street</string>
     <string name="settings_rubbish_reminder_time">Collection reminder</string>
+    <string name="settings_rubbish_reminder_time_summary">%1$s on the day before</string>
+    <string name="settings_rubbish_reminder_off">Off</string>
+    <string name="settings_rubbish_street_unset">Not selected</string>
+    <string name="settings_version">Version %1$s</string>
     <string name="onboarding_location_granted_title">Authorization granted</string>
     <string name="onboarding_location_granted_description">You have granted the app permission to access your device\'s location.</string>
     <string name="onboarding_location_granted_undo">You can revoke this permission at any time in your device\'s settings.</string>

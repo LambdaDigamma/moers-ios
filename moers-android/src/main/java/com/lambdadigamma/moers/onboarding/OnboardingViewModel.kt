@@ -12,9 +12,8 @@ class OnboardingViewModel @Inject constructor(
     val isOnboardingComplete = onboardingRepository.isOnboarded
     val isCitizen = true
 
-    suspend fun setFinished(callback: suspend () -> Unit) {
+    suspend fun setFinished() {
         onboardingRepository.setOnboarded()
-        callback()
     }
 
 }

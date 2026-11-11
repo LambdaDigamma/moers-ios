@@ -9,7 +9,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -39,8 +38,8 @@ fun OnboardingDoneScreen(onContinue: () -> Unit) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_baseline_check_24),
                     contentScale = ContentScale.FillBounds,
-                    colorFilter = ColorFilter.tint(Color.Green),
-                    contentDescription = "Checkmark",
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
+                    contentDescription = null,
                     modifier = Modifier
                         .width(128.dp)
                         .aspectRatio(1f)

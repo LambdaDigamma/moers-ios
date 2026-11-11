@@ -46,12 +46,12 @@ fun DashboardParkingOverview(modifier: Modifier = Modifier, onClick: () -> Unit)
             Box(
                 modifier = Modifier
                     .clip(shape = RoundedCornerShape(4.dp))
-                    .background(Color.Blue)
+                    .background(MaterialTheme.colorScheme.primaryContainer)
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_baseline_local_parking_24),
                     contentDescription = null,
-                    tint = Color.White,
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
                     modifier = Modifier
                         .size(20.dp)
                         .padding(2.dp)

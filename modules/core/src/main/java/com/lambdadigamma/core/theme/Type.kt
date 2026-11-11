@@ -2,23 +2,5 @@ package com.lambdadigamma.core.theme
 
 import androidx.compose.material3.Typography
 
-// Set of Material typography styles to start with
-val Typography = Typography(
-//    body1 = TextStyle(
-//        fontFamily = FontFamily.Default,
-//        fontWeight = FontWeight.Normal,
-//        fontSize = 16.sp
-//    )
-    /* Other default text styles to override
-    button = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.W500,
-        fontSize = 14.sp
-    ),
-    caption = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
-    )
-    */
-)
+/** The Material 3 type scale, rendered in the system font (Roboto Flex or the OEM font). */
+internal val Typography = Typography()

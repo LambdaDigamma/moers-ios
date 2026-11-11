@@ -82,7 +82,6 @@ dependencies {
     implementation(libs.androidx.datastore)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.room.paging)
-    implementation(libs.google.accompanist.placeholder.material)
     implementation(libs.androidx.work.runtime.ktx)
     implementation(libs.retrofit.adapters.result)
 

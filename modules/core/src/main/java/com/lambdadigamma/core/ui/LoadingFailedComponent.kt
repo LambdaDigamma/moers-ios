@@ -1,26 +1,39 @@
 package com.lambdadigamma.core.ui
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.CloudOff
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import com.lambdadigamma.core.R
 import com.lambdadigamma.core.Resource
 import com.lambdadigamma.core.Status
 import com.lambdadigamma.core.theme.MeinMoersTheme
-import kotlinx.coroutines.delay
 
+/**
+ * Shows loading, error or loaded content for a [Resource] and supports pull to refresh.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun <Data> ResourcefulContent(
@@ -29,147 +42,72 @@ fun <Data> ResourcefulContent(
     modifier: Modifier = Modifier,
     content: @Composable (Data) -> Unit
 ) {
-
-    // Simulate a fake 2-second 'load'. Ideally this 'refreshing' value would
-    // come from a ViewModel or similar
-    var refreshing by remember { mutableStateOf(false) }
-    LaunchedEffect(refreshing) {
-        if (refreshing) {
-            delay(2000)
-            refreshing = false
-        }
-    }
-
-    LaunchedEffect(key1 = "abc", block = {
-//        onLoad()
-    })
-
     val currentState by resource.observeAsState()
+    val data = currentState?.data
 
     PullToRefreshBox(
-        isRefreshing = currentState?.isLoading() ?: false,
+        isRefreshing = currentState?.isLoading() == true && data != null,
         onRefresh = onLoad,
+        modifier = modifier,
     ) {
-        when (currentState?.status) {
-            Status.LOADING -> {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-//                    CircularProgressIndicator()
-                    Text(
-                        text = "Lädt Abfallkalender...",
-                        color = MaterialTheme.colorScheme.secondary
-                    )
-                }
-            }
-            Status.ERROR -> {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    ResourcefulErrorContent(error = currentState?.errorMessage ?: "")
-                }
-            }
-            Status.SUCCESS -> {
-                currentState?.data?.let {
-                    content(it)
-                }
-//                    Text(text = "Success")
-//                    Text(text = "Success: ${currentState.data}")
-            }
-            else -> {
-
-            }
+        when {
+            data != null -> content(data)
+            currentState?.status == Status.ERROR -> ErrorContent(message = null, onRetry = onLoad)
+            else -> LoadingContent()
         }
-//        Column(
-//            modifier = Modifier
-//                .fillMaxSize()
-//                .verticalScroll(rememberScrollState())
-//        ) {
-//
-//        }
     }
-
-//
-//    SwipeRefresh(
-//        state = swipeRefreshState,
-//        onRefresh = onLoad,
-//    ) {
-//        Column(
-//            modifier = modifier
-//                .scrollable(rememberScrollState(), orientation = Orientation.Vertical),
-//        ) {
-//
-//            when (currentState?.status) {
-//                Status.LOADING -> {
-//                    Text(text = "Loading...")
-//                }
-//                Status.ERROR -> {
-//                    Column(
-//                        modifier = Modifier
-//                            .fillMaxSize(),
-//                        verticalArrangement = Arrangement.Center,
-//                        horizontalAlignment = Alignment.CenterHorizontally
-//                    ) {
-//                        ResourcefulErrorContent(error = currentState?.errorMessage ?: "")
-//                    }
-//                }
-//                Status.SUCCESS -> {
-//                    currentState?.data?.let {
-//                        content(it)
-//                    }
-////                    Text(text = "Success")
-////                    Text(text = "Success: ${currentState.data}")
-//                }
-//                else -> {
-//
-//                }
-//            }
-//
-//
-////            ResourcefulErrorContent(error = error)
-//        }
-//    }
 }
 
+/** Centered indeterminate progress indicator. */
 @Composable
-private fun ResourcefulErrorContent(error: String) {
+fun LoadingContent(modifier: Modifier = Modifier) {
+    Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        CircularProgressIndicator()
+    }
+}
+
+/** Centered error message with an optional retry button. */
+@Composable
+fun ErrorContent(
+    message: String?,
+    modifier: Modifier = Modifier,
+    onRetry: (() -> Unit)? = null,
+) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = modifier
+            .fillMaxSize()
+            .padding(24.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(16.dp)
     ) {
         Icon(
-            painter = painterResource(id = R.drawable.ic_outline_error_outline_24),
+            imageVector = Icons.Outlined.CloudOff,
             contentDescription = null,
-            modifier = Modifier.size(64.dp),
-            tint = MaterialTheme.colorScheme.surfaceTint
+            modifier = Modifier.size(48.dp),
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
         )
-        Text(text = error)
-//            TextButton(onClick = { /*TODO*/ }) {
-//                Text(text = "Neu laden")
-//            }
+        Text(
+            text = message?.takeIf { it.isNotBlank() } ?: stringResource(R.string.loading_failed),
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            textAlign = TextAlign.Center,
+        )
+        if (onRetry != null) {
+            FilledTonalButton(onClick = onRetry) {
+                Text(stringResource(R.string.retry))
+            }
+        }
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
-fun LoadingFailedPreview() {
-
-    val resource: Resource<String> = Resource.loading()
-//    val resource: Resource<String> = Resource.success("Success")
-//    val resource: Resource<String> = Resource.error("Error")
-    val liveData = MutableLiveData(resource)
-
+private fun ErrorContentPreview() {
     MeinMoersTheme {
-        ResourcefulContent(liveData, {
-//            liveData.value = Resource.success("Success")
-            liveData.value = Resource.error("Error")
-        }, content = { Text(text = it) }, modifier = Modifier.fillMaxSize())
+        ResourcefulContent(
+            resource = MutableLiveData(Resource.error<String>("The data could not be loaded.")),
+            onLoad = {},
+            content = { Text(text = it) },
+        )
     }
 }
