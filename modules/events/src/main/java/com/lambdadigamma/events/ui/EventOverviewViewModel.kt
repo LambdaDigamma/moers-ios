@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lambdadigamma.events.models.Event
 import com.lambdadigamma.events.models.EventDateFilter
+import com.lambdadigamma.events.models.EventFavoritesRepository
 import com.lambdadigamma.events.models.EventFilter
 import com.lambdadigamma.events.models.EventListBuilder
 import com.lambdadigamma.events.models.EventRepository
@@ -32,6 +33,7 @@ data class EventOverviewUiState(
     val spotlight: List<Event> = emptyList(),
     val sections: List<EventSection> = emptyList(),
     val liveEventIds: Set<Int> = emptySet(),
+    val favoriteIds: Set<Int> = emptySet(),
     val isLoading: Boolean = true,
     val isRefreshing: Boolean = false,
     val refreshFailed: Boolean = false,
@@ -48,6 +50,7 @@ private data class RefreshState(
 @HiltViewModel
 class EventOverviewViewModel @Inject constructor(
     private val eventRepository: EventRepository,
+    private val favoritesRepository: EventFavoritesRepository,
 ) : ViewModel() {
 
     /** The search text. The search field edits it directly, so typing never waits for the list. */
@@ -66,16 +69,18 @@ class EventOverviewViewModel @Inject constructor(
 
     val uiState: StateFlow<EventOverviewUiState> = combine(
         eventRepository.events,
+        favoritesRepository.favoriteIds,
         filter,
         refreshState,
         now,
-    ) { events, filter, refresh, now ->
-        val builder = EventListBuilder(now, ZoneId.systemDefault())
+    ) { events, favoriteIds, filter, refresh, now ->
+        val builder = EventListBuilder(now, ZoneId.systemDefault(), favoriteIds)
         EventOverviewUiState(
             filter = filter,
             spotlight = if (filter.isActive) emptyList() else builder.spotlight(events),
             sections = builder.sections(events, filter),
             liveEventIds = events.filter(builder::isLive).map { it.id }.toSet(),
+            favoriteIds = favoriteIds,
             isLoading = events.isEmpty() && !refresh.hasCompleted,
             isRefreshing = refresh.isRefreshing,
             refreshFailed = refresh.failed,
@@ -110,6 +115,10 @@ class EventOverviewViewModel @Inject constructor(
 
     fun toggleOnlineOnly() {
         filter.update { it.copy(onlineOnly = !it.onlineOnly) }
+    }
+
+    fun toggleFavoritesOnly() {
+        filter.update { it.copy(favoritesOnly = !it.favoritesOnly) }
     }
 
     fun resetFilters() {

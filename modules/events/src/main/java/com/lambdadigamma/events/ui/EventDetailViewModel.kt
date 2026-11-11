@@ -4,12 +4,14 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lambdadigamma.events.models.Event
+import com.lambdadigamma.events.models.EventFavoritesRepository
 import com.lambdadigamma.events.models.EventRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -26,9 +28,18 @@ sealed interface EventDetailUiState {
 class EventDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val eventRepository: EventRepository,
+    private val favoritesRepository: EventFavoritesRepository,
 ) : ViewModel() {
 
     private val eventId: Int = checkNotNull(savedStateHandle["id"])
+
+    val isFavorite: StateFlow<Boolean> = favoritesRepository.favoriteIds
+        .map { eventId in it }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), false)
+
+    fun toggleFavorite() {
+        viewModelScope.launch { favoritesRepository.toggle(eventId) }
+    }
 
     /** `null` while the event is being refreshed from the API. */
     private val refreshResult = MutableStateFlow<Result<Unit>?>(null)

@@ -18,6 +18,9 @@
     <string name="events_filter_weekend">Weekend</string>
     <string name="events_filter_next_7_days">7 days</string>
     <string name="events_filter_online">Online</string>
+    <string name="events_filter_favorites">Favorites</string>
+    <string name="event_favorite_add">Add to favorites</string>
+    <string name="event_favorite_remove">Remove from favorites</string>
     <string name="events_section_spotlight">Spotlight</string>
     <string name="events_section_today">Today</string>
     <string name="events_section_tomorrow">Tomorrow</string>

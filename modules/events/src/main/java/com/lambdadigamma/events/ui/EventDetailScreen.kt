@@ -19,7 +19,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.OpenInNew
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.Call
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.EventBusy
@@ -66,6 +68,7 @@ import com.lambdadigamma.events.models.Event
 fun EventDetailScreen(id: Int, onBack: () -> Unit) {
     val viewModel: EventDetailViewModel = hiltViewModel()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val isFavorite by viewModel.isFavorite.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
 
@@ -77,6 +80,16 @@ fun EventDetailScreen(id: Int, onBack: () -> Unit) {
                 navigationIcon = { NavigationBackButton(onBack = onBack) },
                 actions = {
                     val event = (uiState as? EventDetailUiState.Loaded)?.event
+                    if (event != null) {
+                        IconButton(onClick = viewModel::toggleFavorite) {
+                            Icon(
+                                imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
+                                contentDescription = stringResource(
+                                    if (isFavorite) R.string.event_favorite_remove else R.string.event_favorite_add
+                                ),
+                            )
+                        }
+                    }
                     event?.url?.let { url ->
                         IconButton(onClick = { context.shareEvent(event.name, url) }) {
                             Icon(Icons.Outlined.Share, contentDescription = stringResource(R.string.event_detail_share))
