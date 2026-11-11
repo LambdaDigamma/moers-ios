@@ -53,6 +53,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.runtime.compose)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.glance.appwidget)
+    implementation(libs.androidx.glance.material3)
 
     // Hilt
     implementation(libs.hilt.android)
