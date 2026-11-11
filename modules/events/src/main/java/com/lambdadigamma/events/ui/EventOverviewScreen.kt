@@ -18,6 +18,8 @@ import androidx.compose.foundation.text.input.clearText
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.Videocam
 import androidx.compose.material3.DockedSearchBar
@@ -108,6 +110,7 @@ fun EventOverviewScreen(onSelectEvent: (Int) -> Unit) {
                     queryState = viewModel.query,
                     onSelectDateFilter = viewModel::selectDateFilter,
                     onToggleOnline = viewModel::toggleOnlineOnly,
+                    onToggleFavorites = viewModel::toggleFavoritesOnly,
                     onResetFilters = viewModel::resetFilters,
                 )
             }
@@ -122,6 +125,7 @@ private fun EventList(
     queryState: TextFieldState,
     onSelectDateFilter: (EventDateFilter) -> Unit,
     onToggleOnline: () -> Unit,
+    onToggleFavorites: () -> Unit,
     onResetFilters: () -> Unit,
 ) {
     val formatter = rememberEventFormatter()
@@ -138,6 +142,7 @@ private fun EventList(
                 filter = uiState.filter,
                 onSelectDateFilter = onSelectDateFilter,
                 onToggleOnline = onToggleOnline,
+                onToggleFavorites = onToggleFavorites,
             )
         }
         if (uiState.spotlight.isNotEmpty()) {
@@ -154,6 +159,7 @@ private fun EventList(
                 EventRow(
                     event = event,
                     isLive = event.id in uiState.liveEventIds,
+                    isFavorite = event.id in uiState.favoriteIds,
                     formatter = formatter,
                     modifier = Modifier.clickable { onSelectEvent(event.id) },
                 )
@@ -204,6 +210,7 @@ private fun EventFilterChips(
     filter: EventFilter,
     onSelectDateFilter: (EventDateFilter) -> Unit,
     onToggleOnline: () -> Unit,
+    onToggleFavorites: () -> Unit,
 ) {
     val dateFilters = listOf(
         EventDateFilter.TODAY to R.string.events_filter_today,
@@ -215,6 +222,19 @@ private fun EventFilterChips(
         contentPadding = PaddingValues(horizontal = 16.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
+        item(key = "favorites") {
+            FilterChip(
+                selected = filter.favoritesOnly,
+                onClick = onToggleFavorites,
+                label = { Text(stringResource(R.string.events_filter_favorites)) },
+                leadingIcon = {
+                    Icon(
+                        if (filter.favoritesOnly) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
+                        contentDescription = null,
+                    )
+                },
+            )
+        }
         items(dateFilters, key = { it.first }) { (dateFilter, label) ->
             FilterChip(
                 selected = filter.date == dateFilter,
@@ -351,12 +371,14 @@ private fun EventListPreview() {
                     EventSection(EventSectionKind.UPCOMING, listOf(events[3])),
                 ),
                 liveEventIds = setOf(1),
+                favoriteIds = setOf(3),
                 isLoading = false,
             ),
             onSelectEvent = {},
             queryState = rememberTextFieldState(),
             onSelectDateFilter = {},
             onToggleOnline = {},
+            onToggleFavorites = {},
             onResetFilters = {},
         )
     }

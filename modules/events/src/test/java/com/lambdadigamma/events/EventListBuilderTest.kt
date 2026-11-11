@@ -88,6 +88,16 @@ class EventListBuilderTest {
     }
 
     @Test
+    fun `favorites filter keeps only favorite events`() {
+        val events = listOf(event(1, at(12, 10)), event(2, at(12, 11)), event(3, at(13, 11)))
+        val favoritesBuilder = EventListBuilder(now, zone, favoriteIds = setOf(1, 3))
+
+        val ids = favoritesBuilder.sections(events, EventFilter(favoritesOnly = true)).flatMap { s -> s.events.map { it.id } }
+
+        assertEquals(listOf(1, 3), ids)
+    }
+
+    @Test
     fun `live means started and not yet ended`() {
         assertTrue(builder.isLive(event(1, at(11, 11), at(11, 13))))
         assertFalse(builder.isLive(event(2, at(11, 13), at(11, 14))))

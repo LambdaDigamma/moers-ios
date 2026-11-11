@@ -15,10 +15,11 @@ enum class EventSectionKind { TODAY, TOMORROW, UPCOMING, LATER }
 data class EventFilter(
     val date: EventDateFilter = EventDateFilter.ALL,
     val onlineOnly: Boolean = false,
+    val favoritesOnly: Boolean = false,
     val query: String = "",
 ) {
     val isActive: Boolean
-        get() = date != EventDateFilter.ALL || onlineOnly || query.isNotBlank()
+        get() = date != EventDateFilter.ALL || onlineOnly || favoritesOnly || query.isNotBlank()
 }
 
 data class EventSection(val kind: EventSectionKind, val events: List<Event>)
@@ -27,6 +28,7 @@ data class EventSection(val kind: EventSectionKind, val events: List<Event>)
 class EventListBuilder(
     private val now: Instant,
     private val zone: ZoneId,
+    private val favoriteIds: Set<Int> = emptySet(),
 ) {
 
     private val today: LocalDate = now.atZone(zone).toLocalDate()
@@ -68,6 +70,7 @@ class EventListBuilder(
 
     fun matches(event: Event, filter: EventFilter): Boolean {
         if (filter.onlineOnly && !event.isOnline) return false
+        if (filter.favoritesOnly && event.id !in favoriteIds) return false
         if (!matchesDate(event, filter.date)) return false
         return matchesQuery(event, filter.query)
     }

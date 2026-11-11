@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.Videocam
 import androidx.compose.material3.Badge
 import androidx.compose.material3.Icon
@@ -30,6 +31,7 @@ fun EventRow(
     isLive: Boolean,
     formatter: EventFormatter,
     modifier: Modifier = Modifier,
+    isFavorite: Boolean = false,
 ) {
     ListItem(
         modifier = modifier,
@@ -74,6 +76,15 @@ fun EventRow(
                     Icon(
                         imageVector = Icons.Outlined.Videocam,
                         contentDescription = stringResource(R.string.event_online),
+                    )
+                }
+            }
+            isFavorite -> {
+                {
+                    Icon(
+                        imageVector = Icons.Filled.Favorite,
+                        contentDescription = stringResource(R.string.events_filter_favorites),
+                        tint = MaterialTheme.colorScheme.primary,
                     )
                 }
             }
