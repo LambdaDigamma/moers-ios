@@ -42,7 +42,8 @@ jobs:
       - name: Configure Keystore
         run: |
           echo "$ANDROID_KEYSTORE_FILE" > keystore.jks.b64
-          base64 -d -i keystore.jks.b64 > moers-android/Keystore.jks
+          # The release signing config reads Keystore.jks and keystore.properties from the repository root.
+          base64 -d -i keystore.jks.b64 > Keystore.jks
           echo "keyAlias=$ANDROID_KEYSTORE_KEY_ALIAS" >> keystore.properties
           echo "storePassword=$ANDROID_KEYSTORE_STORE_PASSWORD" >> keystore.properties
           echo "keyPassword=$ANDROID_KEYSTORE_KEY_PASSWORD" >> keystore.properties
