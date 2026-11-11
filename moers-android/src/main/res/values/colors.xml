@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="splash_background">#FFFFF9EE</color>
+    <color name="shortcut_icon_background">#FFF8E287</color>
+    <color name="shortcut_icon_foreground">#FF534600</color>
 </resources>

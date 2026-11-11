@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_events"
+        android:shortcutId="events"
+        android:shortcutLongLabel="@string/shortcut_events_long"
+        android:shortcutShortLabel="@string/shortcut_events_short">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="meinmoers://events"
+            android:targetClass="com.lambdadigamma.moers.MainActivity"
+            android:targetPackage="com.lambdadigamma.moers" />
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_rubbish"
+        android:shortcutId="rubbish"
+        android:shortcutLongLabel="@string/shortcut_rubbish_long"
+        android:shortcutShortLabel="@string/shortcut_rubbish_short">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="meinmoers://rubbish"
+            android:targetClass="com.lambdadigamma.moers.MainActivity"
+            android:targetPackage="com.lambdadigamma.moers" />
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_fuel"
+        android:shortcutId="fuel"
+        android:shortcutLongLabel="@string/shortcut_fuel_long"
+        android:shortcutShortLabel="@string/shortcut_fuel_short">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="meinmoers://fuel"
+            android:targetClass="com.lambdadigamma.moers.MainActivity"
+            android:targetPackage="com.lambdadigamma.moers" />
+    </shortcut>
+
+</shortcuts>

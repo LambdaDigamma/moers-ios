@@ -8,6 +8,15 @@
     <string name="navigation_other">Sonstiges</string>
     <string name="settings">Einstellungen</string>
     <string name="dashboard_more_options">Weitere Optionen</string>
+    <string name="shortcut_events_short">Veranstaltungen</string>
+    <string name="shortcut_events_long">Veranstaltungen in Moers</string>
+    <string name="shortcut_rubbish_short">Abfallkalender</string>
+    <string name="shortcut_rubbish_long">Abfuhrtermine</string>
+    <string name="shortcut_fuel_short">Spritpreise</string>
+    <string name="shortcut_fuel_long">Spritpreise in der Nähe</string>
+    <string name="settings_general_header">Allgemein</string>
+    <string name="settings_language">Sprache</string>
+    <string name="settings_language_text">Sprache der App auswählen</string>
     <string name="onboarding_start_button">Einrichtung starten</string>
     <string name="onboarding_welcome_text">Suche Geschäfte, Veranstaltungen und Parkplätze mit Live-Daten und bewege Dich mit interaktiven 360° Panoramen durch die Stadt! Finde die günstigste Tankstelle oder bekomme Erinnerungen für Leerungstermine der Mülltonnen.</string>
     <string name="onboarding_privacy_continue_button">Weiter</string>

@@ -23,6 +23,13 @@ object Destinations {
     }
 
     const val graph = "main"
+
+    /** Deep links used by launcher shortcuts. */
+    object DeepLinks {
+        const val events = "meinmoers://events"
+        const val rubbish = "meinmoers://rubbish"
+        const val fuel = "meinmoers://fuel"
+    }
     const val rubbishList = "rubbish"
     const val rubbishStreet = "rubbish/street"
 

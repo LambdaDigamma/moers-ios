@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import androidx.navigation.navDeepLink
 import androidx.navigation.navigation
 import com.lambdadigamma.events.ui.EventDetailScreen
 import com.lambdadigamma.events.ui.EventOverviewScreen
@@ -64,7 +65,10 @@ private fun NavGraphBuilder.dashboardGraph(navController: NavHostController) {
             )
         }
 
-        composable(route = Destinations.rubbishList) {
+        composable(
+            route = Destinations.rubbishList,
+            deepLinks = listOf(navDeepLink { uriPattern = Destinations.DeepLinks.rubbish }),
+        ) {
             RubbishListScreen(
                 onBack = navController::popBackStack,
                 onChangeStreet = { navController.navigate(Destinations.rubbishStreet) },
@@ -95,7 +99,10 @@ private fun NavGraphBuilder.dashboardGraph(navController: NavHostController) {
             }
         }
 
-        composable(route = Destinations.fuelList) {
+        composable(
+            route = Destinations.fuelList,
+            deepLinks = listOf(navDeepLink { uriPattern = Destinations.DeepLinks.fuel }),
+        ) {
             FuelStationListScreen(
                 onBack = navController::popBackStack,
                 onShowFuelStation = { id ->
@@ -171,7 +178,10 @@ private fun NavGraphBuilder.exploreGraph(navController: NavHostController) {
 
 private fun NavGraphBuilder.eventsGraph(navController: NavHostController) {
     navigation(startDestination = Destinations.events, route = Destinations.Tabs.events) {
-        composable(route = Destinations.events) {
+        composable(
+            route = Destinations.events,
+            deepLinks = listOf(navDeepLink { uriPattern = Destinations.DeepLinks.events }),
+        ) {
             EventOverviewScreen(onSelectEvent = { id ->
                 navController.navigate(Destinations.eventDetail.replace("{id}", "$id"))
             })
