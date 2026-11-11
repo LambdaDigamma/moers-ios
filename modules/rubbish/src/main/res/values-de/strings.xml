@@ -28,4 +28,6 @@
     <string name="rubbish_street_search_placeholder">Nach Deiner Straße suchen</string>
     <string name="rubbish_street_search_use_location">Aktuellen Standort verwenden</string>
     <string name="rubbish_street_search_empty">Keine Straße gefunden</string>
+    <string name="rubbish_widget_description">Zeigt Deine nächsten Abfuhrtermine.</string>
+    <string name="rubbish_widget_no_street">Wähle Deine Straße in der App aus.</string>
 </resources>

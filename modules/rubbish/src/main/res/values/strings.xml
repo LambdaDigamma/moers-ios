@@ -28,4 +28,6 @@
     <string name="rubbish_street_search_placeholder">Search for your street</string>
     <string name="rubbish_street_search_use_location">Use current location</string>
     <string name="rubbish_street_search_empty">No street found</string>
+    <string name="rubbish_widget_description">Shows your next waste collection dates.</string>
+    <string name="rubbish_widget_no_street">Choose your street in the app.</string>
 </resources>

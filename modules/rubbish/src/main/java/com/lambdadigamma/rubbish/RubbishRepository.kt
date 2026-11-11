@@ -9,6 +9,7 @@ import com.lambdadigamma.core.utils.LastUpdate
 import com.lambdadigamma.rubbish.notifications.RubbishScheduleNotificationWorker
 import com.lambdadigamma.rubbish.settings.RubbishSettings
 import com.lambdadigamma.rubbish.source.RubbishApi
+import com.lambdadigamma.rubbish.widget.RubbishWidget
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -78,6 +79,7 @@ class RubbishRepository @Inject constructor(
         val items = if (street == null) emptyList() else api.pickups(street.id).data
         rubbishDao.replaceCollectionItems(items.map { it.copy(id = 0) })
         rescheduleReminders()
+        RubbishWidget.updateAll(context)
     }
 
     // --- Reminders
