@@ -35,12 +35,14 @@ android {
         compose = true
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
 dependencies {
+    coreLibraryDesugaring(libs.desugar)
     implementation(projects.modules.core)
 
     implementation(libs.androidx.core.ktx)
@@ -50,6 +52,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.androidx.activity.compose)
 
     // Hilt
     implementation(libs.hilt.android)

@@ -20,6 +20,7 @@ import com.lambdadigamma.moers.explore.ExploreNavigationAction
 import com.lambdadigamma.moers.explore.ExploreScreen
 import com.lambdadigamma.moers.misc.AboutScreen
 import com.lambdadigamma.moers.misc.FeedbackScreen
+import com.lambdadigamma.moers.settings.RubbishStreetScreen
 import com.lambdadigamma.moers.settings.SettingsScreen
 import com.lambdadigamma.newsfeature.ui.NewsScreen
 import com.lambdadigamma.parking.detail.ParkingAreaDetailScreen
@@ -53,6 +54,7 @@ private fun NavGraphBuilder.dashboardGraph(navController: NavHostController) {
                 onAction = { action ->
                     when (action) {
                         DashboardAction.Rubbish -> navController.navigate(Destinations.rubbishList)
+                        DashboardAction.ChooseStreet -> navController.navigate(Destinations.rubbishStreet)
                         DashboardAction.Fuel -> navController.navigate(Destinations.fuelList)
                         DashboardAction.Parking -> navController.navigate(Destinations.parkingAreas)
                         DashboardAction.About -> navController.navigate(Destinations.about)
@@ -63,7 +65,14 @@ private fun NavGraphBuilder.dashboardGraph(navController: NavHostController) {
         }
 
         composable(route = Destinations.rubbishList) {
-            RubbishListScreen(onBack = navController::popBackStack)
+            RubbishListScreen(
+                onBack = navController::popBackStack,
+                onChangeStreet = { navController.navigate(Destinations.rubbishStreet) },
+            )
+        }
+
+        composable(route = Destinations.rubbishStreet) {
+            RubbishStreetScreen(onBack = navController::popBackStack)
         }
 
         composable(route = Destinations.parkingAreas) {
@@ -105,7 +114,10 @@ private fun NavGraphBuilder.dashboardGraph(navController: NavHostController) {
         }
 
         composable(route = Destinations.settings) {
-            SettingsScreen(onBack = navController::popBackStack)
+            SettingsScreen(
+                onBack = navController::popBackStack,
+                onChooseStreet = { navController.navigate(Destinations.rubbishStreet) },
+            )
         }
 
         composable(route = Destinations.about) {

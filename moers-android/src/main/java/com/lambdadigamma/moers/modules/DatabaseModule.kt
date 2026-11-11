@@ -17,7 +17,6 @@ import com.lambdadigamma.newsfeature.data.NewsDao
 import com.lambdadigamma.parking.ParkingService
 import com.lambdadigamma.radio.data.RadioBroadcastService
 import com.lambdadigamma.rubbish.RubbishDao
-import com.lambdadigamma.rubbish.source.DefaultRubbishApiService
 import com.lambdadigamma.rubbish.source.RubbishApi
 import dagger.Module
 import dagger.Provides
@@ -57,8 +56,9 @@ class DatabaseModule {
     }
 
     @Provides
+    @Singleton
     fun provideRubbishApi(): RubbishApi {
-        return DefaultRubbishApiService.getRubbishService()
+        return RubbishApi.create()
     }
 
     @Provides

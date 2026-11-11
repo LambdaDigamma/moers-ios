@@ -59,11 +59,9 @@
     <string name="onboarding_done_cta">Let\'s start</string>
     <string name="onboarding_done_headline">Done!</string>
     <string name="onboarding_done_text">You have now completed the setup.\nNow you can explore the app.</string>
-    <string name="onboarding_rubbish_street_placeholder">Street</string>
     <string name="onboarding_rubbish_street_selection_title">Choose your street</string>
     <string name="onboarding_rubbish_street_selection_body">The app can show you the waste calendar for your street. Select your street and continue.</string>
     <string name="onboarding_rubbish_street_skip_action">Setup later</string>
-    <string name="onboarding_rubbish_street_use_location">Use current location</string>
     <string name="onboarding_fuel_title">Choose a fuel type</string>
     <string name="onboarding_fuel_body">The app can give you an overview of current fuel prices. Choose your preferred fuel type and continue.</string>
     <string name="about_navigation">About this app</string>
@@ -75,11 +73,12 @@
     <string name="settings_fuel_header">Fueling</string>
     <string name="settings_user_type_citizen">Citizen</string>
     <string name="settings_user_type_guest">Guest</string>
-    <string name="settings_rubbish_schedule_active">Active</string>
+    <string name="settings_rubbish_schedule_active">Reminders</string>
     <string name="settings_rubbish_street">Street</string>
     <string name="settings_rubbish_reminder_time">Collection reminder</string>
     <string name="settings_rubbish_reminder_time_summary">%1$s on the day before</string>
     <string name="settings_rubbish_reminder_off">Off</string>
+    <string name="settings_rubbish_reminders_text">Get a notification on the evening before each collection</string>
     <string name="settings_rubbish_street_unset">Not selected</string>
     <string name="settings_version">Version %1$s</string>
     <string name="onboarding_location_granted_title">Authorization granted</string>

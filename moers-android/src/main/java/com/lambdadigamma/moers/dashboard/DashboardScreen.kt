@@ -34,7 +34,7 @@ import com.lambdadigamma.parking.dashboard.DashboardParkingOverview
 import com.lambdadigamma.rubbish.dashboard.DashboardRubbishComponent
 
 enum class DashboardAction {
-    Fuel, Rubbish, Parking, About, Feedback
+    Fuel, Rubbish, ChooseStreet, Parking, About, Feedback
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -66,7 +66,10 @@ fun DashboardScreen(onAction: (DashboardAction) -> Unit, onOpenSettings: () -> U
         ) {
             FuelDashboardCard { onAction(DashboardAction.Fuel) }
             if (isCitizen) {
-                DashboardRubbishComponent { onAction(DashboardAction.Rubbish) }
+                DashboardRubbishComponent(
+                    onChooseStreet = { onAction(DashboardAction.ChooseStreet) },
+                    onClick = { onAction(DashboardAction.Rubbish) },
+                )
             }
             DashboardParkingOverview { onAction(DashboardAction.Parking) }
         }

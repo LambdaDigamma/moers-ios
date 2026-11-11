@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="notification_channel_rubbish_title">Abfuhrkalender</string>
-    <string name="notification_channel_rubbish_description">Benachrichtigung über die Abfuhr des Mülls am Vortag</string>
-    <string name="notification_rubbish_content">Morgen wird abgeholt: %s</string>
-    <string name="dashboard_rubbish_headline">Nächste Leerungen</string>
-    <string name="rubbish_collection_title">Abfallkalender</string>
+    <string name="notification_channel_rubbish_title">Abfuhrerinnerungen</string>
+    <string name="notification_channel_rubbish_description">Erinnert Dich am Vortag an die Abholung des Mülls.</string>
+    <string name="notification_rubbish_content">Morgen abgeholt: %s</string>
     <string name="rubbish_notification_title">Abfallkalender</string>
+    <string name="dashboard_rubbish_headline">Nächste Abfuhrtermine</string>
+    <string name="rubbish_collection_title">Abfallkalender</string>
+
+    <string name="rubbish_type_residual">Restabfall</string>
+    <string name="rubbish_type_organic">Biotonne</string>
+    <string name="rubbish_type_paper">Papiertonne</string>
+    <string name="rubbish_type_plastic">Gelber Sack</string>
+    <string name="rubbish_type_cuttings">Grünschnitt</string>
+
+    <string name="rubbish_today">Heute</string>
+    <string name="rubbish_tomorrow">Morgen</string>
+    <string name="rubbish_no_street_title">Wähle Deine Straße</string>
+    <string name="rubbish_no_street_text">Wähle Deine Straße, um ihre Abfuhrtermine zu sehen.</string>
+    <string name="rubbish_choose_street">Straße auswählen</string>
+    <string name="rubbish_no_pickups">Für Deine Straße gibt es keine anstehenden Abfuhrtermine.</string>
+    <string name="rubbish_reminders_prompt_title">Erinnern lassen</string>
+    <string name="rubbish_reminders_prompt_text">Erhalte am Vorabend jeder Abfuhr eine Benachrichtigung.</string>
+    <string name="rubbish_reminders_enable">Aktivieren</string>
+    <string name="rubbish_notifications_denied">Erlaube Benachrichtigungen für Mein Moers in den Systemeinstellungen, um Erinnerungen zu erhalten.</string>
+    <string name="rubbish_open_settings">Einstellungen</string>
+    <string name="rubbish_street_search_title">Wähle Deine Straße</string>
+    <string name="rubbish_street_search_placeholder">Nach Deiner Straße suchen</string>
+    <string name="rubbish_street_search_use_location">Aktuellen Standort verwenden</string>
+    <string name="rubbish_street_search_empty">Keine Straße gefunden</string>
 </resources>
