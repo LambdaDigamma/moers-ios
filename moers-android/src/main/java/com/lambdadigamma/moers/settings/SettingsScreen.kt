@@ -1,5 +1,9 @@
 package com.lambdadigamma.moers.settings
 
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.provider.Settings
 import android.text.format.DateFormat
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -108,6 +112,20 @@ fun SettingsContent(
                 .padding(padding)
                 .verticalScroll(rememberScrollState())
         ) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                val context = LocalContext.current
+                SettingsHeader(stringResource(R.string.settings_general_header))
+                ListItem(
+                    headlineContent = { Text(stringResource(R.string.settings_language)) },
+                    supportingContent = { Text(stringResource(R.string.settings_language_text)) },
+                    modifier = Modifier.clickable {
+                        context.startActivity(
+                            Intent(Settings.ACTION_APP_LOCALE_SETTINGS, Uri.fromParts("package", context.packageName, null))
+                        )
+                    },
+                )
+            }
+
             SettingsHeader(stringResource(R.string.settings_user_header))
             ListItem(
                 headlineContent = { Text(stringResource(R.string.settings_user_type)) },
