@@ -10,4 +10,33 @@
     <string name="attendance_mode_online">Online</string>
     <string name="event_organizer_headline">Organizer</string>
     <string name="event_organizer_unknown">Organizer unknown</string>
+
+    <string name="events_search_placeholder">Search events</string>
+    <string name="events_search_clear">Clear search</string>
+    <string name="events_filter_today">Today</string>
+    <string name="events_filter_tomorrow">Tomorrow</string>
+    <string name="events_filter_weekend">Weekend</string>
+    <string name="events_filter_next_7_days">7 days</string>
+    <string name="events_filter_online">Online</string>
+    <string name="events_section_spotlight">Spotlight</string>
+    <string name="events_section_today">Today</string>
+    <string name="events_section_tomorrow">Tomorrow</string>
+    <string name="events_section_upcoming">Upcoming</string>
+    <string name="events_section_later">Later</string>
+    <string name="events_empty">No events found</string>
+    <string name="events_empty_filtered">No events match your filters.</string>
+    <string name="events_reset_filters">Reset filters</string>
+    <string name="events_refresh_failed">The events could not be updated.</string>
+    <string name="event_live">Live</string>
+    <string name="event_cancelled">Cancelled</string>
+    <string name="event_online">Online event</string>
+    <string name="event_detail_date_headline">Date</string>
+    <string name="event_detail_add_to_calendar">Add to calendar</string>
+    <string name="event_detail_share">Share</string>
+    <string name="event_detail_website">Website</string>
+    <string name="event_detail_open_in_maps">Open in Maps</string>
+    <string name="event_detail_call">Call</string>
+    <string name="event_detail_email">Email</string>
+    <string name="event_detail_description_headline">About this event</string>
+    <string name="event_detail_not_found">This event is no longer available.</string>
 </resources>

@@ -34,12 +34,14 @@ android {
         compose = true
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
 dependencies {
+    coreLibraryDesugaring(libs.desugar)
     implementation(projects.modules.core)
 
     implementation(libs.androidx.core.ktx)
