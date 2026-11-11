@@ -71,7 +71,6 @@ dependencies {
     // Retrofit
     implementation(libs.gson)
     implementation(libs.retrofit)
-    implementation(libs.converter.simplexml)
     implementation(libs.converter.gson)
     implementation(libs.kotlin.serialization)
     implementation(libs.kotlin.serialization.converter)
@@ -91,6 +90,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.runtime.livedata)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.browser)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
     // Google Maps

@@ -1,21 +1,27 @@
 package com.lambdadigamma.newsfeature.data
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
+import androidx.room.Upsert
+import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface NewsDao {
+abstract class NewsDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertNews(news: List<RssItem>): List<Long>
+    @Query("SELECT * FROM news_articles ORDER BY publishedAt DESC")
+    abstract fun observeArticles(): Flow<List<NewsArticle>>
 
-    @Query("SELECT * FROM rss_items")
-    fun getNews(): LiveData<List<RssItem>>
+    @Upsert
+    abstract suspend fun upsert(articles: List<NewsArticle>)
 
-    @Query("SELECT * FROM rss_items WHERE id = :id")
-    fun getRssItem(id: Long): LiveData<RssItem>
+    @Query("DELETE FROM news_articles WHERE id NOT IN (:ids)")
+    abstract suspend fun deleteAllExcept(ids: List<String>)
+
+    @Transaction
+    open suspend fun replaceAll(articles: List<NewsArticle>) {
+        upsert(articles)
+        deleteAllExcept(articles.map { it.id })
+    }
 
 }

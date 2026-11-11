@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigation_news">News</string>
-    <string name="news_list_loading_text">Lädt Neuigkeiten…</string>
     <string name="news_list_error_description">Beim Laden der Neuigkeiten ist ein Fehler aufgetreten.</string>
+    <string name="news_refresh_failed">Die Neuigkeiten konnten nicht aktualisiert werden.</string>
 </resources>
