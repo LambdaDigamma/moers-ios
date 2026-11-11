@@ -34,12 +34,14 @@ android {
         compose = true
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
 dependencies {
+    coreLibraryDesugaring(libs.desugar)
     implementation(projects.modules.core)
 
     implementation(libs.androidx.core.ktx)
@@ -80,8 +82,6 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.coil.network.okhttp)
 
-    implementation(libs.converter.simplexml)
-    implementation(libs.accompanist.webview)
 
     testImplementation(libs.junit)
     testImplementation(libs.room.testing)

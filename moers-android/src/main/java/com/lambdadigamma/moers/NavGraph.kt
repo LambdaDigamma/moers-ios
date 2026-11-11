@@ -22,7 +22,6 @@ import com.lambdadigamma.moers.misc.AboutScreen
 import com.lambdadigamma.moers.misc.FeedbackScreen
 import com.lambdadigamma.moers.settings.SettingsScreen
 import com.lambdadigamma.newsfeature.ui.NewsScreen
-import com.lambdadigamma.newsfeature.ui.NewsWebDetailScreen
 import com.lambdadigamma.parking.detail.ParkingAreaDetailScreen
 import com.lambdadigamma.parking.list.ParkingAreasScreen
 import com.lambdadigamma.radio.detail.BroadcastDetailScreen
@@ -40,7 +39,7 @@ fun NavGraph(
         modifier = modifier,
     ) {
         dashboardGraph(navController)
-        newsGraph(navController)
+        newsGraph()
         exploreGraph(navController)
         eventsGraph(navController)
     }
@@ -119,21 +118,10 @@ private fun NavGraphBuilder.dashboardGraph(navController: NavHostController) {
     }
 }
 
-private fun NavGraphBuilder.newsGraph(navController: NavHostController) {
+private fun NavGraphBuilder.newsGraph() {
     navigation(startDestination = Destinations.news, route = Destinations.Tabs.news) {
         composable(route = Destinations.news) {
-            NewsScreen(onShowRssItem = { id ->
-                navController.navigate(Destinations.showNewsWebDetail.replace("{id}", "$id"))
-            })
-        }
-
-        composable(
-            route = Destinations.showNewsWebDetail,
-            arguments = listOf(navArgument("id") { type = NavType.IntType }),
-        ) { backStackEntry ->
-            backStackEntry.arguments?.getInt("id")?.let { id ->
-                NewsWebDetailScreen(id = id, onBack = navController::popBackStack)
-            }
+            NewsScreen()
         }
     }
 }

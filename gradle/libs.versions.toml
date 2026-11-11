@@ -2,7 +2,6 @@
 accompanistPermissions = "0.37.3"
 accompanistPlaceholderMaterial = "0.36.0"
 accompanistSystemuicontroller = "0.36.0"
-accompanistWebview = "0.36.0"
 aboutLibraries = "15.3.0"
 androidXTestVersion = "1.7.0"
 autofillVersion = "1.3.0"
@@ -88,7 +87,6 @@ timber = "5.0.1"
 [libraries]
 accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanistSwiperefresh" }
 accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }
-accompanist-webview = { module = "com.google.accompanist:accompanist-webview", version.ref = "accompanistWebview" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-autofill = { module = "androidx.autofill:autofill", version.ref = "autofillVersion" }

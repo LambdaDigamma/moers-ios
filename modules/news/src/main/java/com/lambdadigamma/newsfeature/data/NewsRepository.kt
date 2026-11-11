@@ -1,31 +1,38 @@
 package com.lambdadigamma.newsfeature.data
 
-import androidx.lifecycle.LiveData
-import com.lambdadigamma.core.AppExecutors
-import com.lambdadigamma.core.NetworkBoundResource
-import com.lambdadigamma.core.Resource
+import com.lambdadigamma.core.extensions.resultOf
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class NewsRepository(
+/** A local news feed shown in the news tab. */
+data class NewsSource(val name: String, val url: String)
+
+class NewsRepository @Inject constructor(
     private val newsDao: NewsDao,
     private val newsService: NewsService,
-    private val appExecutors: AppExecutors = AppExecutors()
 ) {
 
-    fun getNews(): LiveData<Resource<List<RssItem>?>> {
-        return object : NetworkBoundResource<List<RssItem>, List<RssItem>>(appExecutors) {
+    val articles: Flow<List<NewsArticle>> = newsDao.observeArticles()
 
-            override fun saveCallResult(item: List<RssItem>) {
-                newsDao.insertNews(item)
+    suspend fun refresh(): Result<Unit> = resultOf {
+        val articles = SOURCES.flatMap { source ->
+            val body = newsService.feed(source.url)
+            withContext(Dispatchers.Default) {
+                body.byteStream().use { RssParser.parse(it, source.name) }
             }
-
-            override fun shouldFetch(data: List<RssItem>?): Boolean =
-                true //data == null || data.isEmpty()
-
-            override fun loadFromDb() = newsDao.getNews()
-
-            override fun createCall() = newsService.getRPFeed()
-
-        }.asLiveData()
+        }
+        newsDao.replaceAll(articles)
     }
 
+    companion object {
+        /**
+         * The Lokalkompass Moers feed now redirects to an unrelated e-paper feed and the NRZ
+         * feed returns 404, so RP Online is the only source, as in the iOS app.
+         */
+        val SOURCES = listOf(
+            NewsSource("RP Online", "https://rp-online.de/nrw/staedte/moers/feed.rss"),
+        )
+    }
 }
