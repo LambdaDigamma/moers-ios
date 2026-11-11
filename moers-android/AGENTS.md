@@ -10,7 +10,7 @@ This is the city Android application module.
 - Main source package: `moers-android/src/main/java/com/lambdadigamma/moers`
 - Main activity: `com.lambdadigamma.moers.MainActivity`
 - Uses Compose, Hilt, Room, Retrofit, protobuf/datastore, Google Play services, and shared modules under `modules/`.
-- This app currently uses Java/Kotlin 11 settings in its Gradle file.
+- This app uses Java 17 and AGP built-in Kotlin; do not re-add the `org.jetbrains.kotlin.android` plugin.
 
 ## Local Configuration
 

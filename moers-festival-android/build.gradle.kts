@@ -1,6 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.io.FileInputStream
 import java.util.Properties
 
@@ -11,8 +10,7 @@ plugins {
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.google.services)
     alias(libs.plugins.junit)
-    id("dagger.hilt.android.plugin")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlin.serialization)
@@ -34,7 +32,7 @@ object Keys {
 val versionProperties = getCurrentVersionProperties()
 
 android {
-    compileSdk = 36
+    compileSdk = 37
     namespace = "com.lambdadigamma.moersfestival"
 
     defaultConfig {
@@ -55,7 +53,7 @@ android {
             isMinifyEnabled = false
             isShrinkResources = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android.txt"),
+                getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
             // TODO: for development purposes, remember to create a release signing config when releasing proper app
@@ -70,15 +68,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
-    }
     packaging {
         resources.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
     }
@@ -123,6 +112,7 @@ dependencies {
     implementation(libs.firebase.crashlytics)
 
     testImplementation(libs.bundles.common.test)
+    testRuntimeOnly(libs.test.junit.platform.launcher)
 
     ksp(libs.hilt.compiler)
     ksp(libs.room.compiler)
@@ -143,7 +133,7 @@ secrets {
     defaultPropertiesFileName = "local.defaults.properties"
 }
 
-tasks.create("incrementVersion") {
+tasks.register("incrementVersion") {
     group = "versioning"
     description = "Increments the version to make the app ready for next release."
     doLast {
@@ -180,7 +170,7 @@ tasks.create("incrementVersion") {
     }
 }
 
-tasks.create("incrementVersionCode") {
+tasks.register("incrementVersionCode") {
     group = "versioning"
     description = "Increments the version code."
     doLast {

@@ -1,10 +1,11 @@
 import org.gradle.internal.extensions.stdlib.toDefaultLowerCase
-import org.jetbrains.kotlin.konan.properties.loadProperties
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.util.Properties
 
-val tankerkoenigApiKey: String = loadProperties(project.rootProject.file("local.properties").path).getProperty("TANKERKOENIG_API_KEY")
+val tankerkoenigApiKey: String = Properties().apply {
+    rootProject.file("local.properties").takeIf { it.exists() }?.inputStream()?.use { load(it) }
+}.getProperty("TANKERKOENIG_API_KEY", "\"\"")
 
 object Keys {
     const val VERSION_NAME = "VERSION_NAME"
@@ -18,21 +19,19 @@ fun getCurrentVersionProperties(): Properties {
 }
 
 plugins {
-    id("com.android.application")
-    kotlin("android")
+    alias(libs.plugins.androidApplication)
     alias(libs.plugins.ksp)
-    id("com.google.protobuf")
-    id("dagger.hilt.android.plugin")
-    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.secrets)
     alias(libs.plugins.composeCompiler)
 }
 
 /**
  * Accessing the defined global versions using a type safe delegate.
  */
-val minSdkVersion: Int by rootProject.extra
-val targetSdkVersion: Int by rootProject.extra
-val sdkVersion: Int by rootProject.extra
+val minSdkVersion = rootProject.extra["minSdkVersion"] as Int
+val targetSdkVersion = rootProject.extra["targetSdkVersion"] as Int
+val sdkVersion = rootProject.extra["sdkVersion"] as Int
 
 val keystorePropertiesFile = rootProject.file("keystore.properties")
 val keystoreProperties = Properties().apply {
@@ -78,19 +77,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
-//        useIR = true
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     buildFeatures {
         compose = true
         buildConfig = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.15"
     }
     packaging {
         resources {
@@ -124,8 +116,8 @@ dependencies {
     implementation(libs.androidx.material3)
 
     // Coil
-    implementation(libs.coil.core)
-    implementation(libs.coil.compose)
+    implementation(libs.coil)
+    implementation(libs.coil.network.okhttp)
 
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
@@ -148,11 +140,12 @@ dependencies {
     androidTestImplementation(libs.androidx.truth)
 
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
     implementation(libs.hilt.android)
-    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
     ksp(libs.hilt.compiler)
 
     // Google Play Services
@@ -195,7 +188,6 @@ dependencies {
 
     implementation(libs.google.accompanist.permissions)
     implementation(libs.google.accompanist.placeholder.material)
-    implementation(libs.androidx.navigation.compose)
 
     // Review
     implementation(libs.review)
@@ -203,23 +195,7 @@ dependencies {
 
 }
 
-protobuf {
-    protoc {
-        artifact = "com.google.protobuf:protoc:${libs.versions.protobufVersion.get()}"
-    }
-    generateProtoTasks {
-        all().forEach { task ->
-            task.builtins {
-                create("java") {
-                    option("lite")
-                }
-            }
-        }
-    }
-}
-
-
-tasks.create("incrementVersion") {
+tasks.register("incrementVersion") {
     group = "versioning"
     description = "Increments the version to make the app ready for next release."
     doLast {
@@ -256,7 +232,7 @@ tasks.create("incrementVersion") {
     }
 }
 
-tasks.create("incrementVersionCode") {
+tasks.register("incrementVersionCode") {
     group = "versioning"
     description = "Increments the version code."
     doLast {
