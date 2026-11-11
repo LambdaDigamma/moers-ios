@@ -58,6 +58,7 @@ workRuntimeKtx = "2.12.0"
 xmlutil = "1.0.2"
 coreKtx = "1.19.1"
 coreSplashscreen = "1.2.0"
+desugarJdkLibs = "2.1.5"
 browser = "1.10.0"
 material = "1.14.0"
 activityKtx = "1.13.0"
@@ -111,6 +112,7 @@ androidx-material-icons-extended = { module = "androidx.compose.material:materia
 androidx-material3 = { module = "androidx.compose.material3:material3" }
 androidx-material3-adaptive-navigation-suite = { module = "androidx.compose.material3:material3-adaptive-navigation-suite" }
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
+desugar = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugarJdkLibs" }
 androidx-compose-ui = { module = "androidx.compose.ui:ui" }
 androidx-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigationCompose" }

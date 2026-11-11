@@ -7,7 +7,7 @@ object DatabaseCreator {
 
     fun database(context: Context): AppDatabase {
         return Room.databaseBuilder(context, AppDatabase::class.java, "meinmoers-db")
-            .fallbackToDestructiveMigration()
+            .fallbackToDestructiveMigration(dropAllTables = true)
             .build()
     }
 

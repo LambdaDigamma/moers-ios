@@ -7,7 +7,7 @@ import com.lambdadigamma.core.geo.GMSLocationService
 import com.lambdadigamma.core.geo.GeocodingService
 import com.lambdadigamma.core.geo.LocationService
 import com.lambdadigamma.events.models.EventDao
-import com.lambdadigamma.events.models.MeinMoersService
+import com.lambdadigamma.events.models.EventService
 import com.lambdadigamma.fuel.data.FuelDao
 import com.lambdadigamma.fuel.data.FuelService
 import com.lambdadigamma.moers.BuildConfig
@@ -67,8 +67,9 @@ class DatabaseModule {
     }
 
     @Provides
-    fun provideMeinMoersService(): MeinMoersService {
-        return MeinMoersService.getMeinMoersService()
+    @Singleton
+    fun provideEventService(): EventService {
+        return EventService.create()
     }
 
     @Provides
