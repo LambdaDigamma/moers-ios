@@ -1,6 +1,7 @@
 package com.lambdadigamma.core.geo
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
@@ -8,24 +9,27 @@ import android.os.Looper
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
+import com.google.android.gms.tasks.CancellationTokenSource
+import com.google.android.gms.tasks.Task
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withTimeoutOrNull
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
 interface LocationService {
 
     @Throws(LocationPermissionException::class)
     fun getCurrentLocation(): MutableSharedFlow<Location>
 
-    suspend fun awaitLastLocation(): Location
+    /** The current or last known location, or `null` without a location permission or fix. */
+    suspend fun currentLocation(): Point?
 
 }
 
@@ -102,108 +106,57 @@ class LocationPermissionException : Exception()
 
 class GMSLocationService(
     val context: Context,
-    lastKnownLocation: Location? = null
 ) : LocationService {
 
-    private var fusedLocationProvider: FusedLocationProviderClient = LocationServices
+    private val fusedLocationProvider: FusedLocationProviderClient = LocationServices
         .getFusedLocationProviderClient(context)
 
-    init {
-        lastKnownLocation?.let {
-            if (!checkFineLocationPermission() && !checkCoarseLocationPermission()) {
-                return@let
-            }
-            fusedLocationProvider.setMockLocation(it)
-            fusedLocationProvider.setMockMode(true)
-        }
-    }
-
-    private var location: MutableSharedFlow<Location> = MutableSharedFlow()
+    private val location: MutableSharedFlow<Location> = MutableSharedFlow()
 
     override fun getCurrentLocation(): MutableSharedFlow<Location> {
-
-        if (!checkFineLocationPermission() && !checkCoarseLocationPermission()) {
+        if (!hasLocationPermission()) {
             throw LocationPermissionException()
         }
-
-//        fusedLocationProvider.getCurrentLocation()
-
-//        fusedLocationProvider.getCurrentLocation()
-//            .addOnSuccessListener { location ->
-//                this.location.tryEmit(location)
-//            }
-
         return location
-
     }
 
-    fun checkFineLocationPermission(): Boolean {
-        return ActivityCompat.checkSelfPermission(
-            context,
-            Manifest.permission.ACCESS_FINE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED
-    }
+    fun hasLocationPermission(): Boolean =
+        ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) ==
+            PackageManager.PERMISSION_GRANTED ||
+            ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) ==
+            PackageManager.PERMISSION_GRANTED
 
-    fun checkCoarseLocationPermission(): Boolean {
-        return ActivityCompat.checkSelfPermission(
-            context,
-            Manifest.permission.ACCESS_COARSE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED
-    }
-
-    suspend fun loadLastLocation(): Point? {
-
-        return suspendCoroutine { continuation ->
-
-            if (!checkCoarseLocationPermission()) {
-                Log.i("GMSLocationService", "No coarse location permission")
-                continuation.resume(null)
+    @SuppressLint("MissingPermission")
+    override suspend fun currentLocation(): Point? {
+        if (!hasLocationPermission()) return null
+        return try {
+            val current = withTimeoutOrNull(CURRENT_LOCATION_TIMEOUT_MILLIS) {
+                val cancellation = CancellationTokenSource()
+                fusedLocationProvider
+                    .getCurrentLocation(Priority.PRIORITY_BALANCED_POWER_ACCURACY, cancellation.token)
+                    .awaitNullable { cancellation.cancel() }
             }
-
-            val locationRequest = LocationRequest.create()
-                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setNumUpdates(1)
-                .setInterval(1)
-                .setExpirationDuration(1000)
-
-            val listener = object : LocationCallback() {
-                override fun onLocationResult(p0: LocationResult) {
-                    p0.lastLocation?.let { location ->
-                        continuation.resume(
-                            Point(
-                                latitude = location.latitude,
-                                longitude = location.longitude
-                            )
-                        )
-                    }
-                }
-            }
-
-            val task = fusedLocationProvider.requestLocationUpdates(
-                locationRequest,
-                listener,
-                Looper.getMainLooper()
-            )
-
-            task.addOnFailureListener { continuation.resumeWithException(it) }
-
+            (current ?: fusedLocationProvider.lastLocation.awaitNullable())
+                ?.let { Point(latitude = it.latitude, longitude = it.longitude) }
+        } catch (e: SecurityException) {
+            Log.w("GMSLocationService", "Location permission was revoked", e)
+            null
+        } catch (e: Exception) {
+            Log.w("GMSLocationService", "Location is not available", e)
+            null
         }
-
     }
 
-    override suspend fun awaitLastLocation(): Location {
-        return fusedLocationProvider.awaitLastLocation()
+    private companion object {
+        const val CURRENT_LOCATION_TIMEOUT_MILLIS = 10_000L
     }
 }
 
-suspend fun FusedLocationProviderClient.awaitLastLocation(): Location =
-    suspendCancellableCoroutine<Location> { continuation ->
-        // Add listeners that will resume the execution of this coroutine
-        lastLocation.addOnSuccessListener { location ->
-            // Resume coroutine and return location
-            continuation.resume(location)
-        }.addOnFailureListener { e ->
-            // Resume the coroutine by throwing an exception
-            continuation.resumeWithException(e)
-        }
+/** Awaits a Play services task whose result may be `null`. */
+private suspend fun <T> Task<T>.awaitNullable(onCancel: () -> Unit = {}): T? =
+    suspendCancellableCoroutine { continuation ->
+        addOnSuccessListener { continuation.resume(it) }
+        addOnFailureListener { continuation.resumeWithException(it) }
+        addOnCanceledListener { continuation.cancel() }
+        continuation.invokeOnCancellation { onCancel() }
     }

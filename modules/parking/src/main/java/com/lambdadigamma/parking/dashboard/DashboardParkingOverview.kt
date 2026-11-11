@@ -1,42 +1,52 @@
 package com.lambdadigamma.parking.dashboard
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.BlurredEdgeTreatment
-import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import com.lambdadigamma.core.Status
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.lambdadigamma.core.theme.MeinMoersTheme
+import com.lambdadigamma.core.ui.placeholder
+import com.lambdadigamma.parking.ParkingArea
+import com.lambdadigamma.parking.ParkingUiState
+import com.lambdadigamma.parking.ParkingViewModel
 import com.lambdadigamma.parking.R
+import com.lambdadigamma.parking.lastUpdate
+import com.lambdadigamma.parking.ui.ParkingOutdatedWarning
+import java.util.Date
 
-data class ParkingAreaDashboardUiState(
-    val id: Int,
-    val name: String,
-    val freeSites: Int
-)
-
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DashboardParkingOverview(modifier: Modifier = Modifier, onClick: () -> Unit) {
+    val viewModel: ParkingViewModel = hiltViewModel()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    val viewModel: ParkingDashboardViewModel = hiltViewModel()
-    val parkingAreas by viewModel.load().observeAsState()
+    DashboardParkingCard(uiState = uiState, onClick = onClick, modifier = modifier)
+}
 
+@Composable
+fun DashboardParkingCard(uiState: ParkingUiState, onClick: () -> Unit, modifier: Modifier = Modifier) {
     ElevatedCard(onClick = onClick, modifier = modifier.fillMaxWidth()) {
         Row(
             modifier = Modifier.padding(12.dp),
@@ -62,104 +72,57 @@ fun DashboardParkingOverview(modifier: Modifier = Modifier, onClick: () -> Unit)
                 style = MaterialTheme.typography.titleMedium
             )
         }
-        HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
+        HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
 
-        when (parkingAreas?.status) {
-            Status.SUCCESS -> {
-                DashboardParkingView(parkingAreas = parkingAreas?.data.orEmpty())
-            }
-            Status.ERROR -> {
-                parkingAreas?.errorMessage?.let {
-                    DashboardParkingAreaError(it)
-                }
-            }
-            Status.LOADING -> {
-                DashboardParkingAreaLoading()
-            }
-            null -> {
-                DashboardParkingAreaLoading()
-            }
-        }
-    }
-
-}
-
-@Composable
-fun BlurOverlay(modifier: Modifier = Modifier, text: String = "Currently not available") {
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .blur(4.dp), // Semi-transparent background
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = text,
-            color = Color.White,
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.Bold
-        )
-    }
-}
-
-@Composable
-fun DashboardParkingView(
-    parkingAreas: List<ParkingAreaDashboardUiState>,
-    modifier: Modifier = Modifier
-) {
-    val chunked = parkingAreas.chunked(2)
-
-    Box(modifier = Modifier.fillMaxWidth()) {
+        val areas = uiState.parkingAreas.filter { it.hasLiveData }
         Column(
-            modifier = Modifier
-                .padding(12.dp)
-                .blur(6.dp, edgeTreatment = BlurredEdgeTreatment.Unbounded),
+            modifier = Modifier.padding(12.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            for (chunk in chunked) {
-                Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                    for (parkingArea in chunk) {
-                        ParkingAreaInfo(
-                            name = parkingArea.name,
-                            freeSites = parkingArea.freeSites,
-                            modifier = Modifier.weight(0.5f)
-                        )
-                        // This is needed to create two column layout
-                        // even if there is only one parking area.
-                        if (chunk.size == 1) {
-                            Box(modifier = Modifier.weight(0.5f))
-                        }
+            when {
+                uiState.isLoading -> repeat(3) {
+                    Text("", Modifier.fillMaxWidth().placeholder(visible = true))
+                }
+                areas.isEmpty() -> Text(
+                    text = stringResource(R.string.parking_no_live_data),
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+                else -> areas.chunked(2).forEach { row ->
+                    Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                        row.forEach { area -> ParkingAreaInfo(area, Modifier.weight(1f)) }
+                        if (row.size == 1) Box(Modifier.weight(1f))
                     }
                 }
             }
         }
-        Text(
-            text = stringResource(R.string.currently_not_available),
-            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
-            modifier = Modifier.align(Alignment.Center)
-        )
+        if (!uiState.isLoading && uiState.isOutdated) {
+            ParkingOutdatedWarning(lastUpdate = uiState.parkingAreas.lastUpdate())
+        }
     }
-
 }
 
 @Composable
-private fun ParkingAreaInfo(name: String, freeSites: Int, modifier: Modifier = Modifier) {
+private fun ParkingAreaInfo(area: ParkingArea, modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier,
     ) {
         Text(
-            text = name,
+            text = area.name,
             style = MaterialTheme.typography.bodyLarge,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.weight(1f, fill = false),
         )
         Text(
-            text = "$freeSites",
+            text = "${area.freeSites}",
             fontFamily = FontFamily.Monospace,
-            fontWeight = FontWeight.SemiBold,
             style = MaterialTheme.typography.labelLarge,
             modifier = Modifier
+                .padding(start = 8.dp)
                 .clip(RoundedCornerShape(4.dp))
-                .background(MaterialTheme.colorScheme.surfaceVariant)
+                .background(MaterialTheme.colorScheme.surfaceContainerHighest)
                 .padding(horizontal = 8.dp, vertical = 2.dp)
         )
     }
@@ -167,32 +130,23 @@ private fun ParkingAreaInfo(name: String, freeSites: Int, modifier: Modifier = M
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewDashboardParkingOverview() {
-
-    val parkingAreas = listOf(
-        ParkingAreaDashboardUiState(
-            id = 1,
-            name = "Kautzstr.",
-            freeSites = 38
-        ),
-        ParkingAreaDashboardUiState(
-            id = 2,
-            name = "Bankstr.",
-            freeSites = 124
-        ),
-        ParkingAreaDashboardUiState(
-            id = 3,
-            name = "Kastell",
-            freeSites = 142
-        ),
-        ParkingAreaDashboardUiState(
-            id = 4,
-            name = "Mühlenstr.",
-            freeSites = 698
-        ),
-    )
-
+private fun DashboardParkingCardPreview() {
+    fun area(id: Int, name: String, capacity: Int, occupied: Int) =
+        ParkingArea(id, name, name, null, null, capacity, occupied, null, Date(System.currentTimeMillis() - 30 * 24 * 3600 * 1000L))
     MeinMoersTheme {
-        DashboardParkingView(parkingAreas, modifier = Modifier.padding(16.dp))
+        DashboardParkingCard(
+            uiState = ParkingUiState(
+                parkingAreas = listOf(
+                    area(1, "Altstadt", 104, 16),
+                    area(2, "Bankstr.", 140, 1),
+                    area(3, "Kastell", 110, 22),
+                    area(4, "Mühlenstr.", 999, 108),
+                    area(5, "C&A", 0, 0),
+                ),
+                isLoading = false,
+            ),
+            onClick = {},
+            modifier = Modifier.padding(16.dp),
+        )
     }
 }

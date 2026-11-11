@@ -79,7 +79,7 @@ class RubbishStreetPickerViewModel @Inject constructor(
     /** Searches for the street at the current location. Requires a location permission. */
     fun useCurrentLocation() {
         viewModelScope.launch {
-            val point = GMSLocationService(context).loadLastLocation() ?: return@launch
+            val point = GMSLocationService(context).currentLocation() ?: return@launch
             DefaultGeocodingService(context).reverseGeocode(point).firstOrNull()?.street
                 ?.takeIf { it.isNotBlank() }
                 ?.let { query.setTextAndPlaceCursorAtEnd(it) }

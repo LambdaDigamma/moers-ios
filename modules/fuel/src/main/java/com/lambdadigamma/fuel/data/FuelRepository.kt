@@ -69,7 +69,7 @@ class FuelRepository @Inject constructor(
                     val average = calculateAverage(response.stations)
 
                     FuelDashboardData(
-                        type = "L ${response.searchedType.localizedName().uppercase()}",
+                        type = response.searchedType.localizedName(),
                         location = locationTitle,
                         price = average.first,
                         numberOfStations = average.second
@@ -189,6 +189,9 @@ class FuelRepository @Inject constructor(
     companion object {
         val fuelTypeKey = stringPreferencesKey(FUEL_TYPE_KEY)
         val defaultFuelType = FuelType.DIESEL
+
+        /** Used when the device location is not available. */
+        val moersCenter = Point(latitude = 51.4516, longitude = 6.6261)
     }
 
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="loading_parking_areas">Lädt aktuelle Parkplatzbelegung…</string>
     <string name="dashboard_parking_headline">Freie Parkplätze</string>
     <string name="parking_area_open">Geöffnet</string>
     <string name="parking_area_closed">Geschlossen</string>
@@ -8,5 +7,9 @@
     <string name="parking_areas_title">Parkplätze</string>
     <string name="parking_areas_resource_disclaimer">Alle Angaben ohne Gewähr. Die aktuelle Parksituation kann von den gezeigten Daten abweichen.</string>
     <string name="parking_areas_resource_source">Datenquelle: Parkleitsystem der Stadt Moers</string>
-    <string name="currently_not_available">Aktuell nicht verfügbar.</string>
+    <string name="parking_free_of_capacity">%1$d von %2$d frei</string>
+    <string name="parking_no_live_data">Keine Live-Daten</string>
+    <string name="parking_outdated">Die Daten sind nicht mehr aktuell. Letzte Aktualisierung: %1$s</string>
+    <string name="parking_updated">Aktualisiert %1$s</string>
+    <string name="parking_occupancy_title">Belegung in den letzten Stunden</string>
 </resources>

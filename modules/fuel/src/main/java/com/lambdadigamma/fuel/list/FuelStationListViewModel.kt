@@ -24,7 +24,7 @@ class FuelStationListViewModel @Inject constructor(
 
         viewModelScope.launch {
 
-            val point = locationService.awaitLastLocation().toPoint()
+            val point = locationService.currentLocation() ?: FuelRepository.moersCenter
 
             fuelRepository
                 .getFuelStationList(point)
