@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lambdadigamma.core.Resource
 import com.lambdadigamma.core.geo.LocationService
-import com.lambdadigamma.core.geo.toPoint
 import com.lambdadigamma.fuel.data.FuelRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -21,20 +20,13 @@ class DashboardFuelViewModel @Inject constructor(
     private val _dashboardData = MutableLiveData<Resource<FuelDashboardData>>()
     val dashboardData: LiveData<Resource<FuelDashboardData>> get() = _dashboardData
 
+    /** Loads prices near the device, or in the centre of Moers without a location. */
     fun load() {
         viewModelScope.launch {
-
-            val location = locationService.awaitLastLocation()
-
-            if (location != null) {
-                val point = locationService.awaitLastLocation().toPoint()
-
-                fuelRepository
-                    .getDashboardData(point)
-                    .collect { _dashboardData.value = it }
-            }
-
+            val point = locationService.currentLocation() ?: FuelRepository.moersCenter
+            fuelRepository
+                .getDashboardData(point)
+                .collect { _dashboardData.value = it }
         }
     }
-
 }

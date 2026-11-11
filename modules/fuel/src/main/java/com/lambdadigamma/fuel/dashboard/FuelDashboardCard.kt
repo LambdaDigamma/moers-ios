@@ -11,6 +11,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,7 +29,7 @@ fun FuelDashboardCard(modifier: Modifier = Modifier, onClick: () -> Unit) {
     val viewModel: DashboardFuelViewModel = hiltViewModel()
 
     val placeholderData = FuelDashboardData(
-        type = "L DIESEL",
+        type = "Diesel",
         location = "Moers",
         price = 2.109,
         numberOfStations = 12
@@ -93,7 +94,10 @@ fun FuelDashboardCard(modifier: Modifier = Modifier, onClick: () -> Unit) {
                         )
 
                         Text(
-                            text = "PRO ${dashboardResource?.data?.type ?: placeholderData.type}".uppercase(),
+                            text = stringResource(
+                                R.string.fuel_dashboard_price_unit,
+                                dashboardResource?.data?.type ?: placeholderData.type,
+                            ),
 //                    color = MaterialTheme.colorScheme.onBackground,
                             style = MaterialTheme.typography.bodySmall,
                         )
@@ -104,7 +108,7 @@ fun FuelDashboardCard(modifier: Modifier = Modifier, onClick: () -> Unit) {
                     dashboardResource?.data?.numberOfStations ?: placeholderData.numberOfStations
 
                 Text(
-                    text = "$numberOfStations Tankstellen in Deiner näheren Umgebung haben geöffnet.",
+                    text = pluralStringResource(R.plurals.fuel_dashboard_open_stations, numberOfStations, numberOfStations),
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.placeholder(visible = dashboardResource?.shouldBeRedacted() ?: true)
                 )
@@ -115,7 +119,7 @@ fun FuelDashboardCard(modifier: Modifier = Modifier, onClick: () -> Unit) {
                         .fillMaxSize(),
                     contentAlignment = Alignment.Center,
                 ) {
-                    Text(text = "Fehler beim Laden der Daten")
+                    Text(text = stringResource(R.string.fuel_dashboard_error))
                 }
             }
         }

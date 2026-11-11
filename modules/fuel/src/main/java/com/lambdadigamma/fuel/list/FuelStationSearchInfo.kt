@@ -8,10 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.lambdadigamma.core.theme.MeinMoersTheme
+import com.lambdadigamma.fuel.R
 import com.lambdadigamma.fuel.data.FuelType
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,12 +35,12 @@ fun FuelStationSearchInfo(type: FuelType, modifier: Modifier = Modifier) {
 
             Column() {
                 Row {
-                    Text(text = "Spritsorte: ", fontWeight = FontWeight.Medium)
+                    Text(text = stringResource(R.string.fuel_search_type) + ": ", fontWeight = FontWeight.Medium)
                     Text(text = type.localizedName())
                 }
                 Row {
-                    Text(text = "Umgebung: ", fontWeight = FontWeight.Medium)
-                    Text(text = "Aktueller Standort")
+                    Text(text = stringResource(R.string.fuel_search_area) + ": ", fontWeight = FontWeight.Medium)
+                    Text(text = stringResource(R.string.current_location))
                 }
             }
             Icon(imageVector = Icons.Default.Search, contentDescription = null)

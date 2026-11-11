@@ -9,4 +9,12 @@
     <string name="fuel_datasource">Datenquelle: CC BY 4.0 - https://creativecommons.tankerkoenig.de</string>
     <string name="fuel_stations_title">Kraftstoff</string>
     <string name="fuel_dashboard_location_unknown">Ort unbekannt</string>
+    <string name="fuel_dashboard_price_unit">%1$s pro Liter</string>
+    <string name="fuel_dashboard_error">Die Spritpreise konnten nicht geladen werden.</string>
+    <string name="fuel_search_type">Kraftstoff</string>
+    <string name="fuel_search_area">Umgebung</string>
+    <plurals name="fuel_dashboard_open_stations">
+        <item quantity="one">%d Tankstelle in Deiner Nähe hat geöffnet.</item>
+        <item quantity="other">%d Tankstellen in Deiner Nähe haben geöffnet.</item>
+    </plurals>
 </resources>

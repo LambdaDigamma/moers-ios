@@ -8,5 +8,13 @@
     <string name="start_navigation">Start navigation</string>
     <string name="fuel_datasource">Data source: CC BY 4.0 - https://creativecommons.tankerkoenig.de</string>
     <string name="fuel_stations_title">Fuel stations</string>
-    <string name="fuel_dashboard_location_unknown">Ort unbekannt</string>
+    <string name="fuel_dashboard_location_unknown">Location unknown</string>
+    <string name="fuel_dashboard_price_unit">%1$s per liter</string>
+    <string name="fuel_dashboard_error">The fuel prices could not be loaded.</string>
+    <string name="fuel_search_type">Fuel type</string>
+    <string name="fuel_search_area">Area</string>
+    <plurals name="fuel_dashboard_open_stations">
+        <item quantity="one">%d fuel station nearby is open.</item>
+        <item quantity="other">%d fuel stations nearby are open.</item>
+    </plurals>
 </resources>

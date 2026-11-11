@@ -1,197 +1,151 @@
 package com.lambdadigamma.parking.list
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material3.*
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.lambdadigamma.core.theme.MeinMoersTheme
-import com.lambdadigamma.core.ui.NavigationBackButton
-import com.lambdadigamma.core.ui.RelativeDateText
-import com.lambdadigamma.core.ui.ResourcefulContent
-import com.lambdadigamma.parking.ParkingAreaOpeningState
+import com.lambdadigamma.core.ui.ErrorContent
+import com.lambdadigamma.core.ui.LoadingContent
+import com.lambdadigamma.core.ui.TopBar
+import com.lambdadigamma.parking.ParkingArea
+import com.lambdadigamma.parking.ParkingUiState
+import com.lambdadigamma.parking.ParkingViewModel
 import com.lambdadigamma.parking.R
+import com.lambdadigamma.parking.lastUpdate
 import com.lambdadigamma.parking.localizedName
-import java.util.*
-import kotlin.math.max
+import com.lambdadigamma.parking.ui.ParkingDisclaimer
+import com.lambdadigamma.parking.ui.ParkingOutdatedWarning
+import com.lambdadigamma.parking.ui.relativeUpdateText
+import java.util.Date
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ParkingAreasScreen(onSelectParkingArea: (Int) -> Unit, onBack: () -> Unit) {
-
-    val viewModel: ParkingAreaListViewModel = hiltViewModel()
-    val resource = viewModel.load()
+    val viewModel: ParkingViewModel = hiltViewModel()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold(
-        topBar = {
-            TopAppBar(title = {
-                Text(text = stringResource(R.string.parking_areas_title))
-            }, navigationIcon = {
-                NavigationBackButton(onBack = onBack)
-            })
-        },
-        content = {
-            ResourcefulContent(resource = resource, onLoad = { /*TODO*/ }) { parkingAreas ->
-                ParkingAreaScreenContent(
-                    parkingAreas = parkingAreas,
-                    modifier = Modifier.padding(it),
-                    onSelectParkingArea = onSelectParkingArea
-                )
+        topBar = { TopBar(title = stringResource(R.string.parking_areas_title), onBack = onBack) },
+    ) { padding ->
+        PullToRefreshBox(
+            isRefreshing = uiState.isRefreshing && !uiState.isLoading,
+            onRefresh = viewModel::refresh,
+            modifier = Modifier
+                .padding(padding)
+                .fillMaxSize(),
+        ) {
+            when {
+                uiState.isLoading -> LoadingContent()
+                uiState.parkingAreas.isEmpty() -> ErrorContent(message = null, onRetry = viewModel::refresh)
+                else -> ParkingAreaGrid(uiState = uiState, onSelectParkingArea = onSelectParkingArea)
             }
         }
-    )
+    }
 }
 
 @Composable
-private fun ParkingAreaScreenContent(
-    parkingAreas: List<ParkingAreaListItem>,
-    modifier: Modifier = Modifier,
-    onSelectParkingArea: (Int) -> Unit
-) {
+private fun ParkingAreaGrid(uiState: ParkingUiState, onSelectParkingArea: (Int) -> Unit) {
     LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
+        columns = GridCells.Adaptive(minSize = 160.dp),
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = modifier
+        modifier = Modifier.fillMaxSize(),
     ) {
-
-        items(parkingAreas, key = { it.id }) { parkingArea ->
-            ParkingAreaDashboard(
-                name = parkingArea.name,
-                freeSites = max(parkingArea.capacity - parkingArea.occupiedSites, 0),
-                capacity = parkingArea.capacity,
-                currentOpeningState = parkingArea.currentOpeningState,
-                lastUpdate = parkingArea.lastUpdated,
-                onClick = { onSelectParkingArea(parkingArea.id) }
-            )
-        }
-
-        item(span = { GridItemSpan(2) }) {
-            Column(modifier = Modifier) {
-                Text(
-                    text = stringResource(R.string.parking_areas_resource_disclaimer),
-                    color = MaterialTheme.colorScheme.secondary,
-                    style = MaterialTheme.typography.labelMedium,
-                    fontWeight = FontWeight.Normal
-                )
-                Text(
-                    text = stringResource(R.string.parking_areas_resource_source),
-                    color = MaterialTheme.colorScheme.secondary,
-                    style = MaterialTheme.typography.labelMedium,
-                    fontWeight = FontWeight.Normal
+        if (uiState.isOutdated) {
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                ParkingOutdatedWarning(
+                    lastUpdate = uiState.parkingAreas.lastUpdate(),
+                    modifier = Modifier.padding(bottom = 4.dp),
                 )
             }
         }
-
+        items(uiState.parkingAreas, key = { it.id }) { area ->
+            ParkingAreaCard(area = area, onClick = { onSelectParkingArea(area.id) })
+        }
+        item(span = { GridItemSpan(maxLineSpan) }) {
+            ParkingDisclaimer(Modifier.padding(top = 8.dp))
+        }
     }
-
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun ParkingAreaDashboard(
-    name: String,
-    freeSites: Int,
-    capacity: Int,
-    currentOpeningState: ParkingAreaOpeningState,
-    lastUpdate: Date,
-    onClick: () -> Unit
-) {
+private fun ParkingAreaCard(area: ParkingArea, onClick: () -> Unit) {
     ElevatedCard(onClick = onClick) {
-        Surface(tonalElevation = 8.dp, modifier = Modifier.fillMaxWidth()) {
-            Row(
-                horizontalArrangement = Arrangement.End,
-                modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
-            ) {
-                Text(
-                    text = stringResource(id = currentOpeningState.localizedName()),
-                    style = MaterialTheme.typography.labelMedium
-                )
-            }
-        }
-        Column(modifier = Modifier.padding(12.dp)) {
+        Column(
+            modifier = Modifier.padding(12.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+        ) {
             Text(
-                text = name,
+                text = stringResource(area.openingState.localizedName()),
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.primary,
+            )
+            Text(
+                text = area.name,
                 style = MaterialTheme.typography.titleMedium,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
-            Row(modifier = Modifier.padding(bottom = 8.dp)) {
-                Text(text = freeSites.toString(), fontWeight = FontWeight.Medium)
-                Text(text = " / $capacity frei", color = MaterialTheme.colorScheme.secondary)
-            }
+            Text(
+                text = if (area.hasLiveData) {
+                    stringResource(R.string.parking_free_of_capacity, area.freeSites, area.capacity)
+                } else {
+                    stringResource(R.string.parking_no_live_data)
+                },
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
             LinearProgressIndicator(
-                progress = 1 - (freeSites / capacity.toFloat()),
-                modifier = Modifier.padding(bottom = 8.dp)
+                progress = { area.occupancy },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 4.dp),
             )
-            RelativeDateText(
-                date = lastUpdate,
-                color = MaterialTheme.colorScheme.tertiary,
-                style = MaterialTheme.typography.labelMedium
-            )
+            relativeUpdateText(area.updatedAt)?.let { text ->
+                Text(
+                    text = text,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun ParkingAreaScreenPreview() {
+private fun ParkingAreaGridPreview() {
+    fun area(id: Int, name: String, capacity: Int, occupied: Int) =
+        ParkingArea(id, name, name, null, null, capacity, occupied, null, Date())
     MeinMoersTheme {
-        ParkingAreaScreenContent(
-            parkingAreas = listOf(
-                ParkingAreaListItem(
-                    id = 1,
-                    name = "Kautzstr.",
-                    capacity = 700,
-                    occupiedSites = 38,
-                    currentOpeningState = ParkingAreaOpeningState.OPEN,
-                    lastUpdated = Date()
-                ),
-                ParkingAreaListItem(
-                    id = 2,
-                    name = "Bankstr.",
-                    capacity = 400,
-                    occupiedSites = 124,
-                    currentOpeningState = ParkingAreaOpeningState.OPEN,
-                    lastUpdated = Date()
-                ),
-                ParkingAreaListItem(
-                    id = 3,
-                    name = "Kastell",
-                    capacity = 700,
-                    occupiedSites = 142,
-                    currentOpeningState = ParkingAreaOpeningState.OPEN,
-                    lastUpdated = Date()
-                ),
-                ParkingAreaListItem(
-                    id = 4,
-                    name = "Mühlenstr.",
-                    capacity = 700,
-                    occupiedSites = 698,
-                    currentOpeningState = ParkingAreaOpeningState.CLOSED,
-                    lastUpdated = Date()
-                ),
-                ParkingAreaListItem(
-                    id = 5,
-                    name = "Kautzstr. (Parkplatz)",
-                    capacity = 102,
-                    occupiedSites = 32,
-                    currentOpeningState = ParkingAreaOpeningState.UNKNOWN,
-                    lastUpdated = Date()
-                ),
+        ParkingAreaGrid(
+            uiState = ParkingUiState(
+                parkingAreas = listOf(area(1, "Altstadt", 104, 16), area(2, "Kautzstr.", 0, 0), area(3, "Kastell", 110, 92)),
+                isLoading = false,
             ),
-            onSelectParkingArea = {}
-//            modifier = Modifier.padding(16.dp)
+            onSelectParkingArea = {},
         )
     }
 }

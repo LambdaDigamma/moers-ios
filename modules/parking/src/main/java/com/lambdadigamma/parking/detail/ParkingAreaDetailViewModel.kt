@@ -1,40 +1,43 @@
 package com.lambdadigamma.parking.detail
 
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
-import com.lambdadigamma.core.Resource
-import com.lambdadigamma.parking.ParkingService
+import androidx.lifecycle.viewModelScope
+import com.lambdadigamma.parking.ParkingRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.util.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
+
+sealed interface ParkingAreaDetailUiState {
+    data object Loading : ParkingAreaDetailUiState
+    data object Failed : ParkingAreaDetailUiState
+    data class Loaded(val response: ParkingAreaResponse) : ParkingAreaDetailUiState
+}
 
 @HiltViewModel
 class ParkingAreaDetailViewModel @Inject constructor(
-    private val parkingAreaService: ParkingService
+    savedStateHandle: SavedStateHandle,
+    private val parkingRepository: ParkingRepository,
 ) : ViewModel() {
 
-    private var currentParkingAreaId: Int? = null
+    private val id: Int = checkNotNull(savedStateHandle["id"])
+    private val _uiState = MutableStateFlow<ParkingAreaDetailUiState>(ParkingAreaDetailUiState.Loading)
+    val uiState: StateFlow<ParkingAreaDetailUiState> = _uiState.asStateFlow()
 
-    fun load(id: Int): LiveData<Resource<ParkingAreaDetailState>> {
-        this.currentParkingAreaId = id
-
-        return parkingAreaService.getParkingArea(id).map { resource ->
-            return@map resource.transform { response ->
-                val parkingArea = response.data.parkingArea
-                return@transform ParkingAreaDetailState(
-                    id = parkingArea.id,
-                    name = parkingArea.name,
-                    location = parkingArea.location,
-                    currentOpeningState = parkingArea.currentOpeningState,
-                    capacity = parkingArea.capacity,
-                    occupiedSites = parkingArea.occupiedSites,
-                    freeSites = parkingArea.capacity - parkingArea.occupiedSites,
-                    occupancy = listOf<Occupancy>(), // response.data.pastOccupancy.data.data.data,
-                    lastUpdated = parkingArea.updatedAt ?: Date()
-                )
-            }
-        }
+    init {
+        load()
     }
 
+    fun load() {
+        viewModelScope.launch {
+            _uiState.value = ParkingAreaDetailUiState.Loading
+            _uiState.value = parkingRepository.parkingArea(id).fold(
+                onSuccess = { ParkingAreaDetailUiState.Loaded(it) },
+                onFailure = { ParkingAreaDetailUiState.Failed },
+            )
+        }
+    }
 }

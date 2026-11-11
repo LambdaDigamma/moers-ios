@@ -1,6 +1,5 @@
 package com.lambdadigamma.fuel.data
 
-import android.util.Log
 import com.google.gson.GsonBuilder
 import com.lambdadigamma.core.LiveDataCallAdapterFactory
 import com.skydoves.retrofit.adapters.result.ResultCallAdapterFactory
@@ -63,7 +62,6 @@ interface FuelService {
                 .addQueryParameter("apikey", key)
                 .build()
             request.url(newUrl)
-            Log.d("Api", newUrl.toString())
             return chain.proceed(request.build())
         }
 

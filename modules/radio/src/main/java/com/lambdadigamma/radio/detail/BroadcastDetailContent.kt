@@ -14,11 +14,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.lambdadigamma.core.theme.MeinMoersTheme
 import com.lambdadigamma.core.ui.NavigationBackButton
+import com.lambdadigamma.radio.R
 import java.util.*
 
 data class BroadcastDetailUiState(
@@ -37,7 +39,7 @@ fun BroadcastDetailContent(broadcast: BroadcastDetailUiState, onBack: () -> Unit
 
     Scaffold(topBar = {
         TopAppBar(title = {
-            Text(text = "Details")
+            Text(text = stringResource(R.string.community_radio_title))
         }, navigationIcon = {
             NavigationBackButton(onBack = onBack)
         })

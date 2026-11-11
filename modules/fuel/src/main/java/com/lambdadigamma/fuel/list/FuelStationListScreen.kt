@@ -19,6 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.lambdadigamma.core.Status
 import com.lambdadigamma.core.ui.NavigationBackButton
+import com.lambdadigamma.core.ui.ErrorContent
+import com.lambdadigamma.core.ui.LoadingContent
 import com.lambdadigamma.fuel.R
 import com.lambdadigamma.fuel.R.drawable
 import com.lambdadigamma.fuel.data.FuelType
@@ -63,67 +65,8 @@ fun FuelStationListScreen(onBack: () -> Unit, onShowFuelStation: (String) -> Uni
                     FuelStationSearchInfo(type = fuelType ?: FuelType.DIESEL)
                 }
             }
-            Status.LOADING -> {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(MaterialTheme.colorScheme.background),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Column(
-                            verticalArrangement = Arrangement.spacedBy(16.dp),
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            CircularProgressIndicator()
-                            Text(text = "Lädt Tankstellen…")
-                        }
-                    }
-                }
-            }
-            Status.ERROR -> {
-                FuelStationsErrorScreen(stations?.errorMessage ?: "Error")
-            }
-            else -> {
-
-            }
-        }
-    }
-}
-
-@Composable
-fun FuelStationsErrorScreen(error: String) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Icon(
-                painter = painterResource(id = drawable.ic_outline_error_outline_24),
-                contentDescription = "Die Tankstellen können im Moment nicht geladen werden.",
-                modifier = Modifier.size(64.dp),
-                tint = MaterialTheme.colorScheme.surfaceTint
-            )
-            Text(
-                text = error,
-                textAlign = TextAlign.Center,
-                fontWeight = FontWeight.Medium,
-                color = MaterialTheme.colorScheme.surfaceTint
-            )
-//            TextButton(onClick = { /*TODO*/ }) {
-//                Text(text = "Neu laden")
-//            }
+            Status.LOADING, null -> LoadingContent()
+            Status.ERROR -> ErrorContent(message = null, onRetry = viewModel::reload)
         }
     }
 }

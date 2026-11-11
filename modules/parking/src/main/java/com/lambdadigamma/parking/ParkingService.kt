@@ -1,11 +1,8 @@
 package com.lambdadigamma.parking
 
-import androidx.lifecycle.LiveData
 import com.google.gson.GsonBuilder
 import com.google.gson.annotations.SerializedName
 import com.lambdadigamma.core.DataResponse
-import com.lambdadigamma.core.LiveDataCallAdapterFactory
-import com.lambdadigamma.core.Resource
 import com.lambdadigamma.core.utils.AcceptLanguageHeaderInterceptor
 import com.lambdadigamma.parking.detail.ParkingAreaResponse
 import okhttp3.OkHttpClient
@@ -18,21 +15,16 @@ data class ParkingAreasResponse(@SerializedName("parking_areas") val parkingArea
 
 interface ParkingService {
 
-    @GET("parking/dashboard")
-    fun getParkingDashboard(): LiveData<Resource<DataResponse<ParkingAreasResponse>>>
-
     @GET("parking-areas")
-    fun getParkingAreas(): LiveData<Resource<DataResponse<ParkingAreasResponse>>>
+    suspend fun getParkingAreas(): DataResponse<ParkingAreasResponse>
 
     @GET("parking-areas/{id}")
-    fun getParkingArea(@Path("id") id: Int): LiveData<Resource<DataResponse<ParkingAreaResponse>>>
+    suspend fun getParkingArea(@Path("id") id: Int): DataResponse<ParkingAreaResponse>
 
     companion object Factory {
 
         fun getParkingService(): ParkingService {
-
-            val client = OkHttpClient()
-                .newBuilder()
+            val client = OkHttpClient.Builder()
                 .addInterceptor(AcceptLanguageHeaderInterceptor())
                 .build()
 
@@ -44,10 +36,8 @@ interface ParkingService {
                         GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create()
                     )
                 )
-                .addCallAdapterFactory(LiveDataCallAdapterFactory())
                 .build()
                 .create(ParkingService::class.java)
         }
-
     }
 }
