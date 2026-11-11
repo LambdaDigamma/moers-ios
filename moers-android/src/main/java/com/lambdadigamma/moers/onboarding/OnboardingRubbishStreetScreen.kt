@@ -15,13 +15,14 @@ import com.lambdadigamma.rubbish.street.RubbishStreetPicker
 
 @Composable
 fun OnboardingRubbishStreetScreen(
-    onContinue: () -> Unit
+    onStreetSelected: () -> Unit,
+    onSkip: () -> Unit,
 ) {
     OnboardingHost(
         shouldScroll = false,
         content = {
             RubbishStreetPicker(
-                onStreetSelected = onContinue,
+                onStreetSelected = onStreetSelected,
                 header = {
                     Text(
                         text = stringResource(R.string.onboarding_rubbish_street_selection_title),
@@ -37,7 +38,7 @@ fun OnboardingRubbishStreetScreen(
             )
         }
     ) {
-        TextButton(onClick = onContinue, modifier = Modifier.fillMaxWidth()) {
+        TextButton(onClick = onSkip, modifier = Modifier.fillMaxWidth()) {
             Text(text = stringResource(R.string.onboarding_rubbish_street_skip_action))
         }
     }
