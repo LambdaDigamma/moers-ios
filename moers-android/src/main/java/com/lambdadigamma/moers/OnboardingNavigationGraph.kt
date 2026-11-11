@@ -17,6 +17,7 @@ import com.lambdadigamma.moers.onboarding.OnboardingAboutScreen
 import com.lambdadigamma.moers.onboarding.OnboardingDoneScreen
 import com.lambdadigamma.moers.onboarding.OnboardingFuelScreen
 import com.lambdadigamma.moers.onboarding.OnboardingLocationScreen
+import com.lambdadigamma.moers.onboarding.OnboardingRubbishRemindersScreen
 import com.lambdadigamma.moers.onboarding.OnboardingRubbishStreetScreen
 import com.lambdadigamma.moers.onboarding.OnboardingTop
 import com.lambdadigamma.moers.onboarding.OnboardingUserTypeScreen
@@ -81,7 +82,17 @@ fun OnboardingNavigationGraph(
                     })
                 }
                 composable(route = Destinations.Onboarding.rubbishStreet) {
-                    OnboardingRubbishStreetScreen(onContinue = {
+                    OnboardingRubbishStreetScreen(
+                        onStreetSelected = {
+                            navController.navigate(Destinations.Onboarding.rubbishReminders)
+                        },
+                        onSkip = {
+                            navController.navigate(Destinations.Onboarding.fuel)
+                        },
+                    )
+                }
+                composable(route = Destinations.Onboarding.rubbishReminders) {
+                    OnboardingRubbishRemindersScreen(onContinue = {
                         navController.navigate(Destinations.Onboarding.fuel)
                     })
                 }

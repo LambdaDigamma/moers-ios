@@ -298,7 +298,7 @@ private fun UserType.labelRes(): Int = when (this) {
 }
 
 @Composable
-private fun formatTime(hours: Int, minutes: Int): String {
+internal fun formatTime(hours: Int, minutes: Int): String {
     val context = LocalContext.current
     return remember(hours, minutes) {
         val calendar = Calendar.getInstance().apply {

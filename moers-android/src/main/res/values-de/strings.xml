@@ -70,6 +70,11 @@
     <string name="onboarding_rubbish_street_selection_title">Wähle Deine Straße aus</string>
     <string name="onboarding_rubbish_street_selection_body">Die App kann Dir den Abfallkalender für Deine Straße anzeigen. Suche dazu Deine Straße aus und fahre fort.</string>
     <string name="onboarding_rubbish_street_skip_action">Später einrichten</string>
+    <string name="onboarding_rubbish_reminders_title">Erinnerungen</string>
+    <string name="onboarding_rubbish_reminders_headline">Lass Dich erinnern</string>
+    <string name="onboarding_rubbish_reminders_body">Mein Moers kann Dich daran erinnern, Deine Mülltonnen rechtzeitig an die Straße zu stellen. Du bekommst am Vorabend jeder Abholung um %1$s eine Benachrichtigung.</string>
+    <string name="onboarding_rubbish_reminders_hint">Die Uhrzeit kannst Du jederzeit in den Einstellungen ändern oder die Erinnerungen dort wieder ausschalten.</string>
+    <string name="onboarding_rubbish_reminders_enable">Erinnerungen einschalten</string>
     <string name="onboarding_fuel_title">Wähle einen Kraftstofftyp</string>
     <string name="onboarding_fuel_body">Die App kann Dir einen Überblick über die aktuellen Kraftstoffpreise geben. Wähle dazu Deinen bevorzugten Kraftstofftyp aus und fahre fort.</string>
     <string name="about_navigation">Über die App</string>

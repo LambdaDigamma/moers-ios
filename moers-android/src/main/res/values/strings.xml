@@ -70,6 +70,11 @@
     <string name="onboarding_rubbish_street_selection_title">Choose your street</string>
     <string name="onboarding_rubbish_street_selection_body">The app can show you the waste calendar for your street. Select your street and continue.</string>
     <string name="onboarding_rubbish_street_skip_action">Setup later</string>
+    <string name="onboarding_rubbish_reminders_title">Reminders</string>
+    <string name="onboarding_rubbish_reminders_headline">Get reminded</string>
+    <string name="onboarding_rubbish_reminders_body">Mein Moers can remind you to put your bins out in time. You get a notification at %1$s on the evening before each collection.</string>
+    <string name="onboarding_rubbish_reminders_hint">You can change the time or turn reminders off in the settings at any time.</string>
+    <string name="onboarding_rubbish_reminders_enable">Turn on reminders</string>
     <string name="onboarding_fuel_title">Choose a fuel type</string>
     <string name="onboarding_fuel_body">The app can give you an overview of current fuel prices. Choose your preferred fuel type and continue.</string>
     <string name="about_navigation">About this app</string>
