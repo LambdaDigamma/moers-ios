@@ -2,11 +2,13 @@
     <string name="app_name">Mein Moers</string>
     <string name="navigation_dashboard">Heute</string>
     <string name="navigation_explore">Erkunden</string>
+    <string name="explore_radio_title">Bürgerfunk</string>
     <string name="navigation_map">Karte</string>
     <string name="navigation_events">Events</string>
     <string name="navigation_search">Suchen</string>
     <string name="navigation_other">Sonstiges</string>
     <string name="settings">Einstellungen</string>
+    <string name="dashboard_more_options">Weitere Optionen</string>
     <string name="onboarding_start_button">Einrichtung starten</string>
     <string name="onboarding_welcome_text">Suche Geschäfte, Veranstaltungen und Parkplätze mit Live-Daten und bewege Dich mit interaktiven 360° Panoramen durch die Stadt! Finde die günstigste Tankstelle oder bekomme Erinnerungen für Leerungstermine der Mülltonnen.</string>
     <string name="onboarding_privacy_continue_button">Weiter</string>
@@ -17,6 +19,9 @@
     <string name="onboarding_about_title">Über diese App</string>
     <string name="onboarding_about_cta">Mach mit</string>
     <string name="onboarding_about_contribute_title">Mitarbeit</string>
+    <string name="onboarding_about_contribute_text">Die App wird von Lennart Fischer konzeptioniert und entwickelt. Der gesamte Programmcode der App ist auf GitHub zu finden. Jede und jeder ist eingeladen, an der Entwicklung mitzuwirken oder Ideen einzubringen. Alle weiteren Helfer:innen sind auch in der App zu finden.</string>
+    <string name="onboarding_about_contribute_question">Du möchtest auch mithelfen?</string>
+    <string name="onboarding_about_contribute_answer">Super! Du kannst Deine Ideen oder Dein Wissen einbringen. Weitere Informationen findest Du auf GitHub.</string>
     <string name="onboarding_about_terms_title">Nervig, aber notwendig</string>
     <string name="onboarding_about_open_data_title">Offene Daten?</string>
     <string name="onboarding_about_open_data_intro">Ohne Offene Daten wäre diese App nicht möglich.</string>
@@ -58,6 +63,9 @@
     <string name="onboarding_rubbish_street_selection_title">Wähle Deine Straße aus</string>
     <string name="onboarding_rubbish_street_selection_body">Die App kann Dir den Abfallkalender für Deine Straße anzeigen. Suche dazu Deine Straße aus und fahre fort.</string>
     <string name="onboarding_rubbish_street_skip_action">Später einrichten</string>
+    <string name="onboarding_rubbish_street_use_location">Aktuellen Standort verwenden</string>
+    <string name="onboarding_fuel_title">Wähle einen Kraftstofftyp</string>
+    <string name="onboarding_fuel_body">Die App kann Dir einen Überblick über die aktuellen Kraftstoffpreise geben. Wähle dazu Deinen bevorzugten Kraftstofftyp aus und fahre fort.</string>
     <string name="about_navigation">Über die App</string>
     <string name="feedback_navigation">Feedback geben</string>
     <string name="settings_fuel_type_label">Bevorzugter Kraftstoff</string>
@@ -70,6 +78,10 @@
     <string name="settings_rubbish_schedule_active">Aktiviert</string>
     <string name="settings_rubbish_street">Straße</string>
     <string name="settings_rubbish_reminder_time">Erinnerung</string>
+    <string name="settings_rubbish_reminder_time_summary">%1$s am Vortag</string>
+    <string name="settings_rubbish_reminder_off">Aus</string>
+    <string name="settings_rubbish_street_unset">Nicht ausgewählt</string>
+    <string name="settings_version">Version %1$s</string>
     <string name="onboarding_location_granted_title">Berechtigung erteilt</string>
     <string name="onboarding_location_granted_description">Du hast der App die Berechtigung erteilt, auf den Standort zugreifen zu können.</string>
     <string name="onboarding_location_granted_undo">Du kannst diese Erlaubnis jederzeit in den Geräte-Einstellungen wieder zurücknehmen.</string>

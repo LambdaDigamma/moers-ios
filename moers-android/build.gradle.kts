@@ -110,20 +110,21 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.runtime.livedata)
-    implementation(libs.androidx.material)
     implementation(libs.androidx.material.icons.core)
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.material3.adaptive.navigation.suite)
+    implementation(libs.androidx.core.splashscreen)
 
     // Coil
     implementation(libs.coil)
     implementation(libs.coil.network.okhttp)
 
     implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.lifecycle.runtime.compose)
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.accompanist.systemuicontroller)
     implementation(libs.accompanist.webview)
 
     testImplementation(libs.junit)
@@ -176,8 +177,6 @@ dependencies {
     // Autofill
     implementation(libs.androidx.autofill)
 
-    implementation(libs.composeprefs3)
-
     implementation(projects.modules.core)
     implementation(projects.modules.news)
     implementation(projects.modules.fuel)
@@ -187,7 +186,6 @@ dependencies {
     implementation(projects.modules.radio)
 
     implementation(libs.google.accompanist.permissions)
-    implementation(libs.google.accompanist.placeholder.material)
 
     // Review
     implementation(libs.review)

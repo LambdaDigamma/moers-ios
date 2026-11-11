@@ -2,6 +2,13 @@ package com.lambdadigamma.moers
 
 object Destinations {
 
+    /** Routes of the nested navigation graphs that back the top level tabs. */
+    object Tabs {
+        const val dashboard = "tab/dashboard"
+        const val news = "tab/news"
+        const val explore = "tab/explore"
+        const val events = "tab/events"
+    }
 
     object Onboarding {
         const val graph = "onboardingGraph"

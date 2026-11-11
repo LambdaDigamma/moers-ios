@@ -16,7 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import com.google.accompanist.placeholder.material.placeholder
+import com.lambdadigamma.core.ui.placeholder
 import com.lambdadigamma.core.Status
 import com.lambdadigamma.fuel.R
 import com.lambdadigamma.fuel.ui.FuelPriceText
@@ -75,10 +75,7 @@ fun FuelDashboardCard(modifier: Modifier = Modifier, onClick: () -> Unit) {
                             text = dashboardResource?.data?.location ?: placeholderData.location,
                             style = MaterialTheme.typography.headlineMedium,
                             fontWeight = FontWeight.Bold,
-                            modifier = Modifier.placeholder(
-                                visible = dashboardResource?.shouldBeRedacted() ?: true,
-                                color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.25f),
-                            )
+                            modifier = Modifier.placeholder(visible = dashboardResource?.shouldBeRedacted() ?: true)
                         )
                     }
                     Column(
@@ -92,10 +89,7 @@ fun FuelDashboardCard(modifier: Modifier = Modifier, onClick: () -> Unit) {
                             showSmall9 = false,
                             style = MaterialTheme.typography.headlineMedium,
                             fontWeight = FontWeight.Bold,
-                            modifier = Modifier.placeholder(
-                                visible = dashboardResource?.shouldBeRedacted() ?: true,
-                                color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.25f),
-                            )
+                            modifier = Modifier.placeholder(visible = dashboardResource?.shouldBeRedacted() ?: true)
                         )
 
                         Text(
@@ -112,10 +106,7 @@ fun FuelDashboardCard(modifier: Modifier = Modifier, onClick: () -> Unit) {
                 Text(
                     text = "$numberOfStations Tankstellen in Deiner näheren Umgebung haben geöffnet.",
                     style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.placeholder(
-                        visible = dashboardResource?.shouldBeRedacted() ?: true,
-                        color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.25f),
-                    )
+                    modifier = Modifier.placeholder(visible = dashboardResource?.shouldBeRedacted() ?: true)
                 )
             }
             if (dashboardResource?.status == Status.ERROR) {

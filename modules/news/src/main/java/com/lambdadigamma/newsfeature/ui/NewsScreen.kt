@@ -22,7 +22,8 @@ import coil3.compose.AsyncImage
 import com.lambdadigamma.core.DateUtils
 import com.lambdadigamma.core.Status
 import com.lambdadigamma.core.theme.MeinMoersTheme
-import com.lambdadigamma.core.ui.TopBar
+import com.lambdadigamma.core.ui.LargeTopBar
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import com.lambdadigamma.news.R
 import com.lambdadigamma.newsfeature.data.NewsListViewModel
 import java.time.format.FormatStyle
@@ -35,56 +36,61 @@ fun NewsScreen(onShowRssItem: (Int) -> Unit) {
     val viewModel: NewsListViewModel = hiltViewModel()
     val news by viewModel.news.observeAsState()
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-//            .scrollable(rememberScrollState(), orientation = Orientation.Horizontal)
-    ) {
-        TopBar(
-            title = stringResource(id = R.string.navigation_news),
-        )
+    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
 
-        when (news?.status) {
-            Status.SUCCESS -> {
+    Scaffold(
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        topBar = {
+            LargeTopBar(
+                title = stringResource(id = R.string.navigation_news),
+                scrollBehavior = scrollBehavior,
+            )
+        },
+    ) { padding ->
+        Column(modifier = Modifier.fillMaxSize().padding(padding)) {
 
-                LazyColumn(
-                    modifier = Modifier.fillMaxSize(),
-                    contentPadding = PaddingValues(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                ) {
-                    items(news?.data ?: emptyList(), key = { it.guid }) { item ->
+            when (news?.status) {
+                Status.SUCCESS -> {
 
-                        Card(onClick = {
-                            item.id?.let(onShowRssItem)
-                        }) {
-                            Column() {
-                                AsyncImage(
-                                    model = item.image,
-                                    contentDescription = null,
-                                    alignment = Alignment.TopCenter,
-                                    contentScale = ContentScale.FillWidth,
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .aspectRatio(ratio = (16.0f / 9.0f))
-                                )
+                    LazyColumn(
+                        modifier = Modifier.fillMaxSize(),
+                        contentPadding = PaddingValues(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                    ) {
+                        items(news?.data ?: emptyList(), key = { it.guid }) { item ->
 
-                                Column(
-                                    modifier = Modifier.padding(12.dp),
-                                    verticalArrangement = Arrangement.spacedBy(4.dp)
-                                ) {
-                                    Text(
-                                        text = item.title,
-                                        fontWeight = FontWeight.SemiBold,
-                                        style = MaterialTheme.typography.bodyMedium.copy(
-                                            lineHeight = 18.sp,
-                                        )
+                            Card(onClick = {
+                                item.id?.let(onShowRssItem)
+                            }) {
+                                Column() {
+                                    AsyncImage(
+                                        model = item.image,
+                                        contentDescription = null,
+                                        alignment = Alignment.TopCenter,
+                                        contentScale = ContentScale.FillWidth,
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .aspectRatio(ratio = (16.0f / 9.0f))
                                     )
-                                    item.date?.let { date ->
-                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                            Text(
-                                                text = DateUtils.format(date, FormatStyle.FULL),
-                                                style = MaterialTheme.typography.bodyMedium
+
+                                    Column(
+                                        modifier = Modifier.padding(12.dp),
+                                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                                    ) {
+                                        Text(
+                                            text = item.title,
+                                            fontWeight = FontWeight.SemiBold,
+                                            style = MaterialTheme.typography.bodyMedium.copy(
+                                                lineHeight = 18.sp,
                                             )
+                                        )
+                                        item.date?.let { date ->
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                Text(
+                                                    text = DateUtils.format(date, FormatStyle.FULL),
+                                                    style = MaterialTheme.typography.bodyMedium
+                                                )
+                                            }
                                         }
                                     }
                                 }
@@ -92,15 +98,15 @@ fun NewsScreen(onShowRssItem: (Int) -> Unit) {
                         }
                     }
                 }
-            }
-            Status.LOADING -> {
-                NewsLoadingScreen()
-            }
-            Status.ERROR -> {
-                NewsErrorScreen(error = news?.errorMessage ?: "")
-            }
-            else -> {
+                Status.LOADING -> {
+                    NewsLoadingScreen()
+                }
+                Status.ERROR -> {
+                    NewsErrorScreen(error = news?.errorMessage ?: "")
+                }
+                else -> {
 
+                }
             }
         }
     }

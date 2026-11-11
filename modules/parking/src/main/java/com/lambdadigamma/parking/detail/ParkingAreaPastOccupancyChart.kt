@@ -3,7 +3,7 @@ package com.lambdadigamma.parking.detail
 import android.graphics.PointF
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -53,7 +53,7 @@ private fun LinearChart(
 
             val lineColor = MaterialTheme.colorScheme.primary
 
-            Divider(
+            HorizontalDivider(
                 modifier = Modifier
                     .height(height)
                     .width(1.dp),
@@ -127,7 +127,7 @@ private fun LinearChart(
                         drawPath(path, color = lineColor, style = Stroke(width = 8f))
                     }
                 }
-                Divider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
+                HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
             }
         }
     }

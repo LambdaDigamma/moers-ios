@@ -49,12 +49,12 @@ fun DashboardRubbishComponent(modifier: Modifier = Modifier, onClick: () -> Unit
             Box(
                 modifier = Modifier
                     .clip(shape = RoundedCornerShape(4.dp))
-                    .background(Color.Green)
+                    .background(MaterialTheme.colorScheme.tertiaryContainer)
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_baseline_recycling_24),
                     contentDescription = null,
-                    tint = Color.White,
+                    tint = MaterialTheme.colorScheme.onTertiaryContainer,
                     modifier = Modifier
                         .size(20.dp)
                         .padding(2.dp)
@@ -65,7 +65,7 @@ fun DashboardRubbishComponent(modifier: Modifier = Modifier, onClick: () -> Unit
                 style = MaterialTheme.typography.titleMedium
             )
         }
-        Divider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
+        HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
 
         DashboardRubbishContent(items = items?.data.orEmpty(), modifier = Modifier.padding(12.dp))
     }

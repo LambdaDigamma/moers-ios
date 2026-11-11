@@ -1,69 +1,71 @@
 package com.lambdadigamma.moers.ui
 
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
-import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
+import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.lambdadigamma.core.theme.MeinMoersTheme
-import com.lambdadigamma.moers.Destinations
 import com.lambdadigamma.moers.NavGraph
 import com.lambdadigamma.moers.OnboardingNavigationGraph
 
-@OptIn(ExperimentalAnimationApi::class)
-@ExperimentalMaterial3Api
 @Composable
-fun Onboarding(
-    onFinishOnboarding: () -> Unit,
-    finishActivity: () -> Unit,
-) {
-    MeinMoersTheme {
-        val navController = rememberNavController()
-        OnboardingNavigationGraph(
-            navController = navController,
-            onFinishOnboarding = onFinishOnboarding,
-            finishActivity = finishActivity
-        )
+fun Onboarding() {
+    OnboardingNavigationGraph()
+}
+
+/**
+ * The main app shell. Shows a navigation bar on phones and a navigation rail on larger windows.
+ * Every tab keeps its own back stack.
+ */
+@Composable
+fun App() {
+    val navController = rememberNavController()
+    val backStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = backStackEntry?.destination
+
+    NavigationSuiteScaffold(
+        navigationSuiteItems = {
+            AppTab.entries.forEach { tab ->
+                val selected = currentDestination.isInTab(tab)
+                item(
+                    selected = selected,
+                    onClick = { navController.navigateToTab(tab, reselect = selected) },
+                    icon = {
+                        Icon(
+                            imageVector = if (selected) tab.activeIcon else tab.inactiveIcon,
+                            contentDescription = null,
+                        )
+                    },
+                    label = { Text(stringResource(tab.title)) },
+                )
+            }
+        },
+    ) {
+        NavGraph(navController = navController)
     }
 }
 
-@ExperimentalMaterial3Api
-@Composable
-fun App(finishActivity: () -> Unit) {
-    MeinMoersTheme {
-        val tabs = remember { AppTab.entries.toTypedArray() }
-        val navController = rememberNavController()
+private fun NavDestination?.isInTab(tab: AppTab): Boolean =
+    this?.hierarchy?.any { it.route == tab.route } == true
 
-        Scaffold(
-            bottomBar = { BottomBar(navController = navController, tabs) },
-            modifier = Modifier.fillMaxSize(),
-//                .navigationBarsPadding()
-//                .systemBarsPadding()
-        ) { padding ->
-            NavGraph(
-                finishActivity = finishActivity,
-                navController = navController,
-                startDestination = Destinations.dashboard,
-                modifier = Modifier.padding(bottom = padding.calculateBottomPadding())
-            )
+private fun NavHostController.navigateToTab(tab: AppTab, reselect: Boolean) {
+    if (reselect) {
+        // Selecting the current tab again returns to its root screen.
+        popBackStack(tab.startRoute, inclusive = false)
+        return
+    }
+    navigate(tab.route) {
+        popUpTo(graph.findStartDestination().id) {
+            saveState = true
         }
+        launchSingleTop = true
+        restoreState = true
     }
 }

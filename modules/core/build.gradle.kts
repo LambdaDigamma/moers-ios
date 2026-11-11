@@ -97,7 +97,6 @@ dependencies {
     implementation(libs.maps.compose)
     implementation(libs.play.services.maps)
 
-    implementation(libs.accompanist.systemuicontroller)
     implementation(libs.timber)
 
     testImplementation(libs.junit)

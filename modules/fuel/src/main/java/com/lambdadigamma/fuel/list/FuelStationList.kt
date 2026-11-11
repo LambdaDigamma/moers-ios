@@ -48,7 +48,7 @@ fun FuelStationList(
         }
         item {
             Column(modifier = Modifier.padding(16.dp)) {
-                Divider(
+                HorizontalDivider(
                     color = MaterialTheme.colorScheme.tertiary.copy(alpha = 0.1f),
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
